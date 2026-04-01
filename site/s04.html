@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S04: Command Interface - Learn Claude Code</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🧠 Learn Claude Code</a>
+            <div class="nav-links"><a href="index.html#courses" class="nav-link">课程</a></div>
+        </div>
+    </nav>
+
+    <main class="course-main">
+        <div class="container">
+            <div class="course-header">
+                <div class="course-breadcrumb"><a href="index.html">首页</a> / S04</div>
+                <div class="course-chapter-nav">
+                    <a href="s03.html" class="chapter-prev">← S03</a>
+                    <a href="s05.html" class="chapter-next">S05 →</a>
+                </div>
+            </div>
+
+            <article class="course-content">
+                <h1 class="course-title">S04: Command Interface <span class="subtitle">命令接口</span></h1>
+
+                <div class="course-quote">
+                    <p>"The command line is the artist's brush" -- 命令行是艺术家的画笔。</p>
+                </div>
+
+                <section class="section-block">
+                    <h2>🎯 问题</h2>
+                    <p>如何设计一个既强大又易用的命令行接口？</p>
+                </section>
+
+                <section class="section-block">
+                    <h2>💡 CLI 架构</h2>
+                    <div class="code-block">
+                        <pre><code class="language-bash"># 基本用法
+claude [prompt] [options]
+
+# 交互模式
+claude
+
+# 管道模式
+echo "fix bugs" | claude -p
+
+# 指定模型
+claude --model claude-sonnet-4-6</code></pre>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔑 核心选项</h2>
+                    <table class="options-table">
+                        <tr><td><code>-p, --print</code></td><td>管道模式输出</td></tr>
+                        <tr><td><code>-d, --debug</code></td><td>调试模式</td></tr>
+                        <tr><td><code>--model</code></td><td>指定模型</td></tr>
+                        <tr><td><code>-c, --continue</code></td><td>继续上次会话</td></tr>
+                        <tr><td><code>-r, --resume</code></td><td>恢复会话</td></tr>
+                    </table>
+                </section>
+
+                <div class="chapter-navigation">
+                    <a href="s03.html" class="btn btn-secondary">← S03</a>
+                    <a href="s05.html" class="btn btn-primary">S05 →</a>
+                </div>
+            </article>
+        </div>
+    </main>
+    <footer class="footer"><div class="container"><p>© 2026 Learn Claude Code.</p></div></footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

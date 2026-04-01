@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S03: Permission Model - Learn Claude Code</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🧠 Learn Claude Code</a>
+            <div class="nav-links">
+                <a href="index.html#courses" class="nav-link">课程</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="course-main">
+        <div class="container">
+            <div class="course-header">
+                <div class="course-breadcrumb">
+                    <a href="index.html">首页</a> / <a href="index.html#courses">课程</a> / S03: Permission Model
+                </div>
+                <div class="course-chapter-nav">
+                    <a href="s02.html" class="chapter-prev">← S02</a>
+                    <a href="s04.html" class="chapter-next">S04 →</a>
+                </div>
+            </div>
+
+            <article class="course-content">
+                <h1 class="course-title">S03: Permission Model <span class="subtitle">权限模型</span></h1>
+
+                <div class="course-quote">
+                    <p>"Trust but verify" -- 信任但要验证，每个操作都需用户确认。</p>
+                    <p><strong>Security 层</strong>: Permissions -- Agent 与用户之间的安全边界。</p>
+                </div>
+
+                <section class="section-block">
+                    <h2>🎯 问题</h2>
+                    <p>Agent 可以执行任意命令，但用户可能不想让 Agent 删除重要文件或执行危险操作。如何平衡便利性与安全性？</p>
+                </section>
+
+                <section class="section-block">
+                    <h2>💡 解决方案</h2>
+                    <p>Claude Code 实现了多层权限控制系统：</p>
+                    <div class="diagram">
+                        <pre>
++-------------+     +----------------+     +-------------+
+| Tool Call   | --> | Permission     | --> | User Action |
+| Request     |     | Check          |     | (Allow/Deny)|
++-------------+     +----------------+     +-------------+
+                           |
+                           v
+                    +-------------+
+                    | Risk Level  |
+                    | Assessment  |
+                    +-------------+
+                        </pre>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔑 权限级别</h2>
+                    <div class="tools-grid">
+                        <div class="tool-card">
+                            <span class="tool-icon">✅</span>
+                            <h4>Auto-allow</h4>
+                            <p>低风险操作自动允许</p>
+                        </div>
+                        <div class="tool-card">
+                            <span class="tool-icon">❓</span>
+                            <h4>Ask</h4>
+                            <p>需要用户确认</p>
+                        </div>
+                        <div class="tool-card">
+                            <span class="tool-icon">🚫</span>
+                            <h4>Deny</h4>
+                            <p>高风险操作拒绝</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2>📐 权限模式</h2>
+                    <div class="code-block">
+                        <pre><code class="language-typescript">type PermissionMode =
+  | 'default'           // 默认：询问高风险操作
+  | 'acceptEdits'       // 自动接受编辑
+  | 'bypassPermissions' // 跳过所有检查（危险）
+  | 'dontAsk'           // 不再询问
+  | 'plan'              // 规划模式</code></pre>
+                    </div>
+                </section>
+
+                <div class="chapter-navigation">
+                    <a href="s02.html" class="btn btn-secondary">← S02: Tool System</a>
+                    <a href="s04.html" class="btn btn-primary">S04: Command Interface →</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container"><p>© 2026 Learn Claude Code.</p></div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

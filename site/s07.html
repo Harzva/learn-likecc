@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S07: MCP Protocol - Learn Claude Code</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔌</text></svg>">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🧠 Learn Claude Code</a>
+            <div class="nav-links">
+                <a href="index.html#overview" class="nav-link">概述</a>
+                <a href="index.html#courses" class="nav-link">课程</a>
+                <a href="index.html#source-map" class="nav-link">Source Map</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="course-main">
+        <div class="container">
+            <div class="course-header">
+                <div class="course-breadcrumb">
+                    <a href="index.html">首页</a> / <a href="index.html#courses">课程</a> / S07: MCP Protocol
+                </div>
+                <div class="course-chapter-nav">
+                    <a href="s06.html" class="chapter-prev">← S06</a>
+                    <a href="s08.html" class="chapter-next">S08 →</a>
+                </div>
+            </div>
+
+            <article class="course-content">
+                <h1 class="course-title">S07: MCP Protocol <span class="subtitle">Model Context Protocol</span></h1>
+
+                <div class="course-quote">
+                    <p>"MCP is the USB of AI tools" -- 统一协议连接无限可能。</p>
+                    <p><strong>Harness 层</strong>: MCP -- 外部工具集成的标准接口。</p>
+                </div>
+
+                <section class="section-block">
+                    <h2>🎯 问题</h2>
+                    <p>AI 工具需要:</p>
+                    <ul>
+                        <li>访问外部数据源 (数据库、API)</li>
+                        <li>调用专业服务 (搜索、分析)</li>
+                        <li>扩展功能 (自定义工具)</li>
+                        <li>标准化集成方式</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>💡 解决方案</h2>
+                    <p>MCP (Model Context Protocol) 提供标准化集成:</p>
+                    <div class="diagram">
+                        <pre>
++-------------+     +-------------+     +-------------+
+| Claude Code | --> | MCP Client  | --> | MCP Server  |
+|   (Host)    |     | (Protocol)  |     |   (Tool)    |
++-------------+     +-------------+     +-------------+
+                           |
+                    +------+------+
+                    |             |
+               +----+----+   +----+----+
+               | Server  |   | Server  |
+               |   A     |   |   B     |
+               +---------+   +---------+
+                        </pre>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔑 传输类型</h2>
+                    <table class="options-table">
+                        <tr><td><code>stdio</code></td><td>标准输入输出 (启动本地进程)</td></tr>
+                        <tr><td><code>sse</code></td><td>Server-Sent Events (HTTP 流)</td></tr>
+                        <tr><td><code>ws</code></td><td>WebSocket 连接</td></tr>
+                        <tr><td><code>http</code></td><td>HTTP 传输</td></tr>
+                    </table>
+                </section>
+
+                <section class="section-block">
+                    <h2>📐 连接流程</h2>
+                    <div class="code-block">
+                        <pre><code class="language-typescript">// 1. 根据类型创建传输
+let transport: Transport
+switch (config.type) {
+  case 'stdio':
+    transport = new StdioClientTransport({
+      command: config.command,
+      args: config.args,
+    })
+    break
+  case 'sse':
+    transport = new SSEClientTransport({
+      url: config.url,
+    })
+    break
+}
+
+// 2. 创建客户端并连接
+const client = new Client({ name: 'claude-code' })
+await client.connect(transport)
+
+// 3. 获取能力
+const capabilities = await client.listTools()</code></pre>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2>⚙️ 配置示例</h2>
+                    <div class="code-block">
+                        <pre><code class="language-json">{
+  "mcpServers": {
+    "github": {
+      "type": "stdio",
+      "command": "mcp-server-github",
+      "args": ["--repo", "owner/repo"]
+    },
+    "postgres": {
+      "type": "stdio",
+      "command": "mcp-server-postgres",
+      "env": { "DATABASE_URL": "postgresql://..." }
+    },
+    "api": {
+      "type": "sse",
+      "url": "https://api.example.com/mcp"
+    }
+  }
+}</code></pre>
+                    </div>
+                </section>
+
+                <div class="chapter-navigation">
+                    <a href="s06.html" class="btn btn-secondary">← S06: Subagent Fork</a>
+                    <a href="s08.html" class="btn btn-primary">S08: Task Management →</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Learn Claude Code. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

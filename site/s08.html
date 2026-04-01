@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S08: Task Management - Learn Claude Code</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📋</text></svg>">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🧠 Learn Claude Code</a>
+            <div class="nav-links">
+                <a href="index.html#overview" class="nav-link">概述</a>
+                <a href="index.html#courses" class="nav-link">课程</a>
+                <a href="index.html#source-map" class="nav-link">Source Map</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="course-main">
+        <div class="container">
+            <div class="course-header">
+                <div class="course-breadcrumb">
+                    <a href="index.html">首页</a> / <a href="index.html#courses">课程</a> / S08: Task Management
+                </div>
+                <div class="course-chapter-nav">
+                    <a href="s07.html" class="chapter-prev">← S07</a>
+                    <a href="s09.html" class="chapter-next">S09 →</a>
+                </div>
+            </div>
+
+            <article class="course-content">
+                <h1 class="course-title">S08: Task Management <span class="subtitle">任务管理</span></h1>
+
+                <div class="course-quote">
+                    <p>"Track progress, manage complexity" -- 任务系统让 Agent 工作透明可控。</p>
+                    <p><strong>Harness 层</strong>: Tasks -- 任务跟踪与状态管理。</p>
+                </div>
+
+                <section class="section-block">
+                    <h2>🎯 问题</h2>
+                    <p>复杂任务执行时:</p>
+                    <ul>
+                        <li>用户不知道进度如何</li>
+                        <li>Agent 可能忘记子任务</li>
+                        <li>难以追踪并行工作</li>
+                        <li>无法管理依赖关系</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>💡 解决方案</h2>
+                    <div class="diagram">
+                        <pre>
++----------------+
+|   Task List    |
++-------+--------+
+        |
+   +----+----+-----+
+   |    |    |     |
+   v    v    v     v
+ Task  Task Task  Task
+ (1)   (2)  (3)   (4)
+   |    |
+   +----+  <-- dependencies
+                        </pre>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔑 Task 数据结构</h2>
+                    <div class="code-block">
+                        <pre><code class="language-typescript">type Task = {
+  id: string                    // 唯一标识
+  subject: string               // 任务标题
+  description: string           // 详细描述
+  status: TaskStatus            // 状态
+  owner?: string                // 负责人 (agent id)
+  blockedBy?: string[]          // 被哪些任务阻塞
+  blocks?: string[]             // 阻塞哪些任务
+}
+
+type TaskStatus =
+  | 'pending'     // 待处理
+  | 'in_progress' // 进行中
+  | 'completed'   // 已完成
+  | 'deleted'     // 已删除</code></pre>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2>📊 状态流转</h2>
+                    <div class="diagram">
+                        <pre>
+pending → in_progress → completed
+   ↓          ↓
+deleted ← ─── ─
+                        </pre>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔧 Task 工具</h2>
+                    <div class="tools-grid">
+                        <div class="tool-card">
+                            <span class="tool-icon">➕</span>
+                            <h4>TaskCreate</h4>
+                            <p>创建新任务</p>
+                        </div>
+                        <div class="tool-card">
+                            <span class="tool-icon">✏️</span>
+                            <h4>TaskUpdate</h4>
+                            <p>更新任务状态</p>
+                        </div>
+                        <div class="tool-card">
+                            <span class="tool-icon">📜</span>
+                            <h4>TaskList</h4>
+                            <p>列出所有任务</p>
+                        </div>
+                        <div class="tool-card">
+                            <span class="tool-icon">🔍</span>
+                            <h4>TaskGet</h4>
+                            <p>获取任务详情</p>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="chapter-navigation">
+                    <a href="s07.html" class="btn btn-secondary">← S07: MCP Protocol</a>
+                    <a href="s09.html" class="btn btn-primary">S09: Bridge IDE →</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Learn Claude Code. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

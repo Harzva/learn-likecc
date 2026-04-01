@@ -1,17 +1,17 @@
 # Learn Claude Code
 
-> Claude Code 源码逆向恢复与深度学习项目 | Source Map 逆向 · 架构分析 · 可运行版本
+> Claude Code 源码分析与深度学习项目 | Source Map 分析 · 架构解析 · 可运行版本
 
 [![GitHub stars](https://img.shields.io/github/stars/Harzva/learn-likecc?style=social)](https://github.com/Harzva/learn-likecc)
 [![License](https://img.shields.io/badge/license-Educational-blue)](LICENSE)
 
 ---
 
-## 🔥 Source Map 泄露事件
+## 🔥 Source Map 事件
 
 ### 什么是 Source Map？
 
-Source Map 是一张**对照表**，告诉调试器压缩代码与源码的对应关系。当它被**误打入正式发布包**后，就变成了**源码导航图**。
+Source Map 是一张**对照表**，告诉调试器压缩代码与源码的对应关系。当它被打入正式发布包后，就变成了**源码导航图**。
 
 ### 泄露规模
 

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S09: Bridge IDE - Learn Claude Code</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔗</text></svg>">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🧠 Learn Claude Code</a>
+            <div class="nav-links">
+                <a href="index.html#overview" class="nav-link">概述</a>
+                <a href="index.html#courses" class="nav-link">课程</a>
+                <a href="index.html#source-map" class="nav-link">Source Map</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="course-main">
+        <div class="container">
+            <div class="course-header">
+                <div class="course-breadcrumb">
+                    <a href="index.html">首页</a> / <a href="index.html#courses">课程</a> / S09: Bridge IDE
+                </div>
+                <div class="course-chapter-nav">
+                    <a href="s08.html" class="chapter-prev">← S08</a>
+                    <a href="s10.html" class="chapter-next">S10 →</a>
+                </div>
+            </div>
+
+            <article class="course-content">
+                <h1 class="course-title">S09: Bridge IDE <span class="subtitle">IDE 集成与通信</span></h1>
+
+                <div class="course-quote">
+                    <p>"Bridge connects CLI to IDE" -- 无缝集成，极致体验。</p>
+                    <p><strong>Harness 层</strong>: Bridge -- IDE 扩展通信桥梁。</p>
+                </div>
+
+                <section class="section-block">
+                    <h2>🎯 问题</h2>
+                    <p>CLI 工具局限:</p>
+                    <ul>
+                        <li>无法直接编辑文件</li>
+                        <li>无法显示富文本</li>
+                        <li>无法访问 IDE 功能</li>
+                        <li>无法与编辑器状态同步</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>💡 解决方案</h2>
+                    <p>Bridge 是 CLI 与 IDE 之间的通信层:</p>
+                    <div class="diagram">
+                        <pre>
++-------------+     WebSocket     +-------------+
+| VS Code     | <----------------> | Bridge      |
+| Extension   |                    | Server      |
++-------------+                    +------+------+
+                                          |
+                                    +-----+-----+
+                                    | Claude    |
+                                    | Code CLI  |
+                                    +-----------+
+                        </pre>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔑 Bridge 配置</h2>
+                    <div class="code-block">
+                        <pre><code class="language-typescript">type BridgeConfig = {
+  dir: string              // 工作目录
+  machineName: string      // 机器标识
+  branch: string           // Git 分支
+  maxSessions: number      // 最大会话数
+  spawnMode: SpawnMode     // 启动模式
+}
+
+type SpawnMode = 'worktree' | 'same-dir' | 'capacity'</code></pre>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2>📊 消息协议</h2>
+                    <table class="options-table">
+                        <tr><td><strong>入站</strong></td><td>request, response</td></tr>
+                        <tr><td><strong>出站</strong></td><td>event, result</td></tr>
+                        <tr><td><strong>事件类型</strong></td><td>output, permission, status</td></tr>
+                    </table>
+                </section>
+
+                <section class="section-block">
+                    <h2>🛠️ 支持的 IDE</h2>
+                    <div class="tools-grid">
+                        <div class="tool-card">
+                            <span class="tool-icon">📘</span>
+                            <h4>VS Code</h4>
+                            <p>微软编辑器扩展</p>
+                        </div>
+                        <div class="tool-card">
+                            <span class="tool-icon">☕</span>
+                            <h4>JetBrains</h4>
+                            <p>IntelliJ IDEA / PyCharm</p>
+                        </div>
+                        <div class="tool-card">
+                            <span class="tool-icon">🌐</span>
+                            <h4>WebStorm</h4>
+                            <p>Web 开发专用</p>
+                        </div>
+                        <div class="tool-card">
+                            <span class="tool-icon">🔷</span>
+                            <h4>GoLand</h4>
+                            <p>Go 语言 IDE</p>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="chapter-navigation">
+                    <a href="s08.html" class="btn btn-secondary">← S08: Task Management</a>
+                    <a href="s10.html" class="btn btn-primary">S10: Hooks Extension →</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Learn Claude Code. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S12: Git Integration - Learn Claude Code</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌳</text></svg>">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🧠 Learn Claude Code</a>
+            <div class="nav-links">
+                <a href="index.html#overview" class="nav-link">概述</a>
+                <a href="index.html#courses" class="nav-link">课程</a>
+                <a href="index.html#source-map" class="nav-link">Source Map</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="course-main">
+        <div class="container">
+            <div class="course-header">
+                <div class="course-breadcrumb">
+                    <a href="index.html">首页</a> / <a href="index.html#courses">课程</a> / S12: Git Integration
+                </div>
+                <div class="course-chapter-nav">
+                    <a href="s11.html" class="chapter-prev">← S11</a>
+                    <a href="index.html" class="chapter-next">返回首页 →</a>
+                </div>
+            </div>
+
+            <article class="course-content">
+                <h1 class="course-title">S12: Git Integration <span class="subtitle">Git 集成</span></h1>
+
+                <div class="course-quote">
+                    <p>"Git is the source of truth" -- 版本控制是代码协作的基础。</p>
+                    <p><strong>Harness 层</strong>: Git -- 代码版本与协作管理。</p>
+                </div>
+
+                <section class="section-block">
+                    <h2>🎯 问题</h2>
+                    <p>AI 编程需要:</p>
+                    <ul>
+                        <li>了解代码变更历史</li>
+                        <li>安全地修改代码</li>
+                        <li>管理并行开发</li>
+                        <li>与远程同步</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>💡 解决方案</h2>
+                    <div class="diagram">
+                        <pre>
++-------------+     +-------------+
+| Git Utils   | --> | Git CLI     |
++------+------+     +-------------+
+       |
+  +----+----+-----+
+  |    |    |     |
+Diff  Status Log  Worktree
+                        </pre>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔑 Git 封装功能</h2>
+                    <div class="tools-grid">
+                        <div class="tool-card">
+                            <span class="tool-icon">📊</span>
+                            <h4>Git Status</h4>
+                            <p>变更状态查询</p>
+                        </div>
+                        <div class="tool-card">
+                            <span class="tool-icon">📝</span>
+                            <h4>Git Diff</h4>
+                            <p>差异分析</p>
+                        </div>
+                        <div class="tool-card">
+                            <span class="tool-icon">📖</span>
+                            <h4>Git Log</h4>
+                            <p>历史记录</p>
+                        </div>
+                        <div class="tool-card">
+                            <span class="tool-icon">🌿</span>
+                            <h4>Worktree</h4>
+                            <p>工作树管理</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔧 /commit 流程</h2>
+                    <div class="code-block">
+                        <pre><code class="language-typescript">async function createCommit(message?: string) {
+  // 1. 获取变更状态
+  const status = await getGitStatus()
+
+  // 2. 获取 diff
+  const diff = await getGitDiff()
+
+  // 3. 生成提交信息 (如果没有提供)
+  if (!message) {
+    message = await generateCommitMessage(diff, status)
+  }
+
+  // 4. 添加文件并提交
+  await exec('git add -A')
+  await exec(`git commit -m "${message}"`)
+}</code></pre>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2>🐙 GitHub 集成</h2>
+                    <table class="options-table">
+                        <tr><td><code>gh CLI</code></td><td>GitHub 命令行工具</td></tr>
+                        <tr><td><code>PR 创建</code></td><td>自动创建 Pull Request</td></tr>
+                        <tr><td><code>Issue 查看</code></td><td>读取 Issue 详情</td></tr>
+                        <tr><td><code>Release</code></td><td>发布版本管理</td></tr>
+                    </table>
+                </section>
+
+                <div class="course-complete">
+                    <h2>🎉 课程完成！</h2>
+                    <p>恭喜你完成了全部 12 个章节的学习！</p>
+                    <a href="index.html" class="btn btn-primary">返回首页</a>
+                </div>
+
+                <div class="chapter-navigation">
+                    <a href="s11.html" class="btn btn-secondary">← S11: Vim Mode</a>
+                    <a href="index.html" class="btn btn-primary">返回首页 →</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Learn Claude Code. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

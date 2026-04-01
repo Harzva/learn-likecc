@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S05: Context Compression - Learn Claude Code</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗜️</text></svg>">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🧠 Learn Claude Code</a>
+            <div class="nav-links">
+                <a href="index.html#overview" class="nav-link">概述</a>
+                <a href="index.html#courses" class="nav-link">课程</a>
+                <a href="index.html#source-map" class="nav-link">Source Map</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="course-main">
+        <div class="container">
+            <div class="course-header">
+                <div class="course-breadcrumb">
+                    <a href="index.html">首页</a> / <a href="index.html#courses">课程</a> / S05: Context Compression
+                </div>
+                <div class="course-chapter-nav">
+                    <a href="s04.html" class="chapter-prev">← S04</a>
+                    <a href="s06.html" class="chapter-next">S06 →</a>
+                </div>
+            </div>
+
+            <article class="course-content">
+                <h1 class="course-title">S05: Context Compression <span class="subtitle">上下文压缩</span></h1>
+
+                <div class="course-quote">
+                    <p>"Context is finite, but conversation is infinite" -- 压缩是长对话的生存之道。</p>
+                    <p><strong>Harness 层</strong>: Compact -- 让对话突破上下文限制。</p>
+                </div>
+
+                <section class="section-block">
+                    <h2>🎯 问题</h2>
+                    <p>Agent Loop 持续累积消息:</p>
+                    <ul>
+                        <li>模型有上下文窗口限制 (200K tokens)</li>
+                        <li>消息累积会超出限制</li>
+                        <li>重要信息可能被截断</li>
+                        <li>API 成本随 token 增长</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>💡 解决方案</h2>
+                    <p>Claude Code 实现了多层压缩策略:</p>
+                    <div class="diagram">
+                        <pre>
+Token Usage
+    │
+    ├── < Warning ──────── 提醒用户
+    │
+    ├── < AutoCompact ──── 自动压缩
+    │
+    └── < Error ────────── 强制压缩
+                        </pre>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2>📐 阈值计算</h2>
+                    <div class="code-block">
+                        <pre><code class="language-typescript">// 源码位置: src/services/compact/autoCompact.ts
+
+const MAX_OUTPUT_TOKENS_FOR_SUMMARY = 20_000
+const AUTOCOMPACT_BUFFER_TOKENS = 13_000
+
+function getAutoCompactThreshold(model: string): number {
+  const contextWindow = getContextWindowForModel(model)
+  const effectiveWindow = contextWindow - MAX_OUTPUT_TOKENS_FOR_SUMMARY
+  return effectiveWindow - AUTOCOMPACT_BUFFER_TOKENS
+}</code></pre>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔑 压缩类型</h2>
+                    <div class="tools-grid">
+                        <div class="tool-card">
+                            <span class="tool-icon">🤖</span>
+                            <h4>Auto Compact</h4>
+                            <p>自动触发压缩</p>
+                        </div>
+                        <div class="tool-card">
+                            <span class="tool-icon">✋</span>
+                            <h4>Manual /compact</h4>
+                            <p>用户手动触发</p>
+                        </div>
+                        <div class="tool-card">
+                            <span class="tool-icon">🔬</span>
+                            <h4>Micro Compact</h4>
+                            <p>特定消息压缩</p>
+                        </div>
+                        <div class="tool-card">
+                            <span class="tool-icon">💾</span>
+                            <h4>Memory Compact</h4>
+                            <p>会话记忆压缩</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2>📊 压缩流程</h2>
+                    <div class="code-block">
+                        <pre><code class="language-typescript">// 源码位置: src/services/compact/compact.ts
+
+async function compact(
+  messages: Message[],
+  config: CompactConfig
+): Promise<CompactResult> {
+
+  // 1. 执行预压缩 hooks
+  await executePreCompactHooks(messages)
+
+  // 2. 分析上下文
+  const analysis = analyzeContext(messages)
+
+  // 3. 生成摘要
+  const summary = await generateSummary(messages, analysis)
+
+  // 4. 创建压缩边界消息
+  const boundaryMessage = {
+    role: 'system',
+    type: 'compact_boundary',
+    content: summary,
+    originalMessages: messages,
+    tokenStats: { before, after, saved }
+  }
+
+  // 5. 替换历史
+  const newMessages = [boundaryMessage, ...messages.slice(-keepRecent)]
+
+  return { messages: newMessages, stats }
+}</code></pre>
+                    </div>
+                </section>
+
+                <div class="chapter-navigation">
+                    <a href="s04.html" class="btn btn-secondary">← S04: Command Interface</a>
+                    <a href="s06.html" class="btn btn-primary">S06: Subagent Fork →</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Learn Claude Code. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
