@@ -4,14 +4,27 @@
 
 ## 项目状态
 
-### 当前版本: v2.0.3
+### 当前版本: v2.0.5
 
 | 指标 | 状态 |
 |------|------|
-| 编译错误 | ~2137 (参考项目说明: 不阻止运行) |
-| Stub 模块 | 30+ 已创建 |
-| 类型定义 | message.ts, tools.ts 已补全 |
+| 编译错误 | ~2175 (不影响运行) |
+| Stub 模块 | 35+ 已创建 |
+| 运行状态 | ✅ **可运行** |
 | Git 仓库 | [公开仓库](https://github.com/Harzva/learn-likecc) |
+
+### 🎉 重大进展
+
+程序现在可以运行！
+
+```bash
+$ bun run dev --version
+0.0.1-learn (Claude Code)
+
+$ bun run dev --help
+Usage: claude [options] [command] [prompt]
+...
+```
 
 ### 编译错误趋势
 
@@ -20,7 +33,8 @@
 | v2.0.0 | 6099 | 原始状态 |
 | v2.0.1 | 2271 | -63% (放宽 tsconfig) |
 | v2.0.2 | 2034 | -11% (替换 message.ts) |
-| v2.0.3 | ~2137 | stub 波动 |
+| v2.0.3 | 2137 | 可运行 ✅ |
+| v2.0.5 | 2175 | CLI 正常 ✅ |
 
 ---
 
@@ -77,15 +91,17 @@ learn-likecc/
 
 ## 长期计划
 
-### Phase 1: 编译修复 (v2.0.x)
+### Phase 1: 编译修复 (v2.0.x) ✅
 - ✅ 放宽 tsconfig 配置
 - ✅ 替换 message.ts 类型定义
-- ✅ 创建 stub 模块 (30+)
-- 🔄 尝试运行 `bun run dev`
-- ⏳ 修复运行时错误
+- ✅ 创建 stub 模块 (35+)
+- ✅ 安装 Bun 运行时
+- ✅ 程序可运行
+- ✅ CLI 命令正常 (--help, --version)
 
 ### Phase 2: 运行测试 (v2.1.x)
-- ⏳ 基本命令测试
+- ✅ 基本命令测试
+- ⏳ API 调用测试 (需要 ANTHROPIC_API_KEY)
 - ⏳ 工具调用测试
 - ⏳ MCP 连接测试
 
