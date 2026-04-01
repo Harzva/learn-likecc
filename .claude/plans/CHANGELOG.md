@@ -890,4 +890,38 @@ GitHub Pages 需要手动启用：
 
 ---
 
-## v2.2.0 - 功能完善阶段 (下一步)
+## v2.2.0 - 功能完善阶段 (已完成)
+
+### 目标
+
+| 指标 | 目标 | 实际 |
+|------|------|------|
+| 编译错误分析 | 统计分布 | ✅ 已完成 |
+| 主要错误文件识别 | Top 20 | ✅ 已识别 |
+
+### 编译错误分布 Top 10
+
+| 文件 | 错误数 |
+|------|--------|
+| src/utils/messages.ts | 106 |
+| src/screens/REPL.tsx | 104 |
+| src/utils/hooks.ts | 85 |
+| src/main.tsx | 53 |
+| src/components/PromptInput.tsx | 47 |
+| src/QueryEngine.ts | 45 |
+| src/services/api/claude.ts | 43 |
+| src/components/Settings.tsx | 34 |
+| src/utils/collapseReadSearch.ts | 33 |
+| src/utils/sandbox-adapter.ts | 31 |
+
+### 当前状态
+
+| 指标 | 值 |
+|------|------|
+| 编译错误 | 2180 |
+| 运行状态 | ✅ CLI 正常 |
+| 课程网站 | ✅ 运行中 |
+
+---
+
+## v2.2.1 - 修复核心类型错误 (下一步)
