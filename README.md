@@ -131,9 +131,35 @@ cd ccsource/claude-code-main
 # 安装依赖 (需要 Bun)
 bun install
 
-# 尝试运行
-bun run dev
+# 配置 API Key
+cp .env.example .env
+# 编辑 .env 文件，填入你的 ANTHROPIC_API_KEY
+
+# 测试运行
+bun run dev --version
+bun run dev --help
+
+# 管道模式测试 (需要 API key)
+echo "say hello" | ANTHROPIC_API_KEY=your-key bun run dev -p
 ```
+
+### API Key 配置
+
+有两种方式配置 API Key：
+
+1. **环境变量** (推荐用于测试):
+   ```bash
+   export ANTHROPIC_API_KEY=your-api-key-here
+   bun run dev
+   ```
+
+2. **.env 文件**:
+   ```bash
+   cp .env.example .env
+   # 编辑 .env 文件
+   ```
+
+获取 API Key: https://console.anthropic.com/settings/keys
 
 ---
 
