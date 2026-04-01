@@ -1,19 +1,19 @@
-/* 基础样式 */
+/* 基础样式 - 明亮配色 */
 :root {
-    --primary: #d97706;
-    --primary-dark: #b45309;
+    --primary: #ea580c;
+    --primary-dark: #c2410c;
     --secondary: #6366f1;
-    --bg-dark: #0f172a;
-    --bg-card: #1e293b;
-    --bg-hover: #334155;
-    --text-primary: #f8fafc;
-    --text-secondary: #94a3b8;
+    --bg-dark: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-hover: #f1f5f9;
+    --text-primary: #1e293b;
+    --text-secondary: #475569;
     --text-muted: #64748b;
-    --border: #334155;
-    --gradient-1: linear-gradient(135deg, #d97706, #ea580c);
+    --border: #e2e8f0;
+    --gradient-1: linear-gradient(135deg, #ea580c, #f97316);
     --gradient-2: linear-gradient(135deg, #6366f1, #8b5cf6);
-    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.15);
 }
 
 * {
@@ -46,7 +46,7 @@ body {
     left: 0;
     right: 0;
     z-index: 1000;
-    background: rgba(15, 23, 42, 0.95);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
 }
@@ -85,6 +85,33 @@ body {
     text-decoration: none;
     font-weight: 500;
     transition: color 0.2s;
+}
+
+.nav-link:hover {
+    color: var(--primary);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.btn-github {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #24292e;
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+.btn-github:hover {
+    background: #1a1e22;
 }
 
 .nav-link:hover {
@@ -579,7 +606,7 @@ body {
 
 /* 页脚 */
 .footer {
-    background: #0a0f1a;
+    background: #f1f5f9;
     padding: 60px 20px 30px;
     border-top: 1px solid var(--border);
 }

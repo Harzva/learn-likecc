@@ -2,6 +2,7 @@
 
 > Claude Code 源码分析与深度学习项目 | Source Map 分析 · 架构解析 · 可运行版本
 
+[![Website](https://img.shields.io/badge/Website-在线课程-orange)](https://harzva.github.io/learn-likecc/)
 [![GitHub stars](https://img.shields.io/github/stars/Harzva/learn-likecc?style=social)](https://github.com/Harzva/learn-likecc)
 [![License](https://img.shields.io/badge/license-Educational-blue)](LICENSE)
 
