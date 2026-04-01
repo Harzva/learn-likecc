@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S01: Agent Loop - Learn Claude Code</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/prism.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🧠</span>
+                <span class="logo-text">Learn Claude Code</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#overview" class="nav-link">概述</a>
+                <a href="index.html#courses" class="nav-link">课程</a>
+                <a href="index.html#source-map" class="nav-link">Source Map</a>
+            </div>
+            <div class="nav-actions">
+                <a href="https://github.com/Harzva/learn-likecc" class="btn-github" target="_blank">
+                    <svg height="20" width="20" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 课程内容 -->
+    <main class="course-main">
+        <div class="container">
+            <!-- 课程头部 -->
+            <div class="course-header">
+                <div class="course-breadcrumb">
+                    <a href="index.html">首页</a>
+                    <span>/</span>
+                    <a href="index.html#courses">课程</a>
+                    <span>/</span>
+                    <span>S01: Agent Loop</span>
+                </div>
+                <div class="course-nav">
+                    <span class="course-part-badge">Part 1: 核心架构</span>
+                    <div class="course-chapter-nav">
+                        <span class="chapter-prev disabled">← 上一章</span>
+                        <a href="s02.html" class="chapter-next">下一章 →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 课程标题 -->
+            <article class="course-content">
+                <h1 class="course-title">S01: The Agent Loop <span class="subtitle">智能体循环</span></h1>
+
+                <div class="course-quote">
+                    <p>"One loop & Bash is all you need" -- 一个工具 + 一个循环 = 一个智能体。</p>
+                    <p><strong>Harness 层</strong>: 循环 -- 模型与真实世界的第一道连接。</p>
+                </div>
+
+                <section class="section-block">
+                    <h2>🎯 问题</h2>
+                    <p>语言模型能推理代码，但碰不到真实世界 -- 不能读文件、跑测试、看报错。没有循环，每次工具调用你都得手动把结果粘回去。你自己就是那个循环。</p>
+                </section>
+
+                <section class="section-block">
+                    <h2>💡 解决方案</h2>
+                    <p>Claude Code 的核心是一个无限循环，持续运行直到模型不再调用工具：</p>
+
+                    <div class="diagram">
+                        <pre>
++--------+      +-------+      +---------+
+|  User  | ---> |  LLM  | ---> |  Tool   |
+| prompt |      |       |      | execute |
++--------+      +---+---+      +----+----+
+                    ^                |
+                    |   tool_result  |
+                    +----------------+
+                    (loop until stop_reason != "tool_use")
+                        </pre>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔍 源码分析</h2>
+
+                    <h3>QueryEngine.ts 核心结构</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">TypeScript</span>
+                            <button class="copy-btn" onclick="copyCode(this)">复制</button>
+                        </div>
+                        <pre><code class="language-typescript">// 源码位置: src/QueryEngine.ts
+
+export type QueryEngineConfig = {
+  cwd: string                    // 工作目录
+  tools: Tools                   // 可用工具
+  commands: Command[]            // 斜杠命令
+  mcpClients: MCPServerConnection[]  // MCP 客户端
+  agents: AgentDefinition[]      // Agent 定义
+  canUseTool: CanUseToolFn       // 工具可用性检查
+  getAppState: () => AppState    // 状态获取
+  setAppState: (f) => void       // 状态更新
+  // ...
+}</code></pre>
+                    </div>
+
+                    <h3>Agent Loop 伪代码</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">TypeScript</span>
+                            <button class="copy-btn" onclick="copyCode(this)">复制</button>
+                        </div>
+                        <pre><code class="language-typescript">async function agentLoop(query: string, config: QueryEngineConfig) {
+  const messages: Message[] = [
+    { role: 'user', content: query }
+  ]
+
+  while (true) {
+    // 1. 调用 LLM
+    const response = await anthropic.messages.create({
+      model: config.mainLoopModel,
+      system: systemPrompt,
+      messages: messages,
+      tools: config.tools,
+      max_tokens: 8000,
+    })
+
+    // 2. 追加助手响应
+    messages.push({ role: 'assistant', content: response.content })
+
+    // 3. 检查退出条件
+    if (response.stop_reason !== 'tool_use') {
+      return messages
+    }
+
+    // 4. 执行工具调用
+    const toolResults = []
+    for (const block of response.content) {
+      if (block.type === 'tool_use') {
+        const output = await executeTool(block.name, block.input, config)
+        toolResults.push({
+          type: 'tool_result',
+          tool_use_id: block.id,
+          content: output,
+        })
+      }
+    }
+
+    // 5. 追加工具结果
+    messages.push({ role: 'user', content: toolResults })
+  }
+}</code></pre>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔑 关键设计点</h2>
+
+                    <div class="design-points">
+                        <div class="design-point">
+                            <h4>1. 消息累积</h4>
+                            <div class="code-block small">
+                                <pre><code class="language-typescript">// 消息持续累积，形成完整对话历史
+messages: Message[]
+
+// 每次循环追加两条消息
+messages.push(assistantMessage)  // 助手响应
+messages.push(userMessage)       // 工具结果</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="design-point">
+                            <h4>2. 退出条件</h4>
+                            <div class="code-block small">
+                                <pre><code class="language-typescript">// 只有 stop_reason 不是 "tool_use" 才退出
+if (response.stop_reason !== 'tool_use') {
+  return  // 可能是 "end_turn", "max_tokens", "stop_sequence"
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="design-point">
+                            <h4>3. 工具执行隔离</h4>
+                            <div class="code-block small">
+                                <pre><code class="language-typescript">// 每个工具独立执行，结果收集后一起返回
+for (const block of response.content) {
+  if (block.type === 'tool_use') {
+    const output = await executeTool(block.name, block.input)
+    results.push(output)
+  }
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2>📐 设计模式</h2>
+
+                    <div class="patterns-grid">
+                        <div class="pattern-card">
+                            <h4>懒加载优化</h4>
+                            <p>启动时预取，减少首次调用延迟</p>
+                        </div>
+                        <div class="pattern-card">
+                            <h4>Feature Flags</h4>
+                            <p>编译时消除未使用代码</p>
+                        </div>
+                        <div class="pattern-card">
+                            <h4>错误重试</h4>
+                            <p>可重试错误自动重试</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2>✏️ 实践练习</h2>
+
+                    <div class="exercise-card">
+                        <h4>练习 1: 最小 Agent Loop</h4>
+                        <p>实现一个最小化的 Agent Loop，只支持 Bash 工具</p>
+                    </div>
+
+                    <div class="exercise-card">
+                        <h4>练习 2: 添加工具支持</h4>
+                        <p>扩展上述实现，支持 Read/Write/Edit 工具</p>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2>🤔 思考题</h2>
+                    <ol class="thinking-questions">
+                        <li>为什么使用 <code>stop_reason</code> 而不是检查 <code>content</code> 中是否有工具调用？</li>
+                        <li>消息累积会导致什么问题？如何解决？</li>
+                        <li>如何处理工具执行失败的情况？</li>
+                    </ol>
+                </section>
+
+                <!-- 章节导航 -->
+                <div class="chapter-navigation">
+                    <a href="index.html#courses" class="btn btn-secondary">← 返回课程列表</a>
+                    <a href="s02.html" class="btn btn-primary">下一章: Tool System →</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>© 2026 Learn Claude Code. 仅供学习研究使用。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/prism.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
