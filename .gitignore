@@ -1,6 +1,15 @@
 # Large files - use Git LFS or exclude
 *.zip
 *.map
+*.gz
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+*.7z
+
+# Reference projects (external repos)
+reference/
 
 # Dependencies
 node_modules/
