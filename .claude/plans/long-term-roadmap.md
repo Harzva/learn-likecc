@@ -233,7 +233,7 @@
 
 ### 任务
 
-- [x] 创建 awesome-claw-code.md
+- [x] 创建 awesome-claude-code-source.md
 - [ ] 持续更新仓库列表
 - [ ] 添加仓库功能对比
 - [ ] 添加 Star History 图表

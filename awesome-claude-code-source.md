@@ -1,4 +1,4 @@
-# Awesome Claude Code Repositories
+# Awesome Claude Code Source
 
 > 收集所有与泄露 Claude Code 相关的开源仓库
 
