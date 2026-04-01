@@ -28,3 +28,14 @@ export interface LSPDiagnostic {
   severity: number
   message: string
 }
+
+export interface LspServerState {
+  status: 'starting' | 'running' | 'stopped' | 'error'
+  pid?: number
+  error?: string
+}
+
+export interface ScopedLspServerConfig {
+  scope: 'local' | 'user' | 'project'
+  config: Record<string, unknown>
+}

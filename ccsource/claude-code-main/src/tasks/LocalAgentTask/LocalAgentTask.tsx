@@ -276,6 +276,9 @@ export const LocalAgentTask: Task = {
   }
 };
 
+// Alias for workflow tasks
+export const LocalWorkflowTask = LocalAgentTask;
+
 /**
  * Kill an agent task. No-op if already killed/completed.
  */

@@ -5,13 +5,60 @@
 
 import { z } from 'zod'
 
+// Network types
+export interface NetworkHostPattern {
+  host: string
+  port?: number
+}
+
+export interface NetworkRestrictionConfig {
+  allow?: NetworkHostPattern[]
+  deny?: NetworkHostPattern[]
+}
+
+// Filesystem types
+export interface FsReadRestrictionConfig {
+  allow?: string[]
+  deny?: string[]
+}
+
+export interface FsWriteRestrictionConfig {
+  allow?: string[]
+  deny?: string[]
+}
+
+export interface IgnoreViolationsConfig {
+  tools?: string[]
+  patterns?: string[]
+}
+
+export interface SandboxViolationEvent {
+  timestamp: number
+  type: 'read' | 'write' | 'network' | 'execute'
+  resource: string
+  message: string
+}
+
+export type SandboxAskCallback = (question: NetworkHostPattern | string) => Promise<boolean>
+
+export interface SandboxDependencyCheck {
+  name: string
+  version?: string
+  required?: boolean
+}
+
 export const SandboxRuntimeConfigSchema = z.object({
   timeout: z.number().optional(),
   memory: z.number().optional(),
   env: z.record(z.string()).optional(),
+  network: z.custom<NetworkRestrictionConfig>().optional(),
+  fsRead: z.custom<FsReadRestrictionConfig>().optional(),
+  fsWrite: z.custom<FsWriteRestrictionConfig>().optional(),
+  ignoreViolations: z.custom<IgnoreViolationsConfig>().optional(),
 })
 
-export type SandboxConfig = z.infer<typeof SandboxRuntimeConfigSchema>
+export type SandboxRuntimeConfig = z.infer<typeof SandboxRuntimeConfigSchema>
+export type SandboxConfig = SandboxRuntimeConfig
 
 export interface SandboxResult {
   stdout: string
@@ -43,13 +90,24 @@ export const sandboxRuntime = {
 
 // Additional exports for compatibility
 export class SandboxViolationStore {
-  private violations: Array<{ timestamp: number; message: string }> = []
+  private violations: SandboxViolationEvent[] = []
 
-  addViolation(message: string): void {
-    this.violations.push({ timestamp: Date.now(), message })
+  addViolation(event: SandboxViolationEvent): void
+  addViolation(message: string): void
+  addViolation(eventOrMessage: SandboxViolationEvent | string): void {
+    if (typeof eventOrMessage === 'string') {
+      this.violations.push({
+        timestamp: Date.now(),
+        type: 'execute',
+        resource: '',
+        message: eventOrMessage,
+      })
+    } else {
+      this.violations.push(eventOrMessage)
+    }
   }
 
-  getViolations(): Array<{ timestamp: number; message: string }> {
+  getViolations(): SandboxViolationEvent[] {
     return [...this.violations]
   }
 
@@ -64,6 +122,16 @@ export const SANDBOX_DEFAULT_MEMORY = 512 * 1024 * 1024
 // SandboxManager class
 export class SandboxManager {
   private sandboxes: Map<string, SandboxConfig> = new Map()
+  private config: SandboxRuntimeConfig
+  private askCallback?: SandboxAskCallback
+
+  constructor(config?: SandboxRuntimeConfig) {
+    this.config = config || {}
+  }
+
+  setAskCallback(callback: SandboxAskCallback): void {
+    this.askCallback = callback
+  }
 
   async create(config?: SandboxConfig): Promise<string> {
     const id = `sandbox-${Date.now()}`
@@ -84,6 +152,10 @@ export class SandboxManager {
 
   list(): string[] {
     return Array.from(this.sandboxes.keys())
+  }
+
+  getConfig(): SandboxRuntimeConfig {
+    return this.config
   }
 }
 

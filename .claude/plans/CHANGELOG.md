@@ -1252,3 +1252,49 @@ ANTHROPIC_API_KEY=your-api-key-here
 ---
 
 ## v2.3.4 - 持续健康检查 (下一步)
+
+---
+
+## v2.3.9 - 继续减少编译错误 (进行中)
+
+### 目标
+
+| 指标 | 目标 | 当前 |
+|------|------|------|
+| 编译错误 | < 500 | ~1172 |
+| 起始错误 | 1175 | - |
+
+### 已完成修复
+
+1. **useAppState 类型注解** ✅
+   - 添加泛型类型参数 `<T>`
+   - 错误从 1154 减少到 814 (减少 340)
+
+2. **NetworkHostPattern 类型** ✅
+   - 更新 sandbox-runtime 类型定义
+   - 修复 external-modules.d.ts 冲突
+
+3. **OAuth 类型扩展** ✅
+   - 添加 OAuthTokens, SubscriptionType, BillingType
+   - 添加 OAuthTokenExchangeResponse, RateLimitTier
+
+4. **缺失模块 stub** ✅
+   - SSHSessionManager, PasteEvent, ResizeEvent
+   - Cursor, Terminal, Continue
+   - LspServerState, ScopedLspServerConfig
+   - SecureStorage 类型扩展
+   - Tips 类型
+
+### 编译错误趋势
+
+| 时间点 | 错误数 | 变化 |
+|--------|--------|------|
+| v2.3.8 结束 | 1175 | - |
+| 添加 useAppState 类型 | 814 | -361 ✅ |
+| 添加模块 stubs | ~1172 | +358 (新类型冲突) |
+
+### 下一步
+
+- 解决新增类型冲突
+- 继续修复 TS2339 错误 (~376 个)
+- 目标: < 500 错误

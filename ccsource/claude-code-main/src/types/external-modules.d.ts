@@ -415,13 +415,16 @@ declare module '@anthropic-ai/sandbox-runtime' {
     patterns?: string[]
     [key: string]: unknown
   }
-  export type NetworkHostPattern = string | RegExp
+  export interface NetworkHostPattern {
+    host: string
+    port?: number
+  }
   export interface NetworkRestrictionConfig {
     allow?: NetworkHostPattern[]
     deny?: NetworkHostPattern[]
     [key: string]: unknown
   }
-  export type SandboxAskCallback = (question: string) => Promise<boolean>
+  export type SandboxAskCallback = (question: NetworkHostPattern | string) => Promise<boolean>
   export interface SandboxDependencyCheck {
     name: string
     check: () => Promise<boolean>
