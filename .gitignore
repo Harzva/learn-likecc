@@ -1,27 +1,25 @@
+# Large files - use Git LFS or exclude
+*.zip
+*.map
+
 # Dependencies
 node_modules/
 
-# Build outputs
+# Build output
 dist/
-build/
-*.js.map
 
 # IDE
 .idea/
 .vscode/
+*.swp
 
-# OS
+# OS files
 .DS_Store
 Thumbs.db
-
-# Logs
-*.log
-npm-debug.log*
 
 # Environment
 .env
 .env.local
 
-# Temporary files
-*.tmp
-*.temp
+# Claude Code state
+.claude/state/
