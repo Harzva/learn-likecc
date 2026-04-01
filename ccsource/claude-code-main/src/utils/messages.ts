@@ -1055,8 +1055,8 @@ function getInProgressHookCount(
     messages,
     _ =>
       _.type === 'progress' &&
-      _.data.type === 'hook_progress' &&
-      _.data.hookEvent === hookEvent &&
+      (_.data as { type: string; hookEvent: HookEvent }).type === 'hook_progress' &&
+      (_.data as { type: string; hookEvent: HookEvent }).hookEvent === hookEvent &&
       _.parentToolUseID === toolUseID,
   )
 }
@@ -1105,11 +1105,11 @@ export function getToolResultIDs(normalizedMessages: NormalizedMessage[]): {
 } {
   return Object.fromEntries(
     normalizedMessages.flatMap(_ =>
-      _.type === 'user' && _.message.content[0]?.type === 'tool_result'
+      _.type === 'user' && Array.isArray(_.message.content) && _.message.content[0]?.type === 'tool_result'
         ? [
             [
-              _.message.content[0].tool_use_id,
-              _.message.content[0].is_error ?? false,
+              (_.message.content[0] as ToolResultBlockParam).tool_use_id,
+              (_.message.content[0] as ToolResultBlockParam).is_error ?? false,
             ],
           ]
         : ([] as [string, boolean][]),
@@ -1191,11 +1191,14 @@ export function buildMessageLookups(
         toolUseIDs = new Set()
         toolUseIDsByMessageID.set(id, toolUseIDs)
       }
-      for (const content of msg.message.content) {
-        if (content.type === 'tool_use') {
-          toolUseIDs.add(content.id)
-          toolUseIDToMessageID.set(content.id, id)
-          toolUseByToolUseID.set(content.id, content)
+      if (Array.isArray(msg.message.content)) {
+        for (const content of msg.message.content) {
+          if (typeof content !== 'string' && content.type === 'tool_use') {
+            const toolUseContent = content as ToolUseBlock
+            toolUseIDs.add(toolUseContent.id)
+            toolUseIDToMessageID.set(toolUseContent.id, id)
+            toolUseByToolUseID.set(toolUseContent.id, content as ToolUseBlockParam)
+          }
         }
       }
     }
@@ -1222,17 +1225,18 @@ export function buildMessageLookups(
   for (const msg of normalizedMessages) {
     if (msg.type === 'progress') {
       // Build progress messages lookup
-      const toolUseID = msg.parentToolUseID
+      const toolUseID = msg.parentToolUseID as string
       const existing = progressMessagesByToolUseID.get(toolUseID)
       if (existing) {
-        existing.push(msg)
+        existing.push(msg as ProgressMessage)
       } else {
-        progressMessagesByToolUseID.set(toolUseID, [msg])
+        progressMessagesByToolUseID.set(toolUseID, [msg as ProgressMessage])
       }
 
       // Count in-progress hooks
-      if (msg.data.type === 'hook_progress') {
-        const hookEvent = msg.data.hookEvent
+      const progressData = msg.data as { type: string; hookEvent: HookEvent }
+      if (progressData.type === 'hook_progress') {
+        const hookEvent = progressData.hookEvent
         let byHookEvent = inProgressHookCounts.get(toolUseID)
         if (!byHookEvent) {
           byHookEvent = new Map()
@@ -1243,20 +1247,22 @@ export function buildMessageLookups(
     }
 
     // Build tool result lookup and resolved/errored sets
-    if (msg.type === 'user') {
+    if (msg.type === 'user' && Array.isArray(msg.message.content)) {
       for (const content of msg.message.content) {
-        if (content.type === 'tool_result') {
-          toolResultByToolUseID.set(content.tool_use_id, msg)
-          resolvedToolUseIDs.add(content.tool_use_id)
-          if (content.is_error) {
-            erroredToolUseIDs.add(content.tool_use_id)
+        if (typeof content !== 'string' && content.type === 'tool_result') {
+          const tr = content as ToolResultBlockParam
+          toolResultByToolUseID.set(tr.tool_use_id, msg)
+          resolvedToolUseIDs.add(tr.tool_use_id)
+          if (tr.is_error) {
+            erroredToolUseIDs.add(tr.tool_use_id)
           }
         }
       }
     }
 
-    if (msg.type === 'assistant') {
+    if (msg.type === 'assistant' && Array.isArray(msg.message.content)) {
       for (const content of msg.message.content) {
+        if (typeof content === 'string') continue
         // Track all server-side *_tool_result blocks (advisor, web_search,
         // code_execution, mcp, etc.) — any block with tool_use_id is a result.
         if (
@@ -1267,7 +1273,7 @@ export function buildMessageLookups(
             (content as { tool_use_id: string }).tool_use_id,
           )
         }
-        if ((content.type as string) === 'advisor_tool_result') {
+        if (content.type === 'advisor_tool_result') {
           const result = content as {
             tool_use_id: string
             content: { type: string }
