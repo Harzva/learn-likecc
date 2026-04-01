@@ -749,8 +749,9 @@ export function normalizeMessages(messages: Message[]): NormalizedMessage[] {
   return messages.flatMap(message => {
     switch (message.type) {
       case 'assistant': {
-        isNewChain = isNewChain || message.message.content.length > 1
-        return message.message.content.map((_, index) => {
+        const assistantContent = Array.isArray(message.message.content) ? message.message.content : []
+        isNewChain = isNewChain || assistantContent.length > 1
+        return assistantContent.map((_, index) => {
           const uuid = isNewChain
             ? deriveUUID(message.uuid, index)
             : message.uuid
@@ -792,9 +793,10 @@ export function normalizeMessages(messages: Message[]): NormalizedMessage[] {
             } as NormalizedMessage,
           ]
         }
-        isNewChain = isNewChain || message.message.content.length > 1
+        const userContent = Array.isArray(message.message.content) ? message.message.content : []
+        isNewChain = isNewChain || userContent.length > 1
         let imageIndex = 0
-        return message.message.content.map((_, index) => {
+        return userContent.map((_, index) => {
           const isImage = _.type === 'image'
           // For image content blocks, extract just the ID for this image
           const imageId =
@@ -832,6 +834,7 @@ export function isToolUseRequestMessage(
   return (
     message.type === 'assistant' &&
     // Note: stop_reason === 'tool_use' is unreliable -- it's not always set correctly
+    Array.isArray(message.message.content) &&
     message.message.content.some(_ => _.type === 'tool_use')
   )
 }
