@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S02: Tool System - Learn Claude Code</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔧</text></svg>">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🧠</span>
+                <span class="logo-text">Learn Claude Code</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#overview" class="nav-link">概述</a>
+                <a href="index.html#courses" class="nav-link">课程</a>
+                <a href="index.html#source-map" class="nav-link">Source Map</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="course-main">
+        <div class="container">
+            <div class="course-header">
+                <div class="course-breadcrumb">
+                    <a href="index.html">首页</a> / <a href="index.html#courses">课程</a> / S02: Tool System
+                </div>
+                <div class="course-chapter-nav">
+                    <a href="s01.html" class="chapter-prev">← S01</a>
+                    <a href="s03.html" class="chapter-next">S03 →</a>
+                </div>
+            </div>
+
+            <article class="course-content">
+                <h1 class="course-title">S02: Tool System <span class="subtitle">工具系统</span></h1>
+
+                <div class="course-quote">
+                    <p>"Tools are the hands of the Agent" -- 工具是 Agent 与真实世界交互的接口。</p>
+                    <p><strong>Harness 层</strong>: Tools -- 将模型能力转化为真实世界操作。</p>
+                </div>
+
+                <section class="section-block">
+                    <h2>🎯 问题</h2>
+                    <p>Agent Loop 提供了循环框架，但没有工具，Agent 只能"思考"不能"行动"。需要定义:</p>
+                    <ul>
+                        <li>工具如何描述自己 (让模型理解)</li>
+                        <li>工具如何验证输入 (防止错误)</li>
+                        <li>工具如何执行操作 (产生结果)</li>
+                        <li>工具如何报告状态 (给用户反馈)</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>💡 解决方案</h2>
+                    <p>Claude Code 使用统一的工具构建系统:</p>
+                    <div class="diagram">
+                        <pre>
++------------+     +-------------+     +----------+
+| Tool Def   | --> | Permission  | --> | Execute  |
+| (schema)   |     | (check)     |     | (action) |
++------------+     +-------------+     +----------+
+      |                   |                 |
+      v                   v                 v
+   Model knows        User confirms      Result back
+   how to call        if needed          to loop
+                        </pre>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔍 源码分析</h2>
+
+                    <h3>Tool.ts 核心结构</h3>
+                    <div class="code-block">
+                        <pre><code class="language-typescript">// 源码位置: src/Tool.ts
+
+import { z } from 'zod'
+
+export type ToolDef<TInput, TContext> = {
+  name: string                          // 工具名称
+  inputSchema: z.ZodSchema<TInput>      // 输入验证
+  description: string                   // 工具描述
+
+  // 权限检查
+  hasPermission?: (
+    params: TInput,
+    context: TContext
+  ) => Promise<PermissionResult>
+
+  // 执行逻辑
+  execute: (
+    params: TInput,
+    context: TContext
+  ) => Promise<ToolResult>
+
+  // UI 渲染
+  renderToolUseMessage?: (params: TInput) => React.ReactNode
+  renderToolResultMessage?: (result: ToolResult) => React.ReactNode
+}</code></pre>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔑 内置工具</h2>
+                    <div class="tools-grid">
+                        <div class="tool-card">
+                            <span class="tool-icon">📁</span>
+                            <h4>Read</h4>
+                            <p>读取文件内容</p>
+                        </div>
+                        <div class="tool-card">
+                            <span class="tool-icon">✏️</span>
+                            <h4>Edit</h4>
+                            <p>编辑文件内容</p>
+                        </div>
+                        <div class="tool-card">
+                            <span class="tool-icon">📝</span>
+                            <h4>Write</h4>
+                            <p>写入新文件</p>
+                        </div>
+                        <div class="tool-card">
+                            <span class="tool-icon">🖥️</span>
+                            <h4>Bash</h4>
+                            <p>执行 shell 命令</p>
+                        </div>
+                        <div class="tool-card">
+                            <span class="tool-icon">🔍</span>
+                            <h4>Grep</h4>
+                            <p>搜索文件内容</p>
+                        </div>
+                        <div class="tool-card">
+                            <span class="tool-icon">🌐</span>
+                            <h4>WebSearch</h4>
+                            <p>网络搜索</p>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="chapter-navigation">
+                    <a href="s01.html" class="btn btn-secondary">← S01: Agent Loop</a>
+                    <a href="s03.html" class="btn btn-primary">S03: Permission Model →</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Learn Claude Code. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
