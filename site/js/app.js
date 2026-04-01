@@ -20,6 +20,14 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 
+    // 代码语言切换 - 从 localStorage 加载
+    const savedLang = localStorage.getItem('codeLang') || 'typescript'
+    switchCodeLanguage(savedLang)
+    const langSwitch = document.getElementById('code-lang-switch')
+    if (langSwitch) {
+        langSwitch.value = savedLang
+    }
+
     // 平滑滚动
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -79,3 +87,22 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 })
+
+// 代码语言切换函数
+function switchCodeLanguage(lang) {
+    localStorage.setItem('codeLang', lang)
+
+    // 切换所有代码块
+    document.querySelectorAll('code[data-lang]').forEach(code => {
+        if (code.getAttribute('data-lang') === lang) {
+            code.style.display = 'block'
+        } else {
+            code.style.display = 'none'
+        }
+    })
+
+    // 更新代码块标签
+    document.querySelectorAll('.code-lang').forEach(label => {
+        label.textContent = lang === 'typescript' ? 'TypeScript' : 'Python'
+    })
+}

@@ -24,8 +24,15 @@
 | 仓库 | 描述 | 语言 | 编译错误 | Stars |
 |------|------|------|----------|-------|
 | [open-claude-code](https://github.com/user/open-claude-code) | 基于 2.1.88 版本恢复 | TypeScript | 0 | - |
-| [claude-code2 (CCB)](https://github.com/user/claude-code2) | 反编译修复版 | TypeScript | ~1341 | - |
+| [claude-code2 (CCB)](https://github.com/user/claude-code2) | 反编译修复版 | TypeScript | ~294 | - |
 | [leaked-claude-code](https://github.com/user/leaked-claude-code) | 源码泄露版本 | TypeScript | 0 | - |
+
+### Python 项目
+
+| 仓库 | 描述 | 语言 | 特点 |
+|------|------|------|------|
+| [claw-code/src](https://github.com/instructkr/claw-code/tree/main/src) | Python 实现 | Python | 完整功能 |
+| [claw-code/rust](https://github.com/instructkr/claw-code/tree/dev/rust) | Rust 移植版 | Rust | 高性能 |
 
 ---
 

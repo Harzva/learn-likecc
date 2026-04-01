@@ -22,6 +22,10 @@
                 <a href="index.html#source-map" class="nav-link">Source Map</a>
             </div>
             <div class="nav-actions">
+                <select id="code-lang-switch" class="lang-select" onchange="switchCodeLanguage(this.value)">
+                    <option value="typescript">TypeScript</option>
+                    <option value="python">Python</option>
+                </select>
                 <a href="https://github.com/Harzva/learn-likecc" class="btn-github" target="_blank">
                     <svg height="20" width="20" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
                     GitHub
@@ -92,7 +96,7 @@
                             <span class="code-lang">TypeScript</span>
                             <button class="copy-btn" onclick="copyCode(this)">复制</button>
                         </div>
-                        <pre><code class="language-typescript">// 源码位置: src/QueryEngine.ts
+                        <pre><code class="language-typescript" data-lang="typescript">// 源码位置: src/QueryEngine.ts
 
 export type QueryEngineConfig = {
   cwd: string                    // 工作目录
@@ -104,7 +108,19 @@ export type QueryEngineConfig = {
   getAppState: () => AppState    // 状态获取
   setAppState: (f) => void       // 状态更新
   // ...
-}</code></pre>
+}</code><code class="language-python" data-lang="python" style="display:none"># 源码位置: src/query_engine.py
+
+@dataclass
+class QueryEngineConfig:
+    cwd: str                           # 工作目录
+    tools: Tools                       # 可用工具
+    commands: List[Command]            # 斜杠命令
+    mcp_clients: List[MCPServerConnection]  # MCP 客户端
+    agents: List[AgentDefinition]      # Agent 定义
+    can_use_tool: CanUseToolFn         # 工具可用性检查
+    get_app_state: Callable[[], AppState]  # 状态获取
+    set_app_state: Callable            # 状态更新
+    # ...</code></pre>
                     </div>
 
                     <h3>Agent Loop 伪代码</h3>
@@ -113,7 +129,7 @@ export type QueryEngineConfig = {
                             <span class="code-lang">TypeScript</span>
                             <button class="copy-btn" onclick="copyCode(this)">复制</button>
                         </div>
-                        <pre><code class="language-typescript">async function agentLoop(query: string, config: QueryEngineConfig) {
+                        <pre><code class="language-typescript" data-lang="typescript">async function agentLoop(query: string, config: QueryEngineConfig) {
   const messages: Message[] = [
     { role: 'user', content: query }
   ]
@@ -152,7 +168,41 @@ export type QueryEngineConfig = {
     // 5. 追加工具结果
     messages.push({ role: 'user', content: toolResults })
   }
-}</code></pre>
+}</code><code class="language-python" data-lang="python" style="display:none">async def agent_loop(query: str, config: QueryEngineConfig):
+    messages = [
+        {"role": "user", "content": query}
+    ]
+
+    while True:
+        # 1. 调用 LLM
+        response = await anthropic.messages.create(
+            model=config.main_loop_model,
+            system=system_prompt,
+            messages=messages,
+            tools=config.tools,
+            max_tokens=8000,
+        )
+
+        # 2. 追加助手响应
+        messages.append({"role": "assistant", "content": response.content})
+
+        # 3. 检查退出条件
+        if response.stop_reason != "tool_use":
+            return messages
+
+        # 4. 执行工具调用
+        tool_results = []
+        for block in response.content:
+            if block.type == "tool_use":
+                output = await execute_tool(block.name, block.input, config)
+                tool_results.append({
+                    "type": "tool_result",
+                    "tool_use_id": block.id,
+                    "content": output,
+                })
+
+        # 5. 追加工具结果
+        messages.append({"role": "user", "content": tool_results})</code></pre>
                     </div>
                 </section>
 
@@ -163,35 +213,46 @@ export type QueryEngineConfig = {
                         <div class="design-point">
                             <h4>1. 消息累积</h4>
                             <div class="code-block small">
-                                <pre><code class="language-typescript">// 消息持续累积，形成完整对话历史
+                                <pre><code class="language-typescript" data-lang="typescript">// 消息持续累积，形成完整对话历史
 messages: Message[]
 
 // 每次循环追加两条消息
 messages.push(assistantMessage)  // 助手响应
-messages.push(userMessage)       // 工具结果</code></pre>
+messages.push(userMessage)       // 工具结果</code><code class="language-python" data-lang="python" style="display:none"># 消息持续累积，形成完整对话历史
+messages: List[Message]
+
+# 每次循环追加两条消息
+messages.append(assistant_message)  # 助手响应
+messages.append(user_message)       # 工具结果</code></pre>
                             </div>
                         </div>
 
                         <div class="design-point">
                             <h4>2. 退出条件</h4>
                             <div class="code-block small">
-                                <pre><code class="language-typescript">// 只有 stop_reason 不是 "tool_use" 才退出
+                                <pre><code class="language-typescript" data-lang="typescript">// 只有 stop_reason 不是 "tool_use" 才退出
 if (response.stop_reason !== 'tool_use') {
   return  // 可能是 "end_turn", "max_tokens", "stop_sequence"
-}</code></pre>
+}</code><code class="language-python" data-lang="python" style="display:none"># 只有 stop_reason 不是 "tool_use" 才退出
+if response.stop_reason != "tool_use":
+    return  # 可能是 "end_turn", "max_tokens", "stop_sequence"</code></pre>
                             </div>
                         </div>
 
                         <div class="design-point">
                             <h4>3. 工具执行隔离</h4>
                             <div class="code-block small">
-                                <pre><code class="language-typescript">// 每个工具独立执行，结果收集后一起返回
+                                <pre><code class="language-typescript" data-lang="typescript">// 每个工具独立执行，结果收集后一起返回
 for (const block of response.content) {
   if (block.type === 'tool_use') {
     const output = await executeTool(block.name, block.input)
     results.push(output)
   }
-}</code></pre>
+}</code><code class="language-python" data-lang="python" style="display:none"># 每个工具独立执行，结果收集后一起返回
+for block in response.content:
+    if block.type == "tool_use":
+        output = await execute_tool(block.name, block.input)
+        results.append(output)</code></pre>
                             </div>
                         </div>
                     </div>
