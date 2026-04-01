@@ -46,6 +46,7 @@ export type BetaRequestDocumentBlock = any
 export type BetaOutputConfig = any
 export type SdkWorkflowProgress = any
 export type Permutations<T extends string> = T
+export type ExitReason = 'clear' | 'resume' | 'logout' | 'prompt_input_exit' | 'other' | 'bypass_permissions_disabled'
 
 import type {
   SDKMessage,
