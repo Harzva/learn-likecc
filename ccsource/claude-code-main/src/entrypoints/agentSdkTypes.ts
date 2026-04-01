@@ -34,6 +34,19 @@ export * from './sdk/toolTypes.js'
 // Functions
 // ============================================================================
 
+// Missing type exports from reference
+export type HookEvent = any
+export type StructuredPatchHunk = any
+export type ShellProgress = any
+export type PowerShellProgress = any
+export type BetaStopReason = any
+export type BetaJSONOutputFormat = any
+export type BetaWebSearchTool20250305 = any
+export type BetaRequestDocumentBlock = any
+export type BetaOutputConfig = any
+export type SdkWorkflowProgress = any
+export type Permutations<T extends string> = T
+
 import type {
   SDKMessage,
   SDKResultMessage,

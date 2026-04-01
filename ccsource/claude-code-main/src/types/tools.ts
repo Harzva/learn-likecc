@@ -116,6 +116,17 @@ export interface WebSearchProgress extends ToolProgressData {
 // Union Type
 // ============================================================================
 
+// ============================================================================
+// Shell Progress (aliases for BashProgress)
+// ============================================================================
+
+export type ShellProgress = BashProgress
+export type PowerShellProgress = BashProgress
+
+// ============================================================================
+// Union Type
+// ============================================================================
+
 export type ToolProgress =
   | ToolProgressData
   | BashProgress
@@ -125,3 +136,5 @@ export type ToolProgress =
   | REPLToolProgress
   | TaskOutputProgress
   | WebSearchProgress
+  | ShellProgress
+  | PowerShellProgress

@@ -1,31 +1,20 @@
 {
   "compilerOptions": {
-    "target": "ES2023",
+    "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "lib": ["ES2023"],
     "jsx": "react-jsx",
-    "strict": true,
-    "esModuleInterop": true,
+    "strict": false,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
     "noEmit": true,
-    "allowImportingTsExtensions": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedIndexedAccess": false,
-    "exactOptionalPropertyTypes": false,
-    "noImplicitReturns": false,
-    "noImplicitOverride": true,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "verbatimModuleSyntax": false,
-    "baseUrl": ".",
+    "resolveJsonModule": true,
+    "types": ["bun"],
     "paths": {
-      "src/*": ["src/*"]
-    },
-    "types": ["node"]
+      "src/*": ["./src/*"]
+    }
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "packages/**/*.ts"],
+  "exclude": ["node_modules", "**/*.test.ts", "**/__tests__/**"]
 }

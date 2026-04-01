@@ -1,196 +1,167 @@
-/**
- * Message Types - 重建的类型定义
- *
- * 这些类型定义基于源码 import 分析重建
- * 原文件缺失，此为学习用途的近似定义
- */
-
+// Auto-generated stub — replace with real implementation
 import type { UUID } from 'crypto'
 import type {
   ContentBlockParam,
-  ToolUseBlock,
-  ToolResultBlockParam,
+  ContentBlock,
 } from '@anthropic-ai/sdk/resources/index.mjs'
-import type { AgentId } from './ids.js'
+import type { BetaUsage } from '@anthropic-ai/sdk/resources/beta/messages/messages.mjs'
+import type {
+  BranchAction,
+  CommitKind,
+  PrAction,
+} from '../tools/shared/gitOperationTracking.js'
 
-// ============================================================================
-// Base Message Types
-// ============================================================================
+/**
+ * Base message type with discriminant `type` field and common properties.
+ * Individual message subtypes (UserMessage, AssistantMessage, etc.) extend
+ * this with narrower `type` literals and additional fields.
+ */
+export type MessageType = 'user' | 'assistant' | 'system' | 'attachment' | 'progress' | 'grouped_tool_use' | 'collapsed_read_search'
 
-export type MessageRole =
-  | 'user'
-  | 'assistant'
-  | 'system'
-  | 'progress'
-  | 'attachment'
-  | 'tool_use_summary'
-  | 'tombstone'
-  | 'system_local_command'
+/** A single content element inside message.content arrays. */
+export type ContentItem = ContentBlockParam | ContentBlock
 
-export interface BaseMessage {
-  id: UUID
-  role: MessageRole
-  timestamp: number
-  sessionId?: string
-}
+export type MessageContent = string | ContentBlockParam[] | ContentBlock[]
 
-// ============================================================================
-// User Message
-// ============================================================================
+/**
+ * Typed content array — used in narrowed message subtypes so that
+ * `message.content[0]` resolves to `ContentItem` instead of
+ * `string | ContentBlockParam | ContentBlock`.
+ */
+export type TypedMessageContent = ContentItem[]
 
-export interface UserMessage extends BaseMessage {
-  role: 'user'
-  content: string | ContentBlockParam[]
-  attachments?: Attachment[]
-}
-
-export interface Attachment {
-  type: 'image' | 'file' | 'pdf'
-  name: string
-  path?: string
-  data?: string // base64
-  mimeType: string
-}
-
-// ============================================================================
-// Assistant Message
-// ============================================================================
-
-export interface AssistantMessage extends BaseMessage {
-  role: 'assistant'
-  content: string | ContentBlockParam[]
-  toolCalls?: ToolCall[]
-  thinking?: ThinkingBlock[]
-  usage?: MessageUsage
-}
-
-export interface ToolCall {
-  id: string
-  name: string
-  input: Record<string, unknown>
-}
-
-export interface ThinkingBlock {
-  type: 'thinking'
-  thinking: string
-}
-
-export interface MessageUsage {
-  inputTokens: number
-  outputTokens: number
-  cacheCreationInputTokens?: number
-  cacheReadInputTokens?: number
-}
-
-// ============================================================================
-// System Message
-// ============================================================================
-
-export interface SystemMessage extends BaseMessage {
-  role: 'system'
-  content: string
-  type?: 'init' | 'compact' | 'boundary'
-}
-
-// ============================================================================
-// Progress Message
-// ============================================================================
-
-export interface ProgressMessage extends BaseMessage {
-  role: 'progress'
-  toolUseId: string
-  toolName: string
-  status: 'pending' | 'running' | 'complete' | 'error'
-  progress?: number
-  message?: string
-}
-
-// ============================================================================
-// Attachment Message
-// ============================================================================
-
-export interface AttachmentMessage extends BaseMessage {
-  role: 'attachment'
-  attachments: Attachment[]
-  caption?: string
-}
-
-// ============================================================================
-// Tool Use Summary Message
-// ============================================================================
-
-export interface ToolUseSummaryMessage extends BaseMessage {
-  role: 'tool_use_summary'
-  toolUseId: string
-  toolName: string
-  summary: string
-  success: boolean
-}
-
-// ============================================================================
-// Tombstone Message (deleted/compact boundary)
-// ============================================================================
-
-export interface TombstoneMessage extends BaseMessage {
-  role: 'tombstone'
-  originalRole: MessageRole
-  reason: 'compact' | 'delete' | 'snip'
-  originalMessageCount: number
-}
-
-// ============================================================================
-// System Local Command Message
-// ============================================================================
-
-export interface SystemLocalCommandMessage extends BaseMessage {
-  role: 'system_local_command'
-  command: string
-  result?: unknown
-  error?: string
-}
-
-// ============================================================================
-// Stream Events
-// ============================================================================
-
-export interface StreamEvent {
-  type: 'content_block_start' | 'content_block_delta' | 'content_block_stop' | 'message_start' | 'message_delta' | 'message_stop'
-  index?: number
-  delta?: {
-    type: 'text_delta' | 'input_json_delta' | 'thinking_delta'
-    text?: string
-    partial_json?: string
-    thinking?: string
-  }
-  content_block?: ContentBlockParam
+export type Message = {
+  type: MessageType
+  uuid: UUID
+  isMeta?: boolean
+  isCompactSummary?: boolean
+  toolUseResult?: unknown
+  isVisibleInTranscriptOnly?: boolean
+  attachment?: { type: string; toolUseID?: string; [key: string]: unknown }
   message?: {
-    id: string
-    role: 'assistant'
-    content: ContentBlockParam[]
-    model: string
-    usage: MessageUsage
+    role?: string
+    id?: string
+    content?: MessageContent
+    usage?: BetaUsage | Record<string, unknown>
+    [key: string]: unknown
   }
-  usage?: {
-    output_tokens: number
-  }
+  [key: string]: unknown
 }
 
-export interface RequestStartEvent {
-  type: 'request_start'
-  requestId: string
-  timestamp: number
+export type AssistantMessage = Message & { type: 'assistant' }
+export type AttachmentMessage<T = unknown> = Message & { type: 'attachment'; attachment: { type: string; [key: string]: unknown } }
+export type ProgressMessage<T = unknown> = Message & { type: 'progress'; data: T }
+export type SystemLocalCommandMessage = Message & { type: 'system' }
+export type SystemMessage = Message & { type: 'system' }
+export type UserMessage = Message & { type: 'user' }
+export type NormalizedUserMessage = UserMessage
+export type RequestStartEvent = { type: string; [key: string]: unknown }
+export type StreamEvent = { type: string; [key: string]: unknown }
+export type SystemCompactBoundaryMessage = Message & {
+  type: 'system'
+  compactMetadata: {
+    preservedSegment?: {
+      headUuid: UUID
+      tailUuid: UUID
+      anchorUuid: UUID
+      [key: string]: unknown
+    }
+    [key: string]: unknown
+  }
+}
+export type TombstoneMessage = Message
+export type ToolUseSummaryMessage = Message
+export type MessageOrigin = string
+export type CompactMetadata = Record<string, unknown>
+export type SystemAPIErrorMessage = Message & { type: 'system' }
+export type SystemFileSnapshotMessage = Message & { type: 'system' }
+export type NormalizedAssistantMessage<T = unknown> = AssistantMessage
+export type NormalizedMessage = Message
+export type PartialCompactDirection = string
+
+export type StopHookInfo = {
+  command?: string
+  durationMs?: number
+  [key: string]: unknown
 }
 
-// ============================================================================
-// Union Type
-// ============================================================================
+export type SystemAgentsKilledMessage = Message & { type: 'system' }
+export type SystemApiMetricsMessage = Message & { type: 'system' }
+export type SystemAwaySummaryMessage = Message & { type: 'system' }
+export type SystemBridgeStatusMessage = Message & { type: 'system' }
+export type SystemInformationalMessage = Message & { type: 'system' }
+export type SystemMemorySavedMessage = Message & { type: 'system' }
+export type SystemMessageLevel = string
+export type SystemMicrocompactBoundaryMessage = Message & { type: 'system' }
+export type SystemPermissionRetryMessage = Message & { type: 'system' }
+export type SystemScheduledTaskFireMessage = Message & { type: 'system' }
 
-export type Message =
-  | UserMessage
+export type SystemStopHookSummaryMessage = Message & {
+  type: 'system'
+  subtype: string
+  hookLabel: string
+  hookCount: number
+  totalDurationMs?: number
+  hookInfos: StopHookInfo[]
+}
+
+export type SystemTurnDurationMessage = Message & { type: 'system' }
+
+export type GroupedToolUseMessage = Message & {
+  type: 'grouped_tool_use'
+  toolName: string
+  messages: NormalizedAssistantMessage[]
+  results: NormalizedUserMessage[]
+  displayMessage: NormalizedAssistantMessage | NormalizedUserMessage
+}
+
+export type RenderableMessage =
   | AssistantMessage
-  | SystemMessage
-  | ProgressMessage
-  | AttachmentMessage
-  | ToolUseSummaryMessage
-  | TombstoneMessage
-  | SystemLocalCommandMessage
+  | UserMessage
+  | (Message & { type: 'system' })
+  | (Message & { type: 'attachment'; attachment: { type: string; memories?: { path: string; content: string; mtimeMs: number }[]; [key: string]: unknown } })
+  | (Message & { type: 'progress' })
+  | GroupedToolUseMessage
+  | CollapsedReadSearchGroup
+
+export type CollapsibleMessage =
+  | AssistantMessage
+  | UserMessage
+  | GroupedToolUseMessage
+
+export type CollapsedReadSearchGroup = {
+  type: 'collapsed_read_search'
+  uuid: UUID
+  timestamp?: unknown
+  searchCount: number
+  readCount: number
+  listCount: number
+  replCount: number
+  memorySearchCount: number
+  memoryReadCount: number
+  memoryWriteCount: number
+  readFilePaths: string[]
+  searchArgs: string[]
+  latestDisplayHint?: string
+  messages: CollapsibleMessage[]
+  displayMessage: CollapsibleMessage
+  mcpCallCount?: number
+  mcpServerNames?: string[]
+  bashCount?: number
+  gitOpBashCount?: number
+  commits?: { sha: string; kind: CommitKind }[]
+  pushes?: { branch: string }[]
+  branches?: { ref: string; action: BranchAction }[]
+  prs?: { number: number; url?: string; action: PrAction }[]
+  hookTotalMs?: number
+  hookCount?: number
+  hookInfos?: StopHookInfo[]
+  relevantMemories?: { path: string; content: string; mtimeMs: number }[]
+  teamMemorySearchCount?: number
+  teamMemoryReadCount?: number
+  teamMemoryWriteCount?: number
+  [key: string]: unknown
+}
+
+export type HookResultMessage = Message
+export type SystemThinkingMessage = Message & { type: 'system' }
