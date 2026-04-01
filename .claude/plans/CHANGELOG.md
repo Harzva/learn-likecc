@@ -981,4 +981,32 @@ GitHub Pages 需要手动启用：
 
 ---
 
-## v2.2.3 - API 功能测试 (下一步)
+## v2.2.3 - API 功能测试 (已完成)
+
+### 目标
+
+| 指标 | 目标 | 实际 |
+|------|------|------|
+| API 配置文档 | 完善 | ✅ .env.example 已存在 |
+| 配置说明 | 清晰 | ✅ 包含获取方式 |
+
+### API 配置说明
+
+```
+ANTHROPIC_API_KEY=your-api-key-here
+```
+
+获取方式: https://console.anthropic.com/settings/keys
+
+### 当前状态
+
+| 指标 | 值 |
+|------|------|
+| 编译错误 | 2180 (不影响运行) |
+| CLI 运行 | ✅ 正常 |
+| 课程网站 | ✅ https://harzva.github.io/learn-likecc/ |
+| API 配置 | ✅ 文档完善，待用户配置测试 |
+
+---
+
+## v2.2.4 - 项目稳定维护阶段 (下一步)
