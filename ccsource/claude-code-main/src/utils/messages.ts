@@ -1327,10 +1327,12 @@ export function buildMessageLookups(
     // Skip blocks from the last original message if it's an assistant,
     // since it may still be in progress.
     if (msg.message.id === lastAssistantMsgId) continue
+    if (!Array.isArray(msg.message.content)) continue
     for (const content of msg.message.content) {
       if (
-        (content.type === 'server_tool_use' ||
-          content.type === 'mcp_tool_use') &&
+        typeof content !== 'string' &&
+        ((content.type as string) === 'server_tool_use' ||
+          (content.type as string) === 'mcp_tool_use') &&
         !resolvedToolUseIDs.has((content as { id: string }).id)
       ) {
         const id = (content as { id: string }).id
@@ -1395,17 +1397,18 @@ export function buildSubagentLookups(
   >()
 
   for (const { message: msg } of messages) {
-    if (msg.type === 'assistant') {
+    if (msg.type === 'assistant' && Array.isArray(msg.message.content)) {
       for (const content of msg.message.content) {
-        if (content.type === 'tool_use') {
-          toolUseByToolUseID.set(content.id, content as ToolUseBlockParam)
+        if (typeof content !== 'string' && content.type === 'tool_use') {
+          toolUseByToolUseID.set((content as ToolUseBlock).id, content as ToolUseBlockParam)
         }
       }
-    } else if (msg.type === 'user') {
+    } else if (msg.type === 'user' && Array.isArray(msg.message.content)) {
       for (const content of msg.message.content) {
-        if (content.type === 'tool_result') {
-          resolvedToolUseIDs.add(content.tool_use_id)
-          toolResultByToolUseID.set(content.tool_use_id, msg)
+        if (typeof content !== 'string' && content.type === 'tool_result') {
+          const tr = content as ToolResultBlockParam
+          resolvedToolUseIDs.add(tr.tool_use_id)
+          toolResultByToolUseID.set(tr.tool_use_id, msg)
         }
       }
     }
@@ -1483,7 +1486,7 @@ export function getToolUseIDs(
           Array.isArray(_.message.content) &&
           _.message.content[0]?.type === 'tool_use',
       )
-      .map(_ => _.message.content[0].id),
+      .map(_ => (_.message.content[0] as ToolUseBlock).id),
   )
 }
 
@@ -1756,9 +1759,10 @@ export function stripToolReferenceBlocksFromUserMessage(
 export function stripCallerFieldFromAssistantMessage(
   message: AssistantMessage,
 ): AssistantMessage {
-  const hasCallerField = message.message.content.some(
+  const contentArr = Array.isArray(message.message.content) ? message.message.content : []
+  const hasCallerField = contentArr.some(
     block =>
-      block.type === 'tool_use' && 'caller' in block && block.caller !== null,
+      typeof block !== 'string' && block.type === 'tool_use' && 'caller' in block && block.caller !== null,
   )
 
   if (!hasCallerField) {
@@ -1769,16 +1773,17 @@ export function stripCallerFieldFromAssistantMessage(
     ...message,
     message: {
       ...message.message,
-      content: message.message.content.map(block => {
-        if (block.type !== 'tool_use') {
+      content: contentArr.map(block => {
+        if (typeof block === 'string' || block.type !== 'tool_use') {
           return block
         }
+        const toolUse = block as ToolUseBlock
         // Explicitly construct with only standard API fields
         return {
           type: 'tool_use' as const,
-          id: block.id,
-          name: block.name,
-          input: block.input,
+          id: toolUse.id,
+          name: toolUse.name,
+          input: toolUse.input,
         }
       }),
     },
