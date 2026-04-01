@@ -808,13 +808,13 @@ export function normalizeMessages(messages: Message[]): NormalizedMessage[] {
             ...createUserMessage({
               content: [_],
               toolUseResult: message.toolUseResult,
-              mcpMeta: message.mcpMeta,
-              isMeta: message.isMeta,
-              isVisibleInTranscriptOnly: message.isVisibleInTranscriptOnly,
-              isVirtual: message.isVirtual,
-              timestamp: message.timestamp,
+              mcpMeta: message.mcpMeta as { _meta?: Record<string, unknown>; structuredContent?: Record<string, unknown> },
+              isMeta: message.isMeta === true ? true : undefined,
+              isVisibleInTranscriptOnly: message.isVisibleInTranscriptOnly === true ? true : undefined,
+              isVirtual: (message.isVirtual as boolean | undefined) === true ? true : undefined,
+              timestamp: message.timestamp as string | undefined,
               imagePasteIds: imageId !== undefined ? [imageId] : undefined,
-              origin: message.origin,
+              origin: message.origin as MessageOrigin | undefined,
             }),
             uuid: isNewChain ? deriveUUID(message.uuid, index) : message.uuid,
           } as NormalizedMessage
@@ -920,9 +920,10 @@ export function reorderMessagesInUI(
     // Handle tool results
     if (
       message.type === 'user' &&
+      Array.isArray(message.message.content) &&
       message.message.content[0]?.type === 'tool_result'
     ) {
-      const toolUseID = message.message.content[0].tool_use_id
+      const toolUseID = (message.message.content[0] as ToolResultBlockParam).tool_use_id
       if (!toolUseGroups.has(toolUseID)) {
         toolUseGroups.set(toolUseID, {
           toolUse: null,
@@ -995,6 +996,7 @@ export function reorderMessagesInUI(
 
     if (
       message.type === 'user' &&
+      Array.isArray(message.message.content) &&
       message.message.content[0]?.type === 'tool_result'
     ) {
       // Skip - already handled in tool use groups
@@ -1127,7 +1129,8 @@ export function getSiblingToolUseIDs(
   const unnormalizedMessage = messages.find(
     (_): _ is AssistantMessage =>
       _.type === 'assistant' &&
-      _.message.content.some(_ => _.type === 'tool_use' && _.id === toolUseID),
+      Array.isArray(_.message.content) &&
+      _.message.content.some(block => block.type === 'tool_use' && (block as ToolUseBlock).id === toolUseID),
   )
   if (!unnormalizedMessage) {
     return new Set()
@@ -1141,7 +1144,9 @@ export function getSiblingToolUseIDs(
 
   return new Set(
     siblingMessages.flatMap(_ =>
-      _.message.content.filter(_ => _.type === 'tool_use').map(_ => _.id),
+      Array.isArray(_.message.content)
+        ? _.message.content.filter(_ => _.type === 'tool_use').map(_ => (_ as ToolUseBlock).id)
+        : [],
     ),
   )
 }
