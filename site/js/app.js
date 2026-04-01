@@ -1,5 +1,25 @@
 // 应用脚本
 document.addEventListener('DOMContentLoaded', () => {
+    // 主题切换
+    const themeToggle = document.getElementById('theme-toggle')
+    const themes = ['warm', 'dark', 'light']
+    let currentThemeIndex = 0
+
+    // 从 localStorage 加载主题
+    const savedTheme = localStorage.getItem('theme') || 'warm'
+    currentThemeIndex = themes.indexOf(savedTheme)
+    if (currentThemeIndex === -1) currentThemeIndex = 0
+    document.documentElement.setAttribute('data-theme', savedTheme)
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            currentThemeIndex = (currentThemeIndex + 1) % themes.length
+            const newTheme = themes[currentThemeIndex]
+            document.documentElement.setAttribute('data-theme', newTheme)
+            localStorage.setItem('theme', newTheme)
+        })
+    }
+
     // 平滑滚动
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
