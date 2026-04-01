@@ -276,3 +276,49 @@
 ---
 
 ## v2.0.3 - 继续减少编译错误 (进行中)
+
+### 目标
+
+| 指标 | 目标 |
+|------|------|
+| 编译错误 | < 1500 |
+
+### 已完成更新
+
+1. **创建缺失模块 stub** ✅
+   - `src/services/assistant/index.ts`
+   - `src/services/bridge/peerSessions.ts`
+   - `src/services/coordinator/workerAgent.ts`
+   - `src/services/proactive/index.ts`
+   - `src/services/compact/reactiveCompact.ts`
+   - `src/services/contextCollapse/index.ts`, `operations.ts`
+   - `src/services/lsp/types.ts`
+   - `src/services/skillSearch/*.ts`
+   - `src/services/skills/mcpSkills.ts`
+   - `src/tools/MonitorTool/MonitorTool.ts`
+   - `src/tools/OverflowTestTool/OverflowTestTool.ts`
+   - `src/tools/TungstenTool/TungstenTool.ts`
+   - `src/tools/WorkflowTool/createWorkflowCommand.ts`
+   - `src/tasks/MonitorMcpTask/MonitorMcpTask.ts`
+   - `src/constants/querySource.ts`
+   - `src/cli/transports/Transport.ts`
+   - `src/services/oauth/types.ts`
+   - `src/commands/workflows/index.ts`
+   - `src/commands/peers/index.ts`
+   - `src/commands/fork/index.ts`
+   - `src/commands/buddy/index.ts`
+   - `src/commands/install-github-app/types.ts`
+   - `src/services/skillSearch/localSearch.ts`
+   - `src/utils/attributionHooks.ts`
+
+### Git 推送
+
+- 成功推送到 GitHub: https://github.com/Harzva/learn-likecc
+- 清理了大文件历史 (*.zip, *.map)
+- 使用 git filter-branch 移除超大文件
+
+### 当前编译错误: ~2052
+
+### 待办
+- [ ] 继续减少编译错误
+- [ ] 尝试运行 `bun run dev`
