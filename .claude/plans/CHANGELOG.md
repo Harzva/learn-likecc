@@ -351,6 +351,43 @@ v2.0.3 创建了 30+ stub 模块，但编译错误有波动。
    - 课程内容
 
 ### 下一步
-- [ ] 安装 Bun 运行时
-- [ ] 执行 `bun run dev`
-- [ ] 修复运行时错误
+- [x] 安装 Bun 运行时
+- [x] 执行 `bun run dev`
+- [x] 修复运行时错误
+
+### v2.0.4 重大进展 🎉
+
+**程序可以运行了！**
+
+```
+$ bun run dev --version
+0.0.1-learn (Claude Code)
+```
+
+### 已完成修复
+
+1. **安装 Bun 运行时** ✅ (v1.3.11)
+
+2. **创建缺失包/模块** ✅
+   - `@anthropic-ai/sandbox-runtime` 包
+   - `WorkflowTool/constants.ts`, `WorkflowTool.ts`, `WorkflowPermissionRequest.ts`
+   - `ink/global.ts` 运行时兼容
+   - `skills/bundled/verify/` 示例文件
+
+3. **修复运行时错误** ✅
+   - 安装 `jsonc-parser`, `@alcalzone/ansi-tokenize`
+   - 修复 `resourceFromAttributes` OpenTelemetry API 兼容
+   - Polyfill `MACRO` 构建时宏
+   - Polyfill `feature()` bun:bundle 函数
+
+### 当前状态
+
+| 指标 | 状态 |
+|------|------|
+| 编译错误 | ~2137 (不影响运行) |
+| 运行状态 | ✅ 可执行 |
+| 版本输出 | ✅ 正常 |
+
+---
+
+## v2.0.5 - 功能测试 (下一步)

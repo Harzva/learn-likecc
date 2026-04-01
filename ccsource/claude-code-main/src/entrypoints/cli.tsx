@@ -1,4 +1,40 @@
-import { feature } from 'bun:bundle';
+// Polyfill for bun:bundle feature flags (always return false in decompiled version)
+const feature = (_name: string): boolean => false;
+
+// Polyfill for MACRO (build-time macros)
+declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace NodeJS {
+    interface Global {
+      MACRO: typeof MACRO;
+    }
+  }
+}
+
+const MACRO = {
+  VERSION: '0.0.1-learn',
+  BUILD_TIME: new Date().toISOString(),
+  COMMIT_SHA: 'unknown',
+  BRANCH: 'main',
+  BUILD_TARGET: 'bun',
+  BUILD_ENV: 'development',
+};
+
+// Inject into globalThis for runtime access
+(globalThis as unknown as { MACRO: typeof MACRO }).MACRO = MACRO;
+
+// Set global variables expected by the code
+declare global {
+  var BUILD_TARGET: string;
+  var BUILD_ENV: string;
+  var INTERFACE_TYPE: string;
+}
+
+globalThis.BUILD_TARGET = 'bun';
+globalThis.BUILD_ENV = 'development';
+globalThis.INTERFACE_TYPE = 'cli';
+
+// Note: feature function is already defined above, no need to import from bun:bundle
 
 // Bugfix for corepack auto-pinning, which adds yarnpkg to peoples' package.jsons
 // eslint-disable-next-line custom-rules/no-top-level-side-effects

@@ -6,7 +6,8 @@
   "main": "src/main.tsx",
   "workspaces": [
     "packages/*",
-    "packages/@ant/*"
+    "packages/@ant/*",
+    "packages/@anthropic-ai/*"
   ],
   "scripts": {
     "typecheck": "tsc --noEmit",
@@ -15,10 +16,12 @@
     "lint": "eslint src/"
   },
   "dependencies": {
+    "@alcalzone/ansi-tokenize": "^0.3.0",
     "@ant/claude-for-chrome-mcp": "workspace:*",
     "@ant/computer-use-input": "workspace:*",
     "@ant/computer-use-mcp": "workspace:*",
     "@ant/computer-use-swift": "workspace:*",
+    "@anthropic-ai/sandbox-runtime": "workspace:*",
     "@anthropic-ai/sdk": "^0.39.0",
     "@aws-sdk/client-bedrock-runtime": "^3.0.0",
     "@commander-js/extra-typings": "^12.1.0",
@@ -55,6 +58,7 @@
     "ignore": "^7.0.0",
     "image-processor-napi": "workspace:*",
     "indent-string": "^5.0.0",
+    "jsonc-parser": "^3.3.1",
     "lodash-es": "^4.17.21",
     "lru-cache": "^11.0.0",
     "marked": "^15.0.0",

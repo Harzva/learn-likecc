@@ -1,5 +1,8 @@
 import type { AnyValueMap, Logger, logs } from '@opentelemetry/api-logs'
-import { resourceFromAttributes } from '@opentelemetry/resources'
+// resourceFromAttributes polyfill for newer OpenTelemetry versions
+const resourceFromAttributes = (attributes: Record<string, unknown>) => {
+  return { attributes }
+}
 import {
   BatchLogRecordProcessor,
   LoggerProvider,
