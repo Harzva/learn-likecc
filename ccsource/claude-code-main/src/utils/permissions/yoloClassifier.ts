@@ -343,7 +343,7 @@ export function buildTranscriptEntries(messages: Message[]): TranscriptEntry[] {
       for (const block of msg.message.content) {
         // Only include tool_use blocks — assistant text is model-authored
         // and could be crafted to influence the classifier's decision.
-        if (block.type === 'tool_use') {
+        if (typeof block !== 'string' && block.type === 'tool_use') {
           blocks.push({
             type: 'tool_use',
             name: block.name,

@@ -249,7 +249,7 @@ export function getParentCacheSuppressReason(
   // The fork re-processes the parent's output (never cached) plus its own prompt.
   const outputTokens = usage.output_tokens ?? 0
 
-  return inputTokens + cacheWriteTokens + outputTokens >
+  return (inputTokens as number) + (cacheWriteTokens as number) + (outputTokens as number) >
     MAX_PARENT_UNCACHED_TOKENS
     ? 'cache_cold'
     : null
@@ -334,13 +334,14 @@ export async function generateSuggestion(
   const firstAssistantMsg = result.messages.find(m => m.type === 'assistant')
   const generationRequestId =
     firstAssistantMsg?.type === 'assistant'
-      ? (firstAssistantMsg.requestId ?? null)
+      ? ((firstAssistantMsg.requestId as string) ?? null)
       : null
 
   for (const msg of result.messages) {
     if (msg.type !== 'assistant') continue
-    const textBlock = msg.message.content.find(b => b.type === 'text')
-    if (textBlock?.type === 'text') {
+    const contentArr = Array.isArray(msg.message.content) ? msg.message.content as Array<{ type: string; text?: string }> : []
+    const textBlock = contentArr.find(b => b.type === 'text')
+    if (textBlock?.type === 'text' && typeof textBlock.text === 'string') {
       const suggestion = textBlock.text.trim()
       if (suggestion) {
         return { suggestion, generationRequestId }
@@ -348,7 +349,7 @@ export async function generateSuggestion(
     }
   }
 
-  return { suggestion: null, generationRequestId }
+  return { suggestion: null as (string | null), generationRequestId }
 }
 
 export function shouldFilterSuggestion(

@@ -1,5 +1,6 @@
 import type { BetaContentBlock } from '@anthropic-ai/sdk/resources/beta/messages/messages.mjs'
-import { randomUUID, type UUID } from 'crypto'
+import type { UUID } from 'crypto'
+import { randomUUID } from 'crypto'
 import { getSessionId } from 'src/bootstrap/state.js'
 import {
   LOCAL_COMMAND_STDERR_TAG,
@@ -17,6 +18,7 @@ import type {
   AssistantMessage,
   CompactMetadata,
   Message,
+  MessageContent,
 } from 'src/types/message.js'
 import type { DeepImmutable } from 'src/types/utils.js'
 import stripAnsi from 'strip-ansi'
@@ -59,11 +61,11 @@ export function toInternalMessages(
               level: 'info',
               subtype: 'compact_boundary',
               compactMetadata: fromSDKCompactMetadata(
-                compactMsg.compact_metadata,
+                compactMsg.compact_metadata as SDKCompactMetadata,
               ),
               uuid: message.uuid,
               timestamp: new Date().toISOString(),
-            },
+            } as Message,
           ]
         }
         return []
@@ -78,7 +80,7 @@ type SDKCompactMetadata = SDKCompactBoundaryMessage['compact_metadata']
 export function toSDKCompactMetadata(
   meta: CompactMetadata,
 ): SDKCompactMetadata {
-  const seg = meta.preservedSegment
+  const seg = meta.preservedSegment as { headUuid: UUID; anchorUuid: UUID; tailUuid: UUID } | undefined
   return {
     trigger: meta.trigger,
     pre_tokens: meta.preTokens,
@@ -98,10 +100,11 @@ export function toSDKCompactMetadata(
 export function fromSDKCompactMetadata(
   meta: SDKCompactMetadata,
 ): CompactMetadata {
-  const seg = meta.preserved_segment
+  const m = meta as { preserved_segment?: { head_uuid: string; anchor_uuid: string; tail_uuid: string }; trigger?: string; pre_tokens?: number; [key: string]: unknown }
+  const seg = m.preserved_segment
   return {
-    trigger: meta.trigger,
-    preTokens: meta.pre_tokens,
+    trigger: m.trigger,
+    preTokens: m.pre_tokens,
     ...(seg && {
       preservedSegment: {
         headUuid: seg.head_uuid,
@@ -119,7 +122,7 @@ export function toSDKMessages(messages: Message[]): SDKMessage[] {
         return [
           {
             type: 'assistant',
-            message: normalizeAssistantMessageForSDK(message),
+            message: normalizeAssistantMessageForSDK(message as AssistantMessage),
             session_id: getSessionId(),
             parent_tool_use_id: null,
             uuid: message.uuid,
@@ -153,7 +156,7 @@ export function toSDKMessages(messages: Message[]): SDKMessage[] {
               subtype: 'compact_boundary' as const,
               session_id: getSessionId(),
               uuid: message.uuid,
-              compact_metadata: toSDKCompactMetadata(message.compactMetadata),
+              compact_metadata: toSDKCompactMetadata(message.compactMetadata as CompactMetadata),
             },
           ]
         }
@@ -163,12 +166,12 @@ export function toSDKMessages(messages: Message[]): SDKMessage[] {
         // not leak to the RC web UI.
         if (
           message.subtype === 'local_command' &&
-          (message.content.includes(`<${LOCAL_COMMAND_STDOUT_TAG}>`) ||
-            message.content.includes(`<${LOCAL_COMMAND_STDERR_TAG}>`))
+          ((message.content as string).includes(`<${LOCAL_COMMAND_STDOUT_TAG}>`) ||
+            (message.content as string).includes(`<${LOCAL_COMMAND_STDERR_TAG}>`))
         ) {
           return [
             localCommandOutputToSDKAssistantMessage(
-              message.content,
+              message.content as string,
               message.uuid,
             ),
           ]
@@ -207,6 +210,7 @@ export function localCommandOutputToSDKAssistantMessage(
   const synthetic = createAssistantMessage({ content: cleanContent })
   return {
     type: 'assistant',
+    content: synthetic.message?.content,
     message: synthetic.message,
     parent_tool_use_id: null,
     session_id: getSessionId(),
@@ -225,6 +229,7 @@ export function toSDKRateLimitInfo(
     return undefined
   }
   return {
+    type: 'rate_limit',
     status: limits.status,
     ...(limits.resetsAt !== undefined && { resetsAt: limits.resetsAt }),
     ...(limits.rateLimitType !== undefined && {
@@ -285,6 +290,6 @@ function normalizeAssistantMessageForSDK(
 
   return {
     ...message.message,
-    content: normalizedContent,
+    content: normalizedContent as unknown as MessageContent,
   }
 }

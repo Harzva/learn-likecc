@@ -17,10 +17,30 @@ import { TOOL_SEARCH_TOOL_NAME } from '../tools/ToolSearchTool/prompt.js'
 import type {
   CollapsedReadSearchGroup,
   CollapsibleMessage,
+  ContentItem,
+  MessageContent,
   RenderableMessage,
   StopHookInfo,
   SystemStopHookSummaryMessage,
 } from '../types/message.js'
+
+/**
+ * Safely get the first content item from a MessageContent value.
+ * Returns undefined for string content or empty arrays.
+ */
+function getFirstContentItem(content: MessageContent | undefined): ContentItem | undefined {
+  if (!content || typeof content === 'string') return undefined
+  return content[0]
+}
+
+/**
+ * Iterate over content items that are objects (not strings).
+ * Returns an empty array for string content.
+ */
+function getContentItems(content: MessageContent | undefined): ContentItem[] {
+  if (!content || typeof content === 'string') return []
+  return content
+}
 import { getDisplayPath } from './file.js'
 import { isFullscreenEnvEnabled } from './fullscreen.js'
 import {
@@ -303,23 +323,26 @@ function getCollapsibleToolInfo(
   isBash?: boolean
 } | null {
   if (msg.type === 'assistant') {
-    const content = msg.message.content[0]
-    const info = getSearchOrReadFromContent(content, tools)
-    if (info && content?.type === 'tool_use') {
-      return { name: content.name, input: content.input, ...info }
+    const content = getFirstContentItem(msg.message?.content)
+    if (!content) return null
+    const info = getSearchOrReadFromContent(content as { type: string; name?: string; input?: unknown }, tools)
+    if (info && content.type === 'tool_use') {
+      const toolUse = content as { type: 'tool_use'; name: string; input: unknown }
+      return { name: toolUse.name, input: toolUse.input, ...info }
     }
   }
   if (msg.type === 'grouped_tool_use') {
     // For grouped tool uses, check the first message's input
-    const firstContent = msg.messages[0]?.message.content[0]
+    const firstContent = getFirstContentItem(msg.messages[0]?.message?.content)
+    const firstToolUse = firstContent as { type: string; input?: unknown } | undefined
     const info = getSearchOrReadFromContent(
-      firstContent
-        ? { type: 'tool_use', name: msg.toolName, input: firstContent.input }
+      firstToolUse
+        ? { type: 'tool_use', name: msg.toolName, input: firstToolUse.input }
         : undefined,
       tools,
     )
-    if (info && firstContent?.type === 'tool_use') {
-      return { name: msg.toolName, input: firstContent.input, ...info }
+    if (info && firstContent && firstContent.type === 'tool_use') {
+      return { name: msg.toolName, input: firstToolUse?.input, ...info }
     }
   }
   return null
@@ -330,8 +353,8 @@ function getCollapsibleToolInfo(
  */
 function isTextBreaker(msg: RenderableMessage): boolean {
   if (msg.type === 'assistant') {
-    const content = msg.message.content[0]
-    if (content?.type === 'text' && content.text.trim().length > 0) {
+    const content = getFirstContentItem(msg.message?.content)
+    if (content && content.type === 'text' && (content as { type: 'text'; text: string }).text.trim().length > 0) {
       return true
     }
   }
@@ -347,19 +370,19 @@ function isNonCollapsibleToolUse(
   tools: Tools,
 ): boolean {
   if (msg.type === 'assistant') {
-    const content = msg.message.content[0]
+    const content = getFirstContentItem(msg.message?.content)
     if (
-      content?.type === 'tool_use' &&
-      !isToolSearchOrRead(content.name, content.input, tools)
+      content && content.type === 'tool_use' &&
+      !isToolSearchOrRead((content as { name: string }).name, (content as { input: unknown }).input, tools)
     ) {
       return true
     }
   }
   if (msg.type === 'grouped_tool_use') {
-    const firstContent = msg.messages[0]?.message.content[0]
+    const firstContent = getFirstContentItem(msg.messages[0]?.message?.content)
     if (
-      firstContent?.type === 'tool_use' &&
-      !isToolSearchOrRead(msg.toolName, firstContent.input, tools)
+      firstContent && firstContent.type === 'tool_use' &&
+      !isToolSearchOrRead(msg.toolName, (firstContent as { input: unknown }).input, tools)
     ) {
       return true
     }
@@ -383,9 +406,9 @@ function isPreToolHookSummary(
  */
 function shouldSkipMessage(msg: RenderableMessage): boolean {
   if (msg.type === 'assistant') {
-    const content = msg.message.content[0]
+    const content = getFirstContentItem(msg.message?.content)
     // Skip thinking blocks and other non-text, non-tool content
-    if (content?.type === 'thinking' || content?.type === 'redacted_thinking') {
+    if (content && (content.type === 'thinking' || content.type === 'redacted_thinking')) {
       return true
     }
   }
@@ -408,17 +431,17 @@ function isCollapsibleToolUse(
   tools: Tools,
 ): msg is CollapsibleMessage {
   if (msg.type === 'assistant') {
-    const content = msg.message.content[0]
+    const content = getFirstContentItem(msg.message?.content)
     return (
-      content?.type === 'tool_use' &&
-      isToolSearchOrRead(content.name, content.input, tools)
+      content !== undefined && content.type === 'tool_use' &&
+      isToolSearchOrRead((content as { name: string }).name, (content as { input: unknown }).input, tools)
     )
   }
   if (msg.type === 'grouped_tool_use') {
-    const firstContent = msg.messages[0]?.message.content[0]
+    const firstContent = getFirstContentItem(msg.messages[0]?.message?.content)
     return (
-      firstContent?.type === 'tool_use' &&
-      isToolSearchOrRead(msg.toolName, firstContent.input, tools)
+      firstContent !== undefined && firstContent.type === 'tool_use' &&
+      isToolSearchOrRead(msg.toolName, (firstContent as { input: unknown }).input, tools)
     )
   }
   return false
@@ -433,8 +456,9 @@ function isCollapsibleToolResult(
   collapsibleToolUseIds: Set<string>,
 ): msg is CollapsibleMessage {
   if (msg.type === 'user') {
-    const toolResults = msg.message.content.filter(
-      (c): c is { type: 'tool_result'; tool_use_id: string } =>
+    const contentItems = getContentItems(msg.message?.content)
+    const toolResults = contentItems.filter(
+      (c): c is ContentItem & { type: 'tool_result'; tool_use_id: string } =>
         c.type === 'tool_result',
     )
     // Only return true if there are tool results AND all of them are for collapsible tools
@@ -451,16 +475,17 @@ function isCollapsibleToolResult(
  */
 function getToolUseIdsFromMessage(msg: RenderableMessage): string[] {
   if (msg.type === 'assistant') {
-    const content = msg.message.content[0]
-    if (content?.type === 'tool_use') {
-      return [content.id]
+    const content = getFirstContentItem(msg.message?.content)
+    if (content && content.type === 'tool_use') {
+      return [(content as { id: string }).id]
     }
   }
   if (msg.type === 'grouped_tool_use') {
     return msg.messages
       .map(m => {
-        const content = m.message.content[0]
-        return content.type === 'tool_use' ? content.id : ''
+        const content = getFirstContentItem(m.message?.content)
+        if (!content) return ''
+        return content.type === 'tool_use' ? (content as { id: string }).id : ''
       })
       .filter(Boolean)
   }
@@ -525,18 +550,18 @@ function getFilePathsFromReadMessage(msg: RenderableMessage): string[] {
   const paths: string[] = []
 
   if (msg.type === 'assistant') {
-    const content = msg.message.content[0]
-    if (content?.type === 'tool_use') {
-      const input = content.input as { file_path?: string } | undefined
+    const content = getFirstContentItem(msg.message?.content)
+    if (content && content.type === 'tool_use') {
+      const input = (content as { input: unknown }).input as { file_path?: string } | undefined
       if (input?.file_path) {
         paths.push(input.file_path)
       }
     }
   } else if (msg.type === 'grouped_tool_use') {
     for (const m of msg.messages) {
-      const content = m.message.content[0]
-      if (content?.type === 'tool_use') {
-        const input = content.input as { file_path?: string } | undefined
+      const content = getFirstContentItem(m.message?.content)
+      if (content && content.type === 'tool_use') {
+        const input = (content as { input: unknown }).input as { file_path?: string } | undefined
         if (input?.file_path) {
           paths.push(input.file_path)
         }
@@ -563,9 +588,10 @@ function scanBashResultForGitOps(
   if (!out?.stdout && !out?.stderr) return
   // git push writes the ref update to stderr — scan both streams.
   const combined = (out.stdout ?? '') + '\n' + (out.stderr ?? '')
-  for (const c of msg.message.content) {
+  for (const c of getContentItems(msg.message?.content)) {
     if (c.type !== 'tool_result') continue
-    const command = group.bashCommands?.get(c.tool_use_id)
+    const toolResult = c as { type: 'tool_result'; tool_use_id: string }
+    const command = group.bashCommands?.get(toolResult.tool_use_id)
     if (!command) continue
     const { commit, push, branch, pr } = detectGitOperation(command, combined)
     if (commit) group.commits?.push(commit)

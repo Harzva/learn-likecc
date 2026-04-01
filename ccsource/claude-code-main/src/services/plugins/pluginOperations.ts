@@ -379,38 +379,39 @@ export async function installPluginOp(
   })
 
   if (!result.ok) {
-    switch (result.reason) {
+    const failResult = result as Extract<typeof result, { ok: false }>
+    switch (failResult.reason) {
       case 'local-source-no-location':
         return {
           success: false,
-          message: `Cannot install local plugin "${result.pluginName}" without marketplace install location`,
+          message: `Cannot install local plugin "${failResult.pluginName}" without marketplace install location`,
         }
       case 'settings-write-failed':
         return {
           success: false,
-          message: `Failed to update settings: ${result.message}`,
+          message: `Failed to update settings: ${failResult.message}`,
         }
       case 'resolution-failed':
         return {
           success: false,
-          message: formatResolutionError(result.resolution),
+          message: formatResolutionError(failResult.resolution),
         }
       case 'blocked-by-policy':
         return {
           success: false,
-          message: `Plugin "${result.pluginName}" is blocked by your organization's policy and cannot be installed`,
+          message: `Plugin "${failResult.pluginName}" is blocked by your organization's policy and cannot be installed`,
         }
       case 'dependency-blocked-by-policy':
         return {
           success: false,
-          message: `Plugin "${result.pluginName}" depends on "${result.blockedDependency}", which is blocked by your organization's policy`,
+          message: `Plugin "${failResult.pluginName}" depends on "${failResult.blockedDependency}", which is blocked by your organization's policy`,
         }
     }
   }
 
   return {
     success: true,
-    message: `Successfully installed plugin: ${pluginId} (scope: ${scope})${result.depNote}`,
+    message: `Successfully installed plugin: ${pluginId} (scope: ${scope})${(result as Extract<typeof result, { ok: true }>).depNote}`,
     pluginId,
     pluginName: entry.name,
     scope,

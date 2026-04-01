@@ -1033,7 +1033,7 @@ class Project {
           'sourceToolAssistantUUID' in message &&
           message.sourceToolAssistantUUID
         ) {
-          effectiveParentUuid = message.sourceToolAssistantUUID
+          effectiveParentUuid = message.sourceToolAssistantUUID as UUID
         }
 
         const transcriptMessage: TranscriptMessage = {
@@ -1058,6 +1058,7 @@ class Project {
           entrypoint: getEntrypoint(),
           cwd: getCwd(),
           sessionId,
+          timestamp: new Date().toISOString(),
           version: VERSION,
           gitBranch,
           slug,
@@ -2120,7 +2121,7 @@ function recoverOrphanedParallelToolResults(
   chain: TranscriptMessage[],
   seen: Set<UUID>,
 ): TranscriptMessage[] {
-  type ChainAssistant = Extract<TranscriptMessage, { type: 'assistant' }>
+  type ChainAssistant = TranscriptMessage & { type: 'assistant' }
   const chainAssistants = chain.filter(
     (m): m is ChainAssistant => m.type === 'assistant',
   )
@@ -2225,7 +2226,7 @@ export function checkResumeConsistency(chain: Message[]): void {
   for (let i = chain.length - 1; i >= 0; i--) {
     const m = chain[i]!
     if (m.type !== 'system' || m.subtype !== 'turn_duration') continue
-    const expected = m.messageCount
+    const expected = m.messageCount as number | undefined
     if (expected === undefined) return
     // `i` is the 0-based index of the checkpoint in the reconstructed chain.
     // The checkpoint was appended AFTER messageCount messages, so its own

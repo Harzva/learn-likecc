@@ -40,8 +40,6 @@ const NULL_RENDERING_TYPES = [
   'auto_mode',
   'auto_mode_exit',
   'output_token_usage',
-  'pen_mode_enter',
-  'pen_mode_exit',
   'verify_plan_reminder',
   'current_session_memory',
   'compaction_reminder',
@@ -65,6 +63,6 @@ export function isNullRenderingAttachment(
 ): boolean {
   return (
     msg.type === 'attachment' &&
-    NULL_RENDERING_ATTACHMENT_TYPES.has(msg.attachment.type)
+    NULL_RENDERING_ATTACHMENT_TYPES.has(msg.attachment.type as Attachment['type'])
   )
 }

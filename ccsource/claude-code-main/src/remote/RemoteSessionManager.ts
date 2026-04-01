@@ -187,14 +187,15 @@ export class RemoteSessionManager {
    * Handle control requests from CCR (e.g., permission requests)
    */
   private handleControlRequest(request: SDKControlRequest): void {
-    const { request_id, request: inner } = request
+    const requestId = request.request_id as string
+    const inner = request.request as SDKControlPermissionRequest
 
     if (inner.subtype === 'can_use_tool') {
       logForDebugging(
         `[RemoteSessionManager] Permission request for tool: ${inner.tool_name}`,
       )
-      this.pendingPermissionRequests.set(request_id, inner)
-      this.callbacks.onPermissionRequest(inner, request_id)
+      this.pendingPermissionRequests.set(requestId, inner)
+      this.callbacks.onPermissionRequest(inner, requestId)
     } else {
       // Send an error response for unrecognized subtypes so the server
       // doesn't hang waiting for a reply that never comes.
@@ -205,7 +206,7 @@ export class RemoteSessionManager {
         type: 'control_response',
         response: {
           subtype: 'error',
-          request_id,
+          request_id: requestId,
           error: `Unsupported control request subtype: ${inner.subtype}`,
         },
       }

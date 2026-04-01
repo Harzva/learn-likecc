@@ -156,9 +156,9 @@ export function useRemoteSession({
     const manager = new RemoteSessionManager(config, {
       onMessage: sdkMessage => {
         const parts = [`type=${sdkMessage.type}`]
-        if ('subtype' in sdkMessage) parts.push(`subtype=${sdkMessage.subtype}`)
+        if ('subtype' in sdkMessage) parts.push(`subtype=${sdkMessage.subtype as string}`)
         if (sdkMessage.type === 'user') {
-          const c = sdkMessage.message?.content
+          const c = (sdkMessage.message as { content?: unknown } | undefined)?.content
           parts.push(
             `content=${Array.isArray(c) ? c.map(b => b.type).join(',') : typeof c}`,
           )
@@ -182,10 +182,10 @@ export function useRemoteSession({
         if (
           sdkMessage.type === 'user' &&
           sdkMessage.uuid &&
-          sentUUIDsRef.current.has(sdkMessage.uuid)
+          sentUUIDsRef.current.has(sdkMessage.uuid as string)
         ) {
           logForDebugging(
-            `[useRemoteSession] Dropping echoed user message ${sdkMessage.uuid}`,
+            `[useRemoteSession] Dropping echoed user message ${sdkMessage.uuid as string}`,
           )
           return
         }
@@ -195,10 +195,11 @@ export function useRemoteSession({
           sdkMessage.subtype === 'init' &&
           onInit
         ) {
+          const slashCommands = sdkMessage.slash_commands as string[]
           logForDebugging(
-            `[useRemoteSession] Init received with ${sdkMessage.slash_commands.length} slash commands`,
+            `[useRemoteSession] Init received with ${slashCommands.length} slash commands`,
           )
-          onInit(sdkMessage.slash_commands)
+          onInit(slashCommands)
         }
 
         // Track remote subagent lifecycle for the "N in background" counter.
@@ -207,12 +208,12 @@ export function useRemoteSession({
         // Return early — these are status signals, not renderable messages.
         if (sdkMessage.type === 'system') {
           if (sdkMessage.subtype === 'task_started') {
-            runningTaskIdsRef.current.add(sdkMessage.task_id)
+            runningTaskIdsRef.current.add(sdkMessage.task_id as string)
             writeTaskCount()
             return
           }
           if (sdkMessage.subtype === 'task_notification') {
-            runningTaskIdsRef.current.delete(sdkMessage.task_id)
+            runningTaskIdsRef.current.delete(sdkMessage.task_id as string)
             writeTaskCount()
             return
           }
@@ -248,7 +249,7 @@ export function useRemoteSession({
         // and inProcessRunner.ts; without this the set grows unbounded for the
         // session lifetime (BQ: CCR cohort shows 5.2x higher RSS slope).
         if (setInProgressToolUseIDs && sdkMessage.type === 'user') {
-          const content = sdkMessage.message?.content
+          const content = (sdkMessage.message as { content?: unknown } | undefined)?.content
           if (Array.isArray(content)) {
             const resultIds: string[] = []
             for (const block of content) {
@@ -290,9 +291,10 @@ export function useRemoteSession({
             setInProgressToolUseIDs &&
             converted.message.type === 'assistant'
           ) {
-            const toolUseIds = converted.message.message.content
+            const contentArr = Array.isArray(converted.message.message?.content) ? converted.message.message.content : []
+            const toolUseIds = contentArr
               .filter(block => block.type === 'tool_use')
-              .map(block => block.id)
+              .map(block => (block as { id: string }).id)
             if (toolUseIds.length > 0) {
               setInProgressToolUseIDs(prev => {
                 const next = new Set(prev)

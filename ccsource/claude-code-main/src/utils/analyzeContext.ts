@@ -288,8 +288,8 @@ async function countSystemTokens(
       )
       .map(content => ({ name: extractSectionName(content), content })),
     ...Object.entries(systemContext)
-      .filter(([, content]) => content.length > 0)
-      .map(([name, content]) => ({ name, content })),
+      .filter(([, content]) => (content as string).length > 0)
+      .map(([name, content]) => ({ name, content: content as string })),
   ]
 
   if (namedEntries.length < 1) {
@@ -445,9 +445,10 @@ async function countBuiltInToolTokens(
     if (messages) {
       const deferredToolNameSet = new Set(deferredBuiltinTools.map(t => t.name))
       for (const msg of messages) {
-        if (msg.type === 'assistant') {
+        if (msg.type === 'assistant' && Array.isArray(msg.message.content)) {
           for (const block of msg.message.content) {
             if (
+              typeof block !== 'string' &&
               'type' in block &&
               block.type === 'tool_use' &&
               'name' in block &&
@@ -682,9 +683,10 @@ export async function countMcpToolTokens(
   if (isDeferred && messages) {
     const mcpToolNameSet = new Set(mcpTools.map(t => t.name))
     for (const msg of messages) {
-      if (msg.type === 'assistant') {
+      if (msg.type === 'assistant' && Array.isArray(msg.message.content)) {
         for (const block of msg.message.content) {
           if (
+            typeof block !== 'string' &&
             'type' in block &&
             block.type === 'tool_use' &&
             'name' in block &&
@@ -784,11 +786,12 @@ function processAssistantMessage(
   breakdown: MessageBreakdown,
 ): void {
   // Process each content block individually
-  for (const block of msg.message.content) {
+  const contentBlocks = Array.isArray(msg.message.content) ? msg.message.content : []
+  for (const block of contentBlocks) {
     const blockStr = jsonStringify(block)
     const blockTokens = roughTokenCountEstimation(blockStr)
 
-    if ('type' in block && block.type === 'tool_use') {
+    if (typeof block !== 'string' && 'type' in block && block.type === 'tool_use') {
       breakdown.toolCallTokens += blockTokens
       const toolName = ('name' in block ? block.name : undefined) || 'unknown'
       breakdown.toolCallsByType.set(
@@ -871,12 +874,12 @@ async function approximateMessageTokens(
   // Build a map of tool_use_id to tool_name for easier lookup
   const toolUseIdToName = new Map<string, string>()
   for (const msg of microcompactResult.messages) {
-    if (msg.type === 'assistant') {
+    if (msg.type === 'assistant' && Array.isArray(msg.message.content)) {
       for (const block of msg.message.content) {
-        if ('type' in block && block.type === 'tool_use') {
-          const toolUseId = 'id' in block ? block.id : undefined
+        if (typeof block !== 'string' && 'type' in block && block.type === 'tool_use') {
+          const toolUseId = 'id' in block ? (block.id as string) : undefined
           const toolName =
-            ('name' in block ? block.name : undefined) || 'unknown'
+            (('name' in block ? block.name : undefined) as string | undefined) || 'unknown'
           if (toolUseId) {
             toolUseIdToName.set(toolUseId, toolName)
           }
@@ -888,11 +891,11 @@ async function approximateMessageTokens(
   // Process each message for detailed breakdown
   for (const msg of microcompactResult.messages) {
     if (msg.type === 'assistant') {
-      processAssistantMessage(msg, breakdown)
+      processAssistantMessage(msg as AssistantMessage, breakdown)
     } else if (msg.type === 'user') {
-      processUserMessage(msg, breakdown, toolUseIdToName)
+      processUserMessage(msg as UserMessage, breakdown, toolUseIdToName)
     } else if (msg.type === 'attachment') {
-      processAttachment(msg, breakdown)
+      processAttachment(msg as AttachmentMessage, breakdown)
     }
   }
 
@@ -902,12 +905,12 @@ async function approximateMessageTokens(
       if (_.type === 'assistant') {
         return {
           // Important: strip out fields like id, etc. -- the counting API errors if they're present
-          role: 'assistant',
+          role: 'assistant' as const,
           content: _.message.content,
         }
       }
       return _.message
-    }),
+    }) as Anthropic.Beta.Messages.BetaMessageParam[],
     [],
   )
 

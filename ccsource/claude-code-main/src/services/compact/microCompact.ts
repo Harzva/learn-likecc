@@ -436,7 +436,7 @@ export function evaluateTimeBasedTrigger(
     return null
   }
   const gapMinutes =
-    (Date.now() - new Date(lastAssistant.timestamp).getTime()) / 60_000
+    (Date.now() - new Date(lastAssistant.timestamp as string | number).getTime()) / 60_000
   if (!Number.isFinite(gapMinutes) || gapMinutes < config.gapThresholdMinutes) {
     return null
   }

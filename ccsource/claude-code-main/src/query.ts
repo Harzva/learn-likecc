@@ -126,8 +126,8 @@ function* yieldMissingToolResultBlocks(
 ) {
   for (const assistantMessage of assistantMessages) {
     // Extract all tool use blocks from this assistant message
-    const toolUseBlocks = assistantMessage.message.content.filter(
-      content => content.type === 'tool_use',
+    const toolUseBlocks = (Array.isArray(assistantMessage.message?.content) ? assistantMessage.message.content : []).filter(
+      (content: { type: string }) => content.type === 'tool_use',
     ) as ToolUseBlock[]
 
     // Emit an interruption message for each tool use
@@ -746,9 +746,11 @@ async function* queryLoop(
             // mutating it would break prompt caching (byte mismatch).
             let yieldMessage: typeof message = message
             if (message.type === 'assistant') {
-              let clonedContent: typeof message.message.content | undefined
-              for (let i = 0; i < message.message.content.length; i++) {
-                const block = message.message.content[i]!
+              const assistantMsg = message as AssistantMessage
+              const contentArr = Array.isArray(assistantMsg.message?.content) ? assistantMsg.message.content as unknown as Array<{ type: string; input?: unknown; name?: string; [key: string]: unknown }> : []
+              let clonedContent: typeof contentArr | undefined
+              for (let i = 0; i < contentArr.length; i++) {
+                const block = contentArr[i]!
                 if (
                   block.type === 'tool_use' &&
                   typeof block.input === 'object' &&
@@ -756,7 +758,7 @@ async function* queryLoop(
                 ) {
                   const tool = findToolByName(
                     toolUseContext.options.tools,
-                    block.name,
+                    block.name as string,
                   )
                   if (tool?.backfillObservableInput) {
                     const originalInput = block.input as Record<string, unknown>
@@ -772,7 +774,7 @@ async function* queryLoop(
                       k => !(k in originalInput),
                     )
                     if (addedFields) {
-                      clonedContent ??= [...message.message.content]
+                      clonedContent ??= [...contentArr]
                       clonedContent[i] = { ...block, input: inputCopy }
                     }
                   }
@@ -781,8 +783,8 @@ async function* queryLoop(
               if (clonedContent) {
                 yieldMessage = {
                   ...message,
-                  message: { ...message.message, content: clonedContent },
-                }
+                  message: { ...(assistantMsg.message ?? {}), content: clonedContent },
+                } as typeof message
               }
             }
             // Withhold recoverable errors (prompt-too-long, max-output-tokens)
@@ -800,7 +802,7 @@ async function* queryLoop(
             if (feature('CONTEXT_COLLAPSE')) {
               if (
                 contextCollapse?.isWithheldPromptTooLong(
-                  message,
+                  message as Message,
                   isPromptTooLongMessage,
                   querySource,
                 )
@@ -808,12 +810,12 @@ async function* queryLoop(
                 withheld = true
               }
             }
-            if (reactiveCompact?.isWithheldPromptTooLong(message)) {
+            if (reactiveCompact?.isWithheldPromptTooLong(message as Message)) {
               withheld = true
             }
             if (
               mediaRecoveryEnabled &&
-              reactiveCompact?.isWithheldMediaSizeError(message)
+              reactiveCompact?.isWithheldMediaSizeError(message as Message)
             ) {
               withheld = true
             }
@@ -824,10 +826,11 @@ async function* queryLoop(
               yield yieldMessage
             }
             if (message.type === 'assistant') {
-              assistantMessages.push(message)
+              const assistantMessage = message as AssistantMessage
+              assistantMessages.push(assistantMessage)
 
-              const msgToolUseBlocks = message.message.content.filter(
-                content => content.type === 'tool_use',
+              const msgToolUseBlocks = (Array.isArray(assistantMessage.message?.content) ? assistantMessage.message.content : []).filter(
+                (content: { type: string }) => content.type === 'tool_use',
               ) as ToolUseBlock[]
               if (msgToolUseBlocks.length > 0) {
                 toolUseBlocks.push(...msgToolUseBlocks)
@@ -839,7 +842,7 @@ async function* queryLoop(
                 !toolUseContext.abortController.signal.aborted
               ) {
                 for (const toolBlock of msgToolUseBlocks) {
-                  streamingToolExecutor.addTool(toolBlock, message)
+                  streamingToolExecutor.addTool(toolBlock, assistantMessage)
                 }
               }
             }
@@ -959,7 +962,7 @@ async function* queryLoop(
       logEvent('tengu_query_error', {
         assistantMessages: assistantMessages.length,
         toolUses: assistantMessages.flatMap(_ =>
-          _.message.content.filter(content => content.type === 'tool_use'),
+          (Array.isArray(_.message?.content) ? _.message.content as Array<{ type: string }> : []).filter(content => content.type === 'tool_use'),
         ).length,
 
         queryChainId: queryChainIdForAnalytics,
@@ -1422,7 +1425,7 @@ async function* queryLoop(
       const lastAssistantMessage = assistantMessages.at(-1)
       let lastAssistantText: string | undefined
       if (lastAssistantMessage) {
-        const textBlocks = lastAssistantMessage.message.content.filter(
+        const textBlocks = (Array.isArray(lastAssistantMessage.message?.content) ? lastAssistantMessage.message.content as Array<{ type: string; text?: string }> : []).filter(
           block => block.type === 'text',
         )
         if (textBlocks.length > 0) {

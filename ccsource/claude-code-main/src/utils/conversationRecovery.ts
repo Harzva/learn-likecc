@@ -93,7 +93,7 @@ function migrateLegacyAttachmentTypes(message: Message): Message {
         type: 'file',
         displayPath: relative(getCwd(), attachment.filename as string),
       },
-    } as SerializedMessage // Cast entire message since we know the structure is correct
+    } as unknown as SerializedMessage // Cast entire message since we know the structure is correct
   }
 
   if (attachment.type === 'new_directory') {
@@ -104,7 +104,7 @@ function migrateLegacyAttachmentTypes(message: Message): Message {
         type: 'directory',
         displayPath: relative(getCwd(), attachment.path as string),
       },
-    } as SerializedMessage // Cast entire message since we know the structure is correct
+    } as unknown as SerializedMessage // Cast entire message since we know the structure is correct
   }
 
   // Backfill displayPath for attachments from old sessions
@@ -177,7 +177,7 @@ export function deserializeMessagesWithInterruptDetection(
       if (
         msg.type === 'user' &&
         msg.permissionMode !== undefined &&
-        !validModes.has(msg.permissionMode)
+        !validModes.has(msg.permissionMode as string)
       ) {
         msg.permissionMode = undefined
       }
@@ -320,7 +320,7 @@ function detectTurnInterruption(
       return { kind: 'interrupted_turn' }
     }
     // Plain text user prompt — CC hadn't started responding
-    return { kind: 'interrupted_prompt', message: lastMessage }
+    return { kind: 'interrupted_prompt', message: lastMessage as NormalizedUserMessage }
   }
 
   if (lastMessage.type === 'attachment') {
@@ -359,12 +359,14 @@ function isTerminalToolResult(
   for (let i = resultIdx - 1; i >= 0; i--) {
     const msg = messages[i]!
     if (msg.type !== 'assistant') continue
-    for (const b of msg.message.content) {
-      if (b.type === 'tool_use' && b.id === toolUseId) {
+    const msgContent = msg.message.content
+    if (!Array.isArray(msgContent)) continue
+    for (const b of msgContent) {
+      if (typeof b !== 'string' && 'type' in b && b.type === 'tool_use' && 'id' in b && b.id === toolUseId) {
         return (
-          b.name === BRIEF_TOOL_NAME ||
-          b.name === LEGACY_BRIEF_TOOL_NAME ||
-          b.name === SEND_USER_FILE_TOOL_NAME
+          ('name' in b ? b.name : undefined) === BRIEF_TOOL_NAME ||
+          ('name' in b ? b.name : undefined) === LEGACY_BRIEF_TOOL_NAME ||
+          ('name' in b ? b.name : undefined) === SEND_USER_FILE_TOOL_NAME
         )
       }
     }
@@ -385,7 +387,8 @@ export function restoreSkillStateFromMessages(messages: Message[]): void {
       continue
     }
     if (message.attachment.type === 'invoked_skills') {
-      for (const skill of message.attachment.skills) {
+      const skills = message.attachment.skills as Array<{ name?: string; path?: string; content?: string }>;
+      for (const skill of skills) {
         if (skill.name && skill.path && skill.content) {
           // Resume only happens for the main session, so agentId is null
           addInvokedSkill(skill.name, skill.path, skill.content, null)

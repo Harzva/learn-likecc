@@ -1157,24 +1157,28 @@ export function getLastPeerDmSummary(messages: Message[]): string | undefined {
     }
 
     if (msg.type !== 'assistant') continue
-    for (const block of msg.message.content) {
+    const content = msg.message?.content
+    if (!Array.isArray(content)) continue
+    for (const block of content) {
+      if (typeof block === 'string') continue
+      const b = block as unknown as { type: string; name?: string; input?: Record<string, unknown>; [key: string]: unknown }
       if (
-        block.type === 'tool_use' &&
-        block.name === SEND_MESSAGE_TOOL_NAME &&
-        typeof block.input === 'object' &&
-        block.input !== null &&
-        'to' in block.input &&
-        typeof block.input.to === 'string' &&
-        block.input.to !== '*' &&
-        block.input.to.toLowerCase() !== TEAM_LEAD_NAME.toLowerCase() &&
-        'message' in block.input &&
-        typeof block.input.message === 'string'
+        b.type === 'tool_use' &&
+        b.name === SEND_MESSAGE_TOOL_NAME &&
+        typeof b.input === 'object' &&
+        b.input !== null &&
+        'to' in b.input &&
+        typeof b.input.to === 'string' &&
+        b.input.to !== '*' &&
+        b.input.to.toLowerCase() !== TEAM_LEAD_NAME.toLowerCase() &&
+        'message' in b.input &&
+        typeof b.input.message === 'string'
       ) {
-        const to = block.input.to
+        const to = b.input.to as string
         const summary =
-          'summary' in block.input && typeof block.input.summary === 'string'
-            ? block.input.summary
-            : block.input.message.slice(0, 80)
+          'summary' in b.input && typeof b.input.summary === 'string'
+            ? b.input.summary as string
+            : (b.input.message as string).slice(0, 80)
         return `[to ${to}] ${summary}`
       }
     }

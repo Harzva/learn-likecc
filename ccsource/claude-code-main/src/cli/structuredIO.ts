@@ -8,7 +8,7 @@ import type { AssistantMessage } from 'src//types/message.js'
 import type {
   HookInput,
   HookJSONOutput,
-  PermissionUpdate,
+  PermissionUpdate as SDKPermissionUpdate,
   SDKMessage,
   SDKUserMessage,
 } from 'src/entrypoints/agentSdkTypes.js'
@@ -19,6 +19,7 @@ import type {
   StdinMessage,
   StdoutMessage,
 } from 'src/entrypoints/sdk/controlTypes.js'
+import type { PermissionUpdate as InternalPermissionUpdate } from 'src/types/permissions.js'
 import type { CanUseToolFn } from 'src/hooks/useCanUseTool.js'
 import type { Tool, ToolUseContext } from 'src/Tool.js'
 import { type HookCallback, hookJSONOutputSchema } from 'src/types/hooks.js'
@@ -174,8 +175,9 @@ export class StructuredIO {
    * messages for the same tool are ignored by the orphan handler.
    */
   private trackResolvedToolUseId(request: SDKControlRequest): void {
-    if (request.request.subtype === 'can_use_tool') {
-      this.resolvedToolUseIds.add(request.request.tool_use_id)
+    const inner = request.request as { subtype?: string; tool_use_id?: string }
+    if (inner.subtype === 'can_use_tool') {
+      this.resolvedToolUseIds.add(inner.tool_use_id as string)
       if (this.resolvedToolUseIds.size > MAX_RESOLVED_TOOL_USE_IDS) {
         // Evict the oldest entry (Sets iterate in insertion order)
         const first = this.resolvedToolUseIds.values().next().value
@@ -205,6 +207,8 @@ export class StructuredIO {
     this.prependedLines.push(
       jsonStringify({
         type: 'user',
+        content,
+        uuid: '',
         session_id: '',
         message: { role: 'user', content },
         parent_tool_use_id: null,
@@ -263,7 +267,7 @@ export class StructuredIO {
   getPendingPermissionRequests() {
     return Array.from(this.pendingRequests.values())
       .map(entry => entry.request)
-      .filter(pr => pr.request.subtype === 'can_use_tool')
+      .filter(pr => (pr.request as { subtype?: string }).subtype === 'can_use_tool')
   }
 
   setUnexpectedResponseCallback(
@@ -281,21 +285,22 @@ export class StructuredIO {
    * callback is aborted via the signal — otherwise the callback hangs.
    */
   injectControlResponse(response: SDKControlResponse): void {
-    const requestId = response.response?.request_id
+    const responseInner = response.response as { request_id?: string; subtype?: string; error?: string; response?: unknown } | undefined
+    const requestId = responseInner?.request_id
     if (!requestId) return
-    const request = this.pendingRequests.get(requestId)
+    const request = this.pendingRequests.get(requestId as string)
     if (!request) return
     this.trackResolvedToolUseId(request.request)
-    this.pendingRequests.delete(requestId)
+    this.pendingRequests.delete(requestId as string)
     // Cancel the SDK consumer's canUseTool callback — the bridge won.
     void this.write({
       type: 'control_cancel_request',
       request_id: requestId,
     })
-    if (response.response.subtype === 'error') {
-      request.reject(new Error(response.response.error))
+    if (responseInner.subtype === 'error') {
+      request.reject(new Error(responseInner.error as string))
     } else {
-      const result = response.response.response
+      const result = responseInner.response
       if (request.schema) {
         try {
           request.resolve(request.schema.parse(result))
@@ -350,8 +355,9 @@ export class StructuredIO {
         // Used by bridge session runner for auth token refresh
         // (CLAUDE_CODE_SESSION_ACCESS_TOKEN) which must be readable
         // by the REPL process itself, not just child Bash commands.
-        const keys = Object.keys(message.variables)
-        for (const [key, value] of Object.entries(message.variables)) {
+        const variables = message.variables as Record<string, string>
+        const keys = Object.keys(variables)
+        for (const [key, value] of Object.entries(variables)) {
           process.env[key] = value
         }
         logForDebugging(
@@ -402,7 +408,7 @@ export class StructuredIO {
         // Notify the bridge when the SDK consumer resolves a can_use_tool
         // request, so it can cancel the stale permission prompt on claude.ai.
         if (
-          request.request.request.subtype === 'can_use_tool' &&
+          (request.request.request as { subtype?: string }).subtype === 'can_use_tool' &&
           this.onControlRequestResolved
         ) {
           this.onControlRequestResolved(message.response.request_id)
@@ -484,7 +490,7 @@ export class StructuredIO {
       throw new Error('Request aborted')
     }
     this.outbound.enqueue(message)
-    if (request.subtype === 'can_use_tool' && this.onControlRequestSent) {
+    if ((request as { subtype?: string }).subtype === 'can_use_tool' && this.onControlRequestSent) {
       this.onControlRequestSent(message)
     }
     const aborted = () => {
@@ -789,7 +795,7 @@ async function executePermissionRequestHooksForSDK(
   toolUseID: string,
   input: Record<string, unknown>,
   toolUseContext: ToolUseContext,
-  suggestions: PermissionUpdate[] | undefined,
+  suggestions: InternalPermissionUpdate[] | undefined,
 ): Promise<PermissionDecision | undefined> {
   const appState = toolUseContext.getAppState()
   const permissionMode = appState.toolPermissionContext.mode
@@ -801,7 +807,7 @@ async function executePermissionRequestHooksForSDK(
     input,
     toolUseContext,
     permissionMode,
-    suggestions,
+    suggestions as unknown as SDKPermissionUpdate[] | undefined,
     toolUseContext.abortController.signal,
   )
 
@@ -816,7 +822,7 @@ async function executePermissionRequestHooksForSDK(
         const finalInput = decision.updatedInput || input
 
         // Apply permission updates if provided by hook ("always allow")
-        const permissionUpdates = decision.updatedPermissions ?? []
+        const permissionUpdates = (decision.updatedPermissions ?? []) as unknown as InternalPermissionUpdate[]
         if (permissionUpdates.length > 0) {
           persistPermissionUpdates(permissionUpdates)
           const currentAppState = toolUseContext.getAppState()

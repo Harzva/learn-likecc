@@ -7,13 +7,8 @@ import {
   envDetector,
   hostDetector,
   osDetector,
+  resourceFromAttributes,
 } from '@opentelemetry/resources'
-
-// resourceFromAttributes was renamed in newer versions
-// Use a polyfill for compatibility
-const resourceFromAttributes = (attributes: Record<string, unknown>) => {
-  return { attributes }
-}
 import {
   BatchLogRecordProcessor,
   ConsoleLogRecordExporter,

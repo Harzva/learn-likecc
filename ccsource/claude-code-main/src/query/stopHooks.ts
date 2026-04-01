@@ -202,7 +202,7 @@ export async function* handleStopHooks(
         yield result.message
         // Track toolUseID from progress messages and count hooks
         if (result.message.type === 'progress' && result.message.toolUseID) {
-          stopHookToolUseID = result.message.toolUseID
+          stopHookToolUseID = result.message.toolUseID as string
           hookCount++
           // Extract hook command and prompt text from progress data
           const progressData = result.message.data as HookProgress
@@ -223,18 +223,18 @@ export async function* handleStopHooks(
           ) {
             if (attachment.type === 'hook_non_blocking_error') {
               hookErrors.push(
-                attachment.stderr || `Exit code ${attachment.exitCode}`,
+                (attachment.stderr as string) || `Exit code ${attachment.exitCode}`,
               )
               // Non-blocking errors always have output
               hasOutput = true
             } else if (attachment.type === 'hook_error_during_execution') {
-              hookErrors.push(attachment.content)
+              hookErrors.push(attachment.content as string)
               hasOutput = true
             } else if (attachment.type === 'hook_success') {
               // Check if successful hook produced any stdout/stderr
               if (
-                (attachment.stdout && attachment.stdout.trim()) ||
-                (attachment.stderr && attachment.stderr.trim())
+                (attachment.stdout && (attachment.stdout as string).trim()) ||
+                (attachment.stderr && (attachment.stderr as string).trim())
               ) {
                 hasOutput = true
               }
@@ -248,7 +248,7 @@ export async function* handleStopHooks(
                   i.durationMs === undefined,
               )
               if (info) {
-                info.durationMs = attachment.durationMs
+                info.durationMs = attachment.durationMs as number
               }
             }
           }
@@ -368,7 +368,7 @@ export async function* handleStopHooks(
               result.message.type === 'progress' &&
               result.message.toolUseID
             ) {
-              teammateHookToolUseID = result.message.toolUseID
+              teammateHookToolUseID = result.message.toolUseID as string
             }
             yield result.message
           }
@@ -410,7 +410,7 @@ export async function* handleStopHooks(
       for await (const result of teammateIdleGenerator) {
         if (result.message) {
           if (result.message.type === 'progress' && result.message.toolUseID) {
-            teammateHookToolUseID = result.message.toolUseID
+            teammateHookToolUseID = result.message.toolUseID as string
           }
           yield result.message
         }

@@ -27,6 +27,8 @@ import type {
   HookResultMessage,
   Message,
   PartialCompactDirection,
+  StreamEvent,
+  SystemAPIErrorMessage,
   SystemCompactBoundaryMessage,
   SystemMessage,
   UserMessage,
@@ -263,7 +265,7 @@ export function truncateHeadForPTLRetry(
     let acc = 0
     dropCount = 0
     for (const g of groups) {
-      acc += roughTokenCountEstimationForMessages(g)
+      acc += roughTokenCountEstimationForMessages(g as Parameters<typeof roughTokenCountEstimationForMessages>[0])
       dropCount++
       if (acc >= tokenGap) break
     }
@@ -639,7 +641,7 @@ export async function compactConversation(
       ...summaryMessages,
       ...postCompactFileAttachments,
       ...hookMessages,
-    ])
+    ] as Parameters<typeof roughTokenCountEstimationForMessages>[0])
 
     // Extract compaction API usage metrics
     const compactionUsage = getTokenUsage(summaryResponse)
@@ -1328,29 +1330,30 @@ async function streamCompactSummary({
       let next = await streamIter.next()
 
       while (!next.done) {
-        const event = next.value
+        const event = next.value as StreamEvent | AssistantMessage | SystemAPIErrorMessage
+        const streamEvent = event as { type: string; event: { type: string; content_block: { type: string }; delta: { type: string; text: string } } }
 
         if (
           !hasStartedStreaming &&
-          event.type === 'stream_event' &&
-          event.event.type === 'content_block_start' &&
-          event.event.content_block.type === 'text'
+          streamEvent.type === 'stream_event' &&
+          streamEvent.event.type === 'content_block_start' &&
+          streamEvent.event.content_block.type === 'text'
         ) {
           hasStartedStreaming = true
           context.setStreamMode?.('responding')
         }
 
         if (
-          event.type === 'stream_event' &&
-          event.event.type === 'content_block_delta' &&
-          event.event.delta.type === 'text_delta'
+          streamEvent.type === 'stream_event' &&
+          streamEvent.event.type === 'content_block_delta' &&
+          streamEvent.event.delta.type === 'text_delta'
         ) {
-          const charactersStreamed = event.event.delta.text.length
+          const charactersStreamed = streamEvent.event.delta.text.length
           context.setResponseLength?.(length => length + charactersStreamed)
         }
 
         if (event.type === 'assistant') {
-          response = event
+          response = event as AssistantMessage
         }
 
         next = await streamIter.next()

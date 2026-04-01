@@ -760,17 +760,17 @@ export async function* runAgent({
       // so TTFT/OTPS update during subagent execution.
       if (
         message.type === 'stream_event' &&
-        message.event.type === 'message_start' &&
-        message.ttftMs != null
+        (message as any).event.type === 'message_start' &&
+        (message as any).ttftMs != null
       ) {
-        toolUseContext.pushApiMetricsEntry?.(message.ttftMs)
+        toolUseContext.pushApiMetricsEntry?.((message as any).ttftMs)
         continue
       }
 
       // Yield attachment messages (e.g., structured_output) without recording them
       if (message.type === 'attachment') {
         // Handle max turns reached signal from query.ts
-        if (message.attachment.type === 'max_turns_reached') {
+        if ((message as any).attachment.type === 'max_turns_reached') {
           logForDebugging(
             `[Agent
 : $
@@ -779,13 +779,13 @@ export async function* runAgent({
 }
 ] Reached max turns limit ($
 {
-  message.attachment.maxTurns
+  (message as any).attachment.maxTurns
 }
 )`,
           )
           break
         }
-        yield message
+        yield message as Message
         continue
       }
 

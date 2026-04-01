@@ -802,13 +802,14 @@ export async function getAttachments(
         skillSearchModules &&
         !options?.skipSkillDiscovery
           ? [
-              maybe('skill_discovery', () =>
-                skillSearchModules.prefetch.getTurnZeroSkillDiscovery(
+              maybe('skill_discovery', async () => {
+                const result = await skillSearchModules.prefetch.getTurnZeroSkillDiscovery(
                   input,
                   messages ?? [],
                   context,
-                ),
-              ),
+                )
+                return result ? [result] : []
+              }),
             ]
           : []),
       ]
@@ -995,11 +996,11 @@ export async function getAttachments(
 
   clearTimeout(timeoutId)
   // Defensive: a getter leaking [undefined] crashes .map(a => a.type) below.
-  return [
+  return ([
     ...userAttachmentResults.flat(),
     ...threadAttachmentResults.flat(),
     ...mainThreadAttachmentResults.flat(),
-  ].filter(a => a !== undefined && a !== null)
+  ] as Attachment[]).filter(a => a !== undefined && a !== null)
 }
 
 async function maybe<A>(label: string, f: () => Promise<A[]>): Promise<A[]> {
@@ -1095,7 +1096,7 @@ export function getAgentPendingMessageAttachments(
   return drained.map(msg => ({
     type: 'queued_command' as const,
     prompt: msg,
-    origin: { kind: 'coordinator' as const },
+    origin: { kind: 'coordinator' as const } as unknown as MessageOrigin,
     isMeta: true,
   }))
 }
@@ -1525,8 +1526,8 @@ export function getAgentListingDeltaAttachment(
   for (const msg of messages ?? []) {
     if (msg.type !== 'attachment') continue
     if (msg.attachment.type !== 'agent_listing_delta') continue
-    for (const t of msg.attachment.addedTypes) announced.add(t)
-    for (const t of msg.attachment.removedTypes) announced.delete(t)
+    for (const t of msg.attachment.addedTypes as string[]) announced.add(t)
+    for (const t of msg.attachment.removedTypes as string[]) announced.delete(t)
   }
 
   const currentTypes = new Set(filtered.map(a => a.agentType))
@@ -2256,7 +2257,7 @@ export function collectSurfacedMemories(messages: ReadonlyArray<Message>): {
   let totalBytes = 0
   for (const m of messages) {
     if (m.type === 'attachment' && m.attachment.type === 'relevant_memories') {
-      for (const mem of m.attachment.memories) {
+      for (const mem of m.attachment.memories as { path: string; content: string; mtimeMs: number }[]) {
         paths.add(mem.path)
         totalBytes += mem.content.length
       }
@@ -2776,7 +2777,7 @@ export function extractAtMentionedFiles(content: string): string[] {
   }
 
   // Extract regular mentions
-  const regularMatchArray = content.match(regularAtMentionRegex) || []
+  const regularMatchArray: string[] = content.match(regularAtMentionRegex) ?? []
   regularMatchArray.forEach(match => {
     const filename = match.slice(match.indexOf('@') + 1)
     // Don't include if it starts with a quote (already handled as quoted)

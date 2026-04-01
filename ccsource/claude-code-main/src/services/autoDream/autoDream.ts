@@ -10,6 +10,7 @@
 // State is closure-scoped inside initAutoDream() rather than module-level
 // (tests call initAutoDream() in beforeEach for a fresh closure).
 
+import type { ContentBlockParam } from '@anthropic-ai/sdk/resources/index.mjs'
 import type { REPLHookContext } from '../../utils/hooks/postSamplingHooks.js'
 import {
   createCacheSafeParams,
@@ -241,7 +242,7 @@ ${sessionIds.map(id => `- ${id}`).join('\n')}`
         isDreamTask(dreamState) &&
         dreamState.filesTouched.length > 0
       ) {
-        appendSystemMessage({
+        ;(appendSystemMessage as (msg: Message) => void)({
           ...createMemorySavedMessage(dreamState.filesTouched),
           verb: 'Improved',
         })
@@ -287,7 +288,8 @@ function makeDreamProgressWatcher(
     let text = ''
     let toolUseCount = 0
     const touchedPaths: string[] = []
-    for (const block of msg.message.content) {
+    const contentBlocks = msg.message.content as ContentBlockParam[]
+    for (const block of contentBlocks) {
       if (block.type === 'text') {
         text += block.text
       } else if (block.type === 'tool_use') {

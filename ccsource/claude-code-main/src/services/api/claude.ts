@@ -45,6 +45,7 @@ import {
 import type {
   AssistantMessage,
   Message,
+  MessageContent,
   StreamEvent,
   SystemAPIErrorMessage,
   UserMessage,
@@ -452,7 +453,7 @@ function configureEffortParams(
     betas.push(EFFORT_BETA_HEADER)
   } else if (typeof effortValue === 'string') {
     // Send string effort level as is
-    outputConfig.effort = effortValue
+    outputConfig.effort = effortValue as "high" | "medium" | "low" | "max"
     betas.push(EFFORT_BETA_HEADER)
   } else if (process.env.USER_TYPE === 'ant') {
     // Numeric effort override - ant-only (uses anthropic_internal)
@@ -735,7 +736,7 @@ export async function queryModelWithoutStreaming({
     )
   })) {
     if (message.type === 'assistant') {
-      assistantMessage = message
+      assistantMessage = message as AssistantMessage
     }
   }
   if (!assistantMessage) {
@@ -931,7 +932,7 @@ function getPreviousRequestIdFromMessages(
   for (let i = messages.length - 1; i >= 0; i--) {
     const msg = messages[i]!
     if (msg.type === 'assistant' && msg.requestId) {
-      return msg.requestId
+      return msg.requestId as string
     }
   }
   return undefined
@@ -964,7 +965,7 @@ export function stripExcessMediaItems(
       if (isMedia(block)) toRemove++
       if (isToolResult(block) && Array.isArray(block.content)) {
         for (const nested of block.content) {
-          if (isMedia(nested)) toRemove++
+          if (isMedia(nested as BetaContentBlockParam)) toRemove++
         }
       }
     }
@@ -987,7 +988,7 @@ export function stripExcessMediaItems(
         )
           return block
         const filtered = block.content.filter(n => {
-          if (toRemove > 0 && isMedia(n)) {
+          if (toRemove > 0 && isMedia(n as BetaContentBlockParam)) {
             toRemove--
             return false
           }
@@ -1200,7 +1201,7 @@ async function* queryModel(
     cachedMCEnabled = featureEnabled && modelSupported
     const config = getCachedMCConfig()
     logForDebugging(
-      `Cached MC gate: enabled=${featureEnabled} modelSupported=${modelSupported} model=${options.model} supportedModels=${jsonStringify(config.supportedModels)}`,
+      `Cached MC gate: enabled=${featureEnabled} modelSupported=${modelSupported} model=${options.model} supportedModels=${jsonStringify((config as any).supportedModels)}`,
     )
   }
 
@@ -1703,8 +1704,8 @@ async function* queryModel(
         enablePromptCaching,
         options.querySource,
         useCachedMC,
-        consumedCacheEdits,
-        consumedPinnedEdits,
+        consumedCacheEdits as any,
+        consumedPinnedEdits as any,
         options.skipCacheWrite,
       ),
       system,
@@ -2078,7 +2079,7 @@ async function* queryModel(
                 })
                 throw new Error('Content block is not a connector_text block')
               }
-              contentBlock.connector_text += delta.connector_text
+              ;(contentBlock as { connector_text: string }).connector_text += delta.connector_text
             } else {
               switch (delta.type) {
                 case 'citations_delta':
@@ -2122,7 +2123,7 @@ async function* queryModel(
                     })
                     throw new Error('Content block is not a text block')
                   }
-                  contentBlock.text += delta.text
+                  ;(contentBlock as { text: string }).text += delta.text
                   break
                 case 'signature_delta':
                   if (
@@ -2157,7 +2158,7 @@ async function* queryModel(
                     })
                     throw new Error('Content block is not a thinking block')
                   }
-                  contentBlock.thinking += delta.thinking
+                  ;(contentBlock as { thinking: string }).thinking += delta.thinking
                   break
               }
             }
@@ -2196,7 +2197,7 @@ async function* queryModel(
                   [contentBlock] as BetaContentBlock[],
                   tools,
                   options.agentId,
-                ),
+                ) as MessageContent,
               },
               requestId: streamRequestId ?? undefined,
               type: 'assistant',
@@ -2248,10 +2249,10 @@ async function* queryModel(
             }
 
             // Update cost
-            const costUSDForPart = calculateUSDCost(resolvedModel, usage)
+            const costUSDForPart = calculateUSDCost(resolvedModel, usage as unknown as BetaUsage)
             costUSD += addToTotalSessionCost(
               costUSDForPart,
-              usage,
+              usage as unknown as BetaUsage,
               options.model,
             )
 
@@ -2575,7 +2576,7 @@ async function* queryModel(
             result.content,
             tools,
             options.agentId,
-          ),
+          ) as MessageContent,
         },
         requestId: streamRequestId ?? undefined,
         type: 'assistant',
@@ -2672,7 +2673,7 @@ async function* queryModel(
               result.content,
               tools,
               options.agentId,
-            ),
+            ) as MessageContent,
           },
           requestId: streamRequestId ?? undefined,
           type: 'assistant',
@@ -2818,13 +2819,13 @@ async function* queryModel(
     // message_delta handler before any yield. Fallback pushes to newMessages
     // then yields, so tracking must be here to survive .return() at the yield.
     if (fallbackMessage) {
-      const fallbackUsage = fallbackMessage.message.usage
+      const fallbackUsage = fallbackMessage.message.usage as BetaMessageDeltaUsage
       usage = updateUsage(EMPTY_USAGE, fallbackUsage)
-      stopReason = fallbackMessage.message.stop_reason
-      const fallbackCost = calculateUSDCost(resolvedModel, fallbackUsage)
+      stopReason = fallbackMessage.message.stop_reason as BetaStopReason
+      const fallbackCost = calculateUSDCost(resolvedModel, fallbackUsage as unknown as BetaUsage)
       costUSD += addToTotalSessionCost(
         fallbackCost,
-        fallbackUsage,
+        fallbackUsage as unknown as BetaUsage,
         options.model,
       )
     }
@@ -2857,7 +2858,7 @@ async function* queryModel(
   void options.getToolPermissionContext().then(permissionContext => {
     logAPISuccessAndDuration({
       model:
-        newMessages[0]?.message.model ?? partialMessage?.model ?? options.model,
+        (newMessages[0]?.message.model as string | undefined) ?? partialMessage?.model ?? options.model,
       preNormalizedModel: options.model,
       usage,
       start,
@@ -3150,7 +3151,7 @@ export function addCacheBreakpoints(
           }
           insertBlockAfterToolResults(msg.content, dedupedNewEdits)
           // Pin so this block is re-sent at the same position in future calls
-          pinCacheEdits(i, newCacheEdits)
+          pinCacheEdits(i, newCacheEdits as any)
 
           logForDebugging(
             `Added cache_edits block with ${dedupedNewEdits.edits.length} deletion(s) to message[${i}]: ${dedupedNewEdits.edits.map(e => e.cache_reference).join(', ')}`,

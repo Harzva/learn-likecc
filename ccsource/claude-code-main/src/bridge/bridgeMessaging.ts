@@ -103,7 +103,7 @@ export function isEligibleBridgeMessage(m: Message): boolean {
 export function extractTitleText(m: Message): string | undefined {
   if (m.type !== 'user' || m.isMeta || m.toolUseResult || m.isCompactSummary)
     return undefined
-  if (m.origin && m.origin.kind !== 'human') return undefined
+  if (m.origin && (m.origin as { kind?: string }).kind !== 'human') return undefined
   const content = m.message.content
   let raw: string | undefined
   if (typeof content === 'string') {
@@ -151,7 +151,7 @@ export function handleIngressMessage(
     // Must respond promptly or the server kills the WS (~10-14s timeout).
     if (isSDKControlRequest(parsed)) {
       logForDebugging(
-        `[bridge:repl] Inbound control_request subtype=${parsed.request.subtype}`,
+        `[bridge:repl] Inbound control_request subtype=${(parsed.request as { subtype?: string }).subtype}`,
       )
       onControlRequest?.(parsed)
       return
@@ -265,7 +265,8 @@ export function handleServerControlRequest(
   // Outbound-only: reply error for mutable requests so claude.ai doesn't show
   // false success. initialize must still succeed (server kills the connection
   // if it doesn't — see comment above).
-  if (outboundOnly && request.request.subtype !== 'initialize') {
+  const req = request.request as { subtype: string; model?: string; max_thinking_tokens?: number | null; mode?: string; [key: string]: unknown }
+  if (outboundOnly && req.subtype !== 'initialize') {
     response = {
       type: 'control_response',
       response: {
@@ -277,12 +278,12 @@ export function handleServerControlRequest(
     const event = { ...response, session_id: sessionId }
     void transport.write(event)
     logForDebugging(
-      `[bridge:repl] Rejected ${request.request.subtype} (outbound-only) request_id=${request.request_id}`,
+      `[bridge:repl] Rejected ${req.subtype} (outbound-only) request_id=${request.request_id}`,
     )
     return
   }
 
-  switch (request.request.subtype) {
+  switch (req.subtype) {
     case 'initialize':
       // Respond with minimal capabilities — the REPL handles
       // commands, models, and account info itself.
@@ -304,7 +305,7 @@ export function handleServerControlRequest(
       break
 
     case 'set_model':
-      onSetModel?.(request.request.model)
+      onSetModel?.(req.model)
       response = {
         type: 'control_response',
         response: {
@@ -315,7 +316,7 @@ export function handleServerControlRequest(
       break
 
     case 'set_max_thinking_tokens':
-      onSetMaxThinkingTokens?.(request.request.max_thinking_tokens)
+      onSetMaxThinkingTokens?.(req.max_thinking_tokens ?? null)
       response = {
         type: 'control_response',
         response: {
@@ -333,7 +334,7 @@ export function handleServerControlRequest(
       // see daemonBridge.ts), return an error verdict rather than a silent
       // false-success: the mode is never actually applied in that context,
       // so success would lie to the client.
-      const verdict = onSetPermissionMode?.(request.request.mode) ?? {
+      const verdict = onSetPermissionMode?.(req.mode as PermissionMode) ?? {
         ok: false,
         error:
           'set_permission_mode is not supported in this context (onSetPermissionMode callback not registered)',
@@ -352,7 +353,7 @@ export function handleServerControlRequest(
           response: {
             subtype: 'error',
             request_id: request.request_id,
-            error: verdict.error,
+            error: (verdict as { ok: false; error: string }).error,
           },
         }
       }
@@ -378,7 +379,7 @@ export function handleServerControlRequest(
         response: {
           subtype: 'error',
           request_id: request.request_id,
-          error: `REPL bridge does not handle control_request subtype: ${request.request.subtype}`,
+          error: `REPL bridge does not handle control_request subtype: ${req.subtype}`,
         },
       }
   }
@@ -386,7 +387,7 @@ export function handleServerControlRequest(
   const event = { ...response, session_id: sessionId }
   void transport.write(event)
   logForDebugging(
-    `[bridge:repl] Sent control_response for ${request.request.subtype} request_id=${request.request_id} result=${response.response.subtype}`,
+    `[bridge:repl] Sent control_response for ${req.subtype} request_id=${request.request_id} result=${(response.response as { subtype?: string }).subtype}`,
   )
 }
 
@@ -398,7 +399,7 @@ export function handleServerControlRequest(
  */
 export function makeResultMessage(sessionId: string): SDKResultSuccess {
   return {
-    type: 'result',
+    type: 'result_success',
     subtype: 'success',
     duration_ms: 0,
     duration_api_ms: 0,

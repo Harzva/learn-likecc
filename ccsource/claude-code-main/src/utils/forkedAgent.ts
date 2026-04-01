@@ -242,7 +242,7 @@ export function extractResultText(
   if (!lastAssistantMessage) return defaultText
 
   const textContent = extractTextContent(
-    lastAssistantMessage.message.content,
+    Array.isArray(lastAssistantMessage.message.content) ? lastAssistantMessage.message.content : [],
     '\n',
   )
 
@@ -558,10 +558,10 @@ export async function runForkedAgent({
       if (message.type === 'stream_event') {
         if (
           'event' in message &&
-          message.event?.type === 'message_delta' &&
-          message.event.usage
+          (message as any).event?.type === 'message_delta' &&
+          (message as any).event.usage
         ) {
-          const turnUsage = updateUsage({ ...EMPTY_USAGE }, message.event.usage)
+          const turnUsage = updateUsage({ ...EMPTY_USAGE }, (message as any).event.usage)
           totalUsage = accumulateUsage(totalUsage, turnUsage)
         }
         continue

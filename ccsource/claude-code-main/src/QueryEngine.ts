@@ -14,6 +14,7 @@ import type {
   SDKStatus,
   SDKUserMessageReplay,
 } from 'src/entrypoints/agentSdkTypes.js'
+import type { BetaMessageDeltaUsage } from '@anthropic-ai/sdk/resources/beta/messages/messages.mjs'
 import { accumulateUsage, updateUsage } from 'src/services/api/claude.js'
 import type { NonNullableUsage } from 'src/services/api/logging.js'
 import { EMPTY_USAGE } from 'src/services/api/logging.js'
@@ -39,7 +40,8 @@ import type { AppState } from './state/AppState.js'
 import { type Tools, type ToolUseContext, toolMatchesName } from './Tool.js'
 import type { AgentDefinition } from './tools/AgentTool/loadAgentsDir.js'
 import { SYNTHETIC_OUTPUT_TOOL_NAME } from './tools/SyntheticOutputTool/SyntheticOutputTool.js'
-import type { Message } from './types/message.js'
+import type { APIError } from '@anthropic-ai/sdk'
+import type { CompactMetadata, Message, SystemCompactBoundaryMessage } from './types/message.js'
 import type { OrphanedPermission } from './types/textInputTypes.js'
 import { createAbortController } from './utils/abortController.js'
 import type { AttributionState } from './utils/commitAttribution.js'
@@ -261,6 +263,7 @@ export class QueryEngine {
       // Track denials for SDK reporting
       if (result.behavior !== 'allow') {
         this.permissionDenials.push({
+          type: 'permission_denial',
           tool_name: sdkCompatToolName(tool.name),
           tool_use_id: toolUseID,
           tool_input: input,
@@ -577,7 +580,7 @@ export class QueryEngine {
             timestamp: msg.timestamp,
             isReplay: !msg.isCompactSummary,
             isSynthetic: msg.isMeta || msg.isVisibleInTranscriptOnly,
-          } as SDKUserMessageReplay
+          } as unknown as SDKUserMessageReplay
         }
 
         // Local command output — yield as a synthetic assistant message so
@@ -595,13 +598,14 @@ export class QueryEngine {
         }
 
         if (msg.type === 'system' && msg.subtype === 'compact_boundary') {
+          const compactMsg = msg as SystemCompactBoundaryMessage
           yield {
             type: 'system',
             subtype: 'compact_boundary' as const,
             session_id: getSessionId(),
             uuid: msg.uuid,
-            compact_metadata: toSDKCompactMetadata(msg.compactMetadata),
-          } as SDKCompactBoundaryMessage
+            compact_metadata: toSDKCompactMetadata(compactMsg.compactMetadata),
+          } as unknown as SDKCompactBoundaryMessage
         }
       }
 
@@ -703,7 +707,8 @@ export class QueryEngine {
           message.type === 'system' &&
           message.subtype === 'compact_boundary'
         ) {
-          const tailUuid = message.compactMetadata?.preservedSegment?.tailUuid
+          const compactMsg = message as SystemCompactBoundaryMessage
+          const tailUuid = compactMsg.compactMetadata?.preservedSegment?.tailUuid
           if (tailUuid) {
             const tailIdx = this.mutableMessages.findLastIndex(
               m => m.uuid === tailUuid,
@@ -713,7 +718,7 @@ export class QueryEngine {
             }
           }
         }
-        messages.push(message)
+        messages.push(message as Message)
         if (persistSession) {
           // Fire-and-forget for assistant messages. claude.ts yields one
           // assistant message per content block, then mutates the last
@@ -744,7 +749,7 @@ export class QueryEngine {
                 uuid: msgToAck.uuid,
                 timestamp: msgToAck.timestamp,
                 isReplay: true,
-              } as SDKUserMessageReplay
+              } as unknown as SDKUserMessageReplay
             }
           }
         }
@@ -758,56 +763,66 @@ export class QueryEngine {
         case 'tombstone':
           // Tombstone messages are control signals for removing messages, skip them
           break
-        case 'assistant':
+        case 'assistant': {
           // Capture stop_reason if already set (synthetic messages). For
           // streamed responses, this is null at content_block_stop time;
           // the real value arrives via message_delta (handled below).
-          if (message.message.stop_reason != null) {
-            lastStopReason = message.message.stop_reason
+          const msg = message as Message
+          const stopReason = msg.message?.stop_reason as string | null | undefined
+          if (stopReason != null) {
+            lastStopReason = stopReason
           }
-          this.mutableMessages.push(message)
-          yield* normalizeMessage(message)
+          this.mutableMessages.push(msg)
+          yield* normalizeMessage(msg)
           break
-        case 'progress':
-          this.mutableMessages.push(message)
+        }
+        case 'progress': {
+          const msg = message as Message
+          this.mutableMessages.push(msg)
           // Record inline so the dedup loop in the next ask() call sees it
           // as already-recorded. Without this, deferred progress interleaves
           // with already-recorded tool_results in mutableMessages, and the
           // dedup walk freezes startingParentUuid at the wrong message —
           // forking the chain and orphaning the conversation on resume.
           if (persistSession) {
-            messages.push(message)
+            messages.push(msg)
             void recordTranscript(messages)
           }
-          yield* normalizeMessage(message)
+          yield* normalizeMessage(msg)
           break
-        case 'user':
-          this.mutableMessages.push(message)
-          yield* normalizeMessage(message)
+        }
+        case 'user': {
+          const msg = message as Message
+          this.mutableMessages.push(msg)
+          yield* normalizeMessage(msg)
           break
-        case 'stream_event':
-          if (message.event.type === 'message_start') {
+        }
+        case 'stream_event': {
+          const event = (message as unknown as { event: Record<string, unknown> }).event
+          if (event.type === 'message_start') {
             // Reset current message usage for new message
             currentMessageUsage = EMPTY_USAGE
+            const eventMessage = event.message as { usage: BetaMessageDeltaUsage }
             currentMessageUsage = updateUsage(
               currentMessageUsage,
-              message.event.message.usage,
+              eventMessage.usage,
             )
           }
-          if (message.event.type === 'message_delta') {
+          if (event.type === 'message_delta') {
             currentMessageUsage = updateUsage(
               currentMessageUsage,
-              message.event.usage,
+              event.usage as BetaMessageDeltaUsage,
             )
             // Capture stop_reason from message_delta. The assistant message
             // is yielded at content_block_stop with stop_reason=null; the
             // real value only arrives here (see claude.ts message_delta
             // handler). Without this, result.stop_reason is always null.
-            if (message.event.delta.stop_reason != null) {
-              lastStopReason = message.event.delta.stop_reason
+            const delta = event.delta as { stop_reason?: string | null }
+            if (delta.stop_reason != null) {
+              lastStopReason = delta.stop_reason
             }
           }
-          if (message.event.type === 'message_stop') {
+          if (event.type === 'message_stop') {
             // Accumulate current message usage into total
             this.totalUsage = accumulateUsage(
               this.totalUsage,
@@ -818,7 +833,7 @@ export class QueryEngine {
           if (includePartialMessages) {
             yield {
               type: 'stream_event' as const,
-              event: message.event,
+              event,
               session_id: getSessionId(),
               parent_tool_use_id: null,
               uuid: randomUUID(),
@@ -826,20 +841,24 @@ export class QueryEngine {
           }
 
           break
-        case 'attachment':
-          this.mutableMessages.push(message)
+        }
+        case 'attachment': {
+          const msg = message as Message
+          this.mutableMessages.push(msg)
           // Record inline (same reason as progress above).
           if (persistSession) {
-            messages.push(message)
+            messages.push(msg)
             void recordTranscript(messages)
           }
 
+          const attachment = msg.attachment as { type: string; data?: unknown; turnCount?: number; maxTurns?: number; prompt?: string; source_uuid?: string; [key: string]: unknown }
+
           // Extract structured output from StructuredOutput tool calls
-          if (message.attachment.type === 'structured_output') {
-            structuredOutputFromTool = message.attachment.data
+          if (attachment.type === 'structured_output') {
+            structuredOutputFromTool = attachment.data
           }
           // Handle max turns reached signal from query.ts
-          else if (message.attachment.type === 'max_turns_reached') {
+          else if (attachment.type === 'max_turns_reached') {
             if (persistSession) {
               if (
                 isEnvTruthy(process.env.CLAUDE_CODE_EAGER_FLUSH) ||
@@ -854,7 +873,7 @@ export class QueryEngine {
               duration_ms: Date.now() - startTime,
               duration_api_ms: getTotalAPIDuration(),
               is_error: true,
-              num_turns: message.attachment.turnCount,
+              num_turns: attachment.turnCount as number,
               stop_reason: lastStopReason,
               session_id: getSessionId(),
               total_cost_usd: getTotalCost(),
@@ -867,7 +886,7 @@ export class QueryEngine {
               ),
               uuid: randomUUID(),
               errors: [
-                `Reached maximum number of turns (${message.attachment.maxTurns})`,
+                `Reached maximum number of turns (${attachment.maxTurns})`,
               ],
             }
             return
@@ -875,26 +894,28 @@ export class QueryEngine {
           // Yield queued_command attachments as SDK user message replays
           else if (
             replayUserMessages &&
-            message.attachment.type === 'queued_command'
+            attachment.type === 'queued_command'
           ) {
             yield {
               type: 'user',
               message: {
                 role: 'user' as const,
-                content: message.attachment.prompt,
+                content: attachment.prompt,
               },
               session_id: getSessionId(),
               parent_tool_use_id: null,
-              uuid: message.attachment.source_uuid || message.uuid,
-              timestamp: message.timestamp,
+              uuid: attachment.source_uuid || msg.uuid,
+              timestamp: msg.timestamp,
               isReplay: true,
-            } as SDKUserMessageReplay
+            } as unknown as SDKUserMessageReplay
           }
           break
+        }
         case 'stream_request_start':
           // Don't yield stream request start messages
           break
         case 'system': {
+          const msg = message as Message
           // Snip boundary: replay on our store to remove zombie messages and
           // stale markers. The yielded boundary is a signal, not data to push —
           // the replay produces its own equivalent boundary. Without this,
@@ -903,7 +924,7 @@ export class QueryEngine {
           // check lives inside the injected callback so feature-gated strings
           // stay out of this file (excluded-strings check).
           const snipResult = this.config.snipReplay?.(
-            message,
+            msg,
             this.mutableMessages,
           )
           if (snipResult !== undefined) {
@@ -913,12 +934,13 @@ export class QueryEngine {
             }
             break
           }
-          this.mutableMessages.push(message)
+          this.mutableMessages.push(msg)
           // Yield compact boundary messages to SDK
           if (
-            message.subtype === 'compact_boundary' &&
-            message.compactMetadata
+            msg.subtype === 'compact_boundary' &&
+            msg.compactMetadata
           ) {
+            const compactMsg = msg as SystemCompactBoundaryMessage
             // Release pre-compaction messages for GC. The boundary was just
             // pushed so it's the last element. query.ts already uses
             // getMessagesAfterCompactBoundary() internally, so only
@@ -936,36 +958,39 @@ export class QueryEngine {
               type: 'system',
               subtype: 'compact_boundary' as const,
               session_id: getSessionId(),
-              uuid: message.uuid,
-              compact_metadata: toSDKCompactMetadata(message.compactMetadata),
+              uuid: msg.uuid,
+              compact_metadata: toSDKCompactMetadata(compactMsg.compactMetadata),
             }
           }
-          if (message.subtype === 'api_error') {
+          if (msg.subtype === 'api_error') {
+            const apiErrorMsg = msg as Message & { retryAttempt: number; maxRetries: number; retryInMs: number; error: APIError }
             yield {
               type: 'system',
               subtype: 'api_retry' as const,
-              attempt: message.retryAttempt,
-              max_retries: message.maxRetries,
-              retry_delay_ms: message.retryInMs,
-              error_status: message.error.status ?? null,
-              error: categorizeRetryableAPIError(message.error),
+              attempt: apiErrorMsg.retryAttempt,
+              max_retries: apiErrorMsg.maxRetries,
+              retry_delay_ms: apiErrorMsg.retryInMs,
+              error_status: apiErrorMsg.error.status ?? null,
+              error: categorizeRetryableAPIError(apiErrorMsg.error),
               session_id: getSessionId(),
-              uuid: message.uuid,
+              uuid: msg.uuid,
             }
           }
           // Don't yield other system messages in headless mode
           break
         }
-        case 'tool_use_summary':
+        case 'tool_use_summary': {
+          const msg = message as Message & { summary: unknown; precedingToolUseIds: unknown }
           // Yield tool use summary messages to SDK
           yield {
             type: 'tool_use_summary' as const,
-            summary: message.summary,
-            preceding_tool_use_ids: message.precedingToolUseIds,
+            summary: msg.summary,
+            preceding_tool_use_ids: msg.precedingToolUseIds,
             session_id: getSessionId(),
-            uuid: message.uuid,
+            uuid: msg.uuid,
           }
           break
+        }
       }
 
       // Check if USD budget has been exceeded
@@ -1251,7 +1276,7 @@ export async function* ask({
     tools,
     commands,
     mcpClients,
-    agents,
+    agents: agents ?? [],
     canUseTool,
     getAppState,
     setAppState,

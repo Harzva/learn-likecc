@@ -486,8 +486,87 @@ function parseHttpHookOutput(body: string): {
   }
 }
 
+/** Typed representation of sync hook JSON output, matching the syncHookResponseSchema Zod schema. */
+interface TypedSyncHookOutput {
+  continue?: boolean
+  suppressOutput?: boolean
+  stopReason?: string
+  decision?: 'approve' | 'block'
+  reason?: string
+  systemMessage?: string
+  hookSpecificOutput?:
+    | {
+        hookEventName: 'PreToolUse'
+        permissionDecision?: 'ask' | 'deny' | 'allow' | 'passthrough'
+        permissionDecisionReason?: string
+        updatedInput?: Record<string, unknown>
+        additionalContext?: string
+      }
+    | {
+        hookEventName: 'UserPromptSubmit'
+        additionalContext?: string
+      }
+    | {
+        hookEventName: 'SessionStart'
+        additionalContext?: string
+        initialUserMessage?: string
+        watchPaths?: string[]
+      }
+    | {
+        hookEventName: 'Setup'
+        additionalContext?: string
+      }
+    | {
+        hookEventName: 'SubagentStart'
+        additionalContext?: string
+      }
+    | {
+        hookEventName: 'PostToolUse'
+        additionalContext?: string
+        updatedMCPToolOutput?: unknown
+      }
+    | {
+        hookEventName: 'PostToolUseFailure'
+        additionalContext?: string
+      }
+    | {
+        hookEventName: 'PermissionDenied'
+        retry?: boolean
+      }
+    | {
+        hookEventName: 'Notification'
+        additionalContext?: string
+      }
+    | {
+        hookEventName: 'PermissionRequest'
+        decision?: PermissionRequestResult
+      }
+    | {
+        hookEventName: 'Elicitation'
+        action?: 'accept' | 'decline' | 'cancel'
+        content?: Record<string, unknown>
+      }
+    | {
+        hookEventName: 'ElicitationResult'
+        action?: 'accept' | 'decline' | 'cancel'
+        content?: Record<string, unknown>
+      }
+    | {
+        hookEventName: 'CwdChanged'
+        watchPaths?: string[]
+      }
+    | {
+        hookEventName: 'FileChanged'
+        watchPaths?: string[]
+      }
+    | {
+        hookEventName: 'WorktreeCreate'
+        worktreePath: string
+      }
+}
+
 function processHookJSONOutput({
-  json,
+  json: rawJson,
   command,
   hookName,
   toolUseID,
@@ -510,6 +589,9 @@ function processHookJSONOutput({
   durationMs?: number
 }): Partial<HookResult> {
   const result: Partial<HookResult> = {}
+
+  // Cast to typed interface for type-safe property access
+  const json = rawJson as TypedSyncHookOutput
 
   // At this point we know it's a sync response
   const syncJson = json
@@ -1400,8 +1482,8 @@ async function prepareIfConditionMatcher(
     return undefined
   }
 
-  const toolName = normalizeLegacyToolName(hookInput.tool_name)
-  const tool = tools && findToolByName(tools, hookInput.tool_name)
+  const toolName = normalizeLegacyToolName(hookInput.tool_name as string)
+  const tool = tools && findToolByName(tools, hookInput.tool_name as string)
   const input = tool?.inputSchema.safeParse(hookInput.tool_input)
   const patternMatcher =
     input?.success && tool?.preparePermissionMatcher
@@ -1619,51 +1701,51 @@ export async function getMatchingHooks(
       case 'PostToolUseFailure':
       case 'PermissionRequest':
       case 'PermissionDenied':
-        matchQuery = hookInput.tool_name
+        matchQuery = hookInput.tool_name as string
         break
       case 'SessionStart':
-        matchQuery = hookInput.source
+        matchQuery = hookInput.source as string
         break
       case 'Setup':
-        matchQuery = hookInput.trigger
+        matchQuery = hookInput.trigger as string
         break
       case 'PreCompact':
       case 'PostCompact':
-        matchQuery = hookInput.trigger
+        matchQuery = hookInput.trigger as string
         break
       case 'Notification':
-        matchQuery = hookInput.notification_type
+        matchQuery = hookInput.notification_type as string
         break
       case 'SessionEnd':
-        matchQuery = hookInput.reason
+        matchQuery = hookInput.reason as string
         break
       case 'StopFailure':
-        matchQuery = hookInput.error
+        matchQuery = hookInput.error as string
         break
       case 'SubagentStart':
-        matchQuery = hookInput.agent_type
+        matchQuery = hookInput.agent_type as string
         break
       case 'SubagentStop':
-        matchQuery = hookInput.agent_type
+        matchQuery = hookInput.agent_type as string
         break
       case 'TeammateIdle':
       case 'TaskCreated':
       case 'TaskCompleted':
         break
       case 'Elicitation':
-        matchQuery = hookInput.mcp_server_name
+        matchQuery = hookInput.mcp_server_name as string
         break
       case 'ElicitationResult':
-        matchQuery = hookInput.mcp_server_name
+        matchQuery = hookInput.mcp_server_name as string
         break
       case 'ConfigChange':
-        matchQuery = hookInput.source
+        matchQuery = hookInput.source as string
         break
       case 'InstructionsLoaded':
-        matchQuery = hookInput.load_reason
+        matchQuery = hookInput.load_reason as string
         break
       case 'FileChanged':
-        matchQuery = basename(hookInput.file_path)
+        matchQuery = basename(hookInput.file_path as string)
         break
       default:
         break
@@ -2209,7 +2291,7 @@ async function* executeHooks({
             hookName,
             toolUseID,
             hookEvent,
-            content: `Failed to prepare hook input: ${errorMessage(jsonInputRes.error)}`,
+            content: `Failed to prepare hook input: ${errorMessage((jsonInputRes as { ok: false; error: unknown }).error)}`,
             command: hookCommand,
             durationMs: Date.now() - hookStartMs,
           }),
@@ -2555,9 +2637,10 @@ async function* executeHooks({
         })
 
         // Handle suppressOutput (skip for async responses)
+        const syncJson = json as TypedSyncHookOutput
         if (
           isSyncHookJSONOutput(json) &&
-          !json.suppressOutput &&
+          !syncJson.suppressOutput &&
           plainText &&
           result.status === 0
         ) {
@@ -3114,14 +3197,15 @@ async function executeHooksOutsideREPL({
             }
           }
 
+          const typedJson = json as TypedSyncHookOutput
           const output =
             hookEvent === 'WorktreeCreate' &&
             isSyncHookJSONOutput(json) &&
-            json.hookSpecificOutput?.hookEventName === 'WorktreeCreate'
-              ? json.hookSpecificOutput.worktreePath
-              : json.systemMessage || ''
+            typedJson.hookSpecificOutput?.hookEventName === 'WorktreeCreate'
+              ? typedJson.hookSpecificOutput.worktreePath
+              : typedJson.systemMessage || ''
           const blocked =
-            isSyncHookJSONOutput(json) && json.decision === 'block'
+            isSyncHookJSONOutput(json) && typedJson.decision === 'block'
 
           logForDebugging(`${hookName} [callback] completed successfully`)
 
@@ -3234,11 +3318,12 @@ async function executeHooksOutsideREPL({
               { level: 'verbose' },
             )
           }
+          const typedHttpJson = httpJson as TypedSyncHookOutput | undefined
           const jsonBlocked =
             httpJson &&
             !isAsyncHookJSONOutput(httpJson) &&
             isSyncHookJSONOutput(httpJson) &&
-            httpJson.decision === 'block'
+            typedHttpJson?.decision === 'block'
 
           // WorktreeCreate's consumer reads `output` as the bare filesystem
           // path. Command hooks provide it via stdout; http hooks provide it
@@ -3249,8 +3334,8 @@ async function executeHooksOutsideREPL({
             hookEvent === 'WorktreeCreate'
               ? httpJson &&
                 isSyncHookJSONOutput(httpJson) &&
-                httpJson.hookSpecificOutput?.hookEventName === 'WorktreeCreate'
-                ? httpJson.hookSpecificOutput.worktreePath
+                typedHttpJson?.hookSpecificOutput?.hookEventName === 'WorktreeCreate'
+                ? typedHttpJson.hookSpecificOutput.worktreePath
                 : ''
               : httpResult.body
 
@@ -3326,11 +3411,12 @@ async function executeHooksOutsideREPL({
         }
 
         // Blocked if exit code 2 or JSON decision: 'block'
+        const typedJson = json as TypedSyncHookOutput | undefined
         const jsonBlocked =
           json &&
           !isAsyncHookJSONOutput(json) &&
           isSyncHookJSONOutput(json) &&
-          json.decision === 'block'
+          typedJson?.decision === 'block'
         const blocked = result.status === 2 || !!jsonBlocked
 
         // For successful hooks (exit code 0), use stdout; for failed hooks, use stderr
@@ -3340,13 +3426,13 @@ async function executeHooksOutsideREPL({
         const watchPaths =
           json &&
           isSyncHookJSONOutput(json) &&
-          json.hookSpecificOutput &&
-          'watchPaths' in json.hookSpecificOutput
-            ? json.hookSpecificOutput.watchPaths
+          typedJson?.hookSpecificOutput &&
+          'watchPaths' in typedJson.hookSpecificOutput
+            ? (typedJson.hookSpecificOutput as { watchPaths?: string[] }).watchPaths
             : undefined
 
         const systemMessage =
-          json && isSyncHookJSONOutput(json) ? json.systemMessage : undefined
+          json && isSyncHookJSONOutput(json) ? typedJson?.systemMessage : undefined
 
         return {
           command: hook.command,
@@ -3603,13 +3689,18 @@ export async function executeStopFailureHooks(
   const sessionId = getSessionId()
   if (!hasHookForEvent('StopFailure', appState, sessionId)) return
 
+  const rawContent = lastMessage.message?.content
   const lastAssistantText =
-    extractTextContent(lastMessage.message.content, '\n').trim() || undefined
+    (Array.isArray(rawContent)
+      ? extractTextContent(rawContent as readonly { readonly type: string }[], '\n').trim()
+      : typeof rawContent === 'string'
+        ? rawContent.trim()
+        : '') || undefined
 
   // Some createAssistantAPIErrorMessage call sites omit `error` (e.g.
   // image-size at errors.ts:431). Default to 'unknown' so matcher filtering
   // at getMatchingHooks:1525 always applies.
-  const error = lastMessage.error ?? 'unknown'
+  const error = (lastMessage.error as string | undefined) ?? 'unknown'
   const hookInput: StopFailureHookInput = {
     ...createBaseHookInput(undefined, undefined, toolUseContext),
     hook_event_name: 'StopFailure',
@@ -3662,9 +3753,13 @@ export async function* executeStopHooks(
   const lastAssistantMessage = messages
     ? getLastAssistantMessage(messages)
     : undefined
+  const lastAssistantContent = lastAssistantMessage?.message?.content
   const lastAssistantText = lastAssistantMessage
-    ? extractTextContent(lastAssistantMessage.message.content, '\n').trim() ||
-      undefined
+    ? (Array.isArray(lastAssistantContent)
+        ? extractTextContent(lastAssistantContent as readonly { readonly type: string }[], '\n').trim()
+        : typeof lastAssistantContent === 'string'
+          ? lastAssistantContent.trim()
+          : '') || undefined
     : undefined
 
   const hookInput: StopHookInput | SubagentStopHookInput = subagentId
@@ -4110,11 +4205,11 @@ export async function executeSessionEndHooks(
     timeoutMs = TOOL_HOOK_EXECUTION_TIMEOUT_MS,
   } = options || {}
 
-  const hookInput: SessionEndHookInput = {
+  const hookInput = {
     ...createBaseHookInput(undefined),
-    hook_event_name: 'SessionEnd',
+    hook_event_name: 'SessionEnd' as const,
     reason,
-  }
+  } as unknown as SessionEndHookInput
 
   const results = await executeHooksOutsideREPL({
     getAppState,
@@ -4284,12 +4379,12 @@ export function executeFileChangedHooks(
   watchPaths: string[]
   systemMessages: string[]
 }> {
-  const hookInput: FileChangedHookInput = {
+  const hookInput = {
     ...createBaseHookInput(undefined),
-    hook_event_name: 'FileChanged',
+    hook_event_name: 'FileChanged' as const,
     file_path: filePath,
     event,
-  }
+  } as unknown as FileChangedHookInput
   return executeEnvHooks(hookInput, timeoutMs)
 }
 
@@ -4421,28 +4516,32 @@ function parseElicitationHookOutput(
       return {}
     }
 
+    // Cast to typed interface for type-safe property access
+    const typedParsed = parsed as TypedSyncHookOutput
+
     // Check for top-level decision: 'block' (exit code 0 + JSON block)
-    if (parsed.decision === 'block' || result.blocked) {
+    if (typedParsed.decision === 'block' || result.blocked) {
       return {
         blockingError: {
-          blockingError: parsed.reason || 'Elicitation blocked by hook',
+          blockingError: typedParsed.reason || 'Elicitation blocked by hook',
           command: result.command,
         },
       }
     }
 
-    const specific = parsed.hookSpecificOutput
+    const specific = typedParsed.hookSpecificOutput
     if (!specific || specific.hookEventName !== expectedEventName) {
       return {}
     }
 
-    if (!specific.action) {
+    if (!('action' in specific) || !(specific as { action?: string }).action) {
       return {}
     }
 
+    const typedSpecific = specific as { action: string; content?: Record<string, unknown> }
     const response: ElicitationResponse = {
-      action: specific.action,
-      content: specific.content as ElicitationResponse['content'] | undefined,
+      action: typedSpecific.action as ElicitationResponse['action'],
+      content: typedSpecific.content as ElicitationResponse['content'] | undefined,
     }
 
     const out: {
@@ -4450,10 +4549,10 @@ function parseElicitationHookOutput(
       blockingError?: HookBlockingError
     } = { response }
 
-    if (specific.action === 'decline') {
+    if (typedSpecific.action === 'decline') {
       out.blockingError = {
         blockingError:
-          parsed.reason ||
+          typedParsed.reason ||
           (expectedEventName === 'Elicitation'
             ? 'Elicitation denied by hook'
             : 'Elicitation result blocked by hook'),

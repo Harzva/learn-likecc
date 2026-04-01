@@ -298,18 +298,20 @@ export const WebSearchTool = buildTool({
 
     for await (const event of queryStream) {
       if (event.type === 'assistant') {
-        allContentBlocks.push(...event.message.content)
+        const msg = event as { message: { content: BetaContentBlock[] } }
+        allContentBlocks.push(...msg.message.content)
         continue
       }
 
       // Track tool use ID when server_tool_use starts
       if (
-        event.type === 'stream_event' &&
-        event.event?.type === 'content_block_start'
+        event.type === 'stream_event'
       ) {
-        const contentBlock = event.event.content_block
+        const streamEvt = event as { event?: { type: string; content_block?: { type: string; id?: string; tool_use_id?: string; content?: unknown; [key: string]: unknown }; delta?: { type: string; partial_json?: string; [key: string]: unknown }; [key: string]: unknown } }
+        if (streamEvt.event?.type === 'content_block_start') {
+        const contentBlock = streamEvt.event.content_block
         if (contentBlock && contentBlock.type === 'server_tool_use') {
-          currentToolUseId = contentBlock.id
+          currentToolUseId = contentBlock.id as string
           currentToolUseJson = ''
           // Note: The ServerToolUseBlock doesn't contain input.query
           // The actual query comes through input_json_delta events
@@ -320,10 +322,9 @@ export const WebSearchTool = buildTool({
       // Accumulate JSON for current tool use
       if (
         currentToolUseId &&
-        event.type === 'stream_event' &&
-        event.event?.type === 'content_block_delta'
+        streamEvt.event?.type === 'content_block_delta'
       ) {
-        const delta = event.event.delta
+        const delta = streamEvt.event.delta
         if (delta?.type === 'input_json_delta' && delta.partial_json) {
           currentToolUseJson += delta.partial_json
 
@@ -362,10 +363,9 @@ export const WebSearchTool = buildTool({
 
       // Yield progress when search results come in
       if (
-        event.type === 'stream_event' &&
-        event.event?.type === 'content_block_start'
+        streamEvt.event?.type === 'content_block_start'
       ) {
-        const contentBlock = event.event.content_block
+        const contentBlock = streamEvt.event.content_block
         if (contentBlock && contentBlock.type === 'web_search_tool_result') {
           // Get the actual query that was used for this search
           const toolUseId = contentBlock.tool_use_id
@@ -385,6 +385,7 @@ export const WebSearchTool = buildTool({
           }
         }
       }
+      } // end stream_event
     }
 
     // Process the final result

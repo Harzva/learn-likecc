@@ -307,8 +307,8 @@ async function processSessionFiles(
 
           // Track model usage if available (skip synthetic messages)
           if (message.message?.usage) {
-            const usage = message.message.usage
-            const model = message.message.model || 'unknown'
+            const usage = message.message.usage as Record<string, number>
+            const model = (message.message.model as string) || 'unknown'
 
             // Skip synthetic messages - they are internal and shouldn't appear in stats
             if (model === SYNTHETIC_MODEL) {

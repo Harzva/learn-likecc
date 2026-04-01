@@ -210,7 +210,7 @@ export function completeMainSessionTask(
     // Set notified so evictTerminalTask/generateTaskAttachments eviction
     // guards pass; the backgrounded path sets this inside
     // enqueueMainSessionNotification's check-and-set.
-    updateTaskState(taskId, setAppState, task => ({ ...task, notified: true }))
+    updateTaskState<LocalMainSessionTaskState>(taskId, setAppState, task => ({ ...task, notified: true }))
     emitTaskTerminatedSdk(taskId, success ? 'completed' : 'failed', {
       toolUseId,
       summary: 'Background session',
@@ -230,7 +230,7 @@ function enqueueMainSessionNotification(
 ): void {
   // Atomically check and set notified flag to prevent duplicate notifications.
   let shouldEnqueue = false
-  updateTaskState(taskId, setAppState, task => {
+  updateTaskState<LocalMainSessionTaskState>(taskId, setAppState, task => {
     if (task.notified) {
       return task
     }
@@ -388,7 +388,7 @@ export function startBackgroundSession({
           // Aborted mid-stream — completeMainSessionTask won't be reached.
           // chat:killAgents path already marked notified + emitted; stopTask path did not.
           let alreadyNotified = false
-          updateTaskState(taskId, setAppState, task => {
+          updateTaskState<LocalMainSessionTaskState>(taskId, setAppState, task => {
             alreadyNotified = task.notified === true
             return alreadyNotified ? task : { ...task, notified: true }
           })
@@ -408,18 +408,20 @@ export function startBackgroundSession({
           continue
         }
 
-        bgMessages.push(event)
+        const msg = event as Message
+        bgMessages.push(msg)
 
         // Per-message write (matches runAgent.ts pattern) — gives live
         // TaskOutput progress and keeps the transcript file current even if
         // /clear re-links the symlink mid-run.
-        void recordSidechainTranscript([event], taskId, lastRecordedUuid).catch(
+        void recordSidechainTranscript([msg], taskId, lastRecordedUuid).catch(
           err => logForDebugging(`bg-session transcript write failed: ${err}`),
         )
-        lastRecordedUuid = event.uuid
+        lastRecordedUuid = msg.uuid
 
-        if (event.type === 'assistant') {
-          for (const block of event.message.content) {
+        if (msg.type === 'assistant') {
+          const contentBlocks = (msg.message?.content ?? []) as Array<{ type: string; text?: string; name?: string; input?: unknown }>
+          for (const block of contentBlocks) {
             if (block.type === 'text') {
               tokenCount += roughTokenCountEstimation(block.text)
             } else if (block.type === 'tool_use') {

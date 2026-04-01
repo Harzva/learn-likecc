@@ -253,7 +253,7 @@ function getNextImagePasteId(messages: Message[]): number {
   let maxId = 0
   for (const message of messages) {
     if (message.type === 'user' && message.imagePasteIds) {
-      for (const id of message.imagePasteIds) {
+      for (const id of message.imagePasteIds as number[]) {
         if (id > maxId) maxId = id
       }
     }
@@ -354,8 +354,8 @@ export async function* runToolUse(
       tool = fallbackTool
     }
   }
-  const messageId = assistantMessage.message.id
-  const requestId = assistantMessage.requestId
+  const messageId = assistantMessage.message.id as string
+  const requestId = assistantMessage.requestId as string | undefined
   const mcpServerType = getMcpServerType(
     toolName,
     toolUseContext.options.mcpClients,
@@ -548,7 +548,7 @@ function streamedCheckPermissionsAndCallTool(
       })
       stream.enqueue({
         message: createProgressMessage({
-          toolUseID: progress.toolUseID,
+          toolUseID: progress.toolUseID as string,
           parentToolUseID: toolUseID,
           data: progress.data,
         }),
@@ -822,8 +822,8 @@ async function checkPermissionsAndCallTool(
             att.durationMs !== undefined
           ) {
             preToolHookInfos.push({
-              command: att.command,
-              durationMs: att.durationMs,
+              command: att.command as string,
+              durationMs: att.durationMs as number,
             })
           }
         }
@@ -1506,8 +1506,8 @@ async function checkPermissionsAndCallTool(
             att.durationMs !== undefined
           ) {
             postToolHookInfos.push({
-              command: att.command,
-              durationMs: att.durationMs,
+              command: att.command as string,
+              durationMs: att.durationMs as number,
             })
           }
         }
@@ -1522,8 +1522,8 @@ async function checkPermissionsAndCallTool(
             att.durationMs !== undefined
           ) {
             postToolHookInfos.push({
-              command: att.command,
-              durationMs: att.durationMs,
+              command: att.command as string,
+              durationMs: att.durationMs as number,
             })
           }
         }

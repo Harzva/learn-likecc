@@ -1,4 +1,4 @@
-import type { BetaContentBlock } from '@anthropic-ai/sdk/resources/beta/messages/messages.mjs'
+import type { BetaContentBlock, BetaUsage } from '@anthropic-ai/sdk/resources/beta/messages/messages.mjs'
 import { createHash, randomUUID, type UUID } from 'crypto'
 import { mkdir, readFile, writeFile } from 'fs/promises'
 import isPlainObject from 'lodash-es/isPlainObject.js'
@@ -166,8 +166,8 @@ function addCachedCostToTotalSessionCost(
   if (message.type === 'stream_event') {
     return
   }
-  const model = message.message.model
-  const usage = message.message.usage
+  const model = (message as AssistantMessage).message.model as string
+  const usage = (message as AssistantMessage).message.usage as BetaUsage
   const costUSD = calculateUSDCost(model, usage)
   addToTotalSessionCost(costUSD, usage, model)
 }
@@ -251,7 +251,7 @@ function mapAssistantMessage(
     timestamp: message.timestamp,
     message: {
       ...message.message,
-      content: message.message.content
+      content: (message.message.content as BetaContentBlock[])
         .map(_ => {
           switch (_.type) {
             case 'text':
@@ -269,7 +269,7 @@ function mapAssistantMessage(
               return _ // Handle other block types unchanged
           }
         })
-        .filter(Boolean) as BetaContentBlock[],
+        .filter(Boolean) as any,
     },
     type: 'assistant',
   }
@@ -282,7 +282,7 @@ function mapMessage(
   uuid?: UUID,
 ): AssistantMessage | SystemAPIErrorMessage | StreamEvent {
   if (message.type === 'assistant') {
-    return mapAssistantMessage(message, f, index, uuid)
+    return mapAssistantMessage(message as AssistantMessage, f, index, uuid)
   } else {
     return message
   }
