@@ -1346,4 +1346,23 @@ ANTHROPIC_API_KEY=your-api-key-here
 | SecureStorage 扩展 | 1071 | -93 ✅ |
 | MCPOAuthData 扩展 | 997 | -74 ✅ |
 | QuerySource 扩展 | 917 | -80 ✅ |
-| 当前 | 908 | -9 |
+| Tip 类型扩展 | 869 | -48 ✅ |
+| OAuth 类型扩展 | 816 | -53 ✅ |
+| LSP 类型扩展 | 807 | -9 ✅ |
+
+---
+
+## v2.3.11 - 继续减少编译错误 (下一步)
+
+### 目标
+
+| 指标 | 目标 | 当前 |
+|------|------|------|
+| 编译错误 | < 500 | 807 |
+
+### 重点任务
+
+1. sandbox-adapter 缺失导出
+2. microCompact 类型
+3. query.ts 剩余错误
+4. main.tsx 剩余错误
