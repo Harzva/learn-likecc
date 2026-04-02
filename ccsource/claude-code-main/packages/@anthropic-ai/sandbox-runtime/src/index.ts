@@ -157,6 +157,13 @@ export class SandboxManager {
   getConfig(): SandboxRuntimeConfig {
     return this.config
   }
+
+  static reset(): void {}
+  static getFsReadConfig(): FsReadRestrictionConfig | null { return null }
+  static getFsWriteConfig(): FsWriteRestrictionConfig | null { return null }
+  static getNetworkRestrictionConfig(): NetworkRestrictionConfig | null { return null }
+  static getIgnoreViolations(): IgnoreViolationsConfig | null { return null }
+  static getAllowUnixSockets(): boolean { return false }
 }
 
 // Default instance
