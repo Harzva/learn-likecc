@@ -38,4 +38,12 @@ export interface LspServerState {
 export interface ScopedLspServerConfig {
   scope: 'local' | 'user' | 'project'
   config: Record<string, unknown>
+  restartOnCrash?: boolean
+  shutdownTimeout?: number
+  maxRestarts?: number
+  command?: string
+  args?: string[]
+  env?: Record<string, string>
+  workspaceFolder?: string
+  initializationOptions?: Record<string, unknown>
 }

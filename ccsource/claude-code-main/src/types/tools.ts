@@ -50,6 +50,8 @@ export interface AgentToolProgress extends ToolProgressData {
   taskDescription: string
   subAgentStatus?: 'spawning' | 'running' | 'complete' | 'error'
   outputMessages?: unknown[]
+  message?: unknown
+  prompt?: string
 }
 
 // ============================================================================

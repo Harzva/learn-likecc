@@ -1,2 +1,4 @@
 // Auto-generated stub
-export {}
+export function isKairosEnabled(): boolean {
+  return false
+}

@@ -16,6 +16,8 @@ export interface OAuthToken {
   profile?: OAuthProfileResponse
   tokenAccount?: string
   scopes?: string[]
+  subscriptionType?: SubscriptionType
+  rateLimitTier?: RateLimitTier
 }
 
 // Alias for backward compatibility
@@ -86,6 +88,17 @@ export interface OAuthTokenExchangeResponse {
   refresh_token?: string
   expires_in?: number
   token_type: string
+  scope?: string
+  account?: {
+    uuid: string
+    emailAddress: string
+    organizationUuid?: string
+  }
+  organization?: {
+    uuid: string
+    name?: string
+    organization_type?: string
+  }
 }
 
 export type RateLimitTier = 'free' | 'standard' | 'premium' | 'enterprise'
@@ -93,4 +106,7 @@ export type RateLimitTier = 'free' | 'standard' | 'premium' | 'enterprise'
 export interface UserRolesResponse {
   roles: string[]
   permissions: string[]
+  organization_role?: string
+  workspace_role?: string
+  organization_name?: string
 }

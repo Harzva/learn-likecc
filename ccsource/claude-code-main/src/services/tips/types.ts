@@ -1,9 +1,9 @@
 // Tips types stub
 export interface Tip {
   id: string
-  title: string
+  title?: string
   content: string | (() => Promise<string>)
-  category: string
+  category?: string
   cooldownSessions?: number
   isRelevant?: (context: TipContext) => boolean | Promise<boolean>
 }

@@ -16,3 +16,14 @@ export interface SSHSession {
 export async function createSSHSession(_options: SSHSessionOptions): Promise<SSHSession> {
   throw new Error('SSH session not implemented in stub')
 }
+
+export function createLocalSSHSession(_options: unknown): Promise<SSHSession> {
+  throw new Error('Local SSH session not implemented in stub')
+}
+
+export class SSHSessionError extends Error {
+  constructor(message: string) {
+    super(message)
+    this.name = 'SSHSessionError'
+  }
+}

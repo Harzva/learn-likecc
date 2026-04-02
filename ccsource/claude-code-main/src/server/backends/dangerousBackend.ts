@@ -1,2 +1,2 @@
 // Auto-generated stub
-export {}
+export class DangerousBackend {}

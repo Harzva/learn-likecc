@@ -40,3 +40,10 @@ export async function applyCollapsesIfNeeded(
 export function isWithheldPromptTooLong(_prompt: unknown): boolean {
   return false
 }
+
+/**
+ * 从溢出中恢复
+ */
+export async function recoverFromOverflow(_messages: unknown[]): Promise<unknown[]> {
+  return []
+}
