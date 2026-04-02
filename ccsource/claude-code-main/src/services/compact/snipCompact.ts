@@ -48,7 +48,8 @@ export function calculateSnipStrategy(
  */
 export async function snipCompactIfNeeded(
   messages: unknown[],
-  targetTokens: number
+  targetTokens: number,
+  options?: { force?: boolean }
 ): Promise<SnipCompactResult | null> {
   // Stub 实现
   return null
@@ -60,4 +61,13 @@ export async function snipCompactIfNeeded(
 export function isSnipMarkerMessage(message: unknown): boolean {
   // Stub 实现
   return false
+}
+
+/**
+ * Snip compact 结果扩展
+ */
+export interface SnipCompactResultExtended extends SnipCompactResult {
+  messages?: unknown[]
+  tokensFreed?: number
+  boundaryMessage?: unknown
 }

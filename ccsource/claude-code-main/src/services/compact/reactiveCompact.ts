@@ -54,3 +54,10 @@ export async function reactiveCompactOnPromptTooLong(
 ): Promise<ReactiveCompactResult | null> {
   return null
 }
+
+/**
+ * 检查是否为 media size 错误
+ */
+export function isWithheldMediaSizeError(_error: unknown): boolean {
+  return false
+}

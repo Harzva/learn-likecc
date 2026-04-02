@@ -1315,3 +1315,35 @@ ANTHROPIC_API_KEY=your-api-key-here
 2. SecureStorage 参数修复
 3. cachedMicrocompact 导出
 4. 批量 TS2339 修复
+
+### 已完成修复
+
+1. **SecureStorage 类型扩展** ✅
+   - 添加 SecureStorageData, MCPOAuthData, MCPOAuthClientConfig
+   - 添加 name, read, readAsync, update, delete 方法
+
+2. **QuerySource 类型扩展** ✅
+   - 添加 sdk, hook_agent, verification_agent, repl_main_thread 等
+   - 错误从 996 减少到 917
+
+3. **Tip 类型扩展** ✅
+   - 添加 cooldownSessions, isRelevant
+   - 添加 FileStateCache 接口
+
+4. **compact 服务函数导出** ✅
+   - snipCompactIfNeeded, isSnipMarkerMessage
+   - isWithheldMediaSizeError
+
+5. **contextCollapse 函数导出** ✅
+   - isContextCollapseEnabled, applyCollapsesIfNeeded
+   - isWithheldPromptTooLong
+
+### 编译错误趋势
+
+| 时间点 | 错误数 | 变化 |
+|--------|--------|------|
+| v2.3.9 结束 | 1164 | - |
+| SecureStorage 扩展 | 1071 | -93 ✅ |
+| MCPOAuthData 扩展 | 997 | -74 ✅ |
+| QuerySource 扩展 | 917 | -80 ✅ |
+| 当前 | 908 | -9 |
