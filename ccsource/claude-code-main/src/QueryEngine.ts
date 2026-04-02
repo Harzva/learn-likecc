@@ -427,7 +427,7 @@ export class QueryEngine {
       messages: this.mutableMessages,
       uuid: options?.uuid,
       isMeta: options?.isMeta,
-      querySource: 'sdk',
+      querySource: 'SDK',
     })
 
     // Push new messages, including user input and any attachments
@@ -684,7 +684,7 @@ export class QueryEngine {
       canUseTool: wrappedCanUseTool,
       toolUseContext: processUserInputContext,
       fallbackModel,
-      querySource: 'sdk',
+      querySource: 'SDK',
       maxTurns,
       taskBudget,
     })) {

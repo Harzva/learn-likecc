@@ -42,3 +42,22 @@ export function calculateSnipStrategy(
     estimatedSaving: 0,
   }
 }
+
+/**
+ * 检查是否需要 snip compact
+ */
+export async function snipCompactIfNeeded(
+  messages: unknown[],
+  targetTokens: number
+): Promise<SnipCompactResult | null> {
+  // Stub 实现
+  return null
+}
+
+/**
+ * 检查是否为 snip marker 消息
+ */
+export function isSnipMarkerMessage(message: unknown): boolean {
+  // Stub 实现
+  return false
+}

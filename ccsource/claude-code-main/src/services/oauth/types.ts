@@ -69,6 +69,15 @@ export interface OAuthProfileResponse {
   name?: string
   subscriptionType?: SubscriptionType
   billingType?: BillingType
+  account?: {
+    uuid: string
+    emailAddress: string
+    organizationUuid?: string
+  }
+  organization?: {
+    uuid: string
+    name?: string
+  }
 }
 
 // Additional OAuth types

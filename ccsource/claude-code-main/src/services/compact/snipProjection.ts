@@ -54,3 +54,11 @@ export function generateSummary(
   // Stub 实现
   return '(summary not implemented)'
 }
+
+/**
+ * 检查是否为 snip 边界消息
+ */
+export function isSnipBoundaryMessage(message: unknown): boolean {
+  // Stub 实现
+  return false
+}
