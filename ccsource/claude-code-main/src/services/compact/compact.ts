@@ -329,7 +329,7 @@ export type RecompactionInfo = {
  * This ensures consistent ordering across all compaction paths.
  * Order: boundaryMarker, summaryMessages, messagesToKeep, attachments, hookResults
  */
-export function buildPostCompactMessages(result: CompactionResult): Message[] {
+export function buildPostCompactMessages(result: CompactionResult | import('./reactiveCompact.js').ReactiveCompactResult): Message[] {
   return [
     result.boundaryMarker,
     ...result.summaryMessages,

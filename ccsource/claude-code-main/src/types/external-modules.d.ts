@@ -2,6 +2,255 @@
  * Type declarations for external npm modules that may not be installed.
  */
 
+// ============================================================================
+// Anthropic SDK main module
+// ============================================================================
+declare module '@anthropic-ai/sdk' {
+  export interface ClientOptions {
+    apiKey?: string
+    baseURL?: string
+    maxRetries?: number
+    timeout?: number
+    logger?: {
+      error: (msg: string, ...args: unknown[]) => void
+      warn: (msg: string, ...args: unknown[]) => void
+      info: (msg: string, ...args: unknown[]) => void
+      debug: (msg: string, ...args: unknown[]) => void
+    }
+    fetch?: (url: string, init?: RequestInit) => Promise<Response>
+    fetchOptions?: Record<string, unknown>
+    httpAgent?: unknown
+    [key: string]: unknown
+  }
+
+  // Message types
+  export interface MessageParam {
+    role: 'user' | 'assistant'
+    content: string | unknown[]
+  }
+
+  export interface TextBlockParam {
+    type: 'text'
+    text: string
+  }
+
+  export interface Tool {
+    name: string
+    description?: string
+    input_schema: unknown
+  }
+
+  export type ToolChoice =
+    | { type: 'auto' }
+    | { type: 'any' }
+    | { type: 'tool'; name: string }
+
+  // Beta types
+  export interface BetaMessage {
+    id: string
+    role: 'assistant'
+    content: unknown[]
+    model: string
+    usage?: {
+      input_tokens: number
+      output_tokens: number
+      cache_creation_input_tokens?: number
+      cache_read_input_tokens?: number
+    }
+  }
+
+  export interface BetaMessageParam {
+    role: 'user' | 'assistant'
+    content: string | unknown[]
+  }
+
+  export interface BetaToolUseBlockParam {
+    type: 'tool_use'
+    id: string
+    name: string
+    input: unknown
+  }
+
+  export interface BetaToolResultBlockParam {
+    type: 'tool_result'
+    tool_use_id: string
+    content?: string | unknown[]
+    is_error?: boolean
+  }
+
+  export interface BetaJSONOutputFormat {
+    type: 'json'
+    schema?: unknown
+  }
+
+  export interface BetaThinkingConfigParam {
+    type: 'enabled' | 'disabled'
+    budget_tokens?: number
+  }
+
+  export class APIError extends Error {
+    status?: number
+    headers?: Record<string, string> & { get?: (key: string) => string | null }
+    request_id?: string
+    error?: unknown
+    constructor(status: number | undefined, error: unknown, message: string | undefined, headers: Record<string, string> | undefined)
+  }
+
+  export class APIConnectionError extends APIError {
+    constructor(options?: { message?: string; cause?: Error })
+  }
+
+  export class APIConnectionTimeoutError extends APIError {
+    constructor(options?: { message?: string })
+  }
+
+  export class BadRequestError extends APIError {}
+  export class AuthenticationError extends APIError {}
+  export class PermissionDeniedError extends APIError {}
+  export class NotFoundError extends APIError {}
+  export class ConflictError extends APIError {}
+  export class RateLimitError extends APIError {}
+  export class UnprocessableEntityError extends APIError {}
+  export class InternalServerError extends APIError {}
+  export class APIUserAbortError extends Error {
+    constructor(message?: string)
+  }
+
+  // Namespace types for Anthropic.Beta.Messages.XXX pattern
+  export interface ContentBlock {
+    type: string
+    [key: string]: unknown
+  }
+
+  export interface ContentBlockParam {
+    type: string
+    [key: string]: unknown
+  }
+
+  export type MessageContent = string | ContentBlockParam[]
+
+  export interface BetaContentBlockParam {
+    type: string
+    text?: string
+    source?: unknown
+    [key: string]: unknown
+  }
+
+  export type BetaToolChoiceTool = { type: 'tool'; name: string }
+  export type BetaToolChoiceAuto = { type: 'auto' }
+
+  export interface BetaMessageStreamParams {
+    model: string
+    messages: BetaMessageParam[]
+    max_tokens: number
+    thinking?: BetaThinkingConfigParam
+    tools?: BetaToolUnion[]
+    tool_choice?: BetaToolChoiceTool | BetaToolChoiceAuto
+    system?: string | unknown[]
+    metadata?: unknown
+    stop_sequences?: string[]
+    stream?: boolean
+    temperature?: number
+    top_p?: number
+    top_k?: number
+    [key: string]: unknown
+  }
+
+  export interface BetaMessageCreateParams {
+    model: string
+    messages: BetaMessageParam[]
+    max_tokens: number
+    thinking?: BetaThinkingConfigParam
+    tools?: BetaToolUnion[]
+    tool_choice?: BetaToolChoiceTool | BetaToolChoiceAuto
+    system?: string | unknown[]
+    metadata?: unknown
+    stop_sequences?: string[]
+    stream?: boolean
+    temperature?: number
+    top_p?: number
+    top_k?: number
+    [key: string]: unknown
+  }
+
+  export interface BetaRawMessageStreamEvent {
+    type: string
+    message?: BetaMessage
+    index?: number
+    content_block?: BetaContentBlock
+    delta?: unknown
+    usage?: BetaUsage
+    [key: string]: unknown
+  }
+
+  export interface BetaContentBlock {
+    type: 'text' | 'tool_use' | 'thinking' | 'image' | string
+    text?: string
+    thinking?: string
+    name?: string
+    id?: string
+    input?: unknown
+    source?: unknown
+    [key: string]: unknown
+  }
+
+  export interface BetaUsage {
+    input_tokens: number
+    output_tokens: number
+    cache_creation_input_tokens?: number
+    cache_read_input_tokens?: number
+    [key: string]: unknown
+  }
+
+  export type EffortLevel = 'low' | 'medium' | 'high' | string
+
+  export interface BetaToolUnion {
+    name: string
+    description?: string
+    input_schema?: unknown
+    type?: string
+    [key: string]: unknown
+  }
+
+  export interface Anthropic {
+    MessageParam: MessageParam
+    TextBlockParam: TextBlockParam
+    Tool: Tool
+    ToolChoice: ToolChoice
+    ContentBlock: ContentBlock
+    ContentBlockParam: ContentBlockParam
+    Beta: {
+      Messages: {
+        BetaMessage: BetaMessage
+        BetaMessageParam: BetaMessageParam
+        BetaJSONOutputFormat: BetaJSONOutputFormat
+        BetaThinkingConfigParam: BetaThinkingConfigParam
+        BetaToolUnion: BetaToolUnion
+      }
+    }
+  }
+
+  const Anthropic: Anthropic & {
+    new (options?: ClientOptions): {
+      messages: {
+        create: (params: unknown) => Promise<unknown>
+        stream: (params: unknown) => unknown
+      }
+      beta: {
+        messages: {
+          create: (params: unknown) => Promise<unknown>
+          stream: (params: unknown) => unknown
+        }
+      }
+    }
+  }
+
+  export default Anthropic
+
+  // Export namespace for type access
+  export { Anthropic }
+}
+
 declare module 'cli-highlight' {
   export function highlight(code: string, options?: { language?: string }): string
 }
@@ -45,9 +294,54 @@ declare module '@anthropic-ai/claude-agent-sdk' {
 }
 
 declare module '@aws-sdk/client-bedrock' {
+  export interface InferenceProfileSummary {
+    inferenceProfileId?: string
+    inferenceProfileName?: string
+    status?: string
+    type?: string
+  }
+  export interface ListInferenceProfilesCommandInput {
+    nextToken?: string
+    typeEquals?: string
+    maxResults?: number
+  }
+  export interface ListInferenceProfilesCommandOutput {
+    inferenceProfileSummaries?: InferenceProfileSummary[]
+    nextToken?: string
+  }
+  export class ListInferenceProfilesCommand {
+    constructor(input: ListInferenceProfilesCommandInput)
+  }
+  export interface GetInferenceProfileCommandInput {
+    inferenceProfileIdentifier: string
+  }
+  export interface GetInferenceProfileCommandOutput {
+    inferenceProfileId?: string
+    inferenceProfileName?: string
+    models?: Array<{
+      modelArn?: string
+      modelName?: string
+    }>
+  }
+  export class GetInferenceProfileCommand {
+    constructor(input: GetInferenceProfileCommandInput)
+  }
+  export interface BedrockClientConfig {
+    region?: string
+    endpoint?: string
+    credentials?: {
+      accessKeyId: string
+      secretAccessKey: string
+      sessionToken?: string
+    }
+    requestHandler?: unknown
+    httpAuthSchemes?: unknown[]
+    httpAuthSchemeProvider?: () => unknown[]
+  }
   export class BedrockClient {
-    constructor(config?: unknown)
-    send(command: unknown): Promise<unknown>
+    constructor(config?: BedrockClientConfig)
+    send(command: ListInferenceProfilesCommand): Promise<ListInferenceProfilesCommandOutput>
+    send(command: GetInferenceProfileCommand): Promise<GetInferenceProfileCommandOutput>
   }
 }
 
@@ -60,6 +354,10 @@ declare module '@azure/identity' {
   export class DefaultAzureCredential {
     constructor()
   }
+  export function getBearerTokenProvider(
+    credential: DefaultAzureCredential,
+    scopes: string | string[],
+  ): () => Promise<string>
 }
 
 declare module '@opentelemetry/exporter-trace-otlp-http' {
@@ -130,6 +428,7 @@ declare module '@anthropic-ai/vertex-sdk' {
     constructor(config?: unknown)
     send(command: unknown): Promise<unknown>
   }
+  export const AnthropicVertex: typeof VertexClient
 }
 
 declare module '@anthropic-ai/foundry-sdk' {
@@ -137,6 +436,7 @@ declare module '@anthropic-ai/foundry-sdk' {
     constructor(config?: unknown)
     send(command: unknown): Promise<unknown>
   }
+  export const AnthropicFoundry: typeof FoundryClient
 }
 
 declare module '@anthropic-ai/bedrock-sdk' {
@@ -144,6 +444,7 @@ declare module '@anthropic-ai/bedrock-sdk' {
     constructor(config?: unknown)
     send(command: unknown): Promise<unknown>
   }
+  export const AnthropicBedrock: typeof BedrockClient
 }
 
 declare module '@aws-sdk/client-sts' {
@@ -157,26 +458,6 @@ declare module '@aws-sdk/client-sts' {
   export class GetCallerIdentityCommand {
     constructor()
   }
-}
-
-// ============================================================================
-// Anthropic SDK type augmentations
-// ============================================================================
-declare module '@anthropic-ai/sdk/resources/beta/messages/messages.mjs' {
-  export interface BetaJSONOutputFormat {
-    type: 'json'
-    [key: string]: unknown
-  }
-  export interface BetaOutputConfig {
-    type: 'json'
-    [key: string]: unknown
-  }
-  export interface BetaRequestDocumentBlock {
-    type: 'document'
-    source: unknown
-    [key: string]: unknown
-  }
-  export type BetaStopReason = 'end_turn' | 'max_tokens' | 'stop_sequence' | 'tool_use' | string
 }
 
 // ============================================================================
@@ -201,6 +482,31 @@ declare module 'diff' {
   export function diffTrimmedLines(oldStr: string, newStr: string, options?: unknown): unknown[]
   export function diffSentences(oldStr: string, newStr: string, options?: unknown): unknown[]
   export function diffJson(oldObj: unknown, newObj: unknown, options?: unknown): unknown[]
+
+  export interface StructuredPatchHunk {
+    oldStart: number
+    oldLines: number
+    newStart: number
+    newLines: number
+    lines: string[]
+  }
+
+  export interface StructuredPatchOptions {
+    context?: number
+    ignoreWhitespace?: boolean
+    timeout?: number
+  }
+
+  export function structuredPatch(
+    oldFileName: string,
+    newFileName: string,
+    oldStr: string,
+    newStr: string,
+    oldHeader?: string,
+    newHeader?: string,
+    options?: StructuredPatchOptions
+  ): string | { hunks: StructuredPatchHunk[] }
+
   export interface Change {
     added?: boolean
     removed?: boolean
@@ -209,36 +515,6 @@ declare module 'diff' {
   }
 }
 
-// ============================================================================
-// Anthropic SDK additional type augmentations
-// ============================================================================
-declare module '@anthropic-ai/sdk/resources/beta/messages/messages.mjs' {
-  export interface BetaMessageDeltaUsage {
-    input_tokens?: number
-    output_tokens?: number
-    cache_creation_input_tokens?: number
-    cache_read_input_tokens?: number
-    [key: string]: unknown
-  }
-  export interface BetaMessageStreamParams {
-    model: string
-    messages: unknown[]
-    max_tokens?: number
-    [key: string]: unknown
-  }
-  export interface BetaContentBlock {
-    type: 'text' | 'tool_use' | 'thinking' | 'image' | string
-    text?: string
-    [key: string]: unknown
-  }
-  export interface BetaUsage {
-    input_tokens: number
-    output_tokens: number
-    cache_creation_input_tokens?: number
-    cache_read_input_tokens?: number
-    [key: string]: unknown
-  }
-}
 
 // ============================================================================
 // OAuth types
@@ -248,6 +524,12 @@ declare module '*/services/oauth/types.js' {
     access_token: string
     refresh_token?: string
     expires_in?: number
+    scopes?: string[]
+    tokenAccount?: {
+      uuid: string
+      emailAddress: string
+      organizationUuid: string
+    }
     [key: string]: unknown
   }
   export interface ReferralRedemptionsResponse {
@@ -256,6 +538,11 @@ declare module '*/services/oauth/types.js' {
   }
   export interface ReferrerRewardInfo {
     referralCount?: number
+    [key: string]: unknown
+  }
+  export interface OrgValidationResult {
+    valid?: boolean
+    message?: string
     [key: string]: unknown
   }
 }
@@ -319,7 +606,21 @@ declare module '@anthropic-ai/sdk/resources/beta/messages/messages.mjs' {
     type: 'thinking'
     thinking: string
   }
-  
+  export type BetaThinkingBlock = {
+    type: 'thinking'
+    thinking: string
+  }
+  export type BetaRedactedThinkingBlock = {
+    type: 'redacted_thinking'
+    data: string
+  }
+  export type BetaToolUseBlock = {
+    type: 'tool_use'
+    id: string
+    name: string
+    input: unknown
+  }
+
   // Message types
   export type BetaMessageParam = {
     role: 'user' | 'assistant'
@@ -349,7 +650,8 @@ declare module '@anthropic-ai/sdk/resources/beta/messages/messages.mjs' {
   export type BetaMessageStreamParams = {
     model: string
     messages: BetaMessageParam[]
-    max_tokens?: number
+    max_tokens: number
+    thinking?: BetaThinkingConfigParam
     system?: string | BetaTextBlockParam[]
     tools?: BetaToolUnion[]
     tool_choice?: BetaToolChoiceAuto | BetaToolChoiceTool
@@ -372,6 +674,9 @@ declare module '@anthropic-ai/sdk/resources/beta/messages/messages.mjs' {
     description?: string
     input_schema?: unknown
     type?: string
+    allowed_domains?: string[]
+    blocked_domains?: string[]
+    max_uses?: number
     [key: string]: unknown
   }
   export type BetaToolChoiceAuto = {
@@ -387,8 +692,17 @@ declare module '@anthropic-ai/sdk/resources/beta/messages/messages.mjs' {
   export type BetaJSONOutputFormat = {
     type: 'json'
     schema?: unknown
+    format?: unknown
+    effort?: string
+    [key: string]: unknown
   }
-  export type BetaOutputConfig = BetaJSONOutputFormat
+  export type BetaOutputConfig = {
+    type?: 'json'
+    schema?: unknown
+    format?: unknown
+    effort?: string
+    [key: string]: unknown
+  }
   export type BetaRequestDocumentBlock = {
     type: 'document'
     source: unknown
@@ -398,17 +712,62 @@ declare module '@anthropic-ai/sdk/resources/beta/messages/messages.mjs' {
 }
 
 // ============================================================================
+// highlight.js types
+// ============================================================================
+declare module 'highlight.js' {
+  export interface HLJSApi {
+    highlight(code: string, options?: { language?: string; ignoreIllegals?: boolean }): { value: string; language: string; relevance: number; secondBest?: { language: string; relevance: number } }
+    highlightAuto(code: string, languageSubset?: string[]): { value: string; language: string; relevance: number; secondBest?: { language: string; relevance: number } }
+    getLanguage(name: string): { name: string; aliases?: string[]; keywords?: unknown; contains?: unknown[] } | undefined
+    registerLanguage(name: string, language: unknown): void
+    listLanguages(): string[]
+  }
+  const hljs: HLJSApi
+  export default hljs
+  export { hljs }
+}
+
+// ============================================================================
+// MCP Skills module
+// ============================================================================
+declare module '*/skills/mcpSkills.js' {
+  export interface MCPSkill {
+    id: string
+    name: string
+    serverName: string
+    toolName: string
+  }
+  export interface MCPClient {
+    name: string
+    [key: string]: unknown
+  }
+
+  interface FetchMcpSkillsForClient {
+    (_client: MCPClient): Promise<MCPSkill[]>
+    cache: Map<string, unknown>
+  }
+
+  export function loadMCPSkills(): Promise<MCPSkill[]>
+  export function getMCPSkill(_id: string): MCPSkill | undefined
+  export const fetchMcpSkillsForClient: FetchMcpSkillsForClient
+}
+
+// ============================================================================
 // Anthropic Sandbox Runtime types
 // ============================================================================
 declare module '@anthropic-ai/sandbox-runtime' {
   export interface FsReadRestrictionConfig {
     allow?: string[]
     deny?: string[]
+    denyOnly?: string[]
+    allowWithinDeny?: string[]
     [key: string]: unknown
   }
   export interface FsWriteRestrictionConfig {
     allow?: string[]
     deny?: string[]
+    allowOnly?: string[]
+    denyWithinAllow?: string[]
     [key: string]: unknown
   }
   export interface IgnoreViolationsConfig {
@@ -422,6 +781,8 @@ declare module '@anthropic-ai/sandbox-runtime' {
   export interface NetworkRestrictionConfig {
     allow?: NetworkHostPattern[]
     deny?: NetworkHostPattern[]
+    allowedHosts?: NetworkHostPattern[]
+    deniedHosts?: NetworkHostPattern[]
     [key: string]: unknown
   }
   export type SandboxAskCallback = (question: NetworkHostPattern | string) => Promise<boolean>

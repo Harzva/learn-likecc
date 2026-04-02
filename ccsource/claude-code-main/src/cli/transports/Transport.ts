@@ -6,6 +6,11 @@ export interface Transport {
   id: string
   type: 'sse' | 'websocket' | 'stdio'
   connected: boolean
+  setOnData?(callback: (data: unknown) => void): void
+  setOnClose?(callback: () => void): void
+  connect?(): Promise<void>
+  write?(data: unknown): Promise<void>
+  close?(): Promise<void>
 }
 
 export interface TransportMessage {

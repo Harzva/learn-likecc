@@ -3,6 +3,10 @@
 export interface CachedMCState {
   enabled: boolean
   modelSupported: boolean
+  pinnedEdits: PinnedCacheEdits[]
+  registeredTools: Set<string>
+  toolOrder: string[]
+  deletedRefs: Set<string>
 }
 
 export interface CacheEditsBlock {
@@ -11,7 +15,13 @@ export interface CacheEditsBlock {
 }
 
 export interface PinnedCacheEdits {
-  pinned: CacheEditsBlock[]
+  userMessageIndex: number
+  block: CacheEditsBlock
+}
+
+export interface CachedMCConfig {
+  triggerThreshold: number
+  keepRecent: number
 }
 
 export function isCachedMicrocompactEnabled(): boolean {
@@ -22,19 +32,26 @@ export function isModelSupportedForCacheEditing(_model: string): boolean {
   return false
 }
 
-export function getCachedMCConfig(): null {
-  return null
+export function getCachedMCConfig(): CachedMCConfig {
+  return { triggerThreshold: 10, keepRecent: 5 }
 }
 
 export function createCachedMCState(): CachedMCState {
-  return { enabled: false, modelSupported: false }
+  return {
+    enabled: false,
+    modelSupported: false,
+    pinnedEdits: [],
+    registeredTools: new Set(),
+    toolOrder: [],
+    deletedRefs: new Set(),
+  }
 }
 
-export function markToolsSentToAPI(): void {}
-export function resetCachedMCState(): void {}
-export function registerToolResult(): void {}
-export function registerToolMessage(): void {}
-export function getToolResultsToDelete(): [] { return [] }
-export function createCacheEditsBlock(): CacheEditsBlock | null {
+export function markToolsSentToAPI(_state: CachedMCState): void {}
+export function resetCachedMCState(_state: CachedMCState): void {}
+export function registerToolResult(_state: CachedMCState, _toolId: string): void {}
+export function registerToolMessage(_state: CachedMCState, _toolIds: string[]): void {}
+export function getToolResultsToDelete(_state: CachedMCState): string[] { return [] }
+export function createCacheEditsBlock(_state: CachedMCState, _toolIds: string[]): CacheEditsBlock | null {
   return null
 }

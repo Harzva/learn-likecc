@@ -1,5 +1,5 @@
 import { createHash, type UUID } from 'crypto'
-import { diffLines } from 'diff'
+import { diffLines, type Change } from 'diff'
 import type { Stats } from 'fs'
 import {
   chmod,
@@ -702,7 +702,7 @@ async function computeDiffStatsForFile(
     filesChanged.push(originalFile)
 
     // Compute the diff
-    const changes = diffLines(originalContent ?? '', backupContent ?? '')
+    const changes = diffLines(originalContent ?? '', backupContent ?? '') as Change[]
     changes.forEach(c => {
       if (c.added) {
         insertions += c.count || 0

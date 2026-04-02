@@ -29,8 +29,9 @@ export interface LSPDiagnostic {
   message: string
 }
 
-export interface LspServerState {
-  status: 'starting' | 'running' | 'stopped' | 'error'
+// LspServerState can be a string status or an object with status
+export type LspServerState = 'starting' | 'running' | 'stopped' | 'error' | 'not_initialized' | {
+  status: 'starting' | 'running' | 'stopped' | 'error' | 'not_initialized'
   pid?: number
   error?: string
 }
@@ -40,6 +41,7 @@ export interface ScopedLspServerConfig {
   config: Record<string, unknown>
   restartOnCrash?: boolean
   shutdownTimeout?: number
+  startupTimeout?: number
   maxRestarts?: number
   command?: string
   args?: string[]

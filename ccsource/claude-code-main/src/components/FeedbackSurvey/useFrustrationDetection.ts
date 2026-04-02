@@ -4,7 +4,19 @@
 
 import { useState } from 'react'
 
-export function useFrustrationDetection() {
+export interface FrustrationDetectionResult {
+  isFrustrated: boolean
+  setIsFrustrated: (value: boolean) => void
+  state: 'closed' | 'open'
+  handleTranscriptSelect: () => void
+}
+
+export function useFrustrationDetection(): FrustrationDetectionResult {
   const [isFrustrated, setIsFrustrated] = useState(false)
-  return { isFrustrated, setIsFrustrated }
+  return {
+    isFrustrated,
+    setIsFrustrated,
+    state: 'closed',
+    handleTranscriptSelect: () => {}
+  }
 }

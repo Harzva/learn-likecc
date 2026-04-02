@@ -164,7 +164,49 @@ export class SandboxManager {
   static getNetworkRestrictionConfig(): NetworkRestrictionConfig | null { return null }
   static getIgnoreViolations(): IgnoreViolationsConfig | null { return null }
   static getAllowUnixSockets(): boolean { return false }
+  static getAllowLocalBinding(): boolean { return false }
+  static getEnableWeakerNestedSandbox(): boolean { return false }
+  static getProxyPort(): number | null { return null }
+  static getSocksProxyPort(): number | null { return null }
+  static getLinuxHttpSocketPath(): string | null { return null }
+  static getLinuxSocksSocketPath(): string | null { return null }
+  static async waitForNetworkInitialization(): Promise<void> {}
+  static getSandboxViolationStore(): SandboxViolationStore { return new SandboxViolationStore() }
+  static annotateStderrWithSandboxFailures(_command: string, stderr: string): string { return stderr }
+  static cleanupAfterCommand(): void {}
+  static checkDependencies(_check: { command: string; args?: string[] }): { errors: SandboxDependencyCheck[]; warnings: SandboxDependencyCheck[] } {
+    return { errors: [], warnings: [] }
+  }
+  static isSupportedPlatform(): boolean { return true }
+  static async initialize(_config?: SandboxRuntimeConfig, _callback?: SandboxAskCallback): Promise<void> {}
+  static updateConfig(_config: SandboxRuntimeConfig): void {}
+  static wrapWithSandbox(command: string, _shell?: string, _config?: SandboxRuntimeConfig, _signal?: AbortSignal): string { return command }
 }
 
 // Default instance
 export const sandboxManager = new SandboxManager()
+
+// Static methods for BaseSandboxManager compatibility
+export function getFsReadConfig(): FsReadRestrictionConfig | null { return null }
+export function getFsWriteConfig(): FsWriteRestrictionConfig | null { return null }
+export function getNetworkRestrictionConfig(): NetworkRestrictionConfig | null { return null }
+export function getIgnoreViolations(): IgnoreViolationsConfig | null { return null }
+export function getAllowUnixSockets(): boolean { return false }
+export function getAllowLocalBinding(): boolean { return false }
+export function getEnableWeakerNestedSandbox(): boolean { return false }
+export function getProxyPort(): number | null { return null }
+export function getSocksProxyPort(): number | null { return null }
+export function getLinuxHttpSocketPath(): string | null { return null }
+export function getLinuxSocksSocketPath(): string | null { return null }
+export async function waitForNetworkInitialization(): Promise<void> {}
+export function getSandboxViolationStore(): SandboxViolationStore { return new SandboxViolationStore() }
+export function annotateStderrWithSandboxFailures(_command: string, stderr: string): string { return stderr }
+export function cleanupAfterCommand(): void {}
+export function checkDependencies(_check: { command: string; args?: string[] }): { errors: SandboxDependencyCheck[]; warnings: SandboxDependencyCheck[] } {
+  return { errors: [], warnings: [] }
+}
+export function isSupportedPlatform(): boolean { return true }
+export function wrapWithSandbox(command: string, _shell?: string, _config?: SandboxRuntimeConfig, _signal?: AbortSignal): string { return command }
+export async function initialize(_config?: SandboxRuntimeConfig, _callback?: SandboxAskCallback): Promise<void> {}
+export function updateConfig(_config: SandboxRuntimeConfig): void {}
+export async function reset(): Promise<void> {}

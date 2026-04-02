@@ -397,7 +397,7 @@ function baseCreateAssistantMessage({
       stop_sequence: '',
       type: 'message',
       usage,
-      content: content as ContentBlock[],
+      content: content as unknown as ContentBlock[],
       context_management: null,
     },
     requestId: undefined,
@@ -1274,7 +1274,7 @@ export function buildMessageLookups(
           )
         }
         if ((content.type as string) === 'advisor_tool_result') {
-          const result = content as {
+          const result = content as unknown as {
             tool_use_id: string
             content: { type: string }
           }
@@ -2705,7 +2705,7 @@ export function normalizeContentFromAPI(
             // sees empty input. The raw prefix goes to debug log only — no
             // PII-tagged proto column exists for it yet.
             logEvent('tengu_tool_input_json_parse_fail', {
-              toolName: sanitizeToolNameForAnalytics(contentBlock.name),
+              toolName: sanitizeToolNameForAnalytics(String(contentBlock.name)),
               inputLen: contentBlock.input.length,
             })
             if (process.env.USER_TYPE === 'ant') {
@@ -2722,7 +2722,7 @@ export function normalizeContentFromAPI(
 
         // Then apply tool-specific corrections
         if (typeof normalizedInput === 'object' && normalizedInput !== null) {
-          const tool = findToolByName(tools, contentBlock.name)
+          const tool = findToolByName(tools, String(contentBlock.name))
           if (tool) {
             try {
               normalizedInput = normalizeToolInput(
@@ -2920,10 +2920,10 @@ export function textForResubmit(
  * and their readonly/DeepImmutable variants via structural typing.
  */
 export function extractTextContent(
-  blocks: readonly { readonly type: string }[],
+  blocks: readonly { readonly type: string }[] | unknown[],
   separator = '',
 ): string {
-  return blocks
+  return (blocks as readonly { readonly type: string }[])
     .filter((b): b is { type: 'text'; text: string } => b.type === 'text')
     .map(b => b.text)
     .join(separator)

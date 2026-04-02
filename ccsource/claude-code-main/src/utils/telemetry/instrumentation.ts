@@ -7,8 +7,9 @@ import {
   envDetector,
   hostDetector,
   osDetector,
-  resourceFromAttributes,
+  Resource,
 } from '@opentelemetry/resources'
+import type { IResource } from '@opentelemetry/resources'
 import {
   BatchLogRecordProcessor,
   ConsoleLogRecordExporter,
@@ -351,7 +352,7 @@ function isBigQueryMetricsEnabled() {
  * Uses BETA_TRACING_ENDPOINT instead of OTEL_EXPORTER_OTLP_ENDPOINT.
  */
 async function initializeBetaTracing(
-  resource: ReturnType<typeof resourceFromAttributes>,
+  resource: IResource,
 ): Promise<void> {
   const endpoint = process.env.BETA_TRACING_ENDPOINT
   if (!endpoint) {
@@ -389,12 +390,12 @@ async function initializeBetaTracing(
   const logExporter = new OTLPLogExporter(logHttpConfig)
   const loggerProvider = new LoggerProvider({
     resource,
-    processors: [
-      new BatchLogRecordProcessor(logExporter, {
-        scheduledDelayMillis: DEFAULT_LOGS_EXPORT_INTERVAL_MS,
-      }),
-    ],
   })
+  loggerProvider.addLogRecordProcessor(
+    new BatchLogRecordProcessor(logExporter, {
+      scheduledDelayMillis: DEFAULT_LOGS_EXPORT_INTERVAL_MS,
+    }),
+  )
 
   logs.setGlobalLoggerProvider(loggerProvider)
   setLoggerProvider(loggerProvider)
@@ -483,25 +484,23 @@ export async function initializeTelemetry() {
     }
   }
 
-  const baseResource = resourceFromAttributes(baseAttributes)
+  const baseResource = new Resource(baseAttributes)
 
-  // Use OpenTelemetry detectors
-  const osResource = resourceFromAttributes(
-    osDetector.detect().attributes || {},
-  )
+  // Use OpenTelemetry detectors - await the detect() promises
+  const osResourceDetected = await osDetector.detect()
+  const osResource = new Resource(osResourceDetected.attributes || {})
 
   // Extract only host.arch from hostDetector
-  const hostDetected = hostDetector.detect()
+  const hostDetected = await hostDetector.detect()
   const hostArchAttributes = hostDetected.attributes?.[SEMRESATTRS_HOST_ARCH]
     ? {
         [SEMRESATTRS_HOST_ARCH]: hostDetected.attributes[SEMRESATTRS_HOST_ARCH],
       }
     : {}
-  const hostArchResource = resourceFromAttributes(hostArchAttributes)
+  const hostArchResource = new Resource(hostArchAttributes)
 
-  const envResource = resourceFromAttributes(
-    envDetector.detect().attributes || {},
-  )
+  const envResourceDetected = await envDetector.detect()
+  const envResource = new Resource(envResourceDetected.attributes || {})
 
   // Merge resources - later resources take precedence
   const resource = baseResource
@@ -582,17 +581,19 @@ export async function initializeTelemetry() {
     if (logExporters.length > 0) {
       const loggerProvider = new LoggerProvider({
         resource,
-        // Add batch processors for each exporter
-        processors: logExporters.map(
-          exporter =>
+      })
+      // Add batch processors for each exporter
+      logExporters.forEach(
+        exporter =>
+          loggerProvider.addLogRecordProcessor(
             new BatchLogRecordProcessor(exporter, {
               scheduledDelayMillis: parseInt(
                 process.env.OTEL_LOGS_EXPORT_INTERVAL ||
                   DEFAULT_LOGS_EXPORT_INTERVAL_MS.toString(),
               ),
             }),
-        ),
-      })
+          ),
+      )
 
       // Register the logger provider globally
       logs.setGlobalLoggerProvider(loggerProvider)

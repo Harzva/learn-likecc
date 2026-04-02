@@ -208,7 +208,7 @@ export function useSSHSession({
     return () => {
       logForDebugging('[useSSHSession] cleanup')
       manager.disconnect()
-      session.proxy.stop()
+      session.proxy?.close?.()
       managerRef.current = null
     }
   }, [session, setMessages, setIsLoading, setToolUseConfirmQueue])

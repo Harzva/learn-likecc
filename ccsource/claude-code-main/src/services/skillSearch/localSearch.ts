@@ -16,3 +16,5 @@ export interface LocalSearchResult {
 export async function localSearch(_options: LocalSearchOptions): Promise<LocalSearchResult[]> {
   return []
 }
+
+export function clearSkillIndexCache(): void {}

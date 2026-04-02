@@ -71,7 +71,7 @@ function getSearchOrReadInfo(progressMessage: ProgressMessage<Progress>, tools: 
   if (message.type === 'user') {
     const content = message.message.content[0];
     if (content?.type === 'tool_result') {
-      const toolUse = toolUseByID.get(content.tool_use_id);
+      const toolUse = toolUseByID.get((content as { tool_use_id: string }).tool_use_id);
       if (toolUse) {
         return getSearchOrReadFromContent(toolUse, tools);
       }
@@ -134,7 +134,7 @@ function processProgressMessages(messages: ProgressMessage<Progress>[], tools: T
     if (msg.data.message.type === 'assistant') {
       for (const c of msg.data.message.message.content) {
         if (c.type === 'tool_use') {
-          toolUseByID.set(c.id, c as ToolUseBlockParam);
+          toolUseByID.set((c as { id: string }).id, c as ToolUseBlockParam);
         }
       }
     }
@@ -539,7 +539,10 @@ export function renderToolUseProgressMessage(progressMessages: ProgressMessage<P
   const {
     lookups: subagentLookups,
     inProgressToolUseIDs: collapsedInProgressIDs
-  } = buildSubagentLookups(progressMessages.filter((pm): pm is ProgressMessage<AgentToolProgress> => hasProgressMessage(pm.data)).map(pm => pm.data));
+  } = buildSubagentLookups(progressMessages.filter((pm): pm is ProgressMessage<AgentToolProgress> => hasProgressMessage(pm.data)).map(pm => {
+    const data = pm.data as AgentToolProgress & { message: { type: 'assistant' | 'user'; message: { content: Array<{ type: string; id?: string; name?: string; tool_use_id?: string; input?: unknown }> } } };
+    return { message: data.message };
+  }));
   return <MessageResponse>
       <Box flexDirection="column">
         <SubAgentProvider>
@@ -795,7 +798,7 @@ export function extractLastToolInfo(progressMessages: ProgressMessage<Progress>[
     if (pm.data.message.type === 'assistant') {
       for (const c of pm.data.message.message.content) {
         if (c.type === 'tool_use') {
-          toolUseByID.set(c.id, c as ToolUseBlockParam);
+          toolUseByID.set((c as { id: string }).id, c as ToolUseBlockParam);
         }
       }
     }
@@ -839,7 +842,7 @@ export function extractLastToolInfo(progressMessages: ProgressMessage<Progress>[
     const toolResultBlock = lastToolResult.data.message.message.content.find(c => c.type === 'tool_result');
     if (toolResultBlock?.type === 'tool_result') {
       // Look up the corresponding tool_use — already indexed above
-      const toolUseBlock = toolUseByID.get(toolResultBlock.tool_use_id);
+      const toolUseBlock = toolUseByID.get((toolResultBlock as { tool_use_id: string }).tool_use_id);
       if (toolUseBlock) {
         const tool = findToolByName(tools, toolUseBlock.name);
         if (!tool) {

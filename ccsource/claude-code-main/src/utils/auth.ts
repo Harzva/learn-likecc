@@ -1212,7 +1212,10 @@ export function saveOAuthTokensIfNeeded(tokens: OAuthTokens): {
 
   try {
     const storageData = secureStorage.read() || {}
-    const existingOauth = storageData.claudeAiOauth
+    const existingOauth = storageData.claudeAiOauth as {
+      subscriptionType?: string | null
+      rateLimitTier?: string | null
+    } | undefined
 
     storageData.claudeAiOauth = {
       accessToken: tokens.accessToken,
@@ -1286,7 +1289,14 @@ export const getClaudeAIOAuthTokens = memoize((): OAuthTokens | null => {
   try {
     const secureStorage = getSecureStorage()
     const storageData = secureStorage.read()
-    const oauthData = storageData?.claudeAiOauth
+    const oauthData = storageData?.claudeAiOauth as {
+      accessToken?: string
+      refreshToken?: string
+      expiresAt?: number
+      scopes?: string[]
+      subscriptionType?: string | null
+      rateLimitTier?: string | null
+    } | undefined
 
     if (!oauthData?.accessToken) {
       return null
@@ -1410,7 +1420,14 @@ export async function getClaudeAIOAuthTokensAsync(): Promise<OAuthTokens | null>
   try {
     const secureStorage = getSecureStorage()
     const storageData = await secureStorage.readAsync()
-    const oauthData = storageData?.claudeAiOauth
+    const oauthData = storageData?.claudeAiOauth as {
+      accessToken?: string
+      refreshToken?: string
+      expiresAt?: number
+      scopes?: string[]
+      subscriptionType?: string | null
+      rateLimitTier?: string | null
+    } | undefined
     if (!oauthData?.accessToken) {
       return null
     }

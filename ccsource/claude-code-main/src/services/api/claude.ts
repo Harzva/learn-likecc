@@ -167,7 +167,7 @@ import { CHROME_TOOL_SEARCH_INSTRUCTIONS } from 'src/utils/claudeInChrome/prompt
 import { getMaxThinkingTokensForModel } from 'src/utils/context.js'
 import { logForDebugging } from 'src/utils/debug.js'
 import { logForDiagnosticsNoPII } from 'src/utils/diagLogs.js'
-import { type EffortValue, modelSupportsEffort } from 'src/utils/effort.js'
+import { type EffortValue, type EffortLevel, modelSupportsEffort } from 'src/utils/effort.js'
 import {
   isFastModeAvailable,
   isFastModeCooldown,
@@ -616,7 +616,7 @@ export function userMessageToMessageParam(
               ? { cache_control: getCacheControl({ querySource }) }
               : {}
             : {}),
-        })),
+        })) as BetaContentBlockParam[],
       }
     }
   }
@@ -626,7 +626,7 @@ export function userMessageToMessageParam(
   return {
     role: 'user',
     content: Array.isArray(message.message.content)
-      ? [...message.message.content]
+      ? [...message.message.content] as BetaContentBlockParam[]
       : message.message.content,
   }
 }
@@ -670,7 +670,7 @@ export function assistantMessageToMessageParam(
   }
   return {
     role: 'assistant',
-    content: message.message.content,
+    content: message.message.content as string | BetaContentBlockParam[],
   }
 }
 
@@ -962,9 +962,9 @@ export function stripExcessMediaItems(
   for (const msg of messages) {
     if (!Array.isArray(msg.message.content)) continue
     for (const block of msg.message.content) {
-      if (isMedia(block)) toRemove++
-      if (isToolResult(block) && Array.isArray(block.content)) {
-        for (const nested of block.content) {
+      if (isMedia(block as BetaContentBlockParam)) toRemove++
+      if (isToolResult(block as BetaContentBlockParam) && Array.isArray((block as { content?: unknown }).content)) {
+        for (const nested of (block as { content: unknown[] }).content) {
           if (isMedia(nested as BetaContentBlockParam)) toRemove++
         }
       }
@@ -1741,7 +1741,7 @@ async function* queryModel(
     const logMessagesLength = queryParams.messages.length
     const logBetas = useBetas ? (queryParams.betas ?? []) : []
     const logThinkingType = queryParams.thinking?.type ?? 'disabled'
-    const logEffortValue = queryParams.output_config?.effort
+    const logEffortValue = queryParams.output_config?.effort as EffortLevel | undefined
     void options.getToolPermissionContext().then(permissionContext => {
       logAPIQuery({
         model: options.model,
@@ -2621,7 +2621,7 @@ async function* queryModel(
       // and CannotRetryError means every retry failed — so grab the failed
       // request's ID from the error header instead.
       const failedRequestId =
-        (errorFromRetry.originalError as APIError).requestID ?? 'unknown'
+        (errorFromRetry.originalError as APIError).request_id ?? 'unknown'
       logForDebugging(
         'Streaming endpoint returned 404, falling back to non-streaming mode',
         { level: 'warn' },
@@ -2713,7 +2713,7 @@ async function* queryModel(
 
         const requestId =
           streamRequestId ||
-          (error instanceof APIError ? error.requestID : undefined) ||
+          (error instanceof APIError ? error.request_id : undefined) ||
           (error instanceof APIError
             ? (error.error as { request_id?: string })?.request_id
             : undefined)
@@ -2769,7 +2769,7 @@ async function* queryModel(
       // Extract requestId from stream, error header, or error body
       const requestId =
         streamRequestId ||
-        (error instanceof APIError ? error.requestID : undefined) ||
+        (error instanceof APIError ? error.request_id : undefined) ||
         (error instanceof APIError
           ? (error.error as { request_id?: string })?.request_id
           : undefined)

@@ -113,7 +113,8 @@ function extractConversationContext(
 
   for (const msg of assistantMessages.reverse()) {
     // Extract text content from assistant message
-    const textBlocks = msg.message.content
+    const content = msg.message.content
+    const textBlocks = (Array.isArray(content) ? content : [])
       .filter(c => c.type === 'text')
       .map(c => ('text' in c ? c.text : ''))
       .join(' ')
@@ -187,11 +188,12 @@ Explain this command in context.`
 
     const latencyMs = Date.now() - startTime
     logForDebugging(
-      `Permission explainer: API returned in ${latencyMs}ms, stop_reason=${response.stop_reason}`,
+      `Permission explainer: API returned in ${latencyMs}ms, stop_reason=${(response as { stop_reason?: string }).stop_reason}`,
     )
 
     // Extract structured data from tool use block
-    const toolUseBlock = response.content.find(c => c.type === 'tool_use')
+    const responseContent = response.content as Array<{ type: string; input?: unknown }>
+    const toolUseBlock = responseContent.find(c => c.type === 'tool_use')
     if (toolUseBlock && toolUseBlock.type === 'tool_use') {
       logForDebugging(
         `Permission explainer: tool input: ${jsonStringify(toolUseBlock.input).slice(0, 500)}`,

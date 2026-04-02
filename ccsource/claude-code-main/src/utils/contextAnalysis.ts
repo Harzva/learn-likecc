@@ -125,9 +125,9 @@ function processBlock(
 
     case 'tool_use': {
       if ('name' in block && 'id' in block) {
-        const toolName = block.name || 'unknown'
+        const toolName = String(block.name || 'unknown')
         increment(stats.toolRequests, toolName, tokens)
-        toolIds.set(block.id, toolName)
+        toolIds.set(String(block.id), toolName)
 
         // Track Read tool file paths
         if (
@@ -140,7 +140,7 @@ function processBlock(
           const path = String(
             (block.input as Record<string, unknown>).file_path,
           )
-          readToolPaths.set(block.id, path)
+          readToolPaths.set(String(block.id), path)
         }
       }
       break
@@ -148,12 +148,12 @@ function processBlock(
 
     case 'tool_result': {
       if ('tool_use_id' in block) {
-        const toolName = toolIds.get(block.tool_use_id) || 'unknown'
+        const toolName = toolIds.get(String(block.tool_use_id)) || 'unknown'
         increment(stats.toolResults, toolName, tokens)
 
         // Track file read tokens
         if (toolName === 'Read') {
-          const path = readToolPaths.get(block.tool_use_id)
+          const path = readToolPaths.get(String(block.tool_use_id))
           if (path) {
             const current = fileReads.get(path) || { count: 0, totalTokens: 0 }
             fileReads.set(path, {

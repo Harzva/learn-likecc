@@ -2,11 +2,19 @@
  * Reactive compact service stub - not implemented
  */
 
+import type { Message, SystemMessage, UserMessage, AttachmentMessage, HookResultMessage } from '../../types/message.js'
+
 export interface ReactiveCompactOptions {
-  trigger: 'size' | 'tokens' | 'manual'
+  trigger?: 'size' | 'tokens' | 'manual'
   threshold?: number
+  hasAttempted?: boolean
+  querySource?: string
+  aborted?: boolean
+  messages?: Message[]
+  cacheSafeParams?: Record<string, unknown>
 }
 
+// CompactionResult-like interface for compatibility
 export interface ReactiveCompactResult {
   success: boolean
   messagesRemoved: number
@@ -17,6 +25,12 @@ export interface ReactiveCompactResult {
     messagesRemoved: number
     tokensSaved: number
   }
+  // CompactionResult fields for buildPostCompactMessages compatibility
+  boundaryMarker?: SystemMessage
+  summaryMessages?: UserMessage[]
+  attachments?: AttachmentMessage[]
+  hookResults?: HookResultMessage[]
+  messagesToKeep?: Message[]
 }
 
 export async function reactiveCompact(
@@ -42,7 +56,7 @@ export function isReactiveOnlyMode(): boolean {
 /**
  * 检查 prompt 是否过长
  */
-export function isWithheldPromptTooLong(_prompt: unknown): boolean {
+export function isWithheldPromptTooLong(_prompt: Message): boolean {
   return false
 }
 
@@ -50,7 +64,7 @@ export function isWithheldPromptTooLong(_prompt: unknown): boolean {
  * 当 prompt 过长时执行 reactive compact
  */
 export async function reactiveCompactOnPromptTooLong(
-  _messages: unknown[]
+  _messages: Message[]
 ): Promise<ReactiveCompactResult | null> {
   return null
 }
@@ -58,6 +72,24 @@ export async function reactiveCompactOnPromptTooLong(
 /**
  * 检查是否为 media size 错误
  */
-export function isWithheldMediaSizeError(_error: unknown): boolean {
+export function isWithheldMediaSizeError(_error: Message): boolean {
   return false
+}
+
+/**
+ * Try reactive compact - wrapper that returns structured result
+ */
+export async function tryReactiveCompact(
+  options?: ReactiveCompactOptions
+): Promise<ReactiveCompactResult> {
+  try {
+    return await reactiveCompact(options || { trigger: 'manual' })
+  } catch {
+    return {
+      success: false,
+      messagesRemoved: 0,
+      tokensSaved: 0,
+      reason: 'Reactive compact failed',
+    }
+  }
 }

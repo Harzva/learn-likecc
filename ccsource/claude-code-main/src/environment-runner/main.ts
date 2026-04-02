@@ -1,2 +1,5 @@
 // Auto-generated stub
-export {}
+export async function environmentRunnerMain(_options?: unknown): Promise<void> {
+  throw new Error('environmentRunnerMain not implemented in stub')
+}
+

@@ -36,11 +36,42 @@ export interface BashProgress extends ToolProgressData {
   pid?: number
   isBackground?: boolean
   timeout?: number
+  fullOutput?: string
+  elapsedTimeSeconds?: number
+  totalLines?: number
+  totalBytes?: number
+  timeoutMs?: number
+  taskId?: string
 }
 
 // ============================================================================
 // Agent Tool Progress
 // ============================================================================
+
+import type { ToolUseBlockParam, ToolResultBlockParam } from '@anthropic-ai/sdk/resources/index.mjs'
+
+// Content block types for progress messages
+export type ProgressContentBlock =
+  | { type: 'tool_use'; id: string; name: string; input: unknown }
+  | { type: 'tool_result'; tool_use_id: string; content: unknown; is_error?: boolean }
+  | { type: 'text'; text: string }
+  | { type: string; [key: string]: unknown }
+
+// Usage type for assistant messages
+export interface MessageUsage {
+  input_tokens: number
+  output_tokens: number
+  cache_creation_input_tokens?: number
+  cache_read_input_tokens?: number
+}
+
+export interface AgentToolProgressMessage {
+  type: 'assistant' | 'user'
+  message: {
+    content: ProgressContentBlock[]
+    usage?: MessageUsage
+  }
+}
 
 export interface AgentToolProgress extends ToolProgressData {
   toolName: 'Agent'
@@ -50,8 +81,20 @@ export interface AgentToolProgress extends ToolProgressData {
   taskDescription: string
   subAgentStatus?: 'spawning' | 'running' | 'complete' | 'error'
   outputMessages?: unknown[]
-  message?: unknown
+  message?: AgentToolProgressMessage
   prompt?: string
+  committed?: boolean
+}
+
+// Type for buildSubagentLookups - the message field of AgentToolProgress
+export interface SubagentLookupInput {
+  message?: {
+    type: 'assistant' | 'user'
+    message: {
+      content: ProgressContentBlock[]
+      usage?: MessageUsage
+    }
+  }
 }
 
 // ============================================================================
@@ -66,6 +109,10 @@ export interface MCPProgress extends ToolProgressData {
   progressToken?: string | number
   progress?: number
   total?: number
+  mcpStatus?: 'pending' | 'started' | 'running' | 'progress' | 'completed' | 'failed' | 'complete' | 'error'
+  type?: string
+  elapsedTimeMs?: number
+  progressMessage?: string
 }
 
 // ============================================================================
@@ -77,6 +124,10 @@ export interface SkillToolProgress extends ToolProgressData {
   skillName: string
   skillPath: string
   phase?: 'loading' | 'executing' | 'complete'
+  message?: unknown
+  type?: string
+  prompt?: string
+  agentId?: string
 }
 
 // ============================================================================
@@ -112,6 +163,8 @@ export interface WebSearchProgress extends ToolProgressData {
   resultsFound?: number
   currentPage?: number
   totalPages?: number
+  type?: string
+  resultCount?: number
 }
 
 // ============================================================================

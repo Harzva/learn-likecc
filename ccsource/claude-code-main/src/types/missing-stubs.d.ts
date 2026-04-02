@@ -102,3 +102,14 @@ declare module '*/tasks/LocalAgentTask/LocalAgentTask.js' {
   export { LocalAgentTask as LocalWorkflowTask } from './LocalAgentTask'
   export * from './LocalAgentTask'
 }
+
+// Beta Web Search Tool types
+declare module '@anthropic-ai/sdk/resources/beta/messages/messages.mjs' {
+  export interface BetaWebSearchTool20250305 {
+    type: 'web_search_20250305' | 'web_search_tool_20250305'
+    name?: string
+    allowed_domains?: string[]
+    blocked_domains?: string[]
+    max_uses?: number
+  }
+}

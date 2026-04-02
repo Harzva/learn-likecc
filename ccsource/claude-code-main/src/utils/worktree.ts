@@ -1293,7 +1293,7 @@ export async function execIntoTmuxWorktree(args: string[]): Promise<{
       if (!result.existed) {
         // biome-ignore lint/suspicious/noConsole: intentional console output
         console.log(
-          `Created worktree: ${worktreeDir} (based on ${result.baseBranch})`,
+          `Created worktree: ${worktreeDir} (based on ${(result as { baseBranch: string }).baseBranch})`,
         )
         await performPostCreationSetup(repoRoot, worktreeDir)
       }

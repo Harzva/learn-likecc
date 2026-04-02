@@ -251,6 +251,12 @@ async function executeForkedSkill(
             onProgress({
               toolUseID: `skill_${parentMessage.message.id}`,
               data: {
+                toolName: 'Skill',
+                toolUseId: `skill_${parentMessage.message.id}`,
+                skillName: commandName,
+                skillPath: command.paths?.[0] || '',
+                startTime: Date.now(),
+                status: 'running',
                 message: m,
                 type: 'skill_progress',
                 prompt: skillContent,
@@ -979,7 +985,7 @@ async function executeRemoteSkill(
   // validateInput already confirmed this slug is in session state, but we
   // re-fetch here to get the URL. If it's somehow gone (e.g., state cleared
   // mid-session), fail with a clear error rather than crashing.
-  const meta = getDiscoveredRemoteSkill(slug)
+  const meta = getDiscoveredRemoteSkill(slug) as { url: string } | null
   if (!meta) {
     throw new Error(
       `Remote skill ${slug} was not discovered in this session. Use DiscoverSkills to find remote skills first.`,

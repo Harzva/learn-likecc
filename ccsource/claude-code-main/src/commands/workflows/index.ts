@@ -14,3 +14,8 @@ export async function createWorkflow(_options: WorkflowCommandOptions): Promise<
 export async function listWorkflows(): Promise<string[]> {
   return []
 }
+
+export default {
+  createWorkflow,
+  listWorkflows,
+}

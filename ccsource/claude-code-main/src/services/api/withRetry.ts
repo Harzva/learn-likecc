@@ -1,10 +1,13 @@
 import { feature } from 'bun:bundle'
-import type Anthropic from '@anthropic-ai/sdk'
+import Anthropic from '@anthropic-ai/sdk'
+import type { ClientOptions } from '@anthropic-ai/sdk'
 import {
   APIConnectionError,
   APIError,
   APIUserAbortError,
 } from '@anthropic-ai/sdk'
+
+type AnthropicClient = InstanceType<typeof Anthropic>
 import type { QuerySource } from 'src/constants/querySource.js'
 import type { SystemAPIErrorMessage } from 'src/types/message.js'
 import { isAwsCredentialsProviderError } from 'src/utils/aws.js'
@@ -168,9 +171,9 @@ export class FallbackTriggeredError extends Error {
 }
 
 export async function* withRetry<T>(
-  getClient: () => Promise<Anthropic>,
+  getClient: () => Promise<AnthropicClient>,
   operation: (
-    client: Anthropic,
+    client: AnthropicClient,
     attempt: number,
     context: RetryContext,
   ) => Promise<T>,
@@ -182,7 +185,7 @@ export async function* withRetry<T>(
     thinkingConfig: options.thinkingConfig,
     ...(isFastModeEnabled() && { fastMode: options.fastMode }),
   }
-  let client: Anthropic | null = null
+  let client: AnthropicClient | null = null
   let consecutive529Errors = options.initialConsecutive529Errors ?? 0
   let lastError: unknown
   let persistentAttempt = 0
@@ -522,7 +525,7 @@ function getRetryAfter(error: unknown): string | null {
       'retry-after'
     ] ||
       // eslint-disable-next-line eslint-plugin-n/no-unsupported-features/node-builtins
-      ((error as APIError).headers as Headers)?.get?.('retry-after')) ??
+      ((error as APIError).headers as unknown as Headers)?.get?.('retry-after')) ??
     null
   )
 }

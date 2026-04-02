@@ -28,11 +28,18 @@ import { basename, extname } from 'path'
 // StructuredDiff.tsx → colorDiff.ts — pays that cost at module-eval time
 // and carries the heap for the rest of the process. On Windows CI this
 // pushed later tests in the same shard into GC-pause territory and a
+
+interface HljsApi {
+  highlight(code: string, options?: { language?: string; ignoreIllegals?: boolean }): { value: string; language: string; relevance: number; emitter?: unknown }
+  highlightAuto(code: string, languageSubset?: string[]): { value: string; language: string; relevance: number }
+  getLanguage(name: string): { name: string; aliases?: string[]; keywords?: unknown; contains?: unknown[] } | undefined
+  registerLanguage(name: string, language: unknown): void
+  listLanguages(): string[]
+}
 // beforeEach/afterEach hook timeout (officialRegistry.test.ts, PR #24150).
 // Same lazy pattern the NAPI wrapper used for dlopen.
-type HLJSApi = typeof hljsNamespace
-let cachedHljs: HLJSApi | null = null
-function hljs(): HLJSApi {
+let cachedHljs: HljsApi | null = null
+function hljs(): HljsApi {
   if (cachedHljs) return cachedHljs
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const mod = require('highlight.js')
@@ -604,7 +611,7 @@ function findAdjacentPairs(markers: Marker[]): [number, number][] {
 function wordDiffStrings(oldStr: string, newStr: string): [Range[], Range[]] {
   const oldTokens = tokenize(oldStr)
   const newTokens = tokenize(newStr)
-  const ops = diffArrays(oldTokens, newTokens)
+  const ops = diffArrays(oldTokens, newTokens) as Array<{ value: string[]; added?: boolean; removed?: boolean }>
 
   const totalLen = oldStr.length + newStr.length
   let changedLen = 0

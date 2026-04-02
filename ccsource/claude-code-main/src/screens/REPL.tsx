@@ -1543,9 +1543,11 @@ export function REPL({
       bashTools: bashTools.current
     }).then(async tip => {
       if (tip) {
-        const content = await tip.content({
-          theme
-        });
+        const content = typeof tip.content === 'function'
+          ? await tip.content({
+              theme
+            })
+          : tip.content;
         setAppState(prev => ({
           ...prev,
           spinnerTip: content

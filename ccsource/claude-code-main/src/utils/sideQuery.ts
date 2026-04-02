@@ -1,4 +1,13 @@
-import type Anthropic from '@anthropic-ai/sdk'
+import type {
+  MessageParam,
+  TextBlockParam,
+  ContentBlockParam,
+  Tool,
+  ToolChoice,
+  BetaMessage,
+  BetaJSONOutputFormat,
+  BetaThinkingConfigParam,
+} from '@anthropic-ai/sdk'
 import type { BetaToolUnion } from '@anthropic-ai/sdk/resources/beta/messages.js'
 import {
   getLastApiCompletionTimestamp,
@@ -18,14 +27,6 @@ import { getModelBetas, modelSupportsStructuredOutputs } from './betas.js'
 import { computeFingerprint } from './fingerprint.js'
 import { normalizeModelStringForAPI } from './model/model.js'
 
-type MessageParam = Anthropic.MessageParam
-type TextBlockParam = Anthropic.TextBlockParam
-type Tool = Anthropic.Tool
-type ToolChoice = Anthropic.ToolChoice
-type BetaMessage = Anthropic.Beta.Messages.BetaMessage
-type BetaJSONOutputFormat = Anthropic.Beta.Messages.BetaJSONOutputFormat
-type BetaThinkingConfigParam = Anthropic.Beta.Messages.BetaThinkingConfigParam
-
 export type SideQueryOptions = {
   /** Model to use for the query */
   model: string
@@ -36,7 +37,7 @@ export type SideQueryOptions = {
    * server-side parsing correctly extracts the cc_entrypoint value without including
    * system prompt content.
    */
-  system?: string | TextBlockParam[]
+  system?: string | TextBlockParam[] | ContentBlockParam[]
   /** Messages to send (supports cache_control on content blocks) */
   messages: MessageParam[]
   /** Optional tools (supports both standard Tool[] and BetaToolUnion[] for custom tool types) */
@@ -74,7 +75,7 @@ function extractFirstUserMessageText(messages: MessageParam[]): string {
   if (typeof content === 'string') return content
 
   // Array of content blocks - find first text block
-  const textBlock = content.find(block => block.type === 'text')
+  const textBlock = (content as ContentBlockParam[]).find(block => block.type === 'text')
   return textBlock?.type === 'text' ? textBlock.text : ''
 }
 

@@ -1849,10 +1849,14 @@ export const fetchToolsForClient = memoizeWithLRU(
                 onProgress({
                   toolUseID: toolUseId,
                   data: {
-                    type: 'mcp_progress',
-                    status: 'started',
-                    serverName: client.name,
                     toolName: tool.name,
+                    toolUseId: toolUseId,
+                    serverName: client.name,
+                    toolInput: args as Record<string, unknown>,
+                    startTime: Date.now(),
+                    status: 'running',
+                    type: 'mcp_progress',
+                    mcpStatus: 'started',
                   },
                 })
               }
@@ -1887,10 +1891,14 @@ export const fetchToolsForClient = memoizeWithLRU(
                     onProgress({
                       toolUseID: toolUseId,
                       data: {
-                        type: 'mcp_progress',
-                        status: 'completed',
-                        serverName: client.name,
                         toolName: tool.name,
+                        toolUseId: toolUseId,
+                        serverName: client.name,
+                        toolInput: args as Record<string, unknown>,
+                        startTime: startTime,
+                        status: 'complete',
+                        type: 'mcp_progress',
+                        mcpStatus: 'completed',
                         elapsedTimeMs: Date.now() - startTime,
                       },
                     })
@@ -1928,10 +1936,14 @@ export const fetchToolsForClient = memoizeWithLRU(
                     onProgress({
                       toolUseID: toolUseId,
                       data: {
-                        type: 'mcp_progress',
-                        status: 'failed',
-                        serverName: client.name,
                         toolName: tool.name,
+                        toolUseId: toolUseId,
+                        serverName: client.name,
+                        toolInput: args as Record<string, unknown>,
+                        startTime: startTime,
+                        status: 'error',
+                        type: 'mcp_progress',
+                        mcpStatus: 'failed',
                         elapsedTimeMs: Date.now() - startTime,
                       },
                     })
@@ -3104,10 +3116,14 @@ async function callMCPTool({
           onprogress: onProgress
             ? sdkProgress => {
                 onProgress({
-                  type: 'mcp_progress',
-                  status: 'progress',
-                  serverName: name,
                   toolName: tool,
+                  toolUseId: '',
+                  serverName: name,
+                  toolInput: args as Record<string, unknown>,
+                  startTime: Date.now(),
+                  status: 'running',
+                  type: 'mcp_progress',
+                  mcpStatus: 'progress',
                   progress: sdkProgress.progress,
                   total: sdkProgress.total,
                   progressMessage: sdkProgress.message,

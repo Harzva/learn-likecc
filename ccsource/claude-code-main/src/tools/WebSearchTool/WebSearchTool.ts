@@ -1,5 +1,6 @@
 import type {
   BetaContentBlock,
+  BetaToolUnion,
   BetaWebSearchTool20250305,
 } from '@anthropic-ai/sdk/resources/beta/messages/messages.mjs'
 import { getAPIProvider } from 'src/utils/model/providers.js'
@@ -115,13 +116,14 @@ function makeOutputFromSearchResponse(
     if (block.type === 'web_search_tool_result') {
       // Handle error case - content is a WebSearchToolResultError
       if (!Array.isArray(block.content)) {
-        const errorMessage = `Web search error: ${block.content.error_code}`
+        const errorContent = block.content as { error_code?: string }
+        const errorMessage = `Web search error: ${errorContent.error_code ?? 'unknown'}`
         logError(new Error(errorMessage))
         results.push(errorMessage)
         continue
       }
       // Success case - add results to our collection
-      const hits = block.content.map(r => ({ title: r.title, url: r.url }))
+      const hits = block.content.map((r: { title?: string; url?: string }) => ({ title: r.title, url: r.url }))
       results.push({
         tool_use_id: block.tool_use_id,
         content: hits,
@@ -281,7 +283,7 @@ export const WebSearchTool = buildTool({
         toolChoice: useHaiku ? { type: 'tool', name: 'web_search' } : undefined,
         isNonInteractiveSession: context.options.isNonInteractiveSession,
         hasAppendSystemPrompt: !!context.options.appendSystemPrompt,
-        extraToolSchemas: [toolSchema],
+        extraToolSchemas: [toolSchema as BetaToolUnion],
         querySource: 'web_search_tool',
         agents: context.options.agentDefinitions.activeAgents,
         mcpTools: [],
@@ -298,7 +300,7 @@ export const WebSearchTool = buildTool({
 
     for await (const event of queryStream) {
       if (event.type === 'assistant') {
-        const msg = event as { message: { content: BetaContentBlock[] } }
+        const msg = event as unknown as { message: { content: BetaContentBlock[] } }
         allContentBlocks.push(...msg.message.content)
         continue
       }
@@ -348,6 +350,10 @@ export const WebSearchTool = buildTool({
                   onProgress({
                     toolUseID: `search-progress-${progressCounter}`,
                     data: {
+                      toolName: 'WebSearch',
+                      toolUseId: currentToolUseId,
+                      startTime: Date.now(),
+                      status: 'running',
                       type: 'query_update',
                       query,
                     },
@@ -377,6 +383,10 @@ export const WebSearchTool = buildTool({
             onProgress({
               toolUseID: toolUseId || `search-progress-${progressCounter}`,
               data: {
+                toolName: 'WebSearch',
+                toolUseId: toolUseId || '',
+                startTime: Date.now(),
+                status: 'complete',
                 type: 'search_results_received',
                 resultCount: Array.isArray(content) ? content.length : 0,
                 query: actualQuery,

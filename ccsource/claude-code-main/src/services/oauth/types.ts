@@ -14,7 +14,11 @@ export interface OAuthToken {
   refreshToken?: string
   expiresAt?: number
   profile?: OAuthProfileResponse
-  tokenAccount?: string
+  tokenAccount?: {
+    uuid: string
+    emailAddress: string
+    organizationUuid?: string
+  }
   scopes?: string[]
   subscriptionType?: SubscriptionType
   rateLimitTier?: RateLimitTier
@@ -39,6 +43,15 @@ export interface ReferralCampaign {
 export interface ReferralEligibilityResponse {
   eligible: boolean
   reason?: string
+  referral_code_details?: {
+    code: string
+    url: string
+  }
+  referrer_reward?: {
+    type: string
+    amount: number
+  }
+  remaining_passes?: number
 }
 
 export interface ReferralRedemptionsResponse {
@@ -46,12 +59,15 @@ export interface ReferralRedemptionsResponse {
     id: string
     redeemedAt: number
   }>
+  limit?: number
 }
 
 export interface ReferrerRewardInfo {
   rewardId: string
   rewardType: string
   status: string
+  currency?: string
+  amount_minor_units?: number
 }
 
 // Org validation types
@@ -61,9 +77,9 @@ export interface OrgValidationResult {
 }
 
 // Subscription and billing types
-export type SubscriptionType = 'free' | 'pro' | 'team' | 'enterprise'
+export type SubscriptionType = 'free' | 'pro' | 'team' | 'enterprise' | 'max'
 
-export type BillingType = 'individual' | 'team' | 'enterprise'
+export type BillingType = 'individual' | 'team' | 'enterprise' | 'stripe_subscription' | 'stripe_subscription_contracted' | 'apple_subscription' | 'google_play_subscription'
 
 export interface OAuthProfileResponse {
   id: string
@@ -75,10 +91,19 @@ export interface OAuthProfileResponse {
     uuid: string
     emailAddress: string
     organizationUuid?: string
+    email?: string
+    display_name?: string
+    created_at?: string
+    has_extra_usage_enabled?: boolean
   }
   organization?: {
     uuid: string
     name?: string
+    organization_type?: string
+    rate_limit_tier?: RateLimitTier
+    has_extra_usage_enabled?: boolean
+    billing_type?: BillingType
+    subscription_created_at?: string
   }
 }
 
@@ -93,11 +118,18 @@ export interface OAuthTokenExchangeResponse {
     uuid: string
     emailAddress: string
     organizationUuid?: string
+    email?: string
+    display_name?: string
+    created_at?: string
   }
   organization?: {
     uuid: string
     name?: string
     organization_type?: string
+    rate_limit_tier?: RateLimitTier
+    has_extra_usage_enabled?: boolean
+    billing_type?: BillingType
+    subscription_created_at?: string
   }
 }
 

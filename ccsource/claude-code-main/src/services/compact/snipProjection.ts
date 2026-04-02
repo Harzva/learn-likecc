@@ -62,3 +62,16 @@ export function isSnipBoundaryMessage(message: unknown): boolean {
   // Stub 实现
   return false
 }
+
+/**
+ * 投影 snipped 视图
+ */
+export function projectSnippedView(
+  _messages: unknown[],
+  _options?: unknown
+): { projected: unknown[]; snippedCount: number } {
+  return {
+    projected: [],
+    snippedCount: 0,
+  }
+}
