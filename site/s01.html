@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S01: Agent Loop - Learn Claude Code</title>
+    <title>S01: Agent Loop - Claude Code Course</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/prism.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
@@ -14,7 +14,7 @@
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
                 <span class="logo-icon">🧠</span>
-                <span class="logo-text">Learn Claude Code</span>
+                <span class="logo-text">Claude Code Course</span>
             </a>
             <div class="nav-links">
                 <a href="index.html#overview" class="nav-link">概述</a>
@@ -22,6 +22,9 @@
                 <a href="index.html#source-map" class="nav-link">Source Map</a>
             </div>
             <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题 (8种主题)">
+                    <span>☀️ 暖光</span>
+                </button>
                 <select id="code-lang-switch" class="lang-select" onchange="switchCodeLanguage(this.value)">
                     <option value="typescript">TypeScript</option>
                     <option value="python">Python</option>
@@ -313,7 +316,7 @@ for block in response.content:
     <footer class="footer">
         <div class="container">
             <div class="footer-bottom">
-                <p>© 2026 Learn Claude Code. 仅供学习研究使用。</p>
+                <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
             </div>
         </div>
     </footer>

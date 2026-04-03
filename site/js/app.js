@@ -1,8 +1,18 @@
 // 应用脚本
 document.addEventListener('DOMContentLoaded', () => {
-    // 主题切换
+    // 主题切换 - 支持8种主题
     const themeToggle = document.getElementById('theme-toggle')
-    const themes = ['warm', 'dark', 'light']
+    const themes = ['warm', 'light', 'dark', 'ocean', 'forest', 'lavender', 'sunset', 'midnight']
+    const themeNames = {
+        'warm': '☀️ 暖光',
+        'light': '🌞 明亮',
+        'dark': '🌙 暗夜',
+        'ocean': '🌊 海洋',
+        'forest': '🌲 森林',
+        'lavender': '💜 薰衣草',
+        'sunset': '🌅 日落',
+        'midnight': '🌃 午夜'
+    }
     let currentThemeIndex = 0
 
     // 从 localStorage 加载主题
@@ -10,6 +20,14 @@ document.addEventListener('DOMContentLoaded', () => {
     currentThemeIndex = themes.indexOf(savedTheme)
     if (currentThemeIndex === -1) currentThemeIndex = 0
     document.documentElement.setAttribute('data-theme', savedTheme)
+    updateThemeIcon(savedTheme)
+
+    function updateThemeIcon(theme) {
+        const themeToggle = document.getElementById('theme-toggle')
+        if (themeToggle) {
+            themeToggle.innerHTML = `<span>${themeNames[theme] || '🎨'}</span>`
+        }
+    }
 
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
@@ -17,8 +35,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const newTheme = themes[currentThemeIndex]
             document.documentElement.setAttribute('data-theme', newTheme)
             localStorage.setItem('theme', newTheme)
+            updateThemeIcon(newTheme)
+
+            // 添加切换动画
+            document.body.style.transition = 'background 0.3s ease, color 0.3s ease'
         })
     }
+
+    // 初始化主题图标
+    updateThemeIcon(savedTheme)
 
     // 代码语言切换 - 从 localStorage 加载
     const savedLang = localStorage.getItem('codeLang') || 'typescript'
@@ -55,13 +80,10 @@ document.addEventListener('DOMContentLoaded', () => {
         lastScroll = currentScroll
     })
 
-    // 课程卡片点击
-    document.querySelectorAll('.course-card').forEach(card => {
-        card.addEventListener('click', () => {
-            const number = card.querySelector('.course-number').textContent
-            console.log(`Navigate to course: ${number}`)
-            // TODO: 跳转到课程详情页
-        })
+    // 课程卡片动画
+    document.querySelectorAll('.course-card').forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`
+        card.classList.add('animate-fade-in')
     })
 
     // 代码窗口动画
@@ -86,6 +108,21 @@ document.addEventListener('DOMContentLoaded', () => {
             // TODO: 实现语言切换
         })
     }
+
+    // 添加滚动动画
+    const animateOnScroll = () => {
+        const elements = document.querySelectorAll('.overview-card, .course-card, .resource-card')
+        elements.forEach(el => {
+            const rect = el.getBoundingClientRect()
+            if (rect.top < window.innerHeight - 100) {
+                el.style.opacity = '1'
+                el.style.transform = 'translateY(0)'
+            }
+        })
+    }
+
+    window.addEventListener('scroll', animateOnScroll)
+    animateOnScroll() // 初始检查
 })
 
 // 代码语言切换函数
