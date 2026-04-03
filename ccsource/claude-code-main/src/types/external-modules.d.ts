@@ -173,6 +173,13 @@ declare module '@anthropic-ai/sdk' {
     [key: string]: unknown
   }
 
+  export interface BetaMessageCreateOptions {
+    signal?: AbortSignal
+    timeout?: number
+    headers?: Record<string, string>
+    [key: string]: unknown
+  }
+
   export interface BetaRawMessageStreamEvent {
     type: string
     message?: BetaMessage
@@ -238,8 +245,8 @@ declare module '@anthropic-ai/sdk' {
       }
       beta: {
         messages: {
-          create: (params: unknown) => Promise<unknown>
-          stream: (params: unknown) => unknown
+          create: (params: BetaMessageCreateParams, options?: BetaMessageCreateOptions) => Promise<BetaMessage>
+          stream: (params: unknown, options?: { signal?: AbortSignal; timeout?: number }) => unknown
         }
       }
     }
