@@ -19,7 +19,7 @@
                 <a href="#overview" class="nav-link">概述</a>
                 <a href="#architecture" class="nav-link">架构</a>
                 <a href="#courses" class="nav-link">课程</a>
-                <a href="#source-map" class="nav-link">Source Map</a>
+                <a href="#daily" class="nav-link">每日推送</a>
                 <a href="#resources" class="nav-link">资源</a>
             </div>
             <div class="nav-actions">
@@ -378,6 +378,112 @@
                     </div>
                 </a>
             </div>
+        </div>
+    </section>
+
+    <!-- 每日推送 -->
+    <section id="daily" class="section daily-push">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">📡 每日推送</h2>
+                <span class="section-date">2026-04-03</span>
+            </div>
+
+            <article class="daily-article">
+                <div class="article-meta">
+                    <span class="article-tag hot">🔥 热门</span>
+                    <span class="article-source">来源：字节笔记</span>
+                </div>
+                <h3 class="article-title">Claude Code 源码分析：封号机制与 44 个隐藏功能</h3>
+
+                <div class="article-content">
+                    <div class="article-section">
+                        <h4>🔐 封号机制揭秘</h4>
+                        <p>Anthropic 的风控系统远比表面复杂，通过多层次的数字指纹识别用户身份：</p>
+                        <ul class="feature-list">
+                            <li><strong>IP + 时区 + 系统语言</strong>：综合判断用户环境</li>
+                            <li><strong>设备信息 + .git 配置</strong>：追踪用户身份</li>
+                            <li><strong>对话内容监控</strong>：检测粗口、负面词汇、"continue" 频率</li>
+                            <li><strong>遥测数据上报</strong>：未经用户同意直接上报</li>
+                        </ul>
+                        <div class="tip-box warning">
+                            <strong>防封建议：</strong>环境隔离、干净 IP、指纹浏览器、避免中文对话初期使用、避免第三方代理工具
+                        </div>
+                    </div>
+
+                    <div class="article-section">
+                        <h4>🚀 44 个隐藏功能</h4>
+                        <div class="hidden-features">
+                            <div class="feature-card">
+                                <span class="feature-icon">🧠</span>
+                                <div class="feature-info">
+                                    <h5>KAIROS</h5>
+                                    <p>自主后台守护进程模式，24/7 在线代理，支持 webhook、定时任务、推送通知</p>
+                                </div>
+                            </div>
+                            <div class="feature-card">
+                                <span class="feature-icon">📋</span>
+                                <div class="feature-info">
+                                    <h5>ULTRAPLAN</h5>
+                                    <p>将复杂规划卸载到云容器，由高阶模型进行 10-30 分钟深度思考</p>
+                                </div>
+                            </div>
+                            <div class="feature-card">
+                                <span class="feature-icon">👥</span>
+                                <div class="feature-info">
+                                    <h5>Coordinator Mode</h5>
+                                    <p>多代理编排系统，主 Claude 协调多个 swarm，支持并行处理</p>
+                                </div>
+                            </div>
+                            <div class="feature-card">
+                                <span class="feature-icon">💭</span>
+                                <div class="feature-info">
+                                    <h5>AutoDream</h5>
+                                    <p>后台梦境记忆整合系统，自动合并观察、消除矛盾、记忆蒸馏</p>
+                                </div>
+                            </div>
+                            <div class="feature-card">
+                                <span class="feature-icon">🎭</span>
+                                <div class="feature-info">
+                                    <h5>Undercover Mode</h5>
+                                    <p>员工专属模式，隐藏 AI 身份，去除 Co-Authored-By 痕迹</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="article-section">
+                        <h4>🛠️ 推荐工具</h4>
+                        <div class="tool-recommend">
+                            <div class="tool-card">
+                                <div class="tool-icon">📚</div>
+                                <div class="tool-info">
+                                    <h5>Zread CLI</h5>
+                                    <p>将庞大源码仓库梳理成结构化可视化文档，提供上帝视野理解代码</p>
+                                    <code>npm install -g zread_cli</code>
+                                </div>
+                            </div>
+                            <div class="tool-card">
+                                <div class="tool-icon">🌐</div>
+                                <div class="tool-info">
+                                    <h5>在线 Wiki</h5>
+                                    <p>Claude Code 源码在线文档（含搜索功能）</p>
+                                    <a href="https://claude-code-wiki.bytenote.net/" target="_blank">claude-code-wiki.bytenote.net</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="article-footer">
+                    <div class="article-keywords">
+                        <span class="keyword">封号机制</span>
+                        <span class="keyword">隐藏功能</span>
+                        <span class="keyword">KAIROS</span>
+                        <span class="keyword">遥测系统</span>
+                    </div>
+                </div>
+            </article>
         </div>
     </section>
 
