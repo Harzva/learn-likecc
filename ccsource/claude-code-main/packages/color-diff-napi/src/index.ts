@@ -621,12 +621,12 @@ function wordDiffStrings(oldStr: string, newStr: string): [Range[], Range[]] {
   let newOff = 0
 
   for (const op of ops) {
-    const len = op.value.reduce((s, t) => s + t.length, 0)
-    if (op.removed) {
+    const len = (op.value as string[]).reduce((s, t) => s + t.length, 0)
+    if (op.removed as boolean) {
       changedLen += len
       oldRanges.push({ start: oldOff, end: oldOff + len })
       oldOff += len
-    } else if (op.added) {
+    } else if (op.added as boolean) {
       changedLen += len
       newRanges.push({ start: newOff, end: newOff + len })
       newOff += len
