@@ -1,0 +1,23 @@
+{
+  "name": "zhihu-publisher",
+  "version": "1.0.0",
+  "description": "知乎自动发布系统 - 基于浏览器自动化",
+  "main": "publish_article.js",
+  "type": "commonjs",
+  "scripts": {
+    "publish": "node publish_article.js",
+    "publish:md": "node publish_article.js",
+    "publish:config": "node publish_article.js --config",
+    "debug": "HEADLESS=false node publish_article.js"
+  },
+  "keywords": ["zhihu", "automation", "puppeteer"],
+  "author": "Claude Code Course",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^22.0.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "marked": "^12.0.0",
+    "commander": "^12.0.0"
+  }
+}
