@@ -3,67 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&display=swap" rel="stylesheet">
-    <title>Claude Code Course - 深入理解 AI 编程助手</title>
+    <title>Claude Code Course - AI 编程助手学习指南</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Claude Code Course - AI 编程助手学习指南">
+    <meta property="og:description" content="从 Source Map 分析到可运行版本，系统学习 Claude Code 源码">
+    <meta property="og:type" content="website">
 </head>
 <body>
     <!-- 导航栏 -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="nav-logo">
+    <header class="main-header">
+        <nav class="main-nav">
+            <a href="index.html" class="nav-logo">
                 <span class="logo-icon">🧠</span>
                 <span class="logo-text">Claude Code Course</span>
             </a>
-            <div class="nav-links">
-                <a href="#overview" class="nav-link">概述</a>
-                <a href="#architecture" class="nav-link">架构</a>
-                <a href="#courses" class="nav-link">课程</a>
-                <a href="#tutorials" class="nav-link">教程</a>
-                <a href="#interview" class="nav-link">面试题</a>
-                <a href="#daily" class="nav-link">每日推送</a>
-                <a href="#resources" class="nav-link">资源</a>
+            <div class="nav-center">
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="搜索课程..." class="search-input" id="searchInput">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
             </div>
-            <div class="nav-actions">
-                <button id="theme-toggle" class="theme-toggle" title="切换主题 (8种主题)">
-                    <span>☀️ 暖光</span>
-                </button>
-                <select id="lang-switch" class="lang-select">
-                    <option value="zh">中文</option>
-                    <option value="en">EN</option>
-                </select>
-                <a href="https://github.com/Harzva/learn-likecc" class="btn-github" target="_blank">
-                    <svg height="20" width="20" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+            <div class="nav-right">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️</button>
+                <a href="https://github.com/Harzva/learn-likecc" class="github-btn" target="_blank">
+                    <svg height="18" width="18" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
                     GitHub
                 </a>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
     <!-- Hero 区域 -->
-    <section class="hero">
-        <div class="hero-bg"></div>
+    <section class="hero-main">
+        <div class="hero-bg-gradient"></div>
         <div class="hero-particles">
-            <div class="hero-particle" style="top: 10%; left: 20%; animation-delay: 0s;"></div>
-            <div class="hero-particle" style="top: 30%; left: 80%; animation-delay: 2s;"></div>
-            <div class="hero-particle" style="top: 50%; left: 10%; animation-delay: 4s;"></div>
-            <div class="hero-particle" style="top: 70%; left: 90%; animation-delay: 6s;"></div>
-            <div class="hero-particle" style="top: 90%; left: 50%; animation-delay: 8s;"></div>
+            <div class="particle" style="--delay: 0s; --x: 20%; --y: 10%;"></div>
+            <div class="particle" style="--delay: 2s; --x: 80%; --y: 30%;"></div>
+            <div class="particle" style="--delay: 4s; --x: 10%; --y: 50%;"></div>
+            <div class="particle" style="--delay: 6s; --x: 90%; --y: 70%;"></div>
         </div>
-        <div class="hero-content">
+        <div class="container hero-content">
             <div class="hero-badge">
-                <span class="badge-icon">🔥</span>
-                <span>2026.03 Source Map 事件</span>
+                <span>🔥 2026.03 Source Map 事件</span>
             </div>
             <h1 class="hero-title">
                 Claude Code<br>
-                <span class="gradient-text">源码课程</span>
+                <span class="gradient-text">完全学习指南</span>
             </h1>
             <p class="hero-subtitle">
-                从 Source Map 分析到可运行版本<br>
+                从源码分析到实战应用，系统学习 AI 编程助手<br>
                 <strong>1900+</strong> 文件 · <strong>51万+</strong> 行代码 · <strong>✅ 编译通过</strong>
             </p>
             <div class="hero-stats">
@@ -77,7 +69,7 @@
                 </div>
                 <div class="stat-item">
                     <span class="stat-value">12</span>
-                    <span class="stat-label">核心章节</span>
+                    <span class="stat-label">课程章节</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-value">✅</span>
@@ -85,1229 +77,543 @@
                 </div>
             </div>
             <div class="hero-actions">
-                <a href="tutorial.html" class="btn btn-primary">📖 官方教程</a>
-                <a href="handbook.html" class="btn btn-secondary">📘 完全手册</a>
-            </div>
-        </div>
-        <div class="hero-code">
-            <div class="code-window">
-                <div class="code-header">
-                    <span class="dot red"></span>
-                    <span class="dot yellow"></span>
-                    <span class="dot green"></span>
-                    <span class="code-title">agent_loop.ts</span>
-                </div>
-                <pre class="code-content"><code><span class="keyword">async function</span> <span class="function">agentLoop</span>() {
-  <span class="keyword">while</span> (!finished) {
-    <span class="comment">// 1. 获取用户输入</span>
-    <span class="keyword">const</span> userMessage = <span class="keyword">await</span> <span class="function">getUserInput</span>()
-
-    <span class="comment">// 2. 调用 Claude API</span>
-    <span class="keyword">const</span> response = <span class="keyword">await</span> <span class="function">callClaudeAPI</span>(userMessage)
-
-    <span class="comment">// 3. 处理工具调用</span>
-    <span class="keyword">if</span> (response.toolCalls) {
-      <span class="keyword">for</span> (<span class="keyword">const</span> toolCall <span class="keyword">of</span> response.toolCalls) {
-        <span class="keyword">const</span> result = <span class="keyword">await</span> <span class="function">executeTool</span>(toolCall)
-        context.<span class="function">push</span>(result)
-      }
-    }
-
-    <span class="comment">// 4. 输出响应</span>
-    <span class="function">displayResponse</span>(response)
-  }
-}</code></pre>
+                <a href="tutorial.html" class="btn-hero btn-primary">📖 开始学习</a>
+                <a href="https://github.com/Harzva/learn-likecc" class="btn-hero btn-secondary" target="_blank">🐙 查看源码</a>
             </div>
         </div>
     </section>
 
-    <!-- 概述区域 -->
-    <section id="overview" class="section overview">
+    <!-- 主要功能区 - 入口卡片 -->
+    <section class="features-main">
         <div class="container">
-            <h2 class="section-title">项目概述</h2>
-            <div class="overview-grid">
-                <div class="overview-card">
-                    <div class="card-icon">🔍</div>
-                    <h3>Source Map 事件</h3>
-                    <p>2026年3月，Anthropic 的 Claude Code CLI 工具的 source map 被打入正式发布包，包含 57MB 的源码映射文件。</p>
-                </div>
-                <div class="overview-card">
-                    <div class="card-icon">🔄</div>
-                    <h3>源码分析</h3>
-                    <p>通过 source map 分析，我们重建了 TypeScript 源码，创建了可编译、可运行的学习版本。</p>
-                </div>
-                <div class="overview-card">
-                    <div class="card-icon">📚</div>
-                    <h3>课程开发</h3>
-                    <p>基于源码分析，我们开发了 12 个渐进式课程章节，深入讲解 AI 编程助手的核心架构。</p>
-                </div>
-                <div class="overview-card">
-                    <div class="card-icon">🚀</div>
-                    <h3>可运行版本</h3>
-                    <p>经过优化修复，程序已经可以正常运行：CLI 解析、命令处理、API 调用均正常工作。</p>
-                </div>
+            <h2 class="section-title">📚 学习入口</h2>
+            <p class="section-subtitle">选择你的学习路径，点击进入详细教程</p>
+
+            <div class="features-grid-main">
+                <!-- 官方教程入口 -->
+                <a href="tutorial.html" class="feature-card-main feature-primary">
+                    <div class="feature-icon-main">📖</div>
+                    <h3 class="feature-title-main">官方教程</h3>
+                    <p class="feature-desc-main">基于官方文档整理的完整教程，涵盖安装、快速开始、Memory、Skills 等核心内容</p>
+                    <div class="feature-tags">
+                        <span class="tag">安装指南</span>
+                        <span class="tag">快速开始</span>
+                        <span class="tag">Memory</span>
+                        <span class="tag">Skills</span>
+                    </div>
+                    <div class="feature-arrow">→</div>
+                </a>
+
+                <!-- 完全手册入口 -->
+                <a href="handbook.html" class="feature-card-main feature-secondary">
+                    <div class="feature-icon-main">📘</div>
+                    <h3 class="feature-title-main">完全手册</h3>
+                    <p class="feature-desc-main">从入门到精通的学习路线图，包含新手、进阶、高级三阶段路径</p>
+                    <div class="feature-tags">
+                        <span class="tag">学习路线</span>
+                        <span class="tag">功能详解</span>
+                        <span class="tag">FAQ</span>
+                    </div>
+                    <div class="feature-arrow">→</div>
+                </a>
+
+                <!-- 源码课程入口 -->
+                <a href="#courses" class="feature-card-main feature-accent">
+                    <div class="feature-icon-main">🔬</div>
+                    <h3 class="feature-title-main">源码课程</h3>
+                    <p class="feature-desc-main">12 个渐进式课程章节，深入讲解 AI 编程助手的核心架构与实现</p>
+                    <div class="feature-tags">
+                        <span class="tag">Agent Loop</span>
+                        <span class="tag">Tool System</span>
+                        <span class="tag">MCP</span>
+                    </div>
+                    <div class="feature-arrow">→</div>
+                </a>
+
+                <!-- 面试题库入口 -->
+                <a href="#interview" class="feature-card-main feature-warning">
+                    <div class="feature-icon-main">💼</div>
+                    <h3 class="feature-title-main">面试题库</h3>
+                    <p class="feature-desc-main">50+ 高频面试题，覆盖概念、实践、对比、场景四大类型</p>
+                    <div class="feature-tags">
+                        <span class="tag">概念题</span>
+                        <span class="tag">实践题</span>
+                        <span class="tag">场景题</span>
+                    </div>
+                    <div class="feature-arrow">→</div>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- 架构区域 -->
-    <section id="architecture" class="section architecture">
+    <!-- 学习路径 -->
+    <section class="learning-path-main">
         <div class="container">
-            <h2 class="section-title">核心架构</h2>
-            <div class="arch-diagram">
-                <div class="arch-layer" data-layer="1">
-                    <div class="layer-title">用户交互层</div>
-                    <div class="layer-items">
-                        <span class="arch-item">CLI Parser</span>
-                        <span class="arch-item">REPL Screen</span>
-                        <span class="arch-item">Permission UI</span>
-                    </div>
-                </div>
-                <div class="arch-arrow">↓</div>
-                <div class="arch-layer" data-layer="2">
-                    <div class="layer-title">查询引擎层</div>
-                    <div class="layer-items">
-                        <span class="arch-item">QueryEngine</span>
-                        <span class="arch-item">Context Manager</span>
-                        <span class="arch-item">Compact Service</span>
-                    </div>
-                </div>
-                <div class="arch-arrow">↓</div>
-                <div class="arch-layer" data-layer="3">
-                    <div class="layer-title">工具执行层</div>
-                    <div class="layer-items">
-                        <span class="arch-item">Tool Registry</span>
-                        <span class="arch-item">Permission Check</span>
-                        <span class="arch-item">Sandbox Runtime</span>
-                    </div>
-                </div>
-                <div class="arch-arrow">↓</div>
-                <div class="arch-layer" data-layer="4">
-                    <div class="layer-title">API 通信层</div>
-                    <div class="layer-items">
-                        <span class="arch-item">Claude SDK</span>
-                        <span class="arch-item">MCP Protocol</span>
-                        <span class="arch-item">Stream Handler</span>
-                    </div>
-                </div>
-            </div>
+            <h2 class="section-title">🛤️ 学习路径</h2>
+            <p class="section-subtitle">从零基础到精通的完整学习路线</p>
 
-            <div class="arch-features">
-                <h3>发现的新功能</h3>
-                <div class="features-grid">
-                    <div class="feature-item">
-                        <span class="feature-icon">🐱</span>
-                        <span class="feature-name">Buddy</span>
-                        <span class="feature-desc">终端电子宠物 (愚人节彩蛋?)</span>
-                    </div>
-                    <div class="feature-item">
-                        <span class="feature-icon">🧠</span>
-                        <span class="feature-name">Kairos</span>
-                        <span class="feature-desc">跨会话长期记忆助手</span>
-                    </div>
-                    <div class="feature-item">
-                        <span class="feature-icon">📋</span>
-                        <span class="feature-name">Ultraplan</span>
-                        <span class="feature-desc">超长时间深度规划模式</span>
-                    </div>
-                    <div class="feature-item">
-                        <span class="feature-icon">👥</span>
-                        <span class="feature-name">多Agent协作</span>
-                        <span class="feature-desc">多个子Agent并行分工</span>
-                    </div>
+            <div class="path-steps-main">
+                <div class="path-step" data-step="1">
+                    <div class="step-number">1</div>
+                    <h4>安装与配置</h4>
+                    <p>安装 Claude Code，配置账户和环境</p>
+                    <span class="step-time">⏱️ 15 分钟</span>
+                </div>
+                <div class="path-step" data-step="2">
+                    <div class="step-number">2</div>
+                    <h4>基础操作</h4>
+                    <p>掌握常用命令和基本工作流</p>
+                    <span class="step-time">⏱️ 1 小时</span>
+                </div>
+                <div class="path-step" data-step="3">
+                    <div class="step-number">3</div>
+                    <h4>Memory 系统</h4>
+                    <p>配置 CLAUDE.md，让 Claude 记住你的项目</p>
+                    <span class="step-time">⏱️ 45 分钟</span>
+                </div>
+                <div class="path-step" data-step="4">
+                    <div class="step-number">4</div>
+                    <h4>Skills & Hooks</h4>
+                    <p>创建可复用的工作流和自动化检查</p>
+                    <span class="step-time">⏱️ 2 小时</span>
+                </div>
+                <div class="path-step" data-step="5">
+                    <div class="step-number">5</div>
+                    <h4>MCP 集成</h4>
+                    <p>连接 GitHub、数据库等外部工具</p>
+                    <span class="step-time">⏱️ 1.5 小时</span>
+                </div>
+                <div class="path-step" data-step="6">
+                    <div class="step-number">6</div>
+                    <h4>高级特性</h4>
+                    <p>Subagents、Plugins、CI/CD 集成</p>
+                    <span class="step-time">⏱️ 3 小时</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 课程区域 -->
-    <section id="courses" class="section courses">
+    <!-- 课程章节 -->
+    <section id="courses" class="courses-main">
         <div class="container">
-            <h2 class="section-title">课程章节</h2>
-            <p class="section-desc">12 个渐进式课程，从核心概念到高级特性</p>
+            <h2 class="section-title">📚 源码课程章节</h2>
+            <p class="section-subtitle">12 个渐进式课程，深入理解 Claude Code 内核</p>
 
-            <figure class="mermaid-figure" aria-label="课程主流程图">
-                <figcaption class="mermaid-caption">
-                    <strong>流程概览</strong>：用户输入 → 初始化与上下文准备 → 推理引擎（API 与流式输出）→ 若需工具则执行并反馈后回到上下文准备，否则结束。可与 <strong>S01–S08</strong> 等章节对照阅读。
-                </figcaption>
-                <div class="mermaid-diagram-scroll" data-mermaid-diagram="agent-loop"></div>
-            </figure>
+            <div class="courses-tabs">
+                <button class="courses-tab active" data-part="all">全部</button>
+                <button class="courses-tab" data-part="1">Part 1: 核心架构</button>
+                <button class="courses-tab" data-part="2">Part 2: 高级特性</button>
+                <button class="courses-tab" data-part="3">Part 3: 扩展集成</button>
+            </div>
 
-            <div class="courses-grid">
-                <a href="s01.html" class="course-card" data-part="1">
-                    <div class="course-header">
+            <div class="courses-grid-main">
+                <a href="s01.html" class="course-card-main" data-part="1">
+                    <div class="course-header-main">
                         <span class="course-number">S01</span>
-                        <span class="course-part">Part 1: 核心架构</span>
+                        <span class="course-part">核心架构</span>
                     </div>
-                    <h3 class="course-title">Agent Loop</h3>
-                    <p class="course-desc">主循环与状态管理</p>
-                    <div class="course-meta">
-                        <span class="meta-item">📍 核心概念</span>
-                        <span class="meta-item">⏱️ 30 min</span>
+                    <h4 class="course-title-main">Agent Loop</h4>
+                    <p class="course-desc-main">主循环与状态管理</p>
+                    <div class="course-meta-main">
+                        <span>📍 核心概念</span>
+                        <span>⏱️ 30 min</span>
                     </div>
                 </a>
 
-                <a href="s02.html" class="course-card" data-part="1">
-                    <div class="course-header">
+                <a href="s02.html" class="course-card-main" data-part="1">
+                    <div class="course-header-main">
                         <span class="course-number">S02</span>
-                        <span class="course-part">Part 1: 核心架构</span>
+                        <span class="course-part">核心架构</span>
                     </div>
-                    <h3 class="course-title">Tool System</h3>
-                    <p class="course-desc">工具定义与调用机制</p>
-                    <div class="course-meta">
-                        <span class="meta-item">📍 核心概念</span>
-                        <span class="meta-item">⏱️ 45 min</span>
+                    <h4 class="course-title-main">Tool System</h4>
+                    <p class="course-desc-main">工具定义与调用机制</p>
+                    <div class="course-meta-main">
+                        <span>📍 核心概念</span>
+                        <span>⏱️ 45 min</span>
                     </div>
                 </a>
 
-                <a href="s03.html" class="course-card" data-part="1">
-                    <div class="course-header">
+                <a href="s03.html" class="course-card-main" data-part="1">
+                    <div class="course-header-main">
                         <span class="course-number">S03</span>
-                        <span class="course-part">Part 1: 核心架构</span>
+                        <span class="course-part">核心架构</span>
                     </div>
-                    <h3 class="course-title">Permission Model</h3>
-                    <p class="course-desc">权限控制与用户交互</p>
-                    <div class="course-meta">
-                        <span class="meta-item">📍 安全</span>
-                        <span class="meta-item">⏱️ 40 min</span>
+                    <h4 class="course-title-main">Permission Model</h4>
+                    <p class="course-desc-main">权限控制与用户交互</p>
+                    <div class="course-meta-main">
+                        <span>📍 安全</span>
+                        <span>⏱️ 40 min</span>
                     </div>
                 </a>
 
-                <a href="s04.html" class="course-card" data-part="1">
-                    <div class="course-header">
+                <a href="s04.html" class="course-card-main" data-part="1">
+                    <div class="course-header-main">
                         <span class="course-number">S04</span>
-                        <span class="course-part">Part 1: 核心架构</span>
+                        <span class="course-part">核心架构</span>
                     </div>
-                    <h3 class="course-title">Command Interface</h3>
-                    <p class="course-desc">CLI 命令处理</p>
-                    <div class="course-meta">
-                        <span class="meta-item">📍 CLI</span>
-                        <span class="meta-item">⏱️ 35 min</span>
+                    <h4 class="course-title-main">Command Interface</h4>
+                    <p class="course-desc-main">CLI 命令处理</p>
+                    <div class="course-meta-main">
+                        <span>📍 CLI</span>
+                        <span>⏱️ 35 min</span>
                     </div>
                 </a>
 
-                <a href="s05.html" class="course-card" data-part="2">
-                    <div class="course-header">
+                <a href="s05.html" class="course-card-main" data-part="2">
+                    <div class="course-header-main">
                         <span class="course-number">S05</span>
-                        <span class="course-part">Part 2: 高级特性</span>
+                        <span class="course-part">高级特性</span>
                     </div>
-                    <h3 class="course-title">Context Compression</h3>
-                    <p class="course-desc">消息压缩与优化</p>
-                    <div class="course-meta">
-                        <span class="meta-item">📍 性能</span>
-                        <span class="meta-item">⏱️ 50 min</span>
+                    <h4 class="course-title-main">Context Compression</h4>
+                    <p class="course-desc-main">消息压缩与优化</p>
+                    <div class="course-meta-main">
+                        <span>📍 性能</span>
+                        <span>⏱️ 50 min</span>
                     </div>
                 </a>
 
-                <a href="s06.html" class="course-card" data-part="2">
-                    <div class="course-header">
+                <a href="s06.html" class="course-card-main" data-part="2">
+                    <div class="course-header-main">
                         <span class="course-number">S06</span>
-                        <span class="course-part">Part 2: 高级特性</span>
+                        <span class="course-part">高级特性</span>
                     </div>
-                    <h3 class="course-title">Subagent Fork</h3>
-                    <p class="course-desc">子代理创建与分支</p>
-                    <div class="course-meta">
-                        <span class="meta-item">📍 架构</span>
-                        <span class="meta-item">⏱️ 55 min</span>
+                    <h4 class="course-title-main">Subagent Fork</h4>
+                    <p class="course-desc-main">子代理创建与分支</p>
+                    <div class="course-meta-main">
+                        <span>📍 架构</span>
+                        <span>⏱️ 55 min</span>
                     </div>
                 </a>
 
-                <a href="s07.html" class="course-card" data-part="2">
-                    <div class="course-header">
+                <a href="s07.html" class="course-card-main" data-part="2">
+                    <div class="course-header-main">
                         <span class="course-number">S07</span>
-                        <span class="course-part">Part 2: 高级特性</span>
+                        <span class="course-part">高级特性</span>
                     </div>
-                    <h3 class="course-title">MCP Protocol</h3>
-                    <p class="course-desc">Model Context Protocol</p>
-                    <div class="course-meta">
-                        <span class="meta-item">📍 协议</span>
-                        <span class="meta-item">⏱️ 60 min</span>
+                    <h4 class="course-title-main">MCP Protocol</h4>
+                    <p class="course-desc-main">Model Context Protocol</p>
+                    <div class="course-meta-main">
+                        <span>📍 协议</span>
+                        <span>⏱️ 60 min</span>
                     </div>
                 </a>
 
-                <a href="s08.html" class="course-card" data-part="2">
-                    <div class="course-header">
+                <a href="s08.html" class="course-card-main" data-part="2">
+                    <div class="course-header-main">
                         <span class="course-number">S08</span>
-                        <span class="course-part">Part 2: 高级特性</span>
+                        <span class="course-part">高级特性</span>
                     </div>
-                    <h3 class="course-title">Task Management</h3>
-                    <p class="course-desc">任务队列与调度</p>
-                    <div class="course-meta">
-                        <span class="meta-item">📍 并发</span>
-                        <span class="meta-item">⏱️ 45 min</span>
+                    <h4 class="course-title-main">Task Management</h4>
+                    <p class="course-desc-main">任务队列与调度</p>
+                    <div class="course-meta-main">
+                        <span>📍 并发</span>
+                        <span>⏱️ 45 min</span>
                     </div>
                 </a>
 
-                <a href="s09.html" class="course-card" data-part="3">
-                    <div class="course-header">
+                <a href="s09.html" class="course-card-main" data-part="3">
+                    <div class="course-header-main">
                         <span class="course-number">S09</span>
-                        <span class="course-part">Part 3: 扩展集成</span>
+                        <span class="course-part">扩展集成</span>
                     </div>
-                    <h3 class="course-title">Bridge IDE</h3>
-                    <p class="course-desc">IDE 集成与通信</p>
-                    <div class="course-meta">
-                        <span class="meta-item">📍 集成</span>
-                        <span class="meta-item">⏱️ 40 min</span>
+                    <h4 class="course-title-main">Bridge IDE</h4>
+                    <p class="course-desc-main">IDE 集成与通信</p>
+                    <div class="course-meta-main">
+                        <span>📍 集成</span>
+                        <span>⏱️ 40 min</span>
                     </div>
                 </a>
 
-                <a href="s10.html" class="course-card" data-part="3">
-                    <div class="course-header">
+                <a href="s10.html" class="course-card-main" data-part="3">
+                    <div class="course-header-main">
                         <span class="course-number">S10</span>
-                        <span class="course-part">Part 3: 扩展集成</span>
+                        <span class="course-part">扩展集成</span>
                     </div>
-                    <h3 class="course-title">Hooks Extension</h3>
-                    <p class="course-desc">钩子系统扩展</p>
-                    <div class="course-meta">
-                        <span class="meta-item">📍 扩展</span>
-                        <span class="meta-item">⏱️ 35 min</span>
+                    <h4 class="course-title-main">Hooks Extension</h4>
+                    <p class="course-desc-main">钩子系统扩展</p>
+                    <div class="course-meta-main">
+                        <span>📍 扩展</span>
+                        <span>⏱️ 35 min</span>
                     </div>
                 </a>
 
-                <a href="s11.html" class="course-card" data-part="3">
-                    <div class="course-header">
+                <a href="s11.html" class="course-card-main" data-part="3">
+                    <div class="course-header-main">
                         <span class="course-number">S11</span>
-                        <span class="course-part">Part 3: 扩展集成</span>
+                        <span class="course-part">扩展集成</span>
                     </div>
-                    <h3 class="course-title">Vim Mode</h3>
-                    <p class="course-desc">Vim 键绑定支持</p>
-                    <div class="course-meta">
-                        <span class="meta-item">📍 交互</span>
-                        <span class="meta-item">⏱️ 30 min</span>
+                    <h4 class="course-title-main">Vim Mode</h4>
+                    <p class="course-desc-main">Vim 键绑定支持</p>
+                    <div class="course-meta-main">
+                        <span>📍 交互</span>
+                        <span>⏱️ 30 min</span>
                     </div>
                 </a>
 
-                <a href="s12.html" class="course-card" data-part="3">
-                    <div class="course-header">
+                <a href="s12.html" class="course-card-main" data-part="3">
+                    <div class="course-header-main">
                         <span class="course-number">S12</span>
-                        <span class="course-part">Part 3: 扩展集成</span>
+                        <span class="course-part">扩展集成</span>
                     </div>
-                    <h3 class="course-title">Git Integration</h3>
-                    <p class="course-desc">Git 工作流集成</p>
-                    <div class="course-meta">
-                        <span class="meta-item">📍 工作流</span>
-                        <span class="meta-item">⏱️ 45 min</span>
+                    <h4 class="course-title-main">Git Integration</h4>
+                    <p class="course-desc-main">Git 工作流集成</p>
+                    <div class="course-meta-main">
+                        <span>📍 工作流</span>
+                        <span>⏱️ 45 min</span>
                     </div>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- 教程专栏 -->
-    <section id="tutorials" class="section tutorials">
+    <!-- 面试问题 -->
+    <section id="interview" class="interview-main">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">📚 教程专栏</h2>
-                <p class="section-desc">从入门到精通，系统学习 Claude Code</p>
+            <h2 class="section-title">💼 面试题库</h2>
+            <p class="section-subtitle">高频面试题，覆盖核心知识点</p>
+
+            <div class="interview-categories-main">
+                <button class="interview-cat active" data-cat="all">全部</button>
+                <button class="interview-cat" data-cat="concept">概念题</button>
+                <button class="interview-cat" data-cat="practice">实践题</button>
+                <button class="interview-cat" data-cat="compare">对比题</button>
+                <button class="interview-cat" data-cat="scenario">场景题</button>
             </div>
 
-            <figure class="mermaid-figure" aria-label="教程主流程图">
-                <figcaption class="mermaid-caption">
-                    <strong>同一套主流程</strong>：在动手配置、命令与进阶技巧之前，先建立「输入—推理—工具循环—结束」的端到端心智模型，与上方课程章节一致。
-                </figcaption>
-                <div class="mermaid-diagram-scroll" data-mermaid-diagram="agent-loop"></div>
-            </figure>
-
-            <div class="tutorials-tabs">
-                <button class="tab-btn active" data-tab="beginner">🌱 入门篇</button>
-                <button class="tab-btn" data-tab="intermediate">⚡ 进阶篇</button>
-                <button class="tab-btn" data-tab="advanced">🚀 高级篇</button>
-            </div>
-
-            <div class="tutorials-content">
-                <!-- 入门篇 -->
-                <div class="tab-content active" id="beginner">
-                    <div class="tutorial-grid">
-                        <div class="tutorial-card">
-                            <div class="tutorial-icon">⚡</div>
-                            <h3>15分钟快速开始</h3>
-                            <p>安装配置 Claude Code，运行第一个命令</p>
-                            <div class="tutorial-meta">
-                                <span>⏱️ 15 min</span>
-                                <span>📋 新手必读</span>
-                            </div>
-                            <div class="tutorial-steps">
-                                <div class="step">
-                                    <code>claude</code>
-                                    <span>启动交互式对话</span>
-                                </div>
-                                <div class="step">
-                                    <code>/help</code>
-                                    <span>查看帮助命令</span>
-                                </div>
-                                <div class="step">
-                                    <code>/config</code>
-                                    <span>配置设置</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="tutorial-card">
-                            <div class="tutorial-icon">📝</div>
-                            <h3>Slash Commands 入门</h3>
-                            <p>掌握 55+ 内建命令，提升开发效率</p>
-                            <div class="tutorial-meta">
-                                <span>⏱️ 30 min</span>
-                                <span>🔥 高频使用</span>
-                            </div>
-                            <div class="tutorial-steps">
-                                <div class="step">
-                                    <code>/optimize</code>
-                                    <span>性能优化分析</span>
-                                </div>
-                                <div class="step">
-                                    <code>/commit</code>
-                                    <span>智能提交</span>
-                                </div>
-                                <div class="step">
-                                    <code>/rewind</code>
-                                    <span>安全回退</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="tutorial-card">
-                            <div class="tutorial-icon">🧠</div>
-                            <h3>Memory 系统详解</h3>
-                            <p>让 Claude 记住你的项目和偏好</p>
-                            <div class="tutorial-meta">
-                                <span>⏱️ 25 min</span>
-                                <span>📁 项目配置</span>
-                            </div>
-                            <div class="tutorial-steps">
-                                <div class="step">
-                                    <code>CLAUDE.md</code>
-                                    <span>项目规则文件</span>
-                                </div>
-                                <div class="step">
-                                    <code>~/.claude/CLAUDE.md</code>
-                                    <span>个人偏好配置</span>
-                                </div>
-                                <div class="step">
-                                    <code>directory-CLAUDE.md</code>
-                                    <span>目录级规则</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="tutorial-card">
-                            <div class="tutorial-icon">🔒</div>
-                            <h3>Permission Modes</h3>
-                            <p>理解权限模式，安全使用 Claude Code</p>
-                            <div class="tutorial-meta">
-                                <span>⏱️ 20 min</span>
-                                <span>🔐 安全必读</span>
-                            </div>
-                            <div class="tutorial-steps">
-                                <div class="step">
-                                    <code>default</code>
-                                    <span>默认询问模式</span>
-                                </div>
-                                <div class="step">
-                                    <code>acceptEdits</code>
-                                    <span>自动接受编辑</span>
-                                </div>
-                                <div class="step">
-                                    <code>plan</code>
-                                    <span>只读规划模式</span>
-                                </div>
-                            </div>
-                        </div>
+            <div class="interview-grid-main">
+                <div class="question-card-main" data-cat="concept">
+                    <div class="question-header-main">
+                        <span class="q-number">Q1</span>
+                        <span class="q-type concept">概念</span>
+                        <span class="q-difficulty easy">简单</span>
                     </div>
+                    <h4>什么是 Claude Code？与 ChatGPT 有什么区别？</h4>
+                    <p class="question-preview">Claude Code 是 CLI 工具，直接操作本地文件和终端...</p>
                 </div>
 
-                <!-- 进阶篇 -->
-                <div class="tab-content" id="intermediate">
-                    <div class="tutorial-grid">
-                        <div class="tutorial-card">
-                            <div class="tutorial-icon">🔧</div>
-                            <h3>Skills 技能系统</h3>
-                            <p>创建可复用的自动化工作流</p>
-                            <div class="tutorial-meta">
-                                <span>⏱️ 45 min</span>
-                                <span>⚙️ 自动化</span>
-                            </div>
-                            <div class="tutorial-steps">
-                                <div class="step">
-                                    <code>SKILL.md</code>
-                                    <span>技能定义文件</span>
-                                </div>
-                                <div class="step">
-                                    <code>scripts/</code>
-                                    <span>脚本目录</span>
-                                </div>
-                                <div class="step">
-                                    <code>templates/</code>
-                                    <span>模板目录</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="tutorial-card">
-                            <div class="tutorial-icon">🪝</div>
-                            <h3>Hooks 钩子系统</h3>
-                            <p>事件驱动的自动化检查与拦截</p>
-                            <div class="tutorial-meta">
-                                <span>⏱️ 40 min</span>
-                                <span>🔄 自动化</span>
-                            </div>
-                            <div class="tutorial-steps">
-                                <div class="step">
-                                    <code>pre-commit.sh</code>
-                                    <span>提交前检查</span>
-                                </div>
-                                <div class="step">
-                                    <code>security-scan.sh</code>
-                                    <span>安全扫描</span>
-                                </div>
-                                <div class="step">
-                                    <code>format-code.sh</code>
-                                    <span>代码格式化</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="tutorial-card">
-                            <div class="tutorial-icon">🔌</div>
-                            <h3>MCP 协议集成</h3>
-                            <p>连接外部工具与实时数据源</p>
-                            <div class="tutorial-meta">
-                                <span>⏱️ 50 min</span>
-                                <span>🌐 集成</span>
-                            </div>
-                            <div class="tutorial-steps">
-                                <div class="step">
-                                    <code>.mcp.json</code>
-                                    <span>MCP 配置文件</span>
-                                </div>
-                                <div class="step">
-                                    <code>GITHUB_TOKEN</code>
-                                    <span>GitHub 集成</span>
-                                </div>
-                                <div class="step">
-                                    <code>/mcp</code>
-                                    <span>管理 MCP servers</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="tutorial-card">
-                            <div class="tutorial-icon">🤖</div>
-                            <h3>Subagents 子代理</h3>
-                            <p>任务拆分与并行处理</p>
-                            <div class="tutorial-meta">
-                                <span>⏱️ 55 min</span>
-                                <span>🏗️ 架构</span>
-                            </div>
-                            <div class="tutorial-steps">
-                                <div class="step">
-                                    <code>general-purpose</code>
-                                    <span>通用子代理</span>
-                                </div>
-                                <div class="step">
-                                    <code>Explore</code>
-                                    <span>代码探索代理</span>
-                                </div>
-                                <div class="step">
-                                    <code>Plan</code>
-                                    <span>方案设计代理</span>
-                                </div>
-                            </div>
-                        </div>
+                <div class="question-card-main" data-cat="concept">
+                    <div class="question-header-main">
+                        <span class="q-number">Q2</span>
+                        <span class="q-type concept">概念</span>
+                        <span class="q-difficulty medium">中等</span>
                     </div>
+                    <h4>解释 Claude Code 的 Agent Loop 工作原理</h4>
+                    <p class="question-preview">四步循环：获取输入 → 调用 API → 执行工具 → 输出响应...</p>
                 </div>
 
-                <!-- 高级篇 -->
-                <div class="tab-content" id="advanced">
-                    <div class="tutorial-grid">
-                        <div class="tutorial-card">
-                            <div class="tutorial-icon">📦</div>
-                            <h3>Plugins 插件开发</h3>
-                            <p>打包分发团队级解决方案</p>
-                            <div class="tutorial-meta">
-                                <span>⏱️ 60 min</span>
-                                <span>👥 团队协作</span>
-                            </div>
-                            <div class="tutorial-steps">
-                                <div class="step">
-                                    <code>plugin.json</code>
-                                    <span>插件清单</span>
-                                </div>
-                                <div class="step">
-                                    <code>/plugin install</code>
-                                    <span>安装插件</span>
-                                </div>
-                                <div class="step">
-                                    <code>commands/agents/</code>
-                                    <span>包含内容</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="tutorial-card">
-                            <div class="tutorial-icon">🎨</div>
-                            <h3>Advanced Features</h3>
-                            <p>规划模式、后台任务、工作树</p>
-                            <div class="tutorial-meta">
-                                <span>⏱️ 70 min</span>
-                                <span>🚀 高级</span>
-                            </div>
-                            <div class="tutorial-steps">
-                                <div class="step">
-                                    <code>/plan</code>
-                                    <span>进入规划模式</span>
-                                </div>
-                                <div class="step">
-                                    <code>--background</code>
-                                    <span>后台任务</span>
-                                </div>
-                                <div class="step">
-                                    <code>worktree</code>
-                                    <span>隔离工作树</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="tutorial-card">
-                            <div class="tutorial-icon">⚡</div>
-                            <h3>CLI 自动化</h3>
-                            <p>非交互模式与 CI/CD 集成</p>
-                            <div class="tutorial-meta">
-                                <span>⏱️ 45 min</span>
-                                <span>🔄 CI/CD</span>
-                            </div>
-                            <div class="tutorial-steps">
-                                <div class="step">
-                                    <code>claude -p</code>
-                                    <span>Print 模式</span>
-                                </div>
-                                <div class="step">
-                                    <code>--permission-mode</code>
-                                    <span>权限设置</span>
-                                </div>
-                                <div class="step">
-                                    <code>-c / -r</code>
-                                    <span>Session 管理</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="tutorial-card">
-                            <div class="tutorial-icon">🔄</div>
-                            <h3>Checkpoints 回退系统</h3>
-                            <p>安全试错与状态恢复</p>
-                            <div class="tutorial-meta">
-                                <span>⏱️ 25 min</span>
-                                <span>🛡️ 安全</span>
-                            </div>
-                            <div class="tutorial-steps">
-                                <div class="step">
-                                    <code>Esc+Esc</code>
-                                    <span>创建检查点</span>
-                                </div>
-                                <div class="step">
-                                    <code>/rewind</code>
-                                    <span>回退操作</span>
-                                </div>
-                                <div class="step">
-                                    <code>自动创建</code>
-                                    <span>定时检查点</span>
-                                </div>
-                            </div>
-                        </div>
+                <div class="question-card-main" data-cat="concept">
+                    <div class="question-header-main">
+                        <span class="q-number">Q3</span>
+                        <span class="q-type concept">概念</span>
+                        <span class="q-difficulty medium">中等</span>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 面试问题专栏 -->
-    <section id="interview" class="section interview">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">💼 面试问题专栏</h2>
-                <p class="section-desc">高频面试题，掌握 Claude Code 核心概念</p>
-            </div>
-
-            <div class="interview-categories">
-                <button class="category-btn active" data-category="concept">概念题</button>
-                <button class="category-btn" data-category="practice">实践题</button>
-                <button class="category-btn" data-category="compare">对比题</button>
-                <button class="category-btn" data-category="scenario">场景题</button>
-            </div>
-
-            <div class="interview-content">
-                <!-- 概念题 -->
-                <div class="category-content active" id="concept">
-                    <div class="question-list">
-                        <div class="question-card">
-                            <div class="question-header">
-                                <span class="question-number">Q1</span>
-                                <span class="question-tag concept">概念</span>
-                                <span class="difficulty easy">简单</span>
-                            </div>
-                            <div class="question-body">
-                                <h4>什么是 Claude Code？它与 ChatGPT 有什么区别？</h4>
-                                <div class="answer-preview">
-                                    <p><strong>核心区别：</strong></p>
-                                    <ul>
-                                        <li>Claude Code 是 <strong>CLI 工具</strong>，直接操作本地文件和终端</li>
-                                        <li>ChatGPT 是 <strong>Web 应用</strong>，需要手动复制代码</li>
-                                        <li>Claude Code 具备<strong>工具调用能力</strong>（读写文件、执行命令）</li>
-                                        <li>Claude Code 支持<strong>持久化记忆</strong>和<strong>项目级规则</strong></li>
-                                    </ul>
-                                </div>
-                                <button class="expand-btn">展开完整答案</button>
-                            </div>
-                        </div>
-
-                        <div class="question-card">
-                            <div class="question-header">
-                                <span class="question-number">Q2</span>
-                                <span class="question-tag concept">概念</span>
-                                <span class="difficulty medium">中等</span>
-                            </div>
-                            <div class="question-body">
-                                <h4>解释 Claude Code 的 Agent Loop 工作原理</h4>
-                                <div class="answer-preview">
-                                    <p><strong>四步循环：</strong></p>
-                                    <pre><code>while (!finished) {
-  1. getUserInput()    // 获取用户输入
-  2. callClaudeAPI()   // 调用 API
-  3. executeTools()    // 执行工具
-  4. displayResponse() // 输出响应
-}</code></pre>
-                                    <p>每个循环中，Claude 决定是否需要调用工具，并处理返回结果。</p>
-                                </div>
-                                <button class="expand-btn">展开完整答案</button>
-                            </div>
-                        </div>
-
-                        <div class="question-card">
-                            <div class="question-header">
-                                <span class="question-number">Q3</span>
-                                <span class="question-tag concept">概念</span>
-                                <span class="difficulty medium">中等</span>
-                            </div>
-                            <div class="question-body">
-                                <h4>什么是 MCP (Model Context Protocol)？</h4>
-                                <div class="answer-preview">
-                                    <p><strong>MCP 是一种协议，让 Claude Code 连接外部工具和数据源：</strong></p>
-                                    <ul>
-                                        <li><strong>定义：</strong>标准化的工具集成协议</li>
-                                        <li><strong>作用：</strong>连接 GitHub、数据库、文件系统等</li>
-                                        <li><strong>配置：</strong>通过 <code>.mcp.json</code> 文件</li>
-                                        <li><strong>管理：</strong><code>/mcp</code> 命令查看和管理</li>
-                                    </ul>
-                                </div>
-                                <button class="expand-btn">展开完整答案</button>
-                            </div>
-                        </div>
-                    </div>
+                    <h4>什么是 MCP (Model Context Protocol)？</h4>
+                    <p class="question-preview">MCP 是一种协议，让 Claude Code 连接外部工具和数据源...</p>
                 </div>
 
-                <!-- 实践题 -->
-                <div class="category-content" id="practice">
-                    <div class="question-list">
-                        <div class="question-card">
-                            <div class="question-header">
-                                <span class="question-number">Q4</span>
-                                <span class="question-tag practice">实践</span>
-                                <span class="difficulty easy">简单</span>
-                            </div>
-                            <div class="question-body">
-                                <h4>如何在项目中配置项目级 Memory？</h4>
-                                <div class="answer-preview">
-                                    <p><strong>步骤：</strong></p>
-                                    <pre><code># 1. 在项目根目录创建 CLAUDE.md
-touch CLAUDE.md
-
-# 2. 编辑内容
-echo "# 项目规则\n\n## 代码规范\n- 使用 TypeScript\n- 遵循 ESLint 规则" > CLAUDE.md
-
-# 3. Claude Code 自动加载</code></pre>
-                                </div>
-                                <button class="expand-btn">展开完整答案</button>
-                            </div>
-                        </div>
-
-                        <div class="question-card">
-                            <div class="question-header">
-                                <span class="question-number">Q5</span>
-                                <span class="question-tag practice">实践</span>
-                                <span class="difficulty medium">中等</span>
-                            </div>
-                            <div class="question-body">
-                                <h4>如何创建自定义 Slash Command？</h4>
-                                <div class="answer-preview">
-                                    <p><strong>步骤：</strong></p>
-                                    <pre><code># 1. 创建命令目录
-mkdir -p .claude/commands
-
-# 2. 创建命令文件
-cat > .claude/commands/optimize.md << 'EOF'
----
-name: optimize
-description: 性能优化分析
----
-
-请分析当前代码的性能瓶颈，并给出优化建议：
-1. 识别热点代码
-2. 分析时间复杂度
-3. 提供优化方案
-EOF
-
-# 3. 使用命令
-# /optimize</code></pre>
-                                </div>
-                                <button class="expand-btn">展开完整答案</button>
-                            </div>
-                        </div>
-
-                        <div class="question-card">
-                            <div class="question-header">
-                                <span class="question-number">Q6</span>
-                                <span class="question-tag practice">实践</span>
-                                <span class="difficulty hard">困难</span>
-                            </div>
-                            <div class="question-body">
-                                <h4>如何配置 GitHub MCP 集成？</h4>
-                                <div class="answer-preview">
-                                    <p><strong>步骤：</strong></p>
-                                    <pre><code># 1. 创建 GitHub Token
-# 访问 github.com/settings/tokens
-# 创建 token，勾选 repo 权限
-
-# 2. 设置环境变量
-export GITHUB_TOKEN="ghp_xxxx"
-
-# 3. 创建 MCP 配置
-cat > .mcp.json << 'EOF'
-{
-  "mcpServers": {
-    "github": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-github"],
-      "env": {
-        "GITHUB_TOKEN": "$GITHUB_TOKEN"
-      }
-    }
-  }
-}
-EOF
-
-# 4. 在 Claude Code 中验证
-# /mcp</code></pre>
-                                </div>
-                                <button class="expand-btn">展开完整答案</button>
-                            </div>
-                        </div>
+                <div class="question-card-main" data-cat="practice">
+                    <div class="question-header-main">
+                        <span class="q-number">Q4</span>
+                        <span class="q-type practice">实践</span>
+                        <span class="q-difficulty easy">简单</span>
                     </div>
+                    <h4>如何在项目中配置项目级 Memory？</h4>
+                    <p class="question-preview">在项目根目录创建 CLAUDE.md 文件...</p>
                 </div>
 
-                <!-- 对比题 -->
-                <div class="category-content" id="compare">
-                    <div class="question-list">
-                        <div class="question-card">
-                            <div class="question-header">
-                                <span class="question-number">Q7</span>
-                                <span class="question-tag compare">对比</span>
-                                <span class="difficulty medium">中等</span>
-                            </div>
-                            <div class="question-body">
-                                <h4>Slash Commands vs Skills vs Subagents 的区别？</h4>
-                                <div class="answer-preview">
-                                    <table class="compare-table">
-                                        <tr>
-                                            <th>特性</th>
-                                            <th>Slash Commands</th>
-                                            <th>Skills</th>
-                                            <th>Subagents</th>
-                                        </tr>
-                                        <tr>
-                                            <td>触发方式</td>
-                                            <td>手动 /cmd</td>
-                                            <td>自动触发</td>
-                                            <td>自动委派</td>
-                                        </tr>
-                                        <tr>
-                                            <td>持久性</td>
-                                            <td>当前会话</td>
-                                            <td>文件系统级</td>
-                                            <td>独立上下文</td>
-                                        </tr>
-                                        <tr>
-                                            <td>适用场景</td>
-                                            <td>高频快捷操作</td>
-                                            <td>复用工作流</td>
-                                            <td>任务拆分</td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <button class="expand-btn">展开完整答案</button>
-                            </div>
-                        </div>
-
-                        <div class="question-card">
-                            <div class="question-header">
-                                <span class="question-number">Q8</span>
-                                <span class="question-tag compare">对比</span>
-                                <span class="difficulty medium">中等</span>
-                            </div>
-                            <div class="question-body">
-                                <h4>项目级 Memory vs 个人级 Memory 的区别？</h4>
-                                <div class="answer-preview">
-                                    <table class="compare-table">
-                                        <tr>
-                                            <th>特性</th>
-                                            <th>项目级</th>
-                                            <th>个人级</th>
-                                        </tr>
-                                        <tr>
-                                            <td>位置</td>
-                                            <td>./CLAUDE.md</td>
-                                            <td>~/.claude/CLAUDE.md</td>
-                                        </tr>
-                                        <tr>
-                                            <td>作用域</td>
-                                            <td>当前项目</td>
-                                            <td>所有项目</td>
-                                        </tr>
-                                        <tr>
-                                            <td>内容</td>
-                                            <td>项目规范、架构说明</td>
-                                            <td>个人偏好、通用规则</td>
-                                        </tr>
-                                        <tr>
-                                            <td>版本控制</td>
-                                            <td>可提交 Git</td>
-                                            <td>不提交</td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <button class="expand-btn">展开完整答案</button>
-                            </div>
-                        </div>
+                <div class="question-card-main" data-cat="practice">
+                    <div class="question-header-main">
+                        <span class="q-number">Q5</span>
+                        <span class="q-type practice">实践</span>
+                        <span class="q-difficulty medium">中等</span>
                     </div>
+                    <h4>如何创建自定义 Slash Command？</h4>
+                    <p class="question-preview">在 .claude/commands/ 目录创建 .md 文件...</p>
                 </div>
 
-                <!-- 场景题 -->
-                <div class="category-content" id="scenario">
-                    <div class="question-list">
-                        <div class="question-card">
-                            <div class="question-header">
-                                <span class="question-number">Q9</span>
-                                <span class="question-tag scenario">场景</span>
-                                <span class="difficulty hard">困难</span>
-                            </div>
-                            <div class="question-body">
-                                <h4>如何设计一个自动化代码审查流程？</h4>
-                                <div class="answer-preview">
-                                    <p><strong>组合方案：</strong></p>
-                                    <div class="solution-box">
-                                        <div class="solution-step">
-                                            <span class="step-num">1</span>
-                                            <div class="step-content">
-                                                <strong>Memory</strong>：定义代码规范
-                                                <pre><code># CLAUDE.md
-## 代码规范
-- TypeScript strict mode
-- 测试覆盖率 > 80%</code></pre>
-                                            </div>
-                                        </div>
-                                        <div class="solution-step">
-                                            <span class="step-num">2</span>
-                                            <div class="step-content">
-                                                <strong>Hook</strong>：提交前自动检查
-                                                <pre><code># ~/.claude/hooks/pre-commit.sh
-npm run lint && npm test</code></pre>
-                                            </div>
-                                        </div>
-                                        <div class="solution-step">
-                                            <span class="step-num">3</span>
-                                            <div class="step-content">
-                                                <strong>Slash Command</strong>：手动触发审查
-                                                <pre><code>/optimize  # 性能审查
-/pr        # PR 准备</code></pre>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="expand-btn">展开完整答案</button>
-                            </div>
-                        </div>
-
-                        <div class="question-card">
-                            <div class="question-header">
-                                <span class="question-number">Q10</span>
-                                <span class="question-tag scenario">场景</span>
-                                <span class="difficulty hard">困难</span>
-                            </div>
-                            <div class="question-body">
-                                <h4>如何在 CI/CD 中集成 Claude Code？</h4>
-                                <div class="answer-preview">
-                                    <p><strong>CI/CD 配置示例：</strong></p>
-                                    <pre><code># .github/workflows/claude-ci.yml
-name: Claude CI
-on: [push]
-
-jobs:
-  review:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Run Claude Code
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: |
-          claude -p "Review the code changes" \
-            --permission-mode dontAsk \
-            --output review.md
-
-      - name: Upload Review
-        uses: actions/upload-artifact@v4
-        with:
-          name: code-review
-          path: review.md</code></pre>
-                                </div>
-                                <button class="expand-btn">展开完整答案</button>
-                            </div>
-                        </div>
+                <div class="question-card-main" data-cat="compare">
+                    <div class="question-header-main">
+                        <span class="q-number">Q7</span>
+                        <span class="q-type compare">对比</span>
+                        <span class="q-difficulty medium">中等</span>
                     </div>
+                    <h4>Slash Commands vs Skills vs Subagents？</h4>
+                    <p class="question-preview">触发方式、持久性、适用场景的对比...</p>
+                </div>
+
+                <div class="question-card-main" data-cat="scenario">
+                    <div class="question-header-main">
+                        <span class="q-number">Q9</span>
+                        <span class="q-type scenario">场景</span>
+                        <span class="q-difficulty hard">困难</span>
+                    </div>
+                    <h4>如何设计自动化代码审查流程？</h4>
+                    <p class="question-preview">组合 Memory + Hook + Slash Command...</p>
+                </div>
+
+                <div class="question-card-main" data-cat="scenario">
+                    <div class="question-header-main">
+                        <span class="q-number">Q10</span>
+                        <span class="q-type scenario">场景</span>
+                        <span class="q-difficulty hard">困难</span>
+                    </div>
+                    <h4>如何在 CI/CD 中集成 Claude Code？</h4>
+                    <p class="question-preview">使用 print mode 和权限配置...</p>
                 </div>
             </div>
 
-            <div class="interview-stats">
-                <div class="stat-badge">
-                    <span class="stat-num">50+</span>
-                    <span class="stat-label">面试题库</span>
-                </div>
-                <div class="stat-badge">
-                    <span class="stat-num">4</span>
-                    <span class="stat-label">题型分类</span>
-                </div>
-                <div class="stat-badge">
-                    <span class="stat-num">3</span>
-                    <span class="stat-label">难度等级</span>
-                </div>
+            <div class="interview-more">
+                <a href="tutorial.html#faq" class="btn-more">查看更多面试题 →</a>
             </div>
         </div>
     </section>
 
     <!-- 每日推送 -->
-    <section id="daily" class="section daily-push">
+    <section id="daily" class="daily-main">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header-main">
                 <h2 class="section-title">📡 每日推送</h2>
                 <span class="section-date">2026-04-03</span>
             </div>
 
-            <article class="daily-article">
-                <div class="article-meta">
-                    <span class="article-tag hot">🔥 热门</span>
-                    <span class="article-source">来源：字节笔记</span>
+            <article class="daily-article-main">
+                <div class="article-meta-main">
+                    <span class="article-tag-main">🔥 热门</span>
+                    <span class="article-source-main">来源：字节笔记</span>
                 </div>
-                <h3 class="article-title">Claude Code 源码分析：封号机制与 44 个隐藏功能</h3>
-
-                <div class="article-content">
-                    <div class="article-section">
-                        <h4>🔐 封号机制揭秘</h4>
-                        <p>Anthropic 的风控系统远比表面复杂，通过多层次的数字指纹识别用户身份：</p>
-                        <ul class="feature-list">
-                            <li><strong>IP + 时区 + 系统语言</strong>：综合判断用户环境</li>
-                            <li><strong>设备信息 + .git 配置</strong>：追踪用户身份</li>
-                            <li><strong>对话内容监控</strong>：检测粗口、负面词汇、"continue" 频率</li>
-                            <li><strong>遥测数据上报</strong>：未经用户同意直接上报</li>
-                        </ul>
-                        <div class="tip-box warning">
-                            <strong>防封建议：</strong>环境隔离、干净 IP、指纹浏览器、避免中文对话初期使用、避免第三方代理工具
-                        </div>
-                    </div>
-
-                    <div class="article-section">
-                        <h4>🚀 44 个隐藏功能</h4>
-                        <div class="hidden-features">
-                            <div class="feature-card">
-                                <span class="feature-icon">🧠</span>
-                                <div class="feature-info">
-                                    <h5>KAIROS</h5>
-                                    <p>自主后台守护进程模式，24/7 在线代理，支持 webhook、定时任务、推送通知</p>
-                                </div>
-                            </div>
-                            <div class="feature-card">
-                                <span class="feature-icon">📋</span>
-                                <div class="feature-info">
-                                    <h5>ULTRAPLAN</h5>
-                                    <p>将复杂规划卸载到云容器，由高阶模型进行 10-30 分钟深度思考</p>
-                                </div>
-                            </div>
-                            <div class="feature-card">
-                                <span class="feature-icon">👥</span>
-                                <div class="feature-info">
-                                    <h5>Coordinator Mode</h5>
-                                    <p>多代理编排系统，主 Claude 协调多个 swarm，支持并行处理</p>
-                                </div>
-                            </div>
-                            <div class="feature-card">
-                                <span class="feature-icon">💭</span>
-                                <div class="feature-info">
-                                    <h5>AutoDream</h5>
-                                    <p>后台梦境记忆整合系统，自动合并观察、消除矛盾、记忆蒸馏</p>
-                                </div>
-                            </div>
-                            <div class="feature-card">
-                                <span class="feature-icon">🎭</span>
-                                <div class="feature-info">
-                                    <h5>Undercover Mode</h5>
-                                    <p>员工专属模式，隐藏 AI 身份，去除 Co-Authored-By 痕迹</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="article-section">
-                        <h4>🛠️ 推荐工具</h4>
-                        <div class="tool-recommend">
-                            <div class="tool-card">
-                                <div class="tool-icon">📚</div>
-                                <div class="tool-info">
-                                    <h5>Zread CLI</h5>
-                                    <p>将庞大源码仓库梳理成结构化可视化文档，提供上帝视野理解代码</p>
-                                    <code>npm install -g zread_cli</code>
-                                </div>
-                            </div>
-                            <div class="tool-card">
-                                <div class="tool-icon">🌐</div>
-                                <div class="tool-info">
-                                    <h5>在线 Wiki</h5>
-                                    <p>Claude Code 源码在线文档（含搜索功能）</p>
-                                    <a href="https://claude-code-wiki.bytenote.net/" target="_blank">claude-code-wiki.bytenote.net</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="article-footer">
-                    <div class="article-keywords">
-                        <span class="keyword">封号机制</span>
-                        <span class="keyword">隐藏功能</span>
-                        <span class="keyword">KAIROS</span>
-                        <span class="keyword">遥测系统</span>
-                    </div>
-                </div>
+                <h3>Claude Code 源码分析：封号机制与 44 个隐藏功能</h3>
+                <p class="article-excerpt">Anthropic 的风控系统远比表面复杂，通过多层次的数字指纹识别用户身份。本文揭秘封号机制和隐藏功能...</p>
+                <a href="#" class="read-more">阅读全文 →</a>
             </article>
         </div>
     </section>
 
-    <!-- Source Map 分析 -->
-    <section id="source-map" class="section source-map">
+    <!-- 统计数据 -->
+    <section class="stats-main">
         <div class="container">
-            <h2 class="section-title">Source Map 泄露分析</h2>
-            <div class="sourcemap-content">
-                <div class="sourcemap-info">
-                    <h3>什么是 Source Map？</h3>
-                    <p>Source Map 是一张<strong>对照表</strong>，告诉调试器压缩代码与源码的对应关系。</p>
-                    <ul>
-                        <li>开发时：源码清晰可读</li>
-                        <li>发布时：代码被压缩、混淆</li>
-                        <li>Source Map：建立两者对应关系</li>
-                    </ul>
-                    <p class="warning">⚠️ 误打入正式包后，它变成了<strong>源码导航图</strong>！</p>
+            <div class="stats-grid-main">
+                <div class="stat-card-main">
+                    <div class="stat-value-main">50+</div>
+                    <div class="stat-label-main">面试题</div>
                 </div>
-                <div class="sourcemap-stats">
-                    <div class="stat-card">
-                        <div class="stat-icon">📁</div>
-                        <div class="stat-number">1900+</div>
-                        <div class="stat-text">TypeScript 文件</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">📝</div>
-                        <div class="stat-number">510K+</div>
-                        <div class="stat-text">代码行数</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">📦</div>
-                        <div class="stat-number">57 MB</div>
-                        <div class="stat-text">cli.js.map 大小</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">🔐</div>
-                        <div class="stat-number">多层</div>
-                        <div class="stat-text">权限控制</div>
-                    </div>
+                <div class="stat-card-main">
+                    <div class="stat-value-main">12</div>
+                    <div class="stat-label-main">课程章节</div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 资源区域 -->
-    <section id="resources" class="section resources">
-        <div class="container">
-            <h2 class="section-title">资源链接</h2>
-            <div class="resources-grid">
-                <a href="https://github.com/Harzva/learn-likecc" class="resource-card" target="_blank">
-                    <div class="resource-icon">🐙</div>
-                    <h3>GitHub 仓库</h3>
-                    <p>完整的源码恢复和课程文档</p>
-                </a>
-                <a href="#" class="resource-card">
-                    <div class="resource-icon">📖</div>
-                    <h3>课程文档</h3>
-                    <p>12 个章节的详细讲解</p>
-                </a>
-                <a href="#" class="resource-card">
-                    <div class="resource-icon">💡</div>
-                    <h3>工程经验</h3>
-                    <p>逆向恢复过程总结</p>
-                </a>
-                <a href="https://claude.ai/code" class="resource-card" target="_blank">
-                    <div class="resource-icon">🤖</div>
-                    <h3>Claude Code 官方</h3>
-                    <p>Anthropic 官方产品</p>
-                </a>
+                <div class="stat-card-main">
+                    <div class="stat-value-main">8</div>
+                    <div class="stat-label-main">主题风格</div>
+                </div>
+                <div class="stat-card-main">
+                    <div class="stat-value-main">∞</div>
+                    <div class="stat-label-main">学习热情</div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- 页脚 -->
-    <footer class="footer">
+    <footer class="footer-main">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <span class="footer-logo">🧠 Claude Code Course</span>
+            <div class="footer-grid-main">
+                <div class="footer-brand-main">
+                    <span class="footer-logo-main">🧠 Claude Code Course</span>
                     <p>深入理解 AI 编程助手的构建原理</p>
+                    <p class="footer-disclaimer">本项目与 Anthropic 官方无关</p>
                 </div>
-                <div class="footer-links">
-                    <div class="footer-col">
-                        <h4>课程</h4>
-                        <a href="#courses">Part 1: 核心架构</a>
-                        <a href="#courses">Part 2: 高级特性</a>
-                        <a href="#courses">Part 3: 扩展集成</a>
+                <div class="footer-links-main">
+                    <div class="footer-col-main">
+                        <h5>学习</h5>
+                        <a href="tutorial.html">官方教程</a>
+                        <a href="handbook.html">完全手册</a>
+                        <a href="#courses">源码课程</a>
                     </div>
-                    <div class="footer-col">
-                        <h4>资源</h4>
-                        <a href="https://github.com/Harzva/learn-likecc">GitHub</a>
-                        <a href="#">CHANGELOG</a>
-                        <a href="#">EXPERIENCE</a>
+                    <div class="footer-col-main">
+                        <h5>资源</h5>
+                        <a href="https://github.com/Harzva/learn-likecc" target="_blank">GitHub</a>
+                        <a href="https://code.claude.com/docs/zh-CN/" target="_blank">官方文档</a>
+                        <a href="https://claude.ai/code" target="_blank">Claude Code</a>
                     </div>
-                    <div class="footer-col">
-                        <h4>关于</h4>
-                        <a href="#source-map">Source Map 分析</a>
-                        <a href="#architecture">架构设计</a>
+                    <div class="footer-col-main">
+                        <h5>关于</h5>
                         <a href="#overview">项目概述</a>
+                        <a href="#daily">每日推送</a>
+                        <a href="https://github.com/Harzva/learn-likecc" target="_blank">贡献</a>
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom">
+            <div class="footer-bottom-main">
                 <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
-                <p class="disclaimer">本项目与 Anthropic 官方无关。Claude Code 是 Anthropic 的产品。</p>
             </div>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js" crossorigin="anonymous"></script>
     <script src="js/app.js"></script>
+    <script>
+        // 主页专用脚本
+        document.addEventListener('DOMContentLoaded', () => {
+            // 课程筛选
+            const courseTabs = document.querySelectorAll('.courses-tab')
+            const courseCards = document.querySelectorAll('.course-card-main')
+
+            courseTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const part = tab.getAttribute('data-part')
+                    courseTabs.forEach(t => t.classList.remove('active'))
+                    tab.classList.add('active')
+
+                    courseCards.forEach(card => {
+                        if (part === 'all' || card.getAttribute('data-part') === part) {
+                            card.style.display = ''
+                        } else {
+                            card.style.display = 'none'
+                        }
+                    })
+                })
+            })
+
+            // 面试题筛选
+            const interviewCats = document.querySelectorAll('.interview-cat')
+            const questionCards = document.querySelectorAll('.question-card-main')
+
+            interviewCats.forEach(cat => {
+                cat.addEventListener('click', () => {
+                    const catType = cat.getAttribute('data-cat')
+                    interviewCats.forEach(c => c.classList.remove('active'))
+                    cat.classList.add('active')
+
+                    questionCards.forEach(card => {
+                        if (catType === 'all' || card.getAttribute('data-cat') === catType) {
+                            card.style.display = ''
+                        } else {
+                            card.style.display = 'none'
+                        }
+                    })
+                })
+            })
+
+            // 搜索快捷键
+            document.addEventListener('keydown', (e) => {
+                if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                    e.preventDefault()
+                    document.getElementById('searchInput').focus()
+                }
+            })
+
+            // 学习路径动画
+            const pathSteps = document.querySelectorAll('.path-step')
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('animate')
+                        }, index * 100)
+                    }
+                })
+            }, { threshold: 0.2 })
+
+            pathSteps.forEach(step => observer.observe(step))
+        })
+    </script>
 </body>
 </html>
