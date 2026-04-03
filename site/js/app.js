@@ -1,4 +1,68 @@
 // 应用脚本
+// Mermaid 流程图定义（key 对应 data-mermaid-diagram）
+const MERMAID_DIAGRAMS = {
+    'agent-loop': `graph TD
+    classDef yellow fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#e2b953;
+    classDef blue fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#3b82f6;
+    classDef green fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#10b981;
+    classDef red fill:#2d1e1e,stroke:#ef4444,stroke-width:2px,color:#ef4444;
+
+    Start((用户输入)):::blue --> Init[2 初始化查询]:::blue
+    Init --> Prep[3 上下文准备]:::yellow
+
+    subgraph Engine [推理引擎]
+        Prep --> API[4 API 调用]:::green
+        API --> Stream[5 流式处理]:::green
+    end
+
+    Stream --> Logic{是否调用工具?}:::yellow
+    Logic -- 是 --> Tool[6 执行外部工具]:::green
+    Tool --> Feedback[7 结果反馈]:::green
+    Feedback --> Prep
+
+    Logic -- 否 --> End[9 任务结束]:::red
+
+    style Engine fill:#16161e,stroke:#444b6a,stroke-dasharray: 5 5`
+}
+
+function fillMermaidPlaceholders() {
+    document.querySelectorAll('[data-mermaid-diagram]').forEach((host) => {
+        const key = host.getAttribute('data-mermaid-diagram')
+        const text = MERMAID_DIAGRAMS[key]
+        if (!text) return
+        host.replaceChildren()
+        const el = document.createElement('div')
+        el.className = 'mermaid mermaid-flowchart'
+        el.textContent = text.trim()
+        host.appendChild(el)
+    })
+}
+
+function initMermaidFlowcharts() {
+    if (typeof mermaid === 'undefined') return
+    const hasHost = document.querySelector('[data-mermaid-diagram]')
+    if (!hasHost) return
+    fillMermaidPlaceholders()
+    mermaid.initialize({
+        startOnLoad: false,
+        theme: 'base',
+        securityLevel: 'loose',
+        themeVariables: {
+            background: '#0f111a',
+            primaryColor: '#1a1b26',
+            primaryTextColor: '#a9b1d6',
+            primaryBorderColor: '#7aa2f7',
+            lineColor: '#bb9af7',
+            tertiaryColor: '#1f2335',
+            fontSize: '14px',
+            fontFamily: '"Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace'
+        }
+    })
+    mermaid.run({ querySelector: '.mermaid-flowchart' }).catch((err) => {
+        console.warn('Mermaid render failed:', err)
+    })
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // 主题切换 - 支持8种主题
     const themeToggle = document.getElementById('theme-toggle')
@@ -209,4 +273,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initTutorialsTabs()
     initInterviewCategories()
     initExpandButtons()
+    initMermaidFlowcharts()
 })

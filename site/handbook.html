@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code 完全手册 - 从入门到精通</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📘</text></svg>">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">📘</span>
+                <span class="logo-text">Claude Code 手册</span>
+            </a>
+            <div class="nav-links">
+                <a href="#quickstart" class="nav-link">快速开始</a>
+                <a href="#roadmap" class="nav-link">学习路线</a>
+                <a href="#features" class="nav-link">功能详解</a>
+                <a href="#faq" class="nav-link">常见问题</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="index.html" class="btn-github">← 返回首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero 区域 -->
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>🆓 免费开源</span>
+                <span>📚 完整教程</span>
+            </div>
+            <h1 class="hero-title">
+                Claude Code<br>
+                <span class="gradient-text">完全手册</span>
+            </h1>
+            <p class="hero-subtitle">
+                从零开始，掌握 AI 编程助手<br>
+                <strong>11 个模块</strong> · <strong>50+ 示例</strong> · <strong>实战练习</strong>
+            </p>
+            <div class="hero-actions">
+                <a href="#quickstart" class="btn btn-primary">开始学习</a>
+                <a href="#roadmap" class="btn btn-secondary">查看路线图</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 快速开始 -->
+    <section id="quickstart" class="section">
+        <div class="container">
+            <h2 class="section-title">🚀 快速开始</h2>
+
+            <div class="quickstart-grid">
+                <div class="quickstart-card">
+                    <div class="qs-number">1</div>
+                    <h3>安装 Claude Code</h3>
+                    <pre><code># 使用 npm 安装
+npm install -g @anthropic-ai/claude-code
+
+# 或使用 bun
+bun install -g @anthropic-ai/claude-code</code></pre>
+                </div>
+
+                <div class="quickstart-card">
+                    <div class="qs-number">2</div>
+                    <h3>启动对话</h3>
+                    <pre><code># 在项目目录中启动
+cd your-project
+claude
+
+# 或直接指定问题
+claude "解释这个项目"</code></pre>
+                </div>
+
+                <div class="quickstart-card">
+                    <div class="qs-number">3</div>
+                    <h3>第一个命令</h3>
+                    <pre><code># 在 Claude Code 中输入
+/help          # 查看帮助
+/config        # 配置设置
+/compact       # 压缩对话
+/rewind        # 回退操作</code></pre>
+                </div>
+
+                <div class="quickstart-card">
+                    <div class="qs-number">4</div>
+                    <h3>15 分钟上手</h3>
+                    <pre><code># 安装一个 slash command
+mkdir -p .claude/commands
+cp optimize.md .claude/commands/
+
+# 使用
+/optimize</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 学习路线图 -->
+    <section id="roadmap" class="section roadmap-section">
+        <div class="container">
+            <h2 class="section-title">🗺️ 学习路线图</h2>
+
+            <div class="roadmap-intro">
+                <p>根据你的经验水平，选择适合的学习路径：</p>
+                <div class="level-tabs">
+                    <button class="level-tab active" data-level="beginner">🌱 新手 (0-2项)</button>
+                    <button class="level-tab" data-level="intermediate">⚡ 进阶 (3-5项)</button>
+                    <button class="level-tab" data-level="advanced">🚀 高级 (6-8项)</button>
+                </div>
+            </div>
+
+            <div class="roadmap-content">
+                <!-- 新手路线 -->
+                <div class="level-content active" id="beginner">
+                    <div class="roadmap-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-time">⏱️ 30 分钟</div>
+                                <h4>Slash Commands</h4>
+                                <p>掌握 55+ 内建命令，提升开发效率</p>
+                                <ul>
+                                    <li><code>/help</code> - 查看帮助</li>
+                                    <li><code>/optimize</code> - 性能优化</li>
+                                    <li><code>/commit</code> - 智能提交</li>
+                                    <li><code>/rewind</code> - 安全回退</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-time">⏱️ 45 分钟</div>
+                                <h4>Memory 系统</h4>
+                                <p>让 Claude 记住你的项目和偏好</p>
+                                <ul>
+                                    <li><code>./CLAUDE.md</code> - 项目规则</li>
+                                    <li><code>~/.claude/CLAUDE.md</code> - 个人偏好</li>
+                                    <li><code>directory-CLAUDE.md</code> - 目录规则</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-time">⏱️ 45 分钟</div>
+                                <h4>Checkpoints 安全试错</h4>
+                                <p>敢于实验，知道如何安全回退</p>
+                                <ul>
+                                    <li><code>Esc + Esc</code> - 创建检查点</li>
+                                    <li><code>/rewind</code> - 回退操作</li>
+                                    <li>自动创建 - 定时保存</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-time">⏱️ 30 分钟</div>
+                                <h4>CLI 基础</h4>
+                                <p>命令行模式与脚本集成</p>
+                                <ul>
+                                    <li><code>claude</code> - 交互模式</li>
+                                    <li><code>claude -p</code> - Print 模式</li>
+                                    <li><code>claude -c</code> - 继续会话</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="roadmap-total">
+                        <strong>总计: 约 2.5 小时</strong> | 你将掌握基础操作和常用命令
+                    </div>
+                </div>
+
+                <!-- 进阶路线 -->
+                <div class="level-content" id="intermediate">
+                    <div class="roadmap-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-time">⏱️ 1 小时</div>
+                                <h4>Skills 技能系统</h4>
+                                <p>创建可复用的自动化工作流</p>
+                                <ul>
+                                    <li><code>SKILL.md</code> - 技能定义</li>
+                                    <li><code>scripts/</code> - 脚本目录</li>
+                                    <li><code>templates/</code> - 模板目录</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-time">⏱️ 1 小时</div>
+                                <h4>Hooks 钩子系统</h4>
+                                <p>事件驱动的自动化检查</p>
+                                <ul>
+                                    <li><code>pre-commit.sh</code> - 提交前检查</li>
+                                    <li><code>security-scan.sh</code> - 安全扫描</li>
+                                    <li><code>format-code.sh</code> - 代码格式化</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-time">⏱️ 1 小时</div>
+                                <h4>MCP 协议集成</h4>
+                                <p>连接外部工具与数据源</p>
+                                <ul>
+                                    <li><code>.mcp.json</code> - MCP 配置</li>
+                                    <li>GitHub 集成</li>
+                                    <li>数据库访问</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-time">⏱️ 1.5 小时</div>
+                                <h4>Subagents 子代理</h4>
+                                <p>任务拆分与并行处理</p>
+                                <ul>
+                                    <li><code>general-purpose</code> - 通用代理</li>
+                                    <li><code>Explore</code> - 代码探索</li>
+                                    <li><code>Plan</code> - 方案设计</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="roadmap-total">
+                        <strong>总计: 约 4.5 小时</strong> | 你将掌握自动化和集成能力
+                    </div>
+                </div>
+
+                <!-- 高级路线 -->
+                <div class="level-content" id="advanced">
+                    <div class="roadmap-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-time">⏱️ 2-3 小时</div>
+                                <h4>Advanced Features</h4>
+                                <p>高级工作流与控制力</p>
+                                <ul>
+                                    <li>Planning Mode - 复杂规划</li>
+                                    <li>Permission Modes - 权限控制</li>
+                                    <li>Background Tasks - 后台任务</li>
+                                    <li>Worktrees - 隔离工作树</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-time">⏱️ 2 小时</div>
+                                <h4>Plugins 插件系统</h4>
+                                <p>团队级解决方案打包</p>
+                                <ul>
+                                    <li><code>plugin.json</code> - 插件清单</li>
+                                    <li><code>/plugin install</code> - 安装插件</li>
+                                    <li>组合 commands/hooks/MCP</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-time">⏱️ 1 小时</div>
+                                <h4>CLI Mastery</h4>
+                                <p>自动化与 CI/CD 集成</p>
+                                <ul>
+                                    <li>非交互模式</li>
+                                    <li>脚本化工作流</li>
+                                    <li>CI/CD 集成</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="roadmap-total">
+                        <strong>总计: 约 5 小时</strong> | 你将成为 Claude Code 专家
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 功能详解 -->
+    <section id="features" class="section">
+        <div class="container">
+            <h2 class="section-title">📖 功能详解</h2>
+
+            <div class="features-accordion">
+                <!-- Slash Commands -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span class="accordion-icon">⚡</span>
+                        <h3>Slash Commands</h3>
+                        <span class="accordion-desc">用户主动触发的快捷操作</span>
+                        <span class="accordion-toggle">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="feature-detail">
+                            <h4>什么是 Slash Commands？</h4>
+                            <p>Slash Commands 是用户在 Claude Code 中主动输入的快捷操作，例如 <code>/help</code>、<code>/model</code>、<code>/rewind</code>。</p>
+
+                            <h4>常见内建命令</h4>
+                            <table class="feature-table">
+                                <tr><th>命令</th><th>用途</th></tr>
+                                <tr><td><code>/help</code></td><td>查看帮助</td></tr>
+                                <tr><td><code>/clear</code></td><td>清空当前对话</td></tr>
+                                <tr><td><code>/config</code></td><td>查看或编辑配置</td></tr>
+                                <tr><td><code>/agents</code></td><td>查看可用 agents</td></tr>
+                                <tr><td><code>/skills</code></td><td>查看可用 skills</td></tr>
+                                <tr><td><code>/hooks</code></td><td>查看 hooks</td></tr>
+                                <tr><td><code>/mcp</code></td><td>查看或管理 MCP servers</td></tr>
+                                <tr><td><code>/plugin</code></td><td>管理 plugins</td></tr>
+                                <tr><td><code>/plan</code></td><td>进入 planning mode</td></tr>
+                                <tr><td><code>/rewind</code></td><td>回退到 checkpoint</td></tr>
+                            </table>
+
+                            <h4>自定义 Slash Command</h4>
+                            <pre><code># 创建命令文件
+mkdir -p .claude/commands
+cat > .claude/commands/my-command.md << 'EOF'
+---
+name: my-command
+description: 我的自定义命令
+---
+
+请帮我完成以下任务：
+1. 分析当前代码
+2. 提供优化建议
+EOF
+
+# 使用
+# /my-command</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Memory -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span class="accordion-icon">🧠</span>
+                        <h3>Memory</h3>
+                        <span class="accordion-desc">持久上下文与规则</span>
+                        <span class="accordion-toggle">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="feature-detail">
+                            <h4>什么是 Memory？</h4>
+                            <p>Memory 是 Claude Code 用来长期加载规则和上下文的机制。通过 <code>CLAUDE.md</code> 文件定义。</p>
+
+                            <h4>三种 Memory 层级</h4>
+                            <div class="memory-types">
+                                <div class="memory-type">
+                                    <h5>📁 项目级</h5>
+                                    <code>./CLAUDE.md</code>
+                                    <p>项目规范、架构说明、代码风格</p>
+                                    <p class="hint">可提交 Git，团队共享</p>
+                                </div>
+                                <div class="memory-type">
+                                    <h5>👤 个人级</h5>
+                                    <code>~/.claude/CLAUDE.md</code>
+                                    <p>个人偏好、通用规则</p>
+                                    <p class="hint">不提交，仅个人使用</p>
+                                </div>
+                                <div class="memory-type">
+                                    <h5>📂 目录级</h5>
+                                    <code>directory-CLAUDE.md</code>
+                                    <p>特定目录的规则</p>
+                                    <p class="hint">适用于大型项目</p>
+                                </div>
+                            </div>
+
+                            <h4>示例 CLAUDE.md</h4>
+                            <pre><code># 项目规则
+
+## 代码规范
+- 使用 TypeScript strict mode
+- 遵循 ESLint 规则
+- 测试覆盖率 > 80%
+
+## 架构说明
+- 前端: React + Vite
+- 后端: Node.js + Express
+- 数据库: PostgreSQL
+
+## 工作流
+- 提交前运行: npm run lint && npm test
+- PR 需要 1 个以上 review</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span class="accordion-icon">🔧</span>
+                        <h3>Skills</h3>
+                        <span class="accordion-desc">自动触发的复用能力</span>
+                        <span class="accordion-toggle">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="feature-detail">
+                            <h4>什么是 Skills？</h4>
+                            <p>Skills 是 Claude Code 会根据描述自动触发的复用能力。它们比单个 slash command 更适合长期维护的工作流。</p>
+
+                            <h4>Skill 目录结构</h4>
+                            <pre><code>.claude/skills/skill-name/
+├── SKILL.md        # 技能定义文件
+├── scripts/        # 脚本目录
+└── templates/      # 模板目录</code></pre>
+
+                            <h4>SKILL.md 示例</h4>
+                            <pre><code>---
+name: code-review
+description: 代码审查技能
+effort: medium
+---
+
+## 触发条件
+当用户请求代码审查时自动触发
+
+## 审查步骤
+1. 检查代码风格
+2. 分析潜在问题
+3. 提供优化建议
+4. 生成审查报告</code></pre>
+
+                            <div class="warning-box">
+                                <strong>⚠️ 注意</strong>
+                                <p>frontmatter 中的 <code>name</code>、<code>description</code>、<code>effort</code> 是配置字段，不要翻译成中文。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hooks -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span class="accordion-icon">🪝</span>
+                        <h3>Hooks</h3>
+                        <span class="accordion-desc">事件驱动自动化</span>
+                        <span class="accordion-toggle">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="feature-detail">
+                            <h4>什么是 Hooks？</h4>
+                            <p>Hooks 是事件驱动的自动化动作，适合在关键节点做检查、拦截和通知。</p>
+
+                            <h4>常见应用场景</h4>
+                            <ul>
+                                <li>提交前自动运行测试</li>
+                                <li>修改代码后自动格式化</li>
+                                <li>敏感操作前的安全检查</li>
+                                <li>操作后的日志记录</li>
+                            </ul>
+
+                            <h4>Hook 配置示例</h4>
+                            <pre><code># ~/.claude/settings.json
+{
+  "hooks": {
+    "PreCommit": [
+      {
+        "type": "command",
+        "command": "npm run lint && npm test"
+      }
+    ],
+    "PostFileEdit": [
+      {
+        "type": "command",
+        "command": "prettier --write ${file}"
+      }
+    ]
+  }
+}</code></pre>
+
+                            <h4>Hook 类型</h4>
+                            <table class="feature-table">
+                                <tr><th>类型</th><th>说明</th></tr>
+                                <tr><td><code>command</code></td><td>执行 shell 命令</td></tr>
+                                <tr><td><code>http</code></td><td>发送 HTTP 请求</td></tr>
+                                <tr><td><code>prompt</code></td><td>插入提示文本</td></tr>
+                                <tr><td><code>agent</code></td><td>触发子代理</td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MCP -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span class="accordion-icon">🔌</span>
+                        <h3>MCP</h3>
+                        <span class="accordion-desc">外部工具与实时数据接入</span>
+                        <span class="accordion-toggle">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="feature-detail">
+                            <h4>什么是 MCP？</h4>
+                            <p>MCP (Model Context Protocol) 是一种协议，让 Claude Code 连接外部工具、服务和实时数据。</p>
+
+                            <h4>MCP 配置示例</h4>
+                            <pre><code># .mcp.json
+{
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_TOKEN": "$GITHUB_TOKEN"
+      }
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/files"]
+    }
+  }
+}</code></pre>
+
+                            <h4>常用 MCP Servers</h4>
+                            <table class="feature-table">
+                                <tr><th>Server</th><th>用途</th></tr>
+                                <tr><td>github</td><td>GitHub API 集成</td></tr>
+                                <tr><td>filesystem</td><td>文件系统访问</td></tr>
+                                <tr><td>postgres</td><td>PostgreSQL 数据库</td></tr>
+                                <tr><td>sqlite</td><td>SQLite 数据库</td></tr>
+                            </table>
+
+                            <div class="warning-box">
+                                <strong>🇨🇳 中国用户注意</strong>
+                                <ul>
+                                    <li><code>npx</code> 首次安装可能较慢，检查网络/代理</li>
+                                    <li>GitHub 相关需要有效的 <code>GITHUB_TOKEN</code></li>
+                                    <li>Windows/WSL 环境注意 shell 和路径差异</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Subagents -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span class="accordion-icon">🤖</span>
+                        <h3>Subagents</h3>
+                        <span class="accordion-desc">分工明确的 AI 助手</span>
+                        <span class="accordion-toggle">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="feature-detail">
+                            <h4>什么是 Subagents？</h4>
+                            <p>Subagents 是专门负责某类任务的子代理，适合复杂任务拆分。</p>
+
+                            <h4>内建 Subagents</h4>
+                            <table class="feature-table">
+                                <tr><th>名称</th><th>用途</th></tr>
+                                <tr><td><code>general-purpose</code></td><td>通用复杂任务</td></tr>
+                                <tr><td><code>Plan</code></td><td>方案设计</td></tr>
+                                <tr><td><code>Explore</code></td><td>快速搜索与理解代码</td></tr>
+                            </table>
+
+                            <h4>自定义 Subagent</h4>
+                            <pre><code># .claude/agents/code-reviewer.md
+---
+name: code-reviewer
+description: 代码质量审查专家
+model: sonnet
+tools:
+  - Read
+  - Grep
+  - Glob
+---
+
+你是一个专业的代码审查员。
+请检查代码质量、潜在问题和最佳实践。</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plugins -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span class="accordion-icon">📦</span>
+                        <h3>Plugins</h3>
+                        <span class="accordion-desc">多能力打包分发</span>
+                        <span class="accordion-toggle">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="feature-detail">
+                            <h4>什么是 Plugins？</h4>
+                            <p>Plugins 把 slash commands、skills、hooks、MCP、subagents 组合成一套方案，方便团队分发。</p>
+
+                            <h4>Plugin 目录结构</h4>
+                            <pre><code>plugin-name/
+├── .claude-plugin/
+│   └── plugin.json    # 插件清单
+├── commands/          # slash commands
+├── agents/            # subagents
+├── hooks/             # hooks
+├── mcp/               # MCP 配置
+└── scripts/           # 脚本</code></pre>
+
+                            <h4>plugin.json 示例</h4>
+                            <pre><code>{
+  "name": "pr-review",
+  "version": "1.0.0",
+  "description": "PR 审查工作流插件",
+  "license": "MIT"
+}</code></pre>
+
+                            <h4>安装插件</h4>
+                            <pre><code># 安装
+/plugin install pr-review
+
+# 或从 URL 安装
+/plugin install https://github.com/user/plugin</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section id="faq" class="section">
+        <div class="container">
+            <h2 class="section-title">❓ 常见问题</h2>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-icon">Q</span>
+                        <h4>Claude Code 和 ChatGPT 有什么区别？</h4>
+                    </div>
+                    <div class="faq-answer">
+                        <ul>
+                            <li><strong>Claude Code</strong> 是 CLI 工具，直接操作本地文件和终端</li>
+                            <li><strong>ChatGPT</strong> 是 Web 应用，需要手动复制代码</li>
+                            <li>Claude Code 具备<strong>工具调用能力</strong>（读写文件、执行命令）</li>
+                            <li>Claude Code 支持<strong>持久化记忆</strong>和<strong>项目级规则</strong></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-icon">Q</span>
+                        <h4>Slash Commands、Skills、Subagents 有什么区别？</h4>
+                    </div>
+                    <div class="faq-answer">
+                        <table class="compare-table">
+                            <tr>
+                                <th>特性</th>
+                                <th>Slash Commands</th>
+                                <th>Skills</th>
+                                <th>Subagents</th>
+                            </tr>
+                            <tr>
+                                <td>触发方式</td>
+                                <td>手动 /cmd</td>
+                                <td>自动触发</td>
+                                <td>自动委派</td>
+                            </tr>
+                            <tr>
+                                <td>持久性</td>
+                                <td>当前会话</td>
+                                <td>文件系统级</td>
+                                <td>独立上下文</td>
+                            </tr>
+                            <tr>
+                                <td>适用场景</td>
+                                <td>高频快捷操作</td>
+                                <td>复用工作流</td>
+                                <td>任务拆分</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-icon">Q</span>
+                        <h4>项目级 Memory 和个人级 Memory 有什么区别？</h4>
+                    </div>
+                    <div class="faq-answer">
+                        <table class="compare-table">
+                            <tr>
+                                <th>特性</th>
+                                <th>项目级</th>
+                                <th>个人级</th>
+                            </tr>
+                            <tr>
+                                <td>位置</td>
+                                <td>./CLAUDE.md</td>
+                                <td>~/.claude/CLAUDE.md</td>
+                            </tr>
+                            <tr>
+                                <td>作用域</td>
+                                <td>当前项目</td>
+                                <td>所有项目</td>
+                            </tr>
+                            <tr>
+                                <td>内容</td>
+                                <td>项目规范、架构说明</td>
+                                <td>个人偏好、通用规则</td>
+                            </tr>
+                            <tr>
+                                <td>版本控制</td>
+                                <td>可提交 Git</td>
+                                <td>不提交</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-icon">Q</span>
+                        <h4>如何在 CI/CD 中使用 Claude Code？</h4>
+                    </div>
+                    <div class="faq-answer">
+                        <pre><code># GitHub Actions 示例
+name: Claude CI
+on: [push]
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Claude Code
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          claude -p "Review the code changes" \
+            --permission-mode dontAsk</code></pre>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="faq-icon">Q</span>
+                        <h4>中国用户常见问题？</h4>
+                    </div>
+                    <div class="faq-answer">
+                        <ul>
+                            <li><strong>网络问题</strong>：检查代理、镜像和证书环境</li>
+                            <li><strong>GitHub Token</strong>：确保有正确权限</li>
+                            <li><strong>npm/npx</strong>：首次安装可能较慢</li>
+                            <li><strong>Windows/WSL</strong>：注意 shell 和路径差异</li>
+                            <li><strong>翻译注意</strong>：不要翻译 frontmatter、JSON key、命令名</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+                <p class="disclaimer">本项目与 Anthropic 官方无关。Claude Code 是 Anthropic 的产品。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script>
+        // 手册页面专用脚本
+        document.addEventListener('DOMContentLoaded', () => {
+            // 学习路线等级切换
+            const levelTabs = document.querySelectorAll('.level-tab')
+            const levelContents = document.querySelectorAll('.level-content')
+
+            levelTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const targetLevel = tab.getAttribute('data-level')
+                    levelTabs.forEach(t => t.classList.remove('active'))
+                    levelContents.forEach(c => c.classList.remove('active'))
+                    tab.classList.add('active')
+                    document.getElementById(targetLevel)?.classList.add('active')
+                })
+            })
+
+            // 手风琴展开/收起
+            const accordionHeaders = document.querySelectorAll('.accordion-header')
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const item = header.parentElement
+                    const content = item.querySelector('.accordion-content')
+                    const toggle = header.querySelector('.accordion-toggle')
+
+                    if (item.classList.contains('active')) {
+                        item.classList.remove('active')
+                        content.style.maxHeight = '0'
+                        toggle.textContent = '+'
+                    } else {
+                        // 关闭其他
+                        document.querySelectorAll('.accordion-item.active').forEach(activeItem => {
+                            activeItem.classList.remove('active')
+                            activeItem.querySelector('.accordion-content').style.maxHeight = '0'
+                            activeItem.querySelector('.accordion-toggle').textContent = '+'
+                        })
+                        // 打开当前
+                        item.classList.add('active')
+                        content.style.maxHeight = content.scrollHeight + 'px'
+                        toggle.textContent = '-'
+                    }
+                })
+            })
+
+            // FAQ 展开/收起
+            const faqItems = document.querySelectorAll('.faq-item')
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question')
+                question.addEventListener('click', () => {
+                    item.classList.toggle('active')
+                })
+            })
+        })
+    </script>
+</body>
+</html>

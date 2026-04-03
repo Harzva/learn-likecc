@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&display=swap" rel="stylesheet">
     <title>Claude Code Course - 深入理解 AI 编程助手</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
@@ -83,7 +86,7 @@
             </div>
             <div class="hero-actions">
                 <a href="#courses" class="btn btn-primary">开始学习</a>
-                <a href="https://github.com/Harzva/learn-likecc" class="btn btn-secondary" target="_blank">查看源码</a>
+                <a href="handbook.html" class="btn btn-secondary">📘 完全手册</a>
             </div>
         </div>
         <div class="hero-code">
@@ -222,6 +225,13 @@
         <div class="container">
             <h2 class="section-title">课程章节</h2>
             <p class="section-desc">12 个渐进式课程，从核心概念到高级特性</p>
+
+            <figure class="mermaid-figure" aria-label="课程主流程图">
+                <figcaption class="mermaid-caption">
+                    <strong>流程概览</strong>：用户输入 → 初始化与上下文准备 → 推理引擎（API 与流式输出）→ 若需工具则执行并反馈后回到上下文准备，否则结束。可与 <strong>S01–S08</strong> 等章节对照阅读。
+                </figcaption>
+                <div class="mermaid-diagram-scroll" data-mermaid-diagram="agent-loop"></div>
+            </figure>
 
             <div class="courses-grid">
                 <a href="s01.html" class="course-card" data-part="1">
@@ -390,6 +400,13 @@
                 <h2 class="section-title">📚 教程专栏</h2>
                 <p class="section-desc">从入门到精通，系统学习 Claude Code</p>
             </div>
+
+            <figure class="mermaid-figure" aria-label="教程主流程图">
+                <figcaption class="mermaid-caption">
+                    <strong>同一套主流程</strong>：在动手配置、命令与进阶技巧之前，先建立「输入—推理—工具循环—结束」的端到端心智模型，与上方课程章节一致。
+                </figcaption>
+                <div class="mermaid-diagram-scroll" data-mermaid-diagram="agent-loop"></div>
+            </figure>
 
             <div class="tutorials-tabs">
                 <button class="tab-btn active" data-tab="beginner">🌱 入门篇</button>
@@ -1290,6 +1307,7 @@ jobs:
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js" crossorigin="anonymous"></script>
     <script src="js/app.js"></script>
 </body>
 </html>

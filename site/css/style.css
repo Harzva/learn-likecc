@@ -865,6 +865,49 @@ body {
     color: var(--text-muted);
 }
 
+/* Mermaid 流程图（深色画布 + Tokyo Night 系变量，与站点主题独立以保证对比度） */
+.mermaid-figure {
+    margin: 0 0 36px;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--bg-card);
+    overflow: hidden;
+}
+
+.mermaid-caption {
+    margin: 0;
+    padding: 14px 18px;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-hover);
+}
+
+.mermaid-caption strong {
+    color: var(--text-primary);
+}
+
+.mermaid-diagram-scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 16px 12px 20px;
+    background: #0f111a;
+    -webkit-overflow-scrolling: touch;
+}
+
+.mermaid-diagram-scroll .mermaid-flowchart {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.mermaid-diagram-scroll svg {
+    max-width: 100%;
+    height: auto;
+}
+
 /* 课程网格 */
 .courses-grid {
     display: grid;
@@ -2473,5 +2516,513 @@ body {
 
     .stat-badge {
         padding: 16px 24px;
+    }
+}
+
+/* -----------------------------------------------------------------
+   代码选区高对比度（S01–S12 课程页：Prism token 色 + 系统选区易糊在一起）
+   .course-main 覆盖全部章节内 pre/code（含 .diagram、.code-block），不依赖是否加载 Prism
+   使用 !important 以压过 prism.css 中可能存在的 ::selection
+   ----------------------------------------------------------------- */
+.course-main pre ::selection,
+.course-main pre *::selection,
+.course-main code::selection,
+.course-main code *::selection,
+.code-block ::selection,
+.code-block *::selection,
+.code-window pre ::selection,
+.code-window pre *::selection,
+.code-window code::selection,
+.code-window .code-content *::selection {
+    background-color: #e2e8f0 !important;
+    color: #0f172a !important;
+    -webkit-text-fill-color: #0f172a !important;
+}
+
+.course-main pre ::-moz-selection,
+.course-main pre *::-moz-selection,
+.course-main code::-moz-selection,
+.course-main code *::-moz-selection,
+.code-block ::-moz-selection,
+.code-block *::-moz-selection,
+.code-window pre ::-moz-selection,
+.code-window pre *::-moz-selection,
+.code-window code::-moz-selection,
+.code-window .code-content *::-moz-selection {
+    background-color: #e2e8f0 !important;
+    color: #0f172a !important;
+}
+/* ================================
+   手册页面专用样式
+   ================================ */
+
+.handbook-hero {
+    min-height: 50vh;
+    background: var(--gradient-hero);
+}
+
+/* 快速开始区域 */
+.quickstart-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.quickstart-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    border: 1px solid var(--border);
+    position: relative;
+}
+
+.qs-number {
+    position: absolute;
+    top: -15px;
+    left: 20px;
+    width: 40px;
+    height: 40px;
+    background: var(--gradient-1);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.quickstart-card h3 {
+    margin-top: 16px;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.quickstart-card pre {
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 16px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 0.85rem;
+}
+
+/* 学习路线图 */
+.roadmap-section {
+    background: var(--bg-dark);
+}
+
+.roadmap-intro {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.roadmap-intro p {
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.level-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.level-tab {
+    padding: 12px 24px;
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+}
+
+.level-tab:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.level-tab.active {
+    background: var(--gradient-1);
+    border-color: var(--primary);
+    color: white;
+}
+
+.level-content {
+    display: none;
+}
+
+.level-content.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+/* 时间线 */
+.roadmap-timeline {
+    position: relative;
+    padding-left: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.roadmap-timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 32px;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -26px;
+    top: 4px;
+    width: 16px;
+    height: 16px;
+    background: var(--primary);
+    border-radius: 50%;
+    border: 3px solid var(--bg-card);
+}
+
+.timeline-content {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 20px;
+    border: 1px solid var(--border);
+}
+
+.timeline-time {
+    display: inline-block;
+    padding: 4px 12px;
+    background: var(--bg-hover);
+    border-radius: 12px;
+    font-size: 0.85rem;
+    color: var(--primary);
+    margin-bottom: 12px;
+}
+
+.timeline-content h4 {
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.timeline-content p {
+    color: var(--text-muted);
+    margin-bottom: 12px;
+}
+
+.timeline-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.timeline-content li {
+    padding: 6px 0;
+    color: var(--text-secondary);
+}
+
+.timeline-content li::before {
+    content: '→ ';
+    color: var(--primary);
+}
+
+.timeline-content code {
+    background: var(--bg-hover);
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: var(--primary);
+    font-size: 0.9rem;
+}
+
+.roadmap-total {
+    text-align: center;
+    padding: 20px;
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    margin-top: 24px;
+    color: var(--text-primary);
+}
+
+/* 功能手风琴 */
+.features-accordion {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.accordion-item {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    margin-bottom: 16px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+}
+
+.accordion-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.accordion-header:hover {
+    background: var(--bg-hover);
+}
+
+.accordion-icon {
+    font-size: 1.5rem;
+}
+
+.accordion-header h3 {
+    flex: 1;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.accordion-desc {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.accordion-toggle {
+    width: 32px;
+    height: 32px;
+    background: var(--bg-hover);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: var(--primary);
+    transition: transform 0.3s;
+}
+
+.accordion-item.active .accordion-toggle {
+    transform: rotate(180deg);
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.accordion-item.active .accordion-content {
+    border-top: 1px solid var(--border);
+}
+
+.feature-detail {
+    padding: 24px;
+}
+
+.feature-detail h4 {
+    color: var(--text-primary);
+    margin: 20px 0 12px;
+}
+
+.feature-detail h4:first-child {
+    margin-top: 0;
+}
+
+.feature-detail p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+.feature-detail ul {
+    margin-left: 20px;
+    color: var(--text-secondary);
+}
+
+.feature-detail li {
+    margin-bottom: 8px;
+}
+
+.feature-detail pre {
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 16px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 12px 0;
+}
+
+.feature-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+}
+
+.feature-table th,
+.feature-table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid var(--border);
+}
+
+.feature-table th {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+}
+
+.feature-table td {
+    color: var(--text-secondary);
+}
+
+.feature-table code {
+    background: var(--bg-hover);
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: var(--primary);
+}
+
+/* Memory 类型卡片 */
+.memory-types {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin: 16px 0;
+}
+
+.memory-type {
+    background: var(--bg-hover);
+    border-radius: var(--radius);
+    padding: 16px;
+}
+
+.memory-type h5 {
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.memory-type code {
+    display: block;
+    background: var(--bg-card);
+    padding: 8px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    color: var(--primary);
+    font-size: 0.85rem;
+}
+
+.memory-type p {
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+}
+
+.memory-type .hint {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* FAQ */
+.faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    margin-bottom: 16px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+}
+
+.faq-question {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.faq-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--gradient-1);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.faq-question h4 {
+    flex: 1;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.faq-answer {
+    display: none;
+    padding: 0 20px 20px 68px;
+}
+
+.faq-item.active .faq-answer {
+    display: block;
+}
+
+.faq-answer ul {
+    margin-left: 20px;
+    color: var(--text-secondary);
+}
+
+.faq-answer li {
+    margin-bottom: 8px;
+}
+
+.faq-answer pre {
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 16px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 0.85rem;
+}
+
+/* 手册页响应式 */
+@media (max-width: 768px) {
+    .quickstart-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .level-tabs {
+        gap: 8px;
+    }
+
+    .level-tab {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+
+    .roadmap-timeline {
+        padding-left: 20px;
+    }
+
+    .timeline-dot {
+        left: -16px;
+        width: 12px;
+        height: 12px;
+    }
+
+    .memory-types {
+        grid-template-columns: 1fr;
+    }
+
+    .faq-answer {
+        padding-left: 20px;
     }
 }
