@@ -143,3 +143,70 @@ function switchCodeLanguage(lang) {
         label.textContent = lang === 'typescript' ? 'TypeScript' : 'Python'
     })
 }
+
+// 教程选项卡切换
+function initTutorialsTabs() {
+    const tabBtns = document.querySelectorAll('.tutorials-tabs .tab-btn')
+    const tabContents = document.querySelectorAll('.tutorials-content .tab-content')
+
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetTab = btn.getAttribute('data-tab')
+
+            // 移除所有 active
+            tabBtns.forEach(b => b.classList.remove('active'))
+            tabContents.forEach(c => c.classList.remove('active'))
+
+            // 添加 active
+            btn.classList.add('active')
+            document.getElementById(targetTab)?.classList.add('active')
+        })
+    })
+}
+
+// 面试问题分类切换
+function initInterviewCategories() {
+    const categoryBtns = document.querySelectorAll('.interview-categories .category-btn')
+    const categoryContents = document.querySelectorAll('.interview-content .category-content')
+
+    categoryBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetCategory = btn.getAttribute('data-category')
+
+            // 移除所有 active
+            categoryBtns.forEach(b => b.classList.remove('active'))
+            categoryContents.forEach(c => c.classList.remove('active'))
+
+            // 添加 active
+            btn.classList.add('active')
+            document.getElementById(targetCategory)?.classList.add('active')
+        })
+    })
+}
+
+// 展开答案按钮
+function initExpandButtons() {
+    document.querySelectorAll('.expand-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const card = btn.closest('.question-card')
+            const preview = card.querySelector('.answer-preview')
+
+            if (btn.textContent.includes('展开')) {
+                // 展开逻辑
+                preview.style.maxHeight = 'none'
+                btn.textContent = '收起答案'
+            } else {
+                // 收起逻辑
+                preview.style.maxHeight = '200px'
+                btn.textContent = '展开完整答案'
+            }
+        })
+    })
+}
+
+// 初始化新功能
+document.addEventListener('DOMContentLoaded', () => {
+    initTutorialsTabs()
+    initInterviewCategories()
+    initExpandButtons()
+})

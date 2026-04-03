@@ -1983,3 +1983,495 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+/* ================================
+   教程专栏样式
+   ================================ */
+
+.tutorials {
+    background: var(--bg-dark);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-header .section-desc {
+    color: var(--text-muted);
+    margin-top: 12px;
+}
+
+/* 教程选项卡 */
+.tutorials-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    padding: 12px 24px;
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.tab-btn.active {
+    background: var(--gradient-1);
+    border-color: var(--primary);
+    color: white;
+}
+
+/* 教程内容 */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.tutorial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.tutorial-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+}
+
+.tutorial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary);
+}
+
+.tutorial-icon {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+}
+
+.tutorial-card h3 {
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.tutorial-card > p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 16px;
+}
+
+.tutorial-meta {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.tutorial-meta span {
+    font-size: 0.8rem;
+    padding: 4px 10px;
+    background: var(--bg-hover);
+    border-radius: 12px;
+    color: var(--text-secondary);
+}
+
+.tutorial-steps {
+    background: var(--bg-hover);
+    border-radius: var(--radius);
+    padding: 16px;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--border);
+}
+
+.step:last-child {
+    border-bottom: none;
+}
+
+.step code {
+    background: var(--bg-card);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: var(--primary);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.step span {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* ================================
+   面试问题专栏样式
+   ================================ */
+
+.interview {
+    background: var(--bg-card);
+}
+
+/* 面试分类按钮 */
+.interview-categories {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+}
+
+.category-btn {
+    padding: 10px 20px;
+    background: transparent;
+    border: 2px solid var(--border);
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+}
+
+.category-btn:hover {
+    border-color: var(--secondary);
+    color: var(--secondary);
+}
+
+.category-btn.active {
+    background: var(--gradient-2);
+    border-color: var(--secondary);
+    color: white;
+}
+
+/* 面试内容 */
+.category-content {
+    display: none;
+}
+
+.category-content.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+.question-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.question-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.question-card:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+.question-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    background: var(--bg-hover);
+    border-bottom: 1px solid var(--border);
+}
+
+.question-number {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+
+.question-tag {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.question-tag.concept {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.question-tag.practice {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.question-tag.compare {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.question-tag.scenario {
+    background: #fce7f3;
+    color: #9d174d;
+}
+
+.difficulty {
+    margin-left: auto;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.difficulty.easy {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.difficulty.medium {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.difficulty.hard {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.question-body {
+    padding: 20px;
+}
+
+.question-body h4 {
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+}
+
+.answer-preview {
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+.answer-preview p {
+    margin-bottom: 12px;
+}
+
+.answer-preview ul {
+    margin-left: 20px;
+    margin-bottom: 12px;
+}
+
+.answer-preview li {
+    margin-bottom: 8px;
+}
+
+.answer-preview pre {
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 16px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 12px 0;
+}
+
+.answer-preview code {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.9rem;
+}
+
+.answer-preview > code {
+    background: var(--bg-hover);
+    color: var(--primary);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.expand-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 16px;
+    background: var(--bg-hover);
+    border: none;
+    border-radius: 8px;
+    color: var(--primary);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.expand-btn:hover {
+    background: var(--primary);
+    color: white;
+}
+
+/* 对比表格 */
+.compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+}
+
+.compare-table th,
+.compare-table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid var(--border);
+}
+
+.compare-table th {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.compare-table td {
+    color: var(--text-secondary);
+}
+
+/* 解决方案步骤 */
+.solution-box {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.solution-step {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.step-num {
+    width: 32px;
+    height: 32px;
+    background: var(--gradient-1);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.step-content {
+    flex: 1;
+}
+
+.step-content strong {
+    color: var(--primary);
+    display: block;
+    margin-bottom: 8px;
+}
+
+.step-content pre {
+    margin: 0;
+    padding: 12px;
+    font-size: 0.85rem;
+}
+
+/* 面试统计 */
+.interview-stats {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.stat-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 32px;
+    background: var(--bg-hover);
+    border-radius: var(--radius-lg);
+}
+
+.stat-badge .stat-num {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.stat-badge .stat-label {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* 响应式补充 */
+@media (max-width: 768px) {
+    .tutorials-tabs,
+    .interview-categories {
+        gap: 8px;
+    }
+
+    .tab-btn,
+    .category-btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+
+    .tutorial-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .question-header {
+        flex-wrap: wrap;
+    }
+
+    .difficulty {
+        margin-left: 0;
+        margin-top: 8px;
+    }
+
+    .compare-table {
+        font-size: 0.85rem;
+    }
+
+    .compare-table th,
+    .compare-table td {
+        padding: 8px;
+    }
+
+    .interview-stats {
+        gap: 16px;
+    }
+
+    .stat-badge {
+        padding: 16px 24px;
+    }
+}
