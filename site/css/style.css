@@ -3026,3 +3026,647 @@ body {
         padding-left: 20px;
     }
 }
+
+/* ================================
+   教程页面专用样式
+   ================================ */
+
+.tutorial-hero {
+    min-height: 50vh;
+    background: var(--gradient-hero);
+}
+
+/* 安装指南 */
+.install-tabs {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.install-tab {
+    padding: 12px 24px;
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+}
+
+.install-tab:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.install-tab.active {
+    background: var(--gradient-1);
+    border-color: var(--primary);
+    color: white;
+}
+
+.install-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.platform-content {
+    display: none;
+}
+
+.platform-content.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+.install-card {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 16px;
+    border: 1px solid var(--border);
+}
+
+.install-card h4 {
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.install-card p {
+    color: var(--text-muted);
+    margin-bottom: 16px;
+}
+
+.install-card pre {
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 16px;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+.install-note {
+    padding: 16px;
+    background: var(--bg-hover);
+    border-radius: var(--radius);
+    border-left: 4px solid var(--primary);
+}
+
+.install-note.warning {
+    background: #fef3c7;
+    border-left-color: #f59e0b;
+}
+
+.install-note.warning a {
+    color: #92400e;
+}
+
+.install-note strong {
+    color: var(--text-primary);
+}
+
+/* 其他平台 */
+.other-platforms {
+    margin-top: 48px;
+    text-align: center;
+}
+
+.other-platforms h3 {
+    color: var(--text-primary);
+    margin-bottom: 24px;
+}
+
+.platform-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.platform-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.platform-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary);
+}
+
+.platform-icon {
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+
+.platform-name {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.platform-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+/* 快速开始 */
+.quickstart-section {
+    background: var(--bg-dark);
+}
+
+.quickstart-steps {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.qs-step {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 32px;
+    padding: 24px;
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+}
+
+.qs-step-num {
+    width: 48px;
+    height: 48px;
+    background: var(--gradient-1);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.qs-step-content {
+    flex: 1;
+}
+
+.qs-step-content h4 {
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.qs-step-content pre {
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.qs-step-content p {
+    color: var(--text-muted);
+}
+
+.basic-commands {
+    max-width: 800px;
+    margin: 48px auto 0;
+}
+
+.basic-commands h3 {
+    color: var(--text-primary);
+    margin-bottom: 24px;
+}
+
+.commands-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.commands-table th,
+.commands-table td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.commands-table th {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+}
+
+.commands-table td {
+    color: var(--text-secondary);
+}
+
+.commands-table code {
+    background: var(--bg-hover);
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: var(--primary);
+}
+
+/* Memory 系统 */
+.memory-section {
+    background: var(--bg-card);
+}
+
+.memory-intro {
+    text-align: center;
+    margin-bottom: 32px;
+    color: var(--text-secondary);
+}
+
+.memory-comparison {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto 48px;
+}
+
+.memory-type-card {
+    background: var(--bg-hover);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    text-align: center;
+}
+
+.memory-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+}
+
+.memory-type-card h3 {
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+
+.memory-type-card p {
+    margin: 8px 0;
+    color: var(--text-secondary);
+}
+
+.memory-type-card .memory-who {
+    font-size: 0.9rem;
+}
+
+.memory-type-card .memory-use {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 16px;
+}
+
+.claude-md-locations,
+.claude-md-example,
+.memory-rules,
+.memory-tips {
+    max-width: 900px;
+    margin: 0 auto 48px;
+}
+
+.claude-md-locations h3,
+.claude-md-example h3,
+.memory-rules h3,
+.memory-tips h3 {
+    color: var(--text-primary);
+    margin-bottom: 24px;
+}
+
+.locations-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-hover);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.locations-table th,
+.locations-table td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.locations-table th {
+    background: var(--bg-card);
+    color: var(--text-primary);
+}
+
+.locations-table td {
+    color: var(--text-secondary);
+}
+
+.locations-table code {
+    background: var(--bg-card);
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: var(--primary);
+    font-size: 0.85rem;
+}
+
+.claude-md-example pre,
+.memory-rules pre,
+.rule-example pre {
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+.rule-example {
+    margin-top: 24px;
+}
+
+.rule-example h4 {
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+
+.tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+}
+
+.tip-card {
+    background: var(--bg-hover);
+    border-radius: var(--radius);
+    padding: 20px;
+}
+
+.tip-card h4 {
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.tip-card p,
+.tip-card ul {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.tip-card ul {
+    margin-left: 16px;
+}
+
+.tip-card li {
+    margin-bottom: 8px;
+}
+
+/* Skills 系统 */
+.skills-section {
+    background: var(--bg-dark);
+}
+
+.skills-intro {
+    text-align: center;
+    margin-bottom: 32px;
+    color: var(--text-secondary);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bundled-skills,
+.create-skill,
+.skill-locations,
+.skill-frontmatter,
+.skill-arguments {
+    max-width: 900px;
+    margin: 0 auto 48px;
+}
+
+.bundled-skills h3,
+.create-skill h3,
+.skill-locations h3,
+.skill-frontmatter h3,
+.skill-arguments h3 {
+    color: var(--text-primary);
+    margin-bottom: 24px;
+}
+
+.skills-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.skills-table th,
+.skills-table td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.skills-table th {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+}
+
+.skills-table td {
+    color: var(--text-secondary);
+}
+
+.skills-table code {
+    background: var(--bg-hover);
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: var(--primary);
+}
+
+.skill-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.skill-step {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 24px;
+    border: 1px solid var(--border);
+}
+
+.skill-step h4 {
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+
+.skill-step pre {
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.frontmatter-fields {
+    margin-top: 24px;
+}
+
+.frontmatter-fields h4 {
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+
+.field-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+}
+
+.field-item {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 16px;
+}
+
+.field-item code {
+    display: block;
+    background: var(--bg-hover);
+    padding: 8px;
+    border-radius: 4px;
+    color: var(--primary);
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+}
+
+.field-item p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* 常见工作流 */
+.workflows-section {
+    background: var(--bg-card);
+}
+
+.workflow-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 24px;
+}
+
+.workflow-card {
+    background: var(--bg-hover);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+}
+
+.workflow-icon {
+    font-size: 2rem;
+    margin-bottom: 16px;
+}
+
+.workflow-card h3 {
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+
+.workflow-card p {
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+}
+
+.workflow-card pre {
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 16px;
+    border-radius: 8px;
+    margin: 12px 0;
+    font-size: 0.9rem;
+}
+
+/* 命令参考 */
+.reference-section {
+    background: var(--bg-dark);
+}
+
+.reference-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.reference-category {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 24px;
+}
+
+.reference-category h3 {
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+}
+
+.ref-table {
+    width: 100%;
+}
+
+.ref-table td {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-secondary);
+}
+
+.ref-table td:first-child {
+    width: 40%;
+}
+
+.ref-table code {
+    background: var(--bg-hover);
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: var(--primary);
+}
+
+.ref-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* 教程页响应式 */
+@media (max-width: 768px) {
+    .install-tabs {
+        gap: 8px;
+    }
+
+    .install-tab {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+
+    .qs-step {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .qs-step-num {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    .workflow-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .reference-categories {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code 完全教程 - 官方文档中文版</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📘</text></svg>">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">📘</span>
+                <span class="logo-text">Claude Code 教程</span>
+            </a>
+            <div class="nav-links">
+                <a href="#install" class="nav-link">安装</a>
+                <a href="#quickstart" class="nav-link">快速开始</a>
+                <a href="#memory" class="nav-link">Memory</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#workflows" class="nav-link">工作流</a>
+                <a href="#reference" class="nav-link">参考</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="index.html" class="btn-github">← 返回首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero 区域 -->
+    <section class="hero tutorial-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>📖 官方文档中文版</span>
+                <span>🔄 实时同步</span>
+            </div>
+            <h1 class="hero-title">
+                Claude Code<br>
+                <span class="gradient-text">完全教程</span>
+            </h1>
+            <p class="hero-subtitle">
+                从安装到精通，系统学习 Claude Code<br>
+                基于 <a href="https://code.claude.com/docs/zh-CN/" target="_blank">官方文档</a> 整理
+            </p>
+            <div class="hero-actions">
+                <a href="#install" class="btn btn-primary">开始安装</a>
+                <a href="#quickstart" class="btn btn-secondary">快速开始</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 安装指南 -->
+    <section id="install" class="section">
+        <div class="container">
+            <h2 class="section-title">🚀 安装 Claude Code</h2>
+
+            <div class="install-tabs">
+                <button class="install-tab active" data-platform="mac">macOS / Linux</button>
+                <button class="install-tab" data-platform="win">Windows</button>
+                <button class="install-tab" data-platform="brew">Homebrew</button>
+                <button class="install-tab" data-platform="winget">WinGet</button>
+            </div>
+
+            <div class="install-content">
+                <div class="platform-content active" id="mac">
+                    <div class="install-card">
+                        <h4>推荐方式：原生安装</h4>
+                        <p>自动更新，始终保持最新版本</p>
+                        <pre><code>curl -fsSL https://claude.ai/install.sh | bash</code></pre>
+                    </div>
+                    <div class="install-note">
+                        <strong>💡 提示：</strong>原生安装会在后台自动更新，确保你始终使用最新版本。
+                    </div>
+                </div>
+
+                <div class="platform-content" id="win">
+                    <div class="install-card">
+                        <h4>PowerShell（推荐）</h4>
+                        <pre><code>irm https://claude.ai/install.ps1 | iex</code></pre>
+                    </div>
+                    <div class="install-card">
+                        <h4>CMD</h4>
+                        <pre><code>curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd</code></pre>
+                    </div>
+                    <div class="install-note warning">
+                        <strong>⚠️ 注意：</strong>Windows 需要先安装 <a href="https://git-scm.com/downloads/win" target="_blank">Git for Windows</a>。
+                    </div>
+                </div>
+
+                <div class="platform-content" id="brew">
+                    <div class="install-card">
+                        <h4>Homebrew 安装</h4>
+                        <pre><code>brew install --cask claude-code</code></pre>
+                    </div>
+                    <div class="install-note">
+                        <strong>💡 提示：</strong>Homebrew 安装不会自动更新。定期运行 <code>brew upgrade claude-code</code> 获取最新功能。
+                    </div>
+                </div>
+
+                <div class="platform-content" id="winget">
+                    <div class="install-card">
+                        <h4>WinGet 安装</h4>
+                        <pre><code>winget install Anthropic.ClaudeCode</code></pre>
+                    </div>
+                    <div class="install-note">
+                        <strong>💡 提示：</strong>WinGet 安装不会自动更新。定期运行 <code>winget upgrade Anthropic.ClaudeCode</code>。
+                    </div>
+                </div>
+            </div>
+
+            <div class="other-platforms">
+                <h3>📱 其他平台</h3>
+                <div class="platform-grid">
+                    <a href="https://marketplace.visualstudio.com/items?itemName=anthropic.claude-code" target="_blank" class="platform-card">
+                        <span class="platform-icon">💻</span>
+                        <span class="platform-name">VS Code</span>
+                        <span class="platform-desc">编辑器内联差异、@提及</span>
+                    </a>
+                    <a href="https://claude.ai/code" target="_blank" class="platform-card">
+                        <span class="platform-icon">🌐</span>
+                        <span class="platform-name">Web</span>
+                        <span class="platform-desc">浏览器中运行，无需安装</span>
+                    </a>
+                    <a href="https://claude.com/download" target="_blank" class="platform-card">
+                        <span class="platform-icon">🖥️</span>
+                        <span class="platform-name">Desktop</span>
+                        <span class="platform-desc">独立桌面应用</span>
+                    </a>
+                    <a href="https://plugins.jetbrains.com/plugin/27310-claude-code-beta-" target="_blank" class="platform-card">
+                        <span class="platform-icon">🔥</span>
+                        <span class="platform-name">JetBrains</span>
+                        <span class="platform-desc">IntelliJ、PyCharm 等</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 快速开始 -->
+    <section id="quickstart" class="section quickstart-section">
+        <div class="container">
+            <h2 class="section-title">⚡ 快速开始</h2>
+
+            <div class="quickstart-steps">
+                <div class="qs-step">
+                    <div class="qs-step-num">1</div>
+                    <div class="qs-step-content">
+                        <h4>启动 Claude Code</h4>
+                        <pre><code>cd your-project
+claude</code></pre>
+                        <p>首次使用会提示登录，按照指引完成认证。</p>
+                    </div>
+                </div>
+
+                <div class="qs-step">
+                    <div class="qs-step-num">2</div>
+                    <div class="qs-step-content">
+                        <h4>提出你的第一个问题</h4>
+                        <pre><code>这个项目做什么？
+这个项目使用什么技术？
+主入口点在哪里？</code></pre>
+                        <p>Claude 会自动分析你的代码库并回答问题。</p>
+                    </div>
+                </div>
+
+                <div class="qs-step">
+                    <div class="qs-step-num">3</div>
+                    <div class="qs-step-content">
+                        <h4>进行第一次代码更改</h4>
+                        <pre><code>在主文件中添加一个 hello world 函数</code></pre>
+                        <p>Claude Code 会：找到文件 → 显示建议 → 请求批准 → 进行编辑</p>
+                    </div>
+                </div>
+
+                <div class="qs-step">
+                    <div class="qs-step-num">4</div>
+                    <div class="qs-step-content">
+                        <h4>使用 Git 操作</h4>
+                        <pre><code>我更改了哪些文件？
+用描述性消息提交我的更改</code></pre>
+                        <p>Git 操作变得对话式，自然语言即可完成。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="basic-commands">
+                <h3>📋 基本命令</h3>
+                <table class="commands-table">
+                    <tr>
+                        <th>命令</th>
+                        <th>功能</th>
+                        <th>示例</th>
+                    </tr>
+                    <tr>
+                        <td><code>claude</code></td>
+                        <td>启动交互模式</td>
+                        <td><code>claude</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>claude "task"</code></td>
+                        <td>运行一次性任务</td>
+                        <td><code>claude "fix the build error"</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>claude -p "query"</code></td>
+                        <td>运行一次性查询</td>
+                        <td><code>claude -p "explain this function"</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>claude -c</code></td>
+                        <td>继续最近的对话</td>
+                        <td><code>claude -c</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>claude -r</code></td>
+                        <td>恢复之前的对话</td>
+                        <td><code>claude -r</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>/help</code></td>
+                        <td>显示可用命令</td>
+                        <td><code>/help</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>/clear</code></td>
+                        <td>清除对话历史</td>
+                        <td><code>/clear</code></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Memory 系统 -->
+    <section id="memory" class="section memory-section">
+        <div class="container">
+            <h2 class="section-title">🧠 Memory 记忆系统</h2>
+
+            <div class="memory-intro">
+                <p>Claude Code 有两个互补的记忆系统，在每次对话开始时加载：</p>
+            </div>
+
+            <div class="memory-comparison">
+                <div class="memory-type-card">
+                    <div class="memory-icon">📝</div>
+                    <h3>CLAUDE.md 文件</h3>
+                    <p class="memory-who">由<strong>你</strong>编写</p>
+                    <p class="memory-content">包含指令和规则</p>
+                    <p class="memory-scope">项目、用户或组织范围</p>
+                    <p class="memory-load">每个会话完整加载</p>
+                    <p class="memory-use">用于：编码标准、工作流、项目架构</p>
+                </div>
+                <div class="memory-type-card">
+                    <div class="memory-icon">🤖</div>
+                    <h3>自动记忆</h3>
+                    <p class="memory-who">由<strong>Claude</strong>编写</p>
+                    <p class="memory-content">包含学习和模式</p>
+                    <p class="memory-scope">每个工作树</p>
+                    <p class="memory-load">前 200 行或 25KB</p>
+                    <p class="memory-use">用于：构建命令、调试见解、发现的偏好</p>
+                </div>
+            </div>
+
+            <div class="claude-md-locations">
+                <h3>📁 CLAUDE.md 文件位置</h3>
+                <table class="locations-table">
+                    <tr>
+                        <th>范围</th>
+                        <th>位置</th>
+                        <th>用途</th>
+                        <th>共享对象</th>
+                    </tr>
+                    <tr>
+                        <td><strong>项目指令</strong></td>
+                        <td><code>./CLAUDE.md</code> 或 <code>./.claude/CLAUDE.md</code></td>
+                        <td>项目架构、编码标准</td>
+                        <td>团队成员（通过 Git）</td>
+                    </tr>
+                    <tr>
+                        <td><strong>用户指令</strong></td>
+                        <td><code>~/.claude/CLAUDE.md</code></td>
+                        <td>个人偏好、工具快捷方式</td>
+                        <td>仅你（所有项目）</td>
+                    </tr>
+                    <tr>
+                        <td><strong>托管策略</strong></td>
+                        <td><code>/etc/claude-code/CLAUDE.md</code></td>
+                        <td>公司编码标准、安全策略</td>
+                        <td>组织中的所有用户</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="claude-md-example">
+                <h3>📝 CLAUDE.md 示例</h3>
+                <pre><code># 项目规则
+
+## 代码规范
+- 使用 TypeScript strict mode
+- 遵循 ESLint 规则
+- 测试覆盖率 > 80%
+
+## 架构说明
+- 前端: React + Vite
+- 后端: Node.js + Express
+- 数据库: PostgreSQL
+
+## 工作流
+- 提交前运行: npm run lint && npm test
+- PR 需要 1 个以上 review
+
+## 导入其他文件
+- 详见 @README
+- Git 工作流 @docs/git-instructions.md</code></pre>
+            </div>
+
+            <div class="memory-rules">
+                <h3>📋 使用 .claude/rules/ 组织规则</h3>
+                <p>对于大型项目，可以将规则拆分到多个文件：</p>
+                <pre><code>your-project/
+├── .claude/
+│   ├── CLAUDE.md           # 主项目指令
+│   └── rules/
+│       ├── code-style.md   # 代码样式指南
+│       ├── testing.md      # 测试约定
+│       └── security.md     # 安全要求</code></pre>
+
+                <div class="rule-example">
+                    <h4>特定路径的规则示例</h4>
+                    <pre><code>---
+paths:
+  - "src/api/**/*.ts"
+---
+
+# API 开发规则
+
+- 所有 API 端点必须包括输入验证
+- 使用标准错误响应格式
+- 包括 OpenAPI 文档注释</code></pre>
+                </div>
+            </div>
+
+            <div class="memory-tips">
+                <h3>💡 编写有效指令的技巧</h3>
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <h4>✅ 具体</h4>
+                        <p>写具体到足以验证的指令：</p>
+                        <ul>
+                            <li>"使用 2 空格缩进"而不是"正确格式化代码"</li>
+                            <li>"提交前运行 <code>npm test</code>"而不是"测试你的更改"</li>
+                        </ul>
+                    </div>
+                    <div class="tip-card">
+                        <h4>📏 控制大小</h4>
+                        <p>每个 CLAUDE.md 文件目标在 200 行以下。较长的文件消耗更多上下文并降低遵守度。</p>
+                    </div>
+                    <div class="tip-card">
+                        <h4>🏗️ 结构化</h4>
+                        <p>使用 markdown 标题和项目符号分组相关指令。有组织的部分比密集段落更容易遵循。</p>
+                    </div>
+                    <div class="tip-card">
+                        <h4>🔄 一致性</h4>
+                        <p>如果两条规则相互矛盾，Claude 可能会任意选择一条。定期审查删除过时指令。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills 系统 -->
+    <section id="skills" class="section skills-section">
+        <div class="container">
+            <h2 class="section-title">🔧 Skills 技能系统</h2>
+
+            <div class="skills-intro">
+                <p>Skills 扩展了 Claude 能做的事情。创建一个 <code>SKILL.md</code> 文件，Claude 会将其添加到其工具包中。你可以在相关时自动使用，或用 <code>/skill-name</code> 直接调用。</p>
+            </div>
+
+            <div class="bundled-skills">
+                <h3>📦 内置 Skills</h3>
+                <table class="skills-table">
+                    <tr>
+                        <th>Skill</th>
+                        <th>用途</th>
+                    </tr>
+                    <tr>
+                        <td><code>/batch &lt;instruction&gt;</code></td>
+                        <td>在代码库中并行编排大规模更改</td>
+                    </tr>
+                    <tr>
+                        <td><code>/claude-api</code></td>
+                        <td>加载 Claude API 参考资料和 Agent SDK 文档</td>
+                    </tr>
+                    <tr>
+                        <td><code>/debug [description]</code></td>
+                        <td>启用调试日志记录并排查问题</td>
+                    </tr>
+                    <tr>
+                        <td><code>/loop [interval] &lt;prompt&gt;</code></td>
+                        <td>按间隔重复运行提示</td>
+                    </tr>
+                    <tr>
+                        <td><code>/simplify [focus]</code></td>
+                        <td>查找代码重用、质量和效率问题并修复</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="create-skill">
+                <h3>🛠️ 创建你的第一个 Skill</h3>
+
+                <div class="skill-steps">
+                    <div class="skill-step">
+                        <h4>步骤 1：创建目录</h4>
+                        <pre><code>mkdir -p ~/.claude/skills/explain-code</code></pre>
+                    </div>
+
+                    <div class="skill-step">
+                        <h4>步骤 2：编写 SKILL.md</h4>
+                        <pre><code>---
+name: explain-code
+description: Explains code with visual diagrams and analogies. Use when explaining how code works.
+---
+
+When explaining code, always include:
+
+1. **Start with an analogy**: Compare the code to something from everyday life
+2. **Draw a diagram**: Use ASCII art to show the flow, structure, or relationships
+3. **Walk through the code**: Explain step-by-step what happens
+4. **Highlight a gotcha**: What's a common mistake or misconception?</code></pre>
+                    </div>
+
+                    <div class="skill-step">
+                        <h4>步骤 3：测试 Skill</h4>
+                        <pre><code># 让 Claude 自动调用
+How does this code work?
+
+# 或直接调用
+/explain-code src/auth/login.ts</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-locations">
+                <h3>📁 Skills 存储位置</h3>
+                <table class="locations-table">
+                    <tr>
+                        <th>位置</th>
+                        <th>路径</th>
+                        <th>适用于</th>
+                    </tr>
+                    <tr>
+                        <td>个人</td>
+                        <td><code>~/.claude/skills/&lt;skill-name&gt;/SKILL.md</code></td>
+                        <td>你的所有项目</td>
+                    </tr>
+                    <tr>
+                        <td>项目</td>
+                        <td><code>.claude/skills/&lt;skill-name&gt;/SKILL.md</code></td>
+                        <td>仅此项目</td>
+                    </tr>
+                    <tr>
+                        <td>插件</td>
+                        <td><code>&lt;plugin&gt;/skills/&lt;skill-name&gt;/SKILL.md</code></td>
+                        <td>启用插件的位置</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="skill-frontmatter">
+                <h3>⚙️ Frontmatter 配置</h3>
+                <pre><code>---
+name: my-skill              # Skill 名称
+description: What it does   # 功能描述（推荐）
+disable-model-invocation: true  # 阻止 Claude 自动调用
+allowed-tools: Read Grep    # 限制可用工具
+context: fork               # 在 subagent 中运行
+agent: Explore              # 使用的代理类型
+effort: high                # 工作量级别
+paths:
+  - "src/api/**/*.ts"       # 限定适用路径
+---</code></pre>
+
+                <div class="frontmatter-fields">
+                    <h4>常用字段说明</h4>
+                    <div class="field-grid">
+                        <div class="field-item">
+                            <code>disable-model-invocation: true</code>
+                            <p>只有你可以调用该 skill。用于有副作用的操作（如部署）。</p>
+                        </div>
+                        <div class="field-item">
+                            <code>user-invocable: false</code>
+                            <p>只有 Claude 可以调用。用于背景知识。</p>
+                        </div>
+                        <div class="field-item">
+                            <code>allowed-tools</code>
+                            <p>限制当 skill 处于活动状态时可用的工具。</p>
+                        </div>
+                        <div class="field-item">
+                            <code>context: fork</code>
+                            <p>在隔离的 subagent 上下文中运行。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-arguments">
+                <h3>📤 参数传递</h3>
+                <pre><code>---
+name: fix-issue
+description: Fix a GitHub issue
+disable-model-invocation: true
+---
+
+Fix GitHub issue $ARGUMENTS following our coding standards.
+
+# 使用位置参数
+Migrate the $0 component from $1 to $2.</code></pre>
+                <p>运行 <code>/fix-issue 123</code> 时，<code>$ARGUMENTS</code> 会被替换为 <code>123</code>。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 常见工作流 -->
+    <section id="workflows" class="section workflows-section">
+        <div class="container">
+            <h2 class="section-title">🔄 常见工作流</h2>
+
+            <div class="workflow-grid">
+                <div class="workflow-card">
+                    <div class="workflow-icon">🔨</div>
+                    <h3>构建功能和修复错误</h3>
+                    <p>用自然语言描述你想要的内容：</p>
+                    <pre><code>向用户注册表单添加输入验证
+
+有一个错误，用户可以提交空表单 - 修复它</code></pre>
+                    <p>Claude 会定位相关代码、理解上下文、实现解决方案并运行测试。</p>
+                </div>
+
+                <div class="workflow-card">
+                    <div class="workflow-icon">📝</div>
+                    <h3>创建提交和 PR</h3>
+                    <pre><code># 查看更改
+我更改了哪些文件？
+
+# 提交
+用描述性消息提交我的更改
+
+# 创建 PR
+创建一个名为 feature/auth 的分支并打开 PR</code></pre>
+                </div>
+
+                <div class="workflow-card">
+                    <div class="workflow-icon">🔍</div>
+                    <h3>重构和测试</h3>
+                    <pre><code># 重构
+重构身份验证模块以使用 async/await
+
+# 测试
+为计算器函数编写单元测试
+
+# 审查
+审查我的更改并建议改进</code></pre>
+                </div>
+
+                <div class="workflow-card">
+                    <div class="workflow-icon">🔌</div>
+                    <h3>MCP 集成</h3>
+                    <p>Model Context Protocol 让 Claude 连接外部工具：</p>
+                    <pre><code># .mcp.json
+{
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_TOKEN": "$GITHUB_TOKEN"
+      }
+    }
+  }
+}</code></pre>
+                </div>
+
+                <div class="workflow-card">
+                    <div class="workflow-icon">⚡</div>
+                    <h3>CI/CD 自动化</h3>
+                    <pre><code># 分析日志
+tail -200 app.log | claude -p "分析异常"
+
+# CI 中运行
+claude -p "review these changed files for security issues"
+
+# 自动化翻译
+claude -p "translate new strings into French and raise a PR"</code></pre>
+                </div>
+
+                <div class="workflow-card">
+                    <div class="workflow-icon">⏰</div>
+                    <h3>定期任务</h3>
+                    <pre><code># 循环检查部署
+/loop 5m check if the deploy finished
+
+# 定期 PR 审查
+/schedule every morning at 9am review open PRs</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 命令参考 -->
+    <section id="reference" class="section reference-section">
+        <div class="container">
+            <h2 class="section-title">📖 命令参考</h2>
+
+            <div class="reference-categories">
+                <div class="reference-category">
+                    <h3>💬 会话管理</h3>
+                    <table class="ref-table">
+                        <tr><td><code>/help</code></td><td>显示可用命令</td></tr>
+                        <tr><td><code>/clear</code></td><td>清除对话历史</td></tr>
+                        <tr><td><code>/compact</code></td><td>压缩对话以节省上下文</td></tr>
+                        <tr><td><code>/resume</code></td><td>恢复之前的对话</td></tr>
+                        <tr><td><code>/rename "name"</code></td><td>重命名当前会话</td></tr>
+                    </table>
+                </div>
+
+                <div class="reference-category">
+                    <h3>⚙️ 配置</h3>
+                    <table class="ref-table">
+                        <tr><td><code>/config</code></td><td>查看或编辑配置</td></tr>
+                        <tr><td><code>/login</code></td><td>登录账户</td></tr>
+                        <tr><td><code>/logout</code></td><td>登出账户</td></tr>
+                        <tr><td><code>/model</code></td><td>切换模型</td></tr>
+                        <tr><td><code>/permissions</code></td><td>管理权限设置</td></tr>
+                    </table>
+                </div>
+
+                <div class="reference-category">
+                    <h3>🔍 上下文</h3>
+                    <table class="ref-table">
+                        <tr><td><code>/add-dir &lt;path&gt;</code></td><td>添加目录到上下文</td></tr>
+                        <tr><td><code>/memory</code></td><td>管理 CLAUDE.md 和自动记忆</td></tr>
+                        <tr><td><code>/init</code></td><td>生成初始 CLAUDE.md</td></tr>
+                        <tr><td><code>/mcp</code></td><td>管理 MCP servers</td></tr>
+                    </table>
+                </div>
+
+                <div class="reference-category">
+                    <h3>🛡️ 安全与恢复</h3>
+                    <table class="ref-table">
+                        <tr><td><code>/rewind</code></td><td>回退到 checkpoint</td></tr>
+                        <tr><td><code>/plan</code></td><td>进入规划模式</td></tr>
+                        <tr><td><code>/bug</code></td><td>报告问题</td></tr>
+                        <tr><td><code>/doctor</code></td><td>诊断常见问题</td></tr>
+                    </table>
+                </div>
+
+                <div class="reference-category">
+                    <h3>🔌 扩展</h3>
+                    <table class="ref-table">
+                        <tr><td><code>/skills</code></td><td>列出可用 skills</td></tr>
+                        <tr><td><code>/agents</code></td><td>列出可用 agents</td></tr>
+                        <tr><td><code>/hooks</code></td><td>管理 hooks</td></tr>
+                        <tr><td><code>/plugin</code></td><td>管理 plugins</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+                <p class="disclaimer">本教程基于 <a href="https://code.claude.com/docs/zh-CN/" target="_blank">Claude Code 官方文档</a> 整理，与 Anthropic 官方无关。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script>
+        // 教程页面专用脚本
+        document.addEventListener('DOMContentLoaded', () => {
+            // 安装平台切换
+            const installTabs = document.querySelectorAll('.install-tab')
+            const platformContents = document.querySelectorAll('.platform-content')
+
+            installTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const platform = tab.getAttribute('data-platform')
+                    installTabs.forEach(t => t.classList.remove('active'))
+                    platformContents.forEach(c => c.classList.remove('active'))
+                    tab.classList.add('active')
+                    document.getElementById(platform)?.classList.add('active')
+                })
+            })
+        })
+    </script>
+</body>
+</html>
