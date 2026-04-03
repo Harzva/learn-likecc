@@ -7,7 +7,14 @@
   "workspaces": [
     "packages/*",
     "packages/@ant/*",
-    "packages/@anthropic-ai/*"
+    "packages/@anthropic-ai/*",
+    "src/_external/shims/@anthropic-ai/*",
+    "src/_external/shims/@ant/*",
+    "src/_external/shims/color-diff-napi",
+    "src/_external/shims/image-processor-napi",
+    "src/_external/shims/audio-capture-napi",
+    "src/_external/shims/modifiers-napi",
+    "src/_external/shims/url-handler-napi"
   ],
   "scripts": {
     "typecheck": "tsc --noEmit",
@@ -21,8 +28,12 @@
     "@ant/computer-use-input": "workspace:*",
     "@ant/computer-use-mcp": "workspace:*",
     "@ant/computer-use-swift": "workspace:*",
+    "@anthropic-ai/claude-agent-sdk": "workspace:*",
+    "@anthropic-ai/foundry-sdk": "workspace:*",
+    "@anthropic-ai/mcpb": "workspace:*",
     "@anthropic-ai/sandbox-runtime": "workspace:*",
     "@anthropic-ai/sdk": "^0.39.0",
+    "@anthropic-ai/vertex-sdk": "workspace:*",
     "@aws-sdk/client-bedrock-runtime": "^3.0.0",
     "@commander-js/extra-typings": "^12.1.0",
     "@growthbook/growthbook": "^1.0.0",

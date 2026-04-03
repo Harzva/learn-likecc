@@ -1,0 +1,4 @@
+preload = ["./src/_external/preload.ts"]
+
+[loader]
+".md" = "text"
