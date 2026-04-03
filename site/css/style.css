@@ -1316,6 +1316,538 @@ body {
     }
 }
 
+/* ============ 交互式组件 ============ */
+
+/* 交互式代码演示 */
+.interactive-demo {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin: 24px 0;
+    border: 1px solid var(--border);
+}
+
+.demo-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 12px;
+}
+
+.demo-tab {
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    transition: all 0.2s;
+}
+
+.demo-tab:hover {
+    background: var(--bg-hover);
+}
+
+.demo-tab.active {
+    background: var(--gradient-1);
+    color: white;
+    border-color: transparent;
+}
+
+.demo-content {
+    min-height: 200px;
+}
+
+/* 流程图动画 */
+.flow-diagram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 30px;
+    margin: 20px 0;
+    background: linear-gradient(135deg, var(--bg-hover) 0%, var(--bg-card) 100%);
+    border-radius: var(--radius-lg);
+    overflow-x: auto;
+}
+
+.flow-node {
+    background: var(--bg-card);
+    padding: 16px 24px;
+    border-radius: 12px;
+    border: 2px solid var(--border);
+    text-align: center;
+    min-width: 100px;
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.flow-node:hover {
+    transform: scale(1.05);
+    border-color: var(--primary);
+    box-shadow: var(--shadow-lg);
+}
+
+.flow-node.active {
+    border-color: var(--primary);
+    background: linear-gradient(135deg, var(--bg-card) 0%, rgba(var(--primary), 0.1) 100%);
+}
+
+.flow-node .node-icon {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.flow-node .node-label {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.flow-arrow {
+    font-size: 1.5rem;
+    color: var(--primary);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* 知识卡片翻转 */
+.flip-card {
+    perspective: 1000px;
+    width: 100%;
+    height: 200px;
+    cursor: pointer;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+}
+
+.flip-card-front {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+}
+
+.flip-card-back {
+    background: var(--gradient-1);
+    color: white;
+    transform: rotateY(180deg);
+}
+
+.flip-card-icon {
+    font-size: 3rem;
+    margin-bottom: 12px;
+}
+
+/* 学习进度条 */
+.progress-container {
+    background: var(--bg-hover);
+    border-radius: 8px;
+    padding: 16px;
+    margin: 20px 0;
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.progress-label {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.progress-value {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.progress-bar {
+    height: 8px;
+    background: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--gradient-1);
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+/* 交互式问答 */
+.quiz-container {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin: 24px 0;
+    border: 1px solid var(--border);
+}
+
+.quiz-question {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+}
+
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.quiz-option {
+    padding: 16px;
+    background: var(--bg-hover);
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.quiz-option:hover {
+    border-color: var(--primary-light);
+    background: var(--bg-card);
+}
+
+.quiz-option.selected {
+    border-color: var(--primary);
+    background: rgba(var(--primary), 0.1);
+}
+
+.quiz-option.correct {
+    border-color: #22c55e;
+    background: rgba(34, 197, 94, 0.1);
+}
+
+.quiz-option.incorrect {
+    border-color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.quiz-option-marker {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.quiz-feedback {
+    margin-top: 16px;
+    padding: 16px;
+    border-radius: 8px;
+    display: none;
+}
+
+.quiz-feedback.show {
+    display: block;
+}
+
+.quiz-feedback.correct {
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid #22c55e;
+    color: #22c55e;
+}
+
+.quiz-feedback.incorrect {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid #ef4444;
+    color: #ef4444;
+}
+
+/* 时间线组件 */
+.timeline {
+    position: relative;
+    padding-left: 30px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--gradient-1);
+}
+
+.timeline-item {
+    position: relative;
+    padding-bottom: 30px;
+    padding-left: 20px;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -26px;
+    top: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--primary);
+    border: 3px solid var(--bg-card);
+}
+
+.timeline-item:last-child {
+    padding-bottom: 0;
+}
+
+.timeline-time {
+    font-size: 0.875rem;
+    color: var(--primary);
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.timeline-content {
+    background: var(--bg-card);
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+/* 代码高亮增强 */
+.code-block {
+    position: relative;
+    margin: 16px 0;
+}
+
+.code-block pre {
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 0;
+}
+
+.code-block code {
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.code-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #0f172a;
+    padding: 8px 16px;
+    border-radius: 8px 8px 0 0;
+    border-bottom: 1px solid #334155;
+}
+
+.code-lang {
+    color: #94a3b8;
+    font-size: 0.875rem;
+}
+
+.copy-btn {
+    background: transparent;
+    border: 1px solid #334155;
+    color: #94a3b8;
+    padding: 4px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.copy-btn:hover {
+    background: #334155;
+    color: white;
+}
+
+/* 交互式解释 */
+.explainable {
+    border-bottom: 2px dotted var(--primary);
+    cursor: help;
+    position: relative;
+}
+
+.explainable:hover::after {
+    content: attr(data-explanation);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-card);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border);
+    z-index: 100;
+}
+
+/* 成就徽章 */
+.badge-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: var(--bg-card);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    font-size: 0.875rem;
+}
+
+.badge.earned {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.2));
+    border-color: #22c55e;
+}
+
+.badge-icon {
+    font-size: 1.2rem;
+}
+
+/* 打字机效果 */
+.typewriter {
+    overflow: hidden;
+    border-right: 2px solid var(--primary);
+    white-space: nowrap;
+    animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--primary) }
+}
+
+/* 可折叠内容 */
+.collapsible {
+    background: var(--bg-card);
+    border-radius: 8px;
+    margin: 16px 0;
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+
+.collapsible-header {
+    padding: 16px 20px;
+    background: var(--bg-hover);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.collapsible-header:hover {
+    background: var(--bg-card);
+}
+
+.collapsible-icon {
+    transition: transform 0.3s;
+}
+
+.collapsible.open .collapsible-icon {
+    transform: rotate(180deg);
+}
+
+.collapsible-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.collapsible.open .collapsible-content {
+    max-height: 1000px;
+}
+
+.collapsible-inner {
+    padding: 20px;
+}
+
+/* 交互式图表 */
+.chart-container {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin: 24px 0;
+    border: 1px solid var(--border);
+}
+
+.chart-bar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 12px 0;
+}
+
+.chart-label {
+    width: 100px;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.chart-track {
+    flex: 1;
+    height: 24px;
+    background: var(--bg-hover);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.chart-fill {
+    height: 100%;
+    background: var(--gradient-1);
+    border-radius: 12px;
+    transition: width 1s ease;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 8px;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
 /* 页脚 */
 .footer {
     background: #f1f5f9;
