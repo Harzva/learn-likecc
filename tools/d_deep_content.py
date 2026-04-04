@@ -380,7 +380,7 @@ execute → ToolResult        // 必须可序列化回消息</code></pre>
                     <h3>结论</h3>
                     <ul>
                         <li><strong>第一 token 规则</strong>：仅当行首（trim 后）以 <code>/</code> 开头且紧跟已注册命令名时走命令表；否则整行进模型。</li>
-                        <li><strong>转义</strong>：支持 <code>\/</code> 或约定前缀（如 <code>//</code> 表示字面斜杠）避免用户想讨论路径时被当命令。</li>
+                        <li><strong>转义</strong>：支持 <code>\\/</code> 或约定前缀（如 <code>//</code> 表示字面斜杠）避免用户想讨论路径时被当命令。</li>
                         <li><strong>多行与粘贴</strong>：命令解析只在「提交的一行」或「第一行」上做，避免块粘贴误触。</li>
                     </ul>
                 </section>
