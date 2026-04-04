@@ -2,27 +2,19 @@
 // Mermaid 流程图定义（key 对应 data-mermaid-diagram）
 const MERMAID_DIAGRAMS = {
     'agent-loop': `graph TD
-    classDef yellow fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#e2b953;
-    classDef blue fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#3b82f6;
-    classDef green fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#10b981;
-    classDef red fill:#2d1e1e,stroke:#ef4444,stroke-width:2px,color:#ef4444;
+    classDef yellowBox fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#e2b953;
+    classDef blueBox fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#3b82f6;
+    classDef greenBox fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#10b981;
 
-    Start((用户输入)):::blue --> Init[2 初始化查询]:::blue
-    Init --> Prep[3 上下文准备]:::yellow
+    Step1[1 用户输入]:::blueBox --> Step2[2 查询初始化]:::blueBox
+    Step2 --> Step3[3 上下文准备]:::yellowBox
+    Step3 --> Step4[4 API 调用]:::greenBox
 
-    subgraph Engine [推理引擎]
-        Prep --> API[4 API 调用]:::green
-        API --> Stream[5 流式处理]:::green
+    subgraph Loop [循环执行]
+        Step4 --> Step5[5 流式处理]:::greenBox
     end
 
-    Stream --> Logic{是否调用工具?}:::yellow
-    Logic -- 是 --> Tool[6 执行外部工具]:::green
-    Tool --> Feedback[7 结果反馈]:::green
-    Feedback --> Prep
-
-    Logic -- 否 --> End[9 任务结束]:::red
-
-    style Engine fill:#16161e,stroke:#444b6a,stroke-dasharray: 5 5`
+    style Loop fill:#313244,stroke:#89b4fa,stroke-dasharray: 5 5`
 }
 
 function fillMermaidPlaceholders() {
@@ -48,14 +40,15 @@ function initMermaidFlowcharts() {
         theme: 'base',
         securityLevel: 'loose',
         themeVariables: {
-            background: '#0f111a',
-            primaryColor: '#1a1b26',
-            primaryTextColor: '#a9b1d6',
-            primaryBorderColor: '#7aa2f7',
-            lineColor: '#bb9af7',
-            tertiaryColor: '#1f2335',
+            background: '#11111b',
+            primaryColor: '#1e1e2e',
+            primaryTextColor: '#cdd6f4',
+            primaryBorderColor: '#89b4fa',
+            lineColor: '#f5e0dc',
+            secondaryColor: '#313244',
+            tertiaryColor: '#11111b',
             fontSize: '14px',
-            fontFamily: '"Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace'
+            fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace'
         }
     })
     mermaid.run({ querySelector: '.mermaid-flowchart' }).catch((err) => {

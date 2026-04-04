@@ -89,6 +89,13 @@
             <h2 class="section-title">📚 学习入口</h2>
             <p class="section-subtitle">选择你的学习路径，点击进入详细教程</p>
 
+            <figure class="mermaid-figure mermaid-figure--main" aria-label="学习流程图">
+                <figcaption class="mermaid-caption">
+                    <strong>流程概览</strong>：从用户输入、查询初始化、上下文准备到 API 与流式处理（循环执行）。与下方「官方教程 / 手册 / 源码课程」入口对照阅读。
+                </figcaption>
+                <div class="mermaid-diagram-scroll" data-mermaid-diagram="agent-loop"></div>
+            </figure>
+
             <div class="features-grid-main">
                 <!-- 官方教程入口 -->
                 <a href="tutorial.html" class="feature-card-main feature-primary">
@@ -198,6 +205,13 @@
         <div class="container">
             <h2 class="section-title">📚 源码课程章节</h2>
             <p class="section-subtitle">12 个渐进式课程，深入理解 Claude Code 内核</p>
+
+            <figure class="mermaid-figure mermaid-figure--main" aria-label="源码课程流程图">
+                <figcaption class="mermaid-caption">
+                    <strong>同一套主流程</strong>：对应 S01 Agent Loop 等章节中的「输入 → 初始化 → 上下文 → API → 流式」路径，便于选课前先建立整体印象。
+                </figcaption>
+                <div class="mermaid-diagram-scroll" data-mermaid-diagram="agent-loop"></div>
+            </figure>
 
             <div class="courses-tabs">
                 <button class="courses-tab active" data-part="all">全部</button>
@@ -724,6 +738,7 @@ jobs:
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js" crossorigin="anonymous"></script>
     <script src="js/app.js"></script>
     <script>
         // 主页专用脚本

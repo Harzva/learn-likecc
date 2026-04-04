@@ -893,7 +893,7 @@ body {
     overflow-x: auto;
     overflow-y: hidden;
     padding: 16px 12px 20px;
-    background: #0f111a;
+    background: #11111b;
     -webkit-overflow-scrolling: touch;
 }
 
@@ -906,6 +906,11 @@ body {
 .mermaid-diagram-scroll svg {
     max-width: 100%;
     height: auto;
+}
+
+/* 新版首页：流程图与区块标题的间距 */
+.mermaid-figure--main {
+    margin-top: 8px;
 }
 
 /* 课程网格 */
