@@ -43,29 +43,56 @@
                 </div>
 
                 <figure class="mermaid-figure" aria-label="本章导图">
-                    <figcaption class="mermaid-caption"><strong>模块导图</strong>（与 S01 一致）：stop_reason、消息边界与错误恢复精读</figcaption>
+                    <figcaption class="mermaid-caption"><strong>模块导图</strong>（与 S01 同源，便于对照）：stop_reason、消息边界与错误恢复精读</figcaption>
                     <div class="mermaid-diagram-scroll" data-mermaid-diagram="course-s01"></div>
                 </figure>
 
                 <section class="section-block">
-                    <h2>🎯 与主线差异</h2>
-                    <p>S01 解决「是什么、为什么」；D01 解决「代码在哪、如何判断对错」。本页提供<strong>占位骨架</strong>，后续版本将按 stop_reason、消息边界与错误恢复精读 展开源码片段与习题。</p>
+                    <h2>🔬 深挖目标</h2>
+                    <p>把「一轮循环」拆成<strong>可调试的状态机</strong>：模型返回什么会触发继续转圈？什么会干净退出？工具结果如何<strong>无损回流</strong>到下一轮上下文？</p>
                 </section>
 
                 <section class="section-block">
-                    <h2>📖 建议走读顺序</h2>
+                    <h2>📍 建议检索入口（以官方 Claude Code 仓库为准）</h2>
+                    <ul>
+                        <li>从 S01 提到的 <code>QueryEngine</code> 一带入手，全文搜索 <code>tool_use</code>、<code>stop_reason</code>、<code>assistant</code> 消息追加逻辑。</li>
+                        <li>区分两条链路：<strong>模型侧</strong>（流式 chunk 解析）与 <strong>宿主侧</strong>（执行工具、写回 <code>tool_result</code>）。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>🧩 状态机要点</h2>
+                    <table class="options-table">
+                        <tr><th>观察信号</th><th>宿主通常行为</th></tr>
+                        <tr><td>响应中含未完成 tool 调用</td><td>等待参数收齐 → 走权限门 → 执行 → 构造 tool_result 消息</td></tr>
+                        <tr><td>模型声明停止调用工具</td><td>进入「仅展示/等待用户」分支，循环结束或等待新输入</td></tr>
+                        <tr><td>流中断 / 解析异常</td><td>区分可重试（网络）与不可重试（协议损坏）；记录已消耗的 partial 状态</td></tr>
+                    </table>
+                </section>
+
+                <section class="section-block">
+                    <h2>⚠️ 边界与坑</h2>
+                    <ul>
+                        <li><strong>消息顺序</strong>：tool_result 必须挂在对应 tool_use 之后，否则多工具并行时会乱序。</li>
+                        <li><strong>嵌套与深度</strong>：子代理 / 任务系统可能在同一会话里叠加多圈 loop，注意「哪一层」在消费 tool_result。</li>
+                        <li><strong>反压</strong>：长输出工具若一次灌满上下文，会提前触发压缩（见 D05）。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>📖 走读顺序（90 min 量级）</h2>
                     <ol>
-                        <li>在 S01 标出的入口文件中，定位与本主题相关的类型与主函数。</li>
-                        <li>列出 3 个「若失败会如何表现」的分支（超时、权限、格式错误）。</li>
-                        <li>用最小用例复现一条快乐路径 + 一条异常路径。</li>
+                        <li>找到「从模型响应解析出 tool 调用」的函数，列出它返回的结构体字段。</li>
+                        <li>跟踪到「执行工具」唯一入口，确认是否<strong>先</strong>权限再执行（应如此）。</li>
+                        <li>找到「把结果写回 messages」的代码，标注与 D02、D03 的交界文件。</li>
                     </ol>
                 </section>
 
                 <section class="section-block">
-                    <h2>✏️ 自测（占位）</h2>
+                    <h2>✏️ 自测</h2>
                     <ul>
-                        <li>不看笔记，能否画出与上图等价的简化数据流？</li>
-                        <li>能否指出本模块与相邻一章的耦合点？</li>
+                        <li>不看源码：用笔画一条「用户一句话 → 两轮 tool → 结束」的时序，标出 4 条消息类型。</li>
+                        <li>回答：若第二次模型返回空 tool 块，宿主应在哪一层停止循环？</li>
                     </ul>
                 </section>
 

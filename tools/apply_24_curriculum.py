@@ -2,8 +2,11 @@
 """Generate d01–d12 deep-dive pages and patch s01–s12 navigation for 24-lesson order."""
 from __future__ import annotations
 
+import argparse
 import re
 from pathlib import Path
+
+from d_deep_content import DEEP_BODIES
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / "site"
@@ -32,6 +35,7 @@ def part_label(p: int) -> str:
 def d_page_html(n: int) -> str:
     en, zh, focus, part = THEMES[n - 1]
     lesson = n * 2
+    deep_body = DEEP_BODIES[n - 1].rstrip() + "\n"
 
     prev_top = f'<a href="s{n:02d}.html" class="chapter-prev">← S{n:02d}</a>'
     if n < 12:
@@ -97,32 +101,10 @@ def d_page_html(n: int) -> str:
                 </div>
 
                 <figure class="mermaid-figure" aria-label="本章导图">
-                    <figcaption class="mermaid-caption"><strong>模块导图</strong>（与 S{n:02d} 一致）：{focus}</figcaption>
+                    <figcaption class="mermaid-caption"><strong>模块导图</strong>（与 S{n:02d} 同源，便于对照）：{focus}</figcaption>
                     <div class="mermaid-diagram-scroll" data-mermaid-diagram="{mermaid_key}"></div>
                 </figure>
-
-                <section class="section-block">
-                    <h2>🎯 与主线差异</h2>
-                    <p>S{n:02d} 解决「是什么、为什么」；D{n:02d} 解决「代码在哪、如何判断对错」。本页提供<strong>占位骨架</strong>，后续版本将按 {focus} 展开源码片段与习题。</p>
-                </section>
-
-                <section class="section-block">
-                    <h2>📖 建议走读顺序</h2>
-                    <ol>
-                        <li>在 S{n:02d} 标出的入口文件中，定位与本主题相关的类型与主函数。</li>
-                        <li>列出 3 个「若失败会如何表现」的分支（超时、权限、格式错误）。</li>
-                        <li>用最小用例复现一条快乐路径 + 一条异常路径。</li>
-                    </ol>
-                </section>
-
-                <section class="section-block">
-                    <h2>✏️ 自测（占位）</h2>
-                    <ul>
-                        <li>不看笔记，能否画出与上图等价的简化数据流？</li>
-                        <li>能否指出本模块与相邻一章的耦合点？</li>
-                    </ul>
-                </section>
-
+{deep_body}
                 <div class="chapter-navigation">
                     <a href="{prev_bot_href}" class="btn btn-secondary">{prev_bot_text}</a>
                     <a href="{next_bot_href}" class="btn btn-primary">{next_bot_text}</a>
@@ -185,9 +167,20 @@ def patch_s_bottom_nav(content: str, n: int) -> str:
 
 
 def main() -> None:
+    ap = argparse.ArgumentParser(description="Generate D pages and optionally patch S chapter nav.")
+    ap.add_argument(
+        "--d-only",
+        action="store_true",
+        help="Only write d01–d12.html (do not modify s01–s12).",
+    )
+    args = ap.parse_args()
+
     for n in range(1, 13):
         (SITE / f"d{n:02d}.html").write_text(d_page_html(n), encoding="utf-8")
         print("wrote", f"d{n:02d}.html")
+
+    if args.d_only:
+        return
 
     for n in range(1, 13):
         path = SITE / f"s{n:02d}.html"

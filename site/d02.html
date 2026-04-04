@@ -43,29 +43,58 @@
                 </div>
 
                 <figure class="mermaid-figure" aria-label="本章导图">
-                    <figcaption class="mermaid-caption"><strong>模块导图</strong>（与 S02 一致）：注册表、校验失败与 ToolResult 契约</figcaption>
+                    <figcaption class="mermaid-caption"><strong>模块导图</strong>（与 S02 同源，便于对照）：注册表、校验失败与 ToolResult 契约</figcaption>
                     <div class="mermaid-diagram-scroll" data-mermaid-diagram="course-s02"></div>
                 </figure>
 
                 <section class="section-block">
-                    <h2>🎯 与主线差异</h2>
-                    <p>S02 解决「是什么、为什么」；D02 解决「代码在哪、如何判断对错」。本页提供<strong>占位骨架</strong>，后续版本将按 注册表、校验失败与 ToolResult 契约 展开源码片段与习题。</p>
+                    <h2>🔬 深挖目标</h2>
+                    <p>工具不是「一个函数」，而是 <strong>Schema + 权限钩子 + 执行器 + 结果契约</strong> 四层叠在一起；本讲把每一层的失败形态对齐到可观测现象。</p>
                 </section>
 
                 <section class="section-block">
-                    <h2>📖 建议走读顺序</h2>
+                    <h2>📐 ToolDef 契约（概念层）</h2>
+                    <div class="code-block">
+                        <pre><code class="language-typescript">// 与 S02 对照：抓住这四件事
+name + description          // 给模型的「广告」
+inputSchema                 // 宿主侧校验，防 JSON 胡写
+hasPermission? → execute    // 顺序不能反
+execute → ToolResult        // 必须可序列化回消息</code></pre>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔍 失败矩阵</h2>
+                    <table class="options-table">
+                        <tr><th>阶段</th><th>典型原因</th><th>用户可见现象</th></tr>
+                        <tr><td>Schema 校验</td><td>缺字段 / 类型错</td><td>工具未执行，直接报错或模型重试</td></tr>
+                        <tr><td>权限</td><td>策略为 ask 且用户拒绝</td><td>明确 deny，循环继续但无结果块</td></tr>
+                        <tr><td>执行期</td><td>超时、退出码非 0</td><td>stderr / is_error 标记进入上下文</td></tr>
+                    </table>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔗 与相邻章节</h2>
+                    <ul>
+                        <li>进入执行器之前几乎必经 <strong>D03 权限</strong>；别把「业务错误」和「策略拒绝」混在同一分支里。</li>
+                        <li>MCP 动态工具（D07）与内置工具共用同一套「调用外壳」时，重点看<strong>名称空间是否冲突</strong>。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>📖 走读顺序</h2>
                     <ol>
-                        <li>在 S02 标出的入口文件中，定位与本主题相关的类型与主函数。</li>
-                        <li>列出 3 个「若失败会如何表现」的分支（超时、权限、格式错误）。</li>
-                        <li>用最小用例复现一条快乐路径 + 一条异常路径。</li>
+                        <li>列出仓库里所有内置工具的注册表初始化点。</li>
+                        <li>找一个「重」工具（如 bash）和一个「轻」工具（如 read），对比权限字段差异。</li>
+                        <li>追踪一次校验失败：错误对象最终如何变成模型可见的文本。</li>
                     </ol>
                 </section>
 
                 <section class="section-block">
-                    <h2>✏️ 自测（占位）</h2>
+                    <h2>✏️ 自测</h2>
                     <ul>
-                        <li>不看笔记，能否画出与上图等价的简化数据流？</li>
-                        <li>能否指出本模块与相邻一章的耦合点？</li>
+                        <li>解释：为什么 execute 不应吞掉异常而返回「假成功」？</li>
+                        <li>设计：若同一 tool name 被 MCP 与内置同时注册，你会如何在代码层消歧？</li>
                     </ul>
                 </section>
 

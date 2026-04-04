@@ -43,29 +43,48 @@
                 </div>
 
                 <figure class="mermaid-figure" aria-label="本章导图">
-                    <figcaption class="mermaid-caption"><strong>模块导图</strong>（与 S12 一致）：diff/merge 策略与自动化边界</figcaption>
+                    <figcaption class="mermaid-caption"><strong>模块导图</strong>（与 S12 同源，便于对照）：diff/merge 策略与自动化边界</figcaption>
                     <div class="mermaid-diagram-scroll" data-mermaid-diagram="course-s12"></div>
                 </figure>
 
                 <section class="section-block">
-                    <h2>🎯 与主线差异</h2>
-                    <p>S12 解决「是什么、为什么」；D12 解决「代码在哪、如何判断对错」。本页提供<strong>占位骨架</strong>，后续版本将按 diff/merge 策略与自动化边界 展开源码片段与习题。</p>
+                    <h2>🔬 深挖目标</h2>
+                    <p>Git 集成是「自动化刀锋」：<strong>何时只读、何时写索引、何时提交、冲突由谁解决</strong>。本讲对齐宿主命令与 git 状态机，避免静默破坏仓库。</p>
                 </section>
 
                 <section class="section-block">
-                    <h2>📖 建议走读顺序</h2>
+                    <h2>🌳 操作分级</h2>
+                    <table class="options-table">
+                        <tr><th>级别</th><th>示例</th><th>权限建议</th></tr>
+                        <tr><td>只读</td><td>status、diff、log</td><td>可默认 auto</td></tr>
+                        <tr><td>索引变更</td><td>add、restore</td><td>ask 或项目策略</td></tr>
+                        <tr><td>历史改写</td><td>commit --amend、push --force</td><td>强确认 + 日志</td></tr>
+                    </table>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔀 合并与冲突</h2>
+                    <ul>
+                        <li>模型生成 patch 与 git 冲突 marker 同时出现时，优先让人类看清「三方」。</li>
+                        <li>自动化 merge 失败必须<strong>非零退出</strong>并把冲突路径喂回上下文。</li>
+                        <li>与 D09：IDE buffer 未保存 vs git checkout 冲突检测。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>📖 走读顺序</h2>
                     <ol>
-                        <li>在 S12 标出的入口文件中，定位与本主题相关的类型与主函数。</li>
-                        <li>列出 3 个「若失败会如何表现」的分支（超时、权限、格式错误）。</li>
-                        <li>用最小用例复现一条快乐路径 + 一条异常路径。</li>
+                        <li>搜索 <code>git</code> 封装层（spawn 包装），列出所有子命令白名单。</li>
+                        <li>确认是否过滤 <code>--force</code>、<code>update-ref</code> 等高危参数。</li>
+                        <li>走读一次「自动 commit」：默认 message 规则、是否 GPG、是否 hook。</li>
                     </ol>
                 </section>
 
                 <section class="section-block">
-                    <h2>✏️ 自测（占位）</h2>
+                    <h2>✏️ 自测</h2>
                     <ul>
-                        <li>不看笔记，能否画出与上图等价的简化数据流？</li>
-                        <li>能否指出本模块与相邻一章的耦合点？</li>
+                        <li>设计策略：允许模型 <code>git commit</code> 但禁止 <code>git push</code>，在权限层如何实现？</li>
+                        <li>若 .git 在 workspace 外，工具应拒绝还是跟随 symlink？</li>
                     </ul>
                 </section>
 

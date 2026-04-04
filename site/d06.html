@@ -43,29 +43,53 @@
                 </div>
 
                 <figure class="mermaid-figure" aria-label="本章导图">
-                    <figcaption class="mermaid-caption"><strong>模块导图</strong>（与 S06 一致）：隔离上下文、合并策略与成本</figcaption>
+                    <figcaption class="mermaid-caption"><strong>模块导图</strong>（与 S06 同源，便于对照）：隔离上下文、合并策略与成本</figcaption>
                     <div class="mermaid-diagram-scroll" data-mermaid-diagram="course-s06"></div>
                 </figure>
 
                 <section class="section-block">
-                    <h2>🎯 与主线差异</h2>
-                    <p>S06 解决「是什么、为什么」；D06 解决「代码在哪、如何判断对错」。本页提供<strong>占位骨架</strong>，后续版本将按 隔离上下文、合并策略与成本 展开源码片段与习题。</p>
+                    <h2>🔬 深挖目标</h2>
+                    <p>子代理 = <strong>隔离上下文 + 受限工具视图 + 结果回灌</strong>。深挖重点是：fork 时复制什么、不复制什么、合并时会不会重复计费或泄露秘密。</p>
                 </section>
 
                 <section class="section-block">
-                    <h2>📖 建议走读顺序</h2>
+                    <h2>🧩 隔离清单</h2>
+                    <ul>
+                        <li><strong>消息历史</strong>：通常截断为子任务描述 + 少量父上下文。</li>
+                        <li><strong>工具白名单</strong>：子代理可能无权 bash / 无权写仓库。</li>
+                        <li><strong>文件系统视图</strong>：cwd、忽略规则、沙箱路径是否继承？</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔀 合并策略</h2>
+                    <table class="options-table">
+                        <tr><th>合并产物</th><th>父循环消费方式</th><th>风险</th></tr>
+                        <tr><td>单条摘要消息</td><td>当作 tool_result</td><td>细节丢失 → 父模型误判完成度</td></tr>
+                        <tr><td>多条结构化块</td><td>拼进上下文</td><td>体积暴涨 → 触发 D05</td></tr>
+                        <tr><td>仅状态 diff</td><td>更新 AppState</td><td>与 Git（D12）状态不一致</td></tr>
+                    </table>
+                </section>
+
+                <section class="section-block">
+                    <h2>💰 成本与调试</h2>
+                    <p>每 fork 一轮完整 loop，token 与延迟近似翻倍；日志里应能区分 <code>parent_turn_id</code> / <code>child_turn_id</code>。</p>
+                </section>
+
+                <section class="section-block">
+                    <h2>📖 走读顺序</h2>
                     <ol>
-                        <li>在 S06 标出的入口文件中，定位与本主题相关的类型与主函数。</li>
-                        <li>列出 3 个「若失败会如何表现」的分支（超时、权限、格式错误）。</li>
-                        <li>用最小用例复现一条快乐路径 + 一条异常路径。</li>
+                        <li>搜索 <code>subagent</code>、<code>fork</code>、<code>delegate</code> 等关键词，定位创建函数。</li>
+                        <li>打印 fork 前后的 config diff（尤其 tools 与 permission）。</li>
+                        <li>跟踪子代理异常退出时父层如何收尾（超时、部分结果）。</li>
                     </ol>
                 </section>
 
                 <section class="section-block">
-                    <h2>✏️ 自测（占位）</h2>
+                    <h2>✏️ 自测</h2>
                     <ul>
-                        <li>不看笔记，能否画出与上图等价的简化数据流？</li>
-                        <li>能否指出本模块与相邻一章的耦合点？</li>
+                        <li>若子代理读到 <code>.env</code> 而父未显式传入，这是泄露还是特性？你会怎么修？</li>
+                        <li>设计一个「子任务成功但父任务应失败」的验收测试。</li>
                     </ul>
                 </section>
 

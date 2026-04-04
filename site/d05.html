@@ -43,29 +43,52 @@
                 </div>
 
                 <figure class="mermaid-figure" aria-label="本章导图">
-                    <figcaption class="mermaid-caption"><strong>模块导图</strong>（与 S05 一致）：摘要策略、触发时机与信息损失</figcaption>
+                    <figcaption class="mermaid-caption"><strong>模块导图</strong>（与 S05 同源，便于对照）：摘要策略、触发时机与信息损失</figcaption>
                     <div class="mermaid-diagram-scroll" data-mermaid-diagram="course-s05"></div>
                 </figure>
 
                 <section class="section-block">
-                    <h2>🎯 与主线差异</h2>
-                    <p>S05 解决「是什么、为什么」；D05 解决「代码在哪、如何判断对错」。本页提供<strong>占位骨架</strong>，后续版本将按 摘要策略、触发时机与信息损失 展开源码片段与习题。</p>
+                    <h2>🔬 深挖目标</h2>
+                    <p>压缩是「有损优化」：<strong>何时触发、压缩谁、保留什么信号、如何向模型隐瞒损失</strong>，决定 Agent 是否突然变笨。</p>
                 </section>
 
                 <section class="section-block">
-                    <h2>📖 建议走读顺序</h2>
+                    <h2>📊 触发与策略</h2>
+                    <ul>
+                        <li>常见触发：token 预算、消息条数、工具输出超长、显式配置阈值。</li>
+                        <li>策略谱系：<strong>截断</strong>（硬切）→ <strong>摘要</strong>（模型或规则）→ <strong>结构化压缩</strong>（只留 error + 尾部）。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>⚠️ 信息损失审计</h2>
+                    <table class="options-table">
+                        <tr><th>内容类型</th><th>压缩风险</th><th>缓解思路</th></tr>
+                        <tr><td>测试失败栈</td><td>丢中间帧 → 无法定位</td><td>保留首尾 + 关键 assert 行</td></tr>
+                        <tr><td>大文件 read</td><td>只剩摘要 → 丢 import</td><td>分段 read 或保留 path + checksum</td></tr>
+                        <tr><td>多轮 plan</td><td>目标被冲掉</td><td>单独 system 小结锚点</td></tr>
+                    </table>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔗 与 Loop</h2>
+                    <p>压缩发生在「下一轮模型调用前」；若与工具并行交织，确认压缩器看到的消息视图是否包含<strong>尚未提交的 tool_result</strong>。</p>
+                </section>
+
+                <section class="section-block">
+                    <h2>📖 走读顺序</h2>
                     <ol>
-                        <li>在 S05 标出的入口文件中，定位与本主题相关的类型与主函数。</li>
-                        <li>列出 3 个「若失败会如何表现」的分支（超时、权限、格式错误）。</li>
-                        <li>用最小用例复现一条快乐路径 + 一条异常路径。</li>
+                        <li>搜索 <code>compress</code>、<code>truncate</code>、<code>summary</code>、<code>token</code> 相关函数，列调用栈。</li>
+                        <li>构造一条超长工具输出，打日志看压缩前后消息长度与结构变化。</li>
+                        <li>回答：压缩后的消息是否仍满足 API schema？</li>
                     </ol>
                 </section>
 
                 <section class="section-block">
-                    <h2>✏️ 自测（占位）</h2>
+                    <h2>✏️ 自测</h2>
                     <ul>
-                        <li>不看笔记，能否画出与上图等价的简化数据流？</li>
-                        <li>能否指出本模块与相邻一章的耦合点？</li>
+                        <li>给出一种「压缩后模型必然做错」的场景，并说明如何改策略避免。</li>
+                        <li>比较：摘要由「小模型」与「规则」各有什么工程代价？</li>
                     </ul>
                 </section>
 

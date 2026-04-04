@@ -43,29 +43,53 @@
                 </div>
 
                 <figure class="mermaid-figure" aria-label="本章导图">
-                    <figcaption class="mermaid-caption"><strong>模块导图</strong>（与 S08 一致）：依赖图、调度与失败重试</figcaption>
+                    <figcaption class="mermaid-caption"><strong>模块导图</strong>（与 S08 同源，便于对照）：依赖图、调度与失败重试</figcaption>
                     <div class="mermaid-diagram-scroll" data-mermaid-diagram="course-s08"></div>
                 </figure>
 
                 <section class="section-block">
-                    <h2>🎯 与主线差异</h2>
-                    <p>S08 解决「是什么、为什么」；D08 解决「代码在哪、如何判断对错」。本页提供<strong>占位骨架</strong>，后续版本将按 依赖图、调度与失败重试 展开源码片段与习题。</p>
+                    <h2>🔬 深挖目标</h2>
+                    <p>任务系统把「多步工作」从模型幻觉里拽到<strong>可持久化数据结构</strong>：依赖、状态、重试与并发上限都要在代码层可验证。</p>
                 </section>
 
                 <section class="section-block">
-                    <h2>📖 建议走读顺序</h2>
+                    <h2>🧱 数据模型（自查）</h2>
+                    <ul>
+                        <li>任务节点：id、title、状态机（pending/running/blocked/done/failed）。</li>
+                        <li>依赖边：DAG 还是允许软依赖？失败是否级联取消？</li>
+                        <li>调度器：与主 loop 是同线程还是 job queue？</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔁 失败与重试</h2>
+                    <table class="options-table">
+                        <tr><th>失败类型</th><th>建议策略</th></tr>
+                        <tr><td>工具瞬时错误</td><td>有限次指数退避 + 可观察日志</td></tr>
+                        <tr><td>权限拒绝</td><td>不要自动重试；回到 D03 等人</td></tr>
+                        <tr><td>模型胡写 plan</td><td>校验 DAG 无环 + 人工 / 规则 gate</td></tr>
+                    </table>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔗 与 Subagent</h2>
+                    <p>常见模式：父任务拆子任务 → 子代理执行 → 父任务合并；确认子任务失败是否会<strong>阻塞</strong>父任务依赖解析。</p>
+                </section>
+
+                <section class="section-block">
+                    <h2>📖 走读顺序</h2>
                     <ol>
-                        <li>在 S08 标出的入口文件中，定位与本主题相关的类型与主函数。</li>
-                        <li>列出 3 个「若失败会如何表现」的分支（超时、权限、格式错误）。</li>
-                        <li>用最小用例复现一条快乐路径 + 一条异常路径。</li>
+                        <li>搜索 <code>task</code>、<code>todo</code>、<code>queue</code>、<code>scheduler</code>，缩小到任务模块目录。</li>
+                        <li>画一张 5 个状态以内的状态机，并与实际枚举对比。</li>
+                        <li>模拟：任务 A 依赖 B，B failed，UI 与 API 各应表现什么？</li>
                     </ol>
                 </section>
 
                 <section class="section-block">
-                    <h2>✏️ 自测（占位）</h2>
+                    <h2>✏️ 自测</h2>
                     <ul>
-                        <li>不看笔记，能否画出与上图等价的简化数据流？</li>
-                        <li>能否指出本模块与相邻一章的耦合点？</li>
+                        <li>若允许并行 3 个 running 任务，如何避免同一文件被双写？</li>
+                        <li>任务持久化若只存 title 不存 acceptance criteria，会有什么问题？</li>
                     </ul>
                 </section>
 

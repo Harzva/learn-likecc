@@ -43,29 +43,54 @@
                 </div>
 
                 <figure class="mermaid-figure" aria-label="本章导图">
-                    <figcaption class="mermaid-caption"><strong>模块导图</strong>（与 S07 一致）：握手、工具发现与安全边界</figcaption>
+                    <figcaption class="mermaid-caption"><strong>模块导图</strong>（与 S07 同源，便于对照）：握手、工具发现与安全边界</figcaption>
                     <div class="mermaid-diagram-scroll" data-mermaid-diagram="course-s07"></div>
                 </figure>
 
                 <section class="section-block">
-                    <h2>🎯 与主线差异</h2>
-                    <p>S07 解决「是什么、为什么」；D07 解决「代码在哪、如何判断对错」。本页提供<strong>占位骨架</strong>，后续版本将按 握手、工具发现与安全边界 展开源码片段与习题。</p>
+                    <h2>🔬 深挖目标</h2>
+                    <p>MCP 是进程/会话级协议：<strong>握手、能力公告、工具发现、调用、崩溃恢复</strong>。本讲把每个 JSON-RPC 形状与宿主状态机对齐。</p>
                 </section>
 
                 <section class="section-block">
-                    <h2>📖 建议走读顺序</h2>
+                    <h2>🔌 生命周期（概念）</h2>
                     <ol>
-                        <li>在 S07 标出的入口文件中，定位与本主题相关的类型与主函数。</li>
-                        <li>列出 3 个「若失败会如何表现」的分支（超时、权限、格式错误）。</li>
-                        <li>用最小用例复现一条快乐路径 + 一条异常路径。</li>
+                        <li><strong>启动传输</strong>：<code>stdio</code> spawn 子进程 / <code>sse</code> 建连。</li>
+                        <li><strong>initialize / initialized</strong>：交换协议版本与 capability。</li>
+                        <li><strong>tools/list</strong> → 缓存工具 schema → 与内置工具合并名空间。</li>
+                        <li><strong>tools/call</strong>：参数校验 → 等待响应 → 映射为统一 ToolResult。</li>
                     </ol>
                 </section>
 
                 <section class="section-block">
-                    <h2>✏️ 自测（占位）</h2>
+                    <h2>⚠️ 工程坑</h2>
+                    <table class="options-table">
+                        <tr><th>问题</th><th>现象</th><th>排查</th></tr>
+                        <tr><td>僵尸子进程</td><td>端口占用 / CPU 空转</td><td>宿主退出时是否 SIGTERM 子进程？</td></tr>
+                        <tr><td>握手超时</td><td>工具列表空</td><td>stderr 是否被吞？日志级别？</td></tr>
+                        <tr><td>工具重名</td><td>调用打到错误 server</td><td>前缀策略或注册顺序</td></tr>
+                    </table>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔒 安全边界</h2>
+                    <p>MCP 工具在权限模型里通常等价于「外部 bash」：应继承 D03 的最严策略或单独白名单；任何「自动信任 MCP」都是红旗。</p>
+                </section>
+
+                <section class="section-block">
+                    <h2>📖 走读顺序</h2>
+                    <ol>
+                        <li>定位 MCP client 实现文件，画「连接 → list → call」时序。</li>
+                        <li>找一个官方示例 server，故意让 tools/call 抛错，观察宿主如何展示给模型。</li>
+                        <li>列出所有 transport 分支，比较重连策略差异。</li>
+                    </ol>
+                </section>
+
+                <section class="section-block">
+                    <h2>✏️ 自测</h2>
                     <ul>
-                        <li>不看笔记，能否画出与上图等价的简化数据流？</li>
-                        <li>能否指出本模块与相邻一章的耦合点？</li>
+                        <li>解释为何 MCP 不宜在每次 tool call 时重新 handshake。</li>
+                        <li>若两个 server 提供同名 tool，你会选前缀还是 UUID？利弊？</li>
                     </ul>
                 </section>
 

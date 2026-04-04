@@ -43,29 +43,58 @@
                 </div>
 
                 <figure class="mermaid-figure" aria-label="本章导图">
-                    <figcaption class="mermaid-caption"><strong>模块导图</strong>（与 S03 一致）：策略矩阵、审计点与 yolo 边界</figcaption>
+                    <figcaption class="mermaid-caption"><strong>模块导图</strong>（与 S03 同源，便于对照）：策略矩阵、审计点与 yolo 边界</figcaption>
                     <div class="mermaid-diagram-scroll" data-mermaid-diagram="course-s03"></div>
                 </figure>
 
                 <section class="section-block">
-                    <h2>🎯 与主线差异</h2>
-                    <p>S03 解决「是什么、为什么」；D03 解决「代码在哪、如何判断对错」。本页提供<strong>占位骨架</strong>，后续版本将按 策略矩阵、审计点与 yolo 边界 展开源码片段与习题。</p>
+                    <h2>🔬 深挖目标</h2>
+                    <p>权限不是 UI 弹窗那么简单，而是<strong>策略函数 + 会话模式 + 审计轨迹</strong>。你要能回答：同一操作在 <code>default</code> / <code>acceptEdits</code> / <code>bypassPermissions</code> 下分别走哪条分支。</p>
                 </section>
 
                 <section class="section-block">
-                    <h2>📖 建议走读顺序</h2>
+                    <h2>📊 策略维度（建议自建表）</h2>
+                    <p>打开源码后，建一张二维表：<strong>工具类型 × 风险等级 × 当前 PermissionMode</strong> → 结果（auto / ask / deny）。不必一次填满，先覆盖：文件写、bash、网络、MCP 调用。</p>
+                    <table class="options-table">
+                        <tr><th>模式</th><th>心智模型</th><th>实现侧需警惕</th></tr>
+                        <tr><td><code>default</code></td><td>高风险默认打断用户</td><td>「高风险」列表是否完整？有无绕过路径？</td></tr>
+                        <tr><td><code>acceptEdits</code></td><td>编辑类自动放行</td><td>与 bash / 删除类是否仍隔离？</td></tr>
+                        <tr><td><code>bypassPermissions</code></td><td>全放行（yolo）</td><td>是否仍有<strong>硬熔断</strong>（例如某些环境变量禁运）？</td></tr>
+                    </table>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔍 代码走读抓手</h2>
+                    <ul>
+                        <li>搜索 <code>canUseTool</code>、<code>PermissionMode</code>、<code>bypassPermissions</code>，找<strong>唯一真相源</strong>：哪个函数把策略结果转成 UI？</li>
+                        <li>跟踪「用户点允许一次」vs「记住规则」：会话状态落在内存还是配置文件？</li>
+                        <li>审计：日志里能否还原「谁、在何模式、对哪条工具、做了什么决定」？若不能，说明审计链断裂。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>⚠️ 边界案例清单</h2>
+                    <ul>
+                        <li>工具参数含路径穿越或敏感目录时，策略是否在<strong>解析后路径</strong>上判定？</li>
+                        <li>并行 tool 调用：若一个被拒一个通过，部分成功如何反馈给模型？</li>
+                        <li>模式切换发生在工具执行中途：是否用快照模式还是实时读取？</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>📖 走读顺序</h2>
                     <ol>
-                        <li>在 S03 标出的入口文件中，定位与本主题相关的类型与主函数。</li>
-                        <li>列出 3 个「若失败会如何表现」的分支（超时、权限、格式错误）。</li>
-                        <li>用最小用例复现一条快乐路径 + 一条异常路径。</li>
+                        <li>从 S03 的 <code>PermissionMode</code> 类型出发，列出所有枚举值在 UI 层的入口。</li>
+                        <li>画一张「tool 请求 → 策略 → 用户/自动 → 执行」的流程图，与页面顶部 Mermaid 对照查漏补缺。</li>
+                        <li>刻意用 <code>bypassPermissions</code> 跑一条高危命令（隔离环境），验证是否仍有硬拦截。</li>
                     </ol>
                 </section>
 
                 <section class="section-block">
-                    <h2>✏️ 自测（占位）</h2>
+                    <h2>✏️ 自测</h2>
                     <ul>
-                        <li>不看笔记，能否画出与上图等价的简化数据流？</li>
-                        <li>能否指出本模块与相邻一章的耦合点？</li>
+                        <li>用三句话说明 <code>dontAsk</code> 与 <code>bypassPermissions</code> 的差异（语义与实现位置）。</li>
+                        <li>若要把「只允许 workspace 内写」做成硬策略，你会挂在权限层还是工具层？理由？</li>
                     </ul>
                 </section>
 

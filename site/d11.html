@@ -43,29 +43,47 @@
                 </div>
 
                 <figure class="mermaid-figure" aria-label="本章导图">
-                    <figcaption class="mermaid-caption"><strong>模块导图</strong>（与 S11 一致）：键位映射、与 Readline 交互</figcaption>
+                    <figcaption class="mermaid-caption"><strong>模块导图</strong>（与 S11 同源，便于对照）：键位映射、与 Readline 交互</figcaption>
                     <div class="mermaid-diagram-scroll" data-mermaid-diagram="course-s11"></div>
                 </figure>
 
                 <section class="section-block">
-                    <h2>🎯 与主线差异</h2>
-                    <p>S11 解决「是什么、为什么」；D11 解决「代码在哪、如何判断对错」。本页提供<strong>占位骨架</strong>，后续版本将按 键位映射、与 Readline 交互 展开源码片段与习题。</p>
+                    <h2>🔬 深挖目标</h2>
+                    <p>Vim 模式是输入栈上的「第二套映射层」：要在 <strong>readline / prompt toolkit / 多行编辑</strong> 共存时不炸键，必须分清何时拦截、何时透传。</p>
                 </section>
 
                 <section class="section-block">
-                    <h2>📖 建议走读顺序</h2>
+                    <h2>⌨️ 键位管线</h2>
                     <ol>
-                        <li>在 S11 标出的入口文件中，定位与本主题相关的类型与主函数。</li>
-                        <li>列出 3 个「若失败会如何表现」的分支（超时、权限、格式错误）。</li>
-                        <li>用最小用例复现一条快乐路径 + 一条异常路径。</li>
+                        <li>底层捕获 keydown / char input。</li>
+                        <li>Vim 状态机：Normal / Insert / Visual（若有）。</li>
+                        <li>与全局快捷键（粘贴、历史、补全）优先级比较。</li>
                     </ol>
                 </section>
 
                 <section class="section-block">
-                    <h2>✏️ 自测（占位）</h2>
+                    <h2>⚠️ 常见冲突</h2>
                     <ul>
-                        <li>不看笔记，能否画出与上图等价的简化数据流？</li>
-                        <li>能否指出本模块与相邻一章的耦合点？</li>
+                        <li><code>Ctrl+C</code>：中断模型请求 vs Vim 操作。</li>
+                        <li>多行块编辑：Esc 是退出插入还是取消补全？</li>
+                        <li>IME 组合输入：是否在 Normal 模式误吞？</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>📖 走读顺序</h2>
+                    <ol>
+                        <li>搜索 <code>vim</code>、<code>keymap</code>、<code>readline</code>，定位模式切换状态变量。</li>
+                        <li>列一张表：10 个常用键在 Insert vs Normal 的行为。</li>
+                        <li>在集成测试里模拟按键序列（若仓库无测例，手写伪代码）。</li>
+                    </ol>
+                </section>
+
+                <section class="section-block">
+                    <h2>✏️ 自测</h2>
+                    <ul>
+                        <li>解释：为何 Vim 层应在「业务命令解析」之前还是之后？</li>
+                        <li>若用户关闭 vim 模式 mid-session，状态应如何重置？</li>
                     </ul>
                 </section>
 

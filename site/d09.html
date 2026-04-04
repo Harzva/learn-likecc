@@ -43,29 +43,53 @@
                 </div>
 
                 <figure class="mermaid-figure" aria-label="本章导图">
-                    <figcaption class="mermaid-caption"><strong>模块导图</strong>（与 S09 一致）：WS 协议、状态同步与冲突</figcaption>
+                    <figcaption class="mermaid-caption"><strong>模块导图</strong>（与 S09 同源，便于对照）：WS 协议、状态同步与冲突</figcaption>
                     <div class="mermaid-diagram-scroll" data-mermaid-diagram="course-s09"></div>
                 </figure>
 
                 <section class="section-block">
-                    <h2>🎯 与主线差异</h2>
-                    <p>S09 解决「是什么、为什么」；D09 解决「代码在哪、如何判断对错」。本页提供<strong>占位骨架</strong>，后续版本将按 WS 协议、状态同步与冲突 展开源码片段与习题。</p>
+                    <h2>🔬 深挖目标</h2>
+                    <p>IDE Bridge 是<strong>双主状态同步</strong>：编辑器 buffer、宿主会话、文件系统三角形里任意一边更新都可能冲突；本讲抓协议消息与冲突解决策略。</p>
                 </section>
 
                 <section class="section-block">
-                    <h2>📖 建议走读顺序</h2>
+                    <h2>📡 消息类型（抽象）</h2>
+                    <ul>
+                        <li>文档级：打开/关闭、变更 diff、光标/选区（视实现而定）。</li>
+                        <li>命令级：从 IDE 触发 run、从宿主推送诊断。</li>
+                        <li>心跳与重连：WebSocket 断线后如何对齐版本向量？</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>⚔️ 冲突模型</h2>
+                    <table class="options-table">
+                        <tr><th>场景</th><th>典型策略</th></tr>
+                        <tr><td>宿主写文件同时 IDE 编辑</td><td>Last-write-wins / 提示重载 / OT</td></tr>
+                        <tr><td>大补丁 apply 失败</td><td>回滚到 snapshot + 通知模型</td></tr>
+                        <tr><td>二进制文件</td><td>禁止文本 merge，整文件替换</td></tr>
+                    </table>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔗 与工具链</h2>
+                    <p>Apply_patch / write 工具应与 bridge 共用「单一写入层」，否则会出现磁盘与 buffer 撕裂（调试极痛）。</p>
+                </section>
+
+                <section class="section-block">
+                    <h2>📖 走读顺序</h2>
                     <ol>
-                        <li>在 S09 标出的入口文件中，定位与本主题相关的类型与主函数。</li>
-                        <li>列出 3 个「若失败会如何表现」的分支（超时、权限、格式错误）。</li>
-                        <li>用最小用例复现一条快乐路径 + 一条异常路径。</li>
+                        <li>定位 bridge server 启动点与端口协商。</li>
+                        <li>列出所有 WS 事件枚举，标注哪些是 fire-and-forget。</li>
+                        <li>断网 10 秒再恢复，观察是否丢事件；若丢，缺陷在哪？</li>
                     </ol>
                 </section>
 
                 <section class="section-block">
-                    <h2>✏️ 自测（占位）</h2>
+                    <h2>✏️ 自测</h2>
                     <ul>
-                        <li>不看笔记，能否画出与上图等价的简化数据流？</li>
-                        <li>能否指出本模块与相邻一章的耦合点？</li>
+                        <li>设计一个「宿主覆盖 IDE 未保存 buffer」的测试用例。</li>
+                        <li>解释为何 bridge 不应直接执行任意 shell（应走工具+权限）。</li>
                     </ul>
                 </section>
 
