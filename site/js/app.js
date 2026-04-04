@@ -240,6 +240,7 @@ function initSiteSidebar() {
         '<a class="site-sidebar__link" href="index.html#courses"><span class="site-sidebar__ico">📚</span><span class="site-sidebar__txt">源码课程</span></a>' +
         '<a class="site-sidebar__link" href="index.html#source-map-event"><span class="site-sidebar__ico">🗺️</span><span class="site-sidebar__txt">Source Map</span></a>' +
         '<a class="site-sidebar__link" href="tutorial.html"><span class="site-sidebar__ico">📖</span><span class="site-sidebar__txt">官方教程</span></a>' +
+        '<a class="site-sidebar__link" href="tutorial.html#skills"><span class="site-sidebar__ico">🔧</span><span class="site-sidebar__txt">Skills</span></a>' +
         '<a class="site-sidebar__link" href="handbook.html"><span class="site-sidebar__ico">📘</span><span class="site-sidebar__txt">完全手册</span></a>' +
         '<a class="site-sidebar__link" href="topic-agent-comparison.html"><span class="site-sidebar__ico">🤖</span><span class="site-sidebar__txt">Agent 生态</span></a>' +
         '<a class="site-sidebar__link" href="devlog.html"><span class="site-sidebar__ico">📝</span><span class="site-sidebar__txt">开发日志</span></a>' +

@@ -1,8 +1,12 @@
 name: Deploy to GitHub Pages
 
+# 仅在站点静态资源或本工作流变更时部署，避免无关提交占用 Pages 配额
 on:
   push:
     branches: [ main, master ]
+    paths:
+      - 'site/**'
+      - '.github/workflows/deploy.yml'
   workflow_dispatch:
 
 permissions:
