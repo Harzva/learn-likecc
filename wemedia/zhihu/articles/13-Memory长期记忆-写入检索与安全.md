@@ -1,9 +1,9 @@
 # Claude Code 类 Agent：长期 Memory 怎么写入、整合、检索才安全？
 
-> **适合直接发知乎的导语**  
-> 很多人把「记忆」理解成向量库 RAG；在 **Claude Code 这条 Harness 线**里，更常见的是 **Markdown 文件 + 索引 + YAML 元数据**，再配合 **分阶段写入、定期整合、独立模型筛上下文、沙箱写路径**。下面把这条链路用**流程图 + 人话**讲一遍，方便你对照自家工作流。  
-> **网页版（含渲染好的 Mermaid）**：https://harzva.github.io/learn-likecc/topic-memory-harness.html  
-> **仓库同源 MD**：`site/md/topic-memory-harness.md`
+很多人把「记忆」理解成向量库 RAG；在 **Claude Code 这条 Harness 线**里，更常见的是 **Markdown 文件 + 索引 + YAML 元数据**，再配合 **分阶段写入、定期整合、独立模型筛上下文、沙箱写路径**。下面用流程图与分节说明这条链路，便于对照自家工作流。
+
+- **本站专题（含渲染 Mermaid）**：https://harzva.github.io/learn-likecc/topic-memory-harness.html  
+- **站内 MD 镜像**：`site/md/topic-memory-harness.md`
 
 **声明**：本文根据公开架构讨论与示意图整理，**不保证与 Anthropic 某一版闭源实现逐行一致**；以官方文档与当前 CLI 为准。
 
@@ -242,16 +242,6 @@ flowchart LR
 - **过时**：用日期与警告倒逼「先验证再用」。
 
 **一句话**：模型很强，但 **Harness 不信任它在无监督下自管记忆**——每一步都带约束。
-
----
-
-## 分发备忘（发知乎可删）
-
-- **标题备选**：  
-  - 《Claude Code 的 Memory 不是 RAG：Markdown 索引 + Sonnet 路由》  
-  - 《长期记忆怎么写入、整合、检索才安全？一张流程图讲清》  
-- **标签建议**：Claude Code、AI 编程、Agent、上下文工程、安全。  
-- **配图**：可用本站 `topic-memory-harness.html` 截图 Mermaid；或自绘信息图。
 
 ---
 

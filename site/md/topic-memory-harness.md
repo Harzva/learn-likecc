@@ -2,7 +2,7 @@
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-memory-harness.html  
 > **本文件**: `site/md/topic-memory-harness.md`  
-> **知乎待发同源**: `wemedia/zhihu/articles/13-Memory长期记忆-写入检索与安全.md`
+> **仓库完整稿（与专题同源）**: `wemedia/zhihu/articles/13-Memory长期记忆-写入检索与安全.md`
 
 ## 概要
 
