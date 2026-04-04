@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上手与踩坑：赛博档案 · 实战篇 - Claude Code Course</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛠️</text></svg>">
+    <meta name="description" content="上手与踩坑专栏：赛博档案实战篇与 Agent 实战手记；收录可复用的折腾结论与项目经历入口。">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🛠️</span>
+                <span class="logo-text">实战专栏</span>
+            </a>
+            <div class="nav-links">
+                <a href="#intro" class="nav-link">定位</a>
+                <a href="#relation" class="nav-link">姊妹篇</a>
+                <a href="#planned" class="nav-link">计划收录</a>
+                <a href="#links" class="nav-link">链接</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="index.html" class="btn-github">← 返回首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="course-main devlog-main">
+        <div class="container">
+            <article class="course-content devlog-content">
+                <h1 class="course-title">上手与踩坑 <span class="subtitle">赛博档案 · 实战篇 · Agent 实战手记</span></h1>
+
+                <div class="course-quote">
+                    <p><strong>主标题</strong>：<strong>上手与踩坑</strong>。<strong>介绍语</strong>：本专栏同时作为 <strong>赛博档案 · 实战篇</strong> 与 <strong>Agent 实战手记</strong>——偏「能照着做 / 能避坑」的结论，与姊妹篇<a href="column-agent-journey.html">《从编辑器到 Agent》</a>的<strong>阅历叙事</strong>互补。</p>
+                    <p>正文将随项目经历逐步增量；当前页为<strong>专栏扉页</strong>。协作审阅可用 GitHub 上的 <strong>Markdown 同源文件</strong>。</p>
+                </div>
+
+                <section id="intro" class="section-block">
+                    <h2>专栏定位</h2>
+                    <p>仓库在源码学习之外，已演进为<strong>个人知识库与赛博档案</strong>（见 README 与 <code>.claude/skills/赛博永生.md</code>）。本专栏专门收：</p>
+                    <ul>
+                        <li><strong>上手步骤</strong>：环境、命令、最小可复现路径（脱敏）；</li>
+                        <li><strong>踩坑记录</strong>：现象 → 原因假说 → 解决办法 → 是否仍有效；</li>
+                        <li><strong>Agent 实战</strong>：Claude Code / MCP / Skills / Loop 等在真实任务里的用法与边界。</li>
+                    </ul>
+                    <p>与课程 S/D 讲义的差别：讲义对齐<strong>架构与原理</strong>；本专栏对齐<strong>我当时怎么把它跑通</strong>。</p>
+                </section>
+
+                <section id="relation" class="section-block">
+                    <h2>与姊妹篇的关系</h2>
+                    <p><a href="column-agent-journey.html"><strong>从编辑器到 Agent：一条工具链上的个人阅历</strong></a>讲「<strong>为什么摸、心路历程、工具变迁</strong>」。本专栏讲「<strong>这一步怎么做、别踩哪几个坑</strong>」。两篇都会持续长，但<strong>口气和用途</strong>分开，读者各取所需。</p>
+                </section>
+
+                <section id="planned" class="section-block">
+                    <h2>计划收录（占位，随写随钩）</h2>
+                    <ul>
+                        <li>项目经历与作品集入口（多仓库 / 多页面时在此汇总链接）；</li>
+                        <li>分发与自动化（知乎 / 小红书 / Puppeteer 备忘等）的<strong>可操作结论</strong>；</li>
+                        <li><code>PATH</code> 脚本与工作流（只写用途与约定，不贴密钥与私密路径）。</li>
+                    </ul>
+                    <p>有稿即挂到此页或子页，并在 <code>wemedia/zhihu/articles/</code> 保留可外发 Markdown 版。</p>
+                </section>
+
+                <section id="links" class="section-block">
+                    <h2>延伸阅读</h2>
+                    <ul>
+                        <li><a href="column-agent-journey.html">工具链阅历（姊妹篇）</a></li>
+                        <li><a href="https://github.com/Harzva/learn-likecc/blob/main/.claude/skills/%E8%B5%9B%E5%8D%9A%E6%B0%B8%E7%94%9F.md" target="_blank" rel="noopener noreferrer">赛博永生 · skill（GitHub）</a></li>
+                        <li><a href="https://github.com/Harzva/learn-likecc/tree/main/wemedia/zhihu/articles" target="_blank" rel="noopener noreferrer">知乎待发稿目录（wemedia/zhihu/articles）</a></li>
+                        <li><a href="devlog.html">项目开发日志</a></li>
+                    </ul>
+                </section>
+
+                <div class="chapter-navigation">
+                    <a href="index.html" class="btn btn-secondary">← 返回首页</a>
+                    <a href="column-agent-journey.html" class="btn btn-primary">姊妹篇：工具链阅历 →</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <div class="md-source-dual" role="note">
+                    <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/column-shangshou-cikeng.md" target="_blank" rel="noopener noreferrer">📝 Markdown 源（GitHub）</a></p>
+                    <p class="md-source-hint">另提供 <strong>Markdown 版</strong> 供 PR 与离线阅读；<strong>当前为网页版</strong>（主题与导航）。</p>
+                </div>
+                <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
