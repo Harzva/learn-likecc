@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code 学习游戏</title>
+    <link rel="stylesheet" href="../site/css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+    <style>
+        .game-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 100px 20px 40px;
+        }
+
+        .game-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .game-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .game-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .game-tab {
+            padding: 12px 24px;
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .game-tab:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .game-tab.active {
+            background: var(--gradient-1);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .game-section {
+            display: none;
+        }
+
+        .game-section.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* 知识卡片游戏 */
+        .card-game {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .flip-card {
+            height: 200px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .flip-card-front {
+            background: var(--gradient-1);
+            color: white;
+        }
+
+        .flip-card-front .card-icon {
+            font-size: 3rem;
+            margin-bottom: 12px;
+        }
+
+        .flip-card-front .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .flip-card-back {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 2px solid var(--border);
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-back .card-desc {
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* 答题游戏 */
+        .quiz-container {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid var(--border);
+        }
+
+        .quiz-progress {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .quiz-question {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .quiz-option {
+            padding: 16px 20px;
+            background: var(--bg-hover);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--primary);
+            transform: translateX(8px);
+        }
+
+        .quiz-option.correct {
+            background: #dcfce7;
+            border-color: #22c55e;
+            color: #166534;
+        }
+
+        .quiz-option.wrong {
+            background: #fee2e2;
+            border-color: #ef4444;
+            color: #991b1b;
+        }
+
+        .quiz-result {
+            text-align: center;
+            padding: 32px;
+        }
+
+        .quiz-score {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* 打字游戏 */
+        .typing-game {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid var(--border);
+        }
+
+        .typing-display {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 24px;
+            border-radius: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 24px;
+            min-height: 150px;
+        }
+
+        .typing-display .correct {
+            color: #22c55e;
+        }
+
+        .typing-display .incorrect {
+            color: #ef4444;
+            text-decoration: underline;
+        }
+
+        .typing-input {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+
+        .typing-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .typing-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 24px;
+        }
+
+        .typing-stat {
+            text-align: center;
+        }
+
+        .typing-stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .typing-stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* 匹配游戏 */
+        .match-game {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .match-column {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .match-column-title {
+            font-weight: 600;
+            text-align: center;
+            padding: 12px;
+            background: var(--bg-hover);
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        .match-item {
+            padding: 16px;
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .match-item:hover {
+            border-color: var(--primary);
+            transform: scale(1.02);
+        }
+
+        .match-item.selected {
+            border-color: var(--primary);
+            background: rgba(234, 88, 12, 0.1);
+        }
+
+        .match-item.matched {
+            border-color: #22c55e;
+            background: rgba(34, 197, 94, 0.1);
+            pointer-events: none;
+        }
+
+        /* 成就系统 */
+        .achievements {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid var(--border);
+            margin-top: 32px;
+        }
+
+        .achievements-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+        }
+
+        .achievement {
+            padding: 16px;
+            background: var(--bg-hover);
+            border-radius: 12px;
+            text-align: center;
+            opacity: 0.5;
+            transition: all 0.3s ease;
+        }
+
+        .achievement.unlocked {
+            opacity: 1;
+            border: 2px solid var(--primary);
+        }
+
+        .achievement-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .achievement-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .btn-game {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: var(--gradient-1);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-game:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .game-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 20px;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .game-nav-title {
+            font-weight: 700;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .game-nav-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .score-display {
+            background: var(--bg-hover);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .match-game {
+                grid-template-columns: 1fr;
+            }
+
+            .game-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航 -->
+    <nav class="game-nav">
+        <div class="game-nav-title">
+            <span>🎮</span>
+            <span>Claude Code 学习游戏</span>
+        </div>
+        <div class="game-nav-actions">
+            <span class="score-display">🏆 <span id="totalScore">0</span> 分</span>
+            <a href="../site/index.html" class="btn-game" style="padding: 8px 16px; font-size: 0.9rem;">← 返回主页</a>
+        </div>
+    </nav>
+
+    <div class="game-container">
+        <!-- 游戏选择 -->
+        <div class="game-tabs">
+            <button class="game-tab active" data-game="cards">🃏 知识卡片</button>
+            <button class="game-tab" data-game="quiz">📝 答题挑战</button>
+            <button class="game-tab" data-game="typing">⌨️ 命令练习</button>
+            <button class="game-tab" data-game="match">🔗 概念匹配</button>
+        </div>
+
+        <!-- 知识卡片游戏 -->
+        <section class="game-section active" id="cards">
+            <div class="game-header">
+                <h2 class="game-title">翻转学习卡片</h2>
+                <p>点击卡片翻转，学习 Claude Code 核心概念</p>
+            </div>
+            <div class="card-game" id="cardGame">
+                <!-- 卡片将由JS生成 -->
+            </div>
+        </section>
+
+        <!-- 答题游戏 -->
+        <section class="game-section" id="quiz">
+            <div class="game-header">
+                <h2 class="game-title">知识问答</h2>
+                <p>测试你对 Claude Code 的理解</p>
+            </div>
+            <div class="quiz-container" id="quizContainer">
+                <!-- 题目将由JS生成 -->
+            </div>
+        </section>
+
+        <!-- 打字游戏 -->
+        <section class="game-section" id="typing">
+            <div class="game-header">
+                <h2 class="game-title">命令练习</h2>
+                <p>练习常用命令，提升肌肉记忆</p>
+            </div>
+            <div class="typing-game">
+                <div class="typing-display" id="typingDisplay"></div>
+                <input type="text" class="typing-input" id="typingInput" placeholder="开始输入命令..." autofocus>
+                <div class="typing-stats">
+                    <div class="typing-stat">
+                        <div class="typing-stat-value" id="wpm">0</div>
+                        <div class="typing-stat-label">WPM</div>
+                    </div>
+                    <div class="typing-stat">
+                        <div class="typing-stat-value" id="accuracy">100%</div>
+                        <div class="typing-stat-label">准确率</div>
+                    </div>
+                    <div class="typing-stat">
+                        <div class="typing-stat-value" id="streak">0</div>
+                        <div class="typing-stat-label">连续正确</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 匹配游戏 -->
+        <section class="game-section" id="match">
+            <div class="game-header">
+                <h2 class="game-title">概念匹配</h2>
+                <p>将左边的术语与右边的解释配对</p>
+            </div>
+            <div class="match-game" id="matchGame">
+                <!-- 匹配项将由JS生成 -->
+            </div>
+        </section>
+
+        <!-- 成就系统 -->
+        <div class="achievements">
+            <h3 class="achievements-title">🏆 成就系统</h3>
+            <div class="achievement-grid" id="achievements">
+                <div class="achievement" data-achievement="first-card">
+                    <div class="achievement-icon">🎴</div>
+                    <div class="achievement-name">初学者</div>
+                </div>
+                <div class="achievement" data-achievement="quiz-master">
+                    <div class="achievement-icon">📝</div>
+                    <div class="achievement-name">答题达人</div>
+                </div>
+                <div class="achievement" data-achievement="speed-typer">
+                    <div class="achievement-icon">⌨️</div>
+                    <div class="achievement-name">打字高手</div>
+                </div>
+                <div class="achievement" data-achievement="matcher">
+                    <div class="achievement-icon">🔗</div>
+                    <div class="achievement-name">配对大师</div>
+                </div>
+                <div class="achievement" data-achievement="perfect-score">
+                    <div class="achievement-icon">💯</div>
+                    <div class="achievement-name">满分王</div>
+                </div>
+                <div class="achievement" data-achievement="persistent">
+                    <div class="achievement-icon">💪</div>
+                    <div class="achievement-name">坚持不懈</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 游戏数据
+        const gameData = {
+            cards: [
+                { icon: '⚡', title: 'Slash Commands', desc: '用户主动触发的快捷操作，如 /help、/commit' },
+                { icon: '🧠', title: 'Memory', desc: 'CLAUDE.md 文件，让 Claude 记住项目规则和个人偏好' },
+                { icon: '🔧', title: 'Skills', desc: '自动触发的可复用工作流，存储在 .claude/skills/' },
+                { icon: '🪝', title: 'Hooks', desc: '事件驱动的自动化检查，如在提交前运行测试' },
+                { icon: '🔌', title: 'MCP', desc: 'Model Context Protocol，连接外部工具和数据源' },
+                { icon: '🤖', title: 'Subagents', desc: '专门负责某类任务的子代理' },
+                { icon: '📦', title: 'Plugins', desc: '打包 commands、skills、hooks 的分发方案' },
+                { icon: '🔄', title: 'Checkpoints', desc: '安全试错机制，可回退到之前状态' },
+            ],
+            quiz: [
+                {
+                    question: 'Claude Code 是什么？',
+                    options: ['Web 应用', 'CLI 工具', '桌面应用', 'IDE 插件'],
+                    correct: 1
+                },
+                {
+                    question: '哪个文件用于存储项目规则？',
+                    options: ['.gitignore', 'CLAUDE.md', 'README.md', 'package.json'],
+                    correct: 1
+                },
+                {
+                    question: 'Slash Commands 存储在哪里？',
+                    options: ['.claude/commands/', 'src/', 'docs/', 'bin/'],
+                    correct: 0
+                },
+                {
+                    question: 'MCP 的全称是什么？',
+                    options: ['Model Control Protocol', 'Model Context Protocol', 'Multi Cloud Platform', 'Memory Cache Protocol'],
+                    correct: 1
+                },
+                {
+                    question: '如何回退到之前的 checkpoint？',
+                    options: ['/back', '/undo', '/rewind', '/restore'],
+                    correct: 2
+                },
+                {
+                    question: 'Hooks 的主要用途是什么？',
+                    options: ['UI 美化', '事件驱动自动化', '数据存储', '网络请求'],
+                    correct: 1
+                },
+                {
+                    question: '项目级 CLAUDE.md 应该放在哪里？',
+                    options: ['~/.claude/', './CLAUDE.md', '/etc/', 'node_modules/'],
+                    correct: 1
+                },
+                {
+                    question: '哪个命令用于查看帮助？',
+                    options: ['/?', '/help', '/info', '/docs'],
+                    correct: 1
+                }
+            ],
+            commands: [
+                'claude',
+                'claude -p "explain"',
+                '/help',
+                '/commit',
+                '/rewind',
+                'claude commit',
+                '/clear',
+                '/config',
+                'claude -c',
+                '/mcp'
+            ],
+            matches: [
+                { term: 'Slash Commands', definition: '用户主动触发的快捷操作' },
+                { term: 'Memory', definition: 'CLAUDE.md 存储的持久规则' },
+                { term: 'Skills', definition: '自动触发的复用工作流' },
+                { term: 'Hooks', definition: '事件驱动的自动化检查' },
+                { term: 'MCP', definition: '外部工具连接协议' },
+                { term: 'Subagents', definition: '任务分工的子代理' },
+                { term: 'Checkpoints', definition: '安全回退机制' },
+                { term: 'Plugins', definition: '多能力打包分发方案' }
+            ]
+        };
+
+        // 游戏状态
+        let gameState = {
+            totalScore: 0,
+            achievements: new Set(),
+            quizIndex: 0,
+            quizScore: 0,
+            typingIndex: 0,
+            typingStreak: 0,
+            matchSelected: null,
+            matchMatches: []
+        };
+
+        // 加载状态
+        function loadState() {
+            const saved = localStorage.getItem('claudeCodeGameState');
+            if (saved) {
+                const parsed = JSON.parse(saved);
+                gameState = { ...gameState, ...parsed };
+                gameState.achievements = new Set(parsed.achievements || []);
+            }
+            updateScoreDisplay();
+            updateAchievements();
+        }
+
+        // 保存状态
+        function saveState() {
+            const toSave = {
+                ...gameState,
+                achievements: Array.from(gameState.achievements)
+            };
+            localStorage.setItem('claudeCodeGameState', JSON.stringify(toSave));
+        }
+
+        // 更新分数显示
+        function updateScoreDisplay() {
+            document.getElementById('totalScore').textContent = gameState.totalScore;
+        }
+
+        // 解锁成就
+        function unlockAchievement(id) {
+            if (!gameState.achievements.has(id)) {
+                gameState.achievements.add(id);
+                gameState.totalScore += 100;
+                updateScoreDisplay();
+                updateAchievements();
+                saveState();
+                alert('🎉 成就解锁：' + document.querySelector(`[data-achievement="${id}"] .achievement-name`).textContent);
+            }
+        }
+
+        // 更新成就显示
+        function updateAchievements() {
+            gameState.achievements.forEach(id => {
+                const el = document.querySelector(`[data-achievement="${id}"]`);
+                if (el) el.classList.add('unlocked');
+            });
+        }
+
+        // 游戏切换
+        document.querySelectorAll('.game-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.game-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.game-section').forEach(s => s.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.game).classList.add('active');
+            });
+        });
+
+        // 初始化卡片游戏
+        function initCardGame() {
+            const container = document.getElementById('cardGame');
+            container.innerHTML = gameData.cards.map((card, i) => `
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="card-icon">${card.icon}</div>
+                            <div class="card-title">${card.title}</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="card-desc">${card.desc}</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        let flippedCards = 0;
+        function flipCard(card) {
+            if (!card.classList.contains('flipped')) {
+                card.classList.add('flipped');
+                flippedCards++;
+                if (flippedCards === 1) unlockAchievement('first-card');
+                gameState.totalScore += 10;
+                updateScoreDisplay();
+                saveState();
+            }
+        }
+
+        // 初始化答题游戏
+        function initQuizGame() {
+            showQuizQuestion();
+        }
+
+        function showQuizQuestion() {
+            const container = document.getElementById('quizContainer');
+            if (gameState.quizIndex >= gameData.quiz.length) {
+                container.innerHTML = `
+                    <div class="quiz-result">
+                        <div class="quiz-score">${gameState.quizScore}/${gameData.quiz.length}</div>
+                        <p style="margin: 16px 0;">答题完成！</p>
+                        <button class="btn-game" onclick="resetQuiz()">再来一次</button>
+                    </div>
+                `;
+                if (gameState.quizScore === gameData.quiz.length) {
+                    unlockAchievement('perfect-score');
+                }
+                if (gameState.quizScore >= gameData.quiz.length * 0.75) {
+                    unlockAchievement('quiz-master');
+                }
+                return;
+            }
+
+            const q = gameData.quiz[gameState.quizIndex];
+            container.innerHTML = `
+                <div class="quiz-progress">
+                    <span>题目 ${gameState.quizIndex + 1}/${gameData.quiz.length}</span>
+                    <span>得分: ${gameState.quizScore}</span>
+                </div>
+                <div class="quiz-question">${q.question}</div>
+                <div class="quiz-options">
+                    ${q.options.map((opt, i) => `
+                        <div class="quiz-option" onclick="selectAnswer(${i})">${opt}</div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        window.selectAnswer = function(index) {
+            const q = gameData.quiz[gameState.quizIndex];
+            const options = document.querySelectorAll('.quiz-option');
+            options.forEach((opt, i) => {
+                opt.style.pointerEvents = 'none';
+                if (i === q.correct) opt.classList.add('correct');
+                if (i === index && i !== q.correct) opt.classList.add('wrong');
+            });
+
+            if (index === q.correct) {
+                gameState.quizScore++;
+                gameState.totalScore += 20;
+            }
+            gameState.quizIndex++;
+            updateScoreDisplay();
+            saveState();
+
+            setTimeout(showQuizQuestion, 1000);
+        };
+
+        window.resetQuiz = function() {
+            gameState.quizIndex = 0;
+            gameState.quizScore = 0;
+            showQuizQuestion();
+        };
+
+        // 初始化打字游戏
+        function initTypingGame() {
+            showTypingCommand();
+        }
+
+        function showTypingCommand() {
+            if (gameState.typingIndex >= gameData.commands.length) {
+                gameState.typingIndex = 0;
+            }
+            const cmd = gameData.commands[gameState.typingIndex];
+            document.getElementById('typingDisplay').innerHTML = cmd.split('').map(c =>
+                `<span>${c}</span>`
+            ).join('');
+            document.getElementById('typingInput').value = '';
+        }
+
+        document.getElementById('typingInput')?.addEventListener('input', function(e) {
+            const input = e.target.value;
+            const display = document.getElementById('typingDisplay');
+            const chars = display.querySelectorAll('span');
+            const target = gameData.commands[gameState.typingIndex];
+
+            let correct = 0;
+            for (let i = 0; i < chars.length; i++) {
+                if (i < input.length) {
+                    if (input[i] === target[i]) {
+                        chars[i].className = 'correct';
+                        correct++;
+                    } else {
+                        chars[i].className = 'incorrect';
+                    }
+                } else {
+                    chars[i].className = '';
+                }
+            }
+
+            // 计算WPM和准确率
+            const accuracy = input.length > 0 ? Math.round((correct / input.length) * 100) : 100;
+            document.getElementById('accuracy').textContent = accuracy + '%';
+
+            if (input === target) {
+                gameState.typingStreak++;
+                gameState.totalScore += 30;
+                document.getElementById('streak').textContent = gameState.typingStreak;
+                updateScoreDisplay();
+                saveState();
+
+                if (gameState.typingStreak >= 5) {
+                    unlockAchievement('speed-typer');
+                }
+
+                gameState.typingIndex++;
+                setTimeout(showTypingCommand, 500);
+            }
+        });
+
+        // 初始化匹配游戏
+        function initMatchGame() {
+            const terms = [...gameData.matches].sort(() => Math.random() - 0.5);
+            const definitions = [...gameData.matches].sort(() => Math.random() - 0.5);
+
+            document.getElementById('matchGame').innerHTML = `
+                <div class="match-column">
+                    <div class="match-column-title">术语</div>
+                    ${terms.map((m, i) => `
+                        <div class="match-item" data-type="term" data-index="${gameData.matches.indexOf(m)}" onclick="selectMatch(this)">
+                            ${m.term}
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="match-column">
+                    <div class="match-column-title">解释</div>
+                    ${definitions.map((m, i) => `
+                        <div class="match-item" data-type="definition" data-index="${gameData.matches.indexOf(m)}" onclick="selectMatch(this)">
+                            ${m.definition}
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+
+            gameState.matchMatches = [];
+            gameState.matchSelected = null;
+        }
+
+        window.selectMatch = function(item) {
+            if (item.classList.contains('matched')) return;
+
+            const type = item.dataset.type;
+            const index = parseInt(item.dataset.index);
+
+            if (!gameState.matchSelected) {
+                gameState.matchSelected = { type, index, element: item };
+                item.classList.add('selected');
+            } else {
+                if (gameState.matchSelected.type === type) {
+                    gameState.matchSelected.element.classList.remove('selected');
+                    gameState.matchSelected = { type, index, element: item };
+                    item.classList.add('selected');
+                } else {
+                    if (gameState.matchSelected.index === index) {
+                        item.classList.add('matched');
+                        gameState.matchSelected.element.classList.remove('selected');
+                        gameState.matchSelected.element.classList.add('matched');
+                        gameState.matchMatches.push(index);
+                        gameState.totalScore += 25;
+                        updateScoreDisplay();
+                        saveState();
+
+                        if (gameState.matchMatches.length === gameData.matches.length) {
+                            unlockAchievement('matcher');
+                        }
+                    } else {
+                        gameState.matchSelected.element.classList.remove('selected');
+                    }
+                    gameState.matchSelected = null;
+                }
+            }
+        };
+
+        // 初始化所有游戏
+        document.addEventListener('DOMContentLoaded', () => {
+            loadState();
+            initCardGame();
+            initQuizGame();
+            initTypingGame();
+            initMatchGame();
+        });
+    </script>
+</body>
+</html>
