@@ -22,7 +22,7 @@
 - **📚 源码课程章节**
 - **💼 面试题库**
 - **🔥 热点话题**
-  - 从编辑器到 Agent：一条工具链上的个人阅历（本站 `column-agent-journey`）
+  - 从编辑器到 Agent：一条工具链上的个人阅历（本站 `column-agent-journey`；知乎待发同源稿 `wemedia/zhihu/articles/11-…`）
   - Claude Code 封号真相：Anthropic 如何通过数字指纹追踪你
   - Claude Code 源码泄露：44个未发布功能，Anthropic 藏了多少惊喜？
   - Claude Code vs OpenClaw：谁的记忆系统更强？
@@ -70,6 +70,6 @@
 
 ### 🔥 热点话题
 
-首卡为**本站原创阅历随笔**（`column-agent-journey.html` / `site/md/column-agent-journey.md`），其余以表格或列表呈现**精选外文/社区长文标题**（带外链）；教学目的是把分散热点收敛成可扫清单，并提醒读者自行核对原文与时效。
+首卡为**本站原创阅历随笔**（`column-agent-journey.html` / `site/md/column-agent-journey.md`）；知乎/小红书可直接使用仓库内 `wemedia/zhihu/articles/11-从编辑器到Agent-工具链个人阅历.md`。其余以表格或列表呈现**精选外文/社区长文标题**（带外链）；教学目的是把分散热点收敛成可扫清单，并提醒读者自行核对原文与时效。
 
 各条目标题即 HTML 中 `h3` 文案：阅历随笔之后分别涉及封号与指纹、未公开功能爆料、记忆系统对比、遥测与隐私、Agent Loop 长文、MCP 生态、权限模型、长上下文压缩、Source Map 技术复盘与后续动向等主题。
