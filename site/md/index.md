@@ -17,7 +17,7 @@
   - 完全手册
   - 面试题库
   - RAG 大专题
-  - Agent 大专题
+  - Agent 大专题（含 Memory 长期记忆专题页 `topic-memory-harness`）
 - **🛤️ 学习路径**
 - **📚 源码课程章节**
 - **💼 面试题库**

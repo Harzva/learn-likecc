@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory 长期记忆：写入、整合、检索与安全 - Claude Code Course</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+    <meta name="description" content="Claude Code 类 Agent 长期记忆机制梳理：Markdown 索引、分阶段写入与整合、Sonnet 过滤检索、安全沙箱；附 Mermaid 流程图。">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🧠</span>
+                <span class="logo-text">Memory 专题</span>
+            </a>
+            <div class="nav-links">
+                <a href="#intro" class="nav-link">导语</a>
+                <a href="#write" class="nav-link">写入</a>
+                <a href="#consolidate" class="nav-link">整合</a>
+                <a href="#delete" class="nav-link">删除</a>
+                <a href="#retrieve" class="nav-link">检索</a>
+                <a href="#security" class="nav-link">安全</a>
+                <a href="#summary" class="nav-link">总结</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-agent.html" class="btn-github">Agent 专题</a>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="course-main devlog-main">
+        <div class="container">
+            <article class="course-content devlog-content">
+                <h1 class="course-title">Memory 长期记忆 <span class="subtitle">写入 · 整合 · 检索 · 安全</span></h1>
+
+                <div class="course-quote" id="intro">
+                    <p>本文把「<strong>Harness 管记忆、模型不裸奔</strong>」这条线讲清楚：用 <strong>Markdown + 索引 + 元数据</strong>做可检索的长期记忆，再配合<strong>分阶段写入、定期整合、独立模型筛上下文、沙箱写路径</strong>。内容根据公开讨论与架构类示意图整理，<strong>与 Anthropic 某一版实现的细节可能不完全一致</strong>，以官方文档与当前 CLI 行为为准。</p>
+                    <p><strong>知乎 / 仓库稿</strong>：<a href="https://github.com/Harzva/learn-likecc/blob/main/wemedia/zhihu/articles/13-Memory%E9%95%BF%E6%9C%9F%E8%AE%B0%E5%BF%86-%E5%86%99%E5%85%A5%E6%A3%80%E7%B4%A2%E4%B8%8E%E5%AE%89%E5%85%A8.md" target="_blank" rel="noopener noreferrer">wemedia 稿 13 ↗</a>（与下文同源，便于一键复制发帖）。</p>
+                </div>
+
+                <section id="write" class="section-block">
+                    <h2>1. 如何写入记忆？（阶段一：逐轮提取）</h2>
+                    <p>后台 Agent 在对话流中<strong>周期性回看最近 N 条消息</strong>，并拿到<strong>已有记忆摘要</strong>，避免重复造轮子。核心判定只有一个：<strong>「值得记住吗？」</strong>——否就跳过；是则<strong>新建或更新</strong>独立 <code>.md</code> 文件，并维护总索引 <code>MEMORY.md</code>（目录 + 单行摘要，方便人读、也方便后续检索）。</p>
+
+                    <figure class="mermaid-figure mermaid-figure--main" aria-label="阶段一写入流程">
+                        <figcaption class="mermaid-caption"><strong>阶段一：逐轮写入（示意）</strong></figcaption>
+                        <div class="mermaid-diagram-scroll" data-mermaid-diagram="memory-write-p1"></div>
+                    </figure>
+
+                    <h3>四种记忆类型（<code>type</code>）</h3>
+                    <p>用固定枚举帮助后续「按类检索」与提示词约束，而不是让模型随意发明标签。</p>
+
+                    <figure class="mermaid-figure" aria-label="四类型">
+                        <figcaption class="mermaid-caption"><strong>类型与语义</strong>（与 frontmatter 对齐）</figcaption>
+                        <div class="mermaid-diagram-scroll" data-mermaid-diagram="memory-types"></div>
+                    </figure>
+
+                    <ul>
+                        <li><strong>user</strong>：你是谁——角色、领域、偏好。</li>
+                        <li><strong>project</strong>：代码与 Git 看不到的——截止日、拍板结论。</li>
+                        <li><strong>feedback</strong>：你希望 Agent 怎么做——纠错方式、风格与红线。</li>
+                        <li><strong>ref</strong>：仓库外的指引——外部系统、工单、合规要求。</li>
+                    </ul>
+
+                    <h3><code>MEMORY.md</code> 与单文件示例</h3>
+                    <div class="code-block">
+                        <pre><code class="language-markdown"># 索引：每条一行链到独立文件
+- [用户档案](user_profile.md) — 后端背景，近期在学 React
+- [测试规范](feedback_testing.md) — 集成测试禁止 mock 数据库
+- [认证重构](project_auth_rewrite.md) — 合规驱动，截止 2026-04-15</code></pre>
+                    </div>
+                    <div class="code-block">
+                        <pre><code class="language-markdown">---
+name: 测试规范
+description: 集成测试必须连真实库，禁止仅用 mock
+type: feedback
+---
+
+正文：可写细则、历史讨论摘要、链接等。</code></pre>
+                    </div>
+                    <p><strong>要点</strong>：<code>description</strong> 要写得<strong>可被「未见正文」的模型读懂</strong>——后面检索阶段几乎只看这一行做相关性判断。</p>
+                </section>
+
+                <section id="consolidate" class="section-block">
+                    <h2>2. 阶段二：定期整合</h2>
+                    <p>当满足<strong>距上次整合 ≥ 24 小时</strong>且<strong>累积会话数 ≥ 5</strong>（阈值仅为示意图）一类条件时，触发<strong>分叉子 Agent</strong>（示意图中常称 autoDream 一类名字）专做「整理活」，避免与主会话抢上下文。</p>
+                    <p><strong>它做什么</strong>：读 <code>MEMORY.md</code> 与各主题文件 → 从日志/会话记录用<strong>关键词精确捞信号</strong>（而非全文吞日志）→ <strong>合并</strong>进旧文件：相对时间改绝对时间、删掉已与当前代码矛盾的事实 → <strong>修剪</strong>：去掉失效索引、缩短冗长段落、消解文件间矛盾。<strong>并发</strong>上可用锁文件，避免多会话同时整合写乱。</p>
+
+                    <figure class="mermaid-figure mermaid-figure--main" aria-label="阶段二整合">
+                        <figcaption class="mermaid-caption"><strong>阶段二：整合流程（示意）</strong></figcaption>
+                        <div class="mermaid-diagram-scroll" data-mermaid-diagram="memory-consolidate"></div>
+                    </figure>
+                </section>
+
+                <section id="delete" class="section-block">
+                    <h2>3. 记忆如何「删除」？</h2>
+                    <p>设计上<strong>没有按时间的自动过期</strong>；删除只发生在<strong>整合阶段</strong>由 Agent <strong>主动判断</strong>：与当前代码不一致、或被更可靠的新记忆覆盖。换句话说：<strong>记忆只会被写精，不会在用户不知情的情况下悄悄消失</strong>——但若长期不整合，陈旧段落可能仍以「带警告」形式存在（见下一节）。</p>
+                </section>
+
+                <section id="retrieve" class="section-block">
+                    <h2>4. 如何检索 Memory？</h2>
+                    <p><strong>MEMORY.md</strong> 作为<strong>轻量总目录</strong>默认进入系统提示，容量上限制在约<strong>200 行或 25KB</strong>量级（示意）；其中<strong>链接指向的各文件不会默认全量载入</strong>。</p>
+                    <p>接下来用<strong>独立、相对便宜的模型</strong>（示意图常用 Sonnet）当「路由器」：扫描各记忆文件的 <strong>YAML frontmatter</strong>（可按时间排序，文件数有上限），拼成 <code>[type] 文件名 (时间): description</code> 的列表，连同<strong>当前用户问题</strong>一并请求模型，让其<strong>至多选出 5 个</strong>最相关文件——<strong>不确定就不选</strong>。最终只把这 5 个正文读入上下文；本会话里已经展示过的条目可跳过，优先「新鲜相关」。</p>
+                    <p>对<strong>较早写入</strong>的记忆，可在载入时附带提示：「该记忆已过去 X 天，可能过时，<strong>先验证再行动</strong>」——Agent 应用 <code>grep</code> 或读文件核对现状。</p>
+                    <p><strong>金句</strong>：记忆是<strong>观察快照</strong>，不是实时真相；引用到具体 <code>file:line</code> 前务必回仓库确认。</p>
+
+                    <figure class="mermaid-figure mermaid-figure--main" aria-label="检索流程">
+                        <figcaption class="mermaid-caption"><strong>检索与陈旧提示（示意）</strong></figcaption>
+                        <div class="mermaid-diagram-scroll" data-mermaid-diagram="memory-retrieve"></div>
+                    </figure>
+                </section>
+
+                <section id="security" class="section-block">
+                    <h2>5. Memory 安全怎么保证？</h2>
+                    <p><strong>三层防护（概念顺序）</strong>：</p>
+                    <ol>
+                        <li><strong>全局锁定</strong>：存储根路径只在全局配置改，防止恶意仓库改路径把记忆写到奇怪地方。</li>
+                        <li><strong>路径校验</strong>：拦截 <code>..</code>、越权到系统根目录等。</li>
+                        <li><strong>沙箱白名单</strong>：每次写操作落在允许集合内，否则直接拒绝。</li>
+                    </ol>
+                    <p>目标一句话：<strong>堵死「借记忆之名偷偷写到不该写的地方」</strong>。</p>
+
+                    <figure class="mermaid-figure" aria-label="安全三层">
+                        <figcaption class="mermaid-caption"><strong>安全写入流水线（示意）</strong></figcaption>
+                        <div class="mermaid-diagram-scroll" data-mermaid-diagram="memory-security"></div>
+                    </figure>
+                </section>
+
+                <section id="summary" class="section-block">
+                    <h2>6. 总结：Harness 的四条纪律</h2>
+                    <p>模型很强，但 <strong>Harness 默认不信任它在无监督下自管记忆</strong>——每一步都带约束：</p>
+                    <ul>
+                        <li><strong>写入</strong>：强制 YAML + 固定 <code>type</code>，格式不由模型随口定。</li>
+                        <li><strong>检索</strong>：独立模型筛文件，主模型不插手筛选逻辑。</li>
+                        <li><strong>删除</strong>：无静默定时删；只在整合时显式判定，整体偏「越写越准」。</li>
+                        <li><strong>过时</strong>：用日期与警告倒逼「先验证再用」，而不是假装记忆永远新鲜。</li>
+                    </ul>
+                </section>
+
+                <div class="chapter-navigation">
+                    <a href="topic-agent.html" class="btn btn-secondary">← Agent 专题</a>
+                    <a href="s05.html" class="btn btn-primary">相关：S05 上下文压缩 →</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <div class="md-source-dual" role="note">
+                    <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-memory-harness.md" target="_blank" rel="noopener noreferrer">📝 Markdown 源（GitHub）</a></p>
+                    <p class="md-source-hint">知乎同源稿见 <code>wemedia/zhihu/articles/13-…</code>；网页含 Mermaid 渲染。</p>
+                </div>
+                <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js" crossorigin="anonymous"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

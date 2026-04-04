@@ -219,7 +219,64 @@ const MERMAID_DIAGRAMS = {
     classDef mid fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#93c5fd;
     classDef now fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#5eead4;
     A[插件试玩<br/>多宿主尝鲜]:::old --> B[反代链路<br/>折腾 TUN/SSH]:::mid
-    B --> C[CLI 扎根<br/>Claude Code + Agent IDE]:::now`
+    B --> C[CLI 扎根<br/>Claude Code + Agent IDE]:::now`,
+
+    /** topic-memory-harness.html：Memory 写入 / 整合 / 检索 / 安全（示意，非官方逐行实现） */
+    'memory-write-p1': `flowchart TD
+    classDef b fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#93c5fd;
+    classDef g fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#5eead4;
+    classDef p fill:#2d1f28,stroke:#f472b6,stroke-width:2px,color:#f9a8d4;
+    A[后台 Agent 浏览最近 N 条消息]:::b --> B[接收现有记忆<br/>避免重复创建]:::b
+    B --> Q{值得记住?}:::p
+    Q -->|否| S[跳过]:::g
+    Q -->|是| F{新建或更新?}:::p
+    F -->|新建| N[新建 .md 记忆文件]:::g
+    F -->|更新| U[更新已有文件]:::g
+    N --> I[写入 MEMORY.md 索引<br/>目录与单行摘要]:::g
+    U --> I`,
+
+    'memory-types': `flowchart TD
+    classDef b fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#93c5fd;
+    classDef g fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#5eead4;
+    ROOT[frontmatter.type]:::b --> U[用户 user<br/>角色与偏好]:::g
+    ROOT --> PR[项目 project<br/>截止与决策]:::g
+    ROOT --> FB[反馈 feedback<br/>纠错与规范]:::g
+    ROOT --> RF[参考 ref<br/>外部系统指引]:::g`,
+
+    'memory-consolidate': `flowchart TD
+    classDef b fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#93c5fd;
+    classDef g fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#5eead4;
+    classDef p fill:#2d1f28,stroke:#f472b6,stroke-width:2px,color:#f9a8d4;
+    classDef y fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#e2b953;
+    T{距上次整合≥24h<br/>且会话≥5?}:::y -->|否| X[不触发]:::g
+    T -->|是| SA[分叉子 Agent<br/>示意名 autoDream]:::b
+    SA --> R1[读 MEMORY.md<br/>浏览主题文件]:::g
+    R1 --> R2[日志与会话<br/>关键词检索信号]:::g
+    R2 --> MG[合并<br/>相对日期改绝对<br/>删与代码矛盾事实]:::p
+    MG --> PRU[修剪<br/>无效索引冗长<br/>矛盾消解]:::p
+    PRU --> D[完成]:::g`,
+
+    'memory-retrieve': `flowchart TD
+    classDef b fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#93c5fd;
+    classDef g fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#5eead4;
+    classDef p fill:#2d1f28,stroke:#f472b6,stroke-width:2px,color:#f9a8d4;
+    classDef y fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#e2b953;
+    IDX[MEMORY.md 恒入系统提示<br/>约 200 行或 25KB 上限]:::b --> SCAN[扫描至多 200 个文件 frontmatter<br/>按时间排序]:::b
+    SCAN --> LIST[列表 type 文件名 时间 description]:::g
+    LIST --> SON[独立模型做相关性过滤<br/>示意 Sonnet]:::p
+    SON --> TOP[至多 5 个文件<br/>不确定则不选]:::g
+    TOP --> LOAD[载入上下文<br/>本会话已展示的不重复]:::g
+    LOAD --> ST{单条早于约 1 天?}:::y
+    ST -->|是| WARN[注入陈旧警告<br/>先 grep 或读文件再行动]:::p
+    ST -->|否| OK[可参考仍建议 spot-check]:::g`,
+
+    'memory-security': `flowchart LR
+    classDef r fill:#3f1d1d,stroke:#f87171,stroke-width:2px,color:#fecaca;
+    classDef y fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#e2b953;
+    classDef g fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#5eead4;
+    L1[全局锁定存储路径]:::r --> L2[路径校验<br/>拦截 .. 与越权]:::y
+    L2 --> L3[沙箱白名单写入]:::g
+    L3 --> W[安全写入]:::g`
 }
 
 function fillMermaidPlaceholders() {
@@ -323,6 +380,7 @@ function initSiteSidebar() {
         '<details class="site-sidebar__details">' +
         '<summary class="site-sidebar__summary"><span class="site-sidebar__ico">🤖</span><span class="site-sidebar__txt">Agent 专题</span></summary>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-agent.html"><span class="site-sidebar__ico">📌</span><span class="site-sidebar__txt">专题首页</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-memory-harness.html"><span class="site-sidebar__ico">🧠</span><span class="site-sidebar__txt">Memory 机制</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="https://github.com/Harzva/learn-likecc/blob/main/awesome-agent.md" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">✨</span><span class="site-sidebar__txt">Awesome Agent</span></a>' +
         '</details>' +
         '<a class="site-sidebar__link" href="column-agent-journey.html"><span class="site-sidebar__ico">🧭</span><span class="site-sidebar__txt">工具链阅历</span></a>' +
