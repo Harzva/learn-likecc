@@ -1366,3 +1366,11 @@ ANTHROPIC_API_KEY=your-api-key-here
 2. microCompact 类型
 3. query.ts 剩余错误
 4. main.tsx 剩余错误
+
+---
+
+## v2.5.0 - 站点 HTML / Markdown 双轨（计划已立）
+
+### 2026-04-04
+
+- 新增计划文档 **[v2.5.0_plan.md](./v2.5.0_plan.md)**：`site/md/<stem>.md` 与 `site/<stem>.html` 成对、HTML 页增加 GitHub blob 互链；拆分为 **Agent 1～3 并行干活 + Agent 4 检测汇总**，任务完成后于计划内 **`- [ ]` → `- [x]`** 打钩。
