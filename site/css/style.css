@@ -4033,6 +4033,34 @@ body {
     padding: 1rem 2rem;
     max-width: 1400px;
     margin: 0 auto;
+    gap: 0.75rem;
+}
+
+.main-nav-start {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem 1.25rem;
+    flex-wrap: wrap;
+    min-width: 0;
+}
+
+.main-nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem 0.9rem;
+}
+
+.main-nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.main-nav-links a:hover {
+    color: var(--primary);
 }
 
 .nav-center {
@@ -5191,6 +5219,10 @@ article.course-card-main {
         display: none;
     }
 
+    .main-nav-links {
+        display: none;
+    }
+
     .hero-title {
         font-size: 2.5rem;
     }
@@ -5393,6 +5425,24 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     flex-direction: column;
     gap: 2px;
     padding: 0 0 10px;
+}
+
+/* 侧栏：Source Map 源码专题内嵌「十二章」 */
+.site-sidebar__details--nested {
+    margin: 4px 0 8px;
+}
+
+.site-sidebar__details--nested > .site-sidebar__summary {
+    padding-left: 22px;
+    font-size: 0.84rem;
+}
+
+.site-sidebar__details--nested .site-sidebar__chapters .site-sidebar__link--sub {
+    padding-left: 26px;
+}
+
+.site-sidebar__details--nested .site-sidebar__chapters .site-sidebar__link--deep {
+    padding-left: 34px;
 }
 
 .site-sidebar__backdrop {

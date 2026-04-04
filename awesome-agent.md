@@ -4,6 +4,8 @@
 
 姊妹清单：[awesome-claude-code-source.md](./awesome-claude-code-source.md) · [awesome-rag.md](./awesome-rag.md)
 
+本站 HTML：[Agent 大专题](https://harzva.github.io/learn-likecc/topic-agent.html) · [Source Map 源码专题](https://harzva.github.io/learn-likecc/topic-sourcemap.html)
+
 ## 官方与协议
 
 | 资源 | 描述 |

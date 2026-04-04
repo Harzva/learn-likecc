@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Source Map 源码专题 - Claude Code Course</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+    <meta name="description" content="24 讲源码课程、Source Map 事件与 Claude Code 镜像清单的一站式入口。">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🗺️</span>
+                <span class="logo-text">源码专题</span>
+            </a>
+            <div class="nav-links">
+                <a href="#hub" class="nav-link">入口</a>
+                <a href="#event" class="nav-link">Source Map</a>
+                <a href="#chapters" class="nav-link">十二章</a>
+                <a href="#awesome" class="nav-link">Awesome</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="index.html" class="btn-github">← 返回首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>📌 整合专题</span>
+                <span>Source Map · 源码</span>
+            </div>
+            <h1 class="hero-title">
+                Source Map 源码专题<br>
+                <span class="gradient-text">课程 · 事件 · 清单</span>
+            </h1>
+            <p class="hero-subtitle">
+                将首页的<strong>源码课程（24 讲）</strong>与 <strong>Source Map 事件</strong>收束到同一专题：下面可一键跳到章节列表、事件说明、源码反推与 <strong>Awesome 源码汇总</strong>（GitHub MD）。
+            </p>
+            <div class="hero-actions">
+                <a href="index.html#courses" class="btn btn-primary">24 讲目录（首页锚点）</a>
+                <a href="index.html#source-map-event" class="btn btn-secondary">Source Map 完整说明</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="hub" class="section" style="background: var(--bg-secondary); padding-top: 60px;">
+        <div class="container">
+            <h2 class="section-title">专题入口</h2>
+            <div class="quickstart-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+                <a href="index.html#courses" class="quickstart-card" style="text-decoration: none; color: inherit;">
+                    <h3>📚 24 讲源码课程</h3>
+                    <p>十二章 ×（S 主线 + D 深挖），首页「源码课程章节」区块。</p>
+                    <p><strong>前往 →</strong></p>
+                </a>
+                <a href="index.html#source-map-event" class="quickstart-card" style="text-decoration: none; color: inherit;">
+                    <h3>🗺️ Source Map 事件</h3>
+                    <p>2026.03 事件一句话说明与要点列表（首页专块）。</p>
+                    <p><strong>前往 →</strong></p>
+                </a>
+                <a href="topic-source-derived.html" class="quickstart-card" style="text-decoration: none; color: inherit;">
+                    <h3>🔍 源码反推思想</h3>
+                    <p>从重建源码提炼设计：Compact、权限等硬读专题。</p>
+                    <p><strong>进入 →</strong></p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="event" class="section">
+        <div class="container">
+            <h2 class="section-title">Source Map 事件（摘要）</h2>
+            <p class="section-desc" style="max-width: 720px; margin: 0 auto 1rem;">
+                正式发布包误带调试用 Source Map（约 57MB <code>cli.js.map</code>），可还原大量 TS 路径与内容——属<strong>构建/发布疏漏</strong>。社区据此可做架构学习与逆向分析；请在合法合规前提下使用公开资料。
+            </p>
+            <p class="section-desc" style="max-width: 720px; margin: 0 auto;">
+                <a href="index.html#source-map-event" class="btn btn-secondary">阅读首页完整说明 →</a>
+                &nbsp;
+                <a href="https://github.com/Harzva/learn-likecc/blob/main/wemedia/zhihu/articles/09-SourceMap%E6%B3%84%E9%9C%B2%E4%BA%8B%E4%BB%B6%E5%A4%8D%E7%9B%98.md" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">仓库内复盘长文 ↗</a>
+            </p>
+        </div>
+    </section>
+
+    <section id="chapters" class="section" style="background: var(--bg-secondary); padding-top: 60px;">
+        <div class="container">
+            <h2 class="section-title">十二章列表（S + D）</h2>
+            <p class="section-desc" style="margin-bottom: 1.5rem;">与侧栏「Source Map 源码专题 → 十二章列表」一致；建议按主题顺序学完。</p>
+            <div class="quickstart-grid" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px;">
+                <div class="quickstart-card" style="padding: 12px 14px;"><strong>S01</strong> <a href="s01.html">主线</a> · <a href="d01.html">D01</a></div>
+                <div class="quickstart-card" style="padding: 12px 14px;"><strong>S02</strong> <a href="s02.html">主线</a> · <a href="d02.html">D02</a></div>
+                <div class="quickstart-card" style="padding: 12px 14px;"><strong>S03</strong> <a href="s03.html">主线</a> · <a href="d03.html">D03</a></div>
+                <div class="quickstart-card" style="padding: 12px 14px;"><strong>S04</strong> <a href="s04.html">主线</a> · <a href="d04.html">D04</a></div>
+                <div class="quickstart-card" style="padding: 12px 14px;"><strong>S05</strong> <a href="s05.html">主线</a> · <a href="d05.html">D05</a></div>
+                <div class="quickstart-card" style="padding: 12px 14px;"><strong>S06</strong> <a href="s06.html">主线</a> · <a href="d06.html">D06</a></div>
+                <div class="quickstart-card" style="padding: 12px 14px;"><strong>S07</strong> <a href="s07.html">主线</a> · <a href="d07.html">D07</a></div>
+                <div class="quickstart-card" style="padding: 12px 14px;"><strong>S08</strong> <a href="s08.html">主线</a> · <a href="d08.html">D08</a></div>
+                <div class="quickstart-card" style="padding: 12px 14px;"><strong>S09</strong> <a href="s09.html">主线</a> · <a href="d09.html">D09</a></div>
+                <div class="quickstart-card" style="padding: 12px 14px;"><strong>S10</strong> <a href="s10.html">主线</a> · <a href="d10.html">D10</a></div>
+                <div class="quickstart-card" style="padding: 12px 14px;"><strong>S11</strong> <a href="s11.html">主线</a> · <a href="d11.html">D11</a></div>
+                <div class="quickstart-card" style="padding: 12px 14px;"><strong>S12</strong> <a href="s12.html">主线</a> · <a href="d12.html">D12</a></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="awesome" class="section">
+        <div class="container">
+            <h2 class="section-title">Awesome · 源码镜像清单</h2>
+            <p class="section-desc" style="max-width: 720px; margin: 0 auto 1.25rem;">
+                与本专题对应的仓库清单为 <code>awesome-claude-code-source.md</code>（GitHub 在线阅读）。另两份姊妹清单挂在 <a href="topic-rag.html#awesome-rag">RAG 专题</a> 与 <a href="topic-agent.html#awesome-agent">Agent 专题</a>。
+            </p>
+            <div class="hero-actions" style="justify-content: center;">
+                <a href="https://github.com/Harzva/learn-likecc/blob/main/awesome-claude-code-source.md" class="btn btn-primary" target="_blank" rel="noopener noreferrer">打开 Awesome 源码汇总 ↗</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: var(--bg-secondary); padding-bottom: 60px;">
+        <div class="container">
+            <h2 class="section-title">扩展专题</h2>
+            <p class="section-desc" style="max-width: 640px; margin: 0 auto; text-align: center;">
+                <a href="topic-rag.html">RAG 大专题</a>
+                &nbsp;·&nbsp;
+                <a href="topic-agent.html">Agent 大专题</a>
+            </p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

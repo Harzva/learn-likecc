@@ -285,28 +285,45 @@ function initSiteSidebar() {
         )
     }
 
+    const mqWide = window.matchMedia('(min-width: 901px)').matches
+    const openAttr = mqWide ? ' open' : ''
+
     aside.innerHTML =
         '<button type="button" class="site-sidebar__collapse" aria-label="收起或展开侧栏" title="展开/收起">' +
         (collapsed ? '⟩' : '⟨') +
         '</button>' +
         '<div class="site-sidebar__scroll">' +
         '<a class="site-sidebar__link site-sidebar__link--brand" href="index.html"><span class="site-sidebar__ico">🧠</span><span class="site-sidebar__txt">首页</span></a>' +
-        '<a class="site-sidebar__link" href="index.html#courses"><span class="site-sidebar__ico">📚</span><span class="site-sidebar__txt">源码课程</span></a>' +
-        '<a class="site-sidebar__link" href="index.html#source-map-event"><span class="site-sidebar__ico">🗺️</span><span class="site-sidebar__txt">Source Map</span></a>' +
-        '<a class="site-sidebar__link" href="tutorial.html"><span class="site-sidebar__ico">📖</span><span class="site-sidebar__txt">官方教程</span></a>' +
-        '<a class="site-sidebar__link" href="tutorial.html#skills"><span class="site-sidebar__ico">🔧</span><span class="site-sidebar__txt">Skills</span></a>' +
-        '<a class="site-sidebar__link" href="handbook.html"><span class="site-sidebar__ico">📘</span><span class="site-sidebar__txt">完全手册</span></a>' +
-        '<a class="site-sidebar__link" href="topic-rag.html"><span class="site-sidebar__ico">📎</span><span class="site-sidebar__txt">RAG 专题</span></a>' +
-        '<a class="site-sidebar__link" href="topic-agent.html"><span class="site-sidebar__ico">🤖</span><span class="site-sidebar__txt">Agent 专题</span></a>' +
-        '<a class="site-sidebar__link" href="topic-source-derived.html"><span class="site-sidebar__ico">🔍</span><span class="site-sidebar__txt">源码反推思想</span></a>' +
-        '<a class="site-sidebar__link" href="devlog.html"><span class="site-sidebar__ico">📝</span><span class="site-sidebar__txt">开发日志</span></a>' +
-        '<a class="site-sidebar__link" href="https://github.com/Harzva/learn-likecc/blob/main/awesome-claude-code-source.md" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">✨</span><span class="site-sidebar__txt">Awesome 源码汇总</span></a>' +
         '<details class="site-sidebar__details"' +
-        (window.matchMedia('(min-width: 901px)').matches ? ' open' : '') +
+        openAttr +
+        '><summary class="site-sidebar__summary"><span class="site-sidebar__ico">🗺️</span><span class="site-sidebar__txt">Source Map 源码专题</span></summary>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-sourcemap.html"><span class="site-sidebar__ico">📌</span><span class="site-sidebar__txt">专题导读</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="index.html#courses"><span class="site-sidebar__ico">📚</span><span class="site-sidebar__txt">24 讲目录</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="index.html#source-map-event"><span class="site-sidebar__ico">🔥</span><span class="site-sidebar__txt">Source Map 事件</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-source-derived.html"><span class="site-sidebar__ico">🔍</span><span class="site-sidebar__txt">源码反推思想</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="https://github.com/Harzva/learn-likecc/blob/main/awesome-claude-code-source.md" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">✨</span><span class="site-sidebar__txt">Awesome 源码汇总</span></a>' +
+        '<details class="site-sidebar__details site-sidebar__details--nested"' +
+        openAttr +
         '><summary class="site-sidebar__summary"><span class="site-sidebar__ico">🔬</span><span class="site-sidebar__txt">十二章列表</span></summary>' +
         '<div class="site-sidebar__chapters">' +
         chapters.join('') +
-        '</div></details>' +
+        '</div></details></details>' +
+        '<a class="site-sidebar__link" href="tutorial.html"><span class="site-sidebar__ico">📖</span><span class="site-sidebar__txt">官方教程</span></a>' +
+        '<a class="site-sidebar__link" href="tutorial.html#skills"><span class="site-sidebar__ico">🔧</span><span class="site-sidebar__txt">Skills</span></a>' +
+        '<a class="site-sidebar__link" href="handbook.html"><span class="site-sidebar__ico">📘</span><span class="site-sidebar__txt">完全手册</span></a>' +
+        '<details class="site-sidebar__details"' +
+        openAttr +
+        '><summary class="site-sidebar__summary"><span class="site-sidebar__ico">📎</span><span class="site-sidebar__txt">RAG 专题</span></summary>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-rag.html"><span class="site-sidebar__ico">📌</span><span class="site-sidebar__txt">专题首页</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="https://github.com/Harzva/learn-likecc/blob/main/awesome-rag.md" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">✨</span><span class="site-sidebar__txt">Awesome RAG</span></a>' +
+        '</details>' +
+        '<details class="site-sidebar__details"' +
+        openAttr +
+        '><summary class="site-sidebar__summary"><span class="site-sidebar__ico">🤖</span><span class="site-sidebar__txt">Agent 专题</span></summary>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-agent.html"><span class="site-sidebar__ico">📌</span><span class="site-sidebar__txt">专题首页</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="https://github.com/Harzva/learn-likecc/blob/main/awesome-agent.md" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">✨</span><span class="site-sidebar__txt">Awesome Agent</span></a>' +
+        '</details>' +
+        '<a class="site-sidebar__link" href="devlog.html"><span class="site-sidebar__ico">📝</span><span class="site-sidebar__txt">开发日志</span></a>' +
         '<a class="site-sidebar__link" href="https://github.com/Harzva/learn-likecc" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">🐙</span><span class="site-sidebar__txt">GitHub</span></a>' +
         '</div>'
 

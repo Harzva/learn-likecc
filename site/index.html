@@ -16,10 +16,19 @@
     <!-- 导航栏 -->
     <header class="main-header">
         <nav class="main-nav">
+            <div class="main-nav-start">
             <a href="index.html" class="nav-logo">
                 <span class="logo-icon">🧠</span>
                 <span class="logo-text">Claude Code Course</span>
             </a>
+            <nav class="main-nav-links" aria-label="专题与栏目">
+                <a href="topic-sourcemap.html">Source Map 源码</a>
+                <a href="topic-rag.html">RAG</a>
+                <a href="topic-agent.html">Agent</a>
+                <a href="tutorial.html">教程</a>
+                <a href="handbook.html">手册</a>
+            </nav>
+            </div>
             <div class="nav-center">
                 <div class="search-box">
                     <span class="search-icon">🔍</span>
@@ -48,7 +57,7 @@
             <div class="particle" style="--delay: 6s; --x: 90%; --y: 70%;"></div>
         </div>
         <div class="container hero-content">
-            <a href="#source-map-event" class="hero-badge hero-badge--jump" title="跳转到事件说明">
+            <a href="topic-sourcemap.html#event" class="hero-badge hero-badge--jump" title="Source Map 源码专题 · 事件摘要">
                 <span>🔥 2026.03 Source Map 事件</span>
                 <span class="hero-badge-hint" aria-hidden="true">发生了什么？</span>
             </a>
@@ -101,7 +110,9 @@
                 <p class="source-map-event-more">
                     <a href="https://github.com/Harzva/learn-likecc/blob/main/wemedia/zhihu/articles/09-SourceMap%E6%B3%84%E9%9C%B2%E4%BA%8B%E4%BB%B6%E5%A4%8D%E7%9B%98.md" target="_blank" rel="noopener noreferrer">仓库内长文复盘（知乎稿）→</a>
                     &nbsp;·&nbsp;
-                    <a href="topic-source-derived.html">从重建源码提炼设计思想（本站专题）→</a>
+                    <a href="topic-sourcemap.html">Source Map 源码专题（课程 + 事件 + 清单）→</a>
+                    &nbsp;·&nbsp;
+                    <a href="topic-source-derived.html">源码反推思想 →</a>
                 </p>
             </div>
         </div>
@@ -111,7 +122,7 @@
     <section class="features-main">
         <div class="container">
             <h2 class="section-title">📚 学习入口</h2>
-            <p class="section-subtitle">主打 <strong>源码课程</strong>（12 主题 · 24 讲，S 主线 + D 深挖）；其余为官方文档整理、手册与扩展阅读</p>
+            <p class="section-subtitle">主打 <strong><a href="topic-sourcemap.html" style="color: inherit; text-decoration: underline;">Source Map 源码专题</a></strong>（24 讲 + 事件 + Awesome 源码）；其余为官方文档整理、手册与 RAG / Agent 扩展专题</p>
 
             <figure class="mermaid-figure mermaid-figure--main" aria-label="学习流程图">
                 <figcaption class="mermaid-caption">
@@ -122,17 +133,17 @@
 
             <div class="features-grid-main features-grid-has-flagship">
                 <!-- 源码课程入口（主打：全宽强调） -->
-                <a href="#courses" class="feature-card-main feature-accent feature-flagship">
+                <a href="topic-sourcemap.html" class="feature-card-main feature-accent feature-flagship">
                     <span class="feature-flagship-badge">主打</span>
                     <div class="feature-flagship-inner">
-                        <div class="feature-icon-main" aria-hidden="true">🔬</div>
+                        <div class="feature-icon-main" aria-hidden="true">🗺️</div>
                         <div class="feature-flagship-text">
-                            <h3 class="feature-title-main">源码课程</h3>
-                            <p class="feature-desc-main">12 主题 × 2 讲（S 主线 + D 深挖）共 24 讲，从 Agent Loop 到 MCP / 任务 / Git——建议按顺序学习。</p>
+                            <h3 class="feature-title-main">Source Map 源码专题</h3>
+                            <p class="feature-desc-main">整合 <strong>24 讲源码课程</strong> 与 <strong>Source Map 事件</strong>：专题导读、十二章 S/D 列表、源码反推与 <strong>Awesome 源码汇总</strong> 入口。</p>
                             <div class="feature-tags">
                                 <span class="tag">24 讲</span>
-                                <span class="tag">S + D</span>
-                                <span class="tag">MCP</span>
+                                <span class="tag">Source Map</span>
+                                <span class="tag">Awesome</span>
                             </div>
                         </div>
                     </div>
@@ -205,18 +216,6 @@
                     <div class="feature-arrow">→</div>
                 </a>
 
-                <!-- Awesome：仓库内 Markdown，GitHub 在线渲染 -->
-                <a href="https://github.com/Harzva/learn-likecc/blob/main/awesome-claude-code-source.md" class="feature-card-main feature-secondary" target="_blank" rel="noopener noreferrer">
-                    <div class="feature-icon-main">✨</div>
-                    <h3 class="feature-title-main">Awesome 源码汇总</h3>
-                    <p class="feature-desc-main">社区可见的 Claude Code 相关源码与镜像仓库清单；正文维护在仓库根目录 <code>awesome-claude-code-source.md</code>，点此在 GitHub 上阅读（无需单独写 HTML 页面）。</p>
-                    <div class="feature-tags">
-                        <span class="tag">GitHub MD</span>
-                        <span class="tag">镜像列表</span>
-                        <span class="tag">持续更新</span>
-                    </div>
-                    <div class="feature-arrow">↗</div>
-                </a>
             </div>
         </div>
     </section>
@@ -276,7 +275,7 @@
 
             <figure class="mermaid-figure mermaid-figure--main mermaid-figure--course-map" aria-label="源码课程十二章总览图">
                 <figcaption class="mermaid-caption">
-                    <strong>12 主题全景</strong>：运行时主链与 Part 1–3 递进；紫色为 Source Map 与 <a href="topic-agent.html">Agent 大专题</a>。
+                    <strong>12 主题全景</strong>：运行时主链与 Part 1–3 递进；紫色为 Source Map 与 <a href="topic-sourcemap.html">源码专题</a>、<a href="topic-agent.html">Agent 大专题</a>。
                 </figcaption>
                 <div class="mermaid-diagram-scroll mermaid-diagram-scroll--xl" data-mermaid-diagram="course-map"></div>
             </figure>
@@ -753,7 +752,7 @@ jobs:
                 <h2 id="hot-topics-heading" class="section-title">🔥 热点话题</h2>
                 <a href="https://github.com/Harzva/learn-likecc/tree/main/wemedia/zhihu/articles" class="hot-topics-repo-link" target="_blank" rel="noopener noreferrer">wemedia/zhihu/articles 目录 ↗</a>
             </div>
-            <p class="hot-topics-intro">以下为知乎专栏稿对应的 <strong>仓库 Markdown</strong>，不重复粘贴正文；点击卡片内链接在 GitHub 上查看渲染版（需网络）。与本地 <code>wemedia/zhihu/articles/*.md</code> 同源。外文技术快讯另见 <a href="topic-rag-hot.html">RAG · 技术热点</a>、<a href="topic-agent-hot.html">Agent · 技术热点</a>。</p>
+                    <p class="hot-topics-intro">以下为知乎专栏稿对应的 <strong>仓库 Markdown</strong>，不重复粘贴正文；点击卡片内链接在 GitHub 上查看渲染版（需网络）。与本地 <code>wemedia/zhihu/articles/*.md</code> 同源。外文技术快讯另见 <a href="topic-rag-hot.html">RAG · 技术热点</a>、<a href="topic-agent-hot.html">Agent · 技术热点</a>；源码向综述见 <a href="topic-sourcemap.html">Source Map 源码专题</a>。</p>
 
             <div class="hot-topics-grid">
                 <article class="daily-article-main hot-topic-card">
@@ -886,7 +885,8 @@ jobs:
                 <div class="footer-links-main">
                     <div class="footer-col-main">
                         <h5>学习</h5>
-                        <a href="#courses">源码课程</a>
+                        <a href="topic-sourcemap.html">Source Map 源码专题</a>
+                        <a href="index.html#courses">24 讲目录</a>
                         <a href="tutorial.html">官方教程</a>
                         <a href="tutorial.html#skills">Skills</a>
                         <a href="handbook.html">完全手册</a>

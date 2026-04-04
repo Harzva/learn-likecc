@@ -6,10 +6,11 @@
 
 与本列表正交、主题并列的汇总（GitHub 上点进仓库根目录即可阅读）：
 
-| 文件 | 内容 |
-|------|------|
-| [awesome-rag.md](./awesome-rag.md) | RAG 教程、向量库、Graph RAG、评测工具等 |
-| [awesome-agent.md](./awesome-agent.md) | Agent 框架、多智能体、MCP、编程助手生态等 |
+| 文件 | 内容 | 本站专题（Pages） |
+|------|------|-------------------|
+| 本文件 | Claude Code 泄露/逆向镜像仓库 | [Source Map 源码专题](https://harzva.github.io/learn-likecc/topic-sourcemap.html) |
+| [awesome-rag.md](./awesome-rag.md) | RAG 教程、向量库、Graph RAG、评测工具等 | [RAG 大专题](https://harzva.github.io/learn-likecc/topic-rag.html) |
+| [awesome-agent.md](./awesome-agent.md) | Agent 框架、多智能体、MCP、编程助手生态等 | [Agent 大专题](https://harzva.github.io/learn-likecc/topic-agent.html) |
 
 ---
 
