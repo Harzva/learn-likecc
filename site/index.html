@@ -381,85 +381,261 @@
             </div>
 
             <div class="interview-grid-main">
-                <div class="question-card-main" data-cat="concept">
-                    <div class="question-header-main">
-                        <span class="q-number">Q1</span>
-                        <span class="q-type concept">概念</span>
-                        <span class="q-difficulty easy">简单</span>
+                <article class="question-card-main" data-cat="concept" aria-expanded="false">
+                    <div class="question-card-main__top">
+                        <div class="question-header-main">
+                            <span class="q-number">Q1</span>
+                            <span class="q-type concept">概念</span>
+                            <span class="q-difficulty easy">简单</span>
+                        </div>
+                        <h4>什么是 Claude Code？与 ChatGPT 有什么区别？</h4>
+                        <p class="question-preview">Claude Code 是 CLI 工具，直接操作本地文件和终端...</p>
+                        <p class="question-expand-hint">点击卡片或下方按钮查看完整答案</p>
                     </div>
-                    <h4>什么是 Claude Code？与 ChatGPT 有什么区别？</h4>
-                    <p class="question-preview">Claude Code 是 CLI 工具，直接操作本地文件和终端...</p>
-                </div>
+                    <div class="question-answer-main" hidden>
+                        <p><strong>核心区别：</strong></p>
+                        <ul>
+                            <li>Claude Code 是 <strong>CLI 工具</strong>，直接操作本地文件和终端</li>
+                            <li>ChatGPT 是 <strong>Web 应用</strong>，需要手动复制代码</li>
+                            <li>Claude Code 具备<strong>工具调用能力</strong>（读写文件、执行命令）</li>
+                            <li>Claude Code 支持<strong>持久化记忆</strong>和<strong>项目级规则</strong></li>
+                        </ul>
+                    </div>
+                    <button type="button" class="question-toggle-main">展开完整答案</button>
+                </article>
 
-                <div class="question-card-main" data-cat="concept">
-                    <div class="question-header-main">
-                        <span class="q-number">Q2</span>
-                        <span class="q-type concept">概念</span>
-                        <span class="q-difficulty medium">中等</span>
+                <article class="question-card-main" data-cat="concept" aria-expanded="false">
+                    <div class="question-card-main__top">
+                        <div class="question-header-main">
+                            <span class="q-number">Q2</span>
+                            <span class="q-type concept">概念</span>
+                            <span class="q-difficulty medium">中等</span>
+                        </div>
+                        <h4>解释 Claude Code 的 Agent Loop 工作原理</h4>
+                        <p class="question-preview">四步循环：获取输入 → 调用 API → 执行工具 → 输出响应...</p>
+                        <p class="question-expand-hint">点击卡片或下方按钮查看完整答案</p>
                     </div>
-                    <h4>解释 Claude Code 的 Agent Loop 工作原理</h4>
-                    <p class="question-preview">四步循环：获取输入 → 调用 API → 执行工具 → 输出响应...</p>
-                </div>
+                    <div class="question-answer-main" hidden>
+                        <p><strong>四步循环：</strong></p>
+                        <pre><code>while (!finished) {
+  1. getUserInput()    // 获取用户输入
+  2. callClaudeAPI()   // 调用 API
+  3. executeTools()    // 执行工具
+  4. displayResponse() // 输出响应
+}</code></pre>
+                        <p>每个循环中，Claude 决定是否需要调用工具，并处理返回结果。</p>
+                    </div>
+                    <button type="button" class="question-toggle-main">展开完整答案</button>
+                </article>
 
-                <div class="question-card-main" data-cat="concept">
-                    <div class="question-header-main">
-                        <span class="q-number">Q3</span>
-                        <span class="q-type concept">概念</span>
-                        <span class="q-difficulty medium">中等</span>
+                <article class="question-card-main" data-cat="concept" aria-expanded="false">
+                    <div class="question-card-main__top">
+                        <div class="question-header-main">
+                            <span class="q-number">Q3</span>
+                            <span class="q-type concept">概念</span>
+                            <span class="q-difficulty medium">中等</span>
+                        </div>
+                        <h4>什么是 MCP (Model Context Protocol)？</h4>
+                        <p class="question-preview">MCP 是一种协议，让 Claude Code 连接外部工具和数据源...</p>
+                        <p class="question-expand-hint">点击卡片或下方按钮查看完整答案</p>
                     </div>
-                    <h4>什么是 MCP (Model Context Protocol)？</h4>
-                    <p class="question-preview">MCP 是一种协议，让 Claude Code 连接外部工具和数据源...</p>
-                </div>
+                    <div class="question-answer-main" hidden>
+                        <p><strong>MCP 是一种协议，让 Claude Code 连接外部工具和数据源：</strong></p>
+                        <ul>
+                            <li><strong>定义：</strong>标准化的工具集成协议</li>
+                            <li><strong>作用：</strong>连接 GitHub、数据库、文件系统等</li>
+                            <li><strong>配置：</strong>通过 <code>.mcp.json</code> 文件</li>
+                            <li><strong>管理：</strong><code>/mcp</code> 命令查看和管理</li>
+                        </ul>
+                    </div>
+                    <button type="button" class="question-toggle-main">展开完整答案</button>
+                </article>
 
-                <div class="question-card-main" data-cat="practice">
-                    <div class="question-header-main">
-                        <span class="q-number">Q4</span>
-                        <span class="q-type practice">实践</span>
-                        <span class="q-difficulty easy">简单</span>
+                <article class="question-card-main" data-cat="practice" aria-expanded="false">
+                    <div class="question-card-main__top">
+                        <div class="question-header-main">
+                            <span class="q-number">Q4</span>
+                            <span class="q-type practice">实践</span>
+                            <span class="q-difficulty easy">简单</span>
+                        </div>
+                        <h4>如何在项目中配置项目级 Memory？</h4>
+                        <p class="question-preview">在项目根目录创建 CLAUDE.md 文件...</p>
+                        <p class="question-expand-hint">点击卡片或下方按钮查看完整答案</p>
                     </div>
-                    <h4>如何在项目中配置项目级 Memory？</h4>
-                    <p class="question-preview">在项目根目录创建 CLAUDE.md 文件...</p>
-                </div>
+                    <div class="question-answer-main" hidden>
+                        <p><strong>步骤：</strong></p>
+                        <pre><code># 1. 在项目根目录创建 CLAUDE.md
+touch CLAUDE.md
 
-                <div class="question-card-main" data-cat="practice">
-                    <div class="question-header-main">
-                        <span class="q-number">Q5</span>
-                        <span class="q-type practice">实践</span>
-                        <span class="q-difficulty medium">中等</span>
-                    </div>
-                    <h4>如何创建自定义 Slash Command？</h4>
-                    <p class="question-preview">在 .claude/commands/ 目录创建 .md 文件...</p>
-                </div>
+# 2. 编辑内容
+echo "# 项目规则\n\n## 代码规范\n- 使用 TypeScript\n- 遵循 ESLint 规则" > CLAUDE.md
 
-                <div class="question-card-main" data-cat="compare">
-                    <div class="question-header-main">
-                        <span class="q-number">Q7</span>
-                        <span class="q-type compare">对比</span>
-                        <span class="q-difficulty medium">中等</span>
+# 3. Claude Code 自动加载</code></pre>
                     </div>
-                    <h4>Slash Commands vs Skills vs Subagents？</h4>
-                    <p class="question-preview">触发方式、持久性、适用场景的对比...</p>
-                </div>
+                    <button type="button" class="question-toggle-main">展开完整答案</button>
+                </article>
 
-                <div class="question-card-main" data-cat="scenario">
-                    <div class="question-header-main">
-                        <span class="q-number">Q9</span>
-                        <span class="q-type scenario">场景</span>
-                        <span class="q-difficulty hard">困难</span>
+                <article class="question-card-main" data-cat="practice" aria-expanded="false">
+                    <div class="question-card-main__top">
+                        <div class="question-header-main">
+                            <span class="q-number">Q5</span>
+                            <span class="q-type practice">实践</span>
+                            <span class="q-difficulty medium">中等</span>
+                        </div>
+                        <h4>如何创建自定义 Slash Command？</h4>
+                        <p class="question-preview">在 .claude/commands/ 目录创建 .md 文件...</p>
+                        <p class="question-expand-hint">点击卡片或下方按钮查看完整答案</p>
                     </div>
-                    <h4>如何设计自动化代码审查流程？</h4>
-                    <p class="question-preview">组合 Memory + Hook + Slash Command...</p>
-                </div>
+                    <div class="question-answer-main" hidden>
+                        <p><strong>步骤：</strong></p>
+                        <pre><code># 1. 创建命令目录
+mkdir -p .claude/commands
 
-                <div class="question-card-main" data-cat="scenario">
-                    <div class="question-header-main">
-                        <span class="q-number">Q10</span>
-                        <span class="q-type scenario">场景</span>
-                        <span class="q-difficulty hard">困难</span>
+# 2. 创建命令文件
+cat > .claude/commands/optimize.md << 'EOF'
+---
+name: optimize
+description: 性能优化分析
+---
+
+请分析当前代码的性能瓶颈，并给出优化建议：
+1. 识别热点代码
+2. 分析时间复杂度
+3. 提供优化方案
+EOF
+
+# 3. 使用命令
+# /optimize</code></pre>
                     </div>
-                    <h4>如何在 CI/CD 中集成 Claude Code？</h4>
-                    <p class="question-preview">使用 print mode 和权限配置...</p>
-                </div>
+                    <button type="button" class="question-toggle-main">展开完整答案</button>
+                </article>
+
+                <article class="question-card-main" data-cat="compare" aria-expanded="false">
+                    <div class="question-card-main__top">
+                        <div class="question-header-main">
+                            <span class="q-number">Q7</span>
+                            <span class="q-type compare">对比</span>
+                            <span class="q-difficulty medium">中等</span>
+                        </div>
+                        <h4>Slash Commands vs Skills vs Subagents？</h4>
+                        <p class="question-preview">触发方式、持久性、适用场景的对比...</p>
+                        <p class="question-expand-hint">点击卡片或下方按钮查看完整答案</p>
+                    </div>
+                    <div class="question-answer-main" hidden>
+                        <table class="compare-table">
+                            <tr>
+                                <th>特性</th>
+                                <th>Slash Commands</th>
+                                <th>Skills</th>
+                                <th>Subagents</th>
+                            </tr>
+                            <tr>
+                                <td>触发方式</td>
+                                <td>手动 /cmd</td>
+                                <td>自动触发</td>
+                                <td>自动委派</td>
+                            </tr>
+                            <tr>
+                                <td>持久性</td>
+                                <td>当前会话</td>
+                                <td>文件系统级</td>
+                                <td>独立上下文</td>
+                            </tr>
+                            <tr>
+                                <td>适用场景</td>
+                                <td>高频快捷操作</td>
+                                <td>复用工作流</td>
+                                <td>任务拆分</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <button type="button" class="question-toggle-main">展开完整答案</button>
+                </article>
+
+                <article class="question-card-main" data-cat="scenario" aria-expanded="false">
+                    <div class="question-card-main__top">
+                        <div class="question-header-main">
+                            <span class="q-number">Q9</span>
+                            <span class="q-type scenario">场景</span>
+                            <span class="q-difficulty hard">困难</span>
+                        </div>
+                        <h4>如何设计自动化代码审查流程？</h4>
+                        <p class="question-preview">组合 Memory + Hook + Slash Command...</p>
+                        <p class="question-expand-hint">点击卡片或下方按钮查看完整答案</p>
+                    </div>
+                    <div class="question-answer-main" hidden>
+                        <p><strong>组合方案：</strong></p>
+                        <div class="solution-box">
+                            <div class="solution-step">
+                                <span class="step-num">1</span>
+                                <div class="step-content">
+                                    <strong>Memory</strong>：定义代码规范
+                                    <pre><code># CLAUDE.md
+## 代码规范
+- TypeScript strict mode
+- 测试覆盖率 > 80%</code></pre>
+                                </div>
+                            </div>
+                            <div class="solution-step">
+                                <span class="step-num">2</span>
+                                <div class="step-content">
+                                    <strong>Hook</strong>：提交前自动检查
+                                    <pre><code># ~/.claude/hooks/pre-commit.sh
+npm run lint &amp;&amp; npm test</code></pre>
+                                </div>
+                            </div>
+                            <div class="solution-step">
+                                <span class="step-num">3</span>
+                                <div class="step-content">
+                                    <strong>Slash Command</strong>：手动触发审查
+                                    <pre><code>/optimize  # 性能审查
+/pr        # PR 准备</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="question-toggle-main">展开完整答案</button>
+                </article>
+
+                <article class="question-card-main" data-cat="scenario" aria-expanded="false">
+                    <div class="question-card-main__top">
+                        <div class="question-header-main">
+                            <span class="q-number">Q10</span>
+                            <span class="q-type scenario">场景</span>
+                            <span class="q-difficulty hard">困难</span>
+                        </div>
+                        <h4>如何在 CI/CD 中集成 Claude Code？</h4>
+                        <p class="question-preview">使用 print mode 和权限配置...</p>
+                        <p class="question-expand-hint">点击卡片或下方按钮查看完整答案</p>
+                    </div>
+                    <div class="question-answer-main" hidden>
+                        <p><strong>CI/CD 配置示例：</strong></p>
+                        <pre><code># .github/workflows/claude-ci.yml
+name: Claude CI
+on: [push]
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Claude Code
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          claude -p "Review the code changes" \
+            --permission-mode dontAsk \
+            --output review.md
+
+      - name: Upload Review
+        uses: actions/upload-artifact@v4
+        with:
+          name: code-review
+          path: review.md</code></pre>
+                    </div>
+                    <button type="button" class="question-toggle-main">展开完整答案</button>
+                </article>
             </div>
 
             <div class="interview-more">
@@ -589,6 +765,31 @@
                             card.style.display = 'none'
                         }
                     })
+                })
+            })
+
+            // 面试题卡片：展开完整答案（点击卡片或按钮；展开后点击答案区不关闭，便于复制）
+            document.querySelectorAll('.question-card-main').forEach((card) => {
+                const answer = card.querySelector('.question-answer-main')
+                const btn = card.querySelector('.question-toggle-main')
+                if (!answer || !btn) return
+
+                function setExpanded(expanded) {
+                    card.classList.toggle('is-expanded', expanded)
+                    card.setAttribute('aria-expanded', expanded ? 'true' : 'false')
+                    answer.hidden = !expanded
+                    btn.textContent = expanded ? '收起完整答案' : '展开完整答案'
+                }
+
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation()
+                    setExpanded(!card.classList.contains('is-expanded'))
+                })
+
+                card.addEventListener('click', (e) => {
+                    if (btn.contains(e.target)) return
+                    if (card.classList.contains('is-expanded') && answer.contains(e.target)) return
+                    setExpanded(!card.classList.contains('is-expanded'))
                 })
             })
 

@@ -2524,6 +2524,44 @@ body {
    .course-main 覆盖全部章节内 pre/code（含 .diagram、.code-block），不依赖是否加载 Prism
    使用 !important 以压过 prism.css 中可能存在的 ::selection
    ----------------------------------------------------------------- */
+/* 课程章节页：顶栏留白 + 章节导航与正文分离（避免与思考题等重叠） */
+.course-main {
+    padding-top: 72px;
+    padding-bottom: 48px;
+}
+
+.course-content {
+    padding-bottom: 24px;
+}
+
+.section-block {
+    margin-bottom: 1.75rem;
+}
+
+.thinking-questions {
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.25rem;
+}
+
+.thinking-questions li {
+    margin-bottom: 0.5rem;
+}
+
+.chapter-navigation {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-top: 1px solid var(--border);
+    clear: both;
+    position: relative;
+    z-index: 2;
+}
+
 .course-main pre ::selection,
 .course-main pre *::selection,
 .course-main code::selection,
@@ -4238,6 +4276,7 @@ body {
     padding: 20px;
     border: 1px solid var(--border);
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .question-card-main:hover {
@@ -4289,6 +4328,88 @@ body {
     color: var(--text-muted);
     font-size: 0.85rem;
     line-height: 1.5;
+}
+
+.question-card-main.is-expanded {
+    cursor: default;
+}
+
+.question-card-main__top {
+    pointer-events: auto;
+}
+
+.question-expand-hint {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 10px 0 0;
+    opacity: 0.85;
+}
+
+.question-card-main.is-expanded .question-expand-hint {
+    display: none;
+}
+
+.question-answer-main {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--border);
+    cursor: auto;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-size: 0.9rem;
+}
+
+.question-answer-main[hidden] {
+    display: none !important;
+}
+
+.question-answer-main p {
+    margin-bottom: 12px;
+}
+
+.question-answer-main ul {
+    margin: 0 0 12px 20px;
+}
+
+.question-answer-main li {
+    margin-bottom: 8px;
+}
+
+.question-answer-main pre {
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 16px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 12px 0;
+    font-size: 0.85rem;
+}
+
+.question-answer-main code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.85rem;
+}
+
+.question-toggle-main {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+    position: relative;
+    z-index: 2;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--primary);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.question-toggle-main:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
 }
 
 .interview-more {
