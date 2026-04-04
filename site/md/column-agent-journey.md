@@ -22,9 +22,10 @@
 
 **Trae Solo** 依旧主观一句：**非常惊艳**；而且**国内更新跟得快**，这点很加分。
 
-**Agent / 编程助手向**里，我还体验过（或深度白嫖过）：**Qoder**、**Cursor**、谷歌 **Antigravity（反重力）**，以及 **Kiro**（口述常写成 Krio）一类编辑器形态（只玩过编辑器版本）。
+**Agent / 编程助手向**里，我还体验过（或深度白嫖过）：**Qoder**、**Trae**、**Cursor**、谷歌 **Antigravity（反重力）**、**VS Code**（插件与内置 Agent 形态）、**Codex / Claude Code** 等 CLI 线，以及 **Kiro**（口述常写成 Krio）一类编辑器形态（只玩过编辑器版本）。
 
-- **Cursor**：常规主力之一，大家都熟。
+- **谁当主力？**我**从来没把 Cursor 当固定主力**；更常见的是 **Qoder、Trae、Antigravity、VS Code、Codex、Claude Code** 等**轮换上阵**——阶段性谁顺手谁就上前排。
+- **Cursor**：也在池子里，付过费、会打开用，但不是「默认开机只开它」那一个。
 - **Antigravity**：后面单独开喷（也会夸 workflow）。
 
 **付费**方面：Qoder 付过一个月加首月，其余主要靠活动/邀请；Trae 有过两个月左右叠加春节活动；Cursor 付过一个月，**学生认证没薅成功**。
@@ -114,7 +115,7 @@
 
 ## 现在重心在哪
 
-上面那句不是口号：**日常默认还是 Claude Code 这条线**。并列还在玩的是 **Cursor 独立 Agent 模式**（有点像 Trae Solo）、以及 **智谱系 Zed** 里的 Agent——都是**以 Agent 为中心的 IDE 环境**，不是「以编辑器为中心、人手撸每一行给人看」。
+上面那句不是口号：**日常默认还是 Claude Code 这条线**。编辑器侧则与 **Qoder、Trae、Antigravity、VS Code** 等继续轮换；**Cursor 的独立 Agent 模式**（有点像 Trae Solo）和 **智谱系 Zed** 也会按需点开——整体都是**以 Agent 为中心的 IDE 环境**，不是「以编辑器为中心、人手撸每一行给人看」。
 
 模型越来越好的时候，**vibe coding** 里人到底是**指挥**还是**甲方**？越常「只要结果不看过程」，爽和风险越大——**代码你不读，锅就是你的**。
 
