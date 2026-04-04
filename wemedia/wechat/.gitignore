@@ -1,0 +1,8 @@
+# md2wechat / 微信相关本地凭证与生成物（勿提交）
+.env
+.env.*
+*.pem
+article.local.md
+preview.html
+
+# 若官方 CLI 在用户目录外生成本地配置，可按实际文件名追加
