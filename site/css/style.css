@@ -1729,12 +1729,20 @@ body {
     margin: 16px 0;
 }
 
+/* 深色底代码区：正文色勿用 var(--text-primary)。暖光/浅色主题下其为 #1e293b，
+   与背景同色会导致整段代码「看不见」。 */
 .code-block pre {
     background: #1e293b;
+    color: #e2e8f0;
     padding: 20px;
     border-radius: 8px;
     overflow-x: auto;
     margin: 0;
+    border: 1px solid #334155;
+}
+
+.code-block pre code {
+    color: inherit;
 }
 
 .code-block code {

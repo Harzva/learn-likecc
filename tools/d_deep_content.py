@@ -57,17 +57,32 @@ DEEP_BODIES: list[str] = [
                         <li>加保险：<code>max_turns</code>、单次命令超时、工作目录白名单。</li>
                     </ol>
                     <div class="code-block">
-                        <pre><code class="language-typescript">// 伪代码骨架（与语言无关，抓住状态迁移）
-while (turn++ &lt; MAX) {
+                        <pre><code class="language-typescript">/**
+ * 最小 Agent Loop：只注册 bash，反复调用模型直到本轮响应里不再出现 tool_use。
+ * 与具体厂商无关：把 model.create / 消息结构换成你用的 SDK 即可。
+ */
+const MAX_TURNS = 40
+let turn = 0
+
+while (turn++ &lt; MAX_TURNS) {
+  // ① 携带「当前完整 messages + 工具表」请求模型
   const res = await model.create({ messages, tools: [bashTool] })
   messages.push(assistantMessageFrom(res))
+
   const uses = res.content.filter(isToolUse)
-  if (uses.length === 0) break
+  if (uses.length === 0) {
+    // ② 无 tool_use：模型本回合只输出文本或已 end_turn，退出循环
+    break
+  }
+
+  // ③ 每个 tool_use 必须执行并写回 tool_result，且 tool_use_id 与 assistant 块对齐
   for (const u of uses) {
-    const out = await runBash(u.input.command) // 实际要权限门
+    const out = await runBash(u.input.command) // 生产环境：此处前插 D03 canUseTool / 策略门
     messages.push(toolResultMessage(u.id, out))
   }
-}</code></pre>
+}
+
+// ④ 建议另加：max_turns（上已示例）、单命令超时、工作目录白名单、工具错误计数防死循环</code></pre>
                     </div>
                 </section>
 
