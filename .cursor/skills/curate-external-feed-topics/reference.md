@@ -20,6 +20,10 @@
 | Translate | **High** | LLM or translation API; keep **attribution** and **canonical URL** on every curated row. |
 | Push to site | **High (manual or CI)** | Add a row to `site/topic-rag-hot.html` or `site/topic-agent-hot.html` (or generate from a small JSON file later). |
 
+## RAG curriculum alignment (learn-likecc)
+
+- The site’s **RAG 大专题** treats **[Datawhale All-in-RAG](https://github.com/datawhalechina/all-in-rag)** as the structured stack reference (`docs/` + `code/`). Hot-topic rows are **supplementary** digests, not a replacement for that tutorial.
+
 ## Routing: RAG vs Agent “技术热点”
 
 Heuristic keywords (adjust as needed):
