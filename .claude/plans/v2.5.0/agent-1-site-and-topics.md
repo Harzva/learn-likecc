@@ -81,12 +81,12 @@
 
 ## 任务清单（Agent 1）— 完成后改为 `[x]`
 
-- [ ] 创建 `site/md/README.md`（说明目录用途、`stem` 与 `.html` 对应规则）
-- [ ] 为上表 14 个 `stem` 各新增 `site/md/<stem>.md`
-- [ ] 在 14 个 HTML 中加入互链（`blob/main/site/md/<stem>.md`）
-- [ ] 如需统一样式，在 `site/css/style.css` 增加 `.md-source-link`
-- [ ] 自检：每页链接 stem 与文件名一致；推送后 GitHub blob 可打开
-- [ ] **回写打钩**：本文件清单 + [v2.5.0_plan.md 第四节](../v2.5.0_plan.md)
+- [x] 创建 `site/md/README.md`（说明目录用途、`stem` 与 `.html` 对应规则）
+- [x] 为上表 14 个 `stem` 各新增 `site/md/<stem>.md`
+- [x] 在 14 个 HTML 中加入互链（`blob/main/site/md/<stem>.md`）
+- [x] 如需统一样式，在 `site/css/style.css` 增加 `.md-source-link`
+- [x] 自检：每页链接 stem 与文件名一致；推送后 GitHub blob 可打开
+- [x] **回写打钩**：本文件清单 + [v2.5.0_plan.md 第四节](../v2.5.0_plan.md)
 
 ---
 

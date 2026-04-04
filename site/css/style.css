@@ -5555,3 +5555,16 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     color: var(--text-muted);
     line-height: 1.5;
 }
+
+/* Markdown 源文件链接（页脚） */
+.md-source-link {
+    text-align: center;
+    margin: 0.75rem 0 0;
+    font-size: 0.875rem;
+}
+.md-source-link a {
+    color: var(--text-muted);
+}
+.md-source-link a:hover {
+    color: var(--primary);
+}
