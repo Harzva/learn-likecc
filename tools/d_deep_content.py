@@ -817,6 +817,13 @@ case 'hookUpdatedInput':
                 </section>
 
                 <section class="section-block">
+                    <h2>📌 S 与 D 的分工（为何答案在 D12？）</h2>
+                    <p><strong>S 线（如 S12）</strong>：讲清楚「是什么、典型流程、配置长什么样」，篇幅尽量短，一般<strong>不铺长篇标答</strong>，避免主线臃肿。</p>
+                    <p><strong>D 线（如本页）</strong>：同一主题的<strong>深挖 + 边界 + 自测参考答案</strong>刻意放在这里——你可以先闭卷想，再展开下文对照。这不是「S 只出题、D 只给答案」的硬性协议，而是本站的<strong>排版约定</strong>：<strong>S 轻、D 重</strong>。</p>
+                    <p><strong>不建议去掉 D 里的答案</strong>：去掉后 D 与 S 的差异被抹平，深挖页失去「对答案」这一用途；若你希望某讲在 S 侧多一句提示，更合适的是像 S12 那样<strong>链到对应的 D</strong>，而不是删掉 D 的解析。</p>
+                </section>
+
+                <section class="section-block">
                     <h2>🌳 操作分级</h2>
                     <table class="options-table">
                         <tr><th>级别</th><th>示例</th><th>权限建议</th></tr>
@@ -844,11 +851,56 @@ case 'hookUpdatedInput':
                     </ol>
                 </section>
 
-                <section class="section-block">
-                    <h2>✏️ 自测</h2>
+                <section class="section-block" id="d12-q-commit-no-push">
+                    <h2>✏️ 自测 1 · 参考答案：<code>git commit</code> 放行、<code>git push</code> 禁止</h2>
+                    <h3>题干</h3>
+                    <p>设计策略：允许模型 <code>git commit</code> 但禁止 <code>git push</code>，在<strong>权限层</strong>如何实现？</p>
+                    <h3>思路概览</h3>
+                    <p>权限函数（如 <code>canUseTool</code>）必须在<strong>真正 spawn 之前</strong>看到<strong>结构化或可解析的调用意图</strong>。实现上有三条常见路线，可叠加：</p>
+                    <ol>
+                        <li><strong>专用 Git 工具</strong>：不把「任意 shell」暴露给模型，而是 <code>git</code> 工具参数里带 <code>subcommand</code>（或等价枚举）。策略表：<code>commit</code> / <code>add</code> / <code>status</code> → auto 或 ask；<code>push</code>、<code>fetch</code>、含 <code>remote</code> 的网络写 → <strong>一律 deny</strong> 或未开放该枚举值。</li>
+                        <li><strong>Bash 工具 + 命令解析</strong>：若仍走通用 Bash，必须在权限层对<strong>整行命令做 token 化</strong>（注意引号、<code>git -C path</code>、<code>env GIT_DIR=…</code>）：识别首个 <code>git</code> 子命令；<code>push</code>、<code>push --force</code>、<code>remote set-url</code> 等命中高危规则 → deny；<code>commit</code> 在允许列表 → 继续走工作区与路径校验。</li>
+                        <li><strong>PreToolUse Hook（辅助）</strong>：对 Bash 的 <code>command</code> 字符串做二次审计（正则 / 小型解析器），命中 <code>git push</code> 返回 deny 或 <code>blockingError</code>。Hook 不能替代权限门，只做纵深防御。</li>
+                    </ol>
+                    <h3>务必兜住的坑</h3>
                     <ul>
-                        <li>设计策略：允许模型 <code>git commit</code> 但禁止 <code>git push</code>，在权限层如何实现？</li>
-                        <li>若 .git 在 workspace 外，工具应拒绝还是跟随 symlink？</li>
+                        <li><code>git -C ../outside-repo push</code>：除子命令外还要校验 <code>-C</code> 与当前工作目录是否落在<strong>允许的工作区根</strong>内。</li>
+                        <li><code>git</code> 的别名、脚本包装：<code>alias gp=git push</code> —— 若无法静态解析，应对「未列入白名单的任意 git 调用」默认 ask/deny。</li>
+                        <li><code>gh pr create</code> 等间接 push：若策略是「禁止出网写远程」，需在<strong>网络类工具</strong>另表约束，与 git 子命令策略<strong>合并考虑</strong>。</li>
+                    </ul>
+                    <div class="code-block">
+                        <pre><code class="language-typescript">// 权限层伪代码：仅示意「在 spawn 之前」如何分支
+function gitPolicyFromArgv(argv: string[]): 'allow' | 'deny' | 'ask' {
+  // 1. 归一化：去掉 env 赋值、取到 git 与其子命令（需真实解析器，勿只靠 split）
+  const sub = extractGitSubcommand(argv) // e.g. 'commit' | 'push' | null
+  if (sub === 'push') return 'deny'
+  if (sub === 'commit') return 'allow' // 还可再检查 -C、文件路径
+  return 'ask'
+}</code></pre>
+                    </div>
+                </section>
+
+                <section class="section-block" id="d12-q-git-symlink">
+                    <h2>✏️ 自测 2 · 参考答案：<code>.git</code> 在 workspace 外与 symlink</h2>
+                    <h3>题干</h3>
+                    <p>若 <code>.git</code> 在 workspace 外，工具应拒绝还是跟随 symlink？</p>
+                    <h3>结论（教学上的安全默认）</h3>
+                    <p><strong>默认应拒绝</strong>在未额外授权的情况下对「解析后真实路径不在工作区内的 Git 仓库」执行写操作。理由：跟随 symlink 会把<strong>工作区内的路径</strong>映射到<strong>盘外任意 Git 目录</strong>，等价于隐蔽的目录穿越 —— 模型以为在改课程仓库，实际在改用户别的项目。</p>
+                    <h3>推荐实现步骤</h3>
+                    <ol>
+                        <li>对涉及仓库的路径（含 <code>.git</code>、<code>gitdir</code>、worktree）做 <code>realpath</code> / 等价解析，得到<strong>规范绝对路径</strong>。</li>
+                        <li>校验 <code>realpath(repoRoot)</code> 是否以<strong>配置的 workspace 根</strong>为前缀（注意尾随 <code>/</code> 与大小写/Unicode 规范化）。不通过 → deny 或只读降级。</li>
+                        <li>Symlink：可在「允许跟随」与「拒绝跟随」二选一作为产品策略；若跟随，<strong>必须在权限判断里用解析后的目标路径</strong>，而不是用户可见的 symlink 路径字符串。</li>
+                    </ol>
+                    <h3>何时可以「跟随」</h3>
+                    <p>仅当产品明确把 workspace 定义为「逻辑视图」且用户<strong>显式勾选</strong>「允许通过 symlink 指向外部裸仓」并写入审计日志时，才可放行；否则一律按上面默认拒绝写、或仅允许 <code>status</code>/<code>log</code> 等只读且仍记录真实路径。</p>
+                </section>
+
+                <section class="section-block">
+                    <h2>✏️ 自测（题干回顾）</h2>
+                    <ul>
+                        <li><code>commit</code> 放行、<code>push</code> 禁止如何实现？→ <a href="#d12-q-commit-no-push">自测 1</a></li>
+                        <li><code>.git</code> 在外或 symlink？→ <a href="#d12-q-git-symlink">自测 2</a></li>
                     </ul>
                 </section>
     """,
