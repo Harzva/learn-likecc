@@ -142,6 +142,42 @@ const MERMAID_DIAGRAMS = {
 
     style OUTER fill:#13131a,stroke:#e2b953,stroke-dasharray:5 4`,
 
+    /** 教程：Claude 配置层级（与 tutorial.html #claude-dir 配套） */
+    'claude-config-hierarchy': `flowchart TB
+    subgraph GL["① 全局层 · ~/.claude/（优先级低）"]
+        direction TB
+        G1["settings.json / settings.local.json"]
+        G2["CLAUDE.md（全局说明）"]
+        G3["commands/ · rules/ · skills/ · agents/ 等"]
+    end
+
+    subgraph US["② 用户层 · ~/.claude.md（中）"]
+        U1["单文件：个人习惯，不入仓库"]
+    end
+
+    subgraph PR["③ 项目层 · your-project/（高）"]
+        direction TB
+        P1["CLAUDE.md · CLAUDE.local.md（根目录）"]
+        P2[".claude/settings*.json"]
+        P3[".claude/commands/ · rules/ · skills/ · agents/"]
+    end
+
+    subgraph MR["④ 合并结果（Claude 实际加载）"]
+        direction TB
+        M1["settings.json：叠加合并<br/>同名字段项目覆盖全局，其余字段保留"]
+        M2["说明类文档：顺序拼接<br/>全局 → 用户(~/.claude.md) → 项目 CLAUDE.md<br/>（非覆盖，模型可见各层全文）"]
+        M3["*.local：统一私有不入库<br/>任何层级带 .local 的均应 gitignore"]
+    end
+
+    GL --> MR
+    US --> MR
+    PR --> MR
+
+    style GL fill:#13131a,stroke:#3b82f6,stroke-dasharray:5 4
+    style US fill:#13131a,stroke:#eab308,stroke-dasharray:5 4
+    style PR fill:#13131a,stroke:#e2b953,stroke-dasharray:5 4
+    style MR fill:#16161e,stroke:#10b981,stroke-width:2px`,
+
     'course-s01': `graph LR
     classDef b fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#3b82f6;
     classDef g fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#10b981;

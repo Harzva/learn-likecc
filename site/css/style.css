@@ -3505,6 +3505,40 @@ body {
     margin-bottom: 8px;
 }
 
+/* 教程：.claude/ 专节与解剖配图 */
+.claude-dir-section {
+    background: var(--bg-card);
+}
+
+.tutorial-figure-wide {
+    max-width: 1100px;
+    margin: 0 auto 40px;
+}
+
+.tutorial-figure-wide .tutorial-figure-img-wrap {
+    padding: 16px 20px 24px;
+    background: #11111b;
+    border-top: 1px solid var(--border);
+}
+
+.tutorial-figure-wide .tutorial-figure-img-wrap img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+}
+
+.claude-dir-key-rules {
+    max-width: 960px;
+    margin: 0 auto 32px;
+}
+
+.claude-dir-text {
+    margin-top: 8px;
+}
+
 /* Skills 系统 */
 .skills-section {
     background: var(--bg-dark);

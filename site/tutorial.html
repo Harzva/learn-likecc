@@ -20,6 +20,7 @@
                 <a href="#quickstart" class="nav-link">快速开始</a>
                 <a href="#memory" class="nav-link">Memory</a>
                 <a href="#skills" class="nav-link">Skills</a>
+                <a href="#claude-dir" class="nav-link">.claude/</a>
                 <a href="#workflows" class="nav-link">工作流</a>
                 <a href="#reference" class="nav-link">参考</a>
             </div>
@@ -367,6 +368,83 @@ paths:
                         <p>如果两条规则相互矛盾，Claude 可能会任意选择一条。定期审查删除过时指令。</p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- .claude 配置目录专节 -->
+    <section id="claude-dir" class="section claude-dir-section">
+        <div class="container">
+            <h2 class="section-title">📂 <code>.claude/</code> 与项目配置全景</h2>
+            <p class="section-desc" style="max-width: 800px; margin: 0 auto 24px; text-align: center;">
+                Claude Code 通过<strong>多层目录与文件</strong>记住「你是谁、团队规范、自动化技能、子代理分工」。下面先给<strong>目录解剖图</strong>（与常见社区示意图一致），再给出<strong>配置如何合并</strong>的 Mermaid 总览，以及三条必须搞清的规则。
+            </p>
+
+            <figure class="mermaid-figure tutorial-figure-wide" aria-label=".claude 目录解剖示意图">
+                <figcaption class="mermaid-caption">
+                    <strong>图 1 · 项目里 Claude 常看的文件</strong>：根目录 <code>CLAUDE.md</code> 给团队共享说明；<code>CLAUDE.local.md</code> 个人覆盖；<code>.claude/</code> 下放权限、自定义斜杠命令、规则碎片、Skills、Agents 等。<span class="ref-note" style="display:inline;margin-left:4px;">请将团队需要共享的 <code>.claude/</code> 内容提交 git；带 <code>.local</code> 的保持私有。</span>
+                </figcaption>
+                <div class="tutorial-figure-img-wrap">
+                    <img src="images/tutorial/claude-folder-anatomy.png" alt="your-project 根目录下 CLAUDE.md、CLAUDE.local.md 与 .claude 子目录 commands、rules、skills、agents、settings 等结构示意图" width="1100" loading="lazy">
+                </div>
+            </figure>
+
+            <div class="claude-dir-key-rules">
+                <h3 class="subsection-title">三条合并规则（务必与官方行为对照）</h3>
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <h4>1 · <code>CLAUDE.md</code> 系：<strong>拼接</strong>，不是覆盖</h4>
+                        <p>有效层级通常按<strong>全局 → 用户 → 项目</strong>顺序<strong>依次追加</strong>到系统提示上下文中。模型能同时看到各层内容；后文与上文冲突时，模型一般会更重视更贴近当前仓库的段落，但<strong>技术上不是「只保留最后一层」</strong>——不要假设项目文件会删掉全局说明。</p>
+                    </div>
+                    <div class="tip-card">
+                        <h4>2 · <code>settings.json</code>：<strong>深度合并</strong></h4>
+                        <p>JSON 配置按对象递归合并：<strong>同名字段</strong>以<strong>更具体的一层</strong>（通常是项目）为准；<strong>不冲突的键</strong>在各层保留。适合「全局默认 + 项目覆盖少数开关」。</p>
+                    </div>
+                    <div class="tip-card">
+                        <h4>3 · <code>*.local</code>：<strong>统一私有不入库</strong></h4>
+                        <p>无论位于 <code>~/.claude/</code> 还是项目 <code>.claude/</code>，文件名含 <code>.local</code> 的（如 <code>settings.local.json</code>、<code>CLAUDE.local.md</code>）都应视为<strong>个人机密/本机偏好</strong>，加入 <code>.gitignore</code>，勿提交。</p>
+                    </div>
+                </div>
+            </div>
+
+            <figure class="mermaid-figure mermaid-figure--main" aria-label="Claude 配置层级与合并方式">
+                <figcaption class="mermaid-caption">
+                    <strong>图 2 · 配置层级与合并结果（Mermaid）</strong>：三层并行汇入底部「合并结果」。<strong>优先级从低到高</strong>为 全局 <code>~/.claude/</code> → 用户单文件 <code>~/.claude.md</code> → 项目仓库；冲突时更具体的层通常优先解释或覆盖同名字段。
+                </figcaption>
+                <div class="mermaid-diagram-scroll mermaid-diagram-scroll--xl" data-mermaid-diagram="claude-config-hierarchy"></div>
+            </figure>
+
+            <div class="claude-dir-text">
+                <h3 class="subsection-title">结合图 1：各目录干什么？</h3>
+                <table class="ref-table ref-table--detail" style="max-width: 900px; margin: 0 auto;">
+                    <tr>
+                        <td><code>.claude/settings.json</code></td>
+                        <td>团队配置</td>
+                        <td class="ref-usage">权限、模型偏好等与 JSON 可表达项；与全局 <code>~/.claude/settings.json</code> <strong>叠加</strong>，冲突键以项目为准。</td>
+                    </tr>
+                    <tr>
+                        <td><code>.claude/commands/</code></td>
+                        <td>自定义斜杠命令</td>
+                        <td class="ref-usage">每个 Markdown（或当前版本支持的格式）对应一条 <code>/命令名</code>。部分环境会显示带命名空间前缀（如 <code>/project:deploy</code>），以本机 <code>/help</code> 为准。</td>
+                    </tr>
+                    <tr>
+                        <td><code>.claude/rules/</code></td>
+                        <td>模块化规则</td>
+                        <td class="ref-usage">按文件拆分（代码风格、测试、API 约定等），可用 frontmatter 限定 <code>paths</code>；与根 <code>CLAUDE.md</code> 互补，减少单文件过长。</td>
+                    </tr>
+                    <tr>
+                        <td><code>.claude/skills/</code></td>
+                        <td>Skills 工作流</td>
+                        <td class="ref-usage">子目录 + <code>SKILL.md</code>，可被模型在合适时机自动选用或通过 <code>/skills</code> 浏览。</td>
+                    </tr>
+                    <tr>
+                        <td><code>.claude/agents/</code></td>
+                        <td>子代理角色</td>
+                        <td class="ref-usage">定义隔离上下文的专家人设（如 code reviewer），由 <code>/agents</code> 或工具链挂载。</td>
+                    </tr>
+                </table>
+
+                <p class="reference-lead" style="margin-top: 28px;">更多斜杠命令用法见本章后文 <a href="#reference">命令参考</a>；与 Memory 章节中的 <code>CLAUDE.md</code>、<code>rules</code>  frontmatter 可交叉阅读。</p>
             </div>
         </div>
     </section>
@@ -876,6 +954,7 @@ claude -p "translate new strings into French and raise a PR"</code></pre>
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js" crossorigin="anonymous"></script>
     <script src="js/app.js"></script>
     <script>
         // 教程页面专用脚本
