@@ -16,16 +16,16 @@
 ## 参考文件
 
 - 校验脚本：`tools/check_site_md_parity.py`
-- 建议 workflow：`.github/workflows/site-md-parity.yml`（若已存在则检查逻辑与路径过滤是否合理）
+- workflow：`.github/workflows/site-md-parity.yml`（workflow 名 *Site MD parity check*；job id **`site-md-parity`**）
 
 ---
 
 ## 任务清单 — 完成后 `[x]`
 
-- [ ] `site/md-parity` 或等价 job 在 `push`/`pull_request` 上对 `site/**` 变更运行并通过（见 Actions 绿勾）
-- [ ] `site/md/README.md` 新增 **编辑政策** 章节（权威源、推荐 PR 流程、与校验脚本关系）
-- [ ] （可选）`tools/extract_html_headings.py` 或类似：输入 `site/s01.html` 输出 markdown 目录草稿
-- [ ] **回写打钩**：本文件 + [v2.5.1_plan.md 第四节](../v2.5.1_plan.md)
+- [x] `site/md-parity` 或等价 job 在 `push`/`pull_request` 上对 `site/**` 变更运行并通过（见 Actions 绿勾）
+- [x] `site/md/README.md` 新增 **编辑政策** 章节（权威源、推荐 PR 流程、与校验脚本关系）
+- [x] （可选）`tools/extract_html_headings.py` 或类似：输入 `site/s01.html` 输出 markdown 目录草稿
+- [x] **回写打钩**：本文件 + [v2.5.1_plan.md 第四节](../v2.5.1_plan.md)
 
 ---
 

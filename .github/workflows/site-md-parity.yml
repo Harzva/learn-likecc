@@ -11,9 +11,10 @@ on:
     paths:
       - 'site/**'
       - 'tools/check_site_md_parity.py'
+      - '.github/workflows/site-md-parity.yml'
 
 jobs:
-  parity:
+  site-md-parity:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
