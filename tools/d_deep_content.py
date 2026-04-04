@@ -522,11 +522,90 @@ execute → ToolResult        // 必须可序列化回消息</code></pre>
                     </ol>
                 </section>
 
-                <section class="section-block">
-                    <h2>✏️ 自测</h2>
+                <section class="section-block" id="d09-test-buffer-override">
+                    <h2>✏️ 自测 1 · 参考答案：「宿主覆盖 IDE 未保存 buffer」测试用例</h2>
+                    <p><strong>目标</strong>：验证当磁盘已被宿主（工具写文件）更新，而 IDE 里同一文件仍有<strong>未保存编辑</strong>时，产品行为是否符合预期（提示 / 重载 / diff），且<strong>不会静默丢一边的修改</strong>。</p>
+
+                    <h3>前置条件</h3>
                     <ul>
-                        <li>设计一个「宿主覆盖 IDE 未保存 buffer」的测试用例。</li>
-                        <li>解释为何 bridge 不应直接执行任意 shell（应走工具+权限）。</li>
+                        <li>工作区文件 <code>src/foo.ts</code>，磁盘内容为版本 <code>A</code>。</li>
+                        <li>IDE 打开该文件，用户改成版本 <code>B</code>，<strong>未保存</strong>（buffer dirty）。</li>
+                        <li>Bridge 已连接；可观测 IDE 通知或 RPC 日志。</li>
+                    </ul>
+
+                    <h3>操作步骤（自动化可脚本化）</h3>
+                    <ol>
+                        <li>记录 IDE 侧「文档版本号」或 hash（若有）；记录 buffer 文本 <code>B</code>。</li>
+                        <li>在宿主侧触发一次<strong>合法</strong>写盘：例如模拟 <code>Write</code> / <code>apply_patch</code> 工具把 <code>foo.ts</code> 写成版本 <code>C</code>（与 <code>B</code> 冲突）。</li>
+                        <li>不向 IDE 发送保存；观察 bridge 是否推送「文件在磁盘已变」类事件。</li>
+                    </ol>
+
+                    <h3>期望结果（择一或组合，需在需求里写死）</h3>
+                    <table class="options-table">
+                        <tr><th>策略</th><th>断言</th></tr>
+                        <tr><td>安全默认</td><td>IDE 提示「磁盘已在外部修改」，禁止静默用 <code>C</code> 覆盖 buffer <code>B</code>；用户选「重载丢本地」或「另存为」。</td></tr>
+                        <tr><td>Diff 流（重建树中有 <code>openDiff</code> 思路）</td><td>打开 diff 页，左侧/右侧与 <code>B</code>/<code>C</code> 一致；用户 Accept 后 buffer 与磁盘对齐为选定版本。</td></tr>
+                        <tr><td>宿主回读</td><td>工具链在写盘后若需继续对话，<code>read_file</code> 读到的是 <code>C</code>，且日志中可见「IDE 未保存」标记（若有）。</td></tr>
+                    </table>
+
+                    <h3>伪代码（集成测试骨架）</h3>
+                    <div class="code-block">
+                        <pre><code class="language-typescript">// 伪代码：用假 IDE client + 真文件系统即可跑通思路
+test('host write while IDE buffer dirty', async () => {
+  const path = 'src/foo.ts'
+  await resetFile(path, 'A')
+  const ide = await openInFakeIDE(path)
+  ide.setBufferContents('B', { saved: false })
+
+  await hostToolWrite(path, 'C') // 应走与正式产品相同的写入层
+
+  const ev = await ide.waitForEvent('external_change' /* 或等价 RPC */, 3000)
+  expect(ev).toBeDefined()
+  expect(ide.getBufferContents()).not.toBe('C') // 未确认前不应静默等于磁盘
+  // 用户点击「Reload from disk」后：
+  ide.simulateReloadFromDisk()
+  expect(await readDisk(path)).toBe(ide.getBufferContents())
+})</code></pre>
+                    </div>
+                    <p>重建源码里与「在 IDE 里展示差异、等用户保存/关闭」相关的线索可见 <code>useDiffInIDE.ts</code> 中 <code>callIdeRpc('openDiff', …)</code> 及对 save / closed / rejected 消息的分支——测试用例应对照你的产品是否具备<strong>同等显式状态机</strong>。</p>
+                </section>
+
+                <section class="section-block" id="d09-why-tools-not-shell">
+                    <h2>✏️ 自测 2 · 参考答案：Bridge 为何不应直接执行任意 shell？</h2>
+
+                    <h3>核心结论</h3>
+                    <p>Bridge / IDE 插件运行在<strong>另一信任边界</strong>（编辑器进程、扩展宿主），若在这里开「任意 shell 执行」旁路，会<strong>整体绕过</strong>终端侧已实现的 <code>canUseTool</code>、审计、配额与沙箱策略，形成<strong>双轨执行面</strong>——安全与可观测性都会塌缩。</p>
+
+                    <h3>分点分析</h3>
+                    <ol>
+                        <li><strong>权限与同意</strong>：Bash 在 CLI 里走 D03 的 ask/auto/deny；若在 bridge 里直接 <code>exec</code>，用户永远看不到同一条确认链，「我明明没批准终端跑 rm」却发生删文件——责任界面断裂。</li>
+                        <li><strong>审计与合规</strong>：企业场景要回答「谁、在什么会话、对哪条命令点了允许」；旁路 shell 不会进入同一 <code>tool_result</code> / 日志管道，事后无法复盘。</li>
+                        <li><strong>一致的工具契约</strong>：正式路径是「模型 → tool_use → 校验 → 权限 → 执行 → tool_result → 下一轮」；bridge 直连 shell 会破坏消息顺序与重试语义（D01）。</li>
+                        <li><strong>IDE 侧攻击面</strong>：扩展可能被恶意配置或供应链污染；若扩展能直接 shell，等于给攻击者多一个入口，而宿主无法统一限流与封禁。</li>
+                        <li><strong>测试与复现</strong>：所有自动化应只断言「通过 MCP/RPC 触发了等价于某工具的调用」，而不是「机器上曾 spawn 过 sh」，否则 CI 与本地行为不可比。</li>
+                    </ol>
+
+                    <h3>反模式 vs 推荐模式（示意）</h3>
+                    <div class="code-block">
+                        <pre><code class="language-typescript">// ❌ 反模式：IDE / bridge 收到消息后偷偷 exec
+bridge.on('runCommand', (cmd: string) => {
+  child_process.exec(cmd) // 无 canUseTool、无 tool_result、无会话归因
+})
+
+// ✅ 推荐：bridge 只传「意图」或结构化 payload，由 CLI 宿主调度工具
+bridge.on('requestAction', (payload) => {
+  enqueueAsUserOrSystemMessage(/* … */)
+  // 最终仍进入 QueryEngine → Tool 执行 → 权限门 → 与终端路径一致
+})</code></pre>
+                    </div>
+                    <p>实务上，允许 IDE 触发<strong>有限、白名单</strong>动作（如「在终端里粘贴已生成命令」）可以讨论，但「任意 shell」应始终禁止；与 <a href="d03.html">D03</a>、<a href="d01.html#d01-q-tool-fail">D01 工具失败处理</a> 同读，可拼出完整宿主安全模型。</p>
+                </section>
+
+                <section class="section-block">
+                    <h2>✏️ 自测（题干回顾）</h2>
+                    <ul>
+                        <li>设计一个「宿主覆盖 IDE 未保存 buffer」的测试用例。→ 见上文 <a href="#d09-test-buffer-override">自测 1 参考答案</a>。</li>
+                        <li>解释为何 bridge 不应直接执行任意 shell。→ 见上文 <a href="#d09-why-tools-not-shell">自测 2 参考答案</a>。</li>
                     </ul>
                 </section>
     """,
