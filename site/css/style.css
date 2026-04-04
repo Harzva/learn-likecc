@@ -4707,6 +4707,15 @@ article.course-card-main {
     scroll-margin-top: 88px;
 }
 
+/* 旧锚点 #daily 仍指向本区块顶部 */
+.hot-topics-legacy-anchor {
+    height: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    scroll-margin-top: 88px;
+}
+
 .section-header-main {
     display: flex;
     justify-content: space-between;
