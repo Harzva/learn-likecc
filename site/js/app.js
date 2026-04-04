@@ -369,6 +369,50 @@ function initSiteSidebar() {
     })
 }
 
+/** 页脚展示全站访问计数（hits.sh，各页共用同一 key 即累计全站） */
+function initSiteViewCounter() {
+    if (document.getElementById('site-view-counter-wrap')) return
+
+    const statsUrl = 'https://hits.sh/github.com/Harzva/learn-likecc/'
+    const imgSrc =
+        'https://hits.sh/github.com/Harzva/learn-likecc.svg?' +
+        new URLSearchParams({ label: '本站访问', style: 'flat-square' }).toString()
+
+    const wrap = document.createElement('p')
+    wrap.id = 'site-view-counter-wrap'
+    wrap.className = 'footer-views'
+    wrap.setAttribute(
+        'title',
+        '统计页面打开次数（含刷新），由第三方 hits.sh 提供，仅供参考；点击可打开统计页'
+    )
+    wrap.innerHTML =
+        '<span class="footer-views__label" aria-hidden="true">本站访问</span>' +
+        '<a href="' +
+        statsUrl +
+        '" target="_blank" rel="noopener noreferrer" aria-label="在 hits.sh 查看访问统计（新窗口打开）">' +
+        '<img id="site-view-counter" class="footer-views__img" src="' +
+        imgSrc +
+        '" alt="本站累计访问次数" height="20" loading="lazy" decoding="async">' +
+        '</a>'
+
+    const mainBottom = document.querySelector('footer.footer-main .footer-bottom-main')
+    if (mainBottom) {
+        mainBottom.appendChild(wrap)
+        return
+    }
+
+    const innerBottom = document.querySelector('footer.footer .footer-bottom')
+    if (innerBottom) {
+        innerBottom.appendChild(wrap)
+        return
+    }
+
+    const simpleContainer = document.querySelector('footer.footer .container')
+    if (simpleContainer) {
+        simpleContainer.appendChild(wrap)
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // 主题切换 - 支持8种主题
     const themeToggle = document.getElementById('theme-toggle')
@@ -577,6 +621,7 @@ function initExpandButtons() {
 // 初始化新功能
 document.addEventListener('DOMContentLoaded', () => {
     initSiteSidebar()
+    initSiteViewCounter()
     initTutorialsTabs()
     initInterviewCategories()
     initExpandButtons()
