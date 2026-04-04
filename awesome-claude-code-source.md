@@ -63,9 +63,9 @@
 ### 分析文档
 
 - [Claude Code 架构分析](./course/) - 本项目课程
-- [RECORD.md](./reference/claude-code2/RECORD.md) - 运行记录
-- [CLAUDE.md](./reference/claude-code2/CLAUDE.md) - 开发指南
-- [PARITY.md](./reference/claw-code/PARITY.md) - 功能对齐
+- [RECORD.md](./reference/reference_sourcemap/claude-code2/RECORD.md) - 运行记录
+- [CLAUDE.md](./reference/reference_sourcemap/claude-code2/CLAUDE.md) - 开发指南
+- [PARITY.md](./reference/reference_sourcemap/claw-code/PARITY.md) - 功能对齐
 
 ### 技术栈
 

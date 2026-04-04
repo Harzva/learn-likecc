@@ -11,7 +11,7 @@
 ## 任务
 
 1. 读取 `.claude/plans/long-term-roadmap.md`
-2. 检查 reference/ 目录中的参考项目
+2. 检查 `reference/` 下三类参考：`reference_rag/`、`reference_agent/`、`reference_sourcemap/`（见 `reference/README.md`）
 3. 对比当前项目状态与规划
 4. 更新里程碑完成情况
 5. 添加新的任务或方向

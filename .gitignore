@@ -8,8 +8,15 @@
 *.rar
 *.7z
 
-# Reference projects (external repos)
-reference/
+# Reference projects (external repos) — 仅跟踪 README + 下列 submodule 指针，见 reference/README.md
+reference/*
+!reference/README.md
+!reference/reference_sourcemap/
+reference/reference_sourcemap/*
+!reference/reference_sourcemap/claude-code
+!reference/reference_sourcemap/claude-code2
+!reference/reference_sourcemap/leaked-claude-code
+!reference/reference_sourcemap/open-claude-code
 
 # Dependencies
 node_modules/

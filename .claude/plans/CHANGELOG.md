@@ -87,7 +87,7 @@
    - `leaked-claude-code`: 原始泄露源码
 
 2. **复制 Stub 包**
-   - 从 `reference/claude-code2/packages/` 复制以下包:
+   - 从 `reference/reference_sourcemap/claude-code2/packages/` 复制以下包:
      - `color-diff-napi/` - 颜色差异模块
      - `modifiers-napi/` - 修饰键检测
      - `audio-capture-napi/` - 音频捕获
@@ -245,7 +245,7 @@
 ### 已完成更新
 
 1. **替换 message.ts 类型定义** ✅
-   - 从 reference/claude-code2 复制完整的 message.ts
+   - 从 reference/reference_sourcemap/claude-code2 复制完整的 message.ts
    - 添加所有缺失的类型导出
    - 错误从 3113 降至 2058 (减少 1055)
 
@@ -937,7 +937,7 @@ GitHub Pages 需要手动启用：
 
 ### 重要发现
 
-根据 reference/claude-code2 项目说明：
+根据 reference/reference_sourcemap/claude-code2 项目说明：
 - **tsc 编译错误 (2180) 不会阻塞 Bun 运行时**
 - 这是逆向恢复项目的正常状态
 - 不建议尝试修复所有类型错误

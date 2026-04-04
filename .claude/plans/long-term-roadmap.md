@@ -230,8 +230,8 @@
 | 仓库 | 描述 | 语言 | 状态 |
 |------|------|------|------|
 | [instructkr/claw-code](https://github.com/instructkr/claw-code) | Python/Rust 重写，50K stars | Python + Rust | 活跃 |
-| [open-claude-code](reference/open-claude-code/) | TypeScript 恢复版 | TypeScript | 完成 |
-| [claude-code2 (CCB)](reference/claude-code2/) | 反编译修复版 | TypeScript | 完成 |
+| [open-claude-code](reference/reference_sourcemap/open-claude-code/) | TypeScript 恢复版 | TypeScript | 完成 |
+| [claude-code2 (CCB)](reference/reference_sourcemap/claude-code2/) | 反编译修复版 | TypeScript | 完成 |
 | **本项目** | 学习 + 课程体系 | TypeScript | 活跃 |
 
 ### 任务
