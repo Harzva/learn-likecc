@@ -67,6 +67,14 @@
                     <p><strong>工程准备（一次做好，可反复用）</strong>：维护 <code>.claude</code> 下的技能与命令约定；在 <code>reference</code> 放置可对标的仓库、笔记或论文；在仓库顶层用 <code>vX.Y.Z_plan.md</code> 一类文件承载<strong>大颗粒里程碑</strong>，避免对话里口头目标漂移。</p>
                     <p><strong>外层 Loop（计划粒度）</strong>：在固定时间盒内对照<strong>当前版本</strong>计划检查完成度；若未完成则继续改代码、编译与记录；若完成则做结果复盘，并撰写<strong>下一版</strong>计划——新版开头用简短「承上启下」回顾上一版目标、实验与遗留问题，再列新条目。</p>
                     <p><strong>内层 Loop（递归触发）</strong>：在新计划文末约定再次执行同一套「对照清单 → 实现 → 编译验证 → 复盘」的规程，相当于把外层 Loop <strong>应用到新文件</strong>上；如此多轮后，仓库状态与文档始终同频。</p>
+
+                    <figure class="mermaid-figure mermaid-figure--main" aria-label="Loop-in-Loop 专用流程图">
+                        <figcaption class="mermaid-caption">
+                            <strong>Loop-in-Loop 流程图</strong>：只画「外层计划循环 ↔ 内层递归触发」；工程基座（技能、reference、首版计划）见下一幅总览图。
+                        </figcaption>
+                        <div class="mermaid-diagram-scroll mermaid-diagram-scroll--xl" data-mermaid-diagram="loop-in-loop"></div>
+                    </figure>
+
                     <p><strong>工具链说明</strong>：会话主体使用 <strong>Claude Code</strong>；部分阶段接入了与 OpenAI 兼容协议的 <strong>GLM 系列</strong>端点（由云厂商控制台托管）。下文用量为<strong>控制台统计口径</strong>的汇总，不代表单一模型或单一任务的精确拆分。</p>
 
                     <figure class="mermaid-figure mermaid-figure--main" aria-label="Loop-in-Loop 原理图">

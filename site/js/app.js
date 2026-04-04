@@ -122,6 +122,26 @@ const MERMAID_DIAGRAMS = {
     style OUTER fill:#16161e,stroke:#e2b953,stroke-dasharray:5 4
     style INNER fill:#16161e,stroke:#f472b6,stroke-dasharray:5 4`,
 
+    /** 仅双层循环：不含基座；与 devlog.html「Loop-in-Loop」小节配套 */
+    'loop-in-loop': `flowchart TB
+    classDef act fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#93c5fd;
+    classDef done fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#5eead4;
+    classDef ask fill:#2d1f28,stroke:#f472b6,stroke-width:2px,color:#f9a8d4;
+    classDef nest fill:#2b2035,stroke:#cba6f7,stroke-width:2px,color:#e9d5ff;
+
+    subgraph OUTER ["外层 Loop · 锁在「当前这一版」plan 上"]
+        A[以 plan vN 为清单<br/>时间盒内推进]:::act --> Q{条目是否<br/>全部完成?}:::ask
+        Q -->|否| W[按条目实现 · 编译验证 · 落记录]:::act
+        W --> A
+        Q -->|是| R[复盘：结果 · 实验 · 遗留]:::done
+        R --> N[撰写 plan vN+1<br/>开篇承上启下 + 新条目]:::done
+    end
+
+    N --> T[内层 Loop<br/>文末显式约定：再跑同一套规程]:::nest
+    T -->|套用到新文件<br/>Loop-in-Loop| A
+
+    style OUTER fill:#13131a,stroke:#e2b953,stroke-dasharray:5 4`,
+
     'course-s01': `graph LR
     classDef b fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#3b82f6;
     classDef g fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#10b981;
