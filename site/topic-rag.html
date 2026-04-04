@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG 大专题 - Claude Code Course</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📎</text></svg>">
+    <meta name="description" content="检索增强与大模型应用：论文精读与技术热点子专题入口。">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">📎</span>
+                <span class="logo-text">RAG 专题</span>
+            </a>
+            <div class="nav-links">
+                <a href="#subs" class="nav-link">子专题</a>
+                <a href="#workflow" class="nav-link">更新工作流</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="index.html" class="btn-github">← 返回首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>📌 大专题</span>
+                <span>RAG</span>
+            </div>
+            <h1 class="hero-title">
+                RAG 与知识增强<br>
+                <span class="gradient-text">论文 · 热点</span>
+            </h1>
+            <p class="hero-subtitle">
+                本专题与「源码课程」正交：聚焦<strong>检索、嵌入、索引、接地（grounding）</strong>等与 RAG 相关的论文笔记与外文技术摘要。<br>
+                子专题分为<strong>论文分析</strong>与<strong>技术热点</strong>两路，可按需扩展。
+            </p>
+        </div>
+    </section>
+
+    <section id="subs" class="section" style="background: var(--bg-secondary); padding-top: 60px;">
+        <div class="container">
+            <h2 class="section-title">子专题入口</h2>
+            <p class="section-desc" style="max-width: 720px; margin: 0 auto 2rem;">论文分析放你本人的精读长文；技术热点放短平快的外文摘要表（可由 Cursor Skill 半自动从 RSS 维护）。</p>
+            <div class="quickstart-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+                <a href="topic-rag-papers.html" class="quickstart-card" style="text-decoration: none; color: inherit;">
+                    <h3>📄 论文分析</h3>
+                    <p>系统整理 RAG、长上下文、嵌入与评测等相关论文的阅读笔记与引用链。</p>
+                    <p><strong>进入 →</strong></p>
+                </a>
+                <a href="topic-rag-hot.html" class="quickstart-card" style="text-decoration: none; color: inherit;">
+                    <h3>🔥 技术热点</h3>
+                    <p>外文博客 / Newsletter 的标题、链接与中文一句话摘要，按表维护。</p>
+                    <p><strong>进入 →</strong></p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="workflow" class="section">
+        <div class="container">
+            <h2 class="section-title">与 Agent 专题的关系</h2>
+            <p class="section-desc" style="max-width: 720px; margin: 0 auto;">
+                <a href="topic-agent.html">Agent 大专题</a>下有独立的论文与热点子专题；若一篇文章同时涉及 Agent 工具链与检索接地，可两条目各记一行并互链备注。
+            </p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

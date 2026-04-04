@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG · 技术热点 - Claude Code Course</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+    <meta name="description" content="RAG 相关外文技术热点摘要表；可由 RSS 半自动维护。">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="topic-rag.html" class="nav-logo">
+                <span class="logo-icon">🔥</span>
+                <span class="logo-text">RAG · 热点</span>
+            </a>
+            <div class="nav-links">
+                <a href="#curated" class="nav-link">摘要表</a>
+                <a href="#ingest" class="nav-link">抓取说明</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-rag.html" class="btn-github">← RAG 专题</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge"><span>子专题</span><span>技术热点</span></div>
+            <h1 class="hero-title">RAG <span class="gradient-text">技术热点</span></h1>
+            <p class="hero-subtitle">外文来源的<strong>标题 + 链接 + 中文短摘要</strong>。正文版权归各作者；本站仅作学习索引。</p>
+        </div>
+    </section>
+
+    <section id="curated" class="section" style="background: var(--bg-secondary); padding-top: 60px;">
+        <div class="container">
+            <h2 class="section-title">精选摘要表</h2>
+            <p class="section-desc" style="margin-bottom: 1.5rem;">下列示例来自公开 RSS 条目与一句话意译，可按需增删。批量更新时可调用仓库内 Cursor Skill：<code>.cursor/skills/curate-external-feed-topics/</code>。</p>
+            <div style="overflow-x: auto;">
+                <table class="ref-table ref-table--detail">
+                    <thead>
+                        <tr>
+                            <th>日期</th>
+                            <th>话题（中文）</th>
+                            <th>原文</th>
+                            <th>备注</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>—</td>
+                            <td class="ref-usage"><strong>大模型训练的内存高效技巧</strong>（原文：<em>A Memory-efficient Technique to Train Large Models</em>）：讨论大规模训练中的显存/内存优化思路，可与长上下文与「能塞进多少知识」的工程权衡对照阅读。</td>
+                            <td><a href="https://blog.dailydoseofds.com/p/a-memory-efficient-technique-to-train-242" target="_blank" rel="noopener noreferrer">Daily Dose of DS →</a></td>
+                            <td>RSS 抓取；底座/效率</td>
+                        </tr>
+                        <tr>
+                            <td>—</td>
+                            <td class="ref-usage"><strong>（待补充）</strong>在此追加检索、嵌入、向量库、接地评测等相关条目。</td>
+                            <td>—</td>
+                            <td>占位</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section id="ingest" class="section">
+        <div class="container">
+            <h2 class="section-title">Daily Dose of DS 能否自动维护？</h2>
+            <div class="quickstart-grid" style="grid-template-columns: 1fr;">
+                <div class="quickstart-card">
+                    <h3>结论（简版）</h3>
+                    <p><strong>可以半自动</strong>：该站为 Substack 类博客，公开 RSS 为 <code>https://blog.dailydoseofds.com/feed</code>（返回 XML，条目含标题与链接）。用定时任务拉 RSS、筛关键词、生成中文摘要后，<strong>人工确认</strong>再写入本表，比整站 HTML 爬取更稳、也更合规。</p>
+                    <p><strong>全文翻译</strong>：RSS 正文常截断；若需长摘要应对照原文页面阅读。未经许可不宜整篇搬运译文进仓库。</p>
+                    <p><strong>命令示例</strong>：<code>python3 tools/fetch_substack_rss.py --url https://blog.dailydoseofds.com/feed --limit 25 --json</code></p>
+                    <p><a href="topic-agent-hot.html">Agent 技术热点（姊妹页）→</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>
