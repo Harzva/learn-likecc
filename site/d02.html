@@ -71,11 +71,13 @@ execute → ToolResult        // 必须可序列化回消息</code></pre>
                         <tr><td>权限</td><td>策略为 ask 且用户拒绝</td><td>明确 deny，循环继续但无结果块</td></tr>
                         <tr><td>执行期</td><td>超时、退出码非 0</td><td>stderr / is_error 标记进入上下文</td></tr>
                     </table>
+                    <p>工具失败如何回灌模型、何时重试：<strong>参考答案</strong>见 <a href="d01.html#d01-q-tool-fail">D01 · 工具执行失败</a>（与本表「执行期」一行对照读）。</p>
                 </section>
 
                 <section class="section-block">
                     <h2>🔗 与相邻章节</h2>
                     <ul>
+                        <li>扩展 Read/Write/Edit 的<strong>实践练习</strong>骨架见 <a href="d01.html#d01-practice-tools">D01 练习 2</a>。</li>
                         <li>进入执行器之前几乎必经 <strong>D03 权限</strong>；别把「业务错误」和「策略拒绝」混在同一分支里。</li>
                         <li>MCP 动态工具（D07）与内置工具共用同一套「调用外壳」时，重点看<strong>名称空间是否冲突</strong>。</li>
                     </ul>

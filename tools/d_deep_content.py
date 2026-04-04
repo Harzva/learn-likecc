@@ -45,11 +45,76 @@ DEEP_BODIES: list[str] = [
                     </ol>
                 </section>
 
-                <section class="section-block">
-                    <h2>✏️ 自测</h2>
+                <section class="section-block" id="d01-practice-min-loop">
+                    <h2>✏️ 实践练习 1：最小 Agent Loop（仅 Bash）</h2>
+                    <p><strong>任务</strong>：写一个最小宿主：只注册一个 <code>bash</code> 工具，循环调用模型直到<strong>不再出现 tool_use</strong>（或达到最大轮数）。</p>
+                    <p><strong>参考答案（思路）</strong>：</p>
+                    <ol>
+                        <li>构造初始 <code>messages = [user]</code>，<code>tools</code> 仅含 bash 的 JSON Schema（<code>command: string</code>）。</li>
+                        <li>每轮：<code>response = api.messages.create(..., messages, tools)</code>。</li>
+                        <li>若响应的 <code>stop_reason</code> 为 <code>end_turn</code> 且 <code>content</code> 中<strong>没有</strong> <code>tool_use</code> 块 → <strong>退出循环</strong>，把 assistant 文本展示给用户。</li>
+                        <li>否则对每个 <code>tool_use</code>：<code>spawn bash -c</code>（或受限 shell）→ 追加一条 assistant 消息（含本轮全部 content 块）→ 再追加 <code>tool_result</code> 消息（<code>tool_use_id</code> 对齐）。</li>
+                        <li>加保险：<code>max_turns</code>、单次命令超时、工作目录白名单。</li>
+                    </ol>
+                    <div class="code-block">
+                        <pre><code class="language-typescript">// 伪代码骨架（与语言无关，抓住状态迁移）
+while (turn++ &lt; MAX) {
+  const res = await model.create({ messages, tools: [bashTool] })
+  messages.push(assistantMessageFrom(res))
+  const uses = res.content.filter(isToolUse)
+  if (uses.length === 0) break
+  for (const u of uses) {
+    const out = await runBash(u.input.command) // 实际要权限门
+    messages.push(toolResultMessage(u.id, out))
+  }
+}</code></pre>
+                    </div>
+                </section>
+
+                <section class="section-block" id="d01-practice-tools">
+                    <h2>✏️ 实践练习 2：扩展 Read / Write / Edit</h2>
+                    <p><strong>任务</strong>：在练习 1 的循环不变前提下，增加三个工具：<code>read_file</code>、<code>write_file</code>、<code>apply_patch</code>（或简化版「整文件覆盖写」）。</p>
+                    <p><strong>参考答案（要点）</strong>：</p>
                     <ul>
-                        <li>不看源码：用笔画一条「用户一句话 → 两轮 tool → 结束」的时序，标出 4 条消息类型。</li>
-                        <li>回答：若第二次模型返回空 tool 块，宿主应在哪一层停止循环？</li>
+                        <li><strong>注册</strong>：<code>tools</code> 数组并入三条 schema；模型同一轮可并行多个 tool_use，宿主按 id 顺序执行或按拓扑（本练习可先顺序执行）。</li>
+                        <li><strong>读</strong>：校验路径在 workspace 内；返回 UTF-8 文本或明确 binary 不可读。</li>
+                        <li><strong>写</strong>：先权限（高危）再写入；大文件写入前可要求模型先 read 再写，避免盲覆盖。</li>
+                        <li><strong>Edit</strong>：最小实现是「搜索片段替换」；失败时把 diff 失败原因写进 tool_result，让模型重试，<strong>不要</strong>在宿主层伪造成功。</li>
+                        <li>与 D02 对齐：每层工具都走同一套「校验 → 权限 → 执行 → ToolResult」。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block" id="d01-think">
+                    <h2>🤔 思考题 · 参考答案</h2>
+
+                    <h3 id="d01-q-stop-reason">为什么用 <code>stop_reason</code> 而不是只看 content 里有没有工具调用？</h3>
+                    <ul>
+                        <li><strong>协议层语义</strong>：<code>stop_reason</code>（及厂商扩展字段）表达「这一轮模型为何停笔」，是 API 契约的一部分；content 只是载体，不同模型/版本可能把「停顿」表达成空 tool 块、未闭合流、额外 stop 序列等。</li>
+                        <li><strong>流式场景</strong>：chunk 到达过程中 content 不完整；若在最后一个 chunk 前用启发式扫字符串，容易把「还在传输的 tool JSON」误判成无工具。</li>
+                        <li><strong>多块与混排</strong>：一轮响应可同时含文本 + 多个 tool_use；终止条件应是「本回合模型声明结束且 tool 队列已消费」，而不是简单正则匹配。</li>
+                        <li><strong>工程结论</strong>：以 SDK 解析后的结构化结果 + <code>stop_reason</code> 作为状态机输入；content 仅作展示与 tool 参数来源。</li>
+                    </ul>
+
+                    <h3 id="d01-q-accumulation">消息累积会导致什么问题？如何解决？</h3>
+                    <ul>
+                        <li><strong>问题</strong>：上下文窗口溢出；费用与延迟线性上涨；早期无关细节「淹没」当前任务；工具超长输出占满 budget。</li>
+                        <li><strong>解法谱系</strong>：① <strong>工具侧截断</strong>（只返回 head/tail + 长度提示）；② <strong>滑动窗口</strong>保留最近 k 轮；③ <strong>摘要/压缩</strong>用边界消息保留锚点（见 <a href="d05.html">D05</a>、<a href="d05.html#d05-think-accumulation">D05 · 工程侧补充</a> 与专题 <a href="topic-source-derived.html#compact-hard">Compact 硬读</a>）；④ <strong>外置记忆</strong>（把大段移出 prompt，按需再 read）；⑤ <strong>子任务拆分</strong>（D06）降低单会话长度。</li>
+                    </ul>
+
+                    <h3 id="d01-q-tool-fail">如何处理工具执行失败？</h3>
+                    <ul>
+                        <li><strong>契约</strong>：向模型返回<strong>结构化失败</strong>——HTTP/SDK 的 <code>is_error</code> 或等价字段 + 可读错误摘要 +（可选）stderr 尾部；与成功路径同一消息类型，避免模型看不到失败。</li>
+                        <li><strong>不要</strong>吞异常返回空字符串当成功；否则模型会基于错误状态继续瞎编。</li>
+                        <li><strong>策略</strong>：可重试类（网络、429）在宿主层有限次退避；不可重试类（权限、命令不存在）直接交给模型决定换方案；对 bash 可附退出码。</li>
+                        <li><strong>护栏</strong>：<code>max_tool_errors_per_turn</code> 防止死循环打同一个坏命令。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>✏️ 自测（简）</h2>
+                    <ul>
+                        <li>画出「用户 → 模型 → bash → tool_result → 模型 → end_turn」的消息序列。</li>
+                        <li>对照上文三道思考题，用自己的话各复述一句。</li>
                     </ul>
                 </section>
     """,
@@ -79,11 +144,13 @@ execute → ToolResult        // 必须可序列化回消息</code></pre>
                         <tr><td>权限</td><td>策略为 ask 且用户拒绝</td><td>明确 deny，循环继续但无结果块</td></tr>
                         <tr><td>执行期</td><td>超时、退出码非 0</td><td>stderr / is_error 标记进入上下文</td></tr>
                     </table>
+                    <p>工具失败如何回灌模型、何时重试：<strong>参考答案</strong>见 <a href="d01.html#d01-q-tool-fail">D01 · 工具执行失败</a>（与本表「执行期」一行对照读）。</p>
                 </section>
 
                 <section class="section-block">
                     <h2>🔗 与相邻章节</h2>
                     <ul>
+                        <li>扩展 Read/Write/Edit 的<strong>实践练习</strong>骨架见 <a href="d01.html#d01-practice-tools">D01 练习 2</a>。</li>
                         <li>进入执行器之前几乎必经 <strong>D03 权限</strong>；别把「业务错误」和「策略拒绝」混在同一分支里。</li>
                         <li>MCP 动态工具（D07）与内置工具共用同一套「调用外壳」时，重点看<strong>名称空间是否冲突</strong>。</li>
                     </ul>
@@ -127,6 +194,7 @@ execute → ToolResult        // 必须可序列化回消息</code></pre>
                 <section class="section-block">
                     <h2>🔍 代码走读抓手</h2>
                     <ul>
+                        <li>重建源码中与 auto-mode / 解释器相关的<strong>硬读摘录</strong>见 <a href="topic-source-derived.html#permissions-hard">专题 · 权限硬读</a>（<code>AutoModeRules</code>、<code>explain_command</code>）。</li>
                         <li>搜索 <code>canUseTool</code>、<code>PermissionMode</code>、<code>bypassPermissions</code>，找<strong>唯一真相源</strong>：哪个函数把策略结果转成 UI？</li>
                         <li>跟踪「用户点允许一次」vs「记住规则」：会话状态落在内存还是配置文件？</li>
                         <li>审计：日志里能否还原「谁、在何模式、对哪条工具、做了什么决定」？若不能，说明审计链断裂。</li>
@@ -239,6 +307,17 @@ execute → ToolResult        // 必须可序列化回消息</code></pre>
                 <section class="section-block">
                     <h2>🔗 与 Loop</h2>
                     <p>压缩发生在「下一轮模型调用前」；若与工具并行交织，确认压缩器看到的消息视图是否包含<strong>尚未提交的 tool_result</strong>。</p>
+                </section>
+
+                <section class="section-block" id="d05-think-accumulation">
+                    <h2>🤔 与 D01「消息累积」对照（工程侧答案）</h2>
+                    <p><a href="d01.html#d01-q-accumulation">D01 思考题</a>从原理答了危害与解法谱系；本章补<strong>实现侧锚点</strong>（重建源码中的命名，便于你走读）：</p>
+                    <ul>
+                        <li><strong>触发前计量</strong>：<code>compactConversation</code> 入口处的 <code>tokenCountWithEstimation(messages)</code>——先量化再决定是否压缩。</li>
+                        <li><strong>可插桩</strong>：<code>executePreCompactHooks</code> / post 阶段让自定义策略改写压缩指令，而不是黑箱改数组。</li>
+                        <li><strong>切段与重放</strong>：通过 compact 边界类消息（参见源码中 <code>createCompactBoundaryMessage</code>、<code>SystemCompactBoundaryMessage</code>）让后续轮次仍知道「哪些历史已被摘要替代」。</li>
+                    </ul>
+                    <p>完整摘录与走读清单见 <a href="topic-source-derived.html#compact-hard">专题 · Compact 硬读</a>。</p>
                 </section>
 
                 <section class="section-block">

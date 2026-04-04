@@ -75,6 +75,17 @@
                     <p>压缩发生在「下一轮模型调用前」；若与工具并行交织，确认压缩器看到的消息视图是否包含<strong>尚未提交的 tool_result</strong>。</p>
                 </section>
 
+                <section class="section-block" id="d05-think-accumulation">
+                    <h2>🤔 与 D01「消息累积」对照（工程侧答案）</h2>
+                    <p><a href="d01.html#d01-q-accumulation">D01 思考题</a>从原理答了危害与解法谱系；本章补<strong>实现侧锚点</strong>（重建源码中的命名，便于你走读）：</p>
+                    <ul>
+                        <li><strong>触发前计量</strong>：<code>compactConversation</code> 入口处的 <code>tokenCountWithEstimation(messages)</code>——先量化再决定是否压缩。</li>
+                        <li><strong>可插桩</strong>：<code>executePreCompactHooks</code> / post 阶段让自定义策略改写压缩指令，而不是黑箱改数组。</li>
+                        <li><strong>切段与重放</strong>：通过 compact 边界类消息（参见源码中 <code>createCompactBoundaryMessage</code>、<code>SystemCompactBoundaryMessage</code>）让后续轮次仍知道「哪些历史已被摘要替代」。</li>
+                    </ul>
+                    <p>完整摘录与走读清单见 <a href="topic-source-derived.html#compact-hard">专题 · Compact 硬读</a>。</p>
+                </section>
+
                 <section class="section-block">
                     <h2>📖 走读顺序</h2>
                     <ol>

@@ -19,7 +19,9 @@
                 <a href="#boundary" class="nav-link">材料边界</a>
                 <a href="#ideas" class="nav-link">思想总括</a>
                 <a href="#modules" class="nav-link">模块对照</a>
-                <a href="#deep" class="nav-link">细节深挖</a>
+                <a href="#deep-toc" class="nav-link">硬读导航</a>
+                <a href="#permissions-hard" class="nav-link">权限硬读</a>
+                <a href="#compact-hard" class="nav-link">Compact</a>
                 <a href="#map-course" class="nav-link">对接课程</a>
             </div>
             <div class="nav-actions">
@@ -149,29 +151,140 @@
         </div>
     </section>
 
-    <section id="deep" class="section">
+    <section id="deep-toc" class="section">
         <div class="container">
-            <h2 class="section-title">四个「值得对着文件啃」的细节</h2>
+            <h2 class="section-title">硬读导航（带锚点）</h2>
+            <p class="section-desc" style="max-width: 720px; margin-left: auto; margin-right: auto;">
+                下列摘录来自重建树 <code>ccsource/claude-code-main/</code>，仅作<strong>教学引用</strong>（少量连续行），便于你对照类型名与函数名；完整版权仍属原作者。
+            </p>
+            <div class="quickstart-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); max-width: 900px; margin: 1.5rem auto 0;">
+                <div class="quickstart-card">
+                    <h3><a href="#permissions-hard">权限硬读</a></h3>
+                    <p><code>AutoModeRules</code>、<code>getDefaultExternalAutoModeRules</code>、<code>EXPLAIN_COMMAND_TOOL</code></p>
+                    <p><a href="#perm-tags">标签模板</a> · <a href="#perm-explainer">解释器 schema</a> · <a href="#perm-readlist">走读清单</a></p>
+                </div>
+                <div class="quickstart-card">
+                    <h3><a href="#compact-hard">Compact 硬读</a></h3>
+                    <p><code>compactConversation</code>、PreCompact Hook、token 估计入口</p>
+                    <p><a href="#compact-entry">入口签名</a> · <a href="#compact-hooks">Hook 与状态</a> · <a href="#compact-readlist">走读清单</a></p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>其他速览</h3>
+                    <p><strong>QueryEngine</strong>：依赖注入壳，见上文模块表。</p>
+                    <p><strong>MCP</strong>：<code>ListToolsResultSchema</code> / <code>CallToolResultSchema</code>，见 <code>services/mcp/client.ts</code> 首部 import。</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <div class="section-block" style="max-width: 800px; margin: 0 auto 2rem;">
-                <h3>1. 权限：不止 ask/deny</h3>
-                <p><code>yoloClassifier</code> 把 auto-mode 的默认规则拆成 <code>allow</code> / <code>soft_deny</code> / <code>environment</code> 三段，并从带标签的模板里抽 bullet——这意味着产品把<strong>「默认安全基线」与「用户可覆盖段」</strong>在文件格式上拆开，便于 CLI 子命令（如文档里提到的 defaults dump）导出。</p>
-                <p><code>permissionExplainer</code> 则用固定 tool schema 要模型输出 <code>riskLevel</code> + 简短 risk——适合做成弹窗/终端二次确认 copy，而不是让用户读长篇自然语言。</p>
+    <section id="permissions-hard" class="section" style="background: var(--bg-secondary);">
+        <div class="container">
+            <h2 class="section-title">权限硬读 · <code>yoloClassifier</code> + <code>permissionExplainer</code></h2>
+
+            <div class="section-block" style="max-width: 900px; margin: 0 auto 1.5rem;">
+                <h3 id="perm-tags">1. 策略如何落进 JSON 设置：<code>AutoModeRules</code></h3>
+                <p>三段式 <code>allow</code> / <code>soft_deny</code> / <code>environment</code> 与模板标签 <code>&lt;user_*_to_replace&gt;</code> 对齐，<code>getDefaultExternalAutoModeRules</code> 负责把模板「默认值」解析成数组——CLI 导出默认规则时不必硬编码在 TS 里。</p>
+                <div class="code-block">
+                    <pre><code class="language-typescript">// ccsource/claude-code-main/src/utils/permissions/yoloClassifier.ts（摘录）
+export type AutoModeRules = {
+  allow: string[]
+  soft_deny: string[]
+  environment: string[]
+}
+
+export function getDefaultExternalAutoModeRules(): AutoModeRules {
+  return {
+    allow: extractTaggedBullets('user_allow_rules_to_replace'),
+    soft_deny: extractTaggedBullets('user_deny_rules_to_replace'),
+    environment: extractTaggedBullets('user_environment_to_replace'),
+  }
+}</code></pre>
+                </div>
             </div>
 
-            <div class="section-block" style="max-width: 800px; margin: 0 auto 2rem;">
-                <h3>2. QueryEngine：依赖注入式壳</h3>
-                <p>配置对象把 <strong>tools / commands / mcpClients / agents / canUseTool / AppState</strong> 一次性注入；主路径再与 <code>processUserInput</code>、系统 prompt 片段、会话持久化、成本追踪等拼接。思想是：<strong>REPL 只是驱动，真正的状态机在引擎与消息归一化层</strong>。</p>
+            <div class="section-block" style="max-width: 900px; margin: 0 auto 1.5rem;">
+                <h3 id="perm-explainer">2. 面向 UX 的结构化解释：<code>explain_command</code></h3>
+                <p>不是让模型自由写段落，而是<strong>强制 tool 形状</strong>输出 <code>riskLevel</code>（三档枚举）+ 短 <code>risk</code>，下游 UI 可稳定做颜色/按钮，而不是解析自然语言。</p>
+                <div class="code-block">
+                    <pre><code class="language-typescript">// ccsource/claude-code-main/src/utils/permissions/permissionExplainer.ts（摘录）
+const EXPLAIN_COMMAND_TOOL = {
+  name: 'explain_command',
+  description: 'Provide an explanation of a shell command',
+  input_schema: {
+    type: 'object' as const,
+    properties: {
+      explanation: { type: 'string', ... },
+      reasoning: { type: 'string', ... },
+      risk: { type: 'string', description: 'What could go wrong, under 15 words' },
+      riskLevel: {
+        type: 'string',
+        enum: ['LOW', 'MEDIUM', 'HIGH'],
+        ...
+      },
+    },
+    required: ['explanation', 'reasoning', 'risk', 'riskLevel'],
+  },
+}</code></pre>
+                </div>
+                <p>解析侧用 <code>RiskAssessmentSchema</code>（Zod）与 tool 输出对齐，避免「模型多写一句就 JSON 失效」时无处兜底。</p>
             </div>
 
-            <div class="section-block" style="max-width: 800px; margin: 0 auto 2rem;">
-                <h3>3. 压缩：Hook 与边界消息</h3>
-                <p><code>compact.ts</code> 头部即引入 pre/post compact hooks、<code>SystemCompactBoundaryMessage</code>、token 统计与 forked agent 路径——说明团队把「上下文裁剪」当成<strong>可观测、可插桩、可回滚</strong>的过程，而不是内存里悄悄 slice 数组。</p>
+            <div class="section-block" style="max-width: 900px; margin: 0 auto;">
+                <h3 id="perm-readlist">走读清单（权限）</h3>
+                <ol>
+                    <li>在 <code>yoloClassifier.ts</code> 搜 <code>isUsingExternalPermissions</code>，理清 <code>USER_TYPE</code> 与 GrowthBook 配置如何切换内外模板。</li>
+                    <li>在 <code>permissionExplainer.ts</code> 跟一次「从 toolInput 格式化 → sideQuery → 解析 <code>RiskAssessmentSchema</code>」的调用链。</li>
+                    <li>自问：若要把 <code>riskLevel</code> 映射到「自动放行 / 弹窗 / 硬拒绝」，映射表应放在权限层还是 bash 工具层？</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <section id="compact-hard" class="section">
+        <div class="container">
+            <h2 class="section-title">Compact 硬读 · <code>compactConversation</code></h2>
+
+            <div class="section-block" style="max-width: 900px; margin: 0 auto 1.5rem;">
+                <h3 id="compact-entry">1. 入口即立边界：token 计数与参数面</h3>
+                <p><code>compactConversation</code> 接收完整 <code>messages</code> 与 <code>ToolUseContext</code>，第一步就做 <code>tokenCountWithEstimation(messages)</code>，随后进入 compact 专用 SDK 状态（如 <code>setSDKStatus('compacting')</code>）。思想：<strong>压缩是和普通对话并列的一等流程</strong>，要有独立进度与可取消信号。</p>
+                <div class="code-block">
+                    <pre><code class="language-typescript">// ccsource/claude-code-main/src/services/compact/compact.ts（摘录）
+export async function compactConversation(
+  messages: Message[],
+  context: ToolUseContext,
+  cacheSafeParams: CacheSafeParams,
+  suppressFollowUpQuestions: boolean,
+  customInstructions?: string,
+  isAutoCompact: boolean = false,
+  recompactionInfo?: RecompactionInfo,
+): Promise&lt;CompactionResult&gt; {
+  ...
+  const preCompactTokenCount = tokenCountWithEstimation(messages)
+  ...
+  context.onCompactProgress?.({ type: 'hooks_start', hookType: 'pre_compact' })
+  context.setSDKStatus?.('compacting')
+  const hookResult = await executePreCompactHooks(
+    { trigger: isAutoCompact ? 'auto' : 'manual', customInstructions: customInstructions ?? null },
+    context.abortController.signal,
+  )
+  customInstructions = mergeHookInstructions(customInstructions, hookResult.newCustomInstructions)
+  ...
+}</code></pre>
+                </div>
             </div>
 
-            <div class="section-block" style="max-width: 800px; margin: 0 auto 2rem;">
-                <h3>4. MCP：SDK 类型即文档</h3>
-                <p><code>client.ts</code> 直接吃 <code>ListToolsResultSchema</code>、<code>CallToolResultSchema</code>、<code>McpError</code> 等——思想是<strong>协议层严格类型化</strong>，减少字符串拼 RPC；多传输并存说明真实用户环境复杂，产品层要封装重连与清理（文件中亦有 cleanup / debug 日志辅助）。</p>
+            <div class="section-block" style="max-width: 900px; margin: 0 auto 1.5rem;">
+                <h3 id="compact-hooks">2. PreCompact Hook 与指令合并</h3>
+                <p><code>executePreCompactHooks</code> 可把额外指令写回 <code>customInstructions</code>（经 <code>mergeHookInstructions</code>），等于给「自动/手动压缩」加了一层用户可插桩策略；与 D 课里「压缩不是悄悄 slice」一致。</p>
+            </div>
+
+            <div class="section-block" style="max-width: 900px; margin: 0 auto;">
+                <h3 id="compact-readlist">走读清单（Compact）</h3>
+                <ol>
+                    <li>从 <code>compactConversation</code> 往下跟 <code>streamCompactSummary</code>，看摘要请求如何插入消息列表。</li>
+                    <li>搜 <code>createCompactBoundaryMessage</code> / <code>SystemCompactBoundaryMessage</code>，理解压缩后历史如何被「切段」以便复盘与重放。</li>
+                    <li>对照 <a href="d05.html">D05</a> 思考题：消息累积与 compact 触发条件如何闭环？</li>
+                </ol>
             </div>
         </div>
     </section>
@@ -180,7 +293,7 @@
         <div class="container">
             <h2 class="section-title">与 S / D 课程怎么配合？</h2>
             <p class="section-desc" style="max-width: 720px; margin-left: auto; margin-right: auto;">
-                主线课讲概念与伪代码；本专题给你<strong>「打开哪几个 ts 文件」</strong>。建议顺序：S01/D01 → 对照 <code>QueryEngine.ts</code>；S03/D03 → <code>yoloClassifier</code> + <code>permissionExplainer</code>；S05/D05 → <code>services/compact/</code>；S07/D07 → <code>services/mcp/client.ts</code>。
+                主线课讲概念与伪代码；本专题给你<strong>「打开哪几个 ts 文件」</strong>。建议顺序：S01 / <a href="d01.html">D01</a>（含 <a href="d01.html#d01-practice-min-loop">最小 Loop 练习</a>与<a href="d01.html#d01-think">思考题答案</a>）→ 对照 <code>QueryEngine.ts</code>；S03/D03 → <a href="#permissions-hard">权限硬读</a>；S05/D05 → <a href="#compact-hard">Compact 硬读</a>；S07/D07 → <code>services/mcp/client.ts</code>。
             </p>
             <p style="text-align: center; margin-top: 1.5rem;">
                 <a href="index.html#courses" class="btn btn-primary">去课程表</a>
