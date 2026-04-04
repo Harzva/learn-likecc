@@ -32,7 +32,7 @@
 
 - 项目经历与作品集入口（多页时在此汇总链接）；
 - 分发与自动化（知乎 / 小红书 / Puppeteer 备忘等）的**可操作结论**；
-- `PATH` 脚本与工作流（只写用途与约定，不贴密钥）。
+- `PATH` 脚本与工作流：详见 [阅历篇 · #toolbox](https://harzva.github.io/learn-likecc/column-agent-journey.html#toolbox)（含脱敏示例代码）。
 
 有稿即更新本页或挂子页，并在 `wemedia/zhihu/articles/` 保留可外发 Markdown。
 

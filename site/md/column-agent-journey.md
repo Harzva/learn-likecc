@@ -121,23 +121,142 @@
 
 ---
 
-## `PATH` 里的私人脚本（只记名字与用途）
+## `PATH` 里的脚本：索引 + 脱敏示例
 
-本机（常见如 `/usr/local/bin` 或自管 `bin`）里攒了一堆**只为工作流更丝滑**的小脚本——**正文不贴源码**，避免误带环境变量或路径习惯；这里只列**角色**，给以后的「项目经历页」当索引：
+本机（常见如 `/usr/local/bin` 或自管 `~/bin`）里攒了一堆**只为工作流更丝滑**的脚本。下表仍是**索引**；每个小标题下面的代码块是**教学向示意**——路径、端口、域名、Token 均为**占位**；**不要把真实密钥写进脚本或提交进 Git**。
 
 | 名字（示意） | 大致干什么 |
 |-------------|------------|
-| `ccswitch` / `codexswitch` | 在多套 CLI / 配置之间切换时少打几次字 |
-| `clashproxy` / `proxy_manager.sh` | 代理启停、环境变量一批生效 |
-| `glmclaude` | 把某条兼容链路接到日常开发里（脱敏，不展开） |
-| `installAntigravity.sh` | 某段历史时期装环境用，现在多半考古 |
-| `aionuip` | 与某 UI/自动化辅助相关的一键脚本 |
-| `mylaunch` | 个人常用启动器（编辑器、会话、目录） |
-| `frpc` | 内网穿透相关（仅在内网实验环境使用） |
+| `ccswitch` / `codexswitch` | 多套 CLI / 配置目录切换 |
+| `clashproxy` / `proxy_manager.sh` | 代理环境变量 on/off |
+| `glmclaude` | 子 shell 注入变量后 `exec claude`（占位） |
+| `installAntigravity.sh` | 考古向安装骨架 |
+| `aionuip` | UI 自动化延时 + 点击示意 |
+| `mylaunch` | `cd` 工程 + Zellij attach/create |
+| `frpc` | 内网穿透 ini 示意（仅实验） |
 
-**`claudep`**：把 `claude --dangerously-skip-permissions` 映射成短命令——**仅限隔离环境、自己承担风险**；生产或共享机器**不要用**。
+### `ccswitch` / `codexswitch`
 
-**为什么用 Zellij 当主力终端**：**会话可恢复、分屏布局可保存、和远程 SSH 长连**绑在一起比纯 tmux 更符合我现在的习惯；和「Agent 在后台跑、人切换面板看日志」这种 workflow 很搭。
+**思路**：用不同配置根目录区分身份，切换时只改环境变量。
+
+```bash
+#!/usr/bin/env bash
+PROFILE="${1:-default}"
+export CLAUDE_CONFIG_DIR="${HOME}/.config/claude-profiles/${PROFILE}"
+mkdir -p "$CLAUDE_CONFIG_DIR"
+echo "Active profile: ${PROFILE} -> ${CLAUDE_CONFIG_DIR}"
+```
+
+```bash
+#!/usr/bin/env bash
+PROFILE="${1:-work}"
+export CODEX_HOME="${HOME}/.codex/${PROFILE}"
+echo "CODEX_HOME=${CODEX_HOME}"
+```
+
+### `clashproxy` / `proxy_manager.sh`
+
+**思路**：统一 export / unset，端口对齐本机 Clash / Mihomo。
+
+```bash
+#!/usr/bin/env bash
+export HTTP_PROXY="http://127.0.0.1:7890"
+export HTTPS_PROXY="http://127.0.0.1:7890"
+export ALL_PROXY="socks5://127.0.0.1:7891"
+export NO_PROXY="localhost,127.0.0.1"
+echo "proxy env ON"
+```
+
+```bash
+#!/usr/bin/env bash
+unset HTTP_PROXY HTTPS_PROXY ALL_PROXY http_proxy https_proxy all_proxy
+echo "proxy env OFF"
+```
+
+### `glmclaude`
+
+**思路**：密钥从环境或密码管理器读；此处仅演示 `exec` 包装。
+
+```bash
+#!/usr/bin/env bash
+# export ANTHROPIC_BASE_URL="https://example.invalid/v1"
+# export ANTHROPIC_AUTH_TOKEN="${MY_SECRET_FROM_ENV:-}"
+exec claude "$@"
+```
+
+### `installAntigravity.sh`
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+echo "Replace with real vendor download + verify + install steps."
+```
+
+### `aionuip`
+
+```bash
+#!/usr/bin/env bash
+sleep 2
+# xdotool search --name "SomeApp" windowactivate
+# xdotool mousemove 400 300 click 1
+echo "Wire to your UI automation stack."
+```
+
+### `mylaunch`
+
+```bash
+#!/usr/bin/env bash
+PROJECT_ROOT="${HOME}/path/to/your-repo"
+cd "$PROJECT_ROOT" || exit 1
+SESSION="agent-dev"
+LAYOUT="${HOME}/.config/zellij/agent.kdl"
+if zellij list-sessions 2>/dev/null | grep -q "^${SESSION}$"; then
+  zellij attach "$SESSION"
+else
+  zellij --layout "$LAYOUT" --session "$SESSION"
+fi
+```
+
+### `frpc`
+
+```ini
+; frpc.ini 示意
+[common]
+server_addr = YOUR_FRPS_HOST
+server_port = 7000
+token = YOUR_TOKEN_PLACEHOLDER
+
+[ssh-tunnel]
+type = tcp
+local_ip = 127.0.0.1
+local_port = 22
+remote_port = 60022
+```
+
+### `claudep`
+
+**仅限隔离环境**。
+
+```bash
+#!/usr/bin/env bash
+exec claude --dangerously-skip-permissions "$@"
+```
+
+### Zellij 布局示意
+
+```text
+// ~/.config/zellij/agent.kdl 示意（以官方文档为准）
+layout {
+  default_tab_template {
+    pane size=1 split_direction="vertical" {
+      pane
+      pane size=2 split_direction="horizontal" { pane; pane; }
+    }
+  }
+}
+```
+
+**小结**：上面都是**模式**；占位请全部换成你自己的习惯与密钥管理（如 `pass` / 1Password CLI / systemd user unit 等）。
 
 ---
 

@@ -144,8 +144,8 @@
                 </figure>
 
                 <section id="toolbox" class="section-block">
-                    <h2><code>PATH</code> 里的私人脚本（只记名字）</h2>
-                    <p>本机常见如 <code>/usr/local/bin</code>（或自管 <code>bin</code>）里攒了一堆只为<strong>工作流更丝滑</strong>的脚本——<strong>不贴源码</strong>，避免误带环境信息。仅作索引：</p>
+                    <h2><code>PATH</code> 里的脚本：索引 + 脱敏示例</h2>
+                    <p>本机常见如 <code>/usr/local/bin</code>（或自管 <code>~/bin</code>）里攒了一堆只为<strong>工作流更丝滑</strong>的脚本。下面每张表仍是<strong>索引</strong>；紧接的代码块是<strong>教学向示意</strong>——路径、端口、域名、Token 均为<strong>占位</strong>，请按你本机改写；<strong>不要把真实密钥写进脚本文件或提交进 Git</strong>。</p>
                     <div class="table-wrap">
                         <table class="options-table">
                             <thead>
@@ -154,16 +154,134 @@
                             <tbody>
                                 <tr><td><code>ccswitch</code> / <code>codexswitch</code></td><td>多套 CLI/配置间快速切换</td></tr>
                                 <tr><td><code>clashproxy</code> / <code>proxy_manager.sh</code></td><td>代理启停与环境变量一批生效</td></tr>
-                                <tr><td><code>glmclaude</code></td><td>某兼容链路接入日常开发（不展开）</td></tr>
-                                <tr><td><code>installAntigravity.sh</code></td><td>历史环境安装，多半已考古</td></tr>
-                                <tr><td><code>aionuip</code></td><td>与 UI/自动化辅助相关的一键脚本</td></tr>
-                                <tr><td><code>mylaunch</code></td><td>个人启动器（编辑器、会话、目录）</td></tr>
+                                <tr><td><code>glmclaude</code></td><td>兼容协议链路接入日常开发（占位示意）</td></tr>
+                                <tr><td><code>installAntigravity.sh</code></td><td>历史环境安装（考古占位）</td></tr>
+                                <tr><td><code>aionuip</code></td><td>UI / 自动化辅助一键脚本</td></tr>
+                                <tr><td><code>mylaunch</code></td><td>个人启动器（目录 + Zellij）</td></tr>
                                 <tr><td><code>frpc</code></td><td>内网穿透（仅实验环境）</td></tr>
                             </tbody>
                         </table>
                     </div>
-                    <p><strong><code>claudep</code></strong>：把 <code>claude --dangerously-skip-permissions</code> 映射成短命令——<strong>仅限隔离环境、自负风险</strong>；生产或共享机器不要用。</p>
-                    <p><strong>为什么用 Zellij</strong>：<strong>会话可恢复、布局可保存、和远程 SSH 长连</strong>绑在一起，比纯 tmux 更符合「Agent 后台跑、人切面板看日志」的节奏。</p>
+
+                    <h3 id="tb-ccswitch"><code>ccswitch</code> / <code>codexswitch</code></h3>
+                    <p><strong>思路</strong>：用「配置目录」或独立 env 文件区分多套 CLI 身份，切换时只改环境变量，不重装。</p>
+                    <div class="code-block">
+                        <pre><code class="language-bash">#!/usr/bin/env bash
+# 示意：按参数选用不同配置根目录（路径请改成你自己的）
+PROFILE="${1:-default}"
+export CLAUDE_CONFIG_DIR="${HOME}/.config/claude-profiles/${PROFILE}"
+mkdir -p "$CLAUDE_CONFIG_DIR"
+echo "Active profile: ${PROFILE} -&gt; ${CLAUDE_CONFIG_DIR}"
+# 其后在同一 shell 里执行 claude …</code></pre>
+                    </div>
+                    <div class="code-block">
+                        <pre><code class="language-bash">#!/usr/bin/env bash
+# codexswitch 同理：例如切换 CODEX_HOME 或 API 配置文件路径
+PROFILE="${1:-work}"
+export CODEX_HOME="${HOME}/.codex/${PROFILE}"
+echo "CODEX_HOME=${CODEX_HOME}"</code></pre>
+                    </div>
+
+                    <h3 id="tb-proxy"><code>clashproxy</code> / <code>proxy_manager.sh</code></h3>
+                    <p><strong>思路</strong>：一键 export / unset，避免每条命令手写代理；端口与本地 Clash / Mihomo 监听一致即可。</p>
+                    <div class="code-block">
+                        <pre><code class="language-bash">#!/usr/bin/env bash
+# 占位端口：按你本机 mixed 端口修改
+export HTTP_PROXY="http://127.0.0.1:7890"
+export HTTPS_PROXY="http://127.0.0.1:7890"
+export ALL_PROXY="socks5://127.0.0.1:7891"
+export NO_PROXY="localhost,127.0.0.1"
+echo "proxy env ON"</code></pre>
+                    </div>
+                    <div class="code-block">
+                        <pre><code class="language-bash">#!/usr/bin/env bash
+unset HTTP_PROXY HTTPS_PROXY ALL_PROXY http_proxy https_proxy all_proxy
+echo "proxy env OFF"</code></pre>
+                    </div>
+
+                    <h3 id="tb-glmclaude"><code>glmclaude</code></h3>
+                    <p><strong>思路</strong>：在<strong>子 shell</strong>里注入「兼容某 HTTP API 形态」的变量，再 exec 进 CLI；密钥从环境或密码管理器读取，<strong>禁止写死在仓库里</strong>。</p>
+                    <div class="code-block">
+                        <pre><code class="language-bash">#!/usr/bin/env bash
+# 占位：仅演示「先设变量再 exec」；URL/变量名随你实际网关调整
+# export ANTHROPIC_BASE_URL="https://example.invalid/v1"   # 勿用真地址示例进公开仓库
+# export ANTHROPIC_AUTH_TOKEN="${MY_SECRET_FROM_ENV:-}"     # 从当前 shell 已 export 的变量读
+exec claude "$@"</code></pre>
+                    </div>
+
+                    <h3 id="tb-antigravity"><code>installAntigravity.sh</code></h3>
+                    <p><strong>思路</strong>：考古用——下载校验、安装路径、桌面项；随官方安装方式变，此处只留骨架。</p>
+                    <div class="code-block">
+                        <pre><code class="language-bash">#!/usr/bin/env bash
+set -euo pipefail
+# VERSION="x.y.z"   # 占位
+# curl -fsSL "https://example.invalid/pkg" -o /tmp/app.pkg
+# 校验 checksum、安装到 /opt … 略
+echo "Replace with real vendor steps when needed."</code></pre>
+                    </div>
+
+                    <h3 id="tb-aionuip"><code>aionuip</code></h3>
+                    <p><strong>思路</strong>：窗口出现后延时、再模拟点击/快捷键（Linux <code>xdotool</code>、macOS <code>osascript</code> 等）；坐标与 App 名按本机改。</p>
+                    <div class="code-block">
+                        <pre><code class="language-bash">#!/usr/bin/env bash
+sleep 2
+# xdotool search --name "SomeApp" windowactivate
+# xdotool mousemove 400 300 click 1
+echo "Wire to your UI automation stack."</code></pre>
+                    </div>
+
+                    <h3 id="tb-mylaunch"><code>mylaunch</code></h3>
+                    <p><strong>思路</strong>：<code>cd</code> 到固定工程根，再 attach / create Zellij 会话，Agent 日志与 shell 同屏。</p>
+                    <div class="code-block">
+                        <pre><code class="language-bash">#!/usr/bin/env bash
+PROJECT_ROOT="${HOME}/path/to/your-repo"   # 改成你的路径
+cd "$PROJECT_ROOT" || exit 1
+SESSION="agent-dev"
+LAYOUT="${HOME}/.config/zellij/agent.kdl"   # 自建 layout 文件
+if zellij list-sessions 2&gt;/dev/null | grep -q "^${SESSION}$"; then
+  zellij attach "$SESSION"
+else
+  zellij --layout "$LAYOUT" --session "$SESSION"
+fi</code></pre>
+                    </div>
+
+                    <h3 id="tb-frpc"><code>frpc</code></h3>
+                    <p><strong>思路</strong>：仅内网实验；<code>frps</code> 与 token 在<strong>自有</strong>机器上配置，勿用下文占位符当真。</p>
+                    <div class="code-block">
+                        <pre><code class="language-ini"># frpc.ini 示意
+[common]
+server_addr = YOUR_FRPS_HOST
+server_port = 7000
+token = YOUR_TOKEN_PLACEHOLDER
+
+[ssh-tunnel]
+type = tcp
+local_ip = 127.0.0.1
+local_port = 22
+remote_port = 60022</code></pre>
+                    </div>
+
+                    <h3 id="tb-claudep"><code>claudep</code></h3>
+                    <p><strong>思路</strong>：短命令包装长参数；<strong>仅限隔离环境</strong>，共享机与生产禁用。</p>
+                    <div class="code-block">
+                        <pre><code class="language-bash">#!/usr/bin/env bash
+exec claude --dangerously-skip-permissions "$@"</code></pre>
+                    </div>
+
+                    <h3 id="tb-zellij">为什么用 Zellij：布局示例</h3>
+                    <p><strong>思路</strong>：布局文件描述分屏；会话名固定，attach 复用同一组 pane（编代码 / 跑 <code>claude</code> / 看 log）。</p>
+                    <div class="code-block">
+                        <pre><code class="language-text">// ~/.config/zellij/agent.kdl 示意（语法以 Zellij 文档为准）
+layout {
+  default_tab_template {
+    pane size=1 split_direction="vertical" {
+      pane
+      pane size=2 split_direction="horizontal" { pane; pane; }
+    }
+  }
+}</code></pre>
+                    </div>
+                    <p><strong>小结</strong>：读者看到的是<strong>模式</strong>——切换配置、代理环境、安全注入、会话编排——请把占位全部换成你自己的习惯与密钥管理方式。</p>
                 </section>
 
                 <section id="outro" class="section-block">

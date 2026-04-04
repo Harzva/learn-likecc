@@ -119,23 +119,125 @@
 
 ---
 
-## PATH 里的私人脚本（只记名字与用途）
+## PATH 里的脚本：索引 + 脱敏示例
 
-本机（常见如 `/usr/local/bin` 或自管 `bin`）里攒了一堆**只为工作流更丝滑**的小脚本——**正文不贴源码**，避免误带环境变量或路径习惯；这里只列**角色**：
+本机（常见如 `/usr/local/bin` 或自管 `~/bin`）里攒了一堆**只为工作流更丝滑**的脚本。下表是**索引**；下面每个小标题附带**可复制改写的示意代码**——路径、端口、Token 均为**占位**，勿把真实密钥写进仓库。
 
 | 名字（示意） | 大致干什么 |
 |-------------|------------|
-| `ccswitch` / `codexswitch` | 多套 CLI/配置间少打几次字 |
-| `clashproxy` / `proxy_manager.sh` | 代理启停、环境变量一批生效 |
-| `glmclaude` | 某兼容链路接入日常开发（不展开） |
-| `installAntigravity.sh` | 历史环境安装，多半考古 |
-| `aionuip` | UI/自动化辅助一键脚本 |
-| `mylaunch` | 个人启动器 |
-| `frpc` | 内网穿透（仅实验环境） |
+| `ccswitch` / `codexswitch` | 多套 CLI / 配置目录切换 |
+| `clashproxy` / `proxy_manager.sh` | 代理环境变量 on/off |
+| `glmclaude` | 子 shell 注入变量后 `exec claude`（占位） |
+| `installAntigravity.sh` | 考古向安装骨架 |
+| `aionuip` | UI 自动化延时 + 点击示意 |
+| `mylaunch` | `cd` 工程 + Zellij attach/create |
+| `frpc` | 内网穿透 ini 示意（仅实验） |
 
-**`claudep`**：把 `claude --dangerously-skip-permissions` 映射成短命令——**仅限隔离环境**；生产或共享机器不要用。
+### `ccswitch` / `codexswitch`
 
-**为什么用 Zellij**：**会话可恢复、布局可保存、远程 SSH 长连**，和「Agent 后台跑、人切面板看日志」很搭。
+```bash
+#!/usr/bin/env bash
+PROFILE="${1:-default}"
+export CLAUDE_CONFIG_DIR="${HOME}/.config/claude-profiles/${PROFILE}"
+mkdir -p "$CLAUDE_CONFIG_DIR"
+echo "Active profile: ${PROFILE} -> ${CLAUDE_CONFIG_DIR}"
+```
+
+```bash
+#!/usr/bin/env bash
+PROFILE="${1:-work}"
+export CODEX_HOME="${HOME}/.codex/${PROFILE}"
+echo "CODEX_HOME=${CODEX_HOME}"
+```
+
+### `clashproxy` / `proxy_manager.sh`
+
+```bash
+export HTTP_PROXY="http://127.0.0.1:7890"
+export HTTPS_PROXY="http://127.0.0.1:7890"
+export ALL_PROXY="socks5://127.0.0.1:7891"
+export NO_PROXY="localhost,127.0.0.1"
+```
+
+```bash
+unset HTTP_PROXY HTTPS_PROXY ALL_PROXY http_proxy https_proxy all_proxy
+```
+
+### `glmclaude`
+
+```bash
+#!/usr/bin/env bash
+# export ANTHROPIC_BASE_URL="https://example.invalid/v1"
+# export ANTHROPIC_AUTH_TOKEN="${MY_SECRET_FROM_ENV:-}"
+exec claude "$@"
+```
+
+### `installAntigravity.sh`
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+echo "Replace with real vendor download + verify + install steps."
+```
+
+### `aionuip`
+
+```bash
+#!/usr/bin/env bash
+sleep 2
+# xdotool search --name "SomeApp" windowactivate
+# xdotool mousemove 400 300 click 1
+echo "Wire to your UI automation stack."
+```
+
+### `mylaunch`
+
+```bash
+#!/usr/bin/env bash
+PROJECT_ROOT="${HOME}/path/to/your-repo"
+cd "$PROJECT_ROOT" || exit 1
+SESSION="agent-dev"
+LAYOUT="${HOME}/.config/zellij/agent.kdl"
+if zellij list-sessions 2>/dev/null | grep -q "^${SESSION}$"; then
+  zellij attach "$SESSION"
+else
+  zellij --layout "$LAYOUT" --session "$SESSION"
+fi
+```
+
+### `frpc`
+
+```ini
+[common]
+server_addr = YOUR_FRPS_HOST
+server_port = 7000
+token = YOUR_TOKEN_PLACEHOLDER
+[ssh-tunnel]
+type = tcp
+local_ip = 127.0.0.1
+local_port = 22
+remote_port = 60022
+```
+
+### `claudep`（仅隔离环境）
+
+```bash
+#!/usr/bin/env bash
+exec claude --dangerously-skip-permissions "$@"
+```
+
+### Zellij 布局（示意）
+
+```text
+layout {
+  default_tab_template {
+    pane size=1 split_direction="vertical" {
+      pane
+      pane size=2 split_direction="horizontal" { pane; pane; }
+    }
+  }
+}
+```
 
 ---
 
