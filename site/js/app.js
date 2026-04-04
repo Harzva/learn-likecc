@@ -211,7 +211,15 @@ const MERMAID_DIAGRAMS = {
     'course-s12': `graph TB
     classDef b fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#3b82f6;
     classDef g fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#10b981;
-    A[对话意图]:::b --> G[git 读状态]:::g --> C[commit / branch / PR]:::g`
+    A[对话意图]:::b --> G[git 读状态]:::g --> C[commit / branch / PR]:::g`,
+
+    /** column-agent-journey.html：个人工具链重心迁移（示意） */
+    'column-agent-flow': `flowchart LR
+    classDef old fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#e2b953;
+    classDef mid fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#93c5fd;
+    classDef now fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#5eead4;
+    A[插件试玩<br/>多宿主尝鲜]:::old --> B[反代链路<br/>折腾 TUN/SSH]:::mid
+    B --> C[CLI 扎根<br/>Claude Code + Agent IDE]:::now`
 }
 
 function fillMermaidPlaceholders() {
@@ -317,6 +325,7 @@ function initSiteSidebar() {
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-agent.html"><span class="site-sidebar__ico">📌</span><span class="site-sidebar__txt">专题首页</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="https://github.com/Harzva/learn-likecc/blob/main/awesome-agent.md" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">✨</span><span class="site-sidebar__txt">Awesome Agent</span></a>' +
         '</details>' +
+        '<a class="site-sidebar__link" href="column-agent-journey.html"><span class="site-sidebar__ico">🧭</span><span class="site-sidebar__txt">工具链阅历</span></a>' +
         '<a class="site-sidebar__link" href="devlog.html"><span class="site-sidebar__ico">📝</span><span class="site-sidebar__txt">开发日志</span></a>' +
         '<a class="site-sidebar__link" href="https://github.com/Harzva/learn-likecc" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">🐙</span><span class="site-sidebar__txt">GitHub</span></a>' +
         '</div>'

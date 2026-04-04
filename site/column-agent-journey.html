@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>从编辑器到 Agent：工具链上的个人阅历 - Claude Code Course</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧭</text></svg>">
+    <meta name="description" content="个人向 AI 编程助手与 CLI 折腾记录：宿主选择、链路与工具箱；不含密钥与可复现端点。">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🧭</span>
+                <span class="logo-text">阅历随笔</span>
+            </a>
+            <div class="nav-links">
+                <a href="#intro" class="nav-link">前言</a>
+                <a href="#hosts" class="nav-link">宿主</a>
+                <a href="#credits" class="nav-link">用量</a>
+                <a href="#proxy" class="nav-link">链路</a>
+                <a href="#antigravity" class="nav-link">反重力</a>
+                <a href="#focus" class="nav-link">重心</a>
+                <a href="#toolbox" class="nav-link">脚本</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="index.html" class="btn-github">← 返回首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="course-main devlog-main">
+        <div class="container">
+            <article class="course-content devlog-content">
+                <h1 class="course-title">从编辑器到 Agent <span class="subtitle">一条工具链上的个人阅历</span></h1>
+
+                <div class="course-quote">
+                    <p>本文为<strong>个人折腾记录与主观感受</strong>，不是教程或采购建议。已隐去可复现的密钥、端点与精确账单数字。</p>
+                    <p><strong>网页版</strong>含配图与示意图；协作审阅可用 <strong>GitHub 上的 Markdown 同源文件</strong>。</p>
+                </div>
+
+                <figure class="devlog-figure">
+                    <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="" width="920" loading="lazy">
+                    <figcaption>题图：多窗口下的编码环境（Unsplash / <a href="https://unsplash.com/photos/close-up-photo-of-computer-monitor-ieic5Tq8Mk4" target="_blank" rel="noopener noreferrer">Ilya Pavlov</a>）</figcaption>
+                </figure>
+
+                <section id="intro" class="section-block">
+                    <h2>写在前面</h2>
+                    <p>这是一份给自己留底的<strong>阅历随笔</strong>，后面会接到「个人项目经历」展示里。逻辑我稍微顺过一遍，但语气尽量保持原来那种——<strong>坑、白嫖、丝滑、断流</strong>这些词就留着了，真实一点。</p>
+                </section>
+
+                <section id="hosts" class="section-block">
+                    <h2>我摸过哪些「宿主」</h2>
+                    <p><strong>Agent / 编程助手向</strong>里，我体验过（或深度白嫖过）的大概有：<strong>Qoder</strong>、<strong>Trae</strong>、<strong>Cursor</strong>、谷歌的 <strong>Antigravity（反重力）</strong>，以及 <strong>Kiro</strong> 一类编辑器形态（口述常写成 Kiro/Krio，仅指同类 IDE 体验；只玩过编辑器版本）。</p>
+                    <ul>
+                        <li><strong>Trae</strong>：<strong>Solo 模式非常惊艳</strong>；主观感受上<strong>国内迭代算快的</strong>。</li>
+                        <li><strong>Cursor</strong>：常规主力之一。</li>
+                        <li><strong>Antigravity</strong>：下一节单独说。</li>
+                    </ul>
+                    <p><strong>付费</strong>：Qoder 付过一个月加首月，其余主要靠活动/邀请；Trae 有过约两个月叠加春节活动；Cursor 付过一个月，<strong>学生认证没薅成功</strong>。<strong>一直没开 Claude 官方订阅</strong>，主要是怕风控封号。</p>
+                    <p><strong>CLI</strong>：Claude 系、<strong>Codex</strong>（多账号轮换）、<strong>Gemini CLI</strong>。<strong>VS Code 插件</strong>：所谓「三巨头」对应插件都摸过。<strong>Copilot</strong>只用过插件版——和各家模型打通之后，<strong>可玩性是真的不错</strong>。</p>
+                </section>
+
+                <figure class="devlog-figure">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="" width="920" loading="lazy">
+                    <figcaption>链路与路由：抽象示意（Unsplash / <a href="https://unsplash.com/photos/photo-of-outer-space-Q1p7bh3SHj8" target="_blank" rel="noopener noreferrer">NASA</a>）</figcaption>
+                </figure>
+
+                <section id="credits" class="section-block">
+                    <h2>白嫖与用量（只谈现象）</h2>
+                    <p>有过<strong>云厂商活动价</strong>买到的大包 token（人民币几十块档、标称亿级的那种），多账号累计下来<strong>实际消耗已到更高数量级</strong>。我<strong>盲猜</strong>某些路由若按高档模型倍率计费，会出现<strong>异常夸张的消耗</strong>（坊间「百倍增耗」之类说法，未核实，纯体感）。</p>
+                    <p>另有 <strong>Google / Gemini 侧大额试用额度</strong>、<strong>GitHub Copilot 教育权益</strong>等——具体数字不写进网页。</p>
+                    <p><strong>底线</strong>：密钥轮换、限额、告警该开就开；勿在公开场合晒完整 key。</p>
+                </section>
+
+                <section id="proxy" class="section-block">
+                    <h2>反代 API 与测试（只讲结构）</h2>
+                    <p>以下为<strong>概念级</strong>经历，<strong>不包含</strong>任何可照抄的 URL、Header 或密钥路径。</p>
+                    <ol>
+                        <li>用 <strong>Antigravity tool</strong> 一类能力做<strong>反代 API</strong>接到 <strong>Claude Code</strong>。</li>
+                        <li>用 <strong>Codex</strong> 去接 Claude Code：<strong>不够丝滑</strong>，<strong>token 烧得快</strong>。</li>
+                        <li><strong>Cherry Studio</strong>、<strong>ccswitch</strong>：用来<strong>测 key/端点是否通</strong>。</li>
+                        <li>Linux 上 <strong>antissh</strong> 等：把 Antigravity 或 Gemini 相关流量<strong>弯到本地</strong>再出去。</li>
+                        <li>社区名字：<strong>小龙虾</strong>、<strong>OpenClaw</strong>、<strong>Copaw</strong>、<strong>cc-connect</strong>、<strong>aionuip</strong>——有的试过一脚，生态变化快，不保证仍同名同物。</li>
+                        <li><strong>最早</strong>连 remote 时要解决<strong>本机/服务器谁翻墙</strong>、<strong>auth JSON 手动拷远程</strong>——现在工具成熟，这些算<strong>过时故事</strong>。</li>
+                    </ol>
+                </section>
+
+                <section id="antigravity" class="section-block">
+                    <h2>Antigravity：爱过，累过</h2>
+                    <p><strong>特别喜欢早期那种 workflow 感</strong>——现在看重要性被稀释：<strong>Claude Code 的 <code>/command</code>、<code>/+command</code></strong>也能钉死流水线，和 <strong>Skills</strong> 还不完全一回事（Skills 更偏可复用能力包）。</p>
+                    <p>时代眼泪：基于 <strong>CV 自动点 Continue</strong>，让流程自己跑，去审稿、改论文——纯考古，不推荐复现。</p>
+                    <p><strong>槽点</strong>：<strong>不流畅、常断、手动 Continue</strong>；额度<strong>被砍又恢复一点</strong>心累。<strong>Gemini 做 UI/前端漂亮</strong>；<strong>科研向工作里主观感觉总比 Opus/GPT 慢半代</strong>。<strong>本地登录</strong>先过 <strong>TUN</strong>、代理；远程不能 TUN 就要 <strong>antissh</strong>、自写脚本或 <strong>ProxyBridge</strong>（exe 与 LLM 服务都要挂——全是坑）。Clash 系下流量统计<strong>怪怪的</strong>，后来干脆 <strong>TUN 全局</strong>（费流量省心）。<strong>Proxifier</strong> 还要会员。</p>
+                    <p>最终：Antigravity 本体也不流畅；反代若上工具有人推 <strong>Cliproxy</strong> 一类（多账号、多登录——<strong>仅名词提及</strong>），我试过仍<strong>不够丝滑</strong>，<strong>干脆不用了</strong>。</p>
+                </section>
+
+                <figure class="devlog-figure">
+                    <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="" width="920" loading="lazy">
+                    <figcaption>终端与远程：工作流离不开稳定的会话与分屏（Unsplash / <a href="https://unsplash.com/photos/black-laptop-computer-turned-on-connecting-cable-4hbJ-eymZ1o" target="_blank" rel="noopener noreferrer">Andrew Neel</a>）</figcaption>
+                </figure>
+
+                <figure class="mermaid-figure mermaid-figure--main" aria-label="重心迁移示意">
+                    <figcaption class="mermaid-caption"><strong>个人重心迁移（示意）</strong>：从「插件试玩 / 反代折腾」收敛到「CLI + 独立 Agent IDE」。</figcaption>
+                    <div class="mermaid-diagram-scroll" data-mermaid-diagram="column-agent-flow"></div>
+                </figure>
+
+                <section id="focus" class="section-block">
+                    <h2>现在重心在哪</h2>
+                    <p><strong>Claude Code CLI</strong>为主；同时玩 <strong>Cursor 独立 Agent 模式</strong>（有点像 Trae Solo）；以及 <strong>智谱系 Zed</strong> 里的 Agent 体验。</p>
+                    <p>共同点：<strong>以 Agent 为中心的 IDE</strong>，而不是「以编辑器为中心、人手撸每一行」。</p>
+                    <p><strong>Vibe coding</strong> 时人到底是<strong>指挥</strong>还是<strong>甲方</strong>？模型越好，越常「只要结果不看过程」——爽也是风险，代码不读锅就是你的。</p>
+                </section>
+
+                <figure class="devlog-figure">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="" width="920" loading="lazy">
+                    <figcaption>协作范式在变：人更像排程与验收（Unsplash / <a href="https://unsplash.com/photos/group-of-people-sitting-indoors-3TLl_97HNJo" target="_blank" rel="noopener noreferrer">Annie Spratt</a>）</figcaption>
+                </figure>
+
+                <section id="toolbox" class="section-block">
+                    <h2><code>PATH</code> 里的私人脚本（只记名字）</h2>
+                    <p>本机 <code>bin</code> 目录里攒了一堆只为<strong>工作流更丝滑</strong>的脚本——<strong>不贴源码</strong>，避免误带环境信息。仅作索引：</p>
+                    <div class="table-wrap">
+                        <table class="options-table">
+                            <thead>
+                                <tr><th>名字（示意）</th><th>大致用途</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><code>ccswitch</code> / <code>codexswitch</code></td><td>多套 CLI/配置间快速切换</td></tr>
+                                <tr><td><code>clashproxy</code> / <code>proxy_manager.sh</code></td><td>代理启停与环境变量一批生效</td></tr>
+                                <tr><td><code>glmclaude</code></td><td>某兼容链路接入日常开发（不展开）</td></tr>
+                                <tr><td><code>installAntigravity.sh</code></td><td>历史环境安装，多半已考古</td></tr>
+                                <tr><td><code>aionuip</code></td><td>与 UI/自动化辅助相关的一键脚本</td></tr>
+                                <tr><td><code>mylaunch</code></td><td>个人启动器（编辑器、会话、目录）</td></tr>
+                                <tr><td><code>frpc</code></td><td>内网穿透（仅实验环境）</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p><strong><code>claudep</code></strong>：把 <code>claude --dangerously-skip-permissions</code> 映射成短命令——<strong>仅限隔离环境、自负风险</strong>；生产或共享机器不要用。</p>
+                    <p><strong>为什么用 Zellij</strong>：<strong>会话可恢复、布局可保存、和远程 SSH 长连</strong>绑在一起，比纯 tmux 更符合「Agent 后台跑、人切面板看日志」的节奏。</p>
+                </section>
+
+                <section id="outro" class="section-block">
+                    <h2>小结</h2>
+                    <p>这是一条<strong>从插件试玩到 CLI 扎根</strong>、从<strong>反代折腾</strong>到<strong>懒得折腾</strong>的路。<strong>合规第一、密钥最小暴露、链路越短越省心</strong>。本站技术正文仍以课程与官方文档为准；本篇仅作个人侧记。</p>
+                </section>
+
+                <div class="chapter-navigation">
+                    <a href="index.html" class="btn btn-secondary">← 返回首页</a>
+                    <a href="devlog.html" class="btn btn-primary">开发日志 →</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <div class="md-source-dual" role="note">
+                    <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/column-agent-journey.md" target="_blank" rel="noopener noreferrer">📝 Markdown 源（GitHub）</a></p>
+                    <p class="md-source-hint">另提供 <strong>Markdown 版</strong> 供 PR 与离线阅读；<strong>当前为网页版</strong>（主题、配图与 Mermaid）。</p>
+                </div>
+                <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js" crossorigin="anonymous"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
