@@ -47,9 +47,10 @@
             <div class="particle" style="--delay: 6s; --x: 90%; --y: 70%;"></div>
         </div>
         <div class="container hero-content">
-            <div class="hero-badge">
+            <a href="#source-map-event" class="hero-badge hero-badge--jump" title="跳转到事件说明">
                 <span>🔥 2026.03 Source Map 事件</span>
-            </div>
+                <span class="hero-badge-hint" aria-hidden="true">发生了什么？</span>
+            </a>
             <h1 class="hero-title">
                 Claude Code<br>
                 <span class="gradient-text">完全学习指南</span>
@@ -77,8 +78,28 @@
                 </div>
             </div>
             <div class="hero-actions">
-                <a href="tutorial.html" class="btn-hero btn-primary">📖 开始学习</a>
-                <a href="https://github.com/Harzva/learn-likecc" class="btn-hero btn-secondary" target="_blank">🐙 查看源码</a>
+                <a href="#courses" class="btn-hero btn-primary">🔬 源码课程</a>
+                <a href="tutorial.html" class="btn-hero btn-secondary">📖 官方教程</a>
+                <a href="https://github.com/Harzva/learn-likecc" class="btn-hero btn-secondary" target="_blank">🐙 GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Source Map 事件简讯（与顶部标签联动） -->
+    <section id="source-map-event" class="source-map-event-section" aria-labelledby="source-map-event-heading">
+        <div class="container">
+            <h2 id="source-map-event-heading" class="source-map-event-title">2026 年 3 月：Source Map 事件是怎么回事？</h2>
+            <div class="source-map-event-body">
+                <p><strong>一句话</strong>：Claude Code CLI 的正式发布包中，误带了本应仅供调试使用的 <strong>Source Map</strong>（约 57MB 的 <code>cli.js.map</code>），里面能还原出大量 TypeScript 源码路径与内容——属于<strong>构建/发布流程疏漏</strong>，不是用户侧「破解」。</p>
+                <ul class="source-map-event-list">
+                    <li><strong>Source Map 是什么</strong>：压缩后的 JS 与原始 TS 之间的「对照表」，方便调试；正规生产发布通常<strong>不会</strong>随包分发。</li>
+                    <li><strong>这次漏了什么</strong>：映射里带有 <code>sourcesContent</code> 等字段时，相当于把<strong>约 1900+ 个源文件、五十余万行量级</strong>的实现细节一并放进 npm 包，任何人下载安装包都能读到。</li>
+                    <li><strong>常见原因</strong>：打包配置里开着 <code>sourcemap: true</code>、CI 未剔除 <code>*.map</code>、紧急发版未做产物检查等。</li>
+                    <li><strong>和本站的关系</strong>：社区据此可做<strong>架构学习与逆向分析</strong>；本仓库的源码课程即围绕这类公开技术资料整理，助你理解 Agent Loop、工具系统等实现思路（请在合法合规前提下学习）。</li>
+                </ul>
+                <p class="source-map-event-more">
+                    <a href="https://github.com/Harzva/learn-likecc/blob/main/wemedia/zhihu/articles/09-SourceMap%E6%B3%84%E9%9C%B2%E4%BA%8B%E4%BB%B6%E5%A4%8D%E7%9B%98.md" target="_blank" rel="noopener noreferrer">仓库内长文复盘（知乎稿）→</a>
+                </p>
             </div>
         </div>
     </section>
@@ -87,16 +108,35 @@
     <section class="features-main">
         <div class="container">
             <h2 class="section-title">📚 学习入口</h2>
-            <p class="section-subtitle">选择你的学习路径，点击进入详细教程</p>
+            <p class="section-subtitle">主打 <strong>源码课程</strong>（12 章渐进式内核解析）；其余为官方文档整理、手册与扩展阅读</p>
 
             <figure class="mermaid-figure mermaid-figure--main" aria-label="学习流程图">
                 <figcaption class="mermaid-caption">
-                    <strong>流程概览</strong>：从用户输入、查询初始化、上下文准备到 API 与流式处理（循环执行）。与下方「官方教程 / 手册 / 源码课程」入口对照阅读。
+                    <strong>流程概览</strong>：对应下方主打「源码课程」中的 S01 Agent Loop 等章节——从用户输入、查询初始化、上下文到 API 与流式循环。可与官方教程、手册对照阅读。
                 </figcaption>
                 <div class="mermaid-diagram-scroll" data-mermaid-diagram="agent-loop"></div>
             </figure>
 
-            <div class="features-grid-main">
+            <div class="features-grid-main features-grid-has-flagship">
+                <!-- 源码课程入口（主打：全宽强调） -->
+                <a href="#courses" class="feature-card-main feature-accent feature-flagship">
+                    <span class="feature-flagship-badge">主打</span>
+                    <div class="feature-flagship-inner">
+                        <div class="feature-icon-main" aria-hidden="true">🔬</div>
+                        <div class="feature-flagship-text">
+                            <h3 class="feature-title-main">源码课程</h3>
+                            <p class="feature-desc-main">12 个渐进式章节，从 Agent Loop、工具系统到 MCP / 任务 / Git——本站核心内容，建议优先学习。</p>
+                            <div class="feature-tags">
+                                <span class="tag">Agent Loop</span>
+                                <span class="tag">Tool System</span>
+                                <span class="tag">MCP</span>
+                                <span class="tag">Subagent</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-arrow">→</div>
+                </a>
+
                 <!-- 官方教程入口 -->
                 <a href="tutorial.html" class="feature-card-main feature-primary">
                     <div class="feature-icon-main">📖</div>
@@ -124,19 +164,6 @@
                     <div class="feature-arrow">→</div>
                 </a>
 
-                <!-- 源码课程入口 -->
-                <a href="#courses" class="feature-card-main feature-accent">
-                    <div class="feature-icon-main">🔬</div>
-                    <h3 class="feature-title-main">源码课程</h3>
-                    <p class="feature-desc-main">12 个渐进式课程章节，深入讲解 AI 编程助手的核心架构与实现</p>
-                    <div class="feature-tags">
-                        <span class="tag">Agent Loop</span>
-                        <span class="tag">Tool System</span>
-                        <span class="tag">MCP</span>
-                    </div>
-                    <div class="feature-arrow">→</div>
-                </a>
-
                 <!-- 面试题库入口 -->
                 <a href="#interview" class="feature-card-main feature-warning">
                     <div class="feature-icon-main">💼</div>
@@ -146,6 +173,19 @@
                         <span class="tag">概念题</span>
                         <span class="tag">实践题</span>
                         <span class="tag">场景题</span>
+                    </div>
+                    <div class="feature-arrow">→</div>
+                </a>
+
+                <!-- Agent 知识点专题 -->
+                <a href="topic-agent-comparison.html" class="feature-card-main feature-topic">
+                    <div class="feature-icon-main">🤖</div>
+                    <h3 class="feature-title-main">Agent 生态对比</h3>
+                    <p class="feature-desc-main">技能包与子代理范式（外链整理），与 S01 循环实现分工明确、不重复课内练习</p>
+                    <div class="feature-tags">
+                        <span class="tag">技能包</span>
+                        <span class="tag">Subagents</span>
+                        <span class="tag">互补 S01</span>
                     </div>
                     <div class="feature-arrow">→</div>
                 </a>
@@ -206,11 +246,11 @@
             <h2 class="section-title">📚 源码课程章节</h2>
             <p class="section-subtitle">12 个渐进式课程，深入理解 Claude Code 内核</p>
 
-            <figure class="mermaid-figure mermaid-figure--main" aria-label="源码课程流程图">
+            <figure class="mermaid-figure mermaid-figure--main mermaid-figure--course-map" aria-label="源码课程十二章总览图">
                 <figcaption class="mermaid-caption">
-                    <strong>同一套主流程</strong>：对应 S01 Agent Loop 等章节中的「输入 → 初始化 → 上下文 → API → 流式」路径，便于选课前先建立整体印象。
+                    <strong>课程全景</strong>：上方为与 S01 对照的<strong>运行时主链</strong>；中间三节为 Part 1–3 共 12 章递进关系；紫色为 Source Map 学习契机与 <a href="topic-agent-comparison.html">Agent 生态对比</a> 扩展阅读。可横向滚动查看大图。
                 </figcaption>
-                <div class="mermaid-diagram-scroll" data-mermaid-diagram="agent-loop"></div>
+                <div class="mermaid-diagram-scroll mermaid-diagram-scroll--xl" data-mermaid-diagram="course-map"></div>
             </figure>
 
             <div class="courses-tabs">
@@ -714,9 +754,10 @@ jobs:
                 <div class="footer-links-main">
                     <div class="footer-col-main">
                         <h5>学习</h5>
+                        <a href="#courses">源码课程</a>
                         <a href="tutorial.html">官方教程</a>
                         <a href="handbook.html">完全手册</a>
-                        <a href="#courses">源码课程</a>
+                        <a href="topic-agent-comparison.html">Agent 生态对比</a>
                     </div>
                     <div class="footer-col-main">
                         <h5>资源</h5>
@@ -727,6 +768,7 @@ jobs:
                     <div class="footer-col-main">
                         <h5>关于</h5>
                         <a href="#overview">项目概述</a>
+                        <a href="#source-map-event">Source Map 事件</a>
                         <a href="#daily">每日推送</a>
                         <a href="https://github.com/Harzva/learn-likecc" target="_blank">贡献</a>
                     </div>

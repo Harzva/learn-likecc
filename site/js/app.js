@@ -14,7 +14,53 @@ const MERMAID_DIAGRAMS = {
         Step4 --> Step5[5 流式处理]:::greenBox
     end
 
-    style Loop fill:#313244,stroke:#89b4fa,stroke-dasharray: 5 5`
+    style Loop fill:#313244,stroke:#89b4fa,stroke-dasharray: 5 5`,
+
+    /** 12 章源码课程总览：运行时主链 + Part1–3 + Source Map 契机 + Agent 生态扩展 */
+    'course-map': `graph TB
+    classDef yellowBox fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#e2b953;
+    classDef blueBox fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#3b82f6;
+    classDef greenBox fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#10b981;
+    classDef purpleBox fill:#2b2035,stroke:#cba6f7,stroke-width:2px,color:#cba6f7;
+
+    SM["Source Map 事件 2026.03<br/>约 57MB cli.js.map 误入正式包"]:::purpleBox
+
+    subgraph RT ["运行时主链 · 对照 S01"]
+        R1["1 用户输入"]:::blueBox --> R2["2 查询初始化"]:::blueBox
+        R2 --> R3["3 上下文准备"]:::yellowBox
+        R3 --> R4["4 API 调用"]:::greenBox
+        R4 --> R5["5 流式处理 · 循环"]:::greenBox
+    end
+
+    SM -.->|学习契机| R1
+
+    subgraph P1 ["Part 1 · 核心架构"]
+        S01["S01 Agent Loop<br/>主循环与状态"]:::blueBox --> S02["S02 Tool System<br/>工具定义与调用"]:::blueBox
+        S02 --> S03["S03 Permission Model<br/>权限与用户交互"]:::yellowBox --> S04["S04 Command Interface<br/>CLI 命令处理"]:::greenBox
+    end
+
+    R5 --> S01
+
+    subgraph P2 ["Part 2 · 高级特性"]
+        S05["S05 Context Compression<br/>消息压缩"]:::yellowBox --> S06["S06 Subagent Fork<br/>子代理与分支"]:::blueBox
+        S06 --> S07["S07 MCP Protocol<br/>模型上下文协议"]:::greenBox --> S08["S08 Task Management<br/>任务队列与调度"]:::greenBox
+    end
+
+    subgraph P3 ["Part 3 · 扩展集成"]
+        S09["S09 Bridge IDE<br/>IDE 集成与通信"]:::blueBox --> S10["S10 Hooks Extension<br/>钩子扩展"]:::yellowBox
+        S10 --> S11["S11 Vim Mode<br/>Vim 键绑定"]:::greenBox --> S12["S12 Git Integration<br/>Git 工作流"]:::greenBox
+    end
+
+    S04 --> S05
+    S08 --> S09
+
+    EXT["Agent 生态对比<br/>技能包 · Subagents / Teams"]:::purpleBox
+    S06 -.->|扩展阅读| EXT
+
+    style RT fill:#181825,stroke:#89b4fa,stroke-width:1px
+    style P1 fill:#13131a,stroke:#e2b953,stroke-dasharray:5 4
+    style P2 fill:#13131a,stroke:#3b82f6,stroke-dasharray:5 4
+    style P3 fill:#13131a,stroke:#10b981,stroke-dasharray:5 4`
 }
 
 function fillMermaidPlaceholders() {

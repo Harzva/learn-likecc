@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent 生态对比：技能包与子代理 - Claude Code Course</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+    <meta name="description" content="Superpowers vs GStack、Subagents vs Agent Teams 对比；与 S01 Agent Loop 实现课分工说明，附原文链接。">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🤖</span>
+                <span class="logo-text">Agent 生态</span>
+            </a>
+            <div class="nav-links">
+                <a href="#scope" class="nav-link">与课程分工</a>
+                <a href="#sources" class="nav-link">参考来源</a>
+                <a href="#skill-packs" class="nav-link">技能包</a>
+                <a href="#subagents-teams" class="nav-link">子代理与团队</a>
+                <a href="#synthesis" class="nav-link">综合对照</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="index.html" class="btn-github">← 返回首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>📌 专题</span>
+                <span>对比阅读</span>
+            </div>
+            <h1 class="hero-title">
+                Agent 生态对比<br>
+                <span class="gradient-text">技能包与子代理</span>
+            </h1>
+            <p class="hero-subtitle">
+                把「工作流型技能包」与「平台级多智能体协作」放在同一张图里理解<br>
+                <strong>不写</strong> S01 里的循环实现：懒加载、<code>stop_reason</code>、消息累积与课内练习见 <a href="s01.html" style="color: inherit; text-decoration: underline;">S01 Agent Loop</a>
+            </p>
+            <div class="hero-actions">
+                <a href="#scope" class="btn btn-primary">先看与课程分工</a>
+                <a href="#skill-packs" class="btn btn-secondary">Superpowers / GStack</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="scope" class="section" style="background: var(--bg-secondary); padding-top: 60px;">
+        <div class="container">
+            <h2 class="section-title">与源码课程：不重复哪里？</h2>
+            <p class="section-desc">下面这张对照表专门消解「Agent 专题」和「S01 Agent Loop」的覆盖感：同一词 Agent，两层完全不同的课。</p>
+            <div style="overflow-x: auto;">
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th>主题</th>
+                            <th><a href="s01.html">S01 Agent Loop</a>（及 S02 工具等）</th>
+                            <th>本专题页</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>懒加载、Feature Flags、错误重试</td>
+                            <td>✓ 设计模式与源码语境</td>
+                            <td>✗ 不涉及</td>
+                        </tr>
+                        <tr>
+                            <td>最小 Loop、Read/Write/Edit 练习</td>
+                            <td>✓ 实践练习</td>
+                            <td>✗ 无编程作业</td>
+                        </tr>
+                        <tr>
+                            <td><code>stop_reason</code>、消息累积、工具失败</td>
+                            <td>✓ 关键设计与思考题</td>
+                            <td>✗ 不涉及</td>
+                        </tr>
+                        <tr>
+                            <td>Superpowers / GStack、外链观点</td>
+                            <td>✗ 不在课纲内</td>
+                            <td>✓ 对比整理 + 原文链接</td>
+                        </tr>
+                        <tr>
+                            <td>Subagents vs Agent Teams（协调模型）</td>
+                            <td>概念在 <a href="s06.html">S06 Subagent Fork</a> 等从<strong>实现</strong>讲</td>
+                            <td>✓ 从<strong>产品/范式</strong>对照，与 S06 互补而非替代</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="section-desc" style="margin-bottom: 0;">若你正在看 S01 底部的设计模式与思考题，请继续留在 S01；读完再打开本页，只会多一层「生态与工作流」视角，不会重讲同一套练习。</p>
+        </div>
+    </section>
+
+    <section id="sources" class="section">
+        <div class="container">
+            <h2 class="section-title">📚 参考来源</h2>
+            <p class="section-desc">下列为原文链接。本页为学习笔记式整理，不替代原文；引用处观点版权归各作者所有。</p>
+            <div class="quickstart-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+                <div class="quickstart-card">
+                    <h3>知乎专栏</h3>
+                    <p>中文社区长文（需在浏览器登录或打开知乎查看正文）。</p>
+                    <p><a href="https://zhuanlan.zhihu.com/p/2019440154893374100" target="_blank" rel="noopener noreferrer">打开知乎专栏 →</a></p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>Particula Tech</h3>
+                    <p><em>Superpowers vs GStack: Which AI Coding Skill Pack Actually Works?</em>（2026-03）</p>
+                    <p><a href="https://particula.tech/blog/superpowers-vs-gstack-ai-coding-skill-packs" target="_blank" rel="noopener noreferrer">阅读原文 →</a></p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>Daily Dose of Data Science</h3>
+                    <p><em>Claude Subagents vs. Agent Teams</em>（Avi Chawla，2026-03）</p>
+                    <p><a href="https://blog.dailydoseofds.com/p/claude-subagents-vs-agent-teams" target="_blank" rel="noopener noreferrer">阅读原文 →</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skill-packs" class="section" style="background: var(--bg-secondary);">
+        <div class="container">
+            <h2 class="section-title">一、技能包与工作流：Superpowers vs GStack</h2>
+            <p class="section-desc">两者都针对同一类痛点：智能体跳过规划、跳过测试、写出「看起来对」但在生产环境出问题的代码；但治理方式几乎相反。</p>
+
+            <div class="section-block" style="margin-top: 2rem;">
+                <h3>Superpowers：用流程强制约束</h3>
+                <ul>
+                    <li>强调刚性多阶段管线（头脑风暴、Git worktree、写计划、子代理执行、TDD、代码审查、收尾），在写代码前完成设计与验证。</li>
+                    <li>「1% 规则」：只要技能可能适用就必须触发；技能里用「红旗」话术抵消模型常见的偷懒借口。</li>
+                    <li>子代理按任务隔离执行 + 多阶段审查；新版本侧重可视化头脑风暴、按界面驱动拆分文件结构、实现任务可路由到更便宜模型等。</li>
+                    <li>代价：正式编码前常有十余分钟量级的规划开销；长会话、多子代理时 token 消耗显著。</li>
+                </ul>
+            </div>
+
+            <div class="section-block">
+                <h3>GStack：用角色与斜杠命令模拟「虚拟团队」</h3>
+                <ul>
+                    <li>大量可手动调用的斜杠命令，覆盖产品/CEO 视角、工程评审、设计评审、Staff 级代码审查、调查、QA、安全（OWASP + STRIDE）、发布与复盘等。</li>
+                    <li>特色是持久化 Chromium + Playwright 的分层架构，可做真实截图与点击级 UI 验证（对 Web 项目价值大；部分凭据能力曾侧重 macOS）。</li>
+                    <li>TDD 可用但未像 Superpowers 那样「写测试前写的代码要删掉」式强制；更适合希望按需调用、覆盖从想法到 ship 全链路的人。</li>
+                </ul>
+            </div>
+
+            <h3 class="section-title" style="font-size: 1.35rem; margin-top: 2rem;">对照表（摘自 Particula 文章维度）</h3>
+            <div style="overflow-x: auto;">
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th>维度</th>
+                            <th>Superpowers</th>
+                            <th>GStack</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>哲学</td>
+                            <td>流程强制，单一管线、少捷径</td>
+                            <td>角色专精，按需叫「专家」</td>
+                        </tr>
+                        <tr>
+                            <td>触发方式</td>
+                            <td>技能自动触发为主</td>
+                            <td>用户主动输入斜杠命令</td>
+                        </tr>
+                        <tr>
+                            <td>TDD</td>
+                            <td>强制 RED-GREEN-REFACTOR</td>
+                            <td>有 <code>/qa</code> 等，非强制</td>
+                        </tr>
+                        <tr>
+                            <td>视觉 / UI 验证</td>
+                            <td>v5 起有浏览器侧 mockup 等</td>
+                            <td>持久 headless 浏览器 + 真实交互</td>
+                        </tr>
+                        <tr>
+                            <td>子代理</td>
+                            <td>一等公民（每任务干净上下文）</td>
+                            <td>非核心卖点</td>
+                        </tr>
+                        <tr>
+                            <td>更适合</td>
+                            <td>复杂变更、测试与质量硬约束</td>
+                            <td>产品思考 + 全 sprint + 可视化 QA + 发布自动化</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="section-desc" style="margin-top: 1rem;">实践中常见组合：用 GStack 做产品范围与架构锁定与 UI/安全验证，用 Superpowers 管实现与 TDD 纪律。</p>
+        </div>
+    </section>
+
+    <section id="subagents-teams" class="section">
+        <div class="container">
+            <h2 class="section-title">二、平台范式：Subagents vs Agent Teams</h2>
+            <p class="section-desc">问题不应默认成「要不要多智能体」，而是「任务需要哪种协调方式」。Claude 生态里两条路径差异很大。</p>
+
+            <div class="section-block" style="margin-top: 2rem;">
+                <h3>Subagents（子代理）：隔离与压缩</h3>
+                <ul>
+                    <li>独立上下文、独立系统提示与工具集；完成单一任务后，通常只把<strong>汇总结果</strong>回传给父代理，不把完整推理链塞进主会话。</li>
+                    <li>价值不仅是并行，更是<strong>上下文压缩</strong>：大量探索在子窗口完成，主窗口保持干净。</li>
+                    <li>硬约束：子代理不能再 spawn 子代理，彼此不直连对话；<strong>父节点是唯一协调者</strong>，行为可预测。</li>
+                    <li>适用：可 embarrassingly parallel 的检索、代码库探索、互不依赖的分析条线。</li>
+                </ul>
+            </div>
+
+            <div class="section-block">
+                <h3>Agent Teams（智能体团队）：协作与共享状态</h3>
+                <ul>
+                    <li>长生命周期的多个代理实例，可<strong>点对点通信</strong>，通过共享任务列表（含依赖如 <code>blockedBy</code>）做真实协调。</li>
+                    <li>前端与后端代理可直接协商接口变更，而不必事事经 lead 转发。</li>
+                    <li>适用：工作中途发现会改变其他线程方向的场景，需要持续协商而非一次性交付摘要。</li>
+                </ul>
+            </div>
+
+            <h3 class="section-title" style="font-size: 1.35rem; margin-top: 2rem;">一句话对照</h3>
+            <div style="overflow-x: auto;">
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Subagents</th>
+                            <th>Agent Teams</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>协作模型</td>
+                            <td>发任务 → 收结果（fire-and-forget）</td>
+                            <td>持续对话与共享任务状态</td>
+                        </tr>
+                        <tr>
+                            <td>信息路径</td>
+                            <td>仅回流到父代理</td>
+                            <td>同伴之间可直接同步</td>
+                        </tr>
+                        <tr>
+                            <td>典型用途</td>
+                            <td>并行研究、探索、独立子问题</td>
+                            <td>需协商、依赖链复杂的联调</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section-block">
+                <h3>设计原则（摘自 Daily Dose 文章）</h3>
+                <ul>
+                    <li>按<strong>上下文边界</strong>拆任务，而不是按组织角色硬拆；否则会在 handoff 处丢信息。</li>
+                    <li>五种常见编排：顺序链、路由（分类器选处理器）、并行、编排器-工作者、评估-优化循环。</li>
+                    <li>先单代理推到极限，再为可度量的痛点加多代理；编码场景慎用多个代理<strong>同时写代码</strong>，易隐含冲突。</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="synthesis" class="section" style="background: var(--bg-secondary);">
+        <div class="container">
+            <h2 class="section-title">三、综合：三层怎么叠在一起</h2>
+            <p class="section-desc">读源码课程时，把外圈文章拆成三层；每层都有对应的站内章节，避免和 S01 的「循环实现」混读。</p>
+            <div class="solution-box">
+                <div class="solution-step">
+                    <div class="step-num">1</div>
+                    <div class="step-content">
+                        <strong>实现层：单会话里的 Loop 与工具</strong>
+                        <p>对应 <a href="s01.html">S01</a> / <a href="s02.html">S02</a>——<code>stop_reason</code>、消息累积、工具管线、懒加载等；<strong>本专题不覆盖</strong>。</p>
+                    </div>
+                </div>
+                <div class="solution-step">
+                    <div class="step-num">2</div>
+                    <div class="step-content">
+                        <strong>工作流层：技能包（Superpowers、GStack）</strong>
+                        <p>解决「终端里<strong>按什么纪律</strong>写代码」：TDD、评审、斜杠角色；课内无对等章节，靠本页与外链补充。</p>
+                    </div>
+                </div>
+                <div class="solution-step">
+                    <div class="step-num">3</div>
+                    <div class="step-content">
+                        <strong>多会话范式：Subagents vs Teams</strong>
+                        <p>概念对照在本页第二节；Claude Code 里子代理的<strong>实现</strong>见 <a href="s06.html">S06 Subagent Fork</a>，任务调度见 <a href="s08.html">S08 Task Management</a>。</p>
+                    </div>
+                </div>
+                <div class="solution-step">
+                    <div class="step-num">4</div>
+                    <div class="step-content">
+                        <strong>中文延伸阅读</strong>
+                        <p><a href="https://zhuanlan.zhihu.com/p/2019440154893374100" target="_blank" rel="noopener noreferrer">知乎专栏</a> 与两篇英文长文对照阅读。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-main" style="margin-top: 0;">
+        <div class="container">
+            <div class="footer-bottom-main">
+                <p><a href="index.html">← 返回 Claude Code Course 首页</a> · 本页为学习整理，转载请注明出处与原文链接。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

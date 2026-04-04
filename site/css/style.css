@@ -913,6 +913,16 @@ body {
     margin-top: 8px;
 }
 
+/* 十二章总览图：略增高画布，便于大图可读 */
+.mermaid-figure--course-map .mermaid-diagram-scroll--xl {
+    padding: 20px 16px 28px;
+    min-height: 320px;
+}
+
+.mermaid-figure--course-map .mermaid-diagram-scroll--xl .mermaid-flowchart {
+    min-width: min(100%, 720px);
+}
+
 /* 课程网格 */
 .courses-grid {
     display: grid;
@@ -3871,6 +3881,91 @@ body {
     margin-bottom: 24px;
 }
 
+a.hero-badge--jump {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+a.hero-badge--jump:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary);
+}
+
+a.hero-badge--jump:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+}
+
+.hero-badge-hint {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    padding-left: 10px;
+    border-left: 1px solid var(--border);
+}
+
+/* Source Map 事件简讯（首页 Hero 下方） */
+.source-map-event-section {
+    scroll-margin-top: 88px;
+    padding: 40px 20px 48px;
+    background: var(--bg-card);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.source-map-event-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-align: center;
+    margin: 0 auto 20px;
+    max-width: 720px;
+    line-height: 1.35;
+}
+
+.source-map-event-body {
+    max-width: 720px;
+    margin: 0 auto;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.source-map-event-body > p {
+    margin: 0 0 16px;
+}
+
+.source-map-event-list {
+    margin: 0 0 20px;
+    padding-left: 1.25rem;
+    list-style: disc;
+}
+
+.source-map-event-list li {
+    margin-bottom: 10px;
+}
+
+.source-map-event-list li::marker {
+    color: var(--primary);
+}
+
+.source-map-event-more {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.source-map-event-more a {
+    color: var(--primary);
+    font-weight: 600;
+}
+
 .hero-title {
     font-size: 3.5rem;
     font-weight: 800;
@@ -4019,6 +4114,80 @@ body {
 
 .feature-card-main.feature-warning {
     border-left: 4px solid #f59e0b;
+}
+
+.feature-card-main.feature-topic {
+    border-left: 4px solid #8b5cf6;
+}
+
+/* 学习入口：主打源码课程（全宽 + 横向布局） */
+.features-grid-has-flagship .feature-card-main.feature-flagship {
+    grid-column: 1 / -1;
+    padding: 28px 32px 32px;
+    border-left-width: 6px;
+    box-shadow: 0 8px 32px rgba(13, 148, 136, 0.12);
+    background: linear-gradient(
+        135deg,
+        var(--bg-card) 0%,
+        rgba(20, 184, 166, 0.07) 55%,
+        var(--bg-card) 100%
+    );
+}
+
+.feature-flagship-badge {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #0f766e;
+    background: rgba(20, 184, 166, 0.22);
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(20, 184, 166, 0.35);
+}
+
+[data-theme="dark"] .feature-flagship-badge,
+[data-theme="midnight"] .feature-flagship-badge {
+    color: #5eead4;
+    background: rgba(20, 184, 166, 0.14);
+    border-color: rgba(94, 234, 212, 0.28);
+}
+
+.feature-flagship-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding-right: 72px;
+}
+
+@media (min-width: 640px) {
+    .feature-flagship-inner {
+        flex-direction: row;
+        align-items: center;
+        gap: 28px;
+        padding-right: 80px;
+    }
+
+    .feature-card-main.feature-flagship .feature-icon-main {
+        font-size: 3.5rem;
+        margin-bottom: 0;
+    }
+
+    .feature-card-main.feature-flagship .feature-title-main {
+        font-size: 1.65rem;
+    }
+}
+
+.feature-flagship-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.feature-card-main.feature-flagship .feature-tags {
+    margin-top: 4px;
 }
 
 .feature-icon-main {
