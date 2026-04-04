@@ -126,12 +126,45 @@
 | 名字（示意） | 大致干什么 |
 |-------------|------------|
 | `ccswitch` / `codexswitch` | 多套 CLI / 配置目录切换 |
+| `mtool`（及同类网关 CLI） | 配置在 YAML/JSON；安装后进 `PATH`，全局子命令切换 profile / 重载 |
 | `clashproxy` / `proxy_manager.sh` | 代理环境变量 on/off |
 | `glmclaude` | 子 shell 注入变量后 `exec claude`（占位） |
 | `installAntigravity.sh` | 考古向安装骨架 |
 | `aionuip` | UI 自动化延时 + 点击示意 |
 | `mylaunch` | `cd` 工程 + Zellij attach/create |
 | `frpc` | 内网穿透 ini 示意（仅实验） |
+
+### `mtool` 等：配置文件里写全，全局命令只管切换
+
+**区别**：`ccswitch` 多是自写 bash 改环境变量指向另一配置根；**`mtool` 类**通常是**一个二进制**读 `~/.config/...` 下 YAML/JSON，通过 **PATH 里的子命令**（`profile list` / `use` / `doctor` 等，**以你安装版本 `--help` 为准**）切换。密钥只放配置文件引用环境变量或密钥链，勿写进仓库。
+
+**接上全局命令**：安装到 `~/.local/bin` 或 `/usr/local/bin`，或 `ln -s` 到 `~/bin`；新终端 `which mtool` 自检。
+
+**与 Claude Code 联用**：常配合 `ANTHROPIC_BASE_URL` 指向本机监听；顺序示意：代理（若需）→ 启 mtool → `ccswitch` 或启动 `claude`。
+
+```yaml
+# ~/.config/mtool/config.yaml 示意
+version: 1
+current_profile: default
+profiles:
+  default:
+    listen: "127.0.0.1:11435"
+    upstream_base: "https://example.invalid/v1"
+  work:
+    listen: "127.0.0.1:11436"
+    upstream_base: "https://corp-gateway.example.invalid/v1"
+```
+
+```bash
+#!/usr/bin/env bash
+exec "${HOME}/.local/lib/mtool/bin/mtool" "$@"
+```
+
+```bash
+# mtool version
+# mtool profile list
+# mtool profile use work
+```
 
 ### `ccswitch` / `codexswitch`
 

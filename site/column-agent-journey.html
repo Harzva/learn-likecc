@@ -25,6 +25,7 @@
                 <a href="#loop-ecosystem" class="nav-link">Loop</a>
                 <a href="#focus" class="nav-link">重心</a>
                 <a href="#toolbox" class="nav-link">脚本</a>
+                <a href="#tb-mtool" class="nav-link">mtool</a>
             </div>
             <div class="nav-actions">
                 <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
@@ -153,6 +154,7 @@
                             </thead>
                             <tbody>
                                 <tr><td><code>ccswitch</code> / <code>codexswitch</code></td><td>多套 CLI/配置间快速切换</td></tr>
+                                <tr><td><code>mtool</code>（及同类网关 CLI）</td><td>配置集中在 YAML/JSON；安装后进 <code>PATH</code>，用全局子命令切换 profile / 重载</td></tr>
                                 <tr><td><code>clashproxy</code> / <code>proxy_manager.sh</code></td><td>代理启停与环境变量一批生效</td></tr>
                                 <tr><td><code>glmclaude</code></td><td>兼容协议链路接入日常开发（占位示意）</td></tr>
                                 <tr><td><code>installAntigravity.sh</code></td><td>历史环境安装（考古占位）</td></tr>
@@ -162,6 +164,48 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <h3 id="tb-mtool"><code>mtool</code> 等：配置文件里写全，全局命令只管切换</h3>
+                    <p><strong>和上面 shell 脚本的区别</strong>：<code>ccswitch</code> 往往是你自己写几行 bash，改 <code>CLAUDE_CONFIG_DIR</code> 之类；<strong><code>mtool</code> 一类工具</strong>通常是<strong>单个二进制（或官方安装脚本）</strong>，读<strong>固定路径下的配置文件</strong>（YAML/JSON/TOML），再通过<strong>已加入 <code>PATH</code> 的子命令</strong>完成「列 profile → 切换 → 校验 → 重载」。真实密钥、上游地址、模型映射<strong>只应出现在配置文件或环境变量里</strong>，不要写进本仓库。</p>
+                    <p><strong>怎么接到「全局命令」</strong>（择一即可，示意）：</p>
+                    <ul>
+                        <li>安装器把可执行文件放到 <code>/usr/local/bin</code> 或 <code>~/.local/bin</code>，且该目录已在 <code>PATH</code>；</li>
+                        <li>或自己 <code>ln -s "$(pwd)/mtool" ~/bin/mtool</code>，保证 <code>~/bin</code> 在 <code>PATH</code>；</li>
+                        <li>装完在<strong>新开的终端</strong>里跑 <code>which mtool</code> / <code>mtool --help</code>（或发行版文档里的等价命令）确认生效。</li>
+                    </ul>
+                    <p><strong>典型工作流（子命令名随版本而变，以你本机 <code>--help</code> 为准）</strong>：</p>
+                    <ol>
+                        <li>用发行版文档定位<strong>默认配置路径</strong>（常见形态如 <code>~/.config/mtool/config.yaml</code>，此处仅为占位）。</li>
+                        <li>在配置里维护多个 <code>profile</code>（例如 <code>default</code> / <code>work</code>），每个 profile 写<strong>占位</strong>的 <code>base_url</code>、路由规则；API Key 用 <code>${ENV_VAR}</code> 引用或交给系统钥匙串，避免明文。</li>
+                        <li>若 CLI 提供 <code>use</code> / <code>switch</code>：执行后<strong>当前 shell 或守护进程</strong>切到对应 profile；若没有，则<strong>改 YAML 里的 current 字段</strong>后执行文档要求的 <code>reload</code> / 重启服务。</li>
+                        <li>与 <code>claude</code> / <code>codex</code> 联用时：通常仍需按该工具文档设置 <code>ANTHROPIC_BASE_URL</code> 等（或由其生成的 <code>env</code> 子命令一次性打印），再启动 CLI——<strong>顺序</strong>往往是：代理（若需要）→ mtool 监听就绪 → 再开 Agent。</li>
+                    </ol>
+                    <div class="code-block">
+                        <pre><code class="language-yaml"># ~/.config/mtool/config.yaml 示意（目录与键名以你所装版本为准，勿照抄当真）
+version: 1
+current_profile: default
+profiles:
+  default:
+    listen: "127.0.0.1:11435"           # 占位端口
+    upstream_base: "https://example.invalid/v1"
+    # api_key_env: "MT_API_KEY"        # 真 key 只放在 export MT_API_KEY=… 或密钥链
+  work:
+    listen: "127.0.0.1:11436"
+    upstream_base: "https://corp-gateway.example.invalid/v1"</code></pre>
+                    </div>
+                    <div class="code-block">
+                        <pre><code class="language-bash">#!/usr/bin/env bash
+# 若官方未写 PATH：薄包装，把「真实二进制」固定在一个路径（占位）
+exec "${HOME}/.local/lib/mtool/bin/mtool" "$@"</code></pre>
+                    </div>
+                    <div class="code-block">
+                        <pre><code class="language-bash"># 占位：自检与切换（子命令名请 mtool --help 核对）
+# mtool version
+# mtool profile list
+# mtool profile use work
+# mtool doctor   # 或 status / ping，视发行版而定</code></pre>
+                    </div>
+                    <p><strong>和 <code>ccswitch</code> 怎么配合</strong>：<code>ccswitch</code> 换的是「Claude 自己的配置目录」；<code>mtool</code> 换的是「网关/兼容层」监听与上游。二者可以<strong>叠用</strong>（例如先 <code>source clashproxy</code>，再启 mtool，再 <code>ccswitch work</code>），但要清楚<strong>哪一层在吃你的流量与密钥</strong>，避免重复代理或重复鉴权。</p>
 
                     <h3 id="tb-ccswitch"><code>ccswitch</code> / <code>codexswitch</code></h3>
                     <p><strong>思路</strong>：用「配置目录」或独立 env 文件区分多套 CLI 身份，切换时只改环境变量，不重装。</p>
@@ -281,7 +325,7 @@ layout {
   }
 }</code></pre>
                     </div>
-                    <p><strong>小结</strong>：读者看到的是<strong>模式</strong>——切换配置、代理环境、安全注入、会话编排——请把占位全部换成你自己的习惯与密钥管理方式。</p>
+                    <p><strong>小结</strong>：读者看到的是<strong>模式</strong>——<strong>配置驱动全局命令（如 mtool）</strong>、手写切换脚本（<code>ccswitch</code>）、代理环境、安全注入、会话编排——请把占位全部换成你自己的习惯与密钥管理方式；具体子命令以各工具 <code>--help</code> 与官方文档为准。</p>
                 </section>
 
                 <section id="outro" class="section-block">
