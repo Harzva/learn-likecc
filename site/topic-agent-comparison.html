@@ -6,7 +6,7 @@
     <title>Agent 生态对比：技能包与子代理 - Claude Code Course</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
-    <meta name="description" content="Superpowers vs GStack、Subagents vs Agent Teams 对比；与 S01 Agent Loop 实现课分工说明，附原文链接。">
+    <meta name="description" content="Superpowers 与 GStack 技能包对比；Claude Subagents 与 Agent Teams 协调范式梳理；附知乎与英文原文链接。">
 </head>
 <body>
     <nav class="navbar">
@@ -16,11 +16,11 @@
                 <span class="logo-text">Agent 生态</span>
             </a>
             <div class="nav-links">
-                <a href="#scope" class="nav-link">与课程分工</a>
+                <a href="#intro" class="nav-link">导读</a>
                 <a href="#sources" class="nav-link">参考来源</a>
                 <a href="#skill-packs" class="nav-link">技能包</a>
                 <a href="#subagents-teams" class="nav-link">子代理与团队</a>
-                <a href="#synthesis" class="nav-link">综合对照</a>
+                <a href="#synthesis" class="nav-link">小结</a>
             </div>
             <div class="nav-actions">
                 <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
@@ -40,59 +40,22 @@
                 <span class="gradient-text">技能包与子代理</span>
             </h1>
             <p class="hero-subtitle">
-                把「工作流型技能包」与「平台级多智能体协作」放在同一张图里理解<br>
-                <strong>不写</strong> S01 里的循环实现：懒加载、<code>stop_reason</code>、消息累积与课内练习见 <a href="s01.html" style="color: inherit; text-decoration: underline;">S01 Agent Loop</a>
+                围绕公开文章整理的两条主线：<strong>终端里的工作流型技能包</strong>（Superpowers / GStack），以及<strong>多智能体怎么协作</strong>（Subagents vs Agent Teams）。<br>
+                本页自洽完读，不依赖其他教程章节。
             </p>
             <div class="hero-actions">
-                <a href="#scope" class="btn btn-primary">先看与课程分工</a>
-                <a href="#skill-packs" class="btn btn-secondary">Superpowers / GStack</a>
+                <a href="#sources" class="btn btn-primary">参考来源</a>
+                <a href="#skill-packs" class="btn btn-secondary">技能包对比</a>
             </div>
         </div>
     </section>
 
-    <section id="scope" class="section" style="background: var(--bg-secondary); padding-top: 60px;">
+    <section id="intro" class="section" style="background: var(--bg-secondary); padding-top: 60px;">
         <div class="container">
-            <h2 class="section-title">与源码课程：不重复哪里？</h2>
-            <p class="section-desc">下面这张对照表专门消解「Agent 专题」和「S01 Agent Loop」的覆盖感：同一词 Agent，两层完全不同的课。</p>
-            <div style="overflow-x: auto;">
-                <table class="compare-table">
-                    <thead>
-                        <tr>
-                            <th>主题</th>
-                            <th><a href="s01.html">S01 Agent Loop</a>（及 S02 工具等）</th>
-                            <th>本专题页</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>懒加载、Feature Flags、错误重试</td>
-                            <td>✓ 设计模式与源码语境</td>
-                            <td>✗ 不涉及</td>
-                        </tr>
-                        <tr>
-                            <td>最小 Loop、Read/Write/Edit 练习</td>
-                            <td>✓ 实践练习</td>
-                            <td>✗ 无编程作业</td>
-                        </tr>
-                        <tr>
-                            <td><code>stop_reason</code>、消息累积、工具失败</td>
-                            <td>✓ 关键设计与思考题</td>
-                            <td>✗ 不涉及</td>
-                        </tr>
-                        <tr>
-                            <td>Superpowers / GStack、外链观点</td>
-                            <td>✗ 不在课纲内</td>
-                            <td>✓ 对比整理 + 原文链接</td>
-                        </tr>
-                        <tr>
-                            <td>Subagents vs Agent Teams（协调模型）</td>
-                            <td>概念在 <a href="s06.html">S06 Subagent Fork</a> 等从<strong>实现</strong>讲</td>
-                            <td>✓ 从<strong>产品/范式</strong>对照，与 S06 互补而非替代</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <p class="section-desc" style="margin-bottom: 0;">若你正在看 S01 底部的设计模式与思考题，请继续留在 S01；读完再打开本页，只会多一层「生态与工作流」视角，不会重讲同一套练习。</p>
+            <h2 class="section-title">本页读什么？</h2>
+            <p class="section-desc" style="margin-bottom: 0; max-width: 720px; margin-left: auto; margin-right: auto;">
+                近年 AI 编程助手生态里，「技能包 / 斜杠命令」和「子代理 / 团队」经常被混在一起讨论。这里把<strong>同一问题下的不同解法</strong>拆开写清楚：前者多是 Markdown 与工作流纪律，后者是上下文隔离与协作拓扑。下文表格与要点均来自列出的原文，便于你核对与延伸阅读。
+            </p>
         </div>
     </section>
 
@@ -259,35 +222,28 @@
 
     <section id="synthesis" class="section" style="background: var(--bg-secondary);">
         <div class="container">
-            <h2 class="section-title">三、综合：三层怎么叠在一起</h2>
-            <p class="section-desc">读源码课程时，把外圈文章拆成三层；每层都有对应的站内章节，避免和 S01 的「循环实现」混读。</p>
+            <h2 class="section-title">三、小结：两条线怎么一起想</h2>
+            <p class="section-desc">不必把「技能包」和「子代理/团队」当成同一件事：前者回答<strong>在终端里按什么纪律写与审</strong>，后者回答<strong>多个会话之间如何分工与同步</strong>。</p>
             <div class="solution-box">
                 <div class="solution-step">
                     <div class="step-num">1</div>
                     <div class="step-content">
-                        <strong>实现层：单会话里的 Loop 与工具</strong>
-                        <p>对应 <a href="s01.html">S01</a> / <a href="s02.html">S02</a>——<code>stop_reason</code>、消息累积、工具管线、懒加载等；<strong>本专题不覆盖</strong>。</p>
+                        <strong>工作流与技能包</strong>
+                        <p>Superpowers、GStack 这类方案，把 TDD、评审、角色化命令固化成可重复调用的套路；选型取决于你更怕「没测试」还是更缺「产品/UI/发布」一条龙。</p>
                     </div>
                 </div>
                 <div class="solution-step">
                     <div class="step-num">2</div>
                     <div class="step-content">
-                        <strong>工作流层：技能包（Superpowers、GStack）</strong>
-                        <p>解决「终端里<strong>按什么纪律</strong>写代码」：TDD、评审、斜杠角色；课内无对等章节，靠本页与外链补充。</p>
+                        <strong>多智能体拓扑</strong>
+                        <p>需要<strong>干净摘要回主会话</strong>时用 Subagents；需要<strong>同伴之间持续对齐</strong>时用 Agent Teams。先画清上下文边界，再决定拆不拆、怎么拆。</p>
                     </div>
                 </div>
                 <div class="solution-step">
                     <div class="step-num">3</div>
                     <div class="step-content">
-                        <strong>多会话范式：Subagents vs Teams</strong>
-                        <p>概念对照在本页第二节；Claude Code 里子代理的<strong>实现</strong>见 <a href="s06.html">S06 Subagent Fork</a>，任务调度见 <a href="s08.html">S08 Task Management</a>。</p>
-                    </div>
-                </div>
-                <div class="solution-step">
-                    <div class="step-num">4</div>
-                    <div class="step-content">
-                        <strong>中文延伸阅读</strong>
-                        <p><a href="https://zhuanlan.zhihu.com/p/2019440154893374100" target="_blank" rel="noopener noreferrer">知乎专栏</a> 与两篇英文长文对照阅读。</p>
+                        <strong>阅读原文</strong>
+                        <p>细节、版本与批评意见以原文为准：<a href="https://particula.tech/blog/superpowers-vs-gstack-ai-coding-skill-packs" target="_blank" rel="noopener noreferrer">Particula</a>、<a href="https://blog.dailydoseofds.com/p/claude-subagents-vs-agent-teams" target="_blank" rel="noopener noreferrer">Daily Dose of DS</a>、<a href="https://zhuanlan.zhihu.com/p/2019440154893374100" target="_blank" rel="noopener noreferrer">知乎专栏</a>。</p>
                     </div>
                 </div>
             </div>
