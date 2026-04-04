@@ -613,42 +613,142 @@ bridge.on('requestAction', (payload) => {
     """
                 <section class="section-block">
                     <h2>🔬 深挖目标</h2>
-                    <p>Hooks 把固定流程变成可插拔管道：<strong>何时触发、入参上下文、可否阻断、失败是否致命、是否幂等</strong>，必须在文档与代码里一致。</p>
+                    <p>Hooks 把固定流程变成可插拔管道。本讲要求你能对照<strong>真实调度代码</strong>回答：<strong>事件从哪进、匹配规则、并行还是串行、权限/改参如何合并、超时与信任门、失败是否阻断主流程</strong>——而不是只背事件名。</p>
+                </section>
+
+                <section class="section-block">
+                    <h2>📂 源码锚点（本仓库 <code>ccsource/claude-code-main</code>）</h2>
+                    <p>克隆课程仓库且已包含 <code>ccsource</code> 时，按下表打开文件即可；行号随上游变动可能漂移，以符号名搜索为准。</p>
+                    <table class="options-table">
+                        <tr><th>路径</th><th>读什么</th></tr>
+                        <tr><td><code>src/utils/hooks.ts</code></td><td><code>executeHooks</code>、<code>executePreToolHooks</code> / <code>executePostToolHooks</code>、<code>TOOL_HOOK_EXECUTION_TIMEOUT_MS</code>、信任与 <code>CLAUDE_CODE_SIMPLE</code> 早退。</td></tr>
+                        <tr><td><code>src/services/tools/toolHooks.ts</code></td><td><code>runPreToolUseHooks</code> / <code>runPostToolUseHooks</code>：把 hook 生成器产物映射成 <code>hookPermissionResult</code>、<code>hookUpdatedInput</code>、<code>stop</code> 等。</td></tr>
+                        <tr><td><code>src/services/tools/toolExecution.ts</code></td><td><code>checkPermissionsAndCallTool</code> 里消费 pre-hook 的 <code>for await</code> 循环：<strong>每次 <code>hookUpdatedInput</code> 都会覆盖 <code>processedInput</code></strong>。</td></tr>
+                        <tr><td><code>src/utils/hooks/execAgentHook.ts</code> 等</td><td>各 <code>type</code>（command / http / prompt / callback）如何落盘为子进程或 RPC。</td></tr>
+                    </table>
+                    <p>另有<strong>最小可读实现</strong>（教学用，非上游快照）：<a href="https://github.com/Harzva/learn-likecc/blob/main/course/examples/s10-hooks.ts" target="_blank" rel="noopener"><code>course/examples/s10-hooks.ts</code></a>，适合对照类型与注册表思路。</p>
                 </section>
 
                 <section class="section-block">
                     <h2>🪝 生命周期矩阵</h2>
                     <ul>
-                        <li><strong>Pre</strong>：能否修改即将执行的参数？改坏谁来背锅？</li>
-                        <li><strong>Post</strong>：能否改写 ToolResult？若改写，审计链怎么记？</li>
-                        <li><strong>全局 vs 每工具</strong>：注册顺序与短路规则。</li>
+                        <li><strong>PreToolUse</strong>：可在进入 <code>canUseTool</code> 前改写 <code>processedInput</code>，或通过 <code>permissionBehavior</code> 走 allow / ask / deny；也可 <code>blockingError</code> 直接否决。</li>
+                        <li><strong>PostToolUse</strong>：拿到真实 <code>tool_response</code> 后做审计、脱敏、替换 MCP 输出（见源码 <code>updatedMCPToolOutput</code>）；<strong>不能</strong>替代「尚未发生的批准」。</li>
+                        <li><strong>匹配</strong>：<code>executePreToolHooks</code> 传入 <code>matchQuery: toolName</code>，配置侧按工具名过滤；具体合并顺序见下一节。</li>
                     </ul>
                 </section>
 
                 <section class="section-block">
-                    <h2>🧪 幂等与沙箱</h2>
+                    <h2>⚡ 并行、权限合并与「最后一条改参获胜」</h2>
+                    <p>与「hook 按注册顺序串行改同一个字段」的直觉不同，上游对<strong>一批匹配的 command/prompt/… hook</strong>采用<strong>并行启动 + 聚合结果</strong>：<code>matchingHooks.map(...)</code> 后为 <code>for await (const result of all(hookPromises))</code>。权限类结果有明确优先级：<strong>deny &gt; ask &gt; allow</strong>（见注释 <code>Apply precedence rules</code>）。</p>
+                    <p>若多个 hook 仅返回 <code>updatedInput</code>（无 <code>permissionBehavior</code>），引擎会<strong>逐条 yield</strong>；在 <code>toolExecution.ts</code> 中每收到一条 <code>hookUpdatedInput</code> 就执行 <code>processedInput = result.updatedInput</code>——因此<strong>多 hook 改同一键时，最终生效值取决于异步完成顺序在生成器中的产出次序</strong>，一般应视为<strong>非确定性</strong>，产品侧应禁止多 hook 争用同一字段，或合并为单一 hook。</p>
+                </section>
+
+                <section class="section-block">
+                    <h2>📎 源码摘录（<code>ccsource/.../hooks.ts</code>）</h2>
+                    <p>下列片段与当前课程随附的 <code>ccsource/claude-code-main</code> 一致，便于你全文搜索时核对；上游更新后请以本地文件为准。</p>
+                    <div class="code-block">
+                        <pre><code class="language-typescript">// L2224 起：一批匹配到的 hook 并行执行（非 for 循环串行 await）
+// Run all hooks in parallel with individual timeouts
+const hookPromises = matchingHooks.map(async function* (...) { ... })
+
+// L2903 起：聚合多条并行结果时的权限优先级
+// Check for permission behavior with precedence: deny > ask > allow
+switch (result.permissionBehavior) {
+  case 'deny':
+    permissionBehavior = 'deny' // deny always takes precedence
+    break
+  case 'ask':
+    if (permissionBehavior !== 'deny') permissionBehavior = 'ask'
+    break
+  case 'allow':
+    if (!permissionBehavior) permissionBehavior = 'allow'
+    break
+}</code></pre>
+                    </div>
+                    <div class="code-block">
+                        <pre><code class="language-typescript">// toolExecution.ts（checkPermissionsAndCallTool）— hook 改参覆盖
+case 'hookUpdatedInput':
+  processedInput = result.updatedInput</code></pre>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2>🧪 超时、信任门与环境开关</h2>
                     <table class="options-table">
-                        <tr><th>风险</th><th>缓解</th></tr>
-                        <tr><td>Hook 再调模型 → 递归</td><td>深度计数 / 禁止重入</td></tr>
-                        <tr><td>Hook 写磁盘</td><td>权限继承 D03 + 路径白名单</td></tr>
-                        <tr><td>Hook 抛错</td><td>明确：阻断主流程 vs 仅记录</td></tr>
+                        <tr><th>主题</th><th>源码/行为要点</th></tr>
+                        <tr><td>默认超时</td><td><code>TOOL_HOOK_EXECUTION_TIMEOUT_MS = 10 * 60 * 1000</code>（10 分钟）为常见默认值；单 hook 可自带 <code>timeout</code>。</td></tr>
+                        <tr><td>工作区信任</td><td><code>executeHooks</code> 开头：未接受信任时直接跳过用户 hook，集中防止交互模式下的 RCE 面。</td></tr>
+                        <tr><td><code>CLAUDE_CODE_SIMPLE</code></td><td>为真时整段 <code>executeHooks</code> 早退，等价于关闭复杂 hook 管线（调试/极简路径）。</td></tr>
+                        <tr><td>Hook 再调模型</td><td>仍可能递归或拖死会话；应用层需配额、深度与「hook 内禁止再触发同类事件」的约定。</td></tr>
+                        <tr><td>Hook 写磁盘</td><td>继承宿主权限与 D03；命令类 hook 本质是子进程，别把秘密写进日志。</td></tr>
                     </table>
                 </section>
 
                 <section class="section-block">
-                    <h2>📖 走读顺序</h2>
+                    <h2>📖 走读顺序（带搜索关键词）</h2>
                     <ol>
-                        <li>找到 hook 注册与调度器，列出所有事件名。</li>
-                        <li>为每个事件标注：同步还是 async、超时默认值。</li>
-                        <li>写一个小 hook 插件，验证 pre/post 各触发一次。</li>
+                        <li><code>hooks.ts</code>：搜 <code>export async function* executePreToolHooks</code>，看 <code>hookInput</code> 结构与 <code>hasHookForEvent</code> 短路。</li>
+                        <li>同文件搜 <code>async function* executeHooks</code>，读 <code>getMatchingHooks</code> → 并行 <code>hookPromises</code> → <code>permissionBehavior</code> 优先级与 <code>updatedInput</code> yield。</li>
+                        <li><code>toolHooks.ts</code>：<code>runPreToolUseHooks</code> 分支表，对照 S10 配置 JSON 与真实 <code>AggregatedHookResult</code> 字段。</li>
+                        <li><code>toolExecution.ts</code>：<code>case 'hookUpdatedInput'</code>，确认改参如何进入后续权限与工具执行。</li>
+                        <li>本地跑一条真实 <code>PreToolUse</code> command（echo JSON），用日志验证只触发一次 Pre、一次 Post。</li>
                     </ol>
                 </section>
 
-                <section class="section-block">
-                    <h2>✏️ 自测</h2>
+                <section class="section-block" id="d10-q-hook-order">
+                    <h2>✏️ 自测 1 · 参考答案：两个 hook 改同一参数，谁说了算？</h2>
+                    <h3>题干</h3>
+                    <p>配置了两个 <code>PreToolUse</code> hook，都对 <code>Bash</code> 生效，且都在 JSON 里返回 <code>hookSpecificOutput.updatedInput</code> 修改同一字段（例如 <code>command</code>）。最终进入工具执行的到底是哪一份？用户问「优先级」时你怎么解释？</p>
+                    <h3>结论</h3>
+                    <p>这批 hook 在引擎侧<strong>并行执行</strong>；聚合时每条 hook 的 <code>updatedInput</code> 会<strong>分别 yield</strong>。宿主在 <code>checkPermissionsAndCallTool</code> 中对 <code>hookUpdatedInput</code> 的处理是<strong>简单覆盖</strong>——后收到的那条覆盖先前的 <code>processedInput</code>。由于并行完成顺序不稳定，<strong>不应依赖「注册顺序」或「文件顺序」作为契约</strong>。</p>
+                    <h3>向用户怎么说</h3>
                     <ul>
-                        <li>若两个 hook 修改同一参数，顺序由谁决定？如何向用户解释？</li>
-                        <li>Post-hook 能否实现「自动 approve 某类工具」？安全代价？</li>
+                        <li>文档写死：<strong>不要配置多个会改写同一键的 Pre hook</strong>；需要多段逻辑请合并为一个脚本或在脚本内自行合并。</li>
+                        <li>若必须链式改写，应在<strong>单一 hook</strong>内顺序处理，或改上游引入显式全序（当前开源实现未保证）。</li>
+                    </ul>
+                    <p>代码锚点（覆盖语义，与仓库 <code>ccsource</code> 对齐）：</p>
+                    <div class="code-block">
+                        <pre><code class="language-typescript">// toolExecution.ts — 每来一条 hookUpdatedInput 就整体替换 processedInput
+case 'hookUpdatedInput':
+  processedInput = result.updatedInput</code></pre>
+                    </div>
+                </section>
+
+                <section class="section-block" id="d10-q-post-approve">
+                    <h2>✏️ 自测 2 · 参考答案：Post-hook 能「自动 approve」吗？</h2>
+                    <h3>题干</h3>
+                    <p>能否靠 <code>PostToolUse</code> hook 实现「某类工具一律自动批准」？安全代价是什么？</p>
+                    <h3>结论</h3>
+                    <p><strong>不能</strong>把 Post 当成批准门：批准发生在<strong>工具尚未执行</strong>之前，对应的是 <code>PreToolUse</code> 返回的 <code>permissionBehavior: 'allow'</code>（以及正常权限流里的 <code>canUseTool</code>）。<code>PostToolUse</code> 运行时工具已经完成，最多做日志、脱敏、改写展示给模型的 MCP 输出等。</p>
+                    <h3>若强行「看起来像自动批准」</h3>
+                    <p>只能用 <strong>PreToolUse</strong> 或策略引擎在 <code>canUseTool</code> 前放行。代价是：<strong>任何误匹配规则都会真实执行危险工具</strong>（磁盘、网络、子进程），且审计必须记录「由 hook 策略自动 allow」以供追责。</p>
+                </section>
+
+                <section class="section-block" id="d10-q-permission-merge">
+                    <h2>✏️ 自测 3 · 参考答案：并行 hook 的 allow / ask / deny 谁赢？</h2>
+                    <h3>题干</h3>
+                    <p>同一 <code>PreToolUse</code>、同一工具，hook A 返回 allow，hook B 返回 ask，hook C 返回 deny。最终权限行为是什么？</p>
+                    <h3>结论</h3>
+                    <p>在 <code>executeHooks</code> 的结果聚合里，注释写明优先级：<strong>deny &gt; ask &gt; allow</strong>。因此最终为 <strong>deny</strong>。这与「最后一个改参获胜」是两套逻辑：权限走聚合优先级，纯 <code>updatedInput</code> 走多次覆盖。</p>
+                    <p>教学提示：设计策略时，<strong>deny 应视为安全绳</strong>——任一子系统否决即不执行。</p>
+                </section>
+
+                <section class="section-block" id="d10-q-audit-post">
+                    <h2>✏️ 自测 4 · 参考答案：Post 改写输出与审计链</h2>
+                    <h3>题干</h3>
+                    <p><code>PostToolUse</code> hook 若替换 MCP 工具返回体（源码中的 <code>updatedMCPToolOutput</code>），审计日志应记录「原始结果」还是「改写后结果」？模型看到的与落盘的一致吗？</p>
+                    <h3>结论</h3>
+                    <p>合规上应<strong>至少保留原始结果或哈希</strong>在不可篡改存储中，改写给模型的内容单独记为「hook 变换后」。若只记改写版，事后无法复盘数据泄露是否由 hook 引入。实现上需区分：<strong>工具真实返回值</strong>、<strong>进入对话上下文的值</strong>、<strong>用户可见附件</strong>是否三层一致——任何不一致都应在产品说明里写清。</p>
+                </section>
+
+                <section class="section-block">
+                    <h2>✏️ 自测（题干回顾）</h2>
+                    <ul>
+                        <li>两 hook 改同一参数谁优先？→ <a href="#d10-q-hook-order">自测 1</a></li>
+                        <li>Post 能否自动 approve？→ <a href="#d10-q-post-approve">自测 2</a></li>
+                        <li>并行 allow/ask/deny 谁赢？→ <a href="#d10-q-permission-merge">自测 3</a></li>
+                        <li>Post 改写输出如何审计？→ <a href="#d10-q-audit-post">自测 4</a></li>
                     </ul>
                 </section>
     """,
