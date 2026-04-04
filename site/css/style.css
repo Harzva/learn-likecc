@@ -2596,19 +2596,62 @@ body {
     margin-bottom: 0.5rem;
 }
 
+/* S12 等页「结业」块：无样式时内联 a.btn 可能与上文挤在同一行视觉重叠，强制纵向栈 */
+.course-complete {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    padding: 1.25rem 1.25rem 1.5rem;
+    max-width: 100%;
+    background: var(--bg-hover);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    clear: both;
+    position: relative;
+    z-index: 1;
+    isolation: isolate;
+}
+
+.course-complete h2 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.course-complete p {
+    margin: 0;
+    max-width: 100%;
+    line-height: 1.65;
+    color: var(--text-secondary);
+}
+
+.course-complete .btn {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    flex-shrink: 0;
+}
+
+/* 课程内链式按钮统一为块级盒，避免行内 padding 与相邻文字争位 */
+.course-content > .btn {
+    display: inline-flex;
+}
+
 .chapter-navigation {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
-    margin-top: 3rem;
+    margin-top: 2rem;
     padding-top: 1.5rem;
     padding-bottom: 0.5rem;
     border-top: 1px solid var(--border);
     clear: both;
     position: relative;
-    z-index: 2;
+    z-index: 0;
 }
 
 .course-main pre ::selection,
@@ -5344,6 +5387,11 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 }
 
 @media (max-width: 900px) {
+    /* 左下角固定 FAB 勿盖住章节底部按钮与正文 */
+    body.has-site-sidebar .course-main {
+        padding-bottom: 120px;
+    }
+
     body.has-site-sidebar {
         padding-left: 0 !important;
     }
