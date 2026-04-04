@@ -30,12 +30,20 @@
 
 ## 任务清单（Agent 4）— 完成后改为 `[x]`
 
-- [ ] 列出 `site/*.html`，与 `site/md/*.md` 做集合对比，**无缺失 stem**（除已豁免）
-- [ ] 互链抽查或全量扫描：HTML 中 blob URL 的 stem 与文件名一致
-- [ ] 处理例外：在 [v2.5.0_plan.md 第八节](../v2.5.0_plan.md) 记录豁免项（若有）
-- [ ] **可选**：新增 `tools/check_site_md_parity.py`，打印缺 MD / 缺链 / stem 不匹配列表
-- [ ] 填写 [v2.5.0_plan.md「执行汇总」表](../v2.5.0_plan.md)（完成日期、commit/PR、抽检数量、遗留）
-- [ ] **回写打钩**：本文件清单 + [v2.5.0_plan.md 第七节](../v2.5.0_plan.md)
+- [x] 列出 `site/*.html`，与 `site/md/*.md` 做集合对比，**无缺失 stem**（除已豁免）
+- [x] 互链抽查或全量扫描：HTML 中 blob URL 的 stem 与文件名一致
+- [x] 处理例外：在 [v2.5.0_plan.md 第八节](../v2.5.0_plan.md) 记录豁免项（若有）
+- [x] **可选**：新增 `tools/check_site_md_parity.py`，打印缺 MD / 缺链 / stem 不匹配列表
+- [x] 填写 [v2.5.0_plan.md「执行汇总」表](../v2.5.0_plan.md)（完成日期、commit/PR、抽检数量、遗留）
+- [x] **回写打钩**：本文件清单 + [v2.5.0_plan.md 第七节](../v2.5.0_plan.md)
+
+---
+
+## Agent 4 执行记录（已填）
+
+- **命令**: `python3 tools/check_site_md_parity.py` → 退出码 **0**，全量 **38** 个 `site/*.html` 通过。
+- **脚本路径**: `tools/check_site_md_parity.py`
+- **日期**: 2026-04-04
 
 ---
 
