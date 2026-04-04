@@ -18,6 +18,16 @@ reference/reference_sourcemap/*
 !reference/reference_sourcemap/leaked-claude-code
 !reference/reference_sourcemap/open-claude-code
 
+# Agent 插件对照文用到的浅克隆（obra / uditgoenka），见 reference/reference_agent/README.md
+!reference/reference_agent/
+reference/reference_agent/*
+!reference/reference_agent/README.md
+!reference/reference_agent/superpowers-marketplace/
+!reference/reference_agent/superpowers-marketplace/**
+reference/reference_agent/superpowers-marketplace/.claude/settings.local.json
+!reference/reference_agent/autoresearch/
+!reference/reference_agent/autoresearch/**
+
 # Dependencies
 node_modules/
 

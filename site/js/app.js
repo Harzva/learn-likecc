@@ -276,7 +276,36 @@ const MERMAID_DIAGRAMS = {
     classDef g fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#5eead4;
     L1[全局锁定存储路径]:::r --> L2[路径校验<br/>拦截 .. 与越权]:::y
     L2 --> L3[沙箱白名单写入]:::g
-    L3 --> W[安全写入]:::g`
+    L3 --> W[安全写入]:::g`,
+
+    /** topic-superpowers-autoresearch.html：市场目录 vs autoresearch 单包 */
+    'sp-marketplace-vs-autoresearch': `flowchart LR
+    classDef b fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#93c5fd;
+    classDef g fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#5eead4;
+    classDef p fill:#2b2035,stroke:#cba6f7,stroke-width:2px,color:#e9d5ff;
+    subgraph MP[Superpowers Marketplace]
+        MJ[marketplace.json]:::b
+        MJ --> P1[superpowers 等]:::g
+        MJ --> P2[更多插件条目]:::g
+    end
+    subgraph AR[autoresearch 单包]
+        ONE[plugin + SKILL]:::p
+        ONE --> CMD[10 条斜杠命令]:::g
+    end`,
+
+    'autoresearch-verify-loop': `flowchart TD
+    classDef b fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#93c5fd;
+    classDef g fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#5eead4;
+    classDef p fill:#2d1f28,stroke:#f472b6,stroke-width:2px,color:#f9a8d4;
+    A[读上下文 git 日志]:::b --> B[一次一处改动]:::b
+    B --> C[commit]:::g
+    C --> D[Verify 指标]:::g
+    D --> E{改进且 Guard?}:::p
+    E -->|是| F[保留]:::g
+    E -->|否| G[revert]:::g
+    F --> H[TSV 日志]:::b
+    G --> H
+    H --> A`
 }
 
 function fillMermaidPlaceholders() {
@@ -381,6 +410,7 @@ function initSiteSidebar() {
         '<summary class="site-sidebar__summary"><span class="site-sidebar__ico">🤖</span><span class="site-sidebar__txt">Agent 专题</span></summary>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-agent.html"><span class="site-sidebar__ico">📌</span><span class="site-sidebar__txt">专题首页</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-memory-harness.html"><span class="site-sidebar__ico">🧠</span><span class="site-sidebar__txt">Memory 机制</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-superpowers-autoresearch.html"><span class="site-sidebar__ico">🧩</span><span class="site-sidebar__txt">Superpowers vs Autoresearch</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="https://github.com/Harzva/learn-likecc/blob/main/awesome-agent.md" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">✨</span><span class="site-sidebar__txt">Awesome Agent</span></a>' +
         '</details>' +
         '<a class="site-sidebar__link" href="column-agent-journey.html"><span class="site-sidebar__ico">🧭</span><span class="site-sidebar__txt">工具链阅历</span></a>' +

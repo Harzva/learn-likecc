@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Superpowers 市场 vs Autoresearch - Claude Code Course</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧩</text></svg>">
+    <meta name="description" content="基于本仓库 reference_agent 内 vend 的 obra/superpowers-marketplace 与 uditgoenka/autoresearch 快照：市场目录 vs 单一自主改进插件，附 Mermaid 对照图。">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🧩</span>
+                <span class="logo-text">插件对照</span>
+            </a>
+            <div class="nav-links">
+                <a href="#intro" class="nav-link">导语</a>
+                <a href="#names" class="nav-link">名词</a>
+                <a href="#market" class="nav-link">市场</a>
+                <a href="#ar" class="nav-link">Autoresearch</a>
+                <a href="#table" class="nav-link">差异表</a>
+                <a href="#evidence" class="nav-link">证据路径</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-agent.html" class="btn-github">Agent 专题</a>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="course-main devlog-main">
+        <div class="container">
+            <article class="course-content devlog-content">
+                <h1 class="course-title">Superpowers <span class="subtitle">市场 / 插件</span> 与 Autoresearch</h1>
+
+                <div class="course-quote" id="intro">
+                    <p>对比基于<strong>本仓库已纳入版本管理的快照</strong>：<code>reference/reference_agent/superpowers-marketplace/</code> 与 <code>reference/reference_agent/autoresearch/</code>（由 GitHub 浅克隆后去掉嵌套 <code>.git</code>，便于随讲义一起 diff）。<strong>不是</strong>对 Anthropic 闭源行为的猜测；插件行为以各上游仓库与 Claude Code 文档为准。</p>
+                    <p><strong>知乎 / 仓库长文</strong>：<a href="https://github.com/Harzva/learn-likecc/blob/main/wemedia/zhihu/articles/21-Superpowers%E5%B8%82%E5%9C%BA%E4%B8%8EAutoresearch-Claude%E6%8F%92%E4%BB%B6%E5%AF%B9%E6%AF%94.md" target="_blank" rel="noopener noreferrer">wemedia 稿 21 ↗</a></p>
+                </div>
+
+                <section id="names" class="section-block">
+                    <h2>1. 三个名词</h2>
+                    <ul>
+                        <li><strong>Superpowers Marketplace</strong>：obra 的 <strong>市场元数据</strong>仓库，核心文件 <code>.claude-plugin/marketplace.json</code>，列出多款可安装插件（含 superpowers、episodic-memory 等）。</li>
+                        <li><strong>Superpowers（核心插件）</strong>：市场中<strong>一条</strong>记录，源码在独立仓库 <code>obra/superpowers</code>（本快照仅含 market 中的 URL 与版本字段）。</li>
+                        <li><strong>Autoresearch</strong>：<strong>单一插件包</strong>，含 <code>plugin.json</code>、主 <code>SKILL.md</code> 与 <code>/autoresearch</code> 系列子命令定义。</li>
+                    </ul>
+                    <figure class="mermaid-figure mermaid-figure--main" aria-label="结构对照">
+                        <figcaption class="mermaid-caption"><strong>货架 vs 单包（示意）</strong></figcaption>
+                        <div class="mermaid-diagram-scroll" data-mermaid-diagram="sp-marketplace-vs-autoresearch"></div>
+                    </figure>
+                </section>
+
+                <section id="market" class="section-block">
+                    <h2>2. 市场里有什么（读 JSON）</h2>
+                    <p>打开 <code>reference/reference_agent/superpowers-marketplace/.claude-plugin/marketplace.json</code>：除 <code>superpowers</code> 外，可见 <code>superpowers-chrome</code>、<code>elements-of-style</code>、<code>episodic-memory</code>、<code>superpowers-lab</code>、<code>double-shot-latte</code> 等条目，各带 <code>source.url</code> 与 <code>version</code>。</p>
+                    <p>根目录 <code>README.md</code> 面向用户说明如何 <code>/plugin marketplace add obra/superpowers-marketplace</code> 与安装其中插件。</p>
+                </section>
+
+                <section id="ar" class="section-block">
+                    <h2>3. Autoresearch 是什么（读 plugin + SKILL）</h2>
+                    <p><code>reference/reference_agent/autoresearch/claude-plugin/.claude-plugin/plugin.json</code> 将本包描述为自主改进引擎 + 10 条子命令面。主协议在 <code>claude-plugin/skills/autoresearch/SKILL.md</code>，细分工作流在 <code>references/*.md</code>。</p>
+                    <p>上游 <code>README.md</code> / <code>COMPARISON.md</code> 说明与 Karpathy autoresearch 的继承关系；本页不重复其社区数据，仅强调<strong>结构差异</strong>。</p>
+                    <figure class="mermaid-figure" aria-label="验证循环">
+                        <figcaption class="mermaid-caption"><strong>Autoresearch 核心循环（极度简化）</strong></figcaption>
+                        <div class="mermaid-diagram-scroll" data-mermaid-diagram="autoresearch-verify-loop"></div>
+                    </figure>
+                </section>
+
+                <section id="table" class="section-block">
+                    <h2>4. 差异表</h2>
+                    <div class="table-wrap">
+                        <table class="data-table">
+                            <thead>
+                                <tr><th>维度</th><th>Superpowers 生态</th><th>Autoresearch</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>单元</td><td>市场 = 多插件目录；核心插件 = 技能库 + 命令（见 market README）</td><td>单插件内 10 命令 + 统一循环协议</td></tr>
+                                <tr><td>主隐喻</td><td>精选 skills / workflows / 工具</td><td>指标 + 机械验证 + Git 记忆的自主循环</td></tr>
+                                <tr><td>关系</td><td>可与 Autoresearch <strong>同时安装</strong>，正交</td><td>专注「可度量改进」与安全/发货等专链</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="evidence" class="section-block">
+                    <h2>5. 证据路径（本仓库）</h2>
+                    <ul>
+                        <li><code>reference/reference_agent/superpowers-marketplace/.claude-plugin/marketplace.json</code></li>
+                        <li><code>reference/reference_agent/superpowers-marketplace/README.md</code></li>
+                        <li><code>reference/reference_agent/autoresearch/claude-plugin/.claude-plugin/plugin.json</code></li>
+                        <li><code>reference/reference_agent/autoresearch/claude-plugin/skills/autoresearch/SKILL.md</code></li>
+                        <li><code>reference/reference_agent/README.md</code>（如何更新快照）</li>
+                    </ul>
+                </section>
+
+                <div class="chapter-navigation">
+                    <a href="topic-agent.html" class="btn btn-secondary">← Agent 专题</a>
+                    <a href="topic-agent-comparison.html" class="btn btn-primary">生态对比长文 →</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <div class="md-source-dual" role="note">
+                    <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-superpowers-autoresearch.md" target="_blank" rel="noopener noreferrer">📝 Markdown 源（GitHub）</a></p>
+                    <p class="md-source-hint">对照上游：<a href="https://github.com/obra/superpowers-marketplace" target="_blank" rel="noopener noreferrer">obra/superpowers-marketplace</a> · <a href="https://github.com/uditgoenka/autoresearch" target="_blank" rel="noopener noreferrer">uditgoenka/autoresearch</a></p>
+                </div>
+                <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js" crossorigin="anonymous"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

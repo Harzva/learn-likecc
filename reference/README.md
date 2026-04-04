@@ -9,7 +9,7 @@
 | 目录 | 内容定位 |
 |------|-----------|
 | **`reference_rag/`** | RAG 全栈教程与实验数据（例如 Datawhale **all-in-rag** 克隆）。 |
-| **`reference_agent/`** | Agent、论文导读、研究站点等（例如 **AgentGuide** 整包）。 |
+| **`reference_agent/`** | Agent、论文导读、研究站点等（例如 **AgentGuide** 整包）；撰稿用浅克隆见该目录下 **`README.md`**（如 `superpowers-marketplace`、`autoresearch`）。 |
 | **`reference_sourcemap/`** | Claude Code **泄露 / 逆向 / 镜像** 工程、对话抽取、中文 howto，以及原 `course_reference/` 里除 all-in-rag 外的学习材料（如 learn-claude-code、claude-code-book、openclaw-learn 等）。其中 **`claude-code`、`claude-code2`、`leaked-claude-code`、`open-claude-code`** 在本仓库中以 **git submodule（gitlink）** 登记，拉取主仓库后请在对应目录下执行 `git submodule update --init`。 |
 
 ## 迁移对照（2026-04）

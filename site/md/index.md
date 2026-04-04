@@ -17,7 +17,7 @@
   - 完全手册
   - 面试题库
   - RAG 大专题
-  - Agent 大专题（含 Memory 长期记忆专题页 `topic-memory-harness`）
+  - Agent 大专题（含 Memory `topic-memory-harness`、插件对照 `topic-superpowers-autoresearch`）
 - **🛤️ 学习路径**
 - **📚 源码课程章节**
 - **💼 面试题库**
@@ -36,6 +36,7 @@
   - Claude Code 源码泄露：Anthropic 的下一步棋
   - Memory 长期记忆机制（稿 13 + 本站 `topic-memory-harness`）
   - Harness 工程向深度稿 14–20：`articles/14-…` 至 `20-…`（子 Agent、工具链、规则分层、写盘安全、上下文预算、RAG 三轨、幻觉治理）
+  - Superpowers 市场 vs Autoresearch（稿 21 + `topic-superpowers-autoresearch`，证据 `reference/reference_agent/`）
 
 ## 各节摘要（对照 HTML）
 
@@ -75,4 +76,4 @@
 
 前两卡为**本站个人专栏**：阅历向 `column-agent-journey`、实战向 `column-shangshou-cikeng`（主标题**上手与踩坑**，介绍语含**赛博档案 · 实战篇**与**Agent 实战手记**）；知乎/小红书稿见 `wemedia/zhihu/articles/11-…`、`12-…`；Memory 机制见稿 `13-…` 与专题页；**14–20** 为 Harness 工程向深度解析（与 01–10 卡片并列展示）。其余以表格或列表呈现**精选外文/社区长文标题**（带外链）；教学目的是把分散热点收敛成可扫清单，并提醒读者自行核对原文与时效。
 
-各条目标题即 HTML 中 `h3` 文案：阅历随笔之后分别涉及封号与指纹、未公开功能爆料、记忆系统对比、遥测与隐私、Agent Loop 长文、MCP 生态、权限模型、长上下文压缩、Source Map 技术复盘与后续动向等主题；其后为 **14–20** 所列七篇工程向深度稿标题。
+各条目标题即 HTML 中 `h3` 文案：阅历随笔之后分别涉及封号与指纹、未公开功能爆料、记忆系统对比、遥测与隐私、Agent Loop 长文、MCP 生态、权限模型、长上下文压缩、Source Map 技术复盘与后续动向等主题；其后为 **14–20** 所列七篇工程向深度稿标题，以及 **21**（Superpowers 与 Autoresearch 对照）。

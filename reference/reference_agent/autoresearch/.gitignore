@@ -1,0 +1,23 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Claude Code local state
+.claude/agents/
+.claude/hooks/
+.claude/metadata.json
+.claude/rules/
+.claude/skills/*
+!.claude/skills/autoresearch/
+
+# Debug/temp files
+autoresearch-debug-fix-results.tsv
+*.log
+
+# Node
+node_modules/
+
+# Environment
+.env
+.env.*
+!.env.example
