@@ -85,11 +85,35 @@
                     </ol>
                 </section>
 
-                <section class="section-block">
-                    <h2>✏️ 自测</h2>
+                <section class="section-block" id="d08-q-parallel-files">
+                    <h2>✏️ 自测 1 · 参考答案：并行任务如何避免双写？</h2>
+                    <h3>题干</h3>
+                    <p>若允许并行 3 个 running 任务，如何避免同一文件被双写？</p>
+                    <h3>结论</h3>
                     <ul>
-                        <li>若允许并行 3 个 running 任务，如何避免同一文件被双写？</li>
-                        <li>任务持久化若只存 title 不存 acceptance criteria，会有什么问题？</li>
+                        <li><strong>文件级锁 / 租约</strong>：任务开始前对将修改的路径集合申请锁，冲突则排队或失败 fast。</li>
+                        <li><strong>分区所有权</strong>：调度器把目录树切片，保证并行任务<strong>写集合不相交</strong>。</li>
+                        <li><strong>最后写者检测</strong>：写前读 checksum，不匹配则中止并把冲突交给模型/用户（与 git 冲突类似）。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block" id="d08-q-acceptance">
+                    <h2>✏️ 自测 2 · 参考答案：只存 title 不存验收？</h2>
+                    <h3>题干</h3>
+                    <p>任务持久化若只存 title 不存 acceptance criteria，会有什么问题？</p>
+                    <h3>结论</h3>
+                    <ul>
+                        <li>模型与用户会对「什么叫完成」<strong>各说各话</strong>，无法自动验收，任务状态沦为摆设。</li>
+                        <li>恢复会话或换人接手时，无法判断旧任务是<strong>真完成</strong>还是<strong>被跳过</strong>。</li>
+                        <li>建议至少存：可机读的 <strong>完成条件</strong>（测试命令、文件存在、URL 返回码）或指向 spec 的链接/片段。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>✏️ 自测（题干回顾）</h2>
+                    <ul>
+                        <li>并行双写？→ <a href="#d08-q-parallel-files">自测 1</a></li>
+                        <li>只存 title？→ <a href="#d08-q-acceptance">自测 2</a></li>
                     </ul>
                 </section>
 

@@ -92,11 +92,36 @@ execute → ToolResult        // 必须可序列化回消息</code></pre>
                     </ol>
                 </section>
 
-                <section class="section-block">
-                    <h2>✏️ 自测</h2>
+                <section class="section-block" id="d02-q-fake-success">
+                    <h2>✏️ 自测 1 · 参考答案：execute 为何不能「假成功」？</h2>
+                    <h3>题干</h3>
+                    <p>为什么 execute 不应吞掉异常而返回「假成功」？</p>
+                    <h3>结论</h3>
                     <ul>
-                        <li>解释：为什么 execute 不应吞掉异常而返回「假成功」？</li>
-                        <li>设计：若同一 tool name 被 MCP 与内置同时注册，你会如何在代码层消歧？</li>
+                        <li>模型把 <code>tool_result</code> 当作<strong>地面真值</strong>；若失败被伪装成空输出或成功，下一轮会基于幻觉继续改代码、提交或删除文件。</li>
+                        <li>宿主无法区分「业务语义失败」（测试挂、编译错）与「传输/执行失败」；吞异常会把两类混在一起，用户也无法在日志里追责。</li>
+                        <li>正确做法是：<strong>结构化失败</strong>（<code>is_error</code> 或等价位 + 人类可读摘要 + 可选 stderr 尾），与 <a href="d01.html#d01-q-tool-fail">D01 · 工具失败</a> 一致。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block" id="d02-q-tool-dedupe">
+                    <h2>✏️ 自测 2 · 参考答案：MCP 与内置同名 tool 如何消歧？</h2>
+                    <h3>题干</h3>
+                    <p>若同一 tool name 被 MCP 与内置同时注册，你会如何在代码层消歧？</p>
+                    <h3>结论</h3>
+                    <p>在<strong>注册表合并阶段</strong>定死唯一真相，不要让运行时随机命中：</p>
+                    <ul>
+                        <li><strong>命名空间前缀</strong>（推荐）：内置保持短名，MCP 工具加 <code>mcp__serverId__toolName</code> 或文档约定前缀；模型侧 schema 与调用必须一致。</li>
+                        <li><strong>显式优先级</strong>：若允许覆盖，在合并表里记录 <code>source: builtin | mcp</code>，冲突时内置优先或 MCP 优先（写进项目文档），并打日志。</li>
+                        <li><strong>禁止静默二义</strong>：启动或 <code>tools/list</code> 后若仍有重名，应 fail-fast 或自动改名并通知用户，避免「有时打到 A 有时打到 B」。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>✏️ 自测（题干回顾）</h2>
+                    <ul>
+                        <li>execute 假成功？→ <a href="#d02-q-fake-success">自测 1</a></li>
+                        <li>同名 tool 消歧？→ <a href="#d02-q-tool-dedupe">自测 2</a></li>
                     </ul>
                 </section>
 

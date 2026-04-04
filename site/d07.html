@@ -86,11 +86,35 @@
                     </ol>
                 </section>
 
-                <section class="section-block">
-                    <h2>✏️ 自测</h2>
+                <section class="section-block" id="d07-q-handshake">
+                    <h2>✏️ 自测 1 · 参考答案：为何不宜每次 tool call 都 handshake？</h2>
+                    <h3>题干</h3>
+                    <p>解释为何 MCP 不宜在每次 tool call 时重新 handshake。</p>
+                    <h3>结论</h3>
                     <ul>
-                        <li>解释为何 MCP 不宜在每次 tool call 时重新 handshake。</li>
-                        <li>若两个 server 提供同名 tool，你会选前缀还是 UUID？利弊？</li>
+                        <li><strong>延迟</strong>：每次 <code>initialize</code> + 传输建连会把工具调用变成「秒级」操作，批量调用时不可接受。</li>
+                        <li><strong>状态与配额</strong>：连接上往往有会话状态、流控、订阅；反复握手易触发 server 侧资源泄漏或对端限流。</li>
+                        <li><strong>正确模型</strong>：长生命周期的 <strong>client 连接</strong>，在进程/会话级维护；仅在断线、版本不匹配或配置变更时重连。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block" id="d07-q-dedupe-name">
+                    <h2>✏️ 自测 2 · 参考答案：同名 tool — 前缀还是 UUID？</h2>
+                    <h3>题干</h3>
+                    <p>两个 server 提供同名 tool，选前缀还是 UUID？利弊？</p>
+                    <h3>结论</h3>
+                    <p>对<strong>人类与模型可读性</strong>优先选<strong>稳定前缀</strong>（如 <code>serverSlug_toolName</code>）；UUID 适合机器内部主键，**不适合**作为模型可见的主名称（难推理、难 diff）。</p>
+                    <ul>
+                        <li><strong>前缀</strong>：可读、可教用户；需处理 slug 冲突与字符集。</li>
+                        <li><strong>UUID</strong>：全局唯一无歧义；但对 prompt 噪声大，除非只做内部映射、对外仍展示前缀。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>✏️ 自测（题干回顾）</h2>
+                    <ul>
+                        <li>每次 handshake？→ <a href="#d07-q-handshake">自测 1</a></li>
+                        <li>同名 tool？→ <a href="#d07-q-dedupe-name">自测 2</a></li>
                     </ul>
                 </section>
 

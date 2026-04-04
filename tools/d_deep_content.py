@@ -125,11 +125,37 @@ while (turn++ &lt; MAX_TURNS) {
                     </ul>
                 </section>
 
-                <section class="section-block">
-                    <h2>✏️ 自测（简）</h2>
+                <section class="section-block" id="d01-q-self-seq">
+                    <h2>✏️ 自测 1 · 参考答案：消息序列（最小 Loop）</h2>
+                    <h3>题干</h3>
+                    <p>画出「用户 → 模型 → bash → tool_result → 模型 → end_turn」的消息序列。</p>
+                    <h3>参考答案（链式列举）</h3>
+                    <ol>
+                        <li><code>user</code>：用户目标描述。</li>
+                        <li><code>assistant</code>：含 <code>tool_use</code>（bash + 参数）。</li>
+                        <li><code>user</code> 角色的 <code>tool_result</code>：附在对应 <code>tool_use_id</code> 上，内容为命令输出或结构化错误。</li>
+                        <li><code>assistant</code>：若仍需工具则继续带 <code>tool_use</code>；否则纯文本，<code>stop_reason</code> 常为 <code>end_turn</code>。</li>
+                    </ol>
+                    <p>多轮时重复 2–4，直到无未决 <code>tool_use</code> 或达到轮数上限。</p>
+                </section>
+
+                <section class="section-block" id="d01-q-self-recap">
+                    <h2>✏️ 自测 2 · 参考答案：三道思考题一句话复述</h2>
+                    <h3>题干</h3>
+                    <p>对照上文三道思考题，用自己的话各复述一句。</p>
+                    <h3>指向详答</h3>
                     <ul>
-                        <li>画出「用户 → 模型 → bash → tool_result → 模型 → end_turn」的消息序列。</li>
-                        <li>对照上文三道思考题，用自己的话各复述一句。</li>
+                        <li><strong>stop_reason</strong>：别只靠扫字符串判断有没有工具，要用协议里的停止原因 + 结构化块。→ 全文见 <a href="#d01-q-stop-reason">上文 stop_reason 一节</a>。</li>
+                        <li><strong>消息累积</strong>：越长越贵越慢且淹没重点，要截断、窗口、压缩或外置。→ 见 <a href="#d01-q-accumulation">消息累积</a>。</li>
+                        <li><strong>工具失败</strong>：必须把失败结构化喂回模型，禁止假成功。→ 见 <a href="#d01-q-tool-fail">工具失败</a>。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>✏️ 自测（题干回顾）</h2>
+                    <ul>
+                        <li>消息序列？→ <a href="#d01-q-self-seq">自测 1</a></li>
+                        <li>三道题复述？→ <a href="#d01-q-self-recap">自测 2</a></li>
                     </ul>
                 </section>
     """,
@@ -180,11 +206,36 @@ execute → ToolResult        // 必须可序列化回消息</code></pre>
                     </ol>
                 </section>
 
-                <section class="section-block">
-                    <h2>✏️ 自测</h2>
+                <section class="section-block" id="d02-q-fake-success">
+                    <h2>✏️ 自测 1 · 参考答案：execute 为何不能「假成功」？</h2>
+                    <h3>题干</h3>
+                    <p>为什么 execute 不应吞掉异常而返回「假成功」？</p>
+                    <h3>结论</h3>
                     <ul>
-                        <li>解释：为什么 execute 不应吞掉异常而返回「假成功」？</li>
-                        <li>设计：若同一 tool name 被 MCP 与内置同时注册，你会如何在代码层消歧？</li>
+                        <li>模型把 <code>tool_result</code> 当作<strong>地面真值</strong>；若失败被伪装成空输出或成功，下一轮会基于幻觉继续改代码、提交或删除文件。</li>
+                        <li>宿主无法区分「业务语义失败」（测试挂、编译错）与「传输/执行失败」；吞异常会把两类混在一起，用户也无法在日志里追责。</li>
+                        <li>正确做法是：<strong>结构化失败</strong>（<code>is_error</code> 或等价位 + 人类可读摘要 + 可选 stderr 尾），与 <a href="d01.html#d01-q-tool-fail">D01 · 工具失败</a> 一致。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block" id="d02-q-tool-dedupe">
+                    <h2>✏️ 自测 2 · 参考答案：MCP 与内置同名 tool 如何消歧？</h2>
+                    <h3>题干</h3>
+                    <p>若同一 tool name 被 MCP 与内置同时注册，你会如何在代码层消歧？</p>
+                    <h3>结论</h3>
+                    <p>在<strong>注册表合并阶段</strong>定死唯一真相，不要让运行时随机命中：</p>
+                    <ul>
+                        <li><strong>命名空间前缀</strong>（推荐）：内置保持短名，MCP 工具加 <code>mcp__serverId__toolName</code> 或文档约定前缀；模型侧 schema 与调用必须一致。</li>
+                        <li><strong>显式优先级</strong>：若允许覆盖，在合并表里记录 <code>source: builtin | mcp</code>，冲突时内置优先或 MCP 优先（写进项目文档），并打日志。</li>
+                        <li><strong>禁止静默二义</strong>：启动或 <code>tools/list</code> 后若仍有重名，应 fail-fast 或自动改名并通知用户，避免「有时打到 A 有时打到 B」。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>✏️ 自测（题干回顾）</h2>
+                    <ul>
+                        <li>execute 假成功？→ <a href="#d02-q-fake-success">自测 1</a></li>
+                        <li>同名 tool 消歧？→ <a href="#d02-q-tool-dedupe">自测 2</a></li>
                     </ul>
                 </section>
     """,
@@ -234,11 +285,35 @@ execute → ToolResult        // 必须可序列化回消息</code></pre>
                     </ol>
                 </section>
 
-                <section class="section-block">
-                    <h2>✏️ 自测</h2>
+                <section class="section-block" id="d03-q-dontask-bypass">
+                    <h2>✏️ 自测 1 · 参考答案：<code>dontAsk</code> vs <code>bypassPermissions</code></h2>
+                    <h3>题干</h3>
+                    <p>用三句话说明二者差异（语义与实现位置）。</p>
+                    <h3>参考答案（三句话版）</h3>
+                    <ol>
+                        <li><strong><code>dontAsk</code></strong>通常表示「本类操作不要再弹窗确认」，但<strong>仍受策略与硬规则约束</strong>，不是法外之地；实现上多在<strong>策略/会话记忆</strong>或 per-tool 规则里。</li>
+                        <li><strong><code>bypassPermissions</code></strong>是更激进的「跳过常规权限闸门」模式（yolo），往往用于受控环境；实现上在<strong><code>canUseTool</code> 入口短路</strong>，但仍可能被硬熔断（高危命令、企业策略）拦截。</li>
+                        <li>产品文案上必须区分：前者是<strong>减少打扰</strong>，后者是<strong>信任升级</strong>；混用文案会导致用户误以为「不再询问 = 绝对安全」。</li>
+                    </ol>
+                </section>
+
+                <section class="section-block" id="d03-q-workspace-write">
+                    <h2>✏️ 自测 2 · 参考答案：workspace 内写 — 权限层还是工具层？</h2>
+                    <h3>题干</h3>
+                    <p>「只允许 workspace 内写」挂在权限层还是工具层？</p>
+                    <h3>结论</h3>
+                    <p><strong>两层都要，硬校验放在工具层（或共享路径库），策略放在权限层。</strong></p>
                     <ul>
-                        <li>用三句话说明 <code>dontAsk</code> 与 <code>bypassPermissions</code> 的差异（语义与实现位置）。</li>
-                        <li>若要把「只允许 workspace 内写」做成硬策略，你会挂在权限层还是工具层？理由？</li>
+                        <li><strong>权限层</strong>：根据模式决定 ask/auto/deny，并写审计；但若只有策略没有路径解析，攻击面仍在「工具接受任意路径」上。</li>
+                        <li><strong>工具层</strong>：在 <code>Write</code>/<code>Edit</code>/<code>Bash</code> 内对<strong>解析后的绝对路径</strong>做 <code>path.resolve</code> + workspace 根前缀校验，防 <code>../</code> 与 symlink 跳出；这是<strong>最后防线</strong>，防模型或配置绕过 UI。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>✏️ 自测（题干回顾）</h2>
+                    <ul>
+                        <li><code>dontAsk</code> vs <code>bypassPermissions</code> → <a href="#d03-q-dontask-bypass">自测 1</a></li>
+                        <li>workspace 内写挂哪层？→ <a href="#d03-q-workspace-write">自测 2</a></li>
                     </ul>
                 </section>
     """,
@@ -286,11 +361,35 @@ execute → ToolResult        // 必须可序列化回消息</code></pre>
                     </ol>
                 </section>
 
-                <section class="section-block">
-                    <h2>✏️ 自测</h2>
+                <section class="section-block" id="d04-q-print-config">
+                    <h2>✏️ 自测 1 · 参考答案：「打印当前有效配置」读什么？</h2>
+                    <h3>题干</h3>
+                    <p>设计命令只打印当前有效配置，应读取合并后的哪一数据结构？</p>
+                    <h3>结论</h3>
+                    <p>应读取<strong>宿主内存里「合并完成」的单一真相对象</strong>（例如初始化管线在启动末尾构造的 <code>AppState</code> / <code>EffectiveSettings</code>），而不是只读磁盘上某一个 JSON 文件。</p>
                     <ul>
-                        <li>设计一个命令「只打印当前有效配置」，应读取合并后的哪一数据结构？</li>
-                        <li>若 <code>/command</code> 与用户消息解析冲突，你会如何在词法层消除歧义？</li>
+                        <li>输出里可分区展示：<strong>来源层</strong>（默认 / 用户 / 项目 / 环境变量覆盖）与<strong>最终字段值</strong>，便于对照「谁覆盖了谁」。</li>
+                        <li>若合并是深度合并，命令应调用与运行时<strong>同一套 merge 函数</strong>，避免「打印所见」与「实际所用」不一致。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block" id="d04-q-slash-lex">
+                    <h2>✏️ 自测 2 · 参考答案：<code>/command</code> 与自然语言冲突？</h2>
+                    <h3>题干</h3>
+                    <p>若 <code>/command</code> 与用户消息解析冲突，如何在词法层消除歧义？</p>
+                    <h3>结论</h3>
+                    <ul>
+                        <li><strong>第一 token 规则</strong>：仅当行首（trim 后）以 <code>/</code> 开头且紧跟已注册命令名时走命令表；否则整行进模型。</li>
+                        <li><strong>转义</strong>：支持 <code>\/</code> 或约定前缀（如 <code>//</code> 表示字面斜杠）避免用户想讨论路径时被当命令。</li>
+                        <li><strong>多行与粘贴</strong>：命令解析只在「提交的一行」或「第一行」上做，避免块粘贴误触。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>✏️ 自测（题干回顾）</h2>
+                    <ul>
+                        <li>有效配置从哪读？→ <a href="#d04-q-print-config">自测 1</a></li>
+                        <li>斜杠与用户消息？→ <a href="#d04-q-slash-lex">自测 2</a></li>
                     </ul>
                 </section>
     """,
@@ -344,11 +443,38 @@ execute → ToolResult        // 必须可序列化回消息</code></pre>
                     </ol>
                 </section>
 
-                <section class="section-block">
-                    <h2>✏️ 自测</h2>
+                <section class="section-block" id="d05-q-compress-fail">
+                    <h2>✏️ 自测 1 · 参考答案：压缩后必然做错的场景</h2>
+                    <h3>题干</h3>
+                    <p>给出一种「压缩后模型必然做错」的场景，并说明如何改策略避免。</p>
+                    <h3>示例场景</h3>
+                    <p>摘要把<strong>失败测试的唯一关键栈帧行</strong>或<strong>用户刚约定的接口签名</strong>删掉，只保留「测试失败」四字；下一轮模型会按错误假设改代码，越改越偏。</p>
+                    <h3>如何避免</h3>
                     <ul>
-                        <li>给出一种「压缩后模型必然做错」的场景，并说明如何改策略避免。</li>
-                        <li>比较：摘要由「小模型」与「规则」各有什么工程代价？</li>
+                        <li><strong>锚点保留</strong>：对含 <code>Error</code>/<code>FAIL</code> 的工具输出保留首尾 N 行 + 关键字行；或用边界消息标记 compact（见上文 D05 工程补充）。</li>
+                        <li><strong>外置大段</strong>：超长 log 写入文件，上下文只保留路径与 checksum，需要时再 <code>read</code>。</li>
+                        <li><strong>用户/规则 gate</strong>：压缩前若检测到「未闭合任务」关键词，降低压缩强度或跳过该轮。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block" id="d05-q-summary-cost">
+                    <h2>✏️ 自测 2 · 参考答案：小模型摘要 vs 规则摘要</h2>
+                    <h3>题干</h3>
+                    <p>摘要由「小模型」与「规则」各有什么工程代价？</p>
+                    <h3>对比</h3>
+                    <table class="options-table">
+                        <tr><th>方式</th><th>代价 / 风险</th></tr>
+                        <tr><td>小模型摘要</td><td>多一次推理<strong>费用与延迟</strong>；摘要质量波动；需防「摘要再幻觉」；要版本化 prompt 与回归测例。</td></tr>
+                        <tr><td>规则 / 模板</td><td>开发维护<strong>规则表</strong>成本高；对非标输出脆弱；但<strong>确定性高、可测</strong>，适合合规场景。</td></tr>
+                    </table>
+                    <p>实务上常<strong>混合</strong>：规则做硬截断与结构化字段提取，小模型只负责把「已截断块」压成短摘要。</p>
+                </section>
+
+                <section class="section-block">
+                    <h2>✏️ 自测（题干回顾）</h2>
+                    <ul>
+                        <li>压缩后必然做错？→ <a href="#d05-q-compress-fail">自测 1</a></li>
+                        <li>小模型 vs 规则？→ <a href="#d05-q-summary-cost">自测 2</a></li>
                     </ul>
                 </section>
     """,
@@ -392,11 +518,35 @@ execute → ToolResult        // 必须可序列化回消息</code></pre>
                     </ol>
                 </section>
 
-                <section class="section-block">
-                    <h2>✏️ 自测</h2>
+                <section class="section-block" id="d06-q-env-leak">
+                    <h2>✏️ 自测 1 · 参考答案：子代理读到 <code>.env</code> 算不算泄露？</h2>
+                    <h3>题干</h3>
+                    <p>若子代理读到 <code>.env</code> 而父未显式传入，这是泄露还是特性？怎么修？</p>
+                    <h3>结论</h3>
+                    <p>默认应视为<strong>策略缺陷或泄露风险</strong>：子上下文若与父共享同一工作目录与读文件工具，会「顺带」看到敏感文件，而用户未必理解「子任务也能读盘」。</p>
                     <ul>
-                        <li>若子代理读到 <code>.env</code> 而父未显式传入，这是泄露还是特性？你会怎么修？</li>
-                        <li>设计一个「子任务成功但父任务应失败」的验收测试。</li>
+                        <li><strong>修</strong>：子代理使用<strong>缩小的工具白名单</strong>（禁用 read 或仅允许路径前缀）；或 fork 时<strong>不继承</strong>父的 secret 注入；对 <code>.env*</code> 走更高权限级。</li>
+                        <li>若业务上<strong>故意</strong>让子任务读配置，应在 UI/文档中显式标注，并审计日志记录访问路径。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block" id="d06-q-parent-fail">
+                    <h2>✏️ 自测 2 · 参考答案：子成功、父应失败的验收测试</h2>
+                    <h3>题干</h3>
+                    <p>设计「子任务成功但父任务应失败」的验收测试。</p>
+                    <h3>思路</h3>
+                    <p>父任务定义<strong>全局不变式</strong>（例如「不得修改 <code>LICENSE</code>」）。子任务只负责子树且成功完成；子返回后父在<strong>合并/校验阶段</strong>发现不变式被破坏 → 父状态 <code>failed</code>，并向用户展示<strong>子输出 + 父校验失败原因</strong>。</p>
+                    <ul>
+                        <li>自动化可构造：子代理被授权写 <code>src/</code>，但子通过 symlink 或相对路径实际改到 <code>LICENSE</code>（若未校验解析路径则父应 catch）。</li>
+                        <li>断言：子进程 exit 0；父任务最终 <code>failed</code>，且日志含违规路径。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>✏️ 自测（题干回顾）</h2>
+                    <ul>
+                        <li><code>.env</code> 与子代理？→ <a href="#d06-q-env-leak">自测 1</a></li>
+                        <li>子成功父失败测试？→ <a href="#d06-q-parent-fail">自测 2</a></li>
                     </ul>
                 </section>
     """,
@@ -441,11 +591,35 @@ execute → ToolResult        // 必须可序列化回消息</code></pre>
                     </ol>
                 </section>
 
-                <section class="section-block">
-                    <h2>✏️ 自测</h2>
+                <section class="section-block" id="d07-q-handshake">
+                    <h2>✏️ 自测 1 · 参考答案：为何不宜每次 tool call 都 handshake？</h2>
+                    <h3>题干</h3>
+                    <p>解释为何 MCP 不宜在每次 tool call 时重新 handshake。</p>
+                    <h3>结论</h3>
                     <ul>
-                        <li>解释为何 MCP 不宜在每次 tool call 时重新 handshake。</li>
-                        <li>若两个 server 提供同名 tool，你会选前缀还是 UUID？利弊？</li>
+                        <li><strong>延迟</strong>：每次 <code>initialize</code> + 传输建连会把工具调用变成「秒级」操作，批量调用时不可接受。</li>
+                        <li><strong>状态与配额</strong>：连接上往往有会话状态、流控、订阅；反复握手易触发 server 侧资源泄漏或对端限流。</li>
+                        <li><strong>正确模型</strong>：长生命周期的 <strong>client 连接</strong>，在进程/会话级维护；仅在断线、版本不匹配或配置变更时重连。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block" id="d07-q-dedupe-name">
+                    <h2>✏️ 自测 2 · 参考答案：同名 tool — 前缀还是 UUID？</h2>
+                    <h3>题干</h3>
+                    <p>两个 server 提供同名 tool，选前缀还是 UUID？利弊？</p>
+                    <h3>结论</h3>
+                    <p>对<strong>人类与模型可读性</strong>优先选<strong>稳定前缀</strong>（如 <code>serverSlug_toolName</code>）；UUID 适合机器内部主键，<strong>不适合</strong>作为模型可见的主名称（难推理、难 diff）。</p>
+                    <ul>
+                        <li><strong>前缀</strong>：可读、可教用户；需处理 slug 冲突与字符集。</li>
+                        <li><strong>UUID</strong>：全局唯一无歧义；但对 prompt 噪声大，除非只做内部映射、对外仍展示前缀。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>✏️ 自测（题干回顾）</h2>
+                    <ul>
+                        <li>每次 handshake？→ <a href="#d07-q-handshake">自测 1</a></li>
+                        <li>同名 tool？→ <a href="#d07-q-dedupe-name">自测 2</a></li>
                     </ul>
                 </section>
     """,
@@ -489,11 +663,35 @@ execute → ToolResult        // 必须可序列化回消息</code></pre>
                     </ol>
                 </section>
 
-                <section class="section-block">
-                    <h2>✏️ 自测</h2>
+                <section class="section-block" id="d08-q-parallel-files">
+                    <h2>✏️ 自测 1 · 参考答案：并行任务如何避免双写？</h2>
+                    <h3>题干</h3>
+                    <p>若允许并行 3 个 running 任务，如何避免同一文件被双写？</p>
+                    <h3>结论</h3>
                     <ul>
-                        <li>若允许并行 3 个 running 任务，如何避免同一文件被双写？</li>
-                        <li>任务持久化若只存 title 不存 acceptance criteria，会有什么问题？</li>
+                        <li><strong>文件级锁 / 租约</strong>：任务开始前对将修改的路径集合申请锁，冲突则排队或失败 fast。</li>
+                        <li><strong>分区所有权</strong>：调度器把目录树切片，保证并行任务<strong>写集合不相交</strong>。</li>
+                        <li><strong>最后写者检测</strong>：写前读 checksum，不匹配则中止并把冲突交给模型/用户（与 git 冲突类似）。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block" id="d08-q-acceptance">
+                    <h2>✏️ 自测 2 · 参考答案：只存 title 不存验收？</h2>
+                    <h3>题干</h3>
+                    <p>任务持久化若只存 title 不存 acceptance criteria，会有什么问题？</p>
+                    <h3>结论</h3>
+                    <ul>
+                        <li>模型与用户会对「什么叫完成」<strong>各说各话</strong>，无法自动验收，任务状态沦为摆设。</li>
+                        <li>恢复会话或换人接手时，无法判断旧任务是<strong>真完成</strong>还是<strong>被跳过</strong>。</li>
+                        <li>建议至少存：可机读的 <strong>完成条件</strong>（测试命令、文件存在、URL 返回码）或指向 spec 的链接/片段。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>✏️ 自测（题干回顾）</h2>
+                    <ul>
+                        <li>并行双写？→ <a href="#d08-q-parallel-files">自测 1</a></li>
+                        <li>只存 title？→ <a href="#d08-q-acceptance">自测 2</a></li>
                     </ul>
                 </section>
     """,
@@ -801,11 +999,31 @@ case 'hookUpdatedInput':
                     </ol>
                 </section>
 
-                <section class="section-block">
-                    <h2>✏️ 自测</h2>
+                <section class="section-block" id="d11-q-vim-order">
+                    <h2>✏️ 自测 1 · 参考答案：Vim 层在业务解析之前还是之后？</h2>
+                    <h3>题干</h3>
+                    <p>为何 Vim 层应在「业务命令解析」之前还是之后？</p>
+                    <h3>结论</h3>
+                    <p>应在<strong>业务命令解析之前</strong>（更靠近原始按键输入）：Vim 先决定当前键是「编辑命令」还是「插入文本」，再交给斜杠命令 / 提交逻辑。若顺序反了，<code>j</code>、<code>:</code> 等会被当成普通字符或错误命令，Normal 模式失效。</p>
+                </section>
+
+                <section class="section-block" id="d11-q-vim-off">
+                    <h2>✏️ 自测 2 · 参考答案：中途关闭 Vim 模式如何重置？</h2>
+                    <h3>题干</h3>
+                    <p>用户 mid-session 关闭 vim 模式，状态应如何重置？</p>
+                    <h3>结论</h3>
                     <ul>
-                        <li>解释：为何 Vim 层应在「业务命令解析」之前还是之后？</li>
-                        <li>若用户关闭 vim 模式 mid-session，状态应如何重置？</li>
+                        <li>立即<strong>强制回到 Insert/默认输入态</strong>，清空 Normal/Visual 状态机；避免仍停留在 Normal 却已不再拦截键位导致「半残」行为。</li>
+                        <li>若有多行缓冲或未完成操作，应<strong>刷新 keymap 绑定</strong>并可选提示用户「已退出 Vim」。</li>
+                        <li>持久化：将偏好写入配置，下次启动一致；当前会话内切换应同步到 UI 指示器。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>✏️ 自测（题干回顾）</h2>
+                    <ul>
+                        <li>Vim 与业务解析顺序？→ <a href="#d11-q-vim-order">自测 1</a></li>
+                        <li>中途关 Vim？→ <a href="#d11-q-vim-off">自测 2</a></li>
                     </ul>
                 </section>
     """,

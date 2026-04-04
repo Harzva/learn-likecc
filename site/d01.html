@@ -168,11 +168,37 @@ while (turn++ &lt; MAX_TURNS) {
                     </ul>
                 </section>
 
-                <section class="section-block">
-                    <h2>✏️ 自测（简）</h2>
+                <section class="section-block" id="d01-q-self-seq">
+                    <h2>✏️ 自测 1 · 参考答案：消息序列（最小 Loop）</h2>
+                    <h3>题干</h3>
+                    <p>画出「用户 → 模型 → bash → tool_result → 模型 → end_turn」的消息序列。</p>
+                    <h3>参考答案（链式列举）</h3>
+                    <ol>
+                        <li><code>user</code>：用户目标描述。</li>
+                        <li><code>assistant</code>：含 <code>tool_use</code>（bash + 参数）。</li>
+                        <li><code>user</code> 角色的 <code>tool_result</code>：附在对应 <code>tool_use_id</code> 上，内容为命令输出或结构化错误。</li>
+                        <li><code>assistant</code>：若仍需工具则继续带 <code>tool_use</code>；否则纯文本，<code>stop_reason</code> 常为 <code>end_turn</code>。</li>
+                    </ol>
+                    <p>多轮时重复 2–4，直到无未决 <code>tool_use</code> 或达到轮数上限。</p>
+                </section>
+
+                <section class="section-block" id="d01-q-self-recap">
+                    <h2>✏️ 自测 2 · 参考答案：三道思考题一句话复述</h2>
+                    <h3>题干</h3>
+                    <p>对照上文三道思考题，用自己的话各复述一句。</p>
+                    <h3>指向详答</h3>
                     <ul>
-                        <li>画出「用户 → 模型 → bash → tool_result → 模型 → end_turn」的消息序列。</li>
-                        <li>对照上文三道思考题，用自己的话各复述一句。</li>
+                        <li><strong>stop_reason</strong>：别只靠扫字符串判断有没有工具，要用协议里的停止原因 + 结构化块。→ 全文见 <a href="#d01-q-stop-reason">上文 stop_reason 一节</a>。</li>
+                        <li><strong>消息累积</strong>：越长越贵越慢且淹没重点，要截断、窗口、压缩或外置。→ 见 <a href="#d01-q-accumulation">消息累积</a>。</li>
+                        <li><strong>工具失败</strong>：必须把失败结构化喂回模型，禁止假成功。→ 见 <a href="#d01-q-tool-fail">工具失败</a>。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>✏️ 自测（题干回顾）</h2>
+                    <ul>
+                        <li>消息序列？→ <a href="#d01-q-self-seq">自测 1</a></li>
+                        <li>三道题复述？→ <a href="#d01-q-self-recap">自测 2</a></li>
                     </ul>
                 </section>
 

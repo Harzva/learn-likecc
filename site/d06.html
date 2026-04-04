@@ -85,11 +85,35 @@
                     </ol>
                 </section>
 
-                <section class="section-block">
-                    <h2>✏️ 自测</h2>
+                <section class="section-block" id="d06-q-env-leak">
+                    <h2>✏️ 自测 1 · 参考答案：子代理读到 <code>.env</code> 算不算泄露？</h2>
+                    <h3>题干</h3>
+                    <p>若子代理读到 <code>.env</code> 而父未显式传入，这是泄露还是特性？怎么修？</p>
+                    <h3>结论</h3>
+                    <p>默认应视为<strong>策略缺陷或泄露风险</strong>：子上下文若与父共享同一工作目录与读文件工具，会「顺带」看到敏感文件，而用户未必理解「子任务也能读盘」。</p>
                     <ul>
-                        <li>若子代理读到 <code>.env</code> 而父未显式传入，这是泄露还是特性？你会怎么修？</li>
-                        <li>设计一个「子任务成功但父任务应失败」的验收测试。</li>
+                        <li><strong>修</strong>：子代理使用<strong>缩小的工具白名单</strong>（禁用 read 或仅允许路径前缀）；或 fork 时<strong>不继承</strong>父的 secret 注入；对 <code>.env*</code> 走更高权限级。</li>
+                        <li>若业务上<strong>故意</strong>让子任务读配置，应在 UI/文档中显式标注，并审计日志记录访问路径。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block" id="d06-q-parent-fail">
+                    <h2>✏️ 自测 2 · 参考答案：子成功、父应失败的验收测试</h2>
+                    <h3>题干</h3>
+                    <p>设计「子任务成功但父任务应失败」的验收测试。</p>
+                    <h3>思路</h3>
+                    <p>父任务定义<strong>全局不变式</strong>（例如「不得修改 <code>LICENSE</code>」）。子任务只负责子树且成功完成；子返回后父在<strong>合并/校验阶段</strong>发现不变式被破坏 → 父状态 <code>failed</code>，并向用户展示<strong>子输出 + 父校验失败原因</strong>。</p>
+                    <ul>
+                        <li>自动化可构造：子代理被授权写 <code>src/</code>，但子通过 symlink 或相对路径实际改到 <code>LICENSE</code>（若未校验解析路径则父应 catch）。</li>
+                        <li>断言：子进程 exit 0；父任务最终 <code>failed</code>，且日志含违规路径。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>✏️ 自测（题干回顾）</h2>
+                    <ul>
+                        <li><code>.env</code> 与子代理？→ <a href="#d06-q-env-leak">自测 1</a></li>
+                        <li>子成功父失败测试？→ <a href="#d06-q-parent-fail">自测 2</a></li>
                     </ul>
                 </section>
 

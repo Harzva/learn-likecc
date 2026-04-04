@@ -79,11 +79,31 @@
                     </ol>
                 </section>
 
-                <section class="section-block">
-                    <h2>✏️ 自测</h2>
+                <section class="section-block" id="d11-q-vim-order">
+                    <h2>✏️ 自测 1 · 参考答案：Vim 层在业务解析之前还是之后？</h2>
+                    <h3>题干</h3>
+                    <p>为何 Vim 层应在「业务命令解析」之前还是之后？</p>
+                    <h3>结论</h3>
+                    <p>应在<strong>业务命令解析之前</strong>（更靠近原始按键输入）：Vim 先决定当前键是「编辑命令」还是「插入文本」，再交给斜杠命令 / 提交逻辑。若顺序反了，<code>j</code>、<code>:</code> 等会被当成普通字符或错误命令，Normal 模式失效。</p>
+                </section>
+
+                <section class="section-block" id="d11-q-vim-off">
+                    <h2>✏️ 自测 2 · 参考答案：中途关闭 Vim 模式如何重置？</h2>
+                    <h3>题干</h3>
+                    <p>用户 mid-session 关闭 vim 模式，状态应如何重置？</p>
+                    <h3>结论</h3>
                     <ul>
-                        <li>解释：为何 Vim 层应在「业务命令解析」之前还是之后？</li>
-                        <li>若用户关闭 vim 模式 mid-session，状态应如何重置？</li>
+                        <li>立即<strong>强制回到 Insert/默认输入态</strong>，清空 Normal/Visual 状态机；避免仍停留在 Normal 却已不再拦截键位导致「半残」行为。</li>
+                        <li>若有多行缓冲或未完成操作，应<strong>刷新 keymap 绑定</strong>并可选提示用户「已退出 Vim」。</li>
+                        <li>持久化：将偏好写入配置，下次启动一致；当前会话内切换应同步到 UI 指示器。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>✏️ 自测（题干回顾）</h2>
+                    <ul>
+                        <li>Vim 与业务解析顺序？→ <a href="#d11-q-vim-order">自测 1</a></li>
+                        <li>中途关 Vim？→ <a href="#d11-q-vim-off">自测 2</a></li>
                     </ul>
                 </section>
 

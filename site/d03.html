@@ -91,11 +91,35 @@
                     </ol>
                 </section>
 
-                <section class="section-block">
-                    <h2>✏️ 自测</h2>
+                <section class="section-block" id="d03-q-dontask-bypass">
+                    <h2>✏️ 自测 1 · 参考答案：<code>dontAsk</code> vs <code>bypassPermissions</code></h2>
+                    <h3>题干</h3>
+                    <p>用三句话说明二者差异（语义与实现位置）。</p>
+                    <h3>参考答案（三句话版）</h3>
+                    <ol>
+                        <li><strong><code>dontAsk</code></strong>通常表示「本类操作不要再弹窗确认」，但<strong>仍受策略与硬规则约束</strong>，不是法外之地；实现上多在<strong>策略/会话记忆</strong>或 per-tool 规则里。</li>
+                        <li><strong><code>bypassPermissions</code></strong>是更激进的「跳过常规权限闸门」模式（yolo），往往用于受控环境；实现上在<strong><code>canUseTool</code> 入口短路</strong>，但仍可能被硬熔断（高危命令、企业策略）拦截。</li>
+                        <li>产品文案上必须区分：前者是<strong>减少打扰</strong>，后者是<strong>信任升级</strong>；混用文案会导致用户误以为「不再询问 = 绝对安全」。</li>
+                    </ol>
+                </section>
+
+                <section class="section-block" id="d03-q-workspace-write">
+                    <h2>✏️ 自测 2 · 参考答案：workspace 内写 — 权限层还是工具层？</h2>
+                    <h3>题干</h3>
+                    <p>「只允许 workspace 内写」挂在权限层还是工具层？</p>
+                    <h3>结论</h3>
+                    <p><strong>两层都要，硬校验放在工具层（或共享路径库），策略放在权限层。</strong></p>
                     <ul>
-                        <li>用三句话说明 <code>dontAsk</code> 与 <code>bypassPermissions</code> 的差异（语义与实现位置）。</li>
-                        <li>若要把「只允许 workspace 内写」做成硬策略，你会挂在权限层还是工具层？理由？</li>
+                        <li><strong>权限层</strong>：根据模式决定 ask/auto/deny，并写审计；但若只有策略没有路径解析，攻击面仍在「工具接受任意路径」上。</li>
+                        <li><strong>工具层</strong>：在 <code>Write</code>/<code>Edit</code>/<code>Bash</code> 内对<strong>解析后的绝对路径</strong>做 <code>path.resolve</code> + workspace 根前缀校验，防 <code>../</code> 与 symlink 跳出；这是<strong>最后防线</strong>，防模型或配置绕过 UI。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>✏️ 自测（题干回顾）</h2>
+                    <ul>
+                        <li><code>dontAsk</code> vs <code>bypassPermissions</code> → <a href="#d03-q-dontask-bypass">自测 1</a></li>
+                        <li>workspace 内写挂哪层？→ <a href="#d03-q-workspace-write">自测 2</a></li>
                     </ul>
                 </section>
 

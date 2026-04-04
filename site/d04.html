@@ -89,11 +89,35 @@
                     </ol>
                 </section>
 
-                <section class="section-block">
-                    <h2>✏️ 自测</h2>
+                <section class="section-block" id="d04-q-print-config">
+                    <h2>✏️ 自测 1 · 参考答案：「打印当前有效配置」读什么？</h2>
+                    <h3>题干</h3>
+                    <p>设计命令只打印当前有效配置，应读取合并后的哪一数据结构？</p>
+                    <h3>结论</h3>
+                    <p>应读取<strong>宿主内存里「合并完成」的单一真相对象</strong>（例如初始化管线在启动末尾构造的 <code>AppState</code> / <code>EffectiveSettings</code>），而不是只读磁盘上某一个 JSON 文件。</p>
                     <ul>
-                        <li>设计一个命令「只打印当前有效配置」，应读取合并后的哪一数据结构？</li>
-                        <li>若 <code>/command</code> 与用户消息解析冲突，你会如何在词法层消除歧义？</li>
+                        <li>输出里可分区展示：<strong>来源层</strong>（默认 / 用户 / 项目 / 环境变量覆盖）与<strong>最终字段值</strong>，便于对照「谁覆盖了谁」。</li>
+                        <li>若合并是深度合并，命令应调用与运行时<strong>同一套 merge 函数</strong>，避免「打印所见」与「实际所用」不一致。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block" id="d04-q-slash-lex">
+                    <h2>✏️ 自测 2 · 参考答案：<code>/command</code> 与自然语言冲突？</h2>
+                    <h3>题干</h3>
+                    <p>若 <code>/command</code> 与用户消息解析冲突，如何在词法层消除歧义？</p>
+                    <h3>结论</h3>
+                    <ul>
+                        <li><strong>第一 token 规则</strong>：仅当行首（trim 后）以 <code>/</code> 开头且紧跟已注册命令名时走命令表；否则整行进模型。</li>
+                        <li><strong>转义</strong>：支持 <code>\/</code> 或约定前缀（如 <code>//</code> 表示字面斜杠）避免用户想讨论路径时被当命令。</li>
+                        <li><strong>多行与粘贴</strong>：命令解析只在「提交的一行」或「第一行」上做，避免块粘贴误触。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>✏️ 自测（题干回顾）</h2>
+                    <ul>
+                        <li>有效配置从哪读？→ <a href="#d04-q-print-config">自测 1</a></li>
+                        <li>斜杠与用户消息？→ <a href="#d04-q-slash-lex">自测 2</a></li>
                     </ul>
                 </section>
 

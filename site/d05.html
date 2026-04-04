@@ -95,11 +95,38 @@
                     </ol>
                 </section>
 
-                <section class="section-block">
-                    <h2>✏️ 自测</h2>
+                <section class="section-block" id="d05-q-compress-fail">
+                    <h2>✏️ 自测 1 · 参考答案：压缩后必然做错的场景</h2>
+                    <h3>题干</h3>
+                    <p>给出一种「压缩后模型必然做错」的场景，并说明如何改策略避免。</p>
+                    <h3>示例场景</h3>
+                    <p>摘要把<strong>失败测试的唯一关键栈帧行</strong>或<strong>用户刚约定的接口签名</strong>删掉，只保留「测试失败」四字；下一轮模型会按错误假设改代码，越改越偏。</p>
+                    <h3>如何避免</h3>
                     <ul>
-                        <li>给出一种「压缩后模型必然做错」的场景，并说明如何改策略避免。</li>
-                        <li>比较：摘要由「小模型」与「规则」各有什么工程代价？</li>
+                        <li><strong>锚点保留</strong>：对含 <code>Error</code>/<code>FAIL</code> 的工具输出保留首尾 N 行 + 关键字行；或用边界消息标记 compact（见上文 D05 工程补充）。</li>
+                        <li><strong>外置大段</strong>：超长 log 写入文件，上下文只保留路径与 checksum，需要时再 <code>read</code>。</li>
+                        <li><strong>用户/规则 gate</strong>：压缩前若检测到「未闭合任务」关键词，降低压缩强度或跳过该轮。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block" id="d05-q-summary-cost">
+                    <h2>✏️ 自测 2 · 参考答案：小模型摘要 vs 规则摘要</h2>
+                    <h3>题干</h3>
+                    <p>摘要由「小模型」与「规则」各有什么工程代价？</p>
+                    <h3>对比</h3>
+                    <table class="options-table">
+                        <tr><th>方式</th><th>代价 / 风险</th></tr>
+                        <tr><td>小模型摘要</td><td>多一次推理<strong>费用与延迟</strong>；摘要质量波动；需防「摘要再幻觉」；要版本化 prompt 与回归测例。</td></tr>
+                        <tr><td>规则 / 模板</td><td>开发维护<strong>规则表</strong>成本高；对非标输出脆弱；但<strong>确定性高、可测</strong>，适合合规场景。</td></tr>
+                    </table>
+                    <p>实务上常<strong>混合</strong>：规则做硬截断与结构化字段提取，小模型只负责把「已截断块」压成短摘要。</p>
+                </section>
+
+                <section class="section-block">
+                    <h2>✏️ 自测（题干回顾）</h2>
+                    <ul>
+                        <li>压缩后必然做错？→ <a href="#d05-q-compress-fail">自测 1</a></li>
+                        <li>小模型 vs 规则？→ <a href="#d05-q-summary-cost">自测 2</a></li>
                     </ul>
                 </section>
 
