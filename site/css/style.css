@@ -3719,8 +3719,112 @@ body {
     border-bottom: none;
 }
 
+.reference-lead {
+    max-width: 900px;
+    margin: 0 auto 28px;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.reference-lead a {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.reference-detail-wrap {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.reference-detail-category {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    border: 1px solid var(--border);
+}
+
+.reference-detail-category > h3 {
+    color: var(--text-primary);
+    font-size: 1.15rem;
+    margin: 0 0 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+}
+
+.ref-table--detail td {
+    vertical-align: top;
+    padding: 14px 12px 14px 0;
+}
+
+.ref-table--detail td:first-child {
+    width: 16%;
+    min-width: 7rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.ref-table--detail td:nth-child(2) {
+    width: 26%;
+    color: var(--text-secondary);
+}
+
+.ref-table--detail .ref-usage {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.65;
+}
+
+.ref-table--detail .ref-usage p {
+    margin: 0 0 8px;
+}
+
+.ref-table--detail .ref-usage ul {
+    margin: 6px 0 0 1.15rem;
+    padding: 0;
+}
+
+.ref-table--detail .ref-usage li {
+    margin-bottom: 6px;
+}
+
+.ref-table--detail .ref-note {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
 /* 教程页响应式 */
 @media (max-width: 768px) {
+    .ref-table--detail td:first-child,
+    .ref-table--detail td:nth-child(2) {
+        width: 100%;
+    }
+
+    .ref-table--detail tr {
+        display: block;
+        padding-bottom: 12px;
+        margin-bottom: 12px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .ref-table--detail tr:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    .ref-table--detail td {
+        display: block;
+        padding: 6px 0;
+        border-bottom: none;
+    }
+
     .install-tabs {
         gap: 8px;
     }

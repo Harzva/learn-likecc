@@ -611,61 +611,255 @@ claude -p "translate new strings into French and raise a PR"</code></pre>
         </div>
     </section>
 
-    <!-- 命令参考 -->
+    <!-- 命令参考（含用法说明；与 /help 及官方文档对照） -->
     <section id="reference" class="section reference-section">
         <div class="container">
             <h2 class="section-title">📖 命令参考</h2>
+            <p class="reference-lead">内置斜杠命令会随版本与账号类型变化；请以本机 <code>/help</code> 为准。下表补充<strong>常见命令的用途、典型用法与注意点</strong>。更完整说明见 <a href="https://code.claude.com/docs/zh-CN/" target="_blank" rel="noopener noreferrer">Claude Code 官方文档</a>；本教程 <a href="#skills">Skills 章节</a> 可与 <code>/skills</code> 对照阅读。</p>
 
-            <div class="reference-categories">
-                <div class="reference-category">
-                    <h3>💬 会话管理</h3>
-                    <table class="ref-table">
-                        <tr><td><code>/help</code></td><td>显示可用命令</td></tr>
-                        <tr><td><code>/clear</code></td><td>清除对话历史</td></tr>
-                        <tr><td><code>/compact</code></td><td>压缩对话以节省上下文</td></tr>
-                        <tr><td><code>/resume</code></td><td>恢复之前的对话</td></tr>
-                        <tr><td><code>/rename "name"</code></td><td>重命名当前会话</td></tr>
+            <div class="reference-detail-wrap">
+                <div class="reference-detail-category">
+                    <h3>🔌 扩展：Skills / Agents / Hooks / Plugin</h3>
+                    <table class="ref-table ref-table--detail">
+                        <tr>
+                            <td><code>/skills</code></td>
+                            <td>浏览并启用技能包</td>
+                            <td class="ref-usage">
+                                <p><strong>怎么用</strong>：在 REPL 输入 <code>/skills</code>，进入交互界面，可查看项目 <code>.claude/skills/</code>、捆绑技能、插件技能等。</p>
+                                <ul>
+                                    <li>技能目录下的说明文件常定义「何时用、分步怎么做」；部分技能会注册<strong>额外斜杠子命令</strong>（以实际 <code>/help</code> 为准）。</li>
+                                    <li>与 <strong>自然语言</strong>配合：先 <code>/skills</code> 选对技能，再描述任务，减少模型猜流程。</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>/agents</code></td>
+                            <td>管理子代理配置</td>
+                            <td class="ref-usage">
+                                <p><strong>怎么用</strong>：<code>/agents</code> 打开本地 JSX 界面，用于查看、编辑 <code>.claude/agents/</code>（或当前版本约定的 agents 配置目录）。</p>
+                                <ul>
+                                    <li>典型流程：为重复子任务建专用 agent（工具白名单、提示词、工作目录），再在对话里通过工具或命令调用。</li>
+                                    <li>修改后若未生效，可重启会话或按界面提示重载（视版本而定）。</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>/hooks</code></td>
+                            <td>管理生命周期钩子</td>
+                            <td class="ref-usage">
+                                <p><strong>怎么用</strong>：<code>/hooks</code> 用于配置在工具前后、会话开始等时机运行的脚本或命令（具体事件名以文档与 <code>/help</code> 为准）。</p>
+                                <ul>
+                                    <li>钩子应<strong>幂等</strong>、快速失败，避免阻塞主循环；敏感操作仍应走工具权限，不可在钩子里绕过。</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>/plugin</code></td>
+                            <td>管理插件</td>
+                            <td class="ref-usage">
+                                <p><strong>怎么用</strong>：启用/禁用插件、查看插件提供的命令与技能；插件可能向 <code>/skills</code> 与斜杠命令列表注入条目。</p>
+                            </td>
+                        </tr>
                     </table>
                 </div>
 
-                <div class="reference-category">
-                    <h3>⚙️ 配置</h3>
-                    <table class="ref-table">
-                        <tr><td><code>/config</code></td><td>查看或编辑配置</td></tr>
-                        <tr><td><code>/login</code></td><td>登录账户</td></tr>
-                        <tr><td><code>/logout</code></td><td>登出账户</td></tr>
-                        <tr><td><code>/model</code></td><td>切换模型</td></tr>
-                        <tr><td><code>/permissions</code></td><td>管理权限设置</td></tr>
+                <div class="reference-detail-category">
+                    <h3>📎 自定义斜杠命令与 Rules（易混点）</h3>
+                    <table class="ref-table ref-table--detail">
+                        <tr>
+                            <td><code>.claude/commands/</code></td>
+                            <td>项目自定义「命令」</td>
+                            <td class="ref-usage">
+                                <p>产品里通常<strong>没有</strong>一个叫 <code>/command</code> 的内置总闸；你在仓库放 <code>.claude/commands/复盘.md</code>，REPL 里用的是 <code>/复盘</code>（文件名决定命令名，扩展名按版本约定）。</p>
+                                <ul>
+                                    <li><strong>用法</strong>：编辑 Markdown（或当前版本支持的格式）→ 保存 → 在同目录项目开新会话 → <code>/help</code> 或补全里应出现对应命令。</li>
+                                    <li>适合固化团队流程（如「发版检查清单」），内容长时可拆成多条命令。</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>.claude/rules/</code></td>
+                            <td>按路径生效的规则</td>
+                            <td class="ref-usage">
+                                <p>社区常统称「Rules」。一般<strong>没有</strong>单独内置 <code>/rules</code> 斜杠；规则以 Markdown 放在 <code>.claude/rules/</code>，可通过 frontmatter（如 <code>paths</code>）限定作用文件，与会话上下文一起注入模型。</p>
+                                <ul>
+                                    <li><strong>用法</strong>：与 <code>/init</code> 生成/补全项目说明配合；大项目按主题拆文件（代码风格、测试、安全）。</li>
+                                    <li>修改后依赖缓存策略，必要时新开会话或按文档执行重载。</li>
+                                </ul>
+                            </td>
+                        </tr>
                     </table>
                 </div>
 
-                <div class="reference-category">
-                    <h3>🔍 上下文</h3>
-                    <table class="ref-table">
-                        <tr><td><code>/add-dir &lt;path&gt;</code></td><td>添加目录到上下文</td></tr>
-                        <tr><td><code>/memory</code></td><td>管理 CLAUDE.md 和自动记忆</td></tr>
-                        <tr><td><code>/init</code></td><td>生成初始 CLAUDE.md</td></tr>
-                        <tr><td><code>/mcp</code></td><td>管理 MCP servers</td></tr>
+                <div class="reference-detail-category">
+                    <h3>💬 会话分支、导出与「使用报告」</h3>
+                    <table class="ref-table ref-table--detail">
+                        <tr>
+                            <td><code>/branch</code></td>
+                            <td>从当前点分叉会话</td>
+                            <td class="ref-usage">
+                                <p><strong>语法</strong>：<code>/branch</code> 或 <code>/branch 特性名</code>（参数 hint 为可选名称）。</p>
+                                <p>在当前对话状态复制出一条新线程，便于「试 risky 方案」而不污染主线；与 Git 分支无关，是<strong>会话级</strong>分叉。</p>
+                                <span class="ref-note">部分构建若启用 <code>/fork</code> 子代理功能，可能与 <code>/branch</code> 别名策略有关，以 <code>/help</code> 为准。</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>/export</code></td>
+                            <td>导出当前对话</td>
+                            <td class="ref-usage">
+                                <p><strong>语法</strong>：<code>/export</code>（剪贴板或默认行为）或 <code>/export 文件名.md</code>。</p>
+                                <p>用于归档、分享复盘、贴到工单；导出内容可能含工具调用摘要，分享前请脱敏。</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>/insights</code></td>
+                            <td>会话分析报告（使用报告）</td>
+                            <td class="ref-usage">
+                                <p>内置描述为分析你的 Claude Code 使用会话并生成报告（实现较重，首次调用可能较慢）。</p>
+                                <ul>
+                                    <li><strong>用法</strong>：在 REPL 执行 <code>/insights</code>，按提示选择时间范围或确认分析范围（以当前 UI 为准）。</li>
+                                    <li>适合周期性复盘：常用工具、失败模式、上下文膨胀等（具体字段随版本变化）。</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>/copy</code></td>
+                            <td>复制助手回复</td>
+                            <td class="ref-usage">
+                                <p><strong>语法</strong>：<code>/copy</code> 复制最近一条；<code>/copy N</code> 复制倒数第 N 条。便于贴到 PR、文档或 issue。</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>/compact</code></td>
+                            <td>压缩上下文</td>
+                            <td class="ref-usage">
+                                <p>触发对话摘要/压缩以腾出 token；可与自动压缩策略配合。压缩后有信息损失风险，关键结论建议写入 <code>CLAUDE.md</code> 或仓库笔记。</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>/resume</code> · <code>/rename</code> · <code>/clear</code></td>
+                            <td>会话列表与清理</td>
+                            <td class="ref-usage">
+                                <ul>
+                                    <li><code>/resume</code>：从历史会话继续。</li>
+                                    <li><code>/rename "名称"</code>：重命名当前会话便于检索。</li>
+                                    <li><code>/clear</code>：清空当前对话历史（慎用，先 <code>/export</code> 如需留存）。</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>/rewind</code></td>
+                            <td>回到检查点</td>
+                            <td class="ref-usage">
+                                <p>将会话与文件状态回退到先前 checkpoint（能力依赖版本与权限）；用于误改代码后的恢复，使用前确认未提交工作是否允许丢弃。</p>
+                            </td>
+                        </tr>
                     </table>
                 </div>
 
-                <div class="reference-category">
-                    <h3>🛡️ 安全与恢复</h3>
-                    <table class="ref-table">
-                        <tr><td><code>/rewind</code></td><td>回退到 checkpoint</td></tr>
-                        <tr><td><code>/plan</code></td><td>进入规划模式</td></tr>
-                        <tr><td><code>/bug</code></td><td>报告问题</td></tr>
-                        <tr><td><code>/doctor</code></td><td>诊断常见问题</td></tr>
+                <div class="reference-detail-category">
+                    <h3>🧠 记忆与上下文</h3>
+                    <table class="ref-table ref-table--detail">
+                        <tr>
+                            <td><code>/memory</code></td>
+                            <td>编辑记忆文件</td>
+                            <td class="ref-usage">
+                                <p><strong>怎么用</strong>：打开交互界面，编辑项目级 <code>CLAUDE.md</code>、记忆片段等（具体文件列表以 UI 为准）。</p>
+                                <ul>
+                                    <li>适合写「长期有效」的约定：目录结构、测试命令、禁止事项。</li>
+                                    <li>与 <code>.claude/rules/</code> 分工：memory 偏全局项目说明，rules 偏路径级细则。</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>/init</code></td>
+                            <td>初始化项目说明</td>
+                            <td class="ref-usage">
+                                <p>引导生成/补全 <code>CLAUDE.md</code>，并扫描现有 AI 配置（如 AGENTS.md、<code>.cursor/rules</code> 等）写入要点，减少冷启动成本。</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>/add-dir</code></td>
+                            <td>扩展可读目录</td>
+                            <td class="ref-usage">
+                                <p><strong>语法</strong>：<code>/add-dir &lt;路径&gt;</code>，把额外目录纳入工具默认可读范围（仍受权限与工作区策略约束）。</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>/mcp</code></td>
+                            <td>管理 MCP</td>
+                            <td class="ref-usage">
+                                <p>查看、连接、调试 MCP 服务器；修改配置后常需重连或新开会话使 <code>tools/list</code> 生效。</p>
+                            </td>
+                        </tr>
                     </table>
                 </div>
 
-                <div class="reference-category">
-                    <h3>🔌 扩展</h3>
-                    <table class="ref-table">
-                        <tr><td><code>/skills</code></td><td>列出可用 skills</td></tr>
-                        <tr><td><code>/agents</code></td><td>列出可用 agents</td></tr>
-                        <tr><td><code>/hooks</code></td><td>管理 hooks</td></tr>
-                        <tr><td><code>/plugin</code></td><td>管理 plugins</td></tr>
+                <div class="reference-detail-category">
+                    <h3>📊 用量、统计与成本</h3>
+                    <table class="ref-table ref-table--detail">
+                        <tr>
+                            <td><code>/usage</code></td>
+                            <td>套餐用量上限</td>
+                            <td class="ref-usage">
+                                <p>在 <strong>Claude.ai</strong> 等场景下展示计划用量与限制；若你使用纯 API/第三方端点，该命令可能不可用或显示不同，以 <code>/help</code> 为准。</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>/stats</code></td>
+                            <td>使用统计与活动</td>
+                            <td class="ref-usage">
+                                <p>打开统计视图（活跃度、习惯等，随产品迭代变化）；适合与 <code>/insights</code> 搭配：一个偏实时统计，一个偏会话分析报告。</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>/cost</code></td>
+                            <td>本会话成本与时耗</td>
+                            <td class="ref-usage">
+                                <p>展示当前会话累计成本与耗时（部分账号类型下可能隐藏或简化，以实际界面为准）。</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="reference-detail-category">
+                    <h3>⚙️ 配置、模型、权限与安全</h3>
+                    <table class="ref-table ref-table--detail">
+                        <tr>
+                            <td><code>/config</code></td>
+                            <td>查看/改设置</td>
+                            <td class="ref-usage">交互式编辑用户与项目配置；改模型、主题、键位等入口常在此。</td>
+                        </tr>
+                        <tr>
+                            <td><code>/model</code></td>
+                            <td>切换模型</td>
+                            <td class="ref-usage">在当前会话切换推理模型（可用列表依赖账号与地区）。</td>
+                        </tr>
+                        <tr>
+                            <td><code>/permissions</code></td>
+                            <td>允许/拒绝规则</td>
+                            <td class="ref-usage">管理工具权限规则（allow/deny 等），与 D 课「权限模型」对应；高危操作应先在此理清策略再开自动模式。</td>
+                        </tr>
+                        <tr>
+                            <td><code>/plan</code></td>
+                            <td>规划模式</td>
+                            <td class="ref-usage">进入少工具、偏计划的交互模式，适合先拆任务再执行。</td>
+                        </tr>
+                        <tr>
+                            <td><code>/login</code> · <code>/logout</code></td>
+                            <td>登录状态</td>
+                            <td class="ref-usage">部分环境由安装方式决定认证，第三方 API 用户可能不显示登录流。</td>
+                        </tr>
+                        <tr>
+                            <td><code>/doctor</code> · <code>/bug</code></td>
+                            <td>诊断与反馈</td>
+                            <td class="ref-usage"><code>/doctor</code> 自检环境；<code>/bug</code> 收集问题上下文上报（勿粘贴密钥）。</td>
+                        </tr>
+                        <tr>
+                            <td><code>/help</code></td>
+                            <td>命令总表</td>
+                            <td class="ref-usage">始终以此为准；下文未列出的命令（如 <code>/diff</code>、<code>/theme</code>、<code>/vim</code> 等）在 <code>/help</code> 中可查。</td>
+                        </tr>
                     </table>
                 </div>
             </div>
