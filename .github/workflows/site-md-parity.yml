@@ -1,0 +1,21 @@
+name: Site MD parity check
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'site/**'
+      - 'tools/check_site_md_parity.py'
+      - '.github/workflows/site-md-parity.yml'
+  pull_request:
+    paths:
+      - 'site/**'
+      - 'tools/check_site_md_parity.py'
+
+jobs:
+  parity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify HTML ↔ site/md pairs and blob links
+        run: python3 tools/check_site_md_parity.py

@@ -1375,3 +1375,9 @@ ANTHROPIC_API_KEY=your-api-key-here
 
 - 新增计划文档 **[v2.5.0_plan.md](./v2.5.0_plan.md)**：`site/md/<stem>.md` 与 `site/<stem>.html` 成对、HTML 页增加 GitHub blob 互链；拆分为 **Agent 1～3 并行干活 + Agent 4 检测汇总**，任务完成后于计划内 **`- [ ]` → `- [x]`** 打钩。
 - 新增 **4 份独立上下文**（便于复制给其他 Agent）：[v2.5.0/README.md](./v2.5.0/README.md)（`agent-1`…`agent-4` 四个 md）。
+
+### 2026-04-04（续）
+
+- **v2.5.0 校验**：`python3 tools/check_site_md_parity.py` 通过；Agent 4 已在总计划与 `agent-4-verify-and-summary.md` 打钩。
+- **GitHub Pages**：`site/**` 推送触发 [deploy workflow](../../.github/workflows/deploy.yml)；新增 [site-md-parity.yml](../../.github/workflows/site-md-parity.yml) 做 PR/推送校验。
+- **下一阶段**：[v2.5.1_plan.md](./v2.5.1_plan.md) + [v2.5.1/README.md](./v2.5.1/README.md)（四 Agent：CI/文档、14 hub MD、s01–s12、d01–d12+汇总）。

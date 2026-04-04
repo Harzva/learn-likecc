@@ -15,3 +15,13 @@
 ## 各页 HTML 入口
 
 每个对外 HTML 页脚区域提供「Markdown 源文件（GitHub）」链接，stem 与当前页文件名一致。
+
+## 校验（v2.5.0）
+
+仓库根目录执行：
+
+```bash
+python3 tools/check_site_md_parity.py
+```
+
+应输出 `OK (38 html, ...)`。下一阶段（**v2.5.1**）见 `.claude/plans/v2.5.1_plan.md`：深化 MD 正文与 CI 常态化校验。
