@@ -4364,6 +4364,69 @@ a.hero-badge--jump:focus-visible {
     border-color: var(--primary);
 }
 
+article.course-card-main {
+    display: block;
+    color: inherit;
+}
+
+.course-card-pair .course-pair-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.course-pair-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    background: var(--bg-hover);
+    color: var(--text-primary);
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.course-pair-link:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.course-pair-link--d {
+    border-color: rgba(20, 184, 166, 0.45);
+    background: rgba(20, 184, 166, 0.08);
+}
+
+.course-pair-link--d:hover {
+    border-color: #14b8a6;
+    color: #0f766e;
+}
+
+.course-pair-lab {
+    font-family: ui-monospace, monospace;
+    font-size: 0.8rem;
+    opacity: 0.9;
+}
+
+.course-lesson-badge {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    margin: 0 0 12px;
+    padding: 8px 12px;
+    background: var(--bg-hover);
+    border-radius: 8px;
+    border-left: 3px solid var(--primary);
+}
+
+.course-lesson-badge a {
+    color: var(--primary);
+    font-weight: 600;
+}
+
 .course-header-main {
     display: flex;
     justify-content: space-between;
@@ -4947,6 +5010,16 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     padding-left: 20px;
     font-size: 0.85rem;
     margin: 0 8px 0 12px;
+}
+
+.site-sidebar__link--deep {
+    padding-left: 28px;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+}
+
+.site-sidebar__link--deep:hover {
+    color: #14b8a6;
 }
 
 .site-sidebar__details {

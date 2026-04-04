@@ -62,6 +62,35 @@ const MERMAID_DIAGRAMS = {
     style P2 fill:#13131a,stroke:#3b82f6,stroke-dasharray:5 4
     style P3 fill:#13131a,stroke:#10b981,stroke-dasharray:5 4`,
 
+    'course-24': `graph TB
+    classDef sBox fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#93c5fd;
+    classDef dBox fill:#1c2d26,stroke:#14b8a6,stroke-width:2px,color:#5eead4;
+
+    subgraph P1 ["Part 1 · 第 1–8 讲"]
+        direction LR
+        A1[S01]:::sBox --> B1[D01]:::dBox --> A2[S02]:::sBox --> B2[D02]:::dBox
+        A3[S03]:::sBox --> B3[D03]:::dBox --> A4[S04]:::sBox --> B4[D04]:::dBox
+    end
+
+    subgraph P2 ["Part 2 · 第 9–16 讲"]
+        direction LR
+        A5[S05]:::sBox --> B5[D05]:::dBox --> A6[S06]:::sBox --> B6[D06]:::dBox
+        A7[S07]:::sBox --> B7[D07]:::dBox --> A8[S08]:::sBox --> B8[D08]:::dBox
+    end
+
+    subgraph P3 ["Part 3 · 第 17–24 讲"]
+        direction LR
+        A9[S09]:::sBox --> B9[D09]:::dBox --> A10[S10]:::sBox --> B10[D10]:::dBox
+        A11[S11]:::sBox --> B11[D11]:::dBox --> A12[S12]:::sBox --> B12[D12]:::dBox
+    end
+
+    P1 --> P2
+    P2 --> P3
+
+    style P1 fill:#13131a,stroke:#e2b953,stroke-dasharray:5 4
+    style P2 fill:#13131a,stroke:#3b82f6,stroke-dasharray:5 4
+    style P3 fill:#13131a,stroke:#10b981,stroke-dasharray:5 4`,
+
     'devlog-loop': `graph TB
     classDef yellowBox fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#e2b953;
     classDef blueBox fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#3b82f6;
@@ -227,7 +256,12 @@ function initSiteSidebar() {
                 n +
                 '.html">S' +
                 n +
-                '</a>'
+                ' 主线</a>' +
+                '<a class="site-sidebar__link site-sidebar__link--sub site-sidebar__link--deep" href="d' +
+                n +
+                '.html">D' +
+                n +
+                ' 深挖</a>'
         )
     }
 

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D08: Task Management 深挖 - Claude Code Course</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔬</text></svg>">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🧠 Claude Code Course</a>
+            <div class="nav-links"><a href="index.html#courses" class="nav-link">课程</a></div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="course-main">
+        <div class="container">
+            <div class="course-header">
+                <div class="course-breadcrumb">
+                    <a href="index.html">首页</a> / <a href="index.html#courses">课程</a> / D08 深挖
+                </div>
+                <div class="course-nav">
+                    <span class="course-part-badge">Part 2: 高级特性 · 第 16 讲</span>
+                    <div class="course-chapter-nav">
+                        <a href="s08.html" class="chapter-prev">← S08</a>
+                        <a href="s09.html" class="chapter-next">下一讲 S09 →</a>
+                    </div>
+                </div>
+            </div>
+
+            <article class="course-content">
+                <p class="course-lesson-badge">24 讲路线 · 与 <a href="s08.html">S08</a> 配对</p>
+                <h1 class="course-title">D08: Task Management <span class="subtitle">深挖 · 任务管理</span></h1>
+
+                <div class="course-quote">
+                    <p>本讲在 <strong>S08</strong> 主线之上，聚焦<strong>实现细节、边界条件与自测</strong>；导图与主线相同模块，便于对照。</p>
+                    <p><strong>建议</strong>：先读完 S08，再按下方顺序走读源码与练习。</p>
+                </div>
+
+                <figure class="mermaid-figure" aria-label="本章导图">
+                    <figcaption class="mermaid-caption"><strong>模块导图</strong>（与 S08 一致）：依赖图、调度与失败重试</figcaption>
+                    <div class="mermaid-diagram-scroll" data-mermaid-diagram="course-s08"></div>
+                </figure>
+
+                <section class="section-block">
+                    <h2>🎯 与主线差异</h2>
+                    <p>S08 解决「是什么、为什么」；D08 解决「代码在哪、如何判断对错」。本页提供<strong>占位骨架</strong>，后续版本将按 依赖图、调度与失败重试 展开源码片段与习题。</p>
+                </section>
+
+                <section class="section-block">
+                    <h2>📖 建议走读顺序</h2>
+                    <ol>
+                        <li>在 S08 标出的入口文件中，定位与本主题相关的类型与主函数。</li>
+                        <li>列出 3 个「若失败会如何表现」的分支（超时、权限、格式错误）。</li>
+                        <li>用最小用例复现一条快乐路径 + 一条异常路径。</li>
+                    </ol>
+                </section>
+
+                <section class="section-block">
+                    <h2>✏️ 自测（占位）</h2>
+                    <ul>
+                        <li>不看笔记，能否画出与上图等价的简化数据流？</li>
+                        <li>能否指出本模块与相邻一章的耦合点？</li>
+                    </ul>
+                </section>
+
+                <div class="chapter-navigation">
+                    <a href="s08.html" class="btn btn-secondary">← S08: Task Management</a>
+                    <a href="s09.html" class="btn btn-primary">下一讲: S09: Bridge IDE →</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer"><div class="container"><p>© 2026 Claude Code Course. 仅供学习研究使用。</p></div></footer>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js" crossorigin="anonymous"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
