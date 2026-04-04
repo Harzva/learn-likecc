@@ -22,8 +22,8 @@
 - **📚 源码课程章节**
 - **💼 面试题库**
 - **🔥 热点话题**
-  - 从编辑器到 Agent：一条工具链上的个人阅历（本站 `column-agent-journey`；知乎待发 `wemedia/zhihu/articles/11-…`）
-  - 上手与踩坑：赛博档案 · 实战篇 · Agent 实战手记（本站 `column-shangshou-cikeng`；知乎待发 `articles/12-…`）
+  - 从编辑器到 Agent：一条工具链上的个人阅历（本站 `column-agent-journey`；仓库稿 `wemedia/zhihu/articles/11-…`）
+  - 上手与踩坑：赛博档案 · 实战篇 · Agent 实战手记（本站 `column-shangshou-cikeng`；仓库稿 `articles/12-…`）
   - Claude Code 封号真相：Anthropic 如何通过数字指纹追踪你
   - Claude Code 源码泄露：44个未发布功能，Anthropic 藏了多少惊喜？
   - Claude Code vs OpenClaw：谁的记忆系统更强？

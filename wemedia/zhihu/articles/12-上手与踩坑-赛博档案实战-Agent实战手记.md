@@ -1,10 +1,11 @@
 # 上手与踩坑
 
-> **赛博档案 · 实战篇** · **Agent 实战手记**  
-> 主标题：**上手与踩坑**。下面两句是专栏介绍，不是第二、第三个并列主标题——发知乎可整段保留作导语。
+**赛博档案 · 实战篇** · **Agent 实战手记**
 
-> **在线扉页（排版更好）**：[https://harzva.github.io/learn-likecc/column-shangshou-cikeng.html](https://harzva.github.io/learn-likecc/column-shangshou-cikeng.html)  
-> **GitHub 同源**：[site/md/column-shangshou-cikeng.md](https://github.com/Harzva/learn-likecc/blob/main/site/md/column-shangshou-cikeng.md)
+「赛博档案 · 实战篇」「Agent 实战手记」为专栏介绍语，**不是**与主标题并列的第二、第三个标题。
+
+- **在线专栏**：https://harzva.github.io/learn-likecc/column-shangshou-cikeng.html  
+- **站内 MD 镜像**：[site/md/column-shangshou-cikeng.md](https://github.com/Harzva/learn-likecc/blob/main/site/md/column-shangshou-cikeng.md)
 
 ---
 
@@ -35,8 +36,8 @@
 
 - [工具链阅历](https://harzva.github.io/learn-likecc/column-agent-journey.html)
 - [开发日志](https://harzva.github.io/learn-likecc/devlog.html)
-- [wemedia 知乎稿目录](https://github.com/Harzva/learn-likecc/tree/main/wemedia/zhihu/articles)
+- [wemedia 稿件目录](https://github.com/Harzva/learn-likecc/tree/main/wemedia/zhihu/articles)
 
 ---
 
-*发稿说明：本文为专栏扉页，可与站上网页同步迭代；发小红书可拆成多条短笔记。*
+*仓库路径：`wemedia/zhihu/articles/12-上手与踩坑-赛博档案实战-Agent实战手记.md` — 可与站上网页 `column-shangshou-cikeng` 同步迭代。*

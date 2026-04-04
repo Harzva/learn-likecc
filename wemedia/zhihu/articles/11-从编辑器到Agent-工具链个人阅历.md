@@ -1,8 +1,9 @@
 # 从编辑器到 Agent：一条工具链上的个人阅历
 
-> **导语（发知乎可直接保留本段）**  
-> 个人折腾记录与主观感受，**不是**教程或采购建议；已隐去账号细节、精确额度、任何可复现的密钥与端点。  
-> **延伸阅读（排版更好的在线版）**：[网页专栏](https://harzva.github.io/learn-likecc/column-agent-journey.html) · [GitHub 同源 Markdown](https://github.com/Harzva/learn-likecc/blob/main/site/md/column-agent-journey.md)
+个人折腾记录与主观感受，**不是**教程或采购建议；已隐去账号细节、精确额度、任何可复现的密钥与端点。
+
+- **在线专栏**：https://harzva.github.io/learn-likecc/column-agent-journey.html  
+- **站内 MD 镜像**：`site/md/column-agent-journey.md`（[GitHub 上查看](https://github.com/Harzva/learn-likecc/blob/main/site/md/column-agent-journey.md)）
 
 ---
 
@@ -280,12 +281,4 @@ layout {
 
 ---
 
-## 分发备忘（作者自用，发知乎可删本节）
-
-- **知乎**：全文粘贴即可；列表与加粗一般渲染正常；代码块仅少量 `grep` 等，可保留。
-- **小红书**：建议按「大节」拆成多篇笔记（每篇控制在平台习惯字数内），每篇配一张封面；口语段可单独做「金句卡」。
-- **配图**：在线专栏页有题图与插图；知乎可自配封面，或截取网页长图（注意版权与平台规则）。
-
----
-
-*仓库路径：`wemedia/zhihu/articles/11-从编辑器到Agent-工具链个人阅历.md` — 与 `site/md/column-agent-journey.md` 同源迭代，发稿前可择一为准同步修改。*
+*仓库路径：`wemedia/zhihu/articles/11-从编辑器到Agent-工具链个人阅历.md` — 与 `site/md/column-agent-journey.md` 同源迭代。*

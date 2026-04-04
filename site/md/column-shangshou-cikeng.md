@@ -42,7 +42,7 @@
 
 - [工具链阅历（姊妹篇）](https://harzva.github.io/learn-likecc/column-agent-journey.html)
 - [赛博永生 · skill（GitHub）](https://github.com/Harzva/learn-likecc/blob/main/.claude/skills/赛博永生.md)
-- [知乎待发稿目录](https://github.com/Harzva/learn-likecc/tree/main/wemedia/zhihu/articles)
+- [wemedia 稿件目录](https://github.com/Harzva/learn-likecc/tree/main/wemedia/zhihu/articles)
 - [项目开发日志](https://harzva.github.io/learn-likecc/devlog.html)
 
 ---

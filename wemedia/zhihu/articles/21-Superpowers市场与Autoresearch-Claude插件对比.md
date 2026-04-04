@@ -1,7 +1,8 @@
 # Superpowers 市场 / 核心插件 与 Autoresearch：差别是什么？
 
-> **适合直接发知乎的导语**  
-> 两个名字都常出现在 Claude Code 插件讨论里，但**不是同一类东西**：**[superpowers-marketplace](https://github.com/obra/superpowers-marketplace)** 是 Jesse Vincent（obra）维护的 **插件市场目录**（一个 `marketplace.json` 里挂多款插件）；**[autoresearch](https://github.com/uditgoenka/autoresearch)** 是 Udit Goenka 的 **单一插件包**，把 Karpathy 式「指标 + 约束 + 自主迭代」推广成 **10 条斜杠命令 + 一大套 SKILL 协议**。下文对照**本仓库已 vend 的克隆**（见 `reference/reference_agent/`），避免空口对比。
+两个名字都常出现在 Claude Code 插件讨论里，但**不是同一类东西**：**[superpowers-marketplace](https://github.com/obra/superpowers-marketplace)** 是 Jesse Vincent（obra）维护的 **插件市场目录**（一个 `marketplace.json` 里挂多款插件）；**[autoresearch](https://github.com/uditgoenka/autoresearch)** 是 Udit Goenka 的 **单一插件包**，把 Karpathy 式「指标 + 约束 + 自主迭代」推广成 **10 条斜杠命令 + 一大套 SKILL 协议**。下文对照**本仓库已 vend 的克隆**（见 `reference/reference_agent/`），避免空口对比。
+
+- **专题页**：https://harzva.github.io/learn-likecc/topic-superpowers-autoresearch.html
 
 **声明**：版本号、插件条目以各仓库当前文件为准；Claude Code 行为以 Anthropic 文档为准。
 
@@ -97,14 +98,6 @@ reference/reference_agent/autoresearch/
 
 - Superpowers 核心实现本体（不在本快照内，仅 market 指向）：`https://github.com/obra/superpowers`  
 - Autoresearch 与 Karpathy 原版深度对比：`autoresearch/COMPARISON.md`  
-
----
-
-## 分发备忘（发知乎可删）
-
-- **标题备选**：《Claude Code：Superpowers 市场 ≠ Autoresearch，一张表分清》  
-- **标签**：Claude Code、插件、Superpowers、Autoresearch、Agent。  
-- **网页版**：https://harzva.github.io/learn-likecc/topic-superpowers-autoresearch.html  
 
 ---
 
