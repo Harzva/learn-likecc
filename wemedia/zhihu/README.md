@@ -2,6 +2,8 @@
 
 基于 Puppeteer + Stealth 插件的知乎自动发布工具，模拟真人浏览器操作，无需 API。
 
+**自测是否打通、与公众号/md2wechat 对照**：见上级 [`../知乎与公众号Markdown发布-对照与自测.md`](../知乎与公众号Markdown发布-对照与自测.md)。
+
 ## 功能特点
 
 - ✅ 支持 Markdown 文件发布

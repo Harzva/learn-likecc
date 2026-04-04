@@ -2,6 +2,8 @@
 
 本目录收录 **Markdown → 微信公众号排版** 相关备忘，与 `wemedia/zhihu/`（知乎稿、自动发布）并列：**知乎长文先在仓库里用 Markdown 维护**，需要发公众号时，可走 **md2wechat**（CLI + Claude Code Skill）生成 HTML / 草稿流程。
 
+**自测 CLI/发布是否打通、与知乎方案对照**：见 [`../知乎与公众号Markdown发布-对照与自测.md`](../知乎与公众号Markdown发布-对照与自测.md)。
+
 ## 官方文档（权威）
 
 - **Claude Code 接入示例（原文）**：[md2wechat · Claude Code](https://www.md2wechat.com/zh/docs/examples/claude-code)
