@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-site-sidebar="">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -66,6 +66,11 @@
                     <p>"One loop & Bash is all you need" -- 一个工具 + 一个循环 = 一个智能体。</p>
                     <p><strong>Harness 层</strong>: 循环 -- 模型与真实世界的第一道连接。</p>
                 </div>
+
+                <figure class="mermaid-figure" aria-label="本章导图">
+                    <figcaption class="mermaid-caption"><strong>本章导图</strong>：主循环：用户 / LLM / 工具与 tool_result 回流，直至停止调用工具。</figcaption>
+                    <div class="mermaid-diagram-scroll" data-mermaid-diagram="course-s01"></div>
+                </figure>
 
                 <section class="section-block">
                     <h2>🎯 问题</h2>
@@ -326,6 +331,7 @@ for block in response.content:
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js" crossorigin="anonymous"></script>
     <script src="js/prism.js"></script>
     <script src="js/app.js"></script>
 </body>

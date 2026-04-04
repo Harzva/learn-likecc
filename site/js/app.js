@@ -60,7 +60,109 @@ const MERMAID_DIAGRAMS = {
     style RT fill:#181825,stroke:#89b4fa,stroke-width:1px
     style P1 fill:#13131a,stroke:#e2b953,stroke-dasharray:5 4
     style P2 fill:#13131a,stroke:#3b82f6,stroke-dasharray:5 4
-    style P3 fill:#13131a,stroke:#10b981,stroke-dasharray:5 4`
+    style P3 fill:#13131a,stroke:#10b981,stroke-dasharray:5 4`,
+
+    'devlog-loop': `graph TB
+    classDef yellowBox fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#e2b953;
+    classDef blueBox fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#3b82f6;
+    classDef greenBox fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#10b981;
+    classDef purpleBox fill:#2b2035,stroke:#cba6f7,stroke-width:2px,color:#cba6f7;
+    classDef pinkBox fill:#2d1f28,stroke:#f472b6,stroke-width:2px,color:#f9a8d4;
+
+    subgraph BOOT ["① 可迭代工程基座"]
+        A[仓库与构建目标]:::blueBox --> B[".claude 技能 / 命令"]:::yellowBox
+        B --> C[reference 仓库与论文]:::yellowBox
+        C --> D[长期规划 v.x.x_plan.md]:::greenBox
+    end
+
+    subgraph OUTER ["② 外层 Loop（计划驱动）"]
+        D --> L["/loop 时间盒执行"]:::purpleBox
+        L --> Q{当前计划条目<br/>是否全部完成?}:::pinkBox
+        Q -->|否| W[按条目改代码 / 编译 / 记录]:::blueBox
+        W --> Q
+        Q -->|是| R[复盘结果与实验目标]:::greenBox
+        R --> N[撰写下一版 v.x+1_plan.md<br/>开篇承上启下]:::greenBox
+    end
+
+    subgraph INNER ["③ 内层 Loop（递归）"]
+        N --> X[新计划尾部约定<br/>再次触发完整 /loop]:::purpleBox
+        X --> L
+    end
+
+    style BOOT fill:#13131a,stroke:#89b4fa,stroke-dasharray:5 4
+    style OUTER fill:#16161e,stroke:#e2b953,stroke-dasharray:5 4
+    style INNER fill:#16161e,stroke:#f472b6,stroke-dasharray:5 4`,
+
+    'course-s01': `graph LR
+    classDef b fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#3b82f6;
+    classDef g fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#10b981;
+    U[User 输入]:::b --> M[LLM 推理]:::b --> T[Tool 执行]:::g
+    T -->|tool_result| M
+    M -->|无 tool_use 则结束| E[结束回合]:::g`,
+
+    'course-s02': `graph TB
+    classDef b fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#3b82f6;
+    classDef y fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#e2b953;
+    classDef g fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#10b981;
+    D[Tool 定义 schema]:::b --> P[权限检查]:::y --> X[execute]:::g --> R[ToolResult]:::g`,
+
+    'course-s03': `graph LR
+    classDef b fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#3b82f6;
+    classDef y fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#e2b953;
+    classDef g fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#10b981;
+    R[工具请求]:::b --> C{策略}:::y
+    C -->|需确认| U[用户]:::y
+    C -->|放行| O[执行]:::g`,
+
+    'course-s04': `graph TB
+    classDef b fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#3b82f6;
+    classDef g fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#10b981;
+    argv[argv / stdin]:::b --> mode{交互 / -p 管道}:::b --> core[命令内核]:::g --> api[进入 Agent 会话]:::g`,
+
+    'course-s05': `graph LR
+    classDef y fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#e2b953;
+    classDef g fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#10b981;
+    H[消息历史]:::y --> K[压缩策略]:::y --> S[保留摘要 + 尾部]:::g --> N[下一轮上下文]:::g`,
+
+    'course-s06': `graph TB
+    classDef b fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#3b82f6;
+    classDef g fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#10b981;
+    P[Parent Agent]:::b --> A1[Subagent 1]:::g
+    P --> A2[Subagent 2]:::g
+    A1 --> M[合并摘要]:::b
+    A2 --> M`,
+
+    'course-s07': `graph LR
+    classDef b fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#3b82f6;
+    classDef g fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#10b981;
+    CC[Claude Code]:::b <-->|MCP| S[外部 Tool Server]:::g`,
+
+    'course-s08': `graph TB
+    classDef b fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#3b82f6;
+    classDef g fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#10b981;
+    T[Task 队列]:::b --> D{依赖就绪?}:::b
+    D -->|是| R[运行]:::g
+    D -->|否| W[等待]:::g`,
+
+    'course-s09': `graph LR
+    classDef b fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#3b82f6;
+    classDef g fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#10b981;
+    IDE[VS Code 扩展]:::b <-->|WebSocket| BR[Bridge Server]:::g --> CLI[Claude CLI]:::b`,
+
+    'course-s10': `graph TB
+    classDef y fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#e2b953;
+    classDef g fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#10b981;
+    E[事件点]:::y --> H[Hook 脚本]:::g --> F[继续主流程]:::g`,
+
+    'course-s11': `graph LR
+    classDef b fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#3b82f6;
+    classDef g fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#10b981;
+    K[按键]:::b --> V{Vim 状态机}:::g --> A[动作]:::g`,
+
+    'course-s12': `graph TB
+    classDef b fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#3b82f6;
+    classDef g fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#10b981;
+    A[对话意图]:::b --> G[git 读状态]:::g --> C[commit / branch / PR]:::g`
 }
 
 function fillMermaidPlaceholders() {
@@ -99,6 +201,114 @@ function initMermaidFlowcharts() {
     })
     mermaid.run({ querySelector: '.mermaid-flowchart' }).catch((err) => {
         console.warn('Mermaid render failed:', err)
+    })
+}
+
+/** 可收缩站点侧栏：html 根节点设 data-site-sidebar 启用 */
+function initSiteSidebar() {
+    const root = document.documentElement
+    if (!root.hasAttribute('data-site-sidebar')) return
+    if (document.getElementById('site-sidebar')) return
+
+    const collapsed = localStorage.getItem('site-sidebar-collapsed') === '1'
+    document.body.classList.add('has-site-sidebar')
+    if (collapsed) document.body.classList.add('sidebar-collapsed')
+
+    const aside = document.createElement('aside')
+    aside.id = 'site-sidebar'
+    aside.className = 'site-sidebar' + (collapsed ? ' site-sidebar--collapsed' : '')
+    aside.setAttribute('aria-label', '站点导航')
+
+    const chapters = []
+    for (let i = 1; i <= 12; i++) {
+        const n = String(i).padStart(2, '0')
+        chapters.push(
+            '<a class="site-sidebar__link site-sidebar__link--sub" href="s' +
+                n +
+                '.html">S' +
+                n +
+                '</a>'
+        )
+    }
+
+    aside.innerHTML =
+        '<button type="button" class="site-sidebar__collapse" aria-label="收起或展开侧栏" title="展开/收起">' +
+        (collapsed ? '⟩' : '⟨') +
+        '</button>' +
+        '<div class="site-sidebar__scroll">' +
+        '<a class="site-sidebar__link site-sidebar__link--brand" href="index.html"><span class="site-sidebar__ico">🧠</span><span class="site-sidebar__txt">首页</span></a>' +
+        '<a class="site-sidebar__link" href="index.html#courses"><span class="site-sidebar__ico">📚</span><span class="site-sidebar__txt">源码课程</span></a>' +
+        '<a class="site-sidebar__link" href="index.html#source-map-event"><span class="site-sidebar__ico">🗺️</span><span class="site-sidebar__txt">Source Map</span></a>' +
+        '<a class="site-sidebar__link" href="tutorial.html"><span class="site-sidebar__ico">📖</span><span class="site-sidebar__txt">官方教程</span></a>' +
+        '<a class="site-sidebar__link" href="handbook.html"><span class="site-sidebar__ico">📘</span><span class="site-sidebar__txt">完全手册</span></a>' +
+        '<a class="site-sidebar__link" href="topic-agent-comparison.html"><span class="site-sidebar__ico">🤖</span><span class="site-sidebar__txt">Agent 生态</span></a>' +
+        '<a class="site-sidebar__link" href="devlog.html"><span class="site-sidebar__ico">📝</span><span class="site-sidebar__txt">开发日志</span></a>' +
+        '<details class="site-sidebar__details"' +
+        (window.matchMedia('(min-width: 901px)').matches ? ' open' : '') +
+        '><summary class="site-sidebar__summary"><span class="site-sidebar__ico">🔬</span><span class="site-sidebar__txt">十二章列表</span></summary>' +
+        '<div class="site-sidebar__chapters">' +
+        chapters.join('') +
+        '</div></details>' +
+        '<a class="site-sidebar__link" href="https://github.com/Harzva/learn-likecc" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">🐙</span><span class="site-sidebar__txt">GitHub</span></a>' +
+        '</div>'
+
+    const backdrop = document.createElement('div')
+    backdrop.className = 'site-sidebar__backdrop'
+    backdrop.hidden = true
+    backdrop.setAttribute('aria-hidden', 'true')
+
+    const fab = document.createElement('button')
+    fab.type = 'button'
+    fab.className = 'site-sidebar__fab'
+    fab.setAttribute('aria-label', '打开导航')
+    fab.textContent = '☰'
+
+    document.body.insertBefore(aside, document.body.firstChild)
+    aside.after(backdrop)
+    document.body.appendChild(fab)
+
+    const collapseBtn = aside.querySelector('.site-sidebar__collapse')
+
+    function setCollapsed(next) {
+        if (next) {
+            aside.classList.add('site-sidebar--collapsed')
+            document.body.classList.add('sidebar-collapsed')
+            collapseBtn.textContent = '⟩'
+        } else {
+            aside.classList.remove('site-sidebar--collapsed')
+            document.body.classList.remove('sidebar-collapsed')
+            collapseBtn.textContent = '⟨'
+        }
+        localStorage.setItem('site-sidebar-collapsed', next ? '1' : '0')
+    }
+
+    collapseBtn.addEventListener('click', () => {
+        if (window.matchMedia('(max-width: 900px)').matches) {
+            aside.classList.toggle('site-sidebar--open')
+            const open = aside.classList.contains('site-sidebar--open')
+            backdrop.hidden = !open
+            return
+        }
+        setCollapsed(!aside.classList.contains('site-sidebar--collapsed'))
+    })
+
+    backdrop.addEventListener('click', () => {
+        aside.classList.remove('site-sidebar--open')
+        backdrop.hidden = true
+    })
+
+    fab.addEventListener('click', () => {
+        aside.classList.add('site-sidebar--open')
+        backdrop.hidden = false
+    })
+
+    aside.querySelectorAll('a.site-sidebar__link').forEach((a) => {
+        a.addEventListener('click', () => {
+            if (window.matchMedia('(max-width: 900px)').matches) {
+                aside.classList.remove('site-sidebar--open')
+                backdrop.hidden = true
+            }
+        })
     })
 }
 
@@ -309,6 +519,7 @@ function initExpandButtons() {
 
 // 初始化新功能
 document.addEventListener('DOMContentLoaded', () => {
+    initSiteSidebar()
     initTutorialsTabs()
     initInterviewCategories()
     initExpandButtons()

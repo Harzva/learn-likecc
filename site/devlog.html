@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目开发日志 - Claude Code Course</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>">
+    <meta name="description" content="learn-likecc 仓库的迭代方式、编译与可视化建设记录；不含密钥与内部排期。">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">📝</span>
+                <span class="logo-text">开发日志</span>
+            </a>
+            <div class="nav-links">
+                <a href="#compile" class="nav-link">编译</a>
+                <a href="#visual" class="nav-link">可视化</a>
+                <a href="#loop" class="nav-link">Loop</a>
+                <a href="#usage" class="nav-link">用量快照</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="index.html" class="btn-github">← 返回首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="course-main devlog-main">
+        <div class="container">
+            <article class="course-content devlog-content">
+                <h1 class="course-title">项目开发日志 <span class="subtitle">编译、学习与可视化</span></h1>
+
+                <div class="course-quote">
+                    <p>本文记录本仓库如何从零散资料走向<strong>可编译、可浏览的静态站点</strong>，以及我们采用的长期迭代节奏。</p>
+                    <p><strong>注意</strong>：下文<strong>不包含</strong>任何完整 API 密钥、内部排期或供应商合同信息；用量截图中的密钥在控制台侧已为掩码展示。</p>
+                </div>
+
+                <section id="intro" class="section-block">
+                    <h2>我们在做什么</h2>
+                    <p>工程目标是围绕 Claude Code 相关公开材料，整理<strong>源码向的课程章节</strong>、手册与流程图，让读者能按图索骥理解 Agent Loop、工具系统、MCP 等模块。迭代过程中，最大工作量在 TypeScript 工程的<strong>依赖对齐、类型修补与可重复构建</strong>，其次才是站点与 Mermaid 可视化。</p>
+                </section>
+
+                <section id="compile" class="section-block">
+                    <h2>编译与「能跑起来」</h2>
+                    <ul>
+                        <li><strong>基线</strong>：以可公开获得的映射与目录为起点，在本地恢复与官方行为接近的 CLI 形态，并保证 <code>pnpm</code>/<code>npm</code> 构建链路在干净环境下可通过。</li>
+                        <li><strong>策略</strong>：按模块分批消除编译错误——先核心循环与工具注册，再桥接、任务与扩展；每轮修复后记录到版本化计划文档，避免「改一处塌一片」。</li>
+                        <li><strong>产出</strong>：当主包能稳定产出可执行入口后，才把讲义拆成 S01–S12，用章节页固定「问题—方案—源码片段」结构，减少读者跳跃成本。</li>
+                    </ul>
+                </section>
+
+                <section id="visual" class="section-block">
+                    <h2>学习与可视化</h2>
+                    <ul>
+                        <li><strong>站点</strong>：采用静态 HTML + 共享 <code>style.css</code> / <code>app.js</code>，便于托管在 GitHub Pages。</li>
+                        <li><strong>Mermaid</strong>：首页提供课程总览图；各章增加「本章导图」；本页展示方法论总图（见下节）。深色画布与 Catppuccin 系配色在弱光下对比度更稳。</li>
+                        <li><strong>导航</strong>：增加可收缩侧栏，深页也能一键跳到任意章节或返回首页。</li>
+                    </ul>
+                </section>
+
+                <section id="loop" class="section-block">
+                    <h2>Loop-in-Loop：计划驱动的递归节奏</h2>
+                    <p>在长时间会话里，我们采用自洽的「外层计划循环 + 内层执行循环」——名字上像递归，本质是<strong>同一套规程套用在不同版本的计划文件上</strong>：每一版计划承接上一版的结论与未完成项，并在文末显式触发下一轮全量执行，直到新计划闭合。</p>
+                    <p><strong>工程准备（一次做好，可反复用）</strong>：维护 <code>.claude</code> 下的技能与命令约定；在 <code>reference</code> 放置可对标的仓库、笔记或论文；在仓库顶层用 <code>vX.Y.Z_plan.md</code> 一类文件承载<strong>大颗粒里程碑</strong>，避免对话里口头目标漂移。</p>
+                    <p><strong>外层 Loop（计划粒度）</strong>：在固定时间盒内对照<strong>当前版本</strong>计划检查完成度；若未完成则继续改代码、编译与记录；若完成则做结果复盘，并撰写<strong>下一版</strong>计划——新版开头用简短「承上启下」回顾上一版目标、实验与遗留问题，再列新条目。</p>
+                    <p><strong>内层 Loop（递归触发）</strong>：在新计划文末约定再次执行同一套「对照清单 → 实现 → 编译验证 → 复盘」的规程，相当于把外层 Loop <strong>应用到新文件</strong>上；如此多轮后，仓库状态与文档始终同频。</p>
+                    <p><strong>工具链说明</strong>：会话主体使用 <strong>Claude Code</strong>；部分阶段接入了与 OpenAI 兼容协议的 <strong>GLM 系列</strong>端点（由云厂商控制台托管）。下文用量为<strong>控制台统计口径</strong>的汇总，不代表单一模型或单一任务的精确拆分。</p>
+
+                    <figure class="mermaid-figure mermaid-figure--main" aria-label="Loop-in-Loop 原理图">
+                        <figcaption class="mermaid-caption">
+                            <strong>原理总览</strong>：基座（配置 + 资料 + 计划文件）→ 外层按版本推进 → 内层把同一规程递归到新计划。
+                        </figcaption>
+                        <div class="mermaid-diagram-scroll mermaid-diagram-scroll--xl" data-mermaid-diagram="devlog-loop"></div>
+                    </figure>
+                </section>
+
+                <section id="usage" class="section-block">
+                    <h2>用量快照（2026-03-31 — 04-02）</h2>
+                    <p>以下为控制台导出的<strong>示意截图</strong>，用于说明曾有一段约 <strong>48 小时</strong>的高强度连续迭代窗口；两枚<strong>独立密钥</strong>的统计相加约为 <strong>4×10⁸ 量级的 token 消耗</strong>（具体数字以账单系统为准，此处不精确到个位）。截图中密钥均已被界面掩码，请勿在公开场合补全或转发完整密钥。</p>
+
+                    <figure class="devlog-figure">
+                        <img src="images/devlog/api-keys-overview.png" alt="两枚 API 密钥的汇总用量列表，密钥字段已掩码" width="920" loading="lazy">
+                        <figcaption>控制台列表：两个别名密钥的累计用量（界面已掩码）。</figcaption>
+                    </figure>
+
+                    <figure class="devlog-figure">
+                        <img src="images/devlog/glm5-usage-spike.png" alt="GLM-5 思考模式输入 token 在三月末至四月初的用量尖峰折线图" width="920" loading="lazy">
+                        <figcaption>按模型维度的消耗曲线：尖峰与 48 小时冲刺窗口大致重合。</figcaption>
+                    </figure>
+                </section>
+
+                <section class="section-block">
+                    <h2>小结</h2>
+                    <p>本页是一份<strong>过程说明</strong>，不是教程正文；技术细节仍以各章课程与官方文档为准。若你复现类似流程，请务必<strong>轮换与吊销密钥</strong>、在控制台开启限额与告警，并遵守各云厂商条款。</p>
+                </section>
+
+                <div class="chapter-navigation">
+                    <a href="index.html" class="btn btn-secondary">← 返回首页</a>
+                    <a href="index.html#courses" class="btn btn-primary">进入源码课程 →</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js" crossorigin="anonymous"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
