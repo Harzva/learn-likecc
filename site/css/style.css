@@ -6,6 +6,7 @@
     --secondary: #6366f1;
     --secondary-light: #818cf8;
     --bg-dark: #fef7ed;
+    --bg-secondary: #fff7ed;
     --bg-card: #fffbf5;
     --bg-hover: #fef3e2;
     --text-primary: #1e293b;
@@ -30,6 +31,7 @@
     --secondary: #06b6d4;
     --secondary-light: #22d3ee;
     --bg-dark: #f0f9ff;
+    --bg-secondary: #e0f2fe;
     --bg-card: #ffffff;
     --bg-hover: #e0f2fe;
     --text-primary: #0c4a6e;
@@ -52,6 +54,7 @@
     --secondary: #10b981;
     --secondary-light: #34d399;
     --bg-dark: #f0fdf4;
+    --bg-secondary: #dcfce7;
     --bg-card: #ffffff;
     --bg-hover: #dcfce7;
     --text-primary: #14532d;
@@ -74,6 +77,7 @@
     --secondary: #8b5cf6;
     --secondary-light: #a78bfa;
     --bg-dark: #faf5ff;
+    --bg-secondary: #f3e8ff;
     --bg-card: #ffffff;
     --bg-hover: #f3e8ff;
     --text-primary: #3b0764;
@@ -96,6 +100,7 @@
     --secondary: #ef4444;
     --secondary-light: #f87171;
     --bg-dark: #fffbeb;
+    --bg-secondary: #fef3c7;
     --bg-card: #ffffff;
     --bg-hover: #fef3c7;
     --text-primary: #78350f;
@@ -118,6 +123,7 @@
     --secondary: #8b5cf6;
     --secondary-light: #a78bfa;
     --bg-dark: #0f172a;
+    --bg-secondary: #1e293b;
     --bg-card: #1e293b;
     --bg-hover: #334155;
     --text-primary: #f1f5f9;
@@ -140,6 +146,7 @@
     --secondary: #818cf8;
     --secondary-light: #a5b4fc;
     --bg-dark: #0f172a;
+    --bg-secondary: #1e293b;
     --bg-card: #1e293b;
     --bg-hover: #334155;
     --text-primary: #f1f5f9;
@@ -177,6 +184,24 @@
     background: #0f172a;
 }
 
+/* 新主页页脚：与 .footer 一样随浅色主题抬高对比，避免与 stats 区块糊成一片 */
+[data-theme="ocean"] .footer-main,
+[data-theme="forest"] .footer-main,
+[data-theme="lavender"] .footer-main,
+[data-theme="sunset"] .footer-main {
+    background: var(--bg-secondary);
+}
+
+[data-theme="midnight"] .footer-main,
+[data-theme="dark"] .footer-main {
+    background: var(--bg-card);
+    border-top: 1px solid var(--border);
+}
+
+[data-theme="light"] .footer-main {
+    background: var(--bg-secondary);
+}
+
 /* 暗色主题的代码块适配 */
 [data-theme="midnight"] .code-window {
     background: #0d1117;
@@ -186,6 +211,7 @@
 /* 明亮模式（经典） */
 [data-theme="light"] {
     --bg-dark: #f8fafc;
+    --bg-secondary: #f1f5f9;
     --bg-card: #ffffff;
     --bg-hover: #f1f5f9;
     --border: #e2e8f0;
@@ -3809,8 +3835,9 @@ body {
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
-    background: var(--bg-dark);
-    color: white;
+    background: var(--bg-hover);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
     text-decoration: none;
     border-radius: 6px;
     font-weight: 500;
@@ -3820,6 +3847,8 @@ body {
 
 .github-btn:hover {
     background: var(--primary);
+    border-color: var(--primary);
+    color: #ffffff;
     transform: translateY(-2px);
 }
 
@@ -4772,14 +4801,14 @@ article.course-card-main {
 }
 
 .stat-label-main {
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--text-secondary);
     font-size: 1rem;
 }
 
 /* 页脚 */
 .footer-main {
     background: var(--bg-dark);
-    color: white;
+    color: var(--text-primary);
     padding: 60px 0 30px;
 }
 
@@ -4798,12 +4827,12 @@ article.course-card-main {
 }
 
 .footer-brand-main p {
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--text-secondary);
     margin-bottom: 8px;
 }
 
 .footer-disclaimer {
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--text-muted);
     font-size: 0.85rem;
 }
 
@@ -4816,26 +4845,26 @@ article.course-card-main {
 .footer-col-main h5 {
     font-size: 1rem;
     margin-bottom: 16px;
-    color: white;
+    color: var(--text-primary);
 }
 
 .footer-col-main a {
     display: block;
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--text-secondary);
     text-decoration: none;
     padding: 6px 0;
     transition: color 0.2s;
 }
 
 .footer-col-main a:hover {
-    color: var(--primary-light);
+    color: var(--primary);
 }
 
 .footer-bottom-main {
     text-align: center;
     padding-top: 30px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.5);
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
     font-size: 0.9rem;
 }
 
