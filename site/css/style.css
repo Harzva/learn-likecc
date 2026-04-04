@@ -4700,10 +4700,11 @@ article.course-card-main {
     color: white;
 }
 
-/* 每日推送 */
+/* 热点话题（知乎稿 Markdown，链到 GitHub 渲染） */
 .daily-main {
     padding: 80px 0;
     background: var(--bg-secondary);
+    scroll-margin-top: 88px;
 }
 
 .section-header-main {
@@ -4716,9 +4717,44 @@ article.course-card-main {
     margin-right: auto;
 }
 
+.section-header-main.hot-topics-header {
+    max-width: 1200px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
 .section-date {
     color: var(--text-muted);
     font-size: 0.9rem;
+}
+
+.hot-topics-intro {
+    text-align: center;
+    color: var(--text-secondary);
+    max-width: 720px;
+    margin: -12px auto 28px;
+    font-size: 0.95rem;
+    line-height: 1.65;
+}
+
+.hot-topics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hot-topics-repo-link {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.hot-topics-repo-link:hover {
+    text-decoration: underline;
 }
 
 .daily-article-main {
@@ -4728,6 +4764,18 @@ article.course-card-main {
     border-radius: 16px;
     padding: 32px;
     border: 1px solid var(--border);
+}
+
+.hot-topic-card.daily-article-main {
+    max-width: none;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.hot-topic-card .article-excerpt {
+    flex: 1;
 }
 
 .article-meta-main {
