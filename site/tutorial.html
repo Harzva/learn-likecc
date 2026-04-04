@@ -377,17 +377,27 @@ paths:
         <div class="container">
             <h2 class="section-title">📂 <code>.claude/</code> 与项目配置全景</h2>
             <p class="section-desc" style="max-width: 800px; margin: 0 auto 24px; text-align: center;">
-                Claude Code 通过<strong>多层目录与文件</strong>记住「你是谁、团队规范、自动化技能、子代理分工」。下面先给<strong>目录解剖图</strong>（与常见社区示意图一致），再给出<strong>配置如何合并</strong>的 Mermaid 总览，以及三条必须搞清的规则。
+                Claude Code 通过<strong>多层目录与文件</strong>记住「你是谁、团队规范、自动化技能、子代理分工」。下方<strong>左为目录解剖、右为配置层级与合并规则</strong>（示意图）；读完图后再看三条合并规则与下表。
             </p>
 
-            <figure class="mermaid-figure tutorial-figure-wide" aria-label=".claude 目录解剖示意图">
-                <figcaption class="mermaid-caption">
-                    <strong>图 1 · 项目里 Claude 常看的文件</strong>：根目录 <code>CLAUDE.md</code> 给团队共享说明；<code>CLAUDE.local.md</code> 个人覆盖；<code>.claude/</code> 下放权限、自定义斜杠命令、规则碎片、Skills、Agents 等。<span class="ref-note" style="display:inline;margin-left:4px;">请将团队需要共享的 <code>.claude/</code> 内容提交 git；带 <code>.local</code> 的保持私有。</span>
-                </figcaption>
-                <div class="tutorial-figure-img-wrap">
-                    <img src="images/tutorial/claude-folder-anatomy.png" alt="your-project 根目录下 CLAUDE.md、CLAUDE.local.md 与 .claude 子目录 commands、rules、skills、agents、settings 等结构示意图" width="1100" loading="lazy">
-                </div>
-            </figure>
+            <div class="tutorial-claude-figures" role="group" aria-label="图 1 与图 2 并排对照">
+                <figure class="mermaid-figure tutorial-claude-figure-panel" aria-label=".claude 目录解剖示意图">
+                    <figcaption class="mermaid-caption">
+                        <strong>图 1 · 项目里 Claude 常看的文件</strong>：根目录 <code>CLAUDE.md</code> 给团队共享说明；<code>CLAUDE.local.md</code> 个人覆盖；<code>.claude/</code> 下放权限、自定义斜杠命令、规则碎片、Skills、Agents 等。<span class="ref-note" style="display:inline;margin-left:4px;">请将团队需要共享的 <code>.claude/</code> 内容提交 git；带 <code>.local</code> 的保持私有。</span>
+                    </figcaption>
+                    <div class="tutorial-figure-img-wrap">
+                        <img src="images/tutorial/claude-folder-anatomy.png" alt="your-project 根目录下 CLAUDE.md、CLAUDE.local.md 与 .claude 子目录 commands、rules、skills、agents、settings 等结构示意图" loading="lazy">
+                    </div>
+                </figure>
+                <figure class="mermaid-figure tutorial-claude-figure-panel" aria-label="Claude 配置层级结构示意图">
+                    <figcaption class="mermaid-caption">
+                        <strong>图 2 · 配置层级与合并规则</strong>：自上而下为全局 <code>~/.claude/</code>、用户 <code>~/.claude.md</code>、项目 <code>your-project/</code>，到底部「最终合并结果」。图中标注<strong>优先级从低到高</strong>；<code>settings.json</code> 为<strong>叠加合并</strong>，说明类文档按<strong>全局 → 用户 → 项目</strong>顺序<strong>拼接</strong>（非覆盖），任意层级 <code>*.local</code> 均应 <code>gitignore</code>、不入库。
+                    </figcaption>
+                    <div class="tutorial-figure-img-wrap">
+                        <img src="images/tutorial/claude-config-hierarchy-layers.png" alt="Claude 配置：全局层、用户层、项目层与最终合并结果的纵向层级示意图，含优先级箭头与 settings 合并、文档拼接、local 不入库等说明" loading="lazy">
+                    </div>
+                </figure>
+            </div>
 
             <div class="claude-dir-key-rules">
                 <h3 class="subsection-title">三条合并规则（务必与官方行为对照）</h3>
@@ -406,13 +416,6 @@ paths:
                     </div>
                 </div>
             </div>
-
-            <figure class="mermaid-figure mermaid-figure--main" aria-label="Claude 配置层级与合并方式">
-                <figcaption class="mermaid-caption">
-                    <strong>图 2 · 配置层级与合并结果（Mermaid）</strong>：三层并行汇入底部「合并结果」。<strong>优先级从低到高</strong>为 全局 <code>~/.claude/</code> → 用户单文件 <code>~/.claude.md</code> → 项目仓库；冲突时更具体的层通常优先解释或覆盖同名字段。
-                </figcaption>
-                <div class="mermaid-diagram-scroll mermaid-diagram-scroll--xl" data-mermaid-diagram="claude-config-hierarchy"></div>
-            </figure>
 
             <div class="claude-dir-text">
                 <h3 class="subsection-title">结合图 1：各目录干什么？</h3>
@@ -954,7 +957,6 @@ claude -p "translate new strings into French and raise a PR"</code></pre>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js" crossorigin="anonymous"></script>
     <script src="js/app.js"></script>
     <script>
         // 教程页面专用脚本

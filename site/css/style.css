@@ -3510,24 +3510,59 @@ body {
     background: var(--bg-card);
 }
 
-.tutorial-figure-wide {
-    max-width: 1100px;
+/* 教程 #claude-dir：图 1 目录解剖 + 图 2 配置层级左右并列 */
+.tutorial-claude-figures {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 1280px;
     margin: 0 auto 40px;
+    align-items: stretch;
 }
 
-.tutorial-figure-wide .tutorial-figure-img-wrap {
-    padding: 16px 20px 24px;
+.tutorial-claude-figures .tutorial-claude-figure-panel {
+    margin: 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.tutorial-claude-figures .mermaid-caption {
+    flex-shrink: 0;
+}
+
+.tutorial-claude-figures .tutorial-figure-img-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 16px 20px;
     background: #11111b;
     border-top: 1px solid var(--border);
+    min-height: 0;
 }
 
-.tutorial-figure-wide .tutorial-figure-img-wrap img {
+.tutorial-claude-figures .tutorial-figure-img-wrap img {
     max-width: 100%;
     height: auto;
+    max-height: min(72vh, 920px);
+    width: auto;
+    object-fit: contain;
     display: block;
     margin: 0 auto;
     border-radius: var(--radius-md);
     border: 1px solid var(--border);
+}
+
+@media (max-width: 960px) {
+    .tutorial-claude-figures {
+        grid-template-columns: 1fr;
+    }
+
+    .tutorial-claude-figures .tutorial-figure-img-wrap img {
+        max-height: none;
+    }
 }
 
 .claude-dir-key-rules {
