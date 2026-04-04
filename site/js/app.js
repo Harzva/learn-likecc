@@ -297,6 +297,7 @@ function initSiteSidebar() {
         '<a class="site-sidebar__link" href="tutorial.html#skills"><span class="site-sidebar__ico">🔧</span><span class="site-sidebar__txt">Skills</span></a>' +
         '<a class="site-sidebar__link" href="handbook.html"><span class="site-sidebar__ico">📘</span><span class="site-sidebar__txt">完全手册</span></a>' +
         '<a class="site-sidebar__link" href="topic-agent-comparison.html"><span class="site-sidebar__ico">🤖</span><span class="site-sidebar__txt">Agent 生态</span></a>' +
+        '<a class="site-sidebar__link" href="topic-source-derived.html"><span class="site-sidebar__ico">🔍</span><span class="site-sidebar__txt">源码反推思想</span></a>' +
         '<a class="site-sidebar__link" href="devlog.html"><span class="site-sidebar__ico">📝</span><span class="site-sidebar__txt">开发日志</span></a>' +
         '<a class="site-sidebar__link" href="https://github.com/Harzva/learn-likecc/blob/main/awesome-claude-code-source.md" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">✨</span><span class="site-sidebar__txt">Awesome 源码汇总</span></a>' +
         '<details class="site-sidebar__details"' +

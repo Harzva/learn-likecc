@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>从重建源码提炼设计思想 - Claude Code Course</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔍</text></svg>">
+    <meta name="description" content="基于 Source Map 泄露后社区重建的 Claude Code 树，对照真实路径提炼权限、压缩、MCP、Query 编排等设计思想；供与 S/D 课程交叉阅读。">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🔍</span>
+                <span class="logo-text">源码反推思想</span>
+            </a>
+            <div class="nav-links">
+                <a href="#boundary" class="nav-link">材料边界</a>
+                <a href="#ideas" class="nav-link">思想总括</a>
+                <a href="#modules" class="nav-link">模块对照</a>
+                <a href="#deep" class="nav-link">细节深挖</a>
+                <a href="#map-course" class="nav-link">对接课程</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️</button>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>📌 专题</span>
+                <span>重建源码 → 思想</span>
+            </div>
+            <h1 class="hero-title">
+                从逆向材料里<br>
+                <span class="gradient-text">抠实现细节与设计思想</span>
+            </h1>
+            <p class="hero-subtitle">
+                本站仓库中的 <code>ccsource/claude-code-main/</code> 来自 <strong>npm 包误带的 Source Map</strong> 所还原的 TypeScript 树（规模约 1900+ 文件量级，与事件复盘一致）。<br>
+                下面不是「抄代码教程」，而是：<strong>用真实路径当锚点</strong>，把权限、压缩、MCP、主查询链路等机制读薄，提炼成可迁移的工程思想。
+            </p>
+            <div class="hero-actions">
+                <a href="#ideas" class="btn btn-primary">先看六条总括</a>
+                <a href="https://github.com/Harzva/learn-likecc/tree/main/ccsource/claude-code-main" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">打开仓库目录 ↗</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="boundary" class="section" style="background: var(--bg-secondary); padding-top: 60px;">
+        <div class="container">
+            <h2 class="section-title">材料边界（必读）</h2>
+            <ul class="source-map-event-list" style="max-width: 800px; margin: 0 auto;">
+                <li><strong>能信什么</strong>：文件路径、模块边界、类型与函数名、Feature Flag 开关、与公开 SDK（<code>@anthropic-ai/sdk</code>、<code>@modelcontextprotocol/sdk</code>）的接法——这些对理解<strong>产品外壳怎么搭</strong>足够硬。</li>
+                <li><strong>不能推什么</strong>：模型能力、训练数据、服务端策略；泄露的是<strong>客户端/CLI 控制面</strong>，不是模型权重。</li>
+                <li><strong>树是否可编译</strong>：原始快照依赖 Bun 打包特性、内联资源与内部配置，本仓库的 <code>ccsource</code> 可能经社区修补；读思想比「一键 tsc」更重要。参见仓库内 <code>.claude/rules/reverse-engineering.md</code>。</li>
+                <li><strong>合规</strong>：仅作个人学习与安全研究语境下的架构分析；勿用于绕过许可、仿冒分发或攻击。</li>
+            </ul>
+            <p class="section-desc" style="margin-top: 1.5rem; text-align: center;">
+                事件背景与规模数据：<a href="https://github.com/Harzva/learn-likecc/blob/main/wemedia/zhihu/articles/09-SourceMap%E6%B3%84%E9%9C%B2%E4%BA%8B%E4%BB%B6%E5%A4%8D%E7%9B%98.md" target="_blank" rel="noopener noreferrer">长文复盘（MD）↗</a>
+                · <a href="https://github.com/Harzva/learn-likecc/blob/main/ccsource/CC/cli.js.map.README.md" target="_blank" rel="noopener noreferrer">cli.js.map 说明 ↗</a>
+            </p>
+        </div>
+    </section>
+
+    <section id="ideas" class="section">
+        <div class="container">
+            <h2 class="section-title">六条可迁移的「实现哲学」</h2>
+            <p class="section-desc" style="max-width: 720px; margin-left: auto; margin-right: auto;">
+                以下从重建树中反复出现的结构归纳——适用于任何「LLM + 工具 + 终端」类产品，而非背诵某个函数名。
+            </p>
+            <div class="tools-grid" style="max-width: 960px; margin: 2rem auto 0;">
+                <div class="tool-card">
+                    <span class="tool-icon">🎯</span>
+                    <h4>编排中心化</h4>
+                    <p><code>QueryEngine</code> 持有 cwd、tools、commands、MCP、agents、<code>canUseTool</code>、会话状态等<strong>一整张依赖图</strong>；主循环周边功能（压缩、选择器、coordinator、snip）用 Feature 与懒加载挂上去，避免圆形依赖炸包。</p>
+                </div>
+                <div class="tool-card">
+                    <span class="tool-icon">🛡️</span>
+                    <h4>权限＝策略 + 可解释性</h4>
+                    <p>除规则表格外，还有面向 shell 的 <strong>风险分级解释器</strong>（结构化 tool 输出 LOW/MEDIUM/HIGH），以及 auto-mode 下用<strong>外部模板 + 标签替换段</strong>让用户改 allow/deny/environment 规则——把「黑箱拒绝」变成可编辑策略。</p>
+                </div>
+                <div class="tool-card">
+                    <span class="tool-icon">📉</span>
+                    <h4>上下文是预算问题</h4>
+                    <p>压缩链路里显式出现 token 统计、compact 边界消息、前后 Hook、与 transcript / session 存储的衔接；思想是：<strong>压缩不是删聊天记录，是重新立边界并保留可恢复信号</strong>。</p>
+                </div>
+                <div class="tool-card">
+                    <span class="tool-icon">🔌</span>
+                    <h4>MCP 一等公民</h4>
+                    <p>客户端直接基于官方 <code>@modelcontextprotocol/sdk</code> 多传输（stdio / SSE / Streamable HTTP），工具侧有 MCPTool、资源列出/读取、OAuth 刷新等——外部能力不是「字符串拼进 prompt」，而是<strong>协议状态机</strong>。</p>
+                </div>
+                <div class="tool-card">
+                    <span class="tool-icon">🧱</span>
+                    <h4>工具是强类型契约</h4>
+                    <p><code>Tool.ts</code> 集中 Progress、Permission、MCP Elicit 等交叉类型，避免每工具各写一套；执行链与权限结果类型在单点导入，降低「工具作者」心智负担。</p>
+                </div>
+                <div class="tool-card">
+                    <span class="tool-icon">🪶</span>
+                    <h4>实用主义工程</h4>
+                    <p>例如挫败感检测可用关键词/正则而非上情感模型（见站内 map README 与 <code>useFrustrationDetection</code> 一类模块）；能省算力与延迟的就不堆 ML——这是产品代码里常见的「克制」。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="modules" class="section" style="background: var(--bg-secondary);">
+        <div class="container">
+            <h2 class="section-title">模块 ↔ 思想（真实路径速查）</h2>
+            <p class="section-desc">路径相对于仓库 <code>ccsource/claude-code-main/</code>。</p>
+            <div class="table-wrapper" style="overflow-x: auto; max-width: 1000px; margin: 1.5rem auto 0;">
+                <table class="options-table" style="width: 100%; min-width: 640px;">
+                    <tr><th>路径</th><th>读什么细节</th><th>提炼什么思想</th></tr>
+                    <tr>
+                        <td><code>src/QueryEngine.ts</code></td>
+                        <td><code>QueryEngineConfig</code> 字段；对 <code>query</code>、SDK 消息、权限孤儿、压缩 snip 的编排入口</td>
+                        <td>单一编排核 + Feature 切片扩展</td>
+                    </tr>
+                    <tr>
+                        <td><code>src/Tool.ts</code></td>
+                        <td>Tool JSON Schema 形状、<code>CanUseToolFn</code>、各类 Progress 联合类型</td>
+                        <td>工具层协议先于具体工具实现</td>
+                    </tr>
+                    <tr>
+                        <td><code>src/utils/permissions/yoloClassifier.ts</code></td>
+                        <td>auto-mode 规则模板、<code>&lt;user_*_to_replace&gt;</code> 标签解析、内外部权限模板分支</td>
+                        <td>策略文本化 + 可导出默认项</td>
+                    </tr>
+                    <tr>
+                        <td><code>src/utils/permissions/permissionExplainer.ts</code></td>
+                        <td><code>explain_command</code> 强制 schema、LOW/MEDIUM/HIGH 枚举</td>
+                        <td>用结构化模型输出做 UX，而不是裸生成段落</td>
+                    </tr>
+                    <tr>
+                        <td><code>src/services/compact/compact.ts</code></td>
+                        <td>compact 前后 Hook、边界消息、token 估计、与 session transcript 的衔接</td>
+                        <td>压缩 = 带审计边界的上下文重写</td>
+                    </tr>
+                    <tr>
+                        <td><code>src/services/mcp/client.ts</code></td>
+                        <td>多 Transport、ListTools / CallTool schema、OAuth 与错误类型</td>
+                        <td>与 MCP 规范对齐，少造轮子</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section id="deep" class="section">
+        <div class="container">
+            <h2 class="section-title">四个「值得对着文件啃」的细节</h2>
+
+            <div class="section-block" style="max-width: 800px; margin: 0 auto 2rem;">
+                <h3>1. 权限：不止 ask/deny</h3>
+                <p><code>yoloClassifier</code> 把 auto-mode 的默认规则拆成 <code>allow</code> / <code>soft_deny</code> / <code>environment</code> 三段，并从带标签的模板里抽 bullet——这意味着产品把<strong>「默认安全基线」与「用户可覆盖段」</strong>在文件格式上拆开，便于 CLI 子命令（如文档里提到的 defaults dump）导出。</p>
+                <p><code>permissionExplainer</code> 则用固定 tool schema 要模型输出 <code>riskLevel</code> + 简短 risk——适合做成弹窗/终端二次确认 copy，而不是让用户读长篇自然语言。</p>
+            </div>
+
+            <div class="section-block" style="max-width: 800px; margin: 0 auto 2rem;">
+                <h3>2. QueryEngine：依赖注入式壳</h3>
+                <p>配置对象把 <strong>tools / commands / mcpClients / agents / canUseTool / AppState</strong> 一次性注入；主路径再与 <code>processUserInput</code>、系统 prompt 片段、会话持久化、成本追踪等拼接。思想是：<strong>REPL 只是驱动，真正的状态机在引擎与消息归一化层</strong>。</p>
+            </div>
+
+            <div class="section-block" style="max-width: 800px; margin: 0 auto 2rem;">
+                <h3>3. 压缩：Hook 与边界消息</h3>
+                <p><code>compact.ts</code> 头部即引入 pre/post compact hooks、<code>SystemCompactBoundaryMessage</code>、token 统计与 forked agent 路径——说明团队把「上下文裁剪」当成<strong>可观测、可插桩、可回滚</strong>的过程，而不是内存里悄悄 slice 数组。</p>
+            </div>
+
+            <div class="section-block" style="max-width: 800px; margin: 0 auto 2rem;">
+                <h3>4. MCP：SDK 类型即文档</h3>
+                <p><code>client.ts</code> 直接吃 <code>ListToolsResultSchema</code>、<code>CallToolResultSchema</code>、<code>McpError</code> 等——思想是<strong>协议层严格类型化</strong>，减少字符串拼 RPC；多传输并存说明真实用户环境复杂，产品层要封装重连与清理（文件中亦有 cleanup / debug 日志辅助）。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="map-course" class="section" style="background: var(--bg-secondary); padding-bottom: 60px;">
+        <div class="container">
+            <h2 class="section-title">与 S / D 课程怎么配合？</h2>
+            <p class="section-desc" style="max-width: 720px; margin-left: auto; margin-right: auto;">
+                主线课讲概念与伪代码；本专题给你<strong>「打开哪几个 ts 文件」</strong>。建议顺序：S01/D01 → 对照 <code>QueryEngine.ts</code>；S03/D03 → <code>yoloClassifier</code> + <code>permissionExplainer</code>；S05/D05 → <code>services/compact/</code>；S07/D07 → <code>services/mcp/client.ts</code>。
+            </p>
+            <p style="text-align: center; margin-top: 1.5rem;">
+                <a href="index.html#courses" class="btn btn-primary">去课程表</a>
+                <a href="https://github.com/Harzva/learn-likecc/blob/main/awesome-claude-code-source.md" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Awesome 镜像列表 ↗</a>
+            </p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container"><p>© 2026 Claude Code Course. 仅供学习研究使用。</p></div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js" crossorigin="anonymous"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
