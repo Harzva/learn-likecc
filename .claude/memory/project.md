@@ -12,6 +12,10 @@ type: project
 
 **How to apply**: 分析源码结构、设计模式、技术选型
 
+## 仓库定位（演进）
+
+在源码学习之外，本仓库已承载**个人阅历随笔、工具链感想、对外 Markdown 稿件**（`site/column-agent-journey.*`、`wemedia/zhihu/articles/`），并计划纳入**项目经历与作品集**。整体视为**个人知识库 / 赛博档案**（可检索、可 diff、不依赖单一云平台），见 `.claude/skills/赛博永生.md`。
+
 ## 项目完成状态
 
 | 阶段 | 状态 | 完成度 |

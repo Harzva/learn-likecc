@@ -2,6 +2,8 @@
 
 > Claude Code 源码分析与深度学习项目 | Source Map 分析 · 架构解析 · 可运行版本
 
+**演进中的定位**：仓库名里的 **like（leaky）cc** 是起点——从 Source Map 与可跑 CLI 出发；在此基础上，本站与 `wemedia/` 已承载**个人阅历、工具链随笔**（如 [`column-agent-journey`](https://harzva.github.io/learn-likecc/column-agent-journey.html)、[`wemedia/zhihu/articles/11-…`](wemedia/zhihu/articles/)），后续会陆续加入**项目经历与作品集**。可以把本仓库当作**个人知识库与可版本化的赛博档案**（见 `.claude/skills/赛博永生.md`），与 Anthropic 官方无隶属关系。
+
 [![Website](https://img.shields.io/badge/Website-在线课程-orange)](https://harzva.github.io/learn-likecc/)
 [![GitHub stars](https://img.shields.io/github/stars/Harzva/learn-likecc?style=social)](https://github.com/Harzva/learn-likecc)
 [![License](https://img.shields.io/badge/license-Educational-blue)](LICENSE)
@@ -78,11 +80,13 @@ learn-likecc/
 │   ├── docs/zh/              # 12 章节课程 (S01-S12)
 │   └── examples/             # TypeScript 示例代码
 │
-├── site/                     # 课程网站
+├── site/                     # 课程网站（含专栏页 column-agent-journey 等）
 │   ├── index.html
+│   ├── md/                   # 与 HTML 成对的 Markdown 镜像
 │   ├── css/style.css
 │   └── js/app.js
 │
+├── wemedia/zhihu/articles/   # 知乎等平台待发 / 已发稿 Markdown
 ├── EXPERIENCE.md             # 工程经验总结
 └── .claude/plans/            # 版本计划与 CHANGELOG
 ```
