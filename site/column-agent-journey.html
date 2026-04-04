@@ -6,7 +6,7 @@
     <title>从编辑器到 Agent：工具链上的个人阅历 - Claude Code Course</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧭</text></svg>">
-    <meta name="description" content="个人向 AI 编程助手与 CLI 折腾记录：宿主选择、链路与工具箱；不含密钥与可复现端点。">
+    <meta name="description" content="个人阅历：Trae 与 Claude Code 入坑、CLI 与编辑器、反代折腾、MCP/Skills 与 Loop；不含密钥与可复现端点。">
 </head>
 <body>
     <nav class="navbar">
@@ -18,9 +18,11 @@
             <div class="nav-links">
                 <a href="#intro" class="nav-link">前言</a>
                 <a href="#hosts" class="nav-link">宿主</a>
+                <a href="#claude-onramp" class="nav-link">入坑</a>
                 <a href="#credits" class="nav-link">用量</a>
                 <a href="#proxy" class="nav-link">链路</a>
                 <a href="#antigravity" class="nav-link">反重力</a>
+                <a href="#loop-ecosystem" class="nav-link">Loop</a>
                 <a href="#focus" class="nav-link">重心</a>
                 <a href="#toolbox" class="nav-link">脚本</a>
             </div>
@@ -49,18 +51,28 @@
                 <section id="intro" class="section-block">
                     <h2>写在前面</h2>
                     <p>这是一份给自己留底的<strong>阅历随笔</strong>，后面会接到「个人项目经历」展示里。逻辑我稍微顺过一遍，但语气尽量保持原来那种——<strong>坑、白嫖、丝滑、断流</strong>这些词就留着了，真实一点。</p>
+                    <p>说白了，我就是<strong>热爱这个赛道</strong>：新工具出来就想摸，比写论文爽多了——<strong>体验即动机</strong>，不是为了写进简历才点下载。</p>
                 </section>
 
                 <section id="hosts" class="section-block">
-                    <h2>我摸过哪些「宿主」</h2>
-                    <p><strong>Agent / 编程助手向</strong>里，我体验过（或深度白嫖过）的大概有：<strong>Qoder</strong>、<strong>Trae</strong>、<strong>Cursor</strong>、谷歌的 <strong>Antigravity（反重力）</strong>，以及 <strong>Kiro</strong> 一类编辑器形态（口述常写成 Kiro/Krio，仅指同类 IDE 体验；只玩过编辑器版本）。</p>
+                    <h2>我摸过哪些「宿主」与 Trae 时间线</h2>
+                    <p><strong>Trae</strong>：我印象里<strong>差不多 2025 年 3 月前后</strong>就开始用了——和公开报道<strong>对得上</strong>：多家媒体稿写 Trae <strong>国内版在 2025 年 3 月初</strong>集中上线；更早在 <strong>2025 年 1 月</strong>已有国际向/M 版迭代。所以要<strong>分清</strong>：三月我摸的很可能是 <strong>AI IDE 本体</strong>；而大家后来吹爆的 <strong>Solo</strong>，在公开材料里多是 <strong>2025 年 7 月后</strong>才作为重头戏推出来——时间线别混在一起，但「早就上车」这件事没毛病。</p>
+                    <p><strong>Trae Solo</strong>依旧主观一句：<strong>非常惊艳</strong>；而且<strong>国内更新跟得快</strong>，这点很加分。</p>
+                    <p><strong>Agent / 编程助手向</strong>里，我还体验过（或深度白嫖过）：<strong>Qoder</strong>、<strong>Cursor</strong>、谷歌 <strong>Antigravity（反重力）</strong>，以及 <strong>Kiro</strong> 一类编辑器形态（口述常写成 Kiro/Krio；只玩过编辑器版本）。</p>
                     <ul>
-                        <li><strong>Trae</strong>：<strong>Solo 模式非常惊艳</strong>；主观感受上<strong>国内迭代算快的</strong>。</li>
                         <li><strong>Cursor</strong>：常规主力之一。</li>
-                        <li><strong>Antigravity</strong>：下一节单独说。</li>
+                        <li><strong>Antigravity</strong>：后面单独开喷（也会夸 workflow）。</li>
                     </ul>
                     <p><strong>付费</strong>：Qoder 付过一个月加首月，其余主要靠活动/邀请；Trae 有过约两个月叠加春节活动；Cursor 付过一个月，<strong>学生认证没薅成功</strong>。<strong>一直没开 Claude 官方订阅</strong>，主要是怕风控封号。</p>
                     <p><strong>CLI</strong>：Claude 系、<strong>Codex</strong>（多账号轮换）、<strong>Gemini CLI</strong>。<strong>VS Code 插件</strong>：所谓「三巨头」对应插件都摸过。<strong>Copilot</strong>只用过插件版——和各家模型打通之后，<strong>可玩性是真的不错</strong>。</p>
+                </section>
+
+                <section id="claude-onramp" class="section-block">
+                    <h2>从「Claude Code 火了」到「一发不可收拾」</h2>
+                    <p>后来一直刷到 <strong>Claude Code</strong> 火，但<strong>当时没用</strong>：心里觉得有<strong>门槛</strong>——命令行、偏 Vim 系操作，像是「大佬才配」；我<strong>一直比较依赖编辑器界面</strong>，对纯 CLI 天然怵。</p>
+                    <p>直到有一天，群里<strong>表格、对比、推理一条条甩出来</strong>，反复强调它好用。我心想：行吧，试试。结果<strong>一试就不可收拾</strong>，正式走上 <strong>Agent 之路</strong>——从<strong>怎么用</strong>到<strong>原理</strong>，一路摸过来。</p>
+                    <p>摸下来发现：<strong>CLI 模式其实也不错</strong>；而且后面 <strong>VS Code 插件</strong>也跟上了，心里那道「没界面就不敢用」的坎慢慢平了。</p>
+                    <p>但<strong>中间很坎坷</strong>：<strong>官方 Claude Code</strong>对我来说一度<strong>根本不能当默认解</strong>——一头是<strong>贵</strong>，一头是<strong>封号</strong>风险。于是就出现了前文说的那一整段：<strong>一边方便时体验各种 Agent</strong>，一边<strong>认真找能嵌进自己工作流</strong>的工具。说白了，<strong>体验也不是白体验</strong>：是一点点<strong>见证这些工具变好</strong>、<strong>使用门槛和成本在降</strong>。</p>
                 </section>
 
                 <figure class="devlog-figure">
@@ -106,11 +118,18 @@
                     <div class="mermaid-diagram-scroll" data-mermaid-diagram="column-agent-flow"></div>
                 </figure>
 
+                <section id="loop-ecosystem" class="section-block">
+                    <h2>MCP、Skills、子代理，以及我最在意的 Loop</h2>
+                    <p>后面行业里陆续有了 <strong>MCP</strong>、<strong>Skills</strong> 这些概念——主观感受上，<strong>Claude Code 这一侧先把想法讲圆了</strong>，确实<strong>巧</strong>。我也曾在<strong>别的智能体 / IDE</strong>里搭自己的 Skills、接 MCP，能跑，但<strong>不够丝滑</strong>；再后来大家<strong>都上了</strong> Skill、MCP、Subagent 这一套，算是<strong>整条赛道在补课</strong>。</p>
+                    <p>说到底，我<strong>最喜欢 Claude Code 的还是 Loop</strong>。最早社区里有人叫 <strong>Ralph loop</strong>，还要<strong>额外装插件</strong>；现在<strong>产品里自带了</strong>，太好用。一开始 Loop 对我来说就是「<strong>把这件事做完</strong>」；到后来能 <strong>cron</strong>、<strong>定时唤醒</strong>——我<strong>曾在别处写过短文</strong>，主张 Agent 的<strong>长程 runtime</strong>得加强「<strong>时间观念</strong>」；现在这些能力<strong>真的长出来了</strong>，而且实现得<strong>很巧</strong>：<strong>对时间的感知也很丝滑</strong>，像人<strong>抬手看一眼手表</strong>那种丝滑。<strong>调用工具</strong>也丝滑。</p>
+                    <p>网上还刷到过一种暴论：<strong>RAG 以后说不定会被 Agent 挤掉一块</strong>，因为 Agent 手里有 <code>grep</code>、能进仓库里<strong>现搜现用</strong>——我<strong>不当结论采信</strong>，但<strong>这个梗我记住了</strong>。</p>
+                    <p><strong>大趋势一句话</strong>：绕了一大圈，<strong>最终还是回归 Claude Code</strong>。</p>
+                </section>
+
                 <section id="focus" class="section-block">
                     <h2>现在重心在哪</h2>
-                    <p><strong>Claude Code CLI</strong>为主；同时玩 <strong>Cursor 独立 Agent 模式</strong>（有点像 Trae Solo）；以及 <strong>智谱系 Zed</strong> 里的 Agent 体验。</p>
-                    <p>共同点：<strong>以 Agent 为中心的 IDE</strong>，而不是「以编辑器为中心、人手撸每一行」。</p>
-                    <p><strong>Vibe coding</strong> 时人到底是<strong>指挥</strong>还是<strong>甲方</strong>？模型越好，越常「只要结果不看过程」——爽也是风险，代码不读锅就是你的。</p>
+                    <p>上面那句不是口号：<strong>日常默认还是 Claude Code 这条线</strong>。并列还在玩的是 <strong>Cursor 独立 Agent 模式</strong>（有点像 Trae Solo）、以及 <strong>智谱系 Zed</strong> 里的 Agent——都是<strong>以 Agent 为中心的 IDE 环境</strong>，不是「以编辑器为中心、人手撸每一行给人看」。</p>
+                    <p>模型越来越好的时候，<strong>vibe coding</strong> 里人到底是<strong>指挥</strong>还是<strong>甲方</strong>？越常「只要结果不看过程」，爽和风险越大——<strong>代码你不读，锅就是你的</strong>。</p>
                 </section>
 
                 <figure class="devlog-figure">
@@ -143,7 +162,7 @@
 
                 <section id="outro" class="section-block">
                     <h2>小结</h2>
-                    <p>这是一条<strong>从插件试玩到 CLI 扎根</strong>、从<strong>反代折腾</strong>到<strong>懒得折腾</strong>的路。<strong>合规第一、密钥最小暴露、链路越短越省心</strong>。本站技术正文仍以课程与官方文档为准；本篇仅作个人侧记。</p>
+                    <p>这是一条<strong>从编辑器依赖到接受 CLI</strong>、从<strong>到处试 Agent</strong>到<strong>又绕回 Claude Code</strong>的路；中间<strong>反代、额度、封号</strong>都算学费。<strong>合规第一、密钥最小暴露、链路越短越省心</strong>。本站技术正文仍以课程与官方文档为准；本篇仅作个人侧记。</p>
                 </section>
 
                 <div class="chapter-navigation">
