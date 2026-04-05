@@ -10,8 +10,12 @@
         "@ant/computer-use-input": "workspace:*",
         "@ant/computer-use-mcp": "workspace:*",
         "@ant/computer-use-swift": "workspace:*",
+        "@anthropic-ai/claude-agent-sdk": "workspace:*",
+        "@anthropic-ai/foundry-sdk": "workspace:*",
+        "@anthropic-ai/mcpb": "workspace:*",
         "@anthropic-ai/sandbox-runtime": "workspace:*",
         "@anthropic-ai/sdk": "^0.39.0",
+        "@anthropic-ai/vertex-sdk": "workspace:*",
         "@aws-sdk/client-bedrock-runtime": "^3.0.0",
         "@commander-js/extra-typings": "^12.1.0",
         "@growthbook/growthbook": "^1.0.0",
@@ -136,6 +140,22 @@
       "name": "url-handler-napi",
       "version": "1.0.0",
     },
+    "src/_external/shims/@anthropic-ai/claude-agent-sdk": {
+      "name": "@anthropic-ai/claude-agent-sdk",
+      "version": "0.0.0-stub",
+    },
+    "src/_external/shims/@anthropic-ai/foundry-sdk": {
+      "name": "@anthropic-ai/foundry-sdk",
+      "version": "0.0.0-stub",
+    },
+    "src/_external/shims/@anthropic-ai/mcpb": {
+      "name": "@anthropic-ai/mcpb",
+      "version": "0.0.0-stub",
+    },
+    "src/_external/shims/@anthropic-ai/vertex-sdk": {
+      "name": "@anthropic-ai/vertex-sdk",
+      "version": "0.0.0-stub",
+    },
   },
   "packages": {
     "@alcalzone/ansi-tokenize": ["@alcalzone/ansi-tokenize@0.3.0", "", { "dependencies": { "ansi-styles": "^6.2.1", "is-fullwidth-code-point": "^5.0.0" } }, "sha512-p+CMKJ93HFmLkjXKlXiVGlMQEuRb6H0MokBSwUsX+S6BRX8eV5naFZpQJFfJHjRZY0Hmnqy1/r6UWl3x+19zYA=="],
@@ -148,9 +168,17 @@
 
     "@ant/computer-use-swift": ["@ant/computer-use-swift@workspace:packages/@ant/computer-use-swift"],
 
+    "@anthropic-ai/claude-agent-sdk": ["@anthropic-ai/claude-agent-sdk@workspace:src/_external/shims/@anthropic-ai/claude-agent-sdk"],
+
+    "@anthropic-ai/foundry-sdk": ["@anthropic-ai/foundry-sdk@workspace:src/_external/shims/@anthropic-ai/foundry-sdk"],
+
+    "@anthropic-ai/mcpb": ["@anthropic-ai/mcpb@workspace:src/_external/shims/@anthropic-ai/mcpb"],
+
     "@anthropic-ai/sandbox-runtime": ["@anthropic-ai/sandbox-runtime@workspace:packages/@anthropic-ai/sandbox-runtime"],
 
     "@anthropic-ai/sdk": ["@anthropic-ai/sdk@0.39.0", "", { "dependencies": { "@types/node": "^18.11.18", "@types/node-fetch": "^2.6.4", "abort-controller": "^3.0.0", "agentkeepalive": "^4.2.1", "form-data-encoder": "1.7.2", "formdata-node": "^4.3.2", "node-fetch": "^2.6.7" } }, "sha512-eMyDIPRZbt1CCLErRCi3exlAvNkBtRe+kW5vvJyef93PmNr/clstYgHhtvmkxN82nlKgzyGPCyGxrm0JQ1ZIdg=="],
+
+    "@anthropic-ai/vertex-sdk": ["@anthropic-ai/vertex-sdk@workspace:src/_external/shims/@anthropic-ai/vertex-sdk"],
 
     "@aws-crypto/crc32": ["@aws-crypto/crc32@5.2.0", "", { "dependencies": { "@aws-crypto/util": "^5.2.0", "@aws-sdk/types": "^3.222.0", "tslib": "^2.6.2" } }, "sha512-nLbCWqQNgUiwwtFsen1AdzAtvuLRsQS8rYgMuxCrdKf9kOssamGLuPwyTY9wyYblNr9+1XM8v6zoDTPPSIeANg=="],
 

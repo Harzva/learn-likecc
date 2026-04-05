@@ -146,6 +146,8 @@ bun run dev --help
 echo "list files" | ANTHROPIC_API_KEY=your-key bun run dev -p
 ```
 
+**`bun install` 与 workspaces**：此前若出现 `Workspace name "@ant/..." already exists`，是因为 `packages/*` 与 `src/_external/shims/` 里注册了**同名**工作区包。当前根目录 `ccsource/claude-code-main/package.json` 已去掉重复项（`@ant/*` 与 napi 等仅以 `packages/` 为准；`@anthropic-ai/*` 中仅保留 shim 里独有的四个包 + `packages` 里的 `sandbox-runtime`）。拉取最新代码后再执行 `bun install` 即可。
+
 ---
 
 ## 🗓️ 长期计划
