@@ -8,6 +8,14 @@
 
 ---
 
+## 在线课程站点预览
+
+以下为 [GitHub Pages 在线站点](https://harzva.github.io/learn-likecc/) 界面截图：侧栏导航、顶栏搜索与 **12 章源码课程**卡片（主线 / 深挖入口、预估阅读时长等）。实际布局与文案以线上版本为准。
+
+![Claude Code Course 在线站点：课程章节网格与导航](docs/readme-assets/course-site-preview.jpg)
+
+---
+
 ## 🔥 Source Map 事件
 
 ### 什么是 Source Map？
@@ -83,6 +91,8 @@ learn-likecc/
 │   ├── md/                   # 与 HTML 成对的 Markdown 镜像
 │   ├── css/style.css
 │   └── js/app.js
+│
+├── docs/readme-assets/        # README 用截图等（如 course-site-preview.jpg）
 │
 ├── wemedia/zhihu/articles/   # 知乎等平台待发 / 已发稿 Markdown
 ├── wemedia/wechat/           # 微信公众号：md2wechat + Claude Code 接入备忘
@@ -190,4 +200,4 @@ echo "list files" | ANTHROPIC_API_KEY=your-key bun run dev -p
 
 ---
 
-*最后更新: 2026-04-01*
+*最后更新: 2026-04-05*
