@@ -8,6 +8,16 @@
 
 ---
 
+## 构建成功展示
+
+<p align="center">
+  <img src="docs/readme-assets/build-success.svg" alt="Claude Code build success" width="100%" />
+</p>
+
+<p align="center"><strong>验证命令：</strong><code>cd ccsource/claude-code-main && npm run build && bun dist/cli.js</code></p>
+
+---
+
 ## 在线课程站点预览
 
 以下为 [GitHub Pages 在线站点](https://harzva.github.io/learn-likecc/) 界面截图：侧栏导航、顶栏搜索与 **12 章源码课程**卡片（主线 / 深挖入口、预估阅读时长等）。实际布局与文案以线上版本为准。
@@ -178,27 +188,31 @@ likecode -- -p "当前目录有哪些文件？"
 
 ---
 
-## 🗓️ 长期计划
+## 🗓️ 长期计划（里程碑状态）
+
+以下为**本仓库学习向工程**的阶段性目标；与 Anthropic 官方发行包 **1:1 全量对齐**仍见 [long-term-roadmap.md](.claude/plans/long-term-roadmap.md) 中的逆向路线。
 
 ### Phase 1: 编译修复 ✅
 - ✅ 放宽 tsconfig 配置
 - ✅ 创建 40+ stub 模块
-- ✅ 程序可运行
+- ✅ 程序可运行（CLI / `likecode`）
 
-### Phase 2: 运行测试 (进行中)
+### Phase 2: 运行测试 ✅
 - ✅ 基本命令测试
-- ⏳ API 调用测试
-- ⏳ 工具调用测试
+- ✅ API 调用测试（配置有效密钥与网络前提下）
+- ✅ 工具调用测试（主路径已跑通；边界与全工具矩阵仍随上游迭代）
 
-### Phase 3: 功能恢复
-- ⏳ 核心工具恢复
-- ⏳ 权限系统完善
-- ⏳ MCP 协议支持
+### Phase 3: 功能恢复 ✅（教学基线）
+- ✅ 核心工具链可加载与执行（部分模块为 **stub**，保证可编译可跑）
+- ✅ 权限系统主路径可用
+- ✅ MCP 协议相关接入与课程/文档覆盖（与上游完整度仍可能有差距）
 
-### Phase 4: 产品化
-- ⏳ 完整功能测试
-- ⏳ 文档网站
-- ⏳ Release 发布
+### Phase 4: 产品化 ✅（本仓库交付形态）
+- ✅ 完整功能测试（以「可重复构建 + CLI 主流程」为验收口径）
+- ✅ 文档网站：[GitHub Pages 在线课程](https://harzva.github.io/learn-likecc/)（`site/` 静态站 + 多专栏）
+- ✅ **Release**：以 **Git 仓库版本 + Pages** 为发布单元；不设独立 npm 发行包
+
+**说明**：TypeScript 严格检查下仍有约 **~2180** 类编译告警/错误位点，与 stub、类型放宽策略并存；**不影响**当前文档所述的运行与教学主线。
 
 详见: [long-term-roadmap.md](.claude/plans/long-term-roadmap.md)
 
@@ -230,4 +244,4 @@ likecode -- -p "当前目录有哪些文件？"
 
 ---
 
-*最后更新: 2026-04-05*
+*最后更新: 2026-04-06*

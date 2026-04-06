@@ -1,7 +1,7 @@
 import { c as _c } from "react/compiler-runtime";
 import { feature } from 'bun:bundle';
 import figures from 'figures';
-import React, { type ReactNode, useEffect, useEffectEvent, useMemo, useRef, useState } from 'react';
+import React, { type ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import { isCoordinatorMode } from 'src/coordinator/coordinatorMode.js';
 import { useTerminalSize } from 'src/hooks/useTerminalSize.js';
 import { useAppState, useSetAppState } from 'src/state/AppState.js';
@@ -319,9 +319,13 @@ export function BackgroundTasksDialog({
     await RemoteAgentTask.kill(taskId_3, setAppState);
   }
 
-  // Wrap onDone in useEffectEvent to get a stable reference that always calls
-  // the current onDone callback without causing the effect to re-fire.
-  const onDoneEvent = useEffectEvent(onDone);
+  // Keep the latest onDone without depending on it in the lifecycle effect
+  // below, which should react to task/view changes rather than callback
+  // identity churn.
+  const onDoneRef = useRef(onDone);
+  useEffect(() => {
+    onDoneRef.current = onDone;
+  }, [onDone]);
   useEffect(() => {
     if (viewState.mode !== 'list') {
       const task = (typedTasks ?? {})[viewState.itemId];
@@ -331,7 +335,7 @@ export function BackgroundTasksDialog({
         // Task was removed or is no longer a background task (e.g. killed).
         // If we skipped the list on mount, close the dialog entirely.
         if (skippedListOnMount.current) {
-          onDoneEvent('Background tasks dialog dismissed', {
+          onDoneRef.current('Background tasks dialog dismissed', {
             display: 'system'
           });
         } else {
@@ -345,7 +349,7 @@ export function BackgroundTasksDialog({
     if (selectedIndex >= totalItems && totalItems > 0) {
       setSelectedIndex(totalItems - 1);
     }
-  }, [viewState, typedTasks, selectedIndex, allSelectableItems, onDoneEvent]);
+  }, [viewState, typedTasks, selectedIndex, allSelectableItems]);
 
   // Helper to go back to list view (or close dialog if we skipped list on
   // mount AND there's still only ≤1 item). Checking current count prevents

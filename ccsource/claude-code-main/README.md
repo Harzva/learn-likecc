@@ -1,5 +1,11 @@
 # Claude Code — Leaked Source (2026-03-31)
 
+<p align="center">
+  <img src="docs/images/build-success.svg" alt="Claude Code build success screenshot" width="100%" />
+</p>
+
+<p align="center"><strong>Build verified:</strong> <code>npm run build</code> and <code>bun dist/cli.js</code> now start successfully.</p>
+
 > **On March 31, 2026, the full source code of Anthropic's Claude Code CLI was leaked** via a `.map` file exposed in their npm registry.
 
 ---
