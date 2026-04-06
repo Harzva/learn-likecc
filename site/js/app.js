@@ -415,6 +415,7 @@ function initSiteSidebar() {
         '</details>' +
         '<a class="site-sidebar__link" href="column-agent-journey.html"><span class="site-sidebar__ico">🧭</span><span class="site-sidebar__txt">工具链阅历</span></a>' +
         '<a class="site-sidebar__link" href="column-shangshou-cikeng.html"><span class="site-sidebar__ico">🛠️</span><span class="site-sidebar__txt">上手与踩坑</span></a>' +
+        '<a class="site-sidebar__link" href="column-show-your-usage.html"><span class="site-sidebar__ico">📊</span><span class="site-sidebar__txt">Show usage</span></a>' +
         '<a class="site-sidebar__link" href="devlog.html"><span class="site-sidebar__ico">📝</span><span class="site-sidebar__txt">开发日志</span></a>' +
         '<a class="site-sidebar__link" href="https://github.com/Harzva/learn-likecc" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">🐙</span><span class="site-sidebar__txt">GitHub</span></a>' +
         '</div>'

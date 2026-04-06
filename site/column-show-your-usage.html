@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show me your usage - Cursor 订阅与用量自证 - Claude Code Course</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+    <meta name="description" content="Show me your usage：公开 Cursor Pro 订阅与用量截图，维护者透明自证；与 Anthropic 无关。">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">📊</span>
+                <span class="logo-text">Show me your usage</span>
+            </a>
+            <div class="nav-links">
+                <a href="#intro" class="nav-link">说明</a>
+                <a href="#subscription" class="nav-link">订阅</a>
+                <a href="#usage" class="nav-link">用量</a>
+                <a href="#disclaimer" class="nav-link">声明</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="index.html" class="btn-github">← 返回首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="course-main devlog-main">
+        <div class="container">
+            <article class="course-content devlog-content">
+                <h1 class="course-title">Show me your usage <span class="subtitle">Cursor 订阅与用量自证</span></h1>
+
+                <div class="course-quote">
+                    <p>本专栏用于<strong>公开、可核对的使用痕迹</strong>：说明维护本仓库时在 Cursor 上<strong>确有付费会员与真实消耗</strong>。</p>
+                    <p>Cursor 为 Cursor, Inc. 产品，与 Anthropic 及 Claude Code 官方无隶属关系；截图仅证明编辑侧投入，不构成对任何品牌的背书或广告。</p>
+                </div>
+
+                <section id="intro" class="section-block">
+                    <h2>为什么要有这个专栏</h2>
+                    <p>讨论 AI 编程助手与课程站建设时，读者有时会关心：写的人自己用不用、用多深。把订阅档位与用量页截屏放在站内，是一种简单、可复查的透明做法。</p>
+                </section>
+
+                <section id="subscription" class="section-block">
+                    <h2>订阅与套餐内用量概览</h2>
+                    <p>以下为账户后台界面截图：可见 Pro 档位、重置周期说明，以及 Auto + Composer 与 API 分项占用比例。</p>
+                    <figure class="devlog-figure">
+                        <img src="images/show-your-usage/cursor-subscription-dashboard.png" alt="Cursor 账户：Pro 订阅与套餐内用量条" width="1024" loading="lazy">
+                        <figcaption>图 1：Cursor 订阅与 Included in Pro 用量概览（维护者本人截图，仅供本站展示）。</figcaption>
+                    </figure>
+                </section>
+
+                <section id="usage" class="section-block">
+                    <h2>用量明细（历史请求）</h2>
+                    <p>以下为 Usage 页面表格节选：可见模型名称、Token 量级与 Included 计费类型。数字会随使用变化，本页不保证与当前线上一致。</p>
+                    <figure class="devlog-figure">
+                        <img src="images/show-your-usage/cursor-usage-history.png" alt="Cursor Usage：按日期的模型与 Token 用量表" width="1024" loading="lazy">
+                        <figcaption>图 2：Cursor Usage 历史记录节选（Pro、Included 用量）。</figcaption>
+                    </figure>
+                </section>
+
+                <section id="disclaimer" class="section-block">
+                    <h2>隐私与合规说明</h2>
+                    <ul>
+                        <li>截图已避免展示邮箱、订单号、完整支付信息等敏感字段；若界面改版导致信息外露，将及时撤换图片。</li>
+                        <li>本仓库主题仍是 Claude Code 学习；Cursor 仅作为常用编辑器之一出现在本专栏。</li>
+                        <li>欢迎在自己的项目里发起同类 Show me your usage 专栏，形成透明与互信习惯。</li>
+                    </ul>
+                </section>
+
+                <div class="chapter-navigation">
+                    <a href="column-agent-journey.html" class="btn btn-secondary">← 工具链阅历</a>
+                    <a href="index.html" class="btn btn-primary">返回首页 →</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/column-show-your-usage.md" target="_blank" rel="noopener noreferrer">📝 Markdown 源（GitHub）</a></p>
+                <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
