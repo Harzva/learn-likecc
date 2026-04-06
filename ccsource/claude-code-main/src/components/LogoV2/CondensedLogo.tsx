@@ -77,6 +77,7 @@ export function CondensedLogo() {
     truncatedModel,
     truncatedBilling
   } = formatModelAndBilling(modelDisplayName + effortSuffix, billingType, textWidth);
+  const restoredBilling = `${truncatedBilling} · Harzva restored`;
   const cwdAvailableWidth = agentName ? textWidth - 1 - stringWidth(agentName) - 3 : textWidth;
   const truncatedCwd = truncatePath(cwd, Math.max(cwdAvailableWidth, 10));
   let t4;
@@ -103,7 +104,7 @@ export function CondensedLogo() {
   }
   let t7;
   if ($[11] !== shouldSplit || $[12] !== truncatedBilling || $[13] !== truncatedModel) {
-    t7 = shouldSplit ? <><Text dimColor={true}>{truncatedModel}</Text><Text dimColor={true}>{truncatedBilling}</Text></> : <Text dimColor={true}>{truncatedModel} · {truncatedBilling}</Text>;
+    t7 = shouldSplit ? <><Text dimColor={true}>{truncatedModel}</Text><Text dimColor={true}>{restoredBilling}</Text></> : <Text dimColor={true}>{truncatedModel} · {restoredBilling}</Text>;
     $[11] = shouldSplit;
     $[12] = truncatedBilling;
     $[13] = truncatedModel;
@@ -111,7 +112,7 @@ export function CondensedLogo() {
   } else {
     t7 = $[14];
   }
-  const t8 = agentName ? `@${agentName} · ${truncatedCwd}` : truncatedCwd;
+  const t8 = agentName ? `Harzva restored · @${agentName} · ${truncatedCwd}` : `Harzva restored · ${truncatedCwd}`;
   let t9;
   if ($[15] !== t8) {
     t9 = <Text dimColor={true}>{t8}</Text>;
