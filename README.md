@@ -78,6 +78,8 @@ Usage: claude [options] [command] [prompt]
 
 ```
 learn-likecc/
+├── bin/
+│   └── likecode              # 全局 PATH 后可执行：启动 ccsource CLI
 ├── ccsource/
 │   ├── claude-code-main/     # 恢复的源码 (可运行)
 │   └── CC/cli.js.map         # 原始 Source Map (57MB)
@@ -144,6 +146,32 @@ bun run dev --help
 
 # 管道模式测试
 echo "list files" | ANTHROPIC_API_KEY=your-key bun run dev -p
+```
+
+### 终端全局命令 `likecode`
+
+仓库根目录提供启动脚本 **`bin/likecode`**：在任意目录输入 `likecode` 即等同于在 `ccsource/claude-code-main` 下执行 `bun run src/entrypoints/cli.tsx`。
+
+```bash
+# 1) 赋予执行权限（克隆后执行一次）
+chmod +x /path/to/learn-likecc/bin/likecode
+
+# 2) 加入 PATH：二选一
+#    A) 把 bin 目录放进 PATH（示例：写入 ~/.bashrc 或 ~/.zshrc）
+export PATH="/path/to/learn-likecc/bin:$PATH"
+
+#    B) 或建符号链接到已有 PATH 目录（如 ~/.local/bin）
+mkdir -p ~/.local/bin
+ln -sf /path/to/learn-likecc/bin/likecode ~/.local/bin/likecode
+# 确保 ~/.local/bin 已在 PATH 中
+```
+
+使用示例（与直接 `bun run dev` 相同，参数传给 CLI）：
+
+```bash
+likecode --version
+likecode -- --help          # 部分环境下建议加 -- 再跟 CLI 参数
+likecode -- -p "当前目录有哪些文件？"
 ```
 
 **`bun install` 与 workspaces**：此前若出现 `Workspace name "@ant/..." already exists`，是因为 `packages/*` 与 `src/_external/shims/` 里注册了**同名**工作区包。当前根目录 `ccsource/claude-code-main/package.json` 已去掉重复项（`@ant/*` 与 napi 等仅以 `packages/` 为准；`@anthropic-ai/*` 中仅保留 shim 里独有的四个包 + `packages` 里的 `sandbox-runtime`）。拉取最新代码后再执行 `bun install` 即可。

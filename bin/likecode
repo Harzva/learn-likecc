@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# likecode — 从任意目录启动本仓库内的 Claude Code 学习版 CLI（Bun）
+set -euo pipefail
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$HERE/.." && pwd)"
+CLI_DIR="$REPO_ROOT/ccsource/claude-code-main"
+if [[ ! -f "$CLI_DIR/src/entrypoints/cli.tsx" ]]; then
+  echo "likecode: 找不到 CLI：$CLI_DIR/src/entrypoints/cli.tsx" >&2
+  exit 1
+fi
+if ! command -v bun >/dev/null 2>&1; then
+  echo "likecode: 未找到 bun，请先安装 https://bun.sh" >&2
+  exit 1
+fi
+cd "$CLI_DIR"
+exec bun run src/entrypoints/cli.tsx "$@"
