@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>渠道评测：GPT Pro / API 中转个人向笔记 - Claude Code Course</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛒</text></svg>">
+    <meta name="description" content="渠道评测：个人对 API 中转与 GPT Pro Team 拼车两类付费渠道的主观体验与截图备忘；非购买建议，注意服务条款与账号安全。">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🛒</span>
+                <span class="logo-text">渠道评测</span>
+            </a>
+            <div class="nav-links">
+                <a href="#intro" class="nav-link">说明</a>
+                <a href="#relay" class="nav-link">中转 API</a>
+                <a href="#team" class="nav-link">Team 拼车</a>
+                <a href="#compare" class="nav-link">小结</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="index.html" class="btn-github">← 返回首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="course-main devlog-main">
+        <div class="container">
+            <article class="course-content devlog-content">
+                <h1 class="course-title">渠道评测 <span class="subtitle">GPT Pro / API 中转 · 个人笔记</span></h1>
+
+                <div class="course-quote">
+                    <p>本文为<strong>个人使用过程中的主观记录</strong>，用于说明「我试过哪些付费形态、爽点与坑在哪」。<strong>不是购买指南</strong>，不指向具体卖家，价格与规则随时可能变化。</p>
+                    <p>第三方中转、拼车 Team 等可能涉及<strong>服务条款与账号风险</strong>；请自行阅读 OpenAI / 平台政策并承担后果。本站与任何商家无合作。</p>
+                </div>
+
+                <section id="intro" class="section-block">
+                    <h2>为什么要写「渠道评测」</h2>
+                    <p>在折腾 Claude Code、编辑器与各类模型入口时，往往会遇到：<strong>官方订阅</strong>、<strong>卖家自建中转 API</strong>、<strong>Team 拼车拉号</strong>等并行选项。把亲身经历记下来，方便以后自己查阅，也给读者一个<strong>「真实世界长什么样」</strong>的参照（以截图为准，文字为当时理解）。</p>
+                </section>
+
+                <section id="relay" class="section-block">
+                    <h2>一类：中转 API（约「每天 50 刀」档）</h2>
+                    <p>在二手/服务市场上常见文案是：<strong>满血 API、稳定中转、每日约几十美元使用额度</strong>等。我实际买的是<strong>按天封顶、按段时长计费</strong>的一类套餐（例如标价「7 天」的打包）。</p>
+                    <p><strong>体验好的地方：</strong>卖家自建中转站，走国内直连类宣传；<strong>模型能力主观上正常</strong>，没有明显「降智」感。当日额度用满时，仪表盘上会顶在<strong>约 50 美元/日</strong>这一档（与商品描述一致，见下图 2）。</p>
+                    <p><strong>踩坑：</strong><strong>每日额度不能因「续买一单」而叠加。</strong>我第一次用满后，又下了一单，结果只是<strong>有效期 +7 天</strong>（例如从 7 天变成 14 天），<strong>当天仍然只有那一档日限额</strong>，并不能「再买一单立刻加倍」。燃眉之急只能换思路：例如<strong>新账号</strong>或等次日重置。这种「续费只加时长不加当日桶」的体感，和我早年用某些 <strong>VPN 按量/按天套餐</strong>时类似——买多了是<strong>时间变长</strong>，不是<strong>当下带宽翻倍</strong>。</p>
+
+                    <figure class="devlog-figure">
+                        <img src="images/channel-review/codex-relay-market-listing.png" alt="二手平台上的中转 API 商品示意：每日额度与天数打包" width="1024" loading="lazy">
+                        <figcaption>图 1：平台商品页示意（文案强调每日额度与天数；具体店名已不展开）。</figcaption>
+                    </figure>
+
+                    <figure class="devlog-figure">
+                        <img src="images/channel-review/relay-provider-dashboard.png" alt="中转站后台仪表盘：当日消费接近日限额" width="1024" loading="lazy">
+                        <figcaption>图 2：卖家提供的后台/仪表盘节选——当日消费贴近<strong>约 50 美元日顶</strong>，与「按日封顶」描述相互印证。</figcaption>
+                    </figure>
+                </section>
+
+                <section id="team" class="section-block">
+                    <h2>另一类：GPT Pro · Team 拼车（低价、靠「换车」续命）</h2>
+                    <p>另一路是<strong>把你的官方账号拉进别人的 Business Team</strong>，用团队席位的 Pro 权益；价格可以做到很低（例如十几元量级）。卖点往往是：<strong>网页版 GPT Pro 也可用</strong>、不想用可以停。</p>
+                    <p><strong>好处：</strong>成本不高；权益落在<strong>自己账号</strong>上，主观感受接近「直充到自己号里用 Team」。</p>
+                    <p><strong>坏处（对我这种高频的人）：</strong>额度或风控触顶后要<strong>退出 Team → 用兑换流程换到新车位（俗称换车）</strong>，操作路径长，和<strong>流畅连续工作流</strong>不搭。且渠道规则里往往有<strong>每日换车次数上限</strong>（我遇到的是<strong>每天最多约 15 次</strong>），大量来回切换时很快就会顶满。若你<strong>用量大、会话长</strong>，要心理预期：这是在<strong>省钱与折腾</strong>之间做权衡。</p>
+
+                    <figure class="devlog-figure">
+                        <img src="images/channel-review/gpt-pro-team-carpool-listing.png" alt="Team 拼车商品说明：换车流程与每日次数" width="1024" loading="lazy">
+                        <figcaption>图 3：商品说明中的<strong>重置/换车流程</strong>与次数限制（以当时页面为准）。</figcaption>
+                    </figure>
+
+                    <figure class="devlog-figure">
+                        <img src="images/channel-review/chatgpt-team-workspace.png" alt="ChatGPT 侧栏：已加入 Business Team" loading="lazy">
+                        <figcaption>图 4：账号侧栏显示已处于某 <strong>Business</strong> 类 Team（示意「号已上车」）。</figcaption>
+                    </figure>
+
+                    <figure class="devlog-figure">
+                        <img src="images/channel-review/ai-team-self-service.png" alt="自助兑换页：加入 Team 与换车" width="1024" loading="lazy">
+                        <figcaption>图 5：卖家提供的<strong>自助兑换/换车</strong>网页（加入 Team 与「自助换车」入口）。</figcaption>
+                    </figure>
+                </section>
+
+                <section id="compare" class="section-block">
+                    <h2>个人向小结（非普适结论）</h2>
+                    <table class="compare-table">
+                        <tr>
+                            <th>维度</th>
+                            <th>中转 API（日封顶型）</th>
+                            <th>Team 拼车</th>
+                        </tr>
+                        <tr>
+                            <td>成本体感</td>
+                            <td>按「天数 + 日桶」打包；续买常<strong>只加天数</strong></td>
+                            <td>单价可很低；适合能接受折腾的人</td>
+                        </tr>
+                        <tr>
+                            <td>高峰续命</td>
+                            <td>当日顶满后<strong>难靠续单立刻加桶</strong>，多需新号或等重置</td>
+                            <td>依赖<strong>换车</strong>；有<strong>每日次数上限</strong>，高频会烦</td>
+                        </tr>
+                        <tr>
+                            <td>工作流</td>
+                            <td>API 调用链清晰；适合工具链集成</td>
+                            <td>更偏「账号 + 网页」；换车打断心流</td>
+                        </tr>
+                    </table>
+                    <p>若你<strong>只图稳定干活</strong>，官方或正规企业采购仍是长期默认解；上述两类更适合<strong>理解市场长什么样</strong>，而不是「抄作业必成功」。</p>
+                </section>
+
+                <div class="chapter-navigation">
+                    <a href="column-show-your-usage.html" class="btn btn-secondary">← Show me your usage</a>
+                    <a href="index.html" class="btn btn-primary">返回首页 →</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/column-channel-review.md" target="_blank" rel="noopener noreferrer">📝 Markdown 源（GitHub）</a></p>
+                <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
