@@ -198,6 +198,8 @@ learn-likecc 现在已经不只是一个 Claude Code 源码学习仓库。
 - [x] 让 `toolChains.steps` 开始明确拆成 `tool_use / progress / tool_result`，让跨 turn 回放更像真实 coding 过程
 - [x] 固定三套源码分层：`CC/claude-code-main` 看原始源码，`CC/claude-code-rebuild` 看可运行重建基线，`like-code-main` 看 Like Code 主开发线
 - [x] 将关键入口页面、构建命令、课程锚点页与部分计划文档开始统一到 `ccsource/like-code-main`
+- [x] 让 `CC/claude-code-rebuild` 重新跑通交互 REPL，并确认当前不必急着切到更晚的 rebuild 提交
+- [x] 新增关键 commit 台账 `docs/commit-ledger.md`，以后源码线锚点、可运行性修复、release 基线变动都要单独登记
 - [ ] 继续把多个可见对话框升级成真正的多活跃输入与多 transcript 并行
 - [ ] 继续把 transcript / todo 做到真正隔离，而不只是先做 UI 层消息区与快照恢复
 - [ ] 继续把 subagent 面板升级为更完整的工作视图，展示仓库、目录、当前任务与更多 live 状态

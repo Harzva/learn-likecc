@@ -53,6 +53,8 @@
 - 退出 transcript 后也开始尽量保留 pane 内搜索上下文，重新进入时更接近继续上次阅读定位
 - `toolChains.steps` 已开始明确拆成 `tool_use / progress / tool_result`，让 Web 侧回放更接近真实 coding 过程
 - `ccsource/CC/claude-code-rebuild` 已恢复到 `6a1afe3` 这个“程序可运行、但还没叠加 Like Code 新功能”的重建基线
+- `ccsource/CC/claude-code-rebuild` 的 REPL 启动链已重新跑通，当前不需要急着切到 `c75951f / 50b6fb0 / a1531fb` 这些更晚提交
+- 新增 `docs/commit-ledger.md`，用于专门记录关键 commit 相对上一版本的变化、职责与基线状态
 - 仓库里三套源码分层已明确：原始源码学习快照、可运行重建基线、Like Code 主开发线
 - Like Code 主开发线已补出 `ccsource/like-code-main` 正式入口，并保留 `ccsource/claude-code-main` 兼容旧路径，先完成非破坏式改名
 - 关键入口页面、构建命令、课程锚点页与部分计划文档，已开始统一使用 `ccsource/like-code-main`
