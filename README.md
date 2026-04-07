@@ -81,6 +81,8 @@
   - 当前 `progress` 消息会继续补足 `toolUseId / toolName / progress summary`，所以即使还没等到最终 `tool_result`，Web 侧也能更早看到某条工具链已经开始跑、正在跑什么
 - ✅ **toolChains.steps 已开始拆成真实过程节点**
   - 当前 `toolChains` 已开始明确拆出 `tool_use / progress / tool_result` step，Web 侧回放不再只看 pair 汇总，而更接近真实 coding 过程
+- ✅ **三套源码分层已经开始固定**
+  - `ccsource/CC/claude-code-main` 保留原始源码学习快照，`ccsource/CC/claude-code-rebuild` 固定为可运行重建基线，`ccsource/claude-code-main` 继续承载 Like Code 主开发线
 
 ### 下一批最重要的真实需求
 
@@ -487,8 +489,11 @@ learn-likecc/
 ├── bin/
 │   └── likecode              # 全局 PATH 后可执行：启动 ccsource CLI
 ├── ccsource/
-│   ├── claude-code-main/     # 恢复的源码 (可运行)
-│   └── CC/cli.js.map         # 原始 Source Map (57MB)
+│   ├── claude-code-main/     # Like Code 主开发线（后续计划改名 like-code-main）
+│   └── CC/
+│       ├── claude-code-main/ # 原始源码学习快照
+│       ├── claude-code-rebuild/ # 可运行重建基线（当前对齐 6a1afe3）
+│       └── cli.js.map        # 原始 Source Map (57MB)
 │
 ├── course/
 │   ├── docs/zh/              # 12 章节课程 (S01-S12)
@@ -683,6 +688,7 @@ likecode -- -p "当前目录有哪些文件？"
 - [Anthropic SDK](https://github.com/anthropics/anthropic-sdk-typescript)
 - [MCP Protocol](https://modelcontextprotocol.io)
 - [Source Map 分析](ccsource/CC/cli.js.map.README.md)
+- [CC 三套源码说明](ccsource/CC/README.md)
 - [工程经验](EXPERIENCE.md)
 - [发布记录](CHANGELOG.md)
 

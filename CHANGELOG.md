@@ -51,6 +51,8 @@
 - transcript 搜索的命中数量与当前位置也开始跟随 pane 保存和恢复，减少切 pane 后重新丢失阅读锚点
 - 退出 transcript 后也开始尽量保留 pane 内搜索上下文，重新进入时更接近继续上次阅读定位
 - `toolChains.steps` 已开始明确拆成 `tool_use / progress / tool_result`，让 Web 侧回放更接近真实 coding 过程
+- `ccsource/CC/claude-code-rebuild` 已恢复到 `6a1afe3` 这个“程序可运行、但还没叠加 Like Code 新功能”的重建基线
+- 仓库里三套源码分层已明确：原始源码学习快照、可运行重建基线、Like Code 主开发线
 - 启动头的蓝色爱心、蓝色 `Like` 与蓝色 `code` 已统一成一套品牌头图
 - 启动界面新增 Web 工作台网址，并把 logo 收成蓝色爱心 + 多行大字 `Like` + `code · Harzva restored · v2.1.88`
 - 本轮以文档与规划推进为主，暂不单独提升 release 版本号，避免出现“版本先发、功能未落地”的错位
