@@ -33,6 +33,9 @@
 - transcript 摘要开始抽取 `text / thinking / tool_use / tool_result`，为后续工作流与流程图展示继续铺底
 - Web UI transcript 已继续细化为 `messages / cards / workflow` 三层结构，开始同时展示消息流、thinking 卡片和工具时间线
 - 当前 active pane 在初始化进入时也会优先恢复自己保存下来的 todo 快照，继续把 pane 隔离往更真实的方向推进
+- Web UI transcript 已继续补出 `stages`，开始按 `prompt / thinking / tool / response / system` 展示更清楚的阶段节点
+- tool 卡片开始带出 `input / output / toolUseId`，更接近真实 coding 过程观察台
+- 新建 pane/tab 会以空 transcript 与空 todo 快照起步，减少跨 pane 的全局残留状态继承
 - 启动界面新增 Web 工作台网址，并把 logo 收成蓝色爱心 + 多行大字 `Like` + `code · Harzva restored · v2.1.88`
 - 本轮以文档与规划推进为主，暂不单独提升 release 版本号，避免出现“版本先发、功能未落地”的错位
 

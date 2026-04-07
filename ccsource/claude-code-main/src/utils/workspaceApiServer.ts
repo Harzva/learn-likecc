@@ -43,6 +43,9 @@ type WorkspaceTranscriptCard = {
   summary?: string
   role?: string
   toolName?: string
+  toolUseId?: string
+  inputSummary?: string
+  outputSummary?: string
   createdAt: string
 }
 
@@ -55,6 +58,19 @@ type WorkspaceWorkflowEvent = {
   summary?: string
   role?: string
   toolName?: string
+  toolUseId?: string
+  stage?: 'prompt' | 'thinking' | 'tool' | 'response' | 'system'
+}
+
+type WorkspaceWorkflowStage = {
+  id: string
+  paneId: string
+  createdAt: string
+  stage: 'prompt' | 'thinking' | 'tool' | 'response' | 'system'
+  title: string
+  summary?: string
+  toolName?: string
+  toolUseId?: string
 }
 
 function getWorkspaceApiPort(): number {
@@ -126,7 +142,7 @@ function summarizeContentItem(item: unknown): string | undefined {
     return `[tool_use] ${toolName}`
   }
   if (itemType === 'tool_result') {
-    return '[tool_result]'
+    return summarizeUnknown(record.content) ?? '[tool_result]'
   }
   return undefined
 }
@@ -202,10 +218,19 @@ function summarizeToolInput(input: unknown): string | undefined {
 function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: string) {
   const cards: WorkspaceTranscriptCard[] = []
   const workflow: WorkspaceWorkflowEvent[] = []
+  const stages: WorkspaceWorkflowStage[] = []
   const normalizedMessages = (messages ?? []).map((message, index) => {
     const createdAt = getMessageCreatedAt(message, index)
     const role = getMessageRole(message)
     const summary = summarizeMessage(message)
+    const stage: WorkspaceWorkflowStage['stage'] =
+      role === 'user'
+        ? 'prompt'
+        : role === 'assistant'
+          ? 'response'
+          : role === 'system' || role === 'progress' || role === 'attachment'
+            ? 'system'
+            : 'response'
 
     cards.push({
       id: `${message.uuid}-message`,
@@ -228,6 +253,15 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
       title: `${role} turn`,
       summary,
       role,
+      stage,
+    })
+    stages.push({
+      id: `${message.uuid}-stage`,
+      paneId,
+      createdAt,
+      stage,
+      title: `${role} turn`,
+      summary,
     })
 
     const content = Array.isArray(message.message?.content)
@@ -280,12 +314,22 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
             title: 'thinking',
             summary: thinking,
             role,
+            stage: 'thinking',
+          })
+          stages.push({
+            id: `${message.uuid}-thinking-stage-${itemIndex}`,
+            paneId,
+            createdAt,
+            stage: 'thinking',
+            title: 'thinking',
+            summary: thinking,
           })
           return
         }
 
         if (itemType === 'tool_use') {
           const toolName = getStringValue(record.name) ?? 'tool'
+          const toolUseId = getStringValue(record.id)
           const toolSummary = summarizeToolInput(record.input)
           cards.push({
             id: `${message.uuid}-tool-use-${itemIndex}`,
@@ -294,6 +338,8 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
             summary: toolSummary,
             role,
             toolName,
+            toolUseId,
+            inputSummary: toolSummary,
             createdAt,
           })
           workflow.push({
@@ -305,11 +351,24 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
             summary: toolSummary,
             role,
             toolName,
+            toolUseId,
+            stage: 'tool',
+          })
+          stages.push({
+            id: `${message.uuid}-tool-use-stage-${itemIndex}`,
+            paneId,
+            createdAt,
+            stage: 'tool',
+            title: toolName,
+            summary: toolSummary,
+            toolName,
+            toolUseId,
           })
           return
         }
 
         if (itemType === 'tool_result') {
+          const toolUseId = getStringValue(record.tool_use_id)
           const resultSummary =
             summarizeUnknown(record.content) ??
             summarizeUnknown(record.result) ??
@@ -320,6 +379,8 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
             title: 'tool result',
             summary: resultSummary,
             role,
+            toolUseId,
+            outputSummary: resultSummary,
             createdAt,
           })
           workflow.push({
@@ -330,6 +391,17 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
             title: 'tool result',
             summary: resultSummary,
             role,
+            toolUseId,
+            stage: 'tool',
+          })
+          stages.push({
+            id: `${message.uuid}-tool-result-stage-${itemIndex}`,
+            paneId,
+            createdAt,
+            stage: 'tool',
+            title: 'tool result',
+            summary: resultSummary,
+            toolUseId,
           })
         }
       })
@@ -350,6 +422,7 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
     workflow: workflow.sort((a, b) =>
       String(a.createdAt).localeCompare(String(b.createdAt)),
     ),
+    stages: stages.sort((a, b) => String(a.createdAt).localeCompare(String(b.createdAt))),
   }
 }
 
@@ -437,6 +510,7 @@ function buildTranscriptPayload(state: AppState, paneId: string) {
     messages: artifacts.messages,
     cards: artifacts.cards,
     workflow: artifacts.workflow,
+    stages: artifacts.stages,
   }
 }
 
@@ -670,7 +744,7 @@ function renderWorkspaceHtmlShell(state: AppState): string {
         max-height: 34vh;
         overflow: auto;
       }
-      .event, .subagent, .cardflow {
+      .event, .subagent, .cardflow, .stage {
         border: 1px solid var(--line);
         border-radius: 12px;
         padding: 10px 12px;
@@ -679,6 +753,17 @@ function renderWorkspaceHtmlShell(state: AppState): string {
       .cardflow.thinking { border-color: rgba(255,154,98,0.5); }
       .cardflow.tool_use { border-color: rgba(86,224,255,0.5); }
       .cardflow.tool_result { border-color: rgba(110,231,168,0.5); }
+      .stages {
+        display: grid;
+        gap: 10px;
+        max-height: 18vh;
+        overflow: auto;
+        margin-bottom: 14px;
+      }
+      .stage.prompt { border-color: rgba(88,178,255,0.5); }
+      .stage.thinking { border-color: rgba(255,154,98,0.5); }
+      .stage.tool { border-color: rgba(86,224,255,0.5); }
+      .stage.response { border-color: rgba(110,231,168,0.5); }
       .muted { color: var(--muted); }
       .small { font-size: 12px; }
       @media (max-width: 1100px) {
@@ -712,6 +797,8 @@ function renderWorkspaceHtmlShell(state: AppState): string {
         <section>
           <h2>Transcript</h2>
           <div id="transcript-meta" class="small muted"></div>
+          <h2 style="margin-top:16px;">Stages</h2>
+          <div id="stages" class="stages"></div>
           <h2 style="margin-top:16px;">Thinking / Tools</h2>
           <div id="cards" class="cards"></div>
           <div id="transcript" class="transcript"></div>
@@ -771,9 +858,22 @@ function renderWorkspaceHtmlShell(state: AppState): string {
 
       function renderTranscript(payload) {
         const meta = document.getElementById('transcript-meta');
+        const stagesRoot = document.getElementById('stages');
         const cardsRoot = document.getElementById('cards');
         const root = document.getElementById('transcript');
         meta.textContent = 'pane ' + payload.paneId + ' · transcript ' + payload.transcriptId + ' · ' + payload.messages.length + ' messages · ' + (payload.workflow || []).length + ' workflow events';
+        stagesRoot.innerHTML = (payload.stages || []).length === 0
+          ? '<div class="muted">No stage nodes extracted yet.</div>'
+          : payload.stages.slice(-12).reverse().map(stage => \`
+              <div class="stage \${statusClass(stage.stage)}">
+                <div class="row">
+                  <strong>\${escapeHtml(stage.title || stage.stage)}</strong>
+                  <span class="small muted">\${escapeHtml(stage.createdAt || '')}</span>
+                </div>
+                <div class="small muted">\${escapeHtml(stage.stage)}\${stage.toolName ? ' · ' + escapeHtml(stage.toolName) : ''}</div>
+                <div class="summary">\${escapeHtml(stage.summary || '[No stage summary extracted yet]')}</div>
+              </div>
+            \`).join('');
         cardsRoot.innerHTML = (payload.cards || []).length === 0
           ? '<div class="muted">No thinking/tool cards extracted yet.</div>'
           : payload.cards.slice(-12).reverse().map(card => \`
@@ -782,7 +882,9 @@ function renderWorkspaceHtmlShell(state: AppState): string {
                   <strong>\${escapeHtml(card.title || card.kind)}</strong>
                   <span class="small muted">\${escapeHtml(card.createdAt || '')}</span>
                 </div>
-                <div class="small muted">\${escapeHtml(card.kind)}\${card.toolName ? ' · ' + escapeHtml(card.toolName) : ''}</div>
+                <div class="small muted">\${escapeHtml(card.kind)}\${card.toolName ? ' · ' + escapeHtml(card.toolName) : ''}\${card.toolUseId ? ' · ' + escapeHtml(card.toolUseId) : ''}</div>
+                \${card.inputSummary ? '<div class="small muted" style="margin-top:6px;">input: ' + escapeHtml(card.inputSummary) + '</div>' : ''}
+                \${card.outputSummary ? '<div class="small muted" style="margin-top:6px;">output: ' + escapeHtml(card.outputSummary) + '</div>' : ''}
                 <div class="summary">\${escapeHtml(card.summary || '[No summary extracted yet]')}</div>
               </div>
             \`).join('');
@@ -847,7 +949,7 @@ function renderWorkspaceHtmlShell(state: AppState): string {
         renderPanes(panes);
         renderSubagents(subagentsRes.subagents || []);
         const transcript = await fetchJson('/api/sessions/current/panes/' + encodeURIComponent(state.activePaneId) + '/transcript');
-        renderEvents([...(transcript.workflow || []).slice(-18).reverse(), ...(eventsRes.events || []).slice(0, 12)]);
+        renderEvents([...(transcript.workflow || []).slice(-24).reverse(), ...(eventsRes.events || []).slice(0, 12)]);
         renderTranscript(transcript);
       }
 

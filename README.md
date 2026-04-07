@@ -45,6 +45,10 @@
   - 当前 `pane transcript` 已额外输出 `thinking / tool_use / tool_result` 卡片和 pane 内 workflow 事件，Web 侧已经可以先按“消息流 + 卡片流 + 时间线”三层展示
 - ✅ **pane 的 todo 恢复继续往真隔离推进**
   - 初始化进入当前 active pane 时，也会优先恢复该 pane 自己保存下来的 todo 快照，而不只是继续沿用残留的全局 todo
+- ✅ **workflow 回放继续细化**
+  - 当前 `pane transcript` 已继续补出 `stages`，并开始给 tool 卡片补 `input / output / toolUseId`，Web 侧现在可以更明确地看 prompt、thinking、tool、response 这些阶段节点
+- ✅ **新 pane/tab 不再默认继承上一格的 todo 残留**
+  - 新开的 tab 会以空 transcript 与空 todo 快照起步，切过去时不会继续沿用上一格的 todo 状态
 
 ### 下一批最重要的真实需求
 
@@ -345,6 +349,8 @@ Claude Code 很强，但真实使用里一直有一个明显痛点：
 - [ ] 继续扩展 localhost 接口里的结构化 transcript、tool/subagent 时间线和切模型记录
 - [x] 把 Claude 的 coding 过程开始结构化，补 `thinking / tool_use / tool_result` 提取，给后续流程图和工作流展示使用
 - [ ] 继续把 Claude 的 coding 过程提取得更细，补工具输入输出归类、阶段节点和更长链路的 workflow 回放
+- [x] 把工具输入输出、阶段节点和 `toolUseId` 开始纳入 workflow 观察台
+- [ ] 继续把更长链路的 workflow 回放补全，例如跨 turn 的阶段拼接和 pane 级历史回放
 - [ ] 团队里每个人可配置自己的默认 provider / 默认模型 / 默认预算策略
 - [ ] 项目级规则决定“这个仓库优先稳定模型，那个仓库优先低成本模型”
 - [ ] 一个命令完成“继续当前 session，但换模型再试一次”

@@ -114,6 +114,9 @@ const call: LocalCommandCall = async (args, context) => {
         provider: activeTab?.provider,
         repoLabel: activeTab?.repoLabel,
         worktreePath: activeTab?.worktreePath,
+        transcriptMessages: [],
+        legacyTodosSnapshot: {},
+        taskPreviewLines: [],
       })
 
       context.setAppState(prev => ({

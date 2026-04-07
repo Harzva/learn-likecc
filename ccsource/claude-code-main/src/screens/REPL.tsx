@@ -1489,9 +1489,7 @@ export function REPL({
         ...prev,
         mainLoopModel: incomingTab?.model ?? prev.mainLoopModel,
         viewingAgentTaskId: incomingTab?.subagentId,
-        todos: incomingTab?.legacyTodosSnapshot
-          ? structuredClone(incomingTab.legacyTodosSnapshot)
-          : prev.todos,
+        todos: structuredClone(incomingTab?.legacyTodosSnapshot ?? {}),
         sessionTabs: tabs,
       };
     });
@@ -4433,6 +4431,9 @@ export function REPL({
             `Task ${normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel).tabOrder.length}`,
             {
             model: prev.mainLoopModel ?? undefined,
+            transcriptMessages: [],
+            legacyTodosSnapshot: {},
+            taskPreviewLines: [],
             },
           ),
         ),
