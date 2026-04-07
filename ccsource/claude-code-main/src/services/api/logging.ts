@@ -108,13 +108,20 @@ function detectGateway({
   headers,
   baseUrl,
 }: {
-  headers?: globalThis.Headers
+  headers?: globalThis.Headers | Record<string, string> | null
   baseUrl?: string
 }): KnownGateway | undefined {
   if (headers) {
-    // Header names are already lowercase from the Headers API
-    const headerNames: string[] = []
-    headers.forEach((_, key) => headerNames.push(key))
+    const headerNames: string[] =
+      typeof (headers as { forEach?: unknown }).forEach === 'function'
+        ? (() => {
+            const names: string[] = []
+            ;(headers as globalThis.Headers).forEach((_, key) =>
+              names.push(key),
+            )
+            return names
+          })()
+        : Object.keys(headers).map(key => key.toLowerCase())
     for (const [gw, { prefixes }] of Object.entries(GATEWAY_FINGERPRINTS)) {
       if (prefixes.some(p => headerNames.some(h => h.startsWith(p)))) {
         return gw as KnownGateway

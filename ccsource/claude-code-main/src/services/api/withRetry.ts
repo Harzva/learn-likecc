@@ -91,6 +91,34 @@ function shouldRetry529(querySource: QuerySource | undefined): boolean {
   )
 }
 
+function getErrorHeader(
+  error: unknown,
+  headerName: string,
+): string | null {
+  const lowerHeaderName = headerName.toLowerCase()
+  const headers = (error as { headers?: unknown })?.headers
+
+  if (!headers) return null
+
+  if (typeof (headers as { get?: unknown }).get === 'function') {
+    return (
+      (
+        headers as {
+          get: (name: string) => string | null | undefined
+        }
+      ).get(headerName) ?? null
+    )
+  }
+
+  if (typeof headers === 'object') {
+    const record = headers as Record<string, unknown>
+    const value = record[headerName] ?? record[lowerHeaderName]
+    return typeof value === 'string' ? value : null
+  }
+
+  return null
+}
+
 // CLAUDE_CODE_UNATTENDED_RETRY: for unattended sessions (ant-only). Retries 429/529
 // indefinitely with higher backoff and periodic keep-alive yields so the host
 // environment does not mark the session idle mid-wait.
@@ -275,7 +303,8 @@ export async function* withRetry<T>(
       ) {
         // If the 429 is specifically because extra usage (overage) is not
         // available, permanently disable fast mode with a specific message.
-        const overageReason = error.headers?.get(
+        const overageReason = getErrorHeader(
+          error,
           'anthropic-ratelimit-unified-overage-disabled-reason',
         )
         if (overageReason !== null && overageReason !== undefined) {
@@ -520,14 +549,7 @@ export async function* withRetry<T>(
 }
 
 function getRetryAfter(error: unknown): string | null {
-  return (
-    ((error as { headers?: { 'retry-after'?: string } }).headers?.[
-      'retry-after'
-    ] ||
-      // eslint-disable-next-line eslint-plugin-n/no-unsupported-features/node-builtins
-      ((error as APIError).headers as unknown as Headers)?.get?.('retry-after')) ??
-    null
-  )
+  return getErrorHeader(error, 'retry-after')
 }
 
 export function getRetryDelay(
@@ -732,7 +754,7 @@ function shouldRetry(error: APIError): boolean {
   }
 
   // Note this is not a standard header.
-  const shouldRetryHeader = error.headers?.get('x-should-retry')
+  const shouldRetryHeader = getErrorHeader(error, 'x-should-retry')
 
   // If the server explicitly says whether or not to retry, obey.
   // For Max and Pro users, should-retry is true, but in several hours, so we shouldn't.
@@ -815,7 +837,10 @@ function getRetryAfterMs(error: APIError): number | null {
 }
 
 function getRateLimitResetDelayMs(error: APIError): number | null {
-  const resetHeader = error.headers?.get?.('anthropic-ratelimit-unified-reset')
+  const resetHeader = getErrorHeader(
+    error,
+    'anthropic-ratelimit-unified-reset',
+  )
   if (!resetHeader) return null
   const resetUnixSec = Number(resetHeader)
   if (!Number.isFinite(resetUnixSec)) return null

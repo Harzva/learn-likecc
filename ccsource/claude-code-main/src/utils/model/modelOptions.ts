@@ -42,6 +42,44 @@ export type ModelOption = {
   descriptionForModel?: string
 }
 
+function getConfiguredRouteModelOptions(): ModelOption[] {
+  const settingsRoutes = getSettings_DEPRECATED()?.modelRoutes
+  if (settingsRoutes && typeof settingsRoutes === 'object') {
+    return Object.keys(settingsRoutes)
+      .filter(model => model.trim() && !model.includes('*'))
+      .map(model => ({
+        value: model,
+        label: model,
+        description: 'Configured provider route',
+      }))
+  }
+
+  const raw =
+    process.env.CLAUDE_CODE_MODEL_ROUTES_JSON ??
+    process.env.LIKECODE_MODEL_ROUTES_JSON
+
+  if (!raw?.trim()) {
+    return []
+  }
+
+  try {
+    const parsed = JSON.parse(raw) as Record<string, unknown>
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+      return []
+    }
+
+    return Object.keys(parsed)
+      .filter(model => model.trim() && !model.includes('*'))
+      .map(model => ({
+        value: model,
+        label: model,
+        description: 'Configured provider route',
+      }))
+  } catch {
+    return []
+  }
+}
+
 export function getDefaultOptionForUser(fastMode = false): ModelOption {
   if (process.env.USER_TYPE === 'ant') {
     const currentModel = renderDefaultModelSetting(
@@ -478,6 +516,14 @@ export function getModelOptions(fastMode = false): ModelOption[] {
 
   // Append additional model options fetched during bootstrap
   for (const opt of getGlobalConfig().additionalModelOptionsCache ?? []) {
+    if (!options.some(existing => existing.value === opt.value)) {
+      options.push(opt)
+    }
+  }
+
+  // Append model options declared in the local route map so they appear in
+  // /model without requiring manual custom-model entry each time.
+  for (const opt of getConfiguredRouteModelOptions()) {
     if (!options.some(existing => existing.value === opt.value)) {
       options.push(opt)
     }

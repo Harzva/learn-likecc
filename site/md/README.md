@@ -1,6 +1,8 @@
-# `site/md/` — 站点页面 Markdown 镜像
+# `site/md/` — Learn LikeCode 站点 Markdown 镜像
 
 本目录存放与 `site/<stem>.html` **一一对应**的 Markdown 源文件，便于在 GitHub 上审阅、提 PR 与纯文本阅读。
+
+`site/` 当前首页口径已统一为 **Learn LikeCode**：从 Claude Code 学起，但不止于 Claude Code，重点落在 **源码学习、可运行复刻、自由换模型** 这三条主线。对应的 Markdown 镜像也建议保持同样叙事，不再只把站点理解成单纯的 “Claude Code Course”。
 
 ## 命名规则
 

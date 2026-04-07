@@ -1,15 +1,17 @@
-# Claude Code Course - AI 编程助手学习指南
+# Learn LikeCode - 自由换模型的 Agent CLI 学习与实验场
 
-> **在线页面**: https://harzva.github.io/learn-likecc/index.html  
+> **在线页面**: <https://harzva.github.io/learn-likecc/index.html>  
 > **本文件**: `site/md/index.md`  
 > **说明**: HTML 为权威阅读面；本文件提供与首页章节对齐的目录与摘要，便于审阅与纯文本导航。
 
 ## 概要
 
-本站主入口：交代 Source Map 相关背景、聚合教程/手册/专题入口、列出 24 讲源码课与面试题库，并展示精选热点标题表。适合作为**整站地图**快速定位到具体讲义或专题。
+本站主入口：从 **Source Map 事件** 切入，连接 **源码学习、可运行复刻、自由换模型** 三条主线；聚合教程/手册/专题入口，列出 24 讲源码课与面试题库，并展示精选热点标题表。适合作为 **Learn LikeCode** 的整站地图，帮助读者快速定位到具体讲义、专题或产品化方向。
 
 ## 目录（对照 HTML）
 
+- **🧭 LikeCode 路线**
+- **✅ 绿钩进度 + 🪄 私人订制 Todo**
 - **2026 年 3 月：Source Map 事件是怎么回事？**
 - **📚 学习入口**
   - Source Map 源码专题
@@ -39,6 +41,14 @@
   - Superpowers 市场 vs Autoresearch（稿 21 + `topic-superpowers-autoresearch`，证据 `reference/reference_agent/`）
 
 ## 各节摘要（对照 HTML）
+
+### 🧭 LikeCode 路线
+
+首页前排新增的产品路线图区块，用更强的视觉方式说明：这个仓库不只是在“讲 Claude Code”，而是在尝试把 Agent CLI 推向 **同 session 切模型、多 provider 兼容、私人订制工作台** 的更自由方向。
+
+### ✅ 绿钩进度 + 🪄 私人订制 Todo
+
+把“已经做成的能力”和“真实场景驱动的待办”并排展示。前者强调当前工程基线已经稳住，后者强调需求来自长期使用里的痛点，而不是拍脑袋列 wishlist。
 
 ### 2026 年 3 月：Source Map 事件是怎么回事？
 

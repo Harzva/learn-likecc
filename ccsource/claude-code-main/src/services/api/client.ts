@@ -28,6 +28,103 @@ import {
   getVertexRegionForModel,
   isEnvTruthy,
 } from '../../utils/envUtils.js'
+import { getSettings_DEPRECATED } from '../../utils/settings/settings.js'
+
+type ModelRouteConfig = {
+  baseURL?: string
+  apiKey?: string
+  authToken?: string
+  headers?: Record<string, string>
+}
+
+function isFirstPartyAnthropicUrl(baseURL?: string): boolean {
+  if (!baseURL) {
+    return true
+  }
+
+  try {
+    const host = new URL(baseURL).host
+    const allowedHosts = ['api.anthropic.com']
+    if (process.env.USER_TYPE === 'ant') {
+      allowedHosts.push('api-staging.anthropic.com')
+    }
+    return allowedHosts.includes(host)
+  } catch {
+    return false
+  }
+}
+
+function shouldMirrorRouteApiKeyToAuthToken({
+  route,
+  resolvedBaseURL,
+}: {
+  route: ModelRouteConfig | null
+  resolvedBaseURL?: string
+}): boolean {
+  if (!route?.apiKey || route.authToken) {
+    return false
+  }
+
+  return !isFirstPartyAnthropicUrl(resolvedBaseURL)
+}
+
+function parseModelRouteConfig(): Record<string, ModelRouteConfig> {
+  const settingsRoutes = getSettings_DEPRECATED()?.modelRoutes
+  if (settingsRoutes && typeof settingsRoutes === 'object') {
+    return settingsRoutes as Record<string, ModelRouteConfig>
+  }
+
+  const raw =
+    process.env.CLAUDE_CODE_MODEL_ROUTES_JSON ??
+    process.env.LIKECODE_MODEL_ROUTES_JSON
+
+  if (!raw?.trim()) {
+    return {}
+  }
+
+  try {
+    const parsed = JSON.parse(raw) as Record<string, ModelRouteConfig>
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+      return {}
+    }
+    return parsed
+  } catch (error) {
+    logForDebugging(
+      `[API:route] Failed to parse CLAUDE_CODE_MODEL_ROUTES_JSON: ${error instanceof Error ? error.message : String(error)}`,
+      { level: 'error' },
+    )
+    return {}
+  }
+}
+
+function getRouteForModel(model?: string): ModelRouteConfig | null {
+  if (!model) return null
+
+  const routes = parseModelRouteConfig()
+  const exact = routes[model]
+  if (exact) return exact
+
+  const lowerModel = model.toLowerCase()
+  for (const [key, value] of Object.entries(routes)) {
+    if (key.toLowerCase() === lowerModel) {
+      return value
+    }
+  }
+
+  for (const [key, value] of Object.entries(routes)) {
+    const normalizedKey = key.toLowerCase()
+    if (!normalizedKey.endsWith('*')) {
+      continue
+    }
+
+    const prefix = normalizedKey.slice(0, -1)
+    if (lowerModel.startsWith(prefix)) {
+      return value
+    }
+  }
+
+  return null
+}
 
 /**
  * Environment variables for different client types:
@@ -101,7 +198,20 @@ export async function getAnthropicClient({
   const containerId = process.env.CLAUDE_CODE_CONTAINER_ID
   const remoteSessionId = process.env.CLAUDE_CODE_REMOTE_SESSION_ID
   const clientApp = process.env.CLAUDE_AGENT_SDK_CLIENT_APP
-  const customHeaders = getCustomHeaders()
+  const modelRoute = getRouteForModel(model)
+  const resolvedBaseURL =
+    process.env.USER_TYPE === 'ant' && isEnvTruthy(process.env.USE_STAGING_OAUTH)
+      ? getOauthConfig().BASE_API_URL
+      : modelRoute?.baseURL || process.env.ANTHROPIC_BASE_URL
+  const routeAuthToken = modelRoute?.authToken
+    ? modelRoute.authToken
+    : shouldMirrorRouteApiKeyToAuthToken({
+          route: modelRoute,
+          resolvedBaseURL,
+        })
+      ? modelRoute?.apiKey
+      : undefined
+  const customHeaders = getCustomHeaders(modelRoute)
   const defaultHeaders: { [key: string]: string } = {
     'x-app': 'cli',
     'User-Agent': getUserAgent(),
@@ -117,7 +227,7 @@ export async function getAnthropicClient({
 
   // Log API client configuration for HFI debugging
   logForDebugging(
-    `[API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: ${!!process.env.ANTHROPIC_CUSTOM_HEADERS}, has Authorization header: ${!!customHeaders['Authorization']}`,
+    `[API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: ${!!process.env.ANTHROPIC_CUSTOM_HEADERS}, has Authorization header: ${!!customHeaders['Authorization']}, routed model config: ${!!modelRoute}`,
   )
 
   // Add additional protection header if enabled via env var
@@ -132,7 +242,7 @@ export async function getAnthropicClient({
   await checkAndRefreshOAuthTokenIfNeeded()
   logForDebugging('[API:auth] OAuth token check complete')
 
-  if (!isClaudeAISubscriber()) {
+  if (!isClaudeAISubscriber() && !modelRoute?.apiKey && !routeAuthToken) {
     await configureApiKeyHeaders(defaultHeaders, getIsNonInteractiveSession())
   }
 
@@ -299,15 +409,23 @@ export async function getAnthropicClient({
 
   // Determine authentication method based on available tokens
   const clientConfig: ConstructorParameters<typeof Anthropic>[0] = {
-    apiKey: isClaudeAISubscriber() ? null : apiKey || getAnthropicApiKey(),
-    authToken: isClaudeAISubscriber()
-      ? getClaudeAIOAuthTokens()?.accessToken
-      : undefined,
+    apiKey: isClaudeAISubscriber()
+      ? null
+      : modelRoute?.apiKey || apiKey || getAnthropicApiKey(),
+    authToken: routeAuthToken
+      ? routeAuthToken
+      : isClaudeAISubscriber()
+        ? getClaudeAIOAuthTokens()?.accessToken
+        : undefined,
     // Set baseURL from OAuth config when using staging OAuth
     ...(process.env.USER_TYPE === 'ant' &&
     isEnvTruthy(process.env.USE_STAGING_OAUTH)
       ? { baseURL: getOauthConfig().BASE_API_URL }
-      : {}),
+      : modelRoute?.baseURL
+        ? { baseURL: modelRoute.baseURL }
+        : process.env.ANTHROPIC_BASE_URL
+          ? { baseURL: process.env.ANTHROPIC_BASE_URL }
+          : {}),
     ...ARGS,
     ...(isDebugToStdErr() && { logger: createStderrLogger() }),
   }
@@ -327,7 +445,9 @@ async function configureApiKeyHeaders(
   }
 }
 
-function getCustomHeaders(): Record<string, string> {
+function getCustomHeaders(
+  modelRoute?: ModelRouteConfig | null,
+): Record<string, string> {
   const customHeaders: Record<string, string> = {}
   const customHeadersEnv = process.env.ANTHROPIC_CUSTOM_HEADERS
 
@@ -348,6 +468,10 @@ function getCustomHeaders(): Record<string, string> {
     if (name) {
       customHeaders[name] = value
     }
+  }
+
+  if (modelRoute?.headers) {
+    Object.assign(customHeaders, modelRoute.headers)
   }
 
   return customHeaders

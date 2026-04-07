@@ -36,6 +36,17 @@ export const EnvironmentVariablesSchema = lazySchema(() =>
   z.record(z.string(), z.coerce.string()),
 )
 
+export const ModelRouteConfigSchema = lazySchema(() =>
+  z
+    .object({
+      baseURL: z.string().optional(),
+      apiKey: z.string().optional(),
+      authToken: z.string().optional(),
+      headers: z.record(z.string(), z.string()).optional(),
+    })
+    .passthrough(),
+)
+
 /**
  * Schema for permissions section
  */
@@ -395,6 +406,13 @@ export const SettingsSchema = lazySchema(() =>
           'Override mapping from Anthropic model ID (e.g. "claude-opus-4-6") to provider-specific ' +
             'model ID (e.g. a Bedrock inference profile ARN). Typically set in managed settings by ' +
             'enterprise administrators.',
+        ),
+      modelRoutes: z
+        .record(z.string(), ModelRouteConfigSchema())
+        .optional()
+        .describe(
+          'Per-model routing configuration for custom Anthropic-compatible providers. ' +
+            'Lets a project map model IDs to auth/baseURL/header overrides without encoding JSON into env vars.',
         ),
       // Whether to automatically approve all MCP servers in the project
       enableAllProjectMcpServers: z

@@ -56,3 +56,4 @@ Thumbs.db
 
 # Claude Code state
 .claude/state/
+ccsource/claude-code-main/.claude/settings.local.json
