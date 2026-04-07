@@ -106,6 +106,7 @@ learn-likecc 现在已经不只是一个 Claude Code 源码学习仓库。
 - [x] 产出第一版 `localhost Web UI` 设计稿，明确 CLI 与 Web UI 的分工
 - [x] 产出第一版 `localhost Web UI` 读取协议草案
 - [x] 起好第一版 localhost 只读接口骨架：`session / pane / transcript / events`
+- [x] 重做 localhost Web 工作台视觉层，让它从临时调试面板升级成更像正式工作台的多栏观察台
 - [ ] 支持展示 session / pane 列表
 - [ ] 支持 transcript 结构化展示
 - [ ] 支持 tool / subagent 时间线

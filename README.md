@@ -37,6 +37,8 @@
   - 兼容非标准 `headers` 返回结构，避免切 provider 后直接崩掉
 - ✅ **localhost Web 工作台不再只显示 API 索引**
   - 现在打开根路径会直接渲染 dashboard，把 `session / pane / transcript / subagent / events` 结构化展示出来
+- ✅ **localhost Web 工作台的视觉层已经重做**
+  - 当前页面已经从“开发态 JSON 面板”收成了更像正式工作台的结构：顶部总览、左侧 pane 导航、中间 workflow 主视图、右侧 subagent / events 观察栏
 - ✅ **subagent 传输路径已经明确**
   - 当前 Web 侧的 subagent 摘要主要来自 CLI 进程内的 `AppState.tasks`，再结合 `sessionTabs` 的 pane 绑定关系做归属展示
 - ✅ **workflow 数据底座已经开始成形**
