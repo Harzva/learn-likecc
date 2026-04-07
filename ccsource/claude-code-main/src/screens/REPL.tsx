@@ -153,6 +153,7 @@ import { useMergedCommands } from '../hooks/useMergedCommands.js';
 import { useSkillsChange } from '../hooks/useSkillsChange.js';
 import { useManagePlugins } from '../hooks/useManagePlugins.js';
 import { Messages } from '../components/Messages.js';
+import { SessionTabsBar } from '../components/SessionTabsBar.js';
 import { TaskListV2 } from '../components/TaskListV2.js';
 import { TeammateViewHeader } from '../components/TeammateViewHeader.js';
 import { useTasksV2WithCollapseEffect } from '../hooks/useTasksV2.js';
@@ -288,6 +289,7 @@ import { useMessageActions, MessageActionsKeybindings, MessageActionsBar, type M
 import { setClipboard } from '../ink/termio/osc.js';
 import type { ScrollBoxHandle } from '../ink/components/ScrollBox.js';
 import { createAttachmentMessage, getQueuedCommandAttachments } from '../utils/attachments.js';
+import { addSessionTab, closeSessionTab, createSessionTaskTab, cycleSessionTab, normalizeSessionTabsState, switchSessionTab, toggleSubagentPanel } from '../utils/sessionTabs.js';
 
 // Stable empty array for hooks that accept MCPServerConnection[] — avoids
 // creating a new [] literal on every render in remote mode, which would
@@ -702,6 +704,7 @@ export function REPL({
     setDynamicMcpConfig(config);
   }, [setDynamicMcpConfig]);
   const [screen, setScreen] = useState<Screen>('prompt');
+  const [tabPrefixActive, setTabPrefixActive] = useState(false);
   const [showAllInTranscript, setShowAllInTranscript] = useState(false);
   // [ forces the dump-to-scrollback path inside transcript mode. Separate
   // from CLAUDE_CODE_NO_FLICKER=0 (which is process-lifetime) — this is
@@ -742,6 +745,11 @@ export function REPL({
   const [showEffortCallout, setShowEffortCallout] = useState(() => shouldShowEffortCallout(mainLoopModel));
   const showRemoteCallout = useAppState(s => s.showRemoteCallout);
   const [showDesktopUpsellStartup, setShowDesktopUpsellStartup] = useState(() => shouldShowDesktopUpsellStartup());
+  useEffect(() => {
+    if (!tabPrefixActive) return;
+    const timer = setTimeout(() => setTabPrefixActive(false), 1500);
+    return () => clearTimeout(timer);
+  }, [tabPrefixActive]);
   // notifications
   useModelMigrationNotifications();
   useCanSwitchToExistingSubscription();
@@ -4216,6 +4224,105 @@ export function REPL({
     setSearchCurrent(current);
   }, []);
   useInput((input, key, event) => {
+    if (screen !== 'prompt' || focusedInputDialog || disabled || isShowingLocalJSXCommand) {
+      return;
+    }
+
+    if (key.ctrl && input === 'g') {
+      setTabPrefixActive(true);
+      event.stopImmediatePropagation();
+      return;
+    }
+
+    if (!tabPrefixActive) return;
+
+    const lower = input.toLowerCase();
+    const digit = Number.parseInt(input, 10);
+
+    if (lower === 'c') {
+      setAppState(prev => ({
+        ...prev,
+        sessionTabs: addSessionTab(
+          normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel),
+          createSessionTaskTab(
+            `Task ${normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel).tabOrder.length}`,
+            {
+            model: prev.mainLoopModel ?? undefined,
+            },
+          ),
+        ),
+      }));
+      setTabPrefixActive(false);
+      event.stopImmediatePropagation();
+      return;
+    }
+
+    if (lower === 'n' || lower === 'p') {
+      setAppState(prev => ({
+        ...prev,
+        sessionTabs: cycleSessionTab(
+          normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel),
+          lower === 'n' ? 1 : -1,
+        ),
+      }));
+      setTabPrefixActive(false);
+      event.stopImmediatePropagation();
+      return;
+    }
+
+    if (lower === 'x') {
+      setAppState(prev => ({
+        ...prev,
+        sessionTabs: closeSessionTab(
+          normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel),
+          normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel)
+            .activeTabId,
+        ),
+      }));
+      setTabPrefixActive(false);
+      event.stopImmediatePropagation();
+      return;
+    }
+
+    if (lower === 's') {
+      setAppState(prev => ({
+        ...prev,
+        sessionTabs: toggleSubagentPanel(
+          normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel),
+        ),
+      }));
+      setTabPrefixActive(false);
+      event.stopImmediatePropagation();
+      return;
+    }
+
+    if (
+      Number.isFinite(digit) &&
+      digit >= 1 &&
+      digit <= 9
+    ) {
+      const targetTabId =
+        normalizeSessionTabsState(
+          store.getState().sessionTabs,
+          store.getState().mainLoopModel,
+        ).tabOrder[digit - 1];
+      if (targetTabId) {
+        setAppState(prev => ({
+          ...prev,
+          sessionTabs: switchSessionTab(
+            normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel),
+            targetTabId,
+          ),
+        }));
+      }
+      setTabPrefixActive(false);
+      event.stopImmediatePropagation();
+      return;
+    }
+  }, {
+    isActive: screen === 'prompt'
+  });
+  useInput((input, key, event) => {
     if (key.ctrl || key.meta) return;
     // No Esc handling here — less has no navigating mode. Search state
     // (highlights, n/N) is just state. Esc/q/ctrl+c → transcript:exit
@@ -4573,6 +4680,7 @@ export function REPL({
         jumpToNew(scrollRef.current);
       }} scrollable={<>
               <TeammateViewHeader />
+              <SessionTabsBar prefixActive={tabPrefixActive} />
               <Messages messages={displayedMessages} tools={tools} commands={commands} verbose={verbose} toolJSX={toolJSX} toolUseConfirmQueue={toolUseConfirmQueue} inProgressToolUseIDs={viewedTeammateTask ? viewedTeammateTask.inProgressToolUseIDs ?? new Set() : inProgressToolUseIDs} isMessageSelectorVisible={isMessageSelectorVisible} conversationId={conversationId} screen={screen} streamingToolUses={streamingToolUses} showAllInTranscript={showAllInTranscript} agentDefinitions={agentDefinitions} onOpenRateLimitOptions={handleOpenRateLimitOptions} isLoading={isLoading} streamingText={isLoading && !viewedAgentTask ? visibleStreamingText : null} isBriefOnly={viewedAgentTask ? false : isBriefOnly} unseenDivider={viewedAgentTask ? undefined : unseenDivider} scrollRef={isFullscreenEnvEnabled() ? scrollRef : undefined} trackStickyPrompt={isFullscreenEnvEnabled() ? true : undefined} cursor={cursor} setCursor={setCursor} cursorNavRef={cursorNavRef} />
               <AwsAuthStatusBox />
               {/* Hide the processing placeholder while a modal is showing —

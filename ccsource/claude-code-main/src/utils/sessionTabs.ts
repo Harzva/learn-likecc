@@ -85,6 +85,13 @@ export function createDefaultSessionTabsState(
   }
 }
 
+export function normalizeSessionTabsState(
+  state: SessionTabsState | undefined,
+  model?: string | null,
+): SessionTabsState {
+  return state ?? createDefaultSessionTabsState(model)
+}
+
 export function toSessionTabsMetadata(
   state: SessionTabsState,
 ): SessionTabsMetadata {
@@ -140,5 +147,127 @@ export function fromSessionTabsMetadata(
     layoutMode: metadata.layout_mode,
     showSubagentPanel: metadata.show_subagent_panel,
     tabs,
+  }
+}
+
+export function getSessionTab(
+  state: SessionTabsState,
+  tabId: string,
+): SessionTabState | undefined {
+  return state.tabs[tabId]
+}
+
+export function getActiveSessionTab(
+  state: SessionTabsState,
+): SessionTabState | undefined {
+  return getSessionTab(state, state.activeTabId)
+}
+
+export function createSessionTaskTab(
+  title: string,
+  partial?: Partial<SessionTabState>,
+): SessionTabState {
+  const id = `tab-${Date.now().toString(36)}`
+  return createSessionTab({
+    id,
+    title,
+    kind: 'task',
+    transcriptId: id,
+    ...partial,
+  })
+}
+
+export function addSessionTab(
+  state: SessionTabsState,
+  tab: SessionTabState,
+): SessionTabsState {
+  return {
+    ...state,
+    activeTabId: tab.id,
+    tabOrder: [...state.tabOrder, tab.id],
+    layoutMode: 'tabs',
+    tabs: {
+      ...state.tabs,
+      [tab.id]: tab,
+    },
+  }
+}
+
+export function switchSessionTab(
+  state: SessionTabsState,
+  tabId: string,
+): SessionTabsState {
+  if (!state.tabs[tabId]) return state
+  return {
+    ...state,
+    activeTabId: tabId,
+  }
+}
+
+export function renameSessionTab(
+  state: SessionTabsState,
+  tabId: string,
+  title: string,
+): SessionTabsState {
+  const existing = state.tabs[tabId]
+  if (!existing) return state
+  return {
+    ...state,
+    tabs: {
+      ...state.tabs,
+      [tabId]: {
+        ...existing,
+        title,
+        updatedAt: new Date().toISOString(),
+      },
+    },
+  }
+}
+
+export function closeSessionTab(
+  state: SessionTabsState,
+  tabId: string,
+): SessionTabsState {
+  if (tabId === DEFAULT_MAIN_TAB_ID) return state
+  if (!state.tabs[tabId]) return state
+
+  const nextOrder = state.tabOrder.filter(id => id !== tabId)
+  if (nextOrder.length === 0) {
+    return createDefaultSessionTabsState()
+  }
+
+  const nextTabs = { ...state.tabs }
+  delete nextTabs[tabId]
+
+  const nextActiveTabId =
+    state.activeTabId === tabId ? (nextOrder[nextOrder.length - 1] ?? DEFAULT_MAIN_TAB_ID) : state.activeTabId
+
+  return {
+    ...state,
+    activeTabId: nextActiveTabId,
+    tabOrder: nextOrder,
+    tabs: nextTabs,
+    layoutMode: nextOrder.length > 1 ? 'tabs' : 'single',
+  }
+}
+
+export function cycleSessionTab(
+  state: SessionTabsState,
+  direction: 1 | -1,
+): SessionTabsState {
+  const currentIndex = state.tabOrder.indexOf(state.activeTabId)
+  if (currentIndex === -1 || state.tabOrder.length <= 1) return state
+  const nextIndex =
+    (currentIndex + direction + state.tabOrder.length) % state.tabOrder.length
+  const nextTabId = state.tabOrder[nextIndex]
+  return nextTabId ? switchSessionTab(state, nextTabId) : state
+}
+
+export function toggleSubagentPanel(
+  state: SessionTabsState,
+): SessionTabsState {
+  return {
+    ...state,
+    showSubagentPanel: !state.showSubagentPanel,
   }
 }

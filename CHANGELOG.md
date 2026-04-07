@@ -6,6 +6,10 @@
 - 将该设计稿进一步拆成可执行开发任务清单：状态层、Tab UI、Tab 行为、状态绑定、快捷键、Subagent 面板、验证与发布
 - 新增 `v1.0.2_plan.md`，把 tab 模式起步版正式映射到具体版本计划
 - 在代码里接入 `sessionTabs`、`SessionTabState`、`SessionTabsMetadata` 第一层状态骨架，为后续 tab UI 和快捷键铺底
+- 主 REPL 已接入顶部 tab UI，支持显示当前 tab、模型/provider/状态和 `+ /tab new` 提示
+- 新增 `/tab` 管理命令，支持 list/new/next/prev/switch/rename/close/panel
+- 新增 `Ctrl+g` 前缀快捷键，第一批支持新建、切换、关闭、面板切换和编号跳转
+- subagent 面板已接入第一层可折叠占位，但还不是最终的真实状态视图
 - README 顶部与长期路线图同步更新，未完成项继续保留在 todo 中，方便后续按版本推进与发版同步
 - 本轮以文档与规划推进为主，暂不单独提升 release 版本号，避免出现“版本先发、功能未落地”的错位
 

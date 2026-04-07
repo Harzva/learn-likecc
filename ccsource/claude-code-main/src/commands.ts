@@ -40,6 +40,11 @@ import resume from './commands/resume/index.js'
 import review, { ultrareview } from './commands/review.js'
 import session from './commands/session/index.js'
 import share from './commands/share/index.js'
+import show, {
+  showGlobal,
+  showProject,
+  showUser,
+} from './commands/show.js'
 import skills from './commands/skills/index.js'
 import status from './commands/status/index.js'
 import tasks from './commands/tasks/index.js'
@@ -174,6 +179,7 @@ import exit from './commands/exit/index.js'
 import exportCommand from './commands/export/index.js'
 import model from './commands/model/index.js'
 import tag from './commands/tag/index.js'
+import tab from './commands/tab.js'
 import outputStyle from './commands/output-style/index.js'
 import remoteEnv from './commands/remote-env/index.js'
 import upgrade from './commands/upgrade/index.js'
@@ -297,11 +303,16 @@ const COMMANDS = memoize((): Command[] => [
   rename,
   resume,
   session,
+  show,
+  showGlobal,
+  showProject,
+  showUser,
   skills,
   stats,
   status,
   statusline,
   stickers,
+  tab,
   tag,
   theme,
   feedback,

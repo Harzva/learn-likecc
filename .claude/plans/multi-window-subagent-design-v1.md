@@ -307,18 +307,18 @@ type TabState = {
 
 ### Phase 2：Tab UI
 
-- [ ] 顶部增加 tab 行
-- [ ] 高亮当前激活 tab
-- [ ] 支持显示 tab 标题、模型、provider、运行状态
-- [ ] 支持显示 `+` 新建入口
+- [x] 顶部增加 tab 行
+- [x] 高亮当前激活 tab
+- [x] 支持显示 tab 标题、模型、provider、运行状态
+- [x] 支持显示 `+` 新建入口
 - [ ] 当 tab 过多时支持滚动或折叠展示
 
 ### Phase 3：Tab 行为
 
-- [ ] 新建 tab
-- [ ] 切换 tab
+- [x] 新建 tab
+- [x] 切换 tab
 - [ ] 重命名 tab
-- [ ] 关闭 tab
+- [x] 关闭 tab
 - [ ] 关闭最后一个任务 tab 时保留主窗口 tab
 
 ### Phase 4：状态绑定
@@ -331,14 +331,16 @@ type TabState = {
 
 ### Phase 5：快捷键
 
-- [ ] 增加窗口管理前缀模式
-- [ ] 接入 `Ctrl+g c / n / p / r / x / l / s`
+- [x] 增加窗口管理前缀模式
+- [x] 接入 `Ctrl+g c / n / p / x / s`
+- [x] 接入 `Ctrl+g 1-9` 快速跳转
+- [ ] 接入 `Ctrl+g r / l`
 - [ ] 为 `Alt+1-9` 预留快速跳转能力
 - [ ] 给冲突按键补降级方案
 
 ### Phase 6：Subagent 面板占位
 
-- [ ] 增加可折叠 subagent 面板
+- [x] 增加可折叠 subagent 面板
 - [ ] 面板支持显示 subagent 名称、仓库、目录、任务、状态
 - [ ] 面板支持显示最近一条进度摘要
 - [ ] 未接入真实 subagent 前先支持占位数据结构

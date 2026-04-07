@@ -61,6 +61,12 @@
   - 当前先落到 `v1.0.2-likecode`，目标是交付 tab 模式起步版
 - ✅ **状态层骨架已经接进代码**
   - 已新增 `sessionTabs`、`SessionTabState`、`SessionTabsMetadata`，并开始把 tab 状态映射进 session metadata
+- ✅ **顶部 tab UI 已经可见**
+  - 主 REPL 顶部已经能显示 tab 行、当前激活 tab、模型/provider/状态，以及 `+ /tab new` 提示
+- ✅ **tab 管理命令已经可用**
+  - 已支持 `/tab list`、`/tab new`、`/tab next`、`/tab prev`、`/tab switch`、`/tab rename`、`/tab close`、`/tab panel`
+- ✅ **第一批窗口快捷键已经可用**
+  - 已支持 `Ctrl+g` 前缀后接 `c / n / p / x / s / 1-9`
 
 ### 我们现在强调的不是“炫”，而是这些真实需求
 
@@ -206,6 +212,9 @@ Claude Code 很强，但真实使用里一直有一个明显痛点：
 - [x] 完成“多窗口 / subagent 视图”第一版开发任务拆分
 - [x] 将 tab 模式映射到 `v1.0.2-likecode` 版本计划
 - [x] 为 tab 模式接入第一层状态骨架
+- [x] 接入顶部 tab UI
+- [x] 接入 `/tab` 管理命令
+- [x] 接入第一批 `Ctrl+g` 窗口快捷键
 - [ ] 支持 **subagent 工作视图**：按窗口看不同 subagent 在忙什么
 - [ ] 支持 **按任务自动路由模型**：写代码 / 总结 / 搜索 / 便宜优先 / 最强优先
 - [ ] 尽量做到 **不 compact 也能切到别的模型继续干活**
@@ -221,6 +230,8 @@ Claude Code 很强，但真实使用里一直有一个明显痛点：
 - [ ] 同一个 session 开多个窗口：一个写代码，一个 review，一个跟踪搜索/摘要
 - [ ] 把 tab 模式先做出来，再评估哪些场景真的需要 pane 分屏
 - [x] 把 tab 需求映射到具体版本计划与发版节奏
+- [ ] 让不同 tab 真正绑定各自 transcript、todo、model/provider，而不是先只做窗口层
+- [ ] 把 subagent 面板从占位升级成真实状态视图
 - [ ] 团队里每个人可配置自己的默认 provider / 默认模型 / 默认预算策略
 - [ ] 项目级规则决定“这个仓库优先稳定模型，那个仓库优先低成本模型”
 - [ ] 一个命令完成“继续当前 session，但换模型再试一次”
