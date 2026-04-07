@@ -56,6 +56,38 @@ TERM=xterm-256color bun run dev
 
 This rebuilt baseline uses an Ink TUI. In weak terminals such as `TERM=dumb`, the CLI can enter interactive mode without rendering the screen correctly, which looks like it is stuck even though the process is already running.
 
+If you want to know exactly where startup stops, enable the minimal startup diagnostic mode:
+
+```bash
+CLAUDE_CODE_STARTUP_DIAG=1 bun run dev
+```
+
+It prints checkpoints such as:
+
+```text
+[startup-diag] before loadCommandsAndAgents
+[startup-diag] after getSkills
+[startup-diag] after getSkillDirCommands
+[startup-diag] after getPluginSkills
+[startup-diag] after getPluginCommands
+[startup-diag] after getWorkflowCommands
+[startup-diag] after getCommands
+[startup-diag] after getAgentDefinitionsWithOverrides
+[startup-diag] after loadCommandsAndAgents
+[startup-diag] before createRoot
+[startup-diag] after createRoot
+[startup-diag] before showSetupScreens
+[startup-diag] after showSetupScreens
+[startup-diag] before initializeLspServerManager
+[startup-diag] after initializeLspServerManager
+```
+
+This is useful for distinguishing:
+
+- TUI creation problems (`createRoot`)
+- hidden setup/onboarding/trust screens (`showSetupScreens`)
+- later startup work such as LSP manager initialization
+
 ---
 
 ## Directory Structure

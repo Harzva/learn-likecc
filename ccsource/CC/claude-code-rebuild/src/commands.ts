@@ -209,6 +209,15 @@ import {
   isCommandEnabled,
 } from './types/command.js'
 
+const STARTUP_DIAG_ENABLED =
+  process.env.CLAUDE_CODE_STARTUP_DIAG === '1' ||
+  process.env.CLAUDE_CODE_STARTUP_DIAG === 'true'
+
+function emitStartupDiag(phase: string): void {
+  if (!STARTUP_DIAG_ENABLED) return
+  process.stderr.write(`[startup-diag] ${phase}\n`)
+}
+
 // Re-export types from the centralized location
 export type {
   Command,
@@ -364,11 +373,17 @@ async function getSkills(cwd: string): Promise<{
           'Skill directory commands failed to load, continuing without them',
         )
         return []
+      }).then(result => {
+        emitStartupDiag('after getSkillDirCommands')
+        return result
       }),
       getPluginSkills().catch(err => {
         logError(toError(err))
         logForDebugging('Plugin skills failed to load, continuing without them')
         return []
+      }).then(result => {
+        emitStartupDiag('after getPluginSkills')
+        return result
       }),
     ])
     // Bundled skills are registered synchronously at startup
@@ -452,9 +467,20 @@ const loadAllCommands = memoize(async (cwd: string): Promise<Command[]> => {
     pluginCommands,
     workflowCommands,
   ] = await Promise.all([
-    getSkills(cwd),
-    getPluginCommands(),
-    getWorkflowCommands ? getWorkflowCommands(cwd) : Promise.resolve([]),
+    getSkills(cwd).then(result => {
+      emitStartupDiag('after getSkills')
+      return result
+    }),
+    getPluginCommands().then(result => {
+      emitStartupDiag('after getPluginCommands')
+      return result
+    }),
+    (getWorkflowCommands ? getWorkflowCommands(cwd) : Promise.resolve([])).then(
+      result => {
+        emitStartupDiag('after getWorkflowCommands')
+        return result
+      },
+    ),
   ])
 
   return [

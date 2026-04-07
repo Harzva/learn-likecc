@@ -138,6 +138,17 @@ import { generateTempFilePath } from './utils/tempfile.js';
 import { validateUuid } from './utils/uuid.js';
 // Plugin startup checks are now handled non-blockingly in REPL.tsx
 
+const STARTUP_DIAG_ENABLED =
+  process.env.CLAUDE_CODE_STARTUP_DIAG === '1' ||
+  process.env.CLAUDE_CODE_STARTUP_DIAG === 'true';
+
+function emitStartupDiag(phase: string): void {
+  if (!STARTUP_DIAG_ENABLED) {
+    return;
+  }
+  process.stderr.write(`[startup-diag] ${phase}\n`);
+}
+
 import { registerMcpAddCommand } from 'src/commands/mcp/addCommand.js';
 import { registerMcpXaaIdpCommand } from 'src/commands/mcp/xaaIdpCommand.js';
 import { logPermissionContextForAnts } from 'src/services/internalLogging.js';
@@ -2023,11 +2034,21 @@ async function run(): Promise<CommanderCommand> {
     // getCwd() syscall in the common path.
     const currentCwd = worktreeEnabled ? getCwd() : preSetupCwd;
     logForDebugging('[STARTUP] Loading commands and agents...');
+    emitStartupDiag('before loadCommandsAndAgents');
     const commandsStart = Date.now();
     // Join the promises kicked before setup() (or start fresh if
     // worktreeEnabled gated the early kick). Both memoized by cwd.
-    const [commands, agentDefinitionsResult] = await Promise.all([commandsPromise ?? getCommands(currentCwd), agentDefsPromise ?? getAgentDefinitionsWithOverrides(currentCwd)]);
+    const resolvedCommandsPromise = (commandsPromise ?? getCommands(currentCwd)).then(result => {
+      emitStartupDiag('after getCommands');
+      return result;
+    });
+    const resolvedAgentDefsPromise = (agentDefsPromise ?? getAgentDefinitionsWithOverrides(currentCwd)).then(result => {
+      emitStartupDiag('after getAgentDefinitionsWithOverrides');
+      return result;
+    });
+    const [commands, agentDefinitionsResult] = await Promise.all([resolvedCommandsPromise, resolvedAgentDefsPromise]);
     logForDebugging(`[STARTUP] Commands and agents loaded in ${Date.now() - commandsStart}ms`);
+    emitStartupDiag('after loadCommandsAndAgents');
     profileCheckpoint('action_commands_loaded');
 
     // Parse CLI agents if provided via --agents flag
@@ -2226,7 +2247,9 @@ async function run(): Promise<CommanderCommand> {
       const {
         createRoot
       } = await import('./ink.js');
+      emitStartupDiag('before createRoot');
       root = await createRoot(ctx.renderOptions);
+      emitStartupDiag('after createRoot');
 
       // Log startup time now, before any blocking dialog renders. Logging
       // from REPL's first render (the old location) included however long
@@ -2237,8 +2260,10 @@ async function run(): Promise<CommanderCommand> {
         durationMs: Math.round(process.uptime() * 1000)
       });
       logForDebugging('[STARTUP] Running showSetupScreens()...');
+      emitStartupDiag('before showSetupScreens');
       const setupScreensStart = Date.now();
       const onboardingShown = await showSetupScreens(root, permissionMode, allowDangerouslySkipPermissions, commands, enableClaudeInChrome, devChannels);
+      emitStartupDiag('after showSetupScreens');
       logForDebugging(`[STARTUP] showSetupScreens() completed in ${Date.now() - setupScreensStart}ms`);
 
       // Now that trust is established and GrowthBook has auth headers,
@@ -2318,7 +2343,9 @@ async function run(): Promise<CommanderCommand> {
     // where trust is implicit). This prevents plugin LSP servers from executing
     // code in untrusted directories before user consent.
     // Must be after inline plugins are set (if any) so --plugin-dir LSP servers are included.
+    emitStartupDiag('before initializeLspServerManager');
     initializeLspServerManager();
+    emitStartupDiag('after initializeLspServerManager');
 
     // Show settings validation errors after trust is established
     // MCP config errors don't block settings from loading, so exclude them

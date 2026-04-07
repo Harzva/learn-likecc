@@ -11,6 +11,8 @@
    - 当前已恢复到 git commit `6a1afe3` (`v2.0.4: 程序可运行`)
    - 这个目录的职责是保留“已经重建完成，但还没叠加 Like Code 新功能”的基线
    - 首次进入时仍需先执行 `bun install`，否则会出现 `Cannot find module 'lodash-es/...'` 这类缺依赖报错
+   - 历史里确实还有更新、且提交信息写着“功能测试完成 / 稳定运行”的版本，例如 `c75951f`、`50b6fb0`、`a1531fb`
+   - 但这些提交已经进入后续演进阶段，不再是最干净的“重建完成但未叠加 Like Code 新功能”的基线，所以当前仍锚定 `6a1afe3`
 
 3. `ccsource/like-code-main`
    - 当前 Like Code 主开发线
