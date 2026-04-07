@@ -32,6 +32,39 @@ This repository contains the leaked `src/` directory.
 
 ## Local Run Note
 
+### Current Verified Status
+
+This rebuild baseline is **currently verified runnable**.
+
+Verified on this repository with:
+
+```bash
+cd /home/clashuser/hzh/item_bo/learn-likecc/ccsource/CC/claude-code-rebuild
+bun install
+bun run dev --version
+TERM=xterm-256color bun run dev
+```
+
+Expected version output:
+
+```text
+0.0.1-learn (Claude Code)
+```
+
+Current conclusion:
+
+- `ccsource/CC/claude-code-rebuild` can now enter the interactive REPL
+- there is no need to urgently re-anchor rebuild to `c75951f`, `50b6fb0`, or `a1531fb`
+- `6a1afe3` remains the current rebuild baseline until we explicitly decide to change that role
+
+Relevant repair commits:
+
+- `d2f67e7` restore rebuild baseline source tree
+- `006d512` note rebuild install requirement
+- `de8fc29` note rebuild terminal requirement
+- `b7b295e` add rebuild startup diagnostics and rg fallback
+- `57ad57f` restore rebuild REPL startup
+
 If you restored this directory from git and try to run it locally, install dependencies first:
 
 ```bash
@@ -87,6 +120,19 @@ This is useful for distinguishing:
 - TUI creation problems (`createRoot`)
 - hidden setup/onboarding/trust screens (`showSetupScreens`)
 - later startup work such as LSP manager initialization
+
+### Why It Looked Stuck Before
+
+The rebuild baseline did not fail because `~/.claude.json` was wrong.
+
+The actual issues were in the restored source tree itself:
+
+- missing small runtime files needed by REPL import
+- one bad import path in the Ink component tree
+- one React hook compatibility mismatch (`useEffectEvent`)
+- one sandbox runtime compatibility mismatch in the rebuild baseline
+
+Those issues have now been patched in this rebuild directory, which is why the interactive CLI can start again.
 
 ---
 
