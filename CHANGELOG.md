@@ -12,6 +12,8 @@
 - `panel / 分屏` 第一版已经接入主 REPL，支持在工作区侧栏里展示当前 tab、任务和 subagent 状态
 - pane 模式下底部开始出现多个可见对话框区域，不再永远只有一个共享视觉输入框
 - 左右 pane 开始显示各自保存下来的 transcript 预览，分屏里不再继续共用同一段可见对话内容
+- non-active pane 已升级成“准可操作态”，开始显示自己的 transcript 摘要、todo 摘要、draft 提示和更明确的激活文案
+- 新增 `/tab focus left|right|1|2`，并补上 `Ctrl+g h / l`，让左右 pane 的聚焦切换更贴近分屏心智
 - 切换 tab 时，主消息区开始切到该 tab 自己保存的 transcript，而不只是切标题与预览
 - todo lane 开始按 tab 保存和恢复，切换 tab 后会看到对应 tab 自己那份待办/任务快照
 - tab 开始真正绑定自己的 `model / provider / transcript / todo lane`，切换 tab 后能带出对应状态

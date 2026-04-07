@@ -77,6 +77,10 @@
   - pane 模式下底部不再只剩一个视觉对话框，而是会为不同 tab 渲染多个可见的对话框 dock
 - ✅ **左右 pane 的 transcript 已开始拆开显示**
   - 每个 pane 现在会保存并展示自己那条对话的独立 transcript 预览，不再继续共用同一段可见内容
+- ✅ **非 active pane 已升级成“准可操作态”**
+  - inactive pane 现在会显示自己的 transcript 摘要、todo 摘要、draft 提示和更明确的激活文案，不再只是空预览壳
+- ✅ **pane 聚焦入口更贴近分屏心智**
+  - 现在除了点击 pane，还支持 `/tab focus left|right|1|2` 和 `Ctrl+g h / l` 快速把左右 pane 提升为 active
 - ✅ **切换 tab 时主消息区开始切到各自 transcript**
   - tab 不再只切标题和预览，主消息区现在会跟着切到该 tab 保存下来的消息流
 - ✅ **todo lane 开始按 tab 记住和恢复**
@@ -194,10 +198,14 @@ Claude Code 很强，但真实使用里一直有一个明显痛点：
   - 先做 `tab`，再做 `pane`，最后再做 `subagent live view`
 - ✅ **与 branch 不重复**
   - `branch` 是把对话分叉成另一条可恢复会话；`tab` / `panel` 是在同一个 session 内管理多个任务视图
+- ✅ **与 subagent 也不重复**
+  - `panel` 是界面层 / 工作区层，解决“怎么看、怎么切、怎么组织任务”；`subagent` 是执行层 / 代理层，解决“谁去干活”
+  - 一个 `panel` 可以先没有 `subagent`，只作为同一 session 下的多任务工位；当系统真的拉起 `subagent` 时，这个 pane 才进一步变成 subagent 的可视化工作位
 - 🟡 **当前这版 tab 还偏轻**
   - 现在更像“会话窗口管理壳层”，真正高价值的差异化能力还是 panel、分屏和 subagent 状态面板
 - ✅ **快捷键**
   - 第一版推荐 `Ctrl+g` 作为窗口管理前缀，再映射新建、切换、关闭、重命名
+  - pane 聚焦已额外支持 `Ctrl+g h / l`
 - ✅ **状态模型**
   - session 主状态和 tab 子状态必须分开，不要把所有窗口信息继续硬塞进一条主 transcript
 - ✅ **UI 层级**
@@ -206,6 +214,17 @@ Claude Code 很强，但真实使用里一直有一个明显痛点：
   - `.claude/plans/multi-window-subagent-design-v1.md`
 - ✅ **版本计划入口**
   - `.claude/plans/v1.0.2_plan.md`
+
+### 为什么不是直接多开终端
+
+- ✅ **多开终端解决的是“多进程并行”，不是“同 session 内协同”**
+  - 多个终端天然是多个独立 Claude 进程；内部 panel 则是同一个 session 里的多个工作窗格
+- ✅ **内部 panel 的价值是共享一层会话编排**
+  - 可以共享同一份 session 背景、模型切换历史、provider 路由、规则层、todo / transcript 状态，而不是让用户自己在几个终端之间搬运上下文
+- ✅ **更适合 future subagent**
+  - 多开终端时，用户要自己记“哪个窗口是谁、谁在跑什么”；内部 panel 可以天然展示 pane、task、subagent、provider、worktree 之间的对应关系
+- ✅ **不是替代多终端，而是补足多终端做不到的会话内组织能力**
+  - 更准确的说法是：多开终端是“我自己管理多个 Claude”，内部 panel 是“Claude 帮我管理同一个 session 下的多个任务”
 
 ---
 
@@ -224,6 +243,7 @@ Claude Code 很强，但真实使用里一直有一个明显痛点：
 - ✅ `markdownlint` 仓库内工具链
 - ✅ 启动头图与品牌化展示
 - ✅ `.claude` 多层配置摘要展示
+- ✅ pane 非激活态的 transcript / todo / draft 摘要展示
 - ✅ 当前 `claude` 命令路径展示
 
 ### 正在推进的核心 Todo

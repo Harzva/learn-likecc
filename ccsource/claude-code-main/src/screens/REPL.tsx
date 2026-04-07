@@ -4445,6 +4445,27 @@ export function REPL({
       return;
     }
 
+    if (lower === 'h' || lower === 'l') {
+      const currentState = normalizeSessionTabsState(
+        store.getState().sessionTabs,
+        store.getState().mainLoopModel,
+      );
+      const paneOrder = currentState.tabOrder.slice(0, 2);
+      const targetTabId = lower === 'h' ? paneOrder[0] : paneOrder[1];
+      if (targetTabId) {
+        setAppState(prev => ({
+          ...prev,
+          sessionTabs: switchSessionTab(
+            normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel),
+            targetTabId,
+          ),
+        }));
+      }
+      setTabPrefixActive(false);
+      event.stopImmediatePropagation();
+      return;
+    }
+
     if (lower === 'x') {
       setAppState(prev => ({
         ...prev,
@@ -4895,7 +4916,7 @@ export function REPL({
       <SessionBackgroundHint onBackgroundSession={handleBackgroundSession} isLoading={isLoading} />
     </>;
   const promptContent = showPromptPanes ? <Box width="100%" flexDirection={transcriptCols >= 120 ? 'row' : 'column'}>
-      {paneTabs.map((tab, index) => <SessionPaneDock key={tab.id} tab={tab} isActive={tab.id === sessionTabs.activeTabId} onActivate={tab.id === sessionTabs.activeTabId ? undefined : () => setAppState(prev => ({
+      {paneTabs.map((tab, index) => <SessionPaneDock key={tab.id} tab={tab} paneLabel={index === 0 ? 'left' : 'right'} isActive={tab.id === sessionTabs.activeTabId} onActivate={tab.id === sessionTabs.activeTabId ? undefined : () => setAppState(prev => ({
       ...prev,
       sessionTabs: switchSessionTab(normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel), tab.id)
     }))}>

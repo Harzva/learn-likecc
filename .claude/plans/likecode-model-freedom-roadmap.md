@@ -139,11 +139,15 @@ learn-likecc 现在已经不只是一个 Claude Code 源码学习仓库。
 - [x] `/tab` 命令已支持 list/new/next/prev/switch/rename/close/panel
 - [x] `Ctrl+g` 前缀快捷键已支持新建、切换、关闭、面板切换、编号跳转
 - [x] 明确 `tab` 与 `branch` 不是重复功能：前者是同 session 视图管理，后者是会话分叉
+- [x] 明确 `panel` 与 `subagent` 不是重复功能：前者是工作区/视图层，后者是执行层
+- [x] 明确“为什么不是直接多开终端”：内部 panel 解决的是同 session 编排与可视化，不只是多进程并行
 - [x] 把 transcript、todo、model/provider 状态开始绑定到 tab
 - [x] 增加第一版 subagent 状态面板，先能展示 transcript、任务与运行状态
 - [x] 将 panel / 分屏提升为 tab 之后的最高优先级交付，并开始实现
 - [x] 让 pane 模式下底部出现多个可见对话框区域，而不只是一个共享输入框
 - [x] 让左右 pane 开始显示各自的 transcript 预览
+- [x] 让非 active pane 升级成准可操作态：显示 transcript 摘要、todo 摘要、draft 提示与更明确的激活文案
+- [x] 为左右 pane 增加更直接的聚焦入口：点击 pane、`/tab focus left|right|1|2`、`Ctrl+g h / l`
 - [x] 让切 tab 时主消息区开始切到各自 transcript
 - [x] 让 todo lane 开始按 tab 保存和恢复
 - [ ] 继续把多个可见对话框升级成真正的多活跃输入与多 transcript 并行

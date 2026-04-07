@@ -19,6 +19,7 @@ function buildUsage(): string {
     '  /tab new [title]',
     '  /tab next',
     '  /tab prev',
+    '  /tab focus <left|right|1|2>',
     '  /tab switch <id|index|title>',
     '  /tab rename <title>',
     '  /tab close [id|index|title]',
@@ -54,6 +55,24 @@ function matchTabId(
   )
 
   return byTitle ?? null
+}
+
+function resolvePaneFocusTarget(
+  input: string,
+  state: SessionTabsState,
+): string | null {
+  const trimmed = input.trim().toLowerCase()
+  if (!trimmed) return null
+
+  const paneOrder = state.tabOrder.slice(0, 2)
+  if (trimmed === 'left' || trimmed === '1') {
+    return paneOrder[0] ?? null
+  }
+  if (trimmed === 'right' || trimmed === '2') {
+    return paneOrder[1] ?? null
+  }
+
+  return matchTabId(input, state)
 }
 
 const call: LocalCommandCall = async (args, context) => {
@@ -167,6 +186,26 @@ const call: LocalCommandCall = async (args, context) => {
       }
     }
 
+    case 'focus': {
+      const target = resolvePaneFocusTarget(rest.join(' '), sessionTabs)
+      if (!target) {
+        return { type: 'text', value: `Pane target not found.\n\n${buildUsage()}` }
+      }
+
+      context.setAppState(prev => ({
+        ...prev,
+        sessionTabs: switchSessionTab(
+          normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel),
+          target,
+        ),
+      }))
+
+      return {
+        type: 'text',
+        value: `Focused pane ${sessionTabs.tabs[target]?.title ?? target}`,
+      }
+    }
+
     case 'rename': {
       const title = rest.join(' ').trim()
       if (!title || !activeTab) {
@@ -237,7 +276,7 @@ const tab = {
   type: 'local',
   name: 'tab',
   description: 'Manage session tabs for multi-task work in one session',
-  argumentHint: '<list|new|next|prev|switch|rename|close|panel>',
+  argumentHint: '<list|new|next|prev|focus|switch|rename|close|panel>',
   supportsNonInteractive: true,
   load: () => Promise.resolve({ call }),
 } satisfies Command
