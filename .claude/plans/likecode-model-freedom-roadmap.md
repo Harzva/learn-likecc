@@ -40,6 +40,7 @@ learn-likecc 现在已经不只是一个 Claude Code 源码学习仓库。
 - [x] 当前已完成项按仓库传统打钩
 - [x] 新需求必须进 plan、未完成必须留在 README todo 的规则已固化
 - [ ] 把后续版本号规划映射到现有 `.claude/plans/v*.md`
+- [x] 将多窗口 Tab 模式映射到 `v1.0.2_plan.md`
 - [ ] 将该路线图接入 CHANGELOG 或版本计划索引
 
 ### Milestone C：文档校验基线
@@ -129,6 +130,7 @@ learn-likecc 现在已经不只是一个 Claude Code 源码学习仓库。
 - [ ] 再逐步统一更多页面的 `Claude Code Course` 旧口径
 - [ ] 把自由模型路线拆到具体版本计划
 - [ ] 把多窗口设计稿进一步映射到具体版本计划与实现任务
+- [x] 将多窗口设计稿进一步映射到 `v1.0.2-likecode` 版本计划
 - [ ] 实现第一版 tab 模式：新建、切换、关闭、重命名
 - [ ] 把 transcript、todo、model/provider 状态真正绑定到 tab
 - [ ] 增加 subagent 状态面板占位，先能展示仓库、任务与运行状态
@@ -148,3 +150,4 @@ learn-likecc 现在已经不只是一个 Claude Code 源码学习仓库。
 ## 相关设计稿
 
 - `./multi-window-subagent-design-v1.md`
+- `./v1.0.2_plan.md`
