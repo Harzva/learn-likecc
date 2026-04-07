@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OH01: Agent Loop（OpenHarness） - Claude Code Course</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚖️</text></svg>">
+    <meta name="description" content="OpenHarness OH01：从 query_engine.py 与 run_query 读 Agent Loop，对标 S01；流式事件、max_turns、自动压缩与并行工具执行。">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">⚖️</span>
+                <span class="logo-text">OH 源码课</span>
+            </a>
+            <div class="nav-links">
+                <a href="topic-openharness-course.html" class="nav-link">课纲</a>
+                <a href="topic-openharness.html#map" class="nav-link">路径表</a>
+                <a href="s01.html" class="nav-link">对照 S01</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="index.html" class="btn-github">首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="course-main">
+        <div class="container">
+            <div class="course-header">
+                <div class="course-breadcrumb">
+                    <a href="index.html">首页</a>
+                    <span>/</span>
+                    <a href="topic-openharness-course.html">OpenHarness 源码课</a>
+                    <span>/</span>
+                    <span>OH01: Agent Loop</span>
+                </div>
+                <div class="course-nav">
+                    <span class="course-part-badge">OpenHarness · Part 1</span>
+                    <div class="course-chapter-nav">
+                        <a href="topic-openharness-course.html" class="chapter-prev">← OH 课纲</a>
+                        <span class="chapter-next disabled">OH02 待撰 →</span>
+                    </div>
+                </div>
+            </div>
+
+            <article class="course-content">
+                <h1 class="course-title">OH01: Agent Loop <span class="subtitle">OpenHarness · 对标 S01</span></h1>
+
+                <div class="course-quote">
+                    <p>与 <a href="s01.html">S01: Agent Loop</a> 读<strong>同一问题</strong>：模型如何反复调用工具直到停手；这里落在上游 <strong>Python</strong> 的 <code>QueryEngine</code> + <code>run_query</code>。</p>
+                    <p>权威路径：<code>src/openharness/engine/query_engine.py</code>（会话壳）· <code>query.py</code>（循环体）· <code>stream_events.py</code>（对流式 UI 输出的事件）。本仓库快照：<code>reference/rererence_harness/OpenHarness/</code>。</p>
+                </div>
+
+                <figure class="mermaid-figure" aria-label="与 S01 一致的循环心智模型">
+                    <figcaption class="mermaid-caption"><strong>循环心智模型</strong>（与 S01 相同）：User → LLM → Tool → tool_result → LLM，直至不再请求工具。</figcaption>
+                    <div class="mermaid-diagram-scroll" data-mermaid-diagram="course-s01"></div>
+                </figure>
+
+                <section class="section-block">
+                    <h2>🎯 问题（与 S01 一致）</h2>
+                    <p>模型需要<strong>多轮</strong>在「推理」与「改世界」之间切换；Harness 负责把每轮 assistant 消息与 tool 结果写回<strong>同一条消息历史</strong>，再发起下一轮推理。没有这层循环，用户就要手动搬运工具输出。</p>
+                </section>
+
+                <section class="section-block">
+                    <h2>🏗️ 两层拆分：QueryEngine vs run_query</h2>
+                    <p>OpenHarness 把<strong>状态与入口</strong>和<strong>无状态循环体</strong>拆开，便于测试与复用：</p>
+                    <ul>
+                        <li><strong><code>QueryEngine</code></strong>：持有 <code>_messages</code>、<code>CostTracker</code>、API client / registry / permission 等依赖；<code>submit_message</code> 只负责追加用户句并调用 <code>run_query</code>。</li>
+                        <li><strong><code>run_query(context, messages)</code></strong>：真正的 while 循环；接受<strong>同一份</strong> <code>messages</code> 列表并在原列表上追加，与 S01 伪代码一致。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔍 源码 1：<code>QueryEngine</code> 外壳</h2>
+                    <p>类文档字符串即设计意图：「拥有会话历史与 tool-aware 模型循环」。构造器注入 API、工具注册表、权限、工作目录、模型与 system prompt；默认 <code>max_turns=8</code> 限制<strong>单次用户提交</strong>内的 agent 轮数（防死循环）。</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">Python</span>
+                            <button class="copy-btn" onclick="copyCode(this)">复制</button>
+                        </div>
+                        <pre><code class="language-python"># reference/.../src/openharness/engine/query_engine.py（节选）
+
+class QueryEngine:
+    """Owns conversation history and the tool-aware model loop."""
+
+    def __init__(..., max_turns: int | None = 8, ...):
+        ...
+        self._messages: list[ConversationMessage] = []
+        self._cost_tracker = CostTracker()
+
+    async def submit_message(self, prompt: str) -&gt; AsyncIterator[StreamEvent]:
+        self._messages.append(ConversationMessage.from_user_text(prompt))
+        context = QueryContext(...)
+        async for event, usage in run_query(context, self._messages):
+            if usage is not None:
+                self._cost_tracker.add(usage)
+            yield event</code></pre>
+                    </div>
+                    <p>完整定义见上游文件开头至 <code>continue_pending</code>；下面引用关键片段位置便于你对照打开编辑器：</p>
+                    <p class="md-source-link" style="margin-top: 0.75rem;"><code>reference/rererence_harness/OpenHarness/src/openharness/engine/query_engine.py</code> · 类与 <code>submit_message</code></p>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔍 源码 2：<code>run_query</code> 主循环</h2>
+                    <p>每一轮开始先做 <strong>auto-compact</strong>（上下文超阈值则压缩），再 <code>stream_message</code>；流上产出文本 delta、重试状态等事件；完整后得到 <code>final_message</code>。若 <code>final_message.tool_uses</code> 为空则<strong>直接 return</strong>——等价于 S01 里「stop_reason 不再是 tool_use」的退出。</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">Python</span>
+                            <button class="copy-btn" onclick="copyCode(this)">复制</button>
+                        </div>
+                        <pre><code class="language-python"># reference/.../src/openharness/engine/query.py（节选）
+
+async def run_query(context, messages):
+    ...
+    turn_count = 0
+    while context.max_turns is None or turn_count &lt; context.max_turns:
+        turn_count += 1
+        messages, was_compacted = await auto_compact_if_needed(...)
+
+        async for event in context.api_client.stream_message(ApiMessageRequest(...)):
+            if isinstance(event, ApiTextDeltaEvent):
+                yield AssistantTextDelta(text=event.text), None
+                ...
+            if isinstance(event, ApiMessageCompleteEvent):
+                final_message = event.message
+                usage = event.usage
+
+        messages.append(final_message)
+        yield AssistantTurnComplete(message=final_message, usage=usage), usage
+
+        if not final_message.tool_uses:
+            return
+
+        # 执行 tool_uses → ToolResultBlock → messages.append(user with results)
+        ...</code></pre>
+                    </div>
+                    <p><strong>多工具</strong>：仅 1 个 tool 时顺序执行并立刻 yield 事件；多个时 <code>asyncio.gather</code> 并发，再按序补全完成事件。最后统一 <code>messages.append(ConversationMessage(role="user", content=tool_results))</code>，进入下一轮 while。</p>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔍 源码 3：单次工具 <code>_execute_tool_call</code></h2>
+                    <p>在循环之内，每条工具调用走：<strong>PreToolUse Hook → 取 tool → 校验输入 → 权限策略（可弹确认）→ execute → PostToolUse Hook</strong>。这是 S01 里被折叠成 <code>executeTool(...)</code> 的<strong>展开版</strong>，与 <a href="s03.html">S03</a>、<a href="s10.html">S10</a> 同一治理轴。</p>
+                </section>
+
+                <section class="section-block">
+                    <h2>⚖️ 与 S01（TS 课）对照</h2>
+                    <table class="compare-table">
+                        <tr>
+                            <th>维度</th>
+                            <th>S01 / 课内 TS 叙事</th>
+                            <th>OpenHarness 本讲</th>
+                        </tr>
+                        <tr>
+                            <td>循环位置</td>
+                            <td><code>QueryEngine</code> 式大对象内 while</td>
+                            <td><code>QueryEngine</code> 薄壳 + <code>run_query</code> 纯循环</td>
+                        </tr>
+                        <tr>
+                            <td>模型调用</td>
+                            <td>常写作一次性 <code>messages.create</code> 返回</td>
+                            <td><code>stream_message</code> + 事件流（UI 可先刷字）</td>
+                        </tr>
+                        <tr>
+                            <td>退出条件</td>
+                            <td><code>stop_reason != tool_use</code></td>
+                            <td><code>not final_message.tool_uses</code>（语义对齐）</td>
+                        </tr>
+                        <tr>
+                            <td>上下文长度</td>
+                            <td>S05 另讲压缩</td>
+                            <td>每轮开头 <code>auto_compact_if_needed</code>（与 S05 同题）</td>
+                        </tr>
+                        <tr>
+                            <td>轮数安全</td>
+                            <td>课内伪代码常省略</td>
+                            <td><code>max_turns</code> 显式封顶，超限抛 <code>MaxTurnsExceeded</code></td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section class="section-block">
+                    <h2>🤔 思考题</h2>
+                    <ol class="thinking-questions">
+                        <li><code>has_pending_continuation</code> 与「工具结果已写好但尚未再调模型」的关系是什么？何时该调 <code>continue_pending</code>？</li>
+                        <li>多工具并发时，事件顺序与「模型看到的 tool_result 顺序」如何保证一致？</li>
+                        <li>若把 <code>max_turns</code> 设为 <code>None</code>，循环仅靠什么条件结束？风险在哪？</li>
+                    </ol>
+                </section>
+
+                <section class="section-block">
+                    <h2>📎 延伸阅读</h2>
+                    <p><a href="topic-openharness-course.html">OpenHarness 源码课 · 思想架构对照</a> · <a href="topic-openharness.html#map">S 课 ↔ OH 路径表</a> · <a href="s01.html">S01</a> / <a href="d01.html">D01</a>（TS 侧深挖）</p>
+                </section>
+
+                <div class="chapter-navigation">
+                    <a href="topic-openharness-course.html" class="btn btn-secondary">← OH 课纲</a>
+                    <a href="s01.html" class="btn btn-secondary">对照 S01</a>
+                    <a href="index.html#courses" class="btn btn-primary">24 讲目录 →</a>
+                </div>
+
+                <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/oh01.md" target="_blank" rel="noopener noreferrer">📝 Markdown 源（GitHub）</a></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js" crossorigin="anonymous"></script>
+    <script>
+    function copyCode(btn) {
+        const pre = btn.closest('.code-block') && btn.closest('.code-block').querySelector('pre code');
+        if (pre && navigator.clipboard) navigator.clipboard.writeText(pre.innerText);
+    }
+    </script>
+    <script src="js/app.js"></script>
+</body>
+</html>

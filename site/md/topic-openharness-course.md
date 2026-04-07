@@ -65,7 +65,11 @@
 
 1. **任选一条入口**：先过一遍 [S01](https://harzva.github.io/learn-likecc/s01.html) 建立 Loop 心智，或先本地 `uv run oh` 跑通再回读。  
 2. **对照表阅读**：打开 [OpenHarness 专题 · S 课 ↔ 路径](https://harzva.github.io/learn-likecc/topic-openharness.html#map)，每读一课 S，在 `src/openharness/` 打开对应目录，**只问**：同样问题 OH 在哪一层解决？差异是接口还是策略？  
-3. **写三条笔记**：每单元各写 **相同点 / 不同点 / 原因**，即为本课作业；日后可扩展为 OH01–OH12 细稿。  
+3. **写三条笔记**：每单元各写 **相同点 / 不同点 / 原因**，即为本课作业。  
+
+## 已上线讲稿
+
+- **[OH01 · Agent Loop](oh01.md)**：`query_engine.py` / `run_query`，对标 [S01](s01.md)。OH02 起陆续补。
 
 ## 源码位置（本仓库）
 
@@ -77,5 +81,5 @@ reference/rererence_harness/OpenHarness/
 
 ## 后续内容规划（可选）
 
-- 按模块撰写 **OH01–OHxx** 与 S 课平行稿（每篇：文件入口、关键类、与 TS 镜像对照一句）。  
+- OH02 起与 S 课平行稿（每篇：文件入口、关键类、与 TS 镜像对照一句）。  
 - 与 [发版监督](topic-cc-release-watch.md) 区分：该页跟踪 **官方 Claude Code CLI**；本课跟踪 **OpenHarness 上游 Release**（见 HKUDS 仓库）。

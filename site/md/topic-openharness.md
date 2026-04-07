@@ -39,7 +39,7 @@ uv run oh
 
 | 课程 | 路径提示 |
 |------|-----------|
-| S01 | `engine/query_engine.py`, `engine/query.py`, `stream_events.py` |
+| S01 | `engine/query_engine.py`, `engine/query.py`, `stream_events.py` · 细讲 [OH01](oh01.md) |
 | S02 | `tools/` |
 | S03 | `permissions/` |
 | S04 | `commands/`, `cli.py` |
