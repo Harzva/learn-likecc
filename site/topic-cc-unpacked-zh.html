@@ -68,7 +68,7 @@
                     <h2>参考来源与版本锚定</h2>
                     <div class="course-quote">
                         <p><strong>版式与信息架构</strong>参考英文站点 <a href="https://ccunpacked.dev/" target="_blank" rel="noopener noreferrer">Claude Code Unpacked</a>（ccunpacked.dev）：其「主循环 → 架构树 → 工具 → 命令 → 隐藏特性」的分块方式便于首次读仓库。<strong>本页正文由本站独立撰写</strong>，不构成对该站的转载或代言。</p>
-                        <p><strong>技术权威</strong>：以本仓库 <code>ccsource/like-code-main</code> 与 <a href="topic-sourcemap.html">Source Map 源码课</a>（<a href="index.html#courses">S01–S12 / D01–D12</a>）为准；你本机安装的官方 CLI 版本可能与本镜像不一致，请结合 <a href="topic-cc-release-watch.html">发版监督</a> 核对。</p>
+                        <p><strong>技术权威</strong>：以本仓库 <code>ccsource/claude-code-main</code> 与 <a href="topic-sourcemap.html">Source Map 源码课</a>（<a href="index.html#courses">S01–S12 / D01–D12</a>）为准；你本机安装的官方 CLI 版本可能与本镜像不一致，请结合 <a href="topic-cc-release-watch.html">发版监督</a> 核对。</p>
                         <p><strong>镜像锚定</strong>（维护者更新 <code>ccsource</code> 后请修订）：commit <code>81b88b8</code>，整理日期 2026-04-07。</p>
                     </div>
                 </section>
@@ -76,12 +76,17 @@
                 <section id="loop" class="section-block">
                     <h2>01 · 智能体主循环</h2>
                     <p>从终端或管道读入用户消息 → 模型在可用工具集上推理 → 若需执行工具则宿主运行并把 <code>tool_result</code> 写回对话 → 直到模型不再发起 <code>tool_use</code> 或会话结束。消息顺序、并行工具与流中断恢复等细节见深挖页。</p>
+                    <p class="section-desc" style="margin-top: 0.5rem;">下方为<strong>讲解型</strong>步进演示（数据来自 <code>site/data/cc-loop-steps.json</code>）：可点步骤标签、播放/暂停、倍速与键盘 <kbd>←</kbd> <kbd>→</kbd>、<kbd>Space</kbd>（需先<strong>点击面板内</strong>获得焦点）。末步再点<strong>播放</strong>会从第 1 步重播。系统开启<strong>减少动态效果</strong>时会拉长自动翻步间隔并关闭光标闪烁。<strong>非</strong>真实运行时遥测。</p>
+                    <div id="cc-loop-player" class="cc-loop-player" data-json="data/cc-loop-steps.json" aria-label="主循环步进讲解"></div>
+                    <noscript>
+                        <p class="section-desc">启用 JavaScript 后可播放步进演示；或直接阅读 <a href="s01.html">S01</a> / <a href="d01.html">D01</a>。</p>
+                    </noscript>
                     <ul>
                         <li><a href="s01.html">S01 · Agent Loop</a>（主线概念）</li>
                         <li><a href="d01.html">D01 · Agent Loop 深挖</a>（状态机、边界）</li>
                         <li><a href="oh01.html">OH01</a>（OpenHarness 对照实现）</li>
                     </ul>
-                    <p class="section-desc" style="margin-top: 0.75rem;">交互式逐步演示可参考 <a href="https://ccunpacked.dev/" target="_blank" rel="noopener noreferrer">ccunpacked.dev</a> 的 01 区块；本站以讲义与源码走读为主。</p>
+                    <p class="section-desc" style="margin-top: 0.75rem;">英文交互参考：<a href="https://ccunpacked.dev/" target="_blank" rel="noopener noreferrer">ccunpacked.dev</a> 的 Agent Loop 区块。</p>
                 </section>
 
                 <section id="architecture" class="section-block">
@@ -168,5 +173,6 @@
         </div>
     </footer>
     <script src="js/app.js"></script>
+    <script src="js/cc-loop-player.js"></script>
 </body>
 </html>

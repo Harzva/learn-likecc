@@ -6050,3 +6050,178 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     color: var(--text-muted);
     line-height: 1.45;
 }
+
+/* ─── CC 主循环步进播放器（topic-cc-unpacked-zh） ─── */
+.cc-loop-player {
+    margin: 1.25rem 0 1.5rem;
+    padding: 1rem 1.1rem 1.1rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    box-shadow: var(--shadow);
+}
+.cc-loop-player__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    margin-bottom: 0.75rem;
+}
+.cc-loop-player__badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+.cc-loop-player__counter {
+    font-family: ui-monospace, monospace;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+.cc-loop-player__strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-bottom: 1rem;
+}
+.cc-loop-player__dot {
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+}
+.cc-loop-player__dot:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+}
+.cc-loop-player__dot--active {
+    background: var(--gradient-1);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: var(--shadow);
+}
+.cc-loop-player__body {
+    display: grid;
+    gap: 1rem;
+}
+@media (min-width: 768px) {
+    .cc-loop-player__body {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        align-items: start;
+    }
+}
+.cc-loop-player__terminal {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius);
+    background: #1e293b;
+    color: #e2e8f0;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    min-height: 5.5rem;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+[data-theme="warm"] .cc-loop-player__terminal {
+    background: #0f172a;
+}
+.cc-loop-player__terminal .cc-loop-player__cursor {
+    animation: cc-loop-blink 1s step-end infinite;
+}
+@keyframes cc-loop-blink {
+    50% {
+        opacity: 0;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .cc-loop-player__cursor {
+        animation: none !important;
+        opacity: 1;
+    }
+    .cc-loop-player__dot,
+    .cc-loop-player__btn {
+        transition: none !important;
+    }
+}
+.cc-loop-player__card h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+}
+.cc-loop-player__card p {
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+.cc-loop-player__links {
+    margin-top: 0.65rem;
+    font-size: 0.875rem;
+}
+.cc-loop-player__controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--border);
+}
+.cc-loop-player__btn {
+    border: 1px solid var(--border);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 0.4rem 0.75rem;
+    border-radius: var(--radius);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+}
+.cc-loop-player__btn:hover {
+    background: var(--bg-hover);
+    border-color: var(--primary-light);
+}
+.cc-loop-player__btn--primary {
+    background: var(--gradient-1);
+    color: #fff;
+    border-color: transparent;
+}
+.cc-loop-player__btn--primary:hover {
+    filter: brightness(1.05);
+}
+.cc-loop-player__btn--speed-active {
+    border-color: var(--primary);
+    color: var(--primary-dark);
+    font-weight: 600;
+    box-shadow: 0 0 0 1px var(--primary-light);
+}
+[data-theme="ocean"] .cc-loop-player__btn--speed-active {
+    color: var(--primary);
+}
+.cc-loop-player__speed {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+}
+.cc-loop-player__speed button {
+    min-width: 2.25rem;
+}
+.cc-loop-player__err {
+    font-size: 0.875rem;
+    color: var(--primary-dark);
+}
+.cc-loop-player.is-reduced .cc-loop-player__terminal,
+.cc-loop-player.is-reduced .cc-loop-player__strip {
+    display: none;
+}

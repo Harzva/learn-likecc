@@ -45,6 +45,13 @@ ccunpacked.dev、DeepWiki、本站 Awesome 源码汇总链接。
 - **校验**：`python3 tools/gen_cc_overview.py --check` 验证 JSON；`--verify-in-sync` 断言 HTML 标记区间与 JSON 渲染一致（**GitHub Actions** `site-md-parity` 工作流已包含 check + verify）；`--dry-run` 打印 HTML 片段。
 - 页内脚注（04 节表下）会显示 JSON 的 `meta.updated` 日期；改版请同步改 JSON 与脚注。
 
+## 阶段 C（部分）：01 节讲解型步进
+
+- **数据**：[`site/data/cc-loop-steps.json`](../data/cc-loop-steps.json)（11 步，中文；`meta.autoplay_base_ms` 控制默认自动播放间隔）。
+- **脚本**：[`site/js/cc-loop-player.js`](../js/cc-loop-player.js) 读取 JSON，提供步骤条、示意终端、播放/倍速、←/→、Space（`focus-within` 于播放器内时）；末步再播放从头；`prefers-reduced-motion` 时拉长自动间隔并弱化动效。
+- **样式**：`site/css/style.css` 中 `.cc-loop-player*`（含倍速选中态）。
+- **说明**：预设讲解，**非**真实运行时事件流；与 ccunpacked.dev 的「脚本化步骤」同类。
+
 ## 正文（可选 / 待补全）
 
-其余章节（01、05、延伸阅读）仍以 HTML/本 MD 摘要为准；未来可将统计卡片等迁入 JSON 再扩展生成器。
+其余章节（05、延伸阅读）仍以 HTML/本 MD 摘要为准；统计卡片等可再迁入 JSON。
