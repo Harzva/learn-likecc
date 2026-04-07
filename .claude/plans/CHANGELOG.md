@@ -1398,3 +1398,4 @@ ANTHROPIC_API_KEY=your-api-key-here
 ### 2026-04-07（阶段 B）
 
 - **`site/data/cc-overview.json`** + **`tools/gen_cc_overview.py`**：`topic-cc-unpacked-zh.html` 内 02–04 节三表由 JSON 生成（HTML 注释标记区间）；`python3 tools/gen_cc_overview.py --check` 校验数据。
+- **CI**：`.github/workflows/site-md-parity.yml` 增加 `gen_cc_overview.py --check` 与 `--verify-in-sync`（改 JSON 或手改生成区未跑脚本时会失败）。

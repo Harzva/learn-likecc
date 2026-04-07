@@ -42,7 +42,7 @@ ccunpacked.dev、DeepWiki、本站 Awesome 源码汇总链接。
 
 - **数据源**：[`site/data/cc-overview.json`](../data/cc-overview.json)（架构 / 工具 / 斜杠命令三组表格行）。
 - **生成**：仓库根执行 `python3 tools/gen_cc_overview.py`，将表写入 [`topic-cc-unpacked-zh.html`](../topic-cc-unpacked-zh.html) 内 `<!-- cc-overview:begin … -->` / `end` 标记之间；**勿手改生成区**。
-- **校验**：`python3 tools/gen_cc_overview.py --check` 仅验证 JSON；`--dry-run` 打印 HTML 片段。
+- **校验**：`python3 tools/gen_cc_overview.py --check` 验证 JSON；`--verify-in-sync` 断言 HTML 标记区间与 JSON 渲染一致（**GitHub Actions** `site-md-parity` 工作流已包含 check + verify）；`--dry-run` 打印 HTML 片段。
 - 页内脚注（04 节表下）会显示 JSON 的 `meta.updated` 日期；改版请同步改 JSON 与脚注。
 
 ## 正文（可选 / 待补全）

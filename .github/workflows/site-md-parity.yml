@@ -6,11 +6,13 @@ on:
     paths:
       - 'site/**'
       - 'tools/check_site_md_parity.py'
+      - 'tools/gen_cc_overview.py'
       - '.github/workflows/site-md-parity.yml'
   pull_request:
     paths:
       - 'site/**'
       - 'tools/check_site_md_parity.py'
+      - 'tools/gen_cc_overview.py'
       - '.github/workflows/site-md-parity.yml'
 
 jobs:
@@ -20,3 +22,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Verify HTML ↔ site/md pairs and blob links
         run: python3 tools/check_site_md_parity.py
+      - name: CC overview — JSON valid and HTML in sync
+        run: |
+          python3 tools/gen_cc_overview.py --check
+          python3 tools/gen_cc_overview.py --verify-in-sync
