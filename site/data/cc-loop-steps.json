@@ -1,0 +1,94 @@
+{
+  "meta": {
+    "updated": "2026-04-08",
+    "autoplay_base_ms": 2600,
+    "loop_autoplay": true,
+    "note_zh": "讲解型步进：预设文案，非真实运行时事件。loop_autoplay=true 时自动播放从末步回到第 1 步。修改后无需生成 HTML。"
+  },
+  "steps": [
+    {
+      "id": "input",
+      "label": "输入",
+      "title": "用户输入",
+      "body": "终端里由 Ink 的 TextInput 接收按键；非交互模式下从管道读取 stdin。用户内容成为本轮对话的起点。",
+      "terminal": ["$ claude", "▌"]
+    },
+    {
+      "id": "message",
+      "label": "消息",
+      "title": "构造用户消息",
+      "body": "将输入封装为对话中的一条 user 消息，准备与历史 messages 一并送给模型。",
+      "terminal": ["messages.append({ role: 'user', ... })", "▌"]
+    },
+    {
+      "id": "history",
+      "label": "历史",
+      "title": "对话历史",
+      "body": "上下文包含此前多轮 assistant / user（含 tool_result）消息。顺序错误会导致工具结果对不上 tool_use。",
+      "terminal": ["Message[] length: N", "▌"],
+      "links": [{ "href": "d01.html", "text": "D01 顺序与边界" }]
+    },
+    {
+      "id": "system",
+      "label": "系统",
+      "title": "系统提示与策略",
+      "body": "系统层约束模型行为、工具可见性与安全策略；与权限门（见 S03）配合。",
+      "terminal": ["system prompt + tools[]", "▌"],
+      "links": [{ "href": "s03.html", "text": "S03 权限" }]
+    },
+    {
+      "id": "api",
+      "label": "API",
+      "title": "调用模型",
+      "body": "向 API 发送 messages 与 tools 定义，通常以流式 chunk 解析响应，边收边更新 UI。",
+      "terminal": ["POST stream → chunks…", "▌"],
+      "links": [{ "href": "s01.html", "text": "S01" }]
+    },
+    {
+      "id": "tokens",
+      "label": "Token",
+      "title": "上下文与预算",
+      "body": "模型有窗口上限；过长会触发压缩或告警（见 S05）。此处决定「还能塞多少历史」。",
+      "terminal": ["context window / usage", "▌"],
+      "links": [{ "href": "s05.html", "text": "S05 压缩" }]
+    },
+    {
+      "id": "tools_decide",
+      "label": "判工具",
+      "title": "解析输出：是否 tool_use",
+      "body": "若响应含 tool_use 块，宿主解析名称与参数；若无，则根据 stop_reason 进入展示或结束分支。",
+      "terminal": ["stop_reason === 'tool_use' ?", "▌"]
+    },
+    {
+      "id": "tools_run",
+      "label": "执行",
+      "title": "执行工具",
+      "body": "走权限检查 → 调用内置或 MCP 工具 → 收集 stdout/结果。失败须真实返回错误，勿「假成功」。",
+      "terminal": ["executeTool(name, input)", "▌"],
+      "links": [{ "href": "s02.html", "text": "S02 工具" }]
+    },
+    {
+      "id": "tool_result",
+      "label": "回流",
+      "title": "tool_result 写回",
+      "body": "将结果包装为 user 消息中的 tool_result，与 tool_use id 对应，再进入下一轮循环。",
+      "terminal": ["messages.push(tool_results)", "▌"]
+    },
+    {
+      "id": "loop_exit",
+      "label": "循环",
+      "title": "继续转圈或退出",
+      "body": "若仍需工具则回到「调用模型」；否则退出主循环，把最终文本交给渲染层。",
+      "terminal": ["while (needsTools) { ... }", "▌"],
+      "links": [{ "href": "d01.html", "text": "D01 状态机" }]
+    },
+    {
+      "id": "render",
+      "label": "呈现",
+      "title": "渲染与等待下一轮",
+      "body": "Ink/React 将助手回复与工具卡片画到终端 UI；Hooks 可在前后插入逻辑（S10）。随后等待新的用户输入。",
+      "terminal": ["render() → await next input", "▌"],
+      "links": [{ "href": "s10.html", "text": "S10 Hooks" }]
+    }
+  ]
+}

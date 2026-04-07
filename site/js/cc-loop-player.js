@@ -8,7 +8,7 @@
 
     var jsonUrl = root.getAttribute('data-json') || 'data/cc-loop-steps.json'
     var steps = []
-    var meta = { autoplay_base_ms: 2600 }
+    var meta = { autoplay_base_ms: 2600, loop_autoplay: false }
     var idx = 0
     var playing = false
     var speed = 1
@@ -133,6 +133,10 @@
         if (reduceMotion) ms = Math.round(ms * 1.75)
         timer = setInterval(function () {
             if (idx >= steps.length - 1) {
+                if (meta.loop_autoplay) {
+                    go(0)
+                    return
+                }
                 playing = false
                 stopTimer()
                 updateUI()
@@ -165,10 +169,18 @@
             steps = data.steps || []
             if (data.meta) {
                 if (data.meta.autoplay_base_ms) meta.autoplay_base_ms = data.meta.autoplay_base_ms
+                if (typeof data.meta.loop_autoplay === 'boolean')
+                    meta.loop_autoplay = data.meta.loop_autoplay
             }
             if (!steps.length) {
                 fail('未找到步骤数据')
                 return
+            }
+            var badge = root.querySelector('.cc-loop-player__badge')
+            if (badge) {
+                badge.textContent = meta.loop_autoplay
+                    ? '讲解模式 · 自动循环 · 非实时运行'
+                    : '讲解模式 · 非实时运行'
             }
             updateUI()
 

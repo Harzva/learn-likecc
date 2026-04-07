@@ -1401,3 +1401,6 @@ ANTHROPIC_API_KEY=your-api-key-here
 - **CI**：`.github/workflows/site-md-parity.yml` 增加 `gen_cc_overview.py --check` 与 `--verify-in-sync`（改 JSON 或手改生成区未跑脚本时会失败）。
 - **阶段 C（部分）**：`site/data/cc-loop-steps.json` + `site/js/cc-loop-player.js` + CSS：CC 结构导览页 01 节讲解型步进（播放/倍速/键盘）；CI 校验该 JSON。
 - **步进播放器小迭代**：倍速选中态、末步再播放从头、`prefers-reduced-motion`（关光标闪烁、拉长自动间隔）、Space 播放、卡片 `aria-live`。
+- **loop_autoplay**：`cc-loop-steps.json` 的 `meta.loop_autoplay` 控制自动播放是否从末步回到第 1 步；角标文案区分「自动循环」。
+- **`tools/check_cc_loop_steps.py`**：结构校验（唯一 `id`、必填字段等），替代 CI 中单纯 `json.load`。
+- **`projects/cc-loop-live/README.md`** + **`tools/cc_loop_relay_demo.py`**：实时事件流实验说明与 NDJSON 演示（无服务端）。

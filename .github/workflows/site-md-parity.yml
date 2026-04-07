@@ -7,12 +7,18 @@ on:
       - 'site/**'
       - 'tools/check_site_md_parity.py'
       - 'tools/gen_cc_overview.py'
+      - 'tools/check_cc_loop_steps.py'
+      - 'tools/cc_loop_relay_demo.py'
+      - 'projects/cc-loop-live/**'
       - '.github/workflows/site-md-parity.yml'
   pull_request:
     paths:
       - 'site/**'
       - 'tools/check_site_md_parity.py'
       - 'tools/gen_cc_overview.py'
+      - 'tools/check_cc_loop_steps.py'
+      - 'tools/cc_loop_relay_demo.py'
+      - 'projects/cc-loop-live/**'
       - '.github/workflows/site-md-parity.yml'
 
 jobs:
@@ -26,3 +32,5 @@ jobs:
         run: |
           python3 tools/gen_cc_overview.py --check
           python3 tools/gen_cc_overview.py --verify-in-sync
+      - name: Schema-check cc-loop-steps.json
+        run: python3 tools/check_cc_loop_steps.py
