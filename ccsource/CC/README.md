@@ -11,13 +11,13 @@
    - 当前已恢复到 git commit `6a1afe3` (`v2.0.4: 程序可运行`)
    - 这个目录的职责是保留“已经重建完成，但还没叠加 Like Code 新功能”的基线
 
-3. `ccsource/claude-code-main`
+3. `ccsource/like-code-main`
    - 当前 Like Code 主开发线
    - 承载多 Provider、Web UI、pane/workspace 等持续定制功能
-   - 后续计划改名为 `like-code-main`
+   - 当前先通过兼容别名切到新名字，旧路径 `ccsource/claude-code-main` 仍保留兼容
 
 一句话区分：
 
 - `CC/claude-code-main` 看“原始源码”
 - `CC/claude-code-rebuild` 看“可运行重建基线”
-- `claude-code-main` 看“持续演进中的 Like Code 主线”
+- `like-code-main` 看“持续演进中的 Like Code 主线”

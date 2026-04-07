@@ -257,7 +257,8 @@ export function getLogoDisplayData(): {
   const serverUrl = getDirectConnectServerUrl()
   const cwdPath = getCwd()
   const repoDisplayPath =
-    cwdPath === '/home/clashuser/hzh/item_bo/learn-likecc/ccsource/claude-code-main'
+    cwdPath === '/home/clashuser/hzh/item_bo/learn-likecc/ccsource/claude-code-main' ||
+    cwdPath === '/home/clashuser/hzh/item_bo/learn-likecc/ccsource/like-code-main'
       ? 'https://github.com/Harzva/learn-likecc'
       : getDisplayPath(cwdPath)
   const displayPath = process.env.DEMO_VERSION ? '/code/claude' : repoDisplayPath

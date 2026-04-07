@@ -3,7 +3,7 @@
 set -euo pipefail
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$HERE/.." && pwd)"
-CLI_DIR="$REPO_ROOT/ccsource/claude-code-main"
+CLI_DIR="$REPO_ROOT/ccsource/like-code-main"
 if [[ ! -f "$CLI_DIR/src/entrypoints/cli.tsx" ]]; then
   echo "likecode: 找不到 CLI：$CLI_DIR/src/entrypoints/cli.tsx" >&2
   exit 1

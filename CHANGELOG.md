@@ -53,6 +53,7 @@
 - `toolChains.steps` 已开始明确拆成 `tool_use / progress / tool_result`，让 Web 侧回放更接近真实 coding 过程
 - `ccsource/CC/claude-code-rebuild` 已恢复到 `6a1afe3` 这个“程序可运行、但还没叠加 Like Code 新功能”的重建基线
 - 仓库里三套源码分层已明确：原始源码学习快照、可运行重建基线、Like Code 主开发线
+- Like Code 主开发线已补出 `ccsource/like-code-main` 正式入口，并保留 `ccsource/claude-code-main` 兼容旧路径，先完成非破坏式改名
 - 启动头的蓝色爱心、蓝色 `Like` 与蓝色 `code` 已统一成一套品牌头图
 - 启动界面新增 Web 工作台网址，并把 logo 收成蓝色爱心 + 多行大字 `Like` + `code · Harzva restored · v2.1.88`
 - 本轮以文档与规划推进为主，暂不单独提升 release 版本号，避免出现“版本先发、功能未落地”的错位

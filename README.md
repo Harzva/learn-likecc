@@ -82,7 +82,7 @@
 - ✅ **toolChains.steps 已开始拆成真实过程节点**
   - 当前 `toolChains` 已开始明确拆出 `tool_use / progress / tool_result` step，Web 侧回放不再只看 pair 汇总，而更接近真实 coding 过程
 - ✅ **三套源码分层已经开始固定**
-  - `ccsource/CC/claude-code-main` 保留原始源码学习快照，`ccsource/CC/claude-code-rebuild` 固定为可运行重建基线，`ccsource/claude-code-main` 继续承载 Like Code 主开发线
+  - `ccsource/CC/claude-code-main` 保留原始源码学习快照，`ccsource/CC/claude-code-rebuild` 固定为可运行重建基线，`ccsource/like-code-main` 继续承载 Like Code 主开发线
 
 ### 下一批最重要的真实需求
 
@@ -411,7 +411,7 @@ Claude Code 很强，但真实使用里一直有一个明显痛点：
   <img src="docs/readme-assets/build-success.svg" alt="Claude Code build success" width="100%" />
 </p>
 
-<p align="center"><strong>验证命令：</strong><code>cd ccsource/claude-code-main && npm run build && bun dist/cli.js</code></p>
+<p align="center"><strong>验证命令：</strong><code>cd ccsource/like-code-main && npm run build && bun dist/cli.js</code></p>
 
 ---
 
@@ -489,7 +489,8 @@ learn-likecc/
 ├── bin/
 │   └── likecode              # 全局 PATH 后可执行：启动 ccsource CLI
 ├── ccsource/
-│   ├── claude-code-main/     # Like Code 主开发线（后续计划改名 like-code-main）
+│   ├── like-code-main/       # Like Code 主开发线（当前正式入口）
+│   ├── claude-code-main/     # 兼容旧路径，当前指向 like-code-main
 │   └── CC/
 │       ├── claude-code-main/ # 原始源码学习快照
 │       ├── claude-code-rebuild/ # 可运行重建基线（当前对齐 6a1afe3）
@@ -546,7 +547,7 @@ learn-likecc/
 ```bash
 # 克隆仓库
 git clone https://github.com/Harzva/learn-likecc.git
-cd learn-likecc/ccsource/claude-code-main
+cd learn-likecc/ccsource/like-code-main
 
 # 安装依赖 (需要 Bun)
 bun install
@@ -565,7 +566,7 @@ echo "list files" | ANTHROPIC_API_KEY=your-key bun run dev -p
 
 ### 终端全局命令 `likecode`
 
-仓库根目录提供启动脚本 **`bin/likecode`**：在任意目录输入 `likecode` 即等同于在 `ccsource/claude-code-main` 下执行 `bun run src/entrypoints/cli.tsx`。
+仓库根目录提供启动脚本 **`bin/likecode`**：在任意目录输入 `likecode` 即等同于在 `ccsource/like-code-main` 下执行 `bun run src/entrypoints/cli.tsx`。
 
 ```bash
 # 1) 赋予执行权限（克隆后执行一次）
@@ -589,7 +590,7 @@ likecode -- --help          # 部分环境下建议加 -- 再跟 CLI 参数
 likecode -- -p "当前目录有哪些文件？"
 ```
 
-**`bun install` 与 workspaces**：此前若出现 `Workspace name "@ant/..." already exists`，是因为 `packages/*` 与 `src/_external/shims/` 里注册了**同名**工作区包。当前根目录 `ccsource/claude-code-main/package.json` 已去掉重复项（`@ant/*` 与 napi 等仅以 `packages/` 为准；`@anthropic-ai/*` 中仅保留 shim 里独有的四个包 + `packages` 里的 `sandbox-runtime`）。拉取最新代码后再执行 `bun install` 即可。
+**`bun install` 与 workspaces**：此前若出现 `Workspace name "@ant/..." already exists`，是因为 `packages/*` 与 `src/_external/shims/` 里注册了**同名**工作区包。当前根目录 `ccsource/like-code-main/package.json` 已去掉重复项（`@ant/*` 与 napi 等仅以 `packages/` 为准；`@anthropic-ai/*` 中仅保留 shim 里独有的四个包 + `packages` 里的 `sandbox-runtime`）。拉取最新代码后再执行 `bun install` 即可。
 
 ---
 
