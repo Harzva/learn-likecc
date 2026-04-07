@@ -37,6 +37,25 @@ import {
 const LIKECODE_BLUE = 'rgb(88,166,255)'
 const LIKECODE_HEART = 'rgb(255,120,170)'
 
+function SectionHeader({
+  title,
+  width,
+}: {
+  title: string
+  width: number
+}) {
+  const lineWidth = Math.max(width - stringWidth(title) - 2, 8)
+
+  return (
+    <Text>
+      <Text color={LIKECODE_BLUE} bold>
+        {title}
+      </Text>
+      <Text color={LIKECODE_BLUE}>{' ─'.repeat(Math.max(Math.floor(lineWidth / 2), 4))}</Text>
+    </Text>
+  )
+}
+
 function InfoDot() {
   return (
     <Text dimColor>
@@ -152,7 +171,7 @@ export function CondensedLogo() {
   const likeWordmark = ['L I K E ♥', 'L I K E ♥', 'L I K E ♥']
   const recentActivity = getRecentActivitySync().slice(0, 3)
   const recentNotes = getRecentReleaseNotesSync(3)
-  const rightWidth = Math.max(Math.floor(columns * 0.48), 34)
+  const rightWidth = Math.max(Math.floor(columns * 0.43), 32)
   const leftWidth = Math.max(columns - rightWidth - 9, 32)
   const leftPanelWidth = Math.max(leftWidth - 2, 30)
   const rightPanelWidth = Math.max(rightWidth - 2, 30)
@@ -237,12 +256,13 @@ export function CondensedLogo() {
               flexGrow={1}
               width={isTwoColumn ? rightPanelWidth : undefined}
               flexDirection="column"
-              paddingLeft={isTwoColumn ? 1 : 0}
+              paddingLeft={isTwoColumn ? 2 : 0}
               marginTop={isTwoColumn ? 0 : 1}
             >
-              <Text color={LIKECODE_BLUE} bold>
-                Tips for getting started
-              </Text>
+              <SectionHeader
+                title="Tips for getting started"
+                width={rightPanelWidth}
+              />
               <Text>
                 Run <Text color={LIKECODE_BLUE}>/show:slash</Text> to inspect built-in commands
               </Text>
@@ -250,16 +270,11 @@ export function CondensedLogo() {
                 Web <Text color={LIKECODE_BLUE}>{truncate(webWorkspaceUrl, rightPanelWidth - 6)}</Text>
               </Text>
 
-              <Box
-                marginTop={1}
-                borderTop
-                borderColor={LIKECODE_BLUE}
-                paddingTop={0}
-                flexDirection="column"
-              >
-                <Text color={LIKECODE_BLUE} bold>
-                  Recent activity
-                </Text>
+              <Box marginTop={1} flexDirection="column">
+                <SectionHeader
+                  title="Recent activity"
+                  width={rightPanelWidth}
+                />
                 {recentActivity.length > 0 ? (
                   recentActivity.map(log => {
                     const description =
@@ -278,16 +293,8 @@ export function CondensedLogo() {
                 )}
               </Box>
 
-              <Box
-                marginTop={1}
-                borderTop
-                borderColor={LIKECODE_BLUE}
-                paddingTop={0}
-                flexDirection="column"
-              >
-                <Text color={LIKECODE_BLUE} bold>
-                  What's new
-                </Text>
+              <Box marginTop={1} flexDirection="column">
+                <SectionHeader title="What's new" width={rightPanelWidth} />
                 {recentNotes.length > 0 ? (
                   recentNotes.map(note => (
                     <Text key={note}>
