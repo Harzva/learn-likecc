@@ -59,6 +59,7 @@ type WorkspaceWorkflowEvent = {
   role?: string
   toolName?: string
   toolUseId?: string
+  turnId?: string
   stage?: 'prompt' | 'thinking' | 'tool' | 'response' | 'system'
 }
 
@@ -314,6 +315,7 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
       title: `${role} turn`,
       summary,
       role,
+      turnId: activeTurnId,
       stage,
     })
     stages.push({
@@ -353,6 +355,7 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
             title: 'assistant text',
             summary: text,
             role,
+            turnId: activeTurnId,
           })
           return
         }
@@ -375,6 +378,7 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
             title: 'thinking',
             summary: thinking,
             role,
+            turnId: activeTurnId,
             stage: 'thinking',
           })
           stages.push({
@@ -431,6 +435,7 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
             role,
             toolName,
             toolUseId,
+            turnId: activeTurnId,
             stage: 'tool',
           })
           stages.push({
@@ -485,6 +490,7 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
             summary: resultSummary,
             role,
             toolUseId,
+            turnId: existingPair?.turnId ?? activeTurnId,
             stage: 'tool',
           })
           stages.push({
@@ -830,6 +836,13 @@ function renderWorkspaceHtmlShell(state: AppState): string {
         overflow: auto;
         margin-bottom: 14px;
       }
+      .toolpairs {
+        display: grid;
+        gap: 10px;
+        max-height: 18vh;
+        overflow: auto;
+        margin-bottom: 14px;
+      }
       .message {
         border-left: 3px solid var(--line);
         padding: 10px 12px;
@@ -905,6 +918,8 @@ function renderWorkspaceHtmlShell(state: AppState): string {
           <div id="transcript-meta" class="small muted"></div>
           <h2 style="margin-top:16px;">Turn Replay</h2>
           <div id="turns" class="turns"></div>
+          <h2 style="margin-top:16px;">Tool Pairs</h2>
+          <div id="toolpairs" class="toolpairs"></div>
           <h2 style="margin-top:16px;">Stages</h2>
           <div id="stages" class="stages"></div>
           <h2 style="margin-top:16px;">Thinking / Tools</h2>
@@ -967,6 +982,7 @@ function renderWorkspaceHtmlShell(state: AppState): string {
       function renderTranscript(payload) {
         const meta = document.getElementById('transcript-meta');
         const turnsRoot = document.getElementById('turns');
+        const toolPairsRoot = document.getElementById('toolpairs');
         const stagesRoot = document.getElementById('stages');
         const cardsRoot = document.getElementById('cards');
         const root = document.getElementById('transcript');
@@ -982,6 +998,20 @@ function renderWorkspaceHtmlShell(state: AppState): string {
                 <div class="small muted">tools: \${escapeHtml(turn.toolCount || 0)} · events: \${escapeHtml(turn.eventCount || 0)}</div>
                 <div class="summary">\${escapeHtml(turn.promptSummary || '[No prompt summary]')}</div>
                 \${turn.responseSummary ? '<div class="small muted" style="margin-top:6px;">response: ' + escapeHtml(turn.responseSummary) + '</div>' : ''}
+              </div>
+            \`).join('');
+        toolPairsRoot.innerHTML = (payload.toolPairs || []).length === 0
+          ? '<div class="muted">No tool pairs extracted yet.</div>'
+          : payload.toolPairs.slice(-12).reverse().map(pair => \`
+              <div class="cardflow tool_use">
+                <div class="row">
+                  <strong>\${escapeHtml(pair.toolName || pair.toolUseId || 'tool')}</strong>
+                  <span class="small muted">\${escapeHtml(pair.startedAt || '')}</span>
+                </div>
+                <div class="small muted">turn: \${escapeHtml(pair.turnId || 'unbound')} · toolUseId: \${escapeHtml(pair.toolUseId || 'n/a')}</div>
+                \${pair.inputSummary ? '<div class="small muted" style="margin-top:6px;">input: ' + escapeHtml(pair.inputSummary) + '</div>' : ''}
+                \${pair.outputSummary ? '<div class="small muted" style="margin-top:6px;">output: ' + escapeHtml(pair.outputSummary) + '</div>' : ''}
+                \${pair.completedAt ? '<div class="small muted" style="margin-top:6px;">completed: ' + escapeHtml(pair.completedAt) + '</div>' : ''}
               </div>
             \`).join('');
         stagesRoot.innerHTML = (payload.stages || []).length === 0

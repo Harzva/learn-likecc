@@ -53,6 +53,10 @@
   - 当前 active pane 的 `inputMode / pastedContents / stashedPrompt` 已开始绑定到 pane，本轮继续减少不同 pane 之间共享同一份输入态的情况
 - ✅ **workflow 已开始具备 turn replay**
   - `pane transcript` 现在还会输出 `turns / toolPairs`，开始补“这一轮 prompt 触发了哪些工具、最后回到了什么 response”这类跨阶段回放线索
+- ✅ **toolPairs 已经直接进 Web UI**
+  - 现在首页不只是接口里有 `toolPairs`，而是已经直接有 `Tool Pairs` 展示区，可以看每个工具调用的输入、输出、所属 turn 和 toolUseId
+- ✅ **启动头的 Like Code 已统一成蓝色**
+  - 蓝色爱心、蓝色 `Like` 和蓝色 `code` 已统一成一套更一致的品牌头图
 
 ### 下一批最重要的真实需求
 

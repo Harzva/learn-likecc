@@ -159,7 +159,7 @@ export function CondensedLogo() {
 
         <Box flexDirection="column">
           <Text>
-            <Text color="whiteBright" bold>
+            <Text color="blueBright" bold>
               code
             </Text>
             <Text dimColor> · Harzva restored · v2.1.88</Text>
