@@ -61,6 +61,8 @@
   - 蓝色爱心、蓝色 `Like` 和蓝色 `code` 已统一成一套更一致的品牌头图
 - ✅ **pane 输入开关继续往窗口内收拢**
   - 当前 pane 除了 `inputMode / pastedContents / stashedPrompt`，还会继续保存和恢复 `vimMode / history search / bashes dialog / help / message selector` 这些输入相关开关，减少不同 pane 共用一份 REPL 输入状态
+- ✅ **message selector 的预选消息也开始跟随 pane**
+  - 当前 pane 会继续记录“准备恢复哪一条用户消息”，这样切 pane 之后再回来，不会把 message selector 的预选目标串到别的窗口里
 
 ### 下一批最重要的真实需求
 
@@ -366,6 +368,7 @@ Claude Code 很强，但真实使用里一直有一个明显痛点：
 - [x] 给 workflow 观察台补第一版 `turn replay / toolPairs`
 - [x] 继续给 workflow 观察台补 `toolChains / chainId / step / previous / next`
 - [x] 继续把 `help / message selector` 这类输入相关开关往 pane 内部迁
+- [x] 让 `message selector` 的预选消息也跟随 pane 保存和恢复
 - [ ] 继续把更长链路的 workflow 回放补全，例如跨 turn 的阶段拼接和 pane 级历史回放
 - [ ] 团队里每个人可配置自己的默认 provider / 默认模型 / 默认预算策略
 - [ ] 项目级规则决定“这个仓库优先稳定模型，那个仓库优先低成本模型”

@@ -113,6 +113,16 @@ type WorkspaceToolChain = {
     promptSummary?: string
     responseSummary?: string
   }>
+  steps: Array<{
+    pairId: string
+    turnId?: string
+    startedAt: string
+    completedAt?: string
+    inputSummary?: string
+    outputSummary?: string
+    promptSummary?: string
+    responseSummary?: string
+  }>
   pairCount: number
   startedAt: string
   completedAt?: string
@@ -579,6 +589,20 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
           responseSummary: turn?.responseSummary,
         })
       }
+      existingChain.steps.push({
+        pairId: pair.id,
+        turnId: pair.turnId,
+        startedAt: pair.startedAt,
+        completedAt: pair.completedAt,
+        inputSummary: pair.inputSummary,
+        outputSummary: pair.outputSummary,
+        promptSummary: pair.turnId
+          ? turnsById.get(pair.turnId)?.promptSummary
+          : undefined,
+        responseSummary: pair.turnId
+          ? turnsById.get(pair.turnId)?.responseSummary
+          : undefined,
+      })
       existingChain.pairCount += 1
       existingChain.completedAt = pair.completedAt ?? existingChain.completedAt
       pair.chainIndex = existingChain.pairCount
@@ -597,6 +621,22 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
               },
             ]
           : [],
+        steps: [
+          {
+            pairId: pair.id,
+            turnId: pair.turnId,
+            startedAt: pair.startedAt,
+            completedAt: pair.completedAt,
+            inputSummary: pair.inputSummary,
+            outputSummary: pair.outputSummary,
+            promptSummary: pair.turnId
+              ? turnsById.get(pair.turnId)?.promptSummary
+              : undefined,
+            responseSummary: pair.turnId
+              ? turnsById.get(pair.turnId)?.responseSummary
+              : undefined,
+          },
+        ],
         pairCount: 1,
         startedAt: pair.startedAt,
         completedAt: pair.completedAt,
@@ -1113,6 +1153,7 @@ function renderWorkspaceHtmlShell(state: AppState): string {
                 <div class="small muted">turns: \${escapeHtml((chain.turnIds || []).join(', ') || 'n/a')}</div>
                 <div class="small muted" style="margin-top:6px;">pairs: \${escapeHtml((chain.pairIds || []).join(', '))}</div>
                 \${(chain.turnSummaries || []).length > 0 ? '<div class="small muted" style="margin-top:6px;">replay: ' + escapeHtml(chain.turnSummaries.map(turn => turn.turnId + ': ' + (turn.promptSummary || '[prompt]')).join(' → ')) + '</div>' : ''}
+                \${(chain.steps || []).length > 0 ? '<div class="small muted" style="margin-top:6px;">steps: ' + escapeHtml(chain.steps.slice(-4).map(step => (step.turnId || 'turn?') + ' [' + step.pairId + '] ' + (step.inputSummary || '[input]') + (step.outputSummary ? ' => ' + step.outputSummary : '')).join(' → ')) + '</div>' : ''}
               </div>
             \`).join('');
         toolPairsRoot.innerHTML = (payload.toolPairs || []).length === 0

@@ -1417,6 +1417,7 @@ export function REPL({
   const [showBashesDialog, setShowBashesDialog] = useState<string | boolean>(false);
   const [isSearchingHistory, setIsSearchingHistory] = useState(false);
   const [isMessageSelectorVisible, setIsMessageSelectorVisible] = useState(false);
+  const [messageSelectorPreselect, setMessageSelectorPreselect] = useState<UserMessage | undefined>(undefined);
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const insertTextRef = useRef<{
     insert: (text: string) => void;
@@ -1490,6 +1491,15 @@ export function REPL({
       setIsMessageSelectorVisible(
         currentActiveTab.isMessageSelectorVisible ?? false,
       );
+      setMessageSelectorPreselect(
+        currentActiveTab.messageSelectorPreselectUuid
+          ? messagesRef.current.find(
+              message =>
+                message.type === 'user' &&
+                message.uuid === currentActiveTab.messageSelectorPreselectUuid,
+            )
+          : undefined,
+      );
       if ((currentActiveTab.draftInput ?? '') !== inputValueRef.current) {
         setInputValue(currentActiveTab.draftInput ?? '');
       }
@@ -1518,6 +1528,7 @@ export function REPL({
           showBashesDialog,
           isHelpOpen,
           isMessageSelectorVisible,
+          messageSelectorPreselectUuid: messageSelectorPreselect?.uuid,
         });
       }
       const incomingTab = tabs.tabs[activeTabId];
@@ -1545,10 +1556,19 @@ export function REPL({
     setIsMessageSelectorVisible(
       currentActiveTab.isMessageSelectorVisible ?? false,
     );
+    setMessageSelectorPreselect(
+      currentActiveTab.messageSelectorPreselectUuid
+        ? incomingMessages.find(
+            message =>
+              message.type === 'user' &&
+              message.uuid === currentActiveTab.messageSelectorPreselectUuid,
+          )
+        : undefined,
+    );
     if ((currentActiveTab.draftInput ?? '') !== inputValueRef.current) {
       setInputValue(currentActiveTab.draftInput ?? '');
     }
-  }, [sessionTabs, setAppState, setMessages, setInputValue, inputMode, pastedContents, stashedPrompt, vimMode, isSearchingHistory, showBashesDialog, isHelpOpen, isMessageSelectorVisible]);
+  }, [sessionTabs, setAppState, setMessages, setInputValue, inputMode, pastedContents, stashedPrompt, vimMode, isSearchingHistory, showBashesDialog, isHelpOpen, isMessageSelectorVisible, messageSelectorPreselect]);
   useEffect(() => {
     const currentActiveTab = getActiveSessionTab(sessionTabs);
     if (!currentActiveTab) return;
@@ -1771,6 +1791,38 @@ export function REPL({
 
     return () => clearTimeout(timer);
   }, [isMessageSelectorVisible, sessionTabs, setAppState]);
+  useEffect(() => {
+    const currentActiveTab = getActiveSessionTab(sessionTabs);
+    if (!currentActiveTab) return;
+    if (
+      (currentActiveTab.messageSelectorPreselectUuid ?? undefined) ===
+      messageSelectorPreselect?.uuid
+    ) {
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setAppState(prev => {
+        const tabs = normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel);
+        const activeTab = getActiveSessionTab(tabs);
+        if (
+          !activeTab ||
+          (activeTab.messageSelectorPreselectUuid ?? undefined) ===
+            messageSelectorPreselect?.uuid
+        ) {
+          return prev;
+        }
+        return {
+          ...prev,
+          sessionTabs: updateSessionTab(tabs, activeTab.id, {
+            messageSelectorPreselectUuid: messageSelectorPreselect?.uuid,
+          }),
+        };
+      });
+    }, 120);
+
+    return () => clearTimeout(timer);
+  }, [messageSelectorPreselect, sessionTabs, setAppState]);
 
   // Schedule a timeout to stop suppressing dialogs after the user stops typing.
   // Only manages the timeout — the immediate activation is handled by setInputValue above.
@@ -1877,7 +1929,6 @@ export function REPL({
   const [spinnerMessage, setSpinnerMessage] = useState<string | null>(null);
   const [spinnerColor, setSpinnerColor] = useState<keyof Theme | null>(null);
   const [spinnerShimmerColor, setSpinnerShimmerColor] = useState<keyof Theme | null>(null);
-  const [messageSelectorPreselect, setMessageSelectorPreselect] = useState<UserMessage | undefined>(undefined);
   const [showCostDialog, setShowCostDialog] = useState(false);
   const [conversationId, setConversationId] = useState(randomUUID());
 

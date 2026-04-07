@@ -32,6 +32,7 @@ export type SessionTabState = {
   showBashesDialog?: string | boolean
   isHelpOpen?: boolean
   isMessageSelectorVisible?: boolean
+  messageSelectorPreselectUuid?: string
   todoSnapshotId?: string
   model?: string
   provider?: string
@@ -78,6 +79,7 @@ export type SessionTabsMetadata = {
     showBashesDialog?: string | boolean
     isHelpOpen?: boolean
     isMessageSelectorVisible?: boolean
+    messageSelectorPreselectUuid?: string
     model?: string
     provider?: string
     repoLabel?: string
@@ -166,6 +168,7 @@ export function toSessionTabsMetadata(
         showBashesDialog: tab.showBashesDialog,
         isHelpOpen: tab.isHelpOpen,
         isMessageSelectorVisible: tab.isMessageSelectorVisible,
+        messageSelectorPreselectUuid: tab.messageSelectorPreselectUuid,
         model: tab.model,
         provider: tab.provider,
         repoLabel: tab.repoLabel,
@@ -201,6 +204,7 @@ export function fromSessionTabsMetadata(
         showBashesDialog: tab.showBashesDialog,
         isHelpOpen: tab.isHelpOpen,
         isMessageSelectorVisible: tab.isMessageSelectorVisible,
+        messageSelectorPreselectUuid: tab.messageSelectorPreselectUuid,
         model: tab.model,
         provider: tab.provider,
         repoLabel: tab.repoLabel,
@@ -330,6 +334,8 @@ export function updateSessionTab(
     nextTab.showBashesDialog === existing.showBashesDialog &&
     nextTab.isHelpOpen === existing.isHelpOpen &&
     nextTab.isMessageSelectorVisible === existing.isMessageSelectorVisible &&
+    nextTab.messageSelectorPreselectUuid ===
+      existing.messageSelectorPreselectUuid &&
     nextTab.todoSnapshotId === existing.todoSnapshotId &&
     nextTab.model === existing.model &&
     nextTab.provider === existing.provider &&
