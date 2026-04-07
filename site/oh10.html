@@ -28,7 +28,7 @@
         <div class="container">
             <div class="course-header">
                 <div class="course-breadcrumb">
-                    <a href="index.html">首页</a><span>/</span><a href="topic-openharness-course.html">OpenHarness 源码课</a><span>/</span><span>OH10: Hooks</span>
+                    <a href="index.html">首页</a><span>/</span><a href="topic-openharness-course.html#oh-series">OpenHarness 源码课</a><span>/</span><span>OH10: Hooks</span>
                 </div>
                 <div class="course-nav">
                     <span class="course-part-badge">第 10/12 讲</span>
@@ -62,7 +62,7 @@
                     <h3>调用顺序（对照源码）</h3>
                     <p><code>_execute_tool_call</code>：<strong>Pre</strong> →（通过则）权限 → execute → <strong>Post</strong>。Pre 返回 <code>blocked</code> 时直接错误型 tool_result，不再做权限询问——与课内「hook 可短路」一致。</p>
                     <h3>与 OH03 的叠加</h3>
-                    <p>权限判定依赖已解析的 <code>parsed_input</code>；Hook 收到的 payload 含原始与事件名。思考「谁在何种失败下对用户可见」。 </p>
+                    <p>权限判定依赖已解析的 <code>parsed_input</code>；Hook 收到的 payload 含原始与事件名。思考「谁在何种失败下对用户可见」。</p>
                 </section>
                 <section class="section-block">
                     <h2>⚖️ 与课内叙事对照</h2>

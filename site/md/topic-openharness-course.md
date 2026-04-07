@@ -71,6 +71,8 @@
 
 HTML 目录锚点：[topic-openharness-course.html#oh-series](https://harzva.github.io/learn-likecc/topic-openharness-course.html#oh-series)。
 
+每讲 HTML 含：**关键路径**、**源码导读**、站内 Mermaid 导图 key、**课内叙事对照表**、**思考题**；Markdown 源与页面对齐，便于 GitHub 上阅读。
+
 | OH | 对标 S | Markdown |
 |----|--------|----------|
 | [OH01](oh01.md) | [S01](s01.md) | Agent Loop |
