@@ -63,18 +63,10 @@ export function SessionTabsBar({ prefixActive = false }: { prefixActive?: boolea
           {sessionTabs.showSubagentPanel
             ? ' · subagent panel on'
             : ' · subagent panel off'}
+          {` · layout ${sessionTabs.layoutMode}`}
           {prefixActive ? ' · tab prefix active' : ''}
         </Text>
       </Box>
-
-      {sessionTabs.showSubagentPanel && (
-        <Box marginTop={1}>
-          <Text color="yellow">
-            Subagent panel placeholder: upcoming view will show agent, repo,
-            workdir, task, and status here.
-          </Text>
-        </Box>
-      )}
     </Box>
   )
 }

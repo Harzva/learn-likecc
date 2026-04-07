@@ -133,15 +133,17 @@ learn-likecc 现在已经不只是一个 Claude Code 源码学习仓库。
 - [ ] 把自由模型路线拆到具体版本计划
 - [ ] 把多窗口设计稿进一步映射到具体版本计划与实现任务
 - [x] 将多窗口设计稿进一步映射到 `v1.0.2-likecode` 版本计划
-- [ ] 实现第一版 tab 模式：新建、切换、关闭、重命名
+- [x] 实现第一版 tab 模式：新建、切换、关闭、重命名入口已接好，基础流程已可用
 - [x] 为 tab 模式接入第一层状态骨架：`sessionTabs` + session metadata 映射
 - [x] 顶部 tab UI 已接入主 REPL
 - [x] `/tab` 命令已支持 list/new/next/prev/switch/rename/close/panel
 - [x] `Ctrl+g` 前缀快捷键已支持新建、切换、关闭、面板切换、编号跳转
 - [x] 明确 `tab` 与 `branch` 不是重复功能：前者是同 session 视图管理，后者是会话分叉
-- [ ] 把 transcript、todo、model/provider 状态真正绑定到 tab
-- [ ] 增加 subagent 状态面板占位，先能展示仓库、任务与运行状态
-- [ ] 将 panel / 分屏提升为 tab 之后的最高优先级交付
+- [x] 把 transcript、todo、model/provider 状态开始绑定到 tab
+- [x] 增加第一版 subagent 状态面板，先能展示 transcript、任务与运行状态
+- [x] 将 panel / 分屏提升为 tab 之后的最高优先级交付，并开始实现
+- [ ] 继续把 transcript / todo 做到真正隔离，而不只是先做 tab 级绑定
+- [ ] 继续把 subagent 面板升级为更完整的工作视图，展示仓库、目录、当前任务与更多 live 状态
 
 ---
 

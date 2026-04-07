@@ -177,6 +177,34 @@ export function createSessionTaskTab(
   })
 }
 
+export function inferSessionTabProvider(
+  model?: string,
+  baseURL?: string,
+): string | undefined {
+  if (model?.includes('/')) {
+    const [provider] = model.split('/', 1)
+    return provider || undefined
+  }
+
+  if (baseURL) {
+    try {
+      return new URL(baseURL).host
+    } catch {
+      // Ignore invalid URLs and fall through to model heuristics.
+    }
+  }
+
+  if (!model) {
+    return undefined
+  }
+
+  if (model.toLowerCase().startsWith('claude')) {
+    return 'anthropic'
+  }
+
+  return 'custom'
+}
+
 export function addSessionTab(
   state: SessionTabsState,
   tab: SessionTabState,
@@ -189,6 +217,46 @@ export function addSessionTab(
     tabs: {
       ...state.tabs,
       [tab.id]: tab,
+    },
+  }
+}
+
+export function updateSessionTab(
+  state: SessionTabsState,
+  tabId: string,
+  updates: Partial<SessionTabState>,
+): SessionTabsState {
+  const existing = state.tabs[tabId]
+  if (!existing) return state
+
+  const nextTab: SessionTabState = {
+    ...existing,
+    ...updates,
+    updatedAt: new Date().toISOString(),
+  }
+
+  const sameTab =
+    nextTab.title === existing.title &&
+    nextTab.kind === existing.kind &&
+    nextTab.transcriptId === existing.transcriptId &&
+    nextTab.todoSnapshotId === existing.todoSnapshotId &&
+    nextTab.model === existing.model &&
+    nextTab.provider === existing.provider &&
+    nextTab.worktreePath === existing.worktreePath &&
+    nextTab.repoLabel === existing.repoLabel &&
+    nextTab.status === existing.status &&
+    nextTab.subagentId === existing.subagentId &&
+    nextTab.unreadCount === existing.unreadCount
+
+  if (sameTab) {
+    return state
+  }
+
+  return {
+    ...state,
+    tabs: {
+      ...state.tabs,
+      [tabId]: nextTab,
     },
   }
 }
@@ -266,8 +334,14 @@ export function cycleSessionTab(
 export function toggleSubagentPanel(
   state: SessionTabsState,
 ): SessionTabsState {
+  const showSubagentPanel = !state.showSubagentPanel
   return {
     ...state,
-    showSubagentPanel: !state.showSubagentPanel,
+    layoutMode: showSubagentPanel
+      ? 'panes'
+      : state.tabOrder.length > 1
+        ? 'tabs'
+        : 'single',
+    showSubagentPanel,
   }
 }

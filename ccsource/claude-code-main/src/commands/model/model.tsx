@@ -15,6 +15,7 @@ import { checkOpus1mAccess, checkSonnet1mAccess } from '../../utils/model/check1
 import { getDefaultMainLoopModelSetting, isOpus1mMergeEnabled, renderDefaultModelSetting } from '../../utils/model/model.js';
 import { isModelAllowed } from '../../utils/model/modelAllowlist.js';
 import { validateModel } from '../../utils/model/validateModel.js';
+import { getActiveSessionTab, inferSessionTabProvider, normalizeSessionTabsState, updateSessionTab } from '../../utils/sessionTabs.js';
 function ModelPickerWrapper(t0) {
   const $ = _c(17);
   const {
@@ -50,11 +51,19 @@ function ModelPickerWrapper(t0) {
         from_model: mainLoopModel as AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
         to_model: model as AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS
       });
-      setAppState(prev => ({
-        ...prev,
-        mainLoopModel: model,
-        mainLoopModelForSession: null
-      }));
+      setAppState(prev => {
+        const sessionTabs = normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel);
+        const activeTab = getActiveSessionTab(sessionTabs);
+        return {
+          ...prev,
+          mainLoopModel: model,
+          mainLoopModelForSession: null,
+          sessionTabs: activeTab ? updateSessionTab(sessionTabs, activeTab.id, {
+            model: model ?? undefined,
+            provider: inferSessionTabProvider(model ?? undefined, process.env.ANTHROPIC_BASE_URL)
+          }) : sessionTabs
+        };
+      });
       let message = `Set model to ${chalk.bold(renderModelLabel(model))}`;
       if (effort !== undefined) {
         message = message + ` with ${chalk.bold(effort)} effort`;
@@ -196,11 +205,19 @@ function SetModelAndClose({
       }
     }
     function setModel(modelValue: string | null): void {
-      setAppState(prev => ({
-        ...prev,
-        mainLoopModel: modelValue,
-        mainLoopModelForSession: null
-      }));
+      setAppState(prev => {
+        const sessionTabs = normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel);
+        const activeTab = getActiveSessionTab(sessionTabs);
+        return {
+          ...prev,
+          mainLoopModel: modelValue,
+          mainLoopModelForSession: null,
+          sessionTabs: activeTab ? updateSessionTab(sessionTabs, activeTab.id, {
+            model: modelValue ?? undefined,
+            provider: inferSessionTabProvider(modelValue ?? undefined, process.env.ANTHROPIC_BASE_URL)
+          }) : sessionTabs
+        };
+      });
       let message = `Set model to ${chalk.bold(renderModelLabel(modelValue))}`;
       let wasFastModeToggledOn = undefined;
       if (isFastModeEnabled()) {

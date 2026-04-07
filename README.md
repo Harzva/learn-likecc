@@ -71,6 +71,12 @@
   - 已支持 `/tab list`、`/tab new`、`/tab next`、`/tab prev`、`/tab switch`、`/tab rename`、`/tab close`、`/tab panel`
 - ✅ **第一批窗口快捷键已经可用**
   - 已支持 `Ctrl+g` 前缀后接 `c / n / p / x / s / 1-9`
+- ✅ **panel / 分屏第一版已经开始落地**
+  - `/tab panel` 不再只是开关占位文案，主 REPL 里已经会出现一个真实的 session workspace 面板
+- ✅ **tab 开始绑定自己的模型 / provider / transcript / todo lane**
+  - 切换 tab 后会带出当前 tab 的模型与 provider，tab 也会记住自己当前绑定的 transcript 与 todo lane
+- ✅ **subagent 状态面板已经不是纯占位**
+  - 面板里已经能看到当前聚焦 transcript、运行中的 subagent、任务状态和 legacy todo 摘要
 - ✅ **tab 与 branch 的边界已经判断清楚**
   - `tab` 是同一个 session 内的任务视图管理，`branch` 是会话历史分叉与恢复，两者不重复
 
@@ -228,6 +234,9 @@ Claude Code 很强，但真实使用里一直有一个明显痛点：
 - [x] 接入第一批 `Ctrl+g` 窗口快捷键
 - [x] 接入 `/show:slash`，可在终端直接查看所有 slash command 与用法
 - [x] 启动 logo 改为红色爱心
+- [x] 接入第一版 `panel / 分屏` 工作区侧栏
+- [x] 将当前 tab 的 `model / provider / transcript / todo lane` 开始同步到真实状态
+- [x] 将 subagent 面板从纯占位升级为第一版真实状态面板
 - [ ] 支持 **subagent 工作视图**：按窗口看不同 subagent 在忙什么
 - [ ] 支持 **按任务自动路由模型**：写代码 / 总结 / 搜索 / 便宜优先 / 最强优先
 - [ ] 尽量做到 **不 compact 也能切到别的模型继续干活**
@@ -242,10 +251,11 @@ Claude Code 很强，但真实使用里一直有一个明显痛点：
 - [ ] 同一 session 卡住时，直接拉另一个模型接手，不强制开新会话
 - [ ] 同一个 session 开多个窗口：一个写代码，一个 review，一个跟踪搜索/摘要
 - [ ] 把 tab 模式先做出来，再评估哪些场景真的需要 pane 分屏
-- [ ] 把 panel / 分屏放到 tab 之后的最高优先级，而不是继续只做轻量 tab 装饰
+- [x] 把 panel / 分屏放到 tab 之后的最高优先级，而不是继续只做轻量 tab 装饰
 - [x] 把 tab 需求映射到具体版本计划与发版节奏
-- [ ] 让不同 tab 真正绑定各自 transcript、todo、model/provider，而不是先只做窗口层
-- [ ] 把 subagent 面板从占位升级成真实状态视图
+- [x] 让不同 tab 开始绑定各自 transcript、todo、model/provider，而不是先只做窗口层
+- [x] 把 subagent 面板从占位升级成真实状态视图
+- [ ] 继续把 transcript / todo 做到真正隔离，而不只是先完成 tab 级绑定
 - [ ] 团队里每个人可配置自己的默认 provider / 默认模型 / 默认预算策略
 - [ ] 项目级规则决定“这个仓库优先稳定模型，那个仓库优先低成本模型”
 - [ ] 一个命令完成“继续当前 session，但换模型再试一次”

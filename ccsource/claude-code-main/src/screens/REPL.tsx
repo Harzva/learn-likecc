@@ -154,6 +154,7 @@ import { useSkillsChange } from '../hooks/useSkillsChange.js';
 import { useManagePlugins } from '../hooks/useManagePlugins.js';
 import { Messages } from '../components/Messages.js';
 import { SessionTabsBar } from '../components/SessionTabsBar.js';
+import { SessionWorkspacePanel } from '../components/SessionWorkspacePanel.js';
 import { TaskListV2 } from '../components/TaskListV2.js';
 import { TeammateViewHeader } from '../components/TeammateViewHeader.js';
 import { useTasksV2WithCollapseEffect } from '../hooks/useTasksV2.js';
@@ -289,7 +290,8 @@ import { useMessageActions, MessageActionsKeybindings, MessageActionsBar, type M
 import { setClipboard } from '../ink/termio/osc.js';
 import type { ScrollBoxHandle } from '../ink/components/ScrollBox.js';
 import { createAttachmentMessage, getQueuedCommandAttachments } from '../utils/attachments.js';
-import { addSessionTab, closeSessionTab, createSessionTaskTab, cycleSessionTab, normalizeSessionTabsState, switchSessionTab, toggleSubagentPanel } from '../utils/sessionTabs.js';
+import { addSessionTab, closeSessionTab, createSessionTaskTab, cycleSessionTab, getActiveSessionTab, inferSessionTabProvider, normalizeSessionTabsState, switchSessionTab, toggleSubagentPanel, updateSessionTab } from '../utils/sessionTabs.js';
+import { getTaskListId } from '../utils/tasks.js';
 
 // Stable empty array for hooks that accept MCPServerConnection[] — avoids
 // creating a new [] literal on every render in remote mode, which would
@@ -635,6 +637,7 @@ export function REPL({
   const pendingSandboxRequest = useAppState(s => s.pendingSandboxRequest);
   const teamContext = useAppState(s => s.teamContext);
   const tasks = useAppState(s => s.tasks);
+  const rawSessionTabs = useAppState(s => s.sessionTabs);
   const workerSandboxPermissions = useAppState(s => s.workerSandboxPermissions);
   const elicitation = useAppState(s => s.elicitation);
   const ultraplanPendingChoice = useAppState(s => s.ultraplanPendingChoice);
@@ -675,6 +678,7 @@ export function REPL({
   const store = useAppStateStore();
   const terminal = useTerminalNotification();
   const mainLoopModel = useMainLoopModel();
+  const sessionTabs = useMemo(() => normalizeSessionTabsState(rawSessionTabs, mainLoopModel), [rawSessionTabs, mainLoopModel]);
 
   // Note: standaloneAgentContext is initialized in main.tsx (via initialState) or
   // ResumeConversation.tsx (via setAppState before rendering REPL) to avoid
@@ -794,6 +798,38 @@ export function REPL({
     enabled: !isRemoteSession
   });
   const tasksV2 = useTasksV2WithCollapseEffect();
+  const projectRootLabel = useMemo(() => {
+    const projectRoot = getProjectRoot() || getOriginalCwd();
+    const segments = projectRoot.split(/[\\/]/).filter(Boolean);
+    return segments[segments.length - 1] ?? projectRoot;
+  }, []);
+  const projectRootPath = useMemo(() => getProjectRoot() || getOriginalCwd(), []);
+
+  const previousActiveTabIdRef = useRef<string | undefined>(undefined);
+  useEffect(() => {
+    const currentActiveTab = getActiveSessionTab(sessionTabs);
+    const activeTabId = currentActiveTab?.id;
+    if (!activeTabId || previousActiveTabIdRef.current === activeTabId) {
+      return;
+    }
+    previousActiveTabIdRef.current = activeTabId;
+
+    setAppState(prev => {
+      const nextModel = currentActiveTab.model ?? prev.mainLoopModel;
+      const nextViewingTaskId = currentActiveTab.subagentId;
+      if (
+        prev.mainLoopModel === nextModel &&
+        prev.viewingAgentTaskId === nextViewingTaskId
+      ) {
+        return prev;
+      }
+      return {
+        ...prev,
+        mainLoopModel: nextModel,
+        viewingAgentTaskId: nextViewingTaskId,
+      };
+    });
+  }, [sessionTabs, setAppState]);
 
   // Start background plugin installations
 
@@ -1600,6 +1636,32 @@ export function REPL({
   // Session backgrounding — hook is below, after getToolUseContext
 
   const hasRunningTeammates = useMemo(() => getAllInProcessTeammateTasks(tasks).some(t => t.status === 'running'), [tasks]);
+  useEffect(() => {
+    const currentActiveTab = getActiveSessionTab(sessionTabs);
+    if (!currentActiveTab) return;
+
+    const nextStatus = viewingAgentTaskId ? 'running' : isLoading ? 'running' : hasRunningTeammates ? 'waiting' : 'idle';
+    const nextProvider = inferSessionTabProvider(mainLoopModel, process.env.ANTHROPIC_BASE_URL);
+    const nextTranscriptId = viewingAgentTaskId ?? currentActiveTab.transcriptId ?? currentActiveTab.id;
+    const nextTodoSnapshotId = tasksV2 && tasksV2.length > 0 ? getTaskListId() : currentActiveTab.todoSnapshotId;
+    const nextTabs = updateSessionTab(sessionTabs, currentActiveTab.id, {
+      model: mainLoopModel ?? undefined,
+      provider: nextProvider,
+      repoLabel: projectRootLabel,
+      worktreePath: projectRootPath,
+      status: nextStatus,
+      subagentId: viewingAgentTaskId,
+      transcriptId: nextTranscriptId,
+      todoSnapshotId: nextTodoSnapshotId,
+    });
+
+    if (nextTabs !== sessionTabs) {
+      setAppState(prev => ({
+        ...prev,
+        sessionTabs: nextTabs,
+      }));
+    }
+  }, [sessionTabs, mainLoopModel, viewingAgentTaskId, tasksV2, isLoading, hasRunningTeammates, projectRootLabel, projectRootPath, setAppState]);
 
   // Show deferred turn duration message once all swarm teammates finish
   useEffect(() => {
@@ -4652,6 +4714,33 @@ export function REPL({
   // /config, /theme, /diff, ...) both go here now.
   const toolJsxCentered = isFullscreenEnvEnabled() && toolJSX?.isLocalJSXCommand === true;
   const centeredModal: React.ReactNode = toolJsxCentered ? toolJSX!.jsx : null;
+  const workspacePanelVisible = sessionTabs.showSubagentPanel;
+  const workspacePanelSplit = workspacePanelVisible && transcriptCols >= 150;
+  const scrollablePrimary = <>
+      <TeammateViewHeader />
+      <SessionTabsBar prefixActive={tabPrefixActive} />
+      <Messages messages={displayedMessages} tools={tools} commands={commands} verbose={verbose} toolJSX={toolJSX} toolUseConfirmQueue={toolUseConfirmQueue} inProgressToolUseIDs={viewedTeammateTask ? viewedTeammateTask.inProgressToolUseIDs ?? new Set() : inProgressToolUseIDs} isMessageSelectorVisible={isMessageSelectorVisible} conversationId={conversationId} screen={screen} streamingToolUses={streamingToolUses} showAllInTranscript={showAllInTranscript} agentDefinitions={agentDefinitions} onOpenRateLimitOptions={handleOpenRateLimitOptions} isLoading={isLoading} streamingText={isLoading && !viewedAgentTask ? visibleStreamingText : null} isBriefOnly={viewedAgentTask ? false : isBriefOnly} unseenDivider={viewedAgentTask ? undefined : unseenDivider} scrollRef={isFullscreenEnvEnabled() ? scrollRef : undefined} trackStickyPrompt={isFullscreenEnvEnabled() ? true : undefined} cursor={cursor} setCursor={setCursor} cursorNavRef={cursorNavRef} />
+      <AwsAuthStatusBox />
+      {!disabled && placeholderText && !centeredModal && <UserTextMessage param={{
+      text: placeholderText,
+      type: 'text'
+    }} addMargin={true} verbose={verbose} />}
+      {toolJSX && !(toolJSX.isLocalJSXCommand && toolJSX.isImmediate) && !toolJsxCentered && <Box flexDirection="column" width="100%">
+            {toolJSX.jsx}
+          </Box>}
+      {("external" as string) === 'ant' && <TungstenLiveMonitor />}
+      {feature('WEB_BROWSER_TOOL') ? WebBrowserPanelModule && <WebBrowserPanelModule.WebBrowserPanel /> : null}
+      <Box flexGrow={1} />
+      {showSpinner && <SpinnerWithVerb mode={streamMode} spinnerTip={spinnerTip} responseLengthRef={responseLengthRef} apiMetricsRef={apiMetricsRef} overrideMessage={spinnerMessage} spinnerSuffix={stopHookSpinnerSuffix} verbose={verbose} loadingStartTimeRef={loadingStartTimeRef} totalPausedMsRef={totalPausedMsRef} pauseStartTimeRef={pauseStartTimeRef} overrideColor={spinnerColor} overrideShimmerColor={spinnerShimmerColor} hasActiveTools={inProgressToolUseIDs.size > 0} leaderIsIdle={!isLoading} />}
+      {!showSpinner && !isLoading && !userInputOnProcessing && !hasRunningTeammates && isBriefOnly && !viewedAgentTask && <BriefIdleStatus />}
+      {isFullscreenEnvEnabled() && <PromptInputQueuedCommands />}
+    </>;
+  const scrollableContent = workspacePanelVisible ? <Box width="100%" flexDirection={workspacePanelSplit ? 'row' : 'column'} alignItems="flex-start">
+      <Box flexDirection="column" flexGrow={1} width={workspacePanelSplit ? undefined : '100%'}>
+        {scrollablePrimary}
+      </Box>
+      <SessionWorkspacePanel tasksV2={tasksV2} width={42} stacked={!workspacePanelSplit} />
+    </Box> : scrollablePrimary;
 
   // <AlternateScreen> at the root: everything below is inside its
   // <Box height={rows}>. Handlers/contexts are zero-height so ScrollBox's
@@ -4678,30 +4767,7 @@ export function REPL({
         <FullscreenLayout scrollRef={scrollRef} overlay={toolPermissionOverlay} bottomFloat={feature('BUDDY') && companionVisible && !companionNarrow ? <CompanionFloatingBubble /> : undefined} modal={centeredModal} modalScrollRef={modalScrollRef} dividerYRef={dividerYRef} hidePill={!!viewedAgentTask} hideSticky={!!viewedTeammateTask} newMessageCount={unseenDivider?.count ?? 0} onPillClick={() => {
         setCursor(null);
         jumpToNew(scrollRef.current);
-      }} scrollable={<>
-              <TeammateViewHeader />
-              <SessionTabsBar prefixActive={tabPrefixActive} />
-              <Messages messages={displayedMessages} tools={tools} commands={commands} verbose={verbose} toolJSX={toolJSX} toolUseConfirmQueue={toolUseConfirmQueue} inProgressToolUseIDs={viewedTeammateTask ? viewedTeammateTask.inProgressToolUseIDs ?? new Set() : inProgressToolUseIDs} isMessageSelectorVisible={isMessageSelectorVisible} conversationId={conversationId} screen={screen} streamingToolUses={streamingToolUses} showAllInTranscript={showAllInTranscript} agentDefinitions={agentDefinitions} onOpenRateLimitOptions={handleOpenRateLimitOptions} isLoading={isLoading} streamingText={isLoading && !viewedAgentTask ? visibleStreamingText : null} isBriefOnly={viewedAgentTask ? false : isBriefOnly} unseenDivider={viewedAgentTask ? undefined : unseenDivider} scrollRef={isFullscreenEnvEnabled() ? scrollRef : undefined} trackStickyPrompt={isFullscreenEnvEnabled() ? true : undefined} cursor={cursor} setCursor={setCursor} cursorNavRef={cursorNavRef} />
-              <AwsAuthStatusBox />
-              {/* Hide the processing placeholder while a modal is showing —
-                  it would sit at the last visible transcript row right above
-                  the ▔ divider, showing "❯ /config" as redundant clutter
-                  (the modal IS the /config UI). Outside modals it stays so
-                  the user sees their input echoed while Claude processes. */}
-              {!disabled && placeholderText && !centeredModal && <UserTextMessage param={{
-          text: placeholderText,
-          type: 'text'
-        }} addMargin={true} verbose={verbose} />}
-              {toolJSX && !(toolJSX.isLocalJSXCommand && toolJSX.isImmediate) && !toolJsxCentered && <Box flexDirection="column" width="100%">
-                    {toolJSX.jsx}
-                  </Box>}
-              {("external" as string) === 'ant' && <TungstenLiveMonitor />}
-              {feature('WEB_BROWSER_TOOL') ? WebBrowserPanelModule && <WebBrowserPanelModule.WebBrowserPanel /> : null}
-              <Box flexGrow={1} />
-              {showSpinner && <SpinnerWithVerb mode={streamMode} spinnerTip={spinnerTip} responseLengthRef={responseLengthRef} apiMetricsRef={apiMetricsRef} overrideMessage={spinnerMessage} spinnerSuffix={stopHookSpinnerSuffix} verbose={verbose} loadingStartTimeRef={loadingStartTimeRef} totalPausedMsRef={totalPausedMsRef} pauseStartTimeRef={pauseStartTimeRef} overrideColor={spinnerColor} overrideShimmerColor={spinnerShimmerColor} hasActiveTools={inProgressToolUseIDs.size > 0} leaderIsIdle={!isLoading} />}
-              {!showSpinner && !isLoading && !userInputOnProcessing && !hasRunningTeammates && isBriefOnly && !viewedAgentTask && <BriefIdleStatus />}
-              {isFullscreenEnvEnabled() && <PromptInputQueuedCommands />}
-            </>} bottom={<Box flexDirection={feature('BUDDY') && companionNarrow ? 'column' : 'row'} width="100%" alignItems={feature('BUDDY') && companionNarrow ? undefined : 'flex-end'}>
+      }} scrollable={scrollableContent} bottom={<Box flexDirection={feature('BUDDY') && companionNarrow ? 'column' : 'row'} width="100%" alignItems={feature('BUDDY') && companionNarrow ? undefined : 'flex-end'}>
               {feature('BUDDY') && companionNarrow && isFullscreenEnvEnabled() && companionVisible ? <CompanionSprite /> : null}
               <Box flexDirection="column" flexGrow={1}>
                 {permissionStickyFooter}

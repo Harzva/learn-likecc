@@ -9,7 +9,9 @@
 - 主 REPL 已接入顶部 tab UI，支持显示当前 tab、模型/provider/状态和 `+ /tab new` 提示
 - 新增 `/tab` 管理命令，支持 list/new/next/prev/switch/rename/close/panel
 - 新增 `Ctrl+g` 前缀快捷键，第一批支持新建、切换、关闭、面板切换和编号跳转
-- subagent 面板已接入第一层可折叠占位，但还不是最终的真实状态视图
+- `panel / 分屏` 第一版已经接入主 REPL，支持在工作区侧栏里展示当前 tab、任务和 subagent 状态
+- tab 开始真正绑定自己的 `model / provider / transcript / todo lane`，切换 tab 后能带出对应状态
+- subagent 面板已从纯占位升级为第一版真实状态视图，可看到当前聚焦 transcript 与运行中的 agent
 - 新增 `/show:slash`，可在终端内查看所有 slash command 与用法
 - 启动 logo 改为红色爱心，强化 Like Code 的 `like` 含义
 - 文档明确：`tab` 与 `branch` 不重复，但下一优先级应转向 panel / 分屏 / subagent 状态视图
