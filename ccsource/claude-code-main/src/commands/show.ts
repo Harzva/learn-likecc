@@ -1,5 +1,6 @@
 import { basename, join } from 'path'
 import type { Command, LocalCommandCall } from '../types/command.js'
+import { getCommandName } from '../types/command.js'
 import { getDisplayPath } from '../utils/file.js'
 import { readFileSync } from '../utils/fileRead.js'
 import { getFsImplementation } from '../utils/fsOperations.js'
@@ -13,7 +14,7 @@ import {
 import type { SettingsJson } from '../utils/settings/types.js'
 import { jsonStringify } from '../utils/slowOperations.js'
 
-type ShowTarget = 'global' | 'user' | 'project'
+type ShowTarget = 'global' | 'user' | 'project' | 'slash'
 
 const SECRET_KEY_PATTERN = /(token|api[-_]?key|auth[-_]?token|secret|password)/i
 
@@ -262,12 +263,45 @@ function buildProjectShowText(): string {
   ].join('\n')
 }
 
+function buildSlashCommandsText(commands: Command[]): string {
+  const visibleCommands = commands
+    .filter(command => !command.isHidden)
+    .sort((a, b) => getCommandName(a).localeCompare(getCommandName(b)))
+
+  return [
+    'Show slash commands',
+    '',
+    ...visibleCommands.flatMap(command => {
+      const usage = `/${getCommandName(command)}${
+        command.argumentHint ? ` ${command.argumentHint}` : ''
+      }`
+      const lines = [`${usage}`, `  ${command.description}`]
+
+      if (command.aliases?.length) {
+        lines.push(`  aliases: ${command.aliases.map(alias => `/${alias}`).join(', ')}`)
+      }
+
+      if (command.type === 'prompt' && command.progressMessage) {
+        lines.push(`  kind: prompt · ${command.progressMessage}`)
+      } else if (command.type === 'local-jsx') {
+        lines.push('  kind: local-jsx')
+      } else {
+        lines.push('  kind: local')
+      }
+
+      lines.push('')
+      return lines
+    }),
+  ].join('\n')
+}
+
 function parseShowTarget(args: string): ShowTarget | null {
   const normalized = args.trim().toLowerCase()
 
   if (normalized === 'global') return 'global'
   if (normalized === 'user') return 'user'
   if (normalized === 'project') return 'project'
+  if (normalized === 'slash') return 'slash'
   return null
 }
 
@@ -277,9 +311,11 @@ function buildShowHelpText(): string {
     '  /show global',
     '  /show user',
     '  /show project',
+    '  /show slash',
     '  /show:global',
     '  /show:user',
     '  /show:project',
+    '  /show:slash',
     '',
     'Purpose:',
     '  Show detailed .claude configuration, skills, hooks, rules, and model routes',
@@ -288,7 +324,7 @@ function buildShowHelpText(): string {
 }
 
 function makeShowCall(target?: ShowTarget): LocalCommandCall {
-  return async args => {
+  return async (args, context) => {
     const resolvedTarget = target ?? parseShowTarget(args)
 
     if (!resolvedTarget) {
@@ -299,7 +335,9 @@ function makeShowCall(target?: ShowTarget): LocalCommandCall {
     }
 
     const value =
-      resolvedTarget === 'project'
+      resolvedTarget === 'slash'
+        ? buildSlashCommandsText(context.options.commands)
+        : resolvedTarget === 'project'
         ? buildProjectShowText()
         : buildUserShowText(resolvedTarget)
 
@@ -341,6 +379,12 @@ export const showProject = makeCommand(
   'show:project',
   'Show detailed project .claude configuration, local overrides, skills, hooks, and rules',
   'project',
+)
+
+export const showSlash = makeCommand(
+  'show:slash',
+  'Show all slash commands with usage and descriptions',
+  'slash',
 )
 
 export default show

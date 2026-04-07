@@ -26,9 +26,11 @@
 - ✅ **配置自动重载**
   - 修改 `.claude/settings.json` / `.claude/settings.local.json` 里的 API 与关键配置后，不需要退出 agent-cli 再重新开
 - ✅ **终端内可直接查看详细配置**
-  - 支持 `/show`、`/show:global`、`/show:user`、`/show:project`
+  - 支持 `/show`、`/show:global`、`/show:user`、`/show:project`、`/show:slash`
 - ✅ **启动界面配置可见性**
   - 启动头直接显示 Global / Project / Local 三层 `.claude` 摘要、当前命中的 `claude` 路径、当前工程仓库地址
+- ✅ **启动 logo 已收成 Like Code 语义**
+  - 启动动物头图已改为红色爱心，强调 `like` 的产品含义
 - ✅ **第三方兼容网关稳定性修复**
   - 兼容非标准 `headers` 返回结构，避免切 provider 后直接崩掉
 
@@ -42,6 +44,8 @@
   - 后续在多窗口模式下，把不同 subagent 的忙碌状态、所在仓库、当前任务分别展示出来
 - [ ] **会话级任务分屏**
   - 一个窗口主线程写码，另一个窗口做 review，第三个窗口跟踪搜索 / 摘要 / provider fallback
+- [ ] **panel / 分屏优先级提升**
+  - 当前 tab 已经证明方向可行，但真正拉开体验差异的是 panel、分屏和 subagent 状态视图
 
 ### 这条需求的第一版设计已经定下来了
 
@@ -67,6 +71,8 @@
   - 已支持 `/tab list`、`/tab new`、`/tab next`、`/tab prev`、`/tab switch`、`/tab rename`、`/tab close`、`/tab panel`
 - ✅ **第一批窗口快捷键已经可用**
   - 已支持 `Ctrl+g` 前缀后接 `c / n / p / x / s / 1-9`
+- ✅ **tab 与 branch 的边界已经判断清楚**
+  - `tab` 是同一个 session 内的任务视图管理，`branch` 是会话历史分叉与恢复，两者不重复
 
 ### 我们现在强调的不是“炫”，而是这些真实需求
 
@@ -77,6 +83,7 @@
 - 用户要能一眼分清这次 session 到底受哪几层配置覆盖
 - 用户希望一个 session 不只一个对话窗口，而是能像 zellij 那样按窗口并行处理不同任务
 - 用户希望日后引入 subagent 后，能从不同窗口看出不同 subagent 分别在忙什么、在哪个仓库工作
+- 用户虽然需要 tab，但真正最有价值的还是 panel / 分屏，因为那才会让并行任务与 subagent 可见性变得直观
 
 ### 这类需求如何长期跟踪
 
@@ -171,6 +178,10 @@ Claude Code 很强，但真实使用里一直有一个明显痛点：
 
 - ✅ **优先级**
   - 先做 `tab`，再做 `pane`，最后再做 `subagent live view`
+- ✅ **与 branch 不重复**
+  - `branch` 是把对话分叉成另一条可恢复会话；`tab` / `panel` 是在同一个 session 内管理多个任务视图
+- 🟡 **当前这版 tab 还偏轻**
+  - 现在更像“会话窗口管理壳层”，真正高价值的差异化能力还是 panel、分屏和 subagent 状态面板
 - ✅ **快捷键**
   - 第一版推荐 `Ctrl+g` 作为窗口管理前缀，再映射新建、切换、关闭、重命名
 - ✅ **状态模型**
@@ -215,6 +226,8 @@ Claude Code 很强，但真实使用里一直有一个明显痛点：
 - [x] 接入顶部 tab UI
 - [x] 接入 `/tab` 管理命令
 - [x] 接入第一批 `Ctrl+g` 窗口快捷键
+- [x] 接入 `/show:slash`，可在终端直接查看所有 slash command 与用法
+- [x] 启动 logo 改为红色爱心
 - [ ] 支持 **subagent 工作视图**：按窗口看不同 subagent 在忙什么
 - [ ] 支持 **按任务自动路由模型**：写代码 / 总结 / 搜索 / 便宜优先 / 最强优先
 - [ ] 尽量做到 **不 compact 也能切到别的模型继续干活**
@@ -229,6 +242,7 @@ Claude Code 很强，但真实使用里一直有一个明显痛点：
 - [ ] 同一 session 卡住时，直接拉另一个模型接手，不强制开新会话
 - [ ] 同一个 session 开多个窗口：一个写代码，一个 review，一个跟踪搜索/摘要
 - [ ] 把 tab 模式先做出来，再评估哪些场景真的需要 pane 分屏
+- [ ] 把 panel / 分屏放到 tab 之后的最高优先级，而不是继续只做轻量 tab 装饰
 - [x] 把 tab 需求映射到具体版本计划与发版节奏
 - [ ] 让不同 tab 真正绑定各自 transcript、todo、model/provider，而不是先只做窗口层
 - [ ] 把 subagent 面板从占位升级成真实状态视图

@@ -10,6 +10,9 @@
 - 新增 `/tab` 管理命令，支持 list/new/next/prev/switch/rename/close/panel
 - 新增 `Ctrl+g` 前缀快捷键，第一批支持新建、切换、关闭、面板切换和编号跳转
 - subagent 面板已接入第一层可折叠占位，但还不是最终的真实状态视图
+- 新增 `/show:slash`，可在终端内查看所有 slash command 与用法
+- 启动 logo 改为红色爱心，强化 Like Code 的 `like` 含义
+- 文档明确：`tab` 与 `branch` 不重复，但下一优先级应转向 panel / 分屏 / subagent 状态视图
 - README 顶部与长期路线图同步更新，未完成项继续保留在 todo 中，方便后续按版本推进与发版同步
 - 本轮以文档与规划推进为主，暂不单独提升 release 版本号，避免出现“版本先发、功能未落地”的错位
 

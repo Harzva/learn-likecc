@@ -121,9 +121,11 @@ learn-likecc 现在已经不只是一个 Claude Code 源码学习仓库。
 - [x] 启动界面展示当前命中的 `claude` 命令路径
 - [x] 当前工程启动头改为显示仓库地址，降低路径理解成本
 - [x] 增加 `/show`、`/show:global`、`/show:user`、`/show:project` 配置查看命令
+- [x] 增加 `/show:slash`，可在终端内查看所有 slash command 与用法
 - [x] 将 git / Pages / Release / plan 更新要求固化为 skill 与 rules
 - [x] 新增“多窗口与 Subagent 视图设计稿 V1”，拆清快捷键、状态模型与 UI 分层
 - [x] 将多窗口设计稿继续拆成可执行开发任务清单
+- [x] 启动 logo 改为红色爱心，强化 Like Code 的 `like` 产品语义
 
 ### 待继续打钩
 
@@ -136,8 +138,10 @@ learn-likecc 现在已经不只是一个 Claude Code 源码学习仓库。
 - [x] 顶部 tab UI 已接入主 REPL
 - [x] `/tab` 命令已支持 list/new/next/prev/switch/rename/close/panel
 - [x] `Ctrl+g` 前缀快捷键已支持新建、切换、关闭、面板切换、编号跳转
+- [x] 明确 `tab` 与 `branch` 不是重复功能：前者是同 session 视图管理，后者是会话分叉
 - [ ] 把 transcript、todo、model/provider 状态真正绑定到 tab
 - [ ] 增加 subagent 状态面板占位，先能展示仓库、任务与运行状态
+- [ ] 将 panel / 分屏提升为 tab 之后的最高优先级交付
 
 ---
 

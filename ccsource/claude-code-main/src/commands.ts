@@ -43,6 +43,7 @@ import share from './commands/share/index.js'
 import show, {
   showGlobal,
   showProject,
+  showSlash,
   showUser,
 } from './commands/show.js'
 import skills from './commands/skills/index.js'
@@ -306,6 +307,7 @@ const COMMANDS = memoize((): Command[] => [
   show,
   showGlobal,
   showProject,
+  showSlash,
   showUser,
   skills,
   stats,
