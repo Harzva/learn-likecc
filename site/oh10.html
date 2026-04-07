@@ -6,7 +6,7 @@
     <title>OH10: Hooks（OpenHarness） - Claude Code Course</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪝</text></svg>">
-    <meta name="description" content="OpenHarness OH10：Hooks，对标 S10。">
+    <meta name="description" content="OpenHarness OH10：HookEvent、HookExecutor、加载器，对标 S10。">
 </head>
 <body>
     <nav class="navbar">
@@ -14,6 +14,7 @@
             <a href="index.html" class="nav-logo"><span class="logo-icon">⚖️</span><span class="logo-text">OH 源码课</span></a>
             <div class="nav-links">
                 <a href="topic-openharness-course.html" class="nav-link">课纲</a>
+                <a href="topic-openharness-course.html#oh-series" class="nav-link">目录</a>
                 <a href="topic-openharness.html#map" class="nav-link">路径表</a>
                 <a href="s10.html" class="nav-link">对照 S10</a>
             </div>
@@ -30,7 +31,7 @@
                     <a href="index.html">首页</a><span>/</span><a href="topic-openharness-course.html">OpenHarness 源码课</a><span>/</span><span>OH10: Hooks</span>
                 </div>
                 <div class="course-nav">
-                    <span class="course-part-badge">OpenHarness · 与 S 课对照</span>
+                    <span class="course-part-badge">第 10/12 讲</span>
                     <div class="course-chapter-nav">
                         <a href="oh09.html" class="chapter-prev">← OH09</a>
                         <a href="oh11.html" class="chapter-next">下一讲 OH11 →</a>
@@ -38,40 +39,56 @@
                 </div>
             </div>
             <article class="course-content">
-                <h1 class="course-title">OH10: Hooks <span class="subtitle">对标 S10</span></h1>
+                <h1 class="course-title">OH10: Hooks <span class="subtitle">OpenHarness · 对标 S10</span></h1>
                 <div class="course-quote">
-                    <p>与 <a href="s10.html">S10</a> 同主题，读 OpenHarness 源码中的<strong>对应模块</strong>；路径见 <a href="topic-openharness.html#map">专题映射表</a>。</p>
-                    <p><strong>摘要</strong>：HookEvent、Pre/Post 与 query 挂钩</p>
+                    <p>与 <a href="s10.html">S10</a> 同主题：在工具执行前后插入用户脚本，用于审计、改写或阻断；必须与权限、工具错误路径<strong>顺序正确</strong>。</p>
+                    <p>上游：<a href="https://github.com/HKUDS/OpenHarness" target="_blank" rel="noopener noreferrer">HKUDS/OpenHarness</a> · 本仓库快照：<code>reference/rererence_harness/OpenHarness/</code> · 路径亦见 <a href="topic-openharness.html#map">专题映射表</a>。</p>
                 </div>
-                <figure class="mermaid-figure" aria-label="与 S10 导图一致的心智模型">
-                    <figcaption class="mermaid-caption"><strong>与 S10 导图对齐</strong>（站内同一 Mermaid key）。</figcaption>
+                <figure class="mermaid-figure" aria-label="与 S10 导图一致">
+                    <figcaption class="mermaid-caption"><strong>与 S10 站内导图对齐</strong>（<code>course-s10</code>）。</figcaption>
                     <div class="mermaid-diagram-scroll" data-mermaid-diagram="course-s10"></div>
                 </figure>
                 <section class="section-block">
-                    <h2>🎯 读什么</h2>
-                    <p>按 <a href="https://github.com/HKUDS/OpenHarness" target="_blank" rel="noopener noreferrer">上游仓库</a> 打开下列路径（本仓库快照：<code>reference/rererence_harness/OpenHarness/</code>）。具体文件以当前 main 为准。</p>
-                    <ul><li><code>hooks/events.py</code>：<code>HookEvent</code></li><li><code>hooks/executor.py</code></li><li><code>hooks/loader.py</code></li><li><code>engine/query.py</code> <code>_execute_tool_call</code></li></ul>
+                    <h2>🎯 关键路径（读什么）</h2>
+                    <p>在 <code>src/openharness/</code> 下优先打开：</p>
+                    <ul>
+                        <li><code>hooks/events.py</code>：<code>PRE_TOOL_USE</code> / <code>POST_TOOL_USE</code> / session 级事件。</li>
+                        <li><code>hooks/executor.py</code>：聚合多 hook 定义的执行与 block 语义。</li>
+                        <li><code>hooks/loader.py</code>：<code>load_hook_registry</code> 从配置构建。</li>
+                    </ul>
                 </section>
                 <section class="section-block">
-                    <h2>⚖️ 与 TS 课的关系</h2>
-                    <p>24 讲（S/D）走重建 TypeScript；OH 系列走 <strong>MIT Python</strong>。模块边界相似、API 与产品特性不必一一对应，重点建立 <strong>Harness 元模型</strong>。</p>
+                    <h2>🔍 源码导读</h2>
+                    <h3>调用顺序（对照源码）</h3>
+                    <p><code>_execute_tool_call</code>：<strong>Pre</strong> →（通过则）权限 → execute → <strong>Post</strong>。Pre 返回 <code>blocked</code> 时直接错误型 tool_result，不再做权限询问——与课内「hook 可短路」一致。</p>
+                    <h3>与 OH03 的叠加</h3>
+                    <p>权限判定依赖已解析的 <code>parsed_input</code>；Hook 收到的 payload 含原始与事件名。思考「谁在何种失败下对用户可见」。 </p>
                 </section>
                 <section class="section-block">
-                    <h2>🤔 自测</h2>
+                    <h2>⚖️ 与课内叙事对照</h2>
+                    <table class="compare-table">
+                        <tr><th>维度</th><th>课内 S10</th><th>OpenHarness</th></tr>
+                        <tr><td>事件面</td><td>Pre/Post/Session</td><td>枚举 <code>HookEvent</code></td></tr>
+                        <tr><td>配置</td><td>hooks JSON</td><td>与 settings / 项目目录约定</td></tr>
+                        <tr><td>阻断</td><td>permission vs hook</td><td>二者都可拒绝，但提示文案来源不同</td></tr>
+                    </table>
+                </section>
+                <section class="section-block">
+                    <h2>🤔 思考题</h2>
                     <ol class="thinking-questions">
-                        <li>该模块的「出口」被谁 import？从 CLI / TUI / <code>run_query</code> 哪条调用链能走到这里？</li>
-                        <li>若删掉该模块，哪条用户可见能力最先坏掉？</li>
-                        <li>与 S10 课内示意图相比，OH 多做了或少做了哪一层抽象？</li>
+                        <li>PostToolUse 若抛异常，工具结果是否仍写入对话历史？</li>
+                        <li>SessionStart hook 失败应否阻止整个会话启动？当前实现如何？</li>
+                        <li>若要在 Pre 阶段做「自动改 tool 参数」，应返回什么结构？（对照 <code>AggregatedHookResult</code>）</li>
                     </ol>
                 </section>
                 <section class="section-block">
-                    <h2>📎 延伸</h2>
-                    <p><a href="oh09.html">OH09</a> · <a href="s10.html">S10</a> · <a href="topic-openharness-course.html">OH 课纲</a></p>
+                    <h2>📎 延伸阅读</h2>
+                    <p><a href="topic-openharness-course.html#oh-series">OH01–12 目录</a> · <a href="oh09.html">OH09</a> · <a href="oh11.html">OH11</a> · <a href="s10.html">S10</a> · <a href="d10.html">D10</a></p>
                 </section>
                 <div class="chapter-navigation">
                     <a href="oh09.html" class="btn btn-secondary">← OH09</a>
                     <a href="s10.html" class="btn btn-secondary">对照 S10</a>
-                    <a href="oh11.html" class="btn btn-primary">下一讲 OH11</a>
+                    <a href="oh11.html" class="btn btn-primary">下一讲 OH11 →</a>
                 </div>
                 <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/oh10.md" target="_blank" rel="noopener noreferrer">📝 Markdown 源（GitHub）</a></p>
             </article>

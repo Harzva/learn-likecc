@@ -6,7 +6,7 @@
     <title>OH07: MCP（OpenHarness） - Claude Code Course</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔌</text></svg>">
-    <meta name="description" content="OpenHarness OH07：MCP，对标 S07。">
+    <meta name="description" content="OpenHarness OH07：McpClientManager、McpToolAdapter、动态工具名，对标 S07。">
 </head>
 <body>
     <nav class="navbar">
@@ -14,6 +14,7 @@
             <a href="index.html" class="nav-logo"><span class="logo-icon">⚖️</span><span class="logo-text">OH 源码课</span></a>
             <div class="nav-links">
                 <a href="topic-openharness-course.html" class="nav-link">课纲</a>
+                <a href="topic-openharness-course.html#oh-series" class="nav-link">目录</a>
                 <a href="topic-openharness.html#map" class="nav-link">路径表</a>
                 <a href="s07.html" class="nav-link">对照 S07</a>
             </div>
@@ -30,7 +31,7 @@
                     <a href="index.html">首页</a><span>/</span><a href="topic-openharness-course.html">OpenHarness 源码课</a><span>/</span><span>OH07: MCP</span>
                 </div>
                 <div class="course-nav">
-                    <span class="course-part-badge">OpenHarness · 与 S 课对照</span>
+                    <span class="course-part-badge">第 7/12 讲</span>
                     <div class="course-chapter-nav">
                         <a href="oh06.html" class="chapter-prev">← OH06</a>
                         <a href="oh08.html" class="chapter-next">下一讲 OH08 →</a>
@@ -38,40 +39,56 @@
                 </div>
             </div>
             <article class="course-content">
-                <h1 class="course-title">OH07: MCP <span class="subtitle">对标 S07</span></h1>
+                <h1 class="course-title">OH07: MCP <span class="subtitle">OpenHarness · 对标 S07</span></h1>
                 <div class="course-quote">
-                    <p>与 <a href="s07.html">S07</a> 同主题，读 OpenHarness 源码中的<strong>对应模块</strong>；路径见 <a href="topic-openharness.html#map">专题映射表</a>。</p>
-                    <p><strong>摘要</strong>：McpToolAdapter、动态 schema、资源工具</p>
+                    <p>与 <a href="s07.html">S07</a> 同主题：外部 MCP server 暴露的 tools/resources 必须变成模型可见的<strong>同质 Tool</strong>，并在同一 Loop 里执行；关键是命名、schema 转换与调用转发。</p>
+                    <p>上游：<a href="https://github.com/HKUDS/OpenHarness" target="_blank" rel="noopener noreferrer">HKUDS/OpenHarness</a> · 本仓库快照：<code>reference/rererence_harness/OpenHarness/</code> · 路径亦见 <a href="topic-openharness.html#map">专题映射表</a>。</p>
                 </div>
-                <figure class="mermaid-figure" aria-label="与 S07 导图一致的心智模型">
-                    <figcaption class="mermaid-caption"><strong>与 S07 导图对齐</strong>（站内同一 Mermaid key）。</figcaption>
+                <figure class="mermaid-figure" aria-label="与 S07 导图一致">
+                    <figcaption class="mermaid-caption"><strong>与 S07 站内导图对齐</strong>（<code>course-s07</code>）。</figcaption>
                     <div class="mermaid-diagram-scroll" data-mermaid-diagram="course-s07"></div>
                 </figure>
                 <section class="section-block">
-                    <h2>🎯 读什么</h2>
-                    <p>按 <a href="https://github.com/HKUDS/OpenHarness" target="_blank" rel="noopener noreferrer">上游仓库</a> 打开下列路径（本仓库快照：<code>reference/rererence_harness/OpenHarness/</code>）。具体文件以当前 main 为准。</p>
-                    <ul><li><code>mcp/client.py</code>（Manager）</li><li><code>tools/mcp_tool.py</code>：<code>McpToolAdapter</code></li><li><code>tools/read_mcp_resource_tool.py</code>、<code>list_mcp_resources_tool.py</code></li></ul>
+                    <h2>🎯 关键路径（读什么）</h2>
+                    <p>在 <code>src/openharness/</code> 下优先打开：</p>
+                    <ul>
+                        <li><code>mcp/</code>：客户端管理、连接与 <code>call_tool</code>。</li>
+                        <li><code>tools/mcp_tool.py</code>：<code>McpToolAdapter</code>，工具名 <code>mcp__{server}__{tool}</code>。</li>
+                        <li><code>read_mcp_resource_tool.py</code> / <code>list_mcp_resources_tool.py</code>：资源发现与读取。</li>
+                    </ul>
                 </section>
                 <section class="section-block">
-                    <h2>⚖️ 与 TS 课的关系</h2>
-                    <p>24 讲（S/D）走重建 TypeScript；OH 系列走 <strong>MIT Python</strong>。模块边界相似、API 与产品特性不必一一对应，重点建立 <strong>Harness 元模型</strong>。</p>
+                    <h2>🔍 源码导读</h2>
+                    <h3>动态 Pydantic 模型</h3>
+                    <p><code>_input_model_from_schema</code> 用 <code>create_model</code> 把 JSON Schema properties 变成字段，满足 <code>BaseTool.input_model</code> 约束。字段全是宽松 <code>object | None</code> 时，校验弱于手写模型——与「MCP schema 任意」的权衡。</p>
+                    <h3>注册时机</h3>
+                    <p><code>create_default_tool_registry(mcp_manager)</code> 在拿到 live manager 后遍历 <code>list_tools()</code> 注册；故 MCP 断连或配置变更后常需重启会话或 refresh runtime（见 OH04 <code>CommandResult</code>）。</p>
                 </section>
                 <section class="section-block">
-                    <h2>🤔 自测</h2>
+                    <h2>⚖️ 与课内叙事对照</h2>
+                    <table class="compare-table">
+                        <tr><th>维度</th><th>课内 S07</th><th>OpenHarness</th></tr>
+                        <tr><td>工具名</td><td>课内 MCP 工具前缀策略</td><td><code>mcp__</code> 分段 sanitize</td></tr>
+                        <tr><td>传输</td><td>stdio / sse</td><td>配置在 settings <code>mcp_servers</code>，<code>cli mcp list</code> 可读</td></tr>
+                        <tr><td>错误</td><td>tool 失败回传</td><td><code>ToolResult</code> 字符串进父对话</td></tr>
+                    </table>
+                </section>
+                <section class="section-block">
+                    <h2>🤔 思考题</h2>
                     <ol class="thinking-questions">
-                        <li>该模块的「出口」被谁 import？从 CLI / TUI / <code>run_query</code> 哪条调用链能走到这里？</li>
-                        <li>若删掉该模块，哪条用户可见能力最先坏掉？</li>
-                        <li>与 S07 课内示意图相比，OH 多做了或少做了哪一层抽象？</li>
+                        <li>sanitize 后工具名碰撞时会发生什么？</li>
+                        <li>为何 adapter 的 <code>execute</code> 里 <code>del context</code>？若工具需要 cwd 应怎么改？</li>
+                        <li>与内置 <code>bash</code> 相比，MCP 工具权限走同一套 <code>PermissionChecker</code> 吗？有无特例？</li>
                     </ol>
                 </section>
                 <section class="section-block">
-                    <h2>📎 延伸</h2>
-                    <p><a href="oh06.html">OH06</a> · <a href="s07.html">S07</a> · <a href="topic-openharness-course.html">OH 课纲</a></p>
+                    <h2>📎 延伸阅读</h2>
+                    <p><a href="topic-openharness-course.html#oh-series">OH01–12 目录</a> · <a href="oh06.html">OH06</a> · <a href="oh08.html">OH08</a> · <a href="s07.html">S07</a> · <a href="d07.html">D07</a></p>
                 </section>
                 <div class="chapter-navigation">
                     <a href="oh06.html" class="btn btn-secondary">← OH06</a>
                     <a href="s07.html" class="btn btn-secondary">对照 S07</a>
-                    <a href="oh08.html" class="btn btn-primary">下一讲 OH08</a>
+                    <a href="oh08.html" class="btn btn-primary">下一讲 OH08 →</a>
                 </div>
                 <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/oh07.md" target="_blank" rel="noopener noreferrer">📝 Markdown 源（GitHub）</a></p>
             </article>

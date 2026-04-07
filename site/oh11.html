@@ -6,7 +6,7 @@
     <title>OH11: Vim / 键位（OpenHarness） - Claude Code Course</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⌨️</text></svg>">
-    <meta name="description" content="OpenHarness OH11：Vim / 键位，对标 S11。">
+    <meta name="description" content="OpenHarness OH11：Vim 模式开关、keybindings 加载与解析，对标 S11。">
 </head>
 <body>
     <nav class="navbar">
@@ -14,6 +14,7 @@
             <a href="index.html" class="nav-logo"><span class="logo-icon">⚖️</span><span class="logo-text">OH 源码课</span></a>
             <div class="nav-links">
                 <a href="topic-openharness-course.html" class="nav-link">课纲</a>
+                <a href="topic-openharness-course.html#oh-series" class="nav-link">目录</a>
                 <a href="topic-openharness.html#map" class="nav-link">路径表</a>
                 <a href="s11.html" class="nav-link">对照 S11</a>
             </div>
@@ -30,7 +31,7 @@
                     <a href="index.html">首页</a><span>/</span><a href="topic-openharness-course.html">OpenHarness 源码课</a><span>/</span><span>OH11: Vim / 键位</span>
                 </div>
                 <div class="course-nav">
-                    <span class="course-part-badge">OpenHarness · 与 S 课对照</span>
+                    <span class="course-part-badge">第 11/12 讲</span>
                     <div class="course-chapter-nav">
                         <a href="oh10.html" class="chapter-prev">← OH10</a>
                         <a href="oh12.html" class="chapter-next">下一讲 OH12 →</a>
@@ -38,40 +39,56 @@
                 </div>
             </div>
             <article class="course-content">
-                <h1 class="course-title">OH11: Vim / 键位 <span class="subtitle">对标 S11</span></h1>
+                <h1 class="course-title">OH11: Vim / 键位 <span class="subtitle">OpenHarness · 对标 S11</span></h1>
                 <div class="course-quote">
-                    <p>与 <a href="s11.html">S11</a> 同主题，读 OpenHarness 源码中的<strong>对应模块</strong>；路径见 <a href="topic-openharness.html#map">专题映射表</a>。</p>
-                    <p><strong>摘要</strong>：vim 状态、keybindings 解析</p>
+                    <p>与 <a href="s11.html">S11</a> 同主题：终端 TUI 需要可选的 Vim 键位；实现上分为<strong>模式位</strong>与<strong>按键解析层</strong>，与课内「normal/insert」叙事对应但代码更薄。</p>
+                    <p>上游：<a href="https://github.com/HKUDS/OpenHarness" target="_blank" rel="noopener noreferrer">HKUDS/OpenHarness</a> · 本仓库快照：<code>reference/rererence_harness/OpenHarness/</code> · 路径亦见 <a href="topic-openharness.html#map">专题映射表</a>。</p>
                 </div>
-                <figure class="mermaid-figure" aria-label="与 S11 导图一致的心智模型">
-                    <figcaption class="mermaid-caption"><strong>与 S11 导图对齐</strong>（站内同一 Mermaid key）。</figcaption>
+                <figure class="mermaid-figure" aria-label="与 S11 导图一致">
+                    <figcaption class="mermaid-caption"><strong>与 S11 站内导图对齐</strong>（<code>course-s11</code>）。</figcaption>
                     <div class="mermaid-diagram-scroll" data-mermaid-diagram="course-s11"></div>
                 </figure>
                 <section class="section-block">
-                    <h2>🎯 读什么</h2>
-                    <p>按 <a href="https://github.com/HKUDS/OpenHarness" target="_blank" rel="noopener noreferrer">上游仓库</a> 打开下列路径（本仓库快照：<code>reference/rererence_harness/OpenHarness/</code>）。具体文件以当前 main 为准。</p>
-                    <ul><li><code>vim/transitions.py</code></li><li><code>keybindings/</code>：default_bindings、loader、resolver</li></ul>
+                    <h2>🎯 关键路径（读什么）</h2>
+                    <p>在 <code>src/openharness/</code> 下优先打开：</p>
+                    <ul>
+                        <li><code>vim/transitions.py</code>：<code>toggle_vim_mode</code>（最小实现）。</li>
+                        <li><code>keybindings/default_bindings.py</code>：默认表。</li>
+                        <li><code>keybindings/loader.py</code>、<code>resolver.py</code>、<code>parser.py</code>：读配置、解析按键、绑定动作。</li>
+                    </ul>
                 </section>
                 <section class="section-block">
-                    <h2>⚖️ 与 TS 课的关系</h2>
-                    <p>24 讲（S/D）走重建 TypeScript；OH 系列走 <strong>MIT Python</strong>。模块边界相似、API 与产品特性不必一一对应，重点建立 <strong>Harness 元模型</strong>。</p>
+                    <h2>🔍 源码导读</h2>
+                    <h3>薄层现实</h3>
+                    <p>OpenHarness 的 Vim 层刻意保持小；重逻辑在 <code>prompt_toolkit</code> 与 TUI 主循环。阅读重点放在「配置从哪加载、如何覆盖默认」而非期待完整 Vim 兼容表。</p>
+                    <h3>与 S11 对照</h3>
+                    <p>课内可能展开 text object；此处优先保证<strong>可扩展绑定表</strong>与模式切换钩子。若做二次开发，通常在 resolver 层加映射。</p>
                 </section>
                 <section class="section-block">
-                    <h2>🤔 自测</h2>
+                    <h2>⚖️ 与课内叙事对照</h2>
+                    <table class="compare-table">
+                        <tr><th>维度</th><th>课内 S11</th><th>OpenHarness</th></tr>
+                        <tr><td>模式状态</td><td>Normal/Insert</td><td>布尔或枚举由 TUI 持有，vim 包仅辅助</td></tr>
+                        <tr><td>绑定来源</td><td>用户配置</td><td><code>loader</code> 路径与合并规则</td></tr>
+                        <tr><td>与 slash</td><td>命令抢占</td><td>冒号/斜杠输入优先级在 TUI 层处理</td></tr>
+                    </table>
+                </section>
+                <section class="section-block">
+                    <h2>🤔 思考题</h2>
                     <ol class="thinking-questions">
-                        <li>该模块的「出口」被谁 import？从 CLI / TUI / <code>run_query</code> 哪条调用链能走到这里？</li>
-                        <li>若删掉该模块，哪条用户可见能力最先坏掉？</li>
-                        <li>与 S11 课内示意图相比，OH 多做了或少做了哪一层抽象？</li>
+                        <li>为何不把 Vim 模式状态放进 <code>QueryEngine</code>？</li>
+                        <li>若默认绑定与系统快捷键冲突，推荐改文件是哪一处？</li>
+                        <li><code>toggle_vim_mode</code> 仅取反布尔，若需 tri-state（off/vi/emacs）应改哪里？</li>
                     </ol>
                 </section>
                 <section class="section-block">
-                    <h2>📎 延伸</h2>
-                    <p><a href="oh10.html">OH10</a> · <a href="s11.html">S11</a> · <a href="topic-openharness-course.html">OH 课纲</a></p>
+                    <h2>📎 延伸阅读</h2>
+                    <p><a href="topic-openharness-course.html#oh-series">OH01–12 目录</a> · <a href="oh10.html">OH10</a> · <a href="oh12.html">OH12</a> · <a href="s11.html">S11</a> · <a href="d11.html">D11</a></p>
                 </section>
                 <div class="chapter-navigation">
                     <a href="oh10.html" class="btn btn-secondary">← OH10</a>
                     <a href="s11.html" class="btn btn-secondary">对照 S11</a>
-                    <a href="oh12.html" class="btn btn-primary">下一讲 OH12</a>
+                    <a href="oh12.html" class="btn btn-primary">下一讲 OH12 →</a>
                 </div>
                 <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/oh11.md" target="_blank" rel="noopener noreferrer">📝 Markdown 源（GitHub）</a></p>
             </article>

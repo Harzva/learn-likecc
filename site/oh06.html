@@ -6,7 +6,7 @@
     <title>OH06: Subagent / 多 Agent（OpenHarness） - Claude Code Course</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔀</text></svg>">
-    <meta name="description" content="OpenHarness OH06：Subagent / 多 Agent，对标 S06。">
+    <meta name="description" content="OpenHarness OH06：agent 工具、coordinator、swarm 后端，对标 S06。">
 </head>
 <body>
     <nav class="navbar">
@@ -14,6 +14,7 @@
             <a href="index.html" class="nav-logo"><span class="logo-icon">⚖️</span><span class="logo-text">OH 源码课</span></a>
             <div class="nav-links">
                 <a href="topic-openharness-course.html" class="nav-link">课纲</a>
+                <a href="topic-openharness-course.html#oh-series" class="nav-link">目录</a>
                 <a href="topic-openharness.html#map" class="nav-link">路径表</a>
                 <a href="s06.html" class="nav-link">对照 S06</a>
             </div>
@@ -30,7 +31,7 @@
                     <a href="index.html">首页</a><span>/</span><a href="topic-openharness-course.html">OpenHarness 源码课</a><span>/</span><span>OH06: Subagent / 多 Agent</span>
                 </div>
                 <div class="course-nav">
-                    <span class="course-part-badge">OpenHarness · 与 S 课对照</span>
+                    <span class="course-part-badge">第 6/12 讲</span>
                     <div class="course-chapter-nav">
                         <a href="oh05.html" class="chapter-prev">← OH05</a>
                         <a href="oh07.html" class="chapter-next">下一讲 OH07 →</a>
@@ -38,40 +39,56 @@
                 </div>
             </div>
             <article class="course-content">
-                <h1 class="course-title">OH06: Subagent / 多 Agent <span class="subtitle">对标 S06</span></h1>
+                <h1 class="course-title">OH06: Subagent / 多 Agent <span class="subtitle">OpenHarness · 对标 S06</span></h1>
                 <div class="course-quote">
-                    <p>与 <a href="s06.html">S06</a> 同主题，读 OpenHarness 源码中的<strong>对应模块</strong>；路径见 <a href="topic-openharness.html#map">专题映射表</a>。</p>
-                    <p><strong>摘要</strong>：coordinator、swarm、agent 工具</p>
+                    <p>与 <a href="s06.html">S06</a> 同主题：把子任务<strong>委派</strong>给另一进程或同进程 teammate，需要类型定义、spawn 后端选择与结果回传；与课内 Explore / worktree 隔离<strong>同构不同实现</strong>。</p>
+                    <p>上游：<a href="https://github.com/HKUDS/OpenHarness" target="_blank" rel="noopener noreferrer">HKUDS/OpenHarness</a> · 本仓库快照：<code>reference/rererence_harness/OpenHarness/</code> · 路径亦见 <a href="topic-openharness.html#map">专题映射表</a>。</p>
                 </div>
-                <figure class="mermaid-figure" aria-label="与 S06 导图一致的心智模型">
-                    <figcaption class="mermaid-caption"><strong>与 S06 导图对齐</strong>（站内同一 Mermaid key）。</figcaption>
+                <figure class="mermaid-figure" aria-label="与 S06 导图一致">
+                    <figcaption class="mermaid-caption"><strong>与 S06 站内导图对齐</strong>（<code>course-s06</code>）。</figcaption>
                     <div class="mermaid-diagram-scroll" data-mermaid-diagram="course-s06"></div>
                 </figure>
                 <section class="section-block">
-                    <h2>🎯 读什么</h2>
-                    <p>按 <a href="https://github.com/HKUDS/OpenHarness" target="_blank" rel="noopener noreferrer">上游仓库</a> 打开下列路径（本仓库快照：<code>reference/rererence_harness/OpenHarness/</code>）。具体文件以当前 main 为准。</p>
-                    <ul><li><code>tools/agent_tool.py</code></li><li><code>coordinator/</code>：定义与 team</li><li><code>swarm/</code>：后端 registry</li></ul>
+                    <h2>🎯 关键路径（读什么）</h2>
+                    <p>在 <code>src/openharness/</code> 下优先打开：</p>
+                    <ul>
+                        <li><code>tools/agent_tool.py</code>：<code>AgentToolInput.mode</code>（<code>local_agent</code> / <code>remote_agent</code> / <code>in_process_teammate</code>）。</li>
+                        <li><code>coordinator/</code>：<code>get_agent_definition</code>、team registry。</li>
+                        <li><code>swarm/</code>：<code>get_backend_registry</code>、实际 spawn / in-process 路径。</li>
+                    </ul>
                 </section>
                 <section class="section-block">
-                    <h2>⚖️ 与 TS 课的关系</h2>
-                    <p>24 讲（S/D）走重建 TypeScript；OH 系列走 <strong>MIT Python</strong>。模块边界相似、API 与产品特性不必一一对应，重点建立 <strong>Harness 元模型</strong>。</p>
+                    <h2>🔍 源码导读</h2>
+                    <h3>从 tool 到 backend</h3>
+                    <p><code>execute</code> 内先解析 <code>subagent_type</code> 拿定义，再选 <code>get_backend_registry()</code> 中后端；失败时返回 <code>ToolResult(is_error=True)</code>。读时可对照课内「子 Agent 配置从哪来」。</p>
+                    <h3>与 OH01 的关系</h3>
+                    <p>子 Agent 往往是<strong>另一条</strong> <code>QueryEngine</code> 或子进程 CLI；父循环只收到一条 tool_result 字符串，父侧消息历史不因子的内部 turn 自动膨胀——边界与课内 fork 模型类似。</p>
                 </section>
                 <section class="section-block">
-                    <h2>🤔 自测</h2>
+                    <h2>⚖️ 与课内叙事对照</h2>
+                    <table class="compare-table">
+                        <tr><th>维度</th><th>课内 S06</th><th>OpenHarness</th></tr>
+                        <tr><td>隔离</td><td>worktree / remote</td><td>mode + swarm backend 组合</td></tr>
+                        <tr><td>配置源</td><td>AgentDefinition JSON</td><td><code>get_agent_definition</code> 查找链</td></tr>
+                        <tr><td>返回形态</td><td>tool_result 文本</td><td>单块字符串，非嵌套消息树</td></tr>
+                    </table>
+                </section>
+                <section class="section-block">
+                    <h2>🤔 思考题</h2>
                     <ol class="thinking-questions">
-                        <li>该模块的「出口」被谁 import？从 CLI / TUI / <code>run_query</code> 哪条调用链能走到这里？</li>
-                        <li>若删掉该模块，哪条用户可见能力最先坏掉？</li>
-                        <li>与 S06 课内示意图相比，OH 多做了或少做了哪一层抽象？</li>
+                        <li><code>in_process_teammate</code> 与 <code>local_agent</code> 在资源隔离上差在哪？</li>
+                        <li>若 <code>subagent_type</code> 未注册，工具在 execute 哪一行失败？</li>
+                        <li>与 <a href="oh12.html">OH12</a> worktree 工具组合时，典型调用顺序应怎样设计？</li>
                     </ol>
                 </section>
                 <section class="section-block">
-                    <h2>📎 延伸</h2>
-                    <p><a href="oh05.html">OH05</a> · <a href="s06.html">S06</a> · <a href="topic-openharness-course.html">OH 课纲</a></p>
+                    <h2>📎 延伸阅读</h2>
+                    <p><a href="topic-openharness-course.html#oh-series">OH01–12 目录</a> · <a href="oh05.html">OH05</a> · <a href="oh07.html">OH07</a> · <a href="s06.html">S06</a> · <a href="d06.html">D06</a></p>
                 </section>
                 <div class="chapter-navigation">
                     <a href="oh05.html" class="btn btn-secondary">← OH05</a>
                     <a href="s06.html" class="btn btn-secondary">对照 S06</a>
-                    <a href="oh07.html" class="btn btn-primary">下一讲 OH07</a>
+                    <a href="oh07.html" class="btn btn-primary">下一讲 OH07 →</a>
                 </div>
                 <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/oh06.md" target="_blank" rel="noopener noreferrer">📝 Markdown 源（GitHub）</a></p>
             </article>

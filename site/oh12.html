@@ -6,7 +6,7 @@
     <title>OH12: Git / Worktree（OpenHarness） - Claude Code Course</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
-    <meta name="description" content="OpenHarness OH12：Git / Worktree，对标 S12。">
+    <meta name="description" content="OpenHarness OH12：enter/exit_worktree 工具与 Bash 跑 git，对标 S12。">
 </head>
 <body>
     <nav class="navbar">
@@ -14,6 +14,7 @@
             <a href="index.html" class="nav-logo"><span class="logo-icon">⚖️</span><span class="logo-text">OH 源码课</span></a>
             <div class="nav-links">
                 <a href="topic-openharness-course.html" class="nav-link">课纲</a>
+                <a href="topic-openharness-course.html#oh-series" class="nav-link">目录</a>
                 <a href="topic-openharness.html#map" class="nav-link">路径表</a>
                 <a href="s12.html" class="nav-link">对照 S12</a>
             </div>
@@ -30,7 +31,7 @@
                     <a href="index.html">首页</a><span>/</span><a href="topic-openharness-course.html">OpenHarness 源码课</a><span>/</span><span>OH12: Git / Worktree</span>
                 </div>
                 <div class="course-nav">
-                    <span class="course-part-badge">OpenHarness · 与 S 课对照</span>
+                    <span class="course-part-badge">第 12/12 讲</span>
                     <div class="course-chapter-nav">
                         <a href="oh11.html" class="chapter-prev">← OH11</a>
                         <a href="topic-openharness-course.html" class="chapter-next">OH 课纲（全系列）→</a>
@@ -38,35 +39,51 @@
                 </div>
             </div>
             <article class="course-content">
-                <h1 class="course-title">OH12: Git / Worktree <span class="subtitle">对标 S12</span></h1>
+                <h1 class="course-title">OH12: Git / Worktree <span class="subtitle">OpenHarness · 对标 S12</span></h1>
                 <div class="course-quote">
-                    <p>与 <a href="s12.html">S12</a> 同主题，读 OpenHarness 源码中的<strong>对应模块</strong>；路径见 <a href="topic-openharness.html#map">专题映射表</a>。</p>
-                    <p><strong>摘要</strong>：enter/exit_worktree、Bash 跑 git</p>
+                    <p>与 <a href="s12.html">S12</a> 同主题：用独立 worktree 做<strong>文件系统隔离</strong>时，需要封装 <code>git worktree add</code>、回到主树、以及与 <code>cwd</code> 权限规则联动。</p>
+                    <p>上游：<a href="https://github.com/HKUDS/OpenHarness" target="_blank" rel="noopener noreferrer">HKUDS/OpenHarness</a> · 本仓库快照：<code>reference/rererence_harness/OpenHarness/</code> · 路径亦见 <a href="topic-openharness.html#map">专题映射表</a>。</p>
                 </div>
-                <figure class="mermaid-figure" aria-label="与 S12 导图一致的心智模型">
-                    <figcaption class="mermaid-caption"><strong>与 S12 导图对齐</strong>（站内同一 Mermaid key）。</figcaption>
+                <figure class="mermaid-figure" aria-label="与 S12 导图一致">
+                    <figcaption class="mermaid-caption"><strong>与 S12 站内导图对齐</strong>（<code>course-s12</code>）。</figcaption>
                     <div class="mermaid-diagram-scroll" data-mermaid-diagram="course-s12"></div>
                 </figure>
                 <section class="section-block">
-                    <h2>🎯 读什么</h2>
-                    <p>按 <a href="https://github.com/HKUDS/OpenHarness" target="_blank" rel="noopener noreferrer">上游仓库</a> 打开下列路径（本仓库快照：<code>reference/rererence_harness/OpenHarness/</code>）。具体文件以当前 main 为准。</p>
-                    <ul><li><code>tools/enter_worktree_tool.py</code></li><li><code>tools/exit_worktree_tool.py</code></li><li><code>tools/bash_tool.py</code>（git 命令）</li></ul>
+                    <h2>🎯 关键路径（读什么）</h2>
+                    <p>在 <code>src/openharness/</code> 下优先打开：</p>
+                    <ul>
+                        <li><code>tools/enter_worktree_tool.py</code>：<code>git worktree add</code>、分支创建。</li>
+                        <li><code>tools/exit_worktree_tool.py</code>：离开 worktree 上下文（回到主 repo 路径语义）。</li>
+                        <li><code>tools/bash_tool.py</code>：通用 <code>git</code> 子命令仍多经 Shell。</li>
+                    </ul>
                 </section>
                 <section class="section-block">
-                    <h2>⚖️ 与 TS 课的关系</h2>
-                    <p>24 讲（S/D）走重建 TypeScript；OH 系列走 <strong>MIT Python</strong>。模块边界相似、API 与产品特性不必一一对应，重点建立 <strong>Harness 元模型</strong>。</p>
+                    <h2>🔍 源码导读</h2>
+                    <h3>与权限、上下文</h3>
+                    <p>worktree 路径解析后成为新的操作根；<code>PermissionChecker</code> 的 path_rules 仍基于绝对路径匹配。读 <code>enter_worktree</code> 返回给模型的文本，应包含<strong>可写 cwd</strong> 提示便于后续工具调用。</p>
+                    <h3>失败路径</h3>
+                    <p>非 git 仓库、分支已存在、<code>git</code> 返回非零等，一律收敛为 <code>ToolResult(is_error=True)</code>，由模型在对话中处理。</p>
                 </section>
                 <section class="section-block">
-                    <h2>🤔 自测</h2>
+                    <h2>⚖️ 与课内叙事对照</h2>
+                    <table class="compare-table">
+                        <tr><th>维度</th><th>课内 S12</th><th>OpenHarness</th></tr>
+                        <tr><td>隔离</td><td>课内 worktree 模式</td><td>显式工具而非隐式 fork</td></tr>
+                        <tr><td>与 OH06</td><td>子 Agent</td><td>可组合：worktree 给写盘边界，agent 给算力边界</td></tr>
+                        <tr><td>清理</td><td>remove worktree</td><td>是否暴露为工具依产品选择；可读 exit 工具语义</td></tr>
+                    </table>
+                </section>
+                <section class="section-block">
+                    <h2>🤔 思考题</h2>
                     <ol class="thinking-questions">
-                        <li>该模块的「出口」被谁 import？从 CLI / TUI / <code>run_query</code> 哪条调用链能走到这里？</li>
-                        <li>若删掉该模块，哪条用户可见能力最先坏掉？</li>
-                        <li>与 S12 课内示意图相比，OH 多做了或少做了哪一层抽象？</li>
+                        <li><code>enter_worktree</code> 成功后，模型如何获知新的 <code>cwd</code>？工具输出是否足够机器可读？</li>
+                        <li>若用户在 worktree 里跑 <code>bash git push</code>，权限走 Bash 规则还是 Git 特判？</li>
+                        <li>与 <a href="oh06.html">OH06</a> <code>local_agent</code> 同时使用时，如何避免两个隔离机制互相打架？</li>
                     </ol>
                 </section>
                 <section class="section-block">
-                    <h2>📎 延伸</h2>
-                    <p><a href="oh11.html">OH11</a> · <a href="s12.html">S12</a> · <a href="topic-openharness-course.html">OH 课纲</a></p>
+                    <h2>📎 延伸阅读</h2>
+                    <p><a href="topic-openharness-course.html#oh-series">OH01–12 目录</a> · <a href="oh11.html">OH11</a> · <a href="topic-openharness-course.html">OH 课纲</a> · <a href="s12.html">S12</a> · <a href="d12.html">D12</a></p>
                 </section>
                 <div class="chapter-navigation">
                     <a href="oh11.html" class="btn btn-secondary">← OH11</a>

@@ -6,7 +6,7 @@
     <title>OH04: CLI / 命令接口（OpenHarness） - Claude Code Course</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📟</text></svg>">
-    <meta name="description" content="OpenHarness OH04：CLI / 命令接口，对标 S04。">
+    <meta name="description" content="OpenHarness OH04：Typer 进程入口、子命令与斜杠 CommandRegistry，对标 S04。">
 </head>
 <body>
     <nav class="navbar">
@@ -14,6 +14,7 @@
             <a href="index.html" class="nav-logo"><span class="logo-icon">⚖️</span><span class="logo-text">OH 源码课</span></a>
             <div class="nav-links">
                 <a href="topic-openharness-course.html" class="nav-link">课纲</a>
+                <a href="topic-openharness-course.html#oh-series" class="nav-link">目录</a>
                 <a href="topic-openharness.html#map" class="nav-link">路径表</a>
                 <a href="s04.html" class="nav-link">对照 S04</a>
             </div>
@@ -30,7 +31,7 @@
                     <a href="index.html">首页</a><span>/</span><a href="topic-openharness-course.html">OpenHarness 源码课</a><span>/</span><span>OH04: CLI / 命令接口</span>
                 </div>
                 <div class="course-nav">
-                    <span class="course-part-badge">OpenHarness · 与 S 课对照</span>
+                    <span class="course-part-badge">第 4/12 讲</span>
                     <div class="course-chapter-nav">
                         <a href="oh03.html" class="chapter-prev">← OH03</a>
                         <a href="oh05.html" class="chapter-next">下一讲 OH05 →</a>
@@ -38,40 +39,62 @@
                 </div>
             </div>
             <article class="course-content">
-                <h1 class="course-title">OH04: CLI / 命令接口 <span class="subtitle">对标 S04</span></h1>
+                <h1 class="course-title">OH04: CLI / 命令接口 <span class="subtitle">OpenHarness · 对标 S04</span></h1>
                 <div class="course-quote">
-                    <p>与 <a href="s04.html">S04</a> 同主题，读 OpenHarness 源码中的<strong>对应模块</strong>；路径见 <a href="topic-openharness.html#map">专题映射表</a>。</p>
-                    <p><strong>摘要</strong>：Typer 入口、子命令与斜杠命令注册表</p>
+                    <p>与 <a href="s04.html">S04</a> 同主题：用户从 shell 进入 Harness：既要支持 <code>oh</code> / <code>python -m openharness</code> 的<strong>进程级入口</strong>，又要在<strong>交互会话内</strong>解析 <code>/command</code> 形态——两层命令面与课内 argv / 斜杠命令叙事一致。</p>
+                    <p>上游：<a href="https://github.com/HKUDS/OpenHarness" target="_blank" rel="noopener noreferrer">HKUDS/OpenHarness</a> · 本仓库快照：<code>reference/rererence_harness/OpenHarness/</code> · 路径亦见 <a href="topic-openharness.html#map">专题映射表</a>。</p>
                 </div>
-                <figure class="mermaid-figure" aria-label="与 S04 导图一致的心智模型">
-                    <figcaption class="mermaid-caption"><strong>与 S04 导图对齐</strong>（站内同一 Mermaid key）。</figcaption>
+                <figure class="mermaid-figure" aria-label="与 S04 导图一致">
+                    <figcaption class="mermaid-caption"><strong>与 S04 站内导图对齐</strong>（<code>course-s04</code>）。</figcaption>
                     <div class="mermaid-diagram-scroll" data-mermaid-diagram="course-s04"></div>
                 </figure>
                 <section class="section-block">
-                    <h2>🎯 读什么</h2>
-                    <p>按 <a href="https://github.com/HKUDS/OpenHarness" target="_blank" rel="noopener noreferrer">上游仓库</a> 打开下列路径（本仓库快照：<code>reference/rererence_harness/OpenHarness/</code>）。具体文件以当前 main 为准。</p>
-                    <ul><li><code>src/openharness/__main__.py</code> → <code>cli.app</code></li><li><code>cli.py</code>：Typer、子命令、默认会话</li><li><code>commands/registry.py</code>：<code>CommandRegistry</code>、斜杠命令与 <code>CommandResult</code></li></ul>
+                    <h2>🎯 关键路径（读什么）</h2>
+                    <p>在 <code>src/openharness/</code> 下优先打开：</p>
+                    <ul>
+                        <li><code>__main__.py</code>：仅委托 <code>cli.app</code>，保证包入口与脚本入口一致。</li>
+                        <li><code>cli.py</code>：<code>typer.Typer</code> 根 app，<code>mcp</code> / <code>plugin</code> / <code>auth</code> / <code>provider</code> / <code>cron</code> 等子树；默认无子命令时进入会话。</li>
+                        <li><code>commands/registry.py</code>：<code>CommandRegistry</code>、<code>SlashCommand</code>、<code>CommandResult</code>（含 <code>continue_pending</code>、<code>refresh_runtime</code> 等与 TUI 协作的字段）。</li>
+                    </ul>
                 </section>
                 <section class="section-block">
-                    <h2>⚖️ 与 TS 课的关系</h2>
-                    <p>24 讲（S/D）走重建 TypeScript；OH 系列走 <strong>MIT Python</strong>。模块边界相似、API 与产品特性不必一一对应，重点建立 <strong>Harness 元模型</strong>。</p>
+                    <h2>🔍 源码导读</h2>
+                    <h3>入口三行</h3>
+                    <div class="code-block"><div class="code-header"><span class="code-lang">Python</span><button class="copy-btn" onclick="copyCode(this)">复制</button></div>
+                    <pre><code class="language-python"># __main__.py
+from openharness.cli import app
+if __name__ == "__main__":
+    app()</code></pre></div>
+                    <h3>Typer 根 app</h3>
+                    <p><code>invoke_without_command=True</code> 允许直接 <code>oh</code> 进交互；<code>-p</code>/<code>--print</code> 等 flags 与课内管道模式同题。子命令与设置读写（如 <code>mcp add</code>）集中在同一文件，阅读时可用「搜索 <code>@app.callback</code> / <code>def main</code>」定位默认行为。</p>
+                    <h3>斜杠命令与 Loop</h3>
+                    <p>Slash 命令处理器异步返回 <code>CommandResult</code>，可触发清屏、退出、或<strong>不追加用户句而续跑</strong> <code>QueryEngine.continue_pending</code>——这是 CLI 层对 OH01 Loop 的「外环」控制。</p>
                 </section>
                 <section class="section-block">
-                    <h2>🤔 自测</h2>
+                    <h2>⚖️ 与课内叙事对照</h2>
+                    <table class="compare-table">
+                        <tr><th>维度</th><th>课内 S04</th><th>OpenHarness</th></tr>
+                        <tr><td>argv 与模式</td><td>claude 的 <code>-p</code> / resume 等</td><td>Typer 参数 + <code>cli.py</code> 内分支</td></tr>
+                        <tr><td>斜杠命令</td><td>课内 Command 表</td><td><code>CommandRegistry</code> + 大文件 handlers</td></tr>
+                        <tr><td>配置落盘</td><td>settings.json 等</td><td><code>load_settings</code> / <code>save_settings</code> 与多子命令共用</td></tr>
+                    </table>
+                </section>
+                <section class="section-block">
+                    <h2>🤔 思考题</h2>
                     <ol class="thinking-questions">
-                        <li>该模块的「出口」被谁 import？从 CLI / TUI / <code>run_query</code> 哪条调用链能走到这里？</li>
-                        <li>若删掉该模块，哪条用户可见能力最先坏掉？</li>
-                        <li>与 S04 课内示意图相比，OH 多做了或少做了哪一层抽象？</li>
+                        <li><code>CommandResult.continue_pending</code> 为 True 时，TUI 应调用哪一 API 而不走 <code>submit_message</code>？</li>
+                        <li>把 MCP 配置从 CLI 子命令写入 settings 的路径，与在 TUI 里改配置会冲突吗？谁后写谁生效？</li>
+                        <li>若新增 Typer 子命令，最少要改 <code>cli.py</code> 的哪几处才能让 <code>oh mycmd</code> 可见？</li>
                     </ol>
                 </section>
                 <section class="section-block">
-                    <h2>📎 延伸</h2>
-                    <p><a href="oh03.html">OH03</a> · <a href="s04.html">S04</a> · <a href="topic-openharness-course.html">OH 课纲</a></p>
+                    <h2>📎 延伸阅读</h2>
+                    <p><a href="topic-openharness-course.html#oh-series">OH01–12 目录</a> · <a href="oh03.html">OH03</a> · <a href="oh05.html">OH05</a> · <a href="s04.html">S04</a> · <a href="d04.html">D04</a></p>
                 </section>
                 <div class="chapter-navigation">
                     <a href="oh03.html" class="btn btn-secondary">← OH03</a>
                     <a href="s04.html" class="btn btn-secondary">对照 S04</a>
-                    <a href="oh05.html" class="btn btn-primary">下一讲 OH05</a>
+                    <a href="oh05.html" class="btn btn-primary">下一讲 OH05 →</a>
                 </div>
                 <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/oh04.md" target="_blank" rel="noopener noreferrer">📝 Markdown 源（GitHub）</a></p>
             </article>

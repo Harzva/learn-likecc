@@ -6,7 +6,7 @@
     <title>OH05: 上下文压缩（OpenHarness） - Claude Code Course</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗜️</text></svg>">
-    <meta name="description" content="OpenHarness OH05：上下文压缩，对标 S05。">
+    <meta name="description" content="OpenHarness OH05：microcompact、auto_compact、runtime system prompt，对标 S05。">
 </head>
 <body>
     <nav class="navbar">
@@ -14,6 +14,7 @@
             <a href="index.html" class="nav-logo"><span class="logo-icon">⚖️</span><span class="logo-text">OH 源码课</span></a>
             <div class="nav-links">
                 <a href="topic-openharness-course.html" class="nav-link">课纲</a>
+                <a href="topic-openharness-course.html#oh-series" class="nav-link">目录</a>
                 <a href="topic-openharness.html#map" class="nav-link">路径表</a>
                 <a href="s05.html" class="nav-link">对照 S05</a>
             </div>
@@ -30,7 +31,7 @@
                     <a href="index.html">首页</a><span>/</span><a href="topic-openharness-course.html">OpenHarness 源码课</a><span>/</span><span>OH05: 上下文压缩</span>
                 </div>
                 <div class="course-nav">
-                    <span class="course-part-badge">OpenHarness · 与 S 课对照</span>
+                    <span class="course-part-badge">第 5/12 讲</span>
                     <div class="course-chapter-nav">
                         <a href="oh04.html" class="chapter-prev">← OH04</a>
                         <a href="oh06.html" class="chapter-next">下一讲 OH06 →</a>
@@ -38,40 +39,56 @@
                 </div>
             </div>
             <article class="course-content">
-                <h1 class="course-title">OH05: 上下文压缩 <span class="subtitle">对标 S05</span></h1>
+                <h1 class="course-title">OH05: 上下文压缩 <span class="subtitle">OpenHarness · 对标 S05</span></h1>
                 <div class="course-quote">
-                    <p>与 <a href="s05.html">S05</a> 同主题，读 OpenHarness 源码中的<strong>对应模块</strong>；路径见 <a href="topic-openharness.html#map">专题映射表</a>。</p>
-                    <p><strong>摘要</strong>：microcompact、auto_compact、runtime prompt</p>
+                    <p>与 <a href="s05.html">S05</a> 同主题：对话历史无限增长会顶满上下文；需要在<strong>便宜清屏</strong>与<strong>LLM 摘要</strong>之间分层处理，并在每轮模型调用前自动触发。</p>
+                    <p>上游：<a href="https://github.com/HKUDS/OpenHarness" target="_blank" rel="noopener noreferrer">HKUDS/OpenHarness</a> · 本仓库快照：<code>reference/rererence_harness/OpenHarness/</code> · 路径亦见 <a href="topic-openharness.html#map">专题映射表</a>。</p>
                 </div>
-                <figure class="mermaid-figure" aria-label="与 S05 导图一致的心智模型">
-                    <figcaption class="mermaid-caption"><strong>与 S05 导图对齐</strong>（站内同一 Mermaid key）。</figcaption>
+                <figure class="mermaid-figure" aria-label="与 S05 导图一致">
+                    <figcaption class="mermaid-caption"><strong>与 S05 站内导图对齐</strong>（<code>course-s05</code>）。</figcaption>
                     <div class="mermaid-diagram-scroll" data-mermaid-diagram="course-s05"></div>
                 </figure>
                 <section class="section-block">
-                    <h2>🎯 读什么</h2>
-                    <p>按 <a href="https://github.com/HKUDS/OpenHarness" target="_blank" rel="noopener noreferrer">上游仓库</a> 打开下列路径（本仓库快照：<code>reference/rererence_harness/OpenHarness/</code>）。具体文件以当前 main 为准。</p>
-                    <ul><li><code>services/compact/</code>：token 估计、microcompact、<code>auto_compact_if_needed</code></li><li><code>engine/query.py</code> 每轮压缩插入点</li><li><code>prompts/context.py</code>：<code>build_runtime_system_prompt</code></li></ul>
+                    <h2>🎯 关键路径（读什么）</h2>
+                    <p>在 <code>src/openharness/</code> 下优先打开：</p>
+                    <ul>
+                        <li><code>services/compact/__init__.py</code>：<code>auto_compact_if_needed</code>、<code>COMPACTABLE_TOOLS</code>、token 阈值常量。</li>
+                        <li><code>engine/query.py</code>：每轮 <code>while</code> 开头调用压缩（与 OH01 衔接）。</li>
+                        <li><code>prompts/context.py</code>：<code>build_runtime_system_prompt</code> — CLAUDE.md、memory、skills 段落。</li>
+                    </ul>
                 </section>
                 <section class="section-block">
-                    <h2>⚖️ 与 TS 课的关系</h2>
-                    <p>24 讲（S/D）走重建 TypeScript；OH 系列走 <strong>MIT Python</strong>。模块边界相似、API 与产品特性不必一一对应，重点建立 <strong>Harness 元模型</strong>。</p>
+                    <h2>🔍 源码导读</h2>
+                    <h3>与 CC compaction 的注释链</h3>
+                    <p>模块文档写明思路来自 Claude Code 的 microCompact / autoCompact：<strong>先清旧 tool_result 文本</strong>，不够再调模型做结构化摘要。读 <code>estimate_message_tokens</code> 与 padding 系数可理解「何时触发」。</p>
+                    <h3>压缩与「模型可见上下文」</h3>
+                    <p>压缩改的是 <code>messages</code> 列表本身；<code>build_runtime_system_prompt</code> 则在<strong>系统侧</strong>叠加项目说明。二者都影响 token，但生命周期不同：前者每轮可变，后者多在会话初始化或 refresh 时更新。</p>
                 </section>
                 <section class="section-block">
-                    <h2>🤔 自测</h2>
+                    <h2>⚖️ 与课内叙事对照</h2>
+                    <table class="compare-table">
+                        <tr><th>维度</th><th>课内 S05</th><th>OpenHarness</th></tr>
+                        <tr><td>触发点</td><td>课内 compact 边界消息</td><td>每轮 <code>run_query</code> 前 <code>auto_compact_if_needed</code></td></tr>
+                        <tr><td>cheap vs LLM</td><td>micro vs full compact</td><td><code>COMPACTABLE_TOOLS</code> 与摘要调用分支</td></tr>
+                        <tr><td>保留尾部</td><td>keepRecent 叙事</td><td><code>DEFAULT_KEEP_RECENT</code> 等与实现常量</td></tr>
+                    </table>
+                </section>
+                <section class="section-block">
+                    <h2>🤔 思考题</h2>
                     <ol class="thinking-questions">
-                        <li>该模块的「出口」被谁 import？从 CLI / TUI / <code>run_query</code> 哪条调用链能走到这里？</li>
-                        <li>若删掉该模块，哪条用户可见能力最先坏掉？</li>
-                        <li>与 S05 课内示意图相比，OH 多做了或少做了哪一层抽象？</li>
+                        <li>连续三次压缩仍超限时引擎行为是什么？（搜 <code>MAX_CONSECUTIVE_AUTOCOMPACT_FAILURES</code>）</li>
+                        <li>为何 tool 名不在 <code>COMPACTABLE_TOOLS</code> 时可能仍被整段保留？</li>
+                        <li><code>build_runtime_system_prompt</code> 与压缩谁先谁后？若顺序反了会出现什么问题？</li>
                     </ol>
                 </section>
                 <section class="section-block">
-                    <h2>📎 延伸</h2>
-                    <p><a href="oh04.html">OH04</a> · <a href="s05.html">S05</a> · <a href="topic-openharness-course.html">OH 课纲</a></p>
+                    <h2>📎 延伸阅读</h2>
+                    <p><a href="topic-openharness-course.html#oh-series">OH01–12 目录</a> · <a href="oh04.html">OH04</a> · <a href="oh06.html">OH06</a> · <a href="s05.html">S05</a> · <a href="d05.html">D05</a></p>
                 </section>
                 <div class="chapter-navigation">
                     <a href="oh04.html" class="btn btn-secondary">← OH04</a>
                     <a href="s05.html" class="btn btn-secondary">对照 S05</a>
-                    <a href="oh06.html" class="btn btn-primary">下一讲 OH06</a>
+                    <a href="oh06.html" class="btn btn-primary">下一讲 OH06 →</a>
                 </div>
                 <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/oh05.md" target="_blank" rel="noopener noreferrer">📝 Markdown 源（GitHub）</a></p>
             </article>
