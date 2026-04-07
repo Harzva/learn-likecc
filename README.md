@@ -81,6 +81,8 @@
   - inactive pane 现在会显示自己的 transcript 摘要、todo 摘要、draft 提示和更明确的激活文案，不再只是空预览壳
 - ✅ **pane 聚焦入口更贴近分屏心智**
   - 现在除了点击 pane，还支持 `/tab focus left|right|1|2` 和 `Ctrl+g h / l` 快速把左右 pane 提升为 active
+- ✅ **每个 pane 的 task lane 也开始直接可见**
+  - inactive pane 现在除了 transcript / todo / draft，还会直接显示当前任务摘要，不用只靠右侧 workspace 面板判断
 - ✅ **切换 tab 时主消息区开始切到各自 transcript**
   - tab 不再只切标题和预览，主消息区现在会跟着切到该 tab 保存下来的消息流
 - ✅ **todo lane 开始按 tab 记住和恢复**
@@ -270,6 +272,8 @@ Claude Code 很强，但真实使用里一直有一个明显痛点：
 - [x] 将当前 tab 的 `model / provider / transcript / todo lane` 开始同步到真实状态
 - [x] 将 subagent 面板从纯占位升级为第一版真实状态面板
 - [ ] 支持 **subagent 工作视图**：按窗口看不同 subagent 在忙什么
+- [ ] 并行设计一个 **localhost Web UI 工作台**
+- [ ] 在 Web UI 第一版里展示 `session / pane` 列表、结构化 transcript、tool/subagent 时间线、model/provider 切换记录、思考过程卡片流
 - [ ] 支持 **按任务自动路由模型**：写代码 / 总结 / 搜索 / 便宜优先 / 最强优先
 - [ ] 尽量做到 **不 compact 也能切到别的模型继续干活**
 - [ ] 在上下文过长时，优先尝试「局部转译 / 局部摘要 / 局部降配」而不是直接整段 compact
@@ -289,6 +293,7 @@ Claude Code 很强，但真实使用里一直有一个明显痛点：
 - [x] 把 subagent 面板从占位升级成真实状态视图
 - [ ] 继续把“多个可见对话框”升级成真正的多活跃输入与多 transcript 并行，而不只是先做 active pane 输入
 - [ ] 继续把 transcript / todo 做到真正隔离，而不只是先完成 UI 层消息区与快照恢复
+- [ ] 为 localhost Web UI 设计一版“观察台”而不是先做“控制台”，优先承接结构化展示与流程图
 - [ ] 团队里每个人可配置自己的默认 provider / 默认模型 / 默认预算策略
 - [ ] 项目级规则决定“这个仓库优先稳定模型，那个仓库优先低成本模型”
 - [ ] 一个命令完成“继续当前 session，但换模型再试一次”

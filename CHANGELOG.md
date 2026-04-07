@@ -14,6 +14,7 @@
 - 左右 pane 开始显示各自保存下来的 transcript 预览，分屏里不再继续共用同一段可见对话内容
 - non-active pane 已升级成“准可操作态”，开始显示自己的 transcript 摘要、todo 摘要、draft 提示和更明确的激活文案
 - 新增 `/tab focus left|right|1|2`，并补上 `Ctrl+g h / l`，让左右 pane 的聚焦切换更贴近分屏心智
+- pane 现在开始直接显示自己的 task lane 摘要，不用只靠 workspace 侧栏判断“这边在忙什么”
 - 切换 tab 时，主消息区开始切到该 tab 自己保存的 transcript，而不只是切标题与预览
 - todo lane 开始按 tab 保存和恢复，切换 tab 后会看到对应 tab 自己那份待办/任务快照
 - tab 开始真正绑定自己的 `model / provider / transcript / todo lane`，切换 tab 后能带出对应状态
@@ -22,6 +23,7 @@
 - 启动 logo 改为红色爱心，强化 Like Code 的 `like` 含义
 - 文档明确：`tab` 与 `branch` 不重复，但下一优先级应转向 panel / 分屏 / subagent 状态视图
 - README 顶部与长期路线图同步更新，未完成项继续保留在 todo 中，方便后续按版本推进与发版同步
+- 新增 localhost Web UI 工作台设计稿，明确 CLI 继续做最小可用验证，Web UI 承接结构化 transcript、时间线、切模型记录和思考过程卡片流
 - 本轮以文档与规划推进为主，暂不单独提升 release 版本号，避免出现“版本先发、功能未落地”的错位
 
 ## 1.0.1-likecode - 2026-04-07

@@ -119,6 +119,18 @@ export function SessionPaneDock({
         )}
       </Box>
       <Box marginTop={1} flexDirection="column">
+        <Text dimColor>Task lane</Text>
+        {tab.taskPreviewLines && tab.taskPreviewLines.length > 0 ? (
+          tab.taskPreviewLines.slice(0, 3).map((line, index) => (
+            <Text key={`${tab.id}-task-${index}`} color={isActive ? 'white' : 'gray'}>
+              {truncate(line, 72)}
+            </Text>
+          ))
+        ) : (
+          <Text dimColor>No task activity captured yet</Text>
+        )}
+      </Box>
+      <Box marginTop={1} flexDirection="column">
         {isActive ? (
           children
         ) : (

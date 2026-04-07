@@ -101,6 +101,16 @@ learn-likecc 现在已经不只是一个 Claude Code 源码学习仓库。
 - [ ] 支持展示 subagent 当前所在仓库 / 工作目录 / 正在执行的任务
 - [ ] 评估 pane 模式与 tab 模式的取舍，先做 tab，再考虑分屏
 
+### Milestone I：localhost Web UI 工作台
+
+- [x] 产出第一版 `localhost Web UI` 设计稿，明确 CLI 与 Web UI 的分工
+- [ ] 支持展示 session / pane 列表
+- [ ] 支持 transcript 结构化展示
+- [ ] 支持 tool / subagent 时间线
+- [ ] 支持 model / provider 切换记录
+- [ ] 支持思考过程卡片流
+- [ ] 第二阶段再评估流程图、多窗格联动与子代理监控面板
+
 ---
 
 ## 当前回合交付
@@ -148,8 +158,10 @@ learn-likecc 现在已经不只是一个 Claude Code 源码学习仓库。
 - [x] 让左右 pane 开始显示各自的 transcript 预览
 - [x] 让非 active pane 升级成准可操作态：显示 transcript 摘要、todo 摘要、draft 提示与更明确的激活文案
 - [x] 为左右 pane 增加更直接的聚焦入口：点击 pane、`/tab focus left|right|1|2`、`Ctrl+g h / l`
+- [x] 让 pane 自己开始直接显示 task lane 摘要，而不只是依赖右侧 workspace 面板
 - [x] 让切 tab 时主消息区开始切到各自 transcript
 - [x] 让 todo lane 开始按 tab 保存和恢复
+- [x] 产出 `localhost Web UI` 设计稿，明确第一版先做观察台：session/pane、结构化 transcript、时间线、切模型记录、思考过程卡片流
 - [ ] 继续把多个可见对话框升级成真正的多活跃输入与多 transcript 并行
 - [ ] 继续把 transcript / todo 做到真正隔离，而不只是先做 UI 层消息区与快照恢复
 - [ ] 继续把 subagent 面板升级为更完整的工作视图，展示仓库、目录、当前任务与更多 live 状态
@@ -169,4 +181,5 @@ learn-likecc 现在已经不只是一个 Claude Code 源码学习仓库。
 ## 相关设计稿
 
 - `./multi-window-subagent-design-v1.md`
+- `./localhost-web-ui-design-v1.md`
 - `./v1.0.2_plan.md`
