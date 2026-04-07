@@ -770,6 +770,15 @@ export function REPL({
   // ephemeral, reset on transcript exit. Diagnostic escape hatch so
   // terminal/tmux native cmd-F can search the full flat render.
   const [dumpMode, setDumpMode] = useState(false);
+  const jumpRef = useRef<JumpHandle | null>(null);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchCount, setSearchCount] = useState(0);
+  const [searchCurrent, setSearchCurrent] = useState(0);
+  const onSearchMatchesChange = useCallback((count: number, current: number) => {
+    setSearchCount(count);
+    setSearchCurrent(current);
+  }, []);
   // v-for-editor render progress. Inline in the footer — notifications
   // render inside PromptInput which isn't mounted in transcript.
   const [editorStatus, setEditorStatus] = useState('');
@@ -1499,6 +1508,12 @@ export function REPL({
           currentActiveTab.transcriptId ??
           activeTabId,
       );
+      setShowAllInTranscript(currentActiveTab.showAllInTranscript ?? false);
+      setDumpMode(currentActiveTab.transcriptDumpMode ?? false);
+      setSearchQuery(currentActiveTab.transcriptSearchQuery ?? '');
+      setSearchCount(0);
+      setSearchCurrent(0);
+      setSearchOpen(false);
       setMessageSelectorPreselect(
         currentActiveTab.messageSelectorPreselectUuid
           ? messagesRef.current.find(
@@ -1539,6 +1554,9 @@ export function REPL({
           messageSelectorPreselectUuid: messageSelectorPreselect?.uuid,
           submitCount,
           conversationId,
+          showAllInTranscript,
+          transcriptDumpMode: dumpMode,
+          transcriptSearchQuery: searchQuery,
         });
       }
       const incomingTab = tabs.tabs[activeTabId];
@@ -1572,6 +1590,12 @@ export function REPL({
         currentActiveTab.transcriptId ??
         activeTabId,
     );
+    setShowAllInTranscript(currentActiveTab.showAllInTranscript ?? false);
+    setDumpMode(currentActiveTab.transcriptDumpMode ?? false);
+    setSearchQuery(currentActiveTab.transcriptSearchQuery ?? '');
+    setSearchCount(0);
+    setSearchCurrent(0);
+    setSearchOpen(false);
     setMessageSelectorPreselect(
       currentActiveTab.messageSelectorPreselectUuid
         ? incomingMessages.find(
@@ -1584,7 +1608,7 @@ export function REPL({
     if ((currentActiveTab.draftInput ?? '') !== inputValueRef.current) {
       setInputValue(currentActiveTab.draftInput ?? '');
     }
-  }, [sessionTabs, setAppState, setMessages, setInputValue, inputMode, pastedContents, stashedPrompt, vimMode, isSearchingHistory, showBashesDialog, isHelpOpen, isMessageSelectorVisible, messageSelectorPreselect, submitCount, conversationId]);
+  }, [sessionTabs, setAppState, setMessages, setInputValue, inputMode, pastedContents, stashedPrompt, vimMode, isSearchingHistory, showBashesDialog, isHelpOpen, isMessageSelectorVisible, messageSelectorPreselect, submitCount, conversationId, showAllInTranscript, dumpMode, searchQuery]);
   useEffect(() => {
     const currentActiveTab = getActiveSessionTab(sessionTabs);
     if (!currentActiveTab) return;
@@ -1893,6 +1917,90 @@ export function REPL({
 
     return () => clearTimeout(timer);
   }, [conversationId, sessionTabs, setAppState]);
+  useEffect(() => {
+    const currentActiveTab = getActiveSessionTab(sessionTabs);
+    if (!currentActiveTab) return;
+    if ((currentActiveTab.showAllInTranscript ?? false) === showAllInTranscript) {
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setAppState(prev => {
+        const tabs = normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel);
+        const activeTab = getActiveSessionTab(tabs);
+        if (
+          !activeTab ||
+          (activeTab.showAllInTranscript ?? false) === showAllInTranscript
+        ) {
+          return prev;
+        }
+        return {
+          ...prev,
+          sessionTabs: updateSessionTab(tabs, activeTab.id, {
+            showAllInTranscript,
+          }),
+        };
+      });
+    }, 120);
+
+    return () => clearTimeout(timer);
+  }, [showAllInTranscript, sessionTabs, setAppState]);
+  useEffect(() => {
+    const currentActiveTab = getActiveSessionTab(sessionTabs);
+    if (!currentActiveTab) return;
+    if ((currentActiveTab.transcriptDumpMode ?? false) === dumpMode) {
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setAppState(prev => {
+        const tabs = normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel);
+        const activeTab = getActiveSessionTab(tabs);
+        if (
+          !activeTab ||
+          (activeTab.transcriptDumpMode ?? false) === dumpMode
+        ) {
+          return prev;
+        }
+        return {
+          ...prev,
+          sessionTabs: updateSessionTab(tabs, activeTab.id, {
+            transcriptDumpMode: dumpMode,
+          }),
+        };
+      });
+    }, 120);
+
+    return () => clearTimeout(timer);
+  }, [dumpMode, sessionTabs, setAppState]);
+  useEffect(() => {
+    const currentActiveTab = getActiveSessionTab(sessionTabs);
+    if (!currentActiveTab) return;
+    if ((currentActiveTab.transcriptSearchQuery ?? '') === searchQuery) {
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setAppState(prev => {
+        const tabs = normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel);
+        const activeTab = getActiveSessionTab(tabs);
+        if (
+          !activeTab ||
+          (activeTab.transcriptSearchQuery ?? '') === searchQuery
+        ) {
+          return prev;
+        }
+        return {
+          ...prev,
+          sessionTabs: updateSessionTab(tabs, activeTab.id, {
+            transcriptSearchQuery: searchQuery,
+          }),
+        };
+      });
+    }, 120);
+
+    return () => clearTimeout(timer);
+  }, [searchQuery, sessionTabs, setAppState]);
 
   // Schedule a timeout to stop suppressing dialogs after the user stops typing.
   // Only manages the timeout — the immediate activation is handled by setInputValue above.
@@ -4747,19 +4855,6 @@ export function REPL({
   // Props for GlobalKeybindingHandlers component (rendered inside KeybindingSetup)
   const virtualScrollActive = isFullscreenEnvEnabled() && !disableVirtualScroll;
 
-  // Transcript search state. Hooks must be unconditional so they live here
-  // (not inside the `if (screen === 'transcript')` branch below); isActive
-  // gates the useInput. Query persists across bar open/close so n/N keep
-  // working after Enter dismisses the bar (less semantics).
-  const jumpRef = useRef<JumpHandle | null>(null);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [searchCount, setSearchCount] = useState(0);
-  const [searchCurrent, setSearchCurrent] = useState(0);
-  const onSearchMatchesChange = useCallback((count: number, current: number) => {
-    setSearchCount(count);
-    setSearchCurrent(current);
-  }, []);
   useInput((input, key, event) => {
     if (screen !== 'prompt' || focusedInputDialog || disabled || isShowingLocalJSXCommand) {
       return;

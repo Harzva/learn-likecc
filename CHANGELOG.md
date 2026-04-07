@@ -45,6 +45,9 @@
 - `message selector` 的预选消息也会跟随 pane 保存和恢复，减少不同窗口之间的恢复目标串线
 - pane 的 `conversationId / submitCount` 也开始跟随窗口保存和恢复，进一步减少多个 pane 共用同一份对话节奏
 - 真实 `tool progress` 也开始进入 `toolChains`，让 Web 工作台在最终 `tool_result` 返回前先展示执行中的工具链
+- transcript 的 `show all / dump mode` 也开始跟随 pane 保存和恢复，减少不同窗口之间的查看状态串线
+- transcript 搜索词也开始跟随 pane 保存和恢复，减少不同窗口之间的阅读上下文串线
+- `toolChains.steps` 已开始明确拆成 `tool_use / progress / tool_result`，让 Web 侧回放更接近真实 coding 过程
 - 启动头的蓝色爱心、蓝色 `Like` 与蓝色 `code` 已统一成一套品牌头图
 - 启动界面新增 Web 工作台网址，并把 logo 收成蓝色爱心 + 多行大字 `Like` + `code · Harzva restored · v2.1.88`
 - 本轮以文档与规划推进为主，暂不单独提升 release 版本号，避免出现“版本先发、功能未落地”的错位

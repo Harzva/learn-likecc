@@ -114,10 +114,14 @@ type WorkspaceToolChain = {
     responseSummary?: string
   }>
   steps: Array<{
+    kind: 'tool_use' | 'progress' | 'tool_result'
     pairId: string
+    toolUseId?: string
     turnId?: string
     startedAt: string
     completedAt?: string
+    title?: string
+    summary?: string
     inputSummary?: string
     outputSummary?: string
     promptSummary?: string
@@ -345,6 +349,10 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
   const workflow: WorkspaceWorkflowEvent[] = []
   const stages: WorkspaceWorkflowStage[] = []
   const toolPairs = new Map<string, WorkspaceToolPair>()
+  const toolPairSteps = new Map<
+    string,
+    Array<WorkspaceToolChain['steps'][number]>
+  >()
   const turns: WorkspaceTurnReplay[] = []
   let activeTurnId: string | undefined
   const normalizedMessages = (messages ?? []).map((message, index) => {
@@ -427,6 +435,7 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
       toolUseId: parentToolUseId,
     })
     if (message.type === 'progress' && parentToolUseId) {
+      const progressTitle = `${progressData?.toolName ?? 'tool'} progress`
       const existingPair = toolPairs.get(parentToolUseId)
       if (!existingPair) {
         toolPairs.set(parentToolUseId, {
@@ -460,13 +469,27 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
       cards.push({
         id: `${message.uuid}-progress-tool`,
         kind: 'progress',
-        title: `${progressData?.toolName ?? 'tool'} progress`,
+        title: progressTitle,
         summary: progressData?.summary ?? summary,
         role,
         toolName: progressData?.toolName,
         toolUseId: parentToolUseId,
         createdAt,
       })
+      const existingSteps = toolPairSteps.get(parentToolUseId) ?? []
+      toolPairSteps.set(parentToolUseId, [
+        ...existingSteps,
+        {
+          kind: 'progress',
+          pairId: parentToolUseId,
+          toolUseId: parentToolUseId,
+          turnId: existingPair?.turnId ?? activeTurnId,
+          startedAt: createdAt,
+          title: progressTitle,
+          summary: progressData?.summary ?? summary,
+          outputSummary: progressData?.summary ?? summary,
+        },
+      ])
     }
 
     const content = Array.isArray(message.message?.content)
@@ -555,6 +578,20 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
               currentTurn.toolUseIds.push(toolUseId)
               currentTurn.toolCount += 1
             }
+            const existingSteps = toolPairSteps.get(toolUseId) ?? []
+            toolPairSteps.set(toolUseId, [
+              ...existingSteps,
+              {
+                kind: 'tool_use',
+                pairId: toolUseId,
+                toolUseId,
+                turnId: activeTurnId,
+                startedAt: createdAt,
+                title: toolName,
+                summary: toolSummary,
+                inputSummary: toolSummary,
+              },
+            ])
           }
           cards.push({
             id: `${message.uuid}-tool-use-${itemIndex}`,
@@ -612,6 +649,21 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
               startedAt: existingPair?.startedAt ?? createdAt,
               completedAt: createdAt,
             })
+            const existingSteps = toolPairSteps.get(toolUseId) ?? []
+            toolPairSteps.set(toolUseId, [
+              ...existingSteps,
+              {
+                kind: 'tool_result',
+                pairId: toolUseId,
+                toolUseId,
+                turnId: existingPair?.turnId ?? activeTurnId,
+                startedAt: existingPair?.startedAt ?? createdAt,
+                completedAt: createdAt,
+                title: existingPair?.toolName ?? 'tool result',
+                summary: resultSummary,
+                outputSummary: resultSummary,
+              },
+            ])
           }
           cards.push({
             id: `${message.uuid}-tool-result-${itemIndex}`,
@@ -689,6 +741,15 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
     previousPairIdByToolName.set(toolName, pair.id)
 
     const existingChain = toolChains.get(chainId)
+    const pairSteps = (toolPairSteps.get(pair.id) ?? []).map(step => ({
+      ...step,
+      promptSummary: step.turnId
+        ? turnsById.get(step.turnId)?.promptSummary
+        : undefined,
+      responseSummary: step.turnId
+        ? turnsById.get(step.turnId)?.responseSummary
+        : undefined,
+    }))
     if (existingChain) {
       existingChain.pairIds.push(pair.id)
       if (pair.turnId && !existingChain.turnIds.includes(pair.turnId)) {
@@ -700,20 +761,29 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
           responseSummary: turn?.responseSummary,
         })
       }
-      existingChain.steps.push({
-        pairId: pair.id,
-        turnId: pair.turnId,
-        startedAt: pair.startedAt,
-        completedAt: pair.completedAt,
-        inputSummary: pair.inputSummary,
-        outputSummary: pair.outputSummary,
-        promptSummary: pair.turnId
-          ? turnsById.get(pair.turnId)?.promptSummary
-          : undefined,
-        responseSummary: pair.turnId
-          ? turnsById.get(pair.turnId)?.responseSummary
-          : undefined,
-      })
+      existingChain.steps.push(
+        ...(pairSteps.length > 0
+          ? pairSteps
+          : [
+              {
+                kind: 'tool_result' as const,
+                pairId: pair.id,
+                toolUseId: pair.toolUseId,
+                turnId: pair.turnId,
+                startedAt: pair.startedAt,
+                completedAt: pair.completedAt,
+                title: pair.toolName,
+                inputSummary: pair.inputSummary,
+                outputSummary: pair.outputSummary,
+                promptSummary: pair.turnId
+                  ? turnsById.get(pair.turnId)?.promptSummary
+                  : undefined,
+                responseSummary: pair.turnId
+                  ? turnsById.get(pair.turnId)?.responseSummary
+                  : undefined,
+              },
+            ]),
+      )
       existingChain.pairCount += 1
       existingChain.completedAt = pair.completedAt ?? existingChain.completedAt
       pair.chainIndex = existingChain.pairCount
@@ -733,20 +803,27 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
             ]
           : [],
         steps: [
-          {
-            pairId: pair.id,
-            turnId: pair.turnId,
-            startedAt: pair.startedAt,
-            completedAt: pair.completedAt,
-            inputSummary: pair.inputSummary,
-            outputSummary: pair.outputSummary,
-            promptSummary: pair.turnId
-              ? turnsById.get(pair.turnId)?.promptSummary
-              : undefined,
-            responseSummary: pair.turnId
-              ? turnsById.get(pair.turnId)?.responseSummary
-              : undefined,
-          },
+          ...(pairSteps.length > 0
+            ? pairSteps
+            : [
+                {
+                  kind: 'tool_result' as const,
+                  pairId: pair.id,
+                  toolUseId: pair.toolUseId,
+                  turnId: pair.turnId,
+                  startedAt: pair.startedAt,
+                  completedAt: pair.completedAt,
+                  title: pair.toolName,
+                  inputSummary: pair.inputSummary,
+                  outputSummary: pair.outputSummary,
+                  promptSummary: pair.turnId
+                    ? turnsById.get(pair.turnId)?.promptSummary
+                    : undefined,
+                  responseSummary: pair.turnId
+                    ? turnsById.get(pair.turnId)?.responseSummary
+                    : undefined,
+                },
+              ]),
         ],
         pairCount: 1,
         startedAt: pair.startedAt,
@@ -1264,7 +1341,7 @@ function renderWorkspaceHtmlShell(state: AppState): string {
                 <div class="small muted">turns: \${escapeHtml((chain.turnIds || []).join(', ') || 'n/a')}</div>
                 <div class="small muted" style="margin-top:6px;">pairs: \${escapeHtml((chain.pairIds || []).join(', '))}</div>
                 \${(chain.turnSummaries || []).length > 0 ? '<div class="small muted" style="margin-top:6px;">replay: ' + escapeHtml(chain.turnSummaries.map(turn => turn.turnId + ': ' + (turn.promptSummary || '[prompt]')).join(' → ')) + '</div>' : ''}
-                \${(chain.steps || []).length > 0 ? '<div class="small muted" style="margin-top:6px;">steps: ' + escapeHtml(chain.steps.slice(-4).map(step => (step.turnId || 'turn?') + ' [' + step.pairId + '] ' + (step.inputSummary || '[input]') + (step.outputSummary ? ' => ' + step.outputSummary : '')).join(' → ')) + '</div>' : ''}
+                \${(chain.steps || []).length > 0 ? '<div class="small muted" style="margin-top:6px;">steps: ' + escapeHtml(chain.steps.slice(-6).map(step => '[' + (step.kind || 'step') + '] ' + (step.turnId || 'turn?') + ' [' + step.pairId + '] ' + (step.summary || step.inputSummary || step.outputSummary || step.title || '[step]')).join(' → ')) + '</div>' : ''}
               </div>
             \`).join('');
         toolPairsRoot.innerHTML = (payload.toolPairs || []).length === 0

@@ -35,6 +35,9 @@ export type SessionTabState = {
   messageSelectorPreselectUuid?: string
   submitCount?: number
   conversationId?: string
+  showAllInTranscript?: boolean
+  transcriptDumpMode?: boolean
+  transcriptSearchQuery?: string
   todoSnapshotId?: string
   model?: string
   provider?: string
@@ -84,6 +87,9 @@ export type SessionTabsMetadata = {
     messageSelectorPreselectUuid?: string
     submitCount?: number
     conversationId?: string
+    showAllInTranscript?: boolean
+    transcriptDumpMode?: boolean
+    transcriptSearchQuery?: string
     model?: string
     provider?: string
     repoLabel?: string
@@ -179,6 +185,9 @@ export function toSessionTabsMetadata(
         messageSelectorPreselectUuid: tab.messageSelectorPreselectUuid,
         submitCount: tab.submitCount,
         conversationId: tab.conversationId,
+        showAllInTranscript: tab.showAllInTranscript,
+        transcriptDumpMode: tab.transcriptDumpMode,
+        transcriptSearchQuery: tab.transcriptSearchQuery,
         model: tab.model,
         provider: tab.provider,
         repoLabel: tab.repoLabel,
@@ -217,6 +226,9 @@ export function fromSessionTabsMetadata(
         messageSelectorPreselectUuid: tab.messageSelectorPreselectUuid,
         submitCount: tab.submitCount,
         conversationId: tab.conversationId,
+        showAllInTranscript: tab.showAllInTranscript,
+        transcriptDumpMode: tab.transcriptDumpMode,
+        transcriptSearchQuery: tab.transcriptSearchQuery,
         model: tab.model,
         provider: tab.provider,
         repoLabel: tab.repoLabel,
@@ -350,6 +362,9 @@ export function updateSessionTab(
       existing.messageSelectorPreselectUuid &&
     nextTab.submitCount === existing.submitCount &&
     nextTab.conversationId === existing.conversationId &&
+    nextTab.showAllInTranscript === existing.showAllInTranscript &&
+    nextTab.transcriptDumpMode === existing.transcriptDumpMode &&
+    nextTab.transcriptSearchQuery === existing.transcriptSearchQuery &&
     nextTab.todoSnapshotId === existing.todoSnapshotId &&
     nextTab.model === existing.model &&
     nextTab.provider === existing.provider &&
