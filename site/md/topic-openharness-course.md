@@ -67,11 +67,24 @@
 2. **对照表阅读**：打开 [OpenHarness 专题 · S 课 ↔ 路径](https://harzva.github.io/learn-likecc/topic-openharness.html#map)，每读一课 S，在 `src/openharness/` 打开对应目录，**只问**：同样问题 OH 在哪一层解决？差异是接口还是策略？  
 3. **写三条笔记**：每单元各写 **相同点 / 不同点 / 原因**，即为本课作业。  
 
-## 已上线讲稿
+## 已上线讲稿（OH01–OH12）
 
-- **[OH01 · Agent Loop](oh01.md)**：对标 [S01](s01.md)。  
-- **[OH02 · Tool System](oh02.md)**：对标 [S02](s02.md)。  
-- OH03 起陆续补。
+HTML 目录锚点：[topic-openharness-course.html#oh-series](https://harzva.github.io/learn-likecc/topic-openharness-course.html#oh-series)。
+
+| OH | 对标 S | Markdown |
+|----|--------|----------|
+| [OH01](oh01.md) | [S01](s01.md) | Agent Loop |
+| [OH02](oh02.md) | [S02](s02.md) | Tool System |
+| [OH03](oh03.md) | [S03](s03.md) | Permissions |
+| [OH04](oh04.md) | [S04](s04.md) | CLI |
+| [OH05](oh05.md) | [S05](s05.md) | 上下文压缩 |
+| [OH06](oh06.md) | [S06](s06.md) | Subagent / Swarm |
+| [OH07](oh07.md) | [S07](s07.md) | MCP |
+| [OH08](oh08.md) | [S08](s08.md) | 后台任务 |
+| [OH09](oh09.md) | [S09](s09.md) | Bridge / UI 宿主 |
+| [OH10](oh10.md) | [S10](s10.md) | Hooks |
+| [OH11](oh11.md) | [S11](s11.md) | Vim / 键位 |
+| [OH12](oh12.md) | [S12](s12.md) | Git worktree |
 
 ## 源码位置（本仓库）
 
@@ -81,7 +94,6 @@ reference/rererence_harness/OpenHarness/
 
 （`rererence` 为历史目录拼写；若无子目录见仓库内 `reference/rererence_harness/README.md`。）
 
-## 后续内容规划（可选）
+## 与发版监督区分
 
-- OH02 起与 S 课平行稿（每篇：文件入口、关键类、与 TS 镜像对照一句）。  
-- 与 [发版监督](topic-cc-release-watch.md) 区分：该页跟踪 **官方 Claude Code CLI**；本课跟踪 **OpenHarness 上游 Release**（见 HKUDS 仓库）。
+- [发版监督](topic-cc-release-watch.md) 跟踪 **官方 Claude Code CLI**；OpenHarness 上游 Release 见 HKUDS 仓库。

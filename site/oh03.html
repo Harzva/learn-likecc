@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OH03: Permission Model（OpenHarness） - Claude Code Course</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>">
+    <meta name="description" content="OpenHarness OH03：PermissionChecker、PermissionMode、PermissionSettings；对标 S03；query 内确认与拒绝。">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">⚖️</span>
+                <span class="logo-text">OH 源码课</span>
+            </a>
+            <div class="nav-links">
+                <a href="topic-openharness-course.html" class="nav-link">课纲</a>
+                <a href="topic-openharness.html#map" class="nav-link">路径表</a>
+                <a href="s03.html" class="nav-link">对照 S03</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="index.html" class="btn-github">首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="course-main">
+        <div class="container">
+            <div class="course-header">
+                <div class="course-breadcrumb">
+                    <a href="index.html">首页</a>
+                    <span>/</span>
+                    <a href="topic-openharness-course.html">OpenHarness 源码课</a>
+                    <span>/</span>
+                    <span>OH03: Permission Model</span>
+                </div>
+                <div class="course-nav">
+                    <span class="course-part-badge">OpenHarness · Part 1</span>
+                    <div class="course-chapter-nav">
+                        <a href="oh02.html" class="chapter-prev">← OH02</a>
+                        <a href="oh04.html" class="chapter-next">下一讲 OH04 →</a>
+                    </div>
+                </div>
+            </div>
+
+            <article class="course-content">
+                <h1 class="course-title">OH03: Permission Model <span class="subtitle">OpenHarness · 对标 S03</span></h1>
+
+                <div class="course-quote">
+                    <p>与 <a href="s03.html">S03</a> 同题：在 Agent 能调工具的前提下，用<strong>策略 + 可选人工确认</strong>划安全边界。</p>
+                    <p>OpenHarness 把判定收拢在 <strong><code>PermissionChecker.evaluate</code></strong>，配置在 <strong><code>PermissionSettings</code></strong>；交互确认通过 <strong><code>permission_prompt</code></strong> 注入（TUI 默认 <code>ui/permission_dialog.ask_permission</code>）。</p>
+                </div>
+
+                <figure class="mermaid-figure" aria-label="与 S03 一致的权限导图">
+                    <figcaption class="mermaid-caption"><strong>权限链路</strong>：工具请求 → 策略判定 → 确认或放行 → 执行。</figcaption>
+                    <div class="mermaid-diagram-scroll" data-mermaid-diagram="course-s03"></div>
+                </figure>
+
+                <section class="section-block">
+                    <h2>🎯 问题（与 S03 一致）</h2>
+                    <p>模型可能发起删文件、跑 Shell 等高风险调用；Harness 要在<strong>自动化</strong>与<strong>可控</strong>之间折中：哪些默认放行、哪些必须问用户、哪些硬拒绝。</p>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔍 配置：<code>PermissionSettings</code></h2>
+                    <p>定义于 <code>config/settings.py</code>：<strong><code>mode</code></strong>（见下）、<strong><code>allowed_tools</code></strong> / <strong><code>denied_tools</code></strong> 名单、<strong><code>path_rules</code></strong>（glob，可 deny 某类路径）、<strong><code>denied_commands</code></strong>（glob，匹配 Bash 等命令串）。课内 S03 的多种 <code>PermissionMode</code> 在 OH 里目前收敛为<strong>三个枚举值</strong>，这是产品范围差异，不是「少实现一半」的简单对比。</p>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔍 模式：<code>PermissionMode</code></h2>
+                    <ul>
+                        <li><strong><code>DEFAULT</code></strong>：只读工具直接 <code>allowed</code>；<strong>变异工具</strong>返回 <code>allowed=False</code> 且 <code>requires_confirmation=True</code>，等待 <code>permission_prompt</code>。</li>
+                        <li><strong><code>PLAN</code></strong>：阻断变异工具（规划态不写盘），与课内 plan 叙事接近。</li>
+                        <li><strong><code>FULL_AUTO</code></strong>：策略通过后一律放行，类似高风险的「全自动」——仍受 deny 名单与 path/command 规则约束（见 <code>evaluate</code> 顺序）。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔍 判定：<code>PermissionChecker.evaluate</code></h2>
+                    <p>关键参数：<code>tool_name</code>、<code>is_read_only</code>（来自 <a href="oh02.html">OH02</a> 的 <code>BaseTool.is_read_only</code>）、<code>file_path</code>、<code>command</code>（由 <code>query._resolve_permission_file_path</code> / <code>_extract_permission_command</code> 从原始 input 与 Pydantic 模型两侧抽取，避免路径规则对不上字段名）。</p>
+                    <p><strong>分支顺序（先读代码再记）</strong>：<code>denied_tools</code> → <code>allowed_tools</code> → <code>path_rules</code> deny → <code>denied_commands</code> → <code>FULL_AUTO</code> → 只读放行 → <code>PLAN</code> 挡变异 → 默认模式「变异需确认」。</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">Python</span>
+                            <button class="copy-btn" onclick="copyCode(this)">复制</button>
+                        </div>
+                        <pre><code class="language-python"># permissions/checker.py — PermissionDecision 与 evaluate 核心语义（节选）
+
+@dataclass(frozen=True)
+class PermissionDecision:
+    allowed: bool
+    requires_confirmation: bool = False
+    reason: str = ""
+
+# DEFAULT + 非只读 → 需确认
+return PermissionDecision(
+    allowed=False,
+    requires_confirmation=True,
+    reason="Mutating tools require user confirmation in default mode",
+)</code></pre>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔗 接入循环：<code>query._execute_tool_call</code></h2>
+                    <p><code>evaluate</code> 若 <code>not decision.allowed</code>：若 <code>requires_confirmation</code> 且提供了 <code>permission_prompt</code>，则异步询问；用户拒绝则返回错误型 <code>ToolResultBlock</code>；用户同意则<strong>不再次调用</strong> <code>evaluate</code>，直接进入 <code>tool.execute</code>。若无 prompt 且需确认、或直接硬拒绝，则返回带 <code>reason</code> 的错误块。读源码时注意 <strong>if/else 嵌套</strong>，避免误解为「确认后重算策略」。</p>
+                </section>
+
+                <section class="section-block">
+                    <h2>💬 TUI：<code>ask_permission</code></h2>
+                    <p><code>ui/permission_dialog.py</code> 用 <code>prompt_toolkit</code> 打一行 <code>[y/N]</code>，是<strong>最小可行确认</strong>；与 Claude Code 富交互相比，教学上更利于看清「prompt 是可插拔依赖」。</p>
+                </section>
+
+                <section class="section-block">
+                    <h2>⚖️ 与 S03（TS 课）对照</h2>
+                    <table class="compare-table">
+                        <tr>
+                            <th>维度</th>
+                            <th>S03 叙事</th>
+                            <th>OpenHarness</th>
+                        </tr>
+                        <tr>
+                            <td>模式数量</td>
+                            <td>多种（acceptEdits、bypass…）</td>
+                            <td>当前 3 种枚举 + 名单 / glob 规则</td>
+                        </tr>
+                        <tr>
+                            <td>确认 UI</td>
+                            <td>产品级终端 / IDE</td>
+                            <td>可注入 <code>permission_prompt</code>，默认简单 y/N</td>
+                        </tr>
+                        <tr>
+                            <td>只读快捷放行</td>
+                            <td>课内概念</td>
+                            <td>显式 <code>is_read_only</code> 分支</td>
+                        </tr>
+                        <tr>
+                            <td>路径级策略</td>
+                            <td>课内常合并讲</td>
+                            <td><code>path_rules</code> + <code>fnmatch</code></td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section class="section-block">
+                    <h2>🤔 思考题</h2>
+                    <ol class="thinking-questions">
+                        <li>为何 <code>allowed_tools</code> 要在 <code>path_rules</code> 之前检查？若某路径被 deny 但工具在白名单，结果会怎样？</li>
+                        <li><code>permission_prompt</code> 为 <code>None</code> 时，默认模式下变异工具是「静默拒绝」还是抛错？对应哪段分支？</li>
+                        <li><code>FULL_AUTO</code> 仍可能拒绝的情况有哪些？</li>
+                    </ol>
+                </section>
+
+                <section class="section-block">
+                    <h2>📎 延伸阅读</h2>
+                    <p><a href="oh02.html">OH02</a> · <a href="s03.html">S03</a> / <a href="d03.html">D03</a> · <a href="s10.html">S10 Hooks</a>（与 PreToolUse 叠加时的顺序）</p>
+                </section>
+
+                <div class="chapter-navigation">
+                    <a href="oh02.html" class="btn btn-secondary">← OH02</a>
+                    <a href="s03.html" class="btn btn-secondary">对照 S03</a>
+                    <a href="oh04.html" class="btn btn-primary">下一讲 OH04 →</a>
+                </div>
+
+                <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/oh03.md" target="_blank" rel="noopener noreferrer">📝 Markdown 源（GitHub）</a></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js" crossorigin="anonymous"></script>
+    <script>
+    function copyCode(btn) {
+        const pre = btn.closest('.code-block') && btn.closest('.code-block').querySelector('pre code');
+        if (pre && navigator.clipboard) navigator.clipboard.writeText(pre.innerText);
+    }
+    </script>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -220,6 +220,24 @@ const MERMAID_DIAGRAMS = {
     classDef g fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#10b981;
     A[对话意图]:::b --> G[git 读状态]:::g --> C[commit / branch / PR]:::g`,
 
+    'claude-codex-bridge': `flowchart TD
+    classDef blue fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#93c5fd;
+    classDef cyan fill:#102a33,stroke:#22d3ee,stroke-width:2px,color:#a5f3fc;
+    classDef green fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#5eead4;
+    classDef purple fill:#2b2035,stroke:#cba6f7,stroke-width:2px,color:#e9d5ff;
+    classDef amber fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#fde68a;
+
+    U["用户输入 /codex:rescue"]:::blue --> C1["Claude 插件命令<br/>commands/rescue.md"]:::cyan
+    C1 --> C2["Claude 子代理<br/>codex:codex-rescue"]:::cyan
+    C2 --> B["Bash 启动本地脚本<br/>node codex-companion.mjs task"]:::amber
+    B --> CP["codex-companion.mjs<br/>参数解析 / job / resume"]:::purple
+    CP --> RPC["Codex App Server JSON-RPC<br/>thread/start · turn/start"]:::green
+    RPC --> RT["codex app-server runtime"]:::green
+    RT --> OUT["真实 Codex 线程 / turn 执行"]:::green
+
+    CP -. 直接模式 .-> STD["stdio"]:::amber
+    CP -. 共享模式 .-> BR["broker + local socket"]:::amber`,
+
     /** column-agent-journey.html：个人工具链重心迁移（示意） */
     'column-agent-flow': `flowchart LR
     classDef old fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#e2b953;
@@ -436,8 +454,19 @@ function initSiteSidebar() {
         '<summary class="site-sidebar__summary"><span class="site-sidebar__ico">🧩</span><span class="site-sidebar__txt">开源 Harness</span></summary>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-openharness.html"><span class="site-sidebar__ico">⚡</span><span class="site-sidebar__txt">OpenHarness 专题</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-openharness-course.html"><span class="site-sidebar__ico">⚖️</span><span class="site-sidebar__txt">OH 源码课 · 对照 CC</span></a>' +
-        '<a class="site-sidebar__link site-sidebar__link--sub" href="oh01.html"><span class="site-sidebar__ico">①</span><span class="site-sidebar__txt">OH01 · Agent Loop</span></a>' +
-        '<a class="site-sidebar__link site-sidebar__link--sub" href="oh02.html"><span class="site-sidebar__ico">②</span><span class="site-sidebar__txt">OH02 · Tool System</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-openharness-course.html#oh-series"><span class="site-sidebar__ico">📑</span><span class="site-sidebar__txt">OH01–12 目录</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="oh01.html"><span class="site-sidebar__ico">①</span><span class="site-sidebar__txt">OH01 · Loop</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="oh02.html"><span class="site-sidebar__ico">②</span><span class="site-sidebar__txt">OH02 · Tools</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="oh03.html"><span class="site-sidebar__ico">③</span><span class="site-sidebar__txt">OH03 · Perms</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="oh04.html"><span class="site-sidebar__ico">④</span><span class="site-sidebar__txt">OH04 · CLI</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="oh05.html"><span class="site-sidebar__ico">⑤</span><span class="site-sidebar__txt">OH05 · Compact</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="oh06.html"><span class="site-sidebar__ico">⑥</span><span class="site-sidebar__txt">OH06 · Agent</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="oh07.html"><span class="site-sidebar__ico">⑦</span><span class="site-sidebar__txt">OH07 · MCP</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="oh08.html"><span class="site-sidebar__ico">⑧</span><span class="site-sidebar__txt">OH08 · Tasks</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="oh09.html"><span class="site-sidebar__ico">⑨</span><span class="site-sidebar__txt">OH09 · Bridge</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="oh10.html"><span class="site-sidebar__ico">🪝</span><span class="site-sidebar__txt">OH10 · Hooks</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="oh11.html"><span class="site-sidebar__ico">⌨️</span><span class="site-sidebar__txt">OH11 · Vim</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="oh12.html"><span class="site-sidebar__ico">🌿</span><span class="site-sidebar__txt">OH12 · Git</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="https://github.com/HKUDS/OpenHarness" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">🔗</span><span class="site-sidebar__txt">上游仓库 ↗</span></a>' +
         '</details>' +
         '<details class="site-sidebar__details">' +

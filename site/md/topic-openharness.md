@@ -41,16 +41,16 @@ uv run oh
 |------|-----------|
 | S01 | `engine/query_engine.py`, `engine/query.py`, `stream_events.py` · 细讲 [OH01](oh01.md) |
 | S02 | `tools/`（`base.py`、`*_tool.py`） · 细讲 [OH02](oh02.md) |
-| S03 | `permissions/` |
-| S04 | `commands/`, `cli.py` |
-| S05 | `services/compact/`, `prompts/context.py` |
-| S06 | `coordinator/`, `swarm/` |
-| S07 | `mcp/` |
-| S08 | `tasks/` |
-| S09 | `bridge/`, `ui/backend_host.py` |
-| S10 | `hooks/` |
-| S11 | `vim/`, `keybindings/` |
-| S12 | `tools/*worktree*`, `bash_tool.py` |
+| S03 | `permissions/`、`ui/permission_dialog.py` · 细讲 [OH03](oh03.md) |
+| S04 | `commands/`, `cli.py` · [OH04](oh04.md) |
+| S05 | `services/compact/`, `prompts/context.py` · [OH05](oh05.md) |
+| S06 | `coordinator/`, `swarm/` · [OH06](oh06.md) |
+| S07 | `mcp/` · [OH07](oh07.md) |
+| S08 | `tasks/` · [OH08](oh08.md) |
+| S09 | `bridge/`, `ui/backend_host.py` · [OH09](oh09.md) |
+| S10 | `hooks/` · [OH10](oh10.md) |
+| S11 | `vim/`, `keybindings/` · [OH11](oh11.md) |
+| S12 | `tools/*worktree*`, `bash_tool.py` · [OH12](oh12.md) |
 
 ## 本仓库路径
 

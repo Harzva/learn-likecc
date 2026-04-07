@@ -28,6 +28,7 @@
                 <a href="topic-openharness.html" title="OpenHarness 开源 Agent Harness">OH</a>
                 <a href="topic-cc-release-watch.html" title="Claude Code 官方发版监督">发版</a>
                 <a href="topic-cc-unpacked-zh.html" title="Claude Code 结构中文导览（参考 ccunpacked.dev）">解构</a>
+                <a href="topic-claude-codex-bridge.html" title="Claude 如何通过插件调用 Codex">桥接</a>
                 <a href="tutorial.html">教程</a>
                 <a href="handbook.html">手册</a>
                 <a href="column-show-your-usage.html" title="Cursor 订阅与用量自证">Usage</a>
@@ -237,7 +238,7 @@
                 <a href="topic-openharness.html" class="feature-card-main feature-topic">
                     <div class="feature-icon-main">🧩</div>
                     <h3 class="feature-title-main">OpenHarness</h3>
-                    <p class="feature-desc-main">MIT 开源 Python Agent Harness（<code>oh</code>）：工具循环、Skills、MCP、Swarm；与源码课互补。思想架构对照见 <a href="topic-openharness-course.html" style="color: inherit; text-decoration: underline;">OH 源码课</a>。</p>
+                    <p class="feature-desc-main">MIT 开源 Python Agent Harness（<code>oh</code>）：工具循环、Skills、MCP、Swarm；与 24 讲互补。<a href="topic-openharness-course.html" style="color: inherit; text-decoration: underline;">思想对照课</a> + <a href="topic-openharness-course.html#oh-series" style="color: inherit; text-decoration: underline;">OH01–12 逐讲</a> 对标 S01–S12。</p>
                     <div class="feature-tags">
                         <span class="tag">Harness</span>
                         <span class="tag">开源</span>
@@ -254,6 +255,18 @@
                         <span class="tag">Release</span>
                         <span class="tag">Changelog</span>
                         <span class="tag">CLI</span>
+                    </div>
+                    <div class="feature-arrow">→</div>
+                </a>
+
+                <a href="topic-claude-codex-bridge.html" class="feature-card-main feature-topic">
+                    <div class="feature-icon-main">🧩</div>
+                    <h3 class="feature-title-main">Claude 调 Codex</h3>
+                    <p class="feature-desc-main">把 <code>/codex:rescue</code> 背后的真实链路拆成一节网页课：插件命令、子代理、<code>codex-companion.mjs</code>、JSON-RPC、<code>stdio</code> 与 <code>socket broker</code>。</p>
+                    <div class="feature-tags">
+                        <span class="tag">Plugin</span>
+                        <span class="tag">Codex</span>
+                        <span class="tag">Bridge</span>
                     </div>
                     <div class="feature-arrow">→</div>
                 </a>
@@ -1044,8 +1057,7 @@ jobs:
                         <a href="topic-agent.html">Agent 大专题</a>
                         <a href="topic-openharness.html">OpenHarness</a>
                         <a href="topic-openharness-course.html">OpenHarness 源码课（对照 CC）</a>
-                        <a href="oh01.html">OH01 · Agent Loop</a>
-                        <a href="oh02.html">OH02 · Tool System</a>
+                        <a href="topic-openharness-course.html#oh-series">OH01–OH12 讲稿（OpenHarness）</a>
                         <a href="topic-cc-release-watch.html">发版监督（官方版本）</a>
                         <a href="topic-memory-harness.html">Memory 长期记忆</a>
                         <a href="topic-superpowers-autoresearch.html">Superpowers vs Autoresearch</a>

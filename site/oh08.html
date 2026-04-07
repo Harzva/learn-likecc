@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OH08: 后台任务（OpenHarness） - Claude Code Course</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📋</text></svg>">
+    <meta name="description" content="OpenHarness OH08：后台任务，对标 S08。">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo"><span class="logo-icon">⚖️</span><span class="logo-text">OH 源码课</span></a>
+            <div class="nav-links">
+                <a href="topic-openharness-course.html" class="nav-link">课纲</a>
+                <a href="topic-openharness.html#map" class="nav-link">路径表</a>
+                <a href="s08.html" class="nav-link">对照 S08</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="index.html" class="btn-github">首页</a>
+            </div>
+        </div>
+    </nav>
+    <main class="course-main">
+        <div class="container">
+            <div class="course-header">
+                <div class="course-breadcrumb">
+                    <a href="index.html">首页</a><span>/</span><a href="topic-openharness-course.html">OpenHarness 源码课</a><span>/</span><span>OH08: 后台任务</span>
+                </div>
+                <div class="course-nav">
+                    <span class="course-part-badge">OpenHarness · 与 S 课对照</span>
+                    <div class="course-chapter-nav">
+                        <a href="oh07.html" class="chapter-prev">← OH07</a>
+                        <a href="oh09.html" class="chapter-next">下一讲 OH09 →</a>
+                    </div>
+                </div>
+            </div>
+            <article class="course-content">
+                <h1 class="course-title">OH08: 后台任务 <span class="subtitle">对标 S08</span></h1>
+                <div class="course-quote">
+                    <p>与 <a href="s08.html">S08</a> 同主题，读 OpenHarness 源码中的<strong>对应模块</strong>；路径见 <a href="topic-openharness.html#map">专题映射表</a>。</p>
+                    <p><strong>摘要</strong>：TaskManager、task_* 工具</p>
+                </div>
+                <figure class="mermaid-figure" aria-label="与 S08 导图一致的心智模型">
+                    <figcaption class="mermaid-caption"><strong>与 S08 导图对齐</strong>（站内同一 Mermaid key）。</figcaption>
+                    <div class="mermaid-diagram-scroll" data-mermaid-diagram="course-s08"></div>
+                </figure>
+                <section class="section-block">
+                    <h2>🎯 读什么</h2>
+                    <p>按 <a href="https://github.com/HKUDS/OpenHarness" target="_blank" rel="noopener noreferrer">上游仓库</a> 打开下列路径（本仓库快照：<code>reference/rererence_harness/OpenHarness/</code>）。具体文件以当前 main 为准。</p>
+                    <ul><li><code>tasks/manager.py</code>、<code>get_task_manager</code></li><li><code>tools/task_*_tool.py</code></li><li><code>commands/registry.py</code> 内对 task 的衔接（搜索 <code>task</code>）</li></ul>
+                </section>
+                <section class="section-block">
+                    <h2>⚖️ 与 TS 课的关系</h2>
+                    <p>24 讲（S/D）走重建 TypeScript；OH 系列走 <strong>MIT Python</strong>。模块边界相似、API 与产品特性不必一一对应，重点建立 <strong>Harness 元模型</strong>。</p>
+                </section>
+                <section class="section-block">
+                    <h2>🤔 自测</h2>
+                    <ol class="thinking-questions">
+                        <li>该模块的「出口」被谁 import？从 CLI / TUI / <code>run_query</code> 哪条调用链能走到这里？</li>
+                        <li>若删掉该模块，哪条用户可见能力最先坏掉？</li>
+                        <li>与 S08 课内示意图相比，OH 多做了或少做了哪一层抽象？</li>
+                    </ol>
+                </section>
+                <section class="section-block">
+                    <h2>📎 延伸</h2>
+                    <p><a href="oh07.html">OH07</a> · <a href="s08.html">S08</a> · <a href="topic-openharness-course.html">OH 课纲</a></p>
+                </section>
+                <div class="chapter-navigation">
+                    <a href="oh07.html" class="btn btn-secondary">← OH07</a>
+                    <a href="s08.html" class="btn btn-secondary">对照 S08</a>
+                    <a href="oh09.html" class="btn btn-primary">下一讲 OH09</a>
+                </div>
+                <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/oh08.md" target="_blank" rel="noopener noreferrer">📝 Markdown 源（GitHub）</a></p>
+            </article>
+        </div>
+    </main>
+    <footer class="footer"><div class="container"><p>© 2026 Claude Code Course. 仅供学习研究使用。</p></div></footer>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js" crossorigin="anonymous"></script>
+    <script>
+    function copyCode(btn) {
+        const pre = btn.closest('.code-block') && btn.closest('.code-block').querySelector('pre code');
+        if (pre && navigator.clipboard) navigator.clipboard.writeText(pre.innerText);
+    }
+    </script>
+    <script src="js/app.js"></script>
+</body>
+</html>

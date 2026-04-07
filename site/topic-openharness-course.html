@@ -6,7 +6,7 @@
     <title>OpenHarness 源码课 · 与 Claude Code 思想架构对照 - Claude Code Course</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚖️</text></svg>">
-    <meta name="description" content="OpenHarness Python 源码课：与 Source Map 重建的 Claude Code 向 TS 课对照，讲清思想架构相同点、差异、根因与 OpenHarness 优势；附 S01–S12 路径映射入口。">
+    <meta name="description" content="OpenHarness Python 源码课：OH01–OH12 与 S01–S12 逐讲对标；思想架构对照与 src/openharness 路径映射。">
 </head>
 <body>
     <nav class="navbar">
@@ -22,6 +22,7 @@
                 <a href="#why" class="nav-link">为何</a>
                 <a href="#edge" class="nav-link">优势</a>
                 <a href="#path" class="nav-link">学习路径</a>
+                <a href="#oh-series" class="nav-link">OH01–12</a>
                 <a href="#map" class="nav-link">路径表</a>
             </div>
             <div class="nav-actions">
@@ -48,8 +49,8 @@
             </p>
             <div class="hero-actions">
                 <a href="#same" class="btn btn-primary">先看思想对齐</a>
-                <a href="oh01.html" class="btn btn-secondary">OH01 · Loop</a>
-                <a href="oh02.html" class="btn btn-secondary">OH02 · Tools</a>
+                <a href="#oh-series" class="btn btn-secondary">OH01–12 讲稿目录</a>
+                <a href="oh01.html" class="btn btn-secondary">从 OH01 开始</a>
                 <a href="topic-openharness.html#map" class="btn btn-secondary">S 课 ↔ 源码路径</a>
                 <a href="https://github.com/HKUDS/OpenHarness" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">上游仓库 ↗</a>
             </div>
@@ -191,13 +192,32 @@
                         <li><strong>任选入口</strong>：先读 <a href="s01.html">S01</a> 建立 Loop 心智，或先本地 <code>uv run oh</code> 跑通再回读（安装见 <a href="topic-openharness.html#quickstart">OpenHarness 专题</a>）。</li>
                         <li><strong>对照路径表</strong>：每读完一节 S，在 <a href="topic-openharness.html#map">专题内映射表</a> 打开对应 <code>src/openharness/</code> 目录，只问三句：同样问题 OH 在哪一层解决？差异在接口还是策略？若改默认会怎样？</li>
                         <li><strong>作业</strong>：每单元写三条笔记——<strong>相同点 / 不同点 / 原因</strong>。</li>
-                        <li><strong>已上线讲稿</strong>：<a href="oh01.html"><strong>OH01 · Agent Loop</strong></a>（对标 <a href="s01.html">S01</a>）、<a href="oh02.html"><strong>OH02 · Tool System</strong></a>（对标 <a href="s02.html">S02</a>）；OH03 起陆续补。</li>
+                        <li><strong>全套 Python 讲稿</strong>：<a href="#oh-series">OH01–OH12</a> 与 S01–S12 逐讲对标（见下表）。</li>
                     </ol>
+                </section>
+
+                <section id="oh-series" class="section-block">
+                    <h2>OH01–OH12 讲稿目录（对标 S01–S12）</h2>
+                    <p>每讲含：与 S 课同主题的读源码指引、站内 Mermaid 导图 key、自测问题。按顺序读或按 S 课进度跳读均可。</p>
+                    <table class="compare-table">
+                        <tr><th>讲次</th><th>对标 S</th><th>主题摘要</th></tr>
+                        <tr><td><a href="oh01.html">OH01</a></td><td><a href="s01.html">S01</a></td><td>Agent Loop · <code>query_engine</code> / <code>run_query</code></td></tr>
+                        <tr><td><a href="oh02.html">OH02</a></td><td><a href="s02.html">S02</a></td><td>Tool System · <code>BaseTool</code> / <code>ToolRegistry</code></td></tr>
+                        <tr><td><a href="oh03.html">OH03</a></td><td><a href="s03.html">S03</a></td><td>Permissions · <code>PermissionChecker</code></td></tr>
+                        <tr><td><a href="oh04.html">OH04</a></td><td><a href="s04.html">S04</a></td><td>CLI · Typer / 斜杠命令</td></tr>
+                        <tr><td><a href="oh05.html">OH05</a></td><td><a href="s05.html">S05</a></td><td>上下文压缩 · <code>services/compact</code></td></tr>
+                        <tr><td><a href="oh06.html">OH06</a></td><td><a href="s06.html">S06</a></td><td>Subagent · <code>agent_tool</code> / swarm</td></tr>
+                        <tr><td><a href="oh07.html">OH07</a></td><td><a href="s07.html">S07</a></td><td>MCP · <code>McpToolAdapter</code></td></tr>
+                        <tr><td><a href="oh08.html">OH08</a></td><td><a href="s08.html">S08</a></td><td>后台任务 · <code>tasks/</code></td></tr>
+                        <tr><td><a href="oh09.html">OH09</a></td><td><a href="s09.html">S09</a></td><td>Bridge / <code>backend_host</code></td></tr>
+                        <tr><td><a href="oh10.html">OH10</a></td><td><a href="s10.html">S10</a></td><td>Hooks</td></tr>
+                        <tr><td><a href="oh11.html">OH11</a></td><td><a href="s11.html">S11</a></td><td>Vim / keybindings</td></tr>
+                        <tr><td><a href="oh12.html">OH12</a></td><td><a href="s12.html">S12</a></td><td>Git worktree 工具</td></tr>
+                    </table>
                 </section>
 
                 <section id="map" class="section-block">
                     <h2>源码与站内入口</h2>
-                    <p><strong>OH 细讲</strong>：<a href="oh01.html">OH01 Agent Loop</a> · <a href="oh02.html">OH02 Tool System</a>。</p>
                     <p><strong>S01–S12 ↔ 目录映射</strong>（节选）见 <a href="topic-openharness.html#map">OpenHarness 专题 · 课程对照</a>。</p>
                     <p><strong>本仓库快照路径</strong>（注意目录名历史拼写 <code>rererence</code>）：</p>
                     <div class="code-block">
