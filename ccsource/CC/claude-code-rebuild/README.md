@@ -41,6 +41,21 @@ bun run dev
 
 Without `bun install`, Bun will fail on imports such as `lodash-es/sumBy.js`.
 
+If `bun run dev` appears to hang after printing only:
+
+```text
+bun run src/entrypoints/cli.tsx
+```
+
+check your terminal type first:
+
+```bash
+echo "$TERM"
+TERM=xterm-256color bun run dev
+```
+
+This rebuilt baseline uses an Ink TUI. In weak terminals such as `TERM=dumb`, the CLI can enter interactive mode without rendering the screen correctly, which looks like it is stuck even though the process is already running.
+
 ---
 
 ## Directory Structure
