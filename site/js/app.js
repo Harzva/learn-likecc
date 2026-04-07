@@ -435,6 +435,7 @@ function initSiteSidebar() {
         '<details class="site-sidebar__details">' +
         '<summary class="site-sidebar__summary"><span class="site-sidebar__ico">🧩</span><span class="site-sidebar__txt">开源 Harness</span></summary>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-openharness.html"><span class="site-sidebar__ico">⚡</span><span class="site-sidebar__txt">OpenHarness 专题</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-openharness-course.html"><span class="site-sidebar__ico">⚖️</span><span class="site-sidebar__txt">OH 源码课 · 对照 CC</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="https://github.com/HKUDS/OpenHarness" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">🔗</span><span class="site-sidebar__txt">上游仓库 ↗</span></a>' +
         '</details>' +
         '<details class="site-sidebar__details">' +

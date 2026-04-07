@@ -18,7 +18,7 @@
 - **Source Map 事件（摘要）**
 - **十二章列表（S + D）**
 - **Awesome · 源码镜像清单**
-- **扩展专题**（<a href="topic-openharness.md">OpenHarness</a>、<a href="topic-cc-release-watch.md">发版监督</a>）
+- **扩展专题**（<a href="topic-openharness.md">OpenHarness</a>、<a href="topic-openharness-course.md">OH 源码课 · 对照 CC</a>、<a href="topic-cc-release-watch.md">发版监督</a>）
 
 ## 各节摘要（对照 HTML）
 

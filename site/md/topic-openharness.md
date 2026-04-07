@@ -8,6 +8,8 @@
 
 本站专题，与 **Source Map 源码课**（TypeScript）并列：**OpenHarness** 为 **Python / MIT** 开源 Agent Harness（CLI `oh`）。首页课程总览 Mermaid 中已用虚线连接 S01/S07 与 OpenHarness 对照节点。
 
+**源码课（专门对照 Claude Code 思想架构）**：[topic-openharness-course.md](topic-openharness-course.md) / [topic-openharness-course.html](https://harzva.github.io/learn-likecc/topic-openharness-course.html) — 相同点、不同点、根因、OH 优势与学习路径。
+
 ## 快速上手（摘录）
 
 详见上游 [README.zh-CN.md](https://github.com/HKUDS/OpenHarness/blob/main/README.zh-CN.md)。

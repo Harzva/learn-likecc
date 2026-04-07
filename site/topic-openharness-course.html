@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenHarness 源码课 · 与 Claude Code 思想架构对照 - Claude Code Course</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚖️</text></svg>">
+    <meta name="description" content="OpenHarness Python 源码课：与 Source Map 重建的 Claude Code 向 TS 课对照，讲清思想架构相同点、差异、根因与 OpenHarness 优势；附 S01–S12 路径映射入口。">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">⚖️</span>
+                <span class="logo-text">OH 源码课</span>
+            </a>
+            <div class="nav-links">
+                <a href="#position" class="nav-link">定位</a>
+                <a href="#same" class="nav-link">相同</a>
+                <a href="#diff" class="nav-link">不同</a>
+                <a href="#why" class="nav-link">为何</a>
+                <a href="#edge" class="nav-link">优势</a>
+                <a href="#path" class="nav-link">学习路径</a>
+                <a href="#map" class="nav-link">路径表</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-openharness.html" class="btn-github">OH 专题</a>
+                <a href="topic-sourcemap.html" class="btn-github">S 源码专题</a>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>📌 源码课</span>
+                <span>OpenHarness · Python · MIT</span>
+            </div>
+            <h1 class="hero-title">
+                OpenHarness 源码课<br>
+                <span class="gradient-text">与 Claude Code 思想架构对照</span>
+            </h1>
+            <p class="hero-subtitle">
+                本站 <strong>24 讲</strong>默认读 <strong>重建的 TypeScript</strong>（Claude Code 向）；本课让你在<strong>同一套 Harness 问题清单</strong>下读 <strong>OpenHarness</strong> 的 Python 实现，并始终回答：<strong>哪里相同、哪里不同、为何不同、OH 有何优势</strong>。
+            </p>
+            <div class="hero-actions">
+                <a href="#same" class="btn btn-primary">先看思想对齐</a>
+                <a href="topic-openharness.html#map" class="btn btn-secondary">S 课 ↔ 源码路径</a>
+                <a href="https://github.com/HKUDS/OpenHarness" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">上游仓库 ↗</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="course-main devlog-main">
+        <div class="container">
+            <article class="course-content devlog-content">
+                <h1 class="course-title" id="position">课程定位</h1>
+
+                <div class="course-quote">
+                    <p>本课<strong>不替代</strong> S01–S12 的 TS 逐模块讲解，而是<strong>并列第二条源码轴</strong>：用你已熟悉的 Agent Loop、工具、MCP、权限等概念，在 <code>src/openharness/</code> 里<strong>认路、对比、写笔记</strong>。</p>
+                    <p>三条线请分清：<strong>① Anthropic 官方 Claude Code 产品</strong>（闭源发行）· <strong>② 课内 TS 镜像</strong>（学习用重建源码）· <strong>③ OpenHarness</strong>（独立 MIT 项目）。</p>
+                </div>
+
+                <section id="same" class="section-block">
+                    <h2>思想上相同的部分（问题域对齐）</h2>
+                    <p>两者都在解决 <strong>「模型 + 工具 + 会话状态 + 治理」</strong> 的 Harness 问题，而不是单次聊天 API。</p>
+                    <table class="compare-table">
+                        <tr>
+                            <th>维度</th>
+                            <th>共性（读 S 课时脑内可平移）</th>
+                        </tr>
+                        <tr>
+                            <td>主循环</td>
+                            <td>多轮对话、流式输出、tool-use 解析与再提交。</td>
+                        </tr>
+                        <tr>
+                            <td>工具层</td>
+                            <td>注册 schema、执行、错误与重试、并行调用等工程结构。</td>
+                        </tr>
+                        <tr>
+                            <td>权限与治理</td>
+                            <td>高风险操作确认、规则匹配、Hooks 介入点。</td>
+                        </tr>
+                        <tr>
+                            <td>上下文</td>
+                            <td>消息拼装、压缩与预算、项目级说明文件与记忆。</td>
+                        </tr>
+                        <tr>
+                            <td>MCP</td>
+                            <td>外接能力与资源暴露给模型。</td>
+                        </tr>
+                        <tr>
+                            <td>多 Agent</td>
+                            <td>子任务、协调、会话隔离或合并。</td>
+                        </tr>
+                        <tr>
+                            <td>CLI / TUI</td>
+                            <td>命令入口、终端交互、与编辑器桥接的思路。</td>
+                        </tr>
+                    </table>
+                    <p>结论：<strong>大框架类似</strong>——学完 <a href="s01.html">S01</a>、<a href="s02.html">S02</a>、<a href="s07.html">S07</a> 再打开 <code>engine/</code>、<code>tools/</code>、<code>mcp/</code> 会有认路感；差异主要在<strong>产品外壳与默认策略</strong>。</p>
+                </section>
+
+                <section id="diff" class="section-block">
+                    <h2>思想与架构上的不同</h2>
+                    <table class="compare-table">
+                        <tr>
+                            <th>维度</th>
+                            <th>Claude Code（课内 TS 镜像）</th>
+                            <th>OpenHarness</th>
+                        </tr>
+                        <tr>
+                            <td>产品定位</td>
+                            <td>与 <strong>Anthropic 商业产品</strong>强绑定的一体化 CLI（账号、订阅、发版由官方定）。</td>
+                            <td><strong>社区 Harness 基座</strong>：多 workflow、多兼容 API、可自托管逻辑。</td>
+                        </tr>
+                        <tr>
+                            <td>Provider 模型</td>
+                            <td>以 <strong>Claude 生态</strong>为主轴（含 Bedrock 等变体）。</td>
+                            <td><strong><code>oh setup</code></strong> 下 Anthropic-compatible、OpenAI-compatible、订阅类 preset 等<strong>并列</strong>。</td>
+                        </tr>
+                        <tr>
+                            <td>许可证与源码</td>
+                            <td>官方闭源；课内树为<strong>重建镜像</strong>，仅供学习。</td>
+                            <td><strong>MIT 全开源</strong>，可 fork、改默认策略、接内网模型（在合规前提下）。</td>
+                        </tr>
+                        <tr>
+                            <td>实现栈</td>
+                            <td>TypeScript，与官方发行通道一致。</td>
+                            <td><strong>Python</strong>，调试与依赖路径不同。</td>
+                        </tr>
+                        <tr>
+                            <td>功能边界</td>
+                            <td>随<strong>官方路线图</strong>（插件市场、Remote Control、Auto mode 等）。</td>
+                            <td><strong>另一套组合</strong>（如 <code>ohmo</code>、channels、Swarm 实现），<strong>不必</strong>与 CC 逐特性对齐。</td>
+                        </tr>
+                        <tr>
+                            <td>安全默认</td>
+                            <td>面向大众的<strong>官方默认</strong>与企业集成。</td>
+                            <td>更偏<strong>自运维</strong>：允许列表、Hooks、沙箱假设均可改，责任在部署者。</td>
+                        </tr>
+                    </table>
+                    <p>这些不同多数不是「谁更先进」，而是 <strong>单一商业产品</strong> 与 <strong>可改造基础设施</strong> 的自然分工。</p>
+                </section>
+
+                <section id="why" class="section-block">
+                    <h2>为什么不同（根因）</h2>
+                    <ol>
+                        <li><strong>目标不同</strong>：Claude Code 服务 Anthropic 的订阅与合规叙事；OpenHarness 服务 <strong>可审计、可分叉、多后端</strong> 的集成与实验。</li>
+                        <li><strong>技术选型不同</strong>：TS 利于与编辑器/桌面工具链统一；Python 利于 AI 工程圈快速改 prompt、工具与脚本胶水。</li>
+                        <li><strong>演进约束不同</strong>：官方受发布列车与企业策略约束；开源 Harness 更依赖社区 PR，兼容性责任分散在<strong>你自己选的部署</strong>。</li>
+                        <li><strong>品牌与法律边界</strong>：课内 TS 树不可冒充官方；OpenHarness 为<strong>独立项目</strong>，与 Anthropic 无隶属关系。</li>
+                    </ol>
+                </section>
+
+                <section id="edge" class="section-block">
+                    <h2>OpenHarness 的优势（何种前提下成立）</h2>
+                    <table class="compare-table">
+                        <tr>
+                            <th>优势</th>
+                            <th>说明</th>
+                        </tr>
+                        <tr>
+                            <td>可读可改</td>
+                            <td>MIT 全仓库，适合教学、实验、内网定制（API 使用仍须合规）。</td>
+                        </tr>
+                        <tr>
+                            <td>多后端叙事</td>
+                            <td>同一套 Harness 下切换多种兼容 API，便于做<strong>供应商无关</strong>的课设或 PoC。</td>
+                        </tr>
+                        <tr>
+                            <td>与 S 课同构</td>
+                            <td>用已熟悉的模块划分读 Python，加速建立 <strong>Harness 元模型</strong>，减少对单一闭源实现的依赖。</td>
+                        </tr>
+                        <tr>
+                            <td>社区组合面</td>
+                            <td>Skills、插件、Swarm、channels 等与官方<strong>不同组合</strong>，适合研究「无官方产品时 Harness 如何长」。</td>
+                        </tr>
+                    </table>
+                    <p><strong>不默认的结论</strong>：不宣称 OH 在普遍意义上比官方「更安全或更强」——安全与稳定取决于你的配置、模型提供方与运维；官方产品在默认策略与企业集成上通常投入更大。</p>
+                </section>
+
+                <section id="path" class="section-block">
+                    <h2>推荐学习路径</h2>
+                    <ol>
+                        <li><strong>任选入口</strong>：先读 <a href="s01.html">S01</a> 建立 Loop 心智，或先本地 <code>uv run oh</code> 跑通再回读（安装见 <a href="topic-openharness.html#quickstart">OpenHarness 专题</a>）。</li>
+                        <li><strong>对照路径表</strong>：每读完一节 S，在 <a href="topic-openharness.html#map">专题内映射表</a> 打开对应 <code>src/openharness/</code> 目录，只问三句：同样问题 OH 在哪一层解决？差异在接口还是策略？若改默认会怎样？</li>
+                        <li><strong>作业</strong>：每单元写三条笔记——<strong>相同点 / 不同点 / 原因</strong>；日后可扩展为 OH01–OH12 细稿。</li>
+                    </ol>
+                </section>
+
+                <section id="map" class="section-block">
+                    <h2>源码与站内入口</h2>
+                    <p><strong>S01–S12 ↔ 目录映射</strong>（节选）见 <a href="topic-openharness.html#map">OpenHarness 专题 · 课程对照</a>。</p>
+                    <p><strong>本仓库快照路径</strong>（注意目录名历史拼写 <code>rererence</code>）：</p>
+                    <div class="code-block">
+                        <pre><code>reference/rererence_harness/OpenHarness/</code></pre>
+                    </div>
+                    <p>若无该目录，见 <a href="https://github.com/Harzva/learn-likecc/blob/main/reference/rererence_harness/README.md" target="_blank" rel="noopener noreferrer"><code>reference/rererence_harness/README.md</code> ↗</a>。</p>
+                    <p>官方 CLI 发版跟踪见 <a href="topic-cc-release-watch.html">发版监督</a>（与 OpenHarness 上游 release 是两条线）。</p>
+                </section>
+
+                <div class="chapter-navigation">
+                    <a href="topic-openharness.html" class="btn btn-secondary">← OpenHarness 专题</a>
+                    <a href="topic-sourcemap.html" class="btn btn-secondary">Source Map 专题</a>
+                    <a href="index.html" class="btn btn-primary">返回首页 →</a>
+                </div>
+
+                <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-openharness-course.md" target="_blank" rel="noopener noreferrer">📝 Markdown 源（GitHub）</a></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>
