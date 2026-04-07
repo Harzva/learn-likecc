@@ -320,6 +320,22 @@ function median(values: number[]): number {
   return sorted.length % 2 === 0 ? Math.round((sorted[mid - 1]! + sorted[mid]!) / 2) : sorted[mid]!;
 }
 
+function buildTranscriptPreviewLines(messages: MessageType[]): string[] {
+  const lines: string[] = [];
+  for (const message of messages.slice(-8)) {
+    if (message.type === 'user') {
+      const text = getContentText(message.message?.content as string | ContentBlockParam[])?.trim();
+      if (text) lines.push(`You: ${text.replace(/\s+/g, ' ')}`);
+    } else if (message.type === 'assistant') {
+      const text = getContentText(message.message?.content as string | ContentBlockParam[])?.trim();
+      if (text) lines.push(`Like Code: ${text.replace(/\s+/g, ' ')}`);
+    } else if (message.type === 'system' && 'subtype' in message && typeof message.subtype === 'string') {
+      lines.push(`System: ${message.subtype}`);
+    }
+  }
+  return lines.slice(-6);
+}
+
 /**
  * Small component to display transcript mode footer with dynamic keybinding.
  * Must be rendered inside KeybindingSetup to access keybinding context.
@@ -4709,6 +4725,33 @@ export function REPL({
   // When viewing an agent, never fall through to leader — empty until
   // bootstrap/stream fills. Closes the see-leader-type-agent footgun.
   const displayedMessages = viewedAgentTask ? viewedAgentTask.messages ?? [] : usesSyncMessages ? messages : deferredMessages;
+  useEffect(() => {
+    const activeTab = getActiveSessionTab(sessionTabs);
+    if (!activeTab) return;
+    const transcriptPreview = buildTranscriptPreviewLines(displayedMessages);
+    const samePreview =
+      JSON.stringify(activeTab.transcriptPreview ?? []) ===
+      JSON.stringify(transcriptPreview);
+    if (samePreview) return;
+
+    setAppState(prev => {
+      const tabs = normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel);
+      const currentActiveTab = getActiveSessionTab(tabs);
+      if (!currentActiveTab) return prev;
+      const currentPreview = currentActiveTab.transcriptPreview ?? [];
+      if (
+        JSON.stringify(currentPreview) === JSON.stringify(transcriptPreview)
+      ) {
+        return prev;
+      }
+      return {
+        ...prev,
+        sessionTabs: updateSessionTab(tabs, currentActiveTab.id, {
+          transcriptPreview,
+        }),
+      };
+    });
+  }, [displayedMessages, sessionTabs, setAppState]);
   // Show the placeholder until the real user message appears in
   // displayedMessages. userInputOnProcessing stays set for the whole turn
   // (cleared in resetLoadingState); this length check hides it once

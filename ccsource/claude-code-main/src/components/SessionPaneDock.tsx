@@ -39,6 +39,18 @@ export function SessionPaneDock({
         {tab.todoSnapshotId ? ` · Todo: ${truncate(tab.todoSnapshotId, 18)}` : ''}
       </Text>
       <Box marginTop={1} flexDirection="column">
+        <Text dimColor>Transcript</Text>
+        {tab.transcriptPreview && tab.transcriptPreview.length > 0 ? (
+          tab.transcriptPreview.slice(-4).map((line, index) => (
+            <Text key={`${tab.id}-line-${index}`} color={isActive ? 'white' : 'gray'}>
+              {truncate(line, 72)}
+            </Text>
+          ))
+        ) : (
+          <Text dimColor>No transcript captured yet</Text>
+        )}
+      </Box>
+      <Box marginTop={1} flexDirection="column">
         {isActive ? (
           children
         ) : (

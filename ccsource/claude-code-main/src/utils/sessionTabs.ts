@@ -9,6 +9,7 @@ export type SessionTabState = {
   title: string
   kind: SessionTabKind
   transcriptId: string
+  transcriptPreview?: string[]
   draftInput?: string
   todoSnapshotId?: string
   model?: string
@@ -39,6 +40,7 @@ export type SessionTabsMetadata = {
       id: string
       title: string
       kind: SessionTabKind
+      transcriptPreview?: string[]
       draftInput?: string
       model?: string
       provider?: string
@@ -109,6 +111,7 @@ export function toSessionTabsMetadata(
         id: tab.id,
         title: tab.title,
         kind: tab.kind,
+        transcriptPreview: tab.transcriptPreview,
         draftInput: tab.draftInput,
         model: tab.model,
         provider: tab.provider,
@@ -132,6 +135,7 @@ export function fromSessionTabsMetadata(
         title: tab.title,
         kind: tab.kind,
         transcriptId: tab.id,
+        transcriptPreview: tab.transcriptPreview,
         draftInput: tab.draftInput,
         model: tab.model,
         provider: tab.provider,
@@ -243,6 +247,8 @@ export function updateSessionTab(
     nextTab.title === existing.title &&
     nextTab.kind === existing.kind &&
     nextTab.transcriptId === existing.transcriptId &&
+    JSON.stringify(nextTab.transcriptPreview) ===
+      JSON.stringify(existing.transcriptPreview) &&
     nextTab.draftInput === existing.draftInput &&
     nextTab.todoSnapshotId === existing.todoSnapshotId &&
     nextTab.model === existing.model &&
