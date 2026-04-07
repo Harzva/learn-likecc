@@ -74,7 +74,9 @@ export function SessionWorkspacePanel({
     .filter(task => task.status === 'running' || task.status === 'pending')
     .slice(0, 6)
 
-  const todoEntries = Object.entries(todos)
+  const todoEntries = Object.entries(
+    activeTab?.legacyTodosSnapshot ?? todos,
+  )
   const activeTodos = todoEntries.flatMap(([agentId, items]) =>
     items
       .filter(item => item.status !== 'completed')
@@ -83,16 +85,22 @@ export function SessionWorkspacePanel({
   )
 
   const todoSummary =
-    tasksV2?.reduce(
-      (acc, task) => {
-        acc.total += 1
-        if (task.status === 'completed') acc.completed += 1
-        if (task.status === 'in_progress') acc.inProgress += 1
-        if (task.status === 'pending') acc.pending += 1
-        return acc
-      },
-      { total: 0, completed: 0, inProgress: 0, pending: 0 },
-    ) ?? null
+    activeTab?.taskPreviewSummary ??
+    (tasksV2
+      ? (() => {
+          const summary = tasksV2.reduce(
+            (acc, task) => {
+              acc.total += 1
+              if (task.status === 'completed') acc.completed += 1
+              if (task.status === 'in_progress') acc.inProgress += 1
+              if (task.status === 'pending') acc.pending += 1
+              return acc
+            },
+            { total: 0, completed: 0, inProgress: 0, pending: 0 },
+          )
+          return `${summary.total} total · ${summary.inProgress} active · ${summary.pending} pending · ${summary.completed} done`
+        })()
+      : null)
 
   return (
     <Box
@@ -174,19 +182,25 @@ export function SessionWorkspacePanel({
       <Box flexDirection="column" marginTop={1}>
         <Text bold>Todo / task lane</Text>
         {todoSummary ? (
-          <Text dimColor>
-            {todoSummary.total} total · {todoSummary.inProgress} active ·{' '}
-            {todoSummary.pending} pending · {todoSummary.completed} done
-          </Text>
+          <Text dimColor>{todoSummary}</Text>
         ) : (
           <Text dimColor>No task lane yet</Text>
         )}
-        {tasksV2?.slice(0, 3).map(task => (
-          <Text key={task.id} color={statusColor(task.status)}>
-            {statusGlyph(task.status)} {task.id}.{' '}
-            {truncate(task.subject, stacked ? 38 : 28)}
-          </Text>
-        ))}
+        {activeTab?.taskPreviewLines && activeTab.taskPreviewLines.length > 0
+          ? activeTab.taskPreviewLines.slice(0, 3).map((line, index) => (
+              <Text
+                key={`${activeTab.id}-task-preview-${index}`}
+                color="gray"
+              >
+                {truncate(line, stacked ? 42 : 30)}
+              </Text>
+            ))
+          : tasksV2?.slice(0, 3).map(task => (
+              <Text key={task.id} color={statusColor(task.status)}>
+                {statusGlyph(task.status)} {task.id}.{' '}
+                {truncate(task.subject, stacked ? 38 : 28)}
+              </Text>
+            ))}
         {activeTodos.length > 0 && (
           <Box flexDirection="column" marginTop={1}>
             <Text bold>Legacy todos</Text>

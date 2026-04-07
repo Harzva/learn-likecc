@@ -1,4 +1,5 @@
 import type { Message } from '../types/message.js'
+import type { TodoList } from './todo/types.js'
 
 export type SessionLayoutMode = 'single' | 'tabs' | 'panes'
 
@@ -13,6 +14,9 @@ export type SessionTabState = {
   transcriptId: string
   transcriptMessages?: Message[]
   transcriptPreview?: string[]
+  legacyTodosSnapshot?: Record<string, TodoList>
+  taskPreviewLines?: string[]
+  taskPreviewSummary?: string
   draftInput?: string
   todoSnapshotId?: string
   model?: string
@@ -39,12 +43,15 @@ export type SessionTabsMetadata = {
   tab_order: string[]
   layout_mode: SessionLayoutMode
   show_subagent_panel: boolean
-    tabs: Array<{
-      id: string
-      title: string
-      kind: SessionTabKind
-      transcriptPreview?: string[]
-      draftInput?: string
+  tabs: Array<{
+    id: string
+    title: string
+    kind: SessionTabKind
+    transcriptPreview?: string[]
+    legacyTodosSnapshot?: Record<string, TodoList>
+    taskPreviewLines?: string[]
+    taskPreviewSummary?: string
+    draftInput?: string
       model?: string
       provider?: string
     repoLabel?: string
@@ -115,6 +122,9 @@ export function toSessionTabsMetadata(
         title: tab.title,
         kind: tab.kind,
         transcriptPreview: tab.transcriptPreview,
+        legacyTodosSnapshot: tab.legacyTodosSnapshot,
+        taskPreviewLines: tab.taskPreviewLines,
+        taskPreviewSummary: tab.taskPreviewSummary,
         draftInput: tab.draftInput,
         model: tab.model,
         provider: tab.provider,
@@ -139,6 +149,9 @@ export function fromSessionTabsMetadata(
         kind: tab.kind,
         transcriptId: tab.id,
         transcriptPreview: tab.transcriptPreview,
+        legacyTodosSnapshot: tab.legacyTodosSnapshot,
+        taskPreviewLines: tab.taskPreviewLines,
+        taskPreviewSummary: tab.taskPreviewSummary,
         draftInput: tab.draftInput,
         model: tab.model,
         provider: tab.provider,
@@ -253,6 +266,11 @@ export function updateSessionTab(
     nextTab.transcriptMessages === existing.transcriptMessages &&
     JSON.stringify(nextTab.transcriptPreview) ===
       JSON.stringify(existing.transcriptPreview) &&
+    JSON.stringify(nextTab.legacyTodosSnapshot) ===
+      JSON.stringify(existing.legacyTodosSnapshot) &&
+    JSON.stringify(nextTab.taskPreviewLines) ===
+      JSON.stringify(existing.taskPreviewLines) &&
+    nextTab.taskPreviewSummary === existing.taskPreviewSummary &&
     nextTab.draftInput === existing.draftInput &&
     nextTab.todoSnapshotId === existing.todoSnapshotId &&
     nextTab.model === existing.model &&

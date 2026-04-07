@@ -145,8 +145,9 @@ learn-likecc 现在已经不只是一个 Claude Code 源码学习仓库。
 - [x] 让 pane 模式下底部出现多个可见对话框区域，而不只是一个共享输入框
 - [x] 让左右 pane 开始显示各自的 transcript 预览
 - [x] 让切 tab 时主消息区开始切到各自 transcript
+- [x] 让 todo lane 开始按 tab 保存和恢复
 - [ ] 继续把多个可见对话框升级成真正的多活跃输入与多 transcript 并行
-- [ ] 继续把 transcript / todo 做到真正隔离，而不只是先做 UI 层主消息区切换
+- [ ] 继续把 transcript / todo 做到真正隔离，而不只是先做 UI 层消息区与快照恢复
 - [ ] 继续把 subagent 面板升级为更完整的工作视图，展示仓库、目录、当前任务与更多 live 状态
 
 ---

@@ -336,6 +336,44 @@ function buildTranscriptPreviewLines(messages: MessageType[]): string[] {
   return lines.slice(-6);
 }
 
+function buildTaskPreviewSnapshot(
+  tasksV2?: Array<{
+    id: string
+    subject: string
+    status: string
+  }>,
+): { lines: string[]; summary?: string } {
+  if (!tasksV2 || tasksV2.length === 0) {
+    return { lines: [] }
+  }
+
+  const counts = tasksV2.reduce(
+    (acc, task) => {
+      acc.total += 1
+      if (task.status === 'completed') acc.completed += 1
+      if (task.status === 'in_progress') acc.inProgress += 1
+      if (task.status === 'pending') acc.pending += 1
+      return acc
+    },
+    { total: 0, completed: 0, inProgress: 0, pending: 0 },
+  )
+
+  const lines = tasksV2.slice(0, 4).map(task => {
+    const prefix =
+      task.status === 'completed'
+        ? 'done'
+        : task.status === 'in_progress'
+          ? 'doing'
+          : 'todo'
+    return `${prefix} · ${task.id}. ${task.subject}`
+  })
+
+  return {
+    lines,
+    summary: `${counts.total} total · ${counts.inProgress} active · ${counts.pending} pending · ${counts.completed} done`,
+  }
+}
+
 /**
  * Small component to display transcript mode footer with dynamic keybinding.
  * Must be rendered inside KeybindingSetup to access keybinding context.
@@ -821,6 +859,7 @@ export function REPL({
     return segments[segments.length - 1] ?? projectRoot;
   }, []);
   const projectRootPath = useMemo(() => getProjectRoot() || getOriginalCwd(), []);
+  const taskPreviewSnapshot = useMemo(() => buildTaskPreviewSnapshot(tasksV2), [tasksV2]);
 
   // Start background plugin installations
 
@@ -1433,6 +1472,7 @@ export function REPL({
       if (tabs.tabs[previousActiveTabId]) {
         tabs = updateSessionTab(tabs, previousActiveTabId, {
           transcriptMessages: outgoingMessages,
+          legacyTodosSnapshot: structuredClone(prev.todos),
         });
       }
       const incomingTab = tabs.tabs[activeTabId];
@@ -1440,6 +1480,9 @@ export function REPL({
         ...prev,
         mainLoopModel: incomingTab?.model ?? prev.mainLoopModel,
         viewingAgentTaskId: incomingTab?.subagentId,
+        todos: incomingTab?.legacyTodosSnapshot
+          ? structuredClone(incomingTab.legacyTodosSnapshot)
+          : prev.todos,
         sessionTabs: tabs,
       };
     });
@@ -1719,6 +1762,9 @@ export function REPL({
       subagentId: viewingAgentTaskId,
       transcriptId: nextTranscriptId,
       todoSnapshotId: nextTodoSnapshotId,
+      legacyTodosSnapshot: structuredClone(todos),
+      taskPreviewLines: taskPreviewSnapshot.lines,
+      taskPreviewSummary: taskPreviewSnapshot.summary,
     });
 
     if (nextTabs !== sessionTabs) {
@@ -1727,7 +1773,7 @@ export function REPL({
         sessionTabs: nextTabs,
       }));
     }
-  }, [sessionTabs, mainLoopModel, viewingAgentTaskId, tasksV2, isLoading, hasRunningTeammates, projectRootLabel, projectRootPath, setAppState]);
+  }, [sessionTabs, mainLoopModel, viewingAgentTaskId, tasksV2, isLoading, hasRunningTeammates, projectRootLabel, projectRootPath, setAppState, todos, taskPreviewSnapshot]);
 
   // Show deferred turn duration message once all swarm teammates finish
   useEffect(() => {
