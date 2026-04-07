@@ -8,9 +8,7 @@
 
 ---
 
-<p align="center">
-  <img src="docs/readme-assets/likecode-customized-session.svg" alt="Like Code customized session preview" width="100%" />
-</p>
+![Like Code customized session preview](docs/readme-assets/likecode-customized-session.svg)
 
 ## 顶部重点：我们现在最重要的事
 

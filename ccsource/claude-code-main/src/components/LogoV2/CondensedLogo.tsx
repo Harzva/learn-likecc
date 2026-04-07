@@ -10,8 +10,11 @@ import { truncate } from '../../utils/format.js'
 import { isFullscreenEnvEnabled } from '../../utils/fullscreen.js'
 import {
   formatModelAndBilling,
+  formatReleaseNoteForDisplay,
   getLayeredConfigSummaryItems,
   getLogoDisplayData,
+  getRecentActivitySync,
+  getRecentReleaseNotesSync,
   truncatePath,
   type LayeredConfigSummaryItem,
 } from '../../utils/logoV2Utils.js'
@@ -33,14 +36,6 @@ import {
 
 const LIKECODE_BLUE = 'rgb(88,166,255)'
 const LIKECODE_HEART = 'rgb(255,120,170)'
-
-function AccentLine({ width }: { width: number }) {
-  return (
-    <Text color={LIKECODE_BLUE} bold>
-      {'━'.repeat(Math.max(width, 12))}
-    </Text>
-  )
-}
 
 function InfoDot() {
   return (
@@ -138,7 +133,6 @@ export function CondensedLogo() {
   }, [showOverageCreditUpsell, showGuestPassesUpsell])
 
   const textWidth = Math.max(columns - 15, 20)
-  const accentWidth = Math.max(columns - 2, 24)
   const effortSuffix = getEffortSuffix(model, effortValue)
   const { shouldSplit, truncatedModel, truncatedBilling } = formatModelAndBilling(
     modelDisplayName + effortSuffix,
@@ -155,90 +149,171 @@ export function CondensedLogo() {
     : `Harzva restored · ${truncatedCwd}`
   const truncatedCommandPath = truncate(commandPath, Math.max(textWidth, 20))
   const webWorkspaceUrl = getWorkspaceApiBaseUrl()
-  const likeWordmark = ['L I K E', 'L I K E', 'L I K E']
+  const likeWordmark = ['L I K E ♥', 'L I K E ♥', 'L I K E ♥']
+  const recentActivity = getRecentActivitySync().slice(0, 3)
+  const recentNotes = getRecentReleaseNotesSync(3)
+  const rightWidth = Math.max(Math.floor(columns * 0.48), 34)
+  const leftWidth = Math.max(columns - rightWidth - 9, 32)
+  const leftPanelWidth = Math.max(leftWidth - 2, 30)
+  const rightPanelWidth = Math.max(rightWidth - 2, 30)
+  const dividerHeight = 12
+  const isTwoColumn = columns >= 92
+  const title = ` Like Code v2.1.88 `
 
   return (
     <OffscreenFreeze>
       <Box flexDirection="column">
-        <AccentLine width={accentWidth} />
-        <Box flexDirection="row" gap={2} alignItems="center">
-          <Box flexDirection="column" alignItems="center">
-            {likeWordmark.map((line, index) => (
-              <Text key={`${line}-${index}`} color={LIKECODE_BLUE} bold>
-                {line}{' '}
-                <Text color={LIKECODE_HEART} bold>
-                  ♥
-                </Text>
-              </Text>
-            ))}
-            {isFullscreenEnvEnabled() ? <AnimatedClawd /> : <Clawd />}
-          </Box>
+        <Box
+          borderStyle="round"
+          borderColor={LIKECODE_BLUE}
+          borderText={title}
+          paddingX={1}
+          paddingY={0}
+          flexDirection="column"
+        >
+          <Box
+            flexDirection={isTwoColumn ? 'row' : 'column'}
+            gap={isTwoColumn ? 1 : 0}
+          >
+            <Box
+              width={isTwoColumn ? leftPanelWidth : undefined}
+              flexDirection="column"
+              alignItems="center"
+              paddingRight={isTwoColumn ? 1 : 0}
+            >
+              <Text bold>Welcome back!</Text>
+              <Box marginTop={1} marginBottom={1} flexDirection="column" alignItems="center">
+                {likeWordmark.map((line, index) => (
+                  <Text key={`${line}-${index}`} color={LIKECODE_BLUE} bold>
+                    {line.slice(0, -1)}
+                    <Text color={LIKECODE_HEART} bold>
+                      ♥
+                    </Text>
+                  </Text>
+                ))}
+                {isFullscreenEnvEnabled() ? <AnimatedClawd /> : <Clawd />}
+              </Box>
 
-          <Box flexDirection="column">
-            <Text>
-              <Text color={LIKECODE_BLUE} bold>
-                code
-              </Text>
-              <Text dimColor> · Harzva restored · v2.1.88</Text>
-            </Text>
-
-            {shouldSplit ? (
-              <>
+              {shouldSplit ? (
+                <>
+                  <Text color={LIKECODE_BLUE} bold>
+                    {truncate(truncatedModel, leftPanelWidth - 2)}
+                  </Text>
+                  <Text>
+                    <Text color="yellowBright">
+                      {truncate(truncatedBilling, leftPanelWidth - 2)}
+                    </Text>
+                    <Text dimColor> · </Text>
+                    <Text color="greenBright">Harzva restored</Text>
+                  </Text>
+                </>
+              ) : (
                 <Text>
                   <Text color={LIKECODE_BLUE} bold>
-                    {truncatedModel}
+                    {truncate(truncatedModel, leftPanelWidth - 24)}
                   </Text>
-                </Text>
-                <Text>
-                  <Text color="yellowBright">{truncatedBilling}</Text>
                   <Text dimColor> · </Text>
-                  <Text color="greenBright">Harzva restored</Text>
+                  <Text color="yellowBright">{truncatedBilling}</Text>
                 </Text>
-              </>
-            ) : (
-              <Text>
-                <Text color={LIKECODE_BLUE} bold>
-                  {truncatedModel}
-                </Text>
-                <Text dimColor> · </Text>
-                <Text color="yellowBright">{truncatedBilling}</Text>
-                <Text dimColor> · </Text>
-                <Text color="greenBright">Harzva restored</Text>
+              )}
+
+              <Text dimColor>{truncate(workspaceLine, leftPanelWidth)}</Text>
+              <Text dimColor>{truncate(truncatedCommandPath, leftPanelWidth)}</Text>
+            </Box>
+
+            {isTwoColumn ? (
+              <Box
+                height={dividerHeight}
+                borderStyle="single"
+                borderColor={LIKECODE_BLUE}
+                borderTop={false}
+                borderBottom={false}
+                borderRight={false}
+                width={1}
+              />
+            ) : null}
+
+            <Box
+              flexGrow={1}
+              width={isTwoColumn ? rightPanelWidth : undefined}
+              flexDirection="column"
+              paddingLeft={isTwoColumn ? 1 : 0}
+              marginTop={isTwoColumn ? 0 : 1}
+            >
+              <Text color={LIKECODE_BLUE} bold>
+                Tips for getting started
               </Text>
-            )}
+              <Text>
+                Run <Text color={LIKECODE_BLUE}>/show:slash</Text> to inspect built-in commands
+              </Text>
+              <Text>
+                Web <Text color={LIKECODE_BLUE}>{truncate(webWorkspaceUrl, rightPanelWidth - 6)}</Text>
+              </Text>
 
-            <Text>
-              <Text color="cyan">Workspace</Text>
-              <Text dimColor> · </Text>
-              <Text color="white">{workspaceLine}</Text>
-            </Text>
+              <Box
+                marginTop={1}
+                borderTop
+                borderColor={LIKECODE_BLUE}
+                paddingTop={0}
+                flexDirection="column"
+              >
+                <Text color={LIKECODE_BLUE} bold>
+                  Recent activity
+                </Text>
+                {recentActivity.length > 0 ? (
+                  recentActivity.map(log => {
+                    const description =
+                      log.summary && log.summary !== 'No prompt'
+                        ? log.summary
+                        : log.firstPrompt || 'No prompt'
 
-            <Text>
-              <Text color="cyan">Command</Text>
-              <Text dimColor> · </Text>
-              <Text color="whiteBright">{truncatedCommandPath}</Text>
-            </Text>
+                    return (
+                      <Text key={log.sessionId ?? description}>
+                        {truncate(description, rightPanelWidth)}
+                      </Text>
+                    )
+                  })
+                ) : (
+                  <Text dimColor>No recent activity</Text>
+                )}
+              </Box>
 
-            <Text>
-              <Text color="cyan">Web</Text>
-              <Text dimColor> · </Text>
-              <Text color={LIKECODE_BLUE}>{webWorkspaceUrl}</Text>
-            </Text>
+              <Box
+                marginTop={1}
+                borderTop
+                borderColor={LIKECODE_BLUE}
+                paddingTop={0}
+                flexDirection="column"
+              >
+                <Text color={LIKECODE_BLUE} bold>
+                  What's new
+                </Text>
+                {recentNotes.length > 0 ? (
+                  recentNotes.map(note => (
+                    <Text key={note}>
+                      {formatReleaseNoteForDisplay(note, rightPanelWidth)}
+                    </Text>
+                  ))
+                ) : (
+                  <Text dimColor>Check the changelog for updates</Text>
+                )}
+              </Box>
+            </Box>
+          </Box>
 
+          <Box marginTop={1} flexDirection="column">
             {configSummaryItems.map(item => (
               <ConfigLayerLine
                 key={`${item.label}-${item.source}`}
                 item={item}
               />
             ))}
-
             {showGuestPassesUpsell ? <GuestPassesUpsell /> : null}
             {!showGuestPassesUpsell && showOverageCreditUpsell ? (
               <OverageCreditUpsell maxWidth={textWidth} twoLine />
             ) : null}
           </Box>
         </Box>
-        <AccentLine width={accentWidth} />
       </Box>
     </OffscreenFreeze>
   )
