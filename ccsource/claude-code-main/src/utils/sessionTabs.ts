@@ -1,4 +1,6 @@
 import type { Message } from '../types/message.js'
+import type { PromptInputMode } from '../types/textInputTypes.js'
+import type { PastedContent } from './config.js'
 import type { TodoList } from './todo/types.js'
 
 export type SessionLayoutMode = 'single' | 'tabs' | 'panes'
@@ -18,6 +20,13 @@ export type SessionTabState = {
   taskPreviewLines?: string[]
   taskPreviewSummary?: string
   draftInput?: string
+  inputMode?: PromptInputMode
+  pastedContents?: Record<number, PastedContent>
+  stashedPrompt?: {
+    text: string
+    cursorOffset: number
+    pastedContents: Record<number, PastedContent>
+  }
   todoSnapshotId?: string
   model?: string
   provider?: string
@@ -52,8 +61,15 @@ export type SessionTabsMetadata = {
     taskPreviewLines?: string[]
     taskPreviewSummary?: string
     draftInput?: string
-      model?: string
-      provider?: string
+    inputMode?: PromptInputMode
+    pastedContents?: Record<number, PastedContent>
+    stashedPrompt?: {
+      text: string
+      cursorOffset: number
+      pastedContents: Record<number, PastedContent>
+    }
+    model?: string
+    provider?: string
     repoLabel?: string
     worktreePath?: string
     status: SessionTabStatus
@@ -132,6 +148,9 @@ export function toSessionTabsMetadata(
         taskPreviewLines: tab.taskPreviewLines,
         taskPreviewSummary: tab.taskPreviewSummary,
         draftInput: tab.draftInput,
+        inputMode: tab.inputMode,
+        pastedContents: tab.pastedContents,
+        stashedPrompt: tab.stashedPrompt,
         model: tab.model,
         provider: tab.provider,
         repoLabel: tab.repoLabel,
@@ -159,6 +178,9 @@ export function fromSessionTabsMetadata(
         taskPreviewLines: tab.taskPreviewLines,
         taskPreviewSummary: tab.taskPreviewSummary,
         draftInput: tab.draftInput,
+        inputMode: tab.inputMode,
+        pastedContents: tab.pastedContents,
+        stashedPrompt: tab.stashedPrompt,
         model: tab.model,
         provider: tab.provider,
         repoLabel: tab.repoLabel,
@@ -278,6 +300,11 @@ export function updateSessionTab(
       JSON.stringify(existing.taskPreviewLines) &&
     nextTab.taskPreviewSummary === existing.taskPreviewSummary &&
     nextTab.draftInput === existing.draftInput &&
+    nextTab.inputMode === existing.inputMode &&
+    JSON.stringify(nextTab.pastedContents) ===
+      JSON.stringify(existing.pastedContents) &&
+    JSON.stringify(nextTab.stashedPrompt) ===
+      JSON.stringify(existing.stashedPrompt) &&
     nextTab.todoSnapshotId === existing.todoSnapshotId &&
     nextTab.model === existing.model &&
     nextTab.provider === existing.provider &&

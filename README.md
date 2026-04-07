@@ -49,6 +49,10 @@
   - 当前 `pane transcript` 已继续补出 `stages`，并开始给 tool 卡片补 `input / output / toolUseId`，Web 侧现在可以更明确地看 prompt、thinking、tool、response 这些阶段节点
 - ✅ **新 pane/tab 不再默认继承上一格的 todo 残留**
   - 新开的 tab 会以空 transcript 与空 todo 快照起步，切过去时不会继续沿用上一格的 todo 状态
+- ✅ **pane 输入态也开始按窗口保存和恢复**
+  - 当前 active pane 的 `inputMode / pastedContents / stashedPrompt` 已开始绑定到 pane，本轮继续减少不同 pane 之间共享同一份输入态的情况
+- ✅ **workflow 已开始具备 turn replay**
+  - `pane transcript` 现在还会输出 `turns / toolPairs`，开始补“这一轮 prompt 触发了哪些工具、最后回到了什么 response”这类跨阶段回放线索
 
 ### 下一批最重要的真实需求
 
@@ -350,6 +354,8 @@ Claude Code 很强，但真实使用里一直有一个明显痛点：
 - [x] 把 Claude 的 coding 过程开始结构化，补 `thinking / tool_use / tool_result` 提取，给后续流程图和工作流展示使用
 - [ ] 继续把 Claude 的 coding 过程提取得更细，补工具输入输出归类、阶段节点和更长链路的 workflow 回放
 - [x] 把工具输入输出、阶段节点和 `toolUseId` 开始纳入 workflow 观察台
+- [x] 把 pane 的 `inputMode / pastedContents / stashedPrompt` 开始纳入 pane 状态隔离
+- [x] 给 workflow 观察台补第一版 `turn replay / toolPairs`
 - [ ] 继续把更长链路的 workflow 回放补全，例如跨 turn 的阶段拼接和 pane 级历史回放
 - [ ] 团队里每个人可配置自己的默认 provider / 默认模型 / 默认预算策略
 - [ ] 项目级规则决定“这个仓库优先稳定模型，那个仓库优先低成本模型”

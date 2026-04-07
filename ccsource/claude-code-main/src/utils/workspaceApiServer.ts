@@ -73,6 +73,29 @@ type WorkspaceWorkflowStage = {
   toolUseId?: string
 }
 
+type WorkspaceToolPair = {
+  id: string
+  paneId: string
+  turnId?: string
+  toolName?: string
+  toolUseId?: string
+  inputSummary?: string
+  outputSummary?: string
+  startedAt: string
+  completedAt?: string
+}
+
+type WorkspaceTurnReplay = {
+  id: string
+  paneId: string
+  startedAt: string
+  promptSummary?: string
+  responseSummary?: string
+  toolCount: number
+  eventCount: number
+  toolUseIds: string[]
+}
+
 function getWorkspaceApiPort(): number {
   const raw = process.env.CLAUDE_CODE_WORKSPACE_API_PORT
   const parsed = raw ? Number.parseInt(raw, 10) : DEFAULT_WORKSPACE_API_PORT
@@ -201,6 +224,19 @@ function getMessageCreatedAt(message: Message, index: number): string {
   return direct ?? `m-${index}`
 }
 
+function isUserPromptMessage(message: Message): boolean {
+  if (message.type !== 'user') return false
+  const content = Array.isArray(message.message?.content)
+    ? message.message?.content
+    : undefined
+  if (!content || content.length === 0) return true
+  return content.some(item => {
+    if (!item || typeof item !== 'object') return true
+    const record = item as Record<string, unknown>
+    return getStringValue(record.type) !== 'tool_result'
+  })
+}
+
 function summarizeToolInput(input: unknown): string | undefined {
   const direct = summarizeUnknown(input)
   if (direct) {
@@ -219,6 +255,9 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
   const cards: WorkspaceTranscriptCard[] = []
   const workflow: WorkspaceWorkflowEvent[] = []
   const stages: WorkspaceWorkflowStage[] = []
+  const toolPairs = new Map<string, WorkspaceToolPair>()
+  const turns: WorkspaceTurnReplay[] = []
+  let activeTurnId: string | undefined
   const normalizedMessages = (messages ?? []).map((message, index) => {
     const createdAt = getMessageCreatedAt(message, index)
     const role = getMessageRole(message)
@@ -231,6 +270,28 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
           : role === 'system' || role === 'progress' || role === 'attachment'
             ? 'system'
             : 'response'
+    if (isUserPromptMessage(message)) {
+      activeTurnId = `turn-${message.uuid}`
+      turns.push({
+        id: activeTurnId,
+        paneId,
+        startedAt: createdAt,
+        promptSummary: summary,
+        responseSummary: undefined,
+        toolCount: 0,
+        eventCount: 0,
+        toolUseIds: [],
+      })
+    }
+    const currentTurn = activeTurnId
+      ? turns.find(turn => turn.id === activeTurnId)
+      : undefined
+    if (currentTurn) {
+      currentTurn.eventCount += 1
+      if (role === 'assistant' && summary) {
+        currentTurn.responseSummary = summary
+      }
+    }
 
     cards.push({
       id: `${message.uuid}-message`,
@@ -331,6 +392,24 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
           const toolName = getStringValue(record.name) ?? 'tool'
           const toolUseId = getStringValue(record.id)
           const toolSummary = summarizeToolInput(record.input)
+          if (toolUseId) {
+            const existingPair = toolPairs.get(toolUseId)
+            toolPairs.set(toolUseId, {
+              id: toolUseId,
+              paneId,
+              turnId: activeTurnId,
+              toolName,
+              toolUseId,
+              inputSummary: toolSummary,
+              outputSummary: existingPair?.outputSummary,
+              startedAt: existingPair?.startedAt ?? createdAt,
+              completedAt: existingPair?.completedAt,
+            })
+            if (currentTurn && !currentTurn.toolUseIds.includes(toolUseId)) {
+              currentTurn.toolUseIds.push(toolUseId)
+              currentTurn.toolCount += 1
+            }
+          }
           cards.push({
             id: `${message.uuid}-tool-use-${itemIndex}`,
             kind: 'tool_use',
@@ -373,6 +452,20 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
             summarizeUnknown(record.content) ??
             summarizeUnknown(record.result) ??
             summarizeUnknown(record.output)
+          if (toolUseId) {
+            const existingPair = toolPairs.get(toolUseId)
+            toolPairs.set(toolUseId, {
+              id: toolUseId,
+              paneId,
+              turnId: existingPair?.turnId ?? activeTurnId,
+              toolName: existingPair?.toolName,
+              toolUseId,
+              inputSummary: existingPair?.inputSummary,
+              outputSummary: resultSummary,
+              startedAt: existingPair?.startedAt ?? createdAt,
+              completedAt: createdAt,
+            })
+          }
           cards.push({
             id: `${message.uuid}-tool-result-${itemIndex}`,
             kind: 'tool_result',
@@ -423,6 +516,10 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
       String(a.createdAt).localeCompare(String(b.createdAt)),
     ),
     stages: stages.sort((a, b) => String(a.createdAt).localeCompare(String(b.createdAt))),
+    toolPairs: Array.from(toolPairs.values()).sort((a, b) =>
+      String(a.startedAt).localeCompare(String(b.startedAt)),
+    ),
+    turns,
   }
 }
 
@@ -511,6 +608,8 @@ function buildTranscriptPayload(state: AppState, paneId: string) {
     cards: artifacts.cards,
     workflow: artifacts.workflow,
     stages: artifacts.stages,
+    toolPairs: artifacts.toolPairs,
+    turns: artifacts.turns,
   }
 }
 
@@ -724,6 +823,13 @@ function renderWorkspaceHtmlShell(state: AppState): string {
         overflow: auto;
         margin-bottom: 14px;
       }
+      .turns {
+        display: grid;
+        gap: 10px;
+        max-height: 18vh;
+        overflow: auto;
+        margin-bottom: 14px;
+      }
       .message {
         border-left: 3px solid var(--line);
         padding: 10px 12px;
@@ -797,6 +903,8 @@ function renderWorkspaceHtmlShell(state: AppState): string {
         <section>
           <h2>Transcript</h2>
           <div id="transcript-meta" class="small muted"></div>
+          <h2 style="margin-top:16px;">Turn Replay</h2>
+          <div id="turns" class="turns"></div>
           <h2 style="margin-top:16px;">Stages</h2>
           <div id="stages" class="stages"></div>
           <h2 style="margin-top:16px;">Thinking / Tools</h2>
@@ -858,10 +966,24 @@ function renderWorkspaceHtmlShell(state: AppState): string {
 
       function renderTranscript(payload) {
         const meta = document.getElementById('transcript-meta');
+        const turnsRoot = document.getElementById('turns');
         const stagesRoot = document.getElementById('stages');
         const cardsRoot = document.getElementById('cards');
         const root = document.getElementById('transcript');
         meta.textContent = 'pane ' + payload.paneId + ' · transcript ' + payload.transcriptId + ' · ' + payload.messages.length + ' messages · ' + (payload.workflow || []).length + ' workflow events';
+        turnsRoot.innerHTML = (payload.turns || []).length === 0
+          ? '<div class="muted">No turn replay extracted yet.</div>'
+          : payload.turns.slice(-8).reverse().map(turn => \`
+              <div class="stage response">
+                <div class="row">
+                  <strong>\${escapeHtml(turn.id)}</strong>
+                  <span class="small muted">\${escapeHtml(turn.startedAt || '')}</span>
+                </div>
+                <div class="small muted">tools: \${escapeHtml(turn.toolCount || 0)} · events: \${escapeHtml(turn.eventCount || 0)}</div>
+                <div class="summary">\${escapeHtml(turn.promptSummary || '[No prompt summary]')}</div>
+                \${turn.responseSummary ? '<div class="small muted" style="margin-top:6px;">response: ' + escapeHtml(turn.responseSummary) + '</div>' : ''}
+              </div>
+            \`).join('');
         stagesRoot.innerHTML = (payload.stages || []).length === 0
           ? '<div class="muted">No stage nodes extracted yet.</div>'
           : payload.stages.slice(-12).reverse().map(stage => \`

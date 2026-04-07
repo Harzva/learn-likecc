@@ -36,6 +36,8 @@
 - Web UI transcript 已继续补出 `stages`，开始按 `prompt / thinking / tool / response / system` 展示更清楚的阶段节点
 - tool 卡片开始带出 `input / output / toolUseId`，更接近真实 coding 过程观察台
 - 新建 pane/tab 会以空 transcript 与空 todo 快照起步，减少跨 pane 的全局残留状态继承
+- pane 的 `inputMode / pastedContents / stashedPrompt` 已开始按窗口保存和恢复，继续降低不同 pane 之间共享同一份输入态的问题
+- Web UI transcript 已补出 `turns / toolPairs`，开始支持更清楚的 tool 输入输出配对与 turn replay
 - 启动界面新增 Web 工作台网址，并把 logo 收成蓝色爱心 + 多行大字 `Like` + `code · Harzva restored · v2.1.88`
 - 本轮以文档与规划推进为主，暂不单独提升 release 版本号，避免出现“版本先发、功能未落地”的错位
 

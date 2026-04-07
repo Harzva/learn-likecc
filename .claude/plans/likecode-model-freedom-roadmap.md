@@ -179,6 +179,8 @@ learn-likecc 现在已经不只是一个 Claude Code 源码学习仓库。
 - [x] 让 Web UI transcript 继续补出 `stages`，开始明确 prompt / thinking / tool / response 阶段节点
 - [x] 让 tool 卡片开始带出 `input / output / toolUseId`
 - [x] 让新建 pane/tab 以空 transcript 与空 todo 快照起步，减少跨 pane 的残留状态继承
+- [x] 让 pane 的 `inputMode / pastedContents / stashedPrompt` 也开始按窗口保存和恢复
+- [x] 让 Web UI transcript 继续补出 `turns / toolPairs`，开始支撑更真实的 turn replay 与工具输入输出配对
 - [ ] 继续把多个可见对话框升级成真正的多活跃输入与多 transcript 并行
 - [ ] 继续把 transcript / todo 做到真正隔离，而不只是先做 UI 层消息区与快照恢复
 - [ ] 继续把 subagent 面板升级为更完整的工作视图，展示仓库、目录、当前任务与更多 live 状态

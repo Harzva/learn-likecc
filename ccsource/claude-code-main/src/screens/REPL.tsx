@@ -1406,6 +1406,13 @@ export function REPL({
   const [inputValue, setInputValueRaw] = useState(() => consumeEarlyInput());
   const inputValueRef = useRef(inputValue);
   inputValueRef.current = inputValue;
+  const [inputMode, setInputMode] = useState<PromptInputMode>('prompt');
+  const [stashedPrompt, setStashedPrompt] = useState<{
+    text: string;
+    cursorOffset: number;
+    pastedContents: Record<number, PastedContent>;
+  } | undefined>();
+  const [pastedContents, setPastedContents] = useState<Record<number, PastedContent>>({});
   const insertTextRef = useRef<{
     insert: (text: string) => void;
     setInputWithCursor: (value: string, cursor: number) => void;
@@ -1462,6 +1469,15 @@ export function REPL({
           };
         });
       }
+      if (currentActiveTab.inputMode) {
+        setInputMode(currentActiveTab.inputMode);
+      }
+      setPastedContents(structuredClone(currentActiveTab.pastedContents ?? {}));
+      setStashedPrompt(
+        currentActiveTab.stashedPrompt
+          ? structuredClone(currentActiveTab.stashedPrompt)
+          : undefined,
+      );
       if ((currentActiveTab.draftInput ?? '') !== inputValueRef.current) {
         setInputValue(currentActiveTab.draftInput ?? '');
       }
@@ -1482,6 +1498,9 @@ export function REPL({
         tabs = updateSessionTab(tabs, previousActiveTabId, {
           transcriptMessages: outgoingMessages,
           legacyTodosSnapshot: structuredClone(prev.todos),
+          inputMode,
+          pastedContents: structuredClone(pastedContents),
+          stashedPrompt: stashedPrompt ? structuredClone(stashedPrompt) : undefined,
         });
       }
       const incomingTab = tabs.tabs[activeTabId];
@@ -1495,10 +1514,17 @@ export function REPL({
     });
 
     setMessages(incomingMessages);
+    setInputMode(currentActiveTab.inputMode ?? 'prompt');
+    setPastedContents(structuredClone(currentActiveTab.pastedContents ?? {}));
+    setStashedPrompt(
+      currentActiveTab.stashedPrompt
+        ? structuredClone(currentActiveTab.stashedPrompt)
+        : undefined,
+    );
     if ((currentActiveTab.draftInput ?? '') !== inputValueRef.current) {
       setInputValue(currentActiveTab.draftInput ?? '');
     }
-  }, [sessionTabs, setAppState, setMessages, setInputValue]);
+  }, [sessionTabs, setAppState, setMessages, setInputValue, inputMode, pastedContents, stashedPrompt]);
   useEffect(() => {
     const currentActiveTab = getActiveSessionTab(sessionTabs);
     if (!currentActiveTab) return;
@@ -1522,6 +1548,81 @@ export function REPL({
 
     return () => clearTimeout(timer);
   }, [inputValue, sessionTabs, setAppState]);
+  useEffect(() => {
+    const currentActiveTab = getActiveSessionTab(sessionTabs);
+    if (!currentActiveTab) return;
+    if ((currentActiveTab.inputMode ?? 'prompt') === inputMode) return;
+
+    const timer = setTimeout(() => {
+      setAppState(prev => {
+        const tabs = normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel);
+        const activeTab = getActiveSessionTab(tabs);
+        if (!activeTab || (activeTab.inputMode ?? 'prompt') === inputMode) {
+          return prev;
+        }
+        return {
+          ...prev,
+          sessionTabs: updateSessionTab(tabs, activeTab.id, {
+            inputMode,
+          }),
+        };
+      });
+    }, 120);
+
+    return () => clearTimeout(timer);
+  }, [inputMode, sessionTabs, setAppState]);
+  useEffect(() => {
+    const currentActiveTab = getActiveSessionTab(sessionTabs);
+    if (!currentActiveTab) return;
+    if (JSON.stringify(currentActiveTab.pastedContents ?? {}) === JSON.stringify(pastedContents)) return;
+
+    const timer = setTimeout(() => {
+      setAppState(prev => {
+        const tabs = normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel);
+        const activeTab = getActiveSessionTab(tabs);
+        if (!activeTab) {
+          return prev;
+        }
+        if (JSON.stringify(activeTab.pastedContents ?? {}) === JSON.stringify(pastedContents)) {
+          return prev;
+        }
+        return {
+          ...prev,
+          sessionTabs: updateSessionTab(tabs, activeTab.id, {
+            pastedContents: structuredClone(pastedContents),
+          }),
+        };
+      });
+    }, 120);
+
+    return () => clearTimeout(timer);
+  }, [pastedContents, sessionTabs, setAppState]);
+  useEffect(() => {
+    const currentActiveTab = getActiveSessionTab(sessionTabs);
+    if (!currentActiveTab) return;
+    if (JSON.stringify(currentActiveTab.stashedPrompt) === JSON.stringify(stashedPrompt)) return;
+
+    const timer = setTimeout(() => {
+      setAppState(prev => {
+        const tabs = normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel);
+        const activeTab = getActiveSessionTab(tabs);
+        if (!activeTab) {
+          return prev;
+        }
+        if (JSON.stringify(activeTab.stashedPrompt) === JSON.stringify(stashedPrompt)) {
+          return prev;
+        }
+        return {
+          ...prev,
+          sessionTabs: updateSessionTab(tabs, activeTab.id, {
+            stashedPrompt: stashedPrompt ? structuredClone(stashedPrompt) : undefined,
+          }),
+        };
+      });
+    }, 120);
+
+    return () => clearTimeout(timer);
+  }, [stashedPrompt, sessionTabs, setAppState]);
 
   // Schedule a timeout to stop suppressing dialogs after the user stops typing.
   // Only manages the timeout — the immediate activation is handled by setInputValue above.
@@ -1530,13 +1631,6 @@ export function REPL({
     const timer = setTimeout(setIsPromptInputActive, PROMPT_SUPPRESSION_MS, false);
     return () => clearTimeout(timer);
   }, [inputValue]);
-  const [inputMode, setInputMode] = useState<PromptInputMode>('prompt');
-  const [stashedPrompt, setStashedPrompt] = useState<{
-    text: string;
-    cursorOffset: number;
-    pastedContents: Record<number, PastedContent>;
-  } | undefined>();
-
   // Callback to filter commands based on CCR's available slash commands
   const handleRemoteInit = useCallback((remoteSlashCommands: string[]) => {
     const remoteCommandSet = new Set(remoteSlashCommands);
@@ -1581,7 +1675,6 @@ export function REPL({
 
   // Use whichever remote mode is active
   const activeRemote = sshRemote.isRemoteMode ? sshRemote : directConnect.isRemoteMode ? directConnect : remoteSession;
-  const [pastedContents, setPastedContents] = useState<Record<number, PastedContent>>({});
   const [submitCount, setSubmitCount] = useState(0);
   // Ref instead of state to avoid triggering React re-renders on every
   // streaming text_delta. The spinner reads this via its animation timer.
