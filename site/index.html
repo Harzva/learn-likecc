@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Claude Code 学习工程 - 模型切换与多 Provider 路线</title>
+    <title>Claude Code Course - AI 编程助手学习指南</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Claude Code 学习工程 - 模型切换与多 Provider 路线">
-    <meta property="og:description" content="从 Source Map 分析到可运行版本，再到会话级模型切换与多 Provider 兼容路线">
+    <meta property="og:title" content="Claude Code Course - AI 编程助手学习指南">
+    <meta property="og:description" content="从 Source Map 分析到可运行版本，系统学习 Claude Code 源码">
     <meta property="og:type" content="website">
 </head>
 <body>
@@ -19,7 +19,7 @@
             <div class="main-nav-start">
             <a href="index.html" class="nav-logo">
                 <span class="logo-icon">🧠</span>
-                <span class="logo-text">Claude Code 工程</span>
+                <span class="logo-text">Claude Code Course</span>
             </a>
             <nav class="main-nav-links" aria-label="专题与栏目">
                 <a href="topic-sourcemap.html">Source Map 源码</a>
@@ -59,273 +59,41 @@
             <div class="particle" style="--delay: 4s; --x: 10%; --y: 50%;"></div>
             <div class="particle" style="--delay: 6s; --x: 90%; --y: 70%;"></div>
         </div>
-        <div class="container hero-layout">
-            <div class="hero-content">
-                <a href="topic-sourcemap.html#event" class="hero-badge hero-badge--jump" title="Source Map 源码专题 · 事件摘要">
-                    <span>🔥 2026.03 Source Map 事件</span>
-                    <span class="hero-badge-hint" aria-hidden="true">发生了什么？</span>
-                </a>
-                <h1 class="hero-title">
-                    Claude Code 学习工程<br>
-                    <span class="gradient-text">模型切换与多 Provider 路线</span>
-                </h1>
-                <p class="hero-subtitle">
-                    从 Source Map 还原、可运行复刻，到梳理 <strong>会话级模型切换</strong>、<strong>多 Provider 接入</strong> 与 <strong>项目级模型策略</strong><br>
-                    <strong>1900+</strong> 文件 · <strong>51万+</strong> 行代码 · <strong>24</strong> 讲课程 · <strong>✅ 可运行</strong>
-                </p>
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <span class="stat-value">1900+</span>
-                        <span class="stat-label">TypeScript 文件</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-value">510K+</span>
-                        <span class="stat-label">代码行数</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-value">24</span>
-                        <span class="stat-label">课程讲次</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-value">✅</span>
-                        <span class="stat-label">可运行版本</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-value">3+</span>
-                        <span class="stat-label">目标接入形态</span>
-                    </div>
+        <div class="container hero-content">
+            <a href="topic-sourcemap.html#event" class="hero-badge hero-badge--jump" title="Source Map 源码专题 · 事件摘要">
+                <span>🔥 2026.03 Source Map 事件</span>
+                <span class="hero-badge-hint" aria-hidden="true">发生了什么？</span>
+            </a>
+            <h1 class="hero-title">
+                Claude Code<br>
+                <span class="gradient-text">完全学习指南</span>
+            </h1>
+            <p class="hero-subtitle">
+                从源码分析到实战应用，系统学习 AI 编程助手<br>
+                <strong>1900+</strong> 文件 · <strong>51万+</strong> 行代码 · <strong>✅ 编译通过</strong>
+            </p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-value">1900+</span>
+                    <span class="stat-label">TypeScript 文件</span>
                 </div>
-                <div class="hero-actions">
-                    <a href="#courses" class="btn-hero btn-primary">🔬 源码课程</a>
-                    <a href="#likecode-roadmap" class="btn-hero btn-secondary">🧭 模型路线</a>
-                    <a href="tutorial.html" class="btn-hero btn-secondary">📖 官方教程</a>
-                    <a href="https://github.com/Harzva/learn-likecc" class="btn-hero btn-secondary" target="_blank">🐙 GitHub</a>
+                <div class="stat-item">
+                    <span class="stat-value">510K+</span>
+                    <span class="stat-label">代码行数</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">24</span>
+                    <span class="stat-label">课程讲次</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">✅</span>
+                    <span class="stat-label">可运行版本</span>
                 </div>
             </div>
-
-            <aside class="hero-visual-card" aria-label="模型切换架构草图">
-                <div class="hero-visual-head">
-                    <p class="hero-visual-kicker">Architecture Sketch</p>
-                    <h2>会话级模型切换草图</h2>
-                    <p>目标不是只支持更多模型，而是把同一 session 的上下文、工具状态和路由策略统一起来。</p>
-                </div>
-
-                <div class="hero-flow">
-                    <div class="hero-flow-node hero-flow-node-session">
-                        <span class="hero-flow-label">Session Core</span>
-                        <strong>Transcript / Todo / Tool State</strong>
-                    </div>
-                    <div class="hero-flow-arrow">↓</div>
-                    <div class="hero-flow-node hero-flow-node-router">
-                        <span class="hero-flow-label">Provider Router</span>
-                        <strong>set_model / adapter / fallback</strong>
-                    </div>
-                </div>
-
-                <div class="hero-provider-grid">
-                    <div class="hero-provider-card">
-                        <span class="hero-provider-name">Anthropic</span>
-                        <span class="hero-provider-meta">Claude family</span>
-                    </div>
-                    <div class="hero-provider-card">
-                        <span class="hero-provider-name">OpenAI-style</span>
-                        <span class="hero-provider-meta">Responses / compat</span>
-                    </div>
-                    <div class="hero-provider-card">
-                        <span class="hero-provider-name">Gemini-style</span>
-                        <span class="hero-provider-meta">provider adapter</span>
-                    </div>
-                    <div class="hero-provider-card">
-                        <span class="hero-provider-name">Gateway / Proxy</span>
-                        <span class="hero-provider-meta">API relay</span>
-                    </div>
-                </div>
-
-                <div class="hero-policy-grid">
-                    <div class="hero-policy-item">
-                        <span class="hero-policy-title">会话级切换</span>
-                        <span class="hero-policy-desc">同一 session 内切模型</span>
-                    </div>
-                    <div class="hero-policy-item">
-                        <span class="hero-policy-title">项目级策略</span>
-                        <span class="hero-policy-desc">默认模型 / provider / 预算</span>
-                    </div>
-                    <div class="hero-policy-item">
-                        <span class="hero-policy-title">回退机制</span>
-                        <span class="hero-policy-desc">compact / summarize / retry</span>
-                    </div>
-                    <div class="hero-policy-item">
-                        <span class="hero-policy-title">兼容层</span>
-                        <span class="hero-policy-desc">tool use / stream / usage</span>
-                    </div>
-                </div>
-            </aside>
-        </div>
-    </section>
-
-    <section id="likecode-roadmap" class="features-main">
-        <div class="container">
-            <h2 class="section-title">🧭 LikeCode 路线</h2>
-            <p class="section-subtitle">这不只是一个“学 Claude Code”的仓库，也是在验证一个更自由的 Agent CLI 方向：<strong>模型可换、API 可换、同 session 可切换</strong>。</p>
-
-            <div class="features-grid-main">
-                <div class="feature-card-main feature-accent">
-                    <div class="feature-icon-main">✅</div>
-                    <h3 class="feature-title-main">已经做成</h3>
-                    <p class="feature-desc-main">Source Map 还原、可运行 CLI、<code>likecode</code> 命令入口、在线课程站点、关键模块拆解，这些都已经落地。</p>
-                    <div class="feature-tags">
-                        <span class="tag">可运行</span>
-                        <span class="tag">课程化</span>
-                        <span class="tag">源码锚点</span>
-                    </div>
-                </div>
-
-                <div class="feature-card-main feature-primary">
-                    <div class="feature-icon-main">🔁</div>
-                    <h3 class="feature-title-main">同 Session 切模型</h3>
-                    <p class="feature-desc-main">从恢复出的实现看，仓库内已经存在 <code>set_model</code>、model override、session metadata 同步等能力，说明会话内切模型并非空想。</p>
-                    <div class="feature-tags">
-                        <span class="tag">set_model</span>
-                        <span class="tag">Session</span>
-                        <span class="tag">Breadcrumb</span>
-                    </div>
-                </div>
-
-                <div class="feature-card-main feature-secondary">
-                    <div class="feature-icon-main">🧩</div>
-                    <h3 class="feature-title-main">真正难点</h3>
-                    <p class="feature-desc-main">难的不是做一个模型下拉框，而是统一 provider adapter、tool use / result、流式事件、compact 边界、resume 一致性。</p>
-                    <div class="feature-tags">
-                        <span class="tag">Adapter</span>
-                        <span class="tag">Streaming</span>
-                        <span class="tag">Resume</span>
-                    </div>
-                </div>
-
-                <div class="feature-card-main feature-topic">
-                    <div class="feature-icon-main">🛠️</div>
-                    <h3 class="feature-title-main">真实使用场景</h3>
-                    <p class="feature-desc-main">白天用强模型写代码，晚上自动切便宜模型跑批；卡住时直接换模型接手；团队按项目配置默认 provider、预算和风险策略。</p>
-                    <div class="feature-tags">
-                        <span class="tag">省钱</span>
-                        <span class="tag">接力</span>
-                        <span class="tag">项目策略</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="likecode-roadmap-visual" aria-labelledby="likecode-roadmap-visual-heading">
-        <div class="container">
-            <div class="likecode-roadmap-shell">
-                <div class="likecode-roadmap-head">
-                    <p class="likecode-kicker">Product Roadmap</p>
-                    <h2 id="likecode-roadmap-visual-heading" class="section-title">从“学源码”走向“自由换模型”</h2>
-                    <p class="section-subtitle">把 likecode 做成真正能服务重度用户的 Agent CLI，不是只会讲架构，而是能在真实工作流里切模型、控预算、保上下文。</p>
-                </div>
-
-                <div class="likecode-timeline">
-                    <article class="likecode-step likecode-step-done">
-                        <div class="likecode-step-dot"></div>
-                        <div class="likecode-step-card">
-                            <span class="likecode-step-state">Done</span>
-                            <h3>可运行学习基线</h3>
-                            <p>Source Map 还原、CLI 修补、<code>likecode</code> 命令入口、24 讲课程、在线站点，这一层已经站稳。</p>
-                            <div class="feature-tags">
-                                <span class="tag">Source Map</span>
-                                <span class="tag">CLI</span>
-                                <span class="tag">课程站点</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="likecode-step likecode-step-active">
-                        <div class="likecode-step-dot"></div>
-                        <div class="likecode-step-card">
-                            <span class="likecode-step-state">Now</span>
-                            <h3>会话内模型切换</h3>
-                            <p>把源码里已经存在的 <code>set_model</code>、override、session metadata 能力，外化成产品级可用能力。</p>
-                            <ul class="likecode-step-list">
-                                <li>同一 session 内切模型</li>
-                                <li>记录切换原因、成本、回退点</li>
-                                <li>尽量不因切模型强制 compact</li>
-                            </ul>
-                        </div>
-                    </article>
-
-                    <article class="likecode-step">
-                        <div class="likecode-step-dot"></div>
-                        <div class="likecode-step-card">
-                            <span class="likecode-step-state">Next</span>
-                            <h3>多 Provider 兼容层</h3>
-                            <p>真正的拦路虎是 provider adapter：消息格式、tool use / result、流式事件、usage 统计、失败恢复，都要统一。</p>
-                            <ul class="likecode-step-list">
-                                <li>兼容 Anthropic 风格代理</li>
-                                <li>兼容 OpenAI / Gemini / 国产网关</li>
-                                <li>建立 provider 能力矩阵</li>
-                            </ul>
-                        </div>
-                    </article>
-
-                    <article class="likecode-step">
-                        <div class="likecode-step-dot"></div>
-                        <div class="likecode-step-card">
-                            <span class="likecode-step-state">Vision</span>
-                            <h3>项目级模型策略</h3>
-                            <p>最后不是“支持更多模型”这么简单，而是让不同项目、不同团队都能有明确的模型偏好、预算策略和风险边界。</p>
-                            <div class="feature-tags">
-                                <span class="tag">预算策略</span>
-                                <span class="tag">项目规则</span>
-                                <span class="tag">团队配置</span>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="features-main" aria-labelledby="likecode-checklist-heading">
-        <div class="container">
-            <h2 id="likecode-checklist-heading" class="section-title">✅ 绿钩进度 + 🪄 工程化待办</h2>
-            <p class="section-subtitle">这些需求不是抽象概念，而是从真实使用习惯里长出来的工作流清单。</p>
-
-            <div class="likecode-dual-grid">
-                <div class="likecode-panel likecode-panel-success">
-                    <div class="likecode-panel-head">
-                        <p class="likecode-kicker">Completed</p>
-                        <h3>已经打上绿色对钩</h3>
-                    </div>
-                    <ul class="likecode-checklist">
-                        <li><span class="check-badge">✔</span><span>Source Map 还原与源码锚点整理</span></li>
-                        <li><span class="check-badge">✔</span><span>可运行 CLI 基线</span></li>
-                        <li><span class="check-badge">✔</span><span><code>likecode</code> 全局命令入口</span></li>
-                        <li><span class="check-badge">✔</span><span>24 讲课程与专题化站点</span></li>
-                        <li><span class="check-badge">✔</span><span>工具系统、权限系统、compact、session、MCP 拆解</span></li>
-                        <li><span class="check-badge">✔</span><span>工程化修补与可重复构建</span></li>
-                    </ul>
-                </div>
-
-                <div class="likecode-panel likecode-panel-todo">
-                    <div class="likecode-panel-head">
-                        <p class="likecode-kicker">Personalized</p>
-                        <h3>真实场景的工程化待办</h3>
-                    </div>
-                    <div class="likecode-todo-cloud">
-                        <span class="todo-pill todo-pill-strong">白天强模型写代码</span>
-                        <span class="todo-pill">晚上自动切便宜模型跑批</span>
-                        <span class="todo-pill">同 session 卡住直接换模型接手</span>
-                        <span class="todo-pill todo-pill-strong">按任务自动路由模型</span>
-                        <span class="todo-pill">团队级 provider / 预算策略</span>
-                        <span class="todo-pill">项目级默认模型偏好</span>
-                        <span class="todo-pill">失败重试优先保上下文</span>
-                        <span class="todo-pill">切模型时保住待办列表</span>
-                        <span class="todo-pill">尽量不 compact 也能继续</span>
-                        <span class="todo-pill">切换原因与成本可解释</span>
-                    </div>
-                    <p class="likecode-panel-note">目标不是做一个花哨的模型选择器，而是把模型接入、会话切换、预算控制和项目策略沉到工程层，成为真正可维护的 Agent CLI 能力。</p>
-                </div>
+            <div class="hero-actions">
+                <a href="#courses" class="btn-hero btn-primary">🔬 源码课程</a>
+                <a href="tutorial.html" class="btn-hero btn-secondary">📖 官方教程</a>
+                <a href="https://github.com/Harzva/learn-likecc" class="btn-hero btn-secondary" target="_blank">🐙 GitHub</a>
             </div>
         </div>
     </section>
@@ -1246,8 +1014,8 @@ jobs:
         <div class="container">
             <div class="footer-grid-main">
                 <div class="footer-brand-main">
-                    <span class="footer-logo-main">🧠 Claude Code 工程</span>
-                    <p>从源码学习，到可运行复刻，再到模型切换与多 Provider 路线</p>
+                    <span class="footer-logo-main">🧠 Claude Code Course</span>
+                    <p>深入理解 AI 编程助手的构建原理</p>
                     <p class="footer-disclaimer">本项目与 Anthropic 官方无关</p>
                 </div>
                 <div class="footer-links-main">
@@ -1291,7 +1059,7 @@ jobs:
             </div>
             <div class="footer-bottom-main">
                 <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/index.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
-                <p>© 2026 Claude Code 工程. 仅供学习研究使用。</p>
+                <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
             </div>
         </div>
     </footer>
