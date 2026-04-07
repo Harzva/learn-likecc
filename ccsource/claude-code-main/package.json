@@ -1,6 +1,6 @@
 {
   "name": "claude-code-learn",
-  "version": "0.0.1-learn",
+  "version": "1.0.2-likecode",
   "description": "Claude Code source code learning project - NOT for production use",
   "type": "module",
   "main": "src/main.tsx",

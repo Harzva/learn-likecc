@@ -57,3 +57,14 @@
   - 将 `AppState.tsx` 的 `useEffectEvent` 改为兼容的 `useCallback`
   - 给 sandbox adapter 增加兼容 stub
   - 保留最小启动诊断链，方便继续排查
+
+### `v1.0.2-likecode`
+
+- `scope`: Like Code 第一阶段工作台发布节点
+- `relative to previous`: 相对 `v1.0.1-likecode`，新增 tab / panel / pane 状态隔离雏形、localhost Web UI 观察台、rebuild 基线修复与分层源码治理
+- `status`: 当前发布目标
+- `notes`:
+  - tab、panel、pane 相关能力进入第一版可用状态
+  - localhost Web UI 已能展示 session / pane / transcript / workflow
+  - `ccsource/CC/claude-code-rebuild` 已重新恢复到可进入交互 REPL
+  - 启动头视觉继续打磨，窄终端下也保留装饰线，并支持随机小动物与固定 RGB 蓝色

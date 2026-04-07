@@ -5,7 +5,7 @@
 
 import { plugin } from "bun";
 
-const version = process.env.CLI_VERSION || "1.0.0-likecode";
+const version = process.env.CLI_VERSION || "1.0.2-likecode";
 
 // Global MACRO constants used throughout the codebase
 (globalThis as any).MACRO = {

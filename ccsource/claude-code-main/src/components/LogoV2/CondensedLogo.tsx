@@ -31,6 +31,17 @@ import {
   useShowOverageCreditUpsell,
 } from './OverageCreditUpsell.js'
 
+const LIKECODE_BLUE = 'rgb(88,166,255)'
+const LIKECODE_HEART = 'rgb(255,120,170)'
+
+function AccentLine({ width }: { width: number }) {
+  return (
+    <Text color={LIKECODE_BLUE} bold>
+      {'━'.repeat(Math.max(width, 12))}
+    </Text>
+  )
+}
+
 function InfoDot() {
   return (
     <Text dimColor>
@@ -127,6 +138,7 @@ export function CondensedLogo() {
   }, [showOverageCreditUpsell, showGuestPassesUpsell])
 
   const textWidth = Math.max(columns - 15, 20)
+  const accentWidth = Math.max(columns - 2, 24)
   const effortSuffix = getEffortSuffix(model, effortValue)
   const { shouldSplit, truncatedModel, truncatedBilling } = formatModelAndBilling(
     modelDisplayName + effortSuffix,
@@ -147,79 +159,86 @@ export function CondensedLogo() {
 
   return (
     <OffscreenFreeze>
-      <Box flexDirection="row" gap={2} alignItems="center">
-        <Box flexDirection="column" alignItems="center">
-          {likeWordmark.map((line, index) => (
-            <Text key={`${line}-${index}`} color="blueBright" bold>
-              {line}
-            </Text>
-          ))}
-          {isFullscreenEnvEnabled() ? <AnimatedClawd /> : <Clawd />}
-        </Box>
-
-        <Box flexDirection="column">
-          <Text>
-            <Text color="blueBright" bold>
-              code
-            </Text>
-            <Text dimColor> · Harzva restored · v2.1.88</Text>
-          </Text>
-
-          {shouldSplit ? (
-            <>
-              <Text>
-                <Text color="blueBright" bold>
-                  {truncatedModel}
+      <Box flexDirection="column">
+        <AccentLine width={accentWidth} />
+        <Box flexDirection="row" gap={2} alignItems="center">
+          <Box flexDirection="column" alignItems="center">
+            {likeWordmark.map((line, index) => (
+              <Text key={`${line}-${index}`} color={LIKECODE_BLUE} bold>
+                {line}{' '}
+                <Text color={LIKECODE_HEART} bold>
+                  ♥
                 </Text>
               </Text>
+            ))}
+            {isFullscreenEnvEnabled() ? <AnimatedClawd /> : <Clawd />}
+          </Box>
+
+          <Box flexDirection="column">
+            <Text>
+              <Text color={LIKECODE_BLUE} bold>
+                code
+              </Text>
+              <Text dimColor> · Harzva restored · v2.1.88</Text>
+            </Text>
+
+            {shouldSplit ? (
+              <>
+                <Text>
+                  <Text color={LIKECODE_BLUE} bold>
+                    {truncatedModel}
+                  </Text>
+                </Text>
+                <Text>
+                  <Text color="yellowBright">{truncatedBilling}</Text>
+                  <Text dimColor> · </Text>
+                  <Text color="greenBright">Harzva restored</Text>
+                </Text>
+              </>
+            ) : (
               <Text>
+                <Text color={LIKECODE_BLUE} bold>
+                  {truncatedModel}
+                </Text>
+                <Text dimColor> · </Text>
                 <Text color="yellowBright">{truncatedBilling}</Text>
                 <Text dimColor> · </Text>
                 <Text color="greenBright">Harzva restored</Text>
               </Text>
-            </>
-          ) : (
+            )}
+
             <Text>
-              <Text color="blueBright" bold>
-                {truncatedModel}
-              </Text>
+              <Text color="cyan">Workspace</Text>
               <Text dimColor> · </Text>
-              <Text color="yellowBright">{truncatedBilling}</Text>
-              <Text dimColor> · </Text>
-              <Text color="greenBright">Harzva restored</Text>
+              <Text color="white">{workspaceLine}</Text>
             </Text>
-          )}
 
-          <Text>
-            <Text color="cyan">Workspace</Text>
-            <Text dimColor> · </Text>
-            <Text color="white">{workspaceLine}</Text>
-          </Text>
+            <Text>
+              <Text color="cyan">Command</Text>
+              <Text dimColor> · </Text>
+              <Text color="whiteBright">{truncatedCommandPath}</Text>
+            </Text>
 
-          <Text>
-            <Text color="cyan">Command</Text>
-            <Text dimColor> · </Text>
-            <Text color="whiteBright">{truncatedCommandPath}</Text>
-          </Text>
+            <Text>
+              <Text color="cyan">Web</Text>
+              <Text dimColor> · </Text>
+              <Text color={LIKECODE_BLUE}>{webWorkspaceUrl}</Text>
+            </Text>
 
-          <Text>
-            <Text color="cyan">Web</Text>
-            <Text dimColor> · </Text>
-            <Text color="blueBright">{webWorkspaceUrl}</Text>
-          </Text>
+            {configSummaryItems.map(item => (
+              <ConfigLayerLine
+                key={`${item.label}-${item.source}`}
+                item={item}
+              />
+            ))}
 
-          {configSummaryItems.map(item => (
-            <ConfigLayerLine
-              key={`${item.label}-${item.source}`}
-              item={item}
-            />
-          ))}
-
-          {showGuestPassesUpsell ? <GuestPassesUpsell /> : null}
-          {!showGuestPassesUpsell && showOverageCreditUpsell ? (
-            <OverageCreditUpsell maxWidth={textWidth} twoLine />
-          ) : null}
+            {showGuestPassesUpsell ? <GuestPassesUpsell /> : null}
+            {!showGuestPassesUpsell && showOverageCreditUpsell ? (
+              <OverageCreditUpsell maxWidth={textWidth} twoLine />
+            ) : null}
+          </Box>
         </Box>
+        <AccentLine width={accentWidth} />
       </Box>
     </OffscreenFreeze>
   )
