@@ -32,9 +32,15 @@
 - ✅ **启动界面开始给出 Web 工作台入口**
   - 启动头现在会直接显示本地 `localhost` 工作台入口，方便用户不离开初始界面就能跳到 Web 侧观察台
 - ✅ **启动 logo 已收成 Like Code 语义**
-  - 启动头图已进一步收成蓝色爱心，`Like` 单独放在爱心正上方，右侧标题改为更克制的 `code · Harzva restored · v2.1.88`
+  - 启动头图已进一步收成蓝色爱心，`Like` 以更大的多行字样压在爱心正上方，右侧标题改为更克制的 `code · Harzva restored · v2.1.88`
 - ✅ **第三方兼容网关稳定性修复**
   - 兼容非标准 `headers` 返回结构，避免切 provider 后直接崩掉
+- ✅ **localhost Web 工作台不再只显示 API 索引**
+  - 现在打开根路径会直接渲染 dashboard，把 `session / pane / transcript / subagent / events` 结构化展示出来
+- ✅ **subagent 传输路径已经明确**
+  - 当前 Web 侧的 subagent 摘要主要来自 CLI 进程内的 `AppState.tasks`，再结合 `sessionTabs` 的 pane 绑定关系做归属展示
+- ✅ **workflow 数据底座已经开始成形**
+  - 当前 coding 过程、对话历史和工作流方向，已经可以先通过 `pane transcript` 快照与 `events` 时间线接口对外暴露
 
 ### 下一批最重要的真实需求
 
@@ -234,6 +240,31 @@ Claude Code 很强，但真实使用里一直有一个明显痛点：
 - ✅ **不是替代多终端，而是补足多终端做不到的会话内组织能力**
   - 更准确的说法是：多开终端是“我自己管理多个 Claude”，内部 panel 是“Claude 帮我管理同一个 session 下的多个任务”
 
+### 当前 subagent 信息是怎么传到 Web UI 的
+
+- ✅ **当前第一版主要走 CLI 进程内存态**
+  - Web 侧当前看到的 subagent 摘要，主要来自 `AppState.tasks`
+- ✅ **pane 归属来自 `sessionTabs`**
+  - pane 本身并不等于 subagent，但 pane 可以绑定 `subagentId`，所以 Web UI 可以把“哪个 pane 现在关联哪个 subagent”串起来
+- ✅ **当前已经有单独接口**
+  - `localhost` 工作台现在已经提供 `/api/sessions/current/subagents`
+- 🟡 **更耐久的历史可以继续接磁盘 transcript**
+  - 仓库里已经有 `subagents/*.jsonl` 的读取能力，后续可以把内存态与磁盘态拼起来做更长时间的历史回放
+
+### 当前如何获取 Claude 的 coding 过程数据
+
+- ✅ **第一层：对话历史**
+  - 直接来自 pane transcript 快照，也就是当前 tab/pane 保存下来的 message 流
+- ✅ **第二层：状态和事件**
+  - 通过 `events` 接口输出 pane 快照、模型绑定、todo lane、subagent 状态等 workflow 信号
+- ✅ **第三层：内容块摘要**
+  - 当前已经开始从 assistant content block 里抽出 `text / thinking / tool_use / tool_result` 的摘要，方便 Web UI 先做结构化展示
+- [ ] **后续继续增强**
+  - 更细的 tool 时间线
+  - 更完整的 thinking 卡片流
+  - coding workflow 流程图
+  - provider / model 切换的因果轨迹
+
 ---
 
 ## 产品 Todo
@@ -283,6 +314,8 @@ Claude Code 很强，但真实使用里一直有一个明显痛点：
 - [x] 完成 `localhost Web UI` 第一版设计稿
 - [x] 完成 `localhost Web UI` 第一版读取协议草案
 - [x] 起好 `localhost Web UI` 第一版只读接口骨架
+- [x] 让 `localhost Web UI` 根路径从原始 JSON 升级成可直接浏览的 dashboard
+- [x] 为 `localhost Web UI` 增加 `subagent` 摘要接口，明确当前传输数据主要来自 `AppState.tasks`
 - [ ] 支持 **按任务自动路由模型**：写代码 / 总结 / 搜索 / 便宜优先 / 最强优先
 - [ ] 尽量做到 **不 compact 也能切到别的模型继续干活**
 - [ ] 在上下文过长时，优先尝试「局部转译 / 局部摘要 / 局部降配」而不是直接整段 compact
@@ -304,7 +337,9 @@ Claude Code 很强，但真实使用里一直有一个明显痛点：
 - [ ] 继续把 transcript / todo 做到真正隔离，而不只是先完成 UI 层消息区与快照恢复
 - [ ] 为 localhost Web UI 设计一版“观察台”而不是先做“控制台”，优先承接结构化展示与流程图
 - [ ] 为 localhost Web UI 落地 `session / pane / transcript / events` 读取接口
+- [x] 为 localhost Web UI 落地 `session / pane / transcript / events` 读取接口
 - [ ] 继续扩展 localhost 接口里的结构化 transcript、tool/subagent 时间线和切模型记录
+- [ ] 把 Claude 的 coding 过程进一步结构化，补 `thinking / tool_use / tool_result` 提取，给后续流程图和工作流展示使用
 - [ ] 团队里每个人可配置自己的默认 provider / 默认模型 / 默认预算策略
 - [ ] 项目级规则决定“这个仓库优先稳定模型，那个仓库优先低成本模型”
 - [ ] 一个命令完成“继续当前 session，但换模型再试一次”

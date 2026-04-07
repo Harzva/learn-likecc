@@ -28,7 +28,10 @@
 - 新增 localhost Web UI 工作台设计稿，明确 CLI 继续做最小可用验证，Web UI 承接结构化 transcript、时间线、切模型记录和思考过程卡片流
 - 新增 localhost Web UI 读取协议草案，拆出 `session / pane / transcript / events` 四层读取模型
 - 起好 localhost 第一版只读接口骨架，当前已支持 `/api/sessions`、`/api/sessions/current`、`/api/sessions/current/panes`、`/api/sessions/current/panes/:paneId/transcript`、`/api/sessions/current/events`
-- 启动界面新增 Web 工作台网址，并把 logo 收成蓝色爱心 + `Like` 上置 + `code · Harzva restored · v2.1.88`
+- localhost 根路径已从纯 JSON API 索引升级成可直接打开的 dashboard，开始展示 `session / pane / transcript / subagent / events`
+- 新增 `/api/sessions/current/subagents`，当前 subagent 摘要主要来自 `AppState.tasks` 与 pane 绑定关系
+- transcript 摘要开始抽取 `text / thinking / tool_use / tool_result`，为后续工作流与流程图展示继续铺底
+- 启动界面新增 Web 工作台网址，并把 logo 收成蓝色爱心 + 多行大字 `Like` + `code · Harzva restored · v2.1.88`
 - 本轮以文档与规划推进为主，暂不单独提升 release 版本号，避免出现“版本先发、功能未落地”的错位
 
 ## 1.0.1-likecode - 2026-04-07

@@ -1,6 +1,9 @@
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http'
 import { getSessionId } from '../bootstrap/state.js'
 import type { AppState } from '../state/AppStateStore.js'
+import { isLocalAgentTask } from '../tasks/LocalAgentTask/LocalAgentTask.js'
+import { isInProcessTeammateTask } from '../tasks/InProcessTeammateTask/types.js'
+import type { Message } from '../types/message.js'
 import { registerCleanup } from './cleanupRegistry.js'
 import { getCwd } from './cwd.js'
 import { getDisplayPath } from './file.js'
@@ -10,6 +13,21 @@ const DEFAULT_WORKSPACE_API_PORT = 4310
 
 let latestSnapshot: AppState | null = null
 let serverStarted = false
+
+type WorkspaceSubagentSummary = {
+  id: string
+  kind: 'local_agent' | 'in_process_teammate'
+  paneId?: string
+  title: string
+  status: string
+  model?: string
+  summary?: string
+  repoLabel?: string
+  worktreePath?: string
+  messageCount?: number
+  lastActivity?: string
+  updatedAt: string
+}
 
 function getWorkspaceApiPort(): number {
   const raw = process.env.CLAUDE_CODE_WORKSPACE_API_PORT
@@ -59,6 +77,117 @@ function buildPaneSummary(state: AppState): WorkspacePaneSummary[] {
     }))
 }
 
+function getStringValue(value: unknown): string | undefined {
+  return typeof value === 'string' && value.trim().length > 0
+    ? value.trim()
+    : undefined
+}
+
+function summarizeContentItem(item: unknown): string | undefined {
+  if (!item || typeof item !== 'object') return undefined
+  const record = item as Record<string, unknown>
+  const itemType = getStringValue(record.type)
+  if (itemType === 'text') {
+    return getStringValue(record.text)
+  }
+  if (itemType === 'thinking') {
+    return getStringValue(record.thinking) ?? '[thinking]'
+  }
+  if (itemType === 'tool_use') {
+    const toolName = getStringValue(record.name) ?? 'tool'
+    return `[tool_use] ${toolName}`
+  }
+  if (itemType === 'tool_result') {
+    return '[tool_result]'
+  }
+  return undefined
+}
+
+function summarizeMessage(message: Message): string | undefined {
+  const directContent = getStringValue(message.content)
+  if (directContent) return directContent
+
+  const nestedMessage = message.message
+  if (!nestedMessage) return undefined
+  if (typeof nestedMessage.content === 'string') {
+    return getStringValue(nestedMessage.content)
+  }
+  if (Array.isArray(nestedMessage.content)) {
+    const parts = nestedMessage.content
+      .map(item => summarizeContentItem(item))
+      .filter((item): item is string => Boolean(item))
+    if (parts.length > 0) {
+      return parts.join(' | ')
+    }
+  }
+  return undefined
+}
+
+function getMessageRole(message: Message): string {
+  if (typeof message.message?.role === 'string') {
+    return message.message.role
+  }
+  return message.type
+}
+
+function getMessageCreatedAt(message: Message, index: number): string {
+  const direct = getStringValue(message.timestamp) ?? getStringValue(message.createdAt)
+  return direct ?? `m-${index}`
+}
+
+function buildSubagentSummaries(state: AppState): WorkspaceSubagentSummary[] {
+  const paneBySubagentId = new Map<string, string>()
+  for (const pane of Object.values(state.sessionTabs.tabs)) {
+    if (pane.subagentId) {
+      paneBySubagentId.set(pane.subagentId, pane.id)
+    }
+  }
+
+  return Object.values(state.tasks)
+    .flatMap(task => {
+      if (isInProcessTeammateTask(task)) {
+        return [
+          {
+            id: task.id,
+            kind: 'in_process_teammate' as const,
+            paneId: paneBySubagentId.get(task.id),
+            title: `${task.identity.agentName}@${task.identity.teamName}`,
+            status: task.status,
+            model: task.model,
+            summary: task.progress?.summary ?? task.description,
+            repoLabel: undefined,
+            worktreePath: undefined,
+            messageCount: task.messages?.length ?? 0,
+            lastActivity: task.progress?.lastActivity?.activityDescription,
+            updatedAt: new Date(task.endTime ?? task.startTime).toISOString(),
+          },
+        ]
+      }
+
+      if (isLocalAgentTask(task)) {
+        return [
+          {
+            id: task.id,
+            kind: 'local_agent' as const,
+            paneId: paneBySubagentId.get(task.id),
+            title: task.selectedAgent?.name ?? task.description,
+            status: task.status,
+            model: task.model,
+            summary: task.progress?.summary ?? task.description,
+            repoLabel: undefined,
+            worktreePath: undefined,
+            messageCount: task.messages?.length ?? 0,
+            lastActivity: task.progress?.lastActivity?.activityDescription,
+            updatedAt: new Date(task.endTime ?? task.startTime).toISOString(),
+          },
+        ]
+      }
+
+      return []
+    })
+    .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))
+}
+
 function buildSessionSummary(state: AppState) {
   const activeTab = getActiveSessionTab(state.sessionTabs)
   const panes = buildPaneSummary(state)
@@ -86,23 +215,19 @@ function buildTranscriptPayload(state: AppState, paneId: string) {
   return {
     paneId,
     transcriptId: tab.transcriptId,
-    messages: (tab.transcriptMessages ?? []).map(message => ({
+    messages: (tab.transcriptMessages ?? []).map((message, index) => ({
       uuid: message.uuid,
       type: message.type,
-      createdAt: 'createdAt' in message ? message.createdAt : undefined,
-      role: 'role' in message ? message.role : undefined,
-      summary:
-        'message' in message && typeof message.message?.content === 'string'
-          ? message.message.content
-          : 'content' in message && typeof message.content === 'string'
-            ? message.content
-            : undefined,
+      createdAt: getMessageCreatedAt(message, index),
+      role: getMessageRole(message),
+      summary: summarizeMessage(message),
     })),
   }
 }
 
 function buildEventsPayload(state: AppState) {
   const panes = buildPaneSummary(state)
+  const subagents = buildSubagentSummaries(state)
   const events = panes.flatMap((pane, index) => [
     {
       id: `pane-${pane.id}`,
@@ -138,11 +263,25 @@ function buildEventsPayload(state: AppState) {
         ]
       : []),
   ])
+  const subagentEvents = subagents.map(subagent => ({
+    id: `subagent-${subagent.id}`,
+    type: 'subagent_status',
+    paneId: subagent.paneId,
+    createdAt: subagent.updatedAt,
+    subagentId: subagent.id,
+    title: subagent.title,
+    status: subagent.status,
+    summary: subagent.summary,
+    model: subagent.model,
+    kind: subagent.kind,
+  }))
 
   return {
     sessionId: String(getSessionId()),
     activePaneId: state.sessionTabs.activeTabId,
-    events,
+    events: [...events, ...subagentEvents].sort((a, b) =>
+      String(b.createdAt).localeCompare(String(a.createdAt)),
+    ),
   }
 }
 
@@ -154,6 +293,331 @@ function writeJson(
   res.statusCode = statusCode
   res.setHeader('content-type', 'application/json; charset=utf-8')
   res.end(JSON.stringify(body, null, 2))
+}
+
+function writeHtml(res: ServerResponse, statusCode: number, body: string): void {
+  res.statusCode = statusCode
+  res.setHeader('content-type', 'text/html; charset=utf-8')
+  res.end(body)
+}
+
+function renderWorkspaceHtmlShell(state: AppState): string {
+  const activePaneId = state.sessionTabs.activeTabId
+  const baseUrl = getWorkspaceApiBaseUrl()
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Like Code Workspace</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #08111f;
+        --panel: #0f1b2e;
+        --panel-2: #12243b;
+        --line: #25415e;
+        --text: #e9f2ff;
+        --muted: #95a9c5;
+        --blue: #58b2ff;
+        --cyan: #56e0ff;
+        --green: #6ee7a8;
+        --orange: #ff9a62;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        background:
+          radial-gradient(circle at top left, rgba(88,178,255,0.18), transparent 30%),
+          radial-gradient(circle at top right, rgba(86,224,255,0.14), transparent 25%),
+          var(--bg);
+        color: var(--text);
+      }
+      .shell {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+      .hero, .grid > section {
+        background: linear-gradient(180deg, rgba(18,36,59,0.96), rgba(9,20,33,0.96));
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        box-shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
+      }
+      .hero {
+        padding: 22px 24px;
+        margin-bottom: 18px;
+      }
+      .eyebrow {
+        color: var(--cyan);
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      h1 {
+        margin: 10px 0 8px;
+        font-size: clamp(28px, 4vw, 48px);
+        line-height: 1.05;
+      }
+      .hero p, .meta {
+        color: var(--muted);
+      }
+      .meta strong { color: var(--text); }
+      .hero-links {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 14px;
+      }
+      .pill {
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: rgba(88,178,255,0.1);
+        color: var(--text);
+        text-decoration: none;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: 320px minmax(0, 1fr) 360px;
+        gap: 18px;
+      }
+      section { padding: 16px; min-height: 420px; }
+      h2 {
+        margin: 0 0 14px;
+        font-size: 15px;
+        color: var(--cyan);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .list {
+        display: grid;
+        gap: 10px;
+      }
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: rgba(255,255,255,0.02);
+        padding: 12px;
+        cursor: pointer;
+      }
+      .card.active {
+        border-color: var(--blue);
+        box-shadow: inset 0 0 0 1px rgba(88,178,255,0.25);
+      }
+      .row {
+        display: flex;
+        gap: 10px;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .label { color: var(--muted); font-size: 12px; }
+      .value { color: var(--text); }
+      .status {
+        color: var(--green);
+        font-size: 12px;
+        text-transform: uppercase;
+      }
+      .status.waiting { color: var(--orange); }
+      .status.failed, .status.error, .status.killed { color: #ff7b7b; }
+      .transcript {
+        display: grid;
+        gap: 12px;
+        max-height: 76vh;
+        overflow: auto;
+        padding-right: 4px;
+      }
+      .message {
+        border-left: 3px solid var(--line);
+        padding: 10px 12px;
+        background: rgba(255,255,255,0.02);
+        border-radius: 10px;
+      }
+      .message.user { border-left-color: var(--blue); }
+      .message.assistant { border-left-color: var(--green); }
+      .message.system { border-left-color: var(--orange); }
+      .message .summary {
+        margin-top: 6px;
+        white-space: pre-wrap;
+        line-height: 1.5;
+      }
+      .event-list {
+        display: grid;
+        gap: 10px;
+        max-height: 34vh;
+        overflow: auto;
+      }
+      .event, .subagent {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 10px 12px;
+        background: rgba(255,255,255,0.02);
+      }
+      .muted { color: var(--muted); }
+      .small { font-size: 12px; }
+      @media (max-width: 1100px) {
+        .grid { grid-template-columns: 1fr; }
+        section { min-height: auto; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <div class="hero">
+        <div class="eyebrow">Like Code localhost workspace</div>
+        <h1>Session / Pane / Transcript / Events 工作台</h1>
+        <p>这里不再只是 API 索引，而是直接把当前 session、pane、transcript、subagent 和 workflow 事件结构化地展示出来。</p>
+        <div class="meta">
+          当前活跃 pane: <strong id="active-pane">${activePaneId}</strong>
+          <span class="muted"> · 数据来自当前 CLI 内存态 AppState 与 session pane 快照</span>
+        </div>
+        <div class="hero-links">
+          <a class="pill" href="${baseUrl}/api/sessions/current" target="_blank" rel="noreferrer">Session JSON</a>
+          <a class="pill" href="${baseUrl}/api/sessions/current/panes" target="_blank" rel="noreferrer">Pane JSON</a>
+          <a class="pill" href="${baseUrl}/api/sessions/current/events" target="_blank" rel="noreferrer">Events JSON</a>
+          <a class="pill" href="${baseUrl}/api/sessions/current/subagents" target="_blank" rel="noreferrer">Subagents JSON</a>
+        </div>
+      </div>
+      <div class="grid">
+        <section>
+          <h2>Panes</h2>
+          <div id="panes" class="list"></div>
+        </section>
+        <section>
+          <h2>Transcript</h2>
+          <div id="transcript-meta" class="small muted"></div>
+          <div id="transcript" class="transcript"></div>
+        </section>
+        <section>
+          <h2>Subagents</h2>
+          <div id="subagents" class="list"></div>
+          <h2 style="margin-top:16px;">Events</h2>
+          <div id="events" class="event-list"></div>
+        </section>
+      </div>
+    </div>
+    <script>
+      const state = { activePaneId: ${JSON.stringify(activePaneId)} };
+
+      function escapeHtml(value) {
+        return String(value ?? '')
+          .replaceAll('&', '&amp;')
+          .replaceAll('<', '&lt;')
+          .replaceAll('>', '&gt;')
+          .replaceAll('"', '&quot;')
+          .replaceAll("'", '&#39;');
+      }
+
+      function statusClass(status) {
+        return String(status || '').toLowerCase();
+      }
+
+      async function fetchJson(path) {
+        const res = await fetch(path);
+        if (!res.ok) throw new Error(path + ' -> ' + res.status);
+        return res.json();
+      }
+
+      function renderPanes(panes) {
+        const root = document.getElementById('panes');
+        root.innerHTML = panes.map(pane => \`
+          <div class="card \${pane.id === state.activePaneId ? 'active' : ''}" data-pane-id="\${escapeHtml(pane.id)}">
+            <div class="row">
+              <strong>\${escapeHtml(pane.title)}</strong>
+              <span class="status \${statusClass(pane.status)}">\${escapeHtml(pane.status)}</span>
+            </div>
+            <div class="small muted">pane: \${escapeHtml(pane.id)} · transcript: \${escapeHtml(pane.transcriptId)}</div>
+            <div class="small" style="margin-top:6px;">\${escapeHtml(pane.model || 'unknown model')} · \${escapeHtml(pane.provider || 'unknown provider')}</div>
+            <div class="small muted" style="margin-top:6px;">todo lane: \${escapeHtml(pane.todoLaneId || 'not bound yet')}</div>
+            <div class="small" style="margin-top:8px;">\${escapeHtml(pane.taskSummary || pane.draftPreview || 'No task summary yet')}</div>
+          </div>
+        \`).join('');
+        root.querySelectorAll('[data-pane-id]').forEach(node => {
+          node.addEventListener('click', () => {
+            state.activePaneId = node.getAttribute('data-pane-id');
+            document.getElementById('active-pane').textContent = state.activePaneId;
+            refresh();
+          });
+        });
+      }
+
+      function renderTranscript(payload) {
+        const meta = document.getElementById('transcript-meta');
+        const root = document.getElementById('transcript');
+        meta.textContent = 'pane ' + payload.paneId + ' · transcript ' + payload.transcriptId + ' · ' + payload.messages.length + ' messages';
+        root.innerHTML = payload.messages.length === 0
+          ? '<div class="muted">This pane has no transcript snapshot yet.</div>'
+          : payload.messages.map(message => \`
+              <div class="message \${statusClass(message.role || message.type)}">
+                <div class="row">
+                  <strong>\${escapeHtml(message.role || message.type)}</strong>
+                  <span class="small muted">\${escapeHtml(message.createdAt || '')}</span>
+                </div>
+                <div class="summary">\${escapeHtml(message.summary || '[No summary extracted yet]')}</div>
+              </div>
+            \`).join('');
+      }
+
+      function renderSubagents(items) {
+        const root = document.getElementById('subagents');
+        root.innerHTML = items.length === 0
+          ? '<div class="muted">No live subagents detected in current AppState.</div>'
+          : items.map(item => \`
+              <div class="subagent">
+                <div class="row">
+                  <strong>\${escapeHtml(item.title)}</strong>
+                  <span class="status \${statusClass(item.status)}">\${escapeHtml(item.status)}</span>
+                </div>
+                <div class="small muted">kind: \${escapeHtml(item.kind)} · pane: \${escapeHtml(item.paneId || 'unbound')}</div>
+                <div class="small" style="margin-top:6px;">\${escapeHtml(item.summary || 'No summary yet')}</div>
+                <div class="small muted" style="margin-top:6px;">messages: \${escapeHtml(item.messageCount || 0)} · model: \${escapeHtml(item.model || 'n/a')}</div>
+                <div class="small muted" style="margin-top:6px;">last activity: \${escapeHtml(item.lastActivity || 'n/a')}</div>
+              </div>
+            \`).join('');
+      }
+
+      function renderEvents(events) {
+        const root = document.getElementById('events');
+        root.innerHTML = events.length === 0
+          ? '<div class="muted">No events yet.</div>'
+          : events.slice(0, 30).map(event => \`
+              <div class="event">
+                <div class="row">
+                  <strong>\${escapeHtml(event.type)}</strong>
+                  <span class="small muted">\${escapeHtml(event.createdAt || '')}</span>
+                </div>
+                <div class="small muted">pane: \${escapeHtml(event.paneId || 'session')}</div>
+                <div class="small" style="margin-top:6px;">\${escapeHtml(event.title || event.summary || event.model || '')}</div>
+              </div>
+            \`).join('');
+      }
+
+      async function refresh() {
+        const [sessionRes, panesRes, eventsRes, subagentsRes] = await Promise.all([
+          fetchJson('/api/sessions/current'),
+          fetchJson('/api/sessions/current/panes'),
+          fetchJson('/api/sessions/current/events'),
+          fetchJson('/api/sessions/current/subagents')
+        ]);
+        const panes = panesRes.panes || [];
+        if (!panes.some(pane => pane.id === state.activePaneId) && panes[0]) {
+          state.activePaneId = panes[0].id;
+        }
+        renderPanes(panes);
+        renderSubagents(subagentsRes.subagents || []);
+        renderEvents(eventsRes.events || []);
+        const transcript = await fetchJson('/api/sessions/current/panes/' + encodeURIComponent(state.activePaneId) + '/transcript');
+        renderTranscript(transcript);
+      }
+
+      refresh().catch(error => {
+        document.body.insertAdjacentHTML('beforeend', '<pre style="color:#ff9d9d;padding:16px;">' + escapeHtml(error.message) + '</pre>');
+      });
+      setInterval(() => refresh().catch(() => {}), 2500);
+    </script>
+  </body>
+</html>`
 }
 
 function handleWorkspaceRequest(
@@ -176,17 +640,7 @@ function handleWorkspaceRequest(
   const pathname = url.pathname
 
   if (pathname === '/') {
-    writeJson(res, 200, {
-      product: 'Like Code localhost workspace API',
-      session: buildSessionSummary(state),
-      endpoints: [
-        '/api/sessions',
-        '/api/sessions/current',
-        '/api/sessions/current/panes',
-        '/api/sessions/current/panes/:paneId/transcript',
-        '/api/sessions/current/events',
-      ],
-    })
+    writeHtml(res, 200, renderWorkspaceHtmlShell(state))
     return
   }
 
@@ -212,6 +666,15 @@ function handleWorkspaceRequest(
 
   if (pathname === '/api/sessions/current/events') {
     writeJson(res, 200, buildEventsPayload(state))
+    return
+  }
+
+  if (pathname === '/api/sessions/current/subagents') {
+    writeJson(res, 200, {
+      transport:
+        'Current Web UI subagent data is derived from live AppState.tasks plus pane bindings in sessionTabs.',
+      subagents: buildSubagentSummaries(state),
+    })
     return
   }
 

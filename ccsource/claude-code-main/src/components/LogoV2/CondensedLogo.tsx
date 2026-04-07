@@ -143,14 +143,17 @@ export function CondensedLogo() {
     : `Harzva restored · ${truncatedCwd}`
   const truncatedCommandPath = truncate(commandPath, Math.max(textWidth, 20))
   const webWorkspaceUrl = getWorkspaceApiBaseUrl()
+  const likeWordmark = ['L I K E', 'L I K E', 'L I K E']
 
   return (
     <OffscreenFreeze>
       <Box flexDirection="row" gap={2} alignItems="center">
         <Box flexDirection="column" alignItems="center">
-          <Text color="blueBright" bold>
-            Like
-          </Text>
+          {likeWordmark.map((line, index) => (
+            <Text key={`${line}-${index}`} color="blueBright" bold>
+              {line}
+            </Text>
+          ))}
           {isFullscreenEnvEnabled() ? <AnimatedClawd /> : <Clawd />}
         </Box>
 
