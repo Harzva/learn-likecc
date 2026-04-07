@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OH02: Tool System（OpenHarness） - Claude Code Course</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔧</text></svg>">
+    <meta name="description" content="OpenHarness OH02：BaseTool、Pydantic input_model、ToolRegistry、ToolResult；对标 S02；串联 query 内校验与执行。">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">⚖️</span>
+                <span class="logo-text">OH 源码课</span>
+            </a>
+            <div class="nav-links">
+                <a href="topic-openharness-course.html" class="nav-link">课纲</a>
+                <a href="topic-openharness.html#map" class="nav-link">路径表</a>
+                <a href="s02.html" class="nav-link">对照 S02</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="index.html" class="btn-github">首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="course-main">
+        <div class="container">
+            <div class="course-header">
+                <div class="course-breadcrumb">
+                    <a href="index.html">首页</a>
+                    <span>/</span>
+                    <a href="topic-openharness-course.html">OpenHarness 源码课</a>
+                    <span>/</span>
+                    <span>OH02: Tool System</span>
+                </div>
+                <div class="course-nav">
+                    <span class="course-part-badge">OpenHarness · Part 1</span>
+                    <div class="course-chapter-nav">
+                        <a href="oh01.html" class="chapter-prev">← OH01</a>
+                        <span class="chapter-next disabled">OH03 待撰 →</span>
+                    </div>
+                </div>
+            </div>
+
+            <article class="course-content">
+                <h1 class="course-title">OH02: Tool System <span class="subtitle">OpenHarness · 对标 S02</span></h1>
+
+                <div class="course-quote">
+                    <p>与 <a href="s02.html">S02</a> 同一命题：模型只能通过<strong>结构化工具</strong>碰磁盘、Shell、网络；Harness 负责 <strong>schema → 校验 →（权限）→ 执行 → 归一化结果</strong>。</p>
+                    <p>OpenHarness 用 <strong>Pydantic <code>BaseModel</code></strong> 描述入参、<strong><code>BaseTool</code></strong> 统一接口、<strong><code>ToolRegistry</code></strong> 聚合为 API tools 列表；权限门在 <a href="oh01.html">OH01</a> 提到的 <code>_execute_tool_call</code> 中实现，本讲只标出挂钩点。</p>
+                </div>
+
+                <figure class="mermaid-figure" aria-label="与 S02 一致的工具链路">
+                    <figcaption class="mermaid-caption"><strong>工具链路</strong>（与 S02 导图一致）：Schema → 权限门 → Execute → 回到 Loop。</figcaption>
+                    <div class="mermaid-diagram-scroll" data-mermaid-diagram="course-s02"></div>
+                </figure>
+
+                <section class="section-block">
+                    <h2>🎯 问题（与 S02 一致）</h2>
+                    <p>没有工具定义，Loop 只能空转；需要让模型<strong>可发现</strong>工具（name + description + JSON Schema）、<strong>可校验</strong>调用参数、<strong>可执行</strong>并返回字符串化结果供下一轮推理。</p>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔍 核心抽象：<code>base.py</code></h2>
+                    <p><strong><code>ToolResult</code></strong>：统一 <code>output: str</code> 与 <code>is_error</code>，供序列化为 API 的 tool_result 块。<strong><code>ToolExecutionContext</code></strong>：至少含 <code>cwd</code>，以及 <code>metadata</code>（如 <code>ask_user_prompt</code>、registry 引用）供工具内部使用。</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">Python</span>
+                            <button class="copy-btn" onclick="copyCode(this)">复制</button>
+                        </div>
+                        <pre><code class="language-python"># tools/base.py（结构节选）
+
+class BaseTool(ABC):
+    name: str
+    description: str
+    input_model: type[BaseModel]
+
+    @abstractmethod
+    async def execute(self, arguments: BaseModel, context: ToolExecutionContext) -&gt; ToolResult: ...
+
+    def is_read_only(self, arguments: BaseModel) -&gt; bool:
+        return False  # 子类可覆写，供权限层区分只读/写
+
+    def to_api_schema(self) -&gt; dict[str, Any]:
+        return {
+            "name": self.name,
+            "description": self.description,
+            "input_schema": self.input_model.model_json_schema(),
+        }
+
+class ToolRegistry:
+    def register(self, tool: BaseTool) -&gt; None: ...
+    def get(self, name: str) -&gt; BaseTool | None: ...
+    def to_api_schema(self) -&gt; list[dict[str, Any]]: ...</code></pre>
+                    </div>
+                    <p>对应 S02 的 <code>ToolDef</code>：<code>inputSchema</code> → <code>input_model.model_json_schema()</code>；没有把 <code>hasPermission</code> 挂在每个 tool 上，而是<strong>外置</strong>到循环里的 <code>PermissionChecker</code>（下一讲 OH03 可对齐 <a href="s03.html">S03</a>）。</p>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔍 实例：<code>FileReadTool</code>（只读）</h2>
+                    <p>独立 <code>FileReadToolInput(BaseModel)</code> 描述字段与约束；<code>is_read_only</code> 恒为 <code>True</code>，权限层可默认放行只读路径规则。<code>execute</code> 内解析路径、拒绝二进制、按行号切片输出——与课内 Read 工具<strong>职责等价、实现细节不同</strong>（如工具名 <code>read_file</code>）。</p>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔍 实例：<code>BashTool</code>（副作用）</h2>
+                    <p>通过 <code>create_shell_subprocess</code> 跑命令，合并 stdout/stderr，超时与返回码映射为 <code>ToolResult.is_error</code>；输出过长截断，避免撑爆上下文。默认<strong>非只读</strong>，走更严的权限策略。</p>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔍 注册：<code>create_default_tool_registry</code></h2>
+                    <p><code>tools/__init__.py</code> 中集中 <code>registry.register(...)</code> 数十个内置工具；若传入 <code>mcp_manager</code>，再挂上 MCP 资源与 <code>McpToolAdapter</code>——与 <a href="s07.html">S07</a> 同题，OH07 可细讲。</p>
+                </section>
+
+                <section class="section-block">
+                    <h2>🔗 与 <a href="oh01.html">OH01</a> 的衔接</h2>
+                    <p><code>run_query</code> 在拿到模型 tool_use 后：<code>tool.input_model.model_validate(tool_input)</code> → <code>permission_checker.evaluate(..., is_read_only=tool.is_read_only(parsed_input))</code> → <code>await tool.execute(parsed_input, ToolExecutionContext(cwd=..., metadata=...))</code>。工具层<strong>不负责</strong> Hooks 顺序；Pre/Post 在 <code>_execute_tool_call</code> 外层包裹（对齐 <a href="s10.html">S10</a> 话题）。</p>
+                </section>
+
+                <section class="section-block">
+                    <h2>⚖️ 与 S02（TS 课）对照</h2>
+                    <table class="compare-table">
+                        <tr>
+                            <th>维度</th>
+                            <th>S02 叙事</th>
+                            <th>OpenHarness</th>
+                        </tr>
+                        <tr>
+                            <td>入参 schema</td>
+                            <td>zod</td>
+                            <td>Pydantic <code>BaseModel</code></td>
+                        </tr>
+                        <tr>
+                            <td>权限</td>
+                            <td>可选 <code>hasPermission</code>  per tool</td>
+                            <td>统一 <code>PermissionChecker</code> + <code>is_read_only</code> 提示</td>
+                        </tr>
+                        <tr>
+                            <td>UI 渲染</td>
+                            <td>可选 React 渲染 tool 消息</td>
+                            <td>TUI 侧消费 <code>StreamEvent</code>，不在 BaseTool 上绑 UI</td>
+                        </tr>
+                        <tr>
+                            <td>注册</td>
+                            <td>课内常隐含在引擎配置</td>
+                            <td>显式 <code>ToolRegistry</code> + <code>create_default_tool_registry</code></td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section class="section-block">
+                    <h2>🤔 思考题</h2>
+                    <ol class="thinking-questions">
+                        <li>为何把 JSON Schema 生成交给 <code>model_json_schema()</code> 而不是手写？模型侧看到的最小契约是什么？</li>
+                        <li><code>is_read_only</code> 返回假阳性（只读工具标成 false）会导致什么治理问题？</li>
+                        <li>新增一个内置工具时，最少要改哪几处才能进入默认 registry 并被 API 发现？</li>
+                    </ol>
+                </section>
+
+                <section class="section-block">
+                    <h2>📎 延伸阅读</h2>
+                    <p><a href="oh01.html">OH01</a> · <a href="s02.html">S02</a> / <a href="d02.html">D02</a> · <a href="s03.html">S03</a>（权限，OH03 将对照）</p>
+                </section>
+
+                <div class="chapter-navigation">
+                    <a href="oh01.html" class="btn btn-secondary">← OH01</a>
+                    <a href="s02.html" class="btn btn-secondary">对照 S02</a>
+                    <a href="topic-openharness-course.html" class="btn btn-primary">OH 课纲 →</a>
+                </div>
+
+                <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/oh02.md" target="_blank" rel="noopener noreferrer">📝 Markdown 源（GitHub）</a></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js" crossorigin="anonymous"></script>
+    <script>
+    function copyCode(btn) {
+        const pre = btn.closest('.code-block') && btn.closest('.code-block').querySelector('pre code');
+        if (pre && navigator.clipboard) navigator.clipboard.writeText(pre.innerText);
+    }
+    </script>
+    <script src="js/app.js"></script>
+</body>
+</html>

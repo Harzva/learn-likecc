@@ -69,7 +69,9 @@
 
 ## 已上线讲稿
 
-- **[OH01 · Agent Loop](oh01.md)**：`query_engine.py` / `run_query`，对标 [S01](s01.md)。OH02 起陆续补。
+- **[OH01 · Agent Loop](oh01.md)**：对标 [S01](s01.md)。  
+- **[OH02 · Tool System](oh02.md)**：对标 [S02](s02.md)。  
+- OH03 起陆续补。
 
 ## 源码位置（本仓库）
 
