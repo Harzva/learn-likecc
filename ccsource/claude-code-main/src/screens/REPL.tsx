@@ -1453,6 +1453,15 @@ export function REPL({
       ) {
         setMessages(currentActiveTab.transcriptMessages);
       }
+      if (currentActiveTab.legacyTodosSnapshot) {
+        setAppState(prev => {
+          const nextTodos = structuredClone(currentActiveTab.legacyTodosSnapshot);
+          return {
+            ...prev,
+            todos: nextTodos,
+          };
+        });
+      }
       if ((currentActiveTab.draftInput ?? '') !== inputValueRef.current) {
         setInputValue(currentActiveTab.draftInput ?? '');
       }

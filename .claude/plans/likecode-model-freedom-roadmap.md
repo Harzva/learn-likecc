@@ -174,6 +174,8 @@ learn-likecc 现在已经不只是一个 Claude Code 源码学习仓库。
 - [x] 让 `localhost Web UI` 根路径从纯 JSON 索引升级成真正可浏览的 dashboard
 - [x] 增加 `localhost Web UI` 的 `subagents` 读取接口，明确当前摘要主要来自 `AppState.tasks`
 - [x] 让 transcript 摘要开始抽取 `text / thinking / tool_use / tool_result`，为工作流展示继续铺底
+- [x] 让 Web UI transcript 继续细化成 `messages + cards + workflow` 三层结构
+- [x] 让当前 active pane 在初始化进入时也优先恢复自己的 todo 快照，继续把 pane 隔离往下做实
 - [ ] 继续把多个可见对话框升级成真正的多活跃输入与多 transcript 并行
 - [ ] 继续把 transcript / todo 做到真正隔离，而不只是先做 UI 层消息区与快照恢复
 - [ ] 继续把 subagent 面板升级为更完整的工作视图，展示仓库、目录、当前任务与更多 live 状态

@@ -41,6 +41,10 @@
   - 当前 Web 侧的 subagent 摘要主要来自 CLI 进程内的 `AppState.tasks`，再结合 `sessionTabs` 的 pane 绑定关系做归属展示
 - ✅ **workflow 数据底座已经开始成形**
   - 当前 coding 过程、对话历史和工作流方向，已经可以先通过 `pane transcript` 快照与 `events` 时间线接口对外暴露
+- ✅ **Web UI transcript 已经开始细化**
+  - 当前 `pane transcript` 已额外输出 `thinking / tool_use / tool_result` 卡片和 pane 内 workflow 事件，Web 侧已经可以先按“消息流 + 卡片流 + 时间线”三层展示
+- ✅ **pane 的 todo 恢复继续往真隔离推进**
+  - 初始化进入当前 active pane 时，也会优先恢复该 pane 自己保存下来的 todo 快照，而不只是继续沿用残留的全局 todo
 
 ### 下一批最重要的真实需求
 
@@ -339,7 +343,8 @@ Claude Code 很强，但真实使用里一直有一个明显痛点：
 - [ ] 为 localhost Web UI 落地 `session / pane / transcript / events` 读取接口
 - [x] 为 localhost Web UI 落地 `session / pane / transcript / events` 读取接口
 - [ ] 继续扩展 localhost 接口里的结构化 transcript、tool/subagent 时间线和切模型记录
-- [ ] 把 Claude 的 coding 过程进一步结构化，补 `thinking / tool_use / tool_result` 提取，给后续流程图和工作流展示使用
+- [x] 把 Claude 的 coding 过程开始结构化，补 `thinking / tool_use / tool_result` 提取，给后续流程图和工作流展示使用
+- [ ] 继续把 Claude 的 coding 过程提取得更细，补工具输入输出归类、阶段节点和更长链路的 workflow 回放
 - [ ] 团队里每个人可配置自己的默认 provider / 默认模型 / 默认预算策略
 - [ ] 项目级规则决定“这个仓库优先稳定模型，那个仓库优先低成本模型”
 - [ ] 一个命令完成“继续当前 session，但换模型再试一次”

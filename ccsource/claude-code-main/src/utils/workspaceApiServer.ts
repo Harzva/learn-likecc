@@ -29,6 +29,34 @@ type WorkspaceSubagentSummary = {
   updatedAt: string
 }
 
+type WorkspaceTranscriptCard = {
+  id: string
+  kind:
+    | 'message'
+    | 'text'
+    | 'thinking'
+    | 'tool_use'
+    | 'tool_result'
+    | 'attachment'
+    | 'progress'
+  title: string
+  summary?: string
+  role?: string
+  toolName?: string
+  createdAt: string
+}
+
+type WorkspaceWorkflowEvent = {
+  id: string
+  type: string
+  paneId: string
+  createdAt: string
+  title: string
+  summary?: string
+  role?: string
+  toolName?: string
+}
+
 function getWorkspaceApiPort(): number {
   const raw = process.env.CLAUDE_CODE_WORKSPACE_API_PORT
   const parsed = raw ? Number.parseInt(raw, 10) : DEFAULT_WORKSPACE_API_PORT
@@ -103,6 +131,28 @@ function summarizeContentItem(item: unknown): string | undefined {
   return undefined
 }
 
+function summarizeUnknown(value: unknown): string | undefined {
+  if (typeof value === 'string') {
+    return getStringValue(value)
+  }
+  if (Array.isArray(value)) {
+    const parts = value
+      .map(item => summarizeUnknown(item))
+      .filter((item): item is string => Boolean(item))
+    return parts.length > 0 ? parts.join(' | ') : undefined
+  }
+  if (value && typeof value === 'object') {
+    const record = value as Record<string, unknown>
+    return (
+      getStringValue(record.text) ??
+      getStringValue(record.content) ??
+      getStringValue(record.summary) ??
+      getStringValue(record.thinking)
+    )
+  }
+  return undefined
+}
+
 function summarizeMessage(message: Message): string | undefined {
   const directContent = getStringValue(message.content)
   if (directContent) return directContent
@@ -133,6 +183,174 @@ function getMessageRole(message: Message): string {
 function getMessageCreatedAt(message: Message, index: number): string {
   const direct = getStringValue(message.timestamp) ?? getStringValue(message.createdAt)
   return direct ?? `m-${index}`
+}
+
+function summarizeToolInput(input: unknown): string | undefined {
+  const direct = summarizeUnknown(input)
+  if (direct) {
+    return direct.length > 220 ? `${direct.slice(0, 217)}...` : direct
+  }
+  try {
+    const serialized = JSON.stringify(input)
+    if (!serialized || serialized === '{}') return undefined
+    return serialized.length > 220 ? `${serialized.slice(0, 217)}...` : serialized
+  } catch {
+    return undefined
+  }
+}
+
+function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: string) {
+  const cards: WorkspaceTranscriptCard[] = []
+  const workflow: WorkspaceWorkflowEvent[] = []
+  const normalizedMessages = (messages ?? []).map((message, index) => {
+    const createdAt = getMessageCreatedAt(message, index)
+    const role = getMessageRole(message)
+    const summary = summarizeMessage(message)
+
+    cards.push({
+      id: `${message.uuid}-message`,
+      kind:
+        message.type === 'progress'
+          ? 'progress'
+          : message.type === 'attachment'
+            ? 'attachment'
+            : 'message',
+      title: `${role} message`,
+      summary,
+      role,
+      createdAt,
+    })
+    workflow.push({
+      id: `${message.uuid}-turn`,
+      type: 'message_turn',
+      paneId,
+      createdAt,
+      title: `${role} turn`,
+      summary,
+      role,
+    })
+
+    const content = Array.isArray(message.message?.content)
+      ? message.message?.content
+      : undefined
+    if (content) {
+      content.forEach((item, itemIndex) => {
+        if (!item || typeof item !== 'object') return
+        const record = item as Record<string, unknown>
+        const itemType = getStringValue(record.type)
+        if (!itemType) return
+
+        if (itemType === 'text') {
+          const text = getStringValue(record.text)
+          cards.push({
+            id: `${message.uuid}-text-${itemIndex}`,
+            kind: 'text',
+            title: 'assistant text',
+            summary: text,
+            role,
+            createdAt,
+          })
+          workflow.push({
+            id: `${message.uuid}-text-${itemIndex}`,
+            type: 'assistant_text',
+            paneId,
+            createdAt,
+            title: 'assistant text',
+            summary: text,
+            role,
+          })
+          return
+        }
+
+        if (itemType === 'thinking') {
+          const thinking = getStringValue(record.thinking)
+          cards.push({
+            id: `${message.uuid}-thinking-${itemIndex}`,
+            kind: 'thinking',
+            title: 'thinking',
+            summary: thinking,
+            role,
+            createdAt,
+          })
+          workflow.push({
+            id: `${message.uuid}-thinking-${itemIndex}`,
+            type: 'thinking',
+            paneId,
+            createdAt,
+            title: 'thinking',
+            summary: thinking,
+            role,
+          })
+          return
+        }
+
+        if (itemType === 'tool_use') {
+          const toolName = getStringValue(record.name) ?? 'tool'
+          const toolSummary = summarizeToolInput(record.input)
+          cards.push({
+            id: `${message.uuid}-tool-use-${itemIndex}`,
+            kind: 'tool_use',
+            title: toolName,
+            summary: toolSummary,
+            role,
+            toolName,
+            createdAt,
+          })
+          workflow.push({
+            id: `${message.uuid}-tool-use-${itemIndex}`,
+            type: 'tool_use',
+            paneId,
+            createdAt,
+            title: toolName,
+            summary: toolSummary,
+            role,
+            toolName,
+          })
+          return
+        }
+
+        if (itemType === 'tool_result') {
+          const resultSummary =
+            summarizeUnknown(record.content) ??
+            summarizeUnknown(record.result) ??
+            summarizeUnknown(record.output)
+          cards.push({
+            id: `${message.uuid}-tool-result-${itemIndex}`,
+            kind: 'tool_result',
+            title: 'tool result',
+            summary: resultSummary,
+            role,
+            createdAt,
+          })
+          workflow.push({
+            id: `${message.uuid}-tool-result-${itemIndex}`,
+            type: 'tool_result',
+            paneId,
+            createdAt,
+            title: 'tool result',
+            summary: resultSummary,
+            role,
+          })
+        }
+      })
+    }
+
+    return {
+      uuid: message.uuid,
+      type: message.type,
+      createdAt,
+      role,
+      summary,
+    }
+  })
+
+  return {
+    messages: normalizedMessages,
+    cards,
+    workflow: workflow.sort((a, b) =>
+      String(a.createdAt).localeCompare(String(b.createdAt)),
+    ),
+  }
 }
 
 function buildSubagentSummaries(state: AppState): WorkspaceSubagentSummary[] {
@@ -212,16 +430,13 @@ function buildSessionSummary(state: AppState) {
 function buildTranscriptPayload(state: AppState, paneId: string) {
   const tab = state.sessionTabs.tabs[paneId]
   if (!tab) return null
+  const artifacts = buildTranscriptArtifacts(tab.transcriptMessages ?? [], paneId)
   return {
     paneId,
     transcriptId: tab.transcriptId,
-    messages: (tab.transcriptMessages ?? []).map((message, index) => ({
-      uuid: message.uuid,
-      type: message.type,
-      createdAt: getMessageCreatedAt(message, index),
-      role: getMessageRole(message),
-      summary: summarizeMessage(message),
-    })),
+    messages: artifacts.messages,
+    cards: artifacts.cards,
+    workflow: artifacts.workflow,
   }
 }
 
@@ -424,9 +639,16 @@ function renderWorkspaceHtmlShell(state: AppState): string {
       .transcript {
         display: grid;
         gap: 12px;
-        max-height: 76vh;
+        max-height: 44vh;
         overflow: auto;
         padding-right: 4px;
+      }
+      .cards {
+        display: grid;
+        gap: 10px;
+        max-height: 24vh;
+        overflow: auto;
+        margin-bottom: 14px;
       }
       .message {
         border-left: 3px solid var(--line);
@@ -448,12 +670,15 @@ function renderWorkspaceHtmlShell(state: AppState): string {
         max-height: 34vh;
         overflow: auto;
       }
-      .event, .subagent {
+      .event, .subagent, .cardflow {
         border: 1px solid var(--line);
         border-radius: 12px;
         padding: 10px 12px;
         background: rgba(255,255,255,0.02);
       }
+      .cardflow.thinking { border-color: rgba(255,154,98,0.5); }
+      .cardflow.tool_use { border-color: rgba(86,224,255,0.5); }
+      .cardflow.tool_result { border-color: rgba(110,231,168,0.5); }
       .muted { color: var(--muted); }
       .small { font-size: 12px; }
       @media (max-width: 1100px) {
@@ -487,6 +712,8 @@ function renderWorkspaceHtmlShell(state: AppState): string {
         <section>
           <h2>Transcript</h2>
           <div id="transcript-meta" class="small muted"></div>
+          <h2 style="margin-top:16px;">Thinking / Tools</h2>
+          <div id="cards" class="cards"></div>
           <div id="transcript" class="transcript"></div>
         </section>
         <section>
@@ -544,8 +771,21 @@ function renderWorkspaceHtmlShell(state: AppState): string {
 
       function renderTranscript(payload) {
         const meta = document.getElementById('transcript-meta');
+        const cardsRoot = document.getElementById('cards');
         const root = document.getElementById('transcript');
-        meta.textContent = 'pane ' + payload.paneId + ' · transcript ' + payload.transcriptId + ' · ' + payload.messages.length + ' messages';
+        meta.textContent = 'pane ' + payload.paneId + ' · transcript ' + payload.transcriptId + ' · ' + payload.messages.length + ' messages · ' + (payload.workflow || []).length + ' workflow events';
+        cardsRoot.innerHTML = (payload.cards || []).length === 0
+          ? '<div class="muted">No thinking/tool cards extracted yet.</div>'
+          : payload.cards.slice(-12).reverse().map(card => \`
+              <div class="cardflow \${statusClass(card.kind)}">
+                <div class="row">
+                  <strong>\${escapeHtml(card.title || card.kind)}</strong>
+                  <span class="small muted">\${escapeHtml(card.createdAt || '')}</span>
+                </div>
+                <div class="small muted">\${escapeHtml(card.kind)}\${card.toolName ? ' · ' + escapeHtml(card.toolName) : ''}</div>
+                <div class="summary">\${escapeHtml(card.summary || '[No summary extracted yet]')}</div>
+              </div>
+            \`).join('');
         root.innerHTML = payload.messages.length === 0
           ? '<div class="muted">This pane has no transcript snapshot yet.</div>'
           : payload.messages.map(message => \`
@@ -606,8 +846,8 @@ function renderWorkspaceHtmlShell(state: AppState): string {
         }
         renderPanes(panes);
         renderSubagents(subagentsRes.subagents || []);
-        renderEvents(eventsRes.events || []);
         const transcript = await fetchJson('/api/sessions/current/panes/' + encodeURIComponent(state.activePaneId) + '/transcript');
+        renderEvents([...(transcript.workflow || []).slice(-18).reverse(), ...(eventsRes.events || []).slice(0, 12)]);
         renderTranscript(transcript);
       }
 

@@ -31,6 +31,8 @@
 - localhost 根路径已从纯 JSON API 索引升级成可直接打开的 dashboard，开始展示 `session / pane / transcript / subagent / events`
 - 新增 `/api/sessions/current/subagents`，当前 subagent 摘要主要来自 `AppState.tasks` 与 pane 绑定关系
 - transcript 摘要开始抽取 `text / thinking / tool_use / tool_result`，为后续工作流与流程图展示继续铺底
+- Web UI transcript 已继续细化为 `messages / cards / workflow` 三层结构，开始同时展示消息流、thinking 卡片和工具时间线
+- 当前 active pane 在初始化进入时也会优先恢复自己保存下来的 todo 快照，继续把 pane 隔离往更真实的方向推进
 - 启动界面新增 Web 工作台网址，并把 logo 收成蓝色爱心 + 多行大字 `Like` + `code · Harzva restored · v2.1.88`
 - 本轮以文档与规划推进为主，暂不单独提升 release 版本号，避免出现“版本先发、功能未落地”的错位
 
