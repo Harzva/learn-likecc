@@ -57,6 +57,10 @@ const MERMAID_DIAGRAMS = {
     EXT["Agent 生态对比<br/>技能包 · Subagents / Teams"]:::purpleBox
     S06 -.->|扩展阅读| EXT
 
+    OH["OpenHarness<br/>Python · MIT · topic-openharness"]:::purpleBox
+    S01 -.->|开源对照| OH
+    S07 -.->|MCP 对照| OH
+
     style RT fill:#181825,stroke:#89b4fa,stroke-width:1px
     style P1 fill:#13131a,stroke:#e2b953,stroke-dasharray:5 4
     style P2 fill:#13131a,stroke:#3b82f6,stroke-dasharray:5 4

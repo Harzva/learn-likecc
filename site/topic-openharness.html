@@ -17,10 +17,11 @@
             </a>
             <div class="nav-links">
                 <a href="#intro" class="nav-link">导语</a>
+                <a href="#quickstart" class="nav-link">快速上手</a>
                 <a href="#compare" class="nav-link">与源码课</a>
+                <a href="#map" class="nav-link">课程对照</a>
                 <a href="#modules" class="nav-link">能力</a>
                 <a href="#local" class="nav-link">本仓库</a>
-                <a href="#iterate" class="nav-link">迭代</a>
             </div>
             <div class="nav-actions">
                 <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
@@ -46,7 +47,8 @@
             </p>
             <div class="hero-actions">
                 <a href="https://github.com/HKUDS/OpenHarness" class="btn btn-primary" target="_blank" rel="noopener noreferrer">上游 HKUDS/OpenHarness ↗</a>
-                <a href="#local" class="btn btn-secondary">本仓库内路径</a>
+                <a href="#quickstart" class="btn btn-secondary">快速上手</a>
+                <a href="#map" class="btn btn-secondary">S 课 ↔ 源码路径</a>
             </div>
         </div>
     </section>
@@ -58,8 +60,26 @@
 
                 <div class="course-quote">
                     <p><strong>OpenHarness</strong>（PyPI 包名 <code>openharness-ai</code>）定位为轻量 <strong>Agent 基础设施</strong>：流式 tool-use 循环、四十余类工具、<code>CLAUDE.md</code> / 压缩 / <code>MEMORY.md</code>、多级权限与 Hooks、Swarm 多智能体协作等。上游由社区维护；<strong>与 Anthropic 官方 Claude Code 无隶属关系</strong>，实现语言与发布形态亦不同。</p>
-                    <p>本页是本站对 OpenHarness 的<strong>专题导读</strong>：帮助读者在「读 TS 源码课」之外，多一条<strong>直接跑 Python Harness</strong> 的对照轴。</p>
+                    <p>本页是本站对 OpenHarness 的<strong>专题导读</strong>：帮助读者在「读 TS 源码课」之外，多一条<strong>直接跑 Python Harness</strong> 的对照轴。首页「12 主题全景」Mermaid 中已用虚线标注与 OpenHarness 的<strong>对照关系</strong>。</p>
                 </div>
+
+                <section id="quickstart" class="section-block">
+                    <h2>快速上手（摘自上游文档）</h2>
+                    <p>以下命令与说明以 <a href="https://github.com/HKUDS/OpenHarness/blob/main/README.zh-CN.md" target="_blank" rel="noopener noreferrer">HKUDS README.zh-CN ↗</a> 为准；此处仅作入口摘录。</p>
+                    <h3>安装</h3>
+                    <div class="code-block">
+                        <pre><code class="language-bash">curl -fsSL https://raw.githubusercontent.com/HKUDS/OpenHarness/main/scripts/install.sh | bash</code></pre>
+                    </div>
+                    <p>贡献者可选 <code>bash -s -- --from-source</code>；需要 IM 通道时加 <code>--with-channels</code>。</p>
+                    <h3>源码运行（<code>uv</code>）</h3>
+                    <div class="code-block">
+                        <pre><code class="language-bash">git clone https://github.com/HKUDS/OpenHarness.git
+cd OpenHarness
+uv sync --extra dev
+uv run oh</code></pre>
+                    </div>
+                    <p>模型与 Provider 推荐走交互向导：<code>oh setup</code>（profile 级凭据、workflow 视角）。</p>
+                </section>
 
                 <section id="compare" class="section-block">
                     <h2>与 Source Map 源码课、Harness 长文的关系</h2>
@@ -81,6 +101,66 @@
                             <td><strong>完整开源可跑的 Harness 代码库</strong>（Python），适合改配置、加工具、对照测试与二次开发。</td>
                         </tr>
                     </table>
+                </section>
+
+                <section id="map" class="section-block">
+                    <h2>十二章（S01–S12）↔ OpenHarness 源码路径（节选）</h2>
+                    <p>路径均相对上游仓库 <code>src/openharness/</code>，便于你<strong>读完一课就跳进一目录</strong>。映射是教学向近似，非逐 API 等价。</p>
+                    <table class="compare-table">
+                        <tr>
+                            <th>课程</th>
+                            <th>建议优先打开的目录 / 文件</th>
+                        </tr>
+                        <tr>
+                            <td><a href="s01.html">S01</a> Agent Loop</td>
+                            <td><code>engine/query_engine.py</code>、<code>engine/query.py</code>、<code>engine/stream_events.py</code>、<code>engine/cost_tracker.py</code></td>
+                        </tr>
+                        <tr>
+                            <td><a href="s02.html">S02</a> 工具系统</td>
+                            <td><code>tools/</code>（<code>base.py</code> 与各类 <code>*_tool.py</code>）</td>
+                        </tr>
+                        <tr>
+                            <td><a href="s03.html">S03</a> 权限</td>
+                            <td><code>permissions/</code>、<code>ui/permission_dialog.py</code></td>
+                        </tr>
+                        <tr>
+                            <td><a href="s04.html">S04</a> CLI 命令</td>
+                            <td><code>commands/</code>、<code>cli.py</code>、<code>__main__.py</code></td>
+                        </tr>
+                        <tr>
+                            <td><a href="s05.html">S05</a> 上下文压缩</td>
+                            <td><code>services/compact/</code>、<code>prompts/context.py</code></td>
+                        </tr>
+                        <tr>
+                            <td><a href="s06.html">S06</a> Subagent / Fork</td>
+                            <td><code>coordinator/</code>、<code>swarm/</code>、<code>tools/agent_tool.py</code></td>
+                        </tr>
+                        <tr>
+                            <td><a href="s07.html">S07</a> MCP</td>
+                            <td><code>mcp/</code>、<code>tools/mcp_tool.py</code>、<code>tools/read_mcp_resource_tool.py</code></td>
+                        </tr>
+                        <tr>
+                            <td><a href="s08.html">S08</a> 任务管理</td>
+                            <td><code>tasks/</code>、<code>tools/task_*_tool.py</code></td>
+                        </tr>
+                        <tr>
+                            <td><a href="s09.html">S09</a> Bridge / IDE</td>
+                            <td><code>bridge/</code>、<code>ui/backend_host.py</code>、<code>ui/react_launcher.py</code></td>
+                        </tr>
+                        <tr>
+                            <td><a href="s10.html">S10</a> Hooks</td>
+                            <td><code>hooks/</code></td>
+                        </tr>
+                        <tr>
+                            <td><a href="s11.html">S11</a> Vim</td>
+                            <td><code>vim/</code>、<code>keybindings/</code></td>
+                        </tr>
+                        <tr>
+                            <td><a href="s12.html">S12</a> Git 工作流</td>
+                            <td><code>tools/enter_worktree_tool.py</code>、<code>tools/exit_worktree_tool.py</code>、<code>tools/bash_tool.py</code>（常见 Git 操作经 Shell / worktree）</td>
+                        </tr>
+                    </table>
+                    <p>更多模块（Skills、Memory、Cron、多通道等）见 <code>skills/</code>、<code>memory/</code>、<code>services/cron*</code>、<code>channels/</code>。</p>
                 </section>
 
                 <section id="diagram" class="section-block">
@@ -114,19 +194,19 @@
                     <p>若克隆本仓库后<strong>没有</strong> <code>OpenHarness/</code> 子目录，请阅读 <a href="https://github.com/Harzva/learn-likecc/blob/main/reference/rererence_harness/README.md" target="_blank" rel="noopener noreferrer"><code>reference/rererence_harness/README.md</code> ↗</a>，按说明自行拉取上游到同一路径。</p>
                 </section>
 
-                <section id="iterate" class="section-block">
-                    <h2>本站迭代计划（可反复打磨）</h2>
-                    <ol>
-                        <li><strong>v1（当前）</strong>：专题页 + 侧栏 + 首页/源码专题/Agent 专题入口；Mermaid 分层图；声明与路径写清。</li>
-                        <li><strong>v2</strong>：补充「从 S0x 某一节跳到 OpenHarness 对应源码路径」的<strong>对照表</strong>（节选）。</li>
-                        <li><strong>v3</strong>：可选：上游架构图静态资源本地化预览（版权与体积允许前提下）。</li>
-                    </ol>
-                    <p>欢迎通过 GitHub 对本站 HTML / MD 提 PR；OpenHarness 本体功能请向上游反馈。</p>
+                <section id="related" class="section-block">
+                    <h2>站内相关</h2>
+                    <ul>
+                        <li><a href="devlog.html#loop">开发日志 · Loop-in-Loop</a>（长会话节奏，与 Harness 工程实践可对照）</li>
+                        <li><a href="topic-memory-harness.html">Memory 机制专题</a>（概念与 OpenHarness <code>memory/</code> 可并行读）</li>
+                        <li><a href="topic-agent.html">Agent 大专题</a>（论文 / 热点 / 生态）</li>
+                    </ul>
                 </section>
 
                 <div class="chapter-navigation">
                     <a href="topic-agent.html" class="btn btn-secondary">← Agent 大专题</a>
                     <a href="topic-sourcemap.html" class="btn btn-secondary">Source Map 专题</a>
+                    <a href="devlog.html" class="btn btn-secondary">开发日志</a>
                     <a href="index.html" class="btn btn-primary">返回首页 →</a>
                 </div>
             </article>
