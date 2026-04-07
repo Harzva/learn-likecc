@@ -10,7 +10,7 @@
 1. **选定 `stem`**（建议 `topic-cc-unpacked-zh`，与现有 `topic-*.html` 命名一致；若过长可改用 `cc-unpacked-zh` —— **须与 Agent 3 同一 stem**）。
 2. 新建 `site/<stem>.html`：实现 v2.5.2 总计划 **第三节** 五区块 IA，**全中文**；每块有导语 + 列表/卡片 + 指向现有 `sNN`/`dNN`/专题的链接。
 3. **署名**：显著位置放置对 [ccunpacked.dev](https://ccunpacked.dev/) 的「版式与策展参考」说明 + 本站内容独立声明。
-4. **版本锚定**：写明导览所依据的 `ccsource/claude-code-main` **commit SHA 或日期**（可与 `git rev-parse` 或文档一致）。
+4. **版本锚定**：写明导览所依据的 `ccsource/like-code-main` **commit SHA 或日期**（可与 `git rev-parse` 或文档一致）。
 5. **导航**：在 `site/index.html` 主导航栏增加入口（文案简短，如 **「解构」** 或 **「CC 导览」**，`title` 可写全名）；若项目要求侧栏同步，更新 `site/js/app.js` 中 `site-sidebar` 片段。
 
 ---

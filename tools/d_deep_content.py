@@ -830,7 +830,7 @@ bridge.on('requestAction', (payload) => {
                 </section>
 
                 <section class="section-block">
-                    <h2>📂 源码锚点（本仓库 <code>ccsource/claude-code-main</code>）</h2>
+                    <h2>📂 源码锚点（本仓库 <code>ccsource/like-code-main</code>）</h2>
                     <p>克隆课程仓库且已包含 <code>ccsource</code> 时，按下表打开文件即可；行号随上游变动可能漂移，以符号名搜索为准。</p>
                     <table class="options-table">
                         <tr><th>路径</th><th>读什么</th></tr>
@@ -859,7 +859,7 @@ bridge.on('requestAction', (payload) => {
 
                 <section class="section-block">
                     <h2>📎 源码摘录（<code>ccsource/.../hooks.ts</code>）</h2>
-                    <p>下列片段与当前课程随附的 <code>ccsource/claude-code-main</code> 一致，便于你全文搜索时核对；上游更新后请以本地文件为准。</p>
+                    <p>下列片段与当前课程随附的 <code>ccsource/like-code-main</code> 一致，便于你全文搜索时核对；上游更新后请以本地文件为准。</p>
                     <div class="code-block">
                         <pre><code class="language-typescript">// L2224 起：一批匹配到的 hook 并行执行（非 for 循环串行 await）
 // Run all hooks in parallel with individual timeouts

@@ -83,6 +83,8 @@
   - 当前 `toolChains` 已开始明确拆出 `tool_use / progress / tool_result` step，Web 侧回放不再只看 pair 汇总，而更接近真实 coding 过程
 - ✅ **三套源码分层已经开始固定**
   - `ccsource/CC/claude-code-main` 保留原始源码学习快照，`ccsource/CC/claude-code-rebuild` 固定为可运行重建基线，`ccsource/like-code-main` 继续承载 Like Code 主开发线
+- ✅ **关键入口页面与脚本已经开始切到新路径**
+  - `bin/likecode`、README 构建命令、课程锚点页和部分计划文档里的主开发线入口，已经开始统一成 `ccsource/like-code-main`
 
 ### 下一批最重要的真实需求
 

@@ -1,6 +1,6 @@
 # Claude Code 发版监督 · 官方版本速览
 
-> **在线页面**: https://harzva.github.io/learn-likecc/topic-cc-release-watch.html  
+> **在线页面**: [https://harzva.github.io/learn-likecc/topic-cc-release-watch.html](https://harzva.github.io/learn-likecc/topic-cc-release-watch.html)  
 > **本文件**: `site/md/topic-cc-release-watch.md`
 
 ## 导语
@@ -37,7 +37,7 @@
 1. **触发**：npm 新版本或官方 changelog 出现新小节时。  
 2. **动作**：阅读 [CHANGELOG.md raw](https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md) 对应 `## x.y.z` 块，用 1～3 句中文概括**对用户可见**的变化，写入上表顶部。  
 3. **文件**：同时改 `site/topic-cc-release-watch.html` 与 `site/md/topic-cc-release-watch.md` 中的同一张表（或以后抽成数据文件再议）。  
-4. **边界**：本仓库 `ccsource/claude-code-main` 为学习用 fork，**版本号不等于**官方 CLI；对照行为请以已安装的官方 `claude` 为准。
+4. **边界**：本仓库 `ccsource/like-code-main` 为学习用 fork，**版本号不等于**官方 CLI；对照行为请以已安装的官方 `claude` 为准。
 
 ## 与源码课的关系
 
