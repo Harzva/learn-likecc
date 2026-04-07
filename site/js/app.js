@@ -305,7 +305,19 @@ const MERMAID_DIAGRAMS = {
     E -->|否| G[revert]:::g
     F --> H[TSV 日志]:::b
     G --> H
-    H --> A`
+    H --> A`,
+
+    /** topic-openharness.html：OpenHarness 能力分层（示意，与上游 README 对齐） */
+    'openharness-stack': `flowchart TB
+    classDef b fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#93c5fd;
+    classDef g fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#5eead4;
+    classDef p fill:#2b2035,stroke:#cba6f7,stroke-width:2px,color:#e9d5ff;
+    OH["oh CLI · OpenHarness"]:::b --> E["Query Engine<br/>Agent Loop 流式 tool cycle"]:::g
+    E --> T["40+ Tools<br/>文件 · Shell · 检索 · Web · MCP…"]:::g
+    E --> SK["Skills / Plugins<br/>按需加载 .md"]:::g
+    E --> M["Context & Memory<br/>CLAUDE.md · compact · MEMORY.md"]:::p
+    E --> GOV["Governance<br/>权限 · Hooks · 审批"]:::p
+    E --> SW["Swarm<br/>多 Agent 协调"]:::p`
 }
 
 function fillMermaidPlaceholders() {
@@ -412,6 +424,11 @@ function initSiteSidebar() {
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-memory-harness.html"><span class="site-sidebar__ico">🧠</span><span class="site-sidebar__txt">Memory 机制</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-superpowers-autoresearch.html"><span class="site-sidebar__ico">🧩</span><span class="site-sidebar__txt">Superpowers vs Autoresearch</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="https://github.com/Harzva/learn-likecc/blob/main/awesome-agent.md" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">✨</span><span class="site-sidebar__txt">Awesome Agent</span></a>' +
+        '</details>' +
+        '<details class="site-sidebar__details">' +
+        '<summary class="site-sidebar__summary"><span class="site-sidebar__ico">🧩</span><span class="site-sidebar__txt">开源 Harness</span></summary>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-openharness.html"><span class="site-sidebar__ico">⚡</span><span class="site-sidebar__txt">OpenHarness 专题</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="https://github.com/HKUDS/OpenHarness" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">🔗</span><span class="site-sidebar__txt">上游仓库 ↗</span></a>' +
         '</details>' +
         '<a class="site-sidebar__link" href="column-agent-journey.html"><span class="site-sidebar__ico">🧭</span><span class="site-sidebar__txt">工具链阅历</span></a>' +
         '<a class="site-sidebar__link" href="column-shangshou-cikeng.html"><span class="site-sidebar__ico">🛠️</span><span class="site-sidebar__txt">上手与踩坑</span></a>' +

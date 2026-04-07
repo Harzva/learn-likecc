@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenHarness 专题 · 完全开源 Agent Harness - Claude Code Course</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧩</text></svg>">
+    <meta name="description" content="OpenHarness（oh）：MIT 开源 Agent Harness；与 Source Map 源码课、Harness 工程向长文并列的学习入口。本仓库 reference 内嵌快照与上游 HKUDS 对齐。">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🧩</span>
+                <span class="logo-text">OpenHarness</span>
+            </a>
+            <div class="nav-links">
+                <a href="#intro" class="nav-link">导语</a>
+                <a href="#compare" class="nav-link">与源码课</a>
+                <a href="#modules" class="nav-link">能力</a>
+                <a href="#local" class="nav-link">本仓库</a>
+                <a href="#iterate" class="nav-link">迭代</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-sourcemap.html" class="btn-github">源码专题</a>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>📌 新专题</span>
+                <span>开源 Harness · Python</span>
+            </div>
+            <h1 class="hero-title">
+                OpenHarness<br>
+                <span class="gradient-text">完全开源的 Agent Harness</span>
+            </h1>
+            <p class="hero-subtitle">
+                命令 <strong><code>oh</code></strong> 启动：<strong>工具循环、Skills、记忆、权限、MCP、多 Agent 编排</strong> 等 Harness 层能力以 <strong>MIT</strong> 协议开放。<br>
+                与本站的 <a href="topic-sourcemap.html">Source Map 源码专题</a>（读 TypeScript 实现）<strong>互补</strong>：这里偏「可 fork 的可运行 Harness 本体」。
+            </p>
+            <div class="hero-actions">
+                <a href="https://github.com/HKUDS/OpenHarness" class="btn btn-primary" target="_blank" rel="noopener noreferrer">上游 HKUDS/OpenHarness ↗</a>
+                <a href="#local" class="btn btn-secondary">本仓库内路径</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="course-main devlog-main">
+        <div class="container">
+            <article class="course-content devlog-content">
+                <h1 class="course-title" id="intro">OpenHarness <span class="subtitle">开源 Agent Harness 专题</span></h1>
+
+                <div class="course-quote">
+                    <p><strong>OpenHarness</strong>（PyPI 包名 <code>openharness-ai</code>）定位为轻量 <strong>Agent 基础设施</strong>：流式 tool-use 循环、四十余类工具、<code>CLAUDE.md</code> / 压缩 / <code>MEMORY.md</code>、多级权限与 Hooks、Swarm 多智能体协作等。上游由社区维护；<strong>与 Anthropic 官方 Claude Code 无隶属关系</strong>，实现语言与发布形态亦不同。</p>
+                    <p>本页是本站对 OpenHarness 的<strong>专题导读</strong>：帮助读者在「读 TS 源码课」之外，多一条<strong>直接跑 Python Harness</strong> 的对照轴。</p>
+                </div>
+
+                <section id="compare" class="section-block">
+                    <h2>与 Source Map 源码课、Harness 长文的关系</h2>
+                    <table class="compare-table">
+                        <tr>
+                            <th>入口</th>
+                            <th>你主要得到什么</th>
+                        </tr>
+                        <tr>
+                            <td><a href="topic-sourcemap.html">Source Map 源码专题</a></td>
+                            <td>围绕重建的 <strong>TypeScript</strong> 树讲 S01–S12：Agent Loop、工具、权限、MCP 等<strong>实现向</strong>阅读。</td>
+                        </tr>
+                        <tr>
+                            <td>知乎 / 仓库 <strong>Harness 工程向</strong>稿（如 14–20）</td>
+                            <td>从架构与产品角度拆子 Agent、写盘安全、上下文预算等，<strong>不必绑定某一语言</strong>。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>本专题 · OpenHarness</strong></td>
+                            <td><strong>完整开源可跑的 Harness 代码库</strong>（Python），适合改配置、加工具、对照测试与二次开发。</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section id="diagram" class="section-block">
+                    <h2>能力分层（示意）</h2>
+                    <p>与上游 README 的模块叙事一致；下图便于和 <a href="s01.html">S01 Agent Loop</a>、<a href="s07.html">S07 MCP</a> 等章节<strong>脑内对齐</strong>。</p>
+                    <figure class="mermaid-figure mermaid-figure--main" aria-label="OpenHarness 分层示意">
+                        <figcaption class="mermaid-caption"><strong>OpenHarness 栈（示意）</strong></figcaption>
+                        <div class="mermaid-diagram-scroll mermaid-diagram-scroll--xl" data-mermaid-diagram="openharness-stack"></div>
+                    </figure>
+                </section>
+
+                <section id="modules" class="section-block">
+                    <h2>上游亮点（摘自官方自述）</h2>
+                    <ul>
+                        <li><strong>Agent Loop</strong>：流式 tool 调用、重试、并行工具、token / 成本统计。</li>
+                        <li><strong>Harness Toolkit</strong>：40+ 工具（文件、Shell、检索、Web、MCP 等）；Skills / 插件生态；与 <code>anthropics/skills</code> 等形态兼容表述。</li>
+                        <li><strong>Context &amp; Memory</strong>：<code>CLAUDE.md</code> 发现与注入、自动压缩、<code>MEMORY.md</code>、会话恢复与历史。</li>
+                        <li><strong>Governance</strong>：多级权限、路径与命令规则、Pre/Post Tool Hooks、交互审批。</li>
+                        <li><strong>Swarm</strong>：多 Agent 协调；上游含大量 <code>pytest</code> 与 E2E 说明。</li>
+                    </ul>
+                    <p>细节与徽章以 <a href="https://github.com/HKUDS/OpenHarness" target="_blank" rel="noopener noreferrer">HKUDS/OpenHarness</a> 为准。</p>
+                </section>
+
+                <section id="local" class="section-block">
+                    <h2>在本仓库中的位置</h2>
+                    <p>为便于与课程、<code>reference</code> 其它快照统一治理，OpenHarness 以<strong>目录快照</strong>形式置于（注意顶层文件夹名有一处历史拼写 <code>rererence</code>）：</p>
+                    <div class="code-block">
+                        <pre><code>reference/rererence_harness/OpenHarness/</code></pre>
+                    </div>
+                    <p>该树与上游开源仓库<strong>同源对照使用</strong>；若需提 PR 或拉 Issue，请优先指向 <strong>HKUDS</strong> 官方仓库。本课程站不负责同步上游每个 commit，读者以 <code>git</code> 或上游 Release 为准。</p>
+                    <p>若克隆本仓库后<strong>没有</strong> <code>OpenHarness/</code> 子目录，请阅读 <a href="https://github.com/Harzva/learn-likecc/blob/main/reference/rererence_harness/README.md" target="_blank" rel="noopener noreferrer"><code>reference/rererence_harness/README.md</code> ↗</a>，按说明自行拉取上游到同一路径。</p>
+                </section>
+
+                <section id="iterate" class="section-block">
+                    <h2>本站迭代计划（可反复打磨）</h2>
+                    <ol>
+                        <li><strong>v1（当前）</strong>：专题页 + 侧栏 + 首页/源码专题/Agent 专题入口；Mermaid 分层图；声明与路径写清。</li>
+                        <li><strong>v2</strong>：补充「从 S0x 某一节跳到 OpenHarness 对应源码路径」的<strong>对照表</strong>（节选）。</li>
+                        <li><strong>v3</strong>：可选：上游架构图静态资源本地化预览（版权与体积允许前提下）。</li>
+                    </ol>
+                    <p>欢迎通过 GitHub 对本站 HTML / MD 提 PR；OpenHarness 本体功能请向上游反馈。</p>
+                </section>
+
+                <div class="chapter-navigation">
+                    <a href="topic-agent.html" class="btn btn-secondary">← Agent 大专题</a>
+                    <a href="topic-sourcemap.html" class="btn btn-secondary">Source Map 专题</a>
+                    <a href="index.html" class="btn btn-primary">返回首页 →</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-openharness.md" target="_blank" rel="noopener noreferrer">📝 Markdown 源（GitHub）</a></p>
+                <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js" crossorigin="anonymous"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

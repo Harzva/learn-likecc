@@ -28,6 +28,13 @@ reference/reference_agent/superpowers-marketplace/.claude/settings.local.json
 !reference/reference_agent/autoresearch/
 !reference/reference_agent/autoresearch/**
 
+# OpenHarness（专题 topic-openharness）；目录名 rererence 为历史拼写
+!reference/rererence_harness/
+reference/rererence_harness/*
+!reference/rererence_harness/README.md
+!reference/rererence_harness/OpenHarness/
+!reference/rererence_harness/OpenHarness/**
+
 # Dependencies
 node_modules/
 
