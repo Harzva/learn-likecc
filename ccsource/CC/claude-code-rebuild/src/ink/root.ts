@@ -1,9 +1,19 @@
 import type { ReactNode } from 'react'
+import { writeSync } from 'fs'
 import { logForDebugging } from 'src/utils/debug.js'
 import { Stream } from 'stream'
 import type { FrameEvent } from './frame.js'
 import Ink, { type Options as InkOptions } from './ink.js'
 import instances from './instances.js'
+
+const STARTUP_DIAG_ENABLED =
+  process.env.CLAUDE_CODE_STARTUP_DIAG === '1' ||
+  process.env.CLAUDE_CODE_STARTUP_DIAG === 'true'
+
+function emitStartupDiag(phase: string): void {
+  if (!STARTUP_DIAG_ENABLED) return
+  writeSync(2, `[startup-diag] ${phase}\n`)
+}
 
 export type RenderOptions = {
   /**
@@ -135,7 +145,10 @@ export async function createRoot({
   onFrame,
 }: RenderOptions = {}): Promise<Root> {
   // See wrappedRender — preserve microtask boundary from the old WASM await.
+  emitStartupDiag('inside ink.createRoot before await Promise.resolve')
   await Promise.resolve()
+  emitStartupDiag('inside ink.createRoot after await Promise.resolve')
+  emitStartupDiag('inside ink.createRoot before new Ink')
   const instance = new Ink({
     stdout,
     stdin,
@@ -144,6 +157,7 @@ export async function createRoot({
     patchConsole,
     onFrame,
   })
+  emitStartupDiag('inside ink.createRoot after new Ink')
 
   // Register in the instances map so that code that looks up the Ink
   // instance by stdout (e.g. external editor pause/resume) can find it.

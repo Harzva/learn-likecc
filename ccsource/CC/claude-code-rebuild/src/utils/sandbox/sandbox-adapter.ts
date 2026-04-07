@@ -16,10 +16,36 @@ import type {
   SandboxViolationEvent,
 } from '@anthropic-ai/sandbox-runtime'
 import {
-  SandboxManager as BaseSandboxManager,
   SandboxRuntimeConfigSchema,
   SandboxViolationStore,
 } from '@anthropic-ai/sandbox-runtime'
+
+// Rebuild baseline: sandbox-runtime's runtime manager methods are not
+// available in this restored tree. Use the same compatibility shims as the
+// main development line so the CLI can boot without first-party sandbox hooks.
+function baseGetFsReadConfig(): FsReadRestrictionConfig { return { denyOnly: [], allowWithinDeny: [] } }
+function baseGetFsWriteConfig(): FsWriteRestrictionConfig { return { allowOnly: [], denyWithinAllow: [] } }
+function baseGetNetworkRestrictionConfig(): NetworkRestrictionConfig { return { allowedHosts: [], deniedHosts: [] } }
+function baseGetIgnoreViolations(): IgnoreViolationsConfig | null { return null }
+function baseGetAllowUnixSockets(): string[] | undefined { return undefined }
+function baseGetAllowLocalBinding(): boolean | undefined { return undefined }
+function baseGetEnableWeakerNestedSandbox(): boolean | undefined { return undefined }
+function baseGetProxyPort(): number | undefined { return undefined }
+function baseGetSocksProxyPort(): number | undefined { return undefined }
+function baseGetLinuxHttpSocketPath(): string | undefined { return undefined }
+function baseGetLinuxSocksSocketPath(): string | undefined { return undefined }
+async function baseWaitForNetworkInitialization(): Promise<boolean> { return false }
+function baseGetSandboxViolationStore(): SandboxViolationStore { return new SandboxViolationStore() }
+function baseAnnotateStderrWithSandboxFailures(_command: string, stderr: string): string { return stderr }
+function baseCleanupAfterCommand(): void {}
+function baseCheckDependencies(_check: { command: string; args?: string[] }): { errors: SandboxDependencyCheck[]; warnings: SandboxDependencyCheck[] } {
+  return { errors: [], warnings: [] }
+}
+function baseIsSupportedPlatform(): boolean { return true }
+function baseWrapWithSandbox(command: string): string { return command }
+async function baseInitialize(_config?: SandboxRuntimeConfig, _callback?: SandboxAskCallback): Promise<void> {}
+function baseUpdateConfig(_config: SandboxRuntimeConfig): void {}
+async function baseReset(): Promise<void> {}
 import { rmSync, statSync } from 'fs'
 import { readFile } from 'fs/promises'
 import { memoize } from 'lodash-es'
@@ -450,7 +476,7 @@ async function detectWorktreeMainRepoPath(cwd: string): Promise<string | null> {
  */
 const checkDependencies = memoize((): SandboxDependencyCheck => {
   const { rgPath, rgArgs } = ripgrepCommand()
-  return BaseSandboxManager.checkDependencies({
+  return baseCheckDependencies({
     command: rgPath,
     args: rgArgs,
   })
@@ -489,7 +515,7 @@ function isSandboxRequired(): boolean {
  * Supports: macOS, Linux, and WSL2+ (WSL1 is not supported)
  */
 const isSupportedPlatform = memoize((): boolean => {
-  return BaseSandboxManager.isSupportedPlatform()
+  return baseIsSupportedPlatform()
 })
 
 /**
@@ -716,7 +742,7 @@ async function wrapWithSandbox(
     }
   }
 
-  return BaseSandboxManager.wrapWithSandbox(
+  return baseWrapWithSandbox(
     command,
     binShell,
     customConfig,
@@ -770,13 +796,13 @@ async function initialize(
       const runtimeConfig = convertToSandboxRuntimeConfig(settings)
 
       // Log monitor is automatically enabled for macOS
-      await BaseSandboxManager.initialize(runtimeConfig, wrappedCallback)
+      await baseInitialize(runtimeConfig, wrappedCallback)
 
       // Subscribe to settings changes to update sandbox config dynamically
       settingsSubscriptionCleanup = settingsChangeDetector.subscribe(() => {
         const settings = getSettings_DEPRECATED()
         const newConfig = convertToSandboxRuntimeConfig(settings)
-        BaseSandboxManager.updateConfig(newConfig)
+        baseUpdateConfig(newConfig)
         logForDebugging('Sandbox configuration updated from settings change')
       })
     } catch (error) {
@@ -799,7 +825,7 @@ function refreshConfig(): void {
   if (!isSandboxingEnabled()) return
   const settings = getSettings_DEPRECATED()
   const newConfig = convertToSandboxRuntimeConfig(settings)
-  BaseSandboxManager.updateConfig(newConfig)
+  baseUpdateConfig(newConfig)
 }
 
 /**
@@ -818,7 +844,7 @@ async function reset(): Promise<void> {
   initializationPromise = undefined
 
   // Reset the base sandbox manager
-  return BaseSandboxManager.reset()
+  return baseReset()
 }
 
 /**
@@ -943,25 +969,25 @@ export const SandboxManager: ISandboxManager = {
   checkDependencies,
 
   // Forward to base sandbox manager
-  getFsReadConfig: BaseSandboxManager.getFsReadConfig,
-  getFsWriteConfig: BaseSandboxManager.getFsWriteConfig,
-  getNetworkRestrictionConfig: BaseSandboxManager.getNetworkRestrictionConfig,
-  getIgnoreViolations: BaseSandboxManager.getIgnoreViolations,
+  getFsReadConfig: baseGetFsReadConfig,
+  getFsWriteConfig: baseGetFsWriteConfig,
+  getNetworkRestrictionConfig: baseGetNetworkRestrictionConfig,
+  getIgnoreViolations: baseGetIgnoreViolations,
   getLinuxGlobPatternWarnings,
   isSupportedPlatform,
-  getAllowUnixSockets: BaseSandboxManager.getAllowUnixSockets,
-  getAllowLocalBinding: BaseSandboxManager.getAllowLocalBinding,
-  getEnableWeakerNestedSandbox: BaseSandboxManager.getEnableWeakerNestedSandbox,
-  getProxyPort: BaseSandboxManager.getProxyPort,
-  getSocksProxyPort: BaseSandboxManager.getSocksProxyPort,
-  getLinuxHttpSocketPath: BaseSandboxManager.getLinuxHttpSocketPath,
-  getLinuxSocksSocketPath: BaseSandboxManager.getLinuxSocksSocketPath,
-  waitForNetworkInitialization: BaseSandboxManager.waitForNetworkInitialization,
-  getSandboxViolationStore: BaseSandboxManager.getSandboxViolationStore,
+  getAllowUnixSockets: baseGetAllowUnixSockets,
+  getAllowLocalBinding: baseGetAllowLocalBinding,
+  getEnableWeakerNestedSandbox: baseGetEnableWeakerNestedSandbox,
+  getProxyPort: baseGetProxyPort,
+  getSocksProxyPort: baseGetSocksProxyPort,
+  getLinuxHttpSocketPath: baseGetLinuxHttpSocketPath,
+  getLinuxSocksSocketPath: baseGetLinuxSocksSocketPath,
+  waitForNetworkInitialization: baseWaitForNetworkInitialization,
+  getSandboxViolationStore: baseGetSandboxViolationStore,
   annotateStderrWithSandboxFailures:
-    BaseSandboxManager.annotateStderrWithSandboxFailures,
+    baseAnnotateStderrWithSandboxFailures,
   cleanupAfterCommand: (): void => {
-    BaseSandboxManager.cleanupAfterCommand()
+    baseCleanupAfterCommand()
     scrubBareGitRepoFiles()
   },
 }

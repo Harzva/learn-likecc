@@ -178,10 +178,19 @@ export default class Ink {
     y: number;
   } | null = null;
   constructor(private readonly options: Options) {
+    if (process.env.CLAUDE_CODE_STARTUP_DIAG === '1' || process.env.CLAUDE_CODE_STARTUP_DIAG === 'true') {
+      writeSync(2, '[startup-diag] inside Ink constructor start\n');
+    }
     autoBind(this);
     if (this.options.patchConsole) {
+      if (process.env.CLAUDE_CODE_STARTUP_DIAG === '1' || process.env.CLAUDE_CODE_STARTUP_DIAG === 'true') {
+        writeSync(2, '[startup-diag] inside Ink constructor before patchConsole\n');
+      }
       this.restoreConsole = this.patchConsole();
       this.restoreStderr = this.patchStderr();
+      if (process.env.CLAUDE_CODE_STARTUP_DIAG === '1' || process.env.CLAUDE_CODE_STARTUP_DIAG === 'true') {
+        writeSync(2, '[startup-diag] inside Ink constructor after patchConsole\n');
+      }
     }
     this.terminal = {
       stdout: options.stdout,
@@ -199,6 +208,9 @@ export default class Ink {
       isTTY: options.stdout.isTTY as boolean | undefined || false,
       stylePool: this.stylePool
     });
+    if (process.env.CLAUDE_CODE_STARTUP_DIAG === '1' || process.env.CLAUDE_CODE_STARTUP_DIAG === 'true') {
+      writeSync(2, '[startup-diag] inside Ink constructor after LogUpdate\n');
+    }
 
     // scheduleRender is called from the reconciler's resetAfterCommit, which
     // runs BEFORE React's layout phase (ref attach + useLayoutEffect). Any
@@ -267,6 +279,9 @@ export default class Ink {
     // onRecoverableError
     noop // onDefaultTransitionIndicator
     );
+    if (process.env.CLAUDE_CODE_STARTUP_DIAG === '1' || process.env.CLAUDE_CODE_STARTUP_DIAG === 'true') {
+      writeSync(2, '[startup-diag] inside Ink constructor after createContainer\n');
+    }
     if ("production" === 'development') {
       reconciler.injectIntoDevTools({
         bundleType: 0,

@@ -2,6 +2,7 @@ import { c as _c } from "react/compiler-runtime";
 // biome-ignore-all assist/source/organizeImports: ANT-ONLY import markers must not be reordered
 import { feature } from 'bun:bundle';
 import { spawnSync } from 'child_process';
+import { writeSync } from 'fs';
 import { snapshotOutputTokensForTurn, getCurrentTurnTokenBudget, getTurnOutputTokens, getBudgetContinuationCount, getTotalInputTokens } from '../bootstrap/state.js';
 import { parseTokenBudget } from '../utils/tokenBudget.js';
 import { count } from '../utils/array.js';
@@ -248,6 +249,11 @@ import { useAutoModeUnavailableNotification } from 'src/hooks/notifs/useAutoMode
 import { AUTO_MODE_DESCRIPTION } from 'src/components/AutoModeOptInDialog.js';
 import { useLspInitializationNotification } from 'src/hooks/notifs/useLspInitializationNotification.js';
 import { useLspPluginRecommendation } from 'src/hooks/useLspPluginRecommendation.js';
+if (process.env.CLAUDE_CODE_STARTUP_DIAG === '1') {
+  try {
+    writeSync(2, '[startup-diag] inside REPL module top-level start\n');
+  } catch {}
+}
 import { LspRecommendationMenu } from 'src/components/LspRecommendation/LspRecommendationMenu.js';
 import { useClaudeCodeHintRecommendation } from 'src/hooks/useClaudeCodeHintRecommendation.js';
 import { PluginHintMenu } from 'src/components/ClaudeCodeHint/PluginHintMenu.js';
@@ -596,6 +602,11 @@ export function REPL({
   sshSession,
   thinkingConfig
 }: Props): React.ReactNode {
+  if (process.env.CLAUDE_CODE_STARTUP_DIAG === '1') {
+    try {
+      writeSync(2, '[startup-diag] inside REPL component function entry\n');
+    } catch {}
+  }
   const isRemoteSession = !!remoteSessionConfig;
 
   // Env-var gates hoisted to mount-time — isEnvTruthy does toLowerCase+trim+

@@ -21,7 +21,7 @@ startKeychainPrefetch();
 import { feature } from 'bun:bundle';
 import { Command as CommanderCommand, InvalidArgumentError, Option } from '@commander-js/extra-typings';
 import chalk from 'chalk';
-import { readFileSync } from 'fs';
+import { readFileSync, writeSync } from 'fs';
 import mapValues from 'lodash-es/mapValues.js';
 import pickBy from 'lodash-es/pickBy.js';
 import uniqBy from 'lodash-es/uniqBy.js';
@@ -146,7 +146,7 @@ function emitStartupDiag(phase: string): void {
   if (!STARTUP_DIAG_ENABLED) {
     return;
   }
-  process.stderr.write(`[startup-diag] ${phase}\n`);
+  writeSync(2, `[startup-diag] ${phase}\n`);
 }
 
 import { registerMcpAddCommand } from 'src/commands/mcp/addCommand.js';
@@ -2237,16 +2237,20 @@ async function run(): Promise<CommanderCommand> {
 
     // Show setup screens after commands are loaded
     if (!isNonInteractiveSession) {
+      emitStartupDiag('before getRenderContext');
       const ctx = getRenderContext(false);
+      emitStartupDiag('after getRenderContext');
       getFpsMetrics = ctx.getFpsMetrics;
       stats = ctx.stats;
       // Install asciicast recorder before Ink mounts (ant-only, opt-in via CLAUDE_CODE_TERMINAL_RECORDING=1)
       if ("external" === 'ant') {
         installAsciicastRecorder();
       }
+      emitStartupDiag('before import ink');
       const {
         createRoot
       } = await import('./ink.js');
+      emitStartupDiag('after import ink');
       emitStartupDiag('before createRoot');
       root = await createRoot(ctx.renderOptions);
       emitStartupDiag('after createRoot');
@@ -2350,15 +2354,19 @@ async function run(): Promise<CommanderCommand> {
     // Show settings validation errors after trust is established
     // MCP config errors don't block settings from loading, so exclude them
     if (!isNonInteractiveSession) {
+      emitStartupDiag('before getSettingsWithErrors');
       const {
         errors
       } = getSettingsWithErrors();
+      emitStartupDiag('after getSettingsWithErrors');
       const nonMcpErrors = errors.filter(e => !e.mcpErrorMetadata);
       if (nonMcpErrors.length > 0) {
+        emitStartupDiag('before launchInvalidSettingsDialog');
         await launchInvalidSettingsDialog(root, {
           settingsErrors: nonMcpErrors,
           onExit: () => gracefulShutdownSync(1)
         });
+        emitStartupDiag('after launchInvalidSettingsDialog');
       }
     }
 
@@ -2408,6 +2416,7 @@ async function run(): Promise<CommanderCommand> {
     const {
       servers: existingMcpConfigs
     } = await mcpConfigPromise;
+    emitStartupDiag('after await mcpConfigPromise');
     logForDebugging(`[STARTUP] MCP configs resolved in ${mcpConfigResolvedMs}ms (awaited at +${Date.now() - mcpConfigStart}ms)`);
     // CLI flag (--mcp-config) should override file-based configs, matching settings precedence
     const allMcpConfigs = {
@@ -3822,6 +3831,7 @@ async function run(): Promise<CommanderCommand> {
         }
       }
       const initialMessages = deepLinkBanner ? [deepLinkBanner, ...hookMessages] : hookMessages.length > 0 ? hookMessages : undefined;
+      emitStartupDiag('before default launchRepl');
       await launchRepl(root, {
         getFpsMetrics,
         stats,
@@ -3831,6 +3841,7 @@ async function run(): Promise<CommanderCommand> {
         initialMessages,
         pendingHookMessages
       }, renderAndRun);
+      emitStartupDiag('after default launchRepl');
     }
   }).version(`${MACRO.VERSION} (Claude Code)`, '-v, --version', 'Output the version number');
 

@@ -1,5 +1,6 @@
 import { feature } from 'bun:bundle';
 import { appendFileSync } from 'fs';
+import { writeSync } from 'fs';
 import React from 'react';
 import { logEvent } from 'src/services/analytics/index.js';
 import { gracefulShutdown, gracefulShutdownSync } from 'src/utils/gracefulShutdown.js';
@@ -96,9 +97,29 @@ export function showSetupDialog<T = void>(root: Root, renderer: (done: (result: 
  * Handles the common epilogue: start deferred prefetches, wait for exit, graceful shutdown.
  */
 export async function renderAndRun(root: Root, element: React.ReactNode): Promise<void> {
+  if (process.env.CLAUDE_CODE_STARTUP_DIAG === '1') {
+    try {
+      writeSync(2, '[startup-diag] inside renderAndRun before root.render\n');
+    } catch {}
+  }
   root.render(element);
+  if (process.env.CLAUDE_CODE_STARTUP_DIAG === '1') {
+    try {
+      writeSync(2, '[startup-diag] inside renderAndRun after root.render\n');
+    } catch {}
+  }
   startDeferredPrefetches();
+  if (process.env.CLAUDE_CODE_STARTUP_DIAG === '1') {
+    try {
+      writeSync(2, '[startup-diag] inside renderAndRun before waitUntilExit\n');
+    } catch {}
+  }
   await root.waitUntilExit();
+  if (process.env.CLAUDE_CODE_STARTUP_DIAG === '1') {
+    try {
+      writeSync(2, '[startup-diag] inside renderAndRun after waitUntilExit\n');
+    } catch {}
+  }
   await gracefulShutdown(0);
 }
 export async function showSetupScreens(root: Root, permissionMode: PermissionMode, allowDangerouslySkipPermissions: boolean, commands?: Command[], claudeInChrome?: boolean, devChannels?: ChannelEntry[]): Promise<boolean> {
