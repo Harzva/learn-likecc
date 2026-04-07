@@ -38,6 +38,7 @@ learn-likecc 现在已经不只是一个 Claude Code 源码学习仓库。
 - [x] 新建 LikeCode 专项路线图文档
 - [x] 在计划中拆分长期目标与阶段任务
 - [x] 当前已完成项按仓库传统打钩
+- [x] 新需求必须进 plan、未完成必须留在 README todo 的规则已固化
 - [ ] 把后续版本号规划映射到现有 `.claude/plans/v*.md`
 - [ ] 将该路线图接入 CHANGELOG 或版本计划索引
 
@@ -88,6 +89,17 @@ learn-likecc 现在已经不只是一个 Claude Code 源码学习仓库。
 - [ ] 支持白天强模型、夜间便宜模型的自动切换策略
 - [ ] 支持“当前 session 卡住时换模型接手”
 
+### Milestone H：多对话窗口与 Subagent 视图
+
+- [ ] 支持同一个 session 下的多对话窗口 / 会话页签
+- [ ] 设计参考 zellij 的快捷键逻辑：新建窗口、切换窗口、关闭窗口、重命名窗口
+- [x] 产出第一版产品设计稿，明确快捷键方案、数据结构、UI 信息层与阶段边界
+- [ ] 区分“主线程窗口”和“任务窗口 / review 窗口 / 搜索窗口”
+- [ ] 为不同窗口保留各自 transcript、任务状态与模型状态
+- [ ] 在后续 subagent 模式下，按窗口展示不同 subagent 到底在忙什么
+- [ ] 支持展示 subagent 当前所在仓库 / 工作目录 / 正在执行的任务
+- [ ] 评估 pane 模式与 tab 模式的取舍，先做 tab，再考虑分屏
+
 ---
 
 ## 当前回合交付
@@ -107,11 +119,19 @@ learn-likecc 现在已经不只是一个 Claude Code 源码学习仓库。
 - [x] 启动界面展示 Global / Project / Local 三层 `.claude` 摘要
 - [x] 启动界面展示当前命中的 `claude` 命令路径
 - [x] 当前工程启动头改为显示仓库地址，降低路径理解成本
+- [x] 增加 `/show`、`/show:global`、`/show:user`、`/show:project` 配置查看命令
+- [x] 将 git / Pages / Release / plan 更新要求固化为 skill 与 rules
+- [x] 新增“多窗口与 Subagent 视图设计稿 V1”，拆清快捷键、状态模型与 UI 分层
+- [x] 将多窗口设计稿继续拆成可执行开发任务清单
 
 ### 待继续打钩
 
 - [ ] 再逐步统一更多页面的 `Claude Code Course` 旧口径
 - [ ] 把自由模型路线拆到具体版本计划
+- [ ] 把多窗口设计稿进一步映射到具体版本计划与实现任务
+- [ ] 实现第一版 tab 模式：新建、切换、关闭、重命名
+- [ ] 把 transcript、todo、model/provider 状态真正绑定到 tab
+- [ ] 增加 subagent 状态面板占位，先能展示仓库、任务与运行状态
 
 ---
 
@@ -120,4 +140,11 @@ learn-likecc 现在已经不只是一个 Claude Code 源码学习仓库。
 1. 先把文档叙事、计划文档、lint 基线立住。
 2. 再把“同 session 切模型”的状态机和 transcript 设计清楚。
 3. 然后做 provider adapter，避免一开始就在 Anthropic 绑定里越写越深。
-4. 最后再做“不 compact 切模型”和“私人订制工作台”。
+4. 然后补“多对话窗口 / 会话页签 / subagent 工作视图”。
+5. 最后再做“不 compact 切模型”和“私人订制工作台”。
+
+---
+
+## 相关设计稿
+
+- `./multi-window-subagent-design-v1.md`
