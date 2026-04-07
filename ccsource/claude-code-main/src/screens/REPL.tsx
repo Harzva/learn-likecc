@@ -5198,9 +5198,6 @@ export function REPL({
   const inTranscript = screen === 'transcript' && virtualScrollActive;
   useEffect(() => {
     if (!inTranscript) {
-      setSearchQuery('');
-      setSearchCount(0);
-      setSearchCurrent(0);
       setSearchOpen(false);
       editorGenRef.current++;
       clearTimeout(editorTimerRef.current);
@@ -5215,6 +5212,12 @@ export function REPL({
     // persists at its last screen coords after ctrl-c exits transcript.
     if (!inTranscript) setPositions(null);
   }, [inTranscript, searchQuery, setHighlight, setPositions]);
+  useEffect(() => {
+    if (!inTranscript || searchOpen || !searchQuery) {
+      return;
+    }
+    jumpRef.current?.setSearchQuery(searchQuery);
+  }, [inTranscript, searchOpen, searchQuery]);
   const globalKeybindingProps = {
     screen,
     setScreen,

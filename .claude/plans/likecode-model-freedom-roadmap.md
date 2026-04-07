@@ -193,6 +193,7 @@ learn-likecc 现在已经不只是一个 Claude Code 源码学习仓库。
 - [x] 让 transcript 搜索词也开始跟随 pane 保存和恢复，减少不同 pane 之间的阅读上下文串线
 - [x] 让 transcript 搜索条的打开状态也开始跟随 pane 保存和恢复，减少切 pane 后搜索 UI 被统一重置
 - [x] 让 transcript 搜索的命中数量与当前位置也开始跟随 pane 保存和恢复，减少切 pane 后重新丢失阅读锚点
+- [x] 让退出 transcript 后的 pane 也尽量保留搜索上下文，重新进入后更接近继续上次阅读定位
 - [x] 让 `toolChains.steps` 开始明确拆成 `tool_use / progress / tool_result`，让跨 turn 回放更像真实 coding 过程
 - [ ] 继续把多个可见对话框升级成真正的多活跃输入与多 transcript 并行
 - [ ] 继续把 transcript / todo 做到真正隔离，而不只是先做 UI 层消息区与快照恢复
