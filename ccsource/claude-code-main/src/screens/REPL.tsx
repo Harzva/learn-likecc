@@ -1256,58 +1256,6 @@ export function REPL({
     }
     rawSetMessages(next);
   }, []);
-  const previousActiveTabIdRef = useRef<string | undefined>(undefined);
-  useEffect(() => {
-    const currentActiveTab = getActiveSessionTab(sessionTabs);
-    const activeTabId = currentActiveTab?.id;
-    if (!activeTabId) {
-      return;
-    }
-
-    const previousActiveTabId = previousActiveTabIdRef.current;
-    if (previousActiveTabId === undefined) {
-      previousActiveTabIdRef.current = activeTabId;
-      if (
-        currentActiveTab.transcriptMessages &&
-        currentActiveTab.transcriptMessages !== messagesRef.current
-      ) {
-        setMessages(currentActiveTab.transcriptMessages);
-      }
-      if ((currentActiveTab.draftInput ?? '') !== inputValueRef.current) {
-        setInputValue(currentActiveTab.draftInput ?? '');
-      }
-      return;
-    }
-
-    if (previousActiveTabId === activeTabId) {
-      return;
-    }
-
-    previousActiveTabIdRef.current = activeTabId;
-    const outgoingMessages = messagesRef.current;
-    const incomingMessages = currentActiveTab.transcriptMessages ?? [];
-
-    setAppState(prev => {
-      let tabs = normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel);
-      if (tabs.tabs[previousActiveTabId]) {
-        tabs = updateSessionTab(tabs, previousActiveTabId, {
-          transcriptMessages: outgoingMessages,
-        });
-      }
-      const incomingTab = tabs.tabs[activeTabId];
-      return {
-        ...prev,
-        mainLoopModel: incomingTab?.model ?? prev.mainLoopModel,
-        viewingAgentTaskId: incomingTab?.subagentId,
-        sessionTabs: tabs,
-      };
-    });
-
-    setMessages(incomingMessages);
-    if ((currentActiveTab.draftInput ?? '') !== inputValueRef.current) {
-      setInputValue(currentActiveTab.draftInput ?? '');
-    }
-  }, [sessionTabs, setAppState, setMessages, setInputValue]);
   // Capture the baseline message count alongside the placeholder text so
   // the render can hide it once displayedMessages grows past the baseline.
   const setUserInputOnProcessing = useCallback((input: string | undefined) => {
@@ -1449,6 +1397,58 @@ export function REPL({
     setInputValueRaw(value);
     setIsPromptInputActive(value.trim().length > 0);
   }, [setIsPromptInputActive, repinScroll, trySuggestBgPRIntercept]);
+  const previousActiveTabIdRef = useRef<string | undefined>(undefined);
+  useEffect(() => {
+    const currentActiveTab = getActiveSessionTab(sessionTabs);
+    const activeTabId = currentActiveTab?.id;
+    if (!activeTabId) {
+      return;
+    }
+
+    const previousActiveTabId = previousActiveTabIdRef.current;
+    if (previousActiveTabId === undefined) {
+      previousActiveTabIdRef.current = activeTabId;
+      if (
+        currentActiveTab.transcriptMessages &&
+        currentActiveTab.transcriptMessages !== messagesRef.current
+      ) {
+        setMessages(currentActiveTab.transcriptMessages);
+      }
+      if ((currentActiveTab.draftInput ?? '') !== inputValueRef.current) {
+        setInputValue(currentActiveTab.draftInput ?? '');
+      }
+      return;
+    }
+
+    if (previousActiveTabId === activeTabId) {
+      return;
+    }
+
+    previousActiveTabIdRef.current = activeTabId;
+    const outgoingMessages = messagesRef.current;
+    const incomingMessages = currentActiveTab.transcriptMessages ?? [];
+
+    setAppState(prev => {
+      let tabs = normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel);
+      if (tabs.tabs[previousActiveTabId]) {
+        tabs = updateSessionTab(tabs, previousActiveTabId, {
+          transcriptMessages: outgoingMessages,
+        });
+      }
+      const incomingTab = tabs.tabs[activeTabId];
+      return {
+        ...prev,
+        mainLoopModel: incomingTab?.model ?? prev.mainLoopModel,
+        viewingAgentTaskId: incomingTab?.subagentId,
+        sessionTabs: tabs,
+      };
+    });
+
+    setMessages(incomingMessages);
+    if ((currentActiveTab.draftInput ?? '') !== inputValueRef.current) {
+      setInputValue(currentActiveTab.draftInput ?? '');
+    }
+  }, [sessionTabs, setAppState, setMessages, setInputValue]);
   useEffect(() => {
     const currentActiveTab = getActiveSessionTab(sessionTabs);
     if (!currentActiveTab) return;
