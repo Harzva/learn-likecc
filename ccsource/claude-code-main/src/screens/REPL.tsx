@@ -153,6 +153,7 @@ import { useMergedCommands } from '../hooks/useMergedCommands.js';
 import { useSkillsChange } from '../hooks/useSkillsChange.js';
 import { useManagePlugins } from '../hooks/useManagePlugins.js';
 import { Messages } from '../components/Messages.js';
+import { SessionPaneDock } from '../components/SessionPaneDock.js';
 import { SessionTabsBar } from '../components/SessionTabsBar.js';
 import { SessionWorkspacePanel } from '../components/SessionWorkspacePanel.js';
 import { TaskListV2 } from '../components/TaskListV2.js';
@@ -290,7 +291,7 @@ import { useMessageActions, MessageActionsKeybindings, MessageActionsBar, type M
 import { setClipboard } from '../ink/termio/osc.js';
 import type { ScrollBoxHandle } from '../ink/components/ScrollBox.js';
 import { createAttachmentMessage, getQueuedCommandAttachments } from '../utils/attachments.js';
-import { addSessionTab, closeSessionTab, createSessionTaskTab, cycleSessionTab, getActiveSessionTab, inferSessionTabProvider, normalizeSessionTabsState, switchSessionTab, toggleSubagentPanel, updateSessionTab } from '../utils/sessionTabs.js';
+import { addSessionTab, closeSessionTab, createSessionTaskTab, cycleSessionTab, getActiveSessionTab, inferSessionTabProvider, normalizeSessionTabsState, switchSessionTab, toggleSubagentPanel, updateSessionTab, type SessionTabState } from '../utils/sessionTabs.js';
 import { getTaskListId } from '../utils/tasks.js';
 
 // Stable empty array for hooks that accept MCPServerConnection[] — avoids
@@ -804,32 +805,6 @@ export function REPL({
     return segments[segments.length - 1] ?? projectRoot;
   }, []);
   const projectRootPath = useMemo(() => getProjectRoot() || getOriginalCwd(), []);
-
-  const previousActiveTabIdRef = useRef<string | undefined>(undefined);
-  useEffect(() => {
-    const currentActiveTab = getActiveSessionTab(sessionTabs);
-    const activeTabId = currentActiveTab?.id;
-    if (!activeTabId || previousActiveTabIdRef.current === activeTabId) {
-      return;
-    }
-    previousActiveTabIdRef.current = activeTabId;
-
-    setAppState(prev => {
-      const nextModel = currentActiveTab.model ?? prev.mainLoopModel;
-      const nextViewingTaskId = currentActiveTab.subagentId;
-      if (
-        prev.mainLoopModel === nextModel &&
-        prev.viewingAgentTaskId === nextViewingTaskId
-      ) {
-        return prev;
-      }
-      return {
-        ...prev,
-        mainLoopModel: nextModel,
-        viewingAgentTaskId: nextViewingTaskId,
-      };
-    });
-  }, [sessionTabs, setAppState]);
 
   // Start background plugin installations
 
@@ -1406,6 +1381,58 @@ export function REPL({
     setInputValueRaw(value);
     setIsPromptInputActive(value.trim().length > 0);
   }, [setIsPromptInputActive, repinScroll, trySuggestBgPRIntercept]);
+  const previousActiveTabIdRef = useRef<string | undefined>(undefined);
+  useEffect(() => {
+    const currentActiveTab = getActiveSessionTab(sessionTabs);
+    const activeTabId = currentActiveTab?.id;
+    if (!activeTabId || previousActiveTabIdRef.current === activeTabId) {
+      return;
+    }
+    previousActiveTabIdRef.current = activeTabId;
+
+    setAppState(prev => {
+      const nextModel = currentActiveTab.model ?? prev.mainLoopModel;
+      const nextViewingTaskId = currentActiveTab.subagentId;
+      if (
+        prev.mainLoopModel === nextModel &&
+        prev.viewingAgentTaskId === nextViewingTaskId
+      ) {
+        return prev;
+      }
+      return {
+        ...prev,
+        mainLoopModel: nextModel,
+        viewingAgentTaskId: nextViewingTaskId,
+      };
+    });
+
+    if ((currentActiveTab.draftInput ?? '') !== inputValueRef.current) {
+      setInputValue(currentActiveTab.draftInput ?? '');
+    }
+  }, [sessionTabs, setAppState, setInputValue]);
+  useEffect(() => {
+    const currentActiveTab = getActiveSessionTab(sessionTabs);
+    if (!currentActiveTab) return;
+    if ((currentActiveTab.draftInput ?? '') === inputValue) return;
+
+    const timer = setTimeout(() => {
+      setAppState(prev => {
+        const tabs = normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel);
+        const activeTab = getActiveSessionTab(tabs);
+        if (!activeTab || (activeTab.draftInput ?? '') === inputValue) {
+          return prev;
+        }
+        return {
+          ...prev,
+          sessionTabs: updateSessionTab(tabs, activeTab.id, {
+            draftInput: inputValue,
+          }),
+        };
+      });
+    }, 120);
+
+    return () => clearTimeout(timer);
+  }, [inputValue, sessionTabs, setAppState]);
 
   // Schedule a timeout to stop suppressing dialogs after the user stops typing.
   // Only manages the timeout — the immediate activation is handled by setInputValue above.
@@ -4716,6 +4743,8 @@ export function REPL({
   const centeredModal: React.ReactNode = toolJsxCentered ? toolJSX!.jsx : null;
   const workspacePanelVisible = sessionTabs.showSubagentPanel;
   const workspacePanelSplit = workspacePanelVisible && transcriptCols >= 150;
+  const paneTabs = sessionTabs.layoutMode === 'panes' ? sessionTabs.tabOrder.slice(0, 2).map(tabId => sessionTabs.tabs[tabId]).filter((tab): tab is SessionTabState => Boolean(tab)) : [];
+  const showPromptPanes = paneTabs.length >= 2;
   const scrollablePrimary = <>
       <TeammateViewHeader />
       <SessionTabsBar prefixActive={tabPrefixActive} />
@@ -4741,6 +4770,25 @@ export function REPL({
       </Box>
       <SessionWorkspacePanel tasksV2={tasksV2} width={42} stacked={!workspacePanelSplit} />
     </Box> : scrollablePrimary;
+  const promptCore = <>
+      {autoRunIssueReason && <AutoRunIssueNotification onRun={handleAutoRunIssue} onCancel={handleCancelAutoRunIssue} reason={getAutoRunIssueReasonText(autoRunIssueReason)} />}
+      {postCompactSurvey.state !== 'closed' ? <FeedbackSurvey state={postCompactSurvey.state} lastResponse={postCompactSurvey.lastResponse} handleSelect={postCompactSurvey.handleSelect} inputValue={inputValue} setInputValue={setInputValue} onRequestFeedback={handleSurveyRequestFeedback} /> : memorySurvey.state !== 'closed' ? <FeedbackSurvey state={memorySurvey.state} lastResponse={memorySurvey.lastResponse} handleSelect={memorySurvey.handleSelect} handleTranscriptSelect={memorySurvey.handleTranscriptSelect} inputValue={inputValue} setInputValue={setInputValue} onRequestFeedback={handleSurveyRequestFeedback} message="How well did Claude use its memory? (optional)" /> : <FeedbackSurvey state={feedbackSurvey.state} lastResponse={feedbackSurvey.lastResponse} handleSelect={feedbackSurvey.handleSelect} handleTranscriptSelect={feedbackSurvey.handleTranscriptSelect} inputValue={inputValue} setInputValue={setInputValue} onRequestFeedback={didAutoRunIssueRef.current ? undefined : handleSurveyRequestFeedback} />}
+      {frustrationDetection.state !== 'closed' && <FeedbackSurvey state={frustrationDetection.state} lastResponse={null} handleSelect={() => {}} handleTranscriptSelect={frustrationDetection.handleTranscriptSelect} inputValue={inputValue} setInputValue={setInputValue} />}
+      {("external" as string) === 'ant' && skillImprovementSurvey.suggestion && <SkillImprovementSurvey isOpen={skillImprovementSurvey.isOpen} skillName={skillImprovementSurvey.suggestion.skillName} updates={skillImprovementSurvey.suggestion.updates} handleSelect={skillImprovementSurvey.handleSelect} inputValue={inputValue} setInputValue={setInputValue} />}
+      {showIssueFlagBanner && <IssueFlagBanner />}
+      {}
+      <PromptInput debug={debug} ideSelection={ideSelection} hasSuppressedDialogs={!!hasSuppressedDialogs} isLocalJSXCommandActive={isShowingLocalJSXCommand} getToolUseContext={getToolUseContext} toolPermissionContext={toolPermissionContext} setToolPermissionContext={setToolPermissionContext} apiKeyStatus={apiKeyStatus} commands={commands} agents={agentDefinitions.activeAgents} isLoading={isLoading} onExit={handleExit} verbose={verbose} messages={messages} onAutoUpdaterResult={setAutoUpdaterResult} autoUpdaterResult={autoUpdaterResult} input={inputValue} onInputChange={setInputValue} mode={inputMode} onModeChange={setInputMode} stashedPrompt={stashedPrompt} setStashedPrompt={setStashedPrompt} submitCount={submitCount} onShowMessageSelector={handleShowMessageSelector} onMessageActionsEnter={
+      feature('MESSAGE_ACTIONS') && isFullscreenEnvEnabled() && !disableMessageActions ? enterMessageActions : undefined} mcpClients={mcpClients} pastedContents={pastedContents} setPastedContents={setPastedContents} vimMode={vimMode} setVimMode={setVimMode} showBashesDialog={showBashesDialog} setShowBashesDialog={setShowBashesDialog} onSubmit={onSubmit} onAgentSubmit={onAgentSubmit} isSearchingHistory={isSearchingHistory} setIsSearchingHistory={setIsSearchingHistory} helpOpen={isHelpOpen} setHelpOpen={setIsHelpOpen} insertTextRef={feature('VOICE_MODE') ? insertTextRef : undefined} voiceInterimRange={voice.interimRange} />
+      <SessionBackgroundHint onBackgroundSession={handleBackgroundSession} isLoading={isLoading} />
+    </>;
+  const promptContent = showPromptPanes ? <Box width="100%" flexDirection={transcriptCols >= 120 ? 'row' : 'column'}>
+      {paneTabs.map((tab, index) => <SessionPaneDock key={tab.id} tab={tab} isActive={tab.id === sessionTabs.activeTabId} onActivate={tab.id === sessionTabs.activeTabId ? undefined : () => setAppState(prev => ({
+      ...prev,
+      sessionTabs: switchSessionTab(normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel), tab.id)
+    }))}>
+            {tab.id === sessionTabs.activeTabId ? promptCore : undefined}
+          </SessionPaneDock>)}
+    </Box> : promptCore;
 
   // <AlternateScreen> at the root: everything below is inside its
   // <Box height={rows}>. Handlers/contexts are zero-height so ScrollBox's
@@ -5072,18 +5120,7 @@ export function REPL({
                 {mrRender()}
 
                 {!toolJSX?.shouldHidePromptInput && !focusedInputDialog && !isExiting && !disabled && !cursor && <>
-                      {autoRunIssueReason && <AutoRunIssueNotification onRun={handleAutoRunIssue} onCancel={handleCancelAutoRunIssue} reason={getAutoRunIssueReasonText(autoRunIssueReason)} />}
-                      {postCompactSurvey.state !== 'closed' ? <FeedbackSurvey state={postCompactSurvey.state} lastResponse={postCompactSurvey.lastResponse} handleSelect={postCompactSurvey.handleSelect} inputValue={inputValue} setInputValue={setInputValue} onRequestFeedback={handleSurveyRequestFeedback} /> : memorySurvey.state !== 'closed' ? <FeedbackSurvey state={memorySurvey.state} lastResponse={memorySurvey.lastResponse} handleSelect={memorySurvey.handleSelect} handleTranscriptSelect={memorySurvey.handleTranscriptSelect} inputValue={inputValue} setInputValue={setInputValue} onRequestFeedback={handleSurveyRequestFeedback} message="How well did Claude use its memory? (optional)" /> : <FeedbackSurvey state={feedbackSurvey.state} lastResponse={feedbackSurvey.lastResponse} handleSelect={feedbackSurvey.handleSelect} handleTranscriptSelect={feedbackSurvey.handleTranscriptSelect} inputValue={inputValue} setInputValue={setInputValue} onRequestFeedback={didAutoRunIssueRef.current ? undefined : handleSurveyRequestFeedback} />}
-                      {/* Frustration-triggered transcript sharing prompt */}
-                      {frustrationDetection.state !== 'closed' && <FeedbackSurvey state={frustrationDetection.state} lastResponse={null} handleSelect={() => {}} handleTranscriptSelect={frustrationDetection.handleTranscriptSelect} inputValue={inputValue} setInputValue={setInputValue} />}
-                      {/* Skill improvement survey - appears when improvements detected (ant-only) */}
-                      {("external" as string) === 'ant' && skillImprovementSurvey.suggestion && <SkillImprovementSurvey isOpen={skillImprovementSurvey.isOpen} skillName={skillImprovementSurvey.suggestion.skillName} updates={skillImprovementSurvey.suggestion.updates} handleSelect={skillImprovementSurvey.handleSelect} inputValue={inputValue} setInputValue={setInputValue} />}
-                      {showIssueFlagBanner && <IssueFlagBanner />}
-                      {}
-                      <PromptInput debug={debug} ideSelection={ideSelection} hasSuppressedDialogs={!!hasSuppressedDialogs} isLocalJSXCommandActive={isShowingLocalJSXCommand} getToolUseContext={getToolUseContext} toolPermissionContext={toolPermissionContext} setToolPermissionContext={setToolPermissionContext} apiKeyStatus={apiKeyStatus} commands={commands} agents={agentDefinitions.activeAgents} isLoading={isLoading} onExit={handleExit} verbose={verbose} messages={messages} onAutoUpdaterResult={setAutoUpdaterResult} autoUpdaterResult={autoUpdaterResult} input={inputValue} onInputChange={setInputValue} mode={inputMode} onModeChange={setInputMode} stashedPrompt={stashedPrompt} setStashedPrompt={setStashedPrompt} submitCount={submitCount} onShowMessageSelector={handleShowMessageSelector} onMessageActionsEnter={
-            // Works during isLoading — edit cancels first; uuid selection survives appends.
-            feature('MESSAGE_ACTIONS') && isFullscreenEnvEnabled() && !disableMessageActions ? enterMessageActions : undefined} mcpClients={mcpClients} pastedContents={pastedContents} setPastedContents={setPastedContents} vimMode={vimMode} setVimMode={setVimMode} showBashesDialog={showBashesDialog} setShowBashesDialog={setShowBashesDialog} onSubmit={onSubmit} onAgentSubmit={onAgentSubmit} isSearchingHistory={isSearchingHistory} setIsSearchingHistory={setIsSearchingHistory} helpOpen={isHelpOpen} setHelpOpen={setIsHelpOpen} insertTextRef={feature('VOICE_MODE') ? insertTextRef : undefined} voiceInterimRange={voice.interimRange} />
-                      <SessionBackgroundHint onBackgroundSession={handleBackgroundSession} isLoading={isLoading} />
+                      {promptContent}
                     </>}
                 {cursor &&
           // inputValue is REPL state; typed text survives the round-trip.

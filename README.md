@@ -73,6 +73,8 @@
   - 已支持 `Ctrl+g` 前缀后接 `c / n / p / x / s / 1-9`
 - ✅ **panel / 分屏第一版已经开始落地**
   - `/tab panel` 不再只是开关占位文案，主 REPL 里已经会出现一个真实的 session workspace 面板
+- ✅ **底部开始出现多个可见对话框区域**
+  - pane 模式下底部不再只剩一个视觉对话框，而是会为不同 tab 渲染多个可见的对话框 dock
 - ✅ **tab 开始绑定自己的模型 / provider / transcript / todo lane**
   - 切换 tab 后会带出当前 tab 的模型与 provider，tab 也会记住自己当前绑定的 transcript 与 todo lane
 - ✅ **subagent 状态面板已经不是纯占位**
@@ -235,6 +237,7 @@ Claude Code 很强，但真实使用里一直有一个明显痛点：
 - [x] 接入 `/show:slash`，可在终端直接查看所有 slash command 与用法
 - [x] 启动 logo 改为红色爱心
 - [x] 接入第一版 `panel / 分屏` 工作区侧栏
+- [x] 让 pane 模式下底部出现多个可见对话框区域，而不只是一个共享输入框
 - [x] 将当前 tab 的 `model / provider / transcript / todo lane` 开始同步到真实状态
 - [x] 将 subagent 面板从纯占位升级为第一版真实状态面板
 - [ ] 支持 **subagent 工作视图**：按窗口看不同 subagent 在忙什么
@@ -255,6 +258,7 @@ Claude Code 很强，但真实使用里一直有一个明显痛点：
 - [x] 把 tab 需求映射到具体版本计划与发版节奏
 - [x] 让不同 tab 开始绑定各自 transcript、todo、model/provider，而不是先只做窗口层
 - [x] 把 subagent 面板从占位升级成真实状态视图
+- [ ] 继续把“多个可见对话框”升级成真正的多活跃输入与多 transcript 并行，而不只是先做 active pane 输入
 - [ ] 继续把 transcript / todo 做到真正隔离，而不只是先完成 tab 级绑定
 - [ ] 团队里每个人可配置自己的默认 provider / 默认模型 / 默认预算策略
 - [ ] 项目级规则决定“这个仓库优先稳定模型，那个仓库优先低成本模型”

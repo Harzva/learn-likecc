@@ -9,6 +9,7 @@ export type SessionTabState = {
   title: string
   kind: SessionTabKind
   transcriptId: string
+  draftInput?: string
   todoSnapshotId?: string
   model?: string
   provider?: string
@@ -34,12 +35,13 @@ export type SessionTabsMetadata = {
   tab_order: string[]
   layout_mode: SessionLayoutMode
   show_subagent_panel: boolean
-  tabs: Array<{
-    id: string
-    title: string
-    kind: SessionTabKind
-    model?: string
-    provider?: string
+    tabs: Array<{
+      id: string
+      title: string
+      kind: SessionTabKind
+      draftInput?: string
+      model?: string
+      provider?: string
     repoLabel?: string
     worktreePath?: string
     status: SessionTabStatus
@@ -107,6 +109,7 @@ export function toSessionTabsMetadata(
         id: tab.id,
         title: tab.title,
         kind: tab.kind,
+        draftInput: tab.draftInput,
         model: tab.model,
         provider: tab.provider,
         repoLabel: tab.repoLabel,
@@ -129,6 +132,7 @@ export function fromSessionTabsMetadata(
         title: tab.title,
         kind: tab.kind,
         transcriptId: tab.id,
+        draftInput: tab.draftInput,
         model: tab.model,
         provider: tab.provider,
         repoLabel: tab.repoLabel,
@@ -239,6 +243,7 @@ export function updateSessionTab(
     nextTab.title === existing.title &&
     nextTab.kind === existing.kind &&
     nextTab.transcriptId === existing.transcriptId &&
+    nextTab.draftInput === existing.draftInput &&
     nextTab.todoSnapshotId === existing.todoSnapshotId &&
     nextTab.model === existing.model &&
     nextTab.provider === existing.provider &&

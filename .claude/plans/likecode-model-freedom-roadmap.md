@@ -142,6 +142,8 @@ learn-likecc 现在已经不只是一个 Claude Code 源码学习仓库。
 - [x] 把 transcript、todo、model/provider 状态开始绑定到 tab
 - [x] 增加第一版 subagent 状态面板，先能展示 transcript、任务与运行状态
 - [x] 将 panel / 分屏提升为 tab 之后的最高优先级交付，并开始实现
+- [x] 让 pane 模式下底部出现多个可见对话框区域，而不只是一个共享输入框
+- [ ] 继续把多个可见对话框升级成真正的多活跃输入与多 transcript 并行
 - [ ] 继续把 transcript / todo 做到真正隔离，而不只是先做 tab 级绑定
 - [ ] 继续把 subagent 面板升级为更完整的工作视图，展示仓库、目录、当前任务与更多 live 状态
 
