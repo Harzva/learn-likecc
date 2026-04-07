@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>发版监督 · Claude Code 官方版本速览 - Claude Code Course</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📋</text></svg>">
+    <meta name="description" content="监督 Anthropic 官方 Claude Code CLI 发版：权威 changelog 链接、近期版本中文要点速览、本站更新约定；与 Source Map 源码课对照阅读。">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">📋</span>
+                <span class="logo-text">发版监督</span>
+            </a>
+            <div class="nav-links">
+                <a href="#intro" class="nav-link">导语</a>
+                <a href="#sources" class="nav-link">权威来源</a>
+                <a href="#table" class="nav-link">版本速览</a>
+                <a href="#maintain" class="nav-link">维护约定</a>
+                <a href="#map" class="nav-link">与源码课</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-sourcemap.html" class="btn-github">源码专题</a>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>📌 新专题</span>
+                <span>官方 CLI · 版本</span>
+            </div>
+            <h1 class="hero-title">
+                发版监督<br>
+                <span class="gradient-text">Claude Code 每个版本改了什么</span>
+            </h1>
+            <p class="hero-subtitle">
+                汇总 <strong>Anthropic 官方</strong>公开 changelog 的<strong>入口链接</strong>，并用中文做<strong>近期版本要点速览</strong>（非穷尽）。完整条目始终以官方文档与 GitHub <code>CHANGELOG.md</code> 为准；CLI 内可用 <strong><code>/release-notes</code></strong> 查看交互式说明。
+            </p>
+            <div class="hero-actions">
+                <a href="https://docs.anthropic.com/en/docs/claude-code/changelog" class="btn btn-primary" target="_blank" rel="noopener noreferrer">官方 Changelog ↗</a>
+                <a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">GitHub CHANGELOG ↗</a>
+                <a href="#table" class="btn btn-secondary">本站速览表</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="course-main devlog-main">
+        <div class="container">
+            <article class="course-content devlog-content">
+                <h1 class="course-title" id="intro">发版监督 <span class="subtitle">Claude Code 官方版本</span></h1>
+
+                <div class="course-quote">
+                    <p><strong>目的</strong>：在读本站 <a href="topic-sourcemap.html">Source Map 源码课</a> 的同时，能<strong>对齐当前官方 CLI 的行为变化</strong>——权限、Hooks、MCP、命令与设置项会随版本迭代。</p>
+                    <p><strong>边界</strong>：本页是<strong>导读与速览</strong>，不是官方发布渠道；本仓库内 <code>ccsource/claude-code-main</code> 为学习用镜像，其 package 版本<strong>不等于</strong>你本机安装的官方 <code>claude</code>。</p>
+                </div>
+
+                <section id="sources" class="section-block">
+                    <h2>权威来源</h2>
+                    <p>核对全文、追溯历史版本时，请优先使用下列链接。</p>
+                    <table class="compare-table">
+                        <tr>
+                            <th>来源</th>
+                            <th>说明</th>
+                        </tr>
+                        <tr>
+                            <td><a href="https://docs.anthropic.com/en/docs/claude-code/changelog" target="_blank" rel="noopener noreferrer">Anthropic 文档 · Changelog</a></td>
+                            <td>与 GitHub 仓库 <code>CHANGELOG.md</code> 同步生成。</td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">GitHub · CHANGELOG.md</a></td>
+                            <td>完整条目、Blame 与历史。</td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://www.npmjs.com/package/@anthropic-ai/claude-code" target="_blank" rel="noopener noreferrer">npm 包页</a></td>
+                            <td>版本号与发布时间线。</td>
+                        </tr>
+                        <tr>
+                            <td>CLI <code>/release-notes</code></td>
+                            <td>应用内 release notes；新版本起支持交互选版。</td>
+                        </tr>
+                    </table>
+                    <p>本地查看已安装版本：<code>claude --version</code>（或 <code>claude -v</code>）。</p>
+                </section>
+
+                <section id="table" class="section-block">
+                    <h2>近期版本速览（中文要点）</h2>
+                    <p>下表由维护者根据上游 <code>CHANGELOG.md</code> <strong>手工摘录</strong>，仅覆盖对用户较可见的变化；<strong>完整列表以上方官方链接为准</strong>。有新版本时，在表<strong>顶部</strong>插入一行。</p>
+                    <table class="compare-table">
+                        <tr>
+                            <th>版本</th>
+                            <th>要点（非穷尽）</th>
+                        </tr>
+                        <tr>
+                            <td><strong>2.1.92</strong></td>
+                            <td><code>forceRemoteSettingsRefresh</code> 策略；Bedrock 登录向导；<code>/cost</code> 按模型与缓存命中细分；<code>/release-notes</code> 交互选版；Remote Control 默认会话名带 hostname；移除 <code>/tag</code>、<code>/vim</code>（改走 <code>/config</code>）；Linux sandbox 附带 <code>apply-seccomp</code>；子代理 tmux、全屏终端、Homebrew 渠道等修复。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2.1.91</strong></td>
+                            <td>MCP 工具结果可通过 <code>_meta["anthropic/maxResultSizeChars"]</code> 放宽；<code>disableSkillShellExecution</code>；deeplink 多行；插件 <code>bin/</code> 可执行；<code>--resume</code> 与远程计划模式等修复；Edit 锚点缩短降 token；Bun <code>stripAnsi</code> 等性能。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2.1.90</strong></td>
+                            <td><code>/powerup</code> 交互教程；<code>CLAUDE_CODE_PLUGIN_KEEP_MARKETPLACE_ON_FAILURE</code>；<code>.husky</code> 受保护目录；费率限制弹窗死循环、resume 与 prompt cache、PowerShell 安全、SSE 大帧与 SDK 写盘性能等修复。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2.1.89</strong></td>
+                            <td>PreToolUse <code>"defer"</code>；<code>CLAUDE_CODE_NO_FLICKER</code>；Auto mode 拒绝可通知并重试；MCP 非阻塞；大量 Hooks、权限、Edit/Read、SDK、stats、自动压缩等修复与行为调整。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2.1.87</strong></td>
+                            <td>Cowork Dispatch 消息投递修复。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2.1.86</strong></td>
+                            <td>API 请求头 <code>X-Claude-Code-Session-Id</code>；<code>.jj</code> / <code>.sl</code> 目录排除；旧会话 resume、插件脚本权限、多终端与 VS Code 扩展等问题修复。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2.1.85</strong></td>
+                            <td>MCP <code>headersHelper</code> 相关 env；Hooks 条件 <code>if</code>；deeplink 长度上限；MCP OAuth 发现；组织策略下插件屏蔽；OpenTelemetry 工具详情门控；多项 resume / MCP / UI 修复。</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section id="maintain" class="section-block">
+                    <h2>本站维护约定</h2>
+                    <ol>
+                        <li><strong>触发</strong>：npm 新版本或官方 changelog 出现新小节。</li>
+                        <li><strong>动作</strong>：阅读 <a href="https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">上游 CHANGELOG 原文 ↗</a> 对应版本块，用一两句中文概括<strong>对用户可见</strong>的变化，写入上表顶部。</li>
+                        <li><strong>文件</strong>：同步更新本页与 <code>site/md/topic-cc-release-watch.md</code> 中的同一张表。</li>
+                        <li><strong>首页图</strong>：课程总览 Mermaid 中已增加「发版监督」节点，与 CLI / 命令相关章节虚线相连，便于从全景图跳转。</li>
+                    </ol>
+                </section>
+
+                <section id="map" class="section-block">
+                    <h2>与源码课的关系</h2>
+                    <p>官方 CLI 迭代会改变命令行、设置 schema、Hooks 与工具默认行为。阅读 <a href="s04.html">S04 命令</a>、<a href="s10.html">S10 Hooks</a>、<a href="s07.html">S07 MCP</a> 等章节时，若与当前 CLI 不一致，建议先查官方 changelog，再回到重建源码树对照。</p>
+                    <p>
+                        <a href="topic-sourcemap.html">Source Map 源码专题</a>
+                        &nbsp;·&nbsp;
+                        <a href="devlog.html">开发日志</a>（本仓库迭代，与官方发版不同轴）
+                    </p>
+                </section>
+
+                <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-cc-release-watch.md" target="_blank" rel="noopener noreferrer">📝 Markdown 源（GitHub）</a></p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

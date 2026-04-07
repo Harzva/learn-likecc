@@ -61,6 +61,9 @@ const MERMAID_DIAGRAMS = {
     S01 -.->|开源对照| OH
     S07 -.->|MCP 对照| OH
 
+    RW["发版监督<br/>官方 CHANGELOG · topic-cc-release-watch"]:::purpleBox
+    S04 -.->|CLI 迭代| RW
+
     style RT fill:#181825,stroke:#89b4fa,stroke-width:1px
     style P1 fill:#13131a,stroke:#e2b953,stroke-dasharray:5 4
     style P2 fill:#13131a,stroke:#3b82f6,stroke-dasharray:5 4
@@ -433,6 +436,12 @@ function initSiteSidebar() {
         '<summary class="site-sidebar__summary"><span class="site-sidebar__ico">🧩</span><span class="site-sidebar__txt">开源 Harness</span></summary>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-openharness.html"><span class="site-sidebar__ico">⚡</span><span class="site-sidebar__txt">OpenHarness 专题</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="https://github.com/HKUDS/OpenHarness" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">🔗</span><span class="site-sidebar__txt">上游仓库 ↗</span></a>' +
+        '</details>' +
+        '<details class="site-sidebar__details">' +
+        '<summary class="site-sidebar__summary"><span class="site-sidebar__ico">📋</span><span class="site-sidebar__txt">发版监督</span></summary>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-cc-release-watch.html"><span class="site-sidebar__ico">📌</span><span class="site-sidebar__txt">官方版本速览</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="https://docs.anthropic.com/en/docs/claude-code/changelog" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">🔗</span><span class="site-sidebar__txt">Anthropic Changelog ↗</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">🔗</span><span class="site-sidebar__txt">GitHub CHANGELOG ↗</span></a>' +
         '</details>' +
         '<a class="site-sidebar__link" href="column-agent-journey.html"><span class="site-sidebar__ico">🧭</span><span class="site-sidebar__txt">工具链阅历</span></a>' +
         '<a class="site-sidebar__link" href="column-shangshou-cikeng.html"><span class="site-sidebar__ico">🛠️</span><span class="site-sidebar__txt">上手与踩坑</span></a>' +

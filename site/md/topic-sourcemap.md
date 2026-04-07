@@ -14,10 +14,11 @@
   - 📚 24 讲源码课程
   - 🗺️ Source Map 事件
   - 🔍 源码反推思想
+  - 📋 发版监督（官方 CLI changelog 速览）
 - **Source Map 事件（摘要）**
 - **十二章列表（S + D）**
 - **Awesome · 源码镜像清单**
-- **扩展专题**（含 <a href="topic-openharness.md">OpenHarness</a> 姊妹专题入口）
+- **扩展专题**（<a href="topic-openharness.md">OpenHarness</a>、<a href="topic-cc-release-watch.md">发版监督</a>）
 
 ## 各节摘要（对照 HTML）
 
