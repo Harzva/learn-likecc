@@ -37,6 +37,7 @@ export type SessionTabState = {
   conversationId?: string
   showAllInTranscript?: boolean
   transcriptDumpMode?: boolean
+  transcriptSearchOpen?: boolean
   transcriptSearchQuery?: string
   todoSnapshotId?: string
   model?: string
@@ -89,6 +90,7 @@ export type SessionTabsMetadata = {
     conversationId?: string
     showAllInTranscript?: boolean
     transcriptDumpMode?: boolean
+    transcriptSearchOpen?: boolean
     transcriptSearchQuery?: string
     model?: string
     provider?: string
@@ -187,6 +189,7 @@ export function toSessionTabsMetadata(
         conversationId: tab.conversationId,
         showAllInTranscript: tab.showAllInTranscript,
         transcriptDumpMode: tab.transcriptDumpMode,
+        transcriptSearchOpen: tab.transcriptSearchOpen,
         transcriptSearchQuery: tab.transcriptSearchQuery,
         model: tab.model,
         provider: tab.provider,
@@ -228,6 +231,7 @@ export function fromSessionTabsMetadata(
         conversationId: tab.conversationId,
         showAllInTranscript: tab.showAllInTranscript,
         transcriptDumpMode: tab.transcriptDumpMode,
+        transcriptSearchOpen: tab.transcriptSearchOpen,
         transcriptSearchQuery: tab.transcriptSearchQuery,
         model: tab.model,
         provider: tab.provider,
@@ -364,6 +368,7 @@ export function updateSessionTab(
     nextTab.conversationId === existing.conversationId &&
     nextTab.showAllInTranscript === existing.showAllInTranscript &&
     nextTab.transcriptDumpMode === existing.transcriptDumpMode &&
+    nextTab.transcriptSearchOpen === existing.transcriptSearchOpen &&
     nextTab.transcriptSearchQuery === existing.transcriptSearchQuery &&
     nextTab.todoSnapshotId === existing.todoSnapshotId &&
     nextTab.model === existing.model &&

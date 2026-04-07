@@ -1513,7 +1513,7 @@ export function REPL({
       setSearchQuery(currentActiveTab.transcriptSearchQuery ?? '');
       setSearchCount(0);
       setSearchCurrent(0);
-      setSearchOpen(false);
+      setSearchOpen(currentActiveTab.transcriptSearchOpen ?? false);
       setMessageSelectorPreselect(
         currentActiveTab.messageSelectorPreselectUuid
           ? messagesRef.current.find(
@@ -1556,6 +1556,7 @@ export function REPL({
           conversationId,
           showAllInTranscript,
           transcriptDumpMode: dumpMode,
+          transcriptSearchOpen: searchOpen,
           transcriptSearchQuery: searchQuery,
         });
       }
@@ -1595,7 +1596,7 @@ export function REPL({
     setSearchQuery(currentActiveTab.transcriptSearchQuery ?? '');
     setSearchCount(0);
     setSearchCurrent(0);
-    setSearchOpen(false);
+    setSearchOpen(currentActiveTab.transcriptSearchOpen ?? false);
     setMessageSelectorPreselect(
       currentActiveTab.messageSelectorPreselectUuid
         ? incomingMessages.find(
@@ -1608,7 +1609,7 @@ export function REPL({
     if ((currentActiveTab.draftInput ?? '') !== inputValueRef.current) {
       setInputValue(currentActiveTab.draftInput ?? '');
     }
-  }, [sessionTabs, setAppState, setMessages, setInputValue, inputMode, pastedContents, stashedPrompt, vimMode, isSearchingHistory, showBashesDialog, isHelpOpen, isMessageSelectorVisible, messageSelectorPreselect, submitCount, conversationId, showAllInTranscript, dumpMode, searchQuery]);
+  }, [sessionTabs, setAppState, setMessages, setInputValue, inputMode, pastedContents, stashedPrompt, vimMode, isSearchingHistory, showBashesDialog, isHelpOpen, isMessageSelectorVisible, messageSelectorPreselect, submitCount, conversationId, showAllInTranscript, dumpMode, searchOpen, searchQuery]);
   useEffect(() => {
     const currentActiveTab = getActiveSessionTab(sessionTabs);
     if (!currentActiveTab) return;
@@ -1973,6 +1974,34 @@ export function REPL({
 
     return () => clearTimeout(timer);
   }, [dumpMode, sessionTabs, setAppState]);
+  useEffect(() => {
+    const currentActiveTab = getActiveSessionTab(sessionTabs);
+    if (!currentActiveTab) return;
+    if ((currentActiveTab.transcriptSearchOpen ?? false) === searchOpen) {
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setAppState(prev => {
+        const tabs = normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel);
+        const activeTab = getActiveSessionTab(tabs);
+        if (
+          !activeTab ||
+          (activeTab.transcriptSearchOpen ?? false) === searchOpen
+        ) {
+          return prev;
+        }
+        return {
+          ...prev,
+          sessionTabs: updateSessionTab(tabs, activeTab.id, {
+            transcriptSearchOpen: searchOpen,
+          }),
+        };
+      });
+    }, 120);
+
+    return () => clearTimeout(timer);
+  }, [searchOpen, sessionTabs, setAppState]);
   useEffect(() => {
     const currentActiveTab = getActiveSessionTab(sessionTabs);
     if (!currentActiveTab) return;

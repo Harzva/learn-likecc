@@ -46,6 +46,7 @@
 - pane 的 `conversationId / submitCount` 也开始跟随窗口保存和恢复，进一步减少多个 pane 共用同一份对话节奏
 - 真实 `tool progress` 也开始进入 `toolChains`，让 Web 工作台在最终 `tool_result` 返回前先展示执行中的工具链
 - transcript 的 `show all / dump mode` 也开始跟随 pane 保存和恢复，减少不同窗口之间的查看状态串线
+- transcript 搜索条的打开状态也开始跟随 pane 保存和恢复，减少切 pane 后搜索 UI 被统一重置
 - transcript 搜索词也开始跟随 pane 保存和恢复，减少不同窗口之间的阅读上下文串线
 - `toolChains.steps` 已开始明确拆成 `tool_use / progress / tool_result`，让 Web 侧回放更接近真实 coding 过程
 - 启动头的蓝色爱心、蓝色 `Like` 与蓝色 `code` 已统一成一套品牌头图
