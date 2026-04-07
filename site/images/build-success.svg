@@ -3,7 +3,7 @@
   <rect x="1" y="1" width="1155" height="618" rx="9" stroke="#2F2F2F"/>
   <g font-family="'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace">
     <text x="8" y="18" fill="#79C0FF" font-size="16">(base)</text>
-    <text x="64" y="18" fill="#3FB950" font-size="16">clashuser@edc63c40b945:~/hzh/item_bo/learn-likecc/ccsource/claude-code-main$</text>
+    <text x="64" y="18" fill="#3FB950" font-size="16">clashuser@edc63c40b945:~/hzh/item_bo/learn-likecc/ccsource/like-code-main$</text>
     <text x="744" y="18" fill="#79C0FF" font-size="16">bun dist/cli.js</text>
     <text x="943" y="18" fill="#79C0FF" font-size="16">• In v2.5.1_plan.md</text>
     <text x="989" y="44" fill="#C9D1D9" font-size="16">• high · /effort</text>
@@ -21,9 +21,9 @@
     <rect x="47" y="24" width="4" height="7" rx="2" fill="#141414"/>
   </g>
   <g font-family="'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace">
-    <text x="98" y="53" fill="#F0F6FC" font-size="34">Claude Code v1.0.0-likecode</text>
+    <text x="98" y="53" fill="#F0F6FC" font-size="34">Claude Code v1.0.1-likecode</text>
     <text x="98" y="84" fill="#C9D1D9" font-size="17">Z-ai/glm-5 · API Usage Billing</text>
-    <text x="98" y="113" fill="#C9D1D9" font-size="17">~/hzh/item_bo/learn-likecc/ccsource/claude-code-main · Restored by Harzva</text>
+    <text x="98" y="113" fill="#C9D1D9" font-size="17">~/hzh/item_bo/learn-likecc/ccsource/like-code-main · Restored by Harzva</text>
   </g>
   <rect x="0" y="129" width="1157" height="1" fill="#3F3F46"/>
   <rect x="0" y="219" width="1157" height="1" fill="#3F3F46"/>
