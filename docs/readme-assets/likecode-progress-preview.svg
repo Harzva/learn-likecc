@@ -1,0 +1,54 @@
+<svg width="1440" height="900" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1440" height="900" rx="28" fill="#111418"/>
+  <rect x="20" y="20" width="1400" height="860" rx="18" fill="#14191F" stroke="#58A6FF" stroke-width="2"/>
+  <text x="34" y="58" fill="#D19A66" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="24">$ bun run src/entrypoints/cli.tsx</text>
+  <text x="28" y="108" fill="#C7D0D9" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="20">[1:Main z-ai/glm-5 · z-ai] [+ /tab new]</text>
+  <text x="28" y="140" fill="#8B949E" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="20">Active tab: Main · main · z-ai/glm-5 · z-ai · like-code-main · idle · subagent panel off · layout single</text>
+
+  <rect x="22" y="186" width="1396" height="500" rx="8" fill="#14191F" stroke="#58A6FF" stroke-width="2"/>
+  <text x="48" y="178" fill="#58A6FF" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="28">Like Code v1.0.2-likecode</text>
+
+  <line x1="734" y1="202" x2="734" y2="610" stroke="#58A6FF" stroke-width="2"/>
+
+  <text x="360" y="244" text-anchor="middle" fill="#F0F6FC" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="34" font-weight="700">Welcome back!</text>
+
+  <text x="332" y="312" text-anchor="middle" fill="#58A6FF" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="28" font-weight="700">L I K E</text>
+  <text x="380" y="312" fill="#FF78AA" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="28" font-weight="700">♥</text>
+  <text x="332" y="348" text-anchor="middle" fill="#58A6FF" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="28" font-weight="700">L I K E</text>
+  <text x="380" y="348" fill="#FF78AA" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="28" font-weight="700">♥</text>
+  <text x="332" y="384" text-anchor="middle" fill="#58A6FF" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="28" font-weight="700">L I K E</text>
+  <text x="380" y="384" fill="#FF78AA" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="28" font-weight="700">♥</text>
+
+  <text x="350" y="438" text-anchor="middle" fill="#58A6FF" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="26">   .-^^-.   </text>
+  <text x="350" y="470" text-anchor="middle" fill="#58A6FF" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="26">  ( •• •• ) </text>
+  <text x="350" y="502" text-anchor="middle" fill="#58A6FF" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="26">  /  ___  \ </text>
+  <text x="350" y="534" text-anchor="middle" fill="#58A6FF" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="26"> (_/|___|\_) </text>
+  <text x="350" y="566" text-anchor="middle" fill="#58A6FF" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="26">   ~ ~ ~ ~   </text>
+
+  <text x="350" y="624" text-anchor="middle" fill="#58A6FF" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="26" font-weight="700">z-ai/glm-5</text>
+  <text x="500" y="624" fill="#D2A86C" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="26">· API Usage Billing</text>
+  <text x="350" y="660" text-anchor="middle" fill="#B8C1CA" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="22">Harzva restored · https://github.com/Harzva/learn-likecc</text>
+  <text x="350" y="692" text-anchor="middle" fill="#B8C1CA" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="22">Web · http://127.0.0.1:4310</text>
+
+  <text x="772" y="240" fill="#58A6FF" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="28" font-weight="700">Tips for getting started</text>
+  <line x1="1088" y1="232" x2="1336" y2="232" stroke="#58A6FF" stroke-width="2"/>
+  <text x="772" y="284" fill="#E6EDF3" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="24">Run /show:slash to inspect built-in commands</text>
+  <text x="772" y="320" fill="#E6EDF3" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="24">Open localhost workspace to view workflow and panes</text>
+
+  <text x="772" y="392" fill="#58A6FF" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="28" font-weight="700">Recent activity</text>
+  <line x1="1018" y1="384" x2="1336" y2="384" stroke="#58A6FF" stroke-width="2"/>
+  <text x="772" y="436" fill="#B8C1CA" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="24">No recent activity</text>
+
+  <text x="772" y="508" fill="#58A6FF" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="28" font-weight="700">What's new</text>
+  <line x1="924" y1="500" x2="1336" y2="500" stroke="#58A6FF" stroke-width="2"/>
+  <text x="772" y="552" fill="#E6EDF3" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="22">Added tab / panel / pane first phase</text>
+  <text x="772" y="584" fill="#E6EDF3" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="22">Added localhost workspace dashboard and workflow replay</text>
+  <text x="772" y="616" fill="#E6EDF3" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="22">Added modelRoutes-based multi-provider switching</text>
+
+  <text x="40" y="742" fill="#58A6FF" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="24" font-weight="700">Global</text>
+  <text x="128" y="742" fill="#C7D0D9" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="24">~/.claude · skills 3 · rules 2 · hooks 0</text>
+  <text x="40" y="778" fill="#58A6FF" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="24" font-weight="700">Project</text>
+  <text x="140" y="778" fill="#C7D0D9" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="24">.claude · skills 0 · rules 0 · hooks 0</text>
+  <text x="40" y="814" fill="#58A6FF" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="24" font-weight="700">Local</text>
+  <text x="116" y="814" fill="#C7D0D9" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="24">settings.local · rules 0 · hooks 0 · routes 2</text>
+</svg>

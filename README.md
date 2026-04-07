@@ -8,7 +8,7 @@
 
 ---
 
-![Like Code customized session preview](docs/readme-assets/likecode-customized-session.svg)
+![Like Code current progress preview](docs/readme-assets/likecode-progress-preview.png)
 
 ## 顶部重点：我们现在最重要的事
 
