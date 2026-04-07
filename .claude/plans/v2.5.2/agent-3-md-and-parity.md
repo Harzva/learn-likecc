@@ -19,10 +19,10 @@
 
 ## 任务清单 — 完成后 `[x]`
 
-- [ ] `site/md/<stem>.md` 已创建且结构与 v2.5.1 深化规范一致
-- [ ] HTML 页脚互链正确（stem 与文件名一致）
-- [ ] `check_site_md_parity.py` 通过
-- [ ] **回写打钩**：本文件 + [v2.5.2_plan.md 第七节](../v2.5.2_plan.md)
+- [x] `site/md/<stem>.md` 已创建且结构与 v2.5.1 深化规范一致（`topic-cc-unpacked-zh`）
+- [x] HTML 页脚互链正确（stem 与文件名一致）
+- [x] `check_site_md_parity.py` 通过
+- [x] **回写打钩**：本文件 + [v2.5.2_plan.md 第七节](../v2.5.2_plan.md)
 
 ---
 

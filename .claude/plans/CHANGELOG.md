@@ -1390,3 +1390,7 @@ ANTHROPIC_API_KEY=your-api-key-here
 
 - 新增计划 **[v2.5.2_plan.md](./v2.5.2_plan.md)**：参考英文站 [ccunpacked.dev](https://ccunpacked.dev/) 的 IA，在本站以 **中文静态导览页** 落地（五区块：主循环、架构、工具、命令、实验特性），链回现有 S/D 与专题；含 **致谢、版本锚定、合规** 要求。
 - 新增 Agent 上下文目录 **[v2.5.2/README.md](./v2.5.2/README.md)**：`agent-1`（MVP 页 + 导航）、`agent-2`（JSON + 生成脚本）、`agent-3`（MD 镜像 + parity）。
+
+### 2026-04-07（续）
+
+- **阶段 A 落地**：`site/topic-cc-unpacked-zh.html`、`site/md/topic-cc-unpacked-zh.md`；首页导航「解构」、侧栏「CC 结构导览」、`topic-sourcemap` 入口卡片；`check_site_md_parity.py` 通过。`ccsource` 脚注 commit `81b88b8`（随镜像更新须修订）。

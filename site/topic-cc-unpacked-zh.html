@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CC 结构导览（中文）- Claude Code Course</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📦</text></svg>">
+    <meta name="description" content="Claude Code 中文结构导览：主循环、目录架构、工具与斜杠命令地图、实验特性；链回本站 S/D 讲义与源码专题。">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">📦</span>
+                <span class="logo-text">CC 结构导览</span>
+            </a>
+            <div class="nav-links">
+                <a href="#attribution" class="nav-link">说明</a>
+                <a href="#loop" class="nav-link">01 主循环</a>
+                <a href="#architecture" class="nav-link">02 架构</a>
+                <a href="#tools" class="nav-link">03 工具</a>
+                <a href="#commands" class="nav-link">04 命令</a>
+                <a href="#experimental" class="nav-link">05 实验</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-sourcemap.html" class="btn-github">源码专题</a>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>中文导览</span>
+                <span>结构地图 · 非官方站</span>
+            </div>
+            <h1 class="hero-title">
+                Claude Code<br>
+                <span class="gradient-text">结构导览（中文）</span>
+            </h1>
+            <p class="hero-subtitle">
+                从<strong>一次按键到工具回流</strong>，到<strong>目录、内置工具、斜杠命令与实验开关</strong>——用一张地图串起本站 <strong>S/D 讲义</strong>与 <code>ccsource</code> 阅读入口。完整列表与源码请以仓库与官方版本为准。
+            </p>
+            <div class="hero-stats" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin-top: 1.25rem;">
+                <div class="stat-item"><span class="stat-value">1900+</span><span class="stat-label">TS 文件（本站口径）</span></div>
+                <div class="stat-item"><span class="stat-value">510K+</span><span class="stat-label">代码行数（约）</span></div>
+                <div class="stat-item"><span class="stat-value">24</span><span class="stat-label">课程讲次 S+D</span></div>
+                <div class="stat-item"><span class="stat-value">50+</span><span class="stat-label">内置工具（量级）</span></div>
+            </div>
+            <p class="hero-subtitle" style="margin-top: 1rem; font-size: 0.95rem; opacity: 0.9;">
+                工具/命令<strong>精确数量随版本变化</strong>；下方仅列<strong>代表项</strong>，便于对照讲义深挖。
+            </p>
+            <div class="hero-actions">
+                <a href="#loop" class="btn btn-primary">从 01 主循环开始</a>
+                <a href="https://ccunpacked.dev/" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">参考：Claude Code Unpacked ↗</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="course-main devlog-main">
+        <div class="container">
+            <article class="course-content devlog-content">
+
+                <section id="attribution" class="section-block">
+                    <h2>参考来源与版本锚定</h2>
+                    <div class="course-quote">
+                        <p><strong>版式与信息架构</strong>参考英文站点 <a href="https://ccunpacked.dev/" target="_blank" rel="noopener noreferrer">Claude Code Unpacked</a>（ccunpacked.dev）：其「主循环 → 架构树 → 工具 → 命令 → 隐藏特性」的分块方式便于首次读仓库。<strong>本页正文由本站独立撰写</strong>，不构成对该站的转载或代言。</p>
+                        <p><strong>技术权威</strong>：以本仓库 <code>ccsource/claude-code-main</code> 与 <a href="topic-sourcemap.html">Source Map 源码课</a>（<a href="index.html#courses">S01–S12 / D01–D12</a>）为准；你本机安装的官方 CLI 版本可能与本镜像不一致，请结合 <a href="topic-cc-release-watch.html">发版监督</a> 核对。</p>
+                        <p><strong>镜像锚定</strong>（维护者更新 <code>ccsource</code> 后请修订）：commit <code>81b88b8</code>，整理日期 2026-04-07。</p>
+                    </div>
+                </section>
+
+                <section id="loop" class="section-block">
+                    <h2>01 · 智能体主循环</h2>
+                    <p>从终端或管道读入用户消息 → 模型在可用工具集上推理 → 若需执行工具则宿主运行并把 <code>tool_result</code> 写回对话 → 直到模型不再发起 <code>tool_use</code> 或会话结束。消息顺序、并行工具与流中断恢复等细节见深挖页。</p>
+                    <ul>
+                        <li><a href="s01.html">S01 · Agent Loop</a>（主线概念）</li>
+                        <li><a href="d01.html">D01 · Agent Loop 深挖</a>（状态机、边界）</li>
+                        <li><a href="oh01.html">OH01</a>（OpenHarness 对照实现）</li>
+                    </ul>
+                    <p class="section-desc" style="margin-top: 0.75rem;">交互式逐步演示可参考 <a href="https://ccunpacked.dev/" target="_blank" rel="noopener noreferrer">ccunpacked.dev</a> 的 01 区块；本站以讲义与源码走读为主。</p>
+                </section>
+
+                <section id="architecture" class="section-block">
+                    <h2>02 · 架构导览（目录心智模型）</h2>
+                    <p>阅读 <code>ccsource/claude-code-main</code> 时可按职能分区，不必从根目录线性扫文件。下列与常见顶层目录对应关系为<strong>教学用归纳</strong>，实际以当前 tree 为准。</p>
+                    <table class="options-table">
+                        <tr><th>分区</th><th>典型内容</th><th>本站延伸</th></tr>
+                        <tr><td>工具与命令</td><td><code>tools/</code>、<code>commands/</code></td><td><a href="s02.html">S02</a>、<a href="s04.html">S04</a></td></tr>
+                        <tr><td>核心处理</td><td>查询引擎、会话、压缩等服务</td><td><a href="s01.html">S01</a>、<a href="s05.html">S05</a></td></tr>
+                        <tr><td>UI 层</td><td>Ink 组件、REPL 界面</td><td>手册与 <a href="s11.html">S11 Vim</a></td></tr>
+                        <tr><td>桥接与集成</td><td><code>bridge/</code>、IDE 相关</td><td><a href="s09.html">S09</a></td></tr>
+                        <tr><td>基础设施</td><td><code>utils/</code>、常量、Hooks</td><td><a href="s10.html">S10</a>、<a href="handbook.html">手册</a></td></tr>
+                    </table>
+                    <p style="margin-top: 1rem;"><a href="topic-sourcemap.html" class="btn btn-secondary">Source Map 源码专题 →</a>
+                        &nbsp;<a href="topic-source-derived.html" class="btn btn-secondary">源码反推思想 →</a></p>
+                </section>
+
+                <section id="tools" class="section-block">
+                    <h2>03 · 工具系统（分组地图）</h2>
+                    <p>内置工具可按<strong>职能</strong>分组理解；下列为<strong>代表名称</strong>，完整清单请在源码 <code>tools/</code> 内检索或在运行时使用官方文档。</p>
+                    <table class="options-table">
+                        <tr><th>分组</th><th>代表工具</th><th>讲义</th></tr>
+                        <tr><td>文件</td><td>Read、Edit、Write、Glob、Grep、NotebookEdit</td><td><a href="s02.html">S02</a> · <a href="d02.html">D02</a></td></tr>
+                        <tr><td>执行</td><td>Bash、PowerShell、REPL</td><td><a href="s02.html">S02</a></td></tr>
+                        <tr><td>检索与网页</td><td>WebSearch、WebFetch、ToolSearch 等</td><td><a href="s02.html">S02</a></td></tr>
+                        <tr><td>Agent / 任务</td><td>Agent、TaskCreate、TaskGet、TaskList…</td><td><a href="s06.html">S06</a> · <a href="s08.html">S08</a></td></tr>
+                        <tr><td>规划与工作树</td><td>EnterPlanMode、EnterWorktree、VerifyPlanExecution 等</td><td><a href="s06.html">S06</a></td></tr>
+                        <tr><td>MCP</td><td>mcpList、McpResources、McpAuth…</td><td><a href="s07.html">S07</a> · <a href="d07.html">D07</a></td></tr>
+                    </table>
+                </section>
+
+                <section id="commands" class="section-block">
+                    <h2>04 · 斜杠命令目录</h2>
+                    <p>以 <code>/</code> 开头的命令用于配置、会话管理、Git、诊断与实验能力。下表为<strong>场景分组 + 示例</strong>，与 <a href="https://ccunpacked.dev/" target="_blank" rel="noopener noreferrer">ccunpacked.dev</a> 的目录思路一致，条目以当前版本为准。</p>
+                    <table class="options-table">
+                        <tr><th>场景</th><th>示例（节选）</th><th>讲义</th></tr>
+                        <tr><td>初始化与配置</td><td><code>/init</code>、<code>/config</code>、<code>/mcp</code>、<code>/hooks</code></td><td><a href="s04.html">S04</a></td></tr>
+                        <tr><td>日常工作流</td><td><code>/compact</code>、<code>/memory</code>、<code>/resume</code>、<code>/vim</code></td><td><a href="s04.html">S04</a> · <a href="s05.html">S05</a></td></tr>
+                        <tr><td>代码审查与 Git</td><td><code>/review</code>、<code>/commit</code>、<code>/diff</code></td><td><a href="s04.html">S04</a> · <a href="s12.html">S12</a></td></tr>
+                        <tr><td>诊断</td><td><code>/cost</code>、<code>/usage</code>、<code>/doctor</code>、<code>/release-notes</code></td><td><a href="s04.html">S04</a> · <a href="topic-cc-release-watch.html">发版监督</a></td></tr>
+                        <tr><td>实验性</td><td>各版本可能增减；见官方 changelog</td><td><a href="d04.html">D04 深挖</a></td></tr>
+                    </table>
+                </section>
+
+                <section id="experimental" class="section-block">
+                    <h2>05 · 实验与「代码中存在」的特性</h2>
+                    <p>仓库内可能出现<strong>特性开关、环境变量门槛或未默认开启</strong>的能力（社区站点常概括为 Buddy、Kairos、UltraPlan、Coordinator、远程 Bridge、Daemon、会话间通信等）。<strong>是否在你安装的版本中可用，以官方发布说明为准</strong>；此处仅帮助读源码时「知道该搜什么关键词」。</p>
+                    <ul>
+                        <li>阅读时配合 <a href="topic-cc-release-watch.html">发版监督</a> 与官方 <code>CHANGELOG</code>，避免把实验实现当成稳定契约。</li>
+                        <li>权限与安全边界见 <a href="s03.html">S03</a>、<a href="d03.html">D03</a>；Hooks 见 <a href="s10.html">S10</a>、<a href="d10.html">D10</a>。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>延伸阅读</h2>
+                    <p>
+                        <a href="https://ccunpacked.dev/" target="_blank" rel="noopener noreferrer">Claude Code Unpacked</a>
+                        &nbsp;·&nbsp;
+                        <a href="https://deepwiki.com/zackautocracy/claude-code" target="_blank" rel="noopener noreferrer">DeepWiki（英文）</a>
+                        &nbsp;·&nbsp;
+                        <a href="https://github.com/Harzva/learn-likecc/blob/main/awesome-claude-code-source.md" target="_blank" rel="noopener noreferrer">本站 Awesome 源码汇总（GitHub MD）</a>
+                    </p>
+                </section>
+
+                <div class="chapter-navigation">
+                    <a href="topic-sourcemap.html" class="btn btn-secondary">← Source Map 专题</a>
+                    <a href="s01.html" class="btn btn-primary">进入 S01 主线 →</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-cc-unpacked-zh.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -25,10 +25,10 @@
 
 ## 任务清单 — 完成后 `[x]`
 
-- [ ] `site/<stem>.html` 存在且五区块完整、中文、链接可点
-- [ ] ccunpacked **参考致谢** + **源码版本锚定** 已写
-- [ ] `index.html` 已加入口（及侧栏若适用）
-- [ ] **回写打钩**：本文件 + [v2.5.2_plan.md 第七节](../v2.5.2_plan.md)
+- [x] `site/<stem>.html` 存在且五区块完整、中文、链接可点（`stem` = `topic-cc-unpacked-zh`）
+- [x] ccunpacked **参考致谢** + **源码版本锚定** 已写
+- [x] `index.html` 已加入口（及侧栏 `app.js`、专题 `topic-sourcemap` 卡片与页尾扩展链接）
+- [x] **回写打钩**：本文件 + [v2.5.2_plan.md 第七节](../v2.5.2_plan.md)
 
 ---
 
