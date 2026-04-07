@@ -6,7 +6,7 @@
     <title>Show me your usage - Cursor 订阅与用量自证 - Claude Code Course</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
-    <meta name="description" content="Show me your usage：公开 Cursor Pro 订阅与用量截图，维护者透明自证；与 Anthropic 无关。">
+    <meta name="description" content="Show me your usage：公开 Cursor Pro 订阅与用量截图，并附七牛云等 API 渠道用量自证；与 Anthropic 无关。">
 </head>
 <body>
     <nav class="navbar">
@@ -19,6 +19,7 @@
                 <a href="#intro" class="nav-link">说明</a>
                 <a href="#subscription" class="nav-link">订阅</a>
                 <a href="#usage" class="nav-link">用量</a>
+                <a href="#qiniu" class="nav-link">七牛云</a>
                 <a href="#disclaimer" class="nav-link">声明</a>
             </div>
             <div class="nav-actions">
@@ -61,11 +62,21 @@
                     </figure>
                 </section>
 
+                <section id="qiniu" class="section-block">
+                    <h2>七牛云：模型推理 Token 用量</h2>
+                    <p>除编辑器侧 Cursor 用量外，本站维护者在通过 <strong>七牛云</strong> 使用模型推理时，也会在控制台看到累计输入/输出 Token、按日曲线等统计。下图为控制台节选（模型、时间范围以界面为准），用于说明 <strong>API / 云厂商侧同样留有可对账的用量痕迹</strong>。</p>
+                    <p>七牛云官网：<a href="https://www.qiniu.com/" target="_blank" rel="noopener noreferrer">https://www.qiniu.com/</a></p>
+                    <figure class="devlog-figure">
+                        <img src="images/show-your-usage/qiniu-ai-token-usage.png" alt="七牛云控制台：AI 模型 Token 用量统计（累计输入输出与按日曲线）" width="1024" loading="lazy">
+                        <figcaption>图 3：<strong>七牛云</strong> 用量面板节选（维护者本人截图；数据仅供参考，以财务结算为准）。</figcaption>
+                    </figure>
+                </section>
+
                 <section id="disclaimer" class="section-block">
                     <h2>隐私与合规说明</h2>
                     <ul>
                         <li>截图已避免展示邮箱、订单号、完整支付信息等敏感字段；若界面改版导致信息外露，将及时撤换图片。</li>
-                        <li>本仓库主题仍是 Claude Code 学习；Cursor 仅作为常用编辑器之一出现在本专栏。</li>
+                        <li>本仓库主题仍是 Claude Code 学习；Cursor、七牛云等仅作为<strong>用量自证所涉产品</strong>出现在本专栏，不构成对其的商业背书。</li>
                         <li>欢迎在自己的项目里发起同类 Show me your usage 专栏，形成透明与互信习惯。</li>
                     </ul>
                 </section>
