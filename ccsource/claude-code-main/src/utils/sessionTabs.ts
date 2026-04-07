@@ -33,6 +33,8 @@ export type SessionTabState = {
   isHelpOpen?: boolean
   isMessageSelectorVisible?: boolean
   messageSelectorPreselectUuid?: string
+  submitCount?: number
+  conversationId?: string
   todoSnapshotId?: string
   model?: string
   provider?: string
@@ -80,6 +82,8 @@ export type SessionTabsMetadata = {
     isHelpOpen?: boolean
     isMessageSelectorVisible?: boolean
     messageSelectorPreselectUuid?: string
+    submitCount?: number
+    conversationId?: string
     model?: string
     provider?: string
     repoLabel?: string
@@ -104,6 +108,8 @@ export function createSessionTab(
     kind: 'main',
     transcriptId,
     todoSnapshotId: partial.todoSnapshotId ?? getSessionTabTodoLaneId(partial.id),
+    conversationId: partial.conversationId ?? transcriptId,
+    submitCount: partial.submitCount ?? 0,
     status: 'idle',
     createdAt: now,
     updatedAt: now,
@@ -120,6 +126,8 @@ export function createDefaultSessionTabsState(
     kind: 'main',
     transcriptId: DEFAULT_MAIN_TAB_ID,
     model: model ?? undefined,
+    conversationId: DEFAULT_MAIN_TAB_ID,
+    submitCount: 0,
   })
 
   return {
@@ -169,6 +177,8 @@ export function toSessionTabsMetadata(
         isHelpOpen: tab.isHelpOpen,
         isMessageSelectorVisible: tab.isMessageSelectorVisible,
         messageSelectorPreselectUuid: tab.messageSelectorPreselectUuid,
+        submitCount: tab.submitCount,
+        conversationId: tab.conversationId,
         model: tab.model,
         provider: tab.provider,
         repoLabel: tab.repoLabel,
@@ -205,6 +215,8 @@ export function fromSessionTabsMetadata(
         isHelpOpen: tab.isHelpOpen,
         isMessageSelectorVisible: tab.isMessageSelectorVisible,
         messageSelectorPreselectUuid: tab.messageSelectorPreselectUuid,
+        submitCount: tab.submitCount,
+        conversationId: tab.conversationId,
         model: tab.model,
         provider: tab.provider,
         repoLabel: tab.repoLabel,
@@ -336,6 +348,8 @@ export function updateSessionTab(
     nextTab.isMessageSelectorVisible === existing.isMessageSelectorVisible &&
     nextTab.messageSelectorPreselectUuid ===
       existing.messageSelectorPreselectUuid &&
+    nextTab.submitCount === existing.submitCount &&
+    nextTab.conversationId === existing.conversationId &&
     nextTab.todoSnapshotId === existing.todoSnapshotId &&
     nextTab.model === existing.model &&
     nextTab.provider === existing.provider &&

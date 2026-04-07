@@ -1419,6 +1419,8 @@ export function REPL({
   const [isMessageSelectorVisible, setIsMessageSelectorVisible] = useState(false);
   const [messageSelectorPreselect, setMessageSelectorPreselect] = useState<UserMessage | undefined>(undefined);
   const [isHelpOpen, setIsHelpOpen] = useState(false);
+  const [submitCount, setSubmitCount] = useState(0);
+  const [conversationId, setConversationId] = useState(randomUUID());
   const insertTextRef = useRef<{
     insert: (text: string) => void;
     setInputWithCursor: (value: string, cursor: number) => void;
@@ -1491,6 +1493,12 @@ export function REPL({
       setIsMessageSelectorVisible(
         currentActiveTab.isMessageSelectorVisible ?? false,
       );
+      setSubmitCount(currentActiveTab.submitCount ?? 0);
+      setConversationId(
+        currentActiveTab.conversationId ??
+          currentActiveTab.transcriptId ??
+          activeTabId,
+      );
       setMessageSelectorPreselect(
         currentActiveTab.messageSelectorPreselectUuid
           ? messagesRef.current.find(
@@ -1529,6 +1537,8 @@ export function REPL({
           isHelpOpen,
           isMessageSelectorVisible,
           messageSelectorPreselectUuid: messageSelectorPreselect?.uuid,
+          submitCount,
+          conversationId,
         });
       }
       const incomingTab = tabs.tabs[activeTabId];
@@ -1556,6 +1566,12 @@ export function REPL({
     setIsMessageSelectorVisible(
       currentActiveTab.isMessageSelectorVisible ?? false,
     );
+    setSubmitCount(currentActiveTab.submitCount ?? 0);
+    setConversationId(
+      currentActiveTab.conversationId ??
+        currentActiveTab.transcriptId ??
+        activeTabId,
+    );
     setMessageSelectorPreselect(
       currentActiveTab.messageSelectorPreselectUuid
         ? incomingMessages.find(
@@ -1568,7 +1584,7 @@ export function REPL({
     if ((currentActiveTab.draftInput ?? '') !== inputValueRef.current) {
       setInputValue(currentActiveTab.draftInput ?? '');
     }
-  }, [sessionTabs, setAppState, setMessages, setInputValue, inputMode, pastedContents, stashedPrompt, vimMode, isSearchingHistory, showBashesDialog, isHelpOpen, isMessageSelectorVisible, messageSelectorPreselect]);
+  }, [sessionTabs, setAppState, setMessages, setInputValue, inputMode, pastedContents, stashedPrompt, vimMode, isSearchingHistory, showBashesDialog, isHelpOpen, isMessageSelectorVisible, messageSelectorPreselect, submitCount, conversationId]);
   useEffect(() => {
     const currentActiveTab = getActiveSessionTab(sessionTabs);
     if (!currentActiveTab) return;
@@ -1823,6 +1839,60 @@ export function REPL({
 
     return () => clearTimeout(timer);
   }, [messageSelectorPreselect, sessionTabs, setAppState]);
+  useEffect(() => {
+    const currentActiveTab = getActiveSessionTab(sessionTabs);
+    if (!currentActiveTab) return;
+    if ((currentActiveTab.submitCount ?? 0) === submitCount) return;
+
+    const timer = setTimeout(() => {
+      setAppState(prev => {
+        const tabs = normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel);
+        const activeTab = getActiveSessionTab(tabs);
+        if (!activeTab || (activeTab.submitCount ?? 0) === submitCount) {
+          return prev;
+        }
+        return {
+          ...prev,
+          sessionTabs: updateSessionTab(tabs, activeTab.id, {
+            submitCount,
+          }),
+        };
+      });
+    }, 120);
+
+    return () => clearTimeout(timer);
+  }, [submitCount, sessionTabs, setAppState]);
+  useEffect(() => {
+    const currentActiveTab = getActiveSessionTab(sessionTabs);
+    if (!currentActiveTab) return;
+    const currentConversationId =
+      currentActiveTab.conversationId ??
+      currentActiveTab.transcriptId ??
+      currentActiveTab.id;
+    if (currentConversationId === conversationId) return;
+
+    const timer = setTimeout(() => {
+      setAppState(prev => {
+        const tabs = normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel);
+        const activeTab = getActiveSessionTab(tabs);
+        const activeConversationId =
+          activeTab?.conversationId ??
+          activeTab?.transcriptId ??
+          activeTab?.id;
+        if (!activeTab || activeConversationId === conversationId) {
+          return prev;
+        }
+        return {
+          ...prev,
+          sessionTabs: updateSessionTab(tabs, activeTab.id, {
+            conversationId,
+          }),
+        };
+      });
+    }, 120);
+
+    return () => clearTimeout(timer);
+  }, [conversationId, sessionTabs, setAppState]);
 
   // Schedule a timeout to stop suppressing dialogs after the user stops typing.
   // Only manages the timeout — the immediate activation is handled by setInputValue above.
@@ -1875,7 +1945,6 @@ export function REPL({
 
   // Use whichever remote mode is active
   const activeRemote = sshRemote.isRemoteMode ? sshRemote : directConnect.isRemoteMode ? directConnect : remoteSession;
-  const [submitCount, setSubmitCount] = useState(0);
   // Ref instead of state to avoid triggering React re-renders on every
   // streaming text_delta. The spinner reads this via its animation timer.
   const responseLengthRef = useRef(0);
@@ -1930,7 +1999,6 @@ export function REPL({
   const [spinnerColor, setSpinnerColor] = useState<keyof Theme | null>(null);
   const [spinnerShimmerColor, setSpinnerShimmerColor] = useState<keyof Theme | null>(null);
   const [showCostDialog, setShowCostDialog] = useState(false);
-  const [conversationId, setConversationId] = useState(randomUUID());
 
   // Idle-return dialog: shown when user submits after a long idle gap
   const [idleReturnPending, setIdleReturnPending] = useState<{

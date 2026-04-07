@@ -225,6 +225,35 @@ function summarizeUnknown(value: unknown): string | undefined {
 }
 
 function summarizeMessage(message: Message): string | undefined {
+  if (message.type === 'progress') {
+    const progressData =
+      message && typeof message === 'object' && 'data' in message
+        ? (message as Record<string, unknown>).data
+        : undefined
+    return (
+      summarizeUnknown(
+        progressData && typeof progressData === 'object'
+          ? (progressData as Record<string, unknown>).message
+          : undefined,
+      ) ??
+      summarizeUnknown(
+        progressData && typeof progressData === 'object'
+          ? (progressData as Record<string, unknown>).output
+          : undefined,
+      ) ??
+      summarizeUnknown(
+        progressData && typeof progressData === 'object'
+          ? (progressData as Record<string, unknown>).stdout
+          : undefined,
+      ) ??
+      getStringValue(
+        progressData && typeof progressData === 'object'
+          ? (progressData as Record<string, unknown>).type
+          : undefined,
+      )
+    )
+  }
+
   const directContent = getStringValue(message.content)
   if (directContent) return directContent
 
@@ -294,8 +323,14 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
     const createdAt = getMessageCreatedAt(message, index)
     const role = getMessageRole(message)
     const summary = summarizeMessage(message)
+    const parentToolUseId =
+      typeof (message as Record<string, unknown>).parentToolUseID === 'string'
+        ? ((message as Record<string, unknown>).parentToolUseID as string)
+        : undefined
     const stage: WorkspaceWorkflowStage['stage'] =
-      role === 'user'
+      message.type === 'progress' && parentToolUseId
+        ? 'tool'
+        : role === 'user'
         ? 'prompt'
         : role === 'assistant'
           ? 'response'
@@ -346,6 +381,7 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
       title: `${role} turn`,
       summary,
       role,
+      toolUseId: parentToolUseId,
       turnId: activeTurnId,
       stage,
     })
@@ -356,7 +392,39 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
       stage,
       title: `${role} turn`,
       summary,
+      toolUseId: parentToolUseId,
     })
+    if (message.type === 'progress' && parentToolUseId) {
+      const existingPair = toolPairs.get(parentToolUseId)
+      if (!existingPair) {
+        toolPairs.set(parentToolUseId, {
+          id: parentToolUseId,
+          paneId,
+          turnId: activeTurnId,
+          toolUseId: parentToolUseId,
+          toolName: undefined,
+          inputSummary: undefined,
+          outputSummary: summary,
+          startedAt: createdAt,
+          completedAt: undefined,
+        })
+      } else if (!existingPair.outputSummary && summary) {
+        toolPairs.set(parentToolUseId, {
+          ...existingPair,
+          outputSummary: summary,
+        })
+      }
+
+      cards.push({
+        id: `${message.uuid}-progress-tool`,
+        kind: 'progress',
+        title: 'tool progress',
+        summary,
+        role,
+        toolUseId: parentToolUseId,
+        createdAt,
+      })
+    }
 
     const content = Array.isArray(message.message?.content)
       ? message.message?.content

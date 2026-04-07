@@ -57,12 +57,16 @@
   - 现在首页不只是接口里有 `toolPairs`，而是已经直接有 `Tool Pairs` 展示区，可以看每个工具调用的输入、输出、所属 turn 和 toolUseId
 - ✅ **toolChains 已开始支撑跨 turn 回放**
   - 当前 `pane transcript` 已继续补出 `toolChains`，并给 `toolPairs` 增加 `chainId / step / previous / next`，Web 侧现在能更清楚地看到“同一条工具链跨多条 message 是怎么串起来的”
+- ✅ **tool progress 也开始接入工作流链**
+  - 当前 `progress` 消息也会开始挂到对应的 `toolUseId` 上，所以真实工具执行时，就算还没等到最终 `tool_result`，Web 侧也能先看到中间过程
 - ✅ **启动头的 Like Code 已统一成蓝色**
   - 蓝色爱心、蓝色 `Like` 和蓝色 `code` 已统一成一套更一致的品牌头图
 - ✅ **pane 输入开关继续往窗口内收拢**
   - 当前 pane 除了 `inputMode / pastedContents / stashedPrompt`，还会继续保存和恢复 `vimMode / history search / bashes dialog / help / message selector` 这些输入相关开关，减少不同 pane 共用一份 REPL 输入状态
 - ✅ **message selector 的预选消息也开始跟随 pane**
   - 当前 pane 会继续记录“准备恢复哪一条用户消息”，这样切 pane 之后再回来，不会把 message selector 的预选目标串到别的窗口里
+- ✅ **pane 的对话节奏也开始独立**
+  - 当前 pane 会继续保存和恢复自己的 `conversationId / submitCount`，切 pane 时不再总共用同一份对话键空间与提交计数，更接近真正独立的多窗口会话
 
 ### 下一批最重要的真实需求
 
@@ -367,8 +371,10 @@ Claude Code 很强，但真实使用里一直有一个明显痛点：
 - [x] 把 pane 的 `inputMode / pastedContents / stashedPrompt` 开始纳入 pane 状态隔离
 - [x] 给 workflow 观察台补第一版 `turn replay / toolPairs`
 - [x] 继续给 workflow 观察台补 `toolChains / chainId / step / previous / next`
+- [x] 让 `progress` 消息也开始挂到对应的 tool 链上
 - [x] 继续把 `help / message selector` 这类输入相关开关往 pane 内部迁
 - [x] 让 `message selector` 的预选消息也跟随 pane 保存和恢复
+- [x] 让 pane 的 `conversationId / submitCount` 也开始跟随窗口保存和恢复
 - [ ] 继续把更长链路的 workflow 回放补全，例如跨 turn 的阶段拼接和 pane 级历史回放
 - [ ] 团队里每个人可配置自己的默认 provider / 默认模型 / 默认预算策略
 - [ ] 项目级规则决定“这个仓库优先稳定模型，那个仓库优先低成本模型”
