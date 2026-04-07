@@ -78,12 +78,16 @@ type WorkspaceToolPair = {
   id: string
   paneId: string
   turnId?: string
+  chainId?: string
+  chainIndex?: number
   toolName?: string
   toolUseId?: string
   inputSummary?: string
   outputSummary?: string
   startedAt: string
   completedAt?: string
+  previousPairId?: string
+  nextPairId?: string
 }
 
 type WorkspaceTurnReplay = {
@@ -95,6 +99,23 @@ type WorkspaceTurnReplay = {
   toolCount: number
   eventCount: number
   toolUseIds: string[]
+  previousTurnId?: string
+  nextTurnId?: string
+}
+
+type WorkspaceToolChain = {
+  id: string
+  toolName: string
+  pairIds: string[]
+  turnIds: string[]
+  turnSummaries: Array<{
+    turnId: string
+    promptSummary?: string
+    responseSummary?: string
+  }>
+  pairCount: number
+  startedAt: string
+  completedAt?: string
 }
 
 function getWorkspaceApiPort(): number {
@@ -457,8 +478,8 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
             summarizeUnknown(record.content) ??
             summarizeUnknown(record.result) ??
             summarizeUnknown(record.output)
+          const existingPair = toolUseId ? toolPairs.get(toolUseId) : undefined
           if (toolUseId) {
-            const existingPair = toolPairs.get(toolUseId)
             toolPairs.set(toolUseId, {
               id: toolUseId,
               paneId,
@@ -515,6 +536,75 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
     }
   })
 
+  const sortedTurns = turns.sort((a, b) =>
+    String(a.startedAt).localeCompare(String(b.startedAt)),
+  )
+  const turnsById = new Map(sortedTurns.map(turn => [turn.id, turn]))
+  for (let index = 0; index < sortedTurns.length; index += 1) {
+    const current = sortedTurns[index]
+    const previous = index > 0 ? sortedTurns[index - 1] : undefined
+    const next = index < sortedTurns.length - 1 ? sortedTurns[index + 1] : undefined
+    current.previousTurnId = previous?.id
+    current.nextTurnId = next?.id
+  }
+
+  const sortedToolPairs = Array.from(toolPairs.values()).sort((a, b) =>
+    String(a.startedAt).localeCompare(String(b.startedAt)),
+  )
+  const previousPairIdByToolName = new Map<string, string>()
+  const toolChains = new Map<string, WorkspaceToolChain>()
+  for (const pair of sortedToolPairs) {
+    const toolName = pair.toolName ?? 'unknown-tool'
+    const chainId = `chain-${toolName}`
+    pair.chainId = chainId
+    const previousPairId = previousPairIdByToolName.get(toolName)
+    if (previousPairId) {
+      pair.previousPairId = previousPairId
+      const previousPair = sortedToolPairs.find(item => item.id === previousPairId)
+      if (previousPair) {
+        previousPair.nextPairId = pair.id
+      }
+    }
+    previousPairIdByToolName.set(toolName, pair.id)
+
+    const existingChain = toolChains.get(chainId)
+    if (existingChain) {
+      existingChain.pairIds.push(pair.id)
+      if (pair.turnId && !existingChain.turnIds.includes(pair.turnId)) {
+        existingChain.turnIds.push(pair.turnId)
+        const turn = turnsById.get(pair.turnId)
+        existingChain.turnSummaries.push({
+          turnId: pair.turnId,
+          promptSummary: turn?.promptSummary,
+          responseSummary: turn?.responseSummary,
+        })
+      }
+      existingChain.pairCount += 1
+      existingChain.completedAt = pair.completedAt ?? existingChain.completedAt
+      pair.chainIndex = existingChain.pairCount
+    } else {
+      toolChains.set(chainId, {
+        id: chainId,
+        toolName,
+        pairIds: [pair.id],
+        turnIds: pair.turnId ? [pair.turnId] : [],
+        turnSummaries: pair.turnId
+          ? [
+              {
+                turnId: pair.turnId,
+                promptSummary: turnsById.get(pair.turnId)?.promptSummary,
+                responseSummary: turnsById.get(pair.turnId)?.responseSummary,
+              },
+            ]
+          : [],
+        pairCount: 1,
+        startedAt: pair.startedAt,
+        completedAt: pair.completedAt,
+      })
+      pair.chainIndex = 1
+    }
+  }
+
   return {
     messages: normalizedMessages,
     cards,
@@ -522,10 +612,11 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
       String(a.createdAt).localeCompare(String(b.createdAt)),
     ),
     stages: stages.sort((a, b) => String(a.createdAt).localeCompare(String(b.createdAt))),
-    toolPairs: Array.from(toolPairs.values()).sort((a, b) =>
-      String(a.startedAt).localeCompare(String(b.startedAt)),
+    toolPairs: sortedToolPairs,
+    turns: sortedTurns,
+    toolChains: Array.from(toolChains.values()).sort((a, b) =>
+      a.toolName.localeCompare(b.toolName),
     ),
-    turns,
   }
 }
 
@@ -616,6 +707,7 @@ function buildTranscriptPayload(state: AppState, paneId: string) {
     stages: artifacts.stages,
     toolPairs: artifacts.toolPairs,
     turns: artifacts.turns,
+    toolChains: artifacts.toolChains,
   }
 }
 
@@ -843,6 +935,13 @@ function renderWorkspaceHtmlShell(state: AppState): string {
         overflow: auto;
         margin-bottom: 14px;
       }
+      .toolchains {
+        display: grid;
+        gap: 10px;
+        max-height: 18vh;
+        overflow: auto;
+        margin-bottom: 14px;
+      }
       .message {
         border-left: 3px solid var(--line);
         padding: 10px 12px;
@@ -918,6 +1017,8 @@ function renderWorkspaceHtmlShell(state: AppState): string {
           <div id="transcript-meta" class="small muted"></div>
           <h2 style="margin-top:16px;">Turn Replay</h2>
           <div id="turns" class="turns"></div>
+          <h2 style="margin-top:16px;">Tool Chains</h2>
+          <div id="toolchains" class="toolchains"></div>
           <h2 style="margin-top:16px;">Tool Pairs</h2>
           <div id="toolpairs" class="toolpairs"></div>
           <h2 style="margin-top:16px;">Stages</h2>
@@ -982,6 +1083,7 @@ function renderWorkspaceHtmlShell(state: AppState): string {
       function renderTranscript(payload) {
         const meta = document.getElementById('transcript-meta');
         const turnsRoot = document.getElementById('turns');
+        const toolChainsRoot = document.getElementById('toolchains');
         const toolPairsRoot = document.getElementById('toolpairs');
         const stagesRoot = document.getElementById('stages');
         const cardsRoot = document.getElementById('cards');
@@ -1000,6 +1102,19 @@ function renderWorkspaceHtmlShell(state: AppState): string {
                 \${turn.responseSummary ? '<div class="small muted" style="margin-top:6px;">response: ' + escapeHtml(turn.responseSummary) + '</div>' : ''}
               </div>
             \`).join('');
+        toolChainsRoot.innerHTML = (payload.toolChains || []).length === 0
+          ? '<div class="muted">No tool chains extracted yet.</div>'
+          : payload.toolChains.map(chain => \`
+              <div class="cardflow tool_result">
+                <div class="row">
+                  <strong>\${escapeHtml(chain.toolName)}</strong>
+                  <span class="small muted">\${escapeHtml(chain.pairCount || 0)} pairs</span>
+                </div>
+                <div class="small muted">turns: \${escapeHtml((chain.turnIds || []).join(', ') || 'n/a')}</div>
+                <div class="small muted" style="margin-top:6px;">pairs: \${escapeHtml((chain.pairIds || []).join(', '))}</div>
+                \${(chain.turnSummaries || []).length > 0 ? '<div class="small muted" style="margin-top:6px;">replay: ' + escapeHtml(chain.turnSummaries.map(turn => turn.turnId + ': ' + (turn.promptSummary || '[prompt]')).join(' → ')) + '</div>' : ''}
+              </div>
+            \`).join('');
         toolPairsRoot.innerHTML = (payload.toolPairs || []).length === 0
           ? '<div class="muted">No tool pairs extracted yet.</div>'
           : payload.toolPairs.slice(-12).reverse().map(pair => \`
@@ -1009,6 +1124,9 @@ function renderWorkspaceHtmlShell(state: AppState): string {
                   <span class="small muted">\${escapeHtml(pair.startedAt || '')}</span>
                 </div>
                 <div class="small muted">turn: \${escapeHtml(pair.turnId || 'unbound')} · toolUseId: \${escapeHtml(pair.toolUseId || 'n/a')}</div>
+                \${pair.chainId ? '<div class="small muted" style="margin-top:6px;">chain: ' + escapeHtml(pair.chainId) + (pair.chainIndex ? ' · step ' + escapeHtml(pair.chainIndex) : '') + '</div>' : ''}
+                \${pair.previousPairId ? '<div class="small muted" style="margin-top:6px;">previous: ' + escapeHtml(pair.previousPairId) + '</div>' : ''}
+                \${pair.nextPairId ? '<div class="small muted" style="margin-top:6px;">next: ' + escapeHtml(pair.nextPairId) + '</div>' : ''}
                 \${pair.inputSummary ? '<div class="small muted" style="margin-top:6px;">input: ' + escapeHtml(pair.inputSummary) + '</div>' : ''}
                 \${pair.outputSummary ? '<div class="small muted" style="margin-top:6px;">output: ' + escapeHtml(pair.outputSummary) + '</div>' : ''}
                 \${pair.completedAt ? '<div class="small muted" style="margin-top:6px;">completed: ' + escapeHtml(pair.completedAt) + '</div>' : ''}

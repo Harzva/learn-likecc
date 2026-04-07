@@ -183,6 +183,8 @@ learn-likecc 现在已经不只是一个 Claude Code 源码学习仓库。
 - [x] 让 Web UI transcript 继续补出 `turns / toolPairs`，开始支撑更真实的 turn replay 与工具输入输出配对
 - [x] 让 Web UI 首页直接渲染 `Tool Pairs`，不再只停留在接口字段层
 - [x] 让启动头的 `Like Code` 统一成蓝色品牌头图
+- [x] 让 Web UI transcript 继续补出 `toolChains`，并给 `toolPairs` 增加 `chainId / step / previous / next`
+- [x] 继续把 `vimMode / history search / bashes dialog / help / message selector` 往 pane 内部迁，减少 REPL 全局输入残留
 - [ ] 继续把多个可见对话框升级成真正的多活跃输入与多 transcript 并行
 - [ ] 继续把 transcript / todo 做到真正隔离，而不只是先做 UI 层消息区与快照恢复
 - [ ] 继续把 subagent 面板升级为更完整的工作视图，展示仓库、目录、当前任务与更多 live 状态

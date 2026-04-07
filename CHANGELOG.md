@@ -39,6 +39,8 @@
 - pane 的 `inputMode / pastedContents / stashedPrompt` 已开始按窗口保存和恢复，继续降低不同 pane 之间共享同一份输入态的问题
 - Web UI transcript 已补出 `turns / toolPairs`，开始支持更清楚的 tool 输入输出配对与 turn replay
 - Web UI 首页已直接渲染 `Tool Pairs`，不再只在接口里暴露
+- Web UI transcript 已继续补出 `toolChains`，并给 `toolPairs` 增加 `chainId / step / previous / next`，开始更清楚地串起跨 turn 的同一条工具链
+- pane 现在会继续保存和恢复 `vimMode / history search / bashes dialog / help / message selector` 这些输入相关开关，进一步减少全局 REPL 输入残留
 - 启动头的蓝色爱心、蓝色 `Like` 与蓝色 `code` 已统一成一套品牌头图
 - 启动界面新增 Web 工作台网址，并把 logo 收成蓝色爱心 + 多行大字 `Like` + `code · Harzva restored · v2.1.88`
 - 本轮以文档与规划推进为主，暂不单独提升 release 版本号，避免出现“版本先发、功能未落地”的错位

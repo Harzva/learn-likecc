@@ -1,5 +1,5 @@
 import type { Message } from '../types/message.js'
-import type { PromptInputMode } from '../types/textInputTypes.js'
+import type { PromptInputMode, VimMode } from '../types/textInputTypes.js'
 import type { PastedContent } from './config.js'
 import type { TodoList } from './todo/types.js'
 
@@ -27,6 +27,11 @@ export type SessionTabState = {
     cursorOffset: number
     pastedContents: Record<number, PastedContent>
   }
+  vimMode?: VimMode
+  isSearchingHistory?: boolean
+  showBashesDialog?: string | boolean
+  isHelpOpen?: boolean
+  isMessageSelectorVisible?: boolean
   todoSnapshotId?: string
   model?: string
   provider?: string
@@ -68,6 +73,11 @@ export type SessionTabsMetadata = {
       cursorOffset: number
       pastedContents: Record<number, PastedContent>
     }
+    vimMode?: VimMode
+    isSearchingHistory?: boolean
+    showBashesDialog?: string | boolean
+    isHelpOpen?: boolean
+    isMessageSelectorVisible?: boolean
     model?: string
     provider?: string
     repoLabel?: string
@@ -151,6 +161,11 @@ export function toSessionTabsMetadata(
         inputMode: tab.inputMode,
         pastedContents: tab.pastedContents,
         stashedPrompt: tab.stashedPrompt,
+        vimMode: tab.vimMode,
+        isSearchingHistory: tab.isSearchingHistory,
+        showBashesDialog: tab.showBashesDialog,
+        isHelpOpen: tab.isHelpOpen,
+        isMessageSelectorVisible: tab.isMessageSelectorVisible,
         model: tab.model,
         provider: tab.provider,
         repoLabel: tab.repoLabel,
@@ -181,6 +196,11 @@ export function fromSessionTabsMetadata(
         inputMode: tab.inputMode,
         pastedContents: tab.pastedContents,
         stashedPrompt: tab.stashedPrompt,
+        vimMode: tab.vimMode,
+        isSearchingHistory: tab.isSearchingHistory,
+        showBashesDialog: tab.showBashesDialog,
+        isHelpOpen: tab.isHelpOpen,
+        isMessageSelectorVisible: tab.isMessageSelectorVisible,
         model: tab.model,
         provider: tab.provider,
         repoLabel: tab.repoLabel,
@@ -305,6 +325,11 @@ export function updateSessionTab(
       JSON.stringify(existing.pastedContents) &&
     JSON.stringify(nextTab.stashedPrompt) ===
       JSON.stringify(existing.stashedPrompt) &&
+    nextTab.vimMode === existing.vimMode &&
+    nextTab.isSearchingHistory === existing.isSearchingHistory &&
+    nextTab.showBashesDialog === existing.showBashesDialog &&
+    nextTab.isHelpOpen === existing.isHelpOpen &&
+    nextTab.isMessageSelectorVisible === existing.isMessageSelectorVisible &&
     nextTab.todoSnapshotId === existing.todoSnapshotId &&
     nextTab.model === existing.model &&
     nextTab.provider === existing.provider &&

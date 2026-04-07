@@ -55,8 +55,12 @@
   - `pane transcript` 现在还会输出 `turns / toolPairs`，开始补“这一轮 prompt 触发了哪些工具、最后回到了什么 response”这类跨阶段回放线索
 - ✅ **toolPairs 已经直接进 Web UI**
   - 现在首页不只是接口里有 `toolPairs`，而是已经直接有 `Tool Pairs` 展示区，可以看每个工具调用的输入、输出、所属 turn 和 toolUseId
+- ✅ **toolChains 已开始支撑跨 turn 回放**
+  - 当前 `pane transcript` 已继续补出 `toolChains`，并给 `toolPairs` 增加 `chainId / step / previous / next`，Web 侧现在能更清楚地看到“同一条工具链跨多条 message 是怎么串起来的”
 - ✅ **启动头的 Like Code 已统一成蓝色**
   - 蓝色爱心、蓝色 `Like` 和蓝色 `code` 已统一成一套更一致的品牌头图
+- ✅ **pane 输入开关继续往窗口内收拢**
+  - 当前 pane 除了 `inputMode / pastedContents / stashedPrompt`，还会继续保存和恢复 `vimMode / history search / bashes dialog / help / message selector` 这些输入相关开关，减少不同 pane 共用一份 REPL 输入状态
 
 ### 下一批最重要的真实需求
 
@@ -360,6 +364,8 @@ Claude Code 很强，但真实使用里一直有一个明显痛点：
 - [x] 把工具输入输出、阶段节点和 `toolUseId` 开始纳入 workflow 观察台
 - [x] 把 pane 的 `inputMode / pastedContents / stashedPrompt` 开始纳入 pane 状态隔离
 - [x] 给 workflow 观察台补第一版 `turn replay / toolPairs`
+- [x] 继续给 workflow 观察台补 `toolChains / chainId / step / previous / next`
+- [x] 继续把 `help / message selector` 这类输入相关开关往 pane 内部迁
 - [ ] 继续把更长链路的 workflow 回放补全，例如跨 turn 的阶段拼接和 pane 级历史回放
 - [ ] 团队里每个人可配置自己的默认 provider / 默认模型 / 默认预算策略
 - [ ] 项目级规则决定“这个仓库优先稳定模型，那个仓库优先低成本模型”

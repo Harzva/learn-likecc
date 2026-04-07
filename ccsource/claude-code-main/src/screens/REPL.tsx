@@ -1413,6 +1413,11 @@ export function REPL({
     pastedContents: Record<number, PastedContent>;
   } | undefined>();
   const [pastedContents, setPastedContents] = useState<Record<number, PastedContent>>({});
+  const [vimMode, setVimMode] = useState<VimMode>('INSERT');
+  const [showBashesDialog, setShowBashesDialog] = useState<string | boolean>(false);
+  const [isSearchingHistory, setIsSearchingHistory] = useState(false);
+  const [isMessageSelectorVisible, setIsMessageSelectorVisible] = useState(false);
+  const [isHelpOpen, setIsHelpOpen] = useState(false);
   const insertTextRef = useRef<{
     insert: (text: string) => void;
     setInputWithCursor: (value: string, cursor: number) => void;
@@ -1478,6 +1483,13 @@ export function REPL({
           ? structuredClone(currentActiveTab.stashedPrompt)
           : undefined,
       );
+      setVimMode(currentActiveTab.vimMode ?? 'INSERT');
+      setIsSearchingHistory(currentActiveTab.isSearchingHistory ?? false);
+      setShowBashesDialog(currentActiveTab.showBashesDialog ?? false);
+      setIsHelpOpen(currentActiveTab.isHelpOpen ?? false);
+      setIsMessageSelectorVisible(
+        currentActiveTab.isMessageSelectorVisible ?? false,
+      );
       if ((currentActiveTab.draftInput ?? '') !== inputValueRef.current) {
         setInputValue(currentActiveTab.draftInput ?? '');
       }
@@ -1501,6 +1513,11 @@ export function REPL({
           inputMode,
           pastedContents: structuredClone(pastedContents),
           stashedPrompt: stashedPrompt ? structuredClone(stashedPrompt) : undefined,
+          vimMode,
+          isSearchingHistory,
+          showBashesDialog,
+          isHelpOpen,
+          isMessageSelectorVisible,
         });
       }
       const incomingTab = tabs.tabs[activeTabId];
@@ -1521,10 +1538,17 @@ export function REPL({
         ? structuredClone(currentActiveTab.stashedPrompt)
         : undefined,
     );
+    setVimMode(currentActiveTab.vimMode ?? 'INSERT');
+    setIsSearchingHistory(currentActiveTab.isSearchingHistory ?? false);
+    setShowBashesDialog(currentActiveTab.showBashesDialog ?? false);
+    setIsHelpOpen(currentActiveTab.isHelpOpen ?? false);
+    setIsMessageSelectorVisible(
+      currentActiveTab.isMessageSelectorVisible ?? false,
+    );
     if ((currentActiveTab.draftInput ?? '') !== inputValueRef.current) {
       setInputValue(currentActiveTab.draftInput ?? '');
     }
-  }, [sessionTabs, setAppState, setMessages, setInputValue, inputMode, pastedContents, stashedPrompt]);
+  }, [sessionTabs, setAppState, setMessages, setInputValue, inputMode, pastedContents, stashedPrompt, vimMode, isSearchingHistory, showBashesDialog, isHelpOpen, isMessageSelectorVisible]);
   useEffect(() => {
     const currentActiveTab = getActiveSessionTab(sessionTabs);
     if (!currentActiveTab) return;
@@ -1623,6 +1647,130 @@ export function REPL({
 
     return () => clearTimeout(timer);
   }, [stashedPrompt, sessionTabs, setAppState]);
+  useEffect(() => {
+    const currentActiveTab = getActiveSessionTab(sessionTabs);
+    if (!currentActiveTab) return;
+    if ((currentActiveTab.vimMode ?? 'INSERT') === vimMode) return;
+
+    const timer = setTimeout(() => {
+      setAppState(prev => {
+        const tabs = normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel);
+        const activeTab = getActiveSessionTab(tabs);
+        if (!activeTab || (activeTab.vimMode ?? 'INSERT') === vimMode) {
+          return prev;
+        }
+        return {
+          ...prev,
+          sessionTabs: updateSessionTab(tabs, activeTab.id, {
+            vimMode,
+          }),
+        };
+      });
+    }, 120);
+
+    return () => clearTimeout(timer);
+  }, [vimMode, sessionTabs, setAppState]);
+  useEffect(() => {
+    const currentActiveTab = getActiveSessionTab(sessionTabs);
+    if (!currentActiveTab) return;
+    if ((currentActiveTab.isSearchingHistory ?? false) === isSearchingHistory) return;
+
+    const timer = setTimeout(() => {
+      setAppState(prev => {
+        const tabs = normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel);
+        const activeTab = getActiveSessionTab(tabs);
+        if (!activeTab || (activeTab.isSearchingHistory ?? false) === isSearchingHistory) {
+          return prev;
+        }
+        return {
+          ...prev,
+          sessionTabs: updateSessionTab(tabs, activeTab.id, {
+            isSearchingHistory,
+          }),
+        };
+      });
+    }, 120);
+
+    return () => clearTimeout(timer);
+  }, [isSearchingHistory, sessionTabs, setAppState]);
+  useEffect(() => {
+    const currentActiveTab = getActiveSessionTab(sessionTabs);
+    if (!currentActiveTab) return;
+    if ((currentActiveTab.showBashesDialog ?? false) === showBashesDialog) return;
+
+    const timer = setTimeout(() => {
+      setAppState(prev => {
+        const tabs = normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel);
+        const activeTab = getActiveSessionTab(tabs);
+        if (!activeTab || (activeTab.showBashesDialog ?? false) === showBashesDialog) {
+          return prev;
+        }
+        return {
+          ...prev,
+          sessionTabs: updateSessionTab(tabs, activeTab.id, {
+            showBashesDialog,
+          }),
+        };
+      });
+    }, 120);
+
+    return () => clearTimeout(timer);
+  }, [showBashesDialog, sessionTabs, setAppState]);
+  useEffect(() => {
+    const currentActiveTab = getActiveSessionTab(sessionTabs);
+    if (!currentActiveTab) return;
+    if ((currentActiveTab.isHelpOpen ?? false) === isHelpOpen) return;
+
+    const timer = setTimeout(() => {
+      setAppState(prev => {
+        const tabs = normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel);
+        const activeTab = getActiveSessionTab(tabs);
+        if (!activeTab || (activeTab.isHelpOpen ?? false) === isHelpOpen) {
+          return prev;
+        }
+        return {
+          ...prev,
+          sessionTabs: updateSessionTab(tabs, activeTab.id, {
+            isHelpOpen,
+          }),
+        };
+      });
+    }, 120);
+
+    return () => clearTimeout(timer);
+  }, [isHelpOpen, sessionTabs, setAppState]);
+  useEffect(() => {
+    const currentActiveTab = getActiveSessionTab(sessionTabs);
+    if (!currentActiveTab) return;
+    if (
+      (currentActiveTab.isMessageSelectorVisible ?? false) ===
+      isMessageSelectorVisible
+    ) {
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setAppState(prev => {
+        const tabs = normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel);
+        const activeTab = getActiveSessionTab(tabs);
+        if (
+          !activeTab ||
+          (activeTab.isMessageSelectorVisible ?? false) ===
+            isMessageSelectorVisible
+        ) {
+          return prev;
+        }
+        return {
+          ...prev,
+          sessionTabs: updateSessionTab(tabs, activeTab.id, {
+            isMessageSelectorVisible,
+          }),
+        };
+      });
+    }, 120);
+
+    return () => clearTimeout(timer);
+  }, [isMessageSelectorVisible, sessionTabs, setAppState]);
 
   // Schedule a timeout to stop suppressing dialogs after the user stops typing.
   // Only manages the timeout — the immediate activation is handled by setInputValue above.
@@ -1729,7 +1877,6 @@ export function REPL({
   const [spinnerMessage, setSpinnerMessage] = useState<string | null>(null);
   const [spinnerColor, setSpinnerColor] = useState<keyof Theme | null>(null);
   const [spinnerShimmerColor, setSpinnerShimmerColor] = useState<keyof Theme | null>(null);
-  const [isMessageSelectorVisible, setIsMessageSelectorVisible] = useState(false);
   const [messageSelectorPreselect, setMessageSelectorPreselect] = useState<UserMessage | undefined>(undefined);
   const [showCostDialog, setShowCostDialog] = useState(false);
   const [conversationId, setConversationId] = useState(randomUUID());
@@ -1758,11 +1905,6 @@ export function REPL({
     current: provisionContentReplacementState(initialMessages, initialContentReplacements)
   }));
   const [haveShownCostDialog, setHaveShownCostDialog] = useState(getGlobalConfig().hasAcknowledgedCostThreshold);
-  const [vimMode, setVimMode] = useState<VimMode>('INSERT');
-  const [showBashesDialog, setShowBashesDialog] = useState<string | boolean>(false);
-  const [isSearchingHistory, setIsSearchingHistory] = useState(false);
-  const [isHelpOpen, setIsHelpOpen] = useState(false);
-
   // showBashesDialog is REPL-level so it survives PromptInput unmounting.
   // When ultraplan approval fires while the pill dialog is open, PromptInput
   // unmounts (focusedInputDialog → 'ultraplan-choice') but this stays true;
