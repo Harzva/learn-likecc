@@ -10,6 +10,7 @@
    - 可运行的重建基线
    - 当前已恢复到 git commit `6a1afe3` (`v2.0.4: 程序可运行`)
    - 这个目录的职责是保留“已经重建完成，但还没叠加 Like Code 新功能”的基线
+   - 首次进入时仍需先执行 `bun install`，否则会出现 `Cannot find module 'lodash-es/...'` 这类缺依赖报错
 
 3. `ccsource/like-code-main`
    - 当前 Like Code 主开发线

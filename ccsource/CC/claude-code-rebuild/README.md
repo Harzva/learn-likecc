@@ -30,9 +30,22 @@ This repository contains the leaked `src/` directory.
 
 ---
 
+## Local Run Note
+
+If you restored this directory from git and try to run it locally, install dependencies first:
+
+```bash
+bun install
+bun run dev
+```
+
+Without `bun install`, Bun will fail on imports such as `lodash-es/sumBy.js`.
+
+---
+
 ## Directory Structure
 
-```
+```text
 src/
 ├── main.tsx                 # Entrypoint (Commander.js-based CLI parser)
 ├── commands.ts              # Command registry
