@@ -1381,3 +1381,12 @@ ANTHROPIC_API_KEY=your-api-key-here
 - **v2.5.0 校验**：`python3 tools/check_site_md_parity.py` 通过；Agent 4 已在总计划与 `agent-4-verify-and-summary.md` 打钩。
 - **GitHub Pages**：`site/**` 推送触发 [deploy workflow](../../.github/workflows/deploy.yml)；新增 [site-md-parity.yml](../../.github/workflows/site-md-parity.yml) 做 PR/推送校验。
 - **下一阶段**：[v2.5.1_plan.md](./v2.5.1_plan.md) + [v2.5.1/README.md](./v2.5.1/README.md)（四 Agent：CI/文档、14 hub MD、s01–s12、d01–d12+汇总）。
+
+---
+
+## v2.5.2 - CC 中文导览（ccunpacked 式）
+
+### 2026-04-07
+
+- 新增计划 **[v2.5.2_plan.md](./v2.5.2_plan.md)**：参考英文站 [ccunpacked.dev](https://ccunpacked.dev/) 的 IA，在本站以 **中文静态导览页** 落地（五区块：主循环、架构、工具、命令、实验特性），链回现有 S/D 与专题；含 **致谢、版本锚定、合规** 要求。
+- 新增 Agent 上下文目录 **[v2.5.2/README.md](./v2.5.2/README.md)**：`agent-1`（MVP 页 + 导航）、`agent-2`（JSON + 生成脚本）、`agent-3`（MD 镜像 + parity）。
