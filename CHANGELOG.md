@@ -48,6 +48,7 @@
 - transcript 的 `show all / dump mode` 也开始跟随 pane 保存和恢复，减少不同窗口之间的查看状态串线
 - transcript 搜索条的打开状态也开始跟随 pane 保存和恢复，减少切 pane 后搜索 UI 被统一重置
 - transcript 搜索词也开始跟随 pane 保存和恢复，减少不同窗口之间的阅读上下文串线
+- transcript 搜索的命中数量与当前位置也开始跟随 pane 保存和恢复，减少切 pane 后重新丢失阅读锚点
 - `toolChains.steps` 已开始明确拆成 `tool_use / progress / tool_result`，让 Web 侧回放更接近真实 coding 过程
 - 启动头的蓝色爱心、蓝色 `Like` 与蓝色 `code` 已统一成一套品牌头图
 - 启动界面新增 Web 工作台网址，并把 logo 收成蓝色爱心 + 多行大字 `Like` + `code · Harzva restored · v2.1.88`

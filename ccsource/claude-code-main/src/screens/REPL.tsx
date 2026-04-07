@@ -1511,8 +1511,8 @@ export function REPL({
       setShowAllInTranscript(currentActiveTab.showAllInTranscript ?? false);
       setDumpMode(currentActiveTab.transcriptDumpMode ?? false);
       setSearchQuery(currentActiveTab.transcriptSearchQuery ?? '');
-      setSearchCount(0);
-      setSearchCurrent(0);
+      setSearchCount(currentActiveTab.transcriptSearchCount ?? 0);
+      setSearchCurrent(currentActiveTab.transcriptSearchCurrent ?? 0);
       setSearchOpen(currentActiveTab.transcriptSearchOpen ?? false);
       setMessageSelectorPreselect(
         currentActiveTab.messageSelectorPreselectUuid
@@ -1558,6 +1558,8 @@ export function REPL({
           transcriptDumpMode: dumpMode,
           transcriptSearchOpen: searchOpen,
           transcriptSearchQuery: searchQuery,
+          transcriptSearchCount: searchCount,
+          transcriptSearchCurrent: searchCurrent,
         });
       }
       const incomingTab = tabs.tabs[activeTabId];
@@ -1594,8 +1596,8 @@ export function REPL({
     setShowAllInTranscript(currentActiveTab.showAllInTranscript ?? false);
     setDumpMode(currentActiveTab.transcriptDumpMode ?? false);
     setSearchQuery(currentActiveTab.transcriptSearchQuery ?? '');
-    setSearchCount(0);
-    setSearchCurrent(0);
+    setSearchCount(currentActiveTab.transcriptSearchCount ?? 0);
+    setSearchCurrent(currentActiveTab.transcriptSearchCurrent ?? 0);
     setSearchOpen(currentActiveTab.transcriptSearchOpen ?? false);
     setMessageSelectorPreselect(
       currentActiveTab.messageSelectorPreselectUuid
@@ -1609,7 +1611,7 @@ export function REPL({
     if ((currentActiveTab.draftInput ?? '') !== inputValueRef.current) {
       setInputValue(currentActiveTab.draftInput ?? '');
     }
-  }, [sessionTabs, setAppState, setMessages, setInputValue, inputMode, pastedContents, stashedPrompt, vimMode, isSearchingHistory, showBashesDialog, isHelpOpen, isMessageSelectorVisible, messageSelectorPreselect, submitCount, conversationId, showAllInTranscript, dumpMode, searchOpen, searchQuery]);
+  }, [sessionTabs, setAppState, setMessages, setInputValue, inputMode, pastedContents, stashedPrompt, vimMode, isSearchingHistory, showBashesDialog, isHelpOpen, isMessageSelectorVisible, messageSelectorPreselect, submitCount, conversationId, showAllInTranscript, dumpMode, searchOpen, searchQuery, searchCount, searchCurrent]);
   useEffect(() => {
     const currentActiveTab = getActiveSessionTab(sessionTabs);
     if (!currentActiveTab) return;
@@ -2030,6 +2032,62 @@ export function REPL({
 
     return () => clearTimeout(timer);
   }, [searchQuery, sessionTabs, setAppState]);
+  useEffect(() => {
+    const currentActiveTab = getActiveSessionTab(sessionTabs);
+    if (!currentActiveTab) return;
+    if ((currentActiveTab.transcriptSearchCount ?? 0) === searchCount) {
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setAppState(prev => {
+        const tabs = normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel);
+        const activeTab = getActiveSessionTab(tabs);
+        if (
+          !activeTab ||
+          (activeTab.transcriptSearchCount ?? 0) === searchCount
+        ) {
+          return prev;
+        }
+        return {
+          ...prev,
+          sessionTabs: updateSessionTab(tabs, activeTab.id, {
+            transcriptSearchCount: searchCount,
+          }),
+        };
+      });
+    }, 120);
+
+    return () => clearTimeout(timer);
+  }, [searchCount, sessionTabs, setAppState]);
+  useEffect(() => {
+    const currentActiveTab = getActiveSessionTab(sessionTabs);
+    if (!currentActiveTab) return;
+    if ((currentActiveTab.transcriptSearchCurrent ?? 0) === searchCurrent) {
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setAppState(prev => {
+        const tabs = normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel);
+        const activeTab = getActiveSessionTab(tabs);
+        if (
+          !activeTab ||
+          (activeTab.transcriptSearchCurrent ?? 0) === searchCurrent
+        ) {
+          return prev;
+        }
+        return {
+          ...prev,
+          sessionTabs: updateSessionTab(tabs, activeTab.id, {
+            transcriptSearchCurrent: searchCurrent,
+          }),
+        };
+      });
+    }, 120);
+
+    return () => clearTimeout(timer);
+  }, [searchCurrent, sessionTabs, setAppState]);
 
   // Schedule a timeout to stop suppressing dialogs after the user stops typing.
   // Only manages the timeout — the immediate activation is handled by setInputValue above.

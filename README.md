@@ -73,6 +73,8 @@
   - 当前 pane 会继续保存和恢复自己的 transcript 搜索词，切 pane 时不会再把一格里的搜索上下文串到另一格里
 - ✅ **transcript 搜索条打开状态也开始跟随 pane**
   - 当前 pane 正在 transcript 搜索时，切走再回来不会统一掉回关闭态，搜索条本身也会跟着 pane 恢复
+- ✅ **transcript 搜索命中位置也开始跟随 pane**
+  - 当前 pane 会继续保存和恢复 transcript 搜索的命中数量与当前位置，切 pane 回来时更接近保留原来的阅读锚点
 - ✅ **真实 tool progress 也开始提前进入 toolChains**
   - 当前 `progress` 消息会继续补足 `toolUseId / toolName / progress summary`，所以即使还没等到最终 `tool_result`，Web 侧也能更早看到某条工具链已经开始跑、正在跑什么
 - ✅ **toolChains.steps 已开始拆成真实过程节点**

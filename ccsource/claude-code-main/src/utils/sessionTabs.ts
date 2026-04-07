@@ -39,6 +39,8 @@ export type SessionTabState = {
   transcriptDumpMode?: boolean
   transcriptSearchOpen?: boolean
   transcriptSearchQuery?: string
+  transcriptSearchCount?: number
+  transcriptSearchCurrent?: number
   todoSnapshotId?: string
   model?: string
   provider?: string
@@ -92,6 +94,8 @@ export type SessionTabsMetadata = {
     transcriptDumpMode?: boolean
     transcriptSearchOpen?: boolean
     transcriptSearchQuery?: string
+    transcriptSearchCount?: number
+    transcriptSearchCurrent?: number
     model?: string
     provider?: string
     repoLabel?: string
@@ -191,6 +195,8 @@ export function toSessionTabsMetadata(
         transcriptDumpMode: tab.transcriptDumpMode,
         transcriptSearchOpen: tab.transcriptSearchOpen,
         transcriptSearchQuery: tab.transcriptSearchQuery,
+        transcriptSearchCount: tab.transcriptSearchCount,
+        transcriptSearchCurrent: tab.transcriptSearchCurrent,
         model: tab.model,
         provider: tab.provider,
         repoLabel: tab.repoLabel,
@@ -233,6 +239,8 @@ export function fromSessionTabsMetadata(
         transcriptDumpMode: tab.transcriptDumpMode,
         transcriptSearchOpen: tab.transcriptSearchOpen,
         transcriptSearchQuery: tab.transcriptSearchQuery,
+        transcriptSearchCount: tab.transcriptSearchCount,
+        transcriptSearchCurrent: tab.transcriptSearchCurrent,
         model: tab.model,
         provider: tab.provider,
         repoLabel: tab.repoLabel,
@@ -370,6 +378,8 @@ export function updateSessionTab(
     nextTab.transcriptDumpMode === existing.transcriptDumpMode &&
     nextTab.transcriptSearchOpen === existing.transcriptSearchOpen &&
     nextTab.transcriptSearchQuery === existing.transcriptSearchQuery &&
+    nextTab.transcriptSearchCount === existing.transcriptSearchCount &&
+    nextTab.transcriptSearchCurrent === existing.transcriptSearchCurrent &&
     nextTab.todoSnapshotId === existing.todoSnapshotId &&
     nextTab.model === existing.model &&
     nextTab.provider === existing.provider &&
