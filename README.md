@@ -59,6 +59,8 @@
   - 状态层、Tab UI、Tab 行为、状态绑定、快捷键、Subagent 面板、验证与发布都已分 phase
 - ✅ **已经映射到具体版本计划**
   - 当前先落到 `v1.0.2-likecode`，目标是交付 tab 模式起步版
+- ✅ **状态层骨架已经接进代码**
+  - 已新增 `sessionTabs`、`SessionTabState`、`SessionTabsMetadata`，并开始把 tab 状态映射进 session metadata
 
 ### 我们现在强调的不是“炫”，而是这些真实需求
 
@@ -203,6 +205,7 @@ Claude Code 很强，但真实使用里一直有一个明显痛点：
 - [x] 完成“多窗口 / subagent 视图”第一版设计稿
 - [x] 完成“多窗口 / subagent 视图”第一版开发任务拆分
 - [x] 将 tab 模式映射到 `v1.0.2-likecode` 版本计划
+- [x] 为 tab 模式接入第一层状态骨架
 - [ ] 支持 **subagent 工作视图**：按窗口看不同 subagent 在忙什么
 - [ ] 支持 **按任务自动路由模型**：写代码 / 总结 / 搜索 / 便宜优先 / 最强优先
 - [ ] 尽量做到 **不 compact 也能切到别的模型继续干活**

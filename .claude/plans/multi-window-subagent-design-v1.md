@@ -297,9 +297,10 @@ type TabState = {
 
 ### Phase 1：状态层改造
 
-- [ ] 为 session metadata 增加 `activeTabId`
-- [ ] 为 session metadata 增加 `tabOrder`
-- [ ] 为 session metadata 增加 `tabs` 映射
+- [x] 为 session metadata 增加 `activeTabId`
+- [x] 为 session metadata 增加 `tabOrder`
+- [x] 为 session metadata 增加 `tabs` 映射
+- [x] 新增 `sessionTabs`、`SessionTabState`、`SessionTabsMetadata` 基础类型
 - [ ] 为 tab 增加 `title`、`kind`、`transcriptId`、`model`、`provider`
 - [ ] 为 tab 增加 `status`、`repoLabel`、`worktreePath`
 - [ ] 兼容旧 session：无 tab 数据时自动落回单窗口模式

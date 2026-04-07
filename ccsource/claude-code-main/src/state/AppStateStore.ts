@@ -33,6 +33,8 @@ import type { SessionHooksState } from '../utils/hooks/sessionHooks.js'
 import type { ModelSetting } from '../utils/model/model.js'
 import type { DenialTrackingState } from '../utils/permissions/denialTracking.js'
 import type { PermissionMode } from '../utils/permissions/PermissionMode.js'
+import type { SessionTabsState } from '../utils/sessionTabs.js'
+import { createDefaultSessionTabsState } from '../utils/sessionTabs.js'
 import { getInitialSettings } from '../utils/settings/settings.js'
 import type { SettingsJson } from '../utils/settings/types.js'
 import { shouldEnableThinkingByDefault } from '../utils/thinking.js'
@@ -229,6 +231,7 @@ export type AppState = DeepImmutable<{
   thinkingEnabled: boolean | undefined
   promptSuggestionEnabled: boolean
   sessionHooks: SessionHooksState
+  sessionTabs: SessionTabsState
   tungstenActiveSession?: {
     sessionName: string
     socketName: string
@@ -539,6 +542,7 @@ export function getDefaultAppState(): AppState {
     thinkingEnabled: shouldEnableThinkingByDefault(),
     promptSuggestionEnabled: shouldEnablePromptSuggestion(),
     sessionHooks: new Map(),
+    sessionTabs: createDefaultSessionTabsState(),
     inbox: {
       messages: [],
     },

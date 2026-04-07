@@ -132,6 +132,7 @@ learn-likecc 现在已经不只是一个 Claude Code 源码学习仓库。
 - [ ] 把多窗口设计稿进一步映射到具体版本计划与实现任务
 - [x] 将多窗口设计稿进一步映射到 `v1.0.2-likecode` 版本计划
 - [ ] 实现第一版 tab 模式：新建、切换、关闭、重命名
+- [x] 为 tab 模式接入第一层状态骨架：`sessionTabs` + session metadata 映射
 - [ ] 把 transcript、todo、model/provider 状态真正绑定到 tab
 - [ ] 增加 subagent 状态面板占位，先能展示仓库、任务与运行状态
 

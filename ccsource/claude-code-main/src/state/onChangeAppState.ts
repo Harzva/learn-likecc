@@ -17,6 +17,7 @@ import {
   notifySessionMetadataChanged,
   type SessionExternalMetadata,
 } from '../utils/sessionState.js'
+import { fromSessionTabsMetadata, toSessionTabsMetadata } from '../utils/sessionTabs.js'
 import { updateSettingsForSource } from '../utils/settings/settings.js'
 import type { AppState } from './AppStateStore.js'
 
@@ -36,6 +37,9 @@ export function externalMetadataToAppState(
       : {}),
     ...(typeof metadata.is_ultraplan_mode === 'boolean'
       ? { isUltraplanMode: metadata.is_ultraplan_mode }
+      : {}),
+    ...(metadata.session_tabs
+      ? { sessionTabs: fromSessionTabsMetadata(metadata.session_tabs) }
       : {}),
   })
 }
@@ -89,6 +93,12 @@ export function onChangeAppState({
       })
     }
     notifyPermissionModeChanged(newMode)
+  }
+
+  if (newState.sessionTabs !== oldState.sessionTabs) {
+    notifySessionMetadataChanged({
+      session_tabs: toSessionTabsMetadata(newState.sessionTabs),
+    })
   }
 
   // mainLoopModel: remove it from settings?
