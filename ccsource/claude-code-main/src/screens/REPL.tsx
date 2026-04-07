@@ -692,6 +692,7 @@ export function REPL({
   const pendingSandboxRequest = useAppState(s => s.pendingSandboxRequest);
   const teamContext = useAppState(s => s.teamContext);
   const tasks = useAppState(s => s.tasks);
+  const todos = useAppState(s => s.todos);
   const rawSessionTabs = useAppState(s => s.sessionTabs);
   const workerSandboxPermissions = useAppState(s => s.workerSandboxPermissions);
   const elicitation = useAppState(s => s.elicitation);
