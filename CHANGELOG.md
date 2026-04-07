@@ -12,6 +12,7 @@
 - `panel / 分屏` 第一版已经接入主 REPL，支持在工作区侧栏里展示当前 tab、任务和 subagent 状态
 - pane 模式下底部开始出现多个可见对话框区域，不再永远只有一个共享视觉输入框
 - 左右 pane 开始显示各自保存下来的 transcript 预览，分屏里不再继续共用同一段可见对话内容
+- 切换 tab 时，主消息区开始切到该 tab 自己保存的 transcript，而不只是切标题与预览
 - tab 开始真正绑定自己的 `model / provider / transcript / todo lane`，切换 tab 后能带出对应状态
 - subagent 面板已从纯占位升级为第一版真实状态视图，可看到当前聚焦 transcript 与运行中的 agent
 - 新增 `/show:slash`，可在终端内查看所有 slash command 与用法

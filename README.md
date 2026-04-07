@@ -77,6 +77,8 @@
   - pane 模式下底部不再只剩一个视觉对话框，而是会为不同 tab 渲染多个可见的对话框 dock
 - ✅ **左右 pane 的 transcript 已开始拆开显示**
   - 每个 pane 现在会保存并展示自己那条对话的独立 transcript 预览，不再继续共用同一段可见内容
+- ✅ **切换 tab 时主消息区开始切到各自 transcript**
+  - tab 不再只切标题和预览，主消息区现在会跟着切到该 tab 保存下来的消息流
 - ✅ **tab 开始绑定自己的模型 / provider / transcript / todo lane**
   - 切换 tab 后会带出当前 tab 的模型与 provider，tab 也会记住自己当前绑定的 transcript 与 todo lane
 - ✅ **subagent 状态面板已经不是纯占位**
@@ -241,6 +243,7 @@ Claude Code 很强，但真实使用里一直有一个明显痛点：
 - [x] 接入第一版 `panel / 分屏` 工作区侧栏
 - [x] 让 pane 模式下底部出现多个可见对话框区域，而不只是一个共享输入框
 - [x] 让左右 pane 开始显示各自的 transcript 预览
+- [x] 让切 tab 时主消息区开始切到各自 transcript
 - [x] 将当前 tab 的 `model / provider / transcript / todo lane` 开始同步到真实状态
 - [x] 将 subagent 面板从纯占位升级为第一版真实状态面板
 - [ ] 支持 **subagent 工作视图**：按窗口看不同 subagent 在忙什么
@@ -262,7 +265,7 @@ Claude Code 很强，但真实使用里一直有一个明显痛点：
 - [x] 让不同 tab 开始绑定各自 transcript、todo、model/provider，而不是先只做窗口层
 - [x] 把 subagent 面板从占位升级成真实状态视图
 - [ ] 继续把“多个可见对话框”升级成真正的多活跃输入与多 transcript 并行，而不只是先做 active pane 输入
-- [ ] 继续把 transcript / todo 做到真正隔离，而不只是先完成 transcript 预览级拆分
+- [ ] 继续把 transcript / todo 做到真正隔离，而不只是先完成 UI 层主消息区切换
 - [ ] 团队里每个人可配置自己的默认 provider / 默认模型 / 默认预算策略
 - [ ] 项目级规则决定“这个仓库优先稳定模型，那个仓库优先低成本模型”
 - [ ] 一个命令完成“继续当前 session，但换模型再试一次”

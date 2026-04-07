@@ -1,3 +1,5 @@
+import type { Message } from '../types/message.js'
+
 export type SessionLayoutMode = 'single' | 'tabs' | 'panes'
 
 export type SessionTabKind = 'main' | 'task' | 'review' | 'search' | 'subagent'
@@ -9,6 +11,7 @@ export type SessionTabState = {
   title: string
   kind: SessionTabKind
   transcriptId: string
+  transcriptMessages?: Message[]
   transcriptPreview?: string[]
   draftInput?: string
   todoSnapshotId?: string
@@ -247,6 +250,7 @@ export function updateSessionTab(
     nextTab.title === existing.title &&
     nextTab.kind === existing.kind &&
     nextTab.transcriptId === existing.transcriptId &&
+    nextTab.transcriptMessages === existing.transcriptMessages &&
     JSON.stringify(nextTab.transcriptPreview) ===
       JSON.stringify(existing.transcriptPreview) &&
     nextTab.draftInput === existing.draftInput &&
