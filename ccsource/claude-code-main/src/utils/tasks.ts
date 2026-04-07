@@ -1,7 +1,11 @@
 import { mkdir, readdir, readFile, unlink, writeFile } from 'fs/promises'
 import { join } from 'path'
 import { z } from 'zod/v4'
-import { getIsNonInteractiveSession, getSessionId } from '../bootstrap/state.js'
+import {
+  getActiveTaskListIdOverride,
+  getIsNonInteractiveSession,
+  getSessionId,
+} from '../bootstrap/state.js'
 import { uniq } from './array.js'
 import { logForDebugging } from './debug.js'
 import { getClaudeConfigHomeDir, getTeamsDir, isEnvTruthy } from './envUtils.js'
@@ -199,6 +203,10 @@ export async function resetTaskList(taskListId: string): Promise<void> {
 export function getTaskListId(): string {
   if (process.env.CLAUDE_CODE_TASK_LIST_ID) {
     return process.env.CLAUDE_CODE_TASK_LIST_ID
+  }
+  const activeTaskListIdOverride = getActiveTaskListIdOverride()
+  if (activeTaskListIdOverride) {
+    return activeTaskListIdOverride
   }
   // In-process teammates use the leader's team name so they share the same
   // task list that tmux/iTerm2 teammates also resolve to.

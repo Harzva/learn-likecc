@@ -6,6 +6,10 @@ import { useSettingsChange } from '../hooks/useSettingsChange.js';
 import { logForDebugging } from '../utils/debug.js';
 import { createDisabledBypassPermissionsContext, isBypassPermissionsModeDisabled } from '../utils/permissions/permissionSetup.js';
 import { applySettingsChange } from '../utils/settings/applySettingsChange.js';
+import {
+  publishWorkspaceApiSnapshot,
+  startWorkspaceApiServer,
+} from '../utils/workspaceApiServer.js';
 import type { SettingSource } from '../utils/settings/constants.js';
 import { createStore } from './store.js';
 
@@ -79,6 +83,10 @@ export function AppStateProvider(t0) {
     t3 = $[5];
   }
   useEffect(t2, t3);
+  useEffect(() => {
+    publishWorkspaceApiSnapshot(store.getState());
+    startWorkspaceApiServer();
+  }, [store]);
   let t4;
   if ($[6] !== store.setState) {
     t4 = source => applySettingsChange(source, store.setState);

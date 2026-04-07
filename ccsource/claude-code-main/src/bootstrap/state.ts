@@ -246,6 +246,10 @@ type State = {
   // Updated after each successful API response for main-session queries.
   // Read at shutdown to send cache eviction hints to inference.
   lastMainRequestId: string | undefined
+  // Active task list override for UI-driven pane/task isolation experiments.
+  // When set, getTaskListId() resolves to this lane for leader-thread task
+  // operations instead of the session-default list.
+  activeTaskListIdOverride: string | undefined
   // Timestamp (Date.now()) of the last successful API call completion.
   // Used to compute timeSinceLastApiCallMs in tengu_api_success for
   // correlating cache misses with idle time (cache TTL is ~5min).
@@ -418,6 +422,7 @@ function getInitialState(): State {
     // Current prompt ID
     promptId: null,
     lastMainRequestId: undefined,
+    activeTaskListIdOverride: undefined,
     lastApiCompletionTimestamp: null,
     pendingPostCompaction: false,
   }
@@ -430,6 +435,16 @@ const STATE: State = getInitialState()
 
 export function getSessionId(): SessionId {
   return STATE.sessionId
+}
+
+export function getActiveTaskListIdOverride(): string | undefined {
+  return STATE.activeTaskListIdOverride
+}
+
+export function setActiveTaskListIdOverride(
+  taskListId: string | undefined,
+): void {
+  STATE.activeTaskListIdOverride = taskListId
 }
 
 export function regenerateSessionId(
@@ -1755,4 +1770,3 @@ export function getPromptId(): string | null {
 export function setPromptId(id: string | null): void {
   STATE.promptId = id
 }
-

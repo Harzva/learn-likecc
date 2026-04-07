@@ -4844,6 +4844,30 @@ export function REPL({
       };
     });
   }, [displayedMessages, sessionTabs, setAppState]);
+  useEffect(() => {
+    const activeTab = getActiveSessionTab(sessionTabs);
+    if (!activeTab) return;
+    if (activeTab.transcriptMessages === displayedMessages) return;
+
+    const timer = setTimeout(() => {
+      setAppState(prev => {
+        const tabs = normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel);
+        const currentActiveTab = getActiveSessionTab(tabs);
+        if (!currentActiveTab) return prev;
+        if (currentActiveTab.transcriptMessages === displayedMessages) {
+          return prev;
+        }
+        return {
+          ...prev,
+          sessionTabs: updateSessionTab(tabs, currentActiveTab.id, {
+            transcriptMessages: displayedMessages,
+          }),
+        };
+      });
+    }, 120);
+
+    return () => clearTimeout(timer);
+  }, [displayedMessages, sessionTabs, setAppState]);
   // Show the placeholder until the real user message appears in
   // displayedMessages. userInputOnProcessing stays set for the whole turn
   // (cleared in resetLoadingState); this length check hides it once

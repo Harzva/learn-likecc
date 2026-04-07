@@ -105,6 +105,7 @@ learn-likecc 现在已经不只是一个 Claude Code 源码学习仓库。
 
 - [x] 产出第一版 `localhost Web UI` 设计稿，明确 CLI 与 Web UI 的分工
 - [x] 产出第一版 `localhost Web UI` 读取协议草案
+- [x] 起好第一版 localhost 只读接口骨架：`session / pane / transcript / events`
 - [ ] 支持展示 session / pane 列表
 - [ ] 支持 transcript 结构化展示
 - [ ] 支持 tool / subagent 时间线
@@ -163,10 +164,12 @@ learn-likecc 现在已经不只是一个 Claude Code 源码学习仓库。
 - [x] 让启动界面直接显示 Web 工作台网址，方便用户从 CLI 初始界面跳转
 - [x] 将启动头图进一步收成蓝色爱心 + `Like` 上置 + `code · Harzva restored · v2.1.88`
 - [x] 让每个 tab 开始固定自己的逻辑 todo lane 标识，继续为真正隔离铺底
+- [x] 让 tasks 链开始读取当前 active pane 的逻辑 lane override，继续向 pane 级任务隔离推进
 - [x] 让切 tab 时主消息区开始切到各自 transcript
 - [x] 让 todo lane 开始按 tab 保存和恢复
 - [x] 产出 `localhost Web UI` 设计稿，明确第一版先做观察台：session/pane、结构化 transcript、时间线、切模型记录、思考过程卡片流
 - [x] 产出 `localhost Web UI` 协议稿，明确 `session / pane / transcript / events` 的读取分层
+- [x] 起好 `localhost Web UI` 第一版只读接口：`/api/sessions`、`/api/sessions/current`、`/api/sessions/current/panes`、`/api/sessions/current/panes/:paneId/transcript`、`/api/sessions/current/events`
 - [ ] 继续把多个可见对话框升级成真正的多活跃输入与多 transcript 并行
 - [ ] 继续把 transcript / todo 做到真正隔离，而不只是先做 UI 层消息区与快照恢复
 - [ ] 继续把 subagent 面板升级为更完整的工作视图，展示仓库、目录、当前任务与更多 live 状态

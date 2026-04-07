@@ -30,7 +30,7 @@
 - ✅ **启动界面配置可见性**
   - 启动头直接显示 Global / Project / Local 三层 `.claude` 摘要、当前命中的 `claude` 路径、当前工程仓库地址
 - ✅ **启动界面开始给出 Web 工作台入口**
-  - 启动头现在会直接显示 Web 网址，方便用户不离开初始界面就能点进 Web 侧工作台
+  - 启动头现在会直接显示本地 `localhost` 工作台入口，方便用户不离开初始界面就能跳到 Web 侧观察台
 - ✅ **启动 logo 已收成 Like Code 语义**
   - 启动头图已进一步收成蓝色爱心，`Like` 单独放在爱心正上方，右侧标题改为更克制的 `code · Harzva restored · v2.1.88`
 - ✅ **第三方兼容网关稳定性修复**
@@ -87,6 +87,8 @@
   - inactive pane 现在除了 transcript / todo / draft，还会直接显示当前任务摘要，不用只靠右侧 workspace 面板判断
 - ✅ **每个 tab 开始固定自己的逻辑 todo lane 标识**
   - pane 现在不再只挂在同一个默认 lane 文案上，而是开始为各自 tab 保留稳定的逻辑 lane id，方便继续推进真正隔离
+- ✅ **第一版 localhost 读取接口已经起步**
+  - 现在已经有 `session / pane / transcript / events` 四层本地只读接口，可以作为后续 Web UI 的数据底座
 - ✅ **切换 tab 时主消息区开始切到各自 transcript**
   - tab 不再只切标题和预览，主消息区现在会跟着切到该 tab 保存下来的消息流
 - ✅ **todo lane 开始按 tab 记住和恢复**
@@ -280,6 +282,7 @@ Claude Code 很强，但真实使用里一直有一个明显痛点：
 - [ ] 在 Web UI 第一版里展示 `session / pane` 列表、结构化 transcript、tool/subagent 时间线、model/provider 切换记录、思考过程卡片流
 - [x] 完成 `localhost Web UI` 第一版设计稿
 - [x] 完成 `localhost Web UI` 第一版读取协议草案
+- [x] 起好 `localhost Web UI` 第一版只读接口骨架
 - [ ] 支持 **按任务自动路由模型**：写代码 / 总结 / 搜索 / 便宜优先 / 最强优先
 - [ ] 尽量做到 **不 compact 也能切到别的模型继续干活**
 - [ ] 在上下文过长时，优先尝试「局部转译 / 局部摘要 / 局部降配」而不是直接整段 compact
@@ -301,6 +304,7 @@ Claude Code 很强，但真实使用里一直有一个明显痛点：
 - [ ] 继续把 transcript / todo 做到真正隔离，而不只是先完成 UI 层消息区与快照恢复
 - [ ] 为 localhost Web UI 设计一版“观察台”而不是先做“控制台”，优先承接结构化展示与流程图
 - [ ] 为 localhost Web UI 落地 `session / pane / transcript / events` 读取接口
+- [ ] 继续扩展 localhost 接口里的结构化 transcript、tool/subagent 时间线和切模型记录
 - [ ] 团队里每个人可配置自己的默认 provider / 默认模型 / 默认预算策略
 - [ ] 项目级规则决定“这个仓库优先稳定模型，那个仓库优先低成本模型”
 - [ ] 一个命令完成“继续当前 session，但换模型再试一次”

@@ -15,6 +15,7 @@ import {
   truncatePath,
   type LayeredConfigSummaryItem,
 } from '../../utils/logoV2Utils.js'
+import { getWorkspaceApiBaseUrl } from '../../utils/workspaceApiServer.js'
 import { renderModelSetting } from '../../utils/model/model.js'
 import { OffscreenFreeze } from '../OffscreenFreeze.js'
 import { AnimatedClawd } from './AnimatedClawd.js'
@@ -141,7 +142,7 @@ export function CondensedLogo() {
     ? `Harzva restored · @${agentName} · ${truncatedCwd}`
     : `Harzva restored · ${truncatedCwd}`
   const truncatedCommandPath = truncate(commandPath, Math.max(textWidth, 20))
-  const webWorkspaceUrl = 'https://harzva.github.io/learn-likecc/'
+  const webWorkspaceUrl = getWorkspaceApiBaseUrl()
 
   return (
     <OffscreenFreeze>

@@ -16,6 +16,7 @@
 - 新增 `/tab focus left|right|1|2`，并补上 `Ctrl+g h / l`，让左右 pane 的聚焦切换更贴近分屏心智
 - pane 现在开始直接显示自己的 task lane 摘要，不用只靠 workspace 侧栏判断“这边在忙什么”
 - 每个 tab 开始固定自己的逻辑 todo lane 标识，为后续真正的 pane todo 隔离继续铺底
+- tasks 链开始读取当前 active pane 的逻辑 lane override，向 pane 级任务隔离继续推进
 - 切换 tab 时，主消息区开始切到该 tab 自己保存的 transcript，而不只是切标题与预览
 - todo lane 开始按 tab 保存和恢复，切换 tab 后会看到对应 tab 自己那份待办/任务快照
 - tab 开始真正绑定自己的 `model / provider / transcript / todo lane`，切换 tab 后能带出对应状态
@@ -26,6 +27,7 @@
 - README 顶部与长期路线图同步更新，未完成项继续保留在 todo 中，方便后续按版本推进与发版同步
 - 新增 localhost Web UI 工作台设计稿，明确 CLI 继续做最小可用验证，Web UI 承接结构化 transcript、时间线、切模型记录和思考过程卡片流
 - 新增 localhost Web UI 读取协议草案，拆出 `session / pane / transcript / events` 四层读取模型
+- 起好 localhost 第一版只读接口骨架，当前已支持 `/api/sessions`、`/api/sessions/current`、`/api/sessions/current/panes`、`/api/sessions/current/panes/:paneId/transcript`、`/api/sessions/current/events`
 - 启动界面新增 Web 工作台网址，并把 logo 收成蓝色爱心 + `Like` 上置 + `code · Harzva restored · v2.1.88`
 - 本轮以文档与规划推进为主，暂不单独提升 release 版本号，避免出现“版本先发、功能未落地”的错位
 

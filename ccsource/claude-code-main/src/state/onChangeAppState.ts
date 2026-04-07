@@ -1,4 +1,7 @@
-import { setMainLoopModelOverride } from '../bootstrap/state.js'
+import {
+  setActiveTaskListIdOverride,
+  setMainLoopModelOverride,
+} from '../bootstrap/state.js'
 import {
   clearApiKeyHelperCache,
   clearAwsCredentialsCache,
@@ -17,8 +20,14 @@ import {
   notifySessionMetadataChanged,
   type SessionExternalMetadata,
 } from '../utils/sessionState.js'
-import { fromSessionTabsMetadata, toSessionTabsMetadata } from '../utils/sessionTabs.js'
+import {
+  fromSessionTabsMetadata,
+  normalizeSessionTabsState,
+  toSessionTabsMetadata,
+} from '../utils/sessionTabs.js'
 import { updateSettingsForSource } from '../utils/settings/settings.js'
+import { notifyTasksUpdated } from '../utils/tasks.js'
+import { publishWorkspaceApiSnapshot } from '../utils/workspaceApiServer.js'
 import type { AppState } from './AppStateStore.js'
 
 // Inverse of the push below — restore on worker restart.
@@ -51,6 +60,24 @@ export function onChangeAppState({
   newState: AppState
   oldState: AppState
 }) {
+  publishWorkspaceApiSnapshot(newState)
+  const normalizedOldTabs = normalizeSessionTabsState(
+    oldState.sessionTabs,
+    oldState.mainLoopModel,
+  )
+  const normalizedNewTabs = normalizeSessionTabsState(
+    newState.sessionTabs,
+    newState.mainLoopModel,
+  )
+  const oldTaskListIdOverride =
+    normalizedOldTabs.tabs[normalizedOldTabs.activeTabId]?.todoSnapshotId
+  const newTaskListIdOverride =
+    normalizedNewTabs.tabs[normalizedNewTabs.activeTabId]?.todoSnapshotId
+  setActiveTaskListIdOverride(newTaskListIdOverride)
+  if (oldTaskListIdOverride !== newTaskListIdOverride) {
+    notifyTasksUpdated()
+  }
+
   // toolPermissionContext.mode — single choke point for CCR/SDK mode sync.
   //
   // Prior to this block, mode changes were relayed to CCR by only 2 of 8+
