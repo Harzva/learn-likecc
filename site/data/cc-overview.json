@@ -1,0 +1,138 @@
+{
+  "meta": {
+    "updated": "2026-04-07",
+    "note_zh": "三数据表由 tools/gen_cc_overview.py 根据本文件生成并写回 topic-cc-unpacked-zh.html；改行后请运行：python3 tools/gen_cc_overview.py",
+    "ccsource_path": "ccsource/claude-code-main"
+  },
+  "architecture": {
+    "thead": ["分区", "典型内容", "本站延伸"],
+    "rows": [
+      {
+        "col1": "工具与命令",
+        "col2_html": "<code>tools/</code>、<code>commands/</code>",
+        "col3_links": [
+          { "href": "s02.html", "text": "S02" },
+          { "href": "s04.html", "text": "S04" }
+        ],
+        "col3_sep": "、"
+      },
+      {
+        "col1": "核心处理",
+        "col2_html": "查询引擎、会话、压缩等服务",
+        "col3_links": [
+          { "href": "s01.html", "text": "S01" },
+          { "href": "s05.html", "text": "S05" }
+        ],
+        "col3_sep": "、"
+      },
+      {
+        "col1": "UI 层",
+        "col2_html": "Ink 组件、REPL 界面",
+        "col3_html": "手册与 <a href=\"s11.html\">S11 Vim</a>"
+      },
+      {
+        "col1": "桥接与集成",
+        "col2_html": "<code>bridge/</code>、IDE 相关",
+        "col3_links": [{ "href": "s09.html", "text": "S09" }]
+      },
+      {
+        "col1": "基础设施",
+        "col2_html": "<code>utils/</code>、常量、Hooks",
+        "col3_links": [
+          { "href": "s10.html", "text": "S10" },
+          { "href": "handbook.html", "text": "手册" }
+        ],
+        "col3_sep": "、"
+      }
+    ]
+  },
+  "tools": {
+    "thead": ["分组", "代表工具", "讲义"],
+    "rows": [
+      {
+        "col1": "文件",
+        "col2_html": "Read、Edit、Write、Glob、Grep、NotebookEdit",
+        "col3_links": [
+          { "href": "s02.html", "text": "S02" },
+          { "href": "d02.html", "text": "D02" }
+        ],
+        "col3_sep": " · "
+      },
+      {
+        "col1": "执行",
+        "col2_html": "Bash、PowerShell、REPL",
+        "col3_links": [{ "href": "s02.html", "text": "S02" }]
+      },
+      {
+        "col1": "检索与网页",
+        "col2_html": "WebSearch、WebFetch、ToolSearch 等",
+        "col3_links": [{ "href": "s02.html", "text": "S02" }]
+      },
+      {
+        "col1": "Agent / 任务",
+        "col2_html": "Agent、TaskCreate、TaskGet、TaskList…",
+        "col3_links": [
+          { "href": "s06.html", "text": "S06" },
+          { "href": "s08.html", "text": "S08" }
+        ],
+        "col3_sep": " · "
+      },
+      {
+        "col1": "规划与工作树",
+        "col2_html": "EnterPlanMode、EnterWorktree、VerifyPlanExecution 等",
+        "col3_links": [{ "href": "s06.html", "text": "S06" }]
+      },
+      {
+        "col1": "MCP",
+        "col2_html": "mcpList、McpResources、McpAuth…",
+        "col3_links": [
+          { "href": "s07.html", "text": "S07" },
+          { "href": "d07.html", "text": "D07" }
+        ],
+        "col3_sep": " · "
+      }
+    ]
+  },
+  "commands": {
+    "thead": ["场景", "示例（节选）", "讲义"],
+    "rows": [
+      {
+        "col1": "初始化与配置",
+        "col2_html": "<code>/init</code>、<code>/config</code>、<code>/mcp</code>、<code>/hooks</code>",
+        "col3_links": [{ "href": "s04.html", "text": "S04" }]
+      },
+      {
+        "col1": "日常工作流",
+        "col2_html": "<code>/compact</code>、<code>/memory</code>、<code>/resume</code>、<code>/vim</code>",
+        "col3_links": [
+          { "href": "s04.html", "text": "S04" },
+          { "href": "s05.html", "text": "S05" }
+        ],
+        "col3_sep": " · "
+      },
+      {
+        "col1": "代码审查与 Git",
+        "col2_html": "<code>/review</code>、<code>/commit</code>、<code>/diff</code>",
+        "col3_links": [
+          { "href": "s04.html", "text": "S04" },
+          { "href": "s12.html", "text": "S12" }
+        ],
+        "col3_sep": " · "
+      },
+      {
+        "col1": "诊断",
+        "col2_html": "<code>/cost</code>、<code>/usage</code>、<code>/doctor</code>、<code>/release-notes</code>",
+        "col3_links": [
+          { "href": "s04.html", "text": "S04" },
+          { "href": "topic-cc-release-watch.html", "text": "发版监督" }
+        ],
+        "col3_sep": " · "
+      },
+      {
+        "col1": "实验性",
+        "col2_html": "各版本可能增减；见官方 changelog",
+        "col3_links": [{ "href": "d04.html", "text": "D04 深挖" }]
+      }
+    ]
+  }
+}

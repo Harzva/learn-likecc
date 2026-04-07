@@ -26,9 +26,9 @@
 
 ## 任务清单 — 完成后 `[x]`
 
-- [ ] JSON schema 与示例数据已提交，且与页面五区块语义对齐
-- [ ] 生成脚本可运行（`python3 tools/...`），README 或 `--help` 有说明
-- [ ] **回写打钩**：本文件 + [v2.5.2_plan.md 第七节](../v2.5.2_plan.md)
+- [x] JSON schema 与示例数据已提交（`site/data/cc-overview.json`），与 02–04 节三表对齐
+- [x] 生成脚本可运行：`python3 tools/gen_cc_overview.py`（`--check` / `--dry-run`）；见脚本 docstring
+- [x] **回写打钩**：本文件 + [v2.5.2_plan.md 第七节](../v2.5.2_plan.md)
 
 ---
 

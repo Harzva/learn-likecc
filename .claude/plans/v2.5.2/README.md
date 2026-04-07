@@ -14,4 +14,4 @@
 
 **建议顺序**: Agent 1 → Agent 3（MVP+MD）；Agent 2 可与 1 并行起草 schema，合并后以脚本为准。
 
-**进度（2026-04-07）**: Agent 1 + 3 已完成（`topic-cc-unpacked-zh.html` / `.md`、导航与 parity）；Agent 2 未启动。
+**进度**: Agent 1–3 已完成；阶段 B：`site/data/cc-overview.json` + `tools/gen_cc_overview.py` 维护 02–04 节三表。

@@ -86,15 +86,17 @@
 
                 <section id="architecture" class="section-block">
                     <h2>02 · 架构导览（目录心智模型）</h2>
-                    <p>阅读 <code>ccsource/like-code-main</code> 时可按职能分区，不必从根目录线性扫文件。下列与常见顶层目录对应关系为<strong>教学用归纳</strong>，实际以当前 tree 为准。</p>
-                    <table class="options-table">
-                        <tr><th>分区</th><th>典型内容</th><th>本站延伸</th></tr>
-                        <tr><td>工具与命令</td><td><code>tools/</code>、<code>commands/</code></td><td><a href="s02.html">S02</a>、<a href="s04.html">S04</a></td></tr>
-                        <tr><td>核心处理</td><td>查询引擎、会话、压缩等服务</td><td><a href="s01.html">S01</a>、<a href="s05.html">S05</a></td></tr>
-                        <tr><td>UI 层</td><td>Ink 组件、REPL 界面</td><td>手册与 <a href="s11.html">S11 Vim</a></td></tr>
-                        <tr><td>桥接与集成</td><td><code>bridge/</code>、IDE 相关</td><td><a href="s09.html">S09</a></td></tr>
-                        <tr><td>基础设施</td><td><code>utils/</code>、常量、Hooks</td><td><a href="s10.html">S10</a>、<a href="handbook.html">手册</a></td></tr>
-                    </table>
+                    <p>阅读 <code>ccsource/claude-code-main</code> 时可按职能分区，不必从根目录线性扫文件。下列与常见顶层目录对应关系为<strong>教学用归纳</strong>，实际以当前 tree 为准。</p>
+                    <!-- cc-overview:begin architecture-table -->
+<table class="options-table">
+<tr><th>分区</th><th>典型内容</th><th>本站延伸</th></tr>
+<tr><td>工具与命令</td><td><code>tools/</code>、<code>commands/</code></td><td><a href="s02.html">S02</a>、<a href="s04.html">S04</a></td></tr>
+<tr><td>核心处理</td><td>查询引擎、会话、压缩等服务</td><td><a href="s01.html">S01</a>、<a href="s05.html">S05</a></td></tr>
+<tr><td>UI 层</td><td>Ink 组件、REPL 界面</td><td>手册与 <a href="s11.html">S11 Vim</a></td></tr>
+<tr><td>桥接与集成</td><td><code>bridge/</code>、IDE 相关</td><td><a href="s09.html">S09</a></td></tr>
+<tr><td>基础设施</td><td><code>utils/</code>、常量、Hooks</td><td><a href="s10.html">S10</a>、<a href="handbook.html">手册</a></td></tr>
+</table>
+<!-- cc-overview:end architecture-table -->
                     <p style="margin-top: 1rem;"><a href="topic-sourcemap.html" class="btn btn-secondary">Source Map 源码专题 →</a>
                         &nbsp;<a href="topic-source-derived.html" class="btn btn-secondary">源码反推思想 →</a></p>
                 </section>
@@ -102,28 +104,33 @@
                 <section id="tools" class="section-block">
                     <h2>03 · 工具系统（分组地图）</h2>
                     <p>内置工具可按<strong>职能</strong>分组理解；下列为<strong>代表名称</strong>，完整清单请在源码 <code>tools/</code> 内检索或在运行时使用官方文档。</p>
-                    <table class="options-table">
-                        <tr><th>分组</th><th>代表工具</th><th>讲义</th></tr>
-                        <tr><td>文件</td><td>Read、Edit、Write、Glob、Grep、NotebookEdit</td><td><a href="s02.html">S02</a> · <a href="d02.html">D02</a></td></tr>
-                        <tr><td>执行</td><td>Bash、PowerShell、REPL</td><td><a href="s02.html">S02</a></td></tr>
-                        <tr><td>检索与网页</td><td>WebSearch、WebFetch、ToolSearch 等</td><td><a href="s02.html">S02</a></td></tr>
-                        <tr><td>Agent / 任务</td><td>Agent、TaskCreate、TaskGet、TaskList…</td><td><a href="s06.html">S06</a> · <a href="s08.html">S08</a></td></tr>
-                        <tr><td>规划与工作树</td><td>EnterPlanMode、EnterWorktree、VerifyPlanExecution 等</td><td><a href="s06.html">S06</a></td></tr>
-                        <tr><td>MCP</td><td>mcpList、McpResources、McpAuth…</td><td><a href="s07.html">S07</a> · <a href="d07.html">D07</a></td></tr>
-                    </table>
+                    <!-- cc-overview:begin tools-table -->
+<table class="options-table">
+<tr><th>分组</th><th>代表工具</th><th>讲义</th></tr>
+<tr><td>文件</td><td>Read、Edit、Write、Glob、Grep、NotebookEdit</td><td><a href="s02.html">S02</a> · <a href="d02.html">D02</a></td></tr>
+<tr><td>执行</td><td>Bash、PowerShell、REPL</td><td><a href="s02.html">S02</a></td></tr>
+<tr><td>检索与网页</td><td>WebSearch、WebFetch、ToolSearch 等</td><td><a href="s02.html">S02</a></td></tr>
+<tr><td>Agent / 任务</td><td>Agent、TaskCreate、TaskGet、TaskList…</td><td><a href="s06.html">S06</a> · <a href="s08.html">S08</a></td></tr>
+<tr><td>规划与工作树</td><td>EnterPlanMode、EnterWorktree、VerifyPlanExecution 等</td><td><a href="s06.html">S06</a></td></tr>
+<tr><td>MCP</td><td>mcpList、McpResources、McpAuth…</td><td><a href="s07.html">S07</a> · <a href="d07.html">D07</a></td></tr>
+</table>
+<!-- cc-overview:end tools-table -->
                 </section>
 
                 <section id="commands" class="section-block">
                     <h2>04 · 斜杠命令目录</h2>
                     <p>以 <code>/</code> 开头的命令用于配置、会话管理、Git、诊断与实验能力。下表为<strong>场景分组 + 示例</strong>，与 <a href="https://ccunpacked.dev/" target="_blank" rel="noopener noreferrer">ccunpacked.dev</a> 的目录思路一致，条目以当前版本为准。</p>
-                    <table class="options-table">
-                        <tr><th>场景</th><th>示例（节选）</th><th>讲义</th></tr>
-                        <tr><td>初始化与配置</td><td><code>/init</code>、<code>/config</code>、<code>/mcp</code>、<code>/hooks</code></td><td><a href="s04.html">S04</a></td></tr>
-                        <tr><td>日常工作流</td><td><code>/compact</code>、<code>/memory</code>、<code>/resume</code>、<code>/vim</code></td><td><a href="s04.html">S04</a> · <a href="s05.html">S05</a></td></tr>
-                        <tr><td>代码审查与 Git</td><td><code>/review</code>、<code>/commit</code>、<code>/diff</code></td><td><a href="s04.html">S04</a> · <a href="s12.html">S12</a></td></tr>
-                        <tr><td>诊断</td><td><code>/cost</code>、<code>/usage</code>、<code>/doctor</code>、<code>/release-notes</code></td><td><a href="s04.html">S04</a> · <a href="topic-cc-release-watch.html">发版监督</a></td></tr>
-                        <tr><td>实验性</td><td>各版本可能增减；见官方 changelog</td><td><a href="d04.html">D04 深挖</a></td></tr>
-                    </table>
+                    <!-- cc-overview:begin commands-table -->
+<table class="options-table">
+<tr><th>场景</th><th>示例（节选）</th><th>讲义</th></tr>
+<tr><td>初始化与配置</td><td><code>/init</code>、<code>/config</code>、<code>/mcp</code>、<code>/hooks</code></td><td><a href="s04.html">S04</a></td></tr>
+<tr><td>日常工作流</td><td><code>/compact</code>、<code>/memory</code>、<code>/resume</code>、<code>/vim</code></td><td><a href="s04.html">S04</a> · <a href="s05.html">S05</a></td></tr>
+<tr><td>代码审查与 Git</td><td><code>/review</code>、<code>/commit</code>、<code>/diff</code></td><td><a href="s04.html">S04</a> · <a href="s12.html">S12</a></td></tr>
+<tr><td>诊断</td><td><code>/cost</code>、<code>/usage</code>、<code>/doctor</code>、<code>/release-notes</code></td><td><a href="s04.html">S04</a> · <a href="topic-cc-release-watch.html">发版监督</a></td></tr>
+<tr><td>实验性</td><td>各版本可能增减；见官方 changelog</td><td><a href="d04.html">D04 深挖</a></td></tr>
+</table>
+<p class="section-desc cc-overview-footnote" style="margin-top:0.5rem;font-size:0.9rem;opacity:0.9">表数据来自 <code>site/data/cc-overview.json</code>（更新日期 2026-04-07）；修改后请运行 <code>python3 tools/gen_cc_overview.py</code>。</p>
+<!-- cc-overview:end commands-table -->
                 </section>
 
                 <section id="experimental" class="section-block">

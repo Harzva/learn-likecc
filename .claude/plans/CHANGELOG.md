@@ -1394,3 +1394,7 @@ ANTHROPIC_API_KEY=your-api-key-here
 ### 2026-04-07（续）
 
 - **阶段 A 落地**：`site/topic-cc-unpacked-zh.html`、`site/md/topic-cc-unpacked-zh.md`；首页导航「解构」、侧栏「CC 结构导览」、`topic-sourcemap` 入口卡片；`check_site_md_parity.py` 通过。`ccsource` 脚注 commit `81b88b8`（随镜像更新须修订）。
+
+### 2026-04-07（阶段 B）
+
+- **`site/data/cc-overview.json`** + **`tools/gen_cc_overview.py`**：`topic-cc-unpacked-zh.html` 内 02–04 节三表由 JSON 生成（HTML 注释标记区间）；`python3 tools/gen_cc_overview.py --check` 校验数据。

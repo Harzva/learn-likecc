@@ -38,6 +38,13 @@
 
 ccunpacked.dev、DeepWiki、本站 Awesome 源码汇总链接。
 
+## 阶段 B：数据驱动三表（02–04 节）
+
+- **数据源**：[`site/data/cc-overview.json`](../data/cc-overview.json)（架构 / 工具 / 斜杠命令三组表格行）。
+- **生成**：仓库根执行 `python3 tools/gen_cc_overview.py`，将表写入 [`topic-cc-unpacked-zh.html`](../topic-cc-unpacked-zh.html) 内 `<!-- cc-overview:begin … -->` / `end` 标记之间；**勿手改生成区**。
+- **校验**：`python3 tools/gen_cc_overview.py --check` 仅验证 JSON；`--dry-run` 打印 HTML 片段。
+- 页内脚注（04 节表下）会显示 JSON 的 `meta.updated` 日期；改版请同步改 JSON 与脚注。
+
 ## 正文（可选 / 待补全）
 
-与 [v2.5.2_plan.md](../../.claude/plans/v2.5.2_plan.md) 阶段 B 衔接时，可将工具/命令表迁入 `data/cc-overview.json` 并由脚本生成片段。
+其余章节（01、05、延伸阅读）仍以 HTML/本 MD 摘要为准；未来可将统计卡片等迁入 JSON 再扩展生成器。
