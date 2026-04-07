@@ -19,19 +19,19 @@ function HeartLines({ pose = 'default' }: Props) {
 
   return (
     <Box flexDirection="column">
-      <Text color="error" bold>
+      <Text color="blueBright" bold>
         {top}
       </Text>
-      <Text color="error" bold>
+      <Text color="blueBright" bold>
         {'♥♥♥♥♥♥♥'}
       </Text>
-      <Text color="error" bold>
+      <Text color="blueBright" bold>
         {' ♥♥♥♥♥ '}
       </Text>
-      <Text color="error" bold>
+      <Text color="blueBright" bold>
         {'  ♥♥♥  '}
       </Text>
-      <Text color="error" bold>
+      <Text color="blueBright" bold>
         {'   ♥   '}
       </Text>
     </Box>

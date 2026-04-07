@@ -63,13 +63,19 @@ export type SessionTabsMetadata = {
 
 export const DEFAULT_MAIN_TAB_ID = 'main'
 
+export function getSessionTabTodoLaneId(tabId: string): string {
+  return `lane-${tabId}`
+}
+
 export function createSessionTab(
   partial: Partial<SessionTabState> & Pick<SessionTabState, 'id' | 'title'>,
 ): SessionTabState {
   const now = new Date().toISOString()
+  const transcriptId = partial.transcriptId ?? partial.id
   return {
     kind: 'main',
-    transcriptId: partial.id,
+    transcriptId,
+    todoSnapshotId: partial.todoSnapshotId ?? getSessionTabTodoLaneId(partial.id),
     status: 'idle',
     createdAt: now,
     updatedAt: now,

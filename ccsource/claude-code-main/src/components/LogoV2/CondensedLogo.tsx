@@ -102,7 +102,6 @@ export function CondensedLogo() {
   const model = useMainLoopModel()
   const modelDisplayName = renderModelSetting(model)
   const {
-    version,
     cwd,
     billingType,
     agentName: agentNameFromSettings,
@@ -127,7 +126,6 @@ export function CondensedLogo() {
   }, [showOverageCreditUpsell, showGuestPassesUpsell])
 
   const textWidth = Math.max(columns - 15, 20)
-  const truncatedVersion = truncate(version, Math.max(textWidth - 13, 6))
   const effortSuffix = getEffortSuffix(model, effortValue)
   const { shouldSplit, truncatedModel, truncatedBilling } = formatModelAndBilling(
     modelDisplayName + effortSuffix,
@@ -143,19 +141,24 @@ export function CondensedLogo() {
     ? `Harzva restored · @${agentName} · ${truncatedCwd}`
     : `Harzva restored · ${truncatedCwd}`
   const truncatedCommandPath = truncate(commandPath, Math.max(textWidth, 20))
+  const webWorkspaceUrl = 'https://harzva.github.io/learn-likecc/'
 
   return (
     <OffscreenFreeze>
       <Box flexDirection="row" gap={2} alignItems="center">
-        {isFullscreenEnvEnabled() ? <AnimatedClawd /> : <Clawd />}
+        <Box flexDirection="column" alignItems="center">
+          <Text color="blueBright" bold>
+            Like
+          </Text>
+          {isFullscreenEnvEnabled() ? <AnimatedClawd /> : <Clawd />}
+        </Box>
 
         <Box flexDirection="column">
           <Text>
-            <Text color="cyanBright" bold>
-              Like Code
-            </Text>{' '}
-            <Text dimColor>v{truncatedVersion}</Text>
-            <Text dimColor> · ref Claude Code 2.1.88</Text>
+            <Text color="whiteBright" bold>
+              code
+            </Text>
+            <Text dimColor> · Harzva restored · v2.1.88</Text>
           </Text>
 
           {shouldSplit ? (
@@ -193,6 +196,12 @@ export function CondensedLogo() {
             <Text color="cyan">Command</Text>
             <Text dimColor> · </Text>
             <Text color="whiteBright">{truncatedCommandPath}</Text>
+          </Text>
+
+          <Text>
+            <Text color="cyan">Web</Text>
+            <Text dimColor> · </Text>
+            <Text color="blueBright">{webWorkspaceUrl}</Text>
           </Text>
 
           {configSummaryItems.map(item => (

@@ -291,8 +291,7 @@ import { useMessageActions, MessageActionsKeybindings, MessageActionsBar, type M
 import { setClipboard } from '../ink/termio/osc.js';
 import type { ScrollBoxHandle } from '../ink/components/ScrollBox.js';
 import { createAttachmentMessage, getQueuedCommandAttachments } from '../utils/attachments.js';
-import { addSessionTab, closeSessionTab, createSessionTaskTab, cycleSessionTab, getActiveSessionTab, inferSessionTabProvider, normalizeSessionTabsState, switchSessionTab, toggleSubagentPanel, updateSessionTab, type SessionTabState } from '../utils/sessionTabs.js';
-import { getTaskListId } from '../utils/tasks.js';
+import { addSessionTab, closeSessionTab, createSessionTaskTab, cycleSessionTab, getActiveSessionTab, getSessionTabTodoLaneId, inferSessionTabProvider, normalizeSessionTabsState, switchSessionTab, toggleSubagentPanel, updateSessionTab, type SessionTabState } from '../utils/sessionTabs.js';
 
 // Stable empty array for hooks that accept MCPServerConnection[] — avoids
 // creating a new [] literal on every render in remote mode, which would
@@ -1753,7 +1752,9 @@ export function REPL({
     const nextStatus = viewingAgentTaskId ? 'running' : isLoading ? 'running' : hasRunningTeammates ? 'waiting' : 'idle';
     const nextProvider = inferSessionTabProvider(mainLoopModel, process.env.ANTHROPIC_BASE_URL);
     const nextTranscriptId = viewingAgentTaskId ?? currentActiveTab.transcriptId ?? currentActiveTab.id;
-    const nextTodoSnapshotId = tasksV2 && tasksV2.length > 0 ? getTaskListId() : currentActiveTab.todoSnapshotId;
+    const nextTodoSnapshotId =
+      currentActiveTab.todoSnapshotId ??
+      getSessionTabTodoLaneId(currentActiveTab.id);
     const nextTabs = updateSessionTab(sessionTabs, currentActiveTab.id, {
       model: mainLoopModel ?? undefined,
       provider: nextProvider,
