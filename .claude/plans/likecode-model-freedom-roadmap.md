@@ -188,6 +188,7 @@ learn-likecc 现在已经不只是一个 Claude Code 源码学习仓库。
 - [x] 继续把 `vimMode / history search / bashes dialog / help / message selector` 往 pane 内部迁，减少 REPL 全局输入残留
 - [x] 让 `message selector` 的预选消息也跟随 pane 保存和恢复，减少不同 pane 之间的恢复目标串线
 - [x] 让 pane 的 `conversationId / submitCount` 也开始跟随窗口保存和恢复，进一步减少多个 pane 共用一份对话节奏
+- [x] 让真实 `tool progress` 也开始进入 `toolChains`，让 Web UI 在最终结果返回前也能看到工具链正在执行
 - [ ] 继续把多个可见对话框升级成真正的多活跃输入与多 transcript 并行
 - [ ] 继续把 transcript / todo 做到真正隔离，而不只是先做 UI 层消息区与快照恢复
 - [ ] 继续把 subagent 面板升级为更完整的工作视图，展示仓库、目录、当前任务与更多 live 状态

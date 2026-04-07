@@ -67,6 +67,8 @@
   - 当前 pane 会继续记录“准备恢复哪一条用户消息”，这样切 pane 之后再回来，不会把 message selector 的预选目标串到别的窗口里
 - ✅ **pane 的对话节奏也开始独立**
   - 当前 pane 会继续保存和恢复自己的 `conversationId / submitCount`，切 pane 时不再总共用同一份对话键空间与提交计数，更接近真正独立的多窗口会话
+- ✅ **真实 tool progress 也开始提前进入 toolChains**
+  - 当前 `progress` 消息会继续补足 `toolUseId / toolName / progress summary`，所以即使还没等到最终 `tool_result`，Web 侧也能更早看到某条工具链已经开始跑、正在跑什么
 
 ### 下一批最重要的真实需求
 
@@ -375,6 +377,7 @@ Claude Code 很强，但真实使用里一直有一个明显痛点：
 - [x] 继续把 `help / message selector` 这类输入相关开关往 pane 内部迁
 - [x] 让 `message selector` 的预选消息也跟随 pane 保存和恢复
 - [x] 让 pane 的 `conversationId / submitCount` 也开始跟随窗口保存和恢复
+- [x] 让真实 `tool progress` 也开始进入 `toolChains`，在最终结果返回前先展示执行中的工具链
 - [ ] 继续把更长链路的 workflow 回放补全，例如跨 turn 的阶段拼接和 pane 级历史回放
 - [ ] 团队里每个人可配置自己的默认 provider / 默认模型 / 默认预算策略
 - [ ] 项目级规则决定“这个仓库优先稳定模型，那个仓库优先低成本模型”

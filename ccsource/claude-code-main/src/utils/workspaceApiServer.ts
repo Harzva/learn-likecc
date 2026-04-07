@@ -312,6 +312,34 @@ function summarizeToolInput(input: unknown): string | undefined {
   }
 }
 
+function summarizeProgressData(data: unknown): {
+  toolName?: string
+  progressType?: string
+  summary?: string
+} {
+  if (!data || typeof data !== 'object') {
+    return { summary: summarizeUnknown(data) }
+  }
+
+  const record = data as Record<string, unknown>
+  return {
+    toolName:
+      getStringValue(record.toolName) ??
+      getStringValue(record.tool_name) ??
+      getStringValue(record.name),
+    progressType:
+      getStringValue(record.type) ?? getStringValue(record.subtype),
+    summary:
+      getStringValue(record.message) ??
+      getStringValue(record.output) ??
+      getStringValue(record.stdout) ??
+      summarizeUnknown(record.fullOutput) ??
+      getStringValue(record.status) ??
+      getStringValue(record.hookEvent) ??
+      summarizeUnknown(data),
+  }
+}
+
 function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: string) {
   const cards: WorkspaceTranscriptCard[] = []
   const workflow: WorkspaceWorkflowEvent[] = []
@@ -326,6 +354,10 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
     const parentToolUseId =
       typeof (message as Record<string, unknown>).parentToolUseID === 'string'
         ? ((message as Record<string, unknown>).parentToolUseID as string)
+        : undefined
+    const progressData =
+      message.type === 'progress' && 'data' in message
+        ? summarizeProgressData((message as Record<string, unknown>).data)
         : undefined
     const stage: WorkspaceWorkflowStage['stage'] =
       message.type === 'progress' && parentToolUseId
@@ -402,25 +434,36 @@ function buildTranscriptArtifacts(messages: Message[] | undefined, paneId: strin
           paneId,
           turnId: activeTurnId,
           toolUseId: parentToolUseId,
-          toolName: undefined,
+          toolName:
+            progressData?.toolName ??
+            progressData?.progressType ??
+            undefined,
           inputSummary: undefined,
           outputSummary: summary,
           startedAt: createdAt,
           completedAt: undefined,
         })
-      } else if (!existingPair.outputSummary && summary) {
+      } else if (
+        !existingPair.outputSummary ||
+        !existingPair.toolName
+      ) {
         toolPairs.set(parentToolUseId, {
           ...existingPair,
-          outputSummary: summary,
+          toolName:
+            existingPair.toolName ??
+            progressData?.toolName ??
+            progressData?.progressType,
+          outputSummary: existingPair.outputSummary ?? summary,
         })
       }
 
       cards.push({
         id: `${message.uuid}-progress-tool`,
         kind: 'progress',
-        title: 'tool progress',
-        summary,
+        title: `${progressData?.toolName ?? 'tool'} progress`,
+        summary: progressData?.summary ?? summary,
         role,
+        toolName: progressData?.toolName,
         toolUseId: parentToolUseId,
         createdAt,
       })
