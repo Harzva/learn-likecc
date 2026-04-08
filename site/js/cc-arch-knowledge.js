@@ -452,8 +452,10 @@
                 }
                 var near = {}
                 ;(adjacency[selectedId] || []).forEach(function (edge) {
-                    near[edge.source] = true
-                    near[edge.target] = true
+                    var srcId = typeof edge.source === 'object' ? edge.source.id : edge.source
+                    var dstId = typeof edge.target === 'object' ? edge.target.id : edge.target
+                    near[srcId] = true
+                    near[dstId] = true
                 })
                 near[selectedId] = true
                 node.classed('is-active', function (d) {
