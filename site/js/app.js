@@ -429,6 +429,7 @@ function initSiteSidebar() {
         '<a class="site-sidebar__link site-sidebar__link--sub" href="index.html#courses"><span class="site-sidebar__ico">📚</span><span class="site-sidebar__txt">24 讲目录</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="index.html#source-map-event"><span class="site-sidebar__ico">🔥</span><span class="site-sidebar__txt">Source Map 事件</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-source-derived.html"><span class="site-sidebar__ico">🔍</span><span class="site-sidebar__txt">源码反推思想</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-cc-buddy.html"><span class="site-sidebar__ico">🐾</span><span class="site-sidebar__txt">Buddy 彩蛋</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="https://github.com/Harzva/learn-likecc/blob/main/awesome-claude-code-source.md" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">✨</span><span class="site-sidebar__txt">Awesome 源码汇总</span></a>' +
         '<details class="site-sidebar__details site-sidebar__details--nested">' +
         '<summary class="site-sidebar__summary"><span class="site-sidebar__ico">🔬</span><span class="site-sidebar__txt">十二章列表</span></summary>' +
@@ -443,6 +444,11 @@ function initSiteSidebar() {
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-cc-release-watch.html"><span class="site-sidebar__ico">📋</span><span class="site-sidebar__txt">发版监督</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="https://docs.anthropic.com/en/docs/claude-code/changelog" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">🔗</span><span class="site-sidebar__txt">Anthropic Changelog ↗</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">🔗</span><span class="site-sidebar__txt">GitHub CHANGELOG ↗</span></a>' +
+        '</details>' +
+        '<details class="site-sidebar__details">' +
+        '<summary class="site-sidebar__summary"><span class="site-sidebar__ico">🧠</span><span class="site-sidebar__txt">大模型专题</span></summary>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-llm.html"><span class="site-sidebar__ico">📌</span><span class="site-sidebar__txt">专题首页</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="https://sebastianraschka.com/llm-architecture-gallery/" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">🔗</span><span class="site-sidebar__txt">Architecture Gallery ↗</span></a>' +
         '</details>' +
         '<details class="site-sidebar__details">' +
         '<summary class="site-sidebar__summary"><span class="site-sidebar__ico">📎</span><span class="site-sidebar__txt">RAG 专题</span></summary>' +

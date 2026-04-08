@@ -14,6 +14,7 @@
   - 📚 24 讲源码课程
   - 🗺️ Source Map 事件
   - 🔍 源码反推思想
+  - 🐾 Buddy 彩蛋
   - 📋 发版监督（官方 CLI changelog 速览）
   - 📦 CC 结构导览（中文主循环/工具/命令地图，参考 ccunpacked.dev）
 - **Source Map 事件（摘要）**
@@ -38,6 +39,10 @@
 #### 🔍 源码反推思想
 
 指向 `topic-source-derived.html` 一类「从实现抽哲学」的内容，与逐行读课形成互补。
+
+#### 🐾 Buddy 彩蛋
+
+把 Buddy 电子宠物系统放回 Source Map 轴里看，作为产品人格与终端陪伴体验的补充案例；站内写法参考 Yeekal 的 Buddy 图鉴整理。
 
 ### Source Map 事件（摘要）
 

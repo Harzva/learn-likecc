@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code Buddy 彩蛋专题 - Claude Code Course</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>">
+    <meta name="description" content="把 Claude Code Buddy 电子宠物系统放回 Source Map 轴里看：彩蛋、变体、交互与产品意味。">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🐾</span>
+                <span class="logo-text">Buddy 彩蛋专题</span>
+            </a>
+            <div class="nav-links">
+                <a href="#why" class="nav-link">为什么值得看</a>
+                <a href="#system" class="nav-link">系统结构</a>
+                <a href="#read" class="nav-link">怎么读</a>
+                <a href="#reference" class="nav-link">参考</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-sourcemap.html" class="btn-github">← Source Map 专题</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>📌 Source Map 扩展阅读</span>
+                <span>Buddy · Easter Egg</span>
+            </div>
+            <h1 class="hero-title">
+                Claude Code Buddy<br>
+                <span class="gradient-text">电子宠物彩蛋</span>
+            </h1>
+            <p class="hero-subtitle">
+                这一页把 <strong>Buddy</strong> 放回 Source Map 学习轴里看：它不是主功能，不直接决定 Agent Loop 或 MCP 的能力上限，但非常能说明 <strong>Claude Code 已经不是“只有工具调用的 CLI”</strong>，而是开始向有情绪、有陪伴感、有产品人格的工作台延伸。
+            </p>
+            <div class="hero-actions">
+                <a href="#why" class="btn btn-primary">先看为什么值得看</a>
+                <a href="https://yeekal.com/ai/claude-code-virtual-buddy/" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">参考文章 ↗</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="why" class="section" style="background: var(--bg-secondary); padding-top: 60px;">
+        <div class="container">
+            <h2 class="section-title">为什么值得单独拎出来</h2>
+            <div class="quickstart-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+                <div class="quickstart-card">
+                    <h3>不是纯工程细节</h3>
+                    <p>Buddy 这条线和权限、压缩、MCP 不同，它更偏<strong>产品人格层</strong>。你能从这里看见团队在终端体验上加入情绪价值和陪伴感的意图。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>很适合当 Source Map 的轻入口</h3>
+                    <p>很多人第一次对 Source Map 感兴趣，不是因为想读 1900 多个文件，而是因为发现里面藏着这种彩蛋系统。Buddy 恰好能做一个更轻、更容易传播的入口。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>说明 Claude Code 已经在走“工作台产品化”</h3>
+                    <p>当 CLI 里开始出现宠物、表情、装扮和互动时，说明产品已经不只是在做命令执行器，而是在做一套更完整的开发者体验。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="system" class="section">
+        <div class="container">
+            <h2 class="section-title">Buddy 系统看点</h2>
+            <p class="section-desc" style="max-width: 760px; margin: 0 auto 1.75rem;">
+                下面这些点来自社区对 Buddy 子系统的整理。这里不重复贴整篇图鉴，而是把它压成适合站内阅读的系统摘要。
+            </p>
+            <div class="tools-grid" style="max-width: 980px; margin: 0 auto;">
+                <div class="tool-card">
+                    <span class="tool-icon">🐣</span>
+                    <h4>18 种宠物</h4>
+                    <p>社区整理里提到 Buddy 含 18 种宠物形态，可作为开发时的陪伴角色；这一点也让它非常适合做视觉传播。</p>
+                </div>
+                <div class="tool-card">
+                    <span class="tool-icon">👀</span>
+                    <h4>眼睛、帽子、闪光变体</h4>
+                    <p>除了基础物种，还带眼睛风格、帽子装饰和闪光变体这类游戏化设计，说明它不是临时写的占位彩蛋，而是做过一层产品包装。</p>
+                </div>
+                <div class="tool-card">
+                    <span class="tool-icon">📊</span>
+                    <h4>稀有度与属性</h4>
+                    <p>整理稿里还提到稀有度、隐藏属性和带概率的生成逻辑。它们的存在说明这个系统具备比较完整的“收藏感”和差异化体验。</p>
+                </div>
+                <div class="tool-card">
+                    <span class="tool-icon">🎮</span>
+                    <h4>互动指令</h4>
+                    <p>Buddy 不是纯静态展示，还带互动命令。这种设计更像是在终端里嵌了一个轻量 Tamagotchi 式伙伴。</p>
+                </div>
+                <div class="tool-card">
+                    <span class="tool-icon">🪄</span>
+                    <h4>彩蛋价值大于生产价值</h4>
+                    <p>它不直接提升编码正确率，但能显著增加产品记忆点。对教学来说，这也是讲“工程系统之外还有产品层决策”的好例子。</p>
+                </div>
+                <div class="tool-card">
+                    <span class="tool-icon">📦</span>
+                    <h4>放回源码专题里更合理</h4>
+                    <p>如果只看热闹，它像一个趣味八卦；放回 Source Map 轴里看，它就成了一个很典型的“从泄露材料里观察产品人格”的案例。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="read" class="section" style="background: var(--bg-secondary);">
+        <div class="container">
+            <h2 class="section-title">在本站里怎么读这页</h2>
+            <div class="course-quote" style="max-width: 860px; margin: 0 auto;">
+                <p><strong>建议顺序</strong>：先看 <a href="topic-sourcemap.html">Source Map 源码专题</a> 建立事件背景，再看这页 Buddy 彩蛋，最后回到 <a href="topic-source-derived.html">源码反推思想</a> 或 <a href="topic-cc-unpacked-zh.html">CC 庖丁解牛</a>，把“有趣彩蛋”重新接回主线结构。</p>
+                <p><strong>不要把这页当成主线</strong>：它更适合做补充阅读。真正的核心仍然是 Agent Loop、工具系统、权限、压缩、MCP 和命令体系。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="reference" class="section">
+        <div class="container">
+            <h2 class="section-title">参考与边界</h2>
+            <p class="section-desc" style="max-width: 760px; margin: 0 auto 1.25rem;">
+                本页为站内整理页，叙述与结构采用本站风格；具体图鉴细节与展示方式参考 Yeekal 的文章：<strong>《Claude Code 电子宠物系统完全展示 | 18 种宠物图鉴》</strong>。
+            </p>
+            <div class="hero-actions" style="justify-content: center;">
+                <a href="https://yeekal.com/ai/claude-code-virtual-buddy/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">打开参考文章 ↗</a>
+                <a href="topic-sourcemap.html" class="btn btn-secondary">返回 Source Map 专题</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-cc-buddy.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -15,6 +15,7 @@
 - **2026 年 3 月：Source Map 事件是怎么回事？**
 - **📚 学习入口**
   - Source Map 源码专题
+  - 大模型专题
   - CC 庖丁解牛（`topic-cc-unpacked-zh`）
   - Claude Code 官方教程
   - 完全手册
@@ -76,6 +77,10 @@
 #### RAG 大专题 / Agent 大专题
 
 引向检索增强与 Agent 两条扩展学习线，与源码课形成互补。
+
+#### 大模型专题
+
+补模型本体这条线：架构图谱、注意力与混合结构阅读入口，首推 Sebastian Raschka 的 `LLM Architecture Gallery`。
 
 ### 🛤️ 学习路径
 
