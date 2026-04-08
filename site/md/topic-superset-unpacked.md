@@ -12,25 +12,25 @@
 
 锚定本地参考仓 `reference/reference_agent/reference_control-agent-cli/superset`，重点阅读 `README.md`、`packages/panes/README.md`、`packages/host-service/src/app.ts`、`packages/host-service/src/runtime/chat/chat.ts` 与 `plans/chat-mastra-rebuild-execplan.md`。
 
-### 01 · 外层产品壳
+### 01 · 五层总图：Superset 到底在拼什么
 
-从 `apps/desktop`、`apps/web`、`apps/api` 与配套 apps 说明：Superset 首先是完整工作台，不是单个 CLI。
+先给出整体公式：`产品壳 + 工作位引擎 + host-service + chat/terminal runtime + worktree 隔离`。先知道它在拼哪五层，后面读目录才不会散。
 
-### 02 · Pane / Workspace 引擎
+### 02 · 外层产品壳与顶层目录
+
+从 `apps/desktop`、`apps/web`、`apps/api` 与配套 apps 说明：Superset 首先是完整工作台，不是单个 CLI；`apps` 和 `packages` 的分法本身就在表达产品层与内核层。
+
+### 03 · Pane / Workspace 引擎
 
 围绕 `packages/panes` 拆解 `Workspace`、`Tab`、`Pane`、layout tree 的数据结构，说明它为什么是多 agent 工作位抽象的底座。
 
-### 03 · Host-Service 调度中枢
+### 04 · Host-Service 调度中枢
 
 根据 `packages/host-service/src/app.ts`，解释 `createApp()` 如何组装 db、git、filesystem、chat runtime、event bus、terminal route 与 tRPC router。
 
-### 04 · Chat Runtime 不是普通聊天框
+### 05 · Superset 如何拼出 Meta-Agent（自己起的名字，区别于 Harness）
 
-根据 `ChatRuntimeManager` 与相关 runtime 类型，说明 chat 在 Superset 中承担的是控制协议入口，而不是单纯消息显示。
-
-### 05 · Superset 如何拼出 Meta-Agent
-
-把“外层 agent 调 inner agent”拆成五步：可运行对象、独立工位、统一状态、统一控制、结果回收。
+根据 `ChatRuntimeManager`、terminal runtime 与 README 中的 worktree 叙述，解释外层 agent 如何把 inner agent 变成可运行对象、独立工位和可回收结果。
 
 ### 06 · 对 Like Code 的启发
 
@@ -42,4 +42,4 @@
 
 ### 延伸阅读
 
-回链 `CC 庖丁解牛`、`庖丁解牛专题总页`、`Agent 大专题` 与 Superset 上游仓库。
+回链 `Claude Code 解构`、`庖丁解牛专题总页`、`Agent 大专题` 与 Superset 上游仓库。

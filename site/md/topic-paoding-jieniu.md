@@ -10,13 +10,13 @@
 
 它不再只等于某一张 Claude Code 结构图，而是把“拆开看系统”这件事升成一条专题轴。当前先收两条子线：
 
-- `topic-cc-unpacked-zh.html`：**CC 庖丁解牛**
+- `topic-cc-unpacked-zh.html`：**Claude Code 解构**
 - `topic-superset-unpacked.html`：**Superset 解构**
 
 ## 目录（对照 HTML）
 
 - **子专题入口**
-  - 📦 CC 庖丁解牛
+  - 📦 Claude Code 解构
   - 🛰️ Superset 解构
 - **为什么要把它升成专题**
 - **推荐阅读顺序**
@@ -35,6 +35,6 @@
 
 建议：
 
-1. 先看 `CC 庖丁解牛`
+1. 先看 `Claude Code 解构`
 2. 再看 `Superset 解构`
 3. 最后回到 Like Code 判断哪些能力要内生化

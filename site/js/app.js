@@ -493,7 +493,7 @@ function initSiteSidebar() {
         '<details class="site-sidebar__details" data-sidebar-key="paoding-jieniu">' +
         '<summary class="site-sidebar__summary"><span class="site-sidebar__txt">庖丁解牛专题</span></summary>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-paoding-jieniu.html"><span class="site-sidebar__ico">📌</span><span class="site-sidebar__txt">专题首页</span></a>' +
-        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-cc-unpacked-zh.html"><span class="site-sidebar__ico">📦</span><span class="site-sidebar__txt">CC 庖丁解牛</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-cc-unpacked-zh.html"><span class="site-sidebar__ico">📦</span><span class="site-sidebar__txt">Claude Code 解构</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-superset-unpacked.html"><span class="site-sidebar__ico">🛰️</span><span class="site-sidebar__txt">Superset 解构</span></a>' +
         '</details>' +
         '<details class="site-sidebar__details" data-sidebar-key="toolchain">' +

@@ -1,10 +1,10 @@
-# CC 庖丁解牛
+# Claude Code 解构
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-cc-unpacked-zh.html  
 > **本文件**: `site/md/topic-cc-unpacked-zh.md`  
 > **说明**: 与 HTML 同步；权威技术叙述以 `ccsource` 与 S/D 讲义为准。
 
-本页现已归入 **庖丁解牛专题**，是其中的 **CC 庖丁解牛** 子专题：专注于 Claude Code 仓库结构的中文地图，覆盖主循环、目录分区、工具分组、斜杠命令场景与实验特性导读，并链回本站课程。**正文独立撰写**。
+本页现已归入 **庖丁解牛专题**，是其中的 **Claude Code 解构** 子专题：专注于 Claude Code 仓库结构的中文地图，覆盖主循环、目录分区、工具分组、斜杠命令场景与实验特性导读，并链回本站课程。**正文独立撰写**。
 
 ## 目录（对照 HTML）
 
