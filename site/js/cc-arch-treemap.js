@@ -197,12 +197,12 @@
                 .attr('fill', function (d) {
                     return fillFor(d3, d)
                 })
-                .attr('stroke', 'rgba(0,0,0,0.55)')
+                .attr('stroke', 'rgba(255,255,255,0.1)')
                 .attr('stroke-width', function (d) {
-                    return d.children ? 1.5 : 0.85
+                    return d.children ? 1.25 : 0.75
                 })
-                .attr('rx', 2)
-                .attr('ry', 2)
+                .attr('rx', 4)
+                .attr('ry', 4)
 
             cell.append('title').text(function (d) {
                 if (d.children) {
