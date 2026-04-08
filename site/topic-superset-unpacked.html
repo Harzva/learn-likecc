@@ -125,72 +125,28 @@
                     <h2>03 · 外层产品壳与顶层目录</h2>
                     <p><code>Superset</code> 的第一眼就已经说明问题了: 它不是一个 CLI，而是一个完整工作台。顶层同时有 <code>apps/desktop</code>、<code>apps/web</code>、<code>apps/api</code>，旁边还挂着 marketing、docs、streams、mobile 等配套应用。</p>
                     <p>这意味着它的目标从一开始就不是"把某个 agent 做强"，而是"把很多 CLI agent 收进同一个控制面里"。所以我们读它时，第一层心智模型应该是 <strong>工作台壳</strong>，不是聊天框。顶层目录的分法本身就在表达这一点：<code>apps/</code> 负责产品面，<code>packages/</code> 负责内核面。</p>
-                    <table class="options-table">
-                        <tr><th>层</th><th>关键目录</th><th>作用</th></tr>
-                        <tr><td>桌面壳</td><td><code>apps/desktop</code></td><td>把 workspace、pane、terminal、diff/review 腔进一个桌面容器里</td></tr>
-                        <tr><td>浏览器 / 服务</td><td><code>apps/web</code>、<code>apps/api</code></td><td>把同一套工作流延伸到 Web 与服务接口</td></tr>
-                        <tr><td>配套产品面</td><td><code>apps/docs</code>、<code>apps/marketing</code>、<code>apps/streams</code></td><td>说明这是完整产品体系，不是单个 demo</td></tr>
-                    </table>
-                    <table class="options-table" style="margin-top: 1rem;">
-                        <tr><th>观察</th><th>从目录里读出的信号</th></tr>
-                        <tr><td><code>apps</code> 数量很多</td><td>这个项目不是"一个终端工具"，而是打算做成完整产品矩阵</td></tr>
-                        <tr><td><code>packages</code> 很重</td><td>真正值钱的能力被拆成复用内核，而不是全塞进一个桌面 app 里</td></tr>
-                        <tr><td><code>plans/</code> 很厚</td><td>团队在持续迭代 chat/runtime/orchestration，不是一次性 demo</td></tr>
-                    </table>
+                    <div id="superset-shell-apps-mount" class="superset-overview-mount" data-json="data/superset-overview.json" role="region" aria-label="产品壳应用卡片"></div>
                 </section>
 
                 <section id="panes" class="section-block">
                     <h2>04 · Pane / Workspace 引擎</h2>
                     <p><code>packages/panes</code> 是 Superset 很关键的一层。它把布局能力单独抽成一个无头引擎，核心概念直接就是 <code>Workspace</code>、<code>Tab</code>、<code>Pane</code> 与 split layout tree。</p>
                     <p>这层的价值不是"界面好看"，而是先把 <strong>工作位</strong> 抽象清楚: 任务在什么 tab，运行在哪个 pane，布局怎么切分，数据和布局如何分离。没有这层，后面的多 agent 调度很容易退化成一堆终端窗口。</p>
-                    <table class="options-table">
-                        <tr><th>概念</th><th>在 Superset 中的含义</th><th>对 meta-agent 的价值</th></tr>
-                        <tr><td><code>Workspace</code></td><td>最上层容器，管理多个 tab</td><td>给"外层 agent 正在管理什么"一个总视图</td></tr>
-                        <tr><td><code>Tab</code></td><td>命名上下文，内部再分 pane</td><td>把任务切换从"换 app"变成"换工位"</td></tr>
-                        <tr><td><code>Pane</code></td><td>真正承载 terminal/chat/browser 等叶子单元</td><td>让每个 worker 有稳定可见的落点</td></tr>
-                        <tr><td>Layout tree</td><td>纯结构树，只描述 split 与权重</td><td>把布局问题和业务状态拆开，方便扩展</td></tr>
-                    </table>
-                    <div class="course-quote" style="margin-top: 1rem;">
-                        <p><strong>对 Like Code 很重要的一点</strong>：pane 不应该等于终端，而应该等于工位。终端只是某个工位上的一种视图，真正要稳定的是"这个 worker 属于哪个 tab / 哪个 pane / 哪个上下文"。</p>
-                    </div>
+                    <div id="superset-pane-engine-mount" class="superset-overview-mount" data-json="data/superset-overview.json" role="region" aria-label="Pane 引擎概念图"></div>
                 </section>
 
                 <section id="host-service" class="section-block">
                     <h2>05 · Host-Service 调度中枢</h2>
                     <p>真正像"外层大脑"的，不是桌面 UI，而是 <code>packages/host-service</code>。从 <code>src/app.ts</code> 看，<code>createApp()</code> 一次性接上了数据库、git、workspace filesystem、chat runtime、pull request runtime、event bus、terminal websocket route 和 tRPC router。</p>
                     <p>也就是说，Superset 真正的 orchestration kernel 是这层服务，而不是 React 组件。前端看到的 pane、terminal、changes、chat，本质上都只是这层 runtime 的可视化窗口。</p>
-                    <table class="options-table">
-                        <tr><th>子系统</th><th>关键文件</th><th>职责</th></tr>
-                        <tr><td>App Wiring</td><td><code>packages/host-service/src/app.ts</code></td><td>把 db、git、filesystem、chat、terminal、router 统一组装起来</td></tr>
-                        <tr><td>Event Bus</td><td><code>packages/host-service/src/events/event-bus.ts</code></td><td>把文件系统 / 工作区变化统一广播给前端</td></tr>
-                        <tr><td>Terminal Route</td><td><code>packages/host-service/src/terminal/terminal.ts</code></td><td>通过 PTY + WebSocket 管理终端会话的附着与重连</td></tr>
-                        <tr><td>Workspace FS</td><td><code>packages/host-service/src/runtime/filesystem</code></td><td>统一工作区文件与路径相关运行时</td></tr>
-                        <tr><td>Control API</td><td><code>packages/host-service/src/trpc/router</code></td><td>把控制面能力暴露给桌面 / Web 前端</td></tr>
-                    </table>
-                    <p class="section-desc" style="margin-top: 0.8rem;">如果把这层拿掉，Superset 就只剩"若干视图组件"；正是因为有它，系统才真正具有外层调度力。</p>
+                    <div id="superset-host-service-mount" class="superset-overview-mount" data-json="data/superset-overview.json" role="region" aria-label="Host-Service 子系统卡片"></div>
                 </section>
 
                 <section id="worker" class="section-block">
                     <h2>06 · Superset 如何拼出 Meta-Agent（自己起的名字，区别于 Harness）</h2>
                     <p>真正让 Superset 形成 `meta-agent` 味道的，不是某个单独包，而是 chat、terminal、worktree 三层一起工作。<code>ChatRuntimeManager</code> 负责控制协议入口，terminal runtime 负责把 CLI agent 变成可附着会话，README 反复强调的 worktree 则负责把这些执行体隔离开。</p>
                     <p>换句话说：<strong>chat 负责"说什么"、terminal 负责"怎么跑"、worktree 负责"跑在哪里且不互相污染"</strong>。三层叠起来，外层 agent 才真的能去调度 inner agent。</p>
-                    <table class="options-table">
-                        <tr><th>能力</th><th>体现位置</th><th>说明</th></tr>
-                        <tr><td>Session Runtime</td><td><code>ChatRuntimeManager</code></td><td>维护一个 workspace/session 对应的 agent 运行时</td></tr>
-                        <tr><td>控制动作</td><td><code>sendMessage</code>、approval、question、plan</td><td>不是普通聊天，而是对 inner agent 的继续控制</td></tr>
-                        <tr><td>Terminal Session</td><td><code>terminal/terminal.ts</code></td><td>把 CLI 执行体接成可附着、可重连、可观察的终端会话</td></tr>
-                        <tr><td>Worktree Isolation</td><td>README + workspace runtime</td><td>让并行 agent 各跑各的，不在同一工作目录互相打架</td></tr>
-                        <tr><td>Display / Pending State</td><td><code>ChatDisplayState</code></td><td>把 pending question、error、display state 暴露给前端</td></tr>
-                    </table>
-                    <table class="options-table" style="margin-top: 1rem;">
-                        <tr><th>五步公式</th><th>结果</th></tr>
-                        <tr><td>把 inner agent 变成可运行对象</td><td>任何能跑在终端里的 agent 都可能被纳入系统</td></tr>
-                        <tr><td>给每个 agent 一个独立工位</td><td>agent 不再只是黑框，而是带 pane / workspace / worktree 的工作位</td></tr>
-                        <tr><td>让外层统一看见状态</td><td>知道谁在运行、谁在等待审批、谁已经准备 review</td></tr>
-                        <tr><td>让外层统一控制</td><td>可以发送、批准、中断、继续 plan</td></tr>
-                        <tr><td>把结果收回工作台</td><td>最终进入 diff / review / editor handoff，而不是散落在终端里</td></tr>
-                    </table>
-                    <p class="section-desc" style="margin-top: 0.8rem;">所以它的本质不是"多开几个终端"，而是"系统替你管理很多 inner agents"。这就是它的 meta-agent 味道。</p>
+                    <div id="superset-meta-agent-mount" class="superset-overview-mount" data-json="data/superset-overview.json" role="region" aria-label="Meta-Agent 拼装图"></div>
                 </section>
 
                 <section id="likecode" class="section-block">
@@ -234,5 +190,6 @@
     <script src="js/app.js"></script>
     <script src="js/superset-arch-treemap.js"></script>
     <script src="js/superset-arch-knowledge.js"></script>
+    <script src="js/superset-overview.js"></script>
 </body>
 </html>

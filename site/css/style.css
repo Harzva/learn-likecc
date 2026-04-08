@@ -8754,3 +8754,432 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
         cursor: pointer;
     }
 }
+
+/* ========== Superset Overview 可视化组件 ========== */
+
+.superset-section {
+    margin: 1.5rem 0;
+}
+
+.superset-error {
+    padding: 1rem;
+    background: color-mix(in srgb, var(--primary) 8%, var(--bg-card));
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    color: var(--primary-dark);
+}
+
+/* 03 · 产品壳卡片 */
+.superset-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.superset-app-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    cursor: default;
+}
+
+.superset-app-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--card-color, var(--primary));
+}
+
+.app-card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.app-icon {
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.app-meta {
+    flex: 1;
+}
+
+.app-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 0.25rem 0;
+}
+
+.app-role {
+    font-size: 0.8rem;
+    color: var(--card-color, var(--primary));
+    font-weight: 500;
+}
+
+.app-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0 0 0.75rem 0;
+    line-height: 1.5;
+}
+
+.app-path {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    background: var(--bg-secondary);
+    padding: 0.35rem 0.5rem;
+    border-radius: 4px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* 观察项 */
+.superset-observations {
+    background: var(--bg-secondary);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    border: 1px solid var(--border);
+}
+
+.observations-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 1rem 0;
+}
+
+.observations-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.observation-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.obs-signal {
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+
+.obs-arrow {
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.obs-insight {
+    color: var(--text-secondary);
+    flex: 1;
+}
+
+/* 04 · Pane 引擎概念图 */
+.pane-concepts-flow {
+    margin-bottom: 1.5rem;
+}
+
+.concepts-chain {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 0.5rem;
+}
+
+.concept-node {
+    flex: 1;
+    min-width: 200px;
+    background: var(--bg-card);
+    border: 2px solid var(--node-color, var(--primary));
+    border-radius: var(--radius);
+    padding: 1rem;
+    position: relative;
+}
+
+.concept-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.concept-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--node-color, var(--primary));
+    margin: 0 0 0.25rem 0;
+}
+
+.concept-def {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin: 0 0 0.5rem 0;
+}
+
+.concept-value {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 0;
+    padding-top: 0.5rem;
+    border-top: 1px dashed var(--border);
+}
+
+.chain-arrow {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    color: var(--primary);
+    font-weight: bold;
+    opacity: 0.6;
+}
+
+.pane-insight-box {
+    display: flex;
+    gap: 1rem;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--primary) 8%, var(--bg-card)), var(--bg-secondary));
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+}
+
+.insight-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.insight-content h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin: 0 0 0.5rem 0;
+}
+
+.insight-content p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* 05 · Host-Service 子系统卡片 */
+.subsystem-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.subsystem-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--sys-color, var(--primary));
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.subsystem-card:hover {
+    transform: translateX(4px);
+    box-shadow: var(--shadow);
+}
+
+.sys-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.sys-icon {
+    font-size: 1.25rem;
+}
+
+.sys-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.sys-role {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0 0 0.5rem 0;
+    line-height: 1.5;
+}
+
+.sys-file {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    background: var(--bg-secondary);
+    padding: 0.35rem 0.5rem;
+    border-radius: 4px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.subsystem-insight {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    background: var(--bg-secondary);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--border);
+}
+
+.subsystem-insight .insight-icon {
+    font-size: 1.25rem;
+}
+
+.subsystem-insight p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* 06 · Meta-Agent 拼装图 */
+.meta-agent-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+@media (max-width: 900px) {
+    .meta-agent-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.layers-panel,
+.formula-panel {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+}
+
+.panel-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 1rem 0;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.layers-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.layer-item {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    border-left: 3px solid var(--layer-color, var(--primary));
+}
+
+.layer-icon {
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+.layer-body {
+    flex: 1;
+}
+
+.layer-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 0.25rem 0;
+}
+
+.layer-loc {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-bottom: 0.35rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.layer-desc {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.formula-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.formula-step {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+}
+
+.step-num {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.85rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.step-content {
+    flex: 1;
+}
+
+.step-action {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin: 0 0 0.25rem 0;
+}
+
+.step-result {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* 响应式调整 */
+@media (max-width: 600px) {
+    .superset-cards-grid,
+    .subsystem-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .concepts-chain {
+        flex-direction: column;
+    }
+
+    .chain-arrow {
+        transform: rotate(90deg);
+        justify-content: center;
+        padding: 0.25rem 0;
+    }
+}

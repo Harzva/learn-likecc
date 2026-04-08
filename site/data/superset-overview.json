@@ -1,0 +1,241 @@
+{
+  "meta": {
+    "updated": "2026-04-09",
+    "source": "reference/reference_agent/reference_control-agent-cli/superset"
+  },
+  "shell_apps": {
+    "title": "03 · 外层产品壳与顶层目录",
+    "description": "Superset 不是一个 CLI，而是一个完整工作台。顶层同时有 desktop、web、api，旁边挂着 marketing、docs、streams、mobile 等配套应用。",
+    "apps": [
+      {
+        "id": "desktop",
+        "name": "Desktop",
+        "path": "apps/desktop",
+        "icon": "🖥️",
+        "color": "#f97316",
+        "role": "桌面壳",
+        "description": "把 workspace、pane、terminal、diff/review 腔进一个桌面容器里"
+      },
+      {
+        "id": "web",
+        "name": "Web",
+        "path": "apps/web",
+        "icon": "🌐",
+        "color": "#0ea5e9",
+        "role": "浏览器端",
+        "description": "把同一套工作流延伸到 Web 浏览器"
+      },
+      {
+        "id": "api",
+        "name": "API",
+        "path": "apps/api",
+        "icon": "🔌",
+        "color": "#8b5cf6",
+        "role": "服务接口",
+        "description": "把控制能力暴露为服务接口"
+      },
+      {
+        "id": "docs",
+        "name": "Docs",
+        "path": "apps/docs",
+        "icon": "📚",
+        "color": "#22c55e",
+        "role": "文档站",
+        "description": "产品文档与使用指南"
+      },
+      {
+        "id": "marketing",
+        "name": "Marketing",
+        "path": "apps/marketing",
+        "icon": "📣",
+        "color": "#ec4899",
+        "role": "营销站",
+        "description": "产品官网与营销页面"
+      },
+      {
+        "id": "streams",
+        "name": "Streams",
+        "path": "apps/streams",
+        "icon": "📡",
+        "color": "#06b6d4",
+        "role": "流媒体",
+        "description": "实时流与直播能力"
+      },
+      {
+        "id": "mobile",
+        "name": "Mobile",
+        "path": "apps/mobile",
+        "icon": "📱",
+        "color": "#a855f7",
+        "role": "移动端",
+        "description": "移动应用扩展"
+      }
+    ],
+    "observations": [
+      {
+        "signal": "apps 数量很多",
+        "insight": "这个项目不是"一个终端工具"，而是完整产品矩阵"
+      },
+      {
+        "signal": "packages 很重",
+        "insight": "真正值钱的能力被拆成复用内核，而不是全塞进一个桌面 app 里"
+      },
+      {
+        "signal": "plans/ 很厚",
+        "insight": "团队在持续迭代 chat/runtime/orchestration，不是一次性 demo"
+      }
+    ]
+  },
+  "pane_engine": {
+    "title": "04 · Pane / Workspace 引擎",
+    "description": "packages/panes 把布局能力单独抽成一个无头引擎，核心概念是 Workspace、Tab、Pane 与 split layout tree。",
+    "concepts": [
+      {
+        "id": "workspace",
+        "name": "Workspace",
+        "icon": "🏠",
+        "color": "#6366f1",
+        "definition": "最上层容器，管理多个 tab",
+        "value": "给"外层 agent 正在管理什么"一个总视图"
+      },
+      {
+        "id": "tab",
+        "name": "Tab",
+        "icon": "📑",
+        "color": "#f97316",
+        "definition": "命名上下文，内部再分 pane",
+        "value": "把任务切换从"换 app"变成"换工位""
+      },
+      {
+        "id": "pane",
+        "name": "Pane",
+        "icon": "🔲",
+        "color": "#22c55e",
+        "definition": "真正承载 terminal/chat/browser 等叶子单元",
+        "value": "让每个 worker 有稳定可见的落点"
+      },
+      {
+        "id": "layout",
+        "name": "Layout Tree",
+        "icon": "🌳",
+        "color": "#0ea5e9",
+        "definition": "纯结构树，只描述 split 与权重",
+        "value": "把布局问题和业务状态拆开，方便扩展"
+      }
+    ],
+    "key_insight": {
+      "title": "对 Like Code 很重要的一点",
+      "content": "pane 不应该等于终端，而应该等于工位。终端只是某个工位上的一种视图，真正要稳定的是"这个 worker 属于哪个 tab / 哪个 pane / 哪个上下文"。"
+    }
+  },
+  "host_service": {
+    "title": "05 · Host-Service 调度中枢",
+    "description": "真正像"外层大脑"的，不是桌面 UI，而是 packages/host-service。createApp() 一次性接上了数据库、git、workspace filesystem、chat runtime、pull request runtime、event bus、terminal websocket route 和 tRPC router。",
+    "subsystems": [
+      {
+        "id": "app-wiring",
+        "name": "App Wiring",
+        "icon": "🔗",
+        "color": "#f97316",
+        "file": "packages/host-service/src/app.ts",
+        "role": "把 db、git、filesystem、chat、terminal、router 统一组装起来"
+      },
+      {
+        "id": "event-bus",
+        "name": "Event Bus",
+        "icon": "📡",
+        "color": "#8b5cf6",
+        "file": "packages/host-service/src/events/event-bus.ts",
+        "role": "把文件系统 / 工作区变化统一广播给前端"
+      },
+      {
+        "id": "terminal",
+        "name": "Terminal Route",
+        "icon": "💻",
+        "color": "#22c55e",
+        "file": "packages/host-service/src/terminal/terminal.ts",
+        "role": "通过 PTY + WebSocket 管理终端会话的附着与重连"
+      },
+      {
+        "id": "workspace-fs",
+        "name": "Workspace FS",
+        "icon": "📁",
+        "color": "#0ea5e9",
+        "file": "packages/host-service/src/runtime/filesystem",
+        "role": "统一工作区文件与路径相关运行时"
+      },
+      {
+        "id": "control-api",
+        "name": "Control API",
+        "icon": "🎛️",
+        "color": "#ec4899",
+        "file": "packages/host-service/src/trpc/router",
+        "role": "把控制面能力暴露给桌面 / Web 前端"
+      }
+    ],
+    "insight": "如果把这层拿掉，Superset 就只剩"若干视图组件"；正是因为有它，系统才真正具有外层调度力。"
+  },
+  "meta_agent": {
+    "title": "06 · Meta-Agent 拼装",
+    "description": "chat、terminal、worktree 三层一起工作，chat 负责"说什么"、terminal 负责"怎么跑"、worktree 负责"跑在哪里且不互相污染"。",
+    "layers": [
+      {
+        "name": "Session Runtime",
+        "icon": "🔄",
+        "color": "#6366f1",
+        "location": "ChatRuntimeManager",
+        "desc": "维护一个 workspace/session 对应的 agent 运行时"
+      },
+      {
+        "name": "控制动作",
+        "icon": "🎮",
+        "color": "#f97316",
+        "location": "sendMessage、approval、question、plan",
+        "desc": "不是普通聊天，而是对 inner agent 的继续控制"
+      },
+      {
+        "name": "Terminal Session",
+        "icon": "💻",
+        "color": "#22c55e",
+        "location": "terminal/terminal.ts",
+        "desc": "把 CLI 执行体接成可附着、可重连、可观察的终端会话"
+      },
+      {
+        "name": "Worktree Isolation",
+        "icon": "🌲",
+        "color": "#0ea5e9",
+        "location": "README + workspace runtime",
+        "desc": "让并行 agent 各跑各的，不在同一工作目录互相打架"
+      },
+      {
+        "name": "Display State",
+        "icon": "📊",
+        "color": "#8b5cf6",
+        "location": "ChatDisplayState",
+        "desc": "把 pending question、error、display state 暴露给前端"
+      }
+    ],
+    "formula": [
+      {
+        "step": "把 inner agent 变成可运行对象",
+        "result": "任何能跑在终端里的 agent 都可能被纳入系统"
+      },
+      {
+        "step": "给每个 agent 一个独立工位",
+        "result": "agent 不再只是黑框，而是带 pane / workspace / worktree 的工作位"
+      },
+      {
+        "step": "让外层统一看见状态",
+        "result": "知道谁在运行、谁在等待审批、谁已经准备 review"
+      },
+      {
+        "step": "让外层统一控制",
+        "result": "可以发送、批准、中断、继续 plan"
+      },
+      {
+        "step": "把结果收回工作台",
+        "result": "最终进入 diff / review / editor handoff"
+      }
+    ]
+  }
+}
