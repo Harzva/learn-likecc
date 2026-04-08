@@ -6018,13 +6018,13 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 }
 
 .cc-unpacked-page .nav-container {
-    max-width: min(1500px, calc(100vw - 36px));
+    max-width: min(1400px, calc(100vw - 44px));
 }
 
 .cc-unpacked-page .container.container--layout-wide {
-    max-width: min(1560px, calc(100vw - 28px));
-    padding-left: clamp(10px, 1.8vw, 22px);
-    padding-right: clamp(10px, 1.8vw, 22px);
+    max-width: min(1440px, calc(100vw - 44px));
+    padding-left: clamp(14px, 2vw, 26px);
+    padding-right: clamp(14px, 2vw, 26px);
 }
 
 .cc-unpacked-page .devlog-content {
