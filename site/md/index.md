@@ -15,7 +15,7 @@
 - **2026 年 3 月：Source Map 事件是怎么回事？**
 - **📚 学习入口**
   - Source Map 源码专题
-  - CC 结构导览（Unpacked，`topic-cc-unpacked-zh`）
+  - CC 庖丁解牛（`topic-cc-unpacked-zh`）
   - Claude Code 官方教程
   - 完全手册
   - 面试题库
@@ -65,9 +65,9 @@
 
 指向以 Source Map 与重建源码为主线的专题页，承接上方事件背景。
 
-#### CC 结构导览（Unpacked）
+#### CC 庖丁解牛
 
-`topic-cc-unpacked-zh.html`：用中文表格与说明对照官方包结构（思路参考 ccunpacked.dev），含概览数据与 Loop 相关入口，与 24 讲并排使用。
+`topic-cc-unpacked-zh.html`：用中文结构地图与说明对照官方包结构（思路参考 ccunpacked.dev），含概览数据、Loop 相关入口与工具系统分组，适合与 24 讲并排使用。
 
 #### Claude Code 官方教程 / 完全手册 / 面试题库
 

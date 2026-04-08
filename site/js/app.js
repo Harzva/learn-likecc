@@ -475,7 +475,7 @@ function initSiteSidebar() {
         '<a class="site-sidebar__link site-sidebar__link--sub" href="oh12.html"><span class="site-sidebar__ico">🌿</span><span class="site-sidebar__txt">OH12 · Git</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="https://github.com/HKUDS/OpenHarness" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">🔗</span><span class="site-sidebar__txt">上游仓库 ↗</span></a>' +
         '</details>' +
-        '<a class="site-sidebar__link" href="topic-cc-unpacked-zh.html"><span class="site-sidebar__ico">📦</span><span class="site-sidebar__txt">CC 结构导览</span></a>' +
+        '<a class="site-sidebar__link" href="topic-cc-unpacked-zh.html"><span class="site-sidebar__ico">📦</span><span class="site-sidebar__txt">CC 庖丁解牛</span></a>' +
         '<details class="site-sidebar__details">' +
         '<summary class="site-sidebar__summary"><span class="site-sidebar__ico">🧰</span><span class="site-sidebar__txt">工具链专题</span></summary>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-toolchain.html"><span class="site-sidebar__ico">📌</span><span class="site-sidebar__txt">专题首页</span></a>' +

@@ -6055,6 +6055,300 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     padding: 1rem 1.1rem;
 }
 
+.tutorial-page .nav-container {
+    max-width: min(1380px, calc(100vw - 40px));
+}
+
+.tutorial-page .hero-content {
+    max-width: 860px;
+}
+
+.tutorial-page .hero-subtitle {
+    max-width: 760px;
+    font-size: 1.18rem;
+    line-height: 1.8;
+}
+
+.tutorial-page .section {
+    padding: 78px 20px;
+}
+
+.tutorial-page .container {
+    max-width: min(1440px, calc(100vw - 36px));
+    padding-left: clamp(16px, 2.2vw, 28px);
+    padding-right: clamp(16px, 2.2vw, 28px);
+}
+
+.tutorial-page .section-title {
+    margin-bottom: 12px;
+}
+
+.tutorial-page .section-desc,
+.tutorial-page .memory-intro,
+.tutorial-page .skills-intro,
+.tutorial-page .reference-lead {
+    max-width: 1040px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tutorial-page .install-content,
+.tutorial-page .quickstart-steps,
+.tutorial-page .basic-commands,
+.tutorial-page .claude-md-locations,
+.tutorial-page .claude-md-example,
+.tutorial-page .memory-rules,
+.tutorial-page .memory-tips,
+.tutorial-page .claude-dir-key-rules,
+.tutorial-page .skill-locations,
+.tutorial-page .skill-frontmatter,
+.tutorial-page .skill-arguments,
+.tutorial-page .reference-detail-wrap {
+    max-width: 1160px;
+}
+
+.tutorial-page .platform-grid,
+.tutorial-page .memory-comparison {
+    max-width: 1160px;
+}
+
+.tutorial-page .install-card,
+.tutorial-page .qs-step,
+.tutorial-page .memory-type-card,
+.tutorial-page .tip-card,
+.tutorial-page .skill-step,
+.tutorial-page .workflow-card,
+.tutorial-page .reference-detail-category {
+    box-shadow: 0 18px 42px -32px rgba(15, 23, 42, 0.26);
+}
+
+.tutorial-page .install-card,
+.tutorial-page .qs-step,
+.tutorial-page .memory-type-card,
+.tutorial-page .tip-card,
+.tutorial-page .skill-step,
+.tutorial-page .workflow-card {
+    border-radius: 18px;
+}
+
+.tutorial-page .install-card {
+    padding: 22px 24px;
+    margin-bottom: 14px;
+}
+
+.tutorial-page .install-note {
+    padding: 14px 16px;
+}
+
+.tutorial-page .other-platforms {
+    margin-top: 38px;
+}
+
+.tutorial-page .platform-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.tutorial-page .platform-card {
+    padding: 20px 18px;
+}
+
+.tutorial-page .quickstart-steps {
+    max-width: 1180px;
+}
+
+.tutorial-page .qs-step {
+    margin-bottom: 20px;
+    padding: 20px 22px;
+    gap: 18px;
+}
+
+.tutorial-page .basic-commands {
+    margin-top: 34px;
+}
+
+.tutorial-page .commands-table th,
+.tutorial-page .commands-table td,
+.tutorial-page .locations-table th,
+.tutorial-page .locations-table td,
+.tutorial-page .skills-table th,
+.tutorial-page .skills-table td {
+    padding: 14px 16px;
+}
+
+.tutorial-page .memory-comparison {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 38px;
+}
+
+.tutorial-page .tips-grid,
+.tutorial-page .field-grid,
+.tutorial-page .workflow-grid {
+    gap: 14px;
+}
+
+.tutorial-page .workflow-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.tutorial-page .workflow-card {
+    padding: 22px 22px 20px;
+}
+
+.tutorial-page .reference-detail-wrap {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.tutorial-page .reference-detail-category {
+    margin-bottom: 0;
+    padding: 18px 18px 8px;
+    border-radius: 22px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,249,241,0.92));
+}
+
+.tutorial-page .reference-detail-category > h3 {
+    margin-bottom: 12px;
+}
+
+.tutorial-page .ref-table.ref-table--detail td {
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+
+.cc-unpacked-page .cc-tools-section > p {
+    max-width: 72rem;
+    font-size: 1.08rem;
+    line-height: 1.82;
+}
+
+.cc-unpacked-page .cc-tools-section .section-desc,
+.cc-unpacked-page .cc-tools-section .cc-overview-footnote {
+    max-width: 76rem;
+    font-size: 1rem !important;
+    line-height: 1.72;
+}
+
+.cc-unpacked-page .cc-tool-tiles {
+    margin: 1.25rem 0 1.35rem;
+    padding: 1.45rem 1.45rem 1.5rem;
+    border-radius: 26px;
+    border: 1px solid rgba(48, 63, 89, 0.14);
+    background:
+        radial-gradient(circle at 10% 12%, rgba(246, 196, 90, 0.12), transparent 22%),
+        radial-gradient(circle at 88% 10%, rgba(79, 121, 216, 0.1), transparent 24%),
+        linear-gradient(180deg, rgba(255, 251, 245, 0.98), rgba(255, 244, 232, 0.985));
+    box-shadow:
+        0 24px 56px -34px rgba(30, 41, 59, 0.28),
+        inset 0 1px 0 rgba(255,255,255,0.58);
+}
+
+.cc-unpacked-page .cc-tool-tiles__head {
+    margin-bottom: 0.9rem;
+}
+
+.cc-unpacked-page .cc-tool-tiles__title {
+    font-size: clamp(1.55rem, 1.5vw, 2rem);
+    letter-spacing: -0.01em;
+    line-height: 1.18;
+}
+
+.cc-unpacked-page .cc-tool-tiles__sub,
+.cc-unpacked-page .cc-tool-tiles__note {
+    font-size: 1rem;
+    line-height: 1.72;
+    max-width: 76rem;
+}
+
+.cc-unpacked-page .cc-tool-tiles__cols {
+    gap: 1rem;
+}
+
+.cc-unpacked-page .cc-tool-cat {
+    padding: 0.9rem 0.95rem 0.92rem;
+    border-radius: 18px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.82), rgba(255,248,240,0.9));
+    border: 1px solid rgba(111, 124, 149, 0.14);
+    box-shadow: 0 14px 32px -26px rgba(15, 23, 42, 0.3);
+}
+
+.cc-unpacked-page .cc-tool-cat__title {
+    margin-bottom: 0.58rem;
+    font-size: 0.84rem;
+    letter-spacing: 0.12em;
+}
+
+.cc-unpacked-page .cc-tool-cat__bar {
+    width: 4px;
+    height: 1rem;
+    border-radius: 4px;
+}
+
+.cc-unpacked-page .cc-tool-cat__tiles {
+    gap: 0.4rem;
+}
+
+.cc-unpacked-page .cc-tool-tile {
+    padding: 0.56rem 0.72rem;
+    border-radius: 12px;
+    font-size: 0.96rem;
+    line-height: 1.45;
+    background: rgba(255,255,255,0.72);
+}
+
+.cc-unpacked-page .cc-tool-tile code {
+    font-size: 0.96em;
+}
+
+.cc-unpacked-page .cc-tools-section .options-table {
+    font-size: 1.04rem;
+    margin-top: 1rem;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.cc-unpacked-page .cc-tools-section .options-table th,
+.cc-unpacked-page .cc-tools-section .options-table td {
+    padding: 1.02rem 1.08rem;
+    line-height: 1.65;
+}
+
+@media (max-width: 1080px) {
+    .tutorial-page .reference-detail-wrap,
+    .tutorial-page .workflow-grid,
+    .tutorial-page .platform-grid,
+    .tutorial-page .memory-comparison {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 720px) {
+    .tutorial-page .section {
+        padding: 64px 16px;
+    }
+
+    .tutorial-page .qs-step {
+        padding: 18px;
+        gap: 14px;
+    }
+
+    .cc-unpacked-page .cc-tool-tiles {
+        padding: 1.1rem 0.95rem 1.15rem;
+        border-radius: 20px;
+    }
+
+    .cc-unpacked-page .cc-tool-cat {
+        padding: 0.78rem 0.8rem 0.82rem;
+    }
+
+    .cc-unpacked-page .cc-tool-tile {
+        font-size: 0.9rem;
+        padding: 0.5rem 0.62rem;
+    }
+}
+
 .toolchain-page {
     background:
         radial-gradient(circle at top left, rgba(245, 158, 11, 0.18), transparent 28%),
