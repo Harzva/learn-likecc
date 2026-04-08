@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-04-08",
+    "updated": "2026-04-04",
     "note_zh": "三数据表由 tools/gen_cc_overview.py 根据本文件生成并写回 topic-cc-unpacked-zh.html；改行后请运行：python3 tools/gen_cc_overview.py",
     "ccsource_path": "ccsource/claude-code-main"
   },
@@ -90,6 +90,96 @@
           { "href": "d07.html", "text": "D07" }
         ],
         "col3_sep": " · "
+      }
+    ]
+  },
+  "tool_tiles": {
+    "note_zh": "工具注册名随官方版本变化；以下为读源码与讲义时常用的代表项。",
+    "categories": [
+      {
+        "id": "file",
+        "title": "文件操作",
+        "accent": "amber",
+        "tools": [
+          { "name": "Read", "href": "s02.html" },
+          { "name": "Edit", "href": "s02.html" },
+          { "name": "Write", "href": "s02.html" },
+          { "name": "Glob", "href": "s02.html" },
+          { "name": "Grep", "href": "s02.html" },
+          { "name": "NotebookEdit", "href": "s02.html" }
+        ]
+      },
+      {
+        "id": "exec",
+        "title": "执行环境",
+        "accent": "rose",
+        "tools": [
+          { "name": "Bash", "href": "s02.html" },
+          { "name": "PowerShell", "href": "s02.html" },
+          { "name": "REPL", "href": "s02.html" }
+        ]
+      },
+      {
+        "id": "web",
+        "title": "检索与网页",
+        "accent": "blue",
+        "tools": [
+          { "name": "WebSearch", "href": "s02.html" },
+          { "name": "WebFetch", "href": "s02.html" },
+          { "name": "WebBrowser", "href": "s02.html", "locked": true },
+          { "name": "ToolSearch", "href": "s02.html" }
+        ]
+      },
+      {
+        "id": "agent",
+        "title": "Agent 与任务",
+        "accent": "green",
+        "tools": [
+          { "name": "Agent", "href": "s06.html" },
+          { "name": "SendMessage", "href": "s08.html" },
+          { "name": "TaskCreate", "href": "s06.html" },
+          { "name": "TaskGet", "href": "s06.html" },
+          { "name": "TaskList", "href": "s06.html" },
+          { "name": "TaskUpdate", "href": "s06.html" },
+          { "name": "TeamCreate", "href": "s08.html", "locked": true },
+          { "name": "ListPeers", "href": "s08.html", "locked": true }
+        ]
+      },
+      {
+        "id": "plan",
+        "title": "规划与工作树",
+        "accent": "slate",
+        "tools": [
+          { "name": "EnterPlanMode", "href": "s06.html" },
+          { "name": "ExitPlanMode", "href": "s06.html" },
+          { "name": "EnterWorktree", "href": "s06.html" },
+          { "name": "ExitWorktree", "href": "s06.html" },
+          { "name": "VerifyPlanExecution", "href": "s06.html", "locked": true }
+        ]
+      },
+      {
+        "id": "mcp",
+        "title": "MCP",
+        "accent": "violet",
+        "tools": [
+          { "name": "mcp", "href": "s07.html" },
+          { "name": "ListMcpResources", "href": "s07.html" },
+          { "name": "ReadMcpResource", "href": "s07.html" },
+          { "name": "McpAuth", "href": "s07.html" }
+        ]
+      },
+      {
+        "id": "system",
+        "title": "系统与其它",
+        "accent": "zinc",
+        "tools": [
+          { "name": "TodoWrite", "href": "s02.html" },
+          { "name": "Skill", "href": "s04.html" },
+          { "name": "AskUserQuestion", "href": "s02.html" },
+          { "name": "Config", "href": "s04.html", "locked": true },
+          { "name": "CronCreate", "href": "d04.html", "locked": true },
+          { "name": "Workflow", "href": "d04.html", "locked": true }
+        ]
       }
     ]
   },
@@ -220,6 +310,91 @@
           { "cmd": "/bypass-permissions", "href": "d03.html", "locked": true },
           { "cmd": "/export", "href": "s04.html", "locked": true },
           { "cmd": "/import", "href": "s04.html", "locked": true }
+        ]
+      }
+    ]
+  },
+  "feature_cards": {
+    "note_zh": "社区常用来概括仓库内「可能存在」的能力；是否在你安装的 CLI 中可用，以官方说明为准。此处仅供读源码时检索关键词。",
+    "cards": [
+      {
+        "id": "buddy",
+        "title": "Buddy",
+        "blurb": "终端里的轻量互动形象或彩蛋式入口，常与 ASCII / 状态展示相关。",
+        "body": "在源码中可按目录与命名搜 buddy；不要假设默认开启或长期稳定。\n\n与权限、遥测等无直接等价关系，读时结合发版说明。",
+        "links": [
+          { "href": "topic-cc-release-watch.html", "text": "发版监督" },
+          { "href": "s04.html", "text": "S04 命令与配置" }
+        ]
+      },
+      {
+        "id": "kairos",
+        "title": "Kairos / 持久会话",
+        "blurb": "与跨轮次状态、记忆目录、会话恢复等相关的一组概念。",
+        "body": "不同版本命名与开关可能不同；深挖时可对照 Memory、resume、memdir 等关键词。\n\n本站 S05、D05 讲上下文与压缩，可与「持久」话题交叉阅读。",
+        "links": [
+          { "href": "s05.html", "text": "S05 Memory" },
+          { "href": "d05.html", "text": "D05 深挖" }
+        ]
+      },
+      {
+        "id": "ultraplan",
+        "title": "UltraPlan",
+        "blurb": "长时规划或分阶段计划类能力，常与 plan 模式、权限组合出现。",
+        "body": "属高变动实验向能力：以 changelog 与特性开关为准。\n\n讲义侧见 S06 规划与工作树、D04 命令深挖。",
+        "links": [
+          { "href": "s06.html", "text": "S06" },
+          { "href": "d04.html", "text": "D04" }
+        ]
+      },
+      {
+        "id": "coordinator",
+        "title": "Coordinator",
+        "blurb": "多代理编排、任务拆分与并行 worker 等思路在代码中的落点。",
+        "body": "读源码可搜 coordinator、并行 task 相关模块；与 Agent / Task 工具链（S06、S08）一起看更清晰。",
+        "links": [
+          { "href": "s08.html", "text": "S08 Subagents" },
+          { "href": "s06.html", "text": "S06 任务" }
+        ]
+      },
+      {
+        "id": "bridge-remote",
+        "title": "Bridge / 远程",
+        "blurb": "从手机、浏览器或其它宿主侧驱动会话的集成思路。",
+        "body": "bridge/ 目录与插件、IDE 集成（S09）有交集；远程能力随版本差异大。",
+        "links": [
+          { "href": "s09.html", "text": "S09 IDE" },
+          { "href": "topic-claude-codex-bridge.html", "text": "Claude↔Codex 桥接" }
+        ]
+      },
+      {
+        "id": "daemon",
+        "title": "Daemon / 后台会话",
+        "blurb": "后台运行、tmux、detach 等与长时间会话相关的入口。",
+        "body": "常与 CLI 参数、进程模型相关；生产使用前务必阅读官方安全与权限说明（S03）。",
+        "links": [
+          { "href": "s03.html", "text": "S03 权限" },
+          { "href": "handbook.html", "text": "手册" }
+        ]
+      },
+      {
+        "id": "uds",
+        "title": "会话间通信",
+        "blurb": "Unix domain socket、inbox 等进程间传递消息的实验向实现。",
+        "body": "关键词含 socket、ipc、inbox；默认未必启用。适合在理解主循环（S01）后再读。",
+        "links": [
+          { "href": "s01.html", "text": "S01 Loop" },
+          { "href": "d01.html", "text": "D01 深挖" }
+        ]
+      },
+      {
+        "id": "autodream",
+        "title": "Auto-Dream / 会话后整理",
+        "blurb": "在会话之间触发整理、摘要或写入记忆目录的一类钩子式流程。",
+        "body": "与 hooks（S10）、memdir 等目录可能相关；实现细节以当前 tree 为准。\n\n勿将社区昵称等同于官方产品名。",
+        "links": [
+          { "href": "s10.html", "text": "S10 Hooks" },
+          { "href": "d10.html", "text": "D10 深挖" }
         ]
       }
     ]

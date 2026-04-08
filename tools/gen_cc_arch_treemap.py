@@ -13,6 +13,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+from collections import defaultdict
 from datetime import date
 from pathlib import Path
 
@@ -73,6 +74,49 @@ DEFAULT_CAT = "support"
 ROOT_TS_LABEL = "（src 根 .ts/.tsx）"
 ROOT_TS_CAT = "core"
 
+LEGEND_SPEC: list[dict[str, str]] = [
+    {"key": "tools_commands", "label": "工具与命令", "hint": "commands/ · tools/"},
+    {"key": "core", "label": "核心处理", "hint": "services · hooks · 会话与查询等"},
+    {"key": "ui", "label": "UI 层", "hint": "components · ink · 终端界面"},
+    {"key": "bridge", "label": "桥接与集成", "hint": "bridge · plugins · remote"},
+    {"key": "infra", "label": "基础设施", "hint": "cli · entrypoints · 运行时支撑"},
+    {"key": "support", "label": "支撑与工具库", "hint": "utils · constants · types"},
+    {"key": "personality", "label": "个性与实验向", "hint": "如 buddy 等"},
+]
+
+
+def nest_by_category(flat: list[dict]) -> list[dict]:
+    by_cat: dict[str, list[dict]] = defaultdict(list)
+    for ch in flat:
+        by_cat[str(ch["cat"])].append(ch)
+    order_keys = [x["key"] for x in LEGEND_SPEC]
+    out: list[dict] = []
+    used: set[str] = set()
+    for key in order_keys:
+        leaves = by_cat.get(key)
+        if not leaves:
+            continue
+        used.add(key)
+        meta = next(x for x in LEGEND_SPEC if x["key"] == key)
+        out.append(
+            {
+                "name": meta["label"],
+                "cat": key,
+                "children": sorted(leaves, key=lambda x: -int(x["value"])),
+            }
+        )
+    for key, leaves in sorted(by_cat.items()):
+        if key in used or not leaves:
+            continue
+        out.append(
+            {
+                "name": key,
+                "cat": key,
+                "children": sorted(leaves, key=lambda x: -int(x["value"])),
+            }
+        )
+    return out
+
 
 def count_ts_files(dir_path: Path) -> int:
     if not dir_path.is_dir():
@@ -114,23 +158,18 @@ def build_payload() -> dict:
     if root_ts:
         children.append({"name": ROOT_TS_LABEL, "value": root_ts, "cat": ROOT_TS_CAT})
 
+    nested = nest_by_category(children)
+
     return {
         "meta": {
             "updated": date.today().isoformat(),
             "source": "ccsource/claude-code-main/src",
             "metric": "TypeScript / TSX file count per folder",
             "note_zh": "由 tools/gen_cc_arch_treemap.py 生成；更新镜像后请重新运行并提交。",
+            "layout_zh": "双层：先按教学分区聚块，再在块内按子目录细分。",
         },
-        "legend": [
-            {"key": "tools_commands", "label": "工具与命令", "hint": "commands/ · tools/"},
-            {"key": "core", "label": "核心处理", "hint": "services · hooks · 会话与查询等"},
-            {"key": "ui", "label": "UI 层", "hint": "components · ink · 终端界面"},
-            {"key": "bridge", "label": "桥接与集成", "hint": "bridge · plugins · remote"},
-            {"key": "infra", "label": "基础设施", "hint": "cli · entrypoints · 运行时支撑"},
-            {"key": "support", "label": "支撑与工具库", "hint": "utils · constants · types"},
-            {"key": "personality", "label": "个性与实验向", "hint": "如 buddy 等"},
-        ],
-        "root": {"name": "src", "children": children},
+        "legend": [{"key": x["key"], "label": x["label"], "hint": x["hint"]} for x in LEGEND_SPEC],
+        "root": {"name": "src", "children": nested},
     }
 
 

@@ -24,7 +24,7 @@
 
 ### 03 · 工具系统（分组地图）
 
-按文件、执行、检索、Agent/任务、规划、MCP 等列出**代表工具名**，完整清单以源码为准；链到 S02/S06/S07 等。
+**工具砖墙**：[`site/js/cc-tool-tiles.js`](../js/cc-tool-tiles.js) 读取 [`cc-overview.json`](../data/cc-overview.json) 内 `tool_tiles`，多列分组可点进讲义。另附表格版地图；完整清单以源码为准。
 
 ### 04 · 斜杠命令目录
 
@@ -32,7 +32,7 @@
 
 ### 05 · 实验与「代码中存在」的特性
 
-提醒特性开关与未默认发布能力可能随版本变化；链到发版监督、S03/D03、S10/D10。
+**特性卡片**：[`site/js/cc-feature-cards.js`](../js/cc-feature-cards.js) 读取 `feature_cards`，网格卡片 + 下方详情区（`Esc` 关闭）。仍保留列表式免责声明；链到发版监督、S03/D03、S10/D10。
 
 ### 延伸阅读
 
@@ -40,11 +40,11 @@ ccunpacked.dev、DeepWiki、本站 Awesome 源码汇总链接。
 
 ## 阶段 B：数据驱动三表（02–04 节）
 
-- **数据源**：[`site/data/cc-overview.json`](../data/cc-overview.json)（架构 / 工具 / 斜杠命令三组表格行，以及 **`command_pills`** 供 pill 墙）。
+- **数据源**：[`site/data/cc-overview.json`](../data/cc-overview.json)（架构 / 工具 / 斜杠命令三表；**`command_pills`**、**`tool_tiles`**、**`feature_cards`** 供各交互块）。
 - **生成**：仓库根执行 `python3 tools/gen_cc_overview.py`，将表写入 [`topic-cc-unpacked-zh.html`](../topic-cc-unpacked-zh.html) 内 `<!-- cc-overview:begin … -->` / `end` 标记之间；**勿手改生成区**。
 - **校验**：`python3 tools/gen_cc_overview.py --check` 验证 JSON；`--verify-in-sync` 断言 HTML 标记区间与 JSON 渲染一致（**GitHub Actions** `site-md-parity` 工作流已包含 check + verify）；`--dry-run` 打印 HTML 片段。
 - 页内脚注（04 节表下）会显示 JSON 的 `meta.updated` 日期；改版请同步改 JSON 与脚注。
-- **架构 Treemap 数据**：[`site/data/cc-arch-treemap.json`](../data/cc-arch-treemap.json)；本地有 `ccsource/claude-code-main/src` 时执行 `python3 tools/gen_cc_arch_treemap.py` 重新生成；CI 无镜像时仅校验 JSON 可读，`--verify-in-sync` 在本地有镜像时比对文件内容。
+- **架构 Treemap 数据**：[`site/data/cc-arch-treemap.json`](../data/cc-arch-treemap.json)；**双层**（按教学分区再分子目录）；本地有 `ccsource/claude-code-main/src` 时执行 `python3 tools/gen_cc_arch_treemap.py`；CI 无镜像时仅校验 JSON 可读，有镜像时 `--verify-in-sync` 比对全文。
 
 ## 阶段 C（部分）：01 节讲解型步进
 

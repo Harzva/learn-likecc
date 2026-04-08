@@ -94,7 +94,7 @@
                     <h2>02 · 架构导览（目录心智模型）</h2>
                     <p>阅读 <code>ccsource/claude-code-main</code> 时可按职能分区，不必从根目录线性扫文件。下列与常见顶层目录对应关系为<strong>教学用归纳</strong>，实际以当前 tree 为准。</p>
                     <div id="cc-arch-treemap-mount" class="cc-arch-treemap" data-json="data/cc-arch-treemap.json" role="region" aria-label="src 目录架构 Treemap"></div>
-                    <p class="section-desc" style="margin-top:0.5rem;font-size:0.9rem;">Treemap 数据由 <code>tools/gen_cc_arch_treemap.py</code> 根据镜像 <code>src/</code> 生成（<code>site/data/cc-arch-treemap.json</code>）。</p>
+                    <p class="section-desc" style="margin-top:0.5rem;font-size:0.9rem;">Treemap 为<strong>双层</strong>：先按教学分区聚块，再细分各子目录；数据由 <code>tools/gen_cc_arch_treemap.py</code> 根据镜像 <code>src/</code> 写入 <code>site/data/cc-arch-treemap.json</code>。</p>
                     <!-- cc-overview:begin architecture-table -->
 <table class="options-table">
 <tr><th>分区</th><th>典型内容</th><th>本站延伸</th></tr>
@@ -112,6 +112,7 @@
                 <section id="tools" class="section-block">
                     <h2>03 · 工具系统（分组地图）</h2>
                     <p>内置工具可按<strong>职能</strong>分组理解；下列为<strong>代表名称</strong>，完整清单请在源码 <code>tools/</code> 内检索或在运行时使用官方文档。</p>
+                    <div id="cc-tool-tiles-mount" class="cc-tool-tiles" data-json="data/cc-overview.json" role="region" aria-label="内置工具砖墙"></div>
                     <!-- cc-overview:begin tools-table -->
 <table class="options-table">
 <tr><th>分组</th><th>代表工具</th><th>讲义</th></tr>
@@ -138,13 +139,14 @@
 <tr><td>诊断</td><td><code>/cost</code>、<code>/usage</code>、<code>/doctor</code>、<code>/release-notes</code></td><td><a href="s04.html">S04</a> · <a href="topic-cc-release-watch.html">发版监督</a></td></tr>
 <tr><td>实验性</td><td>各版本可能增减；见官方 changelog</td><td><a href="d04.html">D04 深挖</a></td></tr>
 </table>
-<p class="section-desc cc-overview-footnote" style="margin-top:0.5rem;font-size:0.9rem;opacity:0.9">表与命令 pill 墙数据来自 <code>site/data/cc-overview.json</code>（更新日期 2026-04-08）；改表请运行 <code>python3 tools/gen_cc_overview.py</code>；改 pill 清单直接编辑 JSON 内 <code>command_pills</code>。</p>
+<p class="section-desc cc-overview-footnote" style="margin-top:0.5rem;font-size:0.9rem;opacity:0.9">表与命令 pill、工具砖墙、特性卡片数据来自 <code>site/data/cc-overview.json</code>（更新日期 2026-04-08）；改表请运行 <code>python3 tools/gen_cc_overview.py</code>；改交互块请编辑 <code>command_pills</code>、<code>tool_tiles</code>、<code>feature_cards</code>。</p>
 <!-- cc-overview:end commands-table -->
                 </section>
 
                 <section id="experimental" class="section-block">
                     <h2>05 · 实验与「代码中存在」的特性</h2>
                     <p>仓库内可能出现<strong>特性开关、环境变量门槛或未默认开启</strong>的能力（社区站点常概括为 Buddy、Kairos、UltraPlan、Coordinator、远程 Bridge、Daemon、会话间通信等）。<strong>是否在你安装的版本中可用，以官方发布说明为准</strong>；此处仅帮助读源码时「知道该搜什么关键词」。</p>
+                    <div id="cc-feature-cards-mount" class="cc-feature-cards" data-json="data/cc-overview.json" role="region" aria-label="实验特性卡片"></div>
                     <ul>
                         <li>阅读时配合 <a href="topic-cc-release-watch.html">发版监督</a> 与官方 <code>CHANGELOG</code>，避免把实验实现当成稳定契约。</li>
                         <li>权限与安全边界见 <a href="s03.html">S03</a>、<a href="d03.html">D03</a>；Hooks 见 <a href="s10.html">S10</a>、<a href="d10.html">D10</a>。</li>
@@ -178,7 +180,9 @@
     </footer>
     <script src="js/app.js"></script>
     <script src="js/cc-arch-treemap.js"></script>
+    <script src="js/cc-tool-tiles.js"></script>
     <script src="js/cc-command-pills.js"></script>
+    <script src="js/cc-feature-cards.js"></script>
     <script src="js/cc-loop-player.js"></script>
 </body>
 </html>

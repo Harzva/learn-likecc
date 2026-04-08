@@ -1,5 +1,5 @@
 /**
- * Architecture treemap (D3) for topic-cc-unpacked-zh.html
+ * Architecture treemap (D3) — nested by teaching category, then per-folder leaves.
  * Mount: <div id="cc-arch-treemap-mount" data-json="data/cc-arch-treemap.json">
  */
 ;(function () {
@@ -53,6 +53,14 @@
         }, 1600)
     }
 
+    function fillFor(d3, d) {
+        var base = COLORS[d.data.cat] || COLORS.support
+        var c = d3.color(base)
+        if (!c) return base
+        if (d.children) return c.darker(0.4).formatHex()
+        return base
+    }
+
     function render(payload) {
         var d3 = window.d3
         var legend = payload.legend || []
@@ -64,8 +72,8 @@
 
         mount.innerHTML =
             '<div class="cc-arch-treemap__head">' +
-            '<h3 class="cc-arch-treemap__title">Architecture Explorer（教学向）</h3>' +
-            '<p class="cc-arch-treemap__sub">点击色块复制目录名；面积 ≈ 各文件夹下 TS/TSX 文件数。</p>' +
+            '<h3 class="cc-arch-treemap__title">Architecture Explorer（教学向 · 双层）</h3>' +
+            '<p class="cc-arch-treemap__sub">外层大块 = 教学分区；内层 = 各子目录 TS/TSX 文件数。点击<strong>内层</strong>色块复制目录名。</p>' +
             '</div>' +
             '<div class="cc-arch-treemap__legend" role="list"></div>' +
             '<div class="cc-arch-treemap__svg-wrap">' +
@@ -96,7 +104,7 @@
 
         function draw() {
             var w = Math.max(280, wrap.clientWidth || mount.clientWidth || 640)
-            var h = Math.min(480, Math.max(280, Math.round(w * 0.58)))
+            var h = Math.min(520, Math.max(300, Math.round(w * 0.62)))
             svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h)
             svg.setAttribute('width', '100%')
             svg.setAttribute('height', String(h))
@@ -110,14 +118,18 @@
                     return (b.value || 0) - (a.value || 0)
                 })
 
-            d3.treemap().tile(d3.treemapSquarify).size([w, h]).paddingOuter(3).paddingInner(1).round(true)(
-                root
-            )
+            d3.treemap()
+                .tile(d3.treemapSquarify)
+                .size([w, h])
+                .paddingOuter(4)
+                .paddingTop(18)
+                .paddingInner(2)
+                .round(true)(root)
 
             svg.innerHTML = ''
 
             var nodes = root.descendants().filter(function (d) {
-                return d.depth === 1
+                return d.depth >= 1
             })
 
             var g = d3.select(svg).append('g')
@@ -129,7 +141,9 @@
                 .attr('transform', function (d) {
                     return 'translate(' + d.x0 + ',' + d.y0 + ')'
                 })
-                .style('cursor', 'pointer')
+                .style('cursor', function (d) {
+                    return d.children ? 'default' : 'pointer'
+                })
 
             cell.append('rect')
                 .attr('width', function (d) {
@@ -139,40 +153,61 @@
                     return Math.max(0, d.y1 - d.y0)
                 })
                 .attr('fill', function (d) {
-                    return COLORS[d.data.cat] || COLORS.support
+                    return fillFor(d3, d)
                 })
                 .attr('stroke', 'rgba(0,0,0,0.55)')
-                .attr('stroke-width', 1)
+                .attr('stroke-width', function (d) {
+                    return d.children ? 1.5 : 0.85
+                })
                 .attr('rx', 2)
                 .attr('ry', 2)
 
             cell.append('title').text(function (d) {
+                if (d.children) {
+                    return d.data.name + ' — 合计 ' + d.value + ' 个文件（分区）'
+                }
                 return d.data.name + ' — ' + d.value + ' 个 TS/TSX 文件'
             })
 
             cell.filter(function (d) {
-                return d.x1 - d.x0 > 56 && d.y1 - d.y0 > 36
+                return d.children && d.x1 - d.x0 > 72 && d.y1 - d.y0 > 28
             })
                 .append('text')
-                .attr('x', 6)
-                .attr('y', 14)
+                .attr('x', 5)
+                .attr('y', 13)
+                .attr('fill', 'rgba(255,255,255,0.88)')
+                .attr('font-size', 10)
+                .attr('font-weight', 700)
+                .attr('font-family', 'system-ui, sans-serif')
+                .style('pointer-events', 'none')
+                .text(function (d) {
+                    return d.data.name
+                })
+
+            cell.filter(function (d) {
+                return !d.children && d.x1 - d.x0 > 52 && d.y1 - d.y0 > 34
+            })
+                .append('text')
+                .attr('x', 5)
+                .attr('y', 12)
                 .attr('fill', 'rgba(255,255,255,0.95)')
-                .attr('font-size', 11)
+                .attr('font-size', 10)
                 .attr('font-family', 'ui-monospace, monospace')
                 .style('pointer-events', 'none')
                 .each(function (d) {
-                    var name = d.data.name.replace(/\/$/, '')
+                    var name = String(d.data.name).replace(/\/$/, '')
                     var lines = [name, d.value + ' 文件']
                     var t = d3.select(this)
                     lines.forEach(function (line, i) {
                         t.append('tspan')
-                            .attr('x', 6)
-                            .attr('dy', i === 0 ? 0 : 13)
+                            .attr('x', 5)
+                            .attr('dy', i === 0 ? 0 : 12)
                             .text(line)
                     })
                 })
 
             cell.on('click', function (ev, d) {
+                if (d.children) return
                 var name = d.data.name || ''
                 var copy = name.replace(/\/$/, '')
                 function done() {

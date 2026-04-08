@@ -144,9 +144,9 @@ def main() -> int:
     if meta.get("updated"):
         foot = (
             f'<p class="section-desc cc-overview-footnote" style="margin-top:0.5rem;font-size:0.9rem;opacity:0.9">'
-            f'表与命令 pill 墙数据来自 <code>site/data/cc-overview.json</code>（更新日期 {html.escape(meta["updated"])}）；'
+            f'表与命令 pill、工具砖墙、特性卡片数据来自 <code>site/data/cc-overview.json</code>（更新日期 {html.escape(meta["updated"])}）；'
             f'改表请运行 <code>python3 tools/gen_cc_overview.py</code>；'
-            f'改 pill 清单直接编辑 JSON 内 <code>command_pills</code>。</p>'
+            f'改交互块请编辑 <code>command_pills</code>、<code>tool_tiles</code>、<code>feature_cards</code>。</p>'
         )
 
     if args.dry_run:
