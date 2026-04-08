@@ -61,3 +61,5 @@ ccsource/claude-code-main/.claude/settings.local.json
 # Independent local publishing / side-project repos
 /wemedia
 /projects
+/reference
+/game

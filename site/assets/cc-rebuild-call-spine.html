@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Claude Code Rebuild 主调用脊柱</title>
+  <style>
+    :root {
+      --bg: #f7efe3;
+      --panel: #fffaf3;
+      --line: #d49a4b;
+      --ink: #16243a;
+      --muted: #5d6a7f;
+      --soft: #e9d6b9;
+      --shadow: 0 18px 40px rgba(104, 69, 19, 0.10);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at top left, rgba(243, 194, 114, 0.28), transparent 26%),
+        radial-gradient(circle at right top, rgba(130, 170, 255, 0.16), transparent 22%),
+        linear-gradient(180deg, #f9f2e8 0%, #f6eee2 100%);
+      color: var(--ink);
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+
+    .frame {
+      width: 1500px;
+      height: 980px;
+      padding: 34px 42px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .title {
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+    }
+
+    .subtitle {
+      margin-top: 8px;
+      max-width: 1180px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .canvas {
+      position: relative;
+      flex: 1;
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.42), rgba(255,255,255,0.16));
+      overflow: hidden;
+    }
+
+    .rail {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .rail path {
+      fill: none;
+      stroke: rgba(212, 154, 75, 0.72);
+      stroke-width: 8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .rail polygon {
+      fill: rgba(212, 154, 75, 0.88);
+    }
+
+    .steps {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      padding: 34px 30px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px 18px;
+      align-content: center;
+    }
+
+    .step {
+      min-height: 250px;
+      padding: 20px 20px 18px;
+      border-radius: 24px;
+      border: 1px solid rgba(212, 154, 75, 0.26);
+      background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,249,241,0.98));
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .step-num {
+      width: fit-content;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(243, 221, 186, 0.9);
+      color: #a96816;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+    }
+
+    .step-name {
+      font-size: 24px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .step-file {
+      color: #ad6a19;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.45;
+      word-break: break-word;
+    }
+
+    .step-fn {
+      font-size: 19px;
+      font-weight: 800;
+      line-height: 1.3;
+    }
+
+    .step-desc {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .foot {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <main class="frame">
+    <section>
+      <div class="title">Claude Code Rebuild · 主调用脊柱</div>
+      <div class="subtitle">不是全量静态调用图，而是一条教学向的 happy path：从 CLI 入口，到用户输入处理、进入 query 主循环、触发 tool_use、执行工具，再把 tool_result 回写到 messages 里继续下一轮。</div>
+    </section>
+
+    <section class="canvas" aria-label="Claude Code Rebuild 主调用脊柱流程图">
+      <svg class="rail" viewBox="0 0 1500 700" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M 170 142 H 1320 V 350 H 170" />
+        <polygon points="1320,142 1288,126 1288,158" />
+        <polygon points="170,350 202,334 202,366" />
+      </svg>
+
+      <div class="steps">
+        <article class="step">
+          <div class="step-num">STEP 01</div>
+          <div class="step-name">CLI 入口</div>
+          <div class="step-file">src/entrypoints/cli.tsx</div>
+          <div class="step-fn">main()</div>
+          <div class="step-desc">处理 fast-path、子命令和动态导入，把交互模式引到真正的 REPL 主链。</div>
+        </article>
+
+        <article class="step">
+          <div class="step-num">STEP 02</div>
+          <div class="step-name">提交一轮输入</div>
+          <div class="step-file">src/utils/handlePromptSubmit.ts</div>
+          <div class="step-fn">handlePromptSubmit()</div>
+          <div class="step-desc">把当前 prompt、附件、IDE 选择和队列态收拢成一次可执行 turn。</div>
+        </article>
+
+        <article class="step">
+          <div class="step-num">STEP 03</div>
+          <div class="step-name">输入预处理</div>
+          <div class="step-file">src/utils/processUserInput/processUserInput.ts</div>
+          <div class="step-fn">processUserInput()</div>
+          <div class="step-desc">处理 slash、文本、图片、hooks 和附加上下文，决定这轮要不要真正发起 query。</div>
+        </article>
+
+        <article class="step">
+          <div class="step-num">STEP 04</div>
+          <div class="step-name">进入查询壳层</div>
+          <div class="step-file">src/query.ts</div>
+          <div class="step-fn">query()</div>
+          <div class="step-desc">把这轮请求包成异步生成器，对外持续产出消息流，再把执行权交给 queryLoop。</div>
+        </article>
+
+        <article class="step">
+          <div class="step-num">STEP 08</div>
+          <div class="step-name">结果回流</div>
+          <div class="step-file">src/query.ts</div>
+          <div class="step-fn">queryLoop()</div>
+          <div class="step-desc">把 tool_result 规范化后写回 messages；若还需要工具，就继续下一轮 loop。</div>
+        </article>
+
+        <article class="step">
+          <div class="step-num">STEP 07</div>
+          <div class="step-name">单工具执行</div>
+          <div class="step-file">src/services/tools/toolExecution.ts</div>
+          <div class="step-fn">runToolUse()</div>
+          <div class="step-desc">处理权限、hooks、进度、异常与最终结果，把一次 tool_use 变成可回灌的消息。</div>
+        </article>
+
+        <article class="step">
+          <div class="step-num">STEP 06</div>
+          <div class="step-name">工具编排</div>
+          <div class="step-file">src/services/tools/toolOrchestration.ts</div>
+          <div class="step-fn">runTools()</div>
+          <div class="step-desc">把一批 tool_use 切成串行或并发批次，并维护执行后需要更新的上下文。</div>
+        </article>
+
+        <article class="step">
+          <div class="step-num">STEP 05</div>
+          <div class="step-name">主循环采样</div>
+          <div class="step-file">src/query.ts</div>
+          <div class="step-fn">queryLoop()</div>
+          <div class="step-desc">组装消息与系统提示，调用模型流；收集 assistant 消息和 tool_use blocks。</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="foot">省略了 bridge、daemon、MCP、memory、compact、feature flag 等支线，只保留最适合首次理解的主调用脊柱。</section>
+  </main>
+</body>
+</html>

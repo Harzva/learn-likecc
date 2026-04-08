@@ -391,6 +391,8 @@ function initSiteSidebar() {
     if (document.getElementById('site-sidebar')) return
 
     const collapsed = localStorage.getItem('site-sidebar-collapsed') === '1'
+    const detailsStorageKey = 'site-sidebar-open-details'
+    const mobileOpenStorageKey = 'site-sidebar-mobile-open'
     document.body.classList.add('has-site-sidebar')
     if (collapsed) document.body.classList.add('sidebar-collapsed')
 
@@ -422,22 +424,22 @@ function initSiteSidebar() {
         (collapsed ? '⟩' : '⟨') +
         '</button>' +
         '<div class="site-sidebar__scroll">' +
-        '<a class="site-sidebar__link site-sidebar__link--brand" href="index.html"><span class="site-sidebar__ico">🧠</span><span class="site-sidebar__txt">首页</span></a>' +
-        '<details class="site-sidebar__details">' +
-        '<summary class="site-sidebar__summary"><span class="site-sidebar__ico">🗺️</span><span class="site-sidebar__txt">Source Map 源码专题</span></summary>' +
+        '<a class="site-sidebar__link site-sidebar__link--brand" href="index.html"><span class="site-sidebar__txt">首页</span></a>' +
+        '<details class="site-sidebar__details" data-sidebar-key="source-map">' +
+        '<summary class="site-sidebar__summary"><span class="site-sidebar__txt">Source Map 源码专题</span></summary>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-sourcemap.html"><span class="site-sidebar__ico">📌</span><span class="site-sidebar__txt">专题导读</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="index.html#courses"><span class="site-sidebar__ico">📚</span><span class="site-sidebar__txt">24 讲目录</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="index.html#source-map-event"><span class="site-sidebar__ico">🔥</span><span class="site-sidebar__txt">Source Map 事件</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-source-derived.html"><span class="site-sidebar__ico">🔍</span><span class="site-sidebar__txt">源码反推思想</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-cc-buddy.html"><span class="site-sidebar__ico">🐾</span><span class="site-sidebar__txt">Buddy 彩蛋</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="https://github.com/Harzva/learn-likecc/blob/main/awesome-claude-code-source.md" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">✨</span><span class="site-sidebar__txt">Awesome 源码汇总</span></a>' +
-        '<details class="site-sidebar__details site-sidebar__details--nested">' +
-        '<summary class="site-sidebar__summary"><span class="site-sidebar__ico">🔬</span><span class="site-sidebar__txt">十二章列表</span></summary>' +
+        '<details class="site-sidebar__details site-sidebar__details--nested" data-sidebar-key="source-map-chapters">' +
+        '<summary class="site-sidebar__summary"><span class="site-sidebar__txt">十二章列表</span></summary>' +
         '<div class="site-sidebar__chapters">' +
         chapters.join('') +
         '</div></details></details>' +
-        '<details class="site-sidebar__details">' +
-        '<summary class="site-sidebar__summary"><span class="site-sidebar__ico">📖</span><span class="site-sidebar__txt">Claude Code 官方教程</span></summary>' +
+        '<details class="site-sidebar__details" data-sidebar-key="tutorial">' +
+        '<summary class="site-sidebar__summary"><span class="site-sidebar__txt">Claude Code 教程</span></summary>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="tutorial.html"><span class="site-sidebar__ico">📘</span><span class="site-sidebar__txt">教程首页</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="tutorial.html#skills"><span class="site-sidebar__ico">🔧</span><span class="site-sidebar__txt">Skills</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="handbook.html"><span class="site-sidebar__ico">🗂️</span><span class="site-sidebar__txt">完全手册</span></a>' +
@@ -445,25 +447,25 @@ function initSiteSidebar() {
         '<a class="site-sidebar__link site-sidebar__link--sub" href="https://docs.anthropic.com/en/docs/claude-code/changelog" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">🔗</span><span class="site-sidebar__txt">Anthropic Changelog ↗</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">🔗</span><span class="site-sidebar__txt">GitHub CHANGELOG ↗</span></a>' +
         '</details>' +
-        '<details class="site-sidebar__details">' +
-        '<summary class="site-sidebar__summary"><span class="site-sidebar__ico">🧠</span><span class="site-sidebar__txt">大模型专题</span></summary>' +
+        '<details class="site-sidebar__details" data-sidebar-key="llm">' +
+        '<summary class="site-sidebar__summary"><span class="site-sidebar__txt">大模型专题</span></summary>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-llm.html"><span class="site-sidebar__ico">📌</span><span class="site-sidebar__txt">专题首页</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="https://sebastianraschka.com/llm-architecture-gallery/" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">🔗</span><span class="site-sidebar__txt">Architecture Gallery ↗</span></a>' +
         '</details>' +
-        '<details class="site-sidebar__details">' +
-        '<summary class="site-sidebar__summary"><span class="site-sidebar__ico">📎</span><span class="site-sidebar__txt">RAG 专题</span></summary>' +
+        '<details class="site-sidebar__details" data-sidebar-key="rag">' +
+        '<summary class="site-sidebar__summary"><span class="site-sidebar__txt">RAG 专题</span></summary>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-rag.html"><span class="site-sidebar__ico">📌</span><span class="site-sidebar__txt">专题首页</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="https://github.com/Harzva/learn-likecc/blob/main/awesome-rag.md" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">✨</span><span class="site-sidebar__txt">Awesome RAG</span></a>' +
         '</details>' +
-        '<details class="site-sidebar__details">' +
-        '<summary class="site-sidebar__summary"><span class="site-sidebar__ico">🤖</span><span class="site-sidebar__txt">Agent 专题</span></summary>' +
+        '<details class="site-sidebar__details" data-sidebar-key="agent">' +
+        '<summary class="site-sidebar__summary"><span class="site-sidebar__txt">Agent 专题</span></summary>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-agent.html"><span class="site-sidebar__ico">📌</span><span class="site-sidebar__txt">专题首页</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-memory-harness.html"><span class="site-sidebar__ico">🧠</span><span class="site-sidebar__txt">Memory 机制</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-superpowers-autoresearch.html"><span class="site-sidebar__ico">🧩</span><span class="site-sidebar__txt">Superpowers vs Autoresearch</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="https://github.com/Harzva/learn-likecc/blob/main/awesome-agent.md" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">✨</span><span class="site-sidebar__txt">Awesome Agent</span></a>' +
         '</details>' +
-        '<details class="site-sidebar__details">' +
-        '<summary class="site-sidebar__summary"><span class="site-sidebar__ico">🧩</span><span class="site-sidebar__txt">开源 Harness</span></summary>' +
+        '<details class="site-sidebar__details" data-sidebar-key="openharness">' +
+        '<summary class="site-sidebar__summary"><span class="site-sidebar__txt">开源 Harness</span></summary>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-openharness.html"><span class="site-sidebar__ico">⚡</span><span class="site-sidebar__txt">OpenHarness 专题</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-openharness-course.html"><span class="site-sidebar__ico">⚖️</span><span class="site-sidebar__txt">OH 源码课 · 对照 CC</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-openharness-course.html#oh-series"><span class="site-sidebar__ico">📑</span><span class="site-sidebar__txt">OH01–12 目录</span></a>' +
@@ -481,9 +483,9 @@ function initSiteSidebar() {
         '<a class="site-sidebar__link site-sidebar__link--sub" href="oh12.html"><span class="site-sidebar__ico">🌿</span><span class="site-sidebar__txt">OH12 · Git</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="https://github.com/HKUDS/OpenHarness" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">🔗</span><span class="site-sidebar__txt">上游仓库 ↗</span></a>' +
         '</details>' +
-        '<a class="site-sidebar__link" href="topic-cc-unpacked-zh.html"><span class="site-sidebar__ico">📦</span><span class="site-sidebar__txt">CC 庖丁解牛</span></a>' +
-        '<details class="site-sidebar__details">' +
-        '<summary class="site-sidebar__summary"><span class="site-sidebar__ico">🧰</span><span class="site-sidebar__txt">工具链专题</span></summary>' +
+        '<a class="site-sidebar__link" href="topic-cc-unpacked-zh.html"><span class="site-sidebar__txt">CC 庖丁解牛</span></a>' +
+        '<details class="site-sidebar__details" data-sidebar-key="toolchain">' +
+        '<summary class="site-sidebar__summary"><span class="site-sidebar__txt">工具链专题</span></summary>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-toolchain.html"><span class="site-sidebar__ico">📌</span><span class="site-sidebar__txt">专题首页</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="column-agent-journey.html"><span class="site-sidebar__ico">🧭</span><span class="site-sidebar__txt">工具链阅读</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="column-shangshou-cikeng.html"><span class="site-sidebar__ico">🛠️</span><span class="site-sidebar__txt">上手与踩坑</span></a>' +
@@ -491,7 +493,7 @@ function initSiteSidebar() {
         '<a class="site-sidebar__link site-sidebar__link--sub" href="column-channel-review.html"><span class="site-sidebar__ico">🛒</span><span class="site-sidebar__txt">渠道评测</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="devlog.html"><span class="site-sidebar__ico">📝</span><span class="site-sidebar__txt">开发日志</span></a>' +
         '</details>' +
-        '<a class="site-sidebar__link" href="https://github.com/Harzva/learn-likecc" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">🐙</span><span class="site-sidebar__txt">GitHub</span></a>' +
+        '<a class="site-sidebar__link" href="https://github.com/Harzva/learn-likecc" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__txt">GitHub</span></a>' +
         '</div>'
 
     const backdrop = document.createElement('div')
@@ -510,6 +512,47 @@ function initSiteSidebar() {
     document.body.appendChild(fab)
 
     const collapseBtn = aside.querySelector('.site-sidebar__collapse')
+    const detailNodes = Array.from(aside.querySelectorAll('.site-sidebar__details[data-sidebar-key]'))
+
+    function saveOpenDetails() {
+        const openKeys = detailNodes.filter((node) => node.open).map((node) => node.dataset.sidebarKey)
+        localStorage.setItem(detailsStorageKey, JSON.stringify(openKeys))
+    }
+
+    function loadOpenDetails() {
+        try {
+            const raw = JSON.parse(localStorage.getItem(detailsStorageKey) || '[]')
+            return Array.isArray(raw) ? new Set(raw) : new Set()
+        } catch (err) {
+            return new Set()
+        }
+    }
+
+    function applyOpenDetails() {
+        const openKeys = loadOpenDetails()
+        detailNodes.forEach((node) => {
+            node.open = openKeys.has(node.dataset.sidebarKey)
+        })
+    }
+
+    function openActiveBranches() {
+        aside.querySelectorAll('a.site-sidebar__link--active').forEach((link) => {
+            let parent = link.parentElement
+            while (parent) {
+                if (parent.matches && parent.matches('.site-sidebar__details')) {
+                    parent.open = true
+                }
+                parent = parent.parentElement
+            }
+        })
+        saveOpenDetails()
+    }
+
+    function setMobileOpen(next) {
+        aside.classList.toggle('site-sidebar--open', next)
+        backdrop.hidden = !next
+        localStorage.setItem(mobileOpenStorageKey, next ? '1' : '0')
+    }
 
     function setCollapsed(next) {
         if (next) {
@@ -526,32 +569,33 @@ function initSiteSidebar() {
 
     collapseBtn.addEventListener('click', () => {
         if (window.matchMedia('(max-width: 900px)').matches) {
-            aside.classList.toggle('site-sidebar--open')
-            const open = aside.classList.contains('site-sidebar--open')
-            backdrop.hidden = !open
+            setMobileOpen(!aside.classList.contains('site-sidebar--open'))
             return
         }
         setCollapsed(!aside.classList.contains('site-sidebar--collapsed'))
     })
 
     backdrop.addEventListener('click', () => {
-        aside.classList.remove('site-sidebar--open')
-        backdrop.hidden = true
+        setMobileOpen(false)
     })
 
     fab.addEventListener('click', () => {
-        aside.classList.add('site-sidebar--open')
-        backdrop.hidden = false
+        setMobileOpen(true)
     })
 
-    aside.querySelectorAll('a.site-sidebar__link').forEach((a) => {
-        a.addEventListener('click', () => {
-            if (window.matchMedia('(max-width: 900px)').matches) {
-                aside.classList.remove('site-sidebar--open')
-                backdrop.hidden = true
-            }
+    detailNodes.forEach((node) => {
+        node.addEventListener('toggle', () => {
+            saveOpenDetails()
         })
     })
+
+    applyOpenDetails()
+    markActiveSiteSidebarLinks(aside)
+    openActiveBranches()
+
+    if (window.matchMedia('(max-width: 900px)').matches && localStorage.getItem(mobileOpenStorageKey) === '1') {
+        setMobileOpen(true)
+    }
 }
 
 /** 页脚展示全站访问计数（hits.sh，各页共用同一 key 即累计全站） */

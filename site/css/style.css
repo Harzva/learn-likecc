@@ -6117,6 +6117,10 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     color: var(--text-primary);
 }
 
+.site-sidebar__link:not(.site-sidebar__link--sub) {
+    gap: 0;
+}
+
 .site-sidebar__ico {
     width: 1.5rem;
     text-align: center;
@@ -6148,11 +6152,30 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     margin: 0 8px;
     cursor: pointer;
     font-size: 0.88rem;
-    color: var(--text-muted);
+    color: var(--text-primary);
+    font-weight: 700;
     list-style: none;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0;
+}
+
+.site-sidebar__details[open] > .site-sidebar__summary {
+    color: var(--primary-dark);
+}
+
+.site-sidebar__details[open] > .site-sidebar__summary::after {
+    content: '−';
+    margin-left: auto;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.site-sidebar__details:not([open]) > .site-sidebar__summary::after {
+    content: '+';
+    margin-left: auto;
+    color: var(--text-muted);
+    font-size: 0.95rem;
 }
 
 .site-sidebar__summary::-webkit-details-marker {

@@ -6,9 +6,611 @@
     <title>Claude Code Buddy 彩蛋专题 - Claude Code Course</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>">
-    <meta name="description" content="把 Claude Code Buddy 电子宠物系统放回 Source Map 轴里看：彩蛋、变体、交互与产品意味。">
+    <meta name="description" content="把 Claude Code Buddy 做成更像图鉴与终端展台的专题页：18 物种、变体、互动与源码线索。">
+    <style>
+        .buddy-page .hero {
+            overflow: hidden;
+        }
+
+        .buddy-page .hero::after {
+            content: "";
+            position: absolute;
+            inset: auto -12% -18% auto;
+            width: 360px;
+            height: 360px;
+            border-radius: 999px;
+            background: radial-gradient(circle, rgba(251, 146, 60, 0.22), rgba(251, 146, 60, 0));
+            pointer-events: none;
+        }
+
+        .buddy-page .hero-content {
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .buddy-page .buddy-shell {
+            position: relative;
+            padding: 1.1rem;
+            border: 1px solid rgba(148, 163, 184, 0.24);
+            border-radius: 24px;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.78)),
+                linear-gradient(135deg, rgba(251, 191, 36, 0.18), rgba(59, 130, 246, 0.12));
+            box-shadow: 0 30px 80px rgba(15, 23, 42, 0.14);
+            backdrop-filter: blur(14px);
+        }
+
+        .buddy-page .buddy-shell::before {
+            content: "";
+            position: absolute;
+            inset: 12px;
+            border: 1px dashed rgba(148, 163, 184, 0.32);
+            border-radius: 18px;
+            pointer-events: none;
+        }
+
+        .buddy-page .buddy-shell-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.85rem;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+        }
+
+        .buddy-page .buddy-shell-dots {
+            display: inline-flex;
+            gap: 0.4rem;
+        }
+
+        .buddy-page .buddy-shell-dots span {
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            display: block;
+        }
+
+        .buddy-page .buddy-shell-dots span:nth-child(1) { background: #fb7185; }
+        .buddy-page .buddy-shell-dots span:nth-child(2) { background: #fbbf24; }
+        .buddy-page .buddy-shell-dots span:nth-child(3) { background: #34d399; }
+
+        .buddy-page .buddy-shell-label {
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .buddy-page .buddy-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.85rem;
+        }
+
+        .buddy-page .buddy-mini-card {
+            padding: 0.9rem;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.82);
+            border: 1px solid rgba(148, 163, 184, 0.22);
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+        }
+
+        .buddy-page .buddy-mini-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            margin-bottom: 0.65rem;
+        }
+
+        .buddy-page .buddy-mini-head strong {
+            display: block;
+            font-size: 0.92rem;
+        }
+
+        .buddy-page .buddy-mini-head span {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .buddy-page .rarity-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 3.2rem;
+            padding: 0.25rem 0.55rem;
+            border-radius: 999px;
+            font-size: 0.74rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            color: #111827;
+            background: linear-gradient(135deg, #fde68a, #f59e0b);
+        }
+
+        .buddy-page .rarity-badge--ice {
+            background: linear-gradient(135deg, #bfdbfe, #60a5fa);
+        }
+
+        .buddy-page .rarity-badge--forest {
+            background: linear-gradient(135deg, #bbf7d0, #4ade80);
+        }
+
+        .buddy-page .buddy-terminal,
+        .buddy-page .buddy-console,
+        .buddy-page .buddy-code,
+        .buddy-page .sprite-pre {
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+        }
+
+        .buddy-page .buddy-terminal {
+            margin: 0;
+            padding: 0.9rem 0.95rem;
+            min-height: 188px;
+            border-radius: 14px;
+            background: linear-gradient(180deg, #111827, #0f172a);
+            color: #e5e7eb;
+            font-size: 0.9rem;
+            line-height: 1.25;
+            overflow: auto;
+        }
+
+        .buddy-page .buddy-mini-desc {
+            margin-top: 0.7rem;
+            font-size: 0.84rem;
+            color: var(--text-secondary);
+        }
+
+        .buddy-page .buddy-metrics {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .buddy-page .buddy-metric {
+            padding: 1rem 1.1rem;
+            border-radius: 18px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .buddy-page .buddy-metric strong {
+            display: block;
+            font-size: 1.6rem;
+            line-height: 1;
+            margin-bottom: 0.4rem;
+        }
+
+        .buddy-page .buddy-metric span {
+            display: block;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .buddy-page .section-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            margin-bottom: 0.8rem;
+            padding: 0.3rem 0.75rem;
+            border-radius: 999px;
+            color: var(--primary-dark);
+            background: rgba(251, 146, 60, 0.12);
+            border: 1px solid rgba(251, 146, 60, 0.22);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+        }
+
+        .buddy-page .buddy-species-grid {
+            display: grid;
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+            gap: 0.75rem;
+            margin-top: 1.6rem;
+        }
+
+        .buddy-page .buddy-species-pill {
+            padding: 0.85rem 0.9rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 247, 237, 0.9));
+            box-shadow: var(--shadow);
+        }
+
+        .buddy-page .buddy-species-pill strong {
+            display: block;
+            margin-bottom: 0.18rem;
+            font-size: 0.95rem;
+        }
+
+        .buddy-page .buddy-species-pill span {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .buddy-page .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.1rem;
+            margin-top: 1.75rem;
+        }
+
+        .buddy-page .buddy-figure {
+            margin: 1.6rem auto 0;
+            max-width: 1120px;
+            padding: 1rem;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.78);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .buddy-page .buddy-figure img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 18px;
+        }
+
+        .buddy-page .buddy-figure figcaption {
+            margin-top: 0.85rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            text-align: center;
+        }
+
+        .buddy-page .petdex-wall {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0.95rem;
+            margin-top: 1.4rem;
+        }
+
+        .buddy-page .petdex-card {
+            padding: 1rem;
+            border-radius: 18px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 247, 237, 0.92));
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .buddy-page .petdex-head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .buddy-page .petdex-head strong {
+            display: block;
+            font-size: 0.92rem;
+            line-height: 1.25;
+        }
+
+        .buddy-page .petdex-head span {
+            color: var(--text-muted);
+            font-size: 0.76rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .buddy-page .petdex-icon {
+            display: inline-flex;
+            width: 2rem;
+            height: 2rem;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: rgba(251, 146, 60, 0.12);
+            font-size: 1rem;
+            flex: 0 0 auto;
+        }
+
+        .buddy-page .petdex-pre {
+            margin: 0;
+            padding: 0.9rem;
+            border-radius: 14px;
+            background: #0f172a;
+            color: #e2e8f0;
+            font-size: 0.82rem;
+            line-height: 1.18;
+            overflow: auto;
+        }
+
+        .buddy-page .petdex-desc {
+            margin-top: 0.7rem;
+            color: var(--text-secondary);
+            font-size: 0.83rem;
+        }
+
+        .buddy-page .showcase-card {
+            padding: 1.15rem;
+            border-radius: 22px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .buddy-page .showcase-card .tool-icon {
+            display: inline-flex;
+            width: 2.4rem;
+            height: 2.4rem;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.9rem;
+            border-radius: 14px;
+            font-size: 1.2rem;
+            background: rgba(251, 146, 60, 0.12);
+        }
+
+        .buddy-page .showcase-card h3 {
+            margin-bottom: 0.45rem;
+            font-size: 1.18rem;
+        }
+
+        .buddy-page .showcase-card p {
+            margin-bottom: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .buddy-page .sprite-pre {
+            margin: 0;
+            padding: 1rem;
+            border-radius: 16px;
+            background: #0f172a;
+            color: #e2e8f0;
+            font-size: 0.93rem;
+            line-height: 1.2;
+            overflow: auto;
+        }
+
+        .buddy-page .buddy-notes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+            margin-top: 0.9rem;
+        }
+
+        .buddy-page .buddy-notes span {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.35rem 0.7rem;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+        }
+
+        .buddy-page .variant-layout {
+            display: grid;
+            grid-template-columns: 1.12fr 0.88fr;
+            gap: 1.2rem;
+            margin-top: 1.6rem;
+        }
+
+        .buddy-page .variant-card,
+        .buddy-page .command-panel,
+        .buddy-page .reference-panel {
+            padding: 1.2rem;
+            border-radius: 22px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .buddy-page .variant-card h3,
+        .buddy-page .command-panel h3,
+        .buddy-page .reference-panel h3 {
+            margin-bottom: 0.35rem;
+            font-size: 1.18rem;
+        }
+
+        .buddy-page .variant-card > p,
+        .buddy-page .command-panel > p,
+        .buddy-page .reference-panel > p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .buddy-page .eye-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.85rem;
+        }
+
+        .buddy-page .eye-card {
+            padding: 0.9rem;
+            border-radius: 16px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+        }
+
+        .buddy-page .eye-card strong {
+            display: block;
+            margin-bottom: 0.55rem;
+        }
+
+        .buddy-page .eye-card p {
+            margin-top: 0.65rem;
+            font-size: 0.84rem;
+            color: var(--text-secondary);
+        }
+
+        .buddy-page .hat-stack {
+            display: grid;
+            gap: 0.8rem;
+        }
+
+        .buddy-page .hat-card {
+            padding: 0.95rem;
+            border-radius: 16px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(241, 245, 249, 0.92));
+            border: 1px solid var(--border);
+        }
+
+        .buddy-page .hat-card strong {
+            display: block;
+            margin-bottom: 0.55rem;
+        }
+
+        .buddy-page .hat-card p {
+            margin-top: 0.55rem;
+            color: var(--text-secondary);
+            font-size: 0.84rem;
+        }
+
+        .buddy-page .mini-pre {
+            margin: 0;
+            font-size: 0.88rem;
+            line-height: 1.18;
+            color: #0f172a;
+            overflow: auto;
+        }
+
+        .buddy-page .rarity-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0.9rem;
+        }
+
+        .buddy-page .rarity-table th,
+        .buddy-page .rarity-table td {
+            padding: 0.7rem 0.65rem;
+            border-bottom: 1px solid var(--border);
+            text-align: left;
+            font-size: 0.92rem;
+        }
+
+        .buddy-page .rarity-table th {
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        .buddy-page .buddy-console {
+            margin: 0;
+            padding: 1rem 1.1rem;
+            border-radius: 16px;
+            background: linear-gradient(180deg, #111827, #020617);
+            color: #dbeafe;
+            font-size: 0.93rem;
+            line-height: 1.5;
+            overflow: auto;
+        }
+
+        .buddy-page .buddy-code {
+            margin: 1rem 0 0;
+            padding: 0.95rem 1rem;
+            border-radius: 16px;
+            background: #0f172a;
+            color: #e2e8f0;
+            font-size: 0.88rem;
+            line-height: 1.45;
+            overflow: auto;
+        }
+
+        .buddy-page .reference-list {
+            display: grid;
+            gap: 0.85rem;
+            margin-top: 1rem;
+        }
+
+        .buddy-page .reference-item {
+            padding: 1rem;
+            border-radius: 16px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+        }
+
+        .buddy-page .reference-item strong {
+            display: block;
+            margin-bottom: 0.35rem;
+        }
+
+        .buddy-page .reference-item p {
+            color: var(--text-secondary);
+            margin-bottom: 0.45rem;
+        }
+
+        .buddy-page .reference-item a {
+            font-size: 0.92rem;
+            word-break: break-word;
+        }
+
+        @media (max-width: 1100px) {
+            .buddy-page .hero-content,
+            .buddy-page .variant-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .buddy-page .buddy-preview-grid,
+            .buddy-page .showcase-grid,
+            .buddy-page .buddy-species-grid,
+            .buddy-page .petdex-wall {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .buddy-page .buddy-metrics {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 760px) {
+            .buddy-page .buddy-preview-grid,
+            .buddy-page .showcase-grid,
+            .buddy-page .buddy-species-grid,
+            .buddy-page .petdex-wall,
+            .buddy-page .eye-grid,
+            .buddy-page .buddy-metrics {
+                grid-template-columns: 1fr;
+            }
+
+            .buddy-page .buddy-shell {
+                padding: 0.9rem;
+            }
+
+            .buddy-page .buddy-terminal,
+            .buddy-page .sprite-pre,
+            .buddy-page .petdex-pre,
+            .buddy-page .buddy-console,
+            .buddy-page .buddy-code {
+                font-size: 0.84rem;
+            }
+        }
+
+        [data-theme="midnight"] .buddy-page .buddy-shell,
+        [data-theme="dark"] .buddy-page .buddy-shell {
+            background:
+                linear-gradient(180deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.82)),
+                linear-gradient(135deg, rgba(251, 146, 60, 0.14), rgba(96, 165, 250, 0.1));
+        }
+
+        [data-theme="midnight"] .buddy-page .buddy-mini-card,
+        [data-theme="midnight"] .buddy-page .petdex-card,
+        [data-theme="midnight"] .buddy-page .buddy-figure,
+        [data-theme="midnight"] .buddy-page .hat-card,
+        [data-theme="dark"] .buddy-page .buddy-mini-card,
+        [data-theme="dark"] .buddy-page .petdex-card,
+        [data-theme="dark"] .buddy-page .buddy-figure,
+        [data-theme="dark"] .buddy-page .hat-card {
+            background: rgba(30, 41, 59, 0.92);
+        }
+
+        [data-theme="midnight"] .buddy-page .mini-pre,
+        [data-theme="dark"] .buddy-page .mini-pre {
+            color: #e2e8f0;
+        }
+    </style>
 </head>
-<body>
+<body class="buddy-page">
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
@@ -16,9 +618,9 @@
                 <span class="logo-text">Buddy 彩蛋专题</span>
             </a>
             <div class="nav-links">
-                <a href="#why" class="nav-link">为什么值得看</a>
-                <a href="#system" class="nav-link">系统结构</a>
-                <a href="#read" class="nav-link">怎么读</a>
+                <a href="#showcase" class="nav-link">图鉴入口</a>
+                <a href="#variants" class="nav-link">变体系统</a>
+                <a href="#commands" class="nav-link">互动命令</a>
                 <a href="#reference" class="nav-link">参考</a>
             </div>
             <div class="nav-actions">
@@ -30,104 +632,648 @@
 
     <section class="hero handbook-hero">
         <div class="hero-content">
-            <div class="hero-badge">
-                <span>📌 Source Map 扩展阅读</span>
-                <span>Buddy · Easter Egg</span>
+            <div>
+                <div class="hero-badge">
+                    <span>📌 Source Map 扩展阅读</span>
+                    <span>Buddy · Terminal Petdex</span>
+                </div>
+                <h1 class="hero-title">
+                    Claude Code Buddy<br>
+                    <span class="gradient-text">电子宠物图鉴页</span>
+                </h1>
+                <p class="hero-subtitle">
+                    这一页不再只做“摘要说明”，而是把 <strong>Buddy</strong> 重新排成一个更像图鉴与终端展台的专题：你能同时看见 <strong>18 个物种、眼睛与帽子变体、稀有度、互动命令</strong>，以及它为什么能代表 Claude Code 正在从“工具 CLI”往“有情绪的工作台”延伸。
+                </p>
+                <div class="hero-actions">
+                    <a href="#showcase" class="btn btn-primary">直接看宠物图鉴</a>
+                    <a href="https://zhuanlan.zhihu.com/p/2022780058985603650" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">参考图文 ↗</a>
+                </div>
             </div>
-            <h1 class="hero-title">
-                Claude Code Buddy<br>
-                <span class="gradient-text">电子宠物彩蛋</span>
-            </h1>
-            <p class="hero-subtitle">
-                这一页把 <strong>Buddy</strong> 放回 Source Map 学习轴里看：它不是主功能，不直接决定 Agent Loop 或 MCP 的能力上限，但非常能说明 <strong>Claude Code 已经不是“只有工具调用的 CLI”</strong>，而是开始向有情绪、有陪伴感、有产品人格的工作台延伸。
-            </p>
-            <div class="hero-actions">
-                <a href="#why" class="btn btn-primary">先看为什么值得看</a>
-                <a href="https://yeekal.com/ai/claude-code-virtual-buddy/" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">参考文章 ↗</a>
+
+            <div class="buddy-shell">
+                <div class="buddy-shell-top">
+                    <div class="buddy-shell-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="buddy-shell-label">Companion hatch preview</div>
+                </div>
+
+                <div class="buddy-preview-grid">
+                    <article class="buddy-mini-card">
+                        <div class="buddy-mini-head">
+                            <div>
+                                <strong>OWL 猫头鹰</strong>
+                                <span>夜间巡逻型</span>
+                            </div>
+                            <span class="rarity-badge">EPIC</span>
+                        </div>
+<pre class="buddy-terminal">   /\  /\
+  ((.)(.))
+  (  ><  )
+   `----´</pre>
+                        <p class="buddy-mini-desc">更像“终端里盯日志的守夜人”，适合做 Buddy 页的视觉主角。</p>
+                    </article>
+
+                    <article class="buddy-mini-card">
+                        <div class="buddy-mini-head">
+                            <div>
+                                <strong>PENGUIN 企鹅</strong>
+                                <span>命令行滑行型</span>
+                            </div>
+                            <span class="rarity-badge rarity-badge--ice">RARE</span>
+                        </div>
+<pre class="buddy-terminal">  .---.
+  (.>.)
+ /(   )\
+  `---´</pre>
+                        <p class="buddy-mini-desc">轮廓简洁、辨识度高，很像会蹲在输入框边上等你敲命令的伙伴。</p>
+                    </article>
+
+                    <article class="buddy-mini-card">
+                        <div class="buddy-mini-head">
+                            <div>
+                                <strong>TURTLE 乌龟</strong>
+                                <span>稳态守护型</span>
+                            </div>
+                            <span class="rarity-badge rarity-badge--forest">UNCOMMON</span>
+                        </div>
+<pre class="buddy-terminal">   _,--._
+  ( .  . )
+ /[______]\
+  ``    ``</pre>
+                        <p class="buddy-mini-desc">很适合拿来解释 Buddy 的另一面: 它不是提速工具，而是陪你慢慢把工作做完。</p>
+                    </article>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="why" class="section" style="background: var(--bg-secondary); padding-top: 60px;">
+    <section class="section" style="padding-top: 42px;">
         <div class="container">
-            <h2 class="section-title">为什么值得单独拎出来</h2>
+            <div class="buddy-metrics">
+                <div class="buddy-metric">
+                    <strong>18</strong>
+                    <span>物种形态</span>
+                </div>
+                <div class="buddy-metric">
+                    <strong>6</strong>
+                    <span>眼睛变体</span>
+                </div>
+                <div class="buddy-metric">
+                    <strong>8</strong>
+                    <span>帽子装饰</span>
+                </div>
+                <div class="buddy-metric">
+                    <strong>5</strong>
+                    <span>稀有度等级</span>
+                </div>
+                <div class="buddy-metric">
+                    <strong>1%</strong>
+                    <span>闪光概率</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="showcase" class="section" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-kicker">图鉴入口</div>
+            <h2 class="section-title">不是一句“有 18 种宠物”，而是能被浏览的宠物系统</h2>
+            <p class="section-desc" style="max-width: 840px; margin: 0 auto;">
+                参考图文里把 Buddy 做成了完整图鉴，这一版则把重点收束为站内更适合阅读的结构：先给你能一眼记住的宠物展示，再把它背后的系统拆给你看。
+            </p>
+
+            <div class="buddy-species-grid">
+                <div class="buddy-species-pill"><strong>DUCK 鸭子</strong><span>duck</span></div>
+                <div class="buddy-species-pill"><strong>GOOSE 鹅</strong><span>goose</span></div>
+                <div class="buddy-species-pill"><strong>BLOB 史莱姆</strong><span>blob</span></div>
+                <div class="buddy-species-pill"><strong>CAT 猫</strong><span>cat</span></div>
+                <div class="buddy-species-pill"><strong>DRAGON 龙</strong><span>dragon</span></div>
+                <div class="buddy-species-pill"><strong>OCTOPUS 章鱼</strong><span>octopus</span></div>
+                <div class="buddy-species-pill"><strong>OWL 猫头鹰</strong><span>owl</span></div>
+                <div class="buddy-species-pill"><strong>PENGUIN 企鹅</strong><span>penguin</span></div>
+                <div class="buddy-species-pill"><strong>TURTLE 乌龟</strong><span>turtle</span></div>
+                <div class="buddy-species-pill"><strong>SNAIL 蜗牛</strong><span>snail</span></div>
+                <div class="buddy-species-pill"><strong>GHOST 幽灵</strong><span>ghost</span></div>
+                <div class="buddy-species-pill"><strong>AXOLOTL 蝾螈</strong><span>axolotl</span></div>
+                <div class="buddy-species-pill"><strong>CAPYBARA 水豚</strong><span>capybara</span></div>
+                <div class="buddy-species-pill"><strong>CACTUS 仙人掌</strong><span>cactus</span></div>
+                <div class="buddy-species-pill"><strong>ROBOT 机器人</strong><span>robot</span></div>
+                <div class="buddy-species-pill"><strong>RABBIT 兔子</strong><span>rabbit</span></div>
+                <div class="buddy-species-pill"><strong>MUSHROOM 蘑菇</strong><span>mushroom</span></div>
+                <div class="buddy-species-pill"><strong>CHONK 胖猫</strong><span>chonk</span></div>
+            </div>
+
+            <div class="showcase-grid">
+                <article class="showcase-card">
+                    <div class="tool-icon">🦉</div>
+                    <h3>OWL 猫头鹰</h3>
+                    <p>你给的源码里，猫头鹰很适合做“终端电子宠物”的门面角色，耳朵、眼睛、嘴部都很有识别度。</p>
+<pre class="sprite-pre">   /\  /\
+  ((.)(.))
+  (  ><  )
+   `----´</pre>
+                    <div class="buddy-notes">
+                        <span>夜间守望感</span>
+                        <span>适合气泡互动</span>
+                        <span>辨识度高</span>
+                    </div>
+                </article>
+
+                <article class="showcase-card">
+                    <div class="tool-icon">🐧</div>
+                    <h3>PENGUIN 企鹅</h3>
+                    <p>企鹅的体型更紧凑，放在 REPL 输入框旁边时会显得非常“乖巧”，适合做常驻 Companion。</p>
+<pre class="sprite-pre">  .---.
+  (.>.)
+ /(   )\
+  `---´</pre>
+                    <div class="buddy-notes">
+                        <span>终端友好</span>
+                        <span>轮廓利落</span>
+                        <span>移动感强</span>
+                    </div>
+                </article>
+
+                <article class="showcase-card">
+                    <div class="tool-icon">🐢</div>
+                    <h3>TURTLE 乌龟</h3>
+                    <p>乌龟很能代表 Buddy 的“陪你慢慢来”那一面，尤其适合跟耐心、稳态、长时间编码联系起来。</p>
+<pre class="sprite-pre">   _,--._
+  ( .  . )
+ /[______]\
+  ``    ``</pre>
+                    <div class="buddy-notes">
+                        <span>陪伴感强</span>
+                        <span>稳态气质</span>
+                        <span>适合教学讲解</span>
+                    </div>
+                </article>
+            </div>
+
+            <figure class="buddy-figure">
+                <img src="images/cc-buddy/7e65a0c7-7b6e-494e-b6e8-e41004746c66.jpg" alt="Claude Code Buddy 18 只电子宠物插画图鉴墙">
+                <figcaption>
+                    这一张更像“完整宠物图鉴插画版”: 18 只 Buddy 被排成统一系列，比纯 ASCII 更适合做视觉总览和截图传播。
+                </figcaption>
+            </figure>
+
+            <div class="section-kicker" style="margin-top: 2rem;">完整 ASCII 图鉴墙</div>
+            <h3 class="section-title" style="font-size: 2rem; margin-bottom: 0.6rem;">18 只宠物一次看完</h3>
+            <p class="section-desc" style="max-width: 840px; margin: 0 auto;">
+                下面这组把 Buddy 源码里出现的 18 个物种都排成统一风格的终端卡片，方便直接浏览、截图或继续扩展成更完整的图鉴页。
+            </p>
+
+            <div class="petdex-wall">
+                <article class="petdex-card">
+                    <div class="petdex-head">
+                        <div><strong>🦆 DUCK 鸭子</strong><span>duck</span></div>
+                        <div class="petdex-icon">🦆</div>
+                    </div>
+<pre class="petdex-pre">    __
+  &lt;(· )___
+   (  ._&gt;
+    `--´</pre>
+                    <p class="petdex-desc">经典终端小鸭，适合当入门 Companion。</p>
+                </article>
+
+                <article class="petdex-card">
+                    <div class="petdex-head">
+                        <div><strong>🪿 GOOSE 鹅</strong><span>goose</span></div>
+                        <div class="petdex-icon">🪿</div>
+                    </div>
+<pre class="petdex-pre">     (·&gt;
+     ||
+   _(__)_
+    ^^^^</pre>
+                    <p class="petdex-desc">姿态最像“看到你写错命令就冲过来提醒”。</p>
+                </article>
+
+                <article class="petdex-card">
+                    <div class="petdex-head">
+                        <div><strong>🫧 BLOB 史莱姆</strong><span>blob</span></div>
+                        <div class="petdex-icon">🫧</div>
+                    </div>
+<pre class="petdex-pre">   .----.
+  ( ·  · )
+  (      )
+   `----´</pre>
+                    <p class="petdex-desc">最像会在空闲时慢慢摊开的软萌款。</p>
+                </article>
+
+                <article class="petdex-card">
+                    <div class="petdex-head">
+                        <div><strong>🐱 CAT 猫</strong><span>cat</span></div>
+                        <div class="petdex-icon">🐱</div>
+                    </div>
+<pre class="petdex-pre">   /\_/\
+  ( ·   ·)
+  (  ω  )
+  (")_(")</pre>
+                    <p class="petdex-desc">最有“桌面搭子”气质的一只。</p>
+                </article>
+
+                <article class="petdex-card">
+                    <div class="petdex-head">
+                        <div><strong>🐉 DRAGON 龙</strong><span>dragon</span></div>
+                        <div class="petdex-icon">🐉</div>
+                    </div>
+<pre class="petdex-pre">  /^\  /^\
+ &lt;  ·  ·  &gt;
+ (   ~~   )
+  `-vvvv-´</pre>
+                    <p class="petdex-desc">稀有感天然很强，适合当晒图主角。</p>
+                </article>
+
+                <article class="petdex-card">
+                    <div class="petdex-head">
+                        <div><strong>🐙 OCTOPUS 章鱼</strong><span>octopus</span></div>
+                        <div class="petdex-icon">🐙</div>
+                    </div>
+<pre class="petdex-pre">   .----.
+  ( ·  · )
+  (______)
+  /\/\/\/\</pre>
+                    <p class="petdex-desc">触手感很强，天然带一点多线程工作的意味。</p>
+                </article>
+
+                <article class="petdex-card">
+                    <div class="petdex-head">
+                        <div><strong>🦉 OWL 猫头鹰</strong><span>owl</span></div>
+                        <div class="petdex-icon">🦉</div>
+                    </div>
+<pre class="petdex-pre">   /\  /\
+  ((·)(·))
+  (  &gt;&lt;  )
+   `----´</pre>
+                    <p class="petdex-desc">夜里盯日志、盯报错、盯你提交记录的守夜人。</p>
+                </article>
+
+                <article class="petdex-card">
+                    <div class="petdex-head">
+                        <div><strong>🐧 PENGUIN 企鹅</strong><span>penguin</span></div>
+                        <div class="petdex-icon">🐧</div>
+                    </div>
+<pre class="petdex-pre">  .---.
+  (·&gt;·)
+ /(   )\
+  `---´</pre>
+                    <p class="petdex-desc">最像会安静蹲在输入框旁边等你敲字。</p>
+                </article>
+
+                <article class="petdex-card">
+                    <div class="petdex-head">
+                        <div><strong>🐢 TURTLE 乌龟</strong><span>turtle</span></div>
+                        <div class="petdex-icon">🐢</div>
+                    </div>
+<pre class="petdex-pre">   _,--._
+  ( ·  · )
+ /[______]\
+  ``    ``</pre>
+                    <p class="petdex-desc">适合解释耐心、稳定和长时间陪跑。</p>
+                </article>
+
+                <article class="petdex-card">
+                    <div class="petdex-head">
+                        <div><strong>🐌 SNAIL 蜗牛</strong><span>snail</span></div>
+                        <div class="petdex-icon">🐌</div>
+                    </div>
+<pre class="petdex-pre"> ·    .--.
+  \  ( @ )
+   \_`--´
+  ~~~~~~~</pre>
+                    <p class="petdex-desc">慢，但很适合拿来讲稳扎稳打式开发。</p>
+                </article>
+
+                <article class="petdex-card">
+                    <div class="petdex-head">
+                        <div><strong>👻 GHOST 幽灵</strong><span>ghost</span></div>
+                        <div class="petdex-icon">👻</div>
+                    </div>
+<pre class="petdex-pre">   .----.
+  / ·  · \
+  |      |
+  ~`~``~`~</pre>
+                    <p class="petdex-desc">最像“半夜突然飘出来提醒你还有 TODO”。</p>
+                </article>
+
+                <article class="petdex-card">
+                    <div class="petdex-head">
+                        <div><strong>🦎 AXOLOTL 蝾螈</strong><span>axolotl</span></div>
+                        <div class="petdex-icon">🦎</div>
+                    </div>
+<pre class="petdex-pre">}~(______)~{
+}~(· .. ·)~{
+  ( .--. )
+  (_/  \_)</pre>
+                    <p class="petdex-desc">线条最特别，天生适合做稀有变体。</p>
+                </article>
+
+                <article class="petdex-card">
+                    <div class="petdex-head">
+                        <div><strong>🦫 CAPYBARA 水豚</strong><span>capybara</span></div>
+                        <div class="petdex-icon">🦫</div>
+                    </div>
+<pre class="petdex-pre">  n______n
+ ( ·    · )
+ (   oo   )
+  `------´</pre>
+                    <p class="petdex-desc">表情空间最大，所以很适合拿来做眼睛人格演示。</p>
+                </article>
+
+                <article class="petdex-card">
+                    <div class="petdex-head">
+                        <div><strong>🌵 CACTUS 仙人掌</strong><span>cactus</span></div>
+                        <div class="petdex-icon">🌵</div>
+                    </div>
+<pre class="petdex-pre"> n  ____  n
+ | |·  ·| |
+ |_|    |_|
+   |    |</pre>
+                    <p class="petdex-desc">站着不动也有戏，终端里非常显眼。</p>
+                </article>
+
+                <article class="petdex-card">
+                    <div class="petdex-head">
+                        <div><strong>🤖 ROBOT 机器人</strong><span>robot</span></div>
+                        <div class="petdex-icon">🤖</div>
+                    </div>
+<pre class="petdex-pre">   .[||].
+  [ ·  · ]
+  [ ==== ]
+  `------´</pre>
+                    <p class="petdex-desc">最贴近“coding agent 自己养了个 agent”。</p>
+                </article>
+
+                <article class="petdex-card">
+                    <div class="petdex-head">
+                        <div><strong>🐰 RABBIT 兔子</strong><span>rabbit</span></div>
+                        <div class="petdex-icon">🐰</div>
+                    </div>
+<pre class="petdex-pre">   (\__/)
+  ( ·  · )
+ =(  ..  )=
+  (")__(")</pre>
+                    <p class="petdex-desc">灵活感最强，像那种随时会蹦一下的 companion。</p>
+                </article>
+
+                <article class="petdex-card">
+                    <div class="petdex-head">
+                        <div><strong>🍄 MUSHROOM 蘑菇</strong><span>mushroom</span></div>
+                        <div class="petdex-icon">🍄</div>
+                    </div>
+<pre class="petdex-pre"> .-o-OO-o-.
+(__________)
+   |·  ·|
+   |____|</pre>
+                    <p class="petdex-desc">辨识度极高，很容易做成系列海报风格。</p>
+                </article>
+
+                <article class="petdex-card">
+                    <div class="petdex-head">
+                        <div><strong>🐾 CHONK 胖猫</strong><span>chonk</span></div>
+                        <div class="petdex-icon">🐾</div>
+                    </div>
+<pre class="petdex-pre">  /\    /\
+ ( ·    · )
+ (   ..   )
+  `------´</pre>
+                    <p class="petdex-desc">像压轴彩蛋，天然就有“收藏款”感觉。</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-kicker">为什么值得看</div>
+            <h2 class="section-title">Buddy 值得单独做一页，因为它暴露的是“产品人格层”</h2>
             <div class="quickstart-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
                 <div class="quickstart-card">
-                    <h3>不是纯工程细节</h3>
-                    <p>Buddy 这条线和权限、压缩、MCP 不同，它更偏<strong>产品人格层</strong>。你能从这里看见团队在终端体验上加入情绪价值和陪伴感的意图。</p>
+                    <h3>不是纯工程能力</h3>
+                    <p>它不直接决定 Agent Loop、工具系统或 MCP 的上限，但非常能说明团队已经在终端里经营情绪价值、陪伴感和记忆点。</p>
                 </div>
                 <div class="quickstart-card">
-                    <h3>很适合当 Source Map 的轻入口</h3>
-                    <p>很多人第一次对 Source Map 感兴趣，不是因为想读 1900 多个文件，而是因为发现里面藏着这种彩蛋系统。Buddy 恰好能做一个更轻、更容易传播的入口。</p>
+                    <h3>比源码目录更容易传播</h3>
+                    <p>很多人第一次注意 Source Map，不是因为要读 1900 多个文件，而是因为看到了这种带互动、带变体、带人格的彩蛋系统。</p>
                 </div>
                 <div class="quickstart-card">
-                    <h3>说明 Claude Code 已经在走“工作台产品化”</h3>
-                    <p>当 CLI 里开始出现宠物、表情、装扮和互动时，说明产品已经不只是在做命令执行器，而是在做一套更完整的开发者体验。</p>
+                    <h3>它已经接近一个小游戏系统</h3>
+                    <p>物种、眼睛、帽子、稀有度、隐藏属性、闪光概率、动画 tick、抚摸爱心，这些元素放在一起，已经不是随手加个表情那么简单。</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="system" class="section">
+    <section id="variants" class="section" style="background: var(--bg-secondary);">
         <div class="container">
-            <h2 class="section-title">Buddy 系统看点</h2>
-            <p class="section-desc" style="max-width: 760px; margin: 0 auto 1.75rem;">
-                下面这些点来自社区对 Buddy 子系统的整理。这里不重复贴整篇图鉴，而是把它压成适合站内阅读的系统摘要。
-            </p>
-            <div class="tools-grid" style="max-width: 980px; margin: 0 auto;">
-                <div class="tool-card">
-                    <span class="tool-icon">🐣</span>
-                    <h4>18 种宠物</h4>
-                    <p>社区整理里提到 Buddy 含 18 种宠物形态，可作为开发时的陪伴角色；这一点也让它非常适合做视觉传播。</p>
+            <div class="section-kicker">变体系统</div>
+            <h2 class="section-title">Buddy 好玩，不只因为“有宠物”，而是因为每一层都做了变体</h2>
+            <div class="variant-layout">
+                <div class="variant-card">
+                    <h3>眼睛变体: 同一只水豚，换眼神就是换人格</h3>
+                    <p>源码里定义了 6 种眼睛符号。参考图文把它们讲成“人格开关”，这个角度非常适合保留。</p>
+                    <div class="eye-grid">
+                        <div class="eye-card">
+                            <strong>· 迷茫</strong>
+<pre class="mini-pre">  n______n
+ ( ·    · )
+ (   oo   )
+  `------´</pre>
+                            <p>像是刚从一堆报错里醒过来。</p>
+                        </div>
+                        <div class="eye-card">
+                            <strong>✦ 好奇</strong>
+<pre class="mini-pre">  n______n
+ ( ✦    ✦ )
+ (   oo   )
+  `------´</pre>
+                            <p>看见新需求会自己凑上去研究。</p>
+                        </div>
+                        <div class="eye-card">
+                            <strong>× 困倦</strong>
+<pre class="mini-pre">  n______n
+ ( ×    × )
+ (   oo   )
+  `------´</pre>
+                            <p>一看就知道昨晚又在陪你改 bug。</p>
+                        </div>
+                        <div class="eye-card">
+                            <strong>◉ 认真</strong>
+<pre class="mini-pre">  n______n
+ ( ◉    ◉ )
+ (   oo   )
+  `------´</pre>
+                            <p>更像进入了“本豚来分析一下”的状态。</p>
+                        </div>
+                        <div class="eye-card">
+                            <strong>@ 震惊</strong>
+<pre class="mini-pre">  n______n
+ ( @    @ )
+ (   oo   )
+  `------´</pre>
+                            <p>适合配合“你的代码居然跑通了”。</p>
+                        </div>
+                        <div class="eye-card">
+                            <strong>° 慵懒</strong>
+<pre class="mini-pre">  n______n
+ ( °    ° )
+ (   oo   )
+  `------´</pre>
+                            <p>午后挂机感最强的一档。</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="tool-card">
-                    <span class="tool-icon">👀</span>
-                    <h4>眼睛、帽子、闪光变体</h4>
-                    <p>除了基础物种，还带眼睛风格、帽子装饰和闪光变体这类游戏化设计，说明它不是临时写的占位彩蛋，而是做过一层产品包装。</p>
-                </div>
-                <div class="tool-card">
-                    <span class="tool-icon">📊</span>
-                    <h4>稀有度与属性</h4>
-                    <p>整理稿里还提到稀有度、隐藏属性和带概率的生成逻辑。它们的存在说明这个系统具备比较完整的“收藏感”和差异化体验。</p>
-                </div>
-                <div class="tool-card">
-                    <span class="tool-icon">🎮</span>
-                    <h4>互动指令</h4>
-                    <p>Buddy 不是纯静态展示，还带互动命令。这种设计更像是在终端里嵌了一个轻量 Tamagotchi 式伙伴。</p>
-                </div>
-                <div class="tool-card">
-                    <span class="tool-icon">🪄</span>
-                    <h4>彩蛋价值大于生产价值</h4>
-                    <p>它不直接提升编码正确率，但能显著增加产品记忆点。对教学来说，这也是讲“工程系统之外还有产品层决策”的好例子。</p>
-                </div>
-                <div class="tool-card">
-                    <span class="tool-icon">📦</span>
-                    <h4>放回源码专题里更合理</h4>
-                    <p>如果只看热闹，它像一个趣味八卦；放回 Source Map 轴里看，它就成了一个很典型的“从泄露材料里观察产品人格”的案例。</p>
+
+                <div class="variant-card">
+                    <h3>帽子、闪光、稀有度</h3>
+                    <p>眼睛之外，源码还把装饰和抽卡逻辑补齐了。也正因为这些细节，Buddy 才会让人觉得像一个“真系统”。</p>
+                    <div class="hat-stack">
+                        <div class="hat-card">
+                            <strong>王冠 / 礼帽 / 光环 / 小鸭子</strong>
+<pre class="mini-pre">   \^^^/      [___]
+  n______n   n______n
+ ( ·    · ) ( ·    · )
+ (   oo   ) (   oo   )
+  `------´   `------´</pre>
+                            <p>源码一共给了 8 种帽子，只有 Uncommon 及以上更有机会戴上。</p>
+                        </div>
+                        <div class="hat-card">
+                            <strong>闪光 Shiny</strong>
+<pre class="mini-pre">普通版              闪光版
+ n______n           n______n
+( ·    · )         ( ·    · ) ✨
+(   oo   )         (   oo   )
+ `------´           `------´</pre>
+                            <p>闪光概率只有 1%，天然就会让这个系统带一点“抽到 SSR”的传播属性。</p>
+                        </div>
+                    </div>
+
+                    <table class="rarity-table">
+                        <thead>
+                            <tr>
+                                <th>稀有度</th>
+                                <th>概率</th>
+                                <th>说明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Common</td>
+                                <td>60%</td>
+                                <td>基础陪伴款，通常不戴帽子</td>
+                            </tr>
+                            <tr>
+                                <td>Uncommon</td>
+                                <td>25%</td>
+                                <td>开始出现配饰与更高属性底座</td>
+                            </tr>
+                            <tr>
+                                <td>Rare</td>
+                                <td>10%</td>
+                                <td>图鉴感和收藏感明显提升</td>
+                            </tr>
+                            <tr>
+                                <td>Epic</td>
+                                <td>4%</td>
+                                <td>更容易被用户当成“晒图素材”</td>
+                            </tr>
+                            <tr>
+                                <td>Legendary</td>
+                                <td>1%</td>
+                                <td>已经很接近彩蛋系统里的欧皇奖励</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="read" class="section" style="background: var(--bg-secondary);">
+    <section id="commands" class="section">
         <div class="container">
-            <h2 class="section-title">在本站里怎么读这页</h2>
-            <div class="course-quote" style="max-width: 860px; margin: 0 auto;">
-                <p><strong>建议顺序</strong>：先看 <a href="topic-sourcemap.html">Source Map 源码专题</a> 建立事件背景，再看这页 Buddy 彩蛋，最后回到 <a href="topic-source-derived.html">源码反推思想</a> 或 <a href="topic-cc-unpacked-zh.html">CC 庖丁解牛</a>，把“有趣彩蛋”重新接回主线结构。</p>
-                <p><strong>不要把这页当成主线</strong>：它更适合做补充阅读。真正的核心仍然是 Agent Loop、工具系统、权限、压缩、MCP 和命令体系。</p>
+            <div class="section-kicker">互动命令</div>
+            <h2 class="section-title">它不是静态挂件，真的有命令、状态和动画节奏</h2>
+            <div class="variant-layout">
+                <div class="command-panel">
+                    <h3>终端里能发生什么</h3>
+                    <p>根据 Buddy 相关源码与参考图文，这个系统至少包括召唤、抚摸、语音气泡、基于 tick 的 idle 动画和被 pet 后的爱心浮动效果。</p>
+<pre class="buddy-console">$ /buddy
+> hatch a deterministic companion from your user id
+
+$ /buddy pet
+> show floating hearts for about 2.5s
+
+companion state
+- one user, one deterministic egg
+- rarity / species / eye / hat / shiny all rolled from seeded rng
+- sprite idles on a 500ms tick
+- narrow terminals collapse to a face + label mode</pre>
+<pre class="buddy-code">const PET_BURST_MS = 2500
+const TICK_MS = 500
+const EYES = ['·', '✦', '×', '◉', '@', '°']
+const HATS = ['none', 'crown', 'tophat', 'propeller', 'halo', 'wizard', 'beanie', 'tinyduck']</pre>
+                </div>
+
+                <div class="command-panel">
+                    <h3>为什么这套实现很像“产品化彩蛋”</h3>
+                    <p>如果只是玩笑，做到一个 ASCII 形象就可以了；但 Buddy 往下做到了确定性生成、不同 rarity 的底座、隐藏属性、3 帧 idle、窄终端降级和 speech bubble，这些都说明它已经是一个认真设计过的小系统。</p>
+<pre class="buddy-code">function mulberry32(seed) {
+  let a = seed >>> 0
+  return function () {
+    a |= 0
+    a = (a + 0x6d2b79f5) | 0
+    let t = Math.imul(a ^ (a >>> 15), 1 | a)
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296
+  }
+}</pre>
+                    <p style="margin-top: 1rem; color: var(--text-secondary);">这种 seeded RNG 的设计也很妙: 它让宠物像“命中注定”，不是每次刷新都能刷出来的随机贴纸。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-kicker">站内阅读路径</div>
+            <h2 class="section-title">怎么把这页接回主线</h2>
+            <div class="course-quote" style="max-width: 900px; margin: 0 auto;">
+                <p><strong>建议顺序</strong>：先看 <a href="topic-sourcemap.html">Source Map 源码专题</a> 建立事件背景，再看这页 Buddy 图鉴，最后回到 <a href="topic-source-derived.html">源码反推思想</a> 或 <a href="topic-cc-unpacked-zh.html">CC 庖丁解牛</a>，把“有趣彩蛋”重新接回主线结构。</p>
+                <p><strong>怎么理解它的位置</strong>：Buddy 不属于主线工程骨架，但特别适合用来讲“一个现代 coding agent 产品，除了工具调用和上下文管理，还会刻意设计人格、情绪与陪伴感”。</p>
             </div>
         </div>
     </section>
 
     <section id="reference" class="section">
         <div class="container">
-            <h2 class="section-title">参考与边界</h2>
-            <p class="section-desc" style="max-width: 760px; margin: 0 auto 1.25rem;">
-                本页为站内整理页，叙述与结构采用本站风格；具体图鉴细节与展示方式参考 Yeekal 的文章：<strong>《Claude Code 电子宠物系统完全展示 | 18 种宠物图鉴》</strong>。
-            </p>
-            <div class="hero-actions" style="justify-content: center;">
-                <a href="https://yeekal.com/ai/claude-code-virtual-buddy/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">打开参考文章 ↗</a>
-                <a href="topic-sourcemap.html" class="btn btn-secondary">返回 Source Map 专题</a>
+            <div class="section-kicker">参考与边界</div>
+            <h2 class="section-title">这一页保留图鉴感，但仍然按站内写法重组</h2>
+            <div class="reference-panel" style="max-width: 940px; margin: 0 auto;">
+                <p>本页没有直接照搬外部图鉴的整套排版，而是结合站内专题风格，重组为更适合学习路径的版本。图鉴信息主要参考社区图文，系统结构则回到 Source Map / source-derived 语境中解释。</p>
+                <div class="reference-list">
+                    <div class="reference-item">
+                        <strong>参考图文</strong>
+                        <p>知乎图文页，包含电子宠物图片与图鉴式展示。</p>
+                        <a href="https://zhuanlan.zhihu.com/p/2022780058985603650" target="_blank" rel="noopener noreferrer">https://zhuanlan.zhihu.com/p/2022780058985603650</a>
+                    </div>
+                    <div class="reference-item">
+                        <strong>社区整理文章</strong>
+                        <p>Yeekal 的图鉴整理页，公开列出了 18 物种、眼睛、帽子、稀有度与互动命令等信息，发布时间为 2026-04-01。</p>
+                        <a href="https://yeekal.com/ai/claude-code-virtual-buddy/" target="_blank" rel="noopener noreferrer">https://yeekal.com/ai/claude-code-virtual-buddy/</a>
+                    </div>
+                    <div class="reference-item">
+                        <strong>源码线索</strong>
+                        <p>站内本地参考中可直接看到 Buddy 的类型、sprite 和 seeded RNG 逻辑。</p>
+                        <a href="topic-sourcemap.html" rel="noopener noreferrer">返回 Source Map 专题继续读 →</a>
+                    </div>
+                </div>
+                <div class="hero-actions" style="justify-content: center; margin-top: 1.25rem;">
+                    <a href="https://zhuanlan.zhihu.com/p/2022780058985603650" class="btn btn-primary" target="_blank" rel="noopener noreferrer">打开参考图文 ↗</a>
+                    <a href="topic-sourcemap.html" class="btn btn-secondary">返回 Source Map 专题</a>
+                </div>
             </div>
         </div>
     </section>

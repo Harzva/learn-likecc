@@ -17,7 +17,7 @@
   - Source Map 源码专题
   - 大模型专题
   - CC 庖丁解牛（`topic-cc-unpacked-zh`）
-  - Claude Code 官方教程
+  - Claude Code 教程
   - 完全手册
   - 面试题库
   - RAG 大专题
@@ -70,9 +70,9 @@
 
 `topic-cc-unpacked-zh.html`：用中文结构地图与说明对照官方包结构（思路参考 ccunpacked.dev），含概览数据、Loop 相关入口与工具系统分组，适合与 24 讲并排使用。
 
-#### Claude Code 官方教程 / 完全手册 / 面试题库
+#### Claude Code 教程 / 完全手册 / 面试题库
 
-其中“Claude Code 官方教程”把教程首页、Skills、完全手册与发版监督合并为一组，形成更明确的官方资料阅读轴；面试题库继续作为练习入口。
+其中“Claude Code 教程”把教程首页、Skills、完全手册与发版监督合并为一组，形成更明确的资料阅读轴；面试题库继续作为练习入口。
 
 #### RAG 大专题 / Agent 大专题
 

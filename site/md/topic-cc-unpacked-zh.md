@@ -18,6 +18,8 @@
 
 概括输入 → LLM → tool 执行 → `tool_result` 回流直至停止调用工具的闭环；出口链到 S01、D01、OH01。
 
+补了一张 **`ccsource/CC/claude-code-rebuild` 主调用脊柱图**：只保留 `main()`、`handlePromptSubmit()`、`processUserInput()`、`query()` / `queryLoop()`、`runTools()`、`runToolUse()` 与结果回流，帮助把教学步进和真实代码入口对上；明确 **不是** 全量函数调用图。
+
 ### 02 · 架构导览（目录心智模型）
 
 **Treemap**：[`site/js/cc-arch-treemap.js`](../js/cc-arch-treemap.js) + D3（CDN）读取 [`site/data/cc-arch-treemap.json`](../data/cc-arch-treemap.json)，按教学分区与子目录 TS/TSX **文件数**分块；**单击分区下钻**、面包屑返回，**单击叶子**复制目录名（`tools/gen_cc_arch_treemap.py` 从镜像生成）。另附表格文字归纳。

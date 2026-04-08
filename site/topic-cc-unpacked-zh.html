@@ -79,6 +79,11 @@
                     <p class="section-desc" style="margin-top: 0.5rem;">下方为<strong>讲解型</strong>步进演示（数据来自 <code>site/data/cc-loop-steps.json</code>）：可点步骤标签、播放/暂停、倍速与键盘 <kbd>←</kbd> <kbd>→</kbd>、<kbd>Space</kbd>（点<strong>播放</strong>后也会自动聚焦面板）。步骤条下方<strong>彩色细条</strong>为下一帧<strong>倒计时</strong>；末步点播放会先回到第 1 步再自动翻页。<code>meta.loop_autoplay</code> 为 <code>true</code> 时会在末步后接回第 1 步。系统开启<strong>减少动态效果</strong>时会拉长间隔并弱化动效。<strong>非</strong>真实运行时遥测。</p>
                     <p class="section-desc" style="margin-top: 0.35rem;"><strong>实时事件流（实验）</strong>：静态页不连接本机 Claude Code；协议见 <a href="https://github.com/Harzva/learn-likecc/blob/main/projects/cc-loop-live/README.md" target="_blank" rel="noopener noreferrer">projects/cc-loop-live/README.md</a>；NDJSON：<code>python3 tools/cc_loop_relay_demo.py</code>；本机 SSE 联调：<a href="topic-cc-loop-lab.html">Loop 实验室页</a> + <code>python3 tools/cc_loop_sse_relay.py</code>。</p>
                     <div id="cc-loop-player" class="cc-loop-player" data-json="data/cc-loop-steps.json" aria-label="主循环步进讲解"></div>
+                    <p class="section-desc" style="margin-top: 1rem;">如果你想把“页面里的 11 步讲解”对回 <code>ccsource/CC/claude-code-rebuild</code> 的真实代码，这里再给一张<strong>主调用脊柱图</strong>。它只保留最适合首次阅读的 happy path：从 CLI 入口、处理输入、进入 <code>queryLoop()</code>，到拿到 <code>tool_use</code>、执行工具并把 <code>tool_result</code> 回写。<strong>不是</strong>全量静态调用图，也不展开 bridge / daemon / MCP / compact 等支线。</p>
+                    <figure class="devlog-figure">
+                        <img src="images/cc-unpacked/cc-rebuild-call-spine.png" alt="Claude Code Rebuild 主调用脊柱图：main、handlePromptSubmit、processUserInput、query、queryLoop、runTools、runToolUse 与结果回流">
+                        <figcaption>主调用脊柱：按阅读顺序看 <code>main()</code> → <code>handlePromptSubmit()</code> → <code>processUserInput()</code> → <code>query()</code> / <code>queryLoop()</code> → <code>runTools()</code> → <code>runToolUse()</code> → 结果回流。适合定位“这一轮到底先后经过了哪些层”。</figcaption>
+                    </figure>
                     <noscript>
                         <p class="section-desc">启用 JavaScript 后可播放步进演示；或直接阅读 <a href="s01.html">S01</a> / <a href="d01.html">D01</a>。</p>
                     </noscript>
