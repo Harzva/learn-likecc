@@ -16,6 +16,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 PATH = REPO_ROOT / "site" / "data" / "cc-loop-steps.json"
 
 REQUIRED_STEP_KEYS = ("id", "label", "title", "body")
+OPTIONAL_STRING_KEYS = ("analysis", "pitfall", "read_hint")
 
 
 def err(msg: str) -> None:
@@ -79,6 +80,10 @@ def main() -> int:
             t = s["terminal"]
             if not isinstance(t, list) or not all(isinstance(x, str) for x in t):
                 err(f"steps[{i}].terminal must be an array of strings")
+                return 1
+        for k in OPTIONAL_STRING_KEYS:
+            if k in s and (not isinstance(s[k], str) or not s[k].strip()):
+                err(f"steps[{i}].{k} must be a non-empty string")
                 return 1
         if "links" in s:
             links = s["links"]

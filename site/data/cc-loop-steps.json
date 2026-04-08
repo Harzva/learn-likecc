@@ -10,21 +10,30 @@
       "id": "input",
       "label": "输入",
       "title": "用户输入",
-      "body": "终端里由 Ink 的 TextInput 接收按键；非交互模式下从管道读取 stdin。用户内容成为本轮对话的起点。",
-      "terminal": ["$ claude", "▌"]
+      "body": "请求不会直接跳进模型，而是先被终端、stdin 或外部宿主统一收口成一次 turn 的原始输入。",
+      "analysis": "这里决定的是“这一轮到底从哪里开始”。交互输入、管道输入、桥接宿主消息虽然来源不同，但都要在入口层被标准化，否则后面的会话恢复、工作目录、权限环境和模式判断都会变得不稳定。",
+      "pitfall": "不要把“用户按下回车”理解成已经开始模型推理；在真正调用模型前，宿主还要先判定当前运行形态并整理输入上下文。",
+      "read_hint": "先看 `entrypoints/cli.tsx`、`main.tsx` 和 REPL / TextInput 入口，再顺着调用链进入 QueryEngine。",
+      "terminal": ["$ claude", "stdin | prompt -> normalizeInput()", "▌"]
     },
     {
       "id": "message",
       "label": "消息",
       "title": "构造用户消息",
-      "body": "将输入封装为对话中的一条 user 消息，准备与历史 messages 一并送给模型。",
-      "terminal": ["messages.append({ role: 'user', ... })", "▌"]
+      "body": "原始输入会被封装成结构化 user message，而不是把一段字符串直接拼进提示词里。",
+      "analysis": "这一步是自然语言输入进入“可计算对话状态”的转换点。只有先进入统一 message 结构，历史拼接、tool_result 回灌、会话回放和 UI 展示才能共享同一套契约。",
+      "pitfall": "很多人会把这里理解成 `messages.push(text)`，但真正稳定的实现依赖 role、content block、id 等结构字段，而不是裸文本。",
+      "read_hint": "联读 `QueryEngine.ts`、`query/transitions.ts` 和 `types` 里的消息结构定义。",
+      "terminal": ["messages.append({ role: 'user', content: [...] })", "▌"]
     },
     {
       "id": "history",
       "label": "历史",
       "title": "对话历史",
-      "body": "上下文包含此前多轮 assistant / user（含 tool_result）消息。顺序错误会导致工具结果对不上 tool_use。",
+      "body": "这一轮送给模型的不只是当前一句话，而是按顺序拼好的历史：assistant 回复、tool_use / tool_result 配对、压缩结果和必要上下文。",
+      "analysis": "历史的价值不只是“记住聊过什么”，而是保留推理因果链。尤其在工具循环里，tool_result 必须和对应 tool_use 对齐，否则模型看到的就不是一个可继续推理的会话，而是一堆失序事件。",
+      "pitfall": "最容易低估的是历史顺序。一旦 tool_result 插错位置，模型看上去像“理解错了工具输出”，根因其实是宿主把消息链破坏了。",
+      "read_hint": "先看 `context`、历史相关服务和 `assistant/sessionHistory.ts`，再回看 `query` 如何消费这些消息。",
       "terminal": ["Message[] length: N", "▌"],
       "links": [{ "href": "d01.html", "text": "D01 顺序与边界" }]
     },
@@ -32,62 +41,86 @@
       "id": "system",
       "label": "系统",
       "title": "系统提示与策略",
-      "body": "系统层约束模型行为、工具可见性与安全策略；与权限门（见 S03）配合。",
-      "terminal": ["system prompt + tools[]", "▌"],
+      "body": "system 层不只是提示词开头，而是把规则、权限边界、可见工具面和运行时策略一起注入本轮调用。",
+      "analysis": "真正起作用的是“行为边界编排”：哪些规则先注入，哪些工具暴露给模型，哪些操作要再过权限门。它负责收紧模型自由度，而不是单纯提供背景说明。",
+      "pitfall": "不要把 system 理解成一段静态模板。很多策略是和当前模式、当前工具面、权限状态联动的。",
+      "read_hint": "优先看系统提示拼装、权限相关服务和常量定义，再对照 `S03` 看安全门如何协同。",
+      "terminal": ["system prompt + policy + tools[]", "▌"],
       "links": [{ "href": "s03.html", "text": "S03 权限" }]
     },
     {
       "id": "api",
       "label": "API",
       "title": "调用模型",
-      "body": "向 API 发送 messages 与 tools 定义，通常以流式 chunk 解析响应，边收边更新 UI。",
-      "terminal": ["POST stream → chunks…", "▌"],
+      "body": "宿主把 messages、system 和 tools 一起编组成模型请求，通常以流式方式回收响应。",
+      "analysis": "这里的关键不是“发个 HTTP 请求”，而是把对话状态翻译成模型能消费的载荷，再把流式 chunk 还原成结构化事件。UI 的边生成边显示、工具判断和后续状态跃迁都要依赖这一层的解析质量。",
+      "pitfall": "如果只把 API 看成黑盒网络调用，就很难解释为什么流式解析、停止原因和工具块识别会直接影响上层体验。",
+      "read_hint": "联读 `query` 的调用链、流式解析逻辑以及服务层如何把 chunk 转成内部事件。",
+      "terminal": ["POST /messages (stream=true)", "chunk -> parseEvent()", "▌"],
       "links": [{ "href": "s01.html", "text": "S01" }]
     },
     {
       "id": "tokens",
       "label": "Token",
       "title": "上下文与预算",
-      "body": "模型有窗口上限；过长会触发压缩或告警（见 S05）。此处决定「还能塞多少历史」。",
-      "terminal": ["context window / usage", "▌"],
+      "body": "每一轮都要重新评估上下文预算：窗口还剩多少、哪些历史必须保留、哪些内容需要压缩。",
+      "analysis": "Token 预算不是配角，它直接改变模型能看到什么。保留过多会撞窗，压缩过猛又会丢失工具决策所需的关键因果，所以这里本质上是在做上下文经济学。",
+      "pitfall": "很多人把预算理解成纯 UI 提示，其实它会反过来影响历史裁剪、记忆补充和模型是否还能稳定继续调用工具。",
+      "read_hint": "先看 `query/tokenBudget.ts`，再联读压缩与记忆相关服务，对照 `S05` 理解长会话如何续命。",
+      "terminal": ["context window / usage", "compress? trim? warn?", "▌"],
       "links": [{ "href": "s05.html", "text": "S05 压缩" }]
     },
     {
       "id": "tools_decide",
       "label": "判工具",
       "title": "解析输出：是否 tool_use",
-      "body": "若响应含 tool_use 块，宿主解析名称与参数；若无，则根据 stop_reason 进入展示或结束分支。",
-      "terminal": ["stop_reason === 'tool_use' ?", "▌"]
+      "body": "模型响应回来后，宿主要判断这是最终回答，还是包含 tool_use、需要把控制权交还给执行环境。",
+      "analysis": "这一段是主循环里最容易被低估的分叉点。判断结果不只取决于 stop_reason，还取决于流式内容里有没有结构化工具块，以及这些块能否被安全、完整地还原成内部调用请求。",
+      "pitfall": "不要把“判工具”理解成简单的字符串匹配；真正稳定的是解析结构化 block 并结合 stop_reason 与协议状态做分支。",
+      "read_hint": "先看响应解析和 `query/transitions`，再回看工具 schema 如何影响模型产出。",
+      "terminal": ["stop_reason === 'tool_use' ?", "parse block -> tool call", "▌"]
     },
     {
       "id": "tools_run",
       "label": "执行",
       "title": "执行工具",
-      "body": "走权限检查 → 调用内置或 MCP 工具 → 收集 stdout/结果。失败须真实返回错误，勿「假成功」。",
-      "terminal": ["executeTool(name, input)", "▌"],
+      "body": "一旦进入 tool_use，宿主会接管控制权：先过权限，再调用内置或 MCP 工具，然后把 stdout、结构化结果或错误收集回来。",
+      "analysis": "这里是“模型意图”变成“真实副作用”的翻译层。是否允许执行、在哪个环境执行、结果怎样标准化、失败怎样表达，都会直接影响下一轮推理是否可靠。",
+      "pitfall": "最危险的不是工具失败，而是假成功。把失败包装成成功会污染后续上下文，让模型在错误事实之上继续推理。",
+      "read_hint": "联读 `tools` 执行层、权限门和任务对象；如果涉及外部系统，再补看 MCP / bridge 路径。",
+      "terminal": ["approve? -> executeTool(name, input)", "stdout | structured result | error", "▌"],
       "links": [{ "href": "s02.html", "text": "S02 工具" }]
     },
     {
       "id": "tool_result",
       "label": "回流",
       "title": "tool_result 写回",
-      "body": "将结果包装为 user 消息中的 tool_result，与 tool_use id 对应，再进入下一轮循环。",
-      "terminal": ["messages.push(tool_results)", "▌"]
+      "body": "工具执行完并不算闭环，结果还要被重新包装成 tool_result 写回消息流，才能进入下一轮推理。",
+      "analysis": "真正的循环闭合点在这里。只有把结果规范化回写到会话消息里，模型才能把这次执行视作新的上下文，而不是宿主私下做过的一件事。",
+      "pitfall": "不要把 tool_result 当日志附注；它必须带着和 tool_use 对应的身份写回消息序列，否则模型无法可靠地接续上一轮。",
+      "read_hint": "优先看消息回灌、tool_use id 对应和上下文重组路径，再联读历史顺序规则。",
+      "terminal": ["messages.push(tool_result[])", "re-enter loop", "▌"]
     },
     {
       "id": "loop_exit",
       "label": "循环",
       "title": "继续转圈或退出",
-      "body": "若仍需工具则回到「调用模型」；否则退出主循环，把最终文本交给渲染层。",
-      "terminal": ["while (needsTools) { ... }", "▌"],
+      "body": "主循环会重新判断这一轮是否还需要继续调用模型或工具；若不再需要，就从 while-loop 收束到最终输出。",
+      "analysis": "Claude Code 类系统的核心不是一次请求，而是这个循环控制器。每一轮都会在新的消息状态、工具状态和预算状态上重新做决策，所以“循环”是状态推进器，不是机械重复。",
+      "pitfall": "最常见误解是把 loop 看成“多发几次请求”。实际上每次回圈后，上下文、工具结果、剩余预算和权限状态都可能已经改变。",
+      "read_hint": "对照 `QueryEngine.ts` 的主循环和 `D01` 的状态机读，会很快看清退出条件和回圈条件。",
+      "terminal": ["while (needsTools) { ... }", "stop_reason != tool_use -> exit", "▌"],
       "links": [{ "href": "d01.html", "text": "D01 状态机" }]
     },
     {
       "id": "render",
       "label": "呈现",
       "title": "渲染与等待下一轮",
-      "body": "Ink/React 将助手回复与工具卡片画到终端 UI；Hooks 可在前后插入逻辑（S10）。随后等待新的用户输入。",
-      "terminal": ["render() → await next input", "▌"],
+      "body": "收束后的文本、工具卡片和状态提示会被投影到 Ink / React 终端界面中，然后系统继续等待下一次用户输入。",
+      "analysis": "渲染层不只是把字符串 print 出来，而是把 assistant reply、工具活动、通知和交互状态组织成可持续交互的 UI。也正因为有这层，用户才能看见结构化工具卡片、状态条和后续可操作界面。",
+      "pitfall": "不要把 render 看成循环结束后的附带动作；它是用户感知系统状态的唯一表面，没有这一层就无法解释很多交互体验细节。",
+      "read_hint": "先看 `components` 和 `ink`，再联读 `hooks` 如何在前后插入通知、状态同步和副作用逻辑。",
+      "terminal": ["render() -> ui diff", "await next input", "▌"],
       "links": [{ "href": "s10.html", "text": "S10 Hooks" }]
     }
   ]

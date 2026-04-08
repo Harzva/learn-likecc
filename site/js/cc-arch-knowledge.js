@@ -59,6 +59,30 @@
         return c.formatRgb()
     }
 
+    function relationBadge(kind) {
+        if (kind === 'cross') return ' · 跨块'
+        if (kind === 'loop_map') return ' · 映射'
+        if (kind === 'loop_category') return ' · 主块'
+        if (kind === 'loop') return ' · 主线'
+        if (kind === 'contains') return ' · 归属'
+        return ' · 相关'
+    }
+
+    function relationRank(kind) {
+        if (kind === 'cross') return 0
+        if (kind === 'loop_map') return 1
+        if (kind === 'loop') return 2
+        if (kind === 'loop_category') return 3
+        if (kind === 'contains') return 4
+        return 5
+    }
+
+    function isLowSignalNote(note) {
+        var text = String(note || '').trim()
+        if (!text) return true
+        return /内部目录$/.test(text) || text === '该主线阶段主要落在此教学分区'
+    }
+
     function render(payload) {
         var d3 = window.d3
         var modes = [
@@ -188,10 +212,15 @@
                         : null
                 })
                 .filter(Boolean)
+                .sort(function (a, b) {
+                    var rankDiff = relationRank(a.kind) - relationRank(b.kind)
+                    if (rankDiff) return rankDiff
+                    return a.label.localeCompare(b.label, 'zh-Hans-CN')
+                })
 
             var relatedExplained = related
                 .filter(function (item) {
-                    return item.note
+                    return item.note && !isLowSignalNote(item.note)
                 })
                 .slice(0, 8)
                 .map(function (item) {
@@ -245,15 +274,7 @@
                               return (
                                   '<span class="cc-arch-knowledge__chip">' +
                                   esc(item.label) +
-                                  (item.kind === 'cross'
-                                      ? ' · 跨块'
-                                      : item.kind === 'loop_map'
-                                        ? ' · 映射'
-                                        : item.kind === 'loop_category'
-                                          ? ' · 汇总'
-                                          : item.kind === 'loop'
-                                            ? ' · 主线'
-                                            : ' · 内部') +
+                                  relationBadge(item.kind) +
                                   '</span>'
                               )
                           })

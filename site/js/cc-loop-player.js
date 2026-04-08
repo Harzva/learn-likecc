@@ -46,6 +46,22 @@
         return '<div class="cc-loop-player__links">→ ' + parts.join(' · ') + '</div>'
     }
 
+    function renderCardSection(label, text, cls) {
+        if (!text) return ''
+        return (
+            '<div class="cc-loop-player__section' +
+            (cls ? ' ' + cls : '') +
+            '">' +
+            '<p class="cc-loop-player__section-label">' +
+            esc(label) +
+            '</p>' +
+            '<p>' +
+            esc(text) +
+            '</p>' +
+            '</div>'
+        )
+    }
+
     function buildChrome() {
         root.innerHTML =
             '<div class="cc-loop-player__head">' +
@@ -98,7 +114,23 @@
 
         term.innerHTML = renderTerminal(st.terminal)
         card.innerHTML =
-            '<h3>' + esc(st.title) + '</h3><p>' + esc(st.body) + '</p>' + renderLinks(st.links)
+            '<p class="cc-loop-player__eyebrow">Step ' +
+            esc(idx + 1) +
+            ' · ' +
+            esc(st.label) +
+            '</p>' +
+            '<h3>' +
+            esc(st.title) +
+            '</h3>' +
+            '<p class="cc-loop-player__lead">' +
+            esc(st.body) +
+            '</p>' +
+            '<div class="cc-loop-player__sections">' +
+            renderCardSection('关键点', st.analysis) +
+            renderCardSection('别误会', st.pitfall, 'cc-loop-player__section--warn') +
+            renderCardSection('源码抓手', st.read_hint) +
+            '</div>' +
+            renderLinks(st.links)
 
         playBtn.textContent = playing ? '暂停' : '播放'
         playBtn.setAttribute('aria-pressed', playing ? 'true' : 'false')
