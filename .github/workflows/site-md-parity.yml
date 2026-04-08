@@ -37,7 +37,11 @@ jobs:
       - name: CC overview — JSON valid and HTML in sync
         run: |
           python3 tools/gen_cc_overview.py --check
-          python3 tools/gen_cc_overview.py --verify-in-sync
+          python3 tools/gen_cc_overview.py
+          git diff --exit-code site/topic-cc-unpacked-zh.html || (
+            echo '::error::site/topic-cc-unpacked-zh.html 与 cc-overview.json 生成结果不一致。请在仓库根执行: python3 tools/gen_cc_overview.py 并提交 HTML。'
+            exit 1
+          )
       - name: CC architecture treemap JSON
         run: python3 tools/gen_cc_arch_treemap.py --verify-in-sync
       - name: Schema-check cc-loop-steps.json
