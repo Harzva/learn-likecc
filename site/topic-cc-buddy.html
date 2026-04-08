@@ -24,10 +24,18 @@
         }
 
         .buddy-page .hero-content {
+            flex: 1 1 auto;
+            width: min(1200px, 100%);
+            max-width: 1200px;
+            margin: 0 auto;
             display: grid;
             grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
             gap: 2rem;
             align-items: center;
+        }
+
+        .buddy-page .hero-content > * {
+            min-width: 0;
         }
 
         .buddy-page .buddy-shell {
