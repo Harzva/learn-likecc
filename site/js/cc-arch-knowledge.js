@@ -219,7 +219,7 @@
 
         function draw() {
             var width = Math.max(760, canvasEl.clientWidth - 8)
-            var height = window.innerWidth <= 768 ? 560 : 760
+            var height = window.innerWidth <= 768 ? 560 : currentMode === 'loopline' ? 820 : 760
             svgEl.setAttribute('viewBox', '0 0 ' + width + ' ' + height)
 
             noteEl.textContent =
@@ -293,7 +293,7 @@
                         })
                         .distance(function (d) {
                             if (d.kind === 'loop') return 72
-                            if (d.kind === 'loop_map') return 170
+                            if (d.kind === 'loop_map') return 220
                             return d.kind === 'contains' ? 80 : 120
                         })
                         .strength(function (d) {
@@ -305,7 +305,8 @@
                 .force(
                     'charge',
                     d3.forceManyBody().strength(function (d) {
-                        if (d.kind === 'loop') return -520
+                        if (d.kind === 'loop') return -700
+                        if (currentMode === 'loopline') return d.kind === 'category' ? -980 : -260
                         return d.kind === 'category' ? -900 : currentMode === 'cross' ? -260 : -180
                     })
                 )
@@ -320,28 +321,31 @@
                     d3.forceX().x(function (d) {
                         if (currentMode === 'loopline' && d.kind === 'loop') {
                             var count = 12
-                            return ((d.step_index || 0) + 1) * (width / (count + 1))
+                            var leftPad = 72
+                            var usable = Math.max(240, width - leftPad * 2)
+                            return leftPad + (d.step_index || 0) * (usable / Math.max(1, count - 1))
                         }
                         var a = anchorForCat(d.cat)
                         if (d.kind === 'category') return a.x
-                        if (currentMode === 'loopline') return a.x
+                        if (currentMode === 'loopline') return a.x + (d.kind === 'folder' ? 0 : 0)
                         return currentMode === 'cross' ? a.x + (Math.random() - 0.5) * 80 : a.x
                     }).strength(function (d) {
-                        if (currentMode === 'loopline' && d.kind === 'loop') return 0.7
+                        if (currentMode === 'loopline' && d.kind === 'loop') return 0.86
+                        if (currentMode === 'loopline') return 0.18
                         return d.kind === 'category' ? 0.22 : currentMode === 'cross' ? 0.09 : 0.13
                     })
                 )
                 .force(
                     'y',
                     d3.forceY().y(function (d) {
-                        if (currentMode === 'loopline' && d.kind === 'loop') return window.innerWidth <= 768 ? 88 : 96
+                        if (currentMode === 'loopline' && d.kind === 'loop') return window.innerWidth <= 768 ? 84 : 92
                         var a = anchorForCat(d.cat)
                         if (d.kind === 'category') return a.y
-                        if (currentMode === 'loopline') return a.y + 170
+                        if (currentMode === 'loopline') return a.y + 240
                         return currentMode === 'cross' ? a.y + (Math.random() - 0.5) * 90 : a.y + 25
                     }).strength(function (d) {
-                        if (currentMode === 'loopline' && d.kind === 'loop') return 0.78
-                        if (currentMode === 'loopline') return 0.24
+                        if (currentMode === 'loopline' && d.kind === 'loop') return 0.88
+                        if (currentMode === 'loopline') return 0.16
                         return d.kind === 'category' ? 0.22 : currentMode === 'cross' ? 0.09 : 0.14
                     })
                 )
