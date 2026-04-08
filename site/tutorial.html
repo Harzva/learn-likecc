@@ -458,150 +458,362 @@ paths:
             <h2 class="section-title">🔧 Skills 技能系统</h2>
 
             <div class="skills-intro">
-                <p>Skills 扩展了 Claude 能做的事情。创建一个 <code>SKILL.md</code> 文件，Claude 会将其添加到其工具包中。你可以在相关时自动使用，或用 <code>/skill-name</code> 直接调用。</p>
+                <p>Skills 的重点不是“多一个命令”，而是把<strong>场景、约束、步骤、可用工具</strong>打包成可复用工作流。参考 Appendix C 的思路，这一节改成<strong>高密度索引 + 工作台视角</strong>：先看它在真实会话里怎么出现，再看怎么选、怎么装、怎么组合、怎么自己写。</p>
             </div>
 
-            <div class="bundled-skills">
-                <h3>📦 内置 Skills</h3>
-                <table class="skills-table">
-                    <tr>
-                        <th>Skill</th>
-                        <th>用途</th>
-                    </tr>
-                    <tr>
-                        <td><code>/batch &lt;instruction&gt;</code></td>
-                        <td>在代码库中并行编排大规模更改</td>
-                    </tr>
-                    <tr>
-                        <td><code>/claude-api</code></td>
-                        <td>加载 Claude API 参考资料和 Agent SDK 文档</td>
-                    </tr>
-                    <tr>
-                        <td><code>/debug [description]</code></td>
-                        <td>启用调试日志记录并排查问题</td>
-                    </tr>
-                    <tr>
-                        <td><code>/loop [interval] &lt;prompt&gt;</code></td>
-                        <td>按间隔重复运行提示</td>
-                    </tr>
-                    <tr>
-                        <td><code>/simplify [focus]</code></td>
-                        <td>查找代码重用、质量和效率问题并修复</td>
-                    </tr>
-                </table>
+            <div class="skills-density-bar">
+                <div class="skills-density-pill"><strong>01</strong><span>工作台视角</span></div>
+                <div class="skills-density-pill"><strong>02</strong><span>推荐 Skill 组合</span></div>
+                <div class="skills-density-pill"><strong>03</strong><span>skills.sh 安装路径</span></div>
+                <div class="skills-density-pill"><strong>04</strong><span>选型与安全判断</span></div>
+                <div class="skills-density-pill"><strong>05</strong><span>自己写 Skill</span></div>
             </div>
 
-            <div class="create-skill">
-                <h3>🛠️ 创建你的第一个 Skill</h3>
+            <div class="skills-studio">
+                <aside class="skills-studio__left">
+                    <div class="studio-panel">
+                        <div class="studio-panel__title">Workspace Tree</div>
+                        <ul class="studio-tree">
+                            <li><span class="studio-tree__dir">project/</span></li>
+                            <li class="is-indent"><span class="studio-tree__file">CLAUDE.md</span></li>
+                            <li class="is-indent"><span class="studio-tree__dir">.claude/</span></li>
+                            <li class="is-indent-2"><span class="studio-tree__dir">skills/</span></li>
+                            <li class="is-indent-3"><span class="studio-tree__file">pdf/SKILL.md</span></li>
+                            <li class="is-indent-3"><span class="studio-tree__file">drawio/SKILL.md</span></li>
+                            <li class="is-indent-3"><span class="studio-tree__file">citation-management/SKILL.md</span></li>
+                            <li class="is-indent-2"><span class="studio-tree__dir">agents/</span></li>
+                            <li class="is-indent-2"><span class="studio-tree__dir">commands/</span></li>
+                            <li class="is-indent"><span class="studio-tree__dir">papers/</span></li>
+                            <li class="is-indent"><span class="studio-tree__dir">figures/</span></li>
+                        </ul>
+                    </div>
 
-                <div class="skill-steps">
-                    <div class="skill-step">
-                        <h4>步骤 1：创建目录</h4>
+                    <div class="studio-panel">
+                        <div class="studio-panel__title">Pinned Agents</div>
+                        <div class="studio-chip-list">
+                            <span class="studio-chip">Paper Polisher</span>
+                            <span class="studio-chip">Citation Checker</span>
+                            <span class="studio-chip">Figure Builder</span>
+                            <span class="studio-chip">Data Analyst</span>
+                        </div>
+                    </div>
+
+                    <div class="studio-panel">
+                        <div class="studio-panel__title">Recent Chats</div>
+                        <div class="studio-list">
+                            <div class="studio-list__item">
+                                <strong>Literature Review Sprint</strong>
+                                <span>/pdf + /pyzotero + /citation-management</span>
+                            </div>
+                            <div class="studio-list__item">
+                                <strong>Figures for Appendix</strong>
+                                <span>/drawio + /seaborn + /plotly</span>
+                            </div>
+                            <div class="studio-list__item">
+                                <strong>Final Paper Polish</strong>
+                                <span>/paper-polish-workflow + /humanizer-zh</span>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <main class="skills-studio__center">
+                    <div class="studio-thread">
+                        <div class="studio-separator">Turn 01 · 用户提出任务</div>
+                        <div class="studio-bubble studio-bubble--user">
+                            我有 12 篇 PDF、一个 Zotero 库、导师的 Word 批注和一份参考文献格式要求。帮我先整理材料，再给出论文修改计划。
+                        </div>
+
+                        <div class="studio-separator">Turn 02 · Assistant 进入 skill orchestration</div>
+                        <div class="studio-bubble studio-bubble--assistant">
+                            <div class="studio-bubble__meta">Assistant · streaming</div>
+                            <p>我会先把任务拆成 4 个环节：材料读取、文献核查、结构整理、表达润色。</p>
+                            <p>优先调用：</p>
+                            <ul>
+                                <li><code>/pdf</code> 读取论文与批注 PDF</li>
+                                <li><code>/markitdown</code> 把 Word/PPT 转成 Markdown</li>
+                                <li><code>/pyzotero</code> 拉取文献元数据</li>
+                                <li><code>/citation-management</code> 校对 BibTeX 和引用格式</li>
+                            </ul>
+                            <div class="studio-streaming">
+                                <span></span><span></span><span></span>
+                            </div>
+                        </div>
+
+                        <div class="studio-separator">Turn 03 · tool / skill 回流</div>
+                        <div class="studio-bubble studio-bubble--tool">
+                            <strong>Tool Result</strong>
+                            <p>已发现 12 篇 PDF、1 个 Zotero collection、1 份导师批注文档；其中 3 篇参考文献字段缺 DOI，2 条作者名缩写格式不一致。</p>
+                        </div>
+
+                        <div class="studio-separator">Turn 04 · Assistant 给出下一步</div>
+                        <div class="studio-bubble studio-bubble--assistant is-final">
+                            <div class="studio-bubble__meta">Assistant</div>
+                            <p>下一步建议：</p>
+                            <ol>
+                                <li>先用 <code>/pdf</code> 与 <code>/markitdown</code> 把原始材料清洗成可检索文本。</li>
+                                <li>再用 <code>/pyzotero</code> + <code>/citation-management</code> 修 BibTeX 与引用格式。</li>
+                                <li>最后再进入 <code>/paper-polish-workflow</code> 或 <code>/humanizer-zh</code> 做润色。</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="studio-inputbar">
+                        <div class="studio-inputbar__toolbar">
+                            <span class="studio-mini-btn">+ Files</span>
+                            <span class="studio-mini-btn">/ Skill</span>
+                            <span class="studio-mini-btn">@ Agent</span>
+                            <span class="studio-mini-btn">MCP</span>
+                        </div>
+                        <div class="studio-inputbar__field">输入新任务，或继续让系统组合 skills / agents / tools…</div>
+                    </div>
+                </main>
+
+                <aside class="skills-studio__right">
+                    <div class="studio-panel studio-panel--inspector">
+                        <div class="studio-panel__title">Inspector</div>
+                        <div class="studio-inspector">
+                            <div class="studio-kv"><span>Current Model</span><strong>Claude Sonnet</strong></div>
+                            <div class="studio-kv"><span>Mode</span><strong>Skills + Agents</strong></div>
+                            <div class="studio-kv"><span>Queue</span><strong>4 pending actions</strong></div>
+                            <div class="studio-kv"><span>Dialog Actions</span><strong>read / search / rewrite</strong></div>
+                        </div>
+                    </div>
+
+                    <div class="studio-panel studio-panel--inspector">
+                        <div class="studio-panel__title">Active Tools</div>
+                        <div class="studio-chip-list studio-chip-list--stack">
+                            <span class="studio-chip studio-chip--active">pdf</span>
+                            <span class="studio-chip studio-chip--active">markitdown</span>
+                            <span class="studio-chip studio-chip--active">pyzotero</span>
+                            <span class="studio-chip studio-chip--active">citation-management</span>
+                        </div>
+                    </div>
+
+                    <div class="studio-panel studio-panel--inspector">
+                        <div class="studio-panel__title">Dialog Actions</div>
+                        <div class="studio-actions">
+                            <button class="studio-action">Attach 12 PDFs</button>
+                            <button class="studio-action">Validate BibTeX</button>
+                            <button class="studio-action">Open Polish Workflow</button>
+                            <button class="studio-action">Export Plan</button>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+
+            <div class="skills-catalog">
+                <div class="skills-catalog__main">
+                    <div class="skills-section-card">
+                        <h3>Appendix C 式推荐组合</h3>
+                        <p class="skills-section-card__lead">Appendix C 的信息密度高在于：它不是泛泛列能力，而是按<strong>真实任务链</strong>给出“最常用、最值得先装、可以互相配合”的组合。下面是更适合本教程的整理版。</p>
+                        <table class="skills-table skills-table--dense">
+                            <tr>
+                                <th>优先级</th>
+                                <th>推荐组合</th>
+                                <th>适合解决什么</th>
+                            </tr>
+                            <tr>
+                                <td><strong>先装</strong></td>
+                                <td><code>/pdf</code> + <code>/drawio</code></td>
+                                <td>一个负责“吃进去全文材料”，一个负责“画出结构和流程”；是从阅读到表达最常用的一组。</td>
+                            </tr>
+                            <tr>
+                                <td><strong>第二组</strong></td>
+                                <td><code>/markitdown</code> + <code>/docx</code> + <code>/pptx</code> + <code>/xlsx</code></td>
+                                <td>把导师、同事、学校要求给你的 Office 文件接进工作流，减少格式孤岛。</td>
+                            </tr>
+                            <tr>
+                                <td><strong>研究链</strong></td>
+                                <td><code>/pyzotero</code> + <code>/citation-management</code> + <code>/arxiv-database</code></td>
+                                <td>文献检索、元数据拉取、引用核查、BibTeX 纠错。</td>
+                            </tr>
+                            <tr>
+                                <td><strong>润色链</strong></td>
+                                <td><code>/paper-polish-workflow</code> + <code>/humanizer-zh</code></td>
+                                <td>一个管结构和逻辑，一个管中文学术表达与术语保护。</td>
+                            </tr>
+                            <tr>
+                                <td><strong>图表链</strong></td>
+                                <td><code>/seaborn</code> + <code>/plotly</code> + <code>/statistical-analysis</code></td>
+                                <td>先判断方法，再画探索图，再做可展示图；适合实验与答辩材料。</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="skills-section-card">
+                        <h3>按任务域快速挑 Skill</h3>
+                        <div class="skill-domain-grid">
+                            <div class="skill-domain-card">
+                                <h4>文档处理</h4>
+                                <p><code>pdf</code> · <code>docx</code> · <code>pptx</code> · <code>xlsx</code> · <code>markitdown</code></p>
+                            </div>
+                            <div class="skill-domain-card">
+                                <h4>学术研究</h4>
+                                <p><code>pyzotero</code> · <code>citation-management</code> · <code>paper-polish-workflow</code> · <code>systematic-literature-review</code></p>
+                            </div>
+                            <div class="skill-domain-card">
+                                <h4>数据分析</h4>
+                                <p><code>statistical-analysis</code> · <code>seaborn</code> · <code>plotly</code> · <code>exploratory-data-analysis</code></p>
+                            </div>
+                            <div class="skill-domain-card">
+                                <h4>绘图与搜索</h4>
+                                <p><code>drawio</code> · <code>infographics</code> · <code>web-access</code> · <code>parallel-web</code></p>
+                            </div>
+                            <div class="skill-domain-card">
+                                <h4>生命科学</h4>
+                                <p><code>biopython</code> · <code>anndata</code> · <code>scvi-tools</code> · <code>alphafold-database</code></p>
+                            </div>
+                            <div class="skill-domain-card">
+                                <h4>科学数据库</h4>
+                                <p><code>gene-database</code> · <code>geo-database</code> · <code>biorxiv-database</code> · <code>drugbank-database</code></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skills-section-card">
+                        <h3>skills.sh 与安装方法</h3>
+                        <div class="skills-install-grid">
+                            <div class="skills-install-card">
+                                <h4>找 Skill 的地方</h4>
+                                <p><strong>skills.sh</strong> 是开源技能注册平台，适合先查功能、再看下载量、最后决定装不装。可以把它理解成 Skill 版的包管理入口。</p>
+                            </div>
+                            <div class="skills-install-card">
+                                <h4>直接安装</h4>
+                                <pre><code>npx skills add &lt;owner/repo@skill-name&gt;</code></pre>
+                            </div>
+                            <div class="skills-install-card">
+                                <h4>先搜再装</h4>
+                                <pre><code>npx skills find &lt;关键词&gt;</code></pre>
+                            </div>
+                            <div class="skills-install-card">
+                                <h4>对话式安装</h4>
+                                <pre><code>帮我安装 /pdf 这个 skill
+帮我找引用管理相关 skills</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skills-section-card">
+                        <h3>怎么选 Skill：不要只看功能名</h3>
+                        <div class="skills-heuristics">
+                            <div class="skills-heuristic">
+                                <span class="skills-heuristic__num">01</span>
+                                <div>
+                                    <h4>先描述场景，不先搜名字</h4>
+                                    <p>例如“我需要整理参考文献格式并核对 DOI”，比“我要找 citation skill”更容易搜到真正匹配的 skill。</p>
+                                </div>
+                            </div>
+                            <div class="skills-heuristic">
+                                <span class="skills-heuristic__num">02</span>
+                                <div>
+                                    <h4>优先看下载量和验证程度</h4>
+                                    <p>下载量高意味着更多人踩过坑。冷门 skill 不一定差，但更值得先参考其写法，再决定是否自建。</p>
+                                </div>
+                            </div>
+                            <div class="skills-heuristic">
+                                <span class="skills-heuristic__num">03</span>
+                                <div>
+                                    <h4>不要在原 skill 上直接魔改</h4>
+                                    <p>比较稳妥的做法是：参考一个现成 skill 的结构，再按你的需求新建一个独立 skill，避免升级时被覆盖。</p>
+                                </div>
+                            </div>
+                            <div class="skills-heuristic">
+                                <span class="skills-heuristic__num">04</span>
+                                <div>
+                                    <h4>有副作用的 skill 要先做权限隔离</h4>
+                                    <p>像部署、写文档、批量改文件、外部 API 写入这类操作，优先设置 <code>disable-model-invocation</code>、<code>allowed-tools</code> 和独立 agent。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="skills-catalog__side">
+                    <div class="skills-side-card">
+                        <h3>Claude Code 自带常用 Skills</h3>
+                        <table class="skills-table skills-table--compact">
+                            <tr>
+                                <th>Skill</th>
+                                <th>用途</th>
+                            </tr>
+                            <tr><td><code>/batch</code></td><td>并行编排大规模修改</td></tr>
+                            <tr><td><code>/claude-api</code></td><td>加载官方 API 资料</td></tr>
+                            <tr><td><code>/debug</code></td><td>调试日志与排障</td></tr>
+                            <tr><td><code>/loop</code></td><td>定期重复运行提示</td></tr>
+                            <tr><td><code>/simplify</code></td><td>找重构机会并修复</td></tr>
+                        </table>
+                    </div>
+
+                    <div class="skills-side-card">
+                        <h3>Skills 存储位置</h3>
+                        <table class="locations-table skills-table--compact">
+                            <tr><th>位置</th><th>路径</th></tr>
+                            <tr><td>个人</td><td><code>~/.claude/skills/&lt;skill&gt;/SKILL.md</code></td></tr>
+                            <tr><td>项目</td><td><code>.claude/skills/&lt;skill&gt;/SKILL.md</code></td></tr>
+                            <tr><td>插件</td><td><code>&lt;plugin&gt;/skills/&lt;skill&gt;/SKILL.md</code></td></tr>
+                        </table>
+                    </div>
+
+                    <div class="skills-side-card">
+                        <h3>最关键的 Frontmatter</h3>
+                        <div class="field-grid field-grid--tight">
+                            <div class="field-item">
+                                <code>description</code>
+                                <p>告诉模型“什么时候该用它”。</p>
+                            </div>
+                            <div class="field-item">
+                                <code>allowed-tools</code>
+                                <p>限制 skill 激活时可用工具。</p>
+                            </div>
+                            <div class="field-item">
+                                <code>disable-model-invocation</code>
+                                <p>有副作用时只允许人工调用。</p>
+                            </div>
+                            <div class="field-item">
+                                <code>context: fork</code>
+                                <p>隔离上下文，交给 subagent 跑。</p>
+                            </div>
+                            <div class="field-item">
+                                <code>agent / effort</code>
+                                <p>指定代理类型与工作强度。</p>
+                            </div>
+                            <div class="field-item">
+                                <code>paths</code>
+                                <p>限定只在指定目录或文件类型生效。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skills-side-card">
+                        <h3>创建自己的 Skill</h3>
                         <pre><code>mkdir -p ~/.claude/skills/explain-code</code></pre>
-                    </div>
-
-                    <div class="skill-step">
-                        <h4>步骤 2：编写 SKILL.md</h4>
                         <pre><code>---
-name: explain-code
-description: Explains code with visual diagrams and analogies. Use when explaining how code works.
----
-
-When explaining code, always include:
-
-1. **Start with an analogy**: Compare the code to something from everyday life
-2. **Draw a diagram**: Use ASCII art to show the flow, structure, or relationships
-3. **Walk through the code**: Explain step-by-step what happens
-4. **Highlight a gotcha**: What's a common mistake or misconception?</code></pre>
-                    </div>
-
-                    <div class="skill-step">
-                        <h4>步骤 3：测试 Skill</h4>
-                        <pre><code># 让 Claude 自动调用
-How does this code work?
-
-# 或直接调用
-/explain-code src/auth/login.ts</code></pre>
-                    </div>
-                </div>
-            </div>
-
-            <div class="skill-locations">
-                <h3>📁 Skills 存储位置</h3>
-                <table class="locations-table">
-                    <tr>
-                        <th>位置</th>
-                        <th>路径</th>
-                        <th>适用于</th>
-                    </tr>
-                    <tr>
-                        <td>个人</td>
-                        <td><code>~/.claude/skills/&lt;skill-name&gt;/SKILL.md</code></td>
-                        <td>你的所有项目</td>
-                    </tr>
-                    <tr>
-                        <td>项目</td>
-                        <td><code>.claude/skills/&lt;skill-name&gt;/SKILL.md</code></td>
-                        <td>仅此项目</td>
-                    </tr>
-                    <tr>
-                        <td>插件</td>
-                        <td><code>&lt;plugin&gt;/skills/&lt;skill-name&gt;/SKILL.md</code></td>
-                        <td>启用插件的位置</td>
-                    </tr>
-                </table>
-            </div>
-
-            <div class="skill-frontmatter">
-                <h3>⚙️ Frontmatter 配置</h3>
-                <pre><code>---
-name: my-skill              # Skill 名称
-description: What it does   # 功能描述（推荐）
-disable-model-invocation: true  # 阻止 Claude 自动调用
-allowed-tools: Read Grep    # 限制可用工具
-context: fork               # 在 subagent 中运行
-agent: Explore              # 使用的代理类型
-effort: high                # 工作量级别
-paths:
-  - "src/api/**/*.ts"       # 限定适用路径
----</code></pre>
-
-                <div class="frontmatter-fields">
-                    <h4>常用字段说明</h4>
-                    <div class="field-grid">
-                        <div class="field-item">
-                            <code>disable-model-invocation: true</code>
-                            <p>只有你可以调用该 skill。用于有副作用的操作（如部署）。</p>
-                        </div>
-                        <div class="field-item">
-                            <code>user-invocable: false</code>
-                            <p>只有 Claude 可以调用。用于背景知识。</p>
-                        </div>
-                        <div class="field-item">
-                            <code>allowed-tools</code>
-                            <p>限制当 skill 处于活动状态时可用的工具。</p>
-                        </div>
-                        <div class="field-item">
-                            <code>context: fork</code>
-                            <p>在隔离的 subagent 上下文中运行。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="skill-arguments">
-                <h3>📤 参数传递</h3>
-                <pre><code>---
 name: fix-issue
 description: Fix a GitHub issue
 disable-model-invocation: true
----
+allowed-tools: Read Grep Edit
+context: fork
+---</code></pre>
+                        <pre><code># 使用位置参数
+/fix-issue 123
+$ARGUMENTS / $0 / $1 ...</code></pre>
+                    </div>
 
-Fix GitHub issue $ARGUMENTS following our coding standards.
+                    <div class="skills-side-card">
+                        <h3>组合思路</h3>
+                        <div class="studio-chip-list studio-chip-list--stack">
+                            <span class="studio-chip">读取材料 skill</span>
+                            <span class="studio-chip">检索 / 引用核查 skill</span>
+                            <span class="studio-chip">结构润色 skill</span>
+                            <span class="studio-chip">图表 / 输出 skill</span>
+                        </div>
+                    </div>
+                </aside>
+            </div>
 
-# 使用位置参数
-Migrate the $0 component from $1 to $2.</code></pre>
-                <p>运行 <code>/fix-issue 123</code> 时，<code>$ARGUMENTS</code> 会被替换为 <code>123</code>。</p>
+            <div class="skills-summary-note">
+                <p><strong>一句话理解这一节</strong>：Skills 最强的地方，不是“装很多”，而是把<strong>文档读取、信息检索、外部系统、写作流程、图表输出</strong>拆成可组合的稳定模块。Appendix C 的启发正是这个方向。</p>
             </div>
         </div>
     </section>
