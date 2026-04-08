@@ -36,7 +36,7 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Verify HTML ↔ site/md pairs and blob links
         run: python3 tools/check_site_md_parity.py
       - name: CC overview — JSON valid and HTML in sync
