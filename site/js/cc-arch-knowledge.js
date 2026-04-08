@@ -247,6 +247,7 @@
                     cat: node.cat,
                     parent: node.parent,
                     size: node.size,
+                    step_index: node.step_index,
                     hint: node.hint || '',
                     description: node.description || '',
                 }
