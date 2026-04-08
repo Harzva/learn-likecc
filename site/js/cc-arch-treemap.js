@@ -167,7 +167,7 @@
                 .tile(d3.treemapSquarify)
                 .size([w, h])
                 .paddingOuter(4)
-                .paddingTop(24)
+                .paddingTop(28)
                 .paddingInner(2)
                 .round(true)(root)
 
@@ -216,13 +216,13 @@
             })
 
             cell.filter(function (d) {
-                return d.children && d.x1 - d.x0 > 82 && d.y1 - d.y0 > 32
+                return d.children && d.x1 - d.x0 > 90 && d.y1 - d.y0 > 36
             })
                 .append('text')
                 .attr('x', 6)
-                .attr('y', 17)
+                .attr('y', 19)
                 .attr('fill', 'rgba(255,255,255,0.88)')
-                .attr('font-size', 14)
+                .attr('font-size', 16)
                 .attr('font-weight', 700)
                 .attr('font-family', 'system-ui, sans-serif')
                 .style('pointer-events', 'none')
@@ -231,11 +231,11 @@
                 })
 
             cell.filter(function (d) {
-                return d.children && d.x1 - d.x0 > 100 && d.y1 - d.y0 > 48
+                return d.children && d.x1 - d.x0 > 108 && d.y1 - d.y0 > 54
             })
                 .append('text')
                 .attr('x', 6)
-                .attr('y', 35)
+                .attr('y', 40)
                 .attr('fill', 'rgba(255,255,255,0.55)')
                 .attr('font-size', 11)
                 .attr('font-family', 'system-ui, sans-serif')
