@@ -425,6 +425,9 @@ function initSiteSidebar() {
         '</button>' +
         '<div class="site-sidebar__scroll">' +
         '<a class="site-sidebar__link site-sidebar__link--brand" href="index.html"><span class="site-sidebar__txt">首页</span></a>' +
+        '<div class="site-sidebar__actions">' +
+        '<button type="button" class="site-sidebar__action-btn" data-sidebar-action="collapse-all" title="收起所有已展开专题">收起全部专题</button>' +
+        '</div>' +
         '<details class="site-sidebar__details" data-sidebar-key="source-map">' +
         '<summary class="site-sidebar__summary"><span class="site-sidebar__txt">Source Map 源码专题</span></summary>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-sourcemap.html"><span class="site-sidebar__ico">📌</span><span class="site-sidebar__txt">专题导读</span></a>' +
@@ -531,6 +534,7 @@ function initSiteSidebar() {
     document.body.appendChild(fab)
 
     const collapseBtn = aside.querySelector('.site-sidebar__collapse')
+    const collapseAllBtn = aside.querySelector('[data-sidebar-action="collapse-all"]')
     const detailNodes = Array.from(aside.querySelectorAll('.site-sidebar__details[data-sidebar-key]'))
 
     function saveOpenDetails() {
@@ -586,12 +590,23 @@ function initSiteSidebar() {
         localStorage.setItem('site-sidebar-collapsed', next ? '1' : '0')
     }
 
+    function collapseAllDetails() {
+        detailNodes.forEach((node) => {
+            node.open = false
+        })
+        saveOpenDetails()
+    }
+
     collapseBtn.addEventListener('click', () => {
         if (window.matchMedia('(max-width: 900px)').matches) {
             setMobileOpen(!aside.classList.contains('site-sidebar--open'))
             return
         }
         setCollapsed(!aside.classList.contains('site-sidebar--collapsed'))
+    })
+
+    collapseAllBtn.addEventListener('click', () => {
+        collapseAllDetails()
     })
 
     backdrop.addEventListener('click', () => {

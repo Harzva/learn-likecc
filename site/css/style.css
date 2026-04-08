@@ -6166,6 +6166,7 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 .site-sidebar--collapsed .site-sidebar__txt,
 .site-sidebar--collapsed .site-sidebar__summary .site-sidebar__txt,
 .site-sidebar--collapsed .site-sidebar__chapters,
+.site-sidebar--collapsed .site-sidebar__actions,
 .site-sidebar--collapsed .site-sidebar__details > summary ~ * {
     display: none !important;
 }
@@ -6185,6 +6186,29 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     overflow-y: auto;
     overflow-x: hidden;
     padding: 52px 0 20px;
+}
+
+.site-sidebar__actions {
+    padding: 4px 12px 8px;
+}
+
+.site-sidebar__action-btn {
+    width: 100%;
+    border: 1px solid var(--border);
+    background: color-mix(in srgb, var(--bg-hover) 78%, white 22%);
+    color: var(--text-secondary);
+    border-radius: 10px;
+    padding: 8px 10px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.site-sidebar__action-btn:hover {
+    background: color-mix(in srgb, var(--primary) 10%, var(--bg-hover));
+    color: var(--primary-dark);
+    border-color: color-mix(in srgb, var(--primary) 28%, var(--border));
 }
 
 .site-sidebar__collapse {
