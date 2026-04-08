@@ -435,9 +435,15 @@ function initSiteSidebar() {
         '<div class="site-sidebar__chapters">' +
         chapters.join('') +
         '</div></details></details>' +
-        '<a class="site-sidebar__link" href="tutorial.html"><span class="site-sidebar__ico">📖</span><span class="site-sidebar__txt">官方教程</span></a>' +
-        '<a class="site-sidebar__link" href="tutorial.html#skills"><span class="site-sidebar__ico">🔧</span><span class="site-sidebar__txt">Skills</span></a>' +
-        '<a class="site-sidebar__link" href="handbook.html"><span class="site-sidebar__ico">📘</span><span class="site-sidebar__txt">完全手册</span></a>' +
+        '<details class="site-sidebar__details">' +
+        '<summary class="site-sidebar__summary"><span class="site-sidebar__ico">📖</span><span class="site-sidebar__txt">Claude Code 官方教程</span></summary>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="tutorial.html"><span class="site-sidebar__ico">📘</span><span class="site-sidebar__txt">教程首页</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="tutorial.html#skills"><span class="site-sidebar__ico">🔧</span><span class="site-sidebar__txt">Skills</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="handbook.html"><span class="site-sidebar__ico">🗂️</span><span class="site-sidebar__txt">完全手册</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-cc-release-watch.html"><span class="site-sidebar__ico">📋</span><span class="site-sidebar__txt">发版监督</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="https://docs.anthropic.com/en/docs/claude-code/changelog" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">🔗</span><span class="site-sidebar__txt">Anthropic Changelog ↗</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">🔗</span><span class="site-sidebar__txt">GitHub CHANGELOG ↗</span></a>' +
+        '</details>' +
         '<details class="site-sidebar__details">' +
         '<summary class="site-sidebar__summary"><span class="site-sidebar__ico">📎</span><span class="site-sidebar__txt">RAG 专题</span></summary>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-rag.html"><span class="site-sidebar__ico">📌</span><span class="site-sidebar__txt">专题首页</span></a>' +
@@ -469,18 +475,16 @@ function initSiteSidebar() {
         '<a class="site-sidebar__link site-sidebar__link--sub" href="oh12.html"><span class="site-sidebar__ico">🌿</span><span class="site-sidebar__txt">OH12 · Git</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="https://github.com/HKUDS/OpenHarness" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">🔗</span><span class="site-sidebar__txt">上游仓库 ↗</span></a>' +
         '</details>' +
-        '<details class="site-sidebar__details">' +
-        '<summary class="site-sidebar__summary"><span class="site-sidebar__ico">📋</span><span class="site-sidebar__txt">发版监督</span></summary>' +
-        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-cc-release-watch.html"><span class="site-sidebar__ico">📌</span><span class="site-sidebar__txt">官方版本速览</span></a>' +
-        '<a class="site-sidebar__link site-sidebar__link--sub" href="https://docs.anthropic.com/en/docs/claude-code/changelog" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">🔗</span><span class="site-sidebar__txt">Anthropic Changelog ↗</span></a>' +
-        '<a class="site-sidebar__link site-sidebar__link--sub" href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">🔗</span><span class="site-sidebar__txt">GitHub CHANGELOG ↗</span></a>' +
-        '</details>' +
         '<a class="site-sidebar__link" href="topic-cc-unpacked-zh.html"><span class="site-sidebar__ico">📦</span><span class="site-sidebar__txt">CC 结构导览</span></a>' +
-        '<a class="site-sidebar__link" href="column-agent-journey.html"><span class="site-sidebar__ico">🧭</span><span class="site-sidebar__txt">工具链阅历</span></a>' +
-        '<a class="site-sidebar__link" href="column-shangshou-cikeng.html"><span class="site-sidebar__ico">🛠️</span><span class="site-sidebar__txt">上手与踩坑</span></a>' +
+        '<details class="site-sidebar__details">' +
+        '<summary class="site-sidebar__summary"><span class="site-sidebar__ico">🧰</span><span class="site-sidebar__txt">工具链专题</span></summary>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-toolchain.html"><span class="site-sidebar__ico">📌</span><span class="site-sidebar__txt">专题首页</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="column-agent-journey.html"><span class="site-sidebar__ico">🧭</span><span class="site-sidebar__txt">工具链阅读</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="column-shangshou-cikeng.html"><span class="site-sidebar__ico">🛠️</span><span class="site-sidebar__txt">上手与踩坑</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="column-channel-review.html"><span class="site-sidebar__ico">🛒</span><span class="site-sidebar__txt">渠道评测</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="devlog.html"><span class="site-sidebar__ico">📝</span><span class="site-sidebar__txt">开发日志</span></a>' +
+        '</details>' +
         '<a class="site-sidebar__link" href="column-show-your-usage.html"><span class="site-sidebar__ico">📊</span><span class="site-sidebar__txt">Show usage</span></a>' +
-        '<a class="site-sidebar__link" href="column-channel-review.html"><span class="site-sidebar__ico">🛒</span><span class="site-sidebar__txt">渠道评测</span></a>' +
-        '<a class="site-sidebar__link" href="devlog.html"><span class="site-sidebar__ico">📝</span><span class="site-sidebar__txt">开发日志</span></a>' +
         '<a class="site-sidebar__link" href="https://github.com/Harzva/learn-likecc" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">🐙</span><span class="site-sidebar__txt">GitHub</span></a>' +
         '</div>'
 

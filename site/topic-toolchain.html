@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工具链专题 - Claude Code Course</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧭</text></svg>">
+    <meta name="description" content="把工具链阅读、上手与踩坑、渠道评测与开发日志收拢成一个专题入口。">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🧭</span>
+                <span class="logo-text">工具链专题</span>
+            </a>
+            <div class="nav-links">
+                <a href="#overview" class="nav-link">说明</a>
+                <a href="#journey" class="nav-link">阅历</a>
+                <a href="#pitfalls" class="nav-link">踩坑</a>
+                <a href="#channel" class="nav-link">渠道</a>
+                <a href="#devlog" class="nav-link">日志</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>个人专题</span>
+                <span>工具链 · 体验 · 复盘</span>
+            </div>
+            <h1 class="hero-title">
+                工具链专题<br>
+                <span class="gradient-text">从体验到复盘</span>
+            </h1>
+            <p class="hero-subtitle">
+                把<strong>工具链阅读</strong>、<strong>上手与踩坑</strong>、<strong>渠道评测</strong>与<strong>开发日志</strong>放到一个入口里：前两篇偏经历与经验，后两篇偏付费形态与项目迭代。
+            </p>
+            <div class="hero-actions">
+                <a href="#overview" class="btn btn-primary">开始阅读</a>
+                <a href="column-show-your-usage.html" class="btn btn-secondary">Show me your usage ↗</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="course-main devlog-main">
+        <div class="container">
+            <article class="course-content devlog-content">
+                <section id="overview" class="section-block">
+                    <h2>专题说明</h2>
+                    <div class="course-quote">
+                        <p><strong>这一组页面不再分散挂入口</strong>，统一作为「工具链专题」阅读：你可以把它理解成本站的<strong>个人经验轴</strong>，与 S/D 课程那条<strong>源码学习轴</strong>互补。</p>
+                        <p><strong>阅读建议</strong>：先看 <a href="#journey">工具链阅读</a> 理清背景，再看 <a href="#pitfalls">上手与踩坑</a> 抓可复用结论；如果你关心付费形态和风险，再看 <a href="#channel">渠道评测</a>；最后用 <a href="#devlog">开发日志</a> 理解这个站是怎么一路迭代出来的。</p>
+                    </div>
+                </section>
+
+                <section id="journey" class="section-block">
+                    <h2>01 · 工具链阅读</h2>
+                    <p>偏阅历叙事：Qoder、Trae、VS Code、Codex、Claude Code 等工具是怎么轮换成为主力的，以及工作流为什么一步步向 Agent 转过去。</p>
+                    <p><a href="column-agent-journey.html" class="btn btn-primary">进入《从编辑器到 Agent》 →</a></p>
+                </section>
+
+                <section id="pitfalls" class="section-block">
+                    <h2>02 · 上手与踩坑</h2>
+                    <p>偏实战经验：环境、命令、最小可复现路径、踩坑记录与能直接照着做的结论。适合作为「怎么跑通、怎么避坑」的备忘录入口。</p>
+                    <p><a href="column-shangshou-cikeng.html" class="btn btn-primary">进入《上手与踩坑》 →</a></p>
+                </section>
+
+                <section id="channel" class="section-block">
+                    <h2>03 · 渠道评测</h2>
+                    <p>偏付费形态与风险体感：API 中转、Team 拼车、额度限制、换车摩擦、条款风险。这一页不是购买建议，只是主观记录不同方案的使用感受。</p>
+                    <p><a href="column-channel-review.html" class="btn btn-primary">进入《渠道评测》 →</a></p>
+                </section>
+
+                <section id="devlog" class="section-block">
+                    <h2>04 · 开发日志</h2>
+                    <p>偏项目幕后：站点建设目标、工具脚本、图表、Loop-in-Loop 节奏与阶段性用量观察。适合想知道「这个仓库是怎么迭代出来的」的人。</p>
+                    <p><a href="devlog.html" class="btn btn-primary">进入《开发日志》 →</a></p>
+                </section>
+
+                <section class="section-block">
+                    <h2>补充入口</h2>
+                    <p><a href="column-show-your-usage.html">Show me your usage</a> 仍单独保留，不并入这个专题；它更像一篇用量自证页，而不是工具链经验总结。</p>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-toolchain.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

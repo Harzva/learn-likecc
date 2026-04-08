@@ -16,17 +16,19 @@
 - **📚 学习入口**
   - Source Map 源码专题
   - CC 结构导览（Unpacked，`topic-cc-unpacked-zh`）
-  - 官方教程
+  - Claude Code 官方教程
   - 完全手册
   - 面试题库
   - RAG 大专题
   - Agent 大专题（含 Memory `topic-memory-harness`、插件对照 `topic-superpowers-autoresearch`）
+  - 工具链专题（`topic-toolchain`）
 - **🛤️ 学习路径**
 - **📚 源码课程章节**
 - **💼 面试题库**
 - **🔥 热点话题**
-  - 从编辑器到 Agent：一条工具链上的个人阅历（本站 `column-agent-journey`；仓库稿 `wemedia/zhihu/articles/11-…`）
+  - 工具链专题 · 工具链阅读（本站 `column-agent-journey`；仓库稿 `wemedia/zhihu/articles/11-…`）
   - 上手与踩坑：赛博档案 · 实战篇 · Agent 实战手记（本站 `column-shangshou-cikeng`；仓库稿 `articles/12-…`）
+  - 工具链专题 · 渠道评测（本站 `column-channel-review`）
   - Claude Code 封号真相：Anthropic 如何通过数字指纹追踪你
   - Claude Code 源码泄露：44个未发布功能，Anthropic 藏了多少惊喜？
   - Claude Code vs OpenClaw：谁的记忆系统更强？
@@ -57,7 +59,7 @@
 
 ### 📚 学习入口
 
-把最常用的纵向资源（源码专题、教程、手册、题库、RAG/Agent 大专题）收成一组**并列卡片式导航**，降低首次访问时的迷路成本。
+把最常用的纵向资源（源码专题、教程、手册、题库、RAG/Agent 大专题、工具链专题）收成一组**并列卡片式导航**，降低首次访问时的迷路成本。
 
 #### Source Map 源码专题
 
@@ -67,9 +69,9 @@
 
 `topic-cc-unpacked-zh.html`：用中文表格与说明对照官方包结构（思路参考 ccunpacked.dev），含概览数据与 Loop 相关入口，与 24 讲并排使用。
 
-#### 官方教程 / 完全手册 / 面试题库
+#### Claude Code 官方教程 / 完全手册 / 面试题库
 
-分别对应上手教程、体系化手册与面试向题库，形成「学—查—练」三条入口。
+其中“Claude Code 官方教程”把教程首页、Skills、完全手册与发版监督合并为一组，形成更明确的官方资料阅读轴；面试题库继续作为练习入口。
 
 #### RAG 大专题 / Agent 大专题
 
@@ -89,6 +91,6 @@
 
 ### 🔥 热点话题
 
-前两卡为**本站个人专栏**：阅历向 `column-agent-journey`、实战向 `column-shangshou-cikeng`（主标题**上手与踩坑**，介绍语含**赛博档案 · 实战篇**与**Agent 实战手记**）；知乎/小红书稿见 `wemedia/zhihu/articles/11-…`、`12-…`；Memory 机制见稿 `13-…` 与专题页；**14–20** 为 Harness 工程向深度解析（与 01–10 卡片并列展示）。其余以表格或列表呈现**精选外文/社区长文标题**（带外链）；教学目的是把分散热点收敛成可扫清单，并提醒读者自行核对原文与时效。
+经验向入口现在统一收在 `topic-toolchain`：工具链阅读 `column-agent-journey`、实战向 `column-shangshou-cikeng`、渠道评测 `column-channel-review` 与开发日志 `devlog`；`column-show-your-usage` 仍单独保留为用量自证页。知乎/小红书稿见 `wemedia/zhihu/articles/11-…`、`12-…`；Memory 机制见稿 `13-…` 与专题页；**14–20** 为 Harness 工程向深度解析（与 01–10 卡片并列展示）。其余以表格或列表呈现**精选外文/社区长文标题**（带外链）；教学目的是把分散热点收敛成可扫清单，并提醒读者自行核对原文与时效。
 
 各条目标题即 HTML 中 `h3` 文案：阅历随笔之后分别涉及封号与指纹、未公开功能爆料、记忆系统对比、遥测与隐私、Agent Loop 长文、MCP 生态、权限模型、长上下文压缩、Source Map 技术复盘与后续动向等主题；其后为 **14–20** 所列七篇工程向深度稿标题，以及 **21**（Superpowers 与 Autoresearch 对照）。
