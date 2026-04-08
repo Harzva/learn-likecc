@@ -309,6 +309,13 @@ body {
     padding: 0 20px;
 }
 
+/* 专题页加宽：Treemap、多列表格等在大屏上减少两侧留白（仅对带修饰类的容器生效） */
+.container.container--layout-wide {
+    max-width: min(1920px, calc(100vw - 32px));
+    padding-left: clamp(14px, 2.5vw, 28px);
+    padding-right: clamp(14px, 2.5vw, 28px);
+}
+
 /* 导航栏 */
 .navbar {
     position: fixed;

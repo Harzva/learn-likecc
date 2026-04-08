@@ -145,7 +145,11 @@
             syncBreadcrumb()
 
             var w = Math.max(280, wrap.clientWidth || mount.clientWidth || 640)
-            var h = Math.min(520, Math.max(300, Math.round(w * 0.62)))
+            var vh = typeof window !== 'undefined' && window.innerHeight ? window.innerHeight : 800
+            /* 随宽度增高，并用视口高度封顶，避免大屏上 Treemap 过扁 */
+            var byWidth = Math.max(320, Math.round(w * 0.56))
+            var byViewport = Math.round(vh * 0.5)
+            var h = Math.min(960, Math.max(300, byWidth, byViewport))
             svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h)
             svg.setAttribute('width', '100%')
             svg.setAttribute('height', String(h))
