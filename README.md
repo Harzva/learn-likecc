@@ -8,7 +8,7 @@
 
 ---
 
-![Like Code model routing preview](docs/readme-assets/likecode-model-routing-preview.png)
+![Like Code TUI：启动头与 /model 自定义路由（如 z-ai/glm-5）](docs/readme-assets/likecode-model-routing-preview.png)
 
 ## 顶部重点：我们现在最重要的事
 
