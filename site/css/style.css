@@ -6487,15 +6487,17 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 }
 
 .cc-pill-wall {
+    width: 100%;
+    box-sizing: border-box;
     margin: 0.85rem 0 1rem;
-    padding: 0.85rem 0.95rem 0.95rem;
+    padding: 1rem 1.05rem 1.1rem;
 }
 .cc-pill-wall__head {
     margin-bottom: 0.45rem;
 }
 .cc-pill-wall__title {
-    margin: 0 0 0.3rem;
-    font-size: 1.15rem;
+    margin: 0 0 0.35rem;
+    font-size: 1.25rem;
     font-family: Georgia, 'Times New Roman', serif;
     letter-spacing: 0.02em;
     color: var(--text-primary);
@@ -6503,7 +6505,7 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 }
 .cc-pill-wall__sub {
     margin: 0;
-    font-size: 0.8rem;
+    font-size: 0.84rem;
     color: var(--text-muted);
 }
 .cc-pill-wall__note {
@@ -6520,8 +6522,9 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 .cc-pill-wall__grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 0.55rem 0.65rem;
+    gap: 0.65rem 0.8rem;
     align-items: start;
+    width: 100%;
 }
 @media (min-width: 640px) {
     .cc-pill-wall__grid {
@@ -6653,15 +6656,17 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 
 /* ─── 工具砖墙 + 05 特性卡片（topic-cc-unpacked-zh） ─── */
 .cc-tool-tiles {
+    width: 100%;
+    box-sizing: border-box;
     margin: 0.85rem 0 1rem;
-    padding: 0.85rem 0.95rem 0.95rem;
+    padding: 1rem 1.05rem 1.1rem;
 }
 .cc-tool-tiles__head {
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.45rem;
 }
 .cc-tool-tiles__title {
-    margin: 0 0 0.3rem;
-    font-size: 1.15rem;
+    margin: 0 0 0.35rem;
+    font-size: 1.25rem;
     font-family: Georgia, 'Times New Roman', serif;
     letter-spacing: 0.02em;
     color: var(--text-primary);
@@ -6669,61 +6674,88 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 }
 .cc-tool-tiles__sub,
 .cc-tool-tiles__note {
-    margin: 0 0 0.5rem;
-    font-size: 0.8rem;
+    margin: 0 0 0.55rem;
+    font-size: 0.84rem;
     color: var(--text-muted);
-    line-height: 1.42;
+    line-height: 1.45;
 }
 .cc-tool-tiles__lock {
     font-size: 0.75em;
     opacity: 0.88;
 }
+/*
+ * Flex 而非 auto-fill 网格：共 7 类时第二行只有 3 块，用 flex-grow 均分整行，
+ * 避免第 4 列空轨导致「右侧大块留白、上下列不对齐」。
+ */
 .cc-tool-tiles__cols {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(10.5rem, 1fr));
-    gap: 0.55rem 0.65rem;
-    align-items: start;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem 0.85rem;
+    align-items: stretch;
+    width: 100%;
 }
 .cc-tool-cat {
-    padding: 0.5rem 0.62rem 0.55rem;
+    box-sizing: border-box;
+    padding: 0.55rem 0.72rem 0.6rem;
     border-radius: var(--radius);
     background: color-mix(in srgb, var(--bg-secondary) 72%, transparent);
     border: 1px solid color-mix(in srgb, var(--border) 94%, #6366f1 6%);
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset;
 }
+/* 窄屏：单列 */
+@media (max-width: 699px) {
+    .cc-tool-cat {
+        flex: 1 1 100%;
+        min-width: 0;
+    }
+}
+/* 中屏：两列 */
+@media (min-width: 700px) and (max-width: 1099px) {
+    .cc-tool-cat {
+        flex: 1 1 calc(50% - 0.425rem);
+        min-width: min(100%, 16rem);
+    }
+}
+/* 宽屏：四列；末行 3 块时自动拉宽填满 */
+@media (min-width: 1100px) {
+    .cc-tool-cat {
+        flex: 1 1 calc(25% - 0.6375rem);
+        min-width: 0;
+    }
+}
 .cc-tool-cat__title {
     display: flex;
     align-items: center;
     gap: 0.35rem;
-    margin: 0 0 0.32rem;
-    font-size: 0.63rem;
+    margin: 0 0 0.38rem;
+    font-size: 0.66rem;
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
 }
 .cc-tool-cat__bar {
     width: 3px;
-    height: 0.78rem;
+    height: 0.82rem;
     border-radius: 2px;
     background: var(--cc-tool-accent, var(--primary));
 }
 .cc-tool-cat__tiles {
     display: flex;
     flex-direction: column;
-    gap: 0.22rem;
+    gap: 0.26rem;
 }
 .cc-tool-tile {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 0.2rem;
-    padding: 0.26rem 0.42rem;
+    gap: 0.25rem;
+    padding: 0.32rem 0.48rem;
     border-radius: 6px;
     border: 1px solid var(--border);
     background: color-mix(in srgb, var(--bg-card) 35%, var(--bg-secondary));
     color: var(--text-primary);
     text-decoration: none;
-    font-size: 0.78rem;
+    font-size: 0.82rem;
     transition:
         background 0.18s ease,
         border-color 0.18s ease,
