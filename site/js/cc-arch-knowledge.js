@@ -45,6 +45,13 @@
         return String(label || '').replace(/\/$/, '').replace(/^（/, '').replace(/）$/, '')
     }
 
+    function loopStepLabel(node) {
+        if (!node || node.kind !== 'loop') return shortLabel(node && node.label)
+        var idx = Number(node.step_index || 0) + 1
+        var no = idx < 10 ? '0' + idx : String(idx)
+        return no + ' ' + shortLabel(node.label)
+    }
+
     function render(payload) {
         var d3 = window.d3
         var modes = [
@@ -165,7 +172,7 @@
                     var other = allNodes[otherId]
                     return other
                         ? {
-                              label: shortLabel(other.label),
+                              label: other.kind === 'loop' ? loopStepLabel(other) : shortLabel(other.label),
                               note: link.note || '',
                               kind: link.kind || '',
                           }
@@ -178,7 +185,7 @@
                 esc(node.kind === 'category' ? 'Category' : node.kind === 'loop' ? 'Loop Step' : 'Folder') +
                 '</p>' +
                 '<h4 class="cc-arch-knowledge__name">' +
-                esc(shortLabel(node.label)) +
+                esc(node.kind === 'loop' ? loopStepLabel(node) : shortLabel(node.label)) +
                 '</h4>' +
                 '<p class="cc-arch-knowledge__meta">' +
                 (node.kind === 'loop'
@@ -422,13 +429,13 @@
                     return d.kind === 'loop' ? '#1d2940' : 'rgba(246, 244, 238, 0.96)'
                 })
                 .text(function (d) {
-                    var label = shortLabel(d.label)
-                    var maxLen = d.kind === 'category' ? 8 : d.kind === 'loop' ? 5 : 10
+                    var label = d.kind === 'loop' ? loopStepLabel(d) : shortLabel(d.label)
+                    var maxLen = d.kind === 'category' ? 8 : d.kind === 'loop' ? 8 : 10
                     return label.length > maxLen ? label.slice(0, maxLen) + '…' : label
                 })
 
             node.append('title').text(function (d) {
-                return shortLabel(d.label) + ' · 约 ' + d.size + ' 文件'
+                return (d.kind === 'loop' ? loopStepLabel(d) + ' · 主循环阶段' : shortLabel(d.label) + ' · 约 ' + d.size + ' 文件')
             })
 
             function refreshSelection() {
