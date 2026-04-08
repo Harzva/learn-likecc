@@ -25,7 +25,7 @@ Use this skill when the user wants to turn a reference repository into a Chinese
 
 ## 工作流
 
-### 1. 先识别“这个仓库到底是什么层”
+### 1. 先识别”这个仓库到底是什么层”
 
 优先读这些入口：
 
@@ -41,7 +41,7 @@ Use this skill when the user wants to turn a reference repository into a Chinese
 - 运行时 / 控制协议
 - 数据 / 事件 / 结果回收
 
-### 2. 选定“解构视角”
+### 2. 选定”解构视角”
 
 不要写成文件清单。要先决定这页想回答什么问题，例如：
 
@@ -68,13 +68,111 @@ Use this skill when the user wants to turn a reference repository into a Chinese
 
 默认页面要求：
 
-- 标题明确是“某某解构”或“某某庖丁解牛”
+- 标题明确是”某某解构”或”某某庖丁解牛”
 - 结构上更像 `topic-cc-unpacked-zh.html` 这种分节页面，而不是纯概念短页
 - 开头说明参考来源与锚定日期
 - 每节都围绕结构层展开，而不是堆名词
 - 能回链到总专题页与相关专题
 
-### 5. 接入站点导航
+### 5. 可视化美化（关键步骤）
+
+**不要只放表格！** 每个结构层小节都要配可视化组件，让读者一眼能看懂结构关系。
+
+#### 5.1 数据文件
+
+为每个专题页创建 `site/data/{topic}-overview.json`，结构如下：
+
+```json
+{
+  “meta”: { “updated”: “YYYY-MM-DD”, “source”: “reference/...” },
+  “section_key”: {
+    “title”: “小节标题”,
+    “description”: “一句话概括”,
+    “items”: [
+      { “id”: “...”, “name”: “...”, “icon”: “🚀”, “color”: “#f97316”, “description”: “...”, “path”: “...” }
+    ]
+  }
+}
+```
+
+#### 5.2 可视化组件
+
+参考 `site/js/superset-overview.js`，为每个小节创建独立组件类：
+
+- **卡片网格**：适合展示 apps、packages、子系统等并列项
+- **概念链图**：适合展示层次关系（Workspace → Tab → Pane）
+- **双栏布局**：适合展示”能力层 + 公式步骤”
+
+组件模式：
+
+```javascript
+class SectionCards {
+  constructor(mount, dataUrl) {
+    this.mount = mount
+    this.dataUrl = dataUrl
+  }
+  async init() {
+    const res = await fetch(this.dataUrl)
+    this.data = await res.json()
+    this.render()
+  }
+  render() {
+    // 用 this.data 生成 HTML
+  }
+}
+```
+
+#### 5.3 CSS 样式
+
+在 `site/css/style.css` 末尾添加专用样式块：
+
+```css
+/* ========== {Topic} Overview 可视化组件 ========== */
+.{topic}-section { ... }
+.{topic}-cards-grid { ... }
+.{topic}-app-card { ... }
+```
+
+核心样式要点：
+
+- 使用 CSS 变量 `--card-color` 实现动态配色
+- 卡片 hover 时微上浮 + 阴影加深
+- 响应式：`@media (max-width: 600px)` 切换单列
+- 左边框或顶部边框用颜色区分不同类型
+
+#### 5.4 HTML 挂载
+
+在页面小节中替换表格为挂载点：
+
+```html
+<div id=”{topic}-section-mount”
+     class=”{topic}-overview-mount”
+     data-json=”data/{topic}-overview.json”
+     role=”region”
+     aria-label=”小节描述”></div>
+```
+
+然后在页脚添加脚本引用：
+
+```html
+<script src=”js/{topic}-overview.js”></script>
+```
+
+#### 5.5 美化标准
+
+每个小节至少具备以下之一：
+
+| 小节类型 | 推荐可视化 |
+|---------|-----------|
+| 产品壳 / 应用列表 | 彩色卡片网格 + 目录观察区 |
+| 引擎 / 核心概念 | 概念链图 + 洞察框 |
+| 子系统 / 模块 | 左边框彩色卡片 |
+| 公式 / 步骤 | 编号步骤 + 结果说明 |
+| 层次结构 | 堆叠层级图 |
+
+**禁止**：连续放多个枯燥表格而不加可视化组件。
+
+### 6. 接入站点导航
 
 至少检查这些位置是否需要接线：
 
@@ -86,17 +184,17 @@ Use this skill when the user wants to turn a reference repository into a Chinese
 
 如果旧入口只是概念页，而新页是更具体的承载页，优先让新页占据导航位。
 
-### 6. 日期规则
+### 7. 日期规则
 
 所有新专题页都要带日期：
 
-- HTML `<meta name="page:updated" content="YYYY-MM-DD">`
+- HTML `<meta name=”page:updated” content=”YYYY-MM-DD”>`
 - Markdown 头部写清 `更新时间`
 - 如果正文是分析稿或产品稿，开头也写日期
 
 站点页脚日期由全站脚本注入，但页面元数据仍要显式填写。
 
-### 7. 更新仓库路线图
+### 8. 更新仓库路线图
 
 如果这次改动属于用户可见的站点结构、专题、技能或产品定位调整，顺手更新：
 
@@ -106,10 +204,11 @@ Use this skill when the user wants to turn a reference repository into a Chinese
 
 ## 写作准则
 
-- 不要把“终端数量”误写成“智能体能力”
-- 不要只写“支持很多 agent”，要写清控制面、状态流、执行隔离、结果回收
+- 不要把”终端数量”误写成”智能体能力”
+- 不要只写”支持很多 agent”，要写清控制面、状态流、执行隔离、结果回收
 - 不要把结构页写成 README 翻译稿；本站页面需要面向当前工程的吸收视角
 - 如果页面承载某个概念，例如 `meta-agent`，要把概念落到具体文件和结构层上
+- **每个小节都要有可视化，不只是表格**
 
 ## 验证
 
@@ -117,14 +216,18 @@ Use this skill when the user wants to turn a reference repository into a Chinese
 
 - `python3 tools/check_site_md_parity.py`
 - 如果改了 `site/js/app.js`，执行 `node --check site/js/app.js`
+- 新增 JS 文件执行 `node --check site/js/{new}.js`
 - 用 `rg` 复查旧入口文案是否还有漏改
 
 ## 输出清单
 
-完成一次“解构专题”后，默认应当留下：
+完成一次”解构专题”后，默认应当留下：
 
 - 新或更新的结构专题页
 - 对应 Markdown 镜像
+- **数据文件 `site/data/{topic}-overview.json`**
+- **可视化脚本 `site/js/{topic}-overview.js`**
+- **专用 CSS 样式块**
 - 导航接线
 - 日期元数据
 - 路线图记录
