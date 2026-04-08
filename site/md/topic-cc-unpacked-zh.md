@@ -4,7 +4,7 @@
 > **本文件**: `site/md/topic-cc-unpacked-zh.md`  
 > **说明**: 与 HTML 同步；权威技术叙述以 `ccsource` 与 S/D 讲义为准。
 
-本页是 **Claude Code 仓库结构的中文地图**：主循环、目录分区、工具分组、斜杠命令场景与实验特性导读，并链回本站课程。**版式与分块思路**参考英文站 [Claude Code Unpacked](https://ccunpacked.dev/)，**正文独立撰写**。
+本页是 **Claude Code 仓库结构的中文地图**：主循环、目录分区、工具分组、斜杠命令场景与实验特性导读，并链回本站课程。**正文独立撰写**。
 
 ## 目录（对照 HTML）
 
@@ -12,7 +12,7 @@
 
 ### 参考来源与版本锚定
 
-说明 ccunpacked.dev 的参考关系、本站权威源（`ccsource`、S/D、`topic-sourcemap`）、以及当前镜像 commit（维护者随镜像更新修订）。
+说明本站权威源（`ccsource`、S/D、`topic-sourcemap`）以及当前镜像 commit（维护者随镜像更新修订）。
 
 ### 01 · 智能体主循环
 
@@ -51,7 +51,7 @@ ccunpacked.dev、DeepWiki、本站 Awesome 源码汇总链接。
 - **数据**：[`site/data/cc-loop-steps.json`](../data/cc-loop-steps.json)（11 步，中文；`meta.autoplay_base_ms`、`meta.loop_autoplay`）。CI：`python3 tools/check_cc_loop_steps.py`。
 - **脚本**：[`site/js/cc-loop-player.js`](../js/cc-loop-player.js) 读取 JSON，提供步骤条、示意终端、播放/倍速、←/→、Space（`focus-within` 于播放器内时）；末步再播放从头；自动翻步用 **倒计时进度条** + 按下播放后 **首帧较短间隔**（避免误以为无响应）；`prefers-reduced-motion` 时拉长自动间隔并弱化动效。
 - **样式**：`site/css/style.css` 中 `.cc-loop-player*`（含倍速选中态、播放中外发光与进度条）。
-- **说明**：预设讲解，**非**真实运行时事件流；与 ccunpacked.dev 的「脚本化步骤」同类。
+- **说明**：预设讲解，**非**真实运行时事件流。
 
 ## 实时事件流（实验，另立项）
 
