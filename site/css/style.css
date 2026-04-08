@@ -6337,6 +6337,56 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     color: var(--text-muted);
     line-height: 1.5;
 }
+.cc-arch-treemap__crumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.15rem 0.1rem;
+    margin: 0 0 0.65rem;
+    font-size: 0.8125rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.cc-arch-treemap__crumb-btn {
+    margin: 0;
+    padding: 0.15rem 0.35rem;
+    border: none;
+    border-radius: 4px;
+    background: transparent;
+    color: var(--primary-dark);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    cursor: pointer;
+    font: inherit;
+}
+.cc-arch-treemap__crumb-btn:hover {
+    color: var(--primary);
+    background: color-mix(in srgb, var(--primary) 8%, transparent);
+}
+.cc-arch-treemap__crumb-sep {
+    color: var(--text-muted);
+    user-select: none;
+    margin: 0 0.1rem;
+}
+.cc-arch-treemap__crumb-current {
+    color: var(--text-primary);
+    font-weight: 600;
+    padding: 0.15rem 0.25rem;
+}
+.cc-arch-treemap__svg .cc-arch-treemap__cell--branch rect {
+    transition: filter 0.15s ease;
+}
+.cc-arch-treemap__svg .cc-arch-treemap__cell--branch:hover rect {
+    filter: brightness(1.12);
+}
+.cc-arch-treemap__svg .cc-arch-treemap__cell--leaf:hover rect {
+    filter: brightness(1.08);
+}
+@media (prefers-reduced-motion: reduce) {
+    .cc-arch-treemap__svg .cc-arch-treemap__cell--branch rect,
+    .cc-arch-treemap__svg .cc-arch-treemap__cell--leaf rect {
+        transition: none !important;
+    }
+}
 .cc-arch-treemap__legend {
     display: flex;
     flex-wrap: wrap;

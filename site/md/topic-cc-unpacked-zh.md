@@ -20,7 +20,7 @@
 
 ### 02 · 架构导览（目录心智模型）
 
-**Treemap**：[`site/js/cc-arch-treemap.js`](../js/cc-arch-treemap.js) + D3（CDN）读取 [`site/data/cc-arch-treemap.json`](../data/cc-arch-treemap.json)，按各 `src/` 子目录下 TS/TSX **文件数**着色分块（`tools/gen_cc_arch_treemap.py` 从镜像生成）。另附表格归纳 tools/commands、核心服务、UI、bridge、utils/hooks 等与顶层目录的对应，并指向源码专题与反推思想页。
+**Treemap**：[`site/js/cc-arch-treemap.js`](../js/cc-arch-treemap.js) + D3（CDN）读取 [`site/data/cc-arch-treemap.json`](../data/cc-arch-treemap.json)，按教学分区与子目录 TS/TSX **文件数**分块；**单击分区下钻**、面包屑返回，**单击叶子**复制目录名（`tools/gen_cc_arch_treemap.py` 从镜像生成）。另附表格文字归纳。
 
 ### 03 · 工具系统（分组地图）
 

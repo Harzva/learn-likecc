@@ -73,8 +73,9 @@
         mount.innerHTML =
             '<div class="cc-arch-treemap__head">' +
             '<h3 class="cc-arch-treemap__title">Architecture Explorer（教学向 · 双层）</h3>' +
-            '<p class="cc-arch-treemap__sub">外层大块 = 教学分区；内层 = 各子目录 TS/TSX 文件数。点击<strong>内层</strong>色块复制目录名。</p>' +
+            '<p class="cc-arch-treemap__sub">大块 = 教学分区时可<strong>单击下钻</strong>；叶子块 = 子目录，<strong>单击复制</strong>目录名。顶部路径可返回上一级或全盘。</p>' +
             '</div>' +
+            '<nav class="cc-arch-treemap__crumb" aria-label="Treemap 视图路径"></nav>' +
             '<div class="cc-arch-treemap__legend" role="list"></div>' +
             '<div class="cc-arch-treemap__svg-wrap">' +
             '<svg class="cc-arch-treemap__svg" aria-label="src 目录占比图"></svg>' +
@@ -101,8 +102,48 @@
 
         var svg = mount.querySelector('.cc-arch-treemap__svg')
         var wrap = mount.querySelector('.cc-arch-treemap__svg-wrap')
+        var crumbEl = mount.querySelector('.cc-arch-treemap__crumb')
+
+        /** @type {object[]} 下钻栈，最后一项为当前 treemap 根数据节点 */
+        var stack = [rootData]
+
+        function syncBreadcrumb() {
+            crumbEl.innerHTML = ''
+            stack.forEach(function (node, i) {
+                if (i > 0) {
+                    var sep = document.createElement('span')
+                    sep.className = 'cc-arch-treemap__crumb-sep'
+                    sep.setAttribute('aria-hidden', 'true')
+                    sep.textContent = ' / '
+                    crumbEl.appendChild(sep)
+                }
+                var isLast = i === stack.length - 1
+                if (isLast) {
+                    var cur = document.createElement('span')
+                    cur.className = 'cc-arch-treemap__crumb-current'
+                    cur.textContent = node.name || 'root'
+                    crumbEl.appendChild(cur)
+                } else {
+                    var btn = document.createElement('button')
+                    btn.type = 'button'
+                    btn.className = 'cc-arch-treemap__crumb-btn'
+                    btn.textContent = node.name || 'root'
+                    btn.setAttribute('aria-label', '返回：' + (node.name || 'root'))
+                    ;(function (idx) {
+                        btn.addEventListener('click', function () {
+                            stack = stack.slice(0, idx + 1)
+                            draw()
+                        })
+                    })(i)
+                    crumbEl.appendChild(btn)
+                }
+            })
+        }
 
         function draw() {
+            var viewRoot = stack[stack.length - 1]
+            syncBreadcrumb()
+
             var w = Math.max(280, wrap.clientWidth || mount.clientWidth || 640)
             var h = Math.min(520, Math.max(300, Math.round(w * 0.62)))
             svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h)
@@ -110,7 +151,7 @@
             svg.setAttribute('height', String(h))
 
             var root = d3
-                .hierarchy(rootData)
+                .hierarchy(viewRoot)
                 .sum(function (d) {
                     return d.value || 0
                 })
@@ -141,8 +182,9 @@
                 .attr('transform', function (d) {
                     return 'translate(' + d.x0 + ',' + d.y0 + ')'
                 })
-                .style('cursor', function (d) {
-                    return d.children ? 'default' : 'pointer'
+                .style('cursor', 'pointer')
+                .attr('class', function (d) {
+                    return 'cc-arch-treemap__cell' + (d.children ? ' cc-arch-treemap__cell--branch' : ' cc-arch-treemap__cell--leaf')
                 })
 
             cell.append('rect')
@@ -164,9 +206,9 @@
 
             cell.append('title').text(function (d) {
                 if (d.children) {
-                    return d.data.name + ' — 合计 ' + d.value + ' 个文件（分区）'
+                    return d.data.name + ' — 合计 ' + d.value + ' 个文件 · 单击下钻'
                 }
-                return d.data.name + ' — ' + d.value + ' 个 TS/TSX 文件'
+                return d.data.name + ' — ' + d.value + ' 个 TS/TSX 文件 · 单击复制名称'
             })
 
             cell.filter(function (d) {
@@ -183,6 +225,18 @@
                 .text(function (d) {
                     return d.data.name
                 })
+
+            cell.filter(function (d) {
+                return d.children && d.x1 - d.x0 > 88 && d.y1 - d.y0 > 40
+            })
+                .append('text')
+                .attr('x', 5)
+                .attr('y', 26)
+                .attr('fill', 'rgba(255,255,255,0.55)')
+                .attr('font-size', 8)
+                .attr('font-family', 'system-ui, sans-serif')
+                .style('pointer-events', 'none')
+                .text('单击下钻')
 
             cell.filter(function (d) {
                 return !d.children && d.x1 - d.x0 > 52 && d.y1 - d.y0 > 34
@@ -207,7 +261,12 @@
                 })
 
             cell.on('click', function (ev, d) {
-                if (d.children) return
+                ev.stopPropagation()
+                if (d.children) {
+                    stack.push(d.data)
+                    draw()
+                    return
+                }
                 var name = d.data.name || ''
                 var copy = name.replace(/\/$/, '')
                 function done() {
