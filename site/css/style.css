@@ -7429,7 +7429,7 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 
 .cc-arch-knowledge__title {
     margin: 0;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-family: Georgia, 'Times New Roman', serif;
     color: #1f2a3d;
 }
@@ -7437,7 +7437,8 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 .cc-arch-knowledge__subtitle {
     margin: 0.25rem 0 0;
     color: #5f6679;
-    font-size: 0.96rem;
+    font-size: 1.08rem;
+    line-height: 1.6;
 }
 
 .cc-arch-knowledge__controls {
@@ -7451,9 +7452,10 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.74);
     color: #39465f;
-    padding: 0.55rem 0.9rem;
+    padding: 0.62rem 1rem;
     font: inherit;
-    font-size: 0.94rem;
+    font-size: 1.02rem;
+    font-weight: 600;
     cursor: pointer;
     transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease, border-color 0.16s ease;
 }
@@ -7513,11 +7515,11 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     display: inline-flex;
     align-items: center;
     gap: 0.42rem;
-    padding: 0.35rem 0.55rem;
+    padding: 0.4rem 0.62rem;
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.64);
     color: #455065;
-    font-size: 0.86rem;
+    font-size: 0.96rem;
 }
 
 .cc-arch-knowledge__legend-dot {
@@ -7537,7 +7539,7 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 
 .cc-arch-knowledge__eyebrow {
     margin: 0 0 0.35rem;
-    font-size: 0.78rem;
+    font-size: 0.88rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: #8b6a2f;
@@ -7545,7 +7547,7 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 
 .cc-arch-knowledge__name {
     margin: 0 0 0.45rem;
-    font-size: 1.28rem;
+    font-size: 1.7rem;
     color: #1d2a41;
 }
 
@@ -7555,7 +7557,7 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     margin: 0 0 0.75rem;
     color: #516077;
     line-height: 1.7;
-    font-size: 0.95rem;
+    font-size: 1.06rem;
 }
 
 .cc-arch-knowledge__related-list {
@@ -7568,12 +7570,12 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     display: inline-flex;
     align-items: center;
     gap: 0.38rem;
-    padding: 0.38rem 0.55rem;
+    padding: 0.42rem 0.62rem;
     border-radius: 999px;
     background: rgba(245, 247, 252, 0.96);
     border: 1px solid rgba(86, 104, 141, 0.12);
     color: #344156;
-    font-size: 0.84rem;
+    font-size: 0.94rem;
 }
 
 .cc-arch-knowledge__why-block {
@@ -7585,7 +7587,7 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 .cc-arch-knowledge__why-title {
     margin: 0 0 0.45rem;
     color: #87621f;
-    font-size: 0.82rem;
+    font-size: 0.92rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
 }
@@ -7599,7 +7601,7 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 .cc-arch-knowledge__bullet-item {
     margin: 0 0 0.5rem;
     line-height: 1.7;
-    font-size: 0.92rem;
+    font-size: 1.03rem;
 }
 
 .cc-arch-knowledge__bullet-item strong {
@@ -7611,12 +7613,12 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     padding: 0.9rem 1rem 0;
     border-top: 1px solid rgba(71, 85, 116, 0.12);
     color: #58657a;
-    font-size: 0.92rem;
+    font-size: 1.02rem;
     line-height: 1.7;
 }
 
 .cc-arch-knowledge__empty {
-    font-size: 0.92rem;
+    font-size: 1rem;
     color: #657188;
 }
 
@@ -7688,6 +7690,31 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
         padding: 0.9rem 0.9rem 0.7rem;
     }
 
+    .cc-arch-knowledge__title {
+        font-size: 1.34rem;
+    }
+
+    .cc-arch-knowledge__subtitle {
+        font-size: 1rem;
+    }
+
+    .cc-arch-knowledge__btn {
+        font-size: 0.96rem;
+    }
+
+    .cc-arch-knowledge__name {
+        font-size: 1.48rem;
+    }
+
+    .cc-arch-knowledge__meta,
+    .cc-arch-knowledge__desc,
+    .cc-arch-knowledge__related,
+    .cc-arch-knowledge__bullet-item,
+    .cc-arch-knowledge__note,
+    .cc-arch-knowledge__empty {
+        font-size: 0.98rem;
+    }
+
     .cc-arch-knowledge__canvas {
         min-height: 560px;
         padding: 0.5rem 0.6rem 0.8rem;
@@ -7753,7 +7780,7 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 .cc-pill-wall__grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 0.65rem 0.8rem;
+    gap: 0.6rem 0.72rem;
     align-items: start;
     width: 100%;
 }
@@ -7762,13 +7789,13 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
-@media (min-width: 960px) {
+@media (min-width: 860px) {
     .cc-pill-wall__grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 }
 .cc-pill-cat {
-    padding: 0.5rem 0.62rem 0.55rem;
+    padding: 0.48rem 0.58rem 0.54rem;
     border-radius: var(--radius);
     background: color-mix(in srgb, var(--bg-secondary) 72%, transparent);
     border: 1px solid color-mix(in srgb, var(--border) 94%, #6366f1 6%);
@@ -7807,7 +7834,7 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 .cc-pill-cat__row {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.28rem 0.32rem;
+    gap: 0.26rem 0.3rem;
 }
 .cc-pill {
     display: inline-flex;
@@ -7921,13 +7948,13 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 .cc-tool-tiles__cols {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.7rem 0.85rem;
+    gap: 0.65rem 0.72rem;
     align-items: stretch;
     width: 100%;
 }
 .cc-tool-cat {
     box-sizing: border-box;
-    padding: 0.55rem 0.72rem 0.6rem;
+    padding: 0.5rem 0.64rem 0.56rem;
     border-radius: var(--radius);
     background: color-mix(in srgb, var(--bg-secondary) 72%, transparent);
     border: 1px solid color-mix(in srgb, var(--border) 94%, #6366f1 6%);
@@ -7941,16 +7968,23 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     }
 }
 /* 中屏：两列 */
-@media (min-width: 700px) and (max-width: 1099px) {
+@media (min-width: 700px) and (max-width: 919px) {
     .cc-tool-cat {
         flex: 1 1 calc(50% - 0.425rem);
         min-width: min(100%, 16rem);
     }
 }
-/* 宽屏：四列；末行 3 块时自动拉宽填满 */
-@media (min-width: 1100px) {
+/* 中大屏：三列 */
+@media (min-width: 920px) and (max-width: 1179px) {
     .cc-tool-cat {
-        flex: 1 1 calc(25% - 0.6375rem);
+        flex: 1 1 calc(33.333% - 0.48rem);
+        min-width: 0;
+    }
+}
+/* 宽屏：四列；末行不足时自动拉宽填满，减少单卡留白 */
+@media (min-width: 1180px) {
+    .cc-tool-cat {
+        flex: 1 1 calc(25% - 0.54rem);
         min-width: 0;
     }
 }

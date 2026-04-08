@@ -490,7 +490,7 @@
                     return d.kind === 'category' ? 4 : d.kind === 'loop' ? 4 : 3
                 })
                 .attr('font-size', function (d) {
-                    return d.kind === 'category' ? 12 : d.kind === 'loop' ? 11 : 10.5
+                    return d.kind === 'category' ? 14 : d.kind === 'loop' ? 13 : 12
                 })
                 .attr('font-weight', function (d) {
                     return d.kind === 'category' || d.kind === 'loop' ? 700 : 500
