@@ -214,6 +214,15 @@ def main() -> int:
             print(f"gen_cc_arch_treemap: missing {OUT}", file=sys.stderr)
             return 1
         existing = OUT.read_text(encoding="utf-8")
+        # meta.updated 使用「今天」会导致跨日 CI 误报；校验树与数值时沿用已提交文件中的日期
+        try:
+            prev = json.loads(existing)
+            pu = (prev.get("meta") or {}).get("updated")
+            if pu and isinstance(payload.get("meta"), dict):
+                payload["meta"]["updated"] = pu
+        except json.JSONDecodeError:
+            pass
+        text = json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
         if existing != text:
             print(
                 "gen_cc_arch_treemap: OUT OF SYNC — run: python3 tools/gen_cc_arch_treemap.py",
