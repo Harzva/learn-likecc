@@ -1,11 +1,11 @@
 /**
- * 知乎自动发布系统
- * 基于 Puppeteer + Stealth 插件，模拟真人浏览器操作
+ * 知乎多模态自动发布系统
+ * 支持正文文本 + Markdown 图片上传
  *
  * 使用方法:
- *   node publish_article.js ./article.md
- *   node publish_article.js --config ./config.json
- *   node publish_article.js --title "标题" --content "内容"
+ *   node publish_article_multimodal.js ./article.md
+ *   node publish_article_multimodal.js --config ./config.json
+ *   node publish_article_multimodal.js --title "标题" --content "内容"
  */
 
 const puppeteer = require('puppeteer-extra')
@@ -13,48 +13,31 @@ const StealthPlugin = require('puppeteer-extra-plugin-stealth')
 const { program } = require('commander')
 const fs = require('fs')
 const path = require('path')
-const { marked } = require('marked')
 
-// 使用 Stealth 插件避免被检测
 puppeteer.use(StealthPlugin())
 
-// 配置
 const CONFIG = {
   zhihuUrl: 'https://zhuanlan.zhihu.com/write',
   headless: process.env.HEADLESS !== 'false',
-  slowMo: 5,  // 输入延迟，先确保链路打通
+  slowMo: 5,
   timeout: 30000,
 }
 
-/**
- * 加载 Cookie
- */
 function loadCookies() {
   const cookiePath = path.join(__dirname, 'cookies.json')
   if (!fs.existsSync(cookiePath)) {
     console.error('❌ 未找到 cookies.json 文件')
-    console.log('请按以下步骤获取 Cookie:')
-    console.log('1. 打开 Chrome 浏览器，访问 https://zhuanlan.zhihu.com')
-    console.log('2. 登录知乎账号')
-    console.log('3. 使用 Cookie 编辑器插件导出 Cookie')
-    console.log('4. 将 Cookie 保存到 cookies.json 文件')
     process.exit(1)
   }
-
   return JSON.parse(fs.readFileSync(cookiePath, 'utf-8'))
 }
 
-/**
- * 解析 Markdown 文件
- */
-function parseMarkdown(filePath) {
-  const content = fs.readFileSync(filePath, 'utf-8')
-  const lines = content.split('\n')
+function parseMarkdownBlocks(filePath) {
+  const raw = fs.readFileSync(filePath, 'utf-8')
+  const lines = raw.split('\n')
 
-  // 提取标题（第一个 # 开头的行）
   let title = ''
   let bodyStart = 0
-
   for (let i = 0; i < lines.length; i++) {
     if (lines[i].startsWith('# ')) {
       title = lines[i].substring(2).trim()
@@ -63,30 +46,82 @@ function parseMarkdown(filePath) {
     }
   }
 
-  // 提取正文
   const body = lines.slice(bodyStart).join('\n')
+  const baseDir = path.dirname(filePath)
+  const blocks = []
+  const imagePattern = /^!\[([^\]]*)\]\(([^)]+)\)$/
+  let textBuffer = []
 
-  // 转换 Markdown 为 HTML（知乎编辑器支持 HTML）
-  const htmlContent = marked(body)
+  function flushTextBuffer() {
+    const text = textBuffer.join('\n').trim()
+    if (text) {
+      blocks.push({ type: 'text', text })
+    }
+    textBuffer = []
+  }
 
-  return { title, content: body, htmlContent }
+  for (const rawLine of body.split('\n')) {
+    const line = rawLine.trim()
+
+    if (!line) {
+      flushTextBuffer()
+      continue
+    }
+
+    const imageMatch = line.match(imagePattern)
+    if (imageMatch) {
+      flushTextBuffer()
+      blocks.push({
+        type: 'image',
+        alt: imageMatch[1].trim(),
+        src: imageMatch[2].trim(),
+        filePath: path.resolve(baseDir, imageMatch[2].trim()),
+      })
+      continue
+    }
+
+    textBuffer.push(line)
+  }
+
+  flushTextBuffer()
+
+  return { title, content: body, blocks, sourceFile: filePath }
 }
 
-/**
- * 等待指定时间
- */
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 
-/**
- * 模拟真人输入
- */
-async function humanType(page, selector, text, options = {}) {
+async function pressEnterTimes(page, times, delay = 80) {
+  for (let i = 0; i < times; i++) {
+    await page.keyboard.press('Enter')
+    await sleep(delay)
+  }
+}
+
+async function placeCursorAtEnd(page, selector) {
+  const ok = await page.evaluate((sel) => {
+    const el = document.querySelector(sel)
+    if (!el) return false
+    el.focus()
+    const range = document.createRange()
+    range.selectNodeContents(el)
+    range.collapse(false)
+    const selection = window.getSelection()
+    if (!selection) return false
+    selection.removeAllRanges()
+    selection.addRange(range)
+    return true
+  }, selector)
+  if (ok) {
+    await sleep(120)
+  }
+  return ok
+}
+
+async function humanType(page, selector, text) {
   await page.click(selector)
   await sleep(200)
-
-  // 分段输入，模拟真人节奏
   const chunks = text.split('\n')
   for (let i = 0; i < chunks.length; i++) {
     await page.keyboard.type(chunks[i], { delay: CONFIG.slowMo })
@@ -110,8 +145,7 @@ async function clearAndType(page, selector, text) {
 }
 
 async function insertEditorParagraph(page, selector, text) {
-  await page.click(selector)
-  await sleep(120)
+  await placeCursorAtEnd(page, selector)
   const ok = await page.evaluate((sel, value) => {
     const el = document.querySelector(sel)
     if (!el) return false
@@ -121,38 +155,6 @@ async function insertEditorParagraph(page, selector, text) {
 
   if (!ok) {
     await page.keyboard.type(text, { delay: CONFIG.slowMo })
-  }
-}
-
-async function tryImportMarkdown(page, sourceFile) {
-  if (!sourceFile || !fs.existsSync(sourceFile)) return false
-
-  try {
-    const opened = await page.evaluate(() => {
-      const btn = Array.from(document.querySelectorAll('button')).find(
-        el => ((el.textContent || '').includes('导入')) || el.getAttribute('aria-label') === '导入'
-      )
-      if (!btn) return false
-      btn.click()
-      return true
-    })
-    if (!opened) return false
-
-    await sleep(800)
-    const fileInputs = await page.$$('input[type="file"]')
-    if (!fileInputs.length) return false
-
-    await fileInputs[0].uploadFile(sourceFile)
-    await sleep(6000)
-
-    const imported = await page.evaluate(() => {
-      const title = document.querySelector('textarea.Input[placeholder*="请输入标题"]')?.value || ''
-      const content = document.querySelector('.public-DraftEditor-content')?.innerText || ''
-      return Boolean(title.trim() || content.trim())
-    })
-    return imported
-  } catch (_err) {
-    return false
   }
 }
 
@@ -168,19 +170,58 @@ async function clickButtonByText(page, text) {
   return false
 }
 
-/**
- * 发布文章到知乎
- */
-async function publishArticle(options) {
-  const { title, content, coverImage, sourceFile } = options
+async function uploadEditorImage(page, filePath, contentSelector, options = {}) {
+  if (!fs.existsSync(filePath)) {
+    throw new Error(`图片文件不存在: ${filePath}`)
+  }
+  const { leadingBreaks = 1, trailingBreaks = 1 } = options
 
-  console.log('🚀 开始发布文章到知乎...')
+  await placeCursorAtEnd(page, contentSelector)
+  if (leadingBreaks > 0) {
+    await pressEnterTimes(page, leadingBreaks)
+  }
+  await sleep(120)
+
+  const beforeCount = await page.evaluate(
+    () => document.querySelectorAll('.public-DraftEditor-content img').length
+  )
+  const fileInputs = await page.$$('input[type="file"]')
+  if (fileInputs.length < 2) {
+    throw new Error('未找到正文图片上传输入框')
+  }
+  await fileInputs[1].uploadFile(filePath)
+
+  await page.waitForFunction(
+    count => document.querySelectorAll('.public-DraftEditor-content img').length > count,
+    { timeout: 30000 },
+    beforeCount
+  )
+
+  await sleep(1500)
+  await placeCursorAtEnd(page, contentSelector)
+  if (trailingBreaks > 0) {
+    await pressEnterTimes(page, trailingBreaks)
+  }
+  await sleep(120)
+}
+
+async function uploadCoverImage(page, coverImage) {
+  if (!coverImage || !fs.existsSync(coverImage)) return
+  console.log('🖼️ 正在上传封面图...')
+  const fileInputs = await page.$$('input[type="file"]')
+  if (fileInputs.length >= 3) {
+    await fileInputs[fileInputs.length - 1].uploadFile(coverImage)
+    await sleep(2500)
+  }
+}
+
+async function publishArticle(options) {
+  const { title, blocks, content, coverImage } = options
+
+  console.log('🚀 开始发布图文文章到知乎...')
   console.log(`📝 标题: ${title}`)
 
-  // 加载 Cookie
   const cookies = loadCookies()
-
-  // 启动浏览器
   const browser = await puppeteer.launch({
     headless: CONFIG.headless,
     args: [
@@ -193,81 +234,65 @@ async function publishArticle(options) {
   const page = await browser.newPage()
 
   try {
-    // 设置 Cookie
     await page.setCookie(...cookies)
-
-    // 访问知乎创作中心
     console.log('📡 正在访问知乎创作中心...')
     await page.goto(CONFIG.zhihuUrl, {
       waitUntil: 'networkidle2',
       timeout: CONFIG.timeout,
     })
 
-    // 检查是否登录成功
     await sleep(2000)
-    const currentUrl = page.url()
-    if (currentUrl.includes('signin')) {
+    if (page.url().includes('signin')) {
       console.error('❌ 登录已过期，请更新 cookies.json')
       await page.screenshot({ path: 'debug-login-expired.png' })
       process.exit(1)
     }
 
-    // 输入标题
-    console.log('✍️ 正在输入标题...')
     const titleSelector = 'textarea.Input[placeholder*="请输入标题"], textarea[placeholder*="标题"], .Input[placeholder*="标题"]'
-    await page.waitForSelector(titleSelector, { timeout: 15000 })
     const contentSelector = '.public-DraftEditor-content[contenteditable="true"], .public-DraftEditor-content, [contenteditable="true"][role="textbox"]'
+    await page.waitForSelector(titleSelector, { timeout: 15000 })
     await page.waitForSelector(contentSelector, { timeout: 15000 })
 
     console.log('✍️ 正在输入标题...')
-    const imported = await tryImportMarkdown(page, sourceFile)
-    if (imported) {
-      console.log('📥 已尝试通过导入 Markdown 填充正文')
-    }
-
     await clearAndType(page, titleSelector, title)
     await sleep(500)
 
-    if (!imported) {
-      console.log('✍️ 正在输入正文...')
-      await page.click(contentSelector)
-      await sleep(300)
+    console.log('🧩 正在写入图文正文...')
+    const workBlocks = Array.isArray(blocks) && blocks.length
+      ? blocks
+      : [{ type: 'text', text: content || '' }]
 
-      const paragraphs = content.split('\n\n')
-      for (let i = 0; i < paragraphs.length; i++) {
-        const para = paragraphs[i].trim()
-        if (para) {
-          await insertEditorParagraph(page, contentSelector, para)
-          if (i < paragraphs.length - 1) {
-            await page.keyboard.press('Enter')
-            await page.keyboard.press('Enter')
-            await sleep(120)
+    for (let i = 0; i < workBlocks.length; i++) {
+      const block = workBlocks[i]
+      const nextBlock = workBlocks[i + 1]
+      if (block.type === 'image') {
+        console.log(`🖼️ 上传正文图片 ${i + 1}/${workBlocks.length}: ${path.basename(block.filePath)}`)
+        await uploadEditorImage(page, block.filePath, contentSelector, {
+          leadingBreaks: i === 0 ? 0 : 1,
+          trailingBreaks: nextBlock && nextBlock.type === 'text' ? 1 : 0,
+        })
+      } else if (block.type === 'text' && block.text.trim()) {
+        const paragraphs = block.text.split('\n').map(x => x.trim()).filter(Boolean)
+        for (let j = 0; j < paragraphs.length; j++) {
+          await insertEditorParagraph(page, contentSelector, paragraphs[j])
+          if (j < paragraphs.length - 1) {
+            await placeCursorAtEnd(page, contentSelector)
+            await pressEnterTimes(page, 1)
           }
         }
+        if (nextBlock && nextBlock.type === 'text') {
+          await placeCursorAtEnd(page, contentSelector)
+          await pressEnterTimes(page, 1)
+        }
       }
     }
 
-    // 上传封面图（如果有）
-    if (coverImage && fs.existsSync(coverImage)) {
-      console.log('🖼️ 正在上传封面图...')
-      try {
-        const coverSelector = 'input[type="file"][accept*="image"]'
-        const fileInput = await page.$(coverSelector)
-        if (fileInput) {
-          await fileInput.uploadFile(coverImage)
-          await sleep(2000)
-        }
-      } catch (err) {
-        console.log('⚠️ 封面图上传失败，继续发布...')
-      }
-    }
+    await uploadCoverImage(page, coverImage)
 
     await sleep(1000)
-
-    // 点击发布按钮
     console.log('📤 正在发布...')
 
-    // 查找发布按钮（知乎的按钮选择器可能变化）
+    let published = false
     const publishButtonSelectors = [
       '.Button--primary',
       '.PublishButton',
@@ -275,7 +300,6 @@ async function publishArticle(options) {
       '[class*="publish"] button',
     ]
 
-    let published = false
     for (const selector of publishButtonSelectors) {
       try {
         const button = await page.$(selector)
@@ -284,8 +308,7 @@ async function publishArticle(options) {
           published = true
           break
         }
-      } catch (err) {
-        continue
+      } catch (_err) {
       }
     }
 
@@ -299,20 +322,17 @@ async function publishArticle(options) {
       process.exit(1)
     }
 
-    // 等待发布完成
     console.log('⏳ 等待发布完成...')
     await sleep(3000)
 
-    // 检查是否发布成功
     const finalUrl = page.url()
     if (finalUrl.includes('/p/')) {
-      console.log('✅ 文章发布成功！')
+      console.log('✅ 图文文章发布成功！')
       console.log(`🔗 文章链接: ${finalUrl}`)
     } else {
       console.log('⚠️ 发布状态未知，请手动检查')
       await page.screenshot({ path: 'debug-publish-result.png' })
     }
-
   } catch (error) {
     console.error('❌ 发布失败:', error.message)
     await page.screenshot({ path: 'debug-error.png' })
@@ -322,10 +342,9 @@ async function publishArticle(options) {
   }
 }
 
-// 命令行参数解析
 program
-  .name('zhihu-publisher')
-  .description('知乎自动发布系统')
+  .name('zhihu-publisher-multimodal')
+  .description('知乎图文自动发布系统')
   .version('1.0.0')
   .argument('[file]', 'Markdown 文件路径')
   .option('-t, --title <title>', '文章标题')
@@ -336,31 +355,26 @@ program
     let articleOptions = {}
 
     if (options.config) {
-      // 从配置文件读取
       const config = JSON.parse(fs.readFileSync(options.config, 'utf-8'))
       articleOptions = { ...config }
     } else if (file) {
-      // 从 Markdown 文件读取
-      const parsed = parseMarkdown(file)
+      const parsed = parseMarkdownBlocks(path.resolve(file))
       articleOptions = {
         title: options.title || parsed.title,
         content: options.content || parsed.content,
+        blocks: parsed.blocks,
         coverImage: options.cover,
-        sourceFile: path.resolve(file),
+        sourceFile: parsed.sourceFile,
       }
     } else if (options.title && options.content) {
-      // 从命令行参数读取
       articleOptions = {
         title: options.title,
         content: options.content,
+        blocks: [{ type: 'text', text: options.content }],
         coverImage: options.cover,
       }
     } else {
       console.error('❌ 请提供文章内容')
-      console.log('使用方法:')
-      console.log('  node publish_article.js ./article.md')
-      console.log('  node publish_article.js --config ./config.json')
-      console.log('  node publish_article.js -t "标题" -c "内容"')
       process.exit(1)
     }
 

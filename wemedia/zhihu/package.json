@@ -7,8 +7,13 @@
   "scripts": {
     "publish": "node publish_article.js",
     "publish:md": "node publish_article.js",
+    "publish:text": "node publish_article_text.js",
+    "publish:multimodal": "node publish_article_multimodal.js",
     "publish:config": "node publish_article.js --config",
-    "debug": "HEADLESS=false node publish_article.js"
+    "debug": "HEADLESS=false node publish_article.js",
+    "debug:text": "HEADLESS=false node publish_article_text.js",
+    "debug:multimodal": "HEADLESS=false node publish_article_multimodal.js",
+    "capture:topic-cc-unpacked": "node capture_topic_cc_unpacked.js"
   },
   "keywords": ["zhihu", "automation", "puppeteer"],
   "author": "Claude Code Course",
