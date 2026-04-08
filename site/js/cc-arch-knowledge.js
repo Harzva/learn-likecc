@@ -126,7 +126,7 @@
             if (currentMode === 'loopline') return payload.loop_links || []
             if (currentMode === 'contains') return payload.contains_links || []
             if (currentMode === 'cross') return payload.cross_links || []
-            return (payload.contains_links || []).concat(payload.cross_links || [])
+            return (payload.contains_links || []).concat(payload.cross_links || [], payload.loop_category_links || [])
         }
 
         function getModeNodes(links) {
@@ -208,7 +208,15 @@
                               return (
                                   '<span class="cc-arch-knowledge__chip">' +
                                   esc(item.label) +
-                                  (item.kind === 'cross' ? ' · 跨块' : item.kind === 'loop_map' ? ' · 映射' : item.kind === 'loop' ? ' · 主线' : ' · 内部') +
+                                  (item.kind === 'cross'
+                                      ? ' · 跨块'
+                                      : item.kind === 'loop_map'
+                                        ? ' · 映射'
+                                        : item.kind === 'loop_category'
+                                          ? ' · 汇总'
+                                          : item.kind === 'loop'
+                                            ? ' · 主线'
+                                            : ' · 内部') +
                                   '</span>'
                               )
                           })
@@ -360,11 +368,13 @@
                 })
                 .attr('stroke-width', function (d) {
                     if (d.kind === 'loop') return 3.2
+                    if (d.kind === 'loop_category') return 1.5 + Math.min(2.8, d.weight * 0.16)
                     if (d.kind === 'loop_map') return 1.1 + d.weight * 0.26
                     return d.kind === 'contains' ? 1 + Math.min(3.5, d.weight / 70) : 1.2 + d.weight * 0.35
                 })
                 .attr('stroke-opacity', function (d) {
                     if (d.kind === 'loop') return 0.95
+                    if (d.kind === 'loop_category') return 0.52
                     if (d.kind === 'loop_map') return 0.72
                     return d.kind === 'contains' ? 0.6 : 0.85
                 })

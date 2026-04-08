@@ -6791,6 +6791,11 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     stroke-dasharray: 7 6;
 }
 
+.cc-arch-knowledge__link--loop_category {
+    stroke: rgba(245, 204, 132, 0.5);
+    stroke-dasharray: 2 10;
+}
+
 .cc-arch-knowledge__node circle {
     transition: transform 0.16s ease, filter 0.16s ease, opacity 0.16s ease;
 }

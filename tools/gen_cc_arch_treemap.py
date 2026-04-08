@@ -389,8 +389,10 @@ def build_knowledge_payload(tree_payload: dict) -> dict:
 
     loop_nodes: list[dict[str, object]] = []
     loop_links: list[dict[str, object]] = []
+    loop_category_links: list[dict[str, object]] = []
     for i, step in enumerate(LOOPLINE_STEPS):
         loop_id = f"loop:{step['key']}"
+        cat_weights: dict[str, int] = defaultdict(int)
         loop_nodes.append(
             {
                 "id": loop_id,
@@ -418,6 +420,7 @@ def build_knowledge_payload(tree_payload: dict) -> dict:
             target = folder_index.get(str(folder_key))
             if not target:
                 continue
+            cat_weights[str(target["cat"])] += int(weight)
             loop_links.append(
                 {
                     "source": loop_id,
@@ -425,6 +428,16 @@ def build_knowledge_payload(tree_payload: dict) -> dict:
                     "weight": int(weight),
                     "kind": "loop_map",
                     "note": str(note),
+                }
+            )
+        for cat_key, weight in sorted(cat_weights.items()):
+            loop_category_links.append(
+                {
+                    "source": loop_id,
+                    "target": f"cat:{cat_key}",
+                    "weight": int(weight),
+                    "kind": "loop_category",
+                    "note": "该主线阶段主要落在此教学分区",
                 }
             )
 
@@ -439,6 +452,7 @@ def build_knowledge_payload(tree_payload: dict) -> dict:
         "contains_links": contains_links,
         "cross_links": cross_links,
         "loop_links": loop_links,
+        "loop_category_links": loop_category_links,
     }
 
 

@@ -1521,5 +1521,168 @@
       "kind": "loop_map",
       "note": "外部宿主呈现"
     }
+  ],
+  "loop_category_links": [
+    {
+      "source": "loop:input",
+      "target": "cat:bridge",
+      "weight": 2,
+      "kind": "loop_category",
+      "note": "该主线阶段主要落在此教学分区"
+    },
+    {
+      "source": "loop:input",
+      "target": "cat:infra",
+      "weight": 5,
+      "kind": "loop_category",
+      "note": "该主线阶段主要落在此教学分区"
+    },
+    {
+      "source": "loop:message",
+      "target": "cat:core",
+      "weight": 6,
+      "kind": "loop_category",
+      "note": "该主线阶段主要落在此教学分区"
+    },
+    {
+      "source": "loop:message",
+      "target": "cat:support",
+      "weight": 2,
+      "kind": "loop_category",
+      "note": "该主线阶段主要落在此教学分区"
+    },
+    {
+      "source": "loop:history",
+      "target": "cat:core",
+      "weight": 10,
+      "kind": "loop_category",
+      "note": "该主线阶段主要落在此教学分区"
+    },
+    {
+      "source": "loop:system",
+      "target": "cat:core",
+      "weight": 3,
+      "kind": "loop_category",
+      "note": "该主线阶段主要落在此教学分区"
+    },
+    {
+      "source": "loop:system",
+      "target": "cat:support",
+      "weight": 4,
+      "kind": "loop_category",
+      "note": "该主线阶段主要落在此教学分区"
+    },
+    {
+      "source": "loop:tooling",
+      "target": "cat:support",
+      "weight": 2,
+      "kind": "loop_category",
+      "note": "该主线阶段主要落在此教学分区"
+    },
+    {
+      "source": "loop:tooling",
+      "target": "cat:tools_commands",
+      "weight": 6,
+      "kind": "loop_category",
+      "note": "该主线阶段主要落在此教学分区"
+    },
+    {
+      "source": "loop:api",
+      "target": "cat:core",
+      "weight": 7,
+      "kind": "loop_category",
+      "note": "该主线阶段主要落在此教学分区"
+    },
+    {
+      "source": "loop:api",
+      "target": "cat:infra",
+      "weight": 2,
+      "kind": "loop_category",
+      "note": "该主线阶段主要落在此教学分区"
+    },
+    {
+      "source": "loop:token",
+      "target": "cat:core",
+      "weight": 7,
+      "kind": "loop_category",
+      "note": "该主线阶段主要落在此教学分区"
+    },
+    {
+      "source": "loop:token",
+      "target": "cat:support",
+      "weight": 2,
+      "kind": "loop_category",
+      "note": "该主线阶段主要落在此教学分区"
+    },
+    {
+      "source": "loop:tool_decision",
+      "target": "cat:core",
+      "weight": 4,
+      "kind": "loop_category",
+      "note": "该主线阶段主要落在此教学分区"
+    },
+    {
+      "source": "loop:tool_decision",
+      "target": "cat:tools_commands",
+      "weight": 6,
+      "kind": "loop_category",
+      "note": "该主线阶段主要落在此教学分区"
+    },
+    {
+      "source": "loop:execute",
+      "target": "cat:bridge",
+      "weight": 3,
+      "kind": "loop_category",
+      "note": "该主线阶段主要落在此教学分区"
+    },
+    {
+      "source": "loop:execute",
+      "target": "cat:core",
+      "weight": 2,
+      "kind": "loop_category",
+      "note": "该主线阶段主要落在此教学分区"
+    },
+    {
+      "source": "loop:execute",
+      "target": "cat:tools_commands",
+      "weight": 8,
+      "kind": "loop_category",
+      "note": "该主线阶段主要落在此教学分区"
+    },
+    {
+      "source": "loop:feedback",
+      "target": "cat:core",
+      "weight": 9,
+      "kind": "loop_category",
+      "note": "该主线阶段主要落在此教学分区"
+    },
+    {
+      "source": "loop:loop",
+      "target": "cat:core",
+      "weight": 9,
+      "kind": "loop_category",
+      "note": "该主线阶段主要落在此教学分区"
+    },
+    {
+      "source": "loop:render",
+      "target": "cat:bridge",
+      "weight": 2,
+      "kind": "loop_category",
+      "note": "该主线阶段主要落在此教学分区"
+    },
+    {
+      "source": "loop:render",
+      "target": "cat:core",
+      "weight": 3,
+      "kind": "loop_category",
+      "note": "该主线阶段主要落在此教学分区"
+    },
+    {
+      "source": "loop:render",
+      "target": "cat:ui",
+      "weight": 9,
+      "kind": "loop_category",
+      "note": "该主线阶段主要落在此教学分区"
+    }
   ]
 }
