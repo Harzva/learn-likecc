@@ -8,7 +8,7 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧭</text></svg>">
     <meta name="description" content="把工具链阅读、上手与踩坑、渠道评测与开发日志收拢成一个专题入口。">
 </head>
-<body>
+<body class="toolchain-page">
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
@@ -30,6 +30,8 @@
     </nav>
 
     <section class="hero handbook-hero">
+        <div class="toolchain-hero-orb toolchain-hero-orb--left" aria-hidden="true"></div>
+        <div class="toolchain-hero-orb toolchain-hero-orb--right" aria-hidden="true"></div>
         <div class="hero-content">
             <div class="hero-badge">
                 <span>个人专题</span>
@@ -46,6 +48,20 @@
                 <a href="#overview" class="btn btn-primary">开始阅读</a>
                 <a href="column-show-your-usage.html" class="btn btn-secondary">Show me your usage ↗</a>
             </div>
+            <div class="toolchain-hero-strip">
+                <div class="toolchain-hero-strip__item">
+                    <span class="toolchain-hero-strip__kicker">阅读轴</span>
+                    <strong>工具迁移与工作流演化</strong>
+                </div>
+                <div class="toolchain-hero-strip__item">
+                    <span class="toolchain-hero-strip__kicker">实战轴</span>
+                    <strong>踩坑、复盘、付费形态判断</strong>
+                </div>
+                <div class="toolchain-hero-strip__item">
+                    <span class="toolchain-hero-strip__kicker">幕后轴</span>
+                    <strong>站点怎么被迭代出来</strong>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -53,39 +69,87 @@
         <div class="container">
             <article class="course-content devlog-content">
                 <section id="overview" class="section-block">
-                    <h2>专题说明</h2>
+                    <div class="toolchain-section-heading">
+                        <span class="toolchain-eyebrow">Overview</span>
+                        <h2>专题说明</h2>
+                    </div>
                     <div class="course-quote">
                         <p><strong>这一组页面不再分散挂入口</strong>，统一作为「工具链专题」阅读：你可以把它理解成本站的<strong>个人经验轴</strong>，与 S/D 课程那条<strong>源码学习轴</strong>互补。</p>
                         <p><strong>阅读建议</strong>：先看 <a href="#journey">工具链阅读</a> 理清背景，再看 <a href="#pitfalls">上手与踩坑</a> 抓可复用结论；如果你关心付费形态和风险，再看 <a href="#channel">渠道评测</a>；最后用 <a href="#devlog">开发日志</a> 理解这个站是怎么一路迭代出来的。</p>
                     </div>
-                </section>
-
-                <section id="journey" class="section-block">
-                    <h2>01 · 工具链阅读</h2>
-                    <p>偏阅历叙事：Qoder、Trae、VS Code、Codex、Claude Code 等工具是怎么轮换成为主力的，以及工作流为什么一步步向 Agent 转过去。</p>
-                    <p><a href="column-agent-journey.html" class="btn btn-primary">进入《从编辑器到 Agent》 →</a></p>
-                </section>
-
-                <section id="pitfalls" class="section-block">
-                    <h2>02 · 上手与踩坑</h2>
-                    <p>偏实战经验：环境、命令、最小可复现路径、踩坑记录与能直接照着做的结论。适合作为「怎么跑通、怎么避坑」的备忘录入口。</p>
-                    <p><a href="column-shangshou-cikeng.html" class="btn btn-primary">进入《上手与踩坑》 →</a></p>
-                </section>
-
-                <section id="channel" class="section-block">
-                    <h2>03 · 渠道评测</h2>
-                    <p>偏付费形态与风险体感：API 中转、Team 拼车、额度限制、换车摩擦、条款风险。这一页不是购买建议，只是主观记录不同方案的使用感受。</p>
-                    <p><a href="column-channel-review.html" class="btn btn-primary">进入《渠道评测》 →</a></p>
-                </section>
-
-                <section id="devlog" class="section-block">
-                    <h2>04 · 开发日志</h2>
-                    <p>偏项目幕后：站点建设目标、工具脚本、图表、Loop-in-Loop 节奏与阶段性用量观察。适合想知道「这个仓库是怎么迭代出来的」的人。</p>
-                    <p><a href="devlog.html" class="btn btn-primary">进入《开发日志》 →</a></p>
+                    <div class="toolchain-flow">
+                        <div class="toolchain-flow__step">
+                            <span class="toolchain-flow__num">01</span>
+                            <span class="toolchain-flow__text">先建立工具迁移背景</span>
+                        </div>
+                        <div class="toolchain-flow__step">
+                            <span class="toolchain-flow__num">02</span>
+                            <span class="toolchain-flow__text">再吸收实战避坑结论</span>
+                        </div>
+                        <div class="toolchain-flow__step">
+                            <span class="toolchain-flow__num">03</span>
+                            <span class="toolchain-flow__text">最后补渠道与项目复盘</span>
+                        </div>
+                    </div>
                 </section>
 
                 <section class="section-block">
-                    <h2>补充入口</h2>
+                    <div class="toolchain-section-heading">
+                        <span class="toolchain-eyebrow">Four Angles</span>
+                        <h2>四块内容，一次看清</h2>
+                    </div>
+                    <div class="toolchain-card-grid">
+                        <section id="journey" class="toolchain-topic-card toolchain-topic-card--journey">
+                            <div class="toolchain-topic-card__meta">01 · Journey</div>
+                            <h3>工具链阅读</h3>
+                            <p>偏阅历叙事：Qoder、Trae、VS Code、Codex、Claude Code 等工具是怎么轮换成为主力的，以及工作流为什么一步步向 Agent 转过去。</p>
+                            <ul class="toolchain-topic-card__list">
+                                <li>适合先看，建立个人迁移背景</li>
+                                <li>关注工具切换背后的判断标准</li>
+                            </ul>
+                            <a href="column-agent-journey.html" class="btn btn-primary">进入《从编辑器到 Agent》 →</a>
+                        </section>
+
+                        <section id="pitfalls" class="toolchain-topic-card toolchain-topic-card--pitfalls">
+                            <div class="toolchain-topic-card__meta">02 · Practice</div>
+                            <h3>上手与踩坑</h3>
+                            <p>偏实战经验：环境、命令、最小可复现路径、踩坑记录与能直接照着做的结论。适合作为「怎么跑通、怎么避坑」的备忘录入口。</p>
+                            <ul class="toolchain-topic-card__list">
+                                <li>更强调可复用的操作经验</li>
+                                <li>适合边用边查，减少试错成本</li>
+                            </ul>
+                            <a href="column-shangshou-cikeng.html" class="btn btn-primary">进入《上手与踩坑》 →</a>
+                        </section>
+
+                        <section id="channel" class="toolchain-topic-card toolchain-topic-card--channel">
+                            <div class="toolchain-topic-card__meta">03 · Channel</div>
+                            <h3>渠道评测</h3>
+                            <p>偏付费形态与风险体感：API 中转、Team 拼车、额度限制、换车摩擦、条款风险。这一页不是购买建议，只是主观记录不同方案的使用感受。</p>
+                            <ul class="toolchain-topic-card__list">
+                                <li>帮助理解不同渠道的真实摩擦</li>
+                                <li>把体验、风险与条款放在一起看</li>
+                            </ul>
+                            <a href="column-channel-review.html" class="btn btn-primary">进入《渠道评测》 →</a>
+                        </section>
+
+                        <section id="devlog" class="toolchain-topic-card toolchain-topic-card--devlog">
+                            <div class="toolchain-topic-card__meta">04 · Build Log</div>
+                            <h3>开发日志</h3>
+                            <p>偏项目幕后：站点建设目标、工具脚本、图表、Loop-in-Loop 节奏与阶段性用量观察。适合想知道「这个仓库是怎么迭代出来的」的人。</p>
+                            <ul class="toolchain-topic-card__list">
+                                <li>看站点如何从想法走到成品</li>
+                                <li>补足图表、脚本与页面演化脉络</li>
+                            </ul>
+                            <a href="devlog.html" class="btn btn-primary">进入《开发日志》 →</a>
+                        </section>
+                    </div>
+                </section>
+
+                <section class="section-block toolchain-note-block">
+                    <div class="toolchain-section-heading">
+                        <span class="toolchain-eyebrow">Extra</span>
+                        <h2>补充入口</h2>
+                    </div>
                     <p><a href="column-show-your-usage.html">Show me your usage</a> 仍单独保留，不并入这个专题；它更像一篇用量自证页，而不是工具链经验总结。</p>
                 </section>
             </article>
