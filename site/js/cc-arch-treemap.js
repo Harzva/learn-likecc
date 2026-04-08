@@ -147,9 +147,9 @@
             var w = Math.max(280, wrap.clientWidth || mount.clientWidth || 640)
             var vh = typeof window !== 'undefined' && window.innerHeight ? window.innerHeight : 800
             /* 随宽度增高，并用视口高度封顶，避免大屏上 Treemap 过扁 */
-            var byWidth = Math.max(320, Math.round(w * 0.56))
-            var byViewport = Math.round(vh * 0.5)
-            var h = Math.min(960, Math.max(300, byWidth, byViewport))
+            var byWidth = Math.max(380, Math.round(w * 0.62))
+            var byViewport = Math.round(vh * 0.58)
+            var h = Math.min(1120, Math.max(360, byWidth, byViewport))
             svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h)
             svg.setAttribute('width', '100%')
             svg.setAttribute('height', String(h))
@@ -166,9 +166,9 @@
             d3.treemap()
                 .tile(d3.treemapSquarify)
                 .size([w, h])
-                .paddingOuter(4)
-                .paddingTop(28)
-                .paddingInner(2)
+                .paddingOuter(6)
+                .paddingTop(34)
+                .paddingInner(3)
                 .round(true)(root)
 
             svg.innerHTML = ''
@@ -216,13 +216,13 @@
             })
 
             cell.filter(function (d) {
-                return d.children && d.x1 - d.x0 > 90 && d.y1 - d.y0 > 36
+                return d.children && d.x1 - d.x0 > 110 && d.y1 - d.y0 > 44
             })
                 .append('text')
-                .attr('x', 6)
-                .attr('y', 19)
+                .attr('x', 9)
+                .attr('y', 24)
                 .attr('fill', 'rgba(255,255,255,0.88)')
-                .attr('font-size', 16)
+                .attr('font-size', 18)
                 .attr('font-weight', 700)
                 .attr('font-family', 'system-ui, sans-serif')
                 .style('pointer-events', 'none')
@@ -231,25 +231,25 @@
                 })
 
             cell.filter(function (d) {
-                return d.children && d.x1 - d.x0 > 108 && d.y1 - d.y0 > 54
+                return d.children && d.x1 - d.x0 > 132 && d.y1 - d.y0 > 68
             })
                 .append('text')
-                .attr('x', 6)
-                .attr('y', 40)
+                .attr('x', 9)
+                .attr('y', 49)
                 .attr('fill', 'rgba(255,255,255,0.55)')
-                .attr('font-size', 11)
+                .attr('font-size', 12.5)
                 .attr('font-family', 'system-ui, sans-serif')
                 .style('pointer-events', 'none')
                 .text('单击下钻')
 
             cell.filter(function (d) {
-                return !d.children && d.x1 - d.x0 > 58 && d.y1 - d.y0 > 40
+                return !d.children && d.x1 - d.x0 > 74 && d.y1 - d.y0 > 52
             })
                 .append('text')
-                .attr('x', 6)
-                .attr('y', 15)
+                .attr('x', 8)
+                .attr('y', 18)
                 .attr('fill', 'rgba(255,255,255,0.95)')
-                .attr('font-size', 13)
+                .attr('font-size', 15)
                 .attr('font-family', 'ui-monospace, monospace')
                 .style('pointer-events', 'none')
                 .each(function (d) {
@@ -258,8 +258,8 @@
                     var t = d3.select(this)
                     lines.forEach(function (line, i) {
                         t.append('tspan')
-                            .attr('x', 6)
-                            .attr('dy', i === 0 ? 0 : 16)
+                            .attr('x', 8)
+                            .attr('dy', i === 0 ? 0 : 21)
                             .text(line)
                     })
                 })

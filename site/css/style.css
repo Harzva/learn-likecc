@@ -6017,6 +6017,44 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     margin-right: 0;
 }
 
+.cc-unpacked-page .nav-container {
+    max-width: min(1500px, calc(100vw - 36px));
+}
+
+.cc-unpacked-page .container.container--layout-wide {
+    max-width: min(1560px, calc(100vw - 28px));
+    padding-left: clamp(10px, 1.8vw, 22px);
+    padding-right: clamp(10px, 1.8vw, 22px);
+}
+
+.cc-unpacked-page .devlog-content {
+    width: 100%;
+}
+
+.cc-unpacked-page .section-block > h2 {
+    font-size: clamp(1.8rem, 2vw, 2.35rem);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+}
+
+.cc-unpacked-page .section-block > p,
+.cc-unpacked-page .section-block > ul,
+.cc-unpacked-page .section-block > ol,
+.cc-unpacked-page .section-block > .section-desc,
+.cc-unpacked-page .course-quote p {
+    font-size: 1.08rem;
+    line-height: 1.8;
+}
+
+.cc-unpacked-page .options-table {
+    font-size: 1.02rem;
+}
+
+.cc-unpacked-page .options-table th,
+.cc-unpacked-page .options-table td {
+    padding: 1rem 1.1rem;
+}
+
 .devlog-figure {
     margin: 24px 0;
     padding: 12px;
@@ -6352,8 +6390,27 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     margin: 1rem 0 1.25rem;
     padding: 1.15rem 1.2rem 1.25rem;
 }
+
+.cc-unpacked-page .cc-arch-treemap {
+    margin: 1.35rem 0 1.5rem;
+    padding: 1.4rem 1.45rem 1.55rem;
+    border-radius: 24px;
+    border-color: rgba(15, 23, 42, 0.18);
+    background:
+        radial-gradient(circle at 14% 12%, rgba(213, 173, 85, 0.12), transparent 28%),
+        radial-gradient(circle at 88% 18%, rgba(133, 173, 209, 0.11), transparent 30%),
+        linear-gradient(180deg, rgba(255, 251, 245, 0.98), rgba(255, 247, 237, 0.98));
+    box-shadow:
+        0 18px 45px -28px rgba(15, 23, 42, 0.35),
+        0 0 0 1px rgba(255, 255, 255, 0.45) inset;
+}
+
 .cc-arch-treemap__head {
     margin-bottom: 0.75rem;
+}
+
+.cc-unpacked-page .cc-arch-treemap__head {
+    margin-bottom: 1rem;
 }
 .cc-arch-treemap__title {
     margin: 0 0 0.4rem;
@@ -6370,6 +6427,17 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     line-height: 1.55;
     max-width: 52rem;
 }
+
+.cc-unpacked-page .cc-arch-treemap__title {
+    font-size: clamp(1.55rem, 1.4vw, 2rem);
+    letter-spacing: -0.01em;
+}
+
+.cc-unpacked-page .cc-arch-treemap__sub {
+    max-width: 76rem;
+    font-size: 1rem;
+    line-height: 1.7;
+}
 .cc-arch-treemap__crumb {
     display: flex;
     flex-wrap: wrap;
@@ -6383,6 +6451,14 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     background: color-mix(in srgb, var(--bg-secondary) 88%, transparent);
     border: 1px solid color-mix(in srgb, var(--border) 92%, #6366f1 8%);
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset;
+}
+
+.cc-unpacked-page .cc-arch-treemap__crumb {
+    margin-bottom: 0.95rem;
+    padding: 0.68rem 0.9rem;
+    font-size: 0.98rem;
+    border-radius: 14px;
+    background: rgba(255, 250, 242, 0.88);
 }
 .cc-arch-treemap__crumb-btn {
     margin: 0;
@@ -6415,6 +6491,12 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     background: color-mix(in srgb, var(--bg-card) 70%, var(--bg-secondary));
     border: 1px solid var(--border);
 }
+
+.cc-unpacked-page .cc-arch-treemap__crumb-btn,
+.cc-unpacked-page .cc-arch-treemap__crumb-current {
+    padding: 0.34rem 0.58rem;
+    border-radius: 9px;
+}
 .cc-arch-treemap__svg .cc-arch-treemap__cell--branch rect {
     transition: filter 0.15s ease;
 }
@@ -6442,6 +6524,15 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     background: color-mix(in srgb, var(--bg-secondary) 55%, transparent);
     border: 1px solid color-mix(in srgb, var(--border) 95%, transparent);
 }
+
+.cc-unpacked-page .cc-arch-treemap__legend {
+    gap: 0.7rem 1.15rem;
+    margin-bottom: 0.95rem;
+    padding: 0.75rem 0.85rem;
+    font-size: 0.95rem;
+    border-radius: 14px;
+    background: rgba(255, 249, 238, 0.72);
+}
 .cc-arch-treemap__legend-item {
     display: flex;
     align-items: center;
@@ -6453,6 +6544,12 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     border-radius: 999px;
     flex-shrink: 0;
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35);
+}
+
+.cc-unpacked-page .cc-arch-treemap__legend-swatch {
+    width: 0.78rem;
+    height: 0.78rem;
+    border-radius: 0.28rem;
 }
 .cc-arch-treemap__legend-text strong {
     font-weight: 600;
@@ -6469,6 +6566,21 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
         inset 0 -24px 48px -20px rgba(0, 0, 0, 0.55),
         0 4px 24px -8px rgba(0, 0, 0, 0.5),
         0 0 40px -20px rgba(99, 102, 241, 0.15);
+}
+
+.cc-unpacked-page .cc-arch-treemap__svg-wrap {
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        inset 0 -22px 42px -20px rgba(0, 0, 0, 0.5),
+        0 20px 40px -24px rgba(2, 6, 23, 0.55);
+}
+
+@media (min-width: 1200px) {
+    .cc-unpacked-page .cc-arch-treemap {
+        padding: 1.55rem 1.65rem 1.75rem;
+    }
 }
 .cc-arch-treemap__svg {
     display: block;
