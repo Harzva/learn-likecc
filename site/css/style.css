@@ -6006,6 +6006,13 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     margin: 0 auto;
 }
 
+/* 专题页用 container--layout-wide 时，勿再套 820px，否则 Treemap/宽表仍显窄 */
+.container.container--layout-wide .devlog-content {
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+}
+
 .devlog-figure {
     margin: 24px 0;
     padding: 12px;
