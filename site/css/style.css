@@ -2623,6 +2623,8 @@ body {
 }
 
 .course-content {
+    width: min(100%, 1040px);
+    margin: 0 auto;
     padding-bottom: 24px;
 }
 
@@ -6002,12 +6004,14 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 
 /* 开发日志页 */
 .devlog-main .devlog-content {
-    max-width: 820px;
+    width: min(100%, 1120px);
+    max-width: 1120px;
     margin: 0 auto;
 }
 
 /* 专题页用 container--layout-wide 时，勿再套 820px，否则 Treemap/宽表仍显窄 */
 .container.container--layout-wide .devlog-content {
+    width: 100%;
     max-width: none;
     margin-left: 0;
     margin-right: 0;
