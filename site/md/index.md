@@ -16,6 +16,7 @@
 - **📚 学习入口**
   - Source Map 源码专题
   - 大模型专题
+  - 个人知识库（`topic-personal-knowledge`）
   - 站点推荐（`topic-websites`）
   - 庖丁解牛专题（`topic-paoding-jieniu`）
   - Claude Code 解构（`topic-cc-unpacked-zh`，现为子专题）
@@ -84,6 +85,10 @@
 #### 大模型专题
 
 补模型本体这条线：架构图谱、注意力与混合结构阅读入口，首推 Sebastian Raschka 的 `LLM Architecture Gallery`。
+
+#### 个人知识库
+
+这页把 GitHub、Wiki 与 Agent 放进同一条长期知识线里看：不是临时问答，也不是静态笔记，而是一套可持续更新、可迁移、可复用的个人知识底座。公开标题用“个人知识库”，正文里再点到“赛博档案”这层更长期的意味。
 
 #### 站点推荐
 
