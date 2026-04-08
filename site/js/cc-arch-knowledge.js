@@ -52,6 +52,13 @@
         return no + ' ' + shortLabel(node.label)
     }
 
+    function colorWithAlpha(d3, hex, alpha) {
+        var c = d3.color(hex)
+        if (!c) return hex
+        c.opacity = alpha
+        return c.formatRgb()
+    }
+
     function render(payload) {
         var d3 = window.d3
         var modes = [
@@ -377,6 +384,14 @@
                     if (d.kind === 'loop_category') return 0.52
                     if (d.kind === 'loop_map') return 0.72
                     return d.kind === 'contains' ? 0.6 : 0.85
+                })
+                .attr('stroke', function (d) {
+                    if (d.kind === 'loop_map' || d.kind === 'loop_category') {
+                        var targetCat = d.target && d.target.cat ? d.target.cat : null
+                        var base = COLORS[targetCat] || '#f4bf75'
+                        return colorWithAlpha(d3, base, d.kind === 'loop_category' ? 0.52 : 0.72)
+                    }
+                    return null
                 })
 
             var node = nodeLayer
