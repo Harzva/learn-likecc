@@ -6353,7 +6353,7 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 }
 .cc-arch-treemap__title {
     margin: 0 0 0.4rem;
-    font-size: 1.2rem;
+    font-size: 1.35rem;
     font-family: Georgia, 'Times New Roman', serif;
     letter-spacing: 0.03em;
     color: var(--text-primary);
@@ -6361,7 +6361,7 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 }
 .cc-arch-treemap__sub {
     margin: 0;
-    font-size: 0.8125rem;
+    font-size: 0.92rem;
     color: var(--text-muted);
     line-height: 1.55;
     max-width: 52rem;
@@ -6372,8 +6372,8 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     align-items: center;
     gap: 0.2rem 0.15rem;
     margin: 0 0 0.75rem;
-    padding: 0.4rem 0.65rem;
-    font-size: 0.78rem;
+    padding: 0.45rem 0.7rem;
+    font-size: 0.88rem;
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
     border-radius: 10px;
     background: color-mix(in srgb, var(--bg-secondary) 88%, transparent);
@@ -6429,10 +6429,10 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 .cc-arch-treemap__legend {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.4rem 0.9rem;
+    gap: 0.45rem 0.95rem;
     margin-bottom: 0.7rem;
-    padding: 0.45rem 0.5rem;
-    font-size: 0.72rem;
+    padding: 0.5rem 0.55rem;
+    font-size: 0.84rem;
     color: var(--text-secondary);
     border-radius: 8px;
     background: color-mix(in srgb, var(--bg-secondary) 55%, transparent);
@@ -6444,8 +6444,8 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     gap: 0.4rem;
 }
 .cc-arch-treemap__legend-swatch {
-    width: 0.55rem;
-    height: 0.55rem;
+    width: 0.62rem;
+    height: 0.62rem;
     border-radius: 999px;
     flex-shrink: 0;
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35);
@@ -6472,7 +6472,7 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 }
 .cc-arch-treemap__toast {
     margin: 0.55rem 0 0;
-    font-size: 0.8125rem;
+    font-size: 0.9rem;
     font-weight: 500;
     color: var(--primary-dark);
     padding: 0.35rem 0.5rem;

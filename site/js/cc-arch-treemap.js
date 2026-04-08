@@ -167,7 +167,7 @@
                 .tile(d3.treemapSquarify)
                 .size([w, h])
                 .paddingOuter(4)
-                .paddingTop(18)
+                .paddingTop(24)
                 .paddingInner(2)
                 .round(true)(root)
 
@@ -216,13 +216,13 @@
             })
 
             cell.filter(function (d) {
-                return d.children && d.x1 - d.x0 > 72 && d.y1 - d.y0 > 28
+                return d.children && d.x1 - d.x0 > 82 && d.y1 - d.y0 > 32
             })
                 .append('text')
-                .attr('x', 5)
-                .attr('y', 13)
+                .attr('x', 6)
+                .attr('y', 17)
                 .attr('fill', 'rgba(255,255,255,0.88)')
-                .attr('font-size', 10)
+                .attr('font-size', 14)
                 .attr('font-weight', 700)
                 .attr('font-family', 'system-ui, sans-serif')
                 .style('pointer-events', 'none')
@@ -231,25 +231,25 @@
                 })
 
             cell.filter(function (d) {
-                return d.children && d.x1 - d.x0 > 88 && d.y1 - d.y0 > 40
+                return d.children && d.x1 - d.x0 > 100 && d.y1 - d.y0 > 48
             })
                 .append('text')
-                .attr('x', 5)
-                .attr('y', 26)
+                .attr('x', 6)
+                .attr('y', 35)
                 .attr('fill', 'rgba(255,255,255,0.55)')
-                .attr('font-size', 8)
+                .attr('font-size', 11)
                 .attr('font-family', 'system-ui, sans-serif')
                 .style('pointer-events', 'none')
                 .text('单击下钻')
 
             cell.filter(function (d) {
-                return !d.children && d.x1 - d.x0 > 52 && d.y1 - d.y0 > 34
+                return !d.children && d.x1 - d.x0 > 58 && d.y1 - d.y0 > 40
             })
                 .append('text')
-                .attr('x', 5)
-                .attr('y', 12)
+                .attr('x', 6)
+                .attr('y', 15)
                 .attr('fill', 'rgba(255,255,255,0.95)')
-                .attr('font-size', 10)
+                .attr('font-size', 13)
                 .attr('font-family', 'ui-monospace, monospace')
                 .style('pointer-events', 'none')
                 .each(function (d) {
@@ -258,8 +258,8 @@
                     var t = d3.select(this)
                     lines.forEach(function (line, i) {
                         t.append('tspan')
-                            .attr('x', 5)
-                            .attr('dy', i === 0 ? 0 : 12)
+                            .attr('x', 6)
+                            .attr('dy', i === 0 ? 0 : 16)
                             .text(line)
                     })
                 })
