@@ -561,6 +561,126 @@
       "size": 6,
       "parent": "cat:personality",
       "description": ""
+    },
+    {
+      "id": "loop:input",
+      "key": "input",
+      "label": "输入",
+      "kind": "loop",
+      "cat": "core",
+      "size": 1,
+      "step_index": 0,
+      "description": "终端、管道或外部宿主把原始请求送进主循环入口。"
+    },
+    {
+      "id": "loop:message",
+      "key": "message",
+      "label": "消息",
+      "kind": "loop",
+      "cat": "core",
+      "size": 1,
+      "step_index": 1,
+      "description": "把原始输入封装成 user message，并准备放入对话序列。"
+    },
+    {
+      "id": "loop:history",
+      "key": "history",
+      "label": "历史",
+      "kind": "loop",
+      "cat": "core",
+      "size": 1,
+      "step_index": 2,
+      "description": "拼入此前多轮 user / assistant / tool_result，形成完整上下文。"
+    },
+    {
+      "id": "loop:system",
+      "key": "system",
+      "label": "系统",
+      "kind": "loop",
+      "cat": "core",
+      "size": 1,
+      "step_index": 3,
+      "description": "系统提示、规则、权限与策略一起约束这一轮调用。"
+    },
+    {
+      "id": "loop:tooling",
+      "key": "tooling",
+      "label": "工具集",
+      "kind": "loop",
+      "cat": "core",
+      "size": 1,
+      "step_index": 4,
+      "description": "把当前轮可见的工具定义整理给模型，这一步是主循环里非常关键但常被忽略的一层。"
+    },
+    {
+      "id": "loop:api",
+      "key": "api",
+      "label": "API",
+      "kind": "loop",
+      "cat": "core",
+      "size": 1,
+      "step_index": 5,
+      "description": "将消息、系统提示与工具定义一起送往模型 API，通常以流式方式回收响应。"
+    },
+    {
+      "id": "loop:token",
+      "key": "token",
+      "label": "Token",
+      "kind": "loop",
+      "cat": "core",
+      "size": 1,
+      "step_index": 6,
+      "description": "检查窗口预算、上下文长度与压缩需求，决定还能塞多少历史。"
+    },
+    {
+      "id": "loop:tool_decision",
+      "key": "tool_decision",
+      "label": "判工具",
+      "kind": "loop",
+      "cat": "core",
+      "size": 1,
+      "step_index": 7,
+      "description": "模型决定是直接回答，还是发出 tool_use 继续推进这一轮。"
+    },
+    {
+      "id": "loop:execute",
+      "key": "execute",
+      "label": "执行",
+      "kind": "loop",
+      "cat": "core",
+      "size": 1,
+      "step_index": 8,
+      "description": "宿主执行工具、命令、任务或桥接调用，拿到结果。"
+    },
+    {
+      "id": "loop:feedback",
+      "key": "feedback",
+      "label": "回流",
+      "kind": "loop",
+      "cat": "core",
+      "size": 1,
+      "step_index": 9,
+      "description": "把工具结果包装成 tool_result，再送回对话，让模型继续思考。"
+    },
+    {
+      "id": "loop:loop",
+      "key": "loop",
+      "label": "循环",
+      "kind": "loop",
+      "cat": "core",
+      "size": 1,
+      "step_index": 10,
+      "description": "若还需继续调用工具则返回模型，否则准备收束输出。"
+    },
+    {
+      "id": "loop:render",
+      "key": "render",
+      "label": "呈现",
+      "kind": "loop",
+      "cat": "core",
+      "size": 1,
+      "step_index": 11,
+      "description": "把最终文本、工具卡片与状态反馈渲染到终端 UI 或外部宿主。"
     }
   ],
   "contains_links": [
@@ -1055,6 +1175,351 @@
       "weight": 3,
       "kind": "cross",
       "note": "记忆目录为服务层提供持久化落点"
+    }
+  ],
+  "loop_links": [
+    {
+      "source": "loop:input",
+      "target": "folder:cli",
+      "weight": 3,
+      "kind": "loop_map",
+      "note": "CLI/终端入口"
+    },
+    {
+      "source": "loop:input",
+      "target": "folder:entrypoints",
+      "weight": 2,
+      "kind": "loop_map",
+      "note": "启动路径"
+    },
+    {
+      "source": "loop:input",
+      "target": "folder:bridge",
+      "weight": 2,
+      "kind": "loop_map",
+      "note": "外部宿主输入"
+    },
+    {
+      "source": "loop:input",
+      "target": "loop:message",
+      "weight": 4,
+      "kind": "loop",
+      "note": "主循环阶段推进"
+    },
+    {
+      "source": "loop:message",
+      "target": "folder:query",
+      "weight": 4,
+      "kind": "loop_map",
+      "note": "消息进入查询主链"
+    },
+    {
+      "source": "loop:message",
+      "target": "folder:assistant",
+      "weight": 2,
+      "kind": "loop_map",
+      "note": "助手会话外壳"
+    },
+    {
+      "source": "loop:message",
+      "target": "folder:types",
+      "weight": 2,
+      "kind": "loop_map",
+      "note": "消息结构契约"
+    },
+    {
+      "source": "loop:message",
+      "target": "loop:history",
+      "weight": 4,
+      "kind": "loop",
+      "note": "主循环阶段推进"
+    },
+    {
+      "source": "loop:history",
+      "target": "folder:context",
+      "weight": 4,
+      "kind": "loop_map",
+      "note": "上下文组织"
+    },
+    {
+      "source": "loop:history",
+      "target": "folder:state",
+      "weight": 3,
+      "kind": "loop_map",
+      "note": "运行态历史"
+    },
+    {
+      "source": "loop:history",
+      "target": "folder:services",
+      "weight": 3,
+      "kind": "loop_map",
+      "note": "历史与会话服务"
+    },
+    {
+      "source": "loop:history",
+      "target": "loop:system",
+      "weight": 4,
+      "kind": "loop",
+      "note": "主循环阶段推进"
+    },
+    {
+      "source": "loop:system",
+      "target": "folder:services",
+      "weight": 3,
+      "kind": "loop_map",
+      "note": "系统级策略组织"
+    },
+    {
+      "source": "loop:system",
+      "target": "folder:constants",
+      "weight": 2,
+      "kind": "loop_map",
+      "note": "策略常量"
+    },
+    {
+      "source": "loop:system",
+      "target": "folder:skills",
+      "weight": 2,
+      "kind": "loop_map",
+      "note": "技能/规则输入"
+    },
+    {
+      "source": "loop:system",
+      "target": "loop:tooling",
+      "weight": 4,
+      "kind": "loop",
+      "note": "主循环阶段推进"
+    },
+    {
+      "source": "loop:tooling",
+      "target": "folder:tools",
+      "weight": 4,
+      "kind": "loop_map",
+      "note": "工具定义与协议"
+    },
+    {
+      "source": "loop:tooling",
+      "target": "folder:commands",
+      "weight": 2,
+      "kind": "loop_map",
+      "note": "命令可切换工具可见性"
+    },
+    {
+      "source": "loop:tooling",
+      "target": "folder:types",
+      "weight": 2,
+      "kind": "loop_map",
+      "note": "工具 schema 契约"
+    },
+    {
+      "source": "loop:tooling",
+      "target": "loop:api",
+      "weight": 4,
+      "kind": "loop",
+      "note": "主循环阶段推进"
+    },
+    {
+      "source": "loop:api",
+      "target": "folder:query",
+      "weight": 4,
+      "kind": "loop_map",
+      "note": "模型调用主链"
+    },
+    {
+      "source": "loop:api",
+      "target": "folder:services",
+      "weight": 3,
+      "kind": "loop_map",
+      "note": "API 调用服务"
+    },
+    {
+      "source": "loop:api",
+      "target": "folder:server",
+      "weight": 2,
+      "kind": "loop_map",
+      "note": "服务式承载"
+    },
+    {
+      "source": "loop:api",
+      "target": "loop:token",
+      "weight": 4,
+      "kind": "loop",
+      "note": "主循环阶段推进"
+    },
+    {
+      "source": "loop:token",
+      "target": "folder:services",
+      "weight": 4,
+      "kind": "loop_map",
+      "note": "压缩与预算管理"
+    },
+    {
+      "source": "loop:token",
+      "target": "folder:context",
+      "weight": 3,
+      "kind": "loop_map",
+      "note": "上下文裁剪"
+    },
+    {
+      "source": "loop:token",
+      "target": "folder:memdir",
+      "weight": 2,
+      "kind": "loop_map",
+      "note": "外部记忆补充"
+    },
+    {
+      "source": "loop:token",
+      "target": "loop:tool_decision",
+      "weight": 4,
+      "kind": "loop",
+      "note": "主循环阶段推进"
+    },
+    {
+      "source": "loop:tool_decision",
+      "target": "folder:tools",
+      "weight": 4,
+      "kind": "loop_map",
+      "note": "工具可调用面"
+    },
+    {
+      "source": "loop:tool_decision",
+      "target": "folder:query",
+      "weight": 4,
+      "kind": "loop_map",
+      "note": "模型响应解析"
+    },
+    {
+      "source": "loop:tool_decision",
+      "target": "folder:commands",
+      "weight": 2,
+      "kind": "loop_map",
+      "note": "命令式工作流可能影响判定"
+    },
+    {
+      "source": "loop:tool_decision",
+      "target": "loop:execute",
+      "weight": 4,
+      "kind": "loop",
+      "note": "主循环阶段推进"
+    },
+    {
+      "source": "loop:execute",
+      "target": "folder:tools",
+      "weight": 5,
+      "kind": "loop_map",
+      "note": "工具执行"
+    },
+    {
+      "source": "loop:execute",
+      "target": "folder:commands",
+      "weight": 3,
+      "kind": "loop_map",
+      "note": "命令驱动执行"
+    },
+    {
+      "source": "loop:execute",
+      "target": "folder:bridge",
+      "weight": 3,
+      "kind": "loop_map",
+      "note": "桥接外部宿主"
+    },
+    {
+      "source": "loop:execute",
+      "target": "folder:tasks",
+      "weight": 2,
+      "kind": "loop_map",
+      "note": "任务编排"
+    },
+    {
+      "source": "loop:execute",
+      "target": "loop:feedback",
+      "weight": 4,
+      "kind": "loop",
+      "note": "主循环阶段推进"
+    },
+    {
+      "source": "loop:feedback",
+      "target": "folder:query",
+      "weight": 4,
+      "kind": "loop_map",
+      "note": "回灌到主循环"
+    },
+    {
+      "source": "loop:feedback",
+      "target": "folder:context",
+      "weight": 3,
+      "kind": "loop_map",
+      "note": "回写上下文"
+    },
+    {
+      "source": "loop:feedback",
+      "target": "folder:state",
+      "weight": 2,
+      "kind": "loop_map",
+      "note": "同步会话状态"
+    },
+    {
+      "source": "loop:feedback",
+      "target": "loop:loop",
+      "weight": 4,
+      "kind": "loop",
+      "note": "主循环阶段推进"
+    },
+    {
+      "source": "loop:loop",
+      "target": "folder:query",
+      "weight": 4,
+      "kind": "loop_map",
+      "note": "循环枢纽"
+    },
+    {
+      "source": "loop:loop",
+      "target": "folder:services",
+      "weight": 3,
+      "kind": "loop_map",
+      "note": "会话推进"
+    },
+    {
+      "source": "loop:loop",
+      "target": "folder:assistant",
+      "weight": 2,
+      "kind": "loop_map",
+      "note": "助手轮次控制"
+    },
+    {
+      "source": "loop:loop",
+      "target": "loop:render",
+      "weight": 4,
+      "kind": "loop",
+      "note": "主循环阶段推进"
+    },
+    {
+      "source": "loop:render",
+      "target": "folder:components",
+      "weight": 5,
+      "kind": "loop_map",
+      "note": "最终界面组件"
+    },
+    {
+      "source": "loop:render",
+      "target": "folder:ink",
+      "weight": 4,
+      "kind": "loop_map",
+      "note": "终端渲染"
+    },
+    {
+      "source": "loop:render",
+      "target": "folder:hooks",
+      "weight": 3,
+      "kind": "loop_map",
+      "note": "前后插逻辑"
+    },
+    {
+      "source": "loop:render",
+      "target": "folder:bridge",
+      "weight": 2,
+      "kind": "loop_map",
+      "note": "外部宿主呈现"
     }
   ]
 }

@@ -6782,6 +6782,15 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     stroke: rgba(244, 191, 117, 0.62);
 }
 
+.cc-arch-knowledge__link--loop {
+    stroke: rgba(255, 231, 188, 0.98);
+}
+
+.cc-arch-knowledge__link--loop_map {
+    stroke: rgba(249, 191, 104, 0.72);
+    stroke-dasharray: 7 6;
+}
+
 .cc-arch-knowledge__node circle {
     transition: transform 0.16s ease, filter 0.16s ease, opacity 0.16s ease;
 }
@@ -6800,6 +6809,12 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 
 .cc-arch-knowledge__node.is-active circle {
     filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.22));
+}
+
+.cc-arch-knowledge__node text {
+    paint-order: stroke;
+    stroke: rgba(9, 12, 20, 0.25);
+    stroke-width: 2px;
 }
 
 @media (max-width: 1100px) {

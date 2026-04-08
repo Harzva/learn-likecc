@@ -158,6 +158,81 @@ CROSS_LINKS: list[dict[str, object]] = [
     {"source": "memdir", "target": "services", "weight": 3, "note": "记忆目录为服务层提供持久化落点"},
 ]
 
+LOOPLINE_STEPS: list[dict[str, object]] = [
+    {
+        "key": "input",
+        "label": "输入",
+        "description": "终端、管道或外部宿主把原始请求送进主循环入口。",
+        "links": [("cli", 3, "CLI/终端入口"), ("entrypoints", 2, "启动路径"), ("bridge", 2, "外部宿主输入")],
+    },
+    {
+        "key": "message",
+        "label": "消息",
+        "description": "把原始输入封装成 user message，并准备放入对话序列。",
+        "links": [("query", 4, "消息进入查询主链"), ("assistant", 2, "助手会话外壳"), ("types", 2, "消息结构契约")],
+    },
+    {
+        "key": "history",
+        "label": "历史",
+        "description": "拼入此前多轮 user / assistant / tool_result，形成完整上下文。",
+        "links": [("context", 4, "上下文组织"), ("state", 3, "运行态历史"), ("services", 3, "历史与会话服务")],
+    },
+    {
+        "key": "system",
+        "label": "系统",
+        "description": "系统提示、规则、权限与策略一起约束这一轮调用。",
+        "links": [("services", 3, "系统级策略组织"), ("constants", 2, "策略常量"), ("skills", 2, "技能/规则输入")],
+    },
+    {
+        "key": "tooling",
+        "label": "工具集",
+        "description": "把当前轮可见的工具定义整理给模型，这一步是主循环里非常关键但常被忽略的一层。",
+        "links": [("tools", 4, "工具定义与协议"), ("commands", 2, "命令可切换工具可见性"), ("types", 2, "工具 schema 契约")],
+    },
+    {
+        "key": "api",
+        "label": "API",
+        "description": "将消息、系统提示与工具定义一起送往模型 API，通常以流式方式回收响应。",
+        "links": [("query", 4, "模型调用主链"), ("services", 3, "API 调用服务"), ("server", 2, "服务式承载")],
+    },
+    {
+        "key": "token",
+        "label": "Token",
+        "description": "检查窗口预算、上下文长度与压缩需求，决定还能塞多少历史。",
+        "links": [("services", 4, "压缩与预算管理"), ("context", 3, "上下文裁剪"), ("memdir", 2, "外部记忆补充")],
+    },
+    {
+        "key": "tool_decision",
+        "label": "判工具",
+        "description": "模型决定是直接回答，还是发出 tool_use 继续推进这一轮。",
+        "links": [("tools", 4, "工具可调用面"), ("query", 4, "模型响应解析"), ("commands", 2, "命令式工作流可能影响判定")],
+    },
+    {
+        "key": "execute",
+        "label": "执行",
+        "description": "宿主执行工具、命令、任务或桥接调用，拿到结果。",
+        "links": [("tools", 5, "工具执行"), ("commands", 3, "命令驱动执行"), ("bridge", 3, "桥接外部宿主"), ("tasks", 2, "任务编排")],
+    },
+    {
+        "key": "feedback",
+        "label": "回流",
+        "description": "把工具结果包装成 tool_result，再送回对话，让模型继续思考。",
+        "links": [("query", 4, "回灌到主循环"), ("context", 3, "回写上下文"), ("state", 2, "同步会话状态")],
+    },
+    {
+        "key": "loop",
+        "label": "循环",
+        "description": "若还需继续调用工具则返回模型，否则准备收束输出。",
+        "links": [("query", 4, "循环枢纽"), ("services", 3, "会话推进"), ("assistant", 2, "助手轮次控制")],
+    },
+    {
+        "key": "render",
+        "label": "呈现",
+        "description": "把最终文本、工具卡片与状态反馈渲染到终端 UI 或外部宿主。",
+        "links": [("components", 5, "最终界面组件"), ("ink", 4, "终端渲染"), ("hooks", 3, "前后插逻辑"), ("bridge", 2, "外部宿主呈现")],
+    },
+]
+
 
 def nest_by_category(flat: list[dict]) -> list[dict]:
     by_cat: dict[str, list[dict]] = defaultdict(list)
@@ -312,6 +387,47 @@ def build_knowledge_payload(tree_payload: dict) -> dict:
             }
         )
 
+    loop_nodes: list[dict[str, object]] = []
+    loop_links: list[dict[str, object]] = []
+    for i, step in enumerate(LOOPLINE_STEPS):
+        loop_id = f"loop:{step['key']}"
+        loop_nodes.append(
+            {
+                "id": loop_id,
+                "key": step["key"],
+                "label": step["label"],
+                "kind": "loop",
+                "cat": "core",
+                "size": 1,
+                "step_index": i,
+                "description": step["description"],
+            }
+        )
+        if i > 0:
+            prev_id = f"loop:{LOOPLINE_STEPS[i - 1]['key']}"
+            loop_links.append(
+                {
+                    "source": prev_id,
+                    "target": loop_id,
+                    "weight": 4,
+                    "kind": "loop",
+                    "note": "主循环阶段推进",
+                }
+            )
+        for folder_key, weight, note in step["links"]:
+            target = folder_index.get(str(folder_key))
+            if not target:
+                continue
+            loop_links.append(
+                {
+                    "source": loop_id,
+                    "target": target["id"],
+                    "weight": int(weight),
+                    "kind": "loop_map",
+                    "note": str(note),
+                }
+            )
+
     return {
         "meta": {
             "updated": tree_payload["meta"]["updated"],
@@ -319,9 +435,10 @@ def build_knowledge_payload(tree_payload: dict) -> dict:
             "note_zh": "块内结构来自目录树统计；跨块联系为教学向依赖归纳，帮助建立阅读顺序与心智模型。",
         },
         "legend": tree_payload["legend"],
-        "nodes": nodes,
+        "nodes": nodes + loop_nodes,
         "contains_links": contains_links,
         "cross_links": cross_links,
+        "loop_links": loop_links,
     }
 
 

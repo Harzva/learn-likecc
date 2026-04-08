@@ -51,6 +51,7 @@
             { id: 'hybrid', label: '混合总览', desc: '同时看块内结构与跨块联系' },
             { id: 'contains', label: '块内结构', desc: '看每个教学分区下面有哪些主目录' },
             { id: 'cross', label: '块间联系', desc: '看不同块之间最值得一起读的连接' },
+            { id: 'loopline', label: '主线映射', desc: '把 01 主循环各阶段映射到 02 架构导览目录块' },
         ]
         var currentMode = 'hybrid'
         var selectedId = null
@@ -115,6 +116,7 @@
                 : '知识图谱用于建立阅读心智模型，不是严格的静态依赖图。'
 
         function getModeLinks() {
+            if (currentMode === 'loopline') return payload.loop_links || []
             if (currentMode === 'contains') return payload.contains_links || []
             if (currentMode === 'cross') return payload.cross_links || []
             return (payload.contains_links || []).concat(payload.cross_links || [])
@@ -133,6 +135,7 @@
         }
 
         function nodeRadius(node) {
+            if (node.kind === 'loop') return 18
             if (node.kind === 'category') return 18 + Math.min(16, Math.sqrt(node.size || 1) * 0.45)
             return 8 + Math.min(14, Math.sqrt(node.size || 1) * 0.45)
         }
@@ -152,7 +155,7 @@
                     '<p class="cc-arch-knowledge__eyebrow">How To Read</p>' +
                     '<h4 class="cc-arch-knowledge__name">先点一个节点</h4>' +
                     '<p class="cc-arch-knowledge__desc">左边网络图负责显示结构和联系，右边这里负责解释这个块是什么、和谁连得最紧，以及为什么值得一起读。</p>' +
-                    '<p class="cc-arch-knowledge__empty">推荐先点 <strong>services</strong>、<strong>components</strong>、<strong>commands</strong> 或整块的分类节点。</p>'
+                    '<p class="cc-arch-knowledge__empty">推荐先点 <strong>services</strong>、<strong>components</strong>、<strong>commands</strong>，或者切到 <strong>主线映射</strong> 看主循环每一步主要落在哪些目录块上。</p>'
                 return
             }
 
@@ -172,16 +175,20 @@
 
             detailEl.innerHTML =
                 '<p class="cc-arch-knowledge__eyebrow">' +
-                esc(node.kind === 'category' ? 'Category' : 'Folder') +
+                esc(node.kind === 'category' ? 'Category' : node.kind === 'loop' ? 'Loop Step' : 'Folder') +
                 '</p>' +
                 '<h4 class="cc-arch-knowledge__name">' +
                 esc(shortLabel(node.label)) +
                 '</h4>' +
-                '<p class="cc-arch-knowledge__meta">文件量约 <strong>' +
-                esc(node.size) +
-                '</strong> · 所属分区 <strong>' +
-                esc(node.kind === 'category' ? node.label : (allNodes[node.parent] ? allNodes[node.parent].label : node.cat)) +
-                '</strong></p>' +
+                '<p class="cc-arch-knowledge__meta">' +
+                (node.kind === 'loop'
+                    ? '主循环阶段 · 用来回答“这一轮主要依赖哪些目录块？”'
+                    : '文件量约 <strong>' +
+                      esc(node.size) +
+                      '</strong> · 所属分区 <strong>' +
+                      esc(node.kind === 'category' ? node.label : (allNodes[node.parent] ? allNodes[node.parent].label : node.cat)) +
+                      '</strong>') +
+                '</p>' +
                 '<p class="cc-arch-knowledge__desc">' +
                 esc(node.description || node.hint || '这是图谱中的一个结构节点。') +
                 '</p>' +
@@ -194,7 +201,7 @@
                               return (
                                   '<span class="cc-arch-knowledge__chip">' +
                                   esc(item.label) +
-                                  (item.kind === 'cross' ? ' · 跨块' : ' · 内部') +
+                                  (item.kind === 'cross' ? ' · 跨块' : item.kind === 'loop_map' ? ' · 映射' : item.kind === 'loop' ? ' · 主线' : ' · 内部') +
                                   '</span>'
                               )
                           })
@@ -207,6 +214,13 @@
             var width = Math.max(760, canvasEl.clientWidth - 8)
             var height = window.innerWidth <= 768 ? 560 : 760
             svgEl.setAttribute('viewBox', '0 0 ' + width + ' ' + height)
+
+            noteEl.textContent =
+                currentMode === 'loopline'
+                    ? '主线映射把“输入 → 消息 → 历史 → 系统 → 工具集 → API → Token → 判工具 → 执行 → 回流 → 循环 → 呈现”串成一条流程带，再连接到真正承载它们的目录块。'
+                    : payload.meta && payload.meta.note_zh
+                      ? payload.meta.note_zh
+                      : '知识图谱用于建立阅读心智模型，不是严格的静态依赖图。'
 
             var links = getModeLinks().map(function (link) {
                 return {
@@ -270,15 +284,20 @@
                             return d.id
                         })
                         .distance(function (d) {
+                            if (d.kind === 'loop') return 72
+                            if (d.kind === 'loop_map') return 170
                             return d.kind === 'contains' ? 80 : 120
                         })
                         .strength(function (d) {
+                            if (d.kind === 'loop') return 1
+                            if (d.kind === 'loop_map') return 0.5
                             return d.kind === 'contains' ? 0.9 : 0.5
                         })
                 )
                 .force(
                     'charge',
                     d3.forceManyBody().strength(function (d) {
+                        if (d.kind === 'loop') return -520
                         return d.kind === 'category' ? -900 : currentMode === 'cross' ? -260 : -180
                     })
                 )
@@ -291,20 +310,30 @@
                 .force(
                     'x',
                     d3.forceX().x(function (d) {
+                        if (currentMode === 'loopline' && d.kind === 'loop') {
+                            var count = 12
+                            return ((d.step_index || 0) + 1) * (width / (count + 1))
+                        }
                         var a = anchorForCat(d.cat)
                         if (d.kind === 'category') return a.x
+                        if (currentMode === 'loopline') return a.x
                         return currentMode === 'cross' ? a.x + (Math.random() - 0.5) * 80 : a.x
                     }).strength(function (d) {
+                        if (currentMode === 'loopline' && d.kind === 'loop') return 0.7
                         return d.kind === 'category' ? 0.22 : currentMode === 'cross' ? 0.09 : 0.13
                     })
                 )
                 .force(
                     'y',
                     d3.forceY().y(function (d) {
+                        if (currentMode === 'loopline' && d.kind === 'loop') return window.innerWidth <= 768 ? 88 : 96
                         var a = anchorForCat(d.cat)
                         if (d.kind === 'category') return a.y
+                        if (currentMode === 'loopline') return a.y + 170
                         return currentMode === 'cross' ? a.y + (Math.random() - 0.5) * 90 : a.y + 25
                     }).strength(function (d) {
+                        if (currentMode === 'loopline' && d.kind === 'loop') return 0.78
+                        if (currentMode === 'loopline') return 0.24
                         return d.kind === 'category' ? 0.22 : currentMode === 'cross' ? 0.09 : 0.14
                     })
                 )
@@ -318,9 +347,13 @@
                     return 'cc-arch-knowledge__link cc-arch-knowledge__link--' + d.kind
                 })
                 .attr('stroke-width', function (d) {
+                    if (d.kind === 'loop') return 3.2
+                    if (d.kind === 'loop_map') return 1.1 + d.weight * 0.26
                     return d.kind === 'contains' ? 1 + Math.min(3.5, d.weight / 70) : 1.2 + d.weight * 0.35
                 })
                 .attr('stroke-opacity', function (d) {
+                    if (d.kind === 'loop') return 0.95
+                    if (d.kind === 'loop_map') return 0.72
                     return d.kind === 'contains' ? 0.6 : 0.85
                 })
 
@@ -359,32 +392,39 @@
                     return nodeRadius(d)
                 })
                 .attr('fill', function (d) {
+                    if (d.kind === 'loop') return '#f2cf95'
                     var base = COLORS[d.cat] || '#8994aa'
                     var c = d3.color(base)
                     if (!c) return base
                     return d.kind === 'category' ? c.darker(0.28).formatHex() : c.formatHex()
                 })
                 .attr('stroke', function (d) {
+                    if (d.kind === 'loop') return 'rgba(255,239,211,0.92)'
                     return d.kind === 'category' ? 'rgba(255,255,255,0.24)' : 'rgba(255,255,255,0.16)'
                 })
                 .attr('stroke-width', function (d) {
+                    if (d.kind === 'loop') return 1.8
                     return d.kind === 'category' ? 1.6 : 1
                 })
 
             node.append('text')
                 .attr('text-anchor', 'middle')
                 .attr('dy', function (d) {
-                    return d.kind === 'category' ? 4 : 3
+                    return d.kind === 'category' ? 4 : d.kind === 'loop' ? 4 : 3
                 })
                 .attr('font-size', function (d) {
-                    return d.kind === 'category' ? 12 : 10.5
+                    return d.kind === 'category' ? 12 : d.kind === 'loop' ? 11 : 10.5
                 })
                 .attr('font-weight', function (d) {
-                    return d.kind === 'category' ? 700 : 500
+                    return d.kind === 'category' || d.kind === 'loop' ? 700 : 500
+                })
+                .attr('fill', function (d) {
+                    return d.kind === 'loop' ? '#1d2940' : 'rgba(246, 244, 238, 0.96)'
                 })
                 .text(function (d) {
                     var label = shortLabel(d.label)
-                    return label.length > (d.kind === 'category' ? 8 : 10) ? label.slice(0, d.kind === 'category' ? 8 : 10) + '…' : label
+                    var maxLen = d.kind === 'category' ? 8 : d.kind === 'loop' ? 5 : 10
+                    return label.length > maxLen ? label.slice(0, maxLen) + '…' : label
                 })
 
             node.append('title').text(function (d) {
