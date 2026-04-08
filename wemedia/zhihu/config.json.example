@@ -1,7 +1,0 @@
-{
-  "title": "文章标题",
-  "content": "文章正文内容...\n\n可以多行输入。",
-  "coverImage": "./cover.jpg",
-  "tags": ["标签1", "标签2"],
-  "topic": "话题名称"
-}
