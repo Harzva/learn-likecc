@@ -19,6 +19,7 @@
                 <a href="#attribution" class="nav-link">说明</a>
                 <a href="#loop" class="nav-link">01 主循环</a>
                 <a href="#architecture" class="nav-link">02 架构</a>
+                <a href="#knowledge-map" class="nav-link">02 图谱</a>
                 <a href="#tools" class="nav-link">03 工具</a>
                 <a href="#commands" class="nav-link">04 命令</a>
                 <a href="#experimental" class="nav-link">05 实验</a>
@@ -109,6 +110,13 @@
                         &nbsp;<a href="topic-source-derived.html" class="btn btn-secondary">源码反推思想 →</a></p>
                 </section>
 
+                <section id="knowledge-map" class="section-block">
+                    <h2>02B · 知识图谱（块内结构 + 块间联系）</h2>
+                    <p>Treemap 适合看<strong>规模</strong>，知识图谱更适合看<strong>关系</strong>。这里把目录分成两种阅读方式：<strong>块内结构</strong>看每个教学分区下面挂了哪些主目录；<strong>块间联系</strong>看 UI、服务、工具、命令、桥接与基础设施之间如何互相牵动。</p>
+                    <div id="cc-arch-knowledge-mount" class="cc-arch-knowledge" data-json="data/cc-arch-knowledge.json" role="region" aria-label="Claude Code 架构知识图谱"></div>
+                    <p class="section-desc" style="margin-top:0.7rem;font-size:0.96rem;">图谱里<strong>块内结构</strong>来自目录树统计；<strong>块间联系</strong>是教学向归纳，不是静态 import 图。它的作用是帮助你判断“先看哪里、再看哪里、哪些目录要一起看”。</p>
+                </section>
+
                 <section id="tools" class="section-block">
                     <h2>03 · 工具系统（分组地图）</h2>
                     <p>内置工具可按<strong>职能</strong>分组理解；下列为<strong>代表名称</strong>，完整清单请在源码 <code>tools/</code> 内检索或在运行时使用官方文档。</p>
@@ -183,6 +191,7 @@
     <script src="js/cc-tool-tiles.js"></script>
     <script src="js/cc-command-pills.js"></script>
     <script src="js/cc-feature-cards.js"></script>
+    <script src="js/cc-arch-knowledge.js"></script>
     <script src="js/cc-loop-player.js"></script>
 </body>
 </html>

@@ -10,13 +10,13 @@
     var D3_SRC = 'https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js'
 
     var COLORS = {
-        tools_commands: '#ca8a04',
-        core: '#16a34a',
-        ui: '#2563eb',
-        bridge: '#ea580c',
-        infra: '#64748b',
-        support: '#475569',
-        personality: '#9333ea',
+        tools_commands: '#cf9218',
+        core: '#26a269',
+        ui: '#3a67df',
+        bridge: '#ea6a28',
+        infra: '#7a8ba5',
+        support: '#55657d',
+        personality: '#8b5cf6',
     }
 
     function esc(s) {

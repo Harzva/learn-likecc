@@ -1,0 +1,1060 @@
+{
+  "meta": {
+    "updated": "2026-04-08",
+    "source": "ccsource/claude-code-main/src",
+    "note_zh": "块内结构来自目录树统计；跨块联系为教学向依赖归纳，帮助建立阅读顺序与心智模型。"
+  },
+  "legend": [
+    {
+      "key": "tools_commands",
+      "label": "工具与命令",
+      "hint": "commands/ · tools/"
+    },
+    {
+      "key": "core",
+      "label": "核心处理",
+      "hint": "services · hooks · 会话与查询等"
+    },
+    {
+      "key": "ui",
+      "label": "UI 层",
+      "hint": "components · ink · 终端界面"
+    },
+    {
+      "key": "bridge",
+      "label": "桥接与集成",
+      "hint": "bridge · plugins · remote"
+    },
+    {
+      "key": "infra",
+      "label": "基础设施",
+      "hint": "cli · entrypoints · 运行时支撑"
+    },
+    {
+      "key": "support",
+      "label": "支撑与工具库",
+      "hint": "utils · constants · types"
+    },
+    {
+      "key": "personality",
+      "label": "个性与实验向",
+      "hint": "如 buddy 等"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "cat:tools_commands",
+      "key": "tools_commands",
+      "label": "工具与命令",
+      "kind": "category",
+      "cat": "tools_commands",
+      "size": 394,
+      "hint": "commands/ · tools/",
+      "description": "命令入口、工具定义与执行编排，最接近用户显式触发层。"
+    },
+    {
+      "id": "folder:commands",
+      "key": "commands",
+      "label": "commands/",
+      "kind": "folder",
+      "cat": "tools_commands",
+      "size": 199,
+      "parent": "cat:tools_commands",
+      "description": "斜杠命令与交互式工作流入口。"
+    },
+    {
+      "id": "folder:tools",
+      "key": "tools",
+      "label": "tools/",
+      "kind": "folder",
+      "cat": "tools_commands",
+      "size": 195,
+      "parent": "cat:tools_commands",
+      "description": "工具协议、工具实现与工具执行封装。"
+    },
+    {
+      "id": "cat:core",
+      "key": "core",
+      "label": "核心处理",
+      "kind": "category",
+      "cat": "core",
+      "size": 317,
+      "hint": "services · hooks · 会话与查询等",
+      "description": "会话、查询、状态与任务流转，是智能体主循环的核心处理带。"
+    },
+    {
+      "id": "folder:services",
+      "key": "services",
+      "label": "services/",
+      "kind": "folder",
+      "cat": "core",
+      "size": 152,
+      "parent": "cat:core",
+      "description": "会话服务、压缩、索引、权限、同步等核心能力。"
+    },
+    {
+      "id": "folder:hooks",
+      "key": "hooks",
+      "label": "hooks/",
+      "kind": "folder",
+      "cat": "core",
+      "size": 105,
+      "parent": "cat:core",
+      "description": "跨组件与会话的复用逻辑，常连接 UI 与核心状态。"
+    },
+    {
+      "id": "folder:src 根 .ts/.tsx",
+      "key": "src 根 .ts/.tsx",
+      "label": "（src 根 .ts/.tsx）",
+      "kind": "folder",
+      "cat": "core",
+      "size": 18,
+      "parent": "cat:core",
+      "description": ""
+    },
+    {
+      "id": "folder:tasks",
+      "key": "tasks",
+      "label": "tasks/",
+      "kind": "folder",
+      "cat": "core",
+      "size": 14,
+      "parent": "cat:core",
+      "description": "任务对象与前后台任务编排。"
+    },
+    {
+      "id": "folder:context",
+      "key": "context",
+      "label": "context/",
+      "kind": "folder",
+      "cat": "core",
+      "size": 9,
+      "parent": "cat:core",
+      "description": "上下文组织、注入与选择。"
+    },
+    {
+      "id": "folder:state",
+      "key": "state",
+      "label": "state/",
+      "kind": "folder",
+      "cat": "core",
+      "size": 6,
+      "parent": "cat:core",
+      "description": "运行态状态树与共享状态容器。"
+    },
+    {
+      "id": "folder:assistant",
+      "key": "assistant",
+      "label": "assistant/",
+      "kind": "folder",
+      "cat": "core",
+      "size": 5,
+      "parent": "cat:core",
+      "description": "助手会话与行为壳层。"
+    },
+    {
+      "id": "folder:query",
+      "key": "query",
+      "label": "query/",
+      "kind": "folder",
+      "cat": "core",
+      "size": 5,
+      "parent": "cat:core",
+      "description": "查询编排、主循环与模型往返。"
+    },
+    {
+      "id": "folder:coordinator",
+      "key": "coordinator",
+      "label": "coordinator/",
+      "kind": "folder",
+      "cat": "core",
+      "size": 1,
+      "parent": "cat:core",
+      "description": ""
+    },
+    {
+      "id": "folder:jobs",
+      "key": "jobs",
+      "label": "jobs/",
+      "kind": "folder",
+      "cat": "core",
+      "size": 1,
+      "parent": "cat:core",
+      "description": ""
+    },
+    {
+      "id": "folder:proactive",
+      "key": "proactive",
+      "label": "proactive/",
+      "kind": "folder",
+      "cat": "core",
+      "size": 1,
+      "parent": "cat:core",
+      "description": ""
+    },
+    {
+      "id": "cat:ui",
+      "key": "ui",
+      "label": "UI 层",
+      "kind": "category",
+      "cat": "ui",
+      "size": 518,
+      "hint": "components · ink · 终端界面",
+      "description": "终端 UI、组件树与 Ink 渲染层，负责把状态变成交互界面。"
+    },
+    {
+      "id": "folder:components",
+      "key": "components",
+      "label": "components/",
+      "kind": "folder",
+      "cat": "ui",
+      "size": 407,
+      "parent": "cat:ui",
+      "description": "主要交互组件与终端界面碎片。"
+    },
+    {
+      "id": "folder:ink",
+      "key": "ink",
+      "label": "ink/",
+      "kind": "folder",
+      "cat": "ui",
+      "size": 101,
+      "parent": "cat:ui",
+      "description": "Ink 渲染与终端 UI 基础设施。"
+    },
+    {
+      "id": "folder:vim",
+      "key": "vim",
+      "label": "vim/",
+      "kind": "folder",
+      "cat": "ui",
+      "size": 5,
+      "parent": "cat:ui",
+      "description": "Vim 模式交互。"
+    },
+    {
+      "id": "folder:screens",
+      "key": "screens",
+      "label": "screens/",
+      "kind": "folder",
+      "cat": "ui",
+      "size": 3,
+      "parent": "cat:ui",
+      "description": "少量完整屏视图。"
+    },
+    {
+      "id": "folder:outputStyles",
+      "key": "outputStyles",
+      "label": "outputStyles/",
+      "kind": "folder",
+      "cat": "ui",
+      "size": 1,
+      "parent": "cat:ui",
+      "description": "输出样式切换。"
+    },
+    {
+      "id": "folder:voice",
+      "key": "voice",
+      "label": "voice/",
+      "kind": "folder",
+      "cat": "ui",
+      "size": 1,
+      "parent": "cat:ui",
+      "description": "语音相关入口。"
+    },
+    {
+      "id": "cat:bridge",
+      "key": "bridge",
+      "label": "桥接与集成",
+      "kind": "category",
+      "cat": "bridge",
+      "size": 42,
+      "hint": "bridge · plugins · remote",
+      "description": "IDE / 插件 / 远端集成，把 Claude Code 接到外部环境。"
+    },
+    {
+      "id": "folder:bridge",
+      "key": "bridge",
+      "label": "bridge/",
+      "kind": "folder",
+      "cat": "bridge",
+      "size": 32,
+      "parent": "cat:bridge",
+      "description": "桥接 IDE、外部宿主与运行时通道。"
+    },
+    {
+      "id": "folder:native-ts",
+      "key": "native-ts",
+      "label": "native-ts/",
+      "kind": "folder",
+      "cat": "bridge",
+      "size": 4,
+      "parent": "cat:bridge",
+      "description": "原生集成的 TypeScript 桥。"
+    },
+    {
+      "id": "folder:remote",
+      "key": "remote",
+      "label": "remote/",
+      "kind": "folder",
+      "cat": "bridge",
+      "size": 4,
+      "parent": "cat:bridge",
+      "description": "远程环境、远端上下文与连接抽象。"
+    },
+    {
+      "id": "folder:plugins",
+      "key": "plugins",
+      "label": "plugins/",
+      "kind": "folder",
+      "cat": "bridge",
+      "size": 2,
+      "parent": "cat:bridge",
+      "description": "插件生态与外部扩展点。"
+    },
+    {
+      "id": "cat:infra",
+      "key": "infra",
+      "label": "基础设施",
+      "kind": "category",
+      "cat": "infra",
+      "size": 73,
+      "hint": "cli · entrypoints · 运行时支撑",
+      "description": "CLI、entrypoints、server 与运行时骨架，负责启动与承载。"
+    },
+    {
+      "id": "folder:cli",
+      "key": "cli",
+      "label": "cli/",
+      "kind": "folder",
+      "cat": "infra",
+      "size": 25,
+      "parent": "cat:infra",
+      "description": "CLI 启动、参数入口与命令行承载层。"
+    },
+    {
+      "id": "folder:entrypoints",
+      "key": "entrypoints",
+      "label": "entrypoints/",
+      "kind": "folder",
+      "cat": "infra",
+      "size": 14,
+      "parent": "cat:infra",
+      "description": "不同运行入口与启动路径。"
+    },
+    {
+      "id": "folder:migrations",
+      "key": "migrations",
+      "label": "migrations/",
+      "kind": "folder",
+      "cat": "infra",
+      "size": 11,
+      "parent": "cat:infra",
+      "description": "版本迁移与兼容性处理。"
+    },
+    {
+      "id": "folder:server",
+      "key": "server",
+      "label": "server/",
+      "kind": "folder",
+      "cat": "infra",
+      "size": 11,
+      "parent": "cat:infra",
+      "description": "服务端形态与长驻能力。"
+    },
+    {
+      "id": "folder:bun-polyfill",
+      "key": "bun-polyfill",
+      "label": "bun-polyfill/",
+      "kind": "folder",
+      "cat": "infra",
+      "size": 3,
+      "parent": "cat:infra",
+      "description": ""
+    },
+    {
+      "id": "folder:daemon",
+      "key": "daemon",
+      "label": "daemon/",
+      "kind": "folder",
+      "cat": "infra",
+      "size": 2,
+      "parent": "cat:infra",
+      "description": "守护进程与长连接后台。"
+    },
+    {
+      "id": "folder:ssh",
+      "key": "ssh",
+      "label": "ssh/",
+      "kind": "folder",
+      "cat": "infra",
+      "size": 2,
+      "parent": "cat:infra",
+      "description": "SSH 场景支持。"
+    },
+    {
+      "id": "folder:upstreamproxy",
+      "key": "upstreamproxy",
+      "label": "upstreamproxy/",
+      "kind": "folder",
+      "cat": "infra",
+      "size": 2,
+      "parent": "cat:infra",
+      "description": "代理与上游连接适配。"
+    },
+    {
+      "id": "folder:bootstrap",
+      "key": "bootstrap",
+      "label": "bootstrap/",
+      "kind": "folder",
+      "cat": "infra",
+      "size": 1,
+      "parent": "cat:infra",
+      "description": ""
+    },
+    {
+      "id": "folder:environment-runner",
+      "key": "environment-runner",
+      "label": "environment-runner/",
+      "kind": "folder",
+      "cat": "infra",
+      "size": 1,
+      "parent": "cat:infra",
+      "description": ""
+    },
+    {
+      "id": "folder:self-hosted-runner",
+      "key": "self-hosted-runner",
+      "label": "self-hosted-runner/",
+      "kind": "folder",
+      "cat": "infra",
+      "size": 1,
+      "parent": "cat:infra",
+      "description": ""
+    },
+    {
+      "id": "cat:support",
+      "key": "support",
+      "label": "支撑与工具库",
+      "kind": "category",
+      "cat": "support",
+      "size": 684,
+      "hint": "utils · constants · types",
+      "description": "类型、常量、工具库与键位等公共支撑层。"
+    },
+    {
+      "id": "folder:utils",
+      "key": "utils",
+      "label": "utils/",
+      "kind": "folder",
+      "cat": "support",
+      "size": 575,
+      "parent": "cat:support",
+      "description": "通用工具函数与基础复用库。"
+    },
+    {
+      "id": "folder:types",
+      "key": "types",
+      "label": "types/",
+      "kind": "folder",
+      "cat": "support",
+      "size": 36,
+      "parent": "cat:support",
+      "description": "类型定义与跨模块契约。"
+    },
+    {
+      "id": "folder:constants",
+      "key": "constants",
+      "label": "constants/",
+      "kind": "folder",
+      "cat": "support",
+      "size": 22,
+      "parent": "cat:support",
+      "description": "常量、配置键与静态枚举。"
+    },
+    {
+      "id": "folder:skills",
+      "key": "skills",
+      "label": "skills/",
+      "kind": "folder",
+      "cat": "support",
+      "size": 20,
+      "parent": "cat:support",
+      "description": "技能与高层任务能力挂钩点。"
+    },
+    {
+      "id": "folder:keybindings",
+      "key": "keybindings",
+      "label": "keybindings/",
+      "kind": "folder",
+      "cat": "support",
+      "size": 15,
+      "parent": "cat:support",
+      "description": "键盘映射与交互绑定。"
+    },
+    {
+      "id": "folder:memdir",
+      "key": "memdir",
+      "label": "memdir/",
+      "kind": "folder",
+      "cat": "support",
+      "size": 12,
+      "parent": "cat:support",
+      "description": "本地记忆目录与持久化辅助。"
+    },
+    {
+      "id": "folder:_external",
+      "key": "_external",
+      "label": "_external/",
+      "kind": "folder",
+      "cat": "support",
+      "size": 1,
+      "parent": "cat:support",
+      "description": ""
+    },
+    {
+      "id": "folder:moreright",
+      "key": "moreright",
+      "label": "moreright/",
+      "kind": "folder",
+      "cat": "support",
+      "size": 1,
+      "parent": "cat:support",
+      "description": ""
+    },
+    {
+      "id": "folder:schemas",
+      "key": "schemas",
+      "label": "schemas/",
+      "kind": "folder",
+      "cat": "support",
+      "size": 1,
+      "parent": "cat:support",
+      "description": ""
+    },
+    {
+      "id": "folder:sessionTranscript",
+      "key": "sessionTranscript",
+      "label": "sessionTranscript/",
+      "kind": "folder",
+      "cat": "support",
+      "size": 1,
+      "parent": "cat:support",
+      "description": ""
+    },
+    {
+      "id": "cat:personality",
+      "key": "personality",
+      "label": "个性与实验向",
+      "kind": "category",
+      "cat": "personality",
+      "size": 6,
+      "hint": "如 buddy 等",
+      "description": "实验向或人格化能力，通常不是主干但能影响体验。"
+    },
+    {
+      "id": "folder:buddy",
+      "key": "buddy",
+      "label": "buddy/",
+      "kind": "folder",
+      "cat": "personality",
+      "size": 6,
+      "parent": "cat:personality",
+      "description": ""
+    }
+  ],
+  "contains_links": [
+    {
+      "source": "cat:tools_commands",
+      "target": "folder:commands",
+      "weight": 199,
+      "kind": "contains",
+      "note": "工具与命令 内部目录"
+    },
+    {
+      "source": "cat:tools_commands",
+      "target": "folder:tools",
+      "weight": 195,
+      "kind": "contains",
+      "note": "工具与命令 内部目录"
+    },
+    {
+      "source": "cat:core",
+      "target": "folder:services",
+      "weight": 152,
+      "kind": "contains",
+      "note": "核心处理 内部目录"
+    },
+    {
+      "source": "cat:core",
+      "target": "folder:hooks",
+      "weight": 105,
+      "kind": "contains",
+      "note": "核心处理 内部目录"
+    },
+    {
+      "source": "cat:core",
+      "target": "folder:src 根 .ts/.tsx",
+      "weight": 18,
+      "kind": "contains",
+      "note": "核心处理 内部目录"
+    },
+    {
+      "source": "cat:core",
+      "target": "folder:tasks",
+      "weight": 14,
+      "kind": "contains",
+      "note": "核心处理 内部目录"
+    },
+    {
+      "source": "cat:core",
+      "target": "folder:context",
+      "weight": 9,
+      "kind": "contains",
+      "note": "核心处理 内部目录"
+    },
+    {
+      "source": "cat:core",
+      "target": "folder:state",
+      "weight": 6,
+      "kind": "contains",
+      "note": "核心处理 内部目录"
+    },
+    {
+      "source": "cat:core",
+      "target": "folder:assistant",
+      "weight": 5,
+      "kind": "contains",
+      "note": "核心处理 内部目录"
+    },
+    {
+      "source": "cat:core",
+      "target": "folder:query",
+      "weight": 5,
+      "kind": "contains",
+      "note": "核心处理 内部目录"
+    },
+    {
+      "source": "cat:core",
+      "target": "folder:coordinator",
+      "weight": 1,
+      "kind": "contains",
+      "note": "核心处理 内部目录"
+    },
+    {
+      "source": "cat:core",
+      "target": "folder:jobs",
+      "weight": 1,
+      "kind": "contains",
+      "note": "核心处理 内部目录"
+    },
+    {
+      "source": "cat:core",
+      "target": "folder:proactive",
+      "weight": 1,
+      "kind": "contains",
+      "note": "核心处理 内部目录"
+    },
+    {
+      "source": "cat:ui",
+      "target": "folder:components",
+      "weight": 407,
+      "kind": "contains",
+      "note": "UI 层 内部目录"
+    },
+    {
+      "source": "cat:ui",
+      "target": "folder:ink",
+      "weight": 101,
+      "kind": "contains",
+      "note": "UI 层 内部目录"
+    },
+    {
+      "source": "cat:ui",
+      "target": "folder:vim",
+      "weight": 5,
+      "kind": "contains",
+      "note": "UI 层 内部目录"
+    },
+    {
+      "source": "cat:ui",
+      "target": "folder:screens",
+      "weight": 3,
+      "kind": "contains",
+      "note": "UI 层 内部目录"
+    },
+    {
+      "source": "cat:ui",
+      "target": "folder:outputStyles",
+      "weight": 1,
+      "kind": "contains",
+      "note": "UI 层 内部目录"
+    },
+    {
+      "source": "cat:ui",
+      "target": "folder:voice",
+      "weight": 1,
+      "kind": "contains",
+      "note": "UI 层 内部目录"
+    },
+    {
+      "source": "cat:bridge",
+      "target": "folder:bridge",
+      "weight": 32,
+      "kind": "contains",
+      "note": "桥接与集成 内部目录"
+    },
+    {
+      "source": "cat:bridge",
+      "target": "folder:native-ts",
+      "weight": 4,
+      "kind": "contains",
+      "note": "桥接与集成 内部目录"
+    },
+    {
+      "source": "cat:bridge",
+      "target": "folder:remote",
+      "weight": 4,
+      "kind": "contains",
+      "note": "桥接与集成 内部目录"
+    },
+    {
+      "source": "cat:bridge",
+      "target": "folder:plugins",
+      "weight": 2,
+      "kind": "contains",
+      "note": "桥接与集成 内部目录"
+    },
+    {
+      "source": "cat:infra",
+      "target": "folder:cli",
+      "weight": 25,
+      "kind": "contains",
+      "note": "基础设施 内部目录"
+    },
+    {
+      "source": "cat:infra",
+      "target": "folder:entrypoints",
+      "weight": 14,
+      "kind": "contains",
+      "note": "基础设施 内部目录"
+    },
+    {
+      "source": "cat:infra",
+      "target": "folder:migrations",
+      "weight": 11,
+      "kind": "contains",
+      "note": "基础设施 内部目录"
+    },
+    {
+      "source": "cat:infra",
+      "target": "folder:server",
+      "weight": 11,
+      "kind": "contains",
+      "note": "基础设施 内部目录"
+    },
+    {
+      "source": "cat:infra",
+      "target": "folder:bun-polyfill",
+      "weight": 3,
+      "kind": "contains",
+      "note": "基础设施 内部目录"
+    },
+    {
+      "source": "cat:infra",
+      "target": "folder:daemon",
+      "weight": 2,
+      "kind": "contains",
+      "note": "基础设施 内部目录"
+    },
+    {
+      "source": "cat:infra",
+      "target": "folder:ssh",
+      "weight": 2,
+      "kind": "contains",
+      "note": "基础设施 内部目录"
+    },
+    {
+      "source": "cat:infra",
+      "target": "folder:upstreamproxy",
+      "weight": 2,
+      "kind": "contains",
+      "note": "基础设施 内部目录"
+    },
+    {
+      "source": "cat:infra",
+      "target": "folder:bootstrap",
+      "weight": 1,
+      "kind": "contains",
+      "note": "基础设施 内部目录"
+    },
+    {
+      "source": "cat:infra",
+      "target": "folder:environment-runner",
+      "weight": 1,
+      "kind": "contains",
+      "note": "基础设施 内部目录"
+    },
+    {
+      "source": "cat:infra",
+      "target": "folder:self-hosted-runner",
+      "weight": 1,
+      "kind": "contains",
+      "note": "基础设施 内部目录"
+    },
+    {
+      "source": "cat:support",
+      "target": "folder:utils",
+      "weight": 575,
+      "kind": "contains",
+      "note": "支撑与工具库 内部目录"
+    },
+    {
+      "source": "cat:support",
+      "target": "folder:types",
+      "weight": 36,
+      "kind": "contains",
+      "note": "支撑与工具库 内部目录"
+    },
+    {
+      "source": "cat:support",
+      "target": "folder:constants",
+      "weight": 22,
+      "kind": "contains",
+      "note": "支撑与工具库 内部目录"
+    },
+    {
+      "source": "cat:support",
+      "target": "folder:skills",
+      "weight": 20,
+      "kind": "contains",
+      "note": "支撑与工具库 内部目录"
+    },
+    {
+      "source": "cat:support",
+      "target": "folder:keybindings",
+      "weight": 15,
+      "kind": "contains",
+      "note": "支撑与工具库 内部目录"
+    },
+    {
+      "source": "cat:support",
+      "target": "folder:memdir",
+      "weight": 12,
+      "kind": "contains",
+      "note": "支撑与工具库 内部目录"
+    },
+    {
+      "source": "cat:support",
+      "target": "folder:_external",
+      "weight": 1,
+      "kind": "contains",
+      "note": "支撑与工具库 内部目录"
+    },
+    {
+      "source": "cat:support",
+      "target": "folder:moreright",
+      "weight": 1,
+      "kind": "contains",
+      "note": "支撑与工具库 内部目录"
+    },
+    {
+      "source": "cat:support",
+      "target": "folder:schemas",
+      "weight": 1,
+      "kind": "contains",
+      "note": "支撑与工具库 内部目录"
+    },
+    {
+      "source": "cat:support",
+      "target": "folder:sessionTranscript",
+      "weight": 1,
+      "kind": "contains",
+      "note": "支撑与工具库 内部目录"
+    },
+    {
+      "source": "cat:personality",
+      "target": "folder:buddy",
+      "weight": 6,
+      "kind": "contains",
+      "note": "个性与实验向 内部目录"
+    }
+  ],
+  "cross_links": [
+    {
+      "source": "folder:components",
+      "target": "folder:hooks",
+      "weight": 5,
+      "kind": "cross",
+      "note": "UI 组件大量依赖 hooks 取状态与行为"
+    },
+    {
+      "source": "folder:components",
+      "target": "folder:services",
+      "weight": 4,
+      "kind": "cross",
+      "note": "界面最终由服务层提供数据与动作"
+    },
+    {
+      "source": "folder:components",
+      "target": "folder:ink",
+      "weight": 4,
+      "kind": "cross",
+      "note": "组件树落在 Ink 渲染层"
+    },
+    {
+      "source": "folder:components",
+      "target": "folder:state",
+      "weight": 3,
+      "kind": "cross",
+      "note": "交互状态与界面同步"
+    },
+    {
+      "source": "folder:commands",
+      "target": "folder:tools",
+      "weight": 5,
+      "kind": "cross",
+      "note": "命令经常触发工具执行或编排工具链"
+    },
+    {
+      "source": "folder:commands",
+      "target": "folder:services",
+      "weight": 4,
+      "kind": "cross",
+      "note": "命令最终落入服务层能力"
+    },
+    {
+      "source": "folder:commands",
+      "target": "folder:cli",
+      "weight": 3,
+      "kind": "cross",
+      "note": "命令入口挂在 CLI 工作流上"
+    },
+    {
+      "source": "folder:tools",
+      "target": "folder:services",
+      "weight": 5,
+      "kind": "cross",
+      "note": "工具执行结果回灌核心服务"
+    },
+    {
+      "source": "folder:tools",
+      "target": "folder:bridge",
+      "weight": 3,
+      "kind": "cross",
+      "note": "部分工具连接外部宿主与 IDE"
+    },
+    {
+      "source": "folder:tools",
+      "target": "folder:utils",
+      "weight": 3,
+      "kind": "cross",
+      "note": "工具实现广泛复用底层工具库"
+    },
+    {
+      "source": "folder:services",
+      "target": "folder:query",
+      "weight": 5,
+      "kind": "cross",
+      "note": "主循环和服务层相互驱动"
+    },
+    {
+      "source": "folder:services",
+      "target": "folder:context",
+      "weight": 4,
+      "kind": "cross",
+      "note": "上下文选择与压缩是核心服务的一部分"
+    },
+    {
+      "source": "folder:services",
+      "target": "folder:assistant",
+      "weight": 4,
+      "kind": "cross",
+      "note": "助手行为常由服务层组织"
+    },
+    {
+      "source": "folder:services",
+      "target": "folder:tasks",
+      "weight": 4,
+      "kind": "cross",
+      "note": "任务调度与服务能力耦合很深"
+    },
+    {
+      "source": "folder:services",
+      "target": "folder:state",
+      "weight": 4,
+      "kind": "cross",
+      "note": "状态变化由服务更新和消费"
+    },
+    {
+      "source": "folder:hooks",
+      "target": "folder:state",
+      "weight": 4,
+      "kind": "cross",
+      "note": "hooks 把状态绑定到界面与交互"
+    },
+    {
+      "source": "folder:hooks",
+      "target": "folder:context",
+      "weight": 3,
+      "kind": "cross",
+      "note": "hooks 经常读写上下文与选择结果"
+    },
+    {
+      "source": "folder:bridge",
+      "target": "folder:plugins",
+      "weight": 4,
+      "kind": "cross",
+      "note": "插件扩展通过桥接层接入"
+    },
+    {
+      "source": "folder:bridge",
+      "target": "folder:remote",
+      "weight": 4,
+      "kind": "cross",
+      "note": "远端会话与桥接通道关系紧密"
+    },
+    {
+      "source": "folder:bridge",
+      "target": "folder:server",
+      "weight": 3,
+      "kind": "cross",
+      "note": "桥接常需要服务端或 daemon 形态承载"
+    },
+    {
+      "source": "folder:entrypoints",
+      "target": "folder:cli",
+      "weight": 4,
+      "kind": "cross",
+      "note": "入口文件组织 CLI 启动路径"
+    },
+    {
+      "source": "folder:entrypoints",
+      "target": "folder:server",
+      "weight": 3,
+      "kind": "cross",
+      "note": "不同入口指向交互式或服务式运行"
+    },
+    {
+      "source": "folder:utils",
+      "target": "folder:types",
+      "weight": 4,
+      "kind": "cross",
+      "note": "公共工具依赖统一类型契约"
+    },
+    {
+      "source": "folder:utils",
+      "target": "folder:constants",
+      "weight": 3,
+      "kind": "cross",
+      "note": "工具库与常量层大量共享"
+    },
+    {
+      "source": "folder:memdir",
+      "target": "folder:services",
+      "weight": 3,
+      "kind": "cross",
+      "note": "记忆目录为服务层提供持久化落点"
+    }
+  ]
+}

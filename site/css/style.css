@@ -6395,14 +6395,14 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     margin: 1.35rem 0 1.5rem;
     padding: 1.4rem 1.45rem 1.55rem;
     border-radius: 24px;
-    border-color: rgba(15, 23, 42, 0.18);
+    border-color: rgba(41, 54, 78, 0.16);
     background:
-        radial-gradient(circle at 14% 12%, rgba(213, 173, 85, 0.12), transparent 28%),
-        radial-gradient(circle at 88% 18%, rgba(133, 173, 209, 0.11), transparent 30%),
-        linear-gradient(180deg, rgba(255, 251, 245, 0.98), rgba(255, 247, 237, 0.98));
+        radial-gradient(circle at 14% 12%, rgba(218, 174, 75, 0.11), transparent 28%),
+        radial-gradient(circle at 88% 18%, rgba(84, 120, 214, 0.1), transparent 32%),
+        linear-gradient(180deg, rgba(255, 252, 247, 0.985), rgba(255, 246, 234, 0.985));
     box-shadow:
-        0 18px 45px -28px rgba(15, 23, 42, 0.35),
-        0 0 0 1px rgba(255, 255, 255, 0.45) inset;
+        0 22px 55px -32px rgba(39, 51, 74, 0.34),
+        0 0 0 1px rgba(255, 255, 255, 0.52) inset;
 }
 
 .cc-arch-treemap__head {
@@ -6458,7 +6458,7 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     padding: 0.68rem 0.9rem;
     font-size: 0.98rem;
     border-radius: 14px;
-    background: rgba(255, 250, 242, 0.88);
+    background: rgba(255, 252, 247, 0.9);
 }
 .cc-arch-treemap__crumb-btn {
     margin: 0;
@@ -6531,7 +6531,7 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     padding: 0.75rem 0.85rem;
     font-size: 0.95rem;
     border-radius: 14px;
-    background: rgba(255, 249, 238, 0.72);
+    background: rgba(255, 251, 243, 0.78);
 }
 .cc-arch-treemap__legend-item {
     display: flex;
@@ -6570,7 +6570,7 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 
 .cc-unpacked-page .cc-arch-treemap__svg-wrap {
     border-radius: 18px;
-    border: 1px solid rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.16);
     box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.08),
         inset 0 -22px 42px -20px rgba(0, 0, 0, 0.5),
@@ -6580,6 +6580,251 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 @media (min-width: 1200px) {
     .cc-unpacked-page .cc-arch-treemap {
         padding: 1.55rem 1.65rem 1.75rem;
+    }
+}
+
+.cc-arch-knowledge {
+    position: relative;
+    overflow: hidden;
+    margin: 1.35rem 0 1.5rem;
+    border-radius: 26px;
+    border: 1px solid rgba(32, 44, 67, 0.16);
+    background:
+        radial-gradient(circle at 12% 10%, rgba(210, 170, 82, 0.12), transparent 24%),
+        radial-gradient(circle at 90% 16%, rgba(65, 105, 225, 0.12), transparent 28%),
+        linear-gradient(180deg, #fffaf2 0%, #fff2df 100%);
+    box-shadow:
+        0 24px 60px -34px rgba(30, 41, 59, 0.32),
+        inset 0 1px 0 rgba(255, 255, 255, 0.58);
+}
+
+.cc-arch-knowledge__toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.1rem 0.8rem;
+}
+
+.cc-arch-knowledge__title {
+    margin: 0;
+    font-size: 1.2rem;
+    font-family: Georgia, 'Times New Roman', serif;
+    color: #1f2a3d;
+}
+
+.cc-arch-knowledge__subtitle {
+    margin: 0.25rem 0 0;
+    color: #5f6679;
+    font-size: 0.96rem;
+}
+
+.cc-arch-knowledge__controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+}
+
+.cc-arch-knowledge__btn {
+    border: 1px solid rgba(83, 95, 122, 0.18);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.74);
+    color: #39465f;
+    padding: 0.55rem 0.9rem;
+    font: inherit;
+    font-size: 0.94rem;
+    cursor: pointer;
+    transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease, border-color 0.16s ease;
+}
+
+.cc-arch-knowledge__btn:hover {
+    transform: translateY(-1px);
+    border-color: rgba(68, 86, 136, 0.24);
+    box-shadow: 0 10px 22px -18px rgba(33, 45, 75, 0.45);
+}
+
+.cc-arch-knowledge__btn.is-active {
+    color: #fff9f0;
+    background: linear-gradient(135deg, #24324a, #38537f);
+    border-color: transparent;
+}
+
+.cc-arch-knowledge__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(260px, 0.62fr);
+    gap: 0;
+    min-height: 760px;
+}
+
+.cc-arch-knowledge__canvas {
+    position: relative;
+    min-height: 760px;
+    padding: 0.6rem 0.8rem 1rem 1rem;
+}
+
+.cc-arch-knowledge__svg {
+    display: block;
+    width: 100%;
+    height: 760px;
+    border-radius: 20px;
+    background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 32%),
+        linear-gradient(180deg, #101723 0%, #0f172a 100%);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        inset 0 -32px 42px -26px rgba(0, 0, 0, 0.55);
+}
+
+.cc-arch-knowledge__panel {
+    border-left: 1px solid rgba(59, 74, 104, 0.12);
+    padding: 1rem 1rem 1.05rem 0.9rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.08));
+}
+
+.cc-arch-knowledge__legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.cc-arch-knowledge__legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.42rem;
+    padding: 0.35rem 0.55rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.64);
+    color: #455065;
+    font-size: 0.86rem;
+}
+
+.cc-arch-knowledge__legend-dot {
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 0.25rem;
+    flex-shrink: 0;
+}
+
+.cc-arch-knowledge__detail {
+    padding: 1rem;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(76, 90, 120, 0.12);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.cc-arch-knowledge__eyebrow {
+    margin: 0 0 0.35rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #8b6a2f;
+}
+
+.cc-arch-knowledge__name {
+    margin: 0 0 0.45rem;
+    font-size: 1.28rem;
+    color: #1d2a41;
+}
+
+.cc-arch-knowledge__meta,
+.cc-arch-knowledge__desc,
+.cc-arch-knowledge__related {
+    margin: 0 0 0.75rem;
+    color: #516077;
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+.cc-arch-knowledge__related-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+}
+
+.cc-arch-knowledge__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.38rem;
+    padding: 0.38rem 0.55rem;
+    border-radius: 999px;
+    background: rgba(245, 247, 252, 0.96);
+    border: 1px solid rgba(86, 104, 141, 0.12);
+    color: #344156;
+    font-size: 0.84rem;
+}
+
+.cc-arch-knowledge__note {
+    margin-top: 1rem;
+    padding: 0.9rem 1rem 0;
+    border-top: 1px solid rgba(71, 85, 116, 0.12);
+    color: #58657a;
+    font-size: 0.92rem;
+    line-height: 1.7;
+}
+
+.cc-arch-knowledge__empty {
+    font-size: 0.92rem;
+    color: #657188;
+}
+
+.cc-arch-knowledge__link {
+    stroke-linecap: round;
+}
+
+.cc-arch-knowledge__link--contains {
+    stroke: rgba(255, 255, 255, 0.18);
+}
+
+.cc-arch-knowledge__link--cross {
+    stroke: rgba(244, 191, 117, 0.62);
+}
+
+.cc-arch-knowledge__node circle {
+    transition: transform 0.16s ease, filter 0.16s ease, opacity 0.16s ease;
+}
+
+.cc-arch-knowledge__node text {
+    fill: rgba(246, 244, 238, 0.96);
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    pointer-events: none;
+}
+
+.cc-arch-knowledge__node.is-dim circle,
+.cc-arch-knowledge__node.is-dim text,
+.cc-arch-knowledge__link.is-dim {
+    opacity: 0.18;
+}
+
+.cc-arch-knowledge__node.is-active circle {
+    filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.22));
+}
+
+@media (max-width: 1100px) {
+    .cc-arch-knowledge__layout {
+        grid-template-columns: 1fr;
+    }
+
+    .cc-arch-knowledge__panel {
+        border-left: 0;
+        border-top: 1px solid rgba(59, 74, 104, 0.12);
+    }
+}
+
+@media (max-width: 768px) {
+    .cc-arch-knowledge__toolbar {
+        padding: 0.9rem 0.9rem 0.7rem;
+    }
+
+    .cc-arch-knowledge__canvas {
+        min-height: 560px;
+        padding: 0.5rem 0.6rem 0.8rem;
+    }
+
+    .cc-arch-knowledge__svg {
+        height: 560px;
     }
 }
 .cc-arch-treemap__svg {
