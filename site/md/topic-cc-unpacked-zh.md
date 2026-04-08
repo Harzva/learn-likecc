@@ -48,8 +48,8 @@ ccunpacked.dev、DeepWiki、本站 Awesome 源码汇总链接。
 ## 阶段 C（部分）：01 节讲解型步进
 
 - **数据**：[`site/data/cc-loop-steps.json`](../data/cc-loop-steps.json)（11 步，中文；`meta.autoplay_base_ms`、`meta.loop_autoplay`）。CI：`python3 tools/check_cc_loop_steps.py`。
-- **脚本**：[`site/js/cc-loop-player.js`](../js/cc-loop-player.js) 读取 JSON，提供步骤条、示意终端、播放/倍速、←/→、Space（`focus-within` 于播放器内时）；末步再播放从头；`prefers-reduced-motion` 时拉长自动间隔并弱化动效。
-- **样式**：`site/css/style.css` 中 `.cc-loop-player*`（含倍速选中态）。
+- **脚本**：[`site/js/cc-loop-player.js`](../js/cc-loop-player.js) 读取 JSON，提供步骤条、示意终端、播放/倍速、←/→、Space（`focus-within` 于播放器内时）；末步再播放从头；自动翻步用 **倒计时进度条** + 按下播放后 **首帧较短间隔**（避免误以为无响应）；`prefers-reduced-motion` 时拉长自动间隔并弱化动效。
+- **样式**：`site/css/style.css` 中 `.cc-loop-player*`（含倍速选中态、播放中外发光与进度条）。
 - **说明**：预设讲解，**非**真实运行时事件流；与 ccunpacked.dev 的「脚本化步骤」同类。
 
 ## 实时事件流（实验，另立项）

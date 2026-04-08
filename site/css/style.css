@@ -6053,12 +6053,39 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 
 /* ─── CC 主循环步进播放器（topic-cc-unpacked-zh） ─── */
 .cc-loop-player {
+    --cc-loop-glow: rgba(99, 102, 241, 0.45);
     margin: 1.25rem 0 1.5rem;
     padding: 1rem 1.1rem 1.1rem;
     border-radius: var(--radius-lg);
     border: 1px solid var(--border);
-    background: var(--bg-card);
-    box-shadow: var(--shadow);
+    background:
+        linear-gradient(135deg, rgba(99, 102, 241, 0.06) 0%, transparent 42%, rgba(236, 72, 153, 0.05) 100%),
+        var(--bg-card);
+    box-shadow: var(--shadow), 0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.35s ease, border-color 0.35s ease;
+}
+.cc-loop-player--playing {
+    border-color: color-mix(in srgb, var(--primary) 35%, var(--border));
+    box-shadow:
+        var(--shadow),
+        0 0 32px -6px var(--cc-loop-glow),
+        0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+}
+.cc-loop-player--at-end .cc-loop-player__btn--primary {
+    animation: cc-loop-pulse-cta 1.6s ease-in-out infinite;
+}
+@keyframes cc-loop-pulse-cta {
+    0%,
+    100% {
+        filter: brightness(1);
+        box-shadow: 0 0 0 0 transparent;
+    }
+    50% {
+        filter: brightness(1.08);
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 35%, transparent);
+    }
 }
 .cc-loop-player__head {
     display: flex;
@@ -6084,7 +6111,36 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     display: flex;
     flex-wrap: wrap;
     gap: 0.35rem;
+    margin-bottom: 0.65rem;
+}
+.cc-loop-player__progress {
+    height: 4px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--bg-secondary) 88%, var(--border));
+    overflow: hidden;
     margin-bottom: 1rem;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset;
+}
+.cc-loop-player__progress-fill {
+    display: block;
+    height: 100%;
+    width: 0%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #6366f1, #a855f7, #ec4899);
+    background-size: 200% 100%;
+    animation: cc-loop-progress-hue 2.2s linear infinite;
+    box-shadow: 0 0 12px color-mix(in srgb, var(--primary) 55%, transparent);
+}
+.cc-loop-player--playing .cc-loop-player__progress-fill {
+    animation: cc-loop-progress-hue 1.4s linear infinite;
+}
+@keyframes cc-loop-progress-hue {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 200% 50%;
+    }
 }
 .cc-loop-player__dot {
     border: none;
@@ -6105,7 +6161,16 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     background: var(--gradient-1);
     color: #fff;
     border-color: transparent;
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow), 0 0 14px color-mix(in srgb, var(--primary) 40%, transparent);
+    transform: scale(1.04);
+}
+.cc-loop-player--playing .cc-loop-player__dot--active {
+    animation: cc-loop-tab-glow 1.8s ease-in-out infinite;
+}
+@keyframes cc-loop-tab-glow {
+    50% {
+        box-shadow: var(--shadow), 0 0 18px color-mix(in srgb, var(--primary) 55%, transparent);
+    }
 }
 .cc-loop-player__body {
     display: grid;
@@ -6123,12 +6188,20 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     line-height: 1.5;
     padding: 0.75rem 1rem;
     border-radius: var(--radius);
-    background: #1e293b;
+    background: linear-gradient(165deg, #1e293b 0%, #0f172a 100%);
     color: #e2e8f0;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     min-height: 5.5rem;
     white-space: pre-wrap;
     word-break: break-word;
+    transition: box-shadow 0.35s ease, border-color 0.35s ease;
+}
+.cc-loop-player--playing .cc-loop-player__terminal {
+    border-color: color-mix(in srgb, #818cf8 50%, rgba(255, 255, 255, 0.1));
+    box-shadow:
+        0 0 0 1px rgba(129, 140, 248, 0.15),
+        0 12px 40px -12px rgba(15, 23, 42, 0.9),
+        0 0 28px -8px rgba(99, 102, 241, 0.35);
 }
 [data-theme="warm"] .cc-loop-player__terminal {
     background: #0f172a;
@@ -6149,6 +6222,19 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     .cc-loop-player__dot,
     .cc-loop-player__btn {
         transition: none !important;
+    }
+    .cc-loop-player__progress-fill {
+        animation: none !important;
+        background: var(--primary);
+    }
+    .cc-loop-player--playing .cc-loop-player__terminal {
+        box-shadow: none;
+    }
+    .cc-loop-player--at-end .cc-loop-player__btn--primary {
+        animation: none !important;
+    }
+    .cc-loop-player--playing .cc-loop-player__dot--active {
+        animation: none !important;
     }
 }
 .cc-loop-player__card h3 {

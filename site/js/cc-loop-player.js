@@ -12,7 +12,8 @@
     var idx = 0
     var playing = false
     var speed = 1
-    var timer = null
+    var playTimeoutId = null
+    var progressRafId = null
     var reduceMotion =
         typeof window !== 'undefined' &&
         window.matchMedia &&
@@ -52,6 +53,8 @@
             '<span class="cc-loop-player__counter" aria-live="polite"></span>' +
             '</div>' +
             '<div class="cc-loop-player__strip" role="tablist" aria-label="主循环步骤"></div>' +
+            '<div class="cc-loop-player__progress" aria-hidden="true" title="下一帧倒计时">' +
+            '<span class="cc-loop-player__progress-fill"></span></div>' +
             '<div class="cc-loop-player__body">' +
             '<div class="cc-loop-player__terminal" aria-label="示意终端"></div>' +
             '<div class="cc-loop-player__card" aria-live="polite" aria-atomic="true"></div>' +
@@ -88,6 +91,7 @@
             b.setAttribute('aria-selected', i === idx ? 'true' : 'false')
             b.addEventListener('click', function () {
                 go(i)
+                if (playing) schedulePlayback(false)
             })
             strip.appendChild(b)
         })
@@ -98,6 +102,18 @@
 
         playBtn.textContent = playing ? '暂停' : '播放'
         playBtn.setAttribute('aria-pressed', playing ? 'true' : 'false')
+        var atEnd = idx >= steps.length - 1
+        playBtn.setAttribute(
+            'title',
+            playing
+                ? '暂停自动翻步'
+                : atEnd
+                  ? '从第 1 步重新播放'
+                  : '自动翻步（下方条为下一帧倒计时）'
+        )
+
+        root.classList.toggle('cc-loop-player--playing', playing)
+        root.classList.toggle('cc-loop-player--at-end', atEnd && !playing)
 
         root.querySelectorAll('[data-speed]').forEach(function (btn) {
             var v = parseFloat(btn.getAttribute('data-speed'))
@@ -106,11 +122,69 @@
         })
     }
 
-    function stopTimer() {
-        if (timer) {
-            clearInterval(timer)
-            timer = null
+    function clearPlaybackTimers() {
+        if (playTimeoutId) {
+            clearTimeout(playTimeoutId)
+            playTimeoutId = null
         }
+        if (progressRafId) {
+            cancelAnimationFrame(progressRafId)
+            progressRafId = null
+        }
+        var fill = root.querySelector('.cc-loop-player__progress-fill')
+        if (fill) fill.style.width = '0%'
+    }
+
+    function getStepMs() {
+        var ms = Math.max(800, meta.autoplay_base_ms / speed)
+        if (reduceMotion) ms = Math.round(ms * 1.75)
+        return ms
+    }
+
+    function setProgressAnimation(delayMs) {
+        if (progressRafId) {
+            cancelAnimationFrame(progressRafId)
+            progressRafId = null
+        }
+        var fill = root.querySelector('.cc-loop-player__progress-fill')
+        if (!fill || !delayMs) return
+        var start = typeof performance !== 'undefined' ? performance.now() : Date.now()
+        function frame(now) {
+            if (!playing) return
+            var t = typeof performance !== 'undefined' ? now : Date.now()
+            var p = Math.min(1, (t - start) / delayMs)
+            fill.style.width = p * 100 + '%'
+            if (p < 1) progressRafId = requestAnimationFrame(frame)
+        }
+        progressRafId = requestAnimationFrame(frame)
+    }
+
+    /**
+     * @param {boolean} quickKick — 刚按下「播放」时用较短首帧间隔，避免误以为无响应
+     */
+    function schedulePlayback(quickKick) {
+        if (!playing || !steps.length) return
+        clearPlaybackTimers()
+        var delay = quickKick ? Math.min(getStepMs(), 420) : getStepMs()
+        setProgressAnimation(delay)
+        playTimeoutId = setTimeout(function onStep() {
+            playTimeoutId = null
+            clearPlaybackTimers()
+            if (!playing) return
+
+            if (idx >= steps.length - 1) {
+                if (meta.loop_autoplay) {
+                    go(0)
+                    if (playing) schedulePlayback(false)
+                    return
+                }
+                playing = false
+                updateUI()
+                return
+            }
+            next(true)
+            if (playing) schedulePlayback(false)
+        }, delay)
     }
 
     function go(i) {
@@ -118,39 +192,22 @@
         updateUI()
     }
 
-    function next() {
+    /** @param {boolean} [fromAuto] 为 true 时不重排定时器（由 schedulePlayback 尾部统一接钟） */
+    function next(fromAuto) {
         go(idx + 1)
+        if (playing && !fromAuto) schedulePlayback(false)
     }
 
     function prev() {
         go(idx - 1)
-    }
-
-    function tickPlay() {
-        if (!playing || !steps.length) return
-        stopTimer()
-        var ms = Math.max(800, meta.autoplay_base_ms / speed)
-        if (reduceMotion) ms = Math.round(ms * 1.75)
-        timer = setInterval(function () {
-            if (idx >= steps.length - 1) {
-                if (meta.loop_autoplay) {
-                    go(0)
-                    return
-                }
-                playing = false
-                stopTimer()
-                updateUI()
-                return
-            }
-            next()
-        }, ms)
+        if (playing) schedulePlayback(false)
     }
 
     function setPlaying(p) {
         playing = p
         updateUI()
-        if (playing) tickPlay()
-        else stopTimer()
+        if (playing) schedulePlayback(true)
+        else clearPlaybackTimers()
     }
 
     function fail(msg) {
@@ -198,19 +255,26 @@
             root.querySelector('[data-act="next"]').addEventListener('click', function () {
                 next()
             })
-            root.querySelector('[data-act="play"]').addEventListener('click', function () {
+            root.querySelector('[data-act="play"]').addEventListener('click', function (e) {
+                e.stopPropagation()
                 if (playing) {
                     setPlaying(false)
                     return
                 }
                 if (idx >= steps.length - 1) go(0)
                 setPlaying(true)
+                try {
+                    root.focus({ preventScroll: true })
+                } catch (err) {
+                    root.focus()
+                }
             })
             root.querySelectorAll('[data-speed]').forEach(function (btn) {
-                btn.addEventListener('click', function () {
+                btn.addEventListener('click', function (e) {
+                    e.stopPropagation()
                     speed = parseFloat(btn.getAttribute('data-speed')) || 1
                     updateUI()
-                    if (playing) tickPlay()
+                    if (playing) schedulePlayback(false)
                 })
             })
 
