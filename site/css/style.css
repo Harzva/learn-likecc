@@ -6756,6 +6756,36 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     font-size: 0.84rem;
 }
 
+.cc-arch-knowledge__why-block {
+    margin-top: 0.9rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid rgba(87, 104, 138, 0.12);
+}
+
+.cc-arch-knowledge__why-title {
+    margin: 0 0 0.45rem;
+    color: #87621f;
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.cc-arch-knowledge__bullet-list {
+    margin: 0;
+    padding-left: 1.1rem;
+    color: #49586f;
+}
+
+.cc-arch-knowledge__bullet-item {
+    margin: 0 0 0.5rem;
+    line-height: 1.7;
+    font-size: 0.92rem;
+}
+
+.cc-arch-knowledge__bullet-item strong {
+    color: #24344f;
+}
+
 .cc-arch-knowledge__note {
     margin-top: 1rem;
     padding: 0.9rem 1rem 0;

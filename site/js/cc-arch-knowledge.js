@@ -175,7 +175,9 @@
 
             var related = (adjacency[node.id] || [])
                 .map(function (link) {
-                    var otherId = link.source === node.id ? link.target : link.source
+                    var srcId = typeof link.source === 'object' ? link.source.id : link.source
+                    var dstId = typeof link.target === 'object' ? link.target.id : link.target
+                    var otherId = srcId === node.id ? dstId : srcId
                     var other = allNodes[otherId]
                     return other
                         ? {
@@ -186,6 +188,22 @@
                         : null
                 })
                 .filter(Boolean)
+
+            var relatedExplained = related
+                .filter(function (item) {
+                    return item.note
+                })
+                .slice(0, 8)
+                .map(function (item) {
+                    return (
+                        '<li class="cc-arch-knowledge__bullet-item"><strong>' +
+                        esc(item.label) +
+                        '</strong>：' +
+                        esc(item.note) +
+                        '</li>'
+                    )
+                })
+                .join('')
 
             detailEl.innerHTML =
                 '<p class="cc-arch-knowledge__eyebrow">' +
@@ -206,6 +224,18 @@
                 '<p class="cc-arch-knowledge__desc">' +
                 esc(node.description || node.hint || '这是图谱中的一个结构节点。') +
                 '</p>' +
+                (node.analysis
+                    ? '<p class="cc-arch-knowledge__why-title">为什么重要</p>' +
+                      '<p class="cc-arch-knowledge__desc">' +
+                      esc(node.analysis) +
+                      '</p>'
+                    : '') +
+                (node.read_hint
+                    ? '<p class="cc-arch-knowledge__why-title">建议先看</p>' +
+                      '<p class="cc-arch-knowledge__desc">' +
+                      esc(node.read_hint) +
+                      '</p>'
+                    : '') +
                 '<p class="cc-arch-knowledge__related">相关节点：</p>' +
                 '<div class="cc-arch-knowledge__related-list">' +
                 (related.length
@@ -229,7 +259,15 @@
                           })
                           .join('')
                     : '<span class="cc-arch-knowledge__empty">当前模式下没有额外连接。</span>') +
-                '</div>'
+                '</div>' +
+                (relatedExplained
+                    ? '<div class="cc-arch-knowledge__why-block">' +
+                      '<p class="cc-arch-knowledge__why-title">为什么连到这些块</p>' +
+                      '<ul class="cc-arch-knowledge__bullet-list">' +
+                      relatedExplained +
+                      '</ul>' +
+                      '</div>'
+                    : '')
         }
 
         function draw() {
@@ -263,6 +301,8 @@
                     parent: node.parent,
                     size: node.size,
                     step_index: node.step_index,
+                    analysis: node.analysis || '',
+                    read_hint: node.read_hint || '',
                     hint: node.hint || '',
                     description: node.description || '',
                 }
