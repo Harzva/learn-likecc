@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>庖丁解牛专题 - Claude Code Course</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧩</text></svg>">
+    <meta name="description" content="庖丁解牛专题总页：把 CC 解构与 Superset 解构收在同一专题轴上，统一讨论“如何把东西拆开来看”。">
+    <meta name="page:updated" content="2026-04-09">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🧩</span>
+                <span class="logo-text">庖丁解牛专题</span>
+            </a>
+            <div class="nav-links">
+                <a href="#subs" class="nav-link">子专题</a>
+                <a href="#why" class="nav-link">为什么单列</a>
+                <a href="#path" class="nav-link">阅读顺序</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="index.html" class="btn-github">← 返回首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>🧩 专题总页</span>
+                <span>结构拆解 · 调度拆解</span>
+            </div>
+            <h1 class="hero-title">
+                庖丁解牛专题<br>
+                <span class="gradient-text">把系统拆开来看</span>
+            </h1>
+            <p class="hero-subtitle">
+                这里不再只看一个页面，而是把“拆解”本身升成一条专题轴。<br>
+                当前先收两条子线：<strong>CC 庖丁解牛</strong> 负责拆 Claude Code 自身结构；<strong>Superset 解构</strong> 负责把 <code>meta-agent</code> 这条能力线落到具体工程结构里。
+            </p>
+        </div>
+    </section>
+
+    <section id="subs" class="section" style="background: var(--bg-secondary); padding-top: 60px;">
+        <div class="container">
+            <h2 class="section-title">子专题入口</h2>
+            <div class="quickstart-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+                <a href="topic-cc-unpacked-zh.html" class="quickstart-card" style="text-decoration: none; color: inherit;">
+                    <h3>📦 CC 庖丁解牛</h3>
+                    <p>对照 <code>ccunpacked.dev</code> 的中文结构导览：主循环、目录、工具、命令与实验特性，一页串起 Claude Code 的静态结构地图。</p>
+                    <p><strong>进入 →</strong></p>
+                </a>
+                <a href="topic-superset-unpacked.html" class="quickstart-card" style="text-decoration: none; color: inherit;">
+                    <h3>🛰️ Superset 解构</h3>
+                    <p>用结构网页拆 Superset：从产品壳、pane/workspace、host-service、chat runtime 到 worktree/worker，具体看外层 agent 如何调 inner agent。</p>
+                    <p><strong>进入 →</strong></p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="why" class="section">
+        <div class="container">
+            <h2 class="section-title">为什么要把它升成专题</h2>
+            <p class="section-desc" style="max-width: 820px; margin: 0 auto 1rem;">
+                以前“CC 庖丁解牛”更像一个单页栏目，但现在我们已经不只是在拆 Claude Code 的内部结构，还开始拆 <strong>Superset / 外层调度壳层 / meta-agent</strong> 这些更高一层的东西。
+            </p>
+            <p class="section-desc" style="max-width: 820px; margin: 0 auto;">
+                所以“庖丁解牛”不该再只是 Claude Code 的别名，而应该升级成一个更宽的专题名。它关注的是：<strong>怎么把一个复杂系统拆开，看出它的层次、边界和真正的控制点。</strong>
+            </p>
+        </div>
+    </section>
+
+    <section id="path" class="section" style="background: var(--bg-secondary);">
+        <div class="container">
+            <h2 class="section-title">推荐阅读顺序</h2>
+            <div class="quickstart-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+                <div class="quickstart-card">
+                    <h3>1. 先看 CC</h3>
+                    <p>先建立 Claude Code 自己的结构心智：Loop、目录、工具、命令、实验开关。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>2. 再看 Superset 解构</h3>
+                    <p>再去看外层工作台怎样调 inner agent，这样更容易分清“主脑”和“worker”。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>3. 回到 Like Code</h3>
+                    <p>最后回到我们的工程，判断哪些该学，哪些不该照搬，哪些要做成 Claude Code 中心化能力。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-paoding-jieniu.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

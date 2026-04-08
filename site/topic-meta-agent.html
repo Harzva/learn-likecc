@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meta-Agent 专题 - Claude Code Course</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛰️</text></svg>">
+    <meta name="description" content="Meta-Agent 专题：以 Superset 为参考，拆解外层 agent 如何调度内层 agent，并推导 Like Code 如何以 Claude Code 为中心走出差异化。">
+    <meta name="page:updated" content="2026-04-09">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🛰️</span>
+                <span class="logo-text">Meta-Agent</span>
+            </a>
+            <div class="nav-links">
+                <a href="#meaning" class="nav-link">定义</a>
+                <a href="#superset" class="nav-link">Superset</a>
+                <a href="#likecode" class="nav-link">Like Code</a>
+                <a href="#baseline" class="nav-link">产品基线</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-paoding-jieniu.html" class="btn-github">庖丁解牛专题</a>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>🛰️ 子专题</span>
+                <span>外层 agent 调内层 agent</span>
+            </div>
+            <h1 class="hero-title">
+                Meta-Agent<br>
+                <span class="gradient-text">学会去 agent 一个 agent</span>
+            </h1>
+            <p class="hero-subtitle">
+                今天是 <strong>2026-04-09</strong>，我们先把这个能力正式命名为 <strong>meta-agent</strong>。<br>
+                它关心的不是“多开几个模型”，而是：<strong>外层 agent 如何理解任务、拆任务、调度 inner agent、再回收结果</strong>。
+            </p>
+        </div>
+    </section>
+
+    <section id="meaning" class="section" style="background: var(--bg-secondary); padding-top: 60px;">
+        <div class="container">
+            <h2 class="section-title">它到底是什么意思</h2>
+            <p class="section-desc" style="max-width: 860px; margin: 0 auto 1rem;">
+                这里的 `meta-agent` 不是更强一点的模型名字，而是一个结构概念：
+            </p>
+            <div class="quickstart-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+                <div class="quickstart-card">
+                    <h3>外层 agent</h3>
+                    <p>负责理解任务、拆任务、决定谁去做、什么时候回收结果。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>内层 agent</h3>
+                    <p>负责执行具体任务，可以是 Claude Code、Codex、Gemini CLI 等 worker。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>关键能力</h3>
+                    <p>真正难的不是多开窗口，而是让外层系统持续看见、控制、回收这些 inner agents。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="superset" class="section">
+        <div class="container">
+            <h2 class="section-title">Superset 是怎么做到的</h2>
+            <p class="section-desc" style="max-width: 860px; margin: 0 auto 1rem;">
+                从参考工程看，`Superset` 本质上不是单个 agent，而是一个 <strong>agent orchestration shell</strong>。它把这五层拼在一起：
+            </p>
+            <div class="quickstart-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+                <div class="quickstart-card"><h3>1. Workspace / Worktree</h3><p>给每个任务一个独立容器，解决隔离问题。</p></div>
+                <div class="quickstart-card"><h3>2. Terminal</h3><p>把 CLI agent 变成可拉起、可附着、可回放的运行体。</p></div>
+                <div class="quickstart-card"><h3>3. Chat</h3><p>不是普通聊天框，而是控制协议入口。</p></div>
+                <div class="quickstart-card"><h3>4. Panes / Tabs</h3><p>把 worker 变成可切换、可观察的工作位。</p></div>
+                <div class="quickstart-card"><h3>5. Host-Service</h3><p>真正的外层调度中枢，统一 runtime、事件、terminal、git、fs 状态。</p></div>
+            </div>
+            <p class="section-desc" style="max-width: 860px; margin: 1.25rem auto 0;">
+                所以 `Superset` 不是“多终端工具”，而是“系统替你管理多个 inner agents”。这就是它的 meta-agent 味道。
+            </p>
+        </div>
+    </section>
+
+    <section id="likecode" class="section" style="background: var(--bg-secondary);">
+        <div class="container">
+            <h2 class="section-title">Like Code 应该怎么学它</h2>
+            <p class="section-desc" style="max-width: 860px; margin: 0 auto 1rem;">
+                我们不应该照着 `Superset` 再造一个外部总控台。真正要拿走的是：
+            </p>
+            <div class="quickstart-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+                <div class="quickstart-card">
+                    <h3>worker runtime</h3>
+                    <p>把外部 CLI agent 抽象成可调用 worker，而不是一堆散乱终端。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>统一状态流</h3>
+                    <p>pane、subagent、repo/worktree、prompt、progress、result 都要能串起来。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>Claude Code 为中心</h3>
+                    <p>不是外面再造一个中心，而是让 Claude Code / Like Code 自己学会调度别的 agent。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="baseline" class="section">
+        <div class="container">
+            <h2 class="section-title">把什么做到基线，才算产品</h2>
+            <p class="section-desc" style="max-width: 860px; margin: 0 auto 1rem;">
+                这条线上，产品基线不该是“支持很多 agent”这种口号，而应该是这几件事：
+            </p>
+            <div class="quickstart-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+                <div class="quickstart-card"><h3>可拉起</h3><p>在主线程里一键拉起外部 worker。</p></div>
+                <div class="quickstart-card"><h3>可看见</h3><p>知道它在哪个 pane、哪个 repo/worktree、当前状态如何。</p></div>
+                <div class="quickstart-card"><h3>可控制</h3><p>支持中断、重试、继续、回收结果。</p></div>
+                <div class="quickstart-card"><h3>可回灌</h3><p>结果能重新并回主线程 transcript，而不是散落在外部终端。</p></div>
+            </div>
+            <p class="section-desc" style="max-width: 860px; margin: 1.25rem auto 0;">
+                一句话收尾：<strong>Superset 教我们“如何在外层调度 agent”；Like Code 要做的是“如何让 Claude Code 自己学会调度 agent”。</strong>
+            </p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-meta-agent.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

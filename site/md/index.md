@@ -17,7 +17,9 @@
   - Source Map 源码专题
   - 大模型专题
   - 站点推荐（`topic-websites`）
-  - CC 庖丁解牛（`topic-cc-unpacked-zh`）
+  - 庖丁解牛专题（`topic-paoding-jieniu`）
+  - CC 庖丁解牛（`topic-cc-unpacked-zh`，现为子专题）
+  - Superset 解构（`topic-superset-unpacked`，承载 `meta-agent` 思想）
   - Claude Code 教程
   - 完全手册
   - 面试题库
@@ -67,9 +69,9 @@
 
 指向以 Source Map 与重建源码为主线的专题页，承接上方事件背景。
 
-#### CC 庖丁解牛
+#### 庖丁解牛专题
 
-`topic-cc-unpacked-zh.html`：用中文结构地图与说明对照官方包结构（思路参考 ccunpacked.dev），含概览数据、Loop 相关入口与工具系统分组，适合与 24 讲并排使用。
+`topic-paoding-jieniu.html`：新的总页，先把“庖丁解牛”升级成专题，再把具体拆解分成子页。目前先收两条线：`topic-cc-unpacked-zh.html` 的 **CC 庖丁解牛**，以及 `topic-superset-unpacked.html` 的 **Superset 解构**。后者继续承载 `meta-agent` 这条结构理解线。
 
 #### Claude Code 教程 / 完全手册 / 面试题库
 
@@ -85,7 +87,7 @@
 
 #### 站点推荐
 
-这页改成更纯粹的“站点推荐”：收教程入口、个人主页和优质 GitHub 仓库，主推荐为 `karpathy.ai`；适合当长期书签页，而不是资讯流。
+这页改成更纯粹的“站点推荐”：收 repo 阅读入口、个人主页和优质 GitHub 仓库；当前主推荐补充 `zread.ai` 与 `karpathy.ai`，适合当长期书签页，而不是资讯流。
 
 ### 🛤️ 学习路径
 

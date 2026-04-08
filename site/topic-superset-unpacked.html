@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Superset 解构 - 庖丁解牛专题</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛰️</text></svg>">
+    <meta name="description" content="庖丁解牛专题子页：拆解 Superset 如何通过产品壳、panes、host-service、chat runtime 与 worktree/terminal 形成 meta-agent 外层调度能力。">
+    <meta name="page:updated" content="2026-04-09">
+</head>
+<body class="cc-unpacked-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🛰️</span>
+                <span class="logo-text">Superset 解构</span>
+            </a>
+            <div class="nav-links">
+                <a href="#attribution" class="nav-link">说明</a>
+                <a href="#shell" class="nav-link">01 产品壳</a>
+                <a href="#panes" class="nav-link">02 Pane</a>
+                <a href="#host-service" class="nav-link">03 Host-Service</a>
+                <a href="#chat-runtime" class="nav-link">04 Chat</a>
+                <a href="#worker" class="nav-link">05 调度能力</a>
+                <a href="#likecode" class="nav-link">06 Like Code</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-paoding-jieniu.html" class="btn-github">庖丁解牛专题</a>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>庖丁解牛专题 · 子专题</span>
+                <span>Superset / Meta-Agent 结构图</span>
+            </div>
+            <h1 class="hero-title">
+                Superset<br>
+                <span class="gradient-text">解构</span>
+            </h1>
+            <p class="hero-subtitle">
+                这页不是单纯介绍一个产品，而是把 <code>reference/reference_agent/reference_control-agent-cli/superset</code><br>
+                拆成 <strong>产品壳、pane/workspace 引擎、host-service、chat runtime、worker/worktree</strong> 五层，回答一个更核心的问题：<strong>外层 agent 是怎样去调度内层 agent 的</strong>。
+            </p>
+            <div class="hero-stats" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin-top: 1.25rem;">
+                <div class="stat-item"><span class="stat-value">9</span><span class="stat-label">apps 目录</span></div>
+                <div class="stat-item"><span class="stat-value">17</span><span class="stat-label">packages</span></div>
+                <div class="stat-item"><span class="stat-value">94</span><span class="stat-label">host-service 文件</span></div>
+                <div class="stat-item"><span class="stat-value">5</span><span class="stat-label">解构层次</span></div>
+            </div>
+            <div class="hero-actions">
+                <a href="#shell" class="btn btn-primary">从 01 产品壳开始</a>
+                <a href="topic-cc-unpacked-zh.html" class="btn btn-secondary">先看 CC 解构</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="course-main devlog-main">
+        <div class="container container--layout-wide">
+            <article class="course-content devlog-content">
+
+                <section id="attribution" class="section-block">
+                    <h2>参考来源与版本锚定</h2>
+                    <div class="course-quote">
+                        <p><strong>本页正文由本站独立撰写</strong>，目标是把 <code>Superset</code> 从“一个多 agent 产品”拆成一张适合 Like Code 团队阅读的结构地图。</p>
+                        <p><strong>本地参考源</strong>：<code>reference/reference_agent/reference_control-agent-cli/superset</code>；核心锚点包括 <code>README.md</code>、<code>packages/panes/README.md</code>、<code>packages/host-service/src/app.ts</code>、<code>packages/host-service/src/runtime/chat/chat.ts</code> 与 <code>plans/chat-mastra-rebuild-execplan.md</code>。</p>
+                        <p><strong>整理日期</strong>：2026-04-09。若后续参考仓库发生较大演进，请优先重读上面这些锚点，再回看这页归纳。</p>
+                    </div>
+                </section>
+
+                <section id="shell" class="section-block">
+                    <h2>01 · 外层产品壳</h2>
+                    <p><code>Superset</code> 的第一眼就已经说明问题了: 它不是一个 CLI，而是一个完整工作台。顶层同时有 <code>apps/desktop</code>、<code>apps/web</code>、<code>apps/api</code>，旁边还挂着 marketing、docs、streams、mobile 等配套应用。</p>
+                    <p>这意味着它的目标从一开始就不是“把某个 agent 做强”，而是“把很多 CLI agent 收进同一个控制面里”。所以我们读它时，第一层心智模型应该是 <strong>工作台壳</strong>，不是聊天框。</p>
+                    <table class="options-table">
+                        <tr><th>层</th><th>关键目录</th><th>作用</th></tr>
+                        <tr><td>桌面壳</td><td><code>apps/desktop</code></td><td>把 workspace、pane、terminal、diff/review 装进一个桌面容器里</td></tr>
+                        <tr><td>浏览器 / 服务</td><td><code>apps/web</code>、<code>apps/api</code></td><td>把同一套工作流延伸到 Web 与服务接口</td></tr>
+                        <tr><td>配套产品面</td><td><code>apps/docs</code>、<code>apps/marketing</code>、<code>apps/streams</code></td><td>说明这是完整产品体系，不是单个 demo</td></tr>
+                    </table>
+                </section>
+
+                <section id="panes" class="section-block">
+                    <h2>02 · Pane / Workspace 引擎</h2>
+                    <p><code>packages/panes</code> 是 Superset 很关键的一层。它把布局能力单独抽成一个无头引擎，核心概念直接就是 <code>Workspace</code>、<code>Tab</code>、<code>Pane</code> 与 split layout tree。</p>
+                    <p>这层的价值不是“界面好看”，而是先把 <strong>工作位</strong> 抽象清楚: 任务在什么 tab，运行在哪个 pane，布局怎么切分，数据和布局如何分离。没有这层，后面的多 agent 调度很容易退化成一堆终端窗口。</p>
+                    <table class="options-table">
+                        <tr><th>概念</th><th>在 Superset 中的含义</th><th>对 meta-agent 的价值</th></tr>
+                        <tr><td><code>Workspace</code></td><td>最上层容器，管理多个 tab</td><td>给“外层 agent 正在管理什么”一个总视图</td></tr>
+                        <tr><td><code>Tab</code></td><td>命名上下文，内部再分 pane</td><td>把任务切换从“换 app”变成“换工位”</td></tr>
+                        <tr><td><code>Pane</code></td><td>真正承载 terminal/chat/browser 等叶子单元</td><td>让每个 worker 有稳定可见的落点</td></tr>
+                        <tr><td>Layout tree</td><td>纯结构树，只描述 split 与权重</td><td>把布局问题和业务状态拆开，方便扩展</td></tr>
+                    </table>
+                </section>
+
+                <section id="host-service" class="section-block">
+                    <h2>03 · Host-Service 调度中枢</h2>
+                    <p>真正像“外层大脑”的，不是桌面 UI，而是 <code>packages/host-service</code>。从 <code>src/app.ts</code> 看，<code>createApp()</code> 一次性接上了数据库、git、workspace filesystem、chat runtime、pull request runtime、event bus、terminal websocket route 和 tRPC router。</p>
+                    <p>也就是说，Superset 真正的 orchestration kernel 是这层服务，而不是 React 组件。前端看到的 pane、terminal、changes、chat，本质上都只是这层 runtime 的可视化窗口。</p>
+                    <table class="options-table">
+                        <tr><th>子系统</th><th>关键文件</th><th>职责</th></tr>
+                        <tr><td>App Wiring</td><td><code>packages/host-service/src/app.ts</code></td><td>把 db、git、filesystem、chat、terminal、router 统一组装起来</td></tr>
+                        <tr><td>Event Bus</td><td><code>packages/host-service/src/events/event-bus.ts</code></td><td>把文件系统 / 工作区变化统一广播给前端</td></tr>
+                        <tr><td>Terminal Route</td><td><code>packages/host-service/src/terminal/terminal.ts</code></td><td>通过 PTY + WebSocket 管理终端会话的附着与重连</td></tr>
+                        <tr><td>Workspace FS</td><td><code>packages/host-service/src/runtime/filesystem</code></td><td>统一工作区文件与路径相关运行时</td></tr>
+                        <tr><td>Control API</td><td><code>packages/host-service/src/trpc/router</code></td><td>把控制面能力暴露给桌面 / Web 前端</td></tr>
+                    </table>
+                </section>
+
+                <section id="chat-runtime" class="section-block">
+                    <h2>04 · Chat Runtime 不是普通聊天框</h2>
+                    <p>在 Superset 里，chat 不是一个“发消息的 UI 小组件”，而是一条独立 runtime stack。<code>ChatRuntimeManager</code> 直接围绕 <code>createMastraCode()</code> 的 harness 工作，负责 session 建立、<code>sendMessage</code>、审批、问题响应、plan approval 等控制动作。</p>
+                    <p>这点很关键，因为它说明 Superset 的 chat 实际上承担了 <strong>控制协议入口</strong> 的角色: terminal 负责执行，chat 负责下达、继续、批准与反馈，host-service 负责把这些状态和动作串成一个系统。</p>
+                    <table class="options-table">
+                        <tr><th>能力</th><th>体现位置</th><th>说明</th></tr>
+                        <tr><td>Session Runtime</td><td><code>ChatRuntimeManager</code></td><td>维护一个 workspace/session 对应的 agent 运行时</td></tr>
+                        <tr><td>控制动作</td><td><code>sendMessage</code>、approval、question、plan</td><td>不只是聊天，而是继续控制内层执行体</td></tr>
+                        <tr><td>错误与显示状态</td><td><code>ChatDisplayState</code></td><td>把 pending question、error、display state 暴露给前端</td></tr>
+                        <tr><td>与工作区绑定</td><td><code>workspaceId</code>、<code>cwd</code></td><td>chat 从一开始就不是悬空的，而是绑定执行环境</td></tr>
+                    </table>
+                </section>
+
+                <section id="worker" class="section-block">
+                    <h2>05 · Superset 如何拼出 Meta-Agent</h2>
+                    <p>如果把“meta-agent”理解成 <strong>外层 agent 去调用内层 agent</strong> 的能力，那 Superset 并不是靠某个神奇模型实现的，而是靠下面这五步结构叠出来的。</p>
+                    <table class="options-table">
+                        <tr><th>步骤</th><th>工程落点</th><th>结果</th></tr>
+                        <tr><td>把 inner agent 变成可运行对象</td><td>terminal / PTY runtime</td><td>只要能在终端里跑，就能被系统纳入</td></tr>
+                        <tr><td>给每个 agent 一个独立工位</td><td>workspace + worktree + pane</td><td>任务隔离，不互相污染</td></tr>
+                        <tr><td>让外层统一看见状态</td><td>event bus + display state + filesystem/git runtime</td><td>知道谁在跑、谁卡住、谁已完成</td></tr>
+                        <tr><td>让外层统一控制</td><td>chat runtime + tRPC</td><td>可以发送、批准、中断、继续 plan</td></tr>
+                        <tr><td>把结果收回工作台</td><td>diff/review/editor handoff</td><td>结果不散落在黑框里，而是回到统一产品流里</td></tr>
+                    </table>
+                    <p class="section-desc" style="margin-top: 0.8rem;">所以它的本质不是“多开几个终端”，而是“系统替你管理很多 inner agents”。这就是它的 meta-agent 味道。</p>
+                </section>
+
+                <section id="likecode" class="section-block">
+                    <h2>06 · 对 Like Code 的启发</h2>
+                    <p>我们最该学的，不是照着再做一个 Superset 外壳，而是把其中最值钱的结构拿出来，内生到 <code>Claude Code / Like Code</code> 自己体内。</p>
+                    <div class="course-quote">
+                        <p><strong>第一</strong>，不要把“终端”当成智能体本体。终端只是观察窗，真正该抽象的是 <strong>worker runtime</strong>。</p>
+                        <p><strong>第二</strong>，Claude Code 要继续扮演主脑。外部 CLI agent 更像 worker，由主线程负责规划、分发、回收与汇总。</p>
+                        <p><strong>第三</strong>，产品基线不是口号，而是四个动作: <strong>可拉起、可看见、可控制、可回灌</strong>。做到这四件事，才算真正把“调度 agent”做成产品。</p>
+                    </div>
+                    <p>一句话收尾: <strong>Superset 教我们“外层工作台如何调度 agent”；Like Code 要做的是“让 Claude Code 自己学会调度 agent”。</strong></p>
+                </section>
+
+                <section class="section-block">
+                    <h2>延伸阅读</h2>
+                    <p>
+                        <a href="topic-cc-unpacked-zh.html">CC 庖丁解牛</a>
+                        &nbsp;·&nbsp;
+                        <a href="topic-paoding-jieniu.html">庖丁解牛专题总页</a>
+                        &nbsp;·&nbsp;
+                        <a href="topic-agent.html">Agent 大专题</a>
+                        &nbsp;·&nbsp;
+                        <a href="https://github.com/superset-sh/superset" target="_blank" rel="noopener noreferrer">Superset 上游仓库</a>
+                    </p>
+                </section>
+
+                <div class="chapter-navigation">
+                    <a href="topic-paoding-jieniu.html" class="btn btn-secondary">← 庖丁解牛专题</a>
+                    <a href="topic-agent.html" class="btn btn-primary">去 Agent 大专题 →</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container container--layout-wide">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-superset-unpacked.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

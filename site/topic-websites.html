@@ -6,7 +6,7 @@
     <title>站点推荐 · 教程、个人主页与 GitHub 仓库 - Claude Code Course</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>">
-    <meta name="description" content="收一些值得长期打开的站点：教程入口、个人主页，以及能反复回看的 GitHub 仓库。主推荐为 karpathy.ai。">
+    <meta name="description" content="收一些值得长期打开的站点：教程入口、个人主页，以及能反复回看的 GitHub 仓库。主推荐补充 zread.ai 与 karpathy.ai。">
 </head>
 <body>
     <nav class="navbar">
@@ -17,6 +17,7 @@
             </a>
             <div class="nav-links">
                 <a href="#intro" class="nav-link">导语</a>
+                <a href="#zread" class="nav-link">Zread</a>
                 <a href="#llm-wiki" class="nav-link">LLM Wiki</a>
                 <a href="#tutorials" class="nav-link">教程</a>
                 <a href="#homepages" class="nav-link">主页</a>
@@ -39,14 +40,14 @@
             </div>
             <h1 class="hero-title">
                 站点推荐<br>
-                <span class="gradient-text">从 karpathy.ai 出发</span>
+                <span class="gradient-text">把 repo 读成课程</span>
             </h1>
             <p class="hero-subtitle">
-                这页只做一件事：收一些值得长期打开的站点入口。不是热点流，不是资讯堆砌，而是那种你隔一阵子还会回来再看一次的页面。主推荐先放 <strong>karpathy.ai</strong>，再顺手补几类我觉得真的有用的教程、个人主页和 GitHub 仓库。
+                这页只做一件事：收一些值得长期打开的站点入口。不是热点流，不是资讯堆砌，而是那种你隔一阵子还会回来再看一次的页面。现在把 <strong>zread.ai</strong> 放进主推荐位，它适合当 repo 阅读与理解入口；<strong>karpathy.ai</strong> 继续保留为长期知识主页范本。
             </p>
             <div class="hero-actions">
-                <a href="https://karpathy.ai/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">打开 karpathy.ai ↗</a>
-                <a href="#repos" class="btn btn-secondary">看 GitHub 推荐</a>
+                <a href="https://zread.ai/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">打开 zread.ai ↗</a>
+                <a href="#zread" class="btn btn-secondary">看差异分析</a>
             </div>
         </div>
     </section>
@@ -57,12 +58,74 @@
                 <section id="intro" class="section-block">
                     <div class="course-quote">
                         <p><strong>这页更像一张长期书签页。</strong> 有些资源不是“看完一次就结束”，而是会在学习、搭知识库、做 Agent、补模型理解的时候反复回来打开。这样的东西，值得单独留一个入口。</p>
-                        <p><a href="https://karpathy.ai/" target="_blank" rel="noopener noreferrer">karpathy.ai</a> 是这页的起点：它把课程、视频、博客、项目、GitHub 和个人轨迹都收得很稳，很适合作为一个总入口，也很适合拿来提醒自己，个人站点完全可以做成长期知识主界面。</p>
+                        <p><a href="https://zread.ai/" target="_blank" rel="noopener noreferrer">zread.ai</a> 适合放在“代码仓库理解入口”这一格：Discover、Trending、Private Repo、MCP Server、CLI for Local Repos 这些入口摆得很清楚，说明它想解决的不是单篇教程阅读，而是“把 repo 变成可读、可问、可持续追踪的知识对象”。</p>
+                        <p><a href="https://karpathy.ai/" target="_blank" rel="noopener noreferrer">karpathy.ai</a> 则是另一种长期入口：它把课程、视频、博客、项目、GitHub 和个人轨迹都收得很稳，很适合作为一个总入口，也很适合拿来提醒自己，个人站点完全可以做成长期知识主界面。</p>
                     </div>
                 </section>
 
+                <section id="zread" class="section-block">
+                    <h2>1. Zread.ai：为什么该放进这页</h2>
+                    <p>如果说很多“推荐站点”更像内容聚合页，那么 <strong>Zread.ai</strong> 更像一个专门为代码仓库阅读设计的入口。首页直接给出 <strong>Discover Repos</strong>、<strong>Trending Repos</strong>、<strong>Your Private Repos</strong>、<strong>Zread MCP Server</strong> 和 <strong>Zread CLI for Local Repos</strong>，这已经把它的产品方向说得很直白了：它不是让你只看 README，而是帮你把 repo 本身变成可探索对象。</p>
+                    <p>放到我们站内语境里，它很适合作为“看别人仓库”这一步的外部入口，尤其适合做前置侦察：先看趋势仓库、先理解结构、先把问题问出来，再决定要不要把其中一个仓库进一步课程化。</p>
+
+                    <div class="quickstart-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 1.5rem;">
+                        <div class="quickstart-card">
+                            <h3>Discover / Trending</h3>
+                            <p>适合找新仓库与热门仓库。更偏“发现”和“快速扫一眼哪些项目值得深入”。</p>
+                        </div>
+                        <div class="quickstart-card">
+                            <h3>Private Repos</h3>
+                            <p>说明它不只做公开榜单，也在往团队或个人私有仓阅读场景走，产品边界更接近工作流工具。</p>
+                        </div>
+                        <div class="quickstart-card">
+                            <h3>MCP / CLI</h3>
+                            <p>这点最关键：它不只是一张网页，还在尝试把 repo 理解能力接进本地工作台与 Agent 工具链。</p>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top: 1.75rem;">它和我们的 <code>projects/rep2course</code> 有什么差异</h3>
+                    <p>截至 <strong>2026-04-09</strong>，两者看起来都围绕“理解代码仓库”展开，但目标并不一样。Zread 更像<strong>阅读入口产品</strong>；<code>rep2course</code> 更像<strong>课程生产流水线</strong>。</p>
+
+                    <div class="table-wrap" style="margin-top: 1rem;">
+                        <table class="data-table">
+                            <thead>
+                                <tr><th>维度</th><th>Zread.ai</th><th><code>projects/rep2course</code></th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>核心定位</td>
+                                    <td>把 repo 变成可读、可问、可发现的外部站点入口。</td>
+                                    <td>把 GitHub 仓库自动转成 Markdown 课程、面试题与后续资产。</td>
+                                </tr>
+                                <tr>
+                                    <td>主要输入</td>
+                                    <td>公开仓、私有仓，以及通过 CLI 接入的本地仓。</td>
+                                    <td><code>--repo_url</code> 形式的 GitHub 仓库地址，先扫描再进课程生成管线。</td>
+                                </tr>
+                                <tr>
+                                    <td>主要输出</td>
+                                    <td>阅读页、趋势入口、仓库理解与交互式探索体验。</td>
+                                    <td>带时间戳命名的课程 Markdown、Interview Q&amp;A、日志与产物目录。</td>
+                                </tr>
+                                <tr>
+                                    <td>使用时机</td>
+                                    <td>适合前置调研、快速筛选、辅助阅读别人仓库。</td>
+                                    <td>适合选定目标仓后，进一步做课程化沉淀和内容生产。</td>
+                                </tr>
+                                <tr>
+                                    <td>更像什么</td>
+                                    <td>“Repo Reader / Repo Search / Repo Knowledge UI”。</td>
+                                    <td>“Repo-to-Course Content Pipeline”。</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p style="margin-top: 1.25rem;">如果要把两者放进一条工作流，我会建议这样理解：<strong>Zread 负责发现和读懂，rep2course 负责提炼和产出</strong>。前者像侦察兵，后者像课程工厂。它们不是完全重叠，反而很互补。</p>
+                </section>
+
                 <section id="llm-wiki" class="section-block">
-                    <h2>1. Karpathy 的 LLM Wiki 指南，为什么值得单独记一下</h2>
+                    <h2>2. Karpathy 的 LLM Wiki 指南，为什么值得单独记一下</h2>
                     <p>这篇内容之所以值得放进“站点推荐”，不是因为它又提出了一个新名词，而是因为它把很多人已经隐约感觉到、却一直说不清楚的问题讲透了：<strong>为什么你用大模型处理过的知识，总是留不下来？</strong></p>
                     <p>大多数人今天处理文档，还是 RAG 心智。文件丢进去，问的时候临时检索、临时拼答案，能用，但知识没有沉淀。Karpathy 的思路刚好反过来：<strong>别让模型每次临时翻书，让它替你维护一套持续更新的 wiki</strong>。每加一份新资料，LLM 不是简单存档，而是会读、会提取要点、会更新已有页面、会补交叉引用、会标记矛盾，让知识像代码库一样被持续编译。</p>
 
@@ -107,11 +170,11 @@
                     </div>
 
                     <p style="margin-top: 1.25rem;">这篇指南里还有一个很重要的操作心智：<strong>摄入、查询、检查</strong>。摄入新资料时更新 wiki；查询时优先查 wiki，而不是每次回原文翻箱倒柜；定期做 lint，检查矛盾、孤儿页、缺失链接和过时结论。这个思路特别像在维护代码库，只不过这里维护的是知识。</p>
-                    <p>你贴过来的中文整理里，我觉得最值的一句其实是这个意思：<strong>知识要先被“编译”一次，才会开始复利增长</strong>。这也是为什么它很适合和 `karpathy.ai` 这种个人主页放在一起看，因为两者都在强调一件事：长期资产要被组织、被沉淀，而不是散在聊天记录和临时对话里。</p>
+                    <p>你贴过来的中文整理里，我觉得最值的一句其实是这个意思：<strong>知识要先被“编译”一次，才会开始复利增长</strong>。这也是为什么它很适合和 <code>karpathy.ai</code> 这种个人主页放在一起看，因为两者都在强调一件事：长期资产要被组织、被沉淀，而不是散在聊天记录和临时对话里。</p>
                 </section>
 
                 <section id="tutorials" class="section-block">
-                    <h2>2. 教程入口</h2>
+                    <h2>3. 教程入口</h2>
                     <div class="toolchain-card-grid">
                         <section class="toolchain-topic-card">
                             <div class="toolchain-topic-card__meta">Tutorial</div>
@@ -144,7 +207,7 @@
                 </section>
 
                 <section id="homepages" class="section-block">
-                    <h2>3. 个人主页</h2>
+                    <h2>4. 个人主页</h2>
                     <div class="quickstart-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
                         <div class="quickstart-card">
                             <h3>karpathy.ai</h3>
@@ -164,7 +227,7 @@
                 </section>
 
                 <section id="repos" class="section-block">
-                    <h2>4. 值得反复回看的 GitHub 仓库</h2>
+                    <h2>5. 值得反复回看的 GitHub 仓库</h2>
                     <div class="table-wrap">
                         <table class="data-table">
                             <thead>
@@ -197,7 +260,7 @@
                 </section>
 
                 <section id="related" class="section-block">
-                    <h2>5. 和站内内容怎么搭着看</h2>
+                    <h2>6. 和站内内容怎么搭着看</h2>
                     <ul>
                         <li><a href="topic-llm.html">大模型专题</a>：适合接着补模型骨架和结构图谱。</li>
                         <li><a href="tutorial.html">Claude Code 教程</a>：适合从外部知识入口切回具体工具实践。</li>
@@ -213,7 +276,7 @@
         <div class="container">
             <div class="md-source-dual" role="note">
                 <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-websites.md" target="_blank" rel="noopener noreferrer">📝 Markdown 源（GitHub）</a></p>
-                <p class="md-source-hint">主推荐：<a href="https://karpathy.ai/" target="_blank" rel="noopener noreferrer">karpathy.ai</a> · 互补阅读：<a href="topic-llm.html">大模型专题</a> · <a href="topic-toolchain.html">工具链专题</a></p>
+                <p class="md-source-hint">主推荐：<a href="https://zread.ai/" target="_blank" rel="noopener noreferrer">zread.ai</a> · <a href="https://karpathy.ai/" target="_blank" rel="noopener noreferrer">karpathy.ai</a> · 互补阅读：<a href="topic-llm.html">大模型专题</a> · <a href="topic-toolchain.html">工具链专题</a></p>
             </div>
             <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
         </div>

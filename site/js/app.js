@@ -490,7 +490,12 @@ function initSiteSidebar() {
         '<a class="site-sidebar__link site-sidebar__link--sub" href="oh12.html"><span class="site-sidebar__ico">🌿</span><span class="site-sidebar__txt">OH12 · Git</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="https://github.com/HKUDS/OpenHarness" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">🔗</span><span class="site-sidebar__txt">上游仓库 ↗</span></a>' +
         '</details>' +
-        '<a class="site-sidebar__link" href="topic-cc-unpacked-zh.html"><span class="site-sidebar__txt">CC 庖丁解牛</span></a>' +
+        '<details class="site-sidebar__details" data-sidebar-key="paoding-jieniu">' +
+        '<summary class="site-sidebar__summary"><span class="site-sidebar__txt">庖丁解牛专题</span></summary>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-paoding-jieniu.html"><span class="site-sidebar__ico">📌</span><span class="site-sidebar__txt">专题首页</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-cc-unpacked-zh.html"><span class="site-sidebar__ico">📦</span><span class="site-sidebar__txt">CC 庖丁解牛</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-superset-unpacked.html"><span class="site-sidebar__ico">🛰️</span><span class="site-sidebar__txt">Superset 解构</span></a>' +
+        '</details>' +
         '<details class="site-sidebar__details" data-sidebar-key="toolchain">' +
         '<summary class="site-sidebar__summary"><span class="site-sidebar__txt">工具链专题</span></summary>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-toolchain.html"><span class="site-sidebar__ico">📌</span><span class="site-sidebar__txt">专题首页</span></a>' +
@@ -630,6 +635,65 @@ function initSiteViewCounter() {
         imgSrc +
         '" alt="本站累计访问次数" height="20" loading="lazy" decoding="async">' +
         '</a>'
+
+    const mainBottom = document.querySelector('footer.footer-main .footer-bottom-main')
+    if (mainBottom) {
+        mainBottom.appendChild(wrap)
+        return
+    }
+
+    const innerBottom = document.querySelector('footer.footer .footer-bottom')
+    if (innerBottom) {
+        innerBottom.appendChild(wrap)
+        return
+    }
+
+    const simpleContainer = document.querySelector('footer.footer .container')
+    if (simpleContainer) {
+        simpleContainer.appendChild(wrap)
+    }
+}
+
+function normalizeFooterDate(value) {
+    const raw = String(value || '').trim()
+    if (!raw) return ''
+
+    if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) {
+        return raw
+    }
+
+    const parsed = new Date(raw)
+    if (Number.isNaN(parsed.getTime())) return ''
+
+    const year = parsed.getFullYear()
+    const month = String(parsed.getMonth() + 1).padStart(2, '0')
+    const day = String(parsed.getDate()).padStart(2, '0')
+    return `${year}-${month}-${day}`
+}
+
+function getPageUpdatedDate() {
+    const explicitDate =
+        document.documentElement.getAttribute('data-page-updated') ||
+        document.body?.getAttribute('data-page-updated') ||
+        document.querySelector('meta[name="page:updated"]')?.getAttribute('content') ||
+        ''
+
+    const normalizedExplicitDate = normalizeFooterDate(explicitDate)
+    if (normalizedExplicitDate) return normalizedExplicitDate
+
+    return normalizeFooterDate(document.lastModified)
+}
+
+function initFooterUpdatedDate() {
+    if (document.getElementById('footer-updated-wrap')) return
+
+    const updatedDate = getPageUpdatedDate()
+    if (!updatedDate) return
+
+    const wrap = document.createElement('p')
+    wrap.id = 'footer-updated-wrap'
+    wrap.className = 'footer-updated'
+    wrap.textContent = `页面更新：${updatedDate}`
 
     const mainBottom = document.querySelector('footer.footer-main .footer-bottom-main')
     if (mainBottom) {
@@ -1192,6 +1256,7 @@ function initExpandButtons() {
 document.addEventListener('DOMContentLoaded', () => {
     initSiteSidebar()
     initPageSubnav()
+    initFooterUpdatedDate()
     initSiteViewCounter()
     initTutorialsTabs()
     initInterviewCategories()
