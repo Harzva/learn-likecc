@@ -14,20 +14,7 @@ import json
 import sys
 import time
 
-# Align with site/data/cc-loop-steps.json step ids for conceptual parity
-DEMO = [
-    ("input", "用户输入", "stdin / Ink TextInput"),
-    ("message", "构造 user 消息", None),
-    ("history", "合并 messages[]", "len=N"),
-    ("system", "系统提示 + tools 定义", None),
-    ("api", "流式请求模型", "model=…"),
-    ("tokens", "上下文占用", "usage estimate"),
-    ("tools_decide", "解析 stop_reason / tool_use", None),
-    ("tools_run", "执行工具", "name=Read"),
-    ("tool_result", "写回 tool_result", "tool_use_id=…"),
-    ("loop_exit", "继续循环或结束", "stop_reason≠tool_use → exit"),
-    ("render", "渲染 REPL", None),
-]
+from cc_loop_demo_events import DEMO
 
 
 def main() -> int:

@@ -9,6 +9,8 @@ on:
       - 'tools/gen_cc_overview.py'
       - 'tools/check_cc_loop_steps.py'
       - 'tools/cc_loop_relay_demo.py'
+      - 'tools/cc_loop_sse_relay.py'
+      - 'tools/cc_loop_demo_events.py'
       - 'projects/cc-loop-live/**'
       - '.github/workflows/site-md-parity.yml'
   pull_request:
@@ -18,6 +20,8 @@ on:
       - 'tools/gen_cc_overview.py'
       - 'tools/check_cc_loop_steps.py'
       - 'tools/cc_loop_relay_demo.py'
+      - 'tools/cc_loop_sse_relay.py'
+      - 'tools/cc_loop_demo_events.py'
       - 'projects/cc-loop-live/**'
       - '.github/workflows/site-md-parity.yml'
 

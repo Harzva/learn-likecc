@@ -1404,3 +1404,4 @@ ANTHROPIC_API_KEY=your-api-key-here
 - **loop_autoplay**：`cc-loop-steps.json` 的 `meta.loop_autoplay` 控制自动播放是否从末步回到第 1 步；角标文案区分「自动循环」。
 - **`tools/check_cc_loop_steps.py`**：结构校验（唯一 `id`、必填字段等），替代 CI 中单纯 `json.load`。
 - **`projects/cc-loop-live/README.md`** + **`tools/cc_loop_relay_demo.py`**：实时事件流实验说明与 NDJSON 演示（无服务端）。
+- **SSE 实验室**：`tools/cc_loop_demo_events.py`（共享 DEMO）、`tools/cc_loop_sse_relay.py`（本机 SSE）、`site/topic-cc-loop-lab.html` + MD、`tools/README.md`。

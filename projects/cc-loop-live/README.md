@@ -47,6 +47,17 @@ python3 tools/cc_loop_relay_demo.py
 python3 tools/cc_loop_relay_demo.py --fast
 ```
 
+### SSE 中继（本机）
+
+[`tools/cc_loop_sse_relay.py`](../../tools/cc_loop_sse_relay.py) 在 **127.0.0.1:8769**（可改 `--port`）提供 `GET /events`，`text/event-stream`，带 `Access-Control-Allow-Origin: *`，便于本地打开的 [`topic-cc-loop-lab.html`](../../site/topic-cc-loop-lab.html) 用 `EventSource` 订阅。
+
+```bash
+python3 tools/cc_loop_sse_relay.py
+python3 tools/cc_loop_sse_relay.py --fast
+```
+
+配合 `cd site && python3 -m http.server 8080`，浏览器访问 `http://127.0.0.1:8080/topic-cc-loop-lab.html` 后点「连接」。
+
 ## 与课程站的关系
 
 - **权威教学**：仍以 S01/D01 与静态导览为主。

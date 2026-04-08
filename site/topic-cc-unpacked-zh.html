@@ -77,7 +77,7 @@
                     <h2>01 · 智能体主循环</h2>
                     <p>从终端或管道读入用户消息 → 模型在可用工具集上推理 → 若需执行工具则宿主运行并把 <code>tool_result</code> 写回对话 → 直到模型不再发起 <code>tool_use</code> 或会话结束。消息顺序、并行工具与流中断恢复等细节见深挖页。</p>
                     <p class="section-desc" style="margin-top: 0.5rem;">下方为<strong>讲解型</strong>步进演示（数据来自 <code>site/data/cc-loop-steps.json</code>）：可点步骤标签、播放/暂停、倍速与键盘 <kbd>←</kbd> <kbd>→</kbd>、<kbd>Space</kbd>（需先<strong>点击面板内</strong>获得焦点）。<code>meta.loop_autoplay</code> 为 <code>true</code> 时<strong>自动播放</strong>会在末步后接回第 1 步；关闭后末步再点<strong>播放</strong>也会手动从头。系统开启<strong>减少动态效果</strong>时会拉长自动翻步间隔并关闭光标闪烁。<strong>非</strong>真实运行时遥测。</p>
-                    <p class="section-desc" style="margin-top: 0.35rem;"><strong>实时事件流（实验）</strong>：静态页不连接本机 Claude Code；协议说明与 NDJSON 演示见仓库 <a href="https://github.com/Harzva/learn-likecc/blob/main/projects/cc-loop-live/README.md" target="_blank" rel="noopener noreferrer">projects/cc-loop-live/README.md</a>，演示脚本 <code>python3 tools/cc_loop_relay_demo.py</code>。</p>
+                    <p class="section-desc" style="margin-top: 0.35rem;"><strong>实时事件流（实验）</strong>：静态页不连接本机 Claude Code；协议见 <a href="https://github.com/Harzva/learn-likecc/blob/main/projects/cc-loop-live/README.md" target="_blank" rel="noopener noreferrer">projects/cc-loop-live/README.md</a>；NDJSON：<code>python3 tools/cc_loop_relay_demo.py</code>；本机 SSE 联调：<a href="topic-cc-loop-lab.html">Loop 实验室页</a> + <code>python3 tools/cc_loop_sse_relay.py</code>。</p>
                     <div id="cc-loop-player" class="cc-loop-player" data-json="data/cc-loop-steps.json" aria-label="主循环步进讲解"></div>
                     <noscript>
                         <p class="section-desc">启用 JavaScript 后可播放步进演示；或直接阅读 <a href="s01.html">S01</a> / <a href="d01.html">D01</a>。</p>

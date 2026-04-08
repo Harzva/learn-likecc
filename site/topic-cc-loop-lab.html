@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loop 事件流实验室（本地）- Claude Code Course</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧪</text></svg>">
+    <meta name="description" content="本地 SSE 联调：订阅 demo LoopEvent；需本机运行 tools/cc_loop_sse_relay.py。">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🧪</span>
+                <span class="logo-text">Loop 实验室</span>
+            </a>
+            <div class="nav-links">
+                <a href="topic-cc-unpacked-zh.html#loop" class="nav-link">← CC 结构导览</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️</button>
+                <a href="index.html" class="btn-github">首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="course-main devlog-main">
+        <div class="container">
+            <article class="course-content devlog-content">
+                <h1 class="course-title">Loop 事件流 <span class="subtitle">本地实验室</span></h1>
+                <div class="course-quote">
+                    <p>本页用浏览器 <code>EventSource</code> 订阅<strong>本机</strong> SSE 演示流，用于理解 <a href="https://github.com/Harzva/learn-likecc/blob/main/projects/cc-loop-live/README.md" target="_blank" rel="noopener noreferrer">projects/cc-loop-live</a> 中的事件模型。<strong>非</strong> GitHub Pages 线上能力：须在你电脑上同时跑静态站 + 中继。</p>
+                </div>
+
+                <section class="section-block">
+                    <h2>步骤</h2>
+                    <ol>
+                        <li>终端一（仓库根）：<code>python3 tools/cc_loop_sse_relay.py</code>（可加 <code>--fast</code>）</li>
+                        <li>终端二：<code>cd site && python3 -m http.server 8080</code></li>
+                        <li>浏览器打开 <code>http://127.0.0.1:8080/topic-cc-loop-lab.html</code>（勿用 <code>file://</code>）</li>
+                        <li>确认下方 URL 为 <code>http://127.0.0.1:8769/events</code>（与脚本默认端口一致），点<strong>连接</strong></li>
+                    </ol>
+                </section>
+
+                <section class="section-block">
+                    <h2>连接</h2>
+                    <p>
+                        <label for="sse-url">SSE URL</label><br>
+                        <input id="sse-url" type="url" value="http://127.0.0.1:8769/events" size="48" class="search-input" style="max-width:100%;margin-top:0.35rem;">
+                    </p>
+                    <p>
+                        <button type="button" id="btn-connect" class="btn btn-primary">连接</button>
+                        <button type="button" id="btn-close" class="btn btn-secondary" style="margin-left:0.5rem;">断开</button>
+                    </p>
+                    <p id="sse-status" class="section-desc" aria-live="polite">未连接</p>
+                    <pre id="sse-log" class="cc-loop-lab-log" style="margin-top:1rem;padding:1rem;border-radius:12px;border:1px solid var(--border);background:var(--bg-secondary);font-size:0.8125rem;overflow:auto;max-height:22rem;white-space:pre-wrap;"></pre>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-cc-loop-lab.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+    <script>
+(function () {
+    var urlIn = document.getElementById('sse-url')
+    var logEl = document.getElementById('sse-log')
+    var statusEl = document.getElementById('sse-status')
+    var btnC = document.getElementById('btn-connect')
+    var btnX = document.getElementById('btn-close')
+    var es = null
+
+    function line(s) {
+        logEl.textContent += s + '\n'
+        logEl.scrollTop = logEl.scrollHeight
+    }
+
+    function closeEs() {
+        if (es) {
+            es.close()
+            es = null
+        }
+        statusEl.textContent = '已断开'
+    }
+
+    btnX.addEventListener('click', closeEs)
+
+    btnC.addEventListener('click', function () {
+        closeEs()
+        logEl.textContent = ''
+        var u = (urlIn.value || '').trim()
+        if (!u) {
+            statusEl.textContent = '请填写 URL'
+            return
+        }
+        statusEl.textContent = '连接中…'
+        try {
+            es = new EventSource(u)
+        } catch (e) {
+            statusEl.textContent = '无法创建 EventSource：' + e
+            return
+        }
+        es.onopen = function () {
+            statusEl.textContent = '已连接（等待事件）'
+        }
+        es.onmessage = function (ev) {
+            statusEl.textContent = '已连接 · 收到事件'
+            line(ev.data)
+        }
+        es.onerror = function () {
+            if (es && es.readyState === EventSource.CLOSED) {
+                statusEl.textContent = '连接已关闭（检查是否已启动 cc_loop_sse_relay.py 与端口）'
+            } else {
+                statusEl.textContent = '连接错误（跨域/未启动服务/CORS）'
+            }
+        }
+    })
+})()
+    </script>
+</body>
+</html>

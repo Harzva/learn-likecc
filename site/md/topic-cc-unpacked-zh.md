@@ -55,7 +55,8 @@ ccunpacked.dev、DeepWiki、本站 Awesome 源码汇总链接。
 ## 实时事件流（实验，另立项）
 
 - 协议与路线图：[projects/cc-loop-live/README.md](../../projects/cc-loop-live/README.md)（GitHub 上同路径）。
-- 演示：`python3 tools/cc_loop_relay_demo.py`（stdout NDJSON，无网络）。
+- 演示：`python3 tools/cc_loop_relay_demo.py`（stdout NDJSON）；本机 SSE：`python3 tools/cc_loop_sse_relay.py` + [topic-cc-loop-lab.html](../topic-cc-loop-lab.html)。
+- 脚本索引：[tools/README.md](../../tools/README.md)。
 
 ## 正文（可选 / 待补全）
 
