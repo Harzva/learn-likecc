@@ -30,18 +30,26 @@ on:
 jobs:
   site-md-parity:
     runs-on: ubuntu-latest
+    env:
+      # 与 GitHub Actions Node 24 迁移对齐；见 https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - name: Verify HTML ↔ site/md pairs and blob links
         run: python3 tools/check_site_md_parity.py
       - name: CC overview — JSON valid and HTML in sync
         run: |
+          set -e
           python3 tools/gen_cc_overview.py --check
+          cp site/topic-cc-unpacked-zh.html /tmp/topic-cc-unpacked-zh.html.before
           python3 tools/gen_cc_overview.py
-          git diff --exit-code site/topic-cc-unpacked-zh.html || (
+          if ! cmp -s /tmp/topic-cc-unpacked-zh.html.before site/topic-cc-unpacked-zh.html; then
             echo '::error::site/topic-cc-unpacked-zh.html 与 cc-overview.json 生成结果不一致。请在仓库根执行: python3 tools/gen_cc_overview.py 并提交 HTML。'
+            diff -u /tmp/topic-cc-unpacked-zh.html.before site/topic-cc-unpacked-zh.html | head -100 || true
             exit 1
-          )
+          fi
       - name: CC architecture treemap JSON
         run: python3 tools/gen_cc_arch_treemap.py --verify-in-sync
       - name: Schema-check cc-loop-steps.json
