@@ -7,6 +7,7 @@ on:
       - 'site/**'
       - 'tools/check_site_md_parity.py'
       - 'tools/gen_cc_overview.py'
+      - 'tools/gen_cc_arch_treemap.py'
       - 'tools/check_cc_loop_steps.py'
       - 'tools/cc_loop_relay_demo.py'
       - 'tools/cc_loop_sse_relay.py'
@@ -18,6 +19,7 @@ on:
       - 'site/**'
       - 'tools/check_site_md_parity.py'
       - 'tools/gen_cc_overview.py'
+      - 'tools/gen_cc_arch_treemap.py'
       - 'tools/check_cc_loop_steps.py'
       - 'tools/cc_loop_relay_demo.py'
       - 'tools/cc_loop_sse_relay.py'
@@ -36,5 +38,7 @@ jobs:
         run: |
           python3 tools/gen_cc_overview.py --check
           python3 tools/gen_cc_overview.py --verify-in-sync
+      - name: CC architecture treemap JSON
+        run: python3 tools/gen_cc_arch_treemap.py --verify-in-sync
       - name: Schema-check cc-loop-steps.json
         run: python3 tools/check_cc_loop_steps.py

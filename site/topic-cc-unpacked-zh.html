@@ -93,6 +93,8 @@
                 <section id="architecture" class="section-block">
                     <h2>02 · 架构导览（目录心智模型）</h2>
                     <p>阅读 <code>ccsource/claude-code-main</code> 时可按职能分区，不必从根目录线性扫文件。下列与常见顶层目录对应关系为<strong>教学用归纳</strong>，实际以当前 tree 为准。</p>
+                    <div id="cc-arch-treemap-mount" class="cc-arch-treemap" data-json="data/cc-arch-treemap.json" role="region" aria-label="src 目录架构 Treemap"></div>
+                    <p class="section-desc" style="margin-top:0.5rem;font-size:0.9rem;">Treemap 数据由 <code>tools/gen_cc_arch_treemap.py</code> 根据镜像 <code>src/</code> 生成（<code>site/data/cc-arch-treemap.json</code>）。</p>
                     <!-- cc-overview:begin architecture-table -->
 <table class="options-table">
 <tr><th>分区</th><th>典型内容</th><th>本站延伸</th></tr>
@@ -126,6 +128,7 @@
                 <section id="commands" class="section-block">
                     <h2>04 · 斜杠命令目录</h2>
                     <p>以 <code>/</code> 开头的命令用于配置、会话管理、Git、诊断与实验能力。下表为<strong>场景分组 + 示例</strong>，与 <a href="https://ccunpacked.dev/" target="_blank" rel="noopener noreferrer">ccunpacked.dev</a> 的目录思路一致，条目以当前版本为准。</p>
+                    <div id="cc-command-pills-mount" class="cc-pill-wall" data-json="data/cc-overview.json" role="region" aria-label="斜杠命令 pill 墙"></div>
                     <!-- cc-overview:begin commands-table -->
 <table class="options-table">
 <tr><th>场景</th><th>示例（节选）</th><th>讲义</th></tr>
@@ -135,7 +138,7 @@
 <tr><td>诊断</td><td><code>/cost</code>、<code>/usage</code>、<code>/doctor</code>、<code>/release-notes</code></td><td><a href="s04.html">S04</a> · <a href="topic-cc-release-watch.html">发版监督</a></td></tr>
 <tr><td>实验性</td><td>各版本可能增减；见官方 changelog</td><td><a href="d04.html">D04 深挖</a></td></tr>
 </table>
-<p class="section-desc cc-overview-footnote" style="margin-top:0.5rem;font-size:0.9rem;opacity:0.9">表数据来自 <code>site/data/cc-overview.json</code>（更新日期 2026-04-07）；修改后请运行 <code>python3 tools/gen_cc_overview.py</code>。</p>
+<p class="section-desc cc-overview-footnote" style="margin-top:0.5rem;font-size:0.9rem;opacity:0.9">表与命令 pill 墙数据来自 <code>site/data/cc-overview.json</code>（更新日期 2026-04-08）；改表请运行 <code>python3 tools/gen_cc_overview.py</code>；改 pill 清单直接编辑 JSON 内 <code>command_pills</code>。</p>
 <!-- cc-overview:end commands-table -->
                 </section>
 
@@ -174,6 +177,8 @@
         </div>
     </footer>
     <script src="js/app.js"></script>
+    <script src="js/cc-arch-treemap.js"></script>
+    <script src="js/cc-command-pills.js"></script>
     <script src="js/cc-loop-player.js"></script>
 </body>
 </html>

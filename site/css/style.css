@@ -6311,3 +6311,217 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 .cc-loop-player.is-reduced .cc-loop-player__strip {
     display: none;
 }
+
+/* ─── CC 架构 Treemap + 斜杠命令 pill 墙（topic-cc-unpacked-zh） ─── */
+.cc-arch-treemap {
+    margin: 1rem 0 1.25rem;
+    padding: 1rem 1.1rem 1.15rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    background: linear-gradient(160deg, rgba(15, 23, 42, 0.04) 0%, var(--bg-card) 45%);
+    box-shadow: var(--shadow);
+}
+.cc-arch-treemap__head {
+    margin-bottom: 0.75rem;
+}
+.cc-arch-treemap__title {
+    margin: 0 0 0.35rem;
+    font-size: 1.15rem;
+    font-family: Georgia, 'Times New Roman', serif;
+    letter-spacing: 0.02em;
+    color: var(--text-primary);
+}
+.cc-arch-treemap__sub {
+    margin: 0;
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+.cc-arch-treemap__legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.85rem;
+    margin-bottom: 0.65rem;
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+}
+.cc-arch-treemap__legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+.cc-arch-treemap__legend-swatch {
+    width: 0.65rem;
+    height: 0.65rem;
+    border-radius: 2px;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+}
+.cc-arch-treemap__legend-text strong {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+.cc-arch-treemap__svg-wrap {
+    width: 100%;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: #0f172a;
+    border: 1px solid rgba(0, 0, 0, 0.35);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+.cc-arch-treemap__svg {
+    display: block;
+    vertical-align: top;
+}
+.cc-arch-treemap__toast {
+    margin: 0.5rem 0 0;
+    font-size: 0.8125rem;
+    color: var(--primary-dark);
+}
+.cc-arch-treemap__err,
+.cc-pill-wall__err {
+    font-size: 0.875rem;
+    color: var(--primary-dark);
+}
+
+.cc-pill-wall {
+    margin: 1rem 0 1.25rem;
+    padding: 1rem 1.1rem 1.15rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    box-shadow: var(--shadow);
+}
+.cc-pill-wall__head {
+    margin-bottom: 0.65rem;
+}
+.cc-pill-wall__title {
+    margin: 0 0 0.35rem;
+    font-size: 1.15rem;
+    font-family: Georgia, 'Times New Roman', serif;
+    color: var(--text-primary);
+}
+.cc-pill-wall__sub {
+    margin: 0;
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+}
+.cc-pill-wall__note {
+    margin: 0 0 0.85rem;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.45;
+}
+.cc-pill-wall__lock {
+    margin-left: 0.2rem;
+    font-size: 0.72em;
+    opacity: 0.85;
+}
+.cc-pill-wall__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+}
+.cc-pill-cat__title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 0 0.5rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+.cc-pill-cat__bar {
+    width: 3px;
+    height: 1rem;
+    border-radius: 2px;
+    background: var(--cc-pill-accent, var(--primary));
+}
+.cc-pill-cat__count {
+    margin-left: auto;
+    min-width: 1.5rem;
+    height: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+}
+.cc-pill-cat__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.45rem;
+}
+.cc-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.28rem 0.55rem;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 0.8125rem;
+    transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.cc-pill code {
+    background: transparent;
+    padding: 0;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.9em;
+}
+.cc-pill:hover {
+    border-color: color-mix(in srgb, var(--cc-pill-accent, var(--primary)) 55%, var(--border));
+    background: var(--bg-hover);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--cc-pill-accent, var(--primary)) 25%, transparent);
+}
+.cc-pill-cat--blue {
+    --cc-pill-accent: #3b82f6;
+}
+.cc-pill-cat--amber {
+    --cc-pill-accent: #d97706;
+}
+.cc-pill-cat--green {
+    --cc-pill-accent: #16a34a;
+}
+.cc-pill-cat--rose {
+    --cc-pill-accent: #e11d48;
+}
+.cc-pill-cat--violet {
+    --cc-pill-accent: #7c3aed;
+}
+.cc-pill-cat--blue .cc-pill-cat__bar {
+    background: #3b82f6;
+}
+.cc-pill-cat--amber .cc-pill-cat__bar {
+    background: #d97706;
+}
+.cc-pill-cat--green .cc-pill-cat__bar {
+    background: #16a34a;
+}
+.cc-pill-cat--rose .cc-pill-cat__bar {
+    background: #e11d48;
+}
+.cc-pill-cat--violet .cc-pill-cat__bar {
+    background: #7c3aed;
+}
+.cc-pill-cat--blue .cc-pill-cat__title {
+    color: #3b82f6;
+}
+.cc-pill-cat--amber .cc-pill-cat__title {
+    color: #d97706;
+}
+.cc-pill-cat--green .cc-pill-cat__title {
+    color: #16a34a;
+}
+.cc-pill-cat--rose .cc-pill-cat__title {
+    color: #e11d48;
+}
+.cc-pill-cat--violet .cc-pill-cat__title {
+    color: #7c3aed;
+}

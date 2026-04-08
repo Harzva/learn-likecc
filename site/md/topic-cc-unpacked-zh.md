@@ -20,7 +20,7 @@
 
 ### 02 · 架构导览（目录心智模型）
 
-用表格归纳 tools/commands、核心服务、UI、bridge、utils/hooks 等与顶层目录的对应，并指向源码专题与反推思想页。
+**Treemap**：[`site/js/cc-arch-treemap.js`](../js/cc-arch-treemap.js) + D3（CDN）读取 [`site/data/cc-arch-treemap.json`](../data/cc-arch-treemap.json)，按各 `src/` 子目录下 TS/TSX **文件数**着色分块（`tools/gen_cc_arch_treemap.py` 从镜像生成）。另附表格归纳 tools/commands、核心服务、UI、bridge、utils/hooks 等与顶层目录的对应，并指向源码专题与反推思想页。
 
 ### 03 · 工具系统（分组地图）
 
@@ -28,7 +28,7 @@
 
 ### 04 · 斜杠命令目录
 
-按初始化、日常、Git、诊断、实验等场景给出**示例命令**；链到 S04、发版监督、D04。
+**Pill 墙**：[`site/js/cc-command-pills.js`](../js/cc-command-pills.js) 读取 [`cc-overview.json`](../data/cc-overview.json) 内 `command_pills`，按场景渲染可点击 pill（挂锁表示可能随版本/权限变化）。下表仍为**场景分组 + 示例**文字版；链到 S04、发版监督、D04。
 
 ### 05 · 实验与「代码中存在」的特性
 
@@ -40,10 +40,11 @@ ccunpacked.dev、DeepWiki、本站 Awesome 源码汇总链接。
 
 ## 阶段 B：数据驱动三表（02–04 节）
 
-- **数据源**：[`site/data/cc-overview.json`](../data/cc-overview.json)（架构 / 工具 / 斜杠命令三组表格行）。
+- **数据源**：[`site/data/cc-overview.json`](../data/cc-overview.json)（架构 / 工具 / 斜杠命令三组表格行，以及 **`command_pills`** 供 pill 墙）。
 - **生成**：仓库根执行 `python3 tools/gen_cc_overview.py`，将表写入 [`topic-cc-unpacked-zh.html`](../topic-cc-unpacked-zh.html) 内 `<!-- cc-overview:begin … -->` / `end` 标记之间；**勿手改生成区**。
 - **校验**：`python3 tools/gen_cc_overview.py --check` 验证 JSON；`--verify-in-sync` 断言 HTML 标记区间与 JSON 渲染一致（**GitHub Actions** `site-md-parity` 工作流已包含 check + verify）；`--dry-run` 打印 HTML 片段。
 - 页内脚注（04 节表下）会显示 JSON 的 `meta.updated` 日期；改版请同步改 JSON 与脚注。
+- **架构 Treemap 数据**：[`site/data/cc-arch-treemap.json`](../data/cc-arch-treemap.json)；本地有 `ccsource/claude-code-main/src` 时执行 `python3 tools/gen_cc_arch_treemap.py` 重新生成；CI 无镜像时仅校验 JSON 可读，`--verify-in-sync` 在本地有镜像时比对文件内容。
 
 ## 阶段 C（部分）：01 节讲解型步进
 

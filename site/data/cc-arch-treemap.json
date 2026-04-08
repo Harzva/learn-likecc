@@ -1,0 +1,275 @@
+{
+  "meta": {
+    "updated": "2026-04-08",
+    "source": "ccsource/claude-code-main/src",
+    "metric": "TypeScript / TSX file count per folder",
+    "note_zh": "由 tools/gen_cc_arch_treemap.py 生成；更新镜像后请重新运行并提交。"
+  },
+  "legend": [
+    {
+      "key": "tools_commands",
+      "label": "工具与命令",
+      "hint": "commands/ · tools/"
+    },
+    {
+      "key": "core",
+      "label": "核心处理",
+      "hint": "services · hooks · 会话与查询等"
+    },
+    {
+      "key": "ui",
+      "label": "UI 层",
+      "hint": "components · ink · 终端界面"
+    },
+    {
+      "key": "bridge",
+      "label": "桥接与集成",
+      "hint": "bridge · plugins · remote"
+    },
+    {
+      "key": "infra",
+      "label": "基础设施",
+      "hint": "cli · entrypoints · 运行时支撑"
+    },
+    {
+      "key": "support",
+      "label": "支撑与工具库",
+      "hint": "utils · constants · types"
+    },
+    {
+      "key": "personality",
+      "label": "个性与实验向",
+      "hint": "如 buddy 等"
+    }
+  ],
+  "root": {
+    "name": "src",
+    "children": [
+      {
+        "name": "utils/",
+        "value": 575,
+        "cat": "support"
+      },
+      {
+        "name": "components/",
+        "value": 407,
+        "cat": "ui"
+      },
+      {
+        "name": "commands/",
+        "value": 199,
+        "cat": "tools_commands"
+      },
+      {
+        "name": "tools/",
+        "value": 195,
+        "cat": "tools_commands"
+      },
+      {
+        "name": "services/",
+        "value": 152,
+        "cat": "core"
+      },
+      {
+        "name": "hooks/",
+        "value": 105,
+        "cat": "core"
+      },
+      {
+        "name": "ink/",
+        "value": 101,
+        "cat": "ui"
+      },
+      {
+        "name": "types/",
+        "value": 36,
+        "cat": "support"
+      },
+      {
+        "name": "bridge/",
+        "value": 32,
+        "cat": "bridge"
+      },
+      {
+        "name": "cli/",
+        "value": 25,
+        "cat": "infra"
+      },
+      {
+        "name": "constants/",
+        "value": 22,
+        "cat": "support"
+      },
+      {
+        "name": "skills/",
+        "value": 20,
+        "cat": "support"
+      },
+      {
+        "name": "keybindings/",
+        "value": 15,
+        "cat": "support"
+      },
+      {
+        "name": "entrypoints/",
+        "value": 14,
+        "cat": "infra"
+      },
+      {
+        "name": "tasks/",
+        "value": 14,
+        "cat": "core"
+      },
+      {
+        "name": "memdir/",
+        "value": 12,
+        "cat": "support"
+      },
+      {
+        "name": "migrations/",
+        "value": 11,
+        "cat": "infra"
+      },
+      {
+        "name": "server/",
+        "value": 11,
+        "cat": "infra"
+      },
+      {
+        "name": "context/",
+        "value": 9,
+        "cat": "core"
+      },
+      {
+        "name": "buddy/",
+        "value": 6,
+        "cat": "personality"
+      },
+      {
+        "name": "state/",
+        "value": 6,
+        "cat": "core"
+      },
+      {
+        "name": "assistant/",
+        "value": 5,
+        "cat": "core"
+      },
+      {
+        "name": "query/",
+        "value": 5,
+        "cat": "core"
+      },
+      {
+        "name": "vim/",
+        "value": 5,
+        "cat": "ui"
+      },
+      {
+        "name": "native-ts/",
+        "value": 4,
+        "cat": "bridge"
+      },
+      {
+        "name": "remote/",
+        "value": 4,
+        "cat": "bridge"
+      },
+      {
+        "name": "bun-polyfill/",
+        "value": 3,
+        "cat": "infra"
+      },
+      {
+        "name": "screens/",
+        "value": 3,
+        "cat": "ui"
+      },
+      {
+        "name": "daemon/",
+        "value": 2,
+        "cat": "infra"
+      },
+      {
+        "name": "plugins/",
+        "value": 2,
+        "cat": "bridge"
+      },
+      {
+        "name": "ssh/",
+        "value": 2,
+        "cat": "infra"
+      },
+      {
+        "name": "upstreamproxy/",
+        "value": 2,
+        "cat": "infra"
+      },
+      {
+        "name": "_external/",
+        "value": 1,
+        "cat": "support"
+      },
+      {
+        "name": "bootstrap/",
+        "value": 1,
+        "cat": "infra"
+      },
+      {
+        "name": "coordinator/",
+        "value": 1,
+        "cat": "core"
+      },
+      {
+        "name": "environment-runner/",
+        "value": 1,
+        "cat": "infra"
+      },
+      {
+        "name": "jobs/",
+        "value": 1,
+        "cat": "core"
+      },
+      {
+        "name": "moreright/",
+        "value": 1,
+        "cat": "support"
+      },
+      {
+        "name": "outputStyles/",
+        "value": 1,
+        "cat": "ui"
+      },
+      {
+        "name": "proactive/",
+        "value": 1,
+        "cat": "core"
+      },
+      {
+        "name": "schemas/",
+        "value": 1,
+        "cat": "support"
+      },
+      {
+        "name": "self-hosted-runner/",
+        "value": 1,
+        "cat": "infra"
+      },
+      {
+        "name": "sessionTranscript/",
+        "value": 1,
+        "cat": "support"
+      },
+      {
+        "name": "voice/",
+        "value": 1,
+        "cat": "ui"
+      },
+      {
+        "name": "（src 根 .ts/.tsx）",
+        "value": 18,
+        "cat": "core"
+      }
+    ]
+  }
+}

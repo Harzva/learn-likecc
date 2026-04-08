@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated": "2026-04-07",
+    "updated": "2026-04-08",
     "note_zh": "三数据表由 tools/gen_cc_overview.py 根据本文件生成并写回 topic-cc-unpacked-zh.html；改行后请运行：python3 tools/gen_cc_overview.py",
     "ccsource_path": "ccsource/claude-code-main"
   },
@@ -132,6 +132,95 @@
         "col1": "实验性",
         "col2_html": "各版本可能增减；见官方 changelog",
         "col3_links": [{ "href": "d04.html", "text": "D04 深挖" }]
+      }
+    ]
+  },
+  "command_pills": {
+    "note_zh": "斜杠命令与官方 CLI 版本强相关；挂锁表示可能受权限/版本或实验开关影响。链接多为本站讲义入口。",
+    "categories": [
+      {
+        "id": "setup",
+        "title": "初始化与配置",
+        "accent": "blue",
+        "pills": [
+          { "cmd": "/init", "href": "s04.html" },
+          { "cmd": "/login", "href": "s04.html" },
+          { "cmd": "/logout", "href": "s04.html" },
+          { "cmd": "/config", "href": "s04.html" },
+          { "cmd": "/mcp", "href": "s07.html" },
+          { "cmd": "/hooks", "href": "s10.html" },
+          { "cmd": "/plugin", "href": "s04.html" },
+          { "cmd": "/output-style", "href": "s04.html", "locked": true },
+          { "cmd": "/model", "href": "s04.html" },
+          { "cmd": "/statusline", "href": "s04.html", "locked": true },
+          { "cmd": "/permissions", "href": "s03.html" },
+          { "cmd": "/allowed-tools", "href": "s03.html" }
+        ]
+      },
+      {
+        "id": "daily",
+        "title": "日常工作流",
+        "accent": "amber",
+        "pills": [
+          { "cmd": "/compact", "href": "s05.html" },
+          { "cmd": "/context", "href": "s05.html" },
+          { "cmd": "/memory", "href": "s05.html" },
+          { "cmd": "/resume", "href": "s05.html" },
+          { "cmd": "/vim", "href": "s11.html" },
+          { "cmd": "/plan", "href": "s06.html" },
+          { "cmd": "/files", "href": "s04.html" },
+          { "cmd": "/summary", "href": "s04.html" },
+          { "cmd": "/clear", "href": "s04.html" },
+          { "cmd": "/rewind", "href": "s05.html", "locked": true },
+          { "cmd": "/fork", "href": "s06.html", "locked": true },
+          { "cmd": "/terminal-setup", "href": "handbook.html" },
+          { "cmd": "/ide", "href": "s09.html" },
+          { "cmd": "/sculptor", "href": "d04.html", "locked": true }
+        ]
+      },
+      {
+        "id": "git",
+        "title": "代码审查与 Git",
+        "accent": "green",
+        "pills": [
+          { "cmd": "/review", "href": "s12.html" },
+          { "cmd": "/commit", "href": "s12.html" },
+          { "cmd": "/diff", "href": "s12.html" },
+          { "cmd": "/pr-comments", "href": "s12.html", "locked": true },
+          { "cmd": "/issue", "href": "s12.html", "locked": true },
+          { "cmd": "/git-worktree", "href": "s06.html" },
+          { "cmd": "/changelog", "href": "topic-cc-release-watch.html" }
+        ]
+      },
+      {
+        "id": "debug",
+        "title": "诊断与用量",
+        "accent": "rose",
+        "pills": [
+          { "cmd": "/status", "href": "s04.html" },
+          { "cmd": "/cost", "href": "s04.html" },
+          { "cmd": "/usage", "href": "column-show-your-usage.html" },
+          { "cmd": "/doctor", "href": "s04.html" },
+          { "cmd": "/health", "href": "s04.html", "locked": true },
+          { "cmd": "/release-notes", "href": "topic-cc-release-watch.html" },
+          { "cmd": "/todos", "href": "s04.html" },
+          { "cmd": "/tasks", "href": "s06.html" }
+        ]
+      },
+      {
+        "id": "experimental",
+        "title": "高级与实验",
+        "accent": "violet",
+        "pills": [
+          { "cmd": "/advisor", "href": "d04.html", "locked": true },
+          { "cmd": "/teleport", "href": "d04.html", "locked": true },
+          { "cmd": "/ultraplan", "href": "d04.html", "locked": true },
+          { "cmd": "/voice", "href": "d04.html", "locked": true },
+          { "cmd": "/chrome", "href": "d04.html", "locked": true },
+          { "cmd": "/bypass-permissions", "href": "d03.html", "locked": true },
+          { "cmd": "/export", "href": "s04.html", "locked": true },
+          { "cmd": "/import", "href": "s04.html", "locked": true }
+        ]
       }
     ]
   }
