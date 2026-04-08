@@ -440,8 +440,8 @@ const lightDaltonizedTheme: Theme = {
 const darkTheme: Theme = {
   autoAccept: 'rgb(175,135,255)', // Electric violet
   bashBorder: 'rgb(253,93,177)', // Bright pink
-  claude: 'rgb(215,119,87)', // Claude orange
-  claudeShimmer: 'rgb(235,159,127)', // Lighter claude orange for shimmer effect
+  claude: 'ansi:yellow', // Match the classic Claude Code warm terminal accent
+  claudeShimmer: 'ansi:yellowBright', // Brighter accent for shimmer states
   claudeBlue_FOR_SYSTEM_SPINNER: 'rgb(147,165,255)', // Blue for system spinner
   claudeBlueShimmer_FOR_SYSTEM_SPINNER: 'rgb(177,195,255)', // Lighter blue for system spinner shimmer
   permission: 'rgb(177,185,249)', // Light blue-purple
@@ -521,8 +521,8 @@ const darkTheme: Theme = {
 const darkDaltonizedTheme: Theme = {
   autoAccept: 'rgb(175,135,255)', // Electric violet
   bashBorder: 'rgb(51,153,255)', // Bright blue
-  claude: 'rgb(255,153,51)', // Orange adjusted for deuteranopia
-  claudeShimmer: 'rgb(255,183,101)', // Lighter orange for shimmer effect
+  claude: 'ansi:yellow', // Keep the main Claude accent aligned with the standard UI
+  claudeShimmer: 'ansi:yellowBright', // Brighter accent for shimmer states
   claudeBlue_FOR_SYSTEM_SPINNER: 'rgb(153,204,255)', // Light blue for system spinner
   claudeBlueShimmer_FOR_SYSTEM_SPINNER: 'rgb(183,224,255)', // Lighter blue for system spinner shimmer
   permission: 'rgb(153,204,255)', // Light blue

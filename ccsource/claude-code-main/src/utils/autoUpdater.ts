@@ -72,6 +72,12 @@ export async function assertMinVersion(): Promise<void> {
     return
   }
 
+  // This learning fork intentionally stays on a custom version string and
+  // should not be blocked by upstream's server-driven minimum version gate.
+  if (MACRO.VERSION.includes('likecode')) {
+    return
+  }
+
   try {
     const versionConfig = await getDynamicConfig_BLOCKS_ON_INIT<{
       minVersion: string

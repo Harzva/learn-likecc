@@ -258,6 +258,12 @@ import { PluginHintMenu } from 'src/components/ClaudeCodeHint/PluginHintMenu.js'
 import { DesktopUpsellStartup, shouldShowDesktopUpsellStartup } from 'src/components/DesktopUpsell/DesktopUpsellStartup.js';
 import { usePluginInstallationStatus } from 'src/hooks/notifs/usePluginInstallationStatus.js';
 import { usePluginAutoupdateNotification } from 'src/hooks/notifs/usePluginAutoupdateNotification.js';
+import {
+  publishWorkspaceControlSnapshot,
+  publishWorkspaceDialogSnapshot,
+  registerWorkspaceController,
+  type WorkspaceDialogSnapshot,
+} from '../utils/workspaceBridge.js';
 import { performStartupChecks } from 'src/utils/plugins/performStartupChecks.js';
 import { UserTextMessage } from 'src/components/messages/UserTextMessage.js';
 import { AwsAuthStatusBox } from '../components/AwsAuthStatusBox.js';
@@ -291,7 +297,7 @@ import { useMessageActions, MessageActionsKeybindings, MessageActionsBar, type M
 import { setClipboard } from '../ink/termio/osc.js';
 import type { ScrollBoxHandle } from '../ink/components/ScrollBox.js';
 import { createAttachmentMessage, getQueuedCommandAttachments } from '../utils/attachments.js';
-import { addSessionTab, closeSessionTab, createSessionTaskTab, cycleSessionTab, getActiveSessionTab, getSessionTabTodoLaneId, inferSessionTabProvider, normalizeSessionTabsState, switchSessionTab, toggleSubagentPanel, updateSessionTab, type SessionTabState } from '../utils/sessionTabs.js';
+import { addSessionTab, closeSessionTab, createSessionTab, createSessionTaskTab, cycleSessionTab, getActiveSessionTab, getSessionTabTodoLaneId, inferSessionTabProvider, normalizeSessionTabsState, switchSessionTab, toggleSubagentPanel, updateSessionTab, type SessionTabState } from '../utils/sessionTabs.js';
 
 // Stable empty array for hooks that accept MCPServerConnection[] — avoids
 // creating a new [] literal on every render in remote mode, which would
@@ -2816,6 +2822,278 @@ export function REPL({
   // Keep ref in sync so timer callbacks can read the current value
   focusedInputDialogRef.current = focusedInputDialog;
 
+  const handlePromptDialogRespond = useCallback((selectedKey: string) => {
+    const item = promptQueue[0];
+    if (!item) return;
+    item.resolve({
+      prompt_response: item.request.prompt,
+      selected: selectedKey
+    });
+    setPromptQueue(([, ...tail]) => tail);
+  }, [promptQueue]);
+
+  const handlePromptDialogAbort = useCallback(() => {
+    const item = promptQueue[0];
+    if (!item) return;
+    item.reject(new Error('Prompt cancelled by user'));
+    setPromptQueue(([, ...tail]) => tail);
+  }, [promptQueue]);
+
+  const handleCostThresholdDone = useCallback(() => {
+    setShowCostDialog(false);
+    setHaveShownCostDialog(true);
+    saveGlobalConfig(current => ({
+      ...current,
+      hasAcknowledgedCostThreshold: true
+    }));
+    logEvent('tengu_cost_threshold_acknowledged', {});
+  }, []);
+
+  const handleIdleReturnAction = useCallback(async (action: 'continue' | 'clear' | 'dismiss' | 'never') => {
+    const pending = idleReturnPending;
+    if (!pending) return;
+    setIdleReturnPending(null);
+    logEvent('tengu_idle_return_action', {
+      action: action as AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
+      idleMinutes: Math.round(pending.idleMinutes),
+      messageCount: messagesRef.current.length,
+      totalInputTokens: getTotalInputTokens()
+    });
+    if (action === 'dismiss') {
+      setInputValue(pending.input);
+      return;
+    }
+    if (action === 'never') {
+      saveGlobalConfig(current => {
+        if (current.idleReturnDismissed) return current;
+        return {
+          ...current,
+          idleReturnDismissed: true
+        };
+      });
+    }
+    if (action === 'clear') {
+      const {
+        clearConversation
+      } = await import('../commands/clear/conversation.js');
+      await clearConversation({
+        setMessages,
+        readFileState: readFileState.current,
+        discoveredSkillNames: discoveredSkillNamesRef.current,
+        loadedNestedMemoryPaths: loadedNestedMemoryPathsRef.current,
+        getAppState: () => store.getState(),
+        setAppState,
+        setConversationId
+      });
+      haikuTitleAttemptedRef.current = false;
+      setHaikuTitle(undefined);
+      bashTools.current.clear();
+      bashToolsProcessedIdx.current = 0;
+    }
+    skipIdleCheckRef.current = true;
+    void onSubmitRef.current(pending.input, {
+      setCursorOffset: () => {},
+      clearBuffer: () => {},
+      resetHistory: () => {}
+    });
+  }, [idleReturnPending, setMessages, store, setAppState, setConversationId]);
+
+  const handleRemoteCalloutDone = useCallback((selection: 'enable' | 'dismiss') => {
+    setAppState(prev => {
+      if (!prev.showRemoteCallout) return prev;
+      return {
+        ...prev,
+        showRemoteCallout: false,
+        ...(selection === 'enable' && {
+          replBridgeEnabled: true,
+          replBridgeExplicit: true,
+          replBridgeOutboundOnly: false
+        })
+      };
+    });
+  }, [setAppState]);
+
+  const workspaceDialogSnapshot: WorkspaceDialogSnapshot | null = useMemo(() => {
+    switch (focusedInputDialog) {
+      case 'sandbox-permission': {
+        const current = sandboxPermissionRequestQueue[0];
+        if (!current) return null;
+        return {
+          kind: 'sandbox-permission',
+          title: 'Network access approval',
+          subtitle: current.hostPattern.host,
+          body: 'CLI is waiting for confirmation before allowing this network destination.',
+          tone: 'warning'
+        };
+      }
+      case 'tool-permission': {
+        const current = toolUseConfirmQueue[0];
+        if (!current) return null;
+        return {
+          kind: 'tool-permission',
+          title: 'Tool permission required',
+          subtitle: current.tool.userFacingName(current.input as never),
+          body: current.description,
+          tone: 'warning'
+        };
+      }
+      case 'prompt': {
+        const current = promptQueue[0];
+        if (!current) return null;
+        return {
+          kind: 'prompt',
+          title: current.title,
+          subtitle: current.request.message,
+          body: current.toolInputSummary ?? current.request.prompt,
+          tone: 'info',
+          actions: [
+            ...current.request.options.map(option => ({
+              id: `prompt:${option.key}`,
+              label: option.label,
+              description: option.description,
+              kind: 'primary' as const
+            })),
+            {
+              id: 'prompt:abort',
+              label: 'Cancel',
+              kind: 'secondary' as const
+            }
+          ]
+        };
+      }
+      case 'worker-sandbox-permission': {
+        const current = workerSandboxPermissions.queue[0];
+        if (!current) return null;
+        return {
+          kind: 'worker-sandbox-permission',
+          title: 'Worker network access approval',
+          subtitle: current.host,
+          body: `Worker ${current.workerName} is waiting for a network approval response.`,
+          tone: 'warning'
+        };
+      }
+      case 'elicitation': {
+        const current = elicitation.queue[0];
+        if (!current) return null;
+        return {
+          kind: 'elicitation',
+          title: `MCP input request · ${current.serverName}`,
+          subtitle: current.params.message,
+          body: 'CLI is waiting for a response to an MCP elicitation request.',
+          tone: 'warning'
+        };
+      }
+      case 'cost':
+        return {
+          kind: 'cost',
+          title: 'Cost threshold reached',
+          subtitle: 'This session crossed the spending reminder threshold.',
+          body: 'Acknowledge the reminder to continue.',
+          tone: 'warning',
+          actions: [
+            {
+              id: 'cost:ack',
+              label: 'Got it',
+              kind: 'primary'
+            }
+          ]
+        };
+      case 'idle-return':
+        if (!idleReturnPending) return null;
+        return {
+          kind: 'idle-return',
+          title: 'Resume or clear context',
+          subtitle: `Idle for about ${Math.round(idleReturnPending.idleMinutes)} minutes`,
+          body: 'CLI is asking whether to continue the current conversation or start clean.',
+          tone: 'warning',
+          actions: [
+            {
+              id: 'idle:return',
+              label: 'Continue',
+              kind: 'primary'
+            },
+            {
+              id: 'idle:clear',
+              label: 'New conversation',
+              kind: 'secondary'
+            },
+            {
+              id: 'idle:never',
+              label: 'Do not ask again',
+              kind: 'secondary'
+            },
+            {
+              id: 'idle:dismiss',
+              label: 'Dismiss',
+              kind: 'secondary'
+            }
+          ]
+        };
+      case 'ide-onboarding':
+        return {
+          kind: 'ide-onboarding',
+          title: 'IDE onboarding',
+          subtitle: 'The CLI is showing IDE connection guidance.',
+          body: 'This dialog is mirrored to the web view for visibility.',
+          tone: 'info'
+        };
+      case 'effort-callout':
+        return {
+          kind: 'effort-callout',
+          title: 'Effort callout',
+          subtitle: 'The CLI is recommending an effort setting.',
+          body: 'This dialog is currently mirrored in read-only mode.',
+          tone: 'info'
+        };
+      case 'remote-callout':
+        return {
+          kind: 'remote-callout',
+          title: 'Remote Control',
+          subtitle: 'Enable remote access for this session.',
+          body: 'This dialog can be acknowledged from the web control surface too.',
+          tone: 'info',
+          actions: [
+            {
+              id: 'remote:enable',
+              label: 'Enable',
+              kind: 'primary'
+            },
+            {
+              id: 'remote:dismiss',
+              label: 'Dismiss',
+              kind: 'secondary'
+            }
+          ]
+        };
+      case 'lsp-recommendation':
+        return {
+          kind: 'lsp-recommendation',
+          title: 'LSP recommendation',
+          subtitle: 'CLI is suggesting an editor plugin.',
+          body: 'Shown in read-only mode on the web.',
+          tone: 'info'
+        };
+      case 'plugin-hint':
+        return {
+          kind: 'plugin-hint',
+          title: 'Plugin hint',
+          subtitle: 'CLI surfaced a plugin recommendation.',
+          body: 'Shown in read-only mode on the web.',
+          tone: 'info'
+        };
+      case 'desktop-upsell':
+        return {
+          kind: 'desktop-upsell',
+          title: 'Desktop app suggestion',
+          subtitle: 'CLI surfaced a desktop upsell dialog.',
+          body: 'Shown in read-only mode on the web.',
+          tone: 'info'
+        };
+      default:
+        return null;
+    }
+  }, [focusedInputDialog, sandboxPermissionRequestQueue, toolUseConfirmQueue, promptQueue, workerSandboxPermissions.queue, elicitation.queue, idleReturnPending]);
+
   // Immediately capture pause/resume when focusedInputDialog changes
   // This ensures accurate timing even under high system load, rather than
   // relying on the 100ms polling interval to detect state changes
@@ -4358,6 +4636,204 @@ export function REPL({
   // old REPL scopes can be GC'd — saves ~35MB over a 1000-turn session.
   const onSubmitRef = useRef(onSubmit);
   onSubmitRef.current = onSubmit;
+  const handleWorkspaceDialogAction = useCallback(async (actionId: string): Promise<{
+    accepted: boolean;
+    dialogKind?: string;
+  }> => {
+    switch (focusedInputDialog) {
+      case 'prompt':
+        if (actionId === 'prompt:abort') {
+          handlePromptDialogAbort();
+          return {
+            accepted: true,
+            dialogKind: 'prompt'
+          };
+        }
+        if (actionId.startsWith('prompt:')) {
+          handlePromptDialogRespond(actionId.slice('prompt:'.length));
+          return {
+            accepted: true,
+            dialogKind: 'prompt'
+          };
+        }
+        break;
+      case 'cost':
+        if (actionId === 'cost:ack') {
+          handleCostThresholdDone();
+          return {
+            accepted: true,
+            dialogKind: 'cost'
+          };
+        }
+        break;
+      case 'idle-return':
+        if (actionId === 'idle:return') {
+          await handleIdleReturnAction('continue');
+          return {
+            accepted: true,
+            dialogKind: 'idle-return'
+          };
+        }
+        if (actionId === 'idle:clear') {
+          await handleIdleReturnAction('clear');
+          return {
+            accepted: true,
+            dialogKind: 'idle-return'
+          };
+        }
+        if (actionId === 'idle:never') {
+          await handleIdleReturnAction('never');
+          return {
+            accepted: true,
+            dialogKind: 'idle-return'
+          };
+        }
+        if (actionId === 'idle:dismiss') {
+          await handleIdleReturnAction('dismiss');
+          return {
+            accepted: true,
+            dialogKind: 'idle-return'
+          };
+        }
+        break;
+      case 'remote-callout':
+        if (actionId === 'remote:enable') {
+          handleRemoteCalloutDone('enable');
+          return {
+            accepted: true,
+            dialogKind: 'remote-callout'
+          };
+        }
+        if (actionId === 'remote:dismiss') {
+          handleRemoteCalloutDone('dismiss');
+          return {
+            accepted: true,
+            dialogKind: 'remote-callout'
+          };
+        }
+        break;
+      default:
+        break;
+    }
+    return {
+      accepted: false,
+      dialogKind: focusedInputDialog
+    };
+  }, [focusedInputDialog, handleCostThresholdDone, handleIdleReturnAction, handlePromptDialogAbort, handlePromptDialogRespond, handleRemoteCalloutDone]);
+  const handleWorkspaceCreatePane = useCallback(async (input: {
+    title?: string;
+    kind?: string;
+    initialPrompt?: string;
+  }): Promise<{
+    accepted: boolean;
+    paneId?: string;
+  }> => {
+    const requestedKind = input.kind === 'review' || input.kind === 'search' || input.kind === 'subagent' ? input.kind : 'task';
+    const baseTitle = (input.title || '').trim() || (requestedKind === 'review' ? 'Reviewer' : requestedKind === 'search' ? 'Researcher' : requestedKind === 'subagent' ? 'Worker' : 'Agent');
+    const paneId = `tab-${Date.now().toString(36)}`;
+    const draftInput = (input.initialPrompt || '').trim() || undefined;
+    setAppState(prev => {
+      const currentTabs = normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel);
+      const activeTab = getActiveSessionTab(currentTabs);
+      const nextTab = createSessionTab({
+        id: paneId,
+        title: baseTitle,
+        kind: requestedKind,
+        transcriptId: paneId,
+        conversationId: paneId,
+        model: activeTab?.model ?? prev.mainLoopModel ?? undefined,
+        provider: activeTab?.provider,
+        draftInput,
+        taskPreviewSummary: draftInput
+          ? `Seeded: ${draftInput.slice(0, 80)}${draftInput.length > 80 ? '...' : ''}`
+          : 'Ready for a new agent thread',
+        transcriptMessages: [],
+      });
+      return {
+        ...prev,
+        sessionTabs: addSessionTab(currentTabs, nextTab),
+      };
+    });
+    return {
+      accepted: true,
+      paneId
+    };
+  }, [setAppState]);
+  const handleWorkspaceSwitchPane = useCallback(async (paneId: string): Promise<{
+    accepted: boolean;
+    paneId?: string;
+  }> => {
+    let accepted = false;
+    setAppState(prev => {
+      const currentTabs = normalizeSessionTabsState(prev.sessionTabs, prev.mainLoopModel);
+      if (!currentTabs.tabs[paneId]) {
+        return prev;
+      }
+      accepted = true;
+      return {
+        ...prev,
+        sessionTabs: switchSessionTab(currentTabs, paneId),
+      };
+    });
+    return {
+      accepted,
+      paneId: accepted ? paneId : undefined
+    };
+  }, [setAppState]);
+  useEffect(() => {
+    registerWorkspaceController({
+      submitPrompt: async (prompt: string) => {
+        const trimmed = prompt.trim();
+        if (!trimmed) {
+          return {
+            accepted: false,
+            mode: 'empty'
+          };
+        }
+        void onSubmitRef.current(trimmed, {
+          setCursorOffset: () => {},
+          clearBuffer: () => {},
+          resetHistory: () => {}
+        });
+        return {
+          accepted: true,
+          mode: isLoading || queryGuard.isActive ? 'queued' : 'submitted'
+        };
+      },
+      interrupt: async () => {
+        const controller = abortControllerRef.current;
+        if (!controller) {
+          return {
+            accepted: false
+          };
+        }
+        controller.abort('interrupt');
+        return {
+          accepted: true
+        };
+      },
+      createPane: handleWorkspaceCreatePane,
+      switchPane: handleWorkspaceSwitchPane,
+      runDialogAction: handleWorkspaceDialogAction
+    });
+    return () => {
+      registerWorkspaceController(null);
+      publishWorkspaceDialogSnapshot(null);
+    };
+  }, [handleWorkspaceCreatePane, handleWorkspaceDialogAction, handleWorkspaceSwitchPane, isLoading, queryGuard]);
+  useEffect(() => {
+    publishWorkspaceControlSnapshot({
+      isReady: true,
+      isBusy: isLoading || Boolean(userInputOnProcessing),
+      queuedCommands: queuedCommands.length,
+      canInterrupt: Boolean(abortControllerRef.current),
+      inputMode,
+      statusText: focusedInputDialog ? `dialog:${focusedInputDialog}` : isLoading ? 'running' : 'idle'
+    });
+  }, [focusedInputDialog, inputMode, isLoading, queuedCommands.length, userInputOnProcessing]);
+  useEffect(() => {
+    publishWorkspaceDialogSnapshot(workspaceDialogSnapshot);
+  }, [workspaceDialogSnapshot]);
   const handleOpenRateLimitOptions = useCallback(() => {
     void onSubmitRef.current('/rate-limit-options', {
       setCursorOffset: () => {},
@@ -5591,20 +6067,7 @@ export function REPL({
               sandboxBridgeCleanupRef.current.delete(approvedHost);
             }
           }} />}
-                {focusedInputDialog === 'prompt' && <PromptDialog key={promptQueue[0]!.request.prompt} title={promptQueue[0]!.title} toolInputSummary={promptQueue[0]!.toolInputSummary} request={promptQueue[0]!.request} onRespond={selectedKey => {
-            const item = promptQueue[0];
-            if (!item) return;
-            item.resolve({
-              prompt_response: item.request.prompt,
-              selected: selectedKey
-            });
-            setPromptQueue(([, ...tail]) => tail);
-          }} onAbort={() => {
-            const item = promptQueue[0];
-            if (!item) return;
-            item.reject(new Error('Prompt cancelled by user'));
-            setPromptQueue(([, ...tail]) => tail);
-          }} />}
+                {focusedInputDialog === 'prompt' && <PromptDialog key={promptQueue[0]!.request.prompt} title={promptQueue[0]!.title} toolInputSummary={promptQueue[0]!.toolInputSummary} request={promptQueue[0]!.request} onRespond={handlePromptDialogRespond} onAbort={handlePromptDialogAbort} />}
                 {/* Show pending indicator on worker while waiting for leader approval */}
                 {pendingWorkerRequest && <WorkerPendingPermission toolName={pendingWorkerRequest.toolName} description={pendingWorkerRequest.description} />}
                 {/* Show pending indicator for sandbox permission on worker side */}
@@ -5683,62 +6146,8 @@ export function REPL({
             }));
             currentRequest?.onWaitingDismiss?.(action);
           }} />}
-                {focusedInputDialog === 'cost' && <CostThresholdDialog onDone={() => {
-            setShowCostDialog(false);
-            setHaveShownCostDialog(true);
-            saveGlobalConfig(current => ({
-              ...current,
-              hasAcknowledgedCostThreshold: true
-            }));
-            logEvent('tengu_cost_threshold_acknowledged', {});
-          }} />}
-                {focusedInputDialog === 'idle-return' && idleReturnPending && <IdleReturnDialog idleMinutes={idleReturnPending.idleMinutes} totalInputTokens={getTotalInputTokens()} onDone={async action => {
-            const pending = idleReturnPending;
-            setIdleReturnPending(null);
-            logEvent('tengu_idle_return_action', {
-              action: action as AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
-              idleMinutes: Math.round(pending.idleMinutes),
-              messageCount: messagesRef.current.length,
-              totalInputTokens: getTotalInputTokens()
-            });
-            if (action === 'dismiss') {
-              setInputValue(pending.input);
-              return;
-            }
-            if (action === 'never') {
-              saveGlobalConfig(current => {
-                if (current.idleReturnDismissed) return current;
-                return {
-                  ...current,
-                  idleReturnDismissed: true
-                };
-              });
-            }
-            if (action === 'clear') {
-              const {
-                clearConversation
-              } = await import('../commands/clear/conversation.js');
-              await clearConversation({
-                setMessages,
-                readFileState: readFileState.current,
-                discoveredSkillNames: discoveredSkillNamesRef.current,
-                loadedNestedMemoryPaths: loadedNestedMemoryPathsRef.current,
-                getAppState: () => store.getState(),
-                setAppState,
-                setConversationId
-              });
-              haikuTitleAttemptedRef.current = false;
-              setHaikuTitle(undefined);
-              bashTools.current.clear();
-              bashToolsProcessedIdx.current = 0;
-            }
-            skipIdleCheckRef.current = true;
-            void onSubmitRef.current(pending.input, {
-              setCursorOffset: () => {},
-              clearBuffer: () => {},
-              resetHistory: () => {}
-            });
-          }} />}
+                {focusedInputDialog === 'cost' && <CostThresholdDialog onDone={handleCostThresholdDone} />}
+                {focusedInputDialog === 'idle-return' && idleReturnPending && <IdleReturnDialog idleMinutes={idleReturnPending.idleMinutes} totalInputTokens={getTotalInputTokens()} onDone={handleIdleReturnAction} />}
                 {focusedInputDialog === 'ide-onboarding' && <IdeOnboardingDialog onDone={() => setShowIdeOnboarding(false)} installationStatus={ideInstallationStatus} />}
                 {("external" as string) === 'ant' && focusedInputDialog === 'model-switch' && AntModelSwitchCallout && <AntModelSwitchCallout onDone={(selection: string, modelAlias?: string) => {
             setShowModelSwitchCallout(false);
@@ -5760,20 +6169,7 @@ export function REPL({
               }));
             }
           }} />}
-                {focusedInputDialog === 'remote-callout' && <RemoteCallout onDone={selection => {
-            setAppState(prev => {
-              if (!prev.showRemoteCallout) return prev;
-              return {
-                ...prev,
-                showRemoteCallout: false,
-                ...(selection === 'enable' && {
-                  replBridgeEnabled: true,
-                  replBridgeExplicit: true,
-                  replBridgeOutboundOnly: false
-                })
-              };
-            });
-          }} />}
+                {focusedInputDialog === 'remote-callout' && <RemoteCallout onDone={handleRemoteCalloutDone} />}
 
                 {exitFlow}
 

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude 调 Codex 的桥接链路 - Learn LikeCode</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧩</text></svg>">
+    <meta name="description" content="从 /codex:rescue 一路拆到 codex app-server：看清 Claude 插件、子代理、codex-companion.mjs、JSON-RPC、stdio 与 socket broker 的关系。">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🧩</span>
+                <span class="logo-text">Claude 调 Codex</span>
+            </a>
+            <div class="nav-links">
+                <a href="#takeaway" class="nav-link">结论</a>
+                <a href="#chain" class="nav-link">01 调用链</a>
+                <a href="#protocol" class="nav-link">02 通信</a>
+                <a href="#companion" class="nav-link">03 桥接脚本</a>
+                <a href="#map" class="nav-link">04 源码定位</a>
+                <a href="#reading-order" class="nav-link">05 阅读顺序</a>
+                <a href="#perf" class="nav-link">06 stdio / socket</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-sourcemap.html" class="btn-github">源码专题</a>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>专题课</span>
+                <span>插件桥接 · Runtime 通信</span>
+            </div>
+            <h1 class="hero-title">
+                Claude 是如何<br>
+                <span class="gradient-text">调用 Codex 的</span>
+            </h1>
+            <p class="hero-subtitle">
+                从 <code>/codex:rescue</code> 出发，把 <strong>Claude 插件命令</strong>、<strong>子代理</strong>、<strong><code>codex-companion.mjs</code></strong>、<strong>Codex App Server JSON-RPC</strong>、<strong>stdio / socket broker</strong> 一次拆清。
+            </p>
+            <div class="hero-stats" style="display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;margin-top:1.25rem;">
+                <div class="stat-item"><span class="stat-value">6</span><span class="stat-label">关键链路层</span></div>
+                <div class="stat-item"><span class="stat-value">2</span><span class="stat-label">通信分段</span></div>
+                <div class="stat-item"><span class="stat-value">2</span><span class="stat-label">传输模式</span></div>
+                <div class="stat-item"><span class="stat-value">1</span><span class="stat-label">桥接脚本核心</span></div>
+            </div>
+            <div class="hero-actions">
+                <a href="#chain" class="btn btn-primary">从完整调用链开始</a>
+                <a href="reference/reference_skill/codex-plugin-cc/README.md" class="btn btn-secondary">参考插件源码位置</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="course-main devlog-main">
+        <div class="container">
+            <article class="course-content devlog-content">
+
+                <section id="takeaway" class="section-block">
+                    <h2>一句话结论</h2>
+                    <div class="course-quote">
+                        <p><strong>Claude 不是在模型内部“切换成 Codex”。</strong>真实发生的事情是：Claude Code 的插件命令触发一个 <strong>Claude 子代理</strong>，子代理再通过 <strong>Bash</strong> 启动本地 Node 脚本 <code>codex-companion.mjs</code>，这个桥接脚本再通过 <strong>Codex App Server 的 JSON-RPC 协议</strong> 把任务送到 <code>codex app-server</code> 运行时。</p>
+                    </div>
+                </section>
+
+                <section id="chain" class="section-block">
+                    <h2>01 · 完整调用链</h2>
+                    <figure class="mermaid-figure" aria-label="Claude 到 Codex 的桥接链路">
+                        <figcaption class="mermaid-caption">
+                            <strong>主图</strong>：从插件命令到 Codex runtime 的完整桥接过程。你可以把它理解成“Claude 负责调度，本地脚本负责桥接，Codex runtime 负责真正执行”。
+                        </figcaption>
+                        <div class="mermaid-diagram-scroll" data-mermaid-diagram="claude-codex-bridge"></div>
+                    </figure>
+
+                    <table class="options-table">
+                        <tr><th>阶段</th><th>发生了什么</th><th>对应角色</th></tr>
+                        <tr><td>1. Slash 命令</td><td>用户输入 <code>/codex:rescue ...</code>，命中插件命令定义</td><td>Claude Code 插件</td></tr>
+                        <tr><td>2. 子代理路由</td><td>命令规则要求把任务转给 <code>codex:codex-rescue</code></td><td>Claude 子代理系统</td></tr>
+                        <tr><td>3. 本地命令执行</td><td>子代理仅执行一条 Bash：<code>node codex-companion.mjs task ...</code></td><td>Bash 工具</td></tr>
+                        <tr><td>4. 桥接编排</td><td><code>codex-companion.mjs</code> 解析参数、恢复线程、记录 job、决定前后台</td><td>Node 桥接脚本</td></tr>
+                        <tr><td>5. 协议请求</td><td>桥接脚本发 <code>thread/start</code>、<code>turn/start</code> 等 JSON-RPC 请求</td><td>Codex App Server Client</td></tr>
+                        <tr><td>6. 真正执行</td><td>Codex runtime 在自己的 thread / turn 中推理、调用工具、改文件并返回结果</td><td><code>codex app-server</code></td></tr>
+                    </table>
+                </section>
+
+                <section id="protocol" class="section-block">
+                    <h2>02 · Claude 与 Codex 之间到底靠什么通信</h2>
+                    <p>别把这件事想成“Claude 把请求直接打到 Codex API”。在这个插件方案里，通信其实分成了 <strong>两段</strong>：</p>
+                    <table class="options-table">
+                        <tr><th>分段</th><th>实现方式</th><th>重点理解</th></tr>
+                        <tr><td>Claude → 插件脚本</td><td>插件命令 + 子代理 + Bash 工具调用</td><td>Claude 最终是在本地启动一个 Node 进程，不是内部切换模型</td></tr>
+                        <tr><td>插件脚本 → Codex runtime</td><td>Codex App Server JSON-RPC</td><td>这里才是结构化协议层，请求如 <code>initialize</code>、<code>thread/start</code>、<code>turn/start</code></td></tr>
+                    </table>
+
+                    <p>也就是说，<strong>Claude 负责调度本地工具</strong>，而 <strong>Codex App Server 负责 runtime 协议</strong>。这两层不要混在一起看。</p>
+                </section>
+
+                <section id="companion" class="section-block">
+                    <h2>03 · <code>codex-companion.mjs</code> 到底是什么</h2>
+                    <p>它不是 Codex 本体，而是<strong>插件侧的桥接器 / 编排器</strong>。Claude 把任务交给它，它再把任务交给 Codex runtime。</p>
+                    <ul>
+                        <li>解析 <code>task</code>、<code>review</code>、<code>status</code>、<code>result</code>、<code>cancel</code> 等命令。</li>
+                        <li>处理 <code>--resume</code>、<code>--fresh</code>、<code>--background</code>、<code>--model</code>、<code>--effort</code>。</li>
+                        <li>在当前仓库下记录 job 状态、<code>threadId</code>、<code>turnId</code>、日志文件。</li>
+                        <li>决定是直接启动 <code>codex app-server</code>，还是复用 broker 共享运行时。</li>
+                        <li>把 Codex 返回的事件、错误、最终输出整理成 Claude 可展示的文本。</li>
+                    </ul>
+
+                    <pre><code>/codex:rescue
+-> commands/rescue.md
+-> codex:codex-rescue
+-> node codex-companion.mjs task ...
+-> runAppServerTurn(...)
+-> codex app-server JSON-RPC
+-> Codex thread / turn 执行</code></pre>
+                </section>
+
+                <section id="map" class="section-block">
+                    <h2>04 · 源码定位表：每个文件在这条链里负责什么</h2>
+                    <p>这一节的目标不是把所有文件都看完，而是让你先建立<strong>文件职责地图</strong>。这样后面继续深挖时，不会在仓库里盲找。</p>
+                    <table class="options-table">
+                        <tr><th>文件</th><th>角色</th><th>你进去主要看什么</th></tr>
+                        <tr><td><code>plugins/codex/commands/rescue.md</code></td><td>Claude 插件命令定义</td><td>Slash 命令如何路由到子代理、何时询问 resume、最终要求子代理只执行什么命令</td></tr>
+                        <tr><td><code>plugins/codex/agents/codex-rescue.md</code></td><td>Claude 子代理 prompt 契约</td><td>为什么它被设计成“薄转发器”、默认是否带 <code>--write</code>、如何处理 <code>--resume</code> / <code>--fresh</code></td></tr>
+                        <tr><td><code>plugins/codex/scripts/codex-companion.mjs</code></td><td>插件侧桥接主入口</td><td>命令解析、task/review/status/result/cancel 分发、前后台 job、resume-candidate 逻辑</td></tr>
+                        <tr><td><code>plugins/codex/scripts/lib/codex.mjs</code></td><td>Codex runtime 协议适配层</td><td><code>runAppServerTurn()</code>、<code>runAppServerReview()</code>、thread/start、turn/start、事件捕获与结果整理</td></tr>
+                        <tr><td><code>plugins/codex/scripts/lib/app-server.mjs</code></td><td>App Server 客户端</td><td>JSON-RPC message 如何走、何时 <code>spawn(&quot;codex&quot;, [&quot;app-server&quot;])</code>、何时走 broker</td></tr>
+                        <tr><td><code>plugins/codex/scripts/app-server-broker.mjs</code></td><td>共享运行时 broker</td><td>本地 socket 如何复用同一个 Codex runtime、busy 时怎么拒绝并发请求</td></tr>
+                        <tr><td><code>plugins/codex/scripts/session-lifecycle-hook.mjs</code></td><td>Claude 会话生命周期 hook</td><td>SessionStart / SessionEnd 时怎样注入环境变量、清理 broker、清理后台任务</td></tr>
+                        <tr><td><code>plugins/codex/scripts/lib/state.mjs</code></td><td>仓库级状态与 job 存储</td><td>为什么 resume 和 status 是“按工作区”工作的、job 文件落在哪里</td></tr>
+                        <tr><td><code>plugins/codex/scripts/lib/tracked-jobs.mjs</code></td><td>任务跟踪层</td><td>threadId / turnId / logFile / sessionId 如何随着执行过程被记录下来</td></tr>
+                    </table>
+                </section>
+
+                <section id="reading-order" class="section-block">
+                    <h2>05 · 逐文件讲解顺序：第一次读这个插件建议怎么走</h2>
+                    <p>推荐按“<strong>从外到内</strong>”的顺序读。也就是先看 Claude 这边怎样发起，再看桥接脚本怎样接，再看 Codex runtime 怎样吃进去。</p>
+
+                    <table class="options-table">
+                        <tr><th>顺序</th><th>先读哪个</th><th>为什么先读它</th></tr>
+                        <tr><td>Step 1</td><td><code>plugins/codex/commands/rescue.md</code></td><td>先看用户命令入口，能马上知道 Claude 被要求做什么、不该做什么</td></tr>
+                        <tr><td>Step 2</td><td><code>plugins/codex/agents/codex-rescue.md</code></td><td>再看子代理 prompt，理解为什么它几乎不自己思考、只负责转发</td></tr>
+                        <tr><td>Step 3</td><td><code>plugins/codex/scripts/codex-companion.mjs</code></td><td>这是整条链真正的总调度器，先建立全局视角最值</td></tr>
+                        <tr><td>Step 4</td><td><code>plugins/codex/scripts/lib/codex.mjs</code></td><td>看桥接脚本怎样调用 App Server，以及 thread / turn 是怎么跑起来的</td></tr>
+                        <tr><td>Step 5</td><td><code>plugins/codex/scripts/lib/app-server.mjs</code></td><td>看清 JSON-RPC 客户端、stdio 直连和 broker 复用的分叉点</td></tr>
+                        <tr><td>Step 6</td><td><code>plugins/codex/scripts/app-server-broker.mjs</code></td><td>如果你关心性能、复用和 socket，这一层最关键</td></tr>
+                        <tr><td>Step 7</td><td><code>plugins/codex/scripts/session-lifecycle-hook.mjs</code> + <code>lib/state.mjs</code></td><td>最后补会话环境变量、resume、status、cancel 这些“为什么能记住上次任务”的外围机制</td></tr>
+                    </table>
+
+                    <div class="course-quote">
+                        <p><strong>读法建议</strong>：第一次不要一上来就钻 <code>app-server.mjs</code>。如果你还没先看清 <code>rescue.md</code> 和 <code>codex-companion.mjs</code>，你很容易只看到协议细节，却不知道整条链为什么要这样设计。</p>
+                    </div>
+                </section>
+
+                <section id="perf" class="section-block">
+                    <h2>06 · 这样传输会不会慢？是不是应该全改成 socket？</h2>
+                    <p>通常不是这里慢。真正耗时的往往是 <strong>模型推理</strong>、<strong>工具执行</strong>、<strong>文件扫描</strong>、<strong>首次启动 runtime</strong>，而不是本地进程间这点通信开销。</p>
+
+                    <table class="options-table">
+                        <tr><th>模式</th><th>承载通道</th><th>适合什么</th></tr>
+                        <tr><td>直接模式</td><td><code>stdio</code></td><td>单次直连、简单稳定、跨平台</td></tr>
+                        <tr><td>共享模式</td><td>broker + 本地 <code>socket</code></td><td>复用一个长期存活的 Codex runtime，减少重复启动成本</td></tr>
+                    </table>
+
+                    <div class="course-quote">
+                        <p><strong>关键点</strong>：不是“未来能不能改成 socket”，而是这个插件方案本来就同时支持 <strong><code>stdio</code></strong> 和 <strong>本地 socket broker</strong> 两条路径。</p>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2>07 · 为什么有时会掉到错误的工作目录</h2>
+                    <p>如果 Claude 侧转发任务时没有把正确的 <code>cwd</code> 或会话上下文带过去，Codex runtime 看到的工作目录就可能不是项目根，而是插件安装目录、当前 shell 目录，甚至你之前看到的 <code>~/.local/bin</code>。这种情况通常不是协议层出了问题，而是<strong>桥接时的上下文绑定</strong>有偏差。</p>
+                </section>
+
+                <section class="section-block">
+                    <h2>08 · 关键源码锚点</h2>
+                    <ul>
+                        <li><code>reference/reference_skill/codex-plugin-cc/plugins/codex/commands/rescue.md</code></li>
+                        <li><code>reference/reference_skill/codex-plugin-cc/plugins/codex/agents/codex-rescue.md</code></li>
+                        <li><code>reference/reference_skill/codex-plugin-cc/plugins/codex/scripts/codex-companion.mjs</code></li>
+                        <li><code>reference/reference_skill/codex-plugin-cc/plugins/codex/scripts/lib/codex.mjs</code></li>
+                        <li><code>reference/reference_skill/codex-plugin-cc/plugins/codex/scripts/lib/app-server.mjs</code></li>
+                        <li><code>reference/reference_skill/codex-plugin-cc/plugins/codex/scripts/app-server-broker.mjs</code></li>
+                        <li><code>reference/reference_skill/codex-plugin-cc/plugins/codex/scripts/session-lifecycle-hook.mjs</code></li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>09 · 课程里最该记住的分层</h2>
+                    <div class="course-quote">
+                        <p><strong>Claude</strong> 负责插件命令与子代理调度，<strong><code>codex-companion.mjs</code></strong> 负责桥接与编排，<strong>Codex App Server</strong> 负责协议与运行时，<strong>Codex 模型</strong>只是在最底层真正做推理的那一层。把这四层分开看，这个系统就会一下子清楚很多。</p>
+                    </div>
+                </section>
+
+                <div class="chapter-navigation">
+                    <a href="topic-cc-unpacked-zh.html" class="btn btn-secondary">← 返回 CC 结构导览</a>
+                    <a href="topic-sourcemap.html" class="btn btn-primary">回到源码专题 →</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-claude-codex-bridge.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>© 2026 Learn LikeCode. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

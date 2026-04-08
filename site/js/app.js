@@ -481,10 +481,10 @@ function initSiteSidebar() {
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-toolchain.html"><span class="site-sidebar__ico">📌</span><span class="site-sidebar__txt">专题首页</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="column-agent-journey.html"><span class="site-sidebar__ico">🧭</span><span class="site-sidebar__txt">工具链阅读</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="column-shangshou-cikeng.html"><span class="site-sidebar__ico">🛠️</span><span class="site-sidebar__txt">上手与踩坑</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="column-show-your-usage.html"><span class="site-sidebar__ico">📊</span><span class="site-sidebar__txt">Show usage</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="column-channel-review.html"><span class="site-sidebar__ico">🛒</span><span class="site-sidebar__txt">渠道评测</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="devlog.html"><span class="site-sidebar__ico">📝</span><span class="site-sidebar__txt">开发日志</span></a>' +
         '</details>' +
-        '<a class="site-sidebar__link" href="column-show-your-usage.html"><span class="site-sidebar__ico">📊</span><span class="site-sidebar__txt">Show usage</span></a>' +
         '<a class="site-sidebar__link" href="https://github.com/Harzva/learn-likecc" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">🐙</span><span class="site-sidebar__txt">GitHub</span></a>' +
         '</div>'
 
@@ -589,6 +589,340 @@ function initSiteViewCounter() {
     const simpleContainer = document.querySelector('footer.footer .container')
     if (simpleContainer) {
         simpleContainer.appendChild(wrap)
+    }
+}
+
+function slugifyChineseSafe(text, fallback) {
+    const raw = (text || '')
+        .trim()
+        .toLowerCase()
+        .replace(/<[^>]+>/g, '')
+        .replace(/[^\w\u4e00-\u9fa5\s-]+/g, ' ')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '')
+
+    return raw || fallback
+}
+
+function getCurrentPageName() {
+    return window.location.pathname.split('/').pop() || 'index.html'
+}
+
+function ensureAnchorId(element, prefix, index) {
+    if (!element) return ''
+    if (element.id) return element.id
+
+    const labelNode = element.querySelector('h1, h2, h3, h4') || element
+    const nextId = `${prefix}-${slugifyChineseSafe(labelNode.textContent, String(index + 1))}`
+    element.id = nextId
+    return nextId
+}
+
+function collectSectionItems(options = {}) {
+    const {
+        selector = '.section-block',
+        headingSelector = 'h2',
+        prefix = 'section',
+        min = 0,
+        limit = Infinity
+    } = options
+
+    const blocks = Array.from(document.querySelectorAll(selector))
+    const items = blocks
+        .map((block, index) => {
+            const heading = block.querySelector(headingSelector)
+            if (!heading) return null
+
+            const id = ensureAnchorId(block, prefix, index)
+            return {
+                href: `#${id}`,
+                label: heading.textContent.trim(),
+                type: 'anchor'
+            }
+        })
+        .filter(Boolean)
+        .slice(0, limit)
+
+    return items.length >= min ? items : []
+}
+
+function buildOhSeriesItems() {
+    const items = []
+    const currentPage = getCurrentPageName()
+
+    for (let i = 1; i <= 12; i++) {
+        const num = String(i).padStart(2, '0')
+        items.push({
+            href: `oh${num}.html`,
+            label: `OH${num}`,
+            type: 'page',
+            active: currentPage === `oh${num}.html`
+        })
+    }
+
+    return items
+}
+
+function buildCoursePairItems() {
+    const currentPage = getCurrentPageName()
+
+    return Array.from(document.querySelectorAll('#courses .course-card-pair')).reduce((groups, card) => {
+        const part = card.getAttribute('data-part') || '1'
+        const title = card.querySelector('.course-title-main')?.textContent.trim()
+        const bucket = groups[part] || []
+
+        Array.from(card.querySelectorAll('.course-pair-link')).forEach((link) => {
+            const href = link.getAttribute('href')
+            if (!href) return
+            const shortLabel = link.querySelector('.course-pair-lab')?.textContent.trim() || link.textContent.trim()
+            bucket.push({
+                href,
+                label: `${shortLabel} · ${title || ''}`.replace(/\s+/g, ' ').trim(),
+                type: 'page',
+                active: href === currentPage,
+                accent: part
+            })
+        })
+
+        groups[part] = bucket
+        return groups
+    }, {})
+}
+
+function getPartGroupTitle(part) {
+    const map = {
+        '1': 'Part 1 · 核心架构',
+        '2': 'Part 2 · 高级特性',
+        '3': 'Part 3 · 扩展集成'
+    }
+    return map[part] || `Part ${part}`
+}
+
+function markActiveSiteSidebarLinks(scope = document) {
+    const currentPage = getCurrentPageName()
+    const currentHash = window.location.hash || ''
+
+    scope.querySelectorAll('a.site-sidebar__link').forEach((link) => {
+        const href = link.getAttribute('href') || ''
+        if (!href || href.startsWith('http')) return
+
+        const [path, hash] = href.split('#')
+        const samePage = !path || path === currentPage
+        const active = hash ? samePage && `#${hash}` === currentHash : path === currentPage
+        link.classList.toggle('site-sidebar__link--active', active)
+    })
+}
+
+function getPageSubnavConfig() {
+    const page = getCurrentPageName()
+
+    if (page === 'index.html') {
+        const courseItemsByPart = buildCoursePairItems()
+        const courseGroups = Object.entries(courseItemsByPart)
+            .sort(([a], [b]) => Number(a) - Number(b))
+            .map(([part, items]) => ({
+                title: getPartGroupTitle(part),
+                items
+            }))
+            .filter((group) => group.items.length)
+
+        if (!courseGroups.length) return null
+        return {
+            title: '24 讲速览',
+            groups: [
+                {
+                    title: '页内',
+                    items: [
+                        { href: '#courses', label: '源码课程章节', type: 'anchor' },
+                        { href: '#source-map-event', label: 'Source Map 事件', type: 'anchor' },
+                        { href: '#interview', label: '面试题库', type: 'anchor' }
+                    ]
+                },
+                ...courseGroups
+            ]
+        }
+    }
+
+    if (page === 'topic-openharness.html') {
+        return {
+            title: 'OH 专题目录',
+            groups: [
+                {
+                    title: '页内',
+                    items: collectSectionItems({ selector: 'main .section-block', prefix: 'openharness-topic', min: 3 })
+                },
+                {
+                    title: 'OH 讲稿',
+                    items: buildOhSeriesItems()
+                }
+            ]
+        }
+    }
+
+    if (page === 'topic-openharness-course.html') {
+        return {
+            title: 'OH 源码课',
+            groups: [
+                {
+                    title: '页内',
+                    items: collectSectionItems({ selector: 'main .section-block', prefix: 'oh-course', min: 4 })
+                },
+                {
+                    title: 'OH01–12',
+                    items: buildOhSeriesItems()
+                }
+            ]
+        }
+    }
+
+    if (/^oh\d{2}\.html$/.test(page)) {
+        return {
+            title: 'OH 快捷切换',
+            groups: [
+                {
+                    title: '本页',
+                    items: collectSectionItems({ selector: 'main .section-block', prefix: page.replace('.html', ''), min: 4 })
+                },
+                {
+                    title: 'OH01–12',
+                    items: buildOhSeriesItems()
+                }
+            ]
+        }
+    }
+
+    const genericSectionItems = collectSectionItems({ selector: 'main .section-block[id], main .section-block', prefix: 'page', min: 5, limit: 10 })
+    if (genericSectionItems.length) {
+        return {
+            title: '页内目录',
+            groups: [{ title: '章节', items: genericSectionItems }]
+        }
+    }
+
+    return null
+}
+
+function initPageSubnav() {
+    if (document.getElementById('page-subnav')) return
+
+    const config = getPageSubnavConfig()
+    if (!config) return
+
+    const groups = config.groups.filter((group) => group.items && group.items.length)
+    if (!groups.length) return
+
+    const collapsed = localStorage.getItem('page-subnav-collapsed') === '1'
+    const aside = document.createElement('aside')
+    aside.id = 'page-subnav'
+    aside.className = 'page-subnav' + (collapsed ? ' page-subnav--collapsed' : '')
+    aside.setAttribute('aria-label', config.title || '页内目录')
+
+    aside.innerHTML =
+        '<button type="button" class="page-subnav__toggle" aria-label="收起或展开目录" title="收起或展开目录">' +
+        (collapsed ? '≡' : '→') +
+        '</button>' +
+        '<div class="page-subnav__scroll">' +
+        `<div class="page-subnav__head"><strong>${config.title || '页内目录'}</strong></div>` +
+        groups
+            .map((group) => {
+                return (
+                    '<section class="page-subnav__group">' +
+                    `<p class="page-subnav__group-title">${group.title}</p>` +
+                    group.items
+                        .map((item) => {
+                            const activeClass = item.active ? ' page-subnav__link--active page-subnav__link--active-page' : ''
+                            const typeClass = item.type === 'anchor' ? ' page-subnav__link--anchor' : ''
+                            const accentClass = item.accent ? ` page-subnav__link--part-${item.accent}` : ''
+                            return `<a class="page-subnav__link${activeClass}${typeClass}${accentClass}" href="${item.href}">${item.label}</a>`
+                        })
+                        .join('') +
+                    '</section>'
+                )
+            })
+            .join('') +
+        '</div>'
+
+    const backdrop = document.createElement('div')
+    backdrop.className = 'page-subnav__backdrop'
+    backdrop.hidden = true
+
+    const fab = document.createElement('button')
+    fab.type = 'button'
+    fab.className = 'page-subnav__fab'
+    fab.setAttribute('aria-label', '打开页内目录')
+    fab.textContent = '目录'
+
+    document.body.appendChild(aside)
+    document.body.appendChild(backdrop)
+    document.body.appendChild(fab)
+
+    const toggleBtn = aside.querySelector('.page-subnav__toggle')
+    const links = Array.from(aside.querySelectorAll('.page-subnav__link'))
+    const isMobile = () => window.matchMedia('(max-width: 1100px)').matches
+
+    function setCollapsed(next) {
+        aside.classList.toggle('page-subnav--collapsed', next)
+        toggleBtn.textContent = next ? '≡' : '→'
+        localStorage.setItem('page-subnav-collapsed', next ? '1' : '0')
+    }
+
+    function closeMobilePanel() {
+        aside.classList.remove('page-subnav--open')
+        backdrop.hidden = true
+    }
+
+    toggleBtn.addEventListener('click', () => {
+        if (isMobile()) {
+            const open = aside.classList.toggle('page-subnav--open')
+            backdrop.hidden = !open
+            return
+        }
+        setCollapsed(!aside.classList.contains('page-subnav--collapsed'))
+    })
+
+    fab.addEventListener('click', () => {
+        aside.classList.add('page-subnav--open')
+        backdrop.hidden = false
+    })
+
+    backdrop.addEventListener('click', closeMobilePanel)
+
+    links.forEach((link) => {
+        link.addEventListener('click', () => {
+            if (isMobile()) closeMobilePanel()
+        })
+    })
+
+    const anchorLinks = links.filter((link) => {
+        const href = link.getAttribute('href') || ''
+        return href.startsWith('#')
+    })
+
+    const observerTargets = anchorLinks
+        .map((link) => document.querySelector(link.getAttribute('href')))
+        .filter(Boolean)
+
+    if (observerTargets.length) {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const visible = entries
+                    .filter((entry) => entry.isIntersecting)
+                    .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0]
+
+                if (!visible) return
+                const activeId = `#${visible.target.id}`
+                anchorLinks.forEach((link) => {
+                    link.classList.toggle('page-subnav__link--active', link.getAttribute('href') === activeId)
+                })
+            },
+            {
+                rootMargin: '-20% 0px -65% 0px',
+                threshold: [0, 0.25, 0.6]
+            }
+        )
+
+        observerTargets.forEach((target) => observer.observe(target))
     }
 }
 
@@ -800,9 +1134,11 @@ function initExpandButtons() {
 // 初始化新功能
 document.addEventListener('DOMContentLoaded', () => {
     initSiteSidebar()
+    initPageSubnav()
     initSiteViewCounter()
     initTutorialsTabs()
     initInterviewCategories()
     initExpandButtons()
     initMermaidFlowcharts()
+    markActiveSiteSidebarLinks()
 })

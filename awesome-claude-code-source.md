@@ -6,19 +6,23 @@
 
 与本列表正交、主题并列的汇总（GitHub 上点进仓库根目录即可阅读）：
 
-| 文件 | 内容 | 本站专题（Pages） |
-|------|------|-------------------|
-| 本文件 | Claude Code 泄露/逆向镜像仓库 | [Source Map 源码专题](https://harzva.github.io/learn-likecc/topic-sourcemap.html) |
-| [awesome-rag.md](./awesome-rag.md) | RAG 教程、向量库、Graph RAG、评测工具等 | [RAG 大专题](https://harzva.github.io/learn-likecc/topic-rag.html) |
-| [awesome-agent.md](./awesome-agent.md) | Agent 框架、多智能体、MCP、编程助手生态等 | [Agent 大专题](https://harzva.github.io/learn-likecc/topic-agent.html) |
+
+| 文件                                     | 内容                         | 本站专题（Pages）                                                                   |
+| -------------------------------------- | -------------------------- | ----------------------------------------------------------------------------- |
+| 本文件                                    | Claude Code 泄露/逆向镜像仓库      | [Source Map 源码专题](https://harzva.github.io/learn-likecc/topic-sourcemap.html) |
+| [awesome-rag.md](./awesome-rag.md)     | RAG 教程、向量库、Graph RAG、评测工具等 | [RAG 大专题](https://harzva.github.io/learn-likecc/topic-rag.html)               |
+| [awesome-agent.md](./awesome-agent.md) | Agent 框架、多智能体、MCP、编程助手生态等  | [Agent 大专题](https://harzva.github.io/learn-likecc/topic-agent.html)           |
+
 
 ---
 
 ## 官方 (Anthropic)
 
-| 仓库 | 描述 | 语言 | 状态 |
-|------|------|------|------|
+
+| 仓库                                                                  | 描述                           | 语言         | 状态   |
+| ------------------------------------------------------------------- | ---------------------------- | ---------- | ---- |
 | [anthropics/claude-code](https://github.com/anthropics/claude-code) | Anthropic 官方 Claude Code CLI | TypeScript | 官方闭源 |
+
 
 ---
 
@@ -26,36 +30,44 @@
 
 ### 完整恢复项目
 
-| 仓库 | 描述 | 语言 | 编译错误 | Stars |
-|------|------|------|----------|-------|
-| [instructkr/claw-code](https://github.com/instructkr/claw-code) | Python/Rust 重写版，最快达到 50K stars | Python + Rust | 0 | ![Stars](https://img.shields.io/github/stars/instructkr/claw-code) |
-| [Harzva/learn-likecc](https://github.com/Harzva/learn-likecc) | 学习项目：逆向工程 + 课程体系 | TypeScript | ~2180 | ![Stars](https://img.shields.io/github/stars/Harzva/learn-likecc) |
+
+| 仓库                                                              | 描述                             | 语言            | 编译错误  | Stars |
+| --------------------------------------------------------------- | ------------------------------ | ------------- | ----- | ----- |
+| [instructkr/claw-code](https://github.com/instructkr/claw-code) | Python/Rust 重写版，最快达到 50K stars | Python + Rust | 0     | Stars |
+| [Harzva/learn-likecc](https://github.com/Harzva/learn-likecc)   | 学习项目：逆向工程 + 课程体系               | TypeScript    | ~2180 | Stars |
+
 
 ### TypeScript/JavaScript 项目
 
-| 仓库 | 描述 | 语言 | 编译错误 | Stars |
-|------|------|------|----------|-------|
-| [open-claude-code](https://github.com/user/open-claude-code) | 基于 2.1.88 版本恢复 | TypeScript | 0 | - |
-| [claude-code2 (CCB)](https://github.com/user/claude-code2) | 反编译修复版 | TypeScript | ~294 | - |
-| [leaked-claude-code](https://github.com/user/leaked-claude-code) | 源码泄露版本 | TypeScript | 0 | - |
+
+| 仓库                                                               | 描述             | 语言         | 编译错误 | Stars |
+| ---------------------------------------------------------------- | -------------- | ---------- | ---- | ----- |
+| [open-claude-code](https://github.com/user/open-claude-code)     | 基于 2.1.88 版本恢复 | TypeScript | 0    | -     |
+| [claude-code2 (CCB)](https://github.com/user/claude-code2)       | 反编译修复版         | TypeScript | ~294 | -     |
+| [leaked-claude-code](https://github.com/user/leaked-claude-code) | 源码泄露版本         | TypeScript | 0    | -     |
+
 
 ### Python 项目
 
-| 仓库 | 描述 | 语言 | 特点 |
-|------|------|------|------|
-| [claw-code/src](https://github.com/instructkr/claw-code/tree/main/src) | Python 实现 | Python | 完整功能 |
-| [claw-code/rust](https://github.com/instructkr/claw-code/tree/dev/rust) | Rust 移植版 | Rust | 高性能 |
+
+| 仓库                                                                      | 描述        | 语言     | 特点   |
+| ----------------------------------------------------------------------- | --------- | ------ | ---- |
+| [claw-code/src](https://github.com/instructkr/claw-code/tree/main/src)  | Python 实现 | Python | 完整功能 |
+| [claw-code/rust](https://github.com/instructkr/claw-code/tree/dev/rust) | Rust 移植版  | Rust   | 高性能  |
+
 
 ---
 
 ## 项目对比
 
-| 项目 | 运行时 | 编译错误 | 可运行 | 功能完整度 |
-|------|--------|----------|--------|------------|
-| **claw-code** | Python + Rust | 0 | ✅ | 重写实现 |
-| **open-claude-code** | Node.js + Bun | 0 | ✅ | 核心 |
-| **claude-code2** | Bun | ~294 | ✅ | 核心+扩展 |
-| **learn-likecc** | Bun | ~2180 | ✅ | 核心 |
+
+| 项目                   | 运行时           | 编译错误  | 可运行 | 功能完整度 |
+| -------------------- | ------------- | ----- | --- | ----- |
+| **claw-code**        | Python + Rust | 0     | ✅   | 重写实现  |
+| **open-claude-code** | Node.js + Bun | 0     | ✅   | 核心    |
+| **claude-code2**     | Bun           | ~294  | ✅   | 核心+扩展 |
+| **learn-likecc**     | Bun           | ~2180 | ✅   | 核心    |
+
 
 ---
 
@@ -70,12 +82,14 @@
 
 ### 技术栈
 
-| 组件 | 官方 | claw-code | 其他项目 |
-|------|------|-----------|----------|
-| 运行时 | Bun | Python/Rust | Bun |
-| UI 框架 | Ink | Rich/Textual | Ink |
-| API | Anthropic SDK | 自实现 | Anthropic SDK |
-| 工具系统 | 内置 | 自实现 | 内置 |
+
+| 组件    | 官方            | claw-code    | 其他项目          |
+| ----- | ------------- | ------------ | ------------- |
+| 运行时   | Bun           | Python/Rust  | Bun           |
+| UI 框架 | Ink           | Rich/Textual | Ink           |
+| API   | Anthropic SDK | 自实现          | Anthropic SDK |
+| 工具系统  | 内置            | 自实现          | 内置            |
+
 
 ---
 

@@ -72,7 +72,7 @@ export function Feed(t0) {
   const maxTimestampWidth = t1;
   let t2;
   if ($[2] !== title) {
-    t2 = <Text bold={true} color="claude">{title}</Text>;
+    t2 = <Text bold={true} color="ansi:yellow">{title}</Text>;
     $[2] = title;
     $[3] = t2;
   } else {

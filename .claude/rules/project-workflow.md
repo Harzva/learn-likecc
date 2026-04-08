@@ -39,3 +39,9 @@ git commit -m "阶段描述: 具体内容"
 3. 创建规则到 `.claude/rules/`
 4. 提交 git
 5. 继续下一步
+
+## 持续约束
+
+1. 用户提出的新需求，必须同步更新到 plan
+2. 没完成的事项，必须继续保留在 README 的 todo / roadmap
+3. 只要影响用户可见功能，就检查 git、Pages、Release、CHANGELOG、版本号是否需要同步更新

@@ -12,7 +12,7 @@
 
 这是一份给自己留底的**阅历随笔**，后面会接到「个人项目经历」展示里。逻辑我稍微顺过一遍，但语气尽量保持原来那种——**坑、白嫖、丝滑、断流**这些词就留着了，真实一点。
 
-说白了就是**热爱这个赛道**：新工具出来就想摸，**比写论文爽多了**——**体验即动机**，不是为了写进简历才点下载。
+**对自己的评价**：**vibe coding 狂热爱好者**。新工具出来就想摸，**比写论文爽多了**——**体验即动机**，不是为了写进简历才点下载。
 
 ---
 
@@ -138,91 +138,171 @@
 
 ### `mtool` 等：配置文件里写全，全局命令只管切换
 
-**和 `ccswitch` 的区别**：`ccswitch` 常是自写 bash 改 `CLAUDE_CONFIG_DIR`；**`mtool` 一类**多是**官方/社区二进制**，读**固定路径配置文件**（YAML/JSON 等），用已加入 `PATH` 的子命令做 `list` / `use` / `doctor` / `reload`（具体名以 `--help` 为准）。密钥与上游地址只进配置或环境变量，勿提交仓库。
-
-**全局命令怎么接上**：安装器写入 `~/.local/bin` 或 `/usr/local/bin`；或 `ln -s` 到自管 `~/bin`；新终端里 `which mtool` 验证。
-
-**典型流程**（占位）：
-
-1. 按文档找到配置路径（示意 `~/.config/mtool/config.yaml`）。  
-2. 维护多 `profile`，`current_profile` 或子命令切换。  
-3. 与 `claude` 联用时常配合设置 `ANTHROPIC_BASE_URL` 等（或 `mtool env` 类子命令，视发行版）。  
-4. 顺序示例：需要时 `source clashproxy` → 启 mtool 监听 → 再 `ccswitch` / 开 CLI。
-
-```yaml
-# ~/.config/mtool/config.yaml 示意（键名随版本而变）
-version: 1
-current_profile: default
-profiles:
-  default:
-    listen: "127.0.0.1:11435"
-    upstream_base: "https://example.invalid/v1"
-  work:
-    listen: "127.0.0.1:11436"
-    upstream_base: "https://corp-gateway.example.invalid/v1"
-```
+这一类工具在我这台机器上，更像一个**总入口分发器**，不是传统意义上只有 `profile/use/list` 的单独网关进程。直接跑 `mtool`，会列出当前挂在 `/usr/local/bin` 下的一批工具：
 
 ```bash
-#!/usr/bin/env bash
-# 薄包装：官方未写 PATH 时（占位路径）
-exec "${HOME}/.local/lib/mtool/bin/mtool" "$@"
+$ mtool
+Usage: mtool <tool> [args...]
+
+Available tools:
+  - ccswitch      ↳ ccs
+  - clashproxy    ↳ clashp
+  - cliproxy      ↳ clip
+  - codexswitch   ↳ codexs
+  - glmclaude     ↳ glmcc
+  - installAntigravity.sh ↳ antinstall
+  - mylaunch      ↳ ml
+  - zellij        ↳ zj
+  ...
 ```
+
+也就是说，它的实际用法是：
 
 ```bash
-# 子命令以本机为准，例如：
-# mtool version && mtool profile list && mtool profile use work
+mtool clashproxy status
+mtool codexswitch pro
+mtool cliproxy log
 ```
 
-**与 `ccswitch` 叠用**：一层管网关/兼容协议，一层管 Claude 配置目录；注意别双重代理、别重复写密钥。
+如果你已经习惯短命令，也可以直接敲这些 alias：
+
+```bash
+clashp status
+codexs tiger
+clip log
+ccs status
+```
+
+**和 `ccswitch` 的区别**：`mtool` 本身主要负责**发现并转发**子工具；真正做配置切换、启停服务、改 CLI 配置的，是下面这些具体脚本。它更像你个人工具箱的入口，而不是统一配置中心。
 
 ### `ccswitch` / `codexswitch`
 
-**思路**：用不同配置根目录区分身份，切换时只改环境变量。
+这两类脚本负责“切身份 / 切配置”，但目标不一样。
+
+`ccswitch` 当前机器上的真实用法是：
 
 ```bash
-#!/usr/bin/env bash
-PROFILE="${1:-default}"
-export CLAUDE_CONFIG_DIR="${HOME}/.config/claude-profiles/${PROFILE}"
-mkdir -p "$CLAUDE_CONFIG_DIR"
-echo "Active profile: ${PROFILE} -> ${CLAUDE_CONFIG_DIR}"
+$ ccs
+使用方法: ccswitch {cliwin|clilocal|glm|diy|status}
 ```
 
+各模式对应的是把 [`~/.claude/settings.json`](/home/clashuser/.claude/settings.json) 里的 `env.ANTHROPIC_BASE_URL` 和 `env.ANTHROPIC_AUTH_TOKEN` 改到不同上游：
+
 ```bash
-#!/usr/bin/env bash
-PROFILE="${1:-work}"
-export CODEX_HOME="${HOME}/.codex/${PROFILE}"
-echo "CODEX_HOME=${CODEX_HOME}"
+ccs cliwin    # 指向 127.0.0.1:8317，并检查 SSH 反向隧道
+ccs clilocal  # 指向 localhost:8317
+ccs glm       # 指向智谱兼容接口
+ccs diy       # 交互式输入自定义 BASE_URL / TOKEN
+ccs status    # 打印当前 ~/.claude/settings.json 里的 env 配置
 ```
+
+`codexswitch` 当前机器上的真实用法是：
+
+```bash
+$ codexs
+Usage:
+  codexs 66
+  codexs 56
+  codexs pro
+  codexs tiger
+  codexs status
+```
+
+它现在做的是把 [`~/.codex/auth.json`](/home/clashuser/.codex/auth.json) 以及部分场景下的 [`~/.codex/config.toml`](/home/clashuser/.codex/config.toml) 切到不同 profile：
+
+```bash
+codexs pro     # -> auth-pro.json + config-pro.toml
+codexs tiger   # -> authtiger.json + configtiger.toml
+codexs 66      # -> auth66.json（如果本机存在）
+codexs 56      # -> auth56.json（如果本机存在）
+codexs status  # 查看当前激活 profile 与 auth/config 校验值
+```
+
+所以这里更准确的理解不是“改一个环境变量”，而是“把 CLI 实际读取的配置文件切过去”。
 
 ### `clashproxy` / `proxy_manager.sh`
 
-**思路**：统一 export / unset，端口对齐本机 Clash / Mihomo。
+这两个名字都和“代理”有关，但职责不一样。
+
+`clashproxy` 在这台机器上是一个**服务管理脚本**，不是简单 `export HTTP_PROXY`：
 
 ```bash
-#!/usr/bin/env bash
-export HTTP_PROXY="http://127.0.0.1:7890"
-export HTTPS_PROXY="http://127.0.0.1:7890"
-export ALL_PROXY="socks5://127.0.0.1:7891"
-export NO_PROXY="localhost,127.0.0.1"
-echo "proxy env ON"
+$ clashp
+Usage: clashproxy {start|stop|restart|status}
+```
+
+可直接这样用：
+
+```bash
+clashp start
+clashp status
+clashp restart
+clashp stop
+```
+
+它内部会启动 `/root/clash/clash`，并维护：
+
+- PID 文件：`~/.clashproxy.pid`
+- 日志文件：`~/.clashproxy.log`
+
+`proxy_manager.sh` 则是另一类脚本，当前更偏向**检查/停止某个本地代理进程**：
+
+```bash
+$ proxy_manager.sh
+用法: proxy_manager.sh {status|stop}
 ```
 
 ```bash
-#!/usr/bin/env bash
-unset HTTP_PROXY HTTPS_PROXY ALL_PROXY http_proxy https_proxy all_proxy
-echo "proxy env OFF"
+proxy_manager.sh status
+proxy_manager.sh stop
 ```
+
+它会检查固定端口和进程名，属于“排障/兜底小工具”，不是同一套 `clashp start|stop` 工作流。
+
+### `cliproxy`
+
+`cliproxy` 这台机器上的用法也已经很具体，不是泛泛的“网关 CLI”：
+
+```bash
+$ clip
+Usage: cliproxy {start|stop|restart|status|log}
+```
+
+常用命令：
+
+```bash
+clip start
+clip status
+clip log
+clip stop
+```
+
+它会启动本地 `cli-proxy-api`，记录：
+
+- PID 文件：`~/.cliproxy.pid`
+- 日志文件：`~/.cliproxy.log`
+
+而且 `status` 不只是看进程在不在，还会顺手检查端口 `8317` 和 `/v1/models` 的健康状态。
 
 ### `glmclaude`
 
-**思路**：密钥从环境或密码管理器读；此处仅演示 `exec` 包装。
+这个脚本的真实行为非常直接：先注入环境变量，再 `exec claude "$@"`。
 
 ```bash
-#!/usr/bin/env bash
-# export ANTHROPIC_BASE_URL="https://example.invalid/v1"
-# export ANTHROPIC_AUTH_TOKEN="${MY_SECRET_FROM_ENV:-}"
+glmcc "帮我解释这个仓库"
+glmcc --continue
+glmcc --print "写一个 Python 函数"
+```
+
+如果你什么参数都不带直接跑，它不会打印 help，而是直接把参数交给 `claude`，所以会看到 CLI 自己的报错。当前脚本里实际设置的是：
+
+```bash
+export ANTHROPIC_API_KEY="..."
+export ANTHROPIC_BASE_URL="https://open.bigmodel.cn/api/anthropic"
 exec claude "$@"
 ```
+
+也就是说，`glmcc` 本质上就是“走智谱兼容接口启动 Claude Code”的快捷入口。
 
 ### `installAntigravity.sh`
 

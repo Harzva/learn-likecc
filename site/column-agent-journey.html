@@ -52,7 +52,7 @@
                 <section id="intro" class="section-block">
                     <h2>写在前面</h2>
                     <p>这是一份给自己留底的<strong>阅历随笔</strong>，后面会接到「个人项目经历」展示里。逻辑我稍微顺过一遍，但语气尽量保持原来那种——<strong>坑、白嫖、丝滑、断流</strong>这些词就留着了，真实一点。</p>
-                    <p>说白了，我就是<strong>热爱这个赛道</strong>：新工具出来就想摸，比写论文爽多了——<strong>体验即动机</strong>，不是为了写进简历才点下载。</p>
+                    <p><strong>对自己的评价</strong>：<strong>vibe coding 狂热爱好者</strong>。新工具出来就想摸，比写论文爽多了——<strong>体验即动机</strong>，不是为了写进简历才点下载。</p>
                 </section>
 
                 <section id="hosts" class="section-block">
@@ -166,92 +166,136 @@
                     </div>
 
                     <h3 id="tb-mtool"><code>mtool</code> 等：配置文件里写全，全局命令只管切换</h3>
-                    <p><strong>和上面 shell 脚本的区别</strong>：<code>ccswitch</code> 往往是你自己写几行 bash，改 <code>CLAUDE_CONFIG_DIR</code> 之类；<strong><code>mtool</code> 一类工具</strong>通常是<strong>单个二进制（或官方安装脚本）</strong>，读<strong>固定路径下的配置文件</strong>（YAML/JSON/TOML），再通过<strong>已加入 <code>PATH</code> 的子命令</strong>完成「列 profile → 切换 → 校验 → 重载」。真实密钥、上游地址、模型映射<strong>只应出现在配置文件或环境变量里</strong>，不要写进本仓库。</p>
-                    <p><strong>怎么接到「全局命令」</strong>（择一即可，示意）：</p>
-                    <ul>
-                        <li>安装器把可执行文件放到 <code>/usr/local/bin</code> 或 <code>~/.local/bin</code>，且该目录已在 <code>PATH</code>；</li>
-                        <li>或自己 <code>ln -s "$(pwd)/mtool" ~/bin/mtool</code>，保证 <code>~/bin</code> 在 <code>PATH</code>；</li>
-                        <li>装完在<strong>新开的终端</strong>里跑 <code>which mtool</code> / <code>mtool --help</code>（或发行版文档里的等价命令）确认生效。</li>
-                    </ul>
-                    <p><strong>典型工作流（子命令名随版本而变，以你本机 <code>--help</code> 为准）</strong>：</p>
-                    <ol>
-                        <li>用发行版文档定位<strong>默认配置路径</strong>（常见形态如 <code>~/.config/mtool/config.yaml</code>，此处仅为占位）。</li>
-                        <li>在配置里维护多个 <code>profile</code>（例如 <code>default</code> / <code>work</code>），每个 profile 写<strong>占位</strong>的 <code>base_url</code>、路由规则；API Key 用 <code>${ENV_VAR}</code> 引用或交给系统钥匙串，避免明文。</li>
-                        <li>若 CLI 提供 <code>use</code> / <code>switch</code>：执行后<strong>当前 shell 或守护进程</strong>切到对应 profile；若没有，则<strong>改 YAML 里的 current 字段</strong>后执行文档要求的 <code>reload</code> / 重启服务。</li>
-                        <li>与 <code>claude</code> / <code>codex</code> 联用时：通常仍需按该工具文档设置 <code>ANTHROPIC_BASE_URL</code> 等（或由其生成的 <code>env</code> 子命令一次性打印），再启动 CLI——<strong>顺序</strong>往往是：代理（若需要）→ mtool 监听就绪 → 再开 Agent。</li>
-                    </ol>
+                    <p>这一类工具在我这台机器上，更像一个<strong>总入口分发器</strong>，不是传统意义上只有 <code>profile/use/list</code> 的单独网关进程。直接跑 <code>mtool</code>，会列出当前挂在 <code>/usr/local/bin</code> 下的一批工具：</p>
                     <div class="code-block">
-                        <pre><code class="language-yaml"># ~/.config/mtool/config.yaml 示意（目录与键名以你所装版本为准，勿照抄当真）
-version: 1
-current_profile: default
-profiles:
-  default:
-    listen: "127.0.0.1:11435"           # 占位端口
-    upstream_base: "https://example.invalid/v1"
-    # api_key_env: "MT_API_KEY"        # 真 key 只放在 export MT_API_KEY=… 或密钥链
-  work:
-    listen: "127.0.0.1:11436"
-    upstream_base: "https://corp-gateway.example.invalid/v1"</code></pre>
+                        <pre><code class="language-bash">$ mtool
+Usage: mtool &lt;tool&gt; [args...]
+
+Available tools:
+  - ccswitch      ↳ ccs
+  - clashproxy    ↳ clashp
+  - cliproxy      ↳ clip
+  - codexswitch   ↳ codexs
+  - glmclaude     ↳ glmcc
+  - installAntigravity.sh ↳ antinstall
+  - mylaunch      ↳ ml
+  - zellij        ↳ zj
+  ...</code></pre>
                     </div>
+                    <p>也就是说，它的实际用法是：</p>
                     <div class="code-block">
-                        <pre><code class="language-bash">#!/usr/bin/env bash
-# 若官方未写 PATH：薄包装，把「真实二进制」固定在一个路径（占位）
-exec "${HOME}/.local/lib/mtool/bin/mtool" "$@"</code></pre>
+                        <pre><code class="language-bash">mtool clashproxy status
+mtool codexswitch pro
+mtool cliproxy log</code></pre>
                     </div>
+                    <p>如果你已经习惯短命令，也可以直接敲这些 alias：</p>
                     <div class="code-block">
-                        <pre><code class="language-bash"># 占位：自检与切换（子命令名请 mtool --help 核对）
-# mtool version
-# mtool profile list
-# mtool profile use work
-# mtool doctor   # 或 status / ping，视发行版而定</code></pre>
+                        <pre><code class="language-bash">clashp status
+codexs tiger
+clip log
+ccs status</code></pre>
                     </div>
-                    <p><strong>和 <code>ccswitch</code> 怎么配合</strong>：<code>ccswitch</code> 换的是「Claude 自己的配置目录」；<code>mtool</code> 换的是「网关/兼容层」监听与上游。二者可以<strong>叠用</strong>（例如先 <code>source clashproxy</code>，再启 mtool，再 <code>ccswitch work</code>），但要清楚<strong>哪一层在吃你的流量与密钥</strong>，避免重复代理或重复鉴权。</p>
+                    <p><strong>和 <code>ccswitch</code> 的区别</strong>：<code>mtool</code> 本身主要负责<strong>发现并转发</strong>子工具；真正做配置切换、启停服务、改 CLI 配置的，是下面这些具体脚本。它更像你个人工具箱的入口，而不是统一配置中心。</p>
 
                     <h3 id="tb-ccswitch"><code>ccswitch</code> / <code>codexswitch</code></h3>
-                    <p><strong>思路</strong>：用「配置目录」或独立 env 文件区分多套 CLI 身份，切换时只改环境变量，不重装。</p>
+                    <p>这两类脚本负责“切身份 / 切配置”，但目标不一样。</p>
+                    <p><code>ccswitch</code> 当前机器上的真实用法是：</p>
                     <div class="code-block">
-                        <pre><code class="language-bash">#!/usr/bin/env bash
-# 示意：按参数选用不同配置根目录（路径请改成你自己的）
-PROFILE="${1:-default}"
-export CLAUDE_CONFIG_DIR="${HOME}/.config/claude-profiles/${PROFILE}"
-mkdir -p "$CLAUDE_CONFIG_DIR"
-echo "Active profile: ${PROFILE} -&gt; ${CLAUDE_CONFIG_DIR}"
-# 其后在同一 shell 里执行 claude …</code></pre>
+                        <pre><code class="language-bash">$ ccs
+使用方法: ccswitch {cliwin|clilocal|glm|diy|status}</code></pre>
                     </div>
+                    <p>各模式对应的是把 <code>~/.claude/settings.json</code> 里的 <code>env.ANTHROPIC_BASE_URL</code> 和 <code>env.ANTHROPIC_AUTH_TOKEN</code> 改到不同上游：</p>
                     <div class="code-block">
-                        <pre><code class="language-bash">#!/usr/bin/env bash
-# codexswitch 同理：例如切换 CODEX_HOME 或 API 配置文件路径
-PROFILE="${1:-work}"
-export CODEX_HOME="${HOME}/.codex/${PROFILE}"
-echo "CODEX_HOME=${CODEX_HOME}"</code></pre>
+                        <pre><code class="language-bash">ccs cliwin    # 指向 127.0.0.1:8317，并检查 SSH 反向隧道
+ccs clilocal  # 指向 localhost:8317
+ccs glm       # 指向智谱兼容接口
+ccs diy       # 交互式输入自定义 BASE_URL / TOKEN
+ccs status    # 打印当前 ~/.claude/settings.json 里的 env 配置</code></pre>
                     </div>
+                    <p><code>codexswitch</code> 当前机器上的真实用法是：</p>
+                    <div class="code-block">
+                        <pre><code class="language-bash">$ codexs
+Usage:
+  codexs 66
+  codexs 56
+  codexs pro
+  codexs tiger
+  codexs status</code></pre>
+                    </div>
+                    <p>它现在做的是把 <code>~/.codex/auth.json</code> 以及部分场景下的 <code>~/.codex/config.toml</code> 切到不同 profile：</p>
+                    <div class="code-block">
+                        <pre><code class="language-bash">codexs pro     # -&gt; auth-pro.json + config-pro.toml
+codexs tiger   # -&gt; authtiger.json + configtiger.toml
+codexs 66      # -&gt; auth66.json（如果本机存在）
+codexs 56      # -&gt; auth56.json（如果本机存在）
+codexs status  # 查看当前激活 profile 与 auth/config 校验值</code></pre>
+                    </div>
+                    <p>所以这里更准确的理解不是“改一个环境变量”，而是“把 CLI 实际读取的配置文件切过去”。</p>
 
                     <h3 id="tb-proxy"><code>clashproxy</code> / <code>proxy_manager.sh</code></h3>
-                    <p><strong>思路</strong>：一键 export / unset，避免每条命令手写代理；端口与本地 Clash / Mihomo 监听一致即可。</p>
+                    <p>这两个名字都和“代理”有关，但职责不一样。</p>
+                    <p><code>clashproxy</code> 在这台机器上是一个<strong>服务管理脚本</strong>，不是简单 <code>export HTTP_PROXY</code>：</p>
                     <div class="code-block">
-                        <pre><code class="language-bash">#!/usr/bin/env bash
-# 占位端口：按你本机 mixed 端口修改
-export HTTP_PROXY="http://127.0.0.1:7890"
-export HTTPS_PROXY="http://127.0.0.1:7890"
-export ALL_PROXY="socks5://127.0.0.1:7891"
-export NO_PROXY="localhost,127.0.0.1"
-echo "proxy env ON"</code></pre>
+                        <pre><code class="language-bash">$ clashp
+Usage: clashproxy {start|stop|restart|status}</code></pre>
+                    </div>
+                    <p>可直接这样用：</p>
+                    <div class="code-block">
+                        <pre><code class="language-bash">clashp start
+clashp status
+clashp restart
+clashp stop</code></pre>
+                    </div>
+                    <p>它内部会启动 <code>/root/clash/clash</code>，并维护：</p>
+                    <ul>
+                        <li>PID 文件：<code>~/.clashproxy.pid</code></li>
+                        <li>日志文件：<code>~/.clashproxy.log</code></li>
+                    </ul>
+                    <p><code>proxy_manager.sh</code> 则是另一类脚本，当前更偏向<strong>检查/停止某个本地代理进程</strong>：</p>
+                    <div class="code-block">
+                        <pre><code class="language-bash">$ proxy_manager.sh
+用法: proxy_manager.sh {status|stop}</code></pre>
                     </div>
                     <div class="code-block">
-                        <pre><code class="language-bash">#!/usr/bin/env bash
-unset HTTP_PROXY HTTPS_PROXY ALL_PROXY http_proxy https_proxy all_proxy
-echo "proxy env OFF"</code></pre>
+                        <pre><code class="language-bash">proxy_manager.sh status
+proxy_manager.sh stop</code></pre>
                     </div>
+                    <p>它会检查固定端口和进程名，属于“排障/兜底小工具”，不是同一套 <code>clashp start|stop</code> 工作流。</p>
+
+                    <h3 id="tb-cliproxy"><code>cliproxy</code></h3>
+                    <p><code>cliproxy</code> 这台机器上的用法也已经很具体，不是泛泛的“网关 CLI”：</p>
+                    <div class="code-block">
+                        <pre><code class="language-bash">$ clip
+Usage: cliproxy {start|stop|restart|status|log}</code></pre>
+                    </div>
+                    <p>常用命令：</p>
+                    <div class="code-block">
+                        <pre><code class="language-bash">clip start
+clip status
+clip log
+clip stop</code></pre>
+                    </div>
+                    <p>它会启动本地 <code>cli-proxy-api</code>，记录：</p>
+                    <ul>
+                        <li>PID 文件：<code>~/.cliproxy.pid</code></li>
+                        <li>日志文件：<code>~/.cliproxy.log</code></li>
+                    </ul>
+                    <p>而且 <code>status</code> 不只是看进程在不在，还会顺手检查端口 <code>8317</code> 和 <code>/v1/models</code> 的健康状态。</p>
 
                     <h3 id="tb-glmclaude"><code>glmclaude</code></h3>
-                    <p><strong>思路</strong>：在<strong>子 shell</strong>里注入「兼容某 HTTP API 形态」的变量，再 exec 进 CLI；密钥从环境或密码管理器读取，<strong>禁止写死在仓库里</strong>。</p>
+                    <p>这个脚本的真实行为非常直接：先注入环境变量，再 <code>exec claude "$@"</code>。</p>
                     <div class="code-block">
-                        <pre><code class="language-bash">#!/usr/bin/env bash
-# 占位：仅演示「先设变量再 exec」；URL/变量名随你实际网关调整
-# export ANTHROPIC_BASE_URL="https://example.invalid/v1"   # 勿用真地址示例进公开仓库
-# export ANTHROPIC_AUTH_TOKEN="${MY_SECRET_FROM_ENV:-}"     # 从当前 shell 已 export 的变量读
+                        <pre><code class="language-bash">glmcc "帮我解释这个仓库"
+glmcc --continue
+glmcc --print "写一个 Python 函数"</code></pre>
+                    </div>
+                    <p>如果你什么参数都不带直接跑，它不会打印 help，而是直接把参数交给 <code>claude</code>，所以会看到 CLI 自己的报错。当前脚本里实际设置的是：</p>
+                    <div class="code-block">
+                        <pre><code class="language-bash">export ANTHROPIC_API_KEY="..."
+export ANTHROPIC_BASE_URL="https://open.bigmodel.cn/api/anthropic"
 exec claude "$@"</code></pre>
                     </div>
+                    <p>也就是说，<code>glmcc</code> 本质上就是“走智谱兼容接口启动 Claude Code”的快捷入口。</p>
 
                     <h3 id="tb-antigravity"><code>installAntigravity.sh</code></h3>
                     <p><strong>思路</strong>：考古用——下载校验、安装路径、桌面项；随官方安装方式变，此处只留骨架。</p>

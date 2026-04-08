@@ -1,0 +1,37 @@
+<svg width="1400" height="760" viewBox="0 0 1400 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="760" rx="28" fill="#111315"/>
+  <rect x="22" y="22" width="1356" height="336" rx="16" fill="#171A1D" stroke="#E0703A" stroke-width="2"/>
+  <text x="40" y="54" fill="#C38763" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="26">$ bun run src/entrypoints/cli.tsx</text>
+  <text x="62" y="96" fill="#F08A55" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="34">Like Code v1.0.1-likecode · ref Claude Code 2.1.88</text>
+  <text x="62" y="128" fill="#D8D8D8" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="18">z-ai/glm-5 · API Usage Billing · Harzva restored</text>
+  <text x="62" y="156" fill="#D8D8D8" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="18">https://github.com/Harzva/learn-likecc</text>
+
+  <text x="236" y="128" fill="#F5F0E8" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="26" font-weight="700">Welcome back!</text>
+  <text x="256" y="208" fill="#59A8FF" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="26">╭▣▦▣╮</text>
+  <text x="248" y="238" fill="#59A8FF" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="26">╰▨▓▓▓▓▓▨╯</text>
+  <text x="266" y="268" fill="#59A8FF" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="22">╵╵ ╵╵</text>
+
+  <text x="60" y="310" fill="#BFC5CC" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="17">多 Provider 路由 · 配置自动重载 · /show 配置可见性 · 分层 .claude 摘要</text>
+
+  <text x="610" y="96" fill="#F08A55" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="24" font-weight="700">Recent activity</text>
+  <text x="610" y="130" fill="#C8CDD3" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="18">19s ago   /show:user</text>
+  <text x="610" y="160" fill="#C8CDD3" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="18">37s ago   /show:user</text>
+  <text x="610" y="190" fill="#C8CDD3" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="18">37s ago   /show</text>
+  <text x="610" y="220" fill="#C8CDD3" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="18">/resume for more</text>
+  <line x1="606" y1="240" x2="1328" y2="240" stroke="#E0703A" stroke-width="2"/>
+  <text x="610" y="276" fill="#F08A55" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="24" font-weight="700">What's new</text>
+  <text x="610" y="308" fill="#F2F5F7" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="18">Added modelRoutes-based provider switching</text>
+  <text x="610" y="336" fill="#F2F5F7" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="18">Added /show global,user,project for terminal-side config inspection</text>
+
+  <rect x="22" y="390" width="1356" height="328" rx="16" fill="#171A1D"/>
+  <text x="38" y="430" fill="#F2F5F7" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="26">❯ /show user</text>
+  <text x="74" y="468" fill="#E6E6E6" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="20">Show user ~/.claude details</text>
+
+  <text x="78" y="540" fill="#F2F5F7" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="22">User settings file</text>
+  <text x="78" y="574" fill="#D8D8D8" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="18">Path: ~/.claude/settings.json</text>
+  <text x="78" y="604" fill="#D8D8D8" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="18">Status: found</text>
+  <text x="78" y="634" fill="#D8D8D8" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="18">Parse errors: 0</text>
+  <text x="78" y="672" fill="#F2F5F7" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="18">"ANTHROPIC_AUTH_TOKEN": "sk-9***f416"</text>
+  <text x="78" y="700" fill="#7CB7FF" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="18">"ANTHROPIC_BASE_URL": "https://api.qnaigc.com"</text>
+  <text x="78" y="728" fill="#F2F5F7" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="18">"ANTHROPIC_DEFAULT_HAIKU_MODEL": "minimax/minimax-m2.5"</text>
+</svg>

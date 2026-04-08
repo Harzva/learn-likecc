@@ -29,7 +29,7 @@ export function FeedColumn(t0) {
   if ($[2] !== actualWidth || $[3] !== feeds) {
     let t3;
     if ($[5] !== actualWidth || $[6] !== feeds.length) {
-      t3 = (feed_0, index) => <React.Fragment key={index}><Feed config={feed_0} actualWidth={actualWidth} />{index < feeds.length - 1 && <Divider color="claude" width={actualWidth} />}</React.Fragment>;
+      t3 = (feed_0, index) => <React.Fragment key={index}><Feed config={feed_0} actualWidth={actualWidth} />{index < feeds.length - 1 && <Divider color="ansi:yellow" width={actualWidth} />}</React.Fragment>;
       $[5] = actualWidth;
       $[6] = feeds.length;
       $[7] = t3;
