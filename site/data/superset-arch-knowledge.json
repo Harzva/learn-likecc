@@ -1,0 +1,741 @@
+{
+  "meta": {
+    "updated": "2026-04-09",
+    "source": "reference/reference_agent/reference_control-agent-cli/superset",
+    "note_zh": "Superset 知识图谱强调“最值得一起读的关系”，不是机械 import 图；块内结构用于建立目录心智，跨块联系用于建立阅读顺序。"
+  },
+  "legend": [
+    {
+      "key": "shell_apps",
+      "label": "产品壳与工作台",
+      "hint": "apps/desktop · web · api · docs 等"
+    },
+    {
+      "key": "pane_surface",
+      "label": "Pane 与前台工作位",
+      "hint": "panes · ui · workspace-client"
+    },
+    {
+      "key": "control_plane",
+      "label": "调度中枢",
+      "hint": "host-service · chat · trpc · auth · mcp"
+    },
+    {
+      "key": "workspace_stack",
+      "label": "工作区与隔离层",
+      "hint": "workspace-fs · db · local-db · cli"
+    },
+    {
+      "key": "shared_support",
+      "label": "共享基础设施",
+      "hint": "shared · email · metrics 等"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "cat:shell_apps",
+      "key": "shell_apps",
+      "label": "产品壳与工作台",
+      "kind": "category",
+      "cat": "shell_apps",
+      "size": 2645,
+      "hint": "apps/desktop · web · api · docs 等",
+      "description": "这层解决“用户在哪个外壳里观察和切换多个 agent”。它不是单个 CLI，而是完整工作台矩阵。",
+      "analysis": "Superset 和普通 agent CLI 的差别，从顶层 apps 就已经开始了。它从设计上就是工作台，而不是终端增强脚本。",
+      "read_hint": "先看 desktop、web、api，再回看 marketing/docs，最容易建立产品壳心智。"
+    },
+    {
+      "id": "cat:pane_surface",
+      "key": "pane_surface",
+      "label": "Pane 与前台工作位",
+      "kind": "category",
+      "cat": "pane_surface",
+      "size": 165,
+      "hint": "panes · ui · workspace-client",
+      "description": "这层解决“工位”抽象：tab、pane、split layout、前台视图和工作位切换。",
+      "analysis": "没有这层，多 agent 很容易退化成一堆散乱终端；有了这层，agent 才会变成可观察、可切换的工位。",
+      "read_hint": "优先联读 panes、ui、workspace-client，先理解工作位，再理解具体运行体。"
+    },
+    {
+      "id": "cat:control_plane",
+      "key": "control_plane",
+      "label": "调度中枢",
+      "kind": "category",
+      "cat": "control_plane",
+      "size": 335,
+      "hint": "host-service · chat · trpc · auth · mcp",
+      "description": "这层解决“谁在统一协调 runtime、路由、权限、事件与控制动作”。",
+      "analysis": "真正的 orchestration kernel 不在 React 组件里，而在 host-service、chat runtime 和协议层里。",
+      "read_hint": "先看 host-service，再串 chat、trpc、auth、mcp，最容易看清 control plane。"
+    },
+    {
+      "id": "cat:workspace_stack",
+      "key": "workspace_stack",
+      "label": "工作区与隔离层",
+      "kind": "category",
+      "cat": "workspace_stack",
+      "size": 243,
+      "hint": "workspace-fs · db · local-db · cli",
+      "description": "这层解决“agent 跑在哪里、怎样隔离、怎样落库、怎样进入本地工作流”。",
+      "analysis": "Superset 之所以能并行跑多个 agent 而不互相污染，关键不只是 terminal，而是 workspace/worktree/存储几层一起成立。",
+      "read_hint": "读 workspace-fs、db、local-db，再补 cli/cli-framework，容易理解本地执行与隔离是怎样落地的。"
+    },
+    {
+      "id": "cat:shared_support",
+      "key": "shared_support",
+      "label": "共享基础设施",
+      "kind": "category",
+      "cat": "shared_support",
+      "size": 60,
+      "hint": "shared · email · metrics 等",
+      "description": "这层放跨包共享能力与边缘但必要的基础设施。",
+      "analysis": "它不直接定义主叙事，但决定这套系统怎样在多产品面之间复用能力、补齐体验。",
+      "read_hint": "把它当作支撑层读，不要一开始陷进去；先建立主线，再回来补共享工具。"
+    },
+    {
+      "id": "folder:admin",
+      "key": "admin",
+      "label": "apps/admin",
+      "kind": "folder",
+      "cat": "shell_apps",
+      "parent": "cat:shell_apps",
+      "size": 53,
+      "hint": "apps/admin 目录",
+      "description": "apps/admin 是 Superset 顶层结构中的一个目录块。",
+      "analysis": "apps/admin 属于 产品壳与工作台，文件量约 53，适合当作该分区的代表目录来读。",
+      "read_hint": "建议从 `apps/admin` 的入口文件或 README 先建立作用，再回看它与相邻目录的连接。"
+    },
+    {
+      "id": "folder:api",
+      "key": "api",
+      "label": "apps/api",
+      "kind": "folder",
+      "cat": "shell_apps",
+      "parent": "cat:shell_apps",
+      "size": 86,
+      "hint": "服务接口与 API 面。",
+      "description": "服务接口与 API 面。",
+      "analysis": "apps/api 属于 产品壳与工作台，文件量约 86，适合当作该分区的代表目录来读。",
+      "read_hint": "建议从 `apps/api` 的入口文件或 README 先建立作用，再回看它与相邻目录的连接。"
+    },
+    {
+      "id": "folder:desktop",
+      "key": "desktop",
+      "label": "apps/desktop",
+      "kind": "folder",
+      "cat": "shell_apps",
+      "parent": "cat:shell_apps",
+      "size": 2021,
+      "hint": "Electron 壳与桌面工作台入口。",
+      "description": "Electron 壳与桌面工作台入口。",
+      "analysis": "apps/desktop 属于 产品壳与工作台，文件量约 2021，适合当作该分区的代表目录来读。",
+      "read_hint": "建议从 `apps/desktop` 的入口文件或 README 先建立作用，再回看它与相邻目录的连接。"
+    },
+    {
+      "id": "folder:docs",
+      "key": "docs",
+      "label": "apps/docs",
+      "kind": "folder",
+      "cat": "shell_apps",
+      "parent": "cat:shell_apps",
+      "size": 67,
+      "hint": "文档站与说明页。",
+      "description": "文档站与说明页。",
+      "analysis": "apps/docs 属于 产品壳与工作台，文件量约 67，适合当作该分区的代表目录来读。",
+      "read_hint": "建议从 `apps/docs` 的入口文件或 README 先建立作用，再回看它与相邻目录的连接。"
+    },
+    {
+      "id": "folder:electric-proxy",
+      "key": "electric-proxy",
+      "label": "apps/electric-proxy",
+      "kind": "folder",
+      "cat": "shell_apps",
+      "parent": "cat:shell_apps",
+      "size": 7,
+      "hint": "apps/electric-proxy 目录",
+      "description": "apps/electric-proxy 是 Superset 顶层结构中的一个目录块。",
+      "analysis": "apps/electric-proxy 属于 产品壳与工作台，文件量约 7，适合当作该分区的代表目录来读。",
+      "read_hint": "建议从 `apps/electric-proxy` 的入口文件或 README 先建立作用，再回看它与相邻目录的连接。"
+    },
+    {
+      "id": "folder:marketing",
+      "key": "marketing",
+      "label": "apps/marketing",
+      "kind": "folder",
+      "cat": "shell_apps",
+      "parent": "cat:shell_apps",
+      "size": 187,
+      "hint": "产品官网与对外展示页。",
+      "description": "产品官网与对外展示页。",
+      "analysis": "apps/marketing 属于 产品壳与工作台，文件量约 187，适合当作该分区的代表目录来读。",
+      "read_hint": "建议从 `apps/marketing` 的入口文件或 README 先建立作用，再回看它与相邻目录的连接。"
+    },
+    {
+      "id": "folder:mobile",
+      "key": "mobile",
+      "label": "apps/mobile",
+      "kind": "folder",
+      "cat": "shell_apps",
+      "parent": "cat:shell_apps",
+      "size": 114,
+      "hint": "apps/mobile 目录",
+      "description": "apps/mobile 是 Superset 顶层结构中的一个目录块。",
+      "analysis": "apps/mobile 属于 产品壳与工作台，文件量约 114，适合当作该分区的代表目录来读。",
+      "read_hint": "建议从 `apps/mobile` 的入口文件或 README 先建立作用，再回看它与相邻目录的连接。"
+    },
+    {
+      "id": "folder:streams",
+      "key": "streams",
+      "label": "apps/streams",
+      "kind": "folder",
+      "cat": "shell_apps",
+      "parent": "cat:shell_apps",
+      "size": 1,
+      "hint": "apps/streams 目录",
+      "description": "apps/streams 是 Superset 顶层结构中的一个目录块。",
+      "analysis": "apps/streams 属于 产品壳与工作台，文件量约 1，适合当作该分区的代表目录来读。",
+      "read_hint": "建议从 `apps/streams` 的入口文件或 README 先建立作用，再回看它与相邻目录的连接。"
+    },
+    {
+      "id": "folder:web",
+      "key": "web",
+      "label": "apps/web",
+      "kind": "folder",
+      "cat": "shell_apps",
+      "parent": "cat:shell_apps",
+      "size": 109,
+      "hint": "浏览器端工作台或面板入口。",
+      "description": "浏览器端工作台或面板入口。",
+      "analysis": "apps/web 属于 产品壳与工作台，文件量约 109，适合当作该分区的代表目录来读。",
+      "read_hint": "建议从 `apps/web` 的入口文件或 README 先建立作用，再回看它与相邻目录的连接。"
+    },
+    {
+      "id": "folder:auth",
+      "key": "auth",
+      "label": "packages/auth",
+      "kind": "folder",
+      "cat": "control_plane",
+      "parent": "cat:control_plane",
+      "size": 14,
+      "hint": "身份与授权相关支撑。",
+      "description": "身份与授权相关支撑。",
+      "analysis": "packages/auth 属于 调度中枢，文件量约 14，适合当作该分区的代表目录来读。",
+      "read_hint": "建议从 `packages/auth` 的入口文件或 README 先建立作用，再回看它与相邻目录的连接。"
+    },
+    {
+      "id": "folder:chat",
+      "key": "chat",
+      "label": "packages/chat",
+      "kind": "folder",
+      "cat": "control_plane",
+      "parent": "cat:control_plane",
+      "size": 75,
+      "hint": "chat runtime、客户端和服务端协议栈。",
+      "description": "chat runtime、客户端和服务端协议栈。",
+      "analysis": "packages/chat 属于 调度中枢，文件量约 75，适合当作该分区的代表目录来读。",
+      "read_hint": "建议从 `packages/chat` 的入口文件或 README 先建立作用，再回看它与相邻目录的连接。"
+    },
+    {
+      "id": "folder:cli",
+      "key": "cli",
+      "label": "packages/cli",
+      "kind": "folder",
+      "cat": "workspace_stack",
+      "parent": "cat:workspace_stack",
+      "size": 37,
+      "hint": "命令行入口与本地执行壳。",
+      "description": "命令行入口与本地执行壳。",
+      "analysis": "packages/cli 属于 工作区与隔离层，文件量约 37，适合当作该分区的代表目录来读。",
+      "read_hint": "建议从 `packages/cli` 的入口文件或 README 先建立作用，再回看它与相邻目录的连接。"
+    },
+    {
+      "id": "folder:cli-framework",
+      "key": "cli-framework",
+      "label": "packages/cli-framework",
+      "kind": "folder",
+      "cat": "workspace_stack",
+      "parent": "cat:workspace_stack",
+      "size": 12,
+      "hint": "CLI 骨架与命令框架。",
+      "description": "CLI 骨架与命令框架。",
+      "analysis": "packages/cli-framework 属于 工作区与隔离层，文件量约 12，适合当作该分区的代表目录来读。",
+      "read_hint": "建议从 `packages/cli-framework` 的入口文件或 README 先建立作用，再回看它与相邻目录的连接。"
+    },
+    {
+      "id": "folder:db",
+      "key": "db",
+      "label": "packages/db",
+      "kind": "folder",
+      "cat": "workspace_stack",
+      "parent": "cat:workspace_stack",
+      "size": 84,
+      "hint": "共享数据库层。",
+      "description": "共享数据库层。",
+      "analysis": "packages/db 属于 工作区与隔离层，文件量约 84，适合当作该分区的代表目录来读。",
+      "read_hint": "建议从 `packages/db` 的入口文件或 README 先建立作用，再回看它与相邻目录的连接。"
+    },
+    {
+      "id": "folder:desktop-mcp",
+      "key": "desktop-mcp",
+      "label": "packages/desktop-mcp",
+      "kind": "folder",
+      "cat": "control_plane",
+      "parent": "cat:control_plane",
+      "size": 34,
+      "hint": "桌面侧 MCP 接入桥。",
+      "description": "桌面侧 MCP 接入桥。",
+      "analysis": "packages/desktop-mcp 属于 调度中枢，文件量约 34，适合当作该分区的代表目录来读。",
+      "read_hint": "建议从 `packages/desktop-mcp` 的入口文件或 README 先建立作用，再回看它与相邻目录的连接。"
+    },
+    {
+      "id": "folder:email",
+      "key": "email",
+      "label": "packages/email",
+      "kind": "folder",
+      "cat": "shared_support",
+      "parent": "cat:shared_support",
+      "size": 25,
+      "hint": "邮件相关基础设施。",
+      "description": "邮件相关基础设施。",
+      "analysis": "packages/email 属于 共享基础设施，文件量约 25，适合当作该分区的代表目录来读。",
+      "read_hint": "建议从 `packages/email` 的入口文件或 README 先建立作用，再回看它与相邻目录的连接。"
+    },
+    {
+      "id": "folder:host-service",
+      "key": "host-service",
+      "label": "packages/host-service",
+      "kind": "folder",
+      "cat": "control_plane",
+      "parent": "cat:control_plane",
+      "size": 105,
+      "hint": "真正的调度中枢与 runtime 组装点。",
+      "description": "真正的调度中枢与 runtime 组装点。",
+      "analysis": "packages/host-service 属于 调度中枢，文件量约 105，适合当作该分区的代表目录来读。",
+      "read_hint": "建议从 `packages/host-service` 的入口文件或 README 先建立作用，再回看它与相邻目录的连接。"
+    },
+    {
+      "id": "folder:local-db",
+      "key": "local-db",
+      "label": "packages/local-db",
+      "kind": "folder",
+      "cat": "workspace_stack",
+      "parent": "cat:workspace_stack",
+      "size": 87,
+      "hint": "本地数据库与本地状态承载。",
+      "description": "本地数据库与本地状态承载。",
+      "analysis": "packages/local-db 属于 工作区与隔离层，文件量约 87，适合当作该分区的代表目录来读。",
+      "read_hint": "建议从 `packages/local-db` 的入口文件或 README 先建立作用，再回看它与相邻目录的连接。"
+    },
+    {
+      "id": "folder:macos-process-metrics",
+      "key": "macos-process-metrics",
+      "label": "packages/macos-process-metrics",
+      "kind": "folder",
+      "cat": "shared_support",
+      "parent": "cat:shared_support",
+      "size": 3,
+      "hint": "macOS 进程指标采集。",
+      "description": "macOS 进程指标采集。",
+      "analysis": "packages/macos-process-metrics 属于 共享基础设施，文件量约 3，适合当作该分区的代表目录来读。",
+      "read_hint": "建议从 `packages/macos-process-metrics` 的入口文件或 README 先建立作用，再回看它与相邻目录的连接。"
+    },
+    {
+      "id": "folder:mcp",
+      "key": "mcp",
+      "label": "packages/mcp",
+      "kind": "folder",
+      "cat": "control_plane",
+      "parent": "cat:control_plane",
+      "size": 47,
+      "hint": "MCP 相关能力与上下文协议支撑。",
+      "description": "MCP 相关能力与上下文协议支撑。",
+      "analysis": "packages/mcp 属于 调度中枢，文件量约 47，适合当作该分区的代表目录来读。",
+      "read_hint": "建议从 `packages/mcp` 的入口文件或 README 先建立作用，再回看它与相邻目录的连接。"
+    },
+    {
+      "id": "folder:panes",
+      "key": "panes",
+      "label": "packages/panes",
+      "kind": "folder",
+      "cat": "pane_surface",
+      "parent": "cat:pane_surface",
+      "size": 39,
+      "hint": "无头 pane/workspace 布局引擎。",
+      "description": "无头 pane/workspace 布局引擎。",
+      "analysis": "packages/panes 属于 Pane 与前台工作位，文件量约 39，适合当作该分区的代表目录来读。",
+      "read_hint": "建议从 `packages/panes` 的入口文件或 README 先建立作用，再回看它与相邻目录的连接。"
+    },
+    {
+      "id": "folder:shared",
+      "key": "shared",
+      "label": "packages/shared",
+      "kind": "folder",
+      "cat": "shared_support",
+      "parent": "cat:shared_support",
+      "size": 32,
+      "hint": "跨包共享库与公共类型。",
+      "description": "跨包共享库与公共类型。",
+      "analysis": "packages/shared 属于 共享基础设施，文件量约 32，适合当作该分区的代表目录来读。",
+      "read_hint": "建议从 `packages/shared` 的入口文件或 README 先建立作用，再回看它与相邻目录的连接。"
+    },
+    {
+      "id": "folder:trpc",
+      "key": "trpc",
+      "label": "packages/trpc",
+      "kind": "folder",
+      "cat": "control_plane",
+      "parent": "cat:control_plane",
+      "size": 60,
+      "hint": "跨前后端控制协议与路由层。",
+      "description": "跨前后端控制协议与路由层。",
+      "analysis": "packages/trpc 属于 调度中枢，文件量约 60，适合当作该分区的代表目录来读。",
+      "read_hint": "建议从 `packages/trpc` 的入口文件或 README 先建立作用，再回看它与相邻目录的连接。"
+    },
+    {
+      "id": "folder:ui",
+      "key": "ui",
+      "label": "packages/ui",
+      "kind": "folder",
+      "cat": "pane_surface",
+      "parent": "cat:pane_surface",
+      "size": 115,
+      "hint": "通用 UI 组件和前台视图支撑。",
+      "description": "通用 UI 组件和前台视图支撑。",
+      "analysis": "packages/ui 属于 Pane 与前台工作位，文件量约 115，适合当作该分区的代表目录来读。",
+      "read_hint": "建议从 `packages/ui` 的入口文件或 README 先建立作用，再回看它与相邻目录的连接。"
+    },
+    {
+      "id": "folder:workspace-client",
+      "key": "workspace-client",
+      "label": "packages/workspace-client",
+      "kind": "folder",
+      "cat": "pane_surface",
+      "parent": "cat:pane_surface",
+      "size": 11,
+      "hint": "前台工作区客户端胶水层。",
+      "description": "前台工作区客户端胶水层。",
+      "analysis": "packages/workspace-client 属于 Pane 与前台工作位，文件量约 11，适合当作该分区的代表目录来读。",
+      "read_hint": "建议从 `packages/workspace-client` 的入口文件或 README 先建立作用，再回看它与相邻目录的连接。"
+    },
+    {
+      "id": "folder:workspace-fs",
+      "key": "workspace-fs",
+      "label": "packages/workspace-fs",
+      "kind": "folder",
+      "cat": "workspace_stack",
+      "parent": "cat:workspace_stack",
+      "size": 23,
+      "hint": "工作区文件系统与隔离层。",
+      "description": "工作区文件系统与隔离层。",
+      "analysis": "packages/workspace-fs 属于 工作区与隔离层，文件量约 23，适合当作该分区的代表目录来读。",
+      "read_hint": "建议从 `packages/workspace-fs` 的入口文件或 README 先建立作用，再回看它与相邻目录的连接。"
+    }
+  ],
+  "contains_links": [
+    {
+      "source": "cat:shell_apps",
+      "target": "folder:admin",
+      "weight": 1,
+      "kind": "contains",
+      "note": "apps/admin 属于 产品壳与工作台。"
+    },
+    {
+      "source": "cat:shell_apps",
+      "target": "folder:api",
+      "weight": 1,
+      "kind": "contains",
+      "note": "apps/api 属于 产品壳与工作台。"
+    },
+    {
+      "source": "cat:shell_apps",
+      "target": "folder:desktop",
+      "weight": 1,
+      "kind": "contains",
+      "note": "apps/desktop 属于 产品壳与工作台。"
+    },
+    {
+      "source": "cat:shell_apps",
+      "target": "folder:docs",
+      "weight": 1,
+      "kind": "contains",
+      "note": "apps/docs 属于 产品壳与工作台。"
+    },
+    {
+      "source": "cat:shell_apps",
+      "target": "folder:electric-proxy",
+      "weight": 1,
+      "kind": "contains",
+      "note": "apps/electric-proxy 属于 产品壳与工作台。"
+    },
+    {
+      "source": "cat:shell_apps",
+      "target": "folder:marketing",
+      "weight": 1,
+      "kind": "contains",
+      "note": "apps/marketing 属于 产品壳与工作台。"
+    },
+    {
+      "source": "cat:shell_apps",
+      "target": "folder:mobile",
+      "weight": 1,
+      "kind": "contains",
+      "note": "apps/mobile 属于 产品壳与工作台。"
+    },
+    {
+      "source": "cat:shell_apps",
+      "target": "folder:streams",
+      "weight": 1,
+      "kind": "contains",
+      "note": "apps/streams 属于 产品壳与工作台。"
+    },
+    {
+      "source": "cat:shell_apps",
+      "target": "folder:web",
+      "weight": 1,
+      "kind": "contains",
+      "note": "apps/web 属于 产品壳与工作台。"
+    },
+    {
+      "source": "cat:control_plane",
+      "target": "folder:auth",
+      "weight": 1,
+      "kind": "contains",
+      "note": "packages/auth 属于 调度中枢。"
+    },
+    {
+      "source": "cat:control_plane",
+      "target": "folder:chat",
+      "weight": 1,
+      "kind": "contains",
+      "note": "packages/chat 属于 调度中枢。"
+    },
+    {
+      "source": "cat:workspace_stack",
+      "target": "folder:cli",
+      "weight": 1,
+      "kind": "contains",
+      "note": "packages/cli 属于 工作区与隔离层。"
+    },
+    {
+      "source": "cat:workspace_stack",
+      "target": "folder:cli-framework",
+      "weight": 1,
+      "kind": "contains",
+      "note": "packages/cli-framework 属于 工作区与隔离层。"
+    },
+    {
+      "source": "cat:workspace_stack",
+      "target": "folder:db",
+      "weight": 1,
+      "kind": "contains",
+      "note": "packages/db 属于 工作区与隔离层。"
+    },
+    {
+      "source": "cat:control_plane",
+      "target": "folder:desktop-mcp",
+      "weight": 1,
+      "kind": "contains",
+      "note": "packages/desktop-mcp 属于 调度中枢。"
+    },
+    {
+      "source": "cat:shared_support",
+      "target": "folder:email",
+      "weight": 1,
+      "kind": "contains",
+      "note": "packages/email 属于 共享基础设施。"
+    },
+    {
+      "source": "cat:control_plane",
+      "target": "folder:host-service",
+      "weight": 1,
+      "kind": "contains",
+      "note": "packages/host-service 属于 调度中枢。"
+    },
+    {
+      "source": "cat:workspace_stack",
+      "target": "folder:local-db",
+      "weight": 1,
+      "kind": "contains",
+      "note": "packages/local-db 属于 工作区与隔离层。"
+    },
+    {
+      "source": "cat:shared_support",
+      "target": "folder:macos-process-metrics",
+      "weight": 1,
+      "kind": "contains",
+      "note": "packages/macos-process-metrics 属于 共享基础设施。"
+    },
+    {
+      "source": "cat:control_plane",
+      "target": "folder:mcp",
+      "weight": 1,
+      "kind": "contains",
+      "note": "packages/mcp 属于 调度中枢。"
+    },
+    {
+      "source": "cat:pane_surface",
+      "target": "folder:panes",
+      "weight": 1,
+      "kind": "contains",
+      "note": "packages/panes 属于 Pane 与前台工作位。"
+    },
+    {
+      "source": "cat:shared_support",
+      "target": "folder:shared",
+      "weight": 1,
+      "kind": "contains",
+      "note": "packages/shared 属于 共享基础设施。"
+    },
+    {
+      "source": "cat:control_plane",
+      "target": "folder:trpc",
+      "weight": 1,
+      "kind": "contains",
+      "note": "packages/trpc 属于 调度中枢。"
+    },
+    {
+      "source": "cat:pane_surface",
+      "target": "folder:ui",
+      "weight": 1,
+      "kind": "contains",
+      "note": "packages/ui 属于 Pane 与前台工作位。"
+    },
+    {
+      "source": "cat:pane_surface",
+      "target": "folder:workspace-client",
+      "weight": 1,
+      "kind": "contains",
+      "note": "packages/workspace-client 属于 Pane 与前台工作位。"
+    },
+    {
+      "source": "cat:workspace_stack",
+      "target": "folder:workspace-fs",
+      "weight": 1,
+      "kind": "contains",
+      "note": "packages/workspace-fs 属于 工作区与隔离层。"
+    }
+  ],
+  "cross_links": [
+    {
+      "source": "folder:desktop",
+      "target": "folder:panes",
+      "weight": 5,
+      "kind": "cross",
+      "note": "desktop 工作台需要 panes 才能把多个 agent 变成稳定工位"
+    },
+    {
+      "source": "folder:desktop",
+      "target": "folder:host-service",
+      "weight": 5,
+      "kind": "cross",
+      "note": "桌面前台真正依赖 host-service 提供 runtime、terminal 和事件"
+    },
+    {
+      "source": "folder:web",
+      "target": "folder:chat",
+      "weight": 3,
+      "kind": "cross",
+      "note": "Web 面要消费 chat runtime 的会话和控制协议"
+    },
+    {
+      "source": "folder:api",
+      "target": "folder:trpc",
+      "weight": 3,
+      "kind": "cross",
+      "note": "API 面和协议路由层天然相连"
+    },
+    {
+      "source": "folder:panes",
+      "target": "folder:ui",
+      "weight": 4,
+      "kind": "cross",
+      "note": "panes 提供布局抽象，ui 负责把工位渲染成具体前台"
+    },
+    {
+      "source": "folder:panes",
+      "target": "folder:workspace-client",
+      "weight": 4,
+      "kind": "cross",
+      "note": "workspace-client 把 pane 工作位接到具体工作区状态"
+    },
+    {
+      "source": "folder:host-service",
+      "target": "folder:chat",
+      "weight": 5,
+      "kind": "cross",
+      "note": "host-service 内部最关键的一条 runtime 就是 chat"
+    },
+    {
+      "source": "folder:host-service",
+      "target": "folder:trpc",
+      "weight": 5,
+      "kind": "cross",
+      "note": "host-service 通过 tRPC 暴露控制面"
+    },
+    {
+      "source": "folder:host-service",
+      "target": "folder:workspace-fs",
+      "weight": 5,
+      "kind": "cross",
+      "note": "工作区文件系统属于调度中枢的一部分"
+    },
+    {
+      "source": "folder:host-service",
+      "target": "folder:db",
+      "weight": 4,
+      "kind": "cross",
+      "note": "运行时、事件和状态最终都需要落到数据库或读取数据库"
+    },
+    {
+      "source": "folder:chat",
+      "target": "folder:auth",
+      "weight": 3,
+      "kind": "cross",
+      "note": "chat runtime 的可用性依赖认证和 provider 权限"
+    },
+    {
+      "source": "folder:chat",
+      "target": "folder:trpc",
+      "weight": 4,
+      "kind": "cross",
+      "note": "chat 控制动作需要经由协议层暴露给前台"
+    },
+    {
+      "source": "folder:workspace-fs",
+      "target": "folder:db",
+      "weight": 3,
+      "kind": "cross",
+      "note": "工作区与文件系统状态经常需要和数据库状态一起读"
+    },
+    {
+      "source": "folder:workspace-fs",
+      "target": "folder:local-db",
+      "weight": 3,
+      "kind": "cross",
+      "note": "本地工作区状态和本地数据库紧密耦合"
+    },
+    {
+      "source": "folder:mcp",
+      "target": "folder:desktop-mcp",
+      "weight": 3,
+      "kind": "cross",
+      "note": "桌面端 MCP 接入是 MCP 能力的一条具体落地线"
+    },
+    {
+      "source": "folder:cli",
+      "target": "folder:cli-framework",
+      "weight": 3,
+      "kind": "cross",
+      "note": "CLI 入口依赖命令框架定义行为边界"
+    },
+    {
+      "source": "folder:shared",
+      "target": "folder:ui",
+      "weight": 2,
+      "kind": "cross",
+      "note": "共享类型与公共工具会渗透到前台 UI 包"
+    }
+  ],
+  "loop_links": [],
+  "loop_category_links": []
+}

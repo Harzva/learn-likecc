@@ -1,0 +1,199 @@
+{
+  "meta": {
+    "updated": "2026-04-09",
+    "source": "reference/reference_agent/reference_control-agent-cli/superset",
+    "note_zh": "Superset Treemap 为教学向结构图：先按教学分区聚块，再展示 apps/packages 顶层目录文件量；不是静态依赖图。"
+  },
+  "legend": [
+    {
+      "key": "shell_apps",
+      "label": "产品壳与工作台",
+      "hint": "apps/desktop · web · api · docs 等"
+    },
+    {
+      "key": "pane_surface",
+      "label": "Pane 与前台工作位",
+      "hint": "panes · ui · workspace-client"
+    },
+    {
+      "key": "control_plane",
+      "label": "调度中枢",
+      "hint": "host-service · chat · trpc · auth · mcp"
+    },
+    {
+      "key": "workspace_stack",
+      "label": "工作区与隔离层",
+      "hint": "workspace-fs · db · local-db · cli"
+    },
+    {
+      "key": "shared_support",
+      "label": "共享基础设施",
+      "hint": "shared · email · metrics 等"
+    }
+  ],
+  "root": {
+    "name": "superset",
+    "children": [
+      {
+        "name": "产品壳与工作台",
+        "cat": "shell_apps",
+        "children": [
+          {
+            "name": "apps/desktop",
+            "value": 2021,
+            "cat": "shell_apps"
+          },
+          {
+            "name": "apps/marketing",
+            "value": 187,
+            "cat": "shell_apps"
+          },
+          {
+            "name": "apps/mobile",
+            "value": 114,
+            "cat": "shell_apps"
+          },
+          {
+            "name": "apps/web",
+            "value": 109,
+            "cat": "shell_apps"
+          },
+          {
+            "name": "apps/api",
+            "value": 86,
+            "cat": "shell_apps"
+          },
+          {
+            "name": "apps/docs",
+            "value": 67,
+            "cat": "shell_apps"
+          },
+          {
+            "name": "apps/admin",
+            "value": 53,
+            "cat": "shell_apps"
+          },
+          {
+            "name": "apps/electric-proxy",
+            "value": 7,
+            "cat": "shell_apps"
+          },
+          {
+            "name": "apps/streams",
+            "value": 1,
+            "cat": "shell_apps"
+          }
+        ]
+      },
+      {
+        "name": "Pane 与前台工作位",
+        "cat": "pane_surface",
+        "children": [
+          {
+            "name": "packages/ui",
+            "value": 115,
+            "cat": "pane_surface"
+          },
+          {
+            "name": "packages/panes",
+            "value": 39,
+            "cat": "pane_surface"
+          },
+          {
+            "name": "packages/workspace-client",
+            "value": 11,
+            "cat": "pane_surface"
+          }
+        ]
+      },
+      {
+        "name": "调度中枢",
+        "cat": "control_plane",
+        "children": [
+          {
+            "name": "packages/host-service",
+            "value": 105,
+            "cat": "control_plane"
+          },
+          {
+            "name": "packages/chat",
+            "value": 75,
+            "cat": "control_plane"
+          },
+          {
+            "name": "packages/trpc",
+            "value": 60,
+            "cat": "control_plane"
+          },
+          {
+            "name": "packages/mcp",
+            "value": 47,
+            "cat": "control_plane"
+          },
+          {
+            "name": "packages/desktop-mcp",
+            "value": 34,
+            "cat": "control_plane"
+          },
+          {
+            "name": "packages/auth",
+            "value": 14,
+            "cat": "control_plane"
+          }
+        ]
+      },
+      {
+        "name": "工作区与隔离层",
+        "cat": "workspace_stack",
+        "children": [
+          {
+            "name": "packages/local-db",
+            "value": 87,
+            "cat": "workspace_stack"
+          },
+          {
+            "name": "packages/db",
+            "value": 84,
+            "cat": "workspace_stack"
+          },
+          {
+            "name": "packages/cli",
+            "value": 37,
+            "cat": "workspace_stack"
+          },
+          {
+            "name": "packages/workspace-fs",
+            "value": 23,
+            "cat": "workspace_stack"
+          },
+          {
+            "name": "packages/cli-framework",
+            "value": 12,
+            "cat": "workspace_stack"
+          }
+        ]
+      },
+      {
+        "name": "共享基础设施",
+        "cat": "shared_support",
+        "children": [
+          {
+            "name": "packages/shared",
+            "value": 32,
+            "cat": "shared_support"
+          },
+          {
+            "name": "packages/email",
+            "value": 25,
+            "cat": "shared_support"
+          },
+          {
+            "name": "packages/macos-process-metrics",
+            "value": 3,
+            "cat": "shared_support"
+          }
+        ]
+      }
+    ]
+  }
+}
