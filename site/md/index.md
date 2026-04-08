@@ -16,6 +16,7 @@
 - **📚 学习入口**
   - Source Map 源码专题
   - 大模型专题
+  - 站点推荐（`topic-websites`）
   - CC 庖丁解牛（`topic-cc-unpacked-zh`）
   - Claude Code 教程
   - 完全手册
@@ -81,6 +82,10 @@
 #### 大模型专题
 
 补模型本体这条线：架构图谱、注意力与混合结构阅读入口，首推 Sebastian Raschka 的 `LLM Architecture Gallery`。
+
+#### 站点推荐
+
+这页改成更纯粹的“站点推荐”：收教程入口、个人主页和优质 GitHub 仓库，主推荐为 `karpathy.ai`；适合当长期书签页，而不是资讯流。
 
 ### 🛤️ 学习路径
 

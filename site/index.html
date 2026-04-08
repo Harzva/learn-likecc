@@ -24,12 +24,13 @@
             <nav class="main-nav-links" aria-label="专题与栏目">
                 <a href="topic-sourcemap.html">Source Map 源码</a>
                 <a href="topic-llm.html">大模型</a>
+                <a href="topic-websites.html">站点推荐</a>
                 <a href="topic-rag.html">RAG</a>
                 <a href="topic-agent.html">Agent</a>
                 <a href="topic-openharness.html" title="OpenHarness 开源 Agent Harness">OH</a>
-                <a href="topic-cc-unpacked-zh.html" title="Claude Code 庖丁解牛（中文导览，参考 ccunpacked.dev）">CC 庖丁解牛</a>
+                <a href="topic-cc-unpacked-zh.html" title="Claude Code 庖丁解牛（中文导览，参考 ccunpacked.dev）">庖丁解牛</a>
                 <a href="topic-claude-codex-bridge.html" title="Claude 如何通过插件调用 Codex">桥接</a>
-                <a href="tutorial.html">Claude Code 教程</a>
+                <a href="tutorial.html">教程</a>
                 <a href="handbook.html">手册</a>
                 <a href="topic-toolchain.html" title="工具链阅读、上手踩坑、渠道评测与开发日志合并专题">工具链</a>
                 <a href="column-show-your-usage.html" title="Cursor 订阅与用量自证">Usage</a>
@@ -43,9 +44,9 @@
                 </div>
             </div>
             <div class="nav-right">
-                <a href="tutorial.html#skills" class="github-btn" style="margin-right: 8px;" title="Skills 技能系统">🔧 Skills</a>
+                <a href="tutorial.html#skills" class="github-btn nav-action-btn nav-skill-btn" title="Skills 技能系统">🔧 Skills</a>
                 <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️</button>
-                <a href="https://github.com/Harzva/learn-likecc" class="github-btn" target="_blank">
+                <a href="https://github.com/Harzva/learn-likecc" class="github-btn nav-action-btn nav-github-btn" target="_blank">
                     <svg height="18" width="18" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
                     GitHub
                 </a>
@@ -142,7 +143,7 @@
     <section class="features-main">
         <div class="container">
             <h2 class="section-title">📚 学习入口</h2>
-            <p class="section-subtitle">主打 <strong><a href="topic-sourcemap.html" style="color: inherit; text-decoration: underline;">Source Map 源码专题</a></strong>（24 讲 + 事件 + Awesome 源码）；<strong><a href="topic-cc-unpacked-zh.html" style="color: inherit; text-decoration: underline;">CC 庖丁解牛</a></strong>用中文结构地图对照官方包结构；<strong><a href="topic-openharness.html" style="color: inherit; text-decoration: underline;">OpenHarness</a></strong> 为完全开源 Harness 对照轴；<strong><a href="tutorial.html" style="color: inherit; text-decoration: underline;">Claude Code 教程</a></strong>统一收拢教程、手册、Skills 与发版监督；<strong><a href="topic-llm.html" style="color: inherit; text-decoration: underline;">大模型专题</a></strong>补模型本体与架构图谱；<strong><a href="topic-toolchain.html" style="color: inherit; text-decoration: underline;">工具链专题</a></strong>集中放置个人经验向内容</p>
+            <p class="section-subtitle">主打 <strong><a href="topic-sourcemap.html" style="color: inherit; text-decoration: underline;">Source Map 源码专题</a></strong>（24 讲 + 事件 + Awesome 源码）；<strong><a href="topic-cc-unpacked-zh.html" style="color: inherit; text-decoration: underline;">CC 庖丁解牛</a></strong>用中文结构地图对照官方包结构；<strong><a href="topic-openharness.html" style="color: inherit; text-decoration: underline;">OpenHarness</a></strong> 为完全开源 Harness 对照轴；<strong><a href="tutorial.html" style="color: inherit; text-decoration: underline;">Claude Code 教程</a></strong>统一收拢教程、手册、Skills 与发版监督；<strong><a href="topic-llm.html" style="color: inherit; text-decoration: underline;">大模型专题</a></strong>补模型本体与架构图谱；<strong><a href="topic-websites.html" style="color: inherit; text-decoration: underline;">站点推荐</a></strong>收教程、个人主页与优质 GitHub 仓库；<strong><a href="topic-toolchain.html" style="color: inherit; text-decoration: underline;">工具链专题</a></strong>集中放置个人经验向内容</p>
 
             <figure class="mermaid-figure mermaid-figure--main" aria-label="学习流程图">
                 <figcaption class="mermaid-caption">
@@ -245,6 +246,18 @@
                         <span class="tag">LLM</span>
                         <span class="tag">Architecture</span>
                         <span class="tag">Gallery</span>
+                    </div>
+                    <div class="feature-arrow">→</div>
+                </a>
+
+                <a href="topic-websites.html" class="feature-card-main feature-topic">
+                    <div class="feature-icon-main">🌐</div>
+                    <h3 class="feature-title-main">站点推荐</h3>
+                    <p class="feature-desc-main">收一些值得长期打开的站点入口：教程、个人主页，以及能反复回看的 GitHub 仓库。主推荐先放 <code>karpathy.ai</code>。</p>
+                    <div class="feature-tags">
+                        <span class="tag">Website</span>
+                        <span class="tag">Tutorial</span>
+                        <span class="tag">GitHub</span>
                     </div>
                     <div class="feature-arrow">→</div>
                 </a>

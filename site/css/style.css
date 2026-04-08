@@ -435,20 +435,29 @@ body {
 
 /* 主题切换按钮 */
 .theme-toggle {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 8px 12px;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--bg-card) 82%, white 18%), color-mix(in srgb, var(--bg-hover) 72%, white 28%));
+    border: 1px solid color-mix(in srgb, var(--border) 88%, white 12%);
+    border-radius: 14px;
+    min-height: 46px;
+    min-width: 104px;
+    padding: 0.6rem 0.95rem;
     cursor: pointer;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
+    white-space: nowrap;
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: var(--text-primary);
+    box-shadow: 0 6px 14px rgba(30, 41, 59, 0.05);
     transition: all 0.3s ease;
 }
 
 .theme-toggle:hover {
-    background: var(--bg-hover);
-    transform: scale(1.05);
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #ffffff;
+    transform: translateY(-2px);
 }
 
 .theme-icon-dark {
@@ -4286,57 +4295,88 @@ body {
     left: 0;
     right: 0;
     z-index: 1000;
-    background: var(--bg-card);
-    border-bottom: 1px solid var(--border);
-    backdrop-filter: blur(10px);
+    background:
+        linear-gradient(180deg, color-mix(in srgb, var(--bg-card) 92%, white 8%), color-mix(in srgb, var(--bg-card) 84%, var(--bg-hover) 16%));
+    border-bottom: 1px solid color-mix(in srgb, var(--border) 88%, white 12%);
+    backdrop-filter: blur(18px) saturate(1.15);
+    box-shadow:
+        0 12px 28px rgba(15, 23, 42, 0.05),
+        0 1px 0 rgba(255, 255, 255, 0.7) inset;
 }
 
 .main-nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 2rem;
+    padding: 0.88rem 1.7rem;
     max-width: 1400px;
     margin: 0 auto;
-    gap: 0.75rem;
+    gap: 0.8rem;
+    flex-wrap: nowrap;
+    position: relative;
 }
 
 .main-nav-start {
     display: flex;
     align-items: center;
-    gap: 0.75rem 1.25rem;
+    gap: 0.62rem 1rem;
+    flex: 1 1 auto;
     flex-wrap: wrap;
     min-width: 0;
+}
+
+.main-nav-start::after {
+    content: '';
+    position: absolute;
+    top: 14px;
+    bottom: 14px;
+    left: 0;
+    right: 0;
+    border-radius: 24px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.48), rgba(255, 255, 255, 0.16));
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    opacity: 0.45;
+    pointer-events: none;
+    z-index: -1;
 }
 
 .main-nav-links {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.25rem 0.9rem;
+    gap: 0.15rem 0.42rem;
 }
 
 .main-nav-links a {
     color: var(--text-secondary);
     text-decoration: none;
-    font-size: 0.8125rem;
-    font-weight: 600;
+    font-size: 0.775rem;
+    font-weight: 650;
     white-space: nowrap;
+    letter-spacing: -0.01em;
+    padding: 0.3rem 0.5rem;
+    border-radius: 999px;
+    transition: all 0.25s ease;
 }
 
 .main-nav-links a:hover {
     color: var(--primary);
+    background: color-mix(in srgb, var(--bg-hover) 74%, white 26%);
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.05);
 }
 
 .nav-center {
-    flex: 1;
-    max-width: 400px;
-    margin: 0 2rem;
+    flex: 0 1 332px;
+    min-width: 240px;
+    max-width: 392px;
+    margin: 0 0.7rem;
 }
 
 .search-box {
     position: relative;
     width: 100%;
+    min-width: 0;
+    filter: drop-shadow(0 10px 20px rgba(15, 23, 42, 0.06));
 }
 
 .search-icon {
@@ -4349,52 +4389,68 @@ body {
 
 .search-input {
     width: 100%;
-    padding: 0.75rem 1rem 0.75rem 2.5rem;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    background: var(--bg-hover);
+    height: 44px;
+    padding: 0.68rem 5.2rem 0.68rem 2.45rem;
+    border: 1px solid color-mix(in srgb, var(--border) 86%, white 14%);
+    border-radius: 14px;
+    background: linear-gradient(180deg, color-mix(in srgb, var(--bg-hover) 78%, white 22%), color-mix(in srgb, var(--bg-card) 82%, white 18%));
     color: var(--text-primary);
-    font-size: 0.95rem;
+    font-size: 0.88rem;
     transition: all 0.3s ease;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.72) inset,
+        0 8px 18px rgba(15, 23, 42, 0.04);
 }
 
 .search-input:focus {
     outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.1);
+    box-shadow:
+        0 0 0 3px rgba(234, 88, 12, 0.1),
+        0 12px 28px rgba(234, 88, 12, 0.08);
 }
 
 .search-shortcut {
     position: absolute;
-    right: 12px;
+    right: 10px;
     top: 50%;
     transform: translateY(-50%);
     background: var(--bg-card);
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 0.75rem;
+    padding: 4px 7px;
+    border-radius: 8px;
+    font-size: 0.69rem;
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
     color: var(--text-muted);
     border: 1px solid var(--border);
+    pointer-events: none;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
 }
 
 .nav-right {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.55rem;
+    flex: 0 0 auto;
+    flex-wrap: nowrap;
+    padding-left: 0.7rem;
+    border-left: 1px solid color-mix(in srgb, var(--border) 78%, white 22%);
 }
 
 .github-btn {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.5rem 1rem;
+    min-height: 44px;
+    padding: 0.56rem 0.92rem;
     background: var(--bg-hover);
     color: var(--text-primary);
     border: 1px solid var(--border);
     text-decoration: none;
-    border-radius: 6px;
-    font-weight: 500;
-    font-size: 0.9rem;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 0.86rem;
     transition: all 0.3s ease;
 }
 
@@ -4403,6 +4459,47 @@ body {
     border-color: var(--primary);
     color: #ffffff;
     transform: translateY(-2px);
+}
+
+.nav-action-btn {
+    padding-inline: 0.92rem;
+}
+
+.nav-skill-btn {
+    background: linear-gradient(135deg, color-mix(in srgb, var(--bg-hover) 66%, white 34%), color-mix(in srgb, var(--bg-secondary) 72%, white 28%));
+    border-color: color-mix(in srgb, var(--border) 88%, white 12%);
+}
+
+.nav-github-btn {
+    box-shadow: 0 6px 14px rgba(30, 41, 59, 0.06);
+}
+
+.main-header .nav-logo {
+    gap: 0.72rem;
+    padding: 0.36rem 0.68rem 0.36rem 0.44rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.2));
+    border: 1px solid rgba(255, 255, 255, 0.46);
+    box-shadow:
+        0 10px 24px rgba(15, 23, 42, 0.05),
+        0 1px 0 rgba(255, 255, 255, 0.7) inset;
+}
+
+.main-header .logo-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--primary) 18%, white 82%), color-mix(in srgb, var(--secondary, var(--primary)) 14%, white 86%));
+    box-shadow: 0 8px 20px rgba(234, 88, 12, 0.14);
+    font-size: 1.06rem;
+}
+
+.main-header .logo-text {
+    letter-spacing: -0.01em;
+    font-size: 1.04rem;
 }
 
 /* Hero 主区域 */
@@ -5940,6 +6037,21 @@ article.course-card-main {
 @media (max-width: 768px) {
     .main-nav {
         padding: 1rem;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 0.85rem;
+    }
+
+    .main-nav-start {
+        width: 100%;
+    }
+
+    .nav-right {
+        width: 100%;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        padding-left: 0;
+        border-left: none;
     }
 
     .hero-title {

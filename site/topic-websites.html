@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>站点推荐 · 教程、个人主页与 GitHub 仓库 - Claude Code Course</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>">
+    <meta name="description" content="收一些值得长期打开的站点：教程入口、个人主页，以及能反复回看的 GitHub 仓库。主推荐为 karpathy.ai。">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🌐</span>
+                <span class="logo-text">站点推荐</span>
+            </a>
+            <div class="nav-links">
+                <a href="#intro" class="nav-link">导语</a>
+                <a href="#llm-wiki" class="nav-link">LLM Wiki</a>
+                <a href="#tutorials" class="nav-link">教程</a>
+                <a href="#homepages" class="nav-link">主页</a>
+                <a href="#repos" class="nav-link">GitHub</a>
+                <a href="#related" class="nav-link">站内互补</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-toolchain.html" class="btn-github">工具链专题</a>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>站点专题</span>
+                <span>教程 · 主页 · GitHub</span>
+            </div>
+            <h1 class="hero-title">
+                站点推荐<br>
+                <span class="gradient-text">从 karpathy.ai 出发</span>
+            </h1>
+            <p class="hero-subtitle">
+                这页只做一件事：收一些值得长期打开的站点入口。不是热点流，不是资讯堆砌，而是那种你隔一阵子还会回来再看一次的页面。主推荐先放 <strong>karpathy.ai</strong>，再顺手补几类我觉得真的有用的教程、个人主页和 GitHub 仓库。
+            </p>
+            <div class="hero-actions">
+                <a href="https://karpathy.ai/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">打开 karpathy.ai ↗</a>
+                <a href="#repos" class="btn btn-secondary">看 GitHub 推荐</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="course-main devlog-main">
+        <div class="container">
+            <article class="course-content devlog-content">
+                <section id="intro" class="section-block">
+                    <div class="course-quote">
+                        <p><strong>这页更像一张长期书签页。</strong> 有些资源不是“看完一次就结束”，而是会在学习、搭知识库、做 Agent、补模型理解的时候反复回来打开。这样的东西，值得单独留一个入口。</p>
+                        <p><a href="https://karpathy.ai/" target="_blank" rel="noopener noreferrer">karpathy.ai</a> 是这页的起点：它把课程、视频、博客、项目、GitHub 和个人轨迹都收得很稳，很适合作为一个总入口，也很适合拿来提醒自己，个人站点完全可以做成长期知识主界面。</p>
+                    </div>
+                </section>
+
+                <section id="llm-wiki" class="section-block">
+                    <h2>1. Karpathy 的 LLM Wiki 指南，为什么值得单独记一下</h2>
+                    <p>这篇内容之所以值得放进“站点推荐”，不是因为它又提出了一个新名词，而是因为它把很多人已经隐约感觉到、却一直说不清楚的问题讲透了：<strong>为什么你用大模型处理过的知识，总是留不下来？</strong></p>
+                    <p>大多数人今天处理文档，还是 RAG 心智。文件丢进去，问的时候临时检索、临时拼答案，能用，但知识没有沉淀。Karpathy 的思路刚好反过来：<strong>别让模型每次临时翻书，让它替你维护一套持续更新的 wiki</strong>。每加一份新资料，LLM 不是简单存档，而是会读、会提取要点、会更新已有页面、会补交叉引用、会标记矛盾，让知识像代码库一样被持续编译。</p>
+
+                    <div class="quickstart-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-top: 1.5rem;">
+                        <div class="quickstart-card">
+                            <h3>核心区别</h3>
+                            <p>RAG 是“查询时重新发现知识”，LLM Wiki 是“摄入时把知识编译进去”。前者临时拼凑，后者持续沉淀。</p>
+                        </div>
+                        <div class="quickstart-card">
+                            <h3>三层结构</h3>
+                            <p><strong>Raw Sources</strong> 管原始资料，<strong>Wiki</strong> 管结构化 Markdown 页面，<strong>Schema</strong> 管规则与工作流。</p>
+                        </div>
+                        <div class="quickstart-card">
+                            <h3>人机分工</h3>
+                            <p>人负责选材料、问问题、做判断；LLM 负责总结、归档、交叉引用、更新一致性这些真正费力的苦活。</p>
+                        </div>
+                    </div>
+
+                    <div class="table-wrap" style="margin-top: 1.75rem;">
+                        <table class="data-table">
+                            <thead>
+                                <tr><th>层级</th><th>作用</th><th>一句话理解</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Raw Sources</td>
+                                    <td>原始资料源，只读，不修改</td>
+                                    <td>权威来源，冲突时以它为准</td>
+                                </tr>
+                                <tr>
+                                    <td>Wiki</td>
+                                    <td>由 LLM 维护的 Markdown 页面集合</td>
+                                    <td>摘要、概念页、实体页、综合判断都沉淀在这里</td>
+                                </tr>
+                                <tr>
+                                    <td>Schema</td>
+                                    <td>告诉 Agent 如何摄入、查询、检查和维护</td>
+                                    <td>让 LLM 成为有纪律的知识库维护者，而不是聊天机器人</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p style="margin-top: 1.25rem;">这篇指南里还有一个很重要的操作心智：<strong>摄入、查询、检查</strong>。摄入新资料时更新 wiki；查询时优先查 wiki，而不是每次回原文翻箱倒柜；定期做 lint，检查矛盾、孤儿页、缺失链接和过时结论。这个思路特别像在维护代码库，只不过这里维护的是知识。</p>
+                    <p>你贴过来的中文整理里，我觉得最值的一句其实是这个意思：<strong>知识要先被“编译”一次，才会开始复利增长</strong>。这也是为什么它很适合和 `karpathy.ai` 这种个人主页放在一起看，因为两者都在强调一件事：长期资产要被组织、被沉淀，而不是散在聊天记录和临时对话里。</p>
+                </section>
+
+                <section id="tutorials" class="section-block">
+                    <h2>2. 教程入口</h2>
+                    <div class="toolchain-card-grid">
+                        <section class="toolchain-topic-card">
+                            <div class="toolchain-topic-card__meta">Tutorial</div>
+                            <h3>Deep Dive into LLMs like ChatGPT</h3>
+                            <p>Karpathy 的长视频课。适合已经知道大模型概念，但想把预训练、分词、Transformer、采样与对齐串成一条完整叙事的人。</p>
+                            <a href="https://www.youtube.com/watch?v=7xTGNNLPyMI" class="btn btn-primary" target="_blank" rel="noopener noreferrer">打开视频 ↗</a>
+                        </section>
+
+                        <section class="toolchain-topic-card">
+                            <div class="toolchain-topic-card__meta">Tutorial</div>
+                            <h3>A Recipe for Training Neural Networks</h3>
+                            <p>这篇老文章特别适合补“调参感”和工程直觉，不是最新论文，但很耐读，很多经验到今天都没过时。</p>
+                            <a href="https://karpathy.github.io/2019/04/25/recipe/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">打开文章 ↗</a>
+                        </section>
+
+                        <section class="toolchain-topic-card">
+                            <div class="toolchain-topic-card__meta">Course</div>
+                            <h3>CS231n</h3>
+                            <p>经典中的经典。就算今天不专门做视觉，里面很多关于深度学习训练、误差分析、网络直觉的东西依然非常值。</p>
+                            <a href="https://cs231n.stanford.edu/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">进入课程 ↗</a>
+                        </section>
+
+                        <section class="toolchain-topic-card">
+                            <div class="toolchain-topic-card__meta">Gallery</div>
+                            <h3>LLM Architecture Gallery</h3>
+                            <p>如果最近在系统补模型结构，不想只看零散博客，这页很适合当总览。和本站的大模型专题也正好互补。</p>
+                            <a href="https://sebastianraschka.com/llm-architecture-gallery/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">打开 Gallery ↗</a>
+                        </section>
+                    </div>
+                </section>
+
+                <section id="homepages" class="section-block">
+                    <h2>3. 个人主页</h2>
+                    <div class="quickstart-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+                        <div class="quickstart-card">
+                            <h3>karpathy.ai</h3>
+                            <p>这页最推荐。项目、课程、演讲、博客、GitHub 都收在一个非常稳的个人入口里，适合反复回看。</p>
+                            <p><a href="https://karpathy.ai/" target="_blank" rel="noopener noreferrer">打开站点 ↗</a></p>
+                        </div>
+                        <div class="quickstart-card">
+                            <h3>Sebastian Raschka</h3>
+                            <p>偏教学型主页，适合当作大模型结构、训练与实现向资料入口。内容密度高，但不故作艰深。</p>
+                            <p><a href="https://sebastianraschka.com/" target="_blank" rel="noopener noreferrer">打开主页 ↗</a></p>
+                        </div>
+                        <div class="quickstart-card">
+                            <h3>站点形式本身就值得学</h3>
+                            <p>有些主页不是靠设计炫，而是靠结构稳。课程、文章、项目、代码入口各守其位，看起来很轻，但长期价值很大。</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="repos" class="section-block">
+                    <h2>4. 值得反复回看的 GitHub 仓库</h2>
+                    <div class="table-wrap">
+                        <table class="data-table">
+                            <thead>
+                                <tr><th>仓库</th><th>为什么值得看</th><th>链接</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>karpathy/micrograd</code></td>
+                                    <td>小到可以一口气读完，但把自动求导和反向传播讲得非常透。是“从玩具到原理”最经典的一类仓库。</td>
+                                    <td><a href="https://github.com/karpathy/micrograd" target="_blank" rel="noopener noreferrer">GitHub ↗</a></td>
+                                </tr>
+                                <tr>
+                                    <td><code>karpathy/nanoGPT</code></td>
+                                    <td>想看 GPT 最小实现、训练脚本和工程折中，这个仓库一直很好用。它不是大而全，但很适合真正下手读。</td>
+                                    <td><a href="https://github.com/karpathy/nanoGPT" target="_blank" rel="noopener noreferrer">GitHub ↗</a></td>
+                                </tr>
+                                <tr>
+                                    <td><code>karpathy/char-rnn</code></td>
+                                    <td>虽然老，但非常适合拿来理解序列建模的历史脉络。很多今天的感知，其实都能在这种早期实现里找到根。</td>
+                                    <td><a href="https://github.com/karpathy/char-rnn" target="_blank" rel="noopener noreferrer">GitHub ↗</a></td>
+                                </tr>
+                                <tr>
+                                    <td><code>karpathy/arxiv-sanity-preserver</code></td>
+                                    <td>更像一个“研究阅读工具”而不是单纯模型仓库。它提醒人一件事：知识入口、筛选与检索本身，也是一类很强的产品能力。</td>
+                                    <td><a href="https://github.com/karpathy/arxiv-sanity-preserver" target="_blank" rel="noopener noreferrer">GitHub ↗</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="related" class="section-block">
+                    <h2>5. 和站内内容怎么搭着看</h2>
+                    <ul>
+                        <li><a href="topic-llm.html">大模型专题</a>：适合接着补模型骨架和结构图谱。</li>
+                        <li><a href="tutorial.html">Claude Code 教程</a>：适合从外部知识入口切回具体工具实践。</li>
+                        <li><a href="topic-memory-harness.html">Memory 专题</a>：适合继续看长期记忆、知识沉淀与安全边界。</li>
+                        <li><a href="topic-toolchain.html">工具链专题</a>：适合把这些外部资源和真实使用路径、踩坑、复盘连起来看。</li>
+                    </ul>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="md-source-dual" role="note">
+                <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-websites.md" target="_blank" rel="noopener noreferrer">📝 Markdown 源（GitHub）</a></p>
+                <p class="md-source-hint">主推荐：<a href="https://karpathy.ai/" target="_blank" rel="noopener noreferrer">karpathy.ai</a> · 互补阅读：<a href="topic-llm.html">大模型专题</a> · <a href="topic-toolchain.html">工具链专题</a></p>
+            </div>
+            <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

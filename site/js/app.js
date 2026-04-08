@@ -452,6 +452,13 @@ function initSiteSidebar() {
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-llm.html"><span class="site-sidebar__ico">📌</span><span class="site-sidebar__txt">专题首页</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="https://sebastianraschka.com/llm-architecture-gallery/" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">🔗</span><span class="site-sidebar__txt">Architecture Gallery ↗</span></a>' +
         '</details>' +
+        '<details class="site-sidebar__details" data-sidebar-key="websites">' +
+        '<summary class="site-sidebar__summary"><span class="site-sidebar__txt">站点推荐</span></summary>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-websites.html"><span class="site-sidebar__ico">📌</span><span class="site-sidebar__txt">推荐页</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="https://karpathy.ai/" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">🔗</span><span class="site-sidebar__txt">karpathy.ai ↗</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="tutorial.html#skills"><span class="site-sidebar__ico">🔧</span><span class="site-sidebar__txt">Skills</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-memory-harness.html"><span class="site-sidebar__ico">🧠</span><span class="site-sidebar__txt">Memory 机制</span></a>' +
+        '</details>' +
         '<details class="site-sidebar__details" data-sidebar-key="rag">' +
         '<summary class="site-sidebar__summary"><span class="site-sidebar__txt">RAG 专题</span></summary>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-rag.html"><span class="site-sidebar__ico">📌</span><span class="site-sidebar__txt">专题首页</span></a>' +
