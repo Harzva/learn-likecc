@@ -8,7 +8,7 @@
 
 ---
 
-![Like Code current progress preview](docs/readme-assets/likecode-progress-preview.png)
+![Like Code model routing preview](docs/readme-assets/likecode-model-routing-preview.png)
 
 ## 顶部重点：我们现在最重要的事
 
@@ -21,6 +21,49 @@
   - 通过项目本地 `modelRoutes`，按模型自动切换 `baseURL / authToken / headers`
 - ✅ **模型切换不再卡死在固定列表**
   - `/model` 菜单会自动展示本地已经配置好的外部模型
+
+#### 这类本地配置现在可以这样写
+
+下面是一个已经脱敏过的示例。重点不是某一家 provider，而是：
+
+- `env` 里继续放默认 Claude 相关模型名与基线地址
+- `modelRoutes` 里按“模型名 => provider 路由”做映射
+- `/model` 菜单会直接读取这里已经配好的外部模型并展示出来
+
+```json
+{
+  "env": {
+    "ANTHROPIC_BASE_URL": "https://api.provider.example",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "claude-haiku-4-5-20251015",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "claude-sonnet-4-5-20250929",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-4-5-20251101"
+  },
+  "modelRoutes": {
+    "minimax/minimax-m2.5": {
+      "baseURL": "https://api.provider.example",
+      "authToken": "sk-provider-route-example-minimax",
+      "headers": {
+        "x-provider": "minimax"
+      }
+    },
+    "claude-sonnet-4-5-20250929": {
+      "baseURL": "https://api.provider.example",
+      "authToken": "sk-provider-route-example-sonnet"
+    }
+  },
+  "model": "minimax/minimax-m2.5",
+  "permissions": {
+    "defaultMode": "bypassPermissions"
+  }
+}
+```
+
+这意味着：
+
+- 切到 `minimax/minimax-m2.5` 时，会自动命中它自己的 `baseURL / authToken / headers`
+- 切到 `claude-sonnet-4-5-20250929` 时，会自动走另一条 provider 路由
+- `/model` 菜单不需要再手写死固定选项，而是把你已经配置在本地的模型直接列出来
+
 - ✅ **配置自动重载**
   - 修改 `.claude/settings.json` / `.claude/settings.local.json` 里的 API 与关键配置后，不需要退出 agent-cli 再重新开
 - ✅ **终端内可直接查看详细配置**

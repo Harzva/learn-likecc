@@ -106,12 +106,12 @@
 
     <section class="features-main">
         <div class="container">
-            <h2 class="section-title">✅ 构建成功展示</h2>
-            <p class="section-subtitle">当前学习版已经可以完成构建，并成功进入 Claude Code 交互界面。</p>
+            <h2 class="section-title">✅ 自由换模型展示</h2>
+            <p class="section-subtitle">当前 LikeCode 学习版已经支持通过项目本地 <code>modelRoutes</code> 自由切换 Provider，并让 <code>/model</code> 自动展示本地已配置的外部模型。</p>
             <figure class="mermaid-figure mermaid-figure--main" style="padding: 20px;">
-                <img src="images/build-success.svg" alt="Claude Code build success screenshot" style="width: 100%; height: auto; display: block; border-radius: 16px; border: 1px solid rgba(255,255,255,0.08);">
+                <img src="images/likecode-model-routing-preview.png" alt="LikeCode model routing and /model preview" style="width: 100%; height: auto; display: block; border-radius: 16px; border: 1px solid rgba(255,255,255,0.08);">
                 <figcaption class="mermaid-caption">
-                    <strong>验证命令</strong>：<code>cd ccsource/like-code-main && npm run build && bun dist/cli.js</code>
+                    <strong>本地配置思路</strong>：在项目 `.claude/settings.local.json` 中维护 <code>modelRoutes</code>，按模型自动切换 <code>baseURL / authToken / headers</code>，并让 <code>/model</code> 菜单直接读取这些已配置路由。
                 </figcaption>
             </figure>
         </div>
