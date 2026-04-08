@@ -462,144 +462,72 @@ paths:
             </div>
 
             <div class="skills-density-bar">
-                <div class="skills-density-pill"><strong>01</strong><span>工作台视角</span></div>
+                <div class="skills-density-pill"><strong>01</strong><span>Skills 在会话里的位置</span></div>
                 <div class="skills-density-pill"><strong>02</strong><span>推荐 Skill 组合</span></div>
                 <div class="skills-density-pill"><strong>03</strong><span>skills.sh 安装路径</span></div>
                 <div class="skills-density-pill"><strong>04</strong><span>选型与安全判断</span></div>
                 <div class="skills-density-pill"><strong>05</strong><span>自己写 Skill</span></div>
             </div>
 
-            <div class="skills-studio">
-                <aside class="skills-studio__left">
-                    <div class="studio-panel">
-                        <div class="studio-panel__title">Workspace Tree</div>
-                        <ul class="studio-tree">
-                            <li><span class="studio-tree__dir">project/</span></li>
-                            <li class="is-indent"><span class="studio-tree__file">CLAUDE.md</span></li>
-                            <li class="is-indent"><span class="studio-tree__dir">.claude/</span></li>
-                            <li class="is-indent-2"><span class="studio-tree__dir">skills/</span></li>
-                            <li class="is-indent-3"><span class="studio-tree__file">pdf/SKILL.md</span></li>
-                            <li class="is-indent-3"><span class="studio-tree__file">drawio/SKILL.md</span></li>
-                            <li class="is-indent-3"><span class="studio-tree__file">citation-management/SKILL.md</span></li>
-                            <li class="is-indent-2"><span class="studio-tree__dir">agents/</span></li>
-                            <li class="is-indent-2"><span class="studio-tree__dir">commands/</span></li>
-                            <li class="is-indent"><span class="studio-tree__dir">papers/</span></li>
-                            <li class="is-indent"><span class="studio-tree__dir">figures/</span></li>
-                        </ul>
-                    </div>
+            <div class="skills-overview">
+                <div class="skills-overview-card">
+                    <h3>Skills 在这一轮对话里扮演什么角色？</h3>
+                    <p>更准确的理解是：<strong>Skill 不是对话主体</strong>，也不是单独的 UI 模块，而是被模型在合适时机调用的<strong>可复用工作流包</strong>。它通常包含：</p>
+                    <ul class="skills-overview-list">
+                        <li>什么时候该用它：由 <code>description</code> 和正文说明触发条件</li>
+                        <li>调用后怎么做：把步骤、约束、输出格式固化进 <code>SKILL.md</code></li>
+                        <li>允许用什么：通过 <code>allowed-tools</code>、<code>context</code>、<code>agent</code> 约束执行边界</li>
+                    </ul>
+                    <p class="skills-overview-note">所以这一节最重要的不是“长得像聊天软件”，而是让读者看懂：<strong>Skill 如何嵌进真实任务链</strong>。</p>
+                </div>
 
-                    <div class="studio-panel">
-                        <div class="studio-panel__title">Pinned Agents</div>
-                        <div class="studio-chip-list">
-                            <span class="studio-chip">Paper Polisher</span>
-                            <span class="studio-chip">Citation Checker</span>
-                            <span class="studio-chip">Figure Builder</span>
-                            <span class="studio-chip">Data Analyst</span>
+                <div class="skills-overview-card">
+                    <h3>一个典型的 Skills 组合链</h3>
+                    <div class="skills-chain">
+                        <div class="skills-chain__step">
+                            <span class="skills-chain__num">01</span>
+                            <div>
+                                <strong>先吃进材料</strong>
+                                <p><code>/pdf</code>、<code>/markitdown</code>、<code>/docx</code> 把 PDF / Word / PPT / Excel 统一变成可检索内容。</p>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="studio-panel">
-                        <div class="studio-panel__title">Recent Chats</div>
-                        <div class="studio-list">
-                            <div class="studio-list__item">
-                                <strong>Literature Review Sprint</strong>
-                                <span>/pdf + /pyzotero + /citation-management</span>
+                        <div class="skills-chain__step">
+                            <span class="skills-chain__num">02</span>
+                            <div>
+                                <strong>再补引用与检索</strong>
+                                <p><code>/pyzotero</code>、<code>/citation-management</code>、<code>/arxiv-database</code> 负责元数据、BibTeX 和文献补全。</p>
                             </div>
-                            <div class="studio-list__item">
-                                <strong>Figures for Appendix</strong>
-                                <span>/drawio + /seaborn + /plotly</span>
-                            </div>
-                            <div class="studio-list__item">
-                                <strong>Final Paper Polish</strong>
-                                <span>/paper-polish-workflow + /humanizer-zh</span>
+                        </div>
+                        <div class="skills-chain__step">
+                            <span class="skills-chain__num">03</span>
+                            <div>
+                                <strong>最后才进入润色与产出</strong>
+                                <p><code>/paper-polish-workflow</code>、<code>/humanizer-zh</code>、<code>/drawio</code>、<code>/plotly</code> 把结构、表达和图表一起补齐。</p>
                             </div>
                         </div>
                     </div>
-                </aside>
+                </div>
 
-                <main class="skills-studio__center">
-                    <div class="studio-thread">
-                        <div class="studio-separator">Turn 01 · 用户提出任务</div>
-                        <div class="studio-bubble studio-bubble--user">
-                            我有 12 篇 PDF、一个 Zotero 库、导师的 Word 批注和一份参考文献格式要求。帮我先整理材料，再给出论文修改计划。
+                <div class="skills-overview-card">
+                    <h3>选型时最该看的 4 件事</h3>
+                    <div class="skills-signal-grid">
+                        <div class="skills-signal">
+                            <strong>场景是否匹配</strong>
+                            <p>先描述任务，再去找 skill，不要只按名字搜。</p>
                         </div>
-
-                        <div class="studio-separator">Turn 02 · Assistant 进入 skill orchestration</div>
-                        <div class="studio-bubble studio-bubble--assistant">
-                            <div class="studio-bubble__meta">Assistant · streaming</div>
-                            <p>我会先把任务拆成 4 个环节：材料读取、文献核查、结构整理、表达润色。</p>
-                            <p>优先调用：</p>
-                            <ul>
-                                <li><code>/pdf</code> 读取论文与批注 PDF</li>
-                                <li><code>/markitdown</code> 把 Word/PPT 转成 Markdown</li>
-                                <li><code>/pyzotero</code> 拉取文献元数据</li>
-                                <li><code>/citation-management</code> 校对 BibTeX 和引用格式</li>
-                            </ul>
-                            <div class="studio-streaming">
-                                <span></span><span></span><span></span>
-                            </div>
+                        <div class="skills-signal">
+                            <strong>下载量与验证度</strong>
+                            <p>高下载量通常意味着被更多真实用户验证过。</p>
                         </div>
-
-                        <div class="studio-separator">Turn 03 · tool / skill 回流</div>
-                        <div class="studio-bubble studio-bubble--tool">
-                            <strong>Tool Result</strong>
-                            <p>已发现 12 篇 PDF、1 个 Zotero collection、1 份导师批注文档；其中 3 篇参考文献字段缺 DOI，2 条作者名缩写格式不一致。</p>
+                        <div class="skills-signal">
+                            <strong>能否拆成组合链</strong>
+                            <p>优先用 2 到 4 个 skill 串成链，而不是期待单个 skill 包打天下。</p>
                         </div>
-
-                        <div class="studio-separator">Turn 04 · Assistant 给出下一步</div>
-                        <div class="studio-bubble studio-bubble--assistant is-final">
-                            <div class="studio-bubble__meta">Assistant</div>
-                            <p>下一步建议：</p>
-                            <ol>
-                                <li>先用 <code>/pdf</code> 与 <code>/markitdown</code> 把原始材料清洗成可检索文本。</li>
-                                <li>再用 <code>/pyzotero</code> + <code>/citation-management</code> 修 BibTeX 与引用格式。</li>
-                                <li>最后再进入 <code>/paper-polish-workflow</code> 或 <code>/humanizer-zh</code> 做润色。</li>
-                            </ol>
+                        <div class="skills-signal">
+                            <strong>副作用边界</strong>
+                            <p>涉及写文件、部署、外部 API 时，必须先看权限和 frontmatter。</p>
                         </div>
                     </div>
-
-                    <div class="studio-inputbar">
-                        <div class="studio-inputbar__toolbar">
-                            <span class="studio-mini-btn">+ Files</span>
-                            <span class="studio-mini-btn">/ Skill</span>
-                            <span class="studio-mini-btn">@ Agent</span>
-                            <span class="studio-mini-btn">MCP</span>
-                        </div>
-                        <div class="studio-inputbar__field">输入新任务，或继续让系统组合 skills / agents / tools…</div>
-                    </div>
-                </main>
-
-                <aside class="skills-studio__right">
-                    <div class="studio-panel studio-panel--inspector">
-                        <div class="studio-panel__title">Inspector</div>
-                        <div class="studio-inspector">
-                            <div class="studio-kv"><span>Current Model</span><strong>Claude Sonnet</strong></div>
-                            <div class="studio-kv"><span>Mode</span><strong>Skills + Agents</strong></div>
-                            <div class="studio-kv"><span>Queue</span><strong>4 pending actions</strong></div>
-                            <div class="studio-kv"><span>Dialog Actions</span><strong>read / search / rewrite</strong></div>
-                        </div>
-                    </div>
-
-                    <div class="studio-panel studio-panel--inspector">
-                        <div class="studio-panel__title">Active Tools</div>
-                        <div class="studio-chip-list studio-chip-list--stack">
-                            <span class="studio-chip studio-chip--active">pdf</span>
-                            <span class="studio-chip studio-chip--active">markitdown</span>
-                            <span class="studio-chip studio-chip--active">pyzotero</span>
-                            <span class="studio-chip studio-chip--active">citation-management</span>
-                        </div>
-                    </div>
-
-                    <div class="studio-panel studio-panel--inspector">
-                        <div class="studio-panel__title">Dialog Actions</div>
-                        <div class="studio-actions">
-                            <button class="studio-action">Attach 12 PDFs</button>
-                            <button class="studio-action">Validate BibTeX</button>
-                            <button class="studio-action">Open Polish Workflow</button>
-                            <button class="studio-action">Export Plan</button>
-                        </div>
-                    </div>
-                </aside>
             </div>
 
             <div class="skills-catalog">
