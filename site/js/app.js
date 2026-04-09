@@ -424,9 +424,12 @@ function initSiteSidebar() {
         (collapsed ? '⟩' : '⟨') +
         '</button>' +
         '<div class="site-sidebar__scroll">' +
-        '<a class="site-sidebar__link site-sidebar__link--brand" href="index.html"><span class="site-sidebar__txt">首页</span></a>' +
-        '<div class="site-sidebar__actions">' +
-        '<button type="button" class="site-sidebar__action-btn" data-sidebar-action="collapse-all" title="收起所有已展开专题">收起全部专题</button>' +
+        '<div class="site-sidebar__toolbar">' +
+        '<a class="site-sidebar__link site-sidebar__link--brand" href="index.html">' +
+        '<span class="site-sidebar__ico" aria-hidden="true">⌂</span>' +
+        '<span class="site-sidebar__txt">首页</span></a>' +
+        '<button type="button" class="site-sidebar__action-btn site-sidebar__action-btn--icon-only" data-sidebar-action="collapse-all" aria-label="收起全部专题" title="收起全部专题 · Collapse all">' +
+        '<span aria-hidden="true">\u23EB</span></button>' +
         '</div>' +
         '<details class="site-sidebar__details" data-sidebar-key="source-map">' +
         '<summary class="site-sidebar__summary"><span class="site-sidebar__txt">Source Map 源码专题</span></summary>' +

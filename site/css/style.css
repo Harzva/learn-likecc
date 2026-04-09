@@ -6166,7 +6166,6 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 .site-sidebar--collapsed .site-sidebar__txt,
 .site-sidebar--collapsed .site-sidebar__summary .site-sidebar__txt,
 .site-sidebar--collapsed .site-sidebar__chapters,
-.site-sidebar--collapsed .site-sidebar__actions,
 .site-sidebar--collapsed .site-sidebar__details > summary ~ * {
     display: none !important;
 }
@@ -6188,12 +6187,15 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     padding: 52px 0 20px;
 }
 
-.site-sidebar__actions {
-    padding: 4px 12px 8px;
+.site-sidebar__toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 4px 12px 10px;
 }
 
 .site-sidebar__action-btn {
-    width: 100%;
     border: 1px solid var(--border);
     background: color-mix(in srgb, var(--bg-hover) 78%, white 22%);
     color: var(--text-secondary);
@@ -6205,10 +6207,29 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
+.site-sidebar__action-btn--icon-only {
+    width: auto;
+    min-width: 36px;
+    height: 34px;
+    padding: 0 8px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+    line-height: 1;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
 .site-sidebar__action-btn:hover {
     background: color-mix(in srgb, var(--primary) 10%, var(--bg-hover));
     color: var(--primary-dark);
     border-color: color-mix(in srgb, var(--primary) 28%, var(--border));
+}
+
+.site-sidebar__action-btn--icon-only:hover {
+    color: var(--primary-dark);
 }
 
 .site-sidebar__collapse {
@@ -6257,12 +6278,40 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 }
 
 .site-sidebar__link--brand {
+    flex: 0 1 auto;
+    max-width: fit-content;
+    margin: 2px 0 0 8px;
+    padding: 7px 12px;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    background: color-mix(in srgb, var(--bg-secondary) 94%, var(--bg-hover));
+    border: 1px solid color-mix(in srgb, var(--border) 92%, var(--primary) 8%);
+    box-shadow: none;
+}
+
+.site-sidebar__link--brand:hover {
+    color: var(--primary-dark);
+    background: color-mix(in srgb, var(--primary) 5%, var(--bg-hover));
+    border-color: color-mix(in srgb, var(--primary) 20%, var(--border));
+}
+
+/* 首页当前页：浅色描边高亮，避免整块高饱和主色 */
+.site-sidebar__link.site-sidebar__link--brand.site-sidebar__link--active {
+    background: color-mix(in srgb, var(--primary) 8%, var(--bg-card));
+    color: var(--primary-dark);
     font-weight: 700;
-    color: var(--text-primary);
+    border-color: color-mix(in srgb, var(--primary) 32%, var(--border));
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--primary) 15%, transparent);
 }
 
 .site-sidebar__link:not(.site-sidebar__link--sub) {
     gap: 0;
+}
+
+.site-sidebar__link--brand.site-sidebar__link:not(.site-sidebar__link--sub) {
+    gap: 8px;
 }
 
 .site-sidebar__ico {
