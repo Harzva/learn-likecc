@@ -6,7 +6,7 @@
     <title>站点推荐 · 教程、个人主页与 GitHub 仓库 - Claude Code Course</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>">
-    <meta name="description" content="收一些值得长期打开的站点：教程入口、个人主页，以及能反复回看的 GitHub 仓库。主推荐补充 zread.ai 与 karpathy.ai。">
+    <meta name="description" content="收一些值得长期打开的站点：教程入口、个人主页，以及能反复回看的 GitHub 仓库。主推荐补充 Advent of Claude、zread.ai 与 karpathy.ai。">
 </head>
 <body>
     <nav class="navbar">
@@ -17,6 +17,7 @@
             </a>
             <div class="nav-links">
                 <a href="#intro" class="nav-link">导语</a>
+                <a href="#advent" class="nav-link">Advent</a>
                 <a href="#zread" class="nav-link">Zread</a>
                 <a href="#llm-wiki" class="nav-link">LLM Wiki</a>
                 <a href="#tutorials" class="nav-link">教程</a>
@@ -43,11 +44,11 @@
                 <span class="gradient-text">把 repo 读成课程</span>
             </h1>
             <p class="hero-subtitle">
-                这页只做一件事：收一些值得长期打开的站点入口。不是热点流，不是资讯堆砌，而是那种你隔一阵子还会回来再看一次的页面。现在把 <strong>zread.ai</strong> 放进主推荐位，它适合当 repo 阅读与理解入口；<strong>karpathy.ai</strong> 继续保留为长期知识主页范本。
+                这页只做一件事：收一些值得长期打开的站点入口。不是热点流，不是资讯堆砌，而是那种你隔一阵子还会回来再看一次的页面。现在把 <strong>Advent of Claude</strong> 补进来做 Claude Code 功能速查入口，把 <strong>zread.ai</strong> 放进 repo 阅读与理解入口位，<strong>karpathy.ai</strong> 继续保留为长期知识主页范本。
             </p>
             <div class="hero-actions">
-                <a href="https://zread.ai/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">打开 zread.ai ↗</a>
-                <a href="#zread" class="btn btn-secondary">看差异分析</a>
+                <a href="https://adocomplete.com/advent-of-claude-2025/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">打开 Advent of Claude ↗</a>
+                <a href="#advent" class="btn btn-secondary">看视频索引</a>
             </div>
         </div>
     </section>
@@ -58,13 +59,111 @@
                 <section id="intro" class="section-block">
                     <div class="course-quote">
                         <p><strong>这页更像一张长期书签页。</strong> 有些资源不是“看完一次就结束”，而是会在学习、搭知识库、做 Agent、补模型理解的时候反复回来打开。这样的东西，值得单独留一个入口。</p>
+                        <p><a href="https://adocomplete.com/advent-of-claude-2025/" target="_blank" rel="noopener noreferrer">Advent of Claude: 31 Days of Claude Code</a> 现在也应该放进来。它不是零散推文，而是把 31 个 Claude Code 功能点重新整理成一篇长文，并且正文里直接挂了 31 个 MP4 演示，适合当“功能回忆索引”和“给别人发一篇就够”的入口页。</p>
                         <p><a href="https://zread.ai/" target="_blank" rel="noopener noreferrer">zread.ai</a> 适合放在“代码仓库理解入口”这一格：Discover、Trending、Private Repo、MCP Server、CLI for Local Repos 这些入口摆得很清楚，说明它想解决的不是单篇教程阅读，而是“把 repo 变成可读、可问、可持续追踪的知识对象”。</p>
                         <p><a href="https://karpathy.ai/" target="_blank" rel="noopener noreferrer">karpathy.ai</a> 则是另一种长期入口：它把课程、视频、博客、项目、GitHub 和个人轨迹都收得很稳，很适合作为一个总入口，也很适合拿来提醒自己，个人站点完全可以做成长期知识主界面。</p>
                     </div>
                 </section>
 
+                <section id="advent" class="section-block">
+                    <h2>1. Advent of Claude：适合放进这页的 Claude Code 长文入口</h2>
+                    <p><a href="https://adocomplete.com/advent-of-claude-2025/" target="_blank" rel="noopener noreferrer">Advent of Claude: 31 Days of Claude Code</a> 发布于 <strong>2026-01-01</strong>。这页最值的地方不是“又列了 31 条技巧”，而是它把零散的日更提示重新编排成一份可回看的功能地图：从 <code>/init</code>、<code>!</code>、<code>Esc Esc</code>、<code>/context</code>，一直到 Plan Mode、Hooks、Subagents、Agent Skills、LSP、Claude Agent SDK，适合拿来补全 Claude Code 的功能认知。</p>
+                    <p>更关键的是，原文正文里直接嵌了 <strong>31 个 MP4 演示视频</strong>，视频源在 <code>cdn.adocomplete.com</code>。这意味着我们在 GitHub Pages 里<strong>可以放视频链接</strong>，甚至理论上可以直接外链播放；但我更建议当前阶段先保留<strong>原文 + 视频直链索引</strong>，不把视频文件镜像进仓库。</p>
+
+                    <div class="quickstart-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 1.5rem;">
+                        <div class="quickstart-card">
+                            <h3>适合当速查页</h3>
+                            <p>它不是按时间线硬堆 31 天内容，而是按上手、快捷键、会话、可观测性、高阶模式重新组织，更适合回查。</p>
+                        </div>
+                        <div class="quickstart-card">
+                            <h3>视频确实可拿到</h3>
+                            <p>截至 <strong>2026-04-09</strong>，原站正文可直接解析出 31 个 <code>.mp4</code> 资源链接，属于可访问的远端静态文件。</p>
+                        </div>
+                        <div class="quickstart-card">
+                            <h3>先不镜像下载</h3>
+                            <p>保守起见，先不把视频打进仓库和 GitHub Pages：文件体积不小，后续还有带宽、同步和再分发边界要维护。</p>
+                        </div>
+                    </div>
+
+                    <div class="table-wrap" style="margin-top: 1.75rem;">
+                        <table class="data-table">
+                            <thead>
+                                <tr><th>我们现在怎么放</th><th>结论</th><th>原因</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>原文入口</td>
+                                    <td>放</td>
+                                    <td>这篇本身就是高密度、长期可回看的 Claude Code 功能地图。</td>
+                                </tr>
+                                <tr>
+                                    <td>视频直链索引</td>
+                                    <td>放</td>
+                                    <td>远端 MP4 可访问，适合在 GitHub Pages 上做外链集合。</td>
+                                </tr>
+                                <tr>
+                                    <td>把 31 个视频下载进仓库</td>
+                                    <td>暂不做</td>
+                                    <td>截至 2026-04-09，单个视频就有超过 10MB 的情况；整套镜像会增大仓库体积，也会带来维护与再分发风险。</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p style="margin-top: 1.25rem;">如果后面你想把它做得更“像我们站内内容”，可以再走两步：第一步是挑 5 到 8 个最常用的视频做站内精选；第二步是给每个功能点补一行“它和我们现有教程哪一页互补”。当前这版先把入口打通，成本最低，也最稳。</p>
+
+                    <div class="hero-actions" style="margin-top: 1.5rem;">
+                        <a href="https://adocomplete.com/advent-of-claude-2025/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">打开原文 ↗</a>
+                        <a href="https://zade23.github.io/2024/04/26/%E3%80%90Git%E3%80%91%E5%9C%A8README-md%E4%B8%AD%E5%B1%95%E7%A4%BA%E8%A7%86%E9%A2%91%E7%9A%84%E6%96%B9%E6%A1%88/index.html" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">参考 README 视频展示思路 ↗</a>
+                    </div>
+
+                    <details style="margin-top: 1.5rem;">
+                        <summary><strong>展开 31 个视频直链索引</strong></summary>
+                        <div class="table-wrap" style="margin-top: 1rem;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr><th>功能点</th><th>视频</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><code>/init</code> — Let Claude Onboard Itself Onto Your Project</td><td><a href="https://cdn.adocomplete.com/advent-of-claude-2025/day-23.mp4" target="_blank" rel="noopener noreferrer">day-23.mp4 ↗</a></td></tr>
+                                    <tr><td>Memory Updates</td><td><a href="https://cdn.adocomplete.com/advent-of-claude-2025/day-5.mp4" target="_blank" rel="noopener noreferrer">day-5.mp4 ↗</a></td></tr>
+                                    <tr><td><code>@</code> Mentions — Add Context Instantly</td><td><a href="https://cdn.adocomplete.com/advent-of-claude-2025/day-17.mp4" target="_blank" rel="noopener noreferrer">day-17.mp4 ↗</a></td></tr>
+                                    <tr><td>The <code>!</code> Prefix — Run Bash Instantly</td><td><a href="https://cdn.adocomplete.com/advent-of-claude-2025/day-1.mp4" target="_blank" rel="noopener noreferrer">day-1.mp4 ↗</a></td></tr>
+                                    <tr><td>Double Esc to Rewind</td><td><a href="https://cdn.adocomplete.com/advent-of-claude-2025/day-2.mp4" target="_blank" rel="noopener noreferrer">day-2.mp4 ↗</a></td></tr>
+                                    <tr><td>Ctrl + R — Reverse Search</td><td><a href="https://cdn.adocomplete.com/advent-of-claude-2025/day-22.mp4" target="_blank" rel="noopener noreferrer">day-22.mp4 ↗</a></td></tr>
+                                    <tr><td>Prompt Stashing</td><td><a href="https://cdn.adocomplete.com/advent-of-claude-2025/day-13.mp4" target="_blank" rel="noopener noreferrer">day-13.mp4 ↗</a></td></tr>
+                                    <tr><td>Prompt Suggestions</td><td><a href="https://cdn.adocomplete.com/advent-of-claude-2025/day-18.mp4" target="_blank" rel="noopener noreferrer">day-18.mp4 ↗</a></td></tr>
+                                    <tr><td>Continue Where You Left Off</td><td><a href="https://cdn.adocomplete.com/advent-of-claude-2025/day-4.mp4" target="_blank" rel="noopener noreferrer">day-4.mp4 ↗</a></td></tr>
+                                    <tr><td>Named Sessions</td><td><a href="https://cdn.adocomplete.com/advent-of-claude-2025/day-11.mp4" target="_blank" rel="noopener noreferrer">day-11.mp4 ↗</a></td></tr>
+                                    <tr><td>Claude Code Remote</td><td><a href="https://cdn.adocomplete.com/advent-of-claude-2025/day-9.mp4" target="_blank" rel="noopener noreferrer">day-9.mp4 ↗</a></td></tr>
+                                    <tr><td><code>/export</code> — Get Receipts</td><td><a href="https://cdn.adocomplete.com/advent-of-claude-2025/day-24.mp4" target="_blank" rel="noopener noreferrer">day-24.mp4 ↗</a></td></tr>
+                                    <tr><td>Vim Mode</td><td><a href="https://cdn.adocomplete.com/advent-of-claude-2025/day-6.mp4" target="_blank" rel="noopener noreferrer">day-6.mp4 ↗</a></td></tr>
+                                    <tr><td><code>/statusline</code> — Customize Your View</td><td><a href="https://cdn.adocomplete.com/advent-of-claude-2025/day-14.mp4" target="_blank" rel="noopener noreferrer">day-14.mp4 ↗</a></td></tr>
+                                    <tr><td><code>/context</code> — X-Ray Vision for Tokens</td><td><a href="https://cdn.adocomplete.com/advent-of-claude-2025/day-8.mp4" target="_blank" rel="noopener noreferrer">day-8.mp4 ↗</a></td></tr>
+                                    <tr><td><code>/stats</code> — Your Usage Dashboard</td><td><a href="https://cdn.adocomplete.com/advent-of-claude-2025/day-10.mp4" target="_blank" rel="noopener noreferrer">day-10.mp4 ↗</a></td></tr>
+                                    <tr><td><code>/usage</code> — Know Your Limits</td><td><a href="https://cdn.adocomplete.com/advent-of-claude-2025/day-28.mp4" target="_blank" rel="noopener noreferrer">day-28.mp4 ↗</a></td></tr>
+                                    <tr><td>Ultrathink</td><td><a href="https://cdn.adocomplete.com/advent-of-claude-2025/day-12.mp4" target="_blank" rel="noopener noreferrer">day-12.mp4 ↗</a></td></tr>
+                                    <tr><td>Plan Mode</td><td><a href="https://cdn.adocomplete.com/advent-of-claude-2025/day-29.mp4" target="_blank" rel="noopener noreferrer">day-29.mp4 ↗</a></td></tr>
+                                    <tr><td>Extended Thinking (API)</td><td><a href="https://cdn.adocomplete.com/advent-of-claude-2025/day-3.mp4" target="_blank" rel="noopener noreferrer">day-3.mp4 ↗</a></td></tr>
+                                    <tr><td>Sandbox Mode</td><td><a href="https://cdn.adocomplete.com/advent-of-claude-2025/day-27.mp4" target="_blank" rel="noopener noreferrer">day-27.mp4 ↗</a></td></tr>
+                                    <tr><td>YOLO Mode</td><td><a href="https://cdn.adocomplete.com/advent-of-claude-2025/day-15.mp4" target="_blank" rel="noopener noreferrer">day-15.mp4 ↗</a></td></tr>
+                                    <tr><td>Hooks</td><td><a href="https://cdn.adocomplete.com/advent-of-claude-2025/day-16.mp4" target="_blank" rel="noopener noreferrer">day-16.mp4 ↗</a></td></tr>
+                                    <tr><td>Headless Mode</td><td><a href="https://cdn.adocomplete.com/advent-of-claude-2025/day-7.mp4" target="_blank" rel="noopener noreferrer">day-7.mp4 ↗</a></td></tr>
+                                    <tr><td>Commands — Reusable Prompts</td><td><a href="https://cdn.adocomplete.com/advent-of-claude-2025/day-26.mp4" target="_blank" rel="noopener noreferrer">day-26.mp4 ↗</a></td></tr>
+                                    <tr><td>Claude Code + Chrome</td><td><a href="https://cdn.adocomplete.com/advent-of-claude-2025/day-19.mp4" target="_blank" rel="noopener noreferrer">day-19.mp4 ↗</a></td></tr>
+                                    <tr><td>Subagents</td><td><a href="https://cdn.adocomplete.com/advent-of-claude-2025/day-25.mp4" target="_blank" rel="noopener noreferrer">day-25.mp4 ↗</a></td></tr>
+                                    <tr><td>Agent Skills</td><td><a href="https://cdn.adocomplete.com/advent-of-claude-2025/day-20.mp4" target="_blank" rel="noopener noreferrer">day-20.mp4 ↗</a></td></tr>
+                                    <tr><td>Plugins</td><td><a href="https://cdn.adocomplete.com/advent-of-claude-2025/day-21.mp4" target="_blank" rel="noopener noreferrer">day-21.mp4 ↗</a></td></tr>
+                                    <tr><td>Language Server Protocol (LSP) Integration</td><td><a href="https://cdn.adocomplete.com/advent-of-claude-2025/day-30.mp4" target="_blank" rel="noopener noreferrer">day-30.mp4 ↗</a></td></tr>
+                                    <tr><td>Claude Agent SDK</td><td><a href="https://cdn.adocomplete.com/advent-of-claude-2025/day-31.mp4" target="_blank" rel="noopener noreferrer">day-31.mp4 ↗</a></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </details>
+                </section>
+
                 <section id="zread" class="section-block">
-                    <h2>1. Zread.ai：为什么该放进这页</h2>
+                    <h2>2. Zread.ai：为什么该放进这页</h2>
                     <p>如果说很多“推荐站点”更像内容聚合页，那么 <strong>Zread.ai</strong> 更像一个专门为代码仓库阅读设计的入口。首页直接给出 <strong>Discover Repos</strong>、<strong>Trending Repos</strong>、<strong>Your Private Repos</strong>、<strong>Zread MCP Server</strong> 和 <strong>Zread CLI for Local Repos</strong>，这已经把它的产品方向说得很直白了：它不是让你只看 README，而是帮你把 repo 本身变成可探索对象。</p>
                     <p>放到我们站内语境里，它很适合作为“看别人仓库”这一步的外部入口，尤其适合做前置侦察：先看趋势仓库、先理解结构、先把问题问出来，再决定要不要把其中一个仓库进一步课程化。</p>
 
@@ -125,7 +224,7 @@
                 </section>
 
                 <section id="llm-wiki" class="section-block">
-                    <h2>2. Karpathy 的 LLM Wiki 指南，为什么值得单独记一下</h2>
+                    <h2>3. Karpathy 的 LLM Wiki 指南，为什么值得单独记一下</h2>
                     <p>这篇内容之所以值得放进“站点推荐”，不是因为它又提出了一个新名词，而是因为它把很多人已经隐约感觉到、却一直说不清楚的问题讲透了：<strong>为什么你用大模型处理过的知识，总是留不下来？</strong></p>
                     <p>大多数人今天处理文档，还是 RAG 心智。文件丢进去，问的时候临时检索、临时拼答案，能用，但知识没有沉淀。Karpathy 的思路刚好反过来：<strong>别让模型每次临时翻书，让它替你维护一套持续更新的 wiki</strong>。每加一份新资料，LLM 不是简单存档，而是会读、会提取要点、会更新已有页面、会补交叉引用、会标记矛盾，让知识像代码库一样被持续编译。</p>
 
@@ -174,7 +273,7 @@
                 </section>
 
                 <section id="tutorials" class="section-block">
-                    <h2>3. 教程入口</h2>
+                    <h2>4. 教程入口</h2>
                     <div class="toolchain-card-grid">
                         <section class="toolchain-topic-card">
                             <div class="toolchain-topic-card__meta">Tutorial</div>
@@ -207,7 +306,7 @@
                 </section>
 
                 <section id="homepages" class="section-block">
-                    <h2>4. 个人主页</h2>
+                    <h2>5. 个人主页</h2>
                     <div class="quickstart-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
                         <div class="quickstart-card">
                             <h3>karpathy.ai</h3>
@@ -227,7 +326,7 @@
                 </section>
 
                 <section id="repos" class="section-block">
-                    <h2>5. 值得反复回看的 GitHub 仓库</h2>
+                    <h2>6. 值得反复回看的 GitHub 仓库</h2>
                     <div class="table-wrap">
                         <table class="data-table">
                             <thead>
@@ -260,7 +359,7 @@
                 </section>
 
                 <section id="related" class="section-block">
-                    <h2>6. 和站内内容怎么搭着看</h2>
+                    <h2>7. 和站内内容怎么搭着看</h2>
                     <ul>
                         <li><a href="topic-llm.html">大模型专题</a>：适合接着补模型骨架和结构图谱。</li>
                         <li><a href="tutorial.html">Claude Code 教程</a>：适合从外部知识入口切回具体工具实践。</li>
@@ -276,7 +375,7 @@
         <div class="container">
             <div class="md-source-dual" role="note">
                 <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-websites.md" target="_blank" rel="noopener noreferrer">📝 Markdown 源（GitHub）</a></p>
-                <p class="md-source-hint">主推荐：<a href="https://zread.ai/" target="_blank" rel="noopener noreferrer">zread.ai</a> · <a href="https://karpathy.ai/" target="_blank" rel="noopener noreferrer">karpathy.ai</a> · 互补阅读：<a href="topic-llm.html">大模型专题</a> · <a href="topic-toolchain.html">工具链专题</a></p>
+                <p class="md-source-hint">主推荐：<a href="https://adocomplete.com/advent-of-claude-2025/" target="_blank" rel="noopener noreferrer">Advent of Claude</a> · <a href="https://zread.ai/" target="_blank" rel="noopener noreferrer">zread.ai</a> · <a href="https://karpathy.ai/" target="_blank" rel="noopener noreferrer">karpathy.ai</a> · 互补阅读：<a href="topic-llm.html">大模型专题</a> · <a href="topic-toolchain.html">工具链专题</a></p>
             </div>
             <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
         </div>
