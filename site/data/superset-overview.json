@@ -74,7 +74,7 @@
     "observations": [
       {
         "signal": "apps 数量很多",
-        "insight": "这个项目不是"一个终端工具"，而是完整产品矩阵"
+        "insight": "这个项目不是“一个终端工具”，而是完整产品矩阵"
       },
       {
         "signal": "packages 很重",
@@ -96,7 +96,7 @@
         "icon": "🏠",
         "color": "#6366f1",
         "definition": "最上层容器，管理多个 tab",
-        "value": "给"外层 agent 正在管理什么"一个总视图"
+        "value": "给“外层 agent 正在管理什么”一个总视图"
       },
       {
         "id": "tab",
@@ -104,7 +104,7 @@
         "icon": "📑",
         "color": "#f97316",
         "definition": "命名上下文，内部再分 pane",
-        "value": "把任务切换从"换 app"变成"换工位""
+        "value": "把任务切换从“换 app”变成“换工位”"
       },
       {
         "id": "pane",
@@ -125,12 +125,12 @@
     ],
     "key_insight": {
       "title": "对 Like Code 很重要的一点",
-      "content": "pane 不应该等于终端，而应该等于工位。终端只是某个工位上的一种视图，真正要稳定的是"这个 worker 属于哪个 tab / 哪个 pane / 哪个上下文"。"
+      "content": "pane 不应该等于终端，而应该等于工位。终端只是某个工位上的一种视图，真正要稳定的是“这个 worker 属于哪个 tab / 哪个 pane / 哪个上下文”。"
     }
   },
   "host_service": {
     "title": "05 · Host-Service 调度中枢",
-    "description": "真正像"外层大脑"的，不是桌面 UI，而是 packages/host-service。createApp() 一次性接上了数据库、git、workspace filesystem、chat runtime、pull request runtime、event bus、terminal websocket route 和 tRPC router。",
+    "description": "真正像“外层大脑”的，不是桌面 UI，而是 packages/host-service。createApp() 一次性接上了数据库、git、workspace filesystem、chat runtime、pull request runtime、event bus、terminal websocket route 和 tRPC router。",
     "subsystems": [
       {
         "id": "app-wiring",
@@ -173,11 +173,11 @@
         "role": "把控制面能力暴露给桌面 / Web 前端"
       }
     ],
-    "insight": "如果把这层拿掉，Superset 就只剩"若干视图组件"；正是因为有它，系统才真正具有外层调度力。"
+    "insight": "如果把这层拿掉，Superset 就只剩“若干视图组件”；正是因为有它，系统才真正具有外层调度力。"
   },
   "meta_agent": {
     "title": "06 · Meta-Agent 拼装",
-    "description": "chat、terminal、worktree 三层一起工作，chat 负责"说什么"、terminal 负责"怎么跑"、worktree 负责"跑在哪里且不互相污染"。",
+    "description": "chat、terminal、worktree 三层一起工作，chat 负责“说什么”、terminal 负责“怎么跑”、worktree 负责“跑在哪里且不互相污染”。",
     "layers": [
       {
         "name": "Session Runtime",

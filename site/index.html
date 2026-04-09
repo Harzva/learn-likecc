@@ -12,7 +12,7 @@
     <meta property="og:description" content="从 Source Map 分析到可运行版本，系统学习 Claude Code 源码">
     <meta property="og:type" content="website">
 </head>
-<body>
+<body class="home-page">
     <!-- 导航栏 -->
     <header class="main-header">
         <nav class="main-nav">
@@ -23,19 +23,13 @@
             </a>
             <nav class="main-nav-links" aria-label="专题与栏目">
                 <a href="topic-sourcemap.html">Source Map 源码</a>
-                <a href="topic-llm.html">大模型</a>
-                <a href="topic-personal-knowledge.html">个人知识库</a>
-                <a href="topic-websites.html">站点推荐</a>
-                <a href="topic-rag.html">RAG</a>
-                <a href="topic-agent.html">Agent</a>
-                <a href="topic-openharness.html" title="OpenHarness 开源 Agent Harness">OH</a>
                 <a href="topic-paoding-jieniu.html" title="庖丁解牛专题：CC 解构与 Superset 解构">庖丁解牛专题</a>
-                <a href="topic-superset-unpacked.html" title="Superset 解构：外层 agent 如何调度内层 agent">Superset 解构</a>
-                <a href="topic-claude-codex-bridge.html" title="Claude 如何通过插件调用 Codex">桥接</a>
                 <a href="tutorial.html">教程</a>
                 <a href="handbook.html">手册</a>
+                <a href="topic-agent.html">Agent</a>
+                <a href="topic-rag.html">RAG</a>
+                <a href="topic-llm.html">大模型</a>
                 <a href="topic-toolchain.html" title="工具链阅读、上手踩坑、渠道评测与开发日志合并专题">工具链</a>
-                <a href="column-show-your-usage.html" title="Cursor 订阅与用量自证">Usage</a>
             </nav>
             </div>
             <div class="nav-center">
@@ -65,42 +59,180 @@
             <div class="particle" style="--delay: 4s; --x: 10%; --y: 50%;"></div>
             <div class="particle" style="--delay: 6s; --x: 90%; --y: 70%;"></div>
         </div>
-        <div class="container hero-content">
-            <a href="topic-sourcemap.html#event" class="hero-badge hero-badge--jump" title="Source Map 源码专题 · 事件摘要">
-                <span>🔥 2026.03 Source Map 事件</span>
-                <span class="hero-badge-hint" aria-hidden="true">发生了什么？</span>
-            </a>
-            <h1 class="hero-title">
-                Claude Code<br>
-                <span class="gradient-text">完全学习指南</span>
-            </h1>
-            <p class="hero-subtitle">
-                从源码分析到实战应用，系统学习 AI 编程助手<br>
-                <strong>1900+</strong> 文件 · <strong>51万+</strong> 行代码 · <strong>✅ 编译通过</strong>
-            </p>
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <span class="stat-value">1900+</span>
-                    <span class="stat-label">TypeScript 文件</span>
+        <div class="container container-home hero-shell">
+            <div class="hero-content hero-content--home">
+                <a href="topic-sourcemap.html#event" class="hero-badge hero-badge--jump" title="Source Map 源码专题 · 事件摘要">
+                    <span>🔥 2026.03 Source Map 事件</span>
+                    <span class="hero-badge-hint" aria-hidden="true">发生了什么？</span>
+                </a>
+                <p class="hero-kicker">Claude Code</p>
+                <h1 class="hero-title hero-title--home">
+                    <span class="hero-title-mainline">完全学习指南</span>
+                </h1>
+                <p class="hero-subtitle hero-subtitle--home">
+                    从源码分析到实战应用，系统学习 AI 编程助手
+                </p>
+                <p class="hero-proofline">
+                    <strong>1900+</strong> 文件 · <strong>51万+</strong> 行代码 · <strong>✅ 编译通过</strong>
+                </p>
+                <div class="hero-stats hero-stats--grid">
+                    <div class="stat-item stat-item--panel">
+                        <span class="stat-value">1900+</span>
+                        <span class="stat-label">TypeScript 文件</span>
+                    </div>
+                    <div class="stat-item stat-item--panel">
+                        <span class="stat-value">510K+</span>
+                        <span class="stat-label">代码行数</span>
+                    </div>
+                    <div class="stat-item stat-item--panel">
+                        <span class="stat-value">24</span>
+                        <span class="stat-label">课程讲次</span>
+                    </div>
+                    <div class="stat-item stat-item--panel">
+                        <span class="stat-value">✅</span>
+                        <span class="stat-label">可运行版本</span>
+                    </div>
                 </div>
-                <div class="stat-item">
-                    <span class="stat-value">510K+</span>
-                    <span class="stat-label">代码行数</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-value">24</span>
-                    <span class="stat-label">课程讲次</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-value">✅</span>
-                    <span class="stat-label">可运行版本</span>
+                <div class="hero-actions hero-actions--home">
+                    <a href="#courses" class="btn-hero btn-primary">🔬 源码课程</a>
+                    <a href="topic-paoding-jieniu.html" class="btn-hero btn-secondary" title="庖丁解牛专题：CC 解构与 Superset 解构">🧩 庖丁解牛专题</a>
+                    <a href="tutorial.html" class="btn-hero btn-secondary">📖 Claude Code 教程</a>
+                    <a href="https://github.com/Harzva/learn-likecc" class="btn-hero btn-secondary" target="_blank">🐙 GitHub</a>
                 </div>
             </div>
-            <div class="hero-actions">
-                <a href="#courses" class="btn-hero btn-primary">🔬 源码课程</a>
-                <a href="topic-paoding-jieniu.html" class="btn-hero btn-secondary" title="庖丁解牛专题：CC 解构与 Superset 解构">🧩 庖丁解牛专题</a>
-                <a href="tutorial.html" class="btn-hero btn-secondary">📖 Claude Code 教程</a>
-                <a href="https://github.com/Harzva/learn-likecc" class="btn-hero btn-secondary" target="_blank">🐙 GitHub</a>
+            <aside class="hero-visual-card hero-visual-card--home" aria-label="首页导览">
+                <div class="hero-visual-head">
+                    <p class="hero-visual-kicker">Start Here</p>
+                    <h2>主页只放主入口，专题分流到内容区</h2>
+                    <p>顶部不再堆子专题。首页先回答三件事：发生了什么、该从哪里学、哪里看源码与教程。</p>
+                </div>
+                <div class="hero-flow">
+                    <div class="hero-flow-node hero-flow-node-session">
+                        <span class="hero-flow-label">事件</span>
+                        <strong>2026.03 Source Map 事件</strong>
+                    </div>
+                    <div class="hero-flow-arrow">↓</div>
+                    <div class="hero-flow-node hero-flow-node-router">
+                        <span class="hero-flow-label">路径</span>
+                        <strong>源码课程 → 教程 → 专题深挖</strong>
+                    </div>
+                </div>
+                <div class="hero-provider-grid">
+                    <a class="hero-provider-card hero-provider-card--link" href="topic-sourcemap.html">
+                        <span class="hero-provider-name">源码课程</span>
+                        <span class="hero-provider-meta">24 讲主线与深挖配套</span>
+                    </a>
+                    <a class="hero-provider-card hero-provider-card--link" href="tutorial.html">
+                        <span class="hero-provider-name">官方教程</span>
+                        <span class="hero-provider-meta">安装、配置、Skills、发版监督</span>
+                    </a>
+                    <a class="hero-provider-card hero-provider-card--link" href="topic-paoding-jieniu.html">
+                        <span class="hero-provider-name">庖丁解牛</span>
+                        <span class="hero-provider-meta">Claude Code 与 Superset 解构</span>
+                    </a>
+                    <a class="hero-provider-card hero-provider-card--link" href="handbook.html">
+                        <span class="hero-provider-name">完全手册</span>
+                        <span class="hero-provider-meta">从入门到进阶的路线图</span>
+                    </a>
+                </div>
+            </aside>
+        </div>
+    </section>
+
+    <section class="home-map-section">
+        <div class="container container-home">
+            <div class="home-map-shell">
+                <div class="home-map-copy">
+                    <p class="home-map-kicker">Home Structure Map</p>
+                    <h2 class="home-map-title">首页结构思维导图</h2>
+                    <p class="home-map-desc">把主页当作总控台来读：中间是 Claude Code 学习主线，向外分成源码课程、庖丁解牛大专题、教程手册，以及 Agent / RAG / 大模型 / 工具链这些扩展阅读轴。</p>
+                </div>
+                <div class="home-map-board" aria-label="首页结构思维导图">
+                    <div class="home-map-orbit home-map-orbit--one" aria-hidden="true"></div>
+                    <div class="home-map-orbit home-map-orbit--two" aria-hidden="true"></div>
+
+                    <div class="home-map-core">
+                        <span class="home-map-core__kicker">主控台</span>
+                        <span class="home-map-core__icon" aria-hidden="true">🧠</span>
+                        <h3>Claude Code 学习主页</h3>
+                        <p>先看事件，再进入课程、教程、大专题与扩展阅读轴。</p>
+                    </div>
+
+                    <a class="home-map-node home-map-node--source" href="topic-sourcemap.html">
+                        <div class="home-map-node__head">
+                            <span class="home-map-node__badge">01</span>
+                            <span class="home-map-node__icon" aria-hidden="true">🗺️</span>
+                            <span class="home-map-node__eyebrow">主线课程</span>
+                        </div>
+                        <strong>Source Map 源码专题</strong>
+                        <p>24 讲、事件复盘、Awesome 源码</p>
+                        <span class="home-map-node__flow">先看发生了什么 → 再进源码主线</span>
+                    </a>
+
+                    <a class="home-map-node home-map-node--butcher" href="topic-paoding-jieniu.html">
+                        <div class="home-map-node__head">
+                            <span class="home-map-node__badge">02</span>
+                            <span class="home-map-node__icon" aria-hidden="true">🧩</span>
+                            <span class="home-map-node__eyebrow">大专题</span>
+                        </div>
+                        <strong>庖丁解牛专题</strong>
+                        <p>Claude Code 解构 + Superset 解构</p>
+                        <span class="home-map-node__flow">从课程进入结构拆解与调度拆解</span>
+                    </a>
+
+                    <a class="home-map-node home-map-node--guide" href="tutorial.html">
+                        <div class="home-map-node__head">
+                            <span class="home-map-node__badge">03</span>
+                            <span class="home-map-node__icon" aria-hidden="true">📖</span>
+                            <span class="home-map-node__eyebrow">上手入口</span>
+                        </div>
+                        <strong>教程与手册</strong>
+                        <p>官方教程、Skills、完全手册、发版监督</p>
+                        <span class="home-map-node__flow">不会用时先回这里补齐基础能力</span>
+                    </a>
+
+                    <div class="home-map-node home-map-node--ecosystem">
+                        <div class="home-map-node__head">
+                            <span class="home-map-node__badge">04</span>
+                            <span class="home-map-node__icon" aria-hidden="true">🌐</span>
+                            <span class="home-map-node__eyebrow">扩展阅读轴</span>
+                        </div>
+                        <strong>生态与方法论</strong>
+                        <div class="home-map-tags">
+                            <a href="topic-agent.html">Agent</a>
+                            <a href="topic-rag.html">RAG</a>
+                            <a href="topic-llm.html">大模型</a>
+                            <a href="topic-toolchain.html">工具链</a>
+                        </div>
+                        <span class="home-map-node__flow">沿专题横向扩展，不打断主线学习</span>
+                    </div>
+
+                    <div class="home-map-node home-map-node--path">
+                        <div class="home-map-node__head">
+                            <span class="home-map-node__badge">05</span>
+                            <span class="home-map-node__icon" aria-hidden="true">🚦</span>
+                            <span class="home-map-node__eyebrow">学习路径</span>
+                        </div>
+                        <strong>从入门到结构拆解</strong>
+                        <ol class="home-map-steps">
+                            <li>事件背景</li>
+                            <li>源码课程主线</li>
+                            <li>教程手册上手</li>
+                            <li>大专题深挖</li>
+                        </ol>
+                    </div>
+
+                    <div class="home-map-connector home-map-connector--source" aria-hidden="true"></div>
+                    <div class="home-map-connector home-map-connector--butcher" aria-hidden="true"></div>
+                    <div class="home-map-connector home-map-connector--guide" aria-hidden="true"></div>
+                    <div class="home-map-connector home-map-connector--ecosystem" aria-hidden="true"></div>
+                    <div class="home-map-connector home-map-connector--path" aria-hidden="true"></div>
+                    <div class="home-map-arrow home-map-arrow--source" aria-hidden="true">→</div>
+                    <div class="home-map-arrow home-map-arrow--butcher" aria-hidden="true">←</div>
+                    <div class="home-map-arrow home-map-arrow--guide" aria-hidden="true">↘</div>
+                    <div class="home-map-arrow home-map-arrow--ecosystem" aria-hidden="true">↙</div>
+                    <div class="home-map-arrow home-map-arrow--path" aria-hidden="true">↓</div>
+                </div>
             </div>
         </div>
     </section>
