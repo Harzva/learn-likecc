@@ -7604,6 +7604,26 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     color: inherit;
 }
 
+.rag-hot-page .rag-hot-section {
+    position: relative;
+}
+
+.rag-hot-page .rag-hot-section--entry {
+    padding-top: 60px;
+}
+
+.rag-hot-page .rag-hot-copy--lead {
+    margin-bottom: 1.5rem;
+}
+
+.rag-hot-page .rag-hot-table-wrap {
+    overflow-x: auto;
+}
+
+.rag-hot-page .rag-hot-grid--single {
+    grid-template-columns: 1fr;
+}
+
 .tutorial-page .nav-container {
     max-width: min(1380px, calc(100vw - 40px));
 }
@@ -7938,6 +7958,10 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     }
 
     .personal-knowledge-page .personal-knowledge-grid {
+        gap: 16px;
+    }
+
+    .rag-hot-page .rag-hot-grid--single {
         gap: 16px;
     }
 }

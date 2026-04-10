@@ -8,7 +8,7 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
     <meta name="description" content="RAG 相关外文技术热点摘要表；可由 RSS 半自动维护。">
 </head>
-<body>
+<body class="rag-hot-page">
     <nav class="navbar">
         <div class="nav-container">
             <a href="topic-rag.html" class="nav-logo">
@@ -34,13 +34,13 @@
         </div>
     </section>
 
-    <section id="curated" class="section" style="background: var(--bg-secondary); padding-top: 60px;">
+    <section id="curated" class="section section--soft rag-hot-section rag-hot-section--entry">
         <div class="container">
             <h2 class="section-title">精选摘要表</h2>
-            <p class="section-desc" style="margin-bottom: 1.5rem;">
+            <p class="section-desc rag-hot-copy rag-hot-copy--lead">
                 <strong>系统学习 RAG</strong>请以 <a href="topic-rag.html#all-in-rag">All-in-RAG（Datawhale）</a> 为主轴；本表仅收录<strong>外文快讯</strong>（公开 RSS + 一句话意译）。批量更新可调用 Cursor Skill：<code>.cursor/skills/curate-external-feed-topics/</code>。
             </p>
-            <div style="overflow-x: auto;">
+            <div class="rag-hot-table-wrap">
                 <table class="ref-table ref-table--detail">
                     <thead>
                         <tr>
@@ -72,7 +72,7 @@
     <section id="ingest" class="section">
         <div class="container">
             <h2 class="section-title">Daily Dose of DS 能否自动维护？</h2>
-            <div class="quickstart-grid" style="grid-template-columns: 1fr;">
+            <div class="quickstart-grid rag-hot-grid rag-hot-grid--single">
                 <div class="quickstart-card">
                     <h3>结论（简版）</h3>
                     <p><strong>可以半自动</strong>：该站为 Substack 类博客，公开 RSS 为 <code>https://blog.dailydoseofds.com/feed</code>（返回 XML，条目含标题与链接）。用定时任务拉 RSS、筛关键词、生成中文摘要后，<strong>人工确认</strong>再写入本表，比整站 HTML 爬取更稳、也更合规。</p>
