@@ -110,6 +110,9 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Stay on Task 4 for one more bounded 2.1.98 keyword slice after the security note
 - [x] Update the Claude Code release-watch topic with one new prompt-cache-focused keyword note
 - [x] Verify the release-watch draft now includes the new dynamic-system-prompt and prompt-cache anchors
+- [x] Shift from Task 4 to Task 6 after the 2.1.98 release-watch bundle stabilized
+- [x] Add one four-question comparison frame to the VibePaper hub for the current anchor systems
+- [x] Verify the VibePaper draft now includes the new control-plane / durable-state comparison anchors
 
 ## Guardrail
 

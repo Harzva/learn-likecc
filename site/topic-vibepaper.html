@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibePaper 专题 - Claude Code Course</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>">
+    <meta name="description" content="VibePaper 专题：围绕 autoresearch、DeepScientist 等自动科研与自动论文系统，持续积累 reference、结构分析、可视化和教程页。">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">📄</span>
+                <span class="logo-text">VibePaper</span>
+            </a>
+            <div class="nav-links">
+                <a href="#overview" class="nav-link">说明</a>
+                <a href="#anchors" class="nav-link">当前项目</a>
+                <a href="#route" class="nav-link">阅读路线</a>
+                <a href="#loop" class="nav-link">循环扩展</a>
+                <a href="#refs" class="nav-link">参考路径</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-toolchain.html" class="btn-github">工具链专题</a>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>新专题</span>
+                <span>自动科研 · 自动论文 · 研究工作台</span>
+            </div>
+            <h1 class="hero-title">
+                VibePaper<br>
+                <span class="gradient-text">把自动科研系统放到同一张图里看</span>
+            </h1>
+            <p class="hero-subtitle">
+                这一页先收 <strong>Autoresearch</strong> 与 <strong>DeepScientist</strong> 两条主线：前者更像可组合的自主改进循环，后者更像本地优先的研究工作台。<br>
+                我们后面会继续把同类项目 clone 到 <code>reference/reference_agent/</code>，再按“结构、控制面、教程、图示”四条线持续补完。
+            </p>
+            <div class="hero-actions">
+                <a href="#anchors" class="btn btn-primary">看当前项目</a>
+                <a href="#loop" class="btn btn-secondary">看如何持续扩展</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="course-main devlog-main">
+        <div class="container">
+            <article class="course-content devlog-content">
+                <section id="overview" class="section-block">
+                    <h2>为什么单列一个 VibePaper 专题</h2>
+                    <div class="course-quote">
+                        <p><strong>这条线不只是在讲 paper。</strong> 真正值得拆的是：一个系统如何把论文阅读、baseline 复现、实验迭代、图表整理、成稿输出和长期记忆串成一个持续运行的研究工作流。</p>
+                        <p>所以这页不会写成“论文推荐列表”，也不会只做项目导航。它的目标是把自动科研 / 自动论文系统放到同一张结构图里看：谁更像插件包，谁更像 research studio，谁更适合当我们自己站点后续自动教程与研究循环的参考系。</p>
+                    </div>
+                </section>
+
+                <section id="anchors" class="section-block">
+                    <h2>当前先收两条锚点项目</h2>
+                    <div class="quickstart-grid">
+                        <a href="topic-autoresearch-unpacked.html" class="quickstart-card" style="text-decoration:none;color:inherit;">
+                            <h3>Autoresearch</h3>
+                            <p>更像<strong>单插件 / 单循环协议</strong>：强调自主改进、机械验证、发货检查与可度量的 iteration 过程。适合研究“把科研动作拆成命令协议和 verify loop”这条线。</p>
+                            <p><strong>站内入口</strong>：Autoresearch 解构</p>
+                            <p><strong>本地路径</strong>：<code>reference/reference_agent/autoresearch/</code></p>
+                        </a>
+                        <a href="topic-deepscientist-unpacked.html" class="quickstart-card" style="text-decoration:none;color:inherit;">
+                            <h3>DeepScientist</h3>
+                            <p>更像<strong>本地优先的自动科研 studio</strong>：one repo per quest、baseline/experiment/paper 一体化、可见研究进度、可人工 takeover。适合研究“自动科研工作台”的控制面和交互面到底怎么做。</p>
+                            <p><strong>站内入口</strong>：DeepScientist 解构</p>
+                            <p><strong>本地路径</strong>：<code>reference/reference_agent/DeepScientist/</code></p>
+                        </a>
+                    </div>
+                    <div class="course-quote">
+                        <p><strong>[插图提示词]</strong></p>
+                        <p>用途：画 VibePaper 专题的两条主轴，让读者先分清“插件式自主循环”和“工作台式研究系统”的结构差异。</p>
+                        <p>形式：左右对照图；Mermaid 或 HTML 卡片图都可以。</p>
+                        <p>提示词：左边是 Autoresearch，突出 plugin、command surface、verify loop、mechanical checklist；右边是 DeepScientist，突出 quest repo、baseline、experiment rounds、paper outputs、visible workspace、human takeover；中间标注两者共同点是长期研究循环，差异是系统壳层厚度和交互面深度。</p>
+                        <p>Mermaid 更适合：是。</p>
+                    </div>
+                </section>
+
+                <section id="four-questions" class="section-block">
+                    <h2>先用四个问题把当前锚点放到一张表里</h2>
+                    <p>Task 6 后续加新系统时，不应该先写宣传语，而应该先回答四个结构问题：它更像哪种系统形态，它的 control plane 在哪，它保留什么 durable state，它最适合长成哪类教程内容。先把当前两条锚点放进同一张表，后面加新项目时才能保持口径一致。</p>
+                    <table class="compare-table">
+                        <tr>
+                            <th>系统</th>
+                            <th>更像哪种形态</th>
+                            <th>control plane 在哪</th>
+                            <th>durable state 保留什么</th>
+                            <th>值得长成什么教程</th>
+                        </tr>
+                        <tr>
+                            <td><code>Autoresearch</code></td>
+                            <td>插件式研究循环协议</td>
+                            <td><code>goal + metric + scope + verify + rollback + git memory</code> 这套 loop contract，而不是某个厚 UI</td>
+                            <td>git 历史、实验提交、verify 结果、比较日志、guide / comparison 文档</td>
+                            <td>最适合长成“研究循环协议”“验证链路”“单循环 debug / fix / ship 方法论”</td>
+                        </tr>
+                        <tr>
+                            <td><code>DeepScientist</code></td>
+                            <td>本地优先研究工作台</td>
+                            <td><code>quest + baseline/experiment/write stage workflow + quest repo</code>，而不是单个聊天框</td>
+                            <td>quest repo、findings memory、artifacts、paper outputs、visible workspace 状态</td>
+                            <td>最适合长成“quest repo 操作系统”“durable research loop”“自动科研工作台分层”</td>
+                        </tr>
+                    </table>
+                    <p>这张表有两个用处：第一，它把 Autoresearch 和 DeepScientist 的差异压缩成站内统一口径，避免以后专题页越长越散；第二，它给后续新增项目提供一个最低准入模板，如果这四个问题答不清楚，就先不要急着把它抬成独立子专题。</p>
+                    <div class="course-quote">
+                        <p><strong>[插图提示词]</strong></p>
+                        <p>用途：画 VibePaper 四问评估框架，把“系统形态 / 控制面 / 持久状态 / 教程价值”变成可复用评估卡。</p>
+                        <p>形式：四栏结构卡。</p>
+                        <p>提示词：画一个 VibePaper evaluation framework 图，横向四列分别是 system shape、control plane、durable state、tutorial value，纵向放两行案例：Autoresearch 和 DeepScientist。Autoresearch 行突出 plugin protocol、loop contract、git memory、verify tutorial；DeepScientist 行突出 research studio、quest workflow、findings memory 和 paper outputs、workspace tutorial。</p>
+                        <p>Mermaid 更适合：否，更适合 HTML 卡片图。</p>
+                    </div>
+                </section>
+
+                <section id="route" class="section-block">
+                    <h2>建议怎么读这条线</h2>
+                    <div class="quickstart-grid">
+                        <div class="quickstart-card">
+                            <h3>1. 先看 Autoresearch</h3>
+                            <p>先理解“研究动作如何被拆成循环协议、检查表、验证与发货链路”。它更轻，更容易快速把方法论看清楚。</p>
+                        </div>
+                        <div class="quickstart-card">
+                            <h3>2. 再看 DeepScientist</h3>
+                            <p>再看“如果把整套研究过程做成工作台，会多出哪些层”：quest repo、可视化 research map、paper-facing outputs、connector surfaces。</p>
+                        </div>
+                        <div class="quickstart-card">
+                            <h3>3. 回到我们的站点</h3>
+                            <p>最后再判断哪些值得写成教程、哪些适合做结构图、哪些可以接进 `codex-loop` 的长期循环任务。</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="loop" class="section-block">
+                    <h2>这个专题会怎么持续长出来</h2>
+                    <p>这一页不是一次性写完的静态总结。后续会继续用站内 loop 去做三类动作：</p>
+                    <ul>
+                        <li>发现新的自动科研 / 自动论文系统，并先 clone 到 <code>reference/reference_agent/</code>。</li>
+                        <li>挑最值得讲的项目，补结构分析、对照表、插图提示词与教程路线。</li>
+                        <li>把成熟的项目从“专题 hub”继续拆成独立子页，例如后续可能出现的 <code>topic-*-unpacked.html</code>。</li>
+                    </ul>
+                    <p>所以这里既是主题总页，也是一个滚动更新的入口。</p>
+                </section>
+
+                <section id="refs" class="section-block">
+                    <h2>参考与本地路径</h2>
+                    <ul>
+                        <li><a href="https://github.com/uditgoenka/autoresearch" target="_blank" rel="noopener noreferrer">uditgoenka/autoresearch</a></li>
+                        <li><a href="https://github.com/ResearAI/DeepScientist" target="_blank" rel="noopener noreferrer">ResearAI/DeepScientist</a></li>
+                        <li><a href="https://deepscientist.cc/" target="_blank" rel="noopener noreferrer">DeepScientist 官网</a></li>
+                        <li><a href="https://openreview.net/forum?id=cZFgsLq8Gs" target="_blank" rel="noopener noreferrer">DeepScientist paper (OpenReview)</a></li>
+                        <li><code>reference/reference_agent/autoresearch/</code></li>
+                        <li><code>reference/reference_agent/DeepScientist/</code></li>
+                    </ul>
+                </section>
+
+                <div class="chapter-navigation">
+                    <a href="topic-toolchain.html" class="btn btn-secondary">← 工具链专题</a>
+                    <a href="topic-autoresearch-unpacked.html" class="btn btn-secondary">进入 Autoresearch 解构</a>
+                    <a href="topic-deepscientist-unpacked.html" class="btn btn-secondary">进入 DeepScientist 解构</a>
+                    <a href="index.html" class="btn btn-primary">返回首页 →</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-vibepaper.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>
