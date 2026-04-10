@@ -80,6 +80,14 @@ Hermes 的 README 把它描述成 built-in learning loop，本地代码也确实
 
 这说明 Hermes 不把记忆和技能当外挂，而是当 loop 内结构。
 
+边界可以再拆得更细：
+
+- `tools/memory_tool.py` 的 `MemoryStore` 负责 `MEMORY.md` / `USER.md` 的文件落盘与冻结快照
+- `agent/memory_manager.py` 负责协调内建 memory 与外部 memory provider
+- `tools/skills_tool.py` 负责 `skills_list` / `skill_view` 这样的渐进披露
+- `tools/skill_manager_tool.py` 的 `skill_manage` 才是真正的 skill 写入面
+- `run_agent.py` 里的 `_turns_since_memory`、`_iters_since_skill` 与 background review 负责“什么时候值得沉淀”
+
 ### [插图提示词]
 
 用途：说明 Hermes 的 closed learning loop。  

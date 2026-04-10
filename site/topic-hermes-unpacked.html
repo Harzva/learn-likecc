@@ -106,6 +106,13 @@
                     <h2>04 · Hermes 的关键差异：它把记忆和技能放进了主循环</h2>
                     <p>README 最强调的卖点是 built-in learning loop。这不是一句 marketing phrase，因为本地代码里确实能找到对应锚点：<code>AIAgent</code> 在初始化阶段会装 memory store、memory provider、skills config，并维护 <code>_turns_since_memory</code>、<code>_iters_since_skill</code> 这样的节流计数；后面还有 background review 线程专门审查当前对话是否值得写入 memory 或 skill。</p>
                     <p>这和很多“带记忆”的 agent 不太一样。很多系统把记忆当外挂检索层，技能当外部提示词包；Hermes 则更进一步，把“什么时候提醒自己保存记忆”和“什么时候把经验固化成 skill”拉进了主循环内部。对我们自己栈的启发很直接：如果真想做长期运行 agent，记忆和技能不能只是静态文件夹，而要变成 loop 内的一等公民。</p>
+                    <table class="options-table">
+                        <tr><th>层</th><th>关键锚点</th><th>边界到底在哪</th></tr>
+                        <tr><td>Memory Store</td><td><code>tools/memory_tool.py</code> 的 <code>MemoryStore</code></td><td>把 <code>MEMORY.md</code> / <code>USER.md</code> 做成文件落盘 + 冻结快照；当前会话写入磁盘，但 system prompt 要到下一会话才刷新。</td></tr>
+                        <tr><td>Memory Manager</td><td><code>agent/memory_manager.py</code></td><td>协调内建 memory 与外部 memory provider；说明 Hermes 不是只有一份本地记忆文件，而是预留了 provider orchestration 层。</td></tr>
+                        <tr><td>Skills Surface</td><td><code>tools/skills_tool.py</code>、<code>tools/skill_manager_tool.py</code></td><td><code>skills_list</code> / <code>skill_view</code> 负责渐进披露，<code>skill_manage</code> 负责真正创建和改写 skill。</td></tr>
+                        <tr><td>Nudges</td><td><code>run_agent.py</code> 中的 <code>_turns_since_memory</code>、<code>_iters_since_skill</code>、background review</td><td>不是每轮都写，而是由 loop 内节流和审查线程决定什么时候值得沉淀。</td></tr>
+                    </table>
                     <div class="course-quote">
                         <p><strong>[插图提示词]</strong></p>
                         <p>用途：说明 Hermes 的 closed learning loop，不只是对话，还有 memory / skill review 与写回。</p>

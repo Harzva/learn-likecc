@@ -83,6 +83,9 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Choose a second Hermes pass as the next bounded move after the draft landed
 - [x] Add one code-anchored Hermes runtime-flow section to the unpacked draft
 - [x] Verify the Hermes draft now includes the new runtime-flow anchors and nav hook
+- [x] Choose a third Hermes pass focused on memory/skills boundaries
+- [x] Add one code-backed Hermes memory/skills boundary table to the unpacked draft
+- [x] Verify the Hermes draft now includes the new memory/skills anchors
 
 ## Guardrail
 
