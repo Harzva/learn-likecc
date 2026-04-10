@@ -161,6 +161,8 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Sync the VibePaper page description metadata with the current three-main-samples plus AIDE candidate-lane structure
 - [x] Stay on Task 6 for one more bounded title-metadata cleanup after the description sync
 - [x] Sync the VibePaper page title metadata with the current three-main-sample scope
+- [x] Stay on Task 6 for one more bounded footer-navigation cleanup after the metadata sync
+- [x] Add one internal return link from the VibePaper footer navigation back to the structural comparison entry
 
 ## Guardrail
 
