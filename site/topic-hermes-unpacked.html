@@ -127,6 +127,22 @@
                     <p>Hermes 另一条值得拆的线，是它把“入口平台”和“时间触发”做成了正式层。官方架构页的数据流很明确：Gateway message 会先经过 adapter 和 session 解析，再生成新的 <code>AIAgent</code>；Cron job 则由 scheduler tick 拉起 fresh agent、注入技能上下文、跑 prompt、再把结果送回目标平台。</p>
                     <p>这让 Hermes 不只是一个 REPL，而是一个可以挂在时间轴上、也可以挂在消息总线上运行的系统。与此同时，README 还列出本地、Docker、SSH、Daytona、Singularity、Modal 等环境后端，说明它把“跑在哪”也当成正式抽象层，而不是默认永远跑在开发者当前 shell 里。</p>
                     <p>对我们来说，这一层最值得学的不是“支持的平台越多越好”，而是：<strong>当一个 agent 不再只存在于当前终端，它的 session key、delivery path、environment backend、job scheduler 就必须进入系统设计主线。</strong></p>
+                    <p>如果再往下拆，<code>gateway/session.py</code> 其实定义了一个很关键的边界：<strong>平台消息如何被折叠成“同一条会话”，以及哪些上下文进入 system prompt、哪些只做本轮临时注入</strong>。这决定了 Hermes 的 gateway 不是第二个大脑，而是把平台噪声收束成稳定会话语义的一层。</p>
+                    <table class="options-table">
+                        <tr><th>边界层</th><th>关键锚点</th><th>真正负责什么</th></tr>
+                        <tr><td>Session Identity</td><td><code>gateway/session.py</code> 的 <code>build_session_key()</code></td><td>把 DM、group、thread、per-user isolation 编码成稳定 key；也就是说，Hermes 先决定“谁和谁共享同一条脑内上下文”，再谈 agent 运行。</td></tr>
+                        <tr><td>Session Lifetime</td><td><code>SessionStore.get_or_create_session()</code>、<code>_should_reset()</code></td><td>按 idle / daily reset policy 切 session，并把旧 session 结束、新 session 建档；长期在线不是无限同一上下文，而是受策略约束的连续会话。</td></tr>
+                        <tr><td>Prompt Boundary</td><td><code>build_session_context_prompt()</code>、<code>run_agent.py</code> 的 ephemeral user context 注释</td><td>平台来源、home channel、delivery options 进入系统提示；而插件临时上下文只挂在当前 user message，不持久写回 session DB。</td></tr>
+                        <tr><td>Kernel Reuse</td><td><code>gateway/run.py</code> 的 <code>_agent_cache</code> / <code>session_key</code></td><td>gateway 以 <code>session_key</code> 复用缓存的 <code>AIAgent</code>，保持 frozen prompt 和 tool schema 的缓存收益；说明平台层服务的是 kernel 复用，而不是自带另一套推理脑。</td></tr>
+                        <tr><td>Transcript Persistence</td><td><code>SessionStore.append_to_transcript()</code>、<code>load_transcript()</code></td><td>SQLite + JSONL 双轨保存会话历史；gateway 管的是历史与回送，不是把业务逻辑散落在 adapter 里。</td></tr>
+                    </table>
+                    <div class="course-quote">
+                        <p><strong>[插图提示词]</strong></p>
+                        <p>用途：把 Hermes 的 gateway / session seam 画清楚，说明“平台消息 → session key → session context / reset policy → cached AIAgent → transcript / delivery”的边界。</p>
+                        <p>形式：结构流图；优先 Mermaid。</p>
+                        <p>提示词：画一个 Hermes gateway session boundary 图。左侧是 Telegram / Discord / Slack adapter 输入消息，中间是 build_session_key 与 SessionStore，标出 reset policy、session context prompt、history load/save，右侧是 cached AIAgent kernel，底部是 transcript persistence 与 delivery router。强调 gateway 负责 ingress、session identity、history、delivery，而不是替代 AIAgent 控制面。</p>
+                        <p>Mermaid 更适合：是。</p>
+                    </div>
                 </section>
 
                 <section id="flows" class="section-block">

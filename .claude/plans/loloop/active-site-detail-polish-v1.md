@@ -86,6 +86,9 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Choose a third Hermes pass focused on memory/skills boundaries
 - [x] Add one code-backed Hermes memory/skills boundary table to the unpacked draft
 - [x] Verify the Hermes draft now includes the new memory/skills anchors
+- [x] Choose a fourth Hermes pass focused on gateway/session boundaries
+- [x] Add one code-backed Hermes gateway/session boundary breakdown to the unpacked draft
+- [x] Verify the Hermes draft now includes the new gateway/session anchor terms
 
 ## Guardrail
 

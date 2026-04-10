@@ -107,6 +107,23 @@ Mermaid 更适合：是。
 
 再叠加 README 里列出的 local / Docker / SSH / Daytona / Modal 等环境后端，可以把它理解成：Hermes 不是只会在当前终端回答一句话，而是在尝试做一个跨平台、跨时间轴、跨执行环境的长期 agent runtime。
 
+这里还值得再拆一层：`gateway/session.py` 不只是“存聊天记录”，而是在定义 Hermes 的 session seam：
+
+- `build_session_key()` 决定 DM、group、thread、per-user isolation 怎么折叠成同一条会话
+- `SessionStore.get_or_create_session()` 与 `_should_reset()` 决定 idle / daily reset policy
+- `build_session_context_prompt()` 把来源平台、home channel、delivery options 注入系统提示
+- `gateway/run.py` 用 `session_key` 复用 `_agent_cache` 里的 `AIAgent`
+- `run_agent.py` 明确写了 plugin user context 是 ephemeral 的，不会持久写回 session DB
+
+所以 gateway 真正做的是：把平台消息收束为稳定的 session identity、prompt context、history persistence 和 delivery path，而不是自己成为第二个控制面。
+
+### [插图提示词]
+
+用途：画 Hermes 的 gateway / session boundary 图。  
+形式：结构流图。  
+提示词：画一个 Hermes gateway session boundary 图。左侧是 Telegram / Discord / Slack adapter 输入消息，中间是 build_session_key 与 SessionStore，标出 reset policy、session context prompt、history load/save，右侧是 cached AIAgent kernel，底部是 transcript persistence 与 delivery router。强调 gateway 负责 ingress、session identity、history、delivery，而不是替代 AIAgent 控制面。  
+Mermaid 更适合：是。
+
 ### 06 · 三条运行链路复盘：CLI、Gateway、Cron 到底怎么汇进同一套脑子
 
 官方 Architecture 页把三条链路写得很清楚：
