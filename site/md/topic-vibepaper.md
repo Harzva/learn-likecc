@@ -38,10 +38,11 @@ VibePaper 专题目前先收 **Autoresearch**、**DeepScientist** 与 **AI Scien
   - 本地路径：`reference/reference_agent/AI-Scientist-v2/`
   - 更像 paper factory / agentic tree search system，适合看 idea 生成、树搜索实验管理、PDF 成稿链路。
 
-其中前两条线现在都已经单独展开为：
+当前站内状态可以先这样理解：
 
-- `topic-autoresearch-unpacked.html`
-- `topic-deepscientist-unpacked.html`
+- `Autoresearch` 和 `DeepScientist` 已经各自展开成独立解构页
+- `AI Scientist-v2` 先留在 hub 里承担第三条主样本线
+- `AIDE ML` 继续留在候选底座 lane，用来解释 AI Scientist-v2 背后的上游实验搜索结构
 
 ### [插图提示词]
 
