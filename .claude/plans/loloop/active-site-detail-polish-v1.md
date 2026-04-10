@@ -113,6 +113,9 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Shift from Task 4 to Task 6 after the 2.1.98 release-watch bundle stabilized
 - [x] Add one four-question comparison frame to the VibePaper hub for the current anchor systems
 - [x] Verify the VibePaper draft now includes the new control-plane / durable-state comparison anchors
+- [x] Stay on Task 6 for one bounded new-candidate intake pass
+- [x] Clone one new autonomous research / paper-production repo into `reference/reference_agent/`
+- [x] Add one classified short-candidate note for the new repo to the VibePaper hub
 
 ## Guardrail
 

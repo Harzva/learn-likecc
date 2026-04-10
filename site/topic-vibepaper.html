@@ -123,6 +123,13 @@
                     </div>
                 </section>
 
+                <section id="ai-scientist-v2" class="section-block">
+                    <h2>新进候选：AI Scientist-v2 先放 hub，不急着拆独立页</h2>
+                    <p>这一轮先把一个新候选系统接进 VibePaper：<code>AI Scientist-v2</code>。选择它的原因很直接：它有明确的官方 repo、官方 paper，而且“从 idea 到 experiment 再到 PDF”这条链比一般 research agent 更完整，适合放进 VibePaper 的比较坐标里。</p>
+                    <p>先按四问框架给出当前判断：第一，它不是插件式协议，也不是厚重 studio，更像 <strong>paper factory / agentic tree search system</strong>；第二，它的 control plane 更靠近 <code>launch_scientist_bfts.py</code>、<code>bfts_config.yaml</code> 和 README 里提到的 experiment manager agent；第三，它的 durable state 主要落在 idea JSON、<code>experiments/</code> 下的 timestamped logs、<code>unified_tree_viz.html</code>、最终 PDF 与 writeup 中间产物；第四，它最适合长成“idea → tree search → experiment → paper draft”的流水线教程，以及“研究控制面为什么从 loop contract 变成 search manager”的对照课。</p>
+                    <p>当前站内决策：它先作为 <strong>short hub card / comparison sample</strong> 保留在 VibePaper 总页里，还不急着升成独立 unpacked 页面。等后面把 <code>AI Scientist-v1 / v2</code> 差异和它引用的 AIDE 底座再看清，再决定是否单独拆页。</p>
+                </section>
+
                 <section id="route" class="section-block">
                     <h2>建议怎么读这条线</h2>
                     <div class="quickstart-grid">
@@ -159,8 +166,11 @@
                         <li><a href="https://github.com/ResearAI/DeepScientist" target="_blank" rel="noopener noreferrer">ResearAI/DeepScientist</a></li>
                         <li><a href="https://deepscientist.cc/" target="_blank" rel="noopener noreferrer">DeepScientist 官网</a></li>
                         <li><a href="https://openreview.net/forum?id=cZFgsLq8Gs" target="_blank" rel="noopener noreferrer">DeepScientist paper (OpenReview)</a></li>
+                        <li><a href="https://github.com/SakanaAI/AI-Scientist-v2" target="_blank" rel="noopener noreferrer">SakanaAI/AI-Scientist-v2</a></li>
+                        <li><a href="https://pub.sakana.ai/ai-scientist-v2/paper/paper.pdf" target="_blank" rel="noopener noreferrer">AI Scientist-v2 paper</a></li>
                         <li><code>reference/reference_agent/autoresearch/</code></li>
                         <li><code>reference/reference_agent/DeepScientist/</code></li>
+                        <li><code>reference/reference_agent/AI-Scientist-v2/</code></li>
                     </ul>
                 </section>
 
