@@ -24,7 +24,7 @@
 
 | 版本 | 要点（非穷尽） |
 | --- | --- |
-| **2.1.101** | 新增 `/team-onboarding`，可基于本地 Claude Code 使用痕迹生成 teammate ramp-up guide；默认信任操作系统 CA 证书库以适配企业 TLS 代理；远程会话相关功能可自动创建默认 cloud environment；同时修了一批 `--resume`、插件、权限、subagent、Remote Control 与长会话内存问题。 |
+| **2.1.101** | 新增 `/team-onboarding`，可基于本地 Claude Code 使用痕迹生成 teammate ramp-up guide；默认信任操作系统 CA 证书库以适配企业 TLS 代理；远程会话相关功能可自动创建默认 cloud environment；`tool-not-available` 报错开始解释“为什么当前上下文拿不到工具”以及下一步怎么做；同时修了一批 `--resume`、插件、权限、subagent、Remote Control 与长会话内存问题。 |
 | **2.1.98** | Vertex AI 三方登录向导；新增 **Monitor tool** 用于流式读取后台脚本事件；Linux 子进程沙箱隔离与 `CLAUDE_CODE_SCRIPT_CAPS`；`--exclude-dynamic-system-prompt-sections` 改善跨用户 prompt cache；Perforce / worktree / tracing / LSP `clientInfo` 等工程向增强；同时修了一批 Bash 权限绕过与 `/resume` / hooks / transcript 问题。 |
 | **2.1.97** | `NO_FLICKER` 的 Focus View；status line `refreshInterval`；`workspace.git_worktree` 进入 status line JSON；`/agents` 显示运行中 subagents；多项权限、`/resume`、MCP OAuth、上下文压缩、OTEL tracing 与 `NO_FLICKER` 修复。 |
 | **2.1.92** | `forceRemoteSettingsRefresh` 策略；Bedrock 交互配置向导；`/cost` 按模型与缓存命中细分；`/release-notes` 改为交互选版；Remote Control 默认会话名带 hostname；移除 `/tag`、`/vim`（改走 `/config`）；Linux sandbox 附带 `apply-seccomp`；多项全屏/子代理/Homebrew 渠道修复 |
@@ -96,6 +96,30 @@ Mermaid 更适合：是。
 形式：流程图。  
 提示词：画一个 Claude Code remote environment bootstrap flow。左侧是 `/ultraplan` 与 other remote-session features 发起请求；中间是 system auto-creates default cloud environment；右侧是 remote execution session 启动并继续任务。底部补一句说明：把远程执行底座从手动前置 setup 变成命令触发时自动补齐。  
 Mermaid 更适合：是。
+
+## 再补一刀：tool-not-available 开始把“工具存在”和“当前上下文可用”拆开说
+
+`2.1.101` 里还有一条很短、但很像控制面边界显化的改动：Claude Code 现在会 **更明确地解释 tool-not-available 错误**，告诉你为什么这个工具虽然存在，但 **当前上下文里不可用**，以及下一步该怎么继续。
+
+这条为什么值得单独记：
+
+- 它把“系统有没有这个工具”和“当前会话能不能用到它”拆成了两层判断
+- 它说明 Claude Code 团队已经不满足于只把失败抛给用户，而是在把 **上下文 gating** 变成可解释的边界
+- 它对我们自己的 `codex-loop`、技能包、插件链也很相关，因为长期系统里最常见的失败并不是工具根本不存在，而是调用时机、会话模式、权限状态或当前环境不满足
+
+这里有一处明确推断：我把这条读成“Claude Code 正在更明确地把工具目录和上下文可用性拆开”。这个推断来自官方 changelog 里那句 **tool that exists but isn't available in the current context**，不是额外二手来源。
+
+### [插图提示词]
+
+用途：画“Claude Code 工具可用性边界”小图，说明工具存在、上下文判定、错误解释和后续动作之间的关系。  
+形式：结构图。  
+提示词：画一个 Claude Code tool availability boundary 图。左侧是 model 想调用某个 tool；中间分成两层判断：tool exists in system catalog，tool available in current context；如果第二层失败，就走到 tool-not-available explanation，给出 why unavailable 和 next step。底部补一句说明：把工具存在性和上下文可用性拆开解释，减少黑盒失败。  
+Mermaid 更适合：是。
+
+### 本轮原始来源
+
+- 官方文档：`https://code.claude.com/docs/en/changelog`（`2.1.101`, 2026-04-10）
+- GitHub Raw：`https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md`
 
 ## 本轮关键词：Monitor tool 为什么值得盯
 

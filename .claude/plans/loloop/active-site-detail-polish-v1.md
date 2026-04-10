@@ -149,6 +149,8 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Add one OS CA trust release-watch note explaining enterprise TLS proxy compatibility and the cert-store fallback
 - [x] Stay on Task 4 for one more bounded 2.1.101 execution-substrate slice
 - [x] Add one default-cloud-environment release-watch note explaining remote execution substrate auto-bootstrap
+- [x] Stay on Task 4 for one more bounded 2.1.101 control-surface slice after the cloud-environment note
+- [x] Add one tool-not-available release-watch note explaining tool existence vs current-context availability
 - [x] Return to Task 6 for one bounded navigation cleanup after the recent Task 4 release-watch burst
 - [x] Expose VibePaper four-question and control-plane sections in the top nav for faster section jumps
 - [x] Stay on Task 6 for one more bounded entrance-flow cleanup after the nav pass

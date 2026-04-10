@@ -99,7 +99,7 @@
                         </tr>
                         <tr>
                             <td><strong>2.1.101</strong></td>
-                            <td>新增 <code>/team-onboarding</code>，可基于本地 Claude Code 使用痕迹生成 teammate ramp-up guide；默认信任操作系统 CA 证书库以适配企业 TLS 代理；远程会话相关功能可自动创建默认 cloud environment；同时修了一批 <code>--resume</code>、插件、权限、subagent、Remote Control 与长会话内存问题。</td>
+                            <td>新增 <code>/team-onboarding</code>，可基于本地 Claude Code 使用痕迹生成 teammate ramp-up guide；默认信任操作系统 CA 证书库以适配企业 TLS 代理；远程会话相关功能可自动创建默认 cloud environment；<code>tool-not-available</code> 报错开始解释“为什么当前上下文拿不到工具”以及下一步怎么做；同时修了一批 <code>--resume</code>、插件、权限、subagent、Remote Control 与长会话内存问题。</td>
                         </tr>
                         <tr>
                             <td><strong>2.1.98</strong></td>
@@ -181,6 +181,21 @@
                         <p>提示词：画一个 Claude Code remote environment bootstrap flow。左侧是 `/ultraplan` 与 other remote-session features 发起请求；中间是 system auto-creates default cloud environment；右侧是 remote execution session 启动并继续任务。底部补一句说明：把远程执行底座从手动前置 setup 变成命令触发时自动补齐。</p>
                         <p>Mermaid 更适合：是。</p>
                     </div>
+                </section>
+
+                <section id="tool-context-keyword" class="section-block">
+                    <h2>再补一刀：tool-not-available 开始把“工具存在”和“当前上下文可用”拆开说</h2>
+                    <p><code>2.1.101</code> 里还有一条很短、但很像控制面边界显化的改动：Claude Code 现在会<strong>更明确地解释 tool-not-available 错误</strong>，告诉你为什么这个工具虽然存在，但<strong>当前上下文里不可用</strong>，以及下一步该怎么继续。</p>
+                    <p>这条为什么值得单独记：第一，它把“系统有没有这个工具”和“当前会话能不能用到它”拆成了两层判断；第二，它说明 Claude Code 团队已经不满足于只把失败抛给用户，而是在把<strong>上下文 gating</strong> 变成可解释的边界；第三，这对我们自己的 <code>codex-loop</code>、技能包、插件链也很相关，因为长期系统最常见的失败并不是工具根本不存在，而是调用时机、会话模式、权限状态或当前环境不满足。</p>
+                    <p>这段结论里，“Claude Code 正在更明确地把工具目录和上下文可用性拆开”是我基于官方 changelog 这句文案做的推断，但我认为这个推断是稳的：如果官方要强调的只是报错 prettier，一般不会特意写成 <code>tool that exists but isn't available in the current context</code>。</p>
+                    <div class="course-quote">
+                        <p><strong>[插图提示词]</strong></p>
+                        <p>用途：画“Claude Code 工具可用性边界”小图，说明工具存在、上下文判定、错误解释和后续动作之间的关系。</p>
+                        <p>形式：结构图。</p>
+                        <p>提示词：画一个 Claude Code tool availability boundary 图。左侧是 model 想调用某个 tool；中间分成两层判断：tool exists in system catalog，tool available in current context；如果第二层失败，就走到 tool-not-available explanation，给出 why unavailable 和 next step。底部补一句说明：把工具存在性和上下文可用性拆开解释，减少黑盒失败。</p>
+                        <p>Mermaid 更适合：是。</p>
+                    </div>
+                    <p><strong>本轮原始来源</strong>：<a href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener noreferrer">官方文档 changelog</a>（<code>2.1.101</code>, 2026-04-10）与 <a href="https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">GitHub Raw CHANGELOG</a>。</p>
                 </section>
 
                 <section id="monitor-keyword" class="section-block">
