@@ -8,7 +8,7 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧩</text></svg>">
     <meta name="description" content="基于 SkillsMP 整理 SKILL.md 生态的发现入口、仓库校验路径与后续自动安装 skill 的设计思路。">
 </head>
-<body>
+<body class="skillmarket-page">
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
@@ -66,7 +66,7 @@
                     <h2>1. 截至 2026-04-10，SkillsMP 给了我们什么</h2>
                     <p>按首页公开展示口径，SkillsMP 当前强调的是一个面向开放 <code>SKILL.md</code> 生态的聚合市场：它首页直接写出 <strong>805,711</strong> 个 skill，并提供<strong>分类浏览</strong>、<strong>职业分组浏览</strong>、<strong>关键词搜索</strong> 和<strong>技能详情页</strong> 四类入口。</p>
 
-                    <div class="quickstart-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 1.5rem;">
+                    <div class="quickstart-grid skillmarket-grid skillmarket-grid--compact">
                         <div class="quickstart-card">
                             <h3>量级够大</h3>
                             <p>首页展示 80 万级 skill 聚合量，足够承担“先搜一遍市场，再回 GitHub 精选”的工作流。</p>
@@ -81,7 +81,7 @@
                         </div>
                     </div>
 
-                    <div class="table-wrap" style="margin-top: 1.75rem;">
+                    <div class="table-wrap skillmarket-table-wrap skillmarket-table-wrap--wide">
                         <table class="data-table">
                             <thead>
                                 <tr><th>入口</th><th>适合做什么</th><th>为什么重要</th></tr>
@@ -111,7 +111,7 @@
                     <h2>2. 为什么它适合做我们后续自动化 skill 的发现层</h2>
                     <p>如果把“自动找 skill 并下载”拆成两半，前半其实是<strong>搜索与消歧</strong>，后半才是<strong>安装与落盘</strong>。SkillsMP 最适合承担的是前半。</p>
 
-                    <div class="quickstart-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 1.5rem;">
+                    <div class="quickstart-grid skillmarket-grid skillmarket-grid--compact">
                         <div class="quickstart-card">
                             <h3>第 1 步：发现</h3>
                             <p>根据任务、关键词、职业或分类，在 SkillsMP 找到 2 到 5 个候选 skill。</p>
@@ -126,7 +126,7 @@
                         </div>
                     </div>
 
-                    <div class="table-wrap" style="margin-top: 1.75rem;">
+                    <div class="table-wrap skillmarket-table-wrap skillmarket-table-wrap--wide">
                         <table class="data-table">
                             <thead>
                                 <tr><th>阶段</th><th>主要来源</th><th>我们应该信什么</th></tr>
@@ -151,14 +151,14 @@
                         </table>
                     </div>
 
-                    <p style="margin-top: 1.25rem;">换句话说，<strong>在这个网址寻找就行</strong>，但<strong>不要停在这个网址</strong>。它负责“找到谁”，GitHub 负责“核实是谁”，本地目录负责“真正装了什么”。</p>
+                    <p class="skillmarket-inline-note">换句话说，<strong>在这个网址寻找就行</strong>，但<strong>不要停在这个网址</strong>。它负责“找到谁”，GitHub 负责“核实是谁”，本地目录负责“真正装了什么”。</p>
                 </section>
 
                 <section id="examples" class="section-block">
                     <h2>3. 现在就能拿来当样例的两个详情页</h2>
                     <p>这两个样例够说明问题：SkillsMP 的详情页已经能把“技能是什么、来自哪个仓库、怎么装”连起来，所以它非常适合作为站内专题入口和后续自动化的前置搜索面。</p>
 
-                    <div class="table-wrap" style="margin-top: 1rem;">
+                    <div class="table-wrap skillmarket-table-wrap">
                         <table class="data-table">
                             <thead>
                                 <tr><th>Skill</th><th>详情页能看到什么</th><th>上游仓库</th></tr>

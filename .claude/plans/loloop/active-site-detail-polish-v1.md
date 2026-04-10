@@ -62,6 +62,9 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Choose one more concept-page visual-maturity candidate after the RAG pass
 - [x] Replace `topic-meta-agent.html` inline layout styling with scoped classes
 - [x] Verify the meta-agent page no longer uses inline `style=` attributes
+- [x] Choose one more article-page layout candidate after the meta-agent pass
+- [x] Replace `topic-skillmarket.html` inline article layout styling with scoped classes
+- [x] Verify the skillmarket page no longer uses inline `style=` attributes
 
 ## Guardrail
 

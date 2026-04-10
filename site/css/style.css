@@ -7560,6 +7560,26 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     margin-top: 1.25rem;
 }
 
+.skillmarket-page .skillmarket-grid {
+    margin-top: 1.5rem;
+}
+
+.skillmarket-page .skillmarket-grid--compact {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.skillmarket-page .skillmarket-table-wrap {
+    margin-top: 1rem;
+}
+
+.skillmarket-page .skillmarket-table-wrap--wide {
+    margin-top: 1.75rem;
+}
+
+.skillmarket-page .skillmarket-inline-note {
+    margin-top: 1.25rem;
+}
+
 .tutorial-page .nav-container {
     max-width: min(1380px, calc(100vw - 40px));
 }
@@ -7887,6 +7907,10 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     .meta-topic-page .meta-topic-grid .quickstart-card {
         padding: 20px 18px;
         border-radius: 20px;
+    }
+
+    .skillmarket-page .skillmarket-grid {
+        gap: 16px;
     }
 }
 
