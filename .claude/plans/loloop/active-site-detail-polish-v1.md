@@ -71,6 +71,9 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Choose one more hot-page layout candidate after the personal-knowledge pass
 - [x] Replace `topic-rag-hot.html` inline layout styling with scoped classes
 - [x] Verify the RAG hot page no longer uses inline `style=` attributes
+- [x] Choose one more hot-page layout candidate after the RAG-hot pass
+- [x] Replace `topic-agent-hot.html` inline layout styling with scoped classes
+- [x] Verify the Agent hot page no longer uses inline `style=` attributes
 
 ## Guardrail
 

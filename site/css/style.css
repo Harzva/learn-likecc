@@ -7624,6 +7624,36 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     grid-template-columns: 1fr;
 }
 
+.agent-hot-page .agent-hot-section {
+    position: relative;
+}
+
+.agent-hot-page .agent-hot-section--entry {
+    padding-top: 60px;
+}
+
+.agent-hot-page .agent-hot-copy--lead {
+    margin-bottom: 1.5rem;
+}
+
+.agent-hot-page .agent-hot-table-wrap {
+    overflow-x: auto;
+}
+
+.agent-hot-page .agent-hot-grid--single {
+    grid-template-columns: 1fr;
+}
+
+.agent-hot-page .agent-hot-list {
+    line-height: 1.85;
+    color: var(--text-secondary);
+    padding-left: 1.2rem;
+}
+
+.agent-hot-page .agent-hot-inline-note {
+    margin-top: 1rem;
+}
+
 .tutorial-page .nav-container {
     max-width: min(1380px, calc(100vw - 40px));
 }
@@ -7962,6 +7992,10 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     }
 
     .rag-hot-page .rag-hot-grid--single {
+        gap: 16px;
+    }
+
+    .agent-hot-page .agent-hot-grid--single {
         gap: 16px;
     }
 }
