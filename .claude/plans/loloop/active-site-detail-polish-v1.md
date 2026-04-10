@@ -80,6 +80,9 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Choose the Hermes unpacked-topic task as the next main-site move from the recurring pool
 - [x] Create the first `topic-hermes-unpacked` site draft under the 庖丁解牛 axis
 - [x] Add Hermes Agent as a visible subtopic entry on `topic-paoding-jieniu.html`
+- [x] Choose a second Hermes pass as the next bounded move after the draft landed
+- [x] Add one code-anchored Hermes runtime-flow section to the unpacked draft
+- [x] Verify the Hermes draft now includes the new runtime-flow anchors and nav hook
 
 ## Guardrail
 

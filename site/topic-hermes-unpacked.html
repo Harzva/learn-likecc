@@ -23,7 +23,8 @@
                 <a href="#control-plane" class="nav-link">03 控制面</a>
                 <a href="#memory-skills" class="nav-link">04 记忆与技能</a>
                 <a href="#gateway-cron" class="nav-link">05 Gateway / Cron</a>
-                <a href="#lessons" class="nav-link">06 值得学什么</a>
+                <a href="#flows" class="nav-link">06 运行链路</a>
+                <a href="#lessons" class="nav-link">07 值得学什么</a>
             </div>
             <div class="nav-actions">
                 <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
@@ -121,8 +122,20 @@
                     <p>对我们来说，这一层最值得学的不是“支持的平台越多越好”，而是：<strong>当一个 agent 不再只存在于当前终端，它的 session key、delivery path、environment backend、job scheduler 就必须进入系统设计主线。</strong></p>
                 </section>
 
+                <section id="flows" class="section-block">
+                    <h2>06 · 三条运行链路复盘：CLI、Gateway、Cron 到底怎么汇进同一套脑子</h2>
+                    <p>官方 Architecture 页最有价值的部分，不是目录树，而是三条数据流。它明确告诉我们：Hermes 虽然入口很多，但最后都会汇进同一套 <code>AIAgent</code> 控制面。这一点非常值得拿来和我们自己的 Claude Code / codex-loop 讨论对照。</p>
+                    <table class="options-table">
+                        <tr><th>入口链路</th><th>关键代码路径</th><th>真正说明了什么</th></tr>
+                        <tr><td>CLI Session</td><td><code>hermes_cli/main.py</code> → <code>AIAgent.run_conversation()</code> → <code>prompt_builder</code> → <code>runtime_provider</code> → <code>model_tools.handle_function_call()</code></td><td>终端只是入口，真正的循环仍然在同一个 agent 内核里。</td></tr>
+                        <tr><td>Gateway Message</td><td><code>gateway/run.py</code> → adapter <code>on_message()</code> → session key → fresh <code>AIAgent</code> + history → adapter delivery</td><td>多平台不是多个脑，而是多个 ingress + 一个共享控制面。</td></tr>
+                        <tr><td>Cron Job</td><td><code>cron/scheduler.py</code> tick → jobs.json → fresh <code>AIAgent</code> → skills context → target delivery</td><td>定时任务不是旁路脚本，而是同一套 agent 内核的“时间触发模式”。</td></tr>
+                    </table>
+                    <p>这三条链路共同说明：Hermes 真正珍贵的，不是“支持很多入口”，而是<strong>把不同入口统一收敛到同一套 agent kernel，再把 session、delivery、skills、memory 和 tool loop 一起接进去</strong>。这也是它和单纯聊天机器人或普通终端助手拉开差距的地方。</p>
+                </section>
+
                 <section id="lessons" class="section-block">
-                    <h2>06 · 对 Claude Code / Like Code / codex-loop 值得学什么</h2>
+                    <h2>07 · 对 Claude Code / Like Code / codex-loop 值得学什么</h2>
                     <div class="course-quote">
                         <p><strong>第一</strong>，要把控制面和入口壳分开。Hermes 的真正主脑在 <code>AIAgent</code>，不是在 CLI 或 gateway adapter。</p>
                         <p><strong>第二</strong>，要把记忆和技能当成 loop 内结构，而不是外挂资料夹。只有这样，系统才会真的越跑越懂自己。</p>

@@ -99,7 +99,17 @@ Mermaid 更适合：是。
 
 再叠加 README 里列出的 local / Docker / SSH / Daytona / Modal 等环境后端，可以把它理解成：Hermes 不是只会在当前终端回答一句话，而是在尝试做一个跨平台、跨时间轴、跨执行环境的长期 agent runtime。
 
-### 06 · 对 Claude Code / Like Code / codex-loop 值得学什么
+### 06 · 三条运行链路复盘：CLI、Gateway、Cron 到底怎么汇进同一套脑子
+
+官方 Architecture 页把三条链路写得很清楚：
+
+- CLI Session：`hermes_cli/main.py` → `AIAgent.run_conversation()` → prompt builder → provider runtime → tool loop
+- Gateway Message：`gateway/run.py` → adapter `on_message()` → resolve session key → fresh `AIAgent` + history → adapter delivery
+- Cron Job：`cron/scheduler.py` → jobs.json → fresh `AIAgent` → attached skills context → target delivery
+
+这三条链路共同说明：Hermes 的关键不是入口多，而是所有入口都被收敛回同一个 agent kernel。
+
+### 07 · 对 Claude Code / Like Code / codex-loop 值得学什么
 
 - 把控制面和入口壳分开：主脑在 loop，不在 UI 或平台 adapter。
 - 把记忆和技能当成 loop 内结构，而不是外挂资料夹。
