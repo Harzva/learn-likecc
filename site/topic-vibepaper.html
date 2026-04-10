@@ -148,6 +148,34 @@
                     <p>这一轮新接入的不是第四个正式样本，而是一个受控候选：<code>AIDE ML</code>。它的价值不在“会不会直接写论文”，而在于它把 <strong>code-space tree search + benchmark optimization</strong> 做得非常清楚，而且是 <code>AI Scientist-v2</code> 背后直接承接的参考算法之一。</p>
                     <p>先按四问框架给出当前判断：第一，它不是 plugin 协议，也不是 workspace studio，更像 <strong>benchmark-first optimization lab</strong>；第二，它的 control plane 更靠近 <code>aide</code> CLI、<code>aide/agent.py</code>、<code>aide/run.py</code> 和 journal / report 流程，核心是围绕代码树搜索与评测反馈展开；第三，它的 durable state 主要落在 <code>logs/&lt;id&gt;/best_solution.py</code>、<code>tree_plot.html</code>、journal / report 产物、sample results 与工作目录；第四，它最适合长成“benchmark-first 优化 loop”“代码树搜索怎样比线性代理更强”“AIDE 与 AI Scientist-v2 的承接关系”。</p>
                     <p>当前站内决策：它先作为 <strong>comparison-section candidate</strong> 保留在 VibePaper hub，而不是直接加入三主样本表。原因很简单：它和 <code>AI Scientist-v2</code> 关系太近，先作为“上游实验搜索底座”来介绍，比直接把页面扩成四主样本更清楚。</p>
+                    <table class="compare-table">
+                        <tr>
+                            <th>系统</th>
+                            <th>当前站内角色</th>
+                            <th>为什么先放在这个层级</th>
+                        </tr>
+                        <tr>
+                            <td><code>Autoresearch</code></td>
+                            <td>主样本</td>
+                            <td>它把研究动作压成 loop contract，足够独立，适合单独承担“协议壳”教学入口。</td>
+                        </tr>
+                        <tr>
+                            <td><code>DeepScientist</code></td>
+                            <td>主样本</td>
+                            <td>它已经形成完整的本地研究工作台，适合单独承担“studio shell”教学入口。</td>
+                        </tr>
+                        <tr>
+                            <td><code>AI Scientist-v2</code></td>
+                            <td>主样本</td>
+                            <td>它直接覆盖 idea 到 writeup 的成稿流水线，足够代表“paper pipeline shell”。</td>
+                        </tr>
+                        <tr>
+                            <td><code>AIDE ML</code></td>
+                            <td>候选底座</td>
+                            <td>它更像 AI Scientist-v2 的上游优化实验底座，当前拿来讲承接关系比抬成第四主样本更清楚。</td>
+                        </tr>
+                    </table>
+                    <p>这个小表的作用不是给项目排座次，而是把站内层级固定下来：三主样本负责承担三种壳层的教学入口，<code>AIDE ML</code> 这种上游底座先放在 comparison section，等它能贡献一个真正不同的壳层，再考虑抬升。</p>
                 </section>
 
                 <section id="control-plane-thickness" class="section-block">

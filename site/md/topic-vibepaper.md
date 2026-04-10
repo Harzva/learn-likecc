@@ -96,6 +96,15 @@ Mermaid 更适合：否，更适合 HTML 卡片图。
 
 当前站内决策：它先作为 **comparison-section candidate** 保留在 VibePaper hub，而不是直接加入三主样本表。原因很简单：它和 `AI Scientist-v2` 关系太近，先作为“上游实验搜索底座”来介绍，比直接把页面扩成四主样本更清楚。
 
+| 系统 | 当前站内角色 | 为什么先放在这个层级 |
+| --- | --- | --- |
+| `Autoresearch` | 主样本 | 它把研究动作压成 loop contract，足够独立，适合单独承担“协议壳”教学入口。 |
+| `DeepScientist` | 主样本 | 它已经形成完整的本地研究工作台，适合单独承担“studio shell”教学入口。 |
+| `AI Scientist-v2` | 主样本 | 它直接覆盖 idea 到 writeup 的成稿流水线，足够代表“paper pipeline shell”。 |
+| `AIDE ML` | 候选底座 | 它更像 AI Scientist-v2 的上游优化实验底座，当前拿来讲承接关系比抬成第四主样本更清楚。 |
+
+这个小表的作用不是给项目排座次，而是把站内层级固定下来：三主样本负责承担三种壳层的教学入口，`AIDE ML` 这种上游底座先放在 comparison section，等它能贡献一个真正不同的壳层，再考虑抬升。
+
 ### 再往前走一步：三条线的 control-plane thickness 到底差在哪
 
 如果只看名字，三条线都像“自动科研系统”。但真正值得教学的是它们的控制面厚度差异：

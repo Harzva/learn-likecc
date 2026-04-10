@@ -131,6 +131,8 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Stay on Task 6 for one bounded controlled-intake pass after the shell visual
 - [x] Clone one more strong-primary-source candidate into `reference/reference_agent/`
 - [x] Add one four-question candidate note for `AIDE ML` without promoting it into the main sample table
+- [x] Stay on Task 6 for one bounded hierarchy-clarity cleanup after the `AIDE ML` intake
+- [x] Add one explicit VibePaper role table separating the three main samples from the upstream candidate substrate
 
 ## Guardrail
 
