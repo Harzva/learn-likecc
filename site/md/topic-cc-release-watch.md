@@ -24,7 +24,7 @@
 
 | 版本 | 要点（非穷尽） |
 | --- | --- |
-| **2.1.101** | 新增 `/team-onboarding`，可基于本地 Claude Code 使用痕迹生成 teammate ramp-up guide；默认信任操作系统 CA 证书库以适配企业 TLS 代理；远程会话相关功能可自动创建默认 cloud environment；`brief mode` 遇到 plain text 会自动重试一次结构化消息；`tool-not-available` 报错开始解释“为什么当前上下文拿不到工具”；rate-limit retry 信息开始直接显示命中的限制类型和重置时间；refusal 错误现在会带出 API 侧给出的解释；同时修了一批 `--resume`、插件、权限、subagent、Remote Control 与长会话内存问题。 |
+| **2.1.101** | 新增 `/team-onboarding`，可基于本地 Claude Code 使用痕迹生成 teammate ramp-up guide；默认信任操作系统 CA 证书库以适配企业 TLS 代理；远程会话相关功能可自动创建默认 cloud environment；`focus mode` 会主动写更自足的最终总结；`brief mode` 遇到 plain text 会自动重试一次结构化消息；`tool-not-available` 报错开始解释“为什么当前上下文拿不到工具”；rate-limit retry 信息开始直接显示命中的限制类型和重置时间；refusal 错误现在会带出 API 侧给出的解释；同时修了一批 `--resume`、插件、权限、subagent、Remote Control 与长会话内存问题。 |
 | **2.1.98** | Vertex AI 三方登录向导；新增 **Monitor tool** 用于流式读取后台脚本事件；Linux 子进程沙箱隔离与 `CLAUDE_CODE_SCRIPT_CAPS`；`--exclude-dynamic-system-prompt-sections` 改善跨用户 prompt cache；Perforce / worktree / tracing / LSP `clientInfo` 等工程向增强；同时修了一批 Bash 权限绕过与 `/resume` / hooks / transcript 问题。 |
 | **2.1.97** | `NO_FLICKER` 的 Focus View；status line `refreshInterval`；`workspace.git_worktree` 进入 status line JSON；`/agents` 显示运行中 subagents；多项权限、`/resume`、MCP OAuth、上下文压缩、OTEL tracing 与 `NO_FLICKER` 修复。 |
 | **2.1.92** | `forceRemoteSettingsRefresh` 策略；Bedrock 交互配置向导；`/cost` 按模型与缓存命中细分；`/release-notes` 改为交互选版；Remote Control 默认会话名带 hostname；移除 `/tag`、`/vim`（改走 `/config`）；Linux sandbox 附带 `apply-seccomp`；多项全屏/子代理/Homebrew 渠道修复 |
@@ -53,6 +53,30 @@
 形式：流程图。  
 提示词：画一个 Claude Code team onboarding flow。左侧是个人本地 Claude Code usage，包括 commands、workflows、plugins、naming habits；中间是 `/team-onboarding` 提取并整理这些模式；右侧是 teammate ramp-up guide，包含 recommended commands、project conventions、handoff notes。底部补一句说明：把 tacit usage 变成团队可复用入口。  
 Mermaid 更适合：是。
+
+### 本轮原始来源
+
+- 官方文档：`https://code.claude.com/docs/en/changelog`（`2.1.101`, 2026-04-10）
+- GitHub Raw：`https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md`
+
+## 再补一刀：focus mode 开始按“你只看最终消息”来写更自足的总结
+
+`2.1.101` 里还有一条表面像写作风格调整、其实很像交付面被显式建模的变化：Claude 在 `focus mode` 下会 **写得更 self-contained**，因为系统知道你看到的只是最终消息，而不是整段中间过程。
+
+这条为什么值得单独记：
+
+- 它说明 Claude Code 团队已经不再把“最后一句回复”当成普通 chat 输出，而是把它当成一个有明确阅读场景的交付面
+- 它把总结质量从“模型自由发挥”往“根据可见界面形态约束输出”推进了一步
+- 它对我们自己的 `codex-loop`、长任务 handoff、总结页都很相关，因为一旦用户只能看到最后态，系统就必须主动把上下文补齐，否则就会出现“模型其实做对了，但最后消息不够自足”的交付失败
+
+如果把前面的 brief retry 看成“格式契约出错时自动恢复”，那 focus-mode summary 更像“当只剩最终态可见时，系统主动重写输出契约”。它们都在说明 Claude Code 开始更认真地对待 **用户实际能看到什么，以及最后该交付成什么样**。
+
+### [插图提示词]
+
+用途：画“Claude Code focus mode 终态摘要”小图，对比可见全程和只见最终消息两种界面条件下的总结要求。  
+形式：对比图。  
+提示词：画一个 Claude Code focus mode final-message comparison。左侧是 full conversation view，用户能看到中间过程，summary 可以更短；右侧是 focus mode，只显示 final message，所以 summary 需要 self-contained，包含 context、decision、result、next step。底部补一句说明：输出形式要跟可见界面匹配。  
+Mermaid 更适合：否，更适合左右对比卡片图。
 
 ### 本轮原始来源
 
