@@ -59,6 +59,25 @@ Mermaid 更适合：是。
 - 官方文档：`https://code.claude.com/docs/en/changelog`（`2.1.101`, 2026-04-10）
 - GitHub Raw：`https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md`
 
+## 邻近关键词：OS CA trust 为什么是企业接入控制面的必要补课
+
+`2.1.101` 里和上面那条并列、但更偏企业接入的一刀，是：Claude Code 现在 **默认信任操作系统 CA 证书库**。官方 changelog 直接点明目标场景是 enterprise TLS proxies，并且给了回退开关 `CLAUDE_CODE_CERT_STORE=bundled`。
+
+这条为什么值得单独记：
+
+- 它说明 Claude Code 的问题已经不只是“模型能不能调通”，而是“在真实企业网络与代理环境里能不能少折腾地接上”
+- 它把证书信任策略从隐藏实现细节拉成了显式控制点：默认走系统 CA，必要时还能退回 bundled CA
+- 它提醒我们，长期 agent 系统的可用性不仅取决于 prompt、tool 和权限模型，也取决于它能不能穿过组织级网络边界稳定工作
+
+如果把 `/team-onboarding` 看成“团队入口层”的补课，那 OS CA trust 更像“企业接入层”的补课。对本站主线来说，这条线很适合和 Remote Control、企业代理、第三方 provider 接入一起看，因为很多系统不是死在 agent loop，而是死在最外层的网络与信任链。
+
+### [插图提示词]
+
+用途：画“Claude Code 企业 TLS 接入边界”小图，说明系统证书库、企业代理和 bundled CA 回退开关之间的关系。  
+形式：结构图。  
+提示词：画一个 Claude Code enterprise TLS trust flow。左侧是 Claude Code client，中间是 OS CA certificate store 与 enterprise TLS proxy，右侧是 upstream Claude service。旁边补一个 fallback 分支，标注 `CLAUDE_CODE_CERT_STORE=bundled` 可退回 bundled CAs。底部说明：这不是模型能力问题，而是企业网络信任链接入问题。  
+Mermaid 更适合：是。
+
 ## 本轮关键词：Monitor tool 为什么值得盯
 
 在 `2.1.98` 里，最值得单独盯住的关键词不是登录向导，而是 **Monitor tool for streaming events from background scripts**。这条变化说明 Claude Code 对“后台脚本不是一次性黑盒，而是持续产生活动流”的支持又往前走了一步。

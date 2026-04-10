@@ -145,6 +145,8 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Add one explicit sample-status note near the VibePaper anchor cards to summarize independent pages vs hub sample vs candidate lane
 - [x] Shift back to Task 4 for one bounded official changelog slice after the latest VibePaper cleanup chain
 - [x] Add one 2.1.101 team-onboarding release-watch slice backed by official changelog sources
+- [x] Stay on Task 4 for one adjacent bounded 2.1.101 enterprise-access slice
+- [x] Add one OS CA trust release-watch note explaining enterprise TLS proxy compatibility and the cert-store fallback
 
 ## Guardrail
 
