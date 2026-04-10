@@ -42,7 +42,10 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Inspect one more site-shell accessibility or mobile detail for the next micro-iteration
 - [x] Improve mobile page-subnav accessibility state and dismissal behavior
 - [x] Verify the site shell update with `node --check site/js/app.js`
-- [ ] Inspect one more high-value site-shell or page-layout detail for the next micro-iteration
+- [x] Inspect one more high-value site-shell or page-layout detail for the next micro-iteration
+- [x] Improve mobile site-sidebar accessibility state and dismissal behavior
+- [x] Verify the sidebar update with `node --check site/js/app.js`
+- [ ] Current site shell is stable enough to branch into queued media work
 
 ## Guardrail
 

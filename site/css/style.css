@@ -6906,6 +6906,15 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     color: var(--primary-dark);
 }
 
+.site-sidebar__collapse:focus-visible,
+.site-sidebar__action-btn:focus-visible,
+.site-sidebar__link:focus-visible,
+.site-sidebar__summary:focus-visible,
+.site-sidebar__fab:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--primary) 72%, white);
+    outline-offset: 2px;
+}
+
 .site-sidebar__collapse {
     position: absolute;
     top: 10px;
@@ -6940,6 +6949,11 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 .site-sidebar__link:hover {
     background: var(--bg-hover);
     color: var(--primary);
+}
+
+.site-sidebar__link:focus-visible {
+    background: color-mix(in srgb, var(--primary) 10%, var(--bg-secondary));
+    color: var(--primary-dark);
 }
 
 .site-sidebar__link--active {
@@ -7029,6 +7043,11 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 
 .site-sidebar__details[open] > .site-sidebar__summary {
     color: var(--primary-dark);
+}
+
+.site-sidebar__summary:focus-visible {
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--primary) 8%, var(--bg-hover));
 }
 
 .site-sidebar__details[open] > .site-sidebar__summary::after {

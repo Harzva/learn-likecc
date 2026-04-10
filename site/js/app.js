@@ -400,6 +400,7 @@ function initSiteSidebar() {
     aside.id = 'site-sidebar'
     aside.className = 'site-sidebar' + (collapsed ? ' site-sidebar--collapsed' : '')
     aside.setAttribute('aria-label', '站点导航')
+    aside.setAttribute('aria-hidden', 'true')
 
     const chapters = []
     for (let i = 1; i <= 12; i++) {
@@ -420,7 +421,7 @@ function initSiteSidebar() {
 
     // 侧栏 <details> 默认折叠，只显示 summary 大标题；读者点击再展开子项
     aside.innerHTML =
-        '<button type="button" class="site-sidebar__collapse" aria-label="收起或展开侧栏" title="展开/收起">' +
+        '<button type="button" class="site-sidebar__collapse" aria-label="收起或展开侧栏" aria-controls="site-sidebar" aria-expanded="false" title="展开/收起">' +
         (collapsed ? '⟩' : '⟨') +
         '</button>' +
         '<div class="site-sidebar__scroll">' +
@@ -537,6 +538,8 @@ function initSiteSidebar() {
     fab.type = 'button'
     fab.className = 'site-sidebar__fab'
     fab.setAttribute('aria-label', '打开导航')
+    fab.setAttribute('aria-controls', 'site-sidebar')
+    fab.setAttribute('aria-expanded', 'false')
     fab.textContent = '☰'
 
     document.body.insertBefore(aside, document.body.firstChild)
@@ -546,6 +549,17 @@ function initSiteSidebar() {
     const collapseBtn = aside.querySelector('.site-sidebar__collapse')
     const collapseAllBtn = aside.querySelector('[data-sidebar-action="collapse-all"]')
     const detailNodes = Array.from(aside.querySelectorAll('.site-sidebar__details[data-sidebar-key]'))
+
+    function syncSidebarA11y() {
+        const isMobile = window.matchMedia('(max-width: 900px)').matches
+        const open = aside.classList.contains('site-sidebar--open')
+        const collapsedDesktop = aside.classList.contains('site-sidebar--collapsed') && !isMobile
+        const expanded = open || !collapsedDesktop
+        collapseBtn.setAttribute('aria-expanded', expanded ? 'true' : 'false')
+        fab.setAttribute('aria-expanded', open ? 'true' : 'false')
+        aside.setAttribute('aria-hidden', isMobile && !open ? 'true' : 'false')
+        backdrop.setAttribute('aria-hidden', open ? 'false' : 'true')
+    }
 
     function saveOpenDetails() {
         const openKeys = detailNodes.filter((node) => node.open).map((node) => node.dataset.sidebarKey)
@@ -585,6 +599,7 @@ function initSiteSidebar() {
         aside.classList.toggle('site-sidebar--open', next)
         backdrop.hidden = !next
         localStorage.setItem(mobileOpenStorageKey, next ? '1' : '0')
+        syncSidebarA11y()
     }
 
     function setCollapsed(next) {
@@ -598,6 +613,7 @@ function initSiteSidebar() {
             collapseBtn.textContent = '⟨'
         }
         localStorage.setItem('site-sidebar-collapsed', next ? '1' : '0')
+        syncSidebarA11y()
     }
 
     function collapseAllDetails() {
@@ -627,6 +643,14 @@ function initSiteSidebar() {
         setMobileOpen(true)
     })
 
+    document.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape') return
+        if (!window.matchMedia('(max-width: 900px)').matches) return
+        if (!aside.classList.contains('site-sidebar--open')) return
+        setMobileOpen(false)
+        fab.focus()
+    })
+
     detailNodes.forEach((node) => {
         node.addEventListener('toggle', () => {
             saveOpenDetails()
@@ -640,6 +664,8 @@ function initSiteSidebar() {
     if (window.matchMedia('(max-width: 900px)').matches && localStorage.getItem(mobileOpenStorageKey) === '1') {
         setMobileOpen(true)
     }
+
+    syncSidebarA11y()
 }
 
 /** 页脚展示全站访问计数（hits.sh，各页共用同一 key 即累计全站） */
