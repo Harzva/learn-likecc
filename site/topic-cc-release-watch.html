@@ -99,7 +99,7 @@
                         </tr>
                         <tr>
                             <td><strong>2.1.101</strong></td>
-                            <td>新增 <code>/team-onboarding</code>，可基于本地 Claude Code 使用痕迹生成 teammate ramp-up guide；默认信任操作系统 CA 证书库以适配企业 TLS 代理；远程会话相关功能可自动创建默认 cloud environment；<code>tool-not-available</code> 报错开始解释“为什么当前上下文拿不到工具”以及下一步怎么做；同时修了一批 <code>--resume</code>、插件、权限、subagent、Remote Control 与长会话内存问题。</td>
+                            <td>新增 <code>/team-onboarding</code>，可基于本地 Claude Code 使用痕迹生成 teammate ramp-up guide；默认信任操作系统 CA 证书库以适配企业 TLS 代理；远程会话相关功能可自动创建默认 cloud environment；<code>tool-not-available</code> 报错开始解释“为什么当前上下文拿不到工具”；rate-limit retry 信息开始直接显示命中的限制类型和重置时间；同时修了一批 <code>--resume</code>、插件、权限、subagent、Remote Control 与长会话内存问题。</td>
                         </tr>
                         <tr>
                             <td><strong>2.1.98</strong></td>
@@ -194,6 +194,21 @@
                         <p>形式：结构图。</p>
                         <p>提示词：画一个 Claude Code tool availability boundary 图。左侧是 model 想调用某个 tool；中间分成两层判断：tool exists in system catalog，tool available in current context；如果第二层失败，就走到 tool-not-available explanation，给出 why unavailable 和 next step。底部补一句说明：把工具存在性和上下文可用性拆开解释，减少黑盒失败。</p>
                         <p>Mermaid 更适合：是。</p>
+                    </div>
+                    <p><strong>本轮原始来源</strong>：<a href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener noreferrer">官方文档 changelog</a>（<code>2.1.101</code>, 2026-04-10）与 <a href="https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">GitHub Raw CHANGELOG</a>。</p>
+                </section>
+
+                <section id="rate-limit-keyword" class="section-block">
+                    <h2>再补一刀：rate-limit retry 信息开始告诉你“撞上了什么限制，什么时候解封”</h2>
+                    <p><code>2.1.101</code> 里还有一条看起来像文案优化、其实很像运维可解释性补课的变化：Claude Code 现在会<strong>在 rate-limit retry 提示里直接说明命中了哪类限制，以及它什么时候重置</strong>，而不是只给一个不透明的秒数倒计时。</p>
+                    <p>这条为什么值得记：第一，它把“现在不能继续”从黑盒等待变成了<strong>可判断的限流状态</strong>；第二，它把 retry 信息从单纯 countdown 提升成了一个更接近控制面反馈的结构化解释；第三，这对长期运行 loop、多人共用额度、远程会话排障都更有用，因为你终于能区分自己撞上的到底是哪个闸门，而不是只能看着秒数流逝。</p>
+                    <p>对本站主线来说，这一刀和前面的 <code>tool-not-available</code> 很搭：一个解释“工具为什么此刻不能用”，一个解释“调用为什么此刻不能继续”。两者都在把以前偏黑盒的失败状态，改写成<strong>更可运营、更可分诊</strong>的控制面信号。</p>
+                    <div class="course-quote">
+                        <p><strong>[插图提示词]</strong></p>
+                        <p>用途：画“Claude Code 限流反馈升级”小图，对比 opaque countdown 和带 limit type / reset time 的新反馈。</p>
+                        <p>形式：对比图。</p>
+                        <p>提示词：画一个 Claude Code rate-limit feedback comparison。左侧是旧版 opaque seconds countdown，只显示 retry in N seconds；右侧是新版 explanatory retry message，明确标出 which limit was hit 和 reset time。底部补一句说明：把等待提示升级成可分诊的控制面反馈。</p>
+                        <p>Mermaid 更适合：否，更适合左右对比卡片图。</p>
                     </div>
                     <p><strong>本轮原始来源</strong>：<a href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener noreferrer">官方文档 changelog</a>（<code>2.1.101</code>, 2026-04-10）与 <a href="https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">GitHub Raw CHANGELOG</a>。</p>
                 </section>

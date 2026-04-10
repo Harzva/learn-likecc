@@ -24,7 +24,7 @@
 
 | 版本 | 要点（非穷尽） |
 | --- | --- |
-| **2.1.101** | 新增 `/team-onboarding`，可基于本地 Claude Code 使用痕迹生成 teammate ramp-up guide；默认信任操作系统 CA 证书库以适配企业 TLS 代理；远程会话相关功能可自动创建默认 cloud environment；`tool-not-available` 报错开始解释“为什么当前上下文拿不到工具”以及下一步怎么做；同时修了一批 `--resume`、插件、权限、subagent、Remote Control 与长会话内存问题。 |
+| **2.1.101** | 新增 `/team-onboarding`，可基于本地 Claude Code 使用痕迹生成 teammate ramp-up guide；默认信任操作系统 CA 证书库以适配企业 TLS 代理；远程会话相关功能可自动创建默认 cloud environment；`tool-not-available` 报错开始解释“为什么当前上下文拿不到工具”；rate-limit retry 信息开始直接显示命中的限制类型和重置时间；同时修了一批 `--resume`、插件、权限、subagent、Remote Control 与长会话内存问题。 |
 | **2.1.98** | Vertex AI 三方登录向导；新增 **Monitor tool** 用于流式读取后台脚本事件；Linux 子进程沙箱隔离与 `CLAUDE_CODE_SCRIPT_CAPS`；`--exclude-dynamic-system-prompt-sections` 改善跨用户 prompt cache；Perforce / worktree / tracing / LSP `clientInfo` 等工程向增强；同时修了一批 Bash 权限绕过与 `/resume` / hooks / transcript 问题。 |
 | **2.1.97** | `NO_FLICKER` 的 Focus View；status line `refreshInterval`；`workspace.git_worktree` 进入 status line JSON；`/agents` 显示运行中 subagents；多项权限、`/resume`、MCP OAuth、上下文压缩、OTEL tracing 与 `NO_FLICKER` 修复。 |
 | **2.1.92** | `forceRemoteSettingsRefresh` 策略；Bedrock 交互配置向导；`/cost` 按模型与缓存命中细分；`/release-notes` 改为交互选版；Remote Control 默认会话名带 hostname；移除 `/tag`、`/vim`（改走 `/config`）；Linux sandbox 附带 `apply-seccomp`；多项全屏/子代理/Homebrew 渠道修复 |
@@ -53,6 +53,30 @@
 形式：流程图。  
 提示词：画一个 Claude Code team onboarding flow。左侧是个人本地 Claude Code usage，包括 commands、workflows、plugins、naming habits；中间是 `/team-onboarding` 提取并整理这些模式；右侧是 teammate ramp-up guide，包含 recommended commands、project conventions、handoff notes。底部补一句说明：把 tacit usage 变成团队可复用入口。  
 Mermaid 更适合：是。
+
+### 本轮原始来源
+
+- 官方文档：`https://code.claude.com/docs/en/changelog`（`2.1.101`, 2026-04-10）
+- GitHub Raw：`https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md`
+
+## 再补一刀：rate-limit retry 信息开始告诉你“撞上了什么限制，什么时候解封”
+
+`2.1.101` 里还有一条看起来像文案优化、其实很像运维可解释性补课的变化：Claude Code 现在会 **在 rate-limit retry 提示里直接说明命中了哪类限制，以及它什么时候重置**，而不是只给一个不透明的秒数倒计时。
+
+这条为什么值得记：
+
+- 它把“现在不能继续”从黑盒等待变成了 **可判断的限流状态**
+- 它把 retry 信息从单纯 countdown 提升成了一个更接近控制面反馈的结构化解释
+- 它对长期运行 loop、多人共用额度、远程会话排障都更有用，因为你终于能区分自己撞上的到底是哪个闸门，而不是只能看着秒数流逝
+
+对本站主线来说，这一刀和前面的 `tool-not-available` 很搭：一个解释“工具为什么此刻不能用”，一个解释“调用为什么此刻不能继续”。两者都在把以前偏黑盒的失败状态，改写成 **更可运营、更可分诊** 的控制面信号。
+
+### [插图提示词]
+
+用途：画“Claude Code 限流反馈升级”小图，对比 opaque countdown 和带 limit type / reset time 的新反馈。  
+形式：对比图。  
+提示词：画一个 Claude Code rate-limit feedback comparison。左侧是旧版 opaque seconds countdown，只显示 retry in N seconds；右侧是新版 explanatory retry message，明确标出 which limit was hit 和 reset time。底部补一句说明：把等待提示升级成可分诊的控制面反馈。  
+Mermaid 更适合：否，更适合左右对比卡片图。
 
 ### 本轮原始来源
 
