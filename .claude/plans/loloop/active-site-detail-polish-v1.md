@@ -49,7 +49,10 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Choose one more page-level visual-maturity candidate outside the Superset page
 - [x] Replace bridge-page hero inline styling on `site/topic-claude-codex-bridge.html` with scoped classes
 - [x] Verify the bridge page no longer uses inline `style=` attributes
-- [ ] Branch into the remaining queued media workflow work
+- [x] Branch into the remaining queued media workflow work
+- [x] Choose one more hub-page visual-maturity candidate after the media branch
+- [x] Replace `topic-paoding-jieniu.html` inline layout styling with scoped classes
+- [x] Verify the paoding hub page no longer uses inline `style=` attributes
 
 ## Guardrail
 
