@@ -7201,6 +7201,55 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     line-height: 1.8;
 }
 
+.cc-unpacked-page .hero-stats--superset {
+    justify-content: center;
+    gap: 1.1rem;
+    margin-top: 1.3rem;
+    margin-bottom: 0;
+}
+
+.cc-unpacked-page .stat-item--superset {
+    min-width: 148px;
+    padding: 1rem 1.05rem 0.95rem;
+    text-align: center;
+    border-radius: 20px;
+    background:
+        linear-gradient(180deg, color-mix(in srgb, var(--bg-card) 90%, white 10%), color-mix(in srgb, var(--bg-secondary) 90%, white 10%));
+    border: 1px solid color-mix(in srgb, var(--border) 84%, white 16%);
+    box-shadow:
+        0 18px 36px -28px rgba(15, 23, 42, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+.cc-unpacked-page .section-desc--tight {
+    margin-top: 0.8rem;
+}
+
+.cc-unpacked-page .superset-viz-note {
+    max-width: 980px;
+    margin: 0.6rem auto 0;
+    padding: 0.85rem 1rem;
+    border-radius: 16px;
+    background: color-mix(in srgb, var(--bg-card) 90%, var(--bg-secondary) 10%);
+    border: 1px solid color-mix(in srgb, var(--border) 82%, white 18%);
+    box-shadow: 0 12px 28px -24px rgba(15, 23, 42, 0.4);
+    font-size: 0.95rem;
+}
+
+.cc-unpacked-page .course-quote--viz {
+    margin-top: 1rem;
+    border-left-width: 4px;
+}
+
+.cc-unpacked-page .superset-bullet-list {
+    margin: 0;
+    padding-left: 1.2rem;
+}
+
+.cc-unpacked-page .superset-bullet-list li + li {
+    margin-top: 0.45rem;
+}
+
 .cc-unpacked-page .options-table {
     font-size: 1.02rem;
 }
@@ -8725,6 +8774,22 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
         font-size: 1.48rem;
     }
 
+    .cc-unpacked-page .hero-stats--superset {
+        gap: 0.8rem;
+        margin-top: 1rem;
+    }
+
+    .cc-unpacked-page .stat-item--superset {
+        min-width: calc(50% - 0.5rem);
+        flex: 1 1 calc(50% - 0.5rem);
+        padding: 0.9rem 0.8rem 0.85rem;
+    }
+
+    .cc-unpacked-page .superset-viz-note {
+        padding: 0.78rem 0.88rem;
+        font-size: 0.92rem;
+    }
+
     .cc-arch-knowledge__meta,
     .cc-arch-knowledge__desc,
     .cc-arch-knowledge__related,
@@ -9334,6 +9399,13 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     box-shadow: var(--shadow);
 }
 
+.page-subnav__toggle:focus-visible,
+.page-subnav__fab:focus-visible,
+.page-subnav__link:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--primary) 72%, white);
+    outline-offset: 2px;
+}
+
 .page-subnav__scroll {
     overflow-y: auto;
     max-height: inherit;
@@ -9379,6 +9451,11 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     background: var(--bg-hover);
     color: var(--primary-dark);
     transform: translateX(-2px);
+}
+
+.page-subnav__link:focus-visible {
+    background: color-mix(in srgb, var(--primary) 10%, var(--bg-secondary));
+    color: var(--primary-dark);
 }
 
 .page-subnav__link--anchor {
@@ -9515,6 +9592,15 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     border-radius: var(--radius);
     font-size: 0.9rem;
     color: var(--primary-dark);
+}
+
+.superset-loading {
+    padding: 1rem 1.1rem;
+    border: 1px dashed color-mix(in srgb, var(--primary) 28%, var(--border));
+    border-radius: var(--radius);
+    background: linear-gradient(135deg, color-mix(in srgb, var(--primary) 6%, var(--bg-card)), var(--bg-card));
+    color: var(--text-secondary);
+    font-size: 0.92rem;
 }
 
 /* 03 · 产品壳卡片 */

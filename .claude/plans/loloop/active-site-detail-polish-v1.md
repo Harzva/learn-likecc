@@ -1,0 +1,56 @@
+# active-site-detail-polish-v1.md
+
+## Goal
+
+Use small, low-risk iterations to keep improving the teaching quality and polish of the `site/` experience.
+
+## Optimization pillars
+
+Prioritize future iterations along these three lines:
+
+- visual maturity
+  - improve color discipline, spacing rhythm, card polish, and visual consistency
+- professional clarity
+  - improve terminology accuracy, explanatory strength, and teaching value of examples and diagrams
+- layout rationality
+  - improve section order, navigation flow, grouping, and mobile/desktop reading rhythm
+
+## Current focus
+
+Superset 解构页的 overview 组件细节优化。
+
+## Success condition
+
+- one concrete site detail is improved without breaking page structure
+- the improvement is verified with at least one local check
+- one evolution note records what changed and what the next small polish target should be
+
+## Tasks
+
+- [x] Reduce redundant `superset-overview.json` fetches in `site/js/superset-overview.js`
+- [x] Add a lightweight loading state for Superset overview mounts
+- [x] Verify the updated script with `node --check`
+- [x] Preview another high-value site detail candidate and choose the next micro-iteration
+- [x] Add a lightweight loading state for the Superset treemap mount
+- [x] Verify the treemap script with `node --check`
+- [x] Review the Superset knowledge-graph mount for the next micro-iteration
+- [x] Add a lightweight loading state for the Superset knowledge-graph mount
+- [x] Verify the knowledge-graph script with `node --check`
+- [x] Choose one more Superset page candidate by optimization pillar and complete a visual-maturity pass
+- [x] Replace ad-hoc inline styling on `site/topic-superset-unpacked.html` with scoped classes
+- [x] Verify the Superset page no longer uses inline `style=` attributes
+- [x] Inspect one more site-shell accessibility or mobile detail for the next micro-iteration
+- [x] Improve mobile page-subnav accessibility state and dismissal behavior
+- [x] Verify the site shell update with `node --check site/js/app.js`
+- [ ] Inspect one more high-value site-shell or page-layout detail for the next micro-iteration
+
+## Guardrail
+
+Keep each round bounded to one page or one UI component cluster.
+
+## Next target candidates
+
+- tighten one more detail on `site/topic-superset-unpacked.html`
+- review another data-driven page for repeated fetch or loading-state gaps
+- improve one small mobile or accessibility detail in the site shell
+- choose the next pass by mapping it to one of the three optimization pillars above

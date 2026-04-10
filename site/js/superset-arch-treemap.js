@@ -25,6 +25,20 @@
             .replace(/"/g, '&quot;')
     }
 
+    function setLoadingState(label) {
+        mount.setAttribute('aria-busy', 'true')
+        mount.innerHTML = '<div class="superset-loading">⏳ 正在加载' + esc(label) + '...</div>'
+    }
+
+    function clearBusy() {
+        mount.removeAttribute('aria-busy')
+    }
+
+    function renderError(message) {
+        clearBusy()
+        mount.innerHTML = '<p class="cc-arch-treemap__err">' + esc(message) + '</p>'
+    }
+
     function loadScript(src, cb) {
         if (window.d3) return cb()
         var s = document.createElement('script')
@@ -34,8 +48,7 @@
             cb()
         }
         s.onerror = function () {
-            mount.innerHTML =
-                '<p class="cc-arch-treemap__err">无法加载 D3 库（请检查网络或改用 HTTP 打开本站）。</p>'
+            renderError('无法加载 D3 库（请检查网络或改用 HTTP 打开本站）。')
         }
         document.head.appendChild(s)
     }
@@ -64,7 +77,7 @@
         var legend = payload.legend || []
         var rootData = payload.root
         if (!rootData || !rootData.children || !rootData.children.length) {
-            mount.innerHTML = '<p class="cc-arch-treemap__err">Treemap 数据为空。</p>'
+            renderError('Treemap 数据为空。')
             return
         }
 
@@ -210,11 +223,16 @@
         }
 
         renderLevel(rootData, [{ name: 'superset', node: rootData }])
+        clearBusy()
     }
 
     function load() {
+        setLoadingState('Treemap 数据')
         fetch(jsonUrl)
             .then(function (r) {
+                if (!r.ok) {
+                    throw new Error('HTTP ' + r.status)
+                }
                 return r.json()
             })
             .then(function (data) {
@@ -222,8 +240,7 @@
             })
             .catch(function (err) {
                 console.error('Treemap load error:', err)
-                mount.innerHTML =
-                    '<p class="cc-arch-treemap__err">无法加载 Treemap 数据（请用 HTTP 打开本站，并检查 data/superset-arch-treemap.json）。</p>'
+                renderError('无法加载 Treemap 数据（请用 HTTP 打开本站，并检查 data/superset-arch-treemap.json）。')
             })
     }
 

@@ -48,11 +48,11 @@
                 这页不是单纯介绍一个产品，而是把 <code>reference/reference_agent/reference_control-agent-cli/superset</code><br>
                 拆成 <strong>产品壳、pane/workspace 引擎、host-service、chat/terminal runtime、worker/worktree</strong> 五层，回答一个更核心的问题：<strong>外层 agent 是怎样去调度内层 agent 的</strong>。
             </p>
-            <div class="hero-stats" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin-top: 1.25rem;">
-                <div class="stat-item"><span class="stat-value">9</span><span class="stat-label">apps 目录</span></div>
-                <div class="stat-item"><span class="stat-value">17</span><span class="stat-label">packages</span></div>
-                <div class="stat-item"><span class="stat-value">94</span><span class="stat-label">host-service 文件</span></div>
-                <div class="stat-item"><span class="stat-value">5</span><span class="stat-label">解构层次</span></div>
+            <div class="hero-stats hero-stats--superset">
+                <div class="stat-item stat-item--panel stat-item--superset"><span class="stat-value">9</span><span class="stat-label">apps 目录</span></div>
+                <div class="stat-item stat-item--panel stat-item--superset"><span class="stat-value">17</span><span class="stat-label">packages</span></div>
+                <div class="stat-item stat-item--panel stat-item--superset"><span class="stat-value">94</span><span class="stat-label">host-service 文件</span></div>
+                <div class="stat-item stat-item--panel stat-item--superset"><span class="stat-value">5</span><span class="stat-label">解构层次</span></div>
             </div>
             <div class="hero-actions">
                 <a href="#stack" class="btn btn-primary">从 01 总图开始</a>
@@ -85,16 +85,16 @@
                         <tr><td>运行时</td><td><code>runtime/chat</code>、<code>terminal/terminal.ts</code></td><td>让 inner agent 变成可发消息、可附着、可继续的执行体</td></tr>
                         <tr><td>隔离层</td><td>README 的 worktree 叙述 + workspace runtime</td><td>让并行任务不互相污染，结果还能被收回</td></tr>
                     </table>
-                    <p class="section-desc" style="margin-top: 0.8rem;">所以它不是"终端矩阵"，而是一个把 inner agent 纳入统一工作台的 orchestration shell。</p>
+                    <p class="section-desc section-desc--tight">所以它不是"终端矩阵"，而是一个把 inner agent 纳入统一工作台的 orchestration shell。</p>
                 </section>
 
                 <section id="arch-treemap" class="section-block">
                     <h2>02 · 架构导览（目录心智模型）</h2>
                     <div id="superset-arch-treemap-mount" class="cc-arch-treemap" data-json="data/superset-arch-treemap.json" role="region" aria-label="Superset 目录架构 Treemap"></div>
-                    <p class="section-desc" style="margin-top:0.5rem;font-size:0.9rem;">Treemap 为<strong>双层</strong>：先按教学分区聚块，再细分各子目录；可<strong>单击分区下钻</strong>、用顶部<strong>面包屑</strong>返回。数据由 <code>tools/gen_superset_arch_viz.py</code> 写入 <code>site/data/superset-arch-treemap.json</code>。</p>
-                    <div class="course-quote" style="margin-top:1rem;">
+                    <p class="section-desc superset-viz-note">Treemap 为<strong>双层</strong>：先按教学分区聚块，再细分各子目录；可<strong>单击分区下钻</strong>、用顶部<strong>面包屑</strong>返回。数据由 <code>tools/gen_superset_arch_viz.py</code> 写入 <code>site/data/superset-arch-treemap.json</code>。</p>
+                    <div class="course-quote course-quote--viz">
                         <p><strong>如何阅读</strong>：</p>
-                        <ul style="margin:0; padding-left:1.2rem;">
+                        <ul class="superset-bullet-list">
                             <li><strong>产品壳与工作台</strong>（橙色）：apps/desktop、web、api、docs 等，解决"用户在哪个外壳里观察和切换多个 agent"。</li>
                             <li><strong>Pane 与前台工作位</strong>（蓝色）：panes、ui、workspace-client，解决"工位"抽象。</li>
                             <li><strong>调度中枢</strong>（橙红）：host-service、chat、trpc、auth、mcp，真正的 orchestration kernel。</li>
@@ -107,10 +107,10 @@
                 <section id="arch-graph" class="section-block">
                     <h2>02B · 知识图谱（块内结构 + 块间联系）</h2>
                     <div id="superset-arch-knowledge-mount" class="cc-arch-knowledge" data-json="data/superset-arch-knowledge.json" role="region" aria-label="Superset 架构知识图谱"></div>
-                    <p class="section-desc" style="margin-top:0.5rem;font-size:0.9rem;">图谱模式：<strong>混合总览</strong> = 块内包含 + 跨块联系；<strong>块内结构</strong> = 每个教学分区下有哪些主目录；<strong>块间联系</strong> = 不同分区之间最值得一起读的关系。</p>
-                    <div class="course-quote" style="margin-top:1rem;">
+                    <p class="section-desc superset-viz-note">图谱模式：<strong>混合总览</strong> = 块内包含 + 跨块联系；<strong>块内结构</strong> = 每个教学分区下有哪些主目录；<strong>块间联系</strong> = 不同分区之间最值得一起读的关系。</p>
+                    <div class="course-quote course-quote--viz">
                         <p><strong>关键连接</strong>（不追求机械依赖，而是教学向）：</p>
-                        <ul style="margin:0; padding-left:1.2rem;">
+                        <ul class="superset-bullet-list">
                             <li><code>desktop → panes</code>：桌面壳依赖 pane 引擎来布局。</li>
                             <li><code>desktop → host-service</code>：桌面壳通过 tRPC 调用调度中枢。</li>
                             <li><code>host-service → chat</code>：调度中枢把 chat runtime 接入控制面。</li>

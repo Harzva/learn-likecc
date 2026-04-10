@@ -6,6 +6,8 @@
 (function () {
   'use strict'
 
+  const dataCache = new Map()
+
   // ========== 工具函数 ==========
 
   function createSVG (width, height) {
@@ -64,6 +66,24 @@
     return g
   }
 
+  function setLoadingState (mount, label) {
+    mount.setAttribute('aria-busy', 'true')
+    mount.innerHTML = `<div class="superset-loading">⏳ 正在加载${label}...</div>`
+  }
+
+  async function loadOverviewData (url) {
+    if (!dataCache.has(url)) {
+      dataCache.set(url, fetch(url).then(async (res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status}`)
+        }
+        return await res.json()
+      }))
+    }
+
+    return await dataCache.get(url)
+  }
+
   // ========== 03 · 产品壳架构图 ==========
 
   class ShellAppsDiagram {
@@ -75,8 +95,8 @@
 
     async init () {
       try {
-        const res = await fetch(this.dataUrl)
-        this.data = await res.json()
+        setLoadingState(this.mount, '产品壳架构')
+        this.data = await loadOverviewData(this.dataUrl)
         this.render()
       } catch (err) {
         this.renderError(err)
@@ -157,10 +177,12 @@
       container.appendChild(obsDiv)
 
       this.mount.innerHTML = ''
+      this.mount.removeAttribute('aria-busy')
       this.mount.appendChild(container)
     }
 
     renderError (err) {
+      this.mount.removeAttribute('aria-busy')
       this.mount.innerHTML = `<div class="superset-error">⚠️ 加载失败: ${err.message}</div>`
     }
   }
@@ -176,8 +198,8 @@
 
     async init () {
       try {
-        const res = await fetch(this.dataUrl)
-        this.data = await res.json()
+        setLoadingState(this.mount, 'Pane 引擎概念图')
+        this.data = await loadOverviewData(this.dataUrl)
         this.render()
       } catch (err) {
         this.renderError(err)
@@ -246,10 +268,12 @@
       container.appendChild(insightDiv)
 
       this.mount.innerHTML = ''
+      this.mount.removeAttribute('aria-busy')
       this.mount.appendChild(container)
     }
 
     renderError (err) {
+      this.mount.removeAttribute('aria-busy')
       this.mount.innerHTML = `<div class="superset-error">⚠️ 加载失败: ${err.message}</div>`
     }
   }
@@ -265,8 +289,8 @@
 
     async init () {
       try {
-        const res = await fetch(this.dataUrl)
-        this.data = await res.json()
+        setLoadingState(this.mount, 'Host-Service 模块图')
+        this.data = await loadOverviewData(this.dataUrl)
         this.render()
       } catch (err) {
         this.renderError(err)
@@ -285,39 +309,82 @@
       diagramTitle.textContent = '🎛️ 调度中枢模块关系图'
       container.appendChild(diagramTitle)
 
-      const svg = createSVG(800, 300)
-
-      // 中心：App Wiring
+      const svg = createSVG(800, 360)
       const centerX = 400
-      const centerY = 150
-      const radius = 100
+      const centerY = 170
 
-      // 中心节点
-      svg.appendChild(createRect(centerX - 70, centerY - 25, 140, 50, '#f97316', 12))
-      svg.appendChild(createText(centerX, centerY - 5, '🔗 App Wiring', 14, '#fff'))
-      svg.appendChild(createText(centerX, centerY + 15, 'packages/host-service/src/app.ts', 9, '#fff'))
-
-      // 周围子系统
-      const others = subsystems.filter(s => s.id !== 'app-wiring')
-      others.forEach((sys, i) => {
-        const angle = (i * 2 * Math.PI / others.length) - Math.PI / 2
-        const x = centerX + radius * Math.cos(angle)
-        const y = centerY + radius * Math.sin(angle)
-
-        // 连接线
-        svg.appendChild(createLine(centerX, centerY, x, y, sys.color + '60', 2))
-
-        // 子系统节点
+      function drawNode (cfg) {
         const nodeG = document.createElementNS('http://www.w3.org/2000/svg', 'g')
-        nodeG.appendChild(createRect(x - 55, y - 20, 110, 40, sys.color + '20', 8))
-        nodeG.appendChild(createRect(x - 55, y - 20, 110, 4, sys.color, 4))
-        nodeG.appendChild(createText(x, y + 2, sys.icon + ' ' + sys.name, 11, '#1e293b'))
+        const cardX = cfg.x - (cfg.width / 2)
+        const cardY = cfg.y - (cfg.height / 2)
+
+        nodeG.appendChild(createRect(cardX, cardY, cfg.width, cfg.height, cfg.fill, 14))
+        nodeG.appendChild(createRect(cardX, cardY, cfg.width, 6, cfg.accent, 6))
+
+        const title = createText(cfg.x, cfg.y - (cfg.subtitle ? 6 : 1), `${cfg.icon} ${cfg.name}`, cfg.titleSize || 12, cfg.textColor || '#1e293b')
+        nodeG.appendChild(title)
+
+        if (cfg.subtitle) {
+          nodeG.appendChild(createText(cfg.x, cfg.y + 18, cfg.subtitle, cfg.subtitleSize || 9, cfg.subtitleColor || cfg.textColor || '#475569'))
+        }
 
         svg.appendChild(nodeG)
+      }
+
+      // 中心：App Wiring
+      drawNode({
+        x: centerX,
+        y: centerY,
+        width: 132,
+        height: 88,
+        fill: '#f97316',
+        accent: '#ea580c',
+        icon: '🔗',
+        name: 'App Wiring',
+        subtitle: 'host-service/src/app.ts',
+        titleSize: 14,
+        subtitleSize: 8.5,
+        textColor: '#fff',
+        subtitleColor: 'rgba(255,255,255,0.92)'
       })
 
-      // 标注
-      svg.appendChild(createText(400, 280, '所有子系统通过 App Wiring 统一组装，形成完整的控制面', 12, '#64748b'))
+      const positionMap = {
+        'event-bus': { x: centerX, y: 72, width: 110, height: 46 },
+        terminal: { x: 560, y: centerY, width: 122, height: 46 },
+        'workspace-fs': { x: centerX, y: 276, width: 110, height: 46 },
+        'control-api': { x: 240, y: centerY, width: 126, height: 46 }
+      }
+
+      const others = subsystems.filter(s => s.id !== 'app-wiring')
+      others.forEach((sys) => {
+        const pos = positionMap[sys.id]
+        if (!pos) return
+
+        const dx = pos.x - centerX
+        const dy = pos.y - centerY
+        const distance = Math.sqrt((dx * dx) + (dy * dy)) || 1
+        const startInset = 48
+        const endInset = Math.max(pos.width, pos.height) * 0.28
+        const x1 = centerX + (dx / distance) * startInset
+        const y1 = centerY + (dy / distance) * startInset
+        const x2 = pos.x - (dx / distance) * endInset
+        const y2 = pos.y - (dy / distance) * endInset
+
+        svg.appendChild(createLine(x1, y1, x2, y2, sys.color + '66', 3))
+
+        drawNode({
+          x: pos.x,
+          y: pos.y,
+          width: pos.width,
+          height: pos.height,
+          fill: sys.color + '20',
+          accent: sys.color,
+          icon: sys.icon,
+          name: sys.name
+        })
+      })
+
+      svg.appendChild(createText(400, 324, '所有子系统通过 App Wiring 统一组装，形成完整的控制面', 12, '#64748b'))
 
       container.appendChild(svg)
 
@@ -331,10 +398,12 @@
       container.appendChild(insightDiv)
 
       this.mount.innerHTML = ''
+      this.mount.removeAttribute('aria-busy')
       this.mount.appendChild(container)
     }
 
     renderError (err) {
+      this.mount.removeAttribute('aria-busy')
       this.mount.innerHTML = `<div class="superset-error">⚠️ 加载失败: ${err.message}</div>`
     }
   }
@@ -350,8 +419,8 @@
 
     async init () {
       try {
-        const res = await fetch(this.dataUrl)
-        this.data = await res.json()
+        setLoadingState(this.mount, 'Meta-Agent 层级图')
+        this.data = await loadOverviewData(this.dataUrl)
         this.render()
       } catch (err) {
         this.renderError(err)
@@ -422,10 +491,12 @@
       container.appendChild(formulaDiv)
 
       this.mount.innerHTML = ''
+      this.mount.removeAttribute('aria-busy')
       this.mount.appendChild(container)
     }
 
     renderError (err) {
+      this.mount.removeAttribute('aria-busy')
       this.mount.innerHTML = `<div class="superset-error">⚠️ 加载失败: ${err.message}</div>`
     }
   }

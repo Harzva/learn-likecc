@@ -27,6 +27,20 @@
             .replace(/"/g, '&quot;')
     }
 
+    function setLoadingState(label) {
+        mount.setAttribute('aria-busy', 'true')
+        mount.innerHTML = '<div class="superset-loading">⏳ 正在加载' + esc(label) + '...</div>'
+    }
+
+    function clearBusy() {
+        mount.removeAttribute('aria-busy')
+    }
+
+    function renderError(message) {
+        clearBusy()
+        mount.innerHTML = '<p class="cc-arch-treemap__err">' + esc(message) + '</p>'
+    }
+
     function loadScript(src, cb) {
         if (window.d3) return cb()
         var s = document.createElement('script')
@@ -34,7 +48,7 @@
         s.async = true
         s.onload = cb
         s.onerror = function () {
-            mount.innerHTML = '<p class="cc-arch-treemap__err">无法加载 D3，知识图谱未能渲染。</p>'
+            renderError('无法加载 D3，知识图谱未能渲染。')
         }
         document.head.appendChild(s)
     }
@@ -530,17 +544,20 @@
         window.addEventListener('resize', function () {
             draw()
         })
+        clearBusy()
     }
 
+    setLoadingState('知识图谱')
     loadScript(D3_SRC, function () {
         fetch(jsonUrl)
             .then(function (res) {
-                if (!res.ok) throw new Error('bad response')
+                if (!res.ok) throw new Error('HTTP ' + res.status)
                 return res.json()
             })
             .then(render)
-            .catch(function () {
-                mount.innerHTML = '<p class="cc-arch-treemap__err">无法加载知识图谱数据。</p>'
+            .catch(function (err) {
+                console.error('Knowledge graph load error:', err)
+                renderError('无法加载知识图谱数据。')
             })
     })
 })()

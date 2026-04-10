@@ -970,9 +970,10 @@ function initPageSubnav() {
     aside.id = 'page-subnav'
     aside.className = 'page-subnav' + (collapsed ? ' page-subnav--collapsed' : '')
     aside.setAttribute('aria-label', config.title || '页内目录')
+    aside.setAttribute('aria-hidden', 'true')
 
     aside.innerHTML =
-        '<button type="button" class="page-subnav__toggle" aria-label="收起或展开目录" title="收起或展开目录">' +
+        '<button type="button" class="page-subnav__toggle" aria-label="收起或展开目录" aria-controls="page-subnav" aria-expanded="false" title="收起或展开目录">' +
         (collapsed ? '≡' : '→') +
         '</button>' +
         '<div class="page-subnav__scroll">' +
@@ -999,11 +1000,14 @@ function initPageSubnav() {
     const backdrop = document.createElement('div')
     backdrop.className = 'page-subnav__backdrop'
     backdrop.hidden = true
+    backdrop.setAttribute('aria-hidden', 'true')
 
     const fab = document.createElement('button')
     fab.type = 'button'
     fab.className = 'page-subnav__fab'
     fab.setAttribute('aria-label', '打开页内目录')
+    fab.setAttribute('aria-controls', 'page-subnav')
+    fab.setAttribute('aria-expanded', 'false')
     fab.textContent = '目录'
 
     document.body.appendChild(aside)
@@ -1014,21 +1018,34 @@ function initPageSubnav() {
     const links = Array.from(aside.querySelectorAll('.page-subnav__link'))
     const isMobile = () => window.matchMedia('(max-width: 1100px)').matches
 
+    function syncSubnavA11y() {
+        const open = aside.classList.contains('page-subnav--open')
+        const collapsedDesktop = aside.classList.contains('page-subnav--collapsed') && !isMobile()
+        const expanded = open || !collapsedDesktop
+        toggleBtn.setAttribute('aria-expanded', expanded ? 'true' : 'false')
+        fab.setAttribute('aria-expanded', open ? 'true' : 'false')
+        aside.setAttribute('aria-hidden', isMobile() && !open ? 'true' : 'false')
+        backdrop.setAttribute('aria-hidden', open ? 'false' : 'true')
+    }
+
     function setCollapsed(next) {
         aside.classList.toggle('page-subnav--collapsed', next)
         toggleBtn.textContent = next ? '≡' : '→'
         localStorage.setItem('page-subnav-collapsed', next ? '1' : '0')
+        syncSubnavA11y()
     }
 
     function closeMobilePanel() {
         aside.classList.remove('page-subnav--open')
         backdrop.hidden = true
+        syncSubnavA11y()
     }
 
     toggleBtn.addEventListener('click', () => {
         if (isMobile()) {
             const open = aside.classList.toggle('page-subnav--open')
             backdrop.hidden = !open
+            syncSubnavA11y()
             return
         }
         setCollapsed(!aside.classList.contains('page-subnav--collapsed'))
@@ -1037,9 +1054,18 @@ function initPageSubnav() {
     fab.addEventListener('click', () => {
         aside.classList.add('page-subnav--open')
         backdrop.hidden = false
+        syncSubnavA11y()
     })
 
     backdrop.addEventListener('click', closeMobilePanel)
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape') return
+        if (!isMobile()) return
+        if (!aside.classList.contains('page-subnav--open')) return
+        closeMobilePanel()
+        fab.focus()
+    })
 
     links.forEach((link) => {
         link.addEventListener('click', () => {
@@ -1077,6 +1103,8 @@ function initPageSubnav() {
 
         observerTargets.forEach((target) => observer.observe(target))
     }
+
+    syncSubnavA11y()
 }
 
 document.addEventListener('DOMContentLoaded', () => {
