@@ -153,6 +153,8 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Expose VibePaper four-question and control-plane sections in the top nav for faster section jumps
 - [x] Stay on Task 6 for one more bounded entrance-flow cleanup after the nav pass
 - [x] Retarget the VibePaper secondary hero CTA from loop expansion to the structural comparison entry
+- [x] Stay on Task 6 for one more bounded hero-entry wording cleanup after the CTA retarget
+- [x] Retarget the VibePaper primary hero CTA label so it points explicitly at the three current samples
 
 ## Guardrail
 
