@@ -153,6 +153,8 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Add one tool-not-available release-watch note explaining tool existence vs current-context availability
 - [x] Stay on Task 4 for one more bounded 2.1.101 operability slice after the tool-context note
 - [x] Add one rate-limit retry release-watch note explaining limit-type visibility and reset-time feedback
+- [x] Stay on Task 4 for one more bounded 2.1.101 protocol-recovery slice after the rate-limit note
+- [x] Add one brief-mode retry release-watch note explaining structured-message recovery
 - [x] Return to Task 6 for one bounded navigation cleanup after the recent Task 4 release-watch burst
 - [x] Expose VibePaper four-question and control-plane sections in the top nav for faster section jumps
 - [x] Stay on Task 6 for one more bounded entrance-flow cleanup after the nav pass
