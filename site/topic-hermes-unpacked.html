@@ -143,6 +143,21 @@
                         <p>提示词：画一个 Hermes gateway session boundary 图。左侧是 Telegram / Discord / Slack adapter 输入消息，中间是 build_session_key 与 SessionStore，标出 reset policy、session context prompt、history load/save，右侧是 cached AIAgent kernel，底部是 transcript persistence 与 delivery router。强调 gateway 负责 ingress、session identity、history、delivery，而不是替代 AIAgent 控制面。</p>
                         <p>Mermaid 更适合：是。</p>
                     </div>
+                    <p>再往下一层，<code>tools/terminal_tool.py</code> 和 <code>environments/README.md</code> 说明 Hermes 其实把“执行边界”也做成了正式抽象，而不是把 shell 默认绑死在当前机器。这里最值得注意的不是支持 Local / Docker / SSH / Daytona / Singularity / Modal 六种 backend，而是 <strong>同一个 agent loop 可以把 terminal 工具路由到不同执行面，同时用同一套 task / session 语义维持状态</strong>。</p>
+                    <table class="options-table">
+                        <tr><th>执行边界</th><th>关键锚点</th><th>真正说明了什么</th></tr>
+                        <tr><td>Backend Selection</td><td><code>tools/terminal_tool.py</code> 的 <code>TERMINAL_ENV</code> / <code>create_environment()</code></td><td>模型看到的是统一 terminal tool，但真实执行可以落到 local、docker、ssh、daytona、singularity、modal；这说明 backend 是控制面参数，不是工具接口分叉。</td></tr>
+                        <tr><td>Persistence Contract</td><td><code>terminal_tool.py</code> 顶部说明、<code>run_agent.py</code> 的 <code>_cleanup_task_resources()</code></td><td>Hermes 明确区分 persistent filesystem 和 live sandbox：文件状态可以跨重建保留，但长进程不保证永存；persistent backend 会跳过每轮 <code>cleanup_vm()</code>，交给 idle reaper 按 <code>lifetime_seconds</code> 回收。</td></tr>
+                        <tr><td>Task-Scoped State</td><td><code>environments/README.md</code> 的 <code>ToolContext</code> 说明</td><td>同一个 <code>task_id</code> 会复用同一终端 / 浏览器状态，reward verifier 看到的正是模型刚才操作过的那份环境；这让 Hermes 的执行面不仅能跑工具，还能被训练和评测系统复用。</td></tr>
+                        <tr><td>Research Reuse</td><td><code>environments/hermes_base_env.py</code> 与 <code>environments/README.md</code></td><td>Atropos 环境层直接通过 <code>TERMINAL_ENV</code> 接入 Hermes tool stack，说明 Hermes 的 backend 抽象不是 UI 附件，而是可被 RL / benchmark pipeline 复用的运行层。</td></tr>
+                    </table>
+                    <div class="course-quote">
+                        <p><strong>[插图提示词]</strong></p>
+                        <p>用途：解释 Hermes 的执行边界，说明 agent kernel、terminal tool、backend selector、persistent filesystem、idle reaper 之间的关系。</p>
+                        <p>形式：执行路径图；优先 Mermaid。</p>
+                        <p>提示词：画一个 Hermes execution boundary 图。顶部是 AIAgent 与 terminal tool，中间是 TERMINAL_ENV backend selector，下面分成 local、docker、ssh、daytona、singularity、modal 六个执行后端。旁边标出 task_id 复用、persistent filesystem、idle reaper、lifetime_seconds、ToolContext verifier，强调“统一工具接口，多种执行面，状态按 task/session 管理”。</p>
+                        <p>Mermaid 更适合：是。</p>
+                    </div>
                 </section>
 
                 <section id="flows" class="section-block">

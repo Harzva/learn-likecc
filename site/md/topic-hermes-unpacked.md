@@ -124,6 +124,22 @@ Mermaid 更适合：是。
 提示词：画一个 Hermes gateway session boundary 图。左侧是 Telegram / Discord / Slack adapter 输入消息，中间是 build_session_key 与 SessionStore，标出 reset policy、session context prompt、history load/save，右侧是 cached AIAgent kernel，底部是 transcript persistence 与 delivery router。强调 gateway 负责 ingress、session identity、history、delivery，而不是替代 AIAgent 控制面。  
 Mermaid 更适合：是。
 
+再往下一层，Hermes 还把“执行边界”做成了正式抽象：
+
+- `tools/terminal_tool.py` 用 `TERMINAL_ENV` + `create_environment()` 在 local、docker、ssh、daytona、singularity、modal 之间切换
+- `terminal_tool.py` 顶部和 `run_agent.py` 的 `_cleanup_task_resources()` 明确区分 persistent filesystem 与 live sandbox：文件可保留，不等于进程永存
+- `environments/README.md` 说明同一个 `task_id` 会复用同一终端 / 浏览器状态，所以 verifier 检查的是模型刚操作过的那份环境
+- 这套 backend 抽象又被 `HermesAgentBaseEnv` / Atropos 训练环境直接复用，说明 execution layer 不是 UI 附件，而是可训练、可评测的运行层
+
+这也是 Hermes 和普通“终端聊天壳”差别很大的地方：它不是只会调一个 shell，而是把 backend selection、生命周期、状态复用都纳入控制面设计。
+
+### [插图提示词]
+
+用途：解释 Hermes 的 execution boundary。  
+形式：执行路径图。  
+提示词：画一个 Hermes execution boundary 图。顶部是 AIAgent 与 terminal tool，中间是 TERMINAL_ENV backend selector，下面分成 local、docker、ssh、daytona、singularity、modal 六个执行后端。旁边标出 task_id 复用、persistent filesystem、idle reaper、lifetime_seconds、ToolContext verifier，强调“统一工具接口，多种执行面，状态按 task/session 管理”。  
+Mermaid 更适合：是。
+
 ### 06 · 三条运行链路复盘：CLI、Gateway、Cron 到底怎么汇进同一套脑子
 
 官方 Architecture 页把三条链路写得很清楚：

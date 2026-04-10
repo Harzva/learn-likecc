@@ -89,6 +89,9 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Choose a fourth Hermes pass focused on gateway/session boundaries
 - [x] Add one code-backed Hermes gateway/session boundary breakdown to the unpacked draft
 - [x] Verify the Hermes draft now includes the new gateway/session anchor terms
+- [x] Choose a fifth Hermes pass focused on environment backends and execution boundaries
+- [x] Add one code-backed Hermes environment/backend boundary breakdown to the unpacked draft
+- [x] Verify the Hermes draft now includes the new execution-boundary anchor terms
 
 ## Guardrail
 
