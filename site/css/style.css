@@ -7362,6 +7362,67 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     margin-bottom: 1rem;
 }
 
+.agent-topic-page .agent-topic-section {
+    position: relative;
+}
+
+.agent-topic-page .agent-topic-section--entry {
+    padding-top: 60px;
+}
+
+.agent-topic-page .agent-topic-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
+}
+
+.agent-topic-page .agent-topic-card-link {
+    position: relative;
+    overflow: hidden;
+    min-height: 100%;
+    text-decoration: none;
+    color: inherit;
+    border-color: rgba(59, 130, 246, 0.14);
+    background:
+        radial-gradient(circle at top right, rgba(96, 165, 250, 0.12), transparent 38%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(239, 246, 255, 0.96));
+    box-shadow: 0 22px 44px rgba(30, 64, 175, 0.08);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.agent-topic-page .agent-topic-card-link:hover,
+.agent-topic-page .agent-topic-card-link:focus-visible {
+    transform: translateY(-3px);
+    border-color: rgba(37, 99, 235, 0.24);
+    box-shadow: 0 28px 52px rgba(30, 64, 175, 0.12);
+}
+
+.agent-topic-page .agent-topic-card-link:focus-visible {
+    outline: 3px solid rgba(59, 130, 246, 0.24);
+    outline-offset: 3px;
+}
+
+.agent-topic-page .agent-topic-card-link h3 {
+    margin-bottom: 0.95rem;
+}
+
+.agent-topic-page .agent-topic-card-link p:last-child {
+    margin-top: auto;
+    color: var(--accent-strong);
+}
+
+.agent-topic-page .agent-topic-copy {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.agent-topic-page .agent-topic-copy--lead {
+    margin-bottom: 1.25rem;
+}
+
+.agent-topic-page .agent-topic-actions {
+    justify-content: center;
+}
+
 .tutorial-page .nav-container {
     max-width: min(1380px, calc(100vw - 40px));
 }
@@ -7660,6 +7721,15 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     }
 
     .paoding-page .paoding-card-link {
+        padding: 20px 18px;
+        border-radius: 20px;
+    }
+
+    .agent-topic-page .agent-topic-grid {
+        gap: 16px;
+    }
+
+    .agent-topic-page .agent-topic-card-link {
         padding: 20px 18px;
         border-radius: 20px;
     }

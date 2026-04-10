@@ -53,6 +53,9 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Choose one more hub-page visual-maturity candidate after the media branch
 - [x] Replace `topic-paoding-jieniu.html` inline layout styling with scoped classes
 - [x] Verify the paoding hub page no longer uses inline `style=` attributes
+- [x] Choose one more hub-page visual-maturity candidate after the paoding pass
+- [x] Replace `topic-agent.html` inline layout styling with scoped classes
+- [x] Verify the agent hub page no longer uses inline `style=` attributes
 
 ## Guardrail
 
