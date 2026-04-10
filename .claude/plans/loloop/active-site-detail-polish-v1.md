@@ -151,6 +151,8 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Add one default-cloud-environment release-watch note explaining remote execution substrate auto-bootstrap
 - [x] Return to Task 6 for one bounded navigation cleanup after the recent Task 4 release-watch burst
 - [x] Expose VibePaper four-question and control-plane sections in the top nav for faster section jumps
+- [x] Stay on Task 6 for one more bounded entrance-flow cleanup after the nav pass
+- [x] Retarget the VibePaper secondary hero CTA from loop expansion to the structural comparison entry
 
 ## Guardrail
 
