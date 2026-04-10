@@ -94,6 +94,25 @@ Mermaid 更适合：是。
 提示词：画一个 Claude Code background script security boundary 图。左侧是主会话触发后台脚本，中间是脚本执行层，外面套一层 PID namespace isolation 与 env scrub，旁边标出 `CLAUDE_CODE_SCRIPT_CAPS` 作为会话级调用上限，底部是 Bash permission gate，列出 env-var prefix、compound commands、network redirect 等风险检查点。  
 Mermaid 更适合：是。
 
+## 再补一刀：prompt cache 为什么开始要求“稳定系统提示骨架”
+
+`2.1.98` 里还有一条很容易被忽略，但对长期会话和团队复用都很关键的变化：print mode 新增 `--exclude-dynamic-system-prompt-sections`，官方说明它用于 **improved cross-user prompt caching**。这不是单纯多一个 flag，而是在告诉我们 Claude Code 团队已经把“哪些 system prompt 内容应该稳定、哪些应该动态”当成缓存命中率问题来处理。
+
+这条为什么值得单独记：
+
+- prompt cache 命中的前提，不只是模型和输入相似，而是系统提示骨架不要每次都带进太多会变的字段
+- 一旦存在 user-specific / runtime-specific 的动态段落，同一个工作流在跨用户、跨机器、跨会话时就更容易 cache miss
+- 官方把它做成显式开关，说明 Claude Code 已经不把 prompt cache 只当底层黑盒优化，而是开始把“提示结构稳定性”暴露成可操作的工程参数
+
+对本站主线来说，这一刀和前面的 `Monitor tool`、status line、安全边界其实能拼成一张更完整的控制面图：`Monitor tool` 解决的是运行中事件可观察，subprocess sandboxing 解决的是后台脚本边界可控制，而 `--exclude-dynamic-system-prompt-sections` 解决的是**长期会话与多人复用时，系统提示层到底要不要保持稳定骨架**。这条线对我们自己的 `codex-loop`、Like Code 和 Hermes 拆解都很重要，因为一旦外层调度越来越长，prompt cache 是否稳定，直接影响成本、响应速度和跨角色复用体验。
+
+### [插图提示词]
+
+用途：画“Claude Code prompt cache 命中/失配”小图，强调稳定 system prompt 骨架与动态段落分离。  
+形式：对比图。  
+提示词：画一个 Claude Code prompt cache 对比图。左侧是稳定的 system prompt skeleton，加少量独立 dynamic sections，被标注为 cache hit friendly；右侧是把 user-specific、runtime-specific 内容混进 system prompt 主体，标注为 cache miss prone。底部加一句说明：`--exclude-dynamic-system-prompt-sections` 的目标是把动态段落从共享缓存键里剥离。  
+Mermaid 更适合：是。
+
 ## 本站如何维护本专题
 
 1. **触发**：npm 新版本或官方 changelog 出现新小节时。  

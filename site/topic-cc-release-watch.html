@@ -178,6 +178,20 @@
                     </div>
                 </section>
 
+                <section id="prompt-cache-keyword" class="section-block">
+                    <h2>再补一刀：prompt cache 为什么开始要求“稳定系统提示骨架”</h2>
+                    <p><code>2.1.98</code> 里还有一条很容易被忽略，但对长期会话和团队复用都很关键的变化：print mode 新增 <code>--exclude-dynamic-system-prompt-sections</code>，官方说明它用于 <strong>improved cross-user prompt caching</strong>。这不是单纯多一个 flag，而是在告诉我们 Claude Code 团队已经把“哪些 system prompt 内容应该稳定、哪些应该动态”当成缓存命中率问题来处理。</p>
+                    <p>这条为什么值得单独记：第一，prompt cache 命中的前提，不只是模型和输入相似，而是系统提示骨架不要每次都带进太多会变的字段；第二，一旦存在 user-specific / runtime-specific 的动态段落，同一个工作流在跨用户、跨机器、跨会话时就更容易 cache miss；第三，官方把它做成显式开关，说明 Claude Code 已经不把 prompt cache 只当底层黑盒优化，而是开始把“提示结构稳定性”暴露成可操作的工程参数。</p>
+                    <p>对本站主线来说，这一刀和前面的 <code>Monitor tool</code>、status line、安全边界其实能拼成一张更完整的控制面图：<code>Monitor tool</code> 解决的是运行中事件可观察，subprocess sandboxing 解决的是后台脚本边界可控制，而 <code>--exclude-dynamic-system-prompt-sections</code> 解决的是<strong>长期会话与多人复用时，系统提示层到底要不要保持稳定骨架</strong>。这条线对我们自己的 <code>codex-loop</code>、Like Code 和 Hermes 拆解都很重要，因为一旦外层调度越来越长，prompt cache 是否稳定，直接影响成本、响应速度和跨角色复用体验。</p>
+                    <div class="course-quote">
+                        <p><strong>[插图提示词]</strong></p>
+                        <p>用途：画“Claude Code prompt cache 命中/失配”小图，强调稳定 system prompt 骨架与动态段落分离。</p>
+                        <p>形式：对比图。</p>
+                        <p>提示词：画一个 Claude Code prompt cache 对比图。左侧是稳定的 system prompt skeleton，加少量独立 dynamic sections，被标注为 cache hit friendly；右侧是把 user-specific、runtime-specific 内容混进 system prompt 主体，标注为 cache miss prone。底部加一句说明：<code>--exclude-dynamic-system-prompt-sections</code> 的目标是把动态段落从共享缓存键里剥离。</p>
+                        <p>Mermaid 更适合：是。</p>
+                    </div>
+                </section>
+
                 <section id="maintain" class="section-block">
                     <h2>本站维护约定</h2>
                     <ol>
