@@ -78,6 +78,25 @@ Mermaid 更适合：是。
 提示词：画一个 Claude Code enterprise TLS trust flow。左侧是 Claude Code client，中间是 OS CA certificate store 与 enterprise TLS proxy，右侧是 upstream Claude service。旁边补一个 fallback 分支，标注 `CLAUDE_CODE_CERT_STORE=bundled` 可退回 bundled CAs。底部说明：这不是模型能力问题，而是企业网络信任链接入问题。  
 Mermaid 更适合：是。
 
+## 再补一刀：default cloud environment 自动创建，说明执行底座开始前移
+
+`2.1.101` 里还有一条很容易被忽略，但对远程会话很关键的变化：`/ultraplan` 和其他 remote-session 功能现在会 **自动创建默认 cloud environment**，而不是要求你先去网页里手动做一遍 setup。
+
+这条为什么值得单独记：
+
+- 它把远程功能从“高级用户自己先铺好执行底座”往“命令触发时自动补底座”推进了一步
+- 它让远程入口更像真正的 execution substrate，而不是文档里写着能用、实际还要先做一堆环境准备
+- 它说明 Claude Code 团队已经开始把“远程环境是否存在”也纳入命令级体验设计，而不是把这层完全丢给用户自己兜底
+
+如果把前面的 OS CA trust 看成企业网络接入层，这一条更像远程执行层。对本站主线来说，它和 Hermes 的 execution backend、以及我们自己一直在拆的“控制面能否自动补齐运行底座”是同一类问题：长期 agent 系统不是只有 prompt loop，还要决定环境从哪里来、何时创建、谁来托管。
+
+### [插图提示词]
+
+用途：画“Claude Code 远程执行底座自动补齐”小图，强调命令触发、默认 cloud environment 创建和远程功能落地之间的关系。  
+形式：流程图。  
+提示词：画一个 Claude Code remote environment bootstrap flow。左侧是 `/ultraplan` 与 other remote-session features 发起请求；中间是 system auto-creates default cloud environment；右侧是 remote execution session 启动并继续任务。底部补一句说明：把远程执行底座从手动前置 setup 变成命令触发时自动补齐。  
+Mermaid 更适合：是。
+
 ## 本轮关键词：Monitor tool 为什么值得盯
 
 在 `2.1.98` 里，最值得单独盯住的关键词不是登录向导，而是 **Monitor tool for streaming events from background scripts**。这条变化说明 Claude Code 对“后台脚本不是一次性黑盒，而是持续产生活动流”的支持又往前走了一步。

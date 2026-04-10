@@ -147,6 +147,8 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Add one 2.1.101 team-onboarding release-watch slice backed by official changelog sources
 - [x] Stay on Task 4 for one adjacent bounded 2.1.101 enterprise-access slice
 - [x] Add one OS CA trust release-watch note explaining enterprise TLS proxy compatibility and the cert-store fallback
+- [x] Stay on Task 4 for one more bounded 2.1.101 execution-substrate slice
+- [x] Add one default-cloud-environment release-watch note explaining remote execution substrate auto-bootstrap
 
 ## Guardrail
 
