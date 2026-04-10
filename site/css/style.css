@@ -7654,6 +7654,21 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     margin-top: 1rem;
 }
 
+.agent-papers-page .agent-papers-section {
+    position: relative;
+}
+
+.agent-papers-page .agent-papers-section--entry {
+    padding-top: 60px;
+}
+
+.agent-papers-page .agent-papers-list {
+    max-width: 720px;
+    margin: 0 auto;
+    line-height: 1.8;
+    color: var(--text-secondary);
+}
+
 .tutorial-page .nav-container {
     max-width: min(1380px, calc(100vw - 40px));
 }
