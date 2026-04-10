@@ -59,6 +59,9 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Choose one more hub-page visual-maturity candidate after the agent pass
 - [x] Replace `topic-rag.html` inline layout styling with scoped classes
 - [x] Verify the RAG hub page no longer uses inline `style=` attributes
+- [x] Choose one more concept-page visual-maturity candidate after the RAG pass
+- [x] Replace `topic-meta-agent.html` inline layout styling with scoped classes
+- [x] Verify the meta-agent page no longer uses inline `style=` attributes
 
 ## Guardrail
 

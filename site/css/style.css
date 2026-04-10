@@ -7513,6 +7513,53 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     font-size: 0.9rem;
 }
 
+.meta-topic-page .meta-topic-section {
+    position: relative;
+}
+
+.meta-topic-page .meta-topic-section--entry {
+    padding-top: 60px;
+}
+
+.meta-topic-page .meta-topic-grid {
+    gap: 22px;
+}
+
+.meta-topic-page .meta-topic-grid--concept {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.meta-topic-page .meta-topic-grid--stack {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.meta-topic-page .meta-topic-grid .quickstart-card {
+    min-height: 100%;
+    border-color: rgba(14, 116, 144, 0.12);
+    background:
+        radial-gradient(circle at top right, rgba(125, 211, 252, 0.12), transparent 38%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.96));
+    box-shadow: 0 22px 44px rgba(8, 47, 73, 0.08);
+}
+
+.meta-topic-page .meta-topic-grid .quickstart-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.95rem;
+}
+
+.meta-topic-page .meta-topic-copy {
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.meta-topic-page .meta-topic-copy--lead {
+    margin-bottom: 1rem;
+}
+
+.meta-topic-page .meta-topic-copy--tail {
+    margin-top: 1.25rem;
+}
+
 .tutorial-page .nav-container {
     max-width: min(1380px, calc(100vw - 40px));
 }
@@ -7829,6 +7876,15 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     }
 
     .rag-topic-page .rag-topic-card-link {
+        padding: 20px 18px;
+        border-radius: 20px;
+    }
+
+    .meta-topic-page .meta-topic-grid {
+        gap: 16px;
+    }
+
+    .meta-topic-page .meta-topic-grid .quickstart-card {
         padding: 20px 18px;
         border-radius: 20px;
     }
