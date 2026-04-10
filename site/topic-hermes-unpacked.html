@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hermes Agent 解构 - 庖丁解牛专题</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☤</text></svg>">
+    <meta name="description" content="庖丁解牛专题子页：拆解 Hermes Agent 如何把 agent loop、工具注册、记忆/技能、gateway、cron 与环境后端拼成一个长期运行的 agent 操作层。">
+    <meta name="page:updated" content="2026-04-10">
+</head>
+<body class="cc-unpacked-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">☤</span>
+                <span class="logo-text">Hermes Agent 解构</span>
+            </a>
+            <div class="nav-links">
+                <a href="#attribution" class="nav-link">说明</a>
+                <a href="#why" class="nav-link">01 为什么重要</a>
+                <a href="#layers" class="nav-link">02 分层</a>
+                <a href="#control-plane" class="nav-link">03 控制面</a>
+                <a href="#memory-skills" class="nav-link">04 记忆与技能</a>
+                <a href="#gateway-cron" class="nav-link">05 Gateway / Cron</a>
+                <a href="#lessons" class="nav-link">06 值得学什么</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-paoding-jieniu.html" class="btn-github">庖丁解牛专题</a>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>庖丁解牛专题 · 子专题</span>
+                <span>Hermes Agent / 长期运行控制面</span>
+            </div>
+            <h1 class="hero-title">
+                Hermes Agent<br>
+                <span class="gradient-text">解构</span>
+            </h1>
+            <p class="hero-subtitle">
+                如果说 <code>Superset</code> 让我们看见的是“外层工作台如何调 inner agent”，<br>
+                那么 <code>Hermes Agent</code> 更像另一条路：把 <strong>agent loop、工具注册、记忆/技能、gateway、cron、环境后端</strong> 拼成一个长期在线的 agent 操作层。
+            </p>
+            <div class="hero-actions">
+                <a href="#why" class="btn btn-primary">先看 01 为什么重要</a>
+                <a href="topic-superset-unpacked.html" class="btn btn-secondary">对照 Superset 解构</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="course-main devlog-main">
+        <div class="container container--layout-wide">
+            <article class="course-content devlog-content">
+
+                <section id="attribution" class="section-block">
+                    <h2>参考来源与版本锚定</h2>
+                    <div class="course-quote">
+                        <p><strong>本页正文由本站独立撰写</strong>，目标不是做产品介绍，而是把 Hermes Agent 拆成适合我们自己工程阅读的结构地图。</p>
+                        <p><strong>官方来源</strong>：<a href="https://hermes-agent.ai/" target="_blank" rel="noopener noreferrer">hermes-agent.ai</a>、<a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener noreferrer">NousResearch/hermes-agent</a>、官方文档 Architecture / Memory / Gateway 相关页面。</p>
+                        <p><strong>本地锚点</strong>：<code>reference/reference_agent/hermes-agent/README.md</code>、<code>run_agent.py</code>、<code>tools/registry.py</code>、<code>tools/memory_tool.py</code>、<code>tools/skills_tool.py</code>、<code>tools/delegate_tool.py</code>、<code>gateway/run.py</code>、<code>gateway/session.py</code>、<code>cron/scheduler.py</code>。</p>
+                    </div>
+                </section>
+
+                <section id="why" class="section-block">
+                    <h2>01 · 为什么 Hermes 值得放进庖丁解牛专题</h2>
+                    <p>它不是普通的“另一个终端 agent”。从 README 和官方架构页看，Hermes 同时把 <strong>CLI、消息平台 gateway、记忆、技能、计划/待办、定时任务、环境后端</strong> 放进一个统一运行体里。也就是说，它讨论的已经不是“这一轮怎么回答”，而是“一个 agent 如何长期在线、跨会话工作、跨平台送达、再把经验写回自己体内”。</p>
+                    <p>这和我们在 <a href="topic-paoding-jieniu.html">庖丁解牛专题</a>想抓的主线正好对上：不是看市场文案，而是看<strong>控制点到底落在哪些层</strong>。Hermes 的价值在于它把控制点拆得很实：<code>run_agent.py</code> 里的 <code>AIAgent</code> 是主循环，<code>tools/registry.py</code> 是执行面入口，<code>gateway/</code> 是平台入口，<code>cron/</code> 是调度时间轴，<code>tools/memory_tool.py</code> 与技能工具则把“会不会长记性”和“会不会把经验固化”拉进了同一套系统里。</p>
+                </section>
+
+                <section id="layers" class="section-block">
+                    <h2>02 · 先拆成六层：Hermes 到底在拼什么</h2>
+                    <table class="options-table">
+                        <tr><th>层次</th><th>关键锚点</th><th>解决的问题</th></tr>
+                        <tr><td>入口壳</td><td><code>hermes_cli/</code>、README 的 CLI / Gateway 双入口</td><td>用户是从终端进入，还是从 Telegram / Discord / Slack 进入</td></tr>
+                        <tr><td>控制面</td><td><code>run_agent.py</code> 的 <code>AIAgent</code></td><td>模型调用、提示词拼装、工具回环、压缩、重试、持久化</td></tr>
+                        <tr><td>工具执行面</td><td><code>model_tools.py</code>、<code>tools/registry.py</code></td><td>工具如何被注册、筛选、分派到不同 toolset</td></tr>
+                        <tr><td>长期记忆层</td><td><code>tools/memory_tool.py</code>、<code>agent/memory_manager.py</code></td><td>会话之外还能记住什么，何时刷回 memory / user profile</td></tr>
+                        <tr><td>技能层</td><td><code>tools/skills_tool.py</code>、<code>tools/skill_manager_tool.py</code>、README 的 learning loop</td><td>把经验沉淀为可复用 skill，而不是只留在聊天记录里</td></tr>
+                        <tr><td>平台与时间轴</td><td><code>gateway/</code>、<code>cron/scheduler.py</code>、<code>environments/</code></td><td>消息从哪里进来、任务何时触发、执行落在哪个环境</td></tr>
+                    </table>
+                    <p class="section-desc section-desc--tight">所以 Hermes 不只是“Agent 本体”，它更接近一个长期运行的 <strong>agent OS / agent operations layer</strong>。</p>
+                    <div class="course-quote">
+                        <p><strong>[插图提示词]</strong></p>
+                        <p>用途：画出 Hermes 的六层总图，帮助读者先建立“入口壳 → 控制面 → 工具面 → 记忆/技能 → gateway/cron → 环境后端”的分层心智。</p>
+                        <p>形式：分层结构图；优先 Mermaid。</p>
+                        <p>提示词：画一个 Hermes Agent 六层架构图，顶部是 CLI 与 Messaging Gateway 双入口，中间是 AIAgent 控制面与 Tool Registry，左侧是 Memory / User Profile，右侧是 Skills / Skill Manager，底部是 Gateway adapters、Cron scheduler、Environment backends，箭头标出消息进入、工具调用、记忆写回、定时触发、平台回送。</p>
+                        <p>Mermaid 更适合：是。</p>
+                    </div>
+                </section>
+
+                <section id="control-plane" class="section-block">
+                    <h2>03 · 控制面到底在哪：不是 gateway，而是 AIAgent</h2>
+                    <p>最容易误判的一点，是把 Hermes 的“平台能力”当成主脑。实际上从 <code>run_agent.py</code> 看，真正像控制面的还是 <code>AIAgent</code>。它负责 provider 选择、系统提示词组装、工具循环、压缩、会话保存、background review，以及对 memory / skill nudges 的时机控制。官方 Architecture 页也把它定义成同步 orchestration engine。</p>
+                    <p>这意味着 <code>gateway/</code> 更像 ingress layer：把 Telegram、Discord、Slack、WhatsApp、Signal 等消息转成统一事件，再为每条消息创建带 session history 的 <code>AIAgent</code>。控制面不在平台壳，而在这个 agent loop 本身。对我们来说，这一点和 Claude Code / Like Code 的讨论很接近：<strong>不要把壳误认成脑，真正的脑在那条循环与状态机里。</strong></p>
+                    <p>进一步看，<code>tools/registry.py</code> 把工具声明、schema、handler、toolset 关系集中到一个注册中心；<code>model_tools.py</code> 再决定哪些工具真正进入本轮可用面。这说明 Hermes 的控制面不是“所有功能散落在命令里”，而是通过一层显式注册表去管理执行面。</p>
+                </section>
+
+                <section id="memory-skills" class="section-block">
+                    <h2>04 · Hermes 的关键差异：它把记忆和技能放进了主循环</h2>
+                    <p>README 最强调的卖点是 built-in learning loop。这不是一句 marketing phrase，因为本地代码里确实能找到对应锚点：<code>AIAgent</code> 在初始化阶段会装 memory store、memory provider、skills config，并维护 <code>_turns_since_memory</code>、<code>_iters_since_skill</code> 这样的节流计数；后面还有 background review 线程专门审查当前对话是否值得写入 memory 或 skill。</p>
+                    <p>这和很多“带记忆”的 agent 不太一样。很多系统把记忆当外挂检索层，技能当外部提示词包；Hermes 则更进一步，把“什么时候提醒自己保存记忆”和“什么时候把经验固化成 skill”拉进了主循环内部。对我们自己栈的启发很直接：如果真想做长期运行 agent，记忆和技能不能只是静态文件夹，而要变成 loop 内的一等公民。</p>
+                    <div class="course-quote">
+                        <p><strong>[插图提示词]</strong></p>
+                        <p>用途：说明 Hermes 的 closed learning loop，不只是对话，还有 memory / skill review 与写回。</p>
+                        <p>形式：闭环流程图；优先 Mermaid。</p>
+                        <p>提示词：画一个 Hermes Agent learning loop 闭环：user message 进入 AIAgent，模型调用工具完成任务，conversation 结束后触发 background review，判断是否写入 memory、user profile 或 skill，随后这些内容回到下一轮 system prompt，形成持续学习闭环。</p>
+                        <p>Mermaid 更适合：是。</p>
+                    </div>
+                </section>
+
+                <section id="gateway-cron" class="section-block">
+                    <h2>05 · Gateway、Cron、Environment：它怎么从“会聊天”走到“长期在线”</h2>
+                    <p>Hermes 另一条值得拆的线，是它把“入口平台”和“时间触发”做成了正式层。官方架构页的数据流很明确：Gateway message 会先经过 adapter 和 session 解析，再生成新的 <code>AIAgent</code>；Cron job 则由 scheduler tick 拉起 fresh agent、注入技能上下文、跑 prompt、再把结果送回目标平台。</p>
+                    <p>这让 Hermes 不只是一个 REPL，而是一个可以挂在时间轴上、也可以挂在消息总线上运行的系统。与此同时，README 还列出本地、Docker、SSH、Daytona、Singularity、Modal 等环境后端，说明它把“跑在哪”也当成正式抽象层，而不是默认永远跑在开发者当前 shell 里。</p>
+                    <p>对我们来说，这一层最值得学的不是“支持的平台越多越好”，而是：<strong>当一个 agent 不再只存在于当前终端，它的 session key、delivery path、environment backend、job scheduler 就必须进入系统设计主线。</strong></p>
+                </section>
+
+                <section id="lessons" class="section-block">
+                    <h2>06 · 对 Claude Code / Like Code / codex-loop 值得学什么</h2>
+                    <div class="course-quote">
+                        <p><strong>第一</strong>，要把控制面和入口壳分开。Hermes 的真正主脑在 <code>AIAgent</code>，不是在 CLI 或 gateway adapter。</p>
+                        <p><strong>第二</strong>，要把记忆和技能当成 loop 内结构，而不是外挂资料夹。只有这样，系统才会真的越跑越懂自己。</p>
+                        <p><strong>第三</strong>，要把时间轴与平台回送当成正式能力。<code>codex-loop</code> 现在做的是“定时继续推进同一个任务”，Hermes 则展示了“如何把这件事做成 agent 原生能力”。</p>
+                        <p><strong>第四</strong>，Hermes 适合学的是“长期运行控制层”，不是原样照搬。我们的主脑仍应是 Claude Code / Like Code，自身再去调 memory、skills、worker、scheduler，而不是简单复制 Hermes 的产品壳。</p>
+                    </div>
+                    <p>一句话收尾：<strong>Superset 教我们外层工作台如何编排多个 worker；Hermes 则进一步提醒我们，长期在线 agent 还需要把记忆、技能、平台入口和时间轴一起纳入控制面。</strong></p>
+                </section>
+
+                <section class="section-block">
+                    <h2>参考与原始链接</h2>
+                    <ul>
+                        <li><a href="https://hermes-agent.ai/" target="_blank" rel="noopener noreferrer">Hermes Agent 官网</a></li>
+                        <li><a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener noreferrer">NousResearch/hermes-agent</a></li>
+                        <li><a href="https://hermes-agent.nousresearch.com/docs/developer-guide/architecture" target="_blank" rel="noopener noreferrer">官方文档 · Architecture</a></li>
+                        <li><a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/memory" target="_blank" rel="noopener noreferrer">官方文档 · Memory</a></li>
+                        <li><code>reference/reference_agent/hermes-agent/run_agent.py</code></li>
+                        <li><code>reference/reference_agent/hermes-agent/tools/registry.py</code></li>
+                        <li><code>reference/reference_agent/hermes-agent/gateway/run.py</code></li>
+                        <li><code>reference/reference_agent/hermes-agent/cron/scheduler.py</code></li>
+                    </ul>
+                </section>
+
+                <div class="chapter-navigation">
+                    <a href="topic-paoding-jieniu.html" class="btn btn-secondary">← 庖丁解牛专题</a>
+                    <a href="topic-superset-unpacked.html" class="btn btn-primary">对照 Superset 解构 →</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container container--layout-wide">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-hermes-unpacked.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -77,6 +77,9 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Choose one more small page-layout candidate after the Agent-hot pass
 - [x] Replace `topic-agent-papers.html` inline layout styling with scoped classes
 - [x] Verify the Agent papers page no longer uses inline `style=` attributes
+- [x] Choose the Hermes unpacked-topic task as the next main-site move from the recurring pool
+- [x] Create the first `topic-hermes-unpacked` site draft under the 庖丁解牛 axis
+- [x] Add Hermes Agent as a visible subtopic entry on `topic-paoding-jieniu.html`
 
 ## Guardrail
 
