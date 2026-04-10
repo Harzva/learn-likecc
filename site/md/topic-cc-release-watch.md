@@ -24,6 +24,7 @@
 
 | 版本 | 要点（非穷尽） |
 | --- | --- |
+| **2.1.101** | 新增 `/team-onboarding`，可基于本地 Claude Code 使用痕迹生成 teammate ramp-up guide；默认信任操作系统 CA 证书库以适配企业 TLS 代理；远程会话相关功能可自动创建默认 cloud environment；同时修了一批 `--resume`、插件、权限、subagent、Remote Control 与长会话内存问题。 |
 | **2.1.98** | Vertex AI 三方登录向导；新增 **Monitor tool** 用于流式读取后台脚本事件；Linux 子进程沙箱隔离与 `CLAUDE_CODE_SCRIPT_CAPS`；`--exclude-dynamic-system-prompt-sections` 改善跨用户 prompt cache；Perforce / worktree / tracing / LSP `clientInfo` 等工程向增强；同时修了一批 Bash 权限绕过与 `/resume` / hooks / transcript 问题。 |
 | **2.1.97** | `NO_FLICKER` 的 Focus View；status line `refreshInterval`；`workspace.git_worktree` 进入 status line JSON；`/agents` 显示运行中 subagents；多项权限、`/resume`、MCP OAuth、上下文压缩、OTEL tracing 与 `NO_FLICKER` 修复。 |
 | **2.1.92** | `forceRemoteSettingsRefresh` 策略；Bedrock 交互配置向导；`/cost` 按模型与缓存命中细分；`/release-notes` 改为交互选版；Remote Control 默认会话名带 hostname；移除 `/tag`、`/vim`（改走 `/config`）；Linux sandbox 附带 `apply-seccomp`；多项全屏/子代理/Homebrew 渠道修复 |
@@ -33,6 +34,30 @@
 | **2.1.87** | Cowork Dispatch 消息投递修复 |
 | **2.1.86** | API 请求 `X-Claude-Code-Session-Id`；`.jj`/`.sl` 目录排除；旧会话 resume、插件脚本权限、多终端与 VS Code 扩展等问题修复 |
 | **2.1.85** | MCP `headersHelper` 相关 env；Hooks 条件 `if`；deeplink 长度上限；MCP OAuth 发现；组织策略下插件屏蔽；OpenTelemetry 工具详情门控；多项 resume/MCP/UI 修复 |
+
+## 新版关键词：/team-onboarding 开始把隐性用法写回团队文档
+
+`2.1.101` 里最值得单独拎出来的新词，是 `/team-onboarding`。官方 changelog 对它的描述很短，但信号很强：Claude Code 不只是继续补单人会话体验，而是开始把 **你在本地怎样使用 Claude Code** 沉淀成可以交给同事的 ramp-up guide。
+
+这条为什么值钱：
+
+- 它把“个人工作习惯”往“团队可复制流程”推了一步
+- 它不是让团队再手写一份抽象 wiki，而是从真实 usage 反推 onboarding 文档，这和本站一直强调的“从运行痕迹抽结构”是同一条思路
+- 它意味着 Claude Code 的控制面不只盯当前 agent loop，也开始盯团队成员如何更快接上已有工作流
+
+如果把 `Monitor tool`、status line、安全边界、prompt cache 都看成“把单次会话做得更可观察、更可控”，那 `/team-onboarding` 更像再补一层：**把个人会话里的 tacit knowledge 往团队入口迁移**。这对我们自己的 `codex-loop`、技能包、教程页都很相关，因为一旦系统不只服务一个人，最容易断的不是工具能力，而是新人怎样接上前人的命令面、目录结构和习惯动作。
+
+### [插图提示词]
+
+用途：画“Claude Code 团队 onboarding 生成链路”小图，强调从个人本地 usage 到 teammate guide 的沉淀过程。  
+形式：流程图。  
+提示词：画一个 Claude Code team onboarding flow。左侧是个人本地 Claude Code usage，包括 commands、workflows、plugins、naming habits；中间是 `/team-onboarding` 提取并整理这些模式；右侧是 teammate ramp-up guide，包含 recommended commands、project conventions、handoff notes。底部补一句说明：把 tacit usage 变成团队可复用入口。  
+Mermaid 更适合：是。
+
+### 本轮原始来源
+
+- 官方文档：`https://code.claude.com/docs/en/changelog`（`2.1.101`, 2026-04-10）
+- GitHub Raw：`https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md`
 
 ## 本轮关键词：Monitor tool 为什么值得盯
 

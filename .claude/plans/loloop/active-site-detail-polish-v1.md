@@ -143,6 +143,8 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Update the stale VibePaper opener image prompt so it reflects three main samples plus the candidate lane
 - [x] Stay on Task 6 for one bounded sample-status clarity pass after the opener prompt sync
 - [x] Add one explicit sample-status note near the VibePaper anchor cards to summarize independent pages vs hub sample vs candidate lane
+- [x] Shift back to Task 4 for one bounded official changelog slice after the latest VibePaper cleanup chain
+- [x] Add one 2.1.101 team-onboarding release-watch slice backed by official changelog sources
 
 ## Guardrail
 
