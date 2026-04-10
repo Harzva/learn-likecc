@@ -159,6 +159,8 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Sync the VibePaper hero subtitle with the current three-main-samples plus AIDE candidate-lane structure
 - [x] Stay on Task 6 for one more bounded page-metadata cleanup after the hero copy sync
 - [x] Sync the VibePaper page description metadata with the current three-main-samples plus AIDE candidate-lane structure
+- [x] Stay on Task 6 for one more bounded title-metadata cleanup after the description sync
+- [x] Sync the VibePaper page title metadata with the current three-main-sample scope
 
 ## Guardrail
 
