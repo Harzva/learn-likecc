@@ -83,6 +83,19 @@ Mermaid 更适合：否，更适合 HTML 卡片图。
 
 当前站内决策：它先作为 **short hub card / comparison sample** 保留在 VibePaper 总页里，还不急着升成独立 unpacked 页面。等后面把 `AI Scientist-v1 / v2` 差异和它引用的 AIDE 底座再看清，再决定是否单独拆页。
 
+### 再做一个受控 intake：AIDE ML 先作为优化实验室候选
+
+这一轮新接入的不是第四个正式样本，而是一个受控候选：`AIDE ML`。它的价值不在“会不会直接写论文”，而在于它把 **code-space tree search + benchmark optimization** 做得非常清楚，而且是 `AI Scientist-v2` 背后直接承接的参考算法之一。
+
+先按四问框架给出当前判断：
+
+- 更像哪种形态：不是 plugin 协议，也不是 workspace studio，更像 **benchmark-first optimization lab**
+- control plane 在哪：`aide` CLI、`aide/agent.py`、`aide/run.py` 和 journal / report 流程，核心是围绕代码树搜索与评测反馈展开
+- durable state 保留什么：`logs/<id>/best_solution.py`、`tree_plot.html`、journal / report 产物、sample results 与工作目录
+- 值得长成什么教程：最适合长成“benchmark-first 优化 loop”“代码树搜索怎样比线性代理更强”“AIDE 与 AI Scientist-v2 的承接关系”
+
+当前站内决策：它先作为 **comparison-section candidate** 保留在 VibePaper hub，而不是直接加入三主样本表。原因很简单：它和 `AI Scientist-v2` 关系太近，先作为“上游实验搜索底座”来介绍，比直接把页面扩成四主样本更清楚。
+
 ### 再往前走一步：三条线的 control-plane thickness 到底差在哪
 
 如果只看名字，三条线都像“自动科研系统”。但真正值得教学的是它们的控制面厚度差异：
@@ -145,6 +158,9 @@ Mermaid 更适合：否，更适合 HTML 层叠卡片图。
 - https://openreview.net/forum?id=cZFgsLq8Gs
 - https://github.com/SakanaAI/AI-Scientist-v2
 - https://pub.sakana.ai/ai-scientist-v2/paper/paper.pdf
+- https://github.com/WecoAI/aideml
+- https://arxiv.org/abs/2502.13138
 - `reference/reference_agent/autoresearch/`
 - `reference/reference_agent/DeepScientist/`
 - `reference/reference_agent/AI-Scientist-v2/`
+- `reference/reference_agent/aideml/`
