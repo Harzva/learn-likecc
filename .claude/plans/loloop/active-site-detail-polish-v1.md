@@ -98,6 +98,9 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Choose one Hermes visual pass focused on the six-layer architecture
 - [x] Add one concrete Mermaid artifact for the Hermes six-layer structure
 - [x] Verify the Hermes draft and `site/js/app.js` now include the new diagram key
+- [x] Choose Task 4 as the next recurring main-site move after Hermes stabilized
+- [x] Update the Claude Code release-watch topic with one new official changelog slice
+- [x] Verify the release-watch draft now includes the new 2.1.98 and Monitor-tool anchors
 
 ## Guardrail
 

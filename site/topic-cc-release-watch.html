@@ -98,6 +98,10 @@
                             <th>要点（非穷尽）</th>
                         </tr>
                         <tr>
+                            <td><strong>2.1.98</strong></td>
+                            <td>Vertex AI 三方登录向导；新增 <strong>Monitor tool</strong> 用于流式读取后台脚本事件；Linux 子进程沙箱隔离与 <code>CLAUDE_CODE_SCRIPT_CAPS</code>；<code>--exclude-dynamic-system-prompt-sections</code> 改善跨用户 prompt cache；Perforce / worktree / tracing / LSP <code>clientInfo</code> 等工程向增强；同时修了一批 Bash 权限绕过与 <code>/resume</code> / hooks / transcript 问题。</td>
+                        </tr>
+                        <tr>
                             <td><strong>2.1.92</strong></td>
                             <td><code>forceRemoteSettingsRefresh</code> 策略；Bedrock 登录向导；<code>/cost</code> 按模型与缓存命中细分；<code>/release-notes</code> 交互选版；Remote Control 默认会话名带 hostname；移除 <code>/tag</code>、<code>/vim</code>（改走 <code>/config</code>）；Linux sandbox 附带 <code>apply-seccomp</code>；子代理 tmux、全屏终端、Homebrew 渠道等修复。</td>
                         </tr>
@@ -126,6 +130,21 @@
                             <td>MCP <code>headersHelper</code> 相关 env；Hooks 条件 <code>if</code>；deeplink 长度上限；MCP OAuth 发现；组织策略下插件屏蔽；OpenTelemetry 工具详情门控；多项 resume / MCP / UI 修复。</td>
                         </tr>
                     </table>
+                </section>
+
+                <section id="monitor-keyword" class="section-block">
+                    <h2>本轮关键词：Monitor tool 为什么值得盯</h2>
+                    <p>在 <code>2.1.98</code> 里，最值得单独盯住的关键词不是登录向导，而是 <strong>Monitor tool for streaming events from background scripts</strong>。这条变化说明 Claude Code 对“后台脚本不是一次性黑盒，而是持续产生活动流”的支持又往前走了一步。</p>
+                    <p>对本站主线来说，它值钱在三个点：第一，它把“后台任务完成后给一个结果”往前推进到“后台任务运行中持续可观察”；第二，它和我们一直在做的 <code>codex-loop</code> / 外层调度思路更接近，长期任务要想可控，除了能启动，还得能看见事件流；第三，它提示未来 Claude Code 的工程重心不只是会不会调工具，而是<strong>会不会把异步、后台、可观测性</strong>一起纳入控制面。</p>
+                    <p>换句话说，如果之前你把 Claude Code 的后台能力理解成“丢一个任务出去，等它回来”，那 <code>Monitor tool</code> 更像是在补“中间那条状态回传链路”。这条线和我们在 Hermes 页里刚拆过的 gateway / cron / execution boundary 其实是同一类问题：<strong>长期运行系统要不要暴露中间状态，如何暴露，暴露给谁看。</strong></p>
+                    <div class="course-quote">
+                        <p><strong>[插图提示词]</strong></p>
+                        <p>用途：画“Claude Code 后台脚本可观测性”小图，强调从后台脚本到事件流再到主会话的回传链路。</p>
+                        <p>形式：流程图。</p>
+                        <p>提示词：画一个 Claude Code background script monitor 流程图。左侧是主会话发起后台脚本，中间是后台脚本持续产生事件流，右侧是 Monitor tool 实时读取事件并把状态回传给主会话。底部补一条说明：这不是最终结果一次性返回，而是运行中事件可观测。</p>
+                        <p>Mermaid 更适合：是。</p>
+                    </div>
+                    <p><strong>本轮原始来源</strong>：<a href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener noreferrer">官方文档 changelog</a>（<code>2.1.98</code>, 2026-04-09）与 <a href="https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">GitHub Raw CHANGELOG</a>。</p>
                 </section>
 
                 <section id="maintain" class="section-block">
