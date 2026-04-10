@@ -24,7 +24,7 @@
 
 | 版本 | 要点（非穷尽） |
 | --- | --- |
-| **2.1.101** | 新增 `/team-onboarding`，可基于本地 Claude Code 使用痕迹生成 teammate ramp-up guide；默认信任操作系统 CA 证书库以适配企业 TLS 代理；远程会话相关功能可自动创建默认 cloud environment；`focus mode` 会主动写更自足的最终总结；`brief mode` 遇到 plain text 会自动重试一次结构化消息；`tool-not-available` 报错开始解释“为什么当前上下文拿不到工具”；rate-limit retry 信息开始直接显示命中的限制类型和重置时间；refusal 错误现在会带出 API 侧给出的解释；同时修了一批 `--resume`、插件、权限、subagent、Remote Control 与长会话内存问题。 |
+| **2.1.101** | 新增 `/team-onboarding`，可基于本地 Claude Code 使用痕迹生成 teammate ramp-up guide；默认信任操作系统 CA 证书库以适配企业 TLS 代理；远程会话相关功能可自动创建默认 cloud environment；plan mode 在 org/auth 根本到不了 Claude Code Web 时会隐藏 `Refine with Ultraplan`；`focus mode` 会主动写更自足的最终总结；`brief mode` 遇到 plain text 会自动重试一次结构化消息；`tool-not-available` 报错开始解释“为什么当前上下文拿不到工具”；rate-limit retry 信息开始直接显示命中的限制类型和重置时间；refusal 错误现在会带出 API 侧给出的解释；同时修了一批 `--resume`、插件、权限、subagent、Remote Control 与长会话内存问题。 |
 | **2.1.98** | Vertex AI 三方登录向导；新增 **Monitor tool** 用于流式读取后台脚本事件；Linux 子进程沙箱隔离与 `CLAUDE_CODE_SCRIPT_CAPS`；`--exclude-dynamic-system-prompt-sections` 改善跨用户 prompt cache；Perforce / worktree / tracing / LSP `clientInfo` 等工程向增强；同时修了一批 Bash 权限绕过与 `/resume` / hooks / transcript 问题。 |
 | **2.1.97** | `NO_FLICKER` 的 Focus View；status line `refreshInterval`；`workspace.git_worktree` 进入 status line JSON；`/agents` 显示运行中 subagents；多项权限、`/resume`、MCP OAuth、上下文压缩、OTEL tracing 与 `NO_FLICKER` 修复。 |
 | **2.1.92** | `forceRemoteSettingsRefresh` 策略；Bedrock 交互配置向导；`/cost` 按模型与缓存命中细分；`/release-notes` 改为交互选版；Remote Control 默认会话名带 hostname；移除 `/tag`、`/vim`（改走 `/config`）；Linux sandbox 附带 `apply-seccomp`；多项全屏/子代理/Homebrew 渠道修复 |
@@ -52,6 +52,30 @@
 用途：画“Claude Code 团队 onboarding 生成链路”小图，强调从个人本地 usage 到 teammate guide 的沉淀过程。  
 形式：流程图。  
 提示词：画一个 Claude Code team onboarding flow。左侧是个人本地 Claude Code usage，包括 commands、workflows、plugins、naming habits；中间是 `/team-onboarding` 提取并整理这些模式；右侧是 teammate ramp-up guide，包含 recommended commands、project conventions、handoff notes。底部补一句说明：把 tacit usage 变成团队可复用入口。  
+Mermaid 更适合：是。
+
+### 本轮原始来源
+
+- 官方文档：`https://code.claude.com/docs/en/changelog`（`2.1.101`, 2026-04-10）
+- GitHub Raw：`https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md`
+
+## 再补一刀：plan mode 会在 Web 根本不可达时直接隐藏 Refine with Ultraplan
+
+`2.1.101` 里还有一条很像能力前置判定的变化：当用户的 org 或 auth setup **根本到不了 Claude Code on the web** 时，plan mode 现在会 **直接隐藏 `Refine with Ultraplan`**，而不是先把按钮摆出来，再让你点到失败。
+
+这条为什么值得记：
+
+- 它把“功能存在”与“当前账户 / 组织 / 网络条件下能不能用”拆成了两层
+- 它说明 Claude Code 团队开始把 capability gating 提前到交互层，而不是把失败留到按钮点击之后
+- 它对我们自己的插件、远程会话、工具链页面都很相关，因为很多系统的问题不是功能没实现，而是 **当前环境根本不满足使用前提**，这时最好的体验不是报错，而是不要假装这项能力此刻可达
+
+如果把之前的 cloud environment 自动创建看成“远程能力的底座前移”，那这一刀更像“远程 refinement 能力的前置判定”。一个是在满足前提时帮你自动补底座，另一个是在不满足前提时直接把入口收掉。两者共同说明 Claude Code 正在更认真地区分 **什么时候该自动补齐，什么时候该直接隐藏**。
+
+### [插图提示词]
+
+用途：画“Ultraplan 能力前置判定”小图，说明 org/auth/web reachability 检查与按钮显示之间的关系。  
+形式：流程图。  
+提示词：画一个 Claude Code Ultraplan gating flow。左侧是 plan mode UI，中间做 org check、auth check、web reachability check；如果都通过，则显示 Refine with Ultraplan；如果失败，则隐藏入口而不是让用户点击后报错。底部补一句说明：把能力判定前移到交互层。  
 Mermaid 更适合：是。
 
 ### 本轮原始来源

@@ -159,6 +159,8 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Add one refusal-explanation release-watch note explaining API-side refusal visibility
 - [x] Stay on Task 4 for one more bounded 2.1.101 final-delivery slice after the refusal note
 - [x] Add one focus-mode summary release-watch note explaining self-contained final-message delivery
+- [x] Stay on Task 4 for one more bounded 2.1.101 capability-gating slice after the focus-summary note
+- [x] Add one Ultraplan-gating release-watch note explaining why web-inaccessible setups now hide the refinement entry
 - [x] Return to Task 6 for one bounded navigation cleanup after the recent Task 4 release-watch burst
 - [x] Expose VibePaper four-question and control-plane sections in the top nav for faster section jumps
 - [x] Stay on Task 6 for one more bounded entrance-flow cleanup after the nav pass
