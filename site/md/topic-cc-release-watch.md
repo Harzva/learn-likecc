@@ -75,6 +75,25 @@ Mermaid 更适合：是。
 提示词：画一个 Claude Code observability 双层示意图。上层是主会话 UI，其中 status line 周期刷新并显示 worktree / branch / running 状态；下层是后台脚本持续产生事件，由 Monitor tool 读取。箭头说明：后台事件流进入控制面，前台状态行负责摘要展示。  
 Mermaid 更适合：是。
 
+## 另一个高价值关键词：subprocess sandboxing + Bash 权限硬化
+
+如果从“工程安全性”角度看，`2.1.98` 里另一条值得单独拎出来的是：**Linux 子进程 PID namespace 隔离**，以及同一版里一串 Bash 权限绕过修复。官方 changelog 把它们分开写，但放在一起看更合理，因为它们共同指向一件事：Claude Code 正在把“脚本能跑”逐步升级成“脚本怎么被隔离、哪些命令必须重新过权限门”。
+
+这条线为什么比一般 bugfix 更重要：
+
+- `CLAUDE_CODE_SUBPROCESS_ENV_SCRUB` + PID namespace isolation，说明后台脚本不是随便在宿主环境裸跑
+- `CLAUDE_CODE_SCRIPT_CAPS` 把“每个会话里脚本能被调用几次”也纳入约束，不只是看命令文本本身
+- 同版修的 Bash 权限绕过问题覆盖反斜杠 flag、复合命令、env-var 前缀、`/dev/tcp` 和 wildcard 规则，说明权限模型正在从“匹配字面命令”向“理解命令形态”收紧
+
+如果把上一段的 `Monitor tool` / status line 看成“可观测性补课”，这一段更像“可控性补课”。长期运行 agent 不只要看得见中间状态，也要更精细地限制后台脚本和 Bash 能怎样越过边界。
+
+### [插图提示词]
+
+用途：画“Claude Code 后台脚本安全边界”小图，说明脚本执行、PID namespace、脚本调用上限、Bash 权限检查之间的关系。  
+形式：结构图。  
+提示词：画一个 Claude Code background script security boundary 图。左侧是主会话触发后台脚本，中间是脚本执行层，外面套一层 PID namespace isolation 与 env scrub，旁边标出 `CLAUDE_CODE_SCRIPT_CAPS` 作为会话级调用上限，底部是 Bash permission gate，列出 env-var prefix、compound commands、network redirect 等风险检查点。  
+Mermaid 更适合：是。
+
 ## 本站如何维护本专题
 
 1. **触发**：npm 新版本或官方 changelog 出现新小节时。  

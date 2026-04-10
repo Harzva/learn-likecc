@@ -104,6 +104,9 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Stay on Task 4 for one adjacent bounded changelog slice
 - [x] Update the Claude Code release-watch topic with one new 2.1.97 status-line slice
 - [x] Verify the release-watch draft now includes the new 2.1.97 and status-line anchors
+- [x] Stay on Task 4 for one more bounded 2.1.98 keyword slice
+- [x] Update the Claude Code release-watch topic with one new security-focused keyword note
+- [x] Verify the release-watch draft now includes the new subprocess-sandbox and security anchors
 
 ## Guardrail
 
