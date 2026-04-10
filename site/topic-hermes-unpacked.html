@@ -25,6 +25,7 @@
                 <a href="#gateway-cron" class="nav-link">05 Gateway / Cron</a>
                 <a href="#flows" class="nav-link">06 运行链路</a>
                 <a href="#lessons" class="nav-link">07 值得学什么</a>
+                <a href="#compare-stack" class="nav-link">08 对照我们的栈</a>
             </div>
             <div class="nav-actions">
                 <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
@@ -181,6 +182,21 @@
                         <p><strong>第四</strong>，Hermes 适合学的是“长期运行控制层”，不是原样照搬。我们的主脑仍应是 Claude Code / Like Code，自身再去调 memory、skills、worker、scheduler，而不是简单复制 Hermes 的产品壳。</p>
                     </div>
                     <p>一句话收尾：<strong>Superset 教我们外层工作台如何编排多个 worker；Hermes 则进一步提醒我们，长期在线 agent 还需要把记忆、技能、平台入口和时间轴一起纳入控制面。</strong></p>
+                </section>
+
+                <section id="compare-stack" class="section-block">
+                    <h2>08 · 放回我们自己的栈：Hermes 和 Claude Code / Like Code / codex-loop 到底哪里相像，哪里不同</h2>
+                    <p>如果把 Hermes 完全当成“另一个竞品 agent”来读，其实价值会被低估。对我们更有用的读法，是把它当作一份长期运行控制层样本，然后拿它反照自己当前的栈：Claude Code / Like Code 负责高质量交互式主脑，<code>codex-loop</code> 负责定时推进和任务持续性，站点与专题页负责把这些经验沉淀成可教学的结构化内容。</p>
+                    <table class="options-table">
+                        <tr><th>层次</th><th>Hermes</th><th>我们当前的栈</th><th>真正差别</th></tr>
+                        <tr><td>主脑 / Control Plane</td><td><code>AIAgent</code> 把 provider、prompt、tool loop、memory/skills nudges 拉进一个内核</td><td>Claude Code / Like Code 的会话主脑 + repo 内显式计划与执行节奏</td><td>Hermes 更强调“长期在线一体化内核”；我们更强调“强主脑 + 外置流程纪律”。</td></tr>
+                        <tr><td>入口层</td><td>CLI + gateway adapters</td><td>CLI / Codex thread / 站点内容入口</td><td>Hermes 统一消息平台入口；我们当前更偏工程工作台和内容工作台。</td></tr>
+                        <tr><td>持续推进</td><td>Cron scheduler 直接触发 fresh <code>AIAgent</code></td><td><code>codex-loop</code> 通过 plan + evolution note 驱动下一轮</td><td>Hermes 是产品内建调度；我们是显式 plan-driven orchestration，审计性更强。</td></tr>
+                        <tr><td>记忆 / 技能</td><td>内建 memory、skills、review loop</td><td>更多依赖 repo 文档、skills、plans、handoff prompt</td><td>Hermes 把沉淀放进内核；我们把沉淀放进 repo 与技能系统，便于版本化和复查。</td></tr>
+                        <tr><td>执行面</td><td>统一 terminal tool + 多 backend</td><td>Claude Code / Codex 工具链 + repo 自动化脚本</td><td>Hermes 把 backend abstraction 做成正式运行层；我们目前更偏“本地工程环境 + 针对性自动化”。</td></tr>
+                    </table>
+                    <p>所以最值得学的不是“把 Hermes 整套产品形态搬过来”，而是它提醒我们：<strong>长期运行 agent 需要一条清楚的控制面主线</strong>。我们完全可以继续保留 Claude Code / Like Code 作为高质量交互主脑，把 <code>codex-loop</code> 当调度层，把 repo 内 skills / plans / docs 当外置长期记忆层。这样做的好处是：内核不必承担所有持久化责任，但系统仍然能持续演进。</p>
+                    <p>换句话说，Hermes 更像“把一切都内置进产品”；我们当前路线更像“把主脑、调度、知识沉淀拆开，但用明确接口把它们重新编排起来”。这两条路并不矛盾，反而正好构成了我们后续设计 agent stack 时最有价值的一组参照。</p>
                 </section>
 
                 <section class="section-block">

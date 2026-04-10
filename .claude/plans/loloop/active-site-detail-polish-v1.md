@@ -92,6 +92,9 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Choose a fifth Hermes pass focused on environment backends and execution boundaries
 - [x] Add one code-backed Hermes environment/backend boundary breakdown to the unpacked draft
 - [x] Verify the Hermes draft now includes the new execution-boundary anchor terms
+- [x] Choose a sixth Hermes pass focused on stack comparison and synthesis
+- [x] Add one final Hermes synthesis section comparing Hermes to our Claude Code / Like Code / codex-loop split
+- [x] Verify the Hermes draft now includes the new compare-stack anchor terms
 
 ## Guardrail
 

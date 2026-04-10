@@ -157,6 +157,23 @@ Mermaid 更适合：是。
 - 把时间轴与回送通道当成正式能力。
 - 学 Hermes 的“长期运行控制层”，不要照搬它的整套产品壳。
 
+### 08 · 放回我们自己的栈：Hermes 和 Claude Code / Like Code / codex-loop 到底哪里相像，哪里不同
+
+更有价值的读法，不是把 Hermes 当成“另一个竞品 agent”，而是把它当作长期运行控制层样本，再对照我们自己的栈：
+
+- Hermes：`AIAgent` 内建 provider、prompt、tool loop、memory/skills、gateway、cron
+- 我们：Claude Code / Like Code 负责交互式主脑，`codex-loop` 负责 plan-driven 调度，repo 内 skills / plans / docs 承担外置长期记忆
+
+可以把差异粗略整理成五层：
+
+- 主脑：Hermes 更偏一体化内核；我们更偏强主脑 + 外置流程纪律
+- 入口：Hermes 统一 CLI 和消息平台；我们更偏工程工作台与内容工作台
+- 持续推进：Hermes 用 cron 直接拉起 fresh agent；我们用 plan + evolution note 明确推进链路
+- 记忆 / 技能：Hermes 内建沉淀；我们把沉淀放进 repo，可版本化、可复查
+- 执行面：Hermes 有正式 backend abstraction；我们目前更偏本地工程环境加定向自动化
+
+所以最值得学的不是“照搬产品壳”，而是学它那条清楚的控制面主线：主脑、入口、调度、记忆、执行面要怎么拆，拆完之后又怎么重新接起来。
+
 ### 参考与原始链接
 
 - https://hermes-agent.ai/
