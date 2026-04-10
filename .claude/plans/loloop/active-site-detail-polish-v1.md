@@ -135,6 +135,8 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Add one explicit VibePaper role table separating the three main samples from the upstream candidate substrate
 - [x] Stay on Task 6 for one bounded micro-visual pass after the role-table cleanup
 - [x] Add one concrete Mermaid artifact for VibePaper main samples vs candidate substrate roles
+- [x] Stay on Task 6 for one bounded structure-sync cleanup after the role Mermaid
+- [x] Sync the VibePaper Markdown guide and route note with the current three-sample plus candidate-lane structure
 
 ## Guardrail
 

@@ -2,7 +2,7 @@
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-vibepaper.html  
 > **本文件**: `site/md/topic-vibepaper.md`  
-> **更新时间**: 2026-04-10
+> **更新时间**: 2026-04-11
 
 ## 概要
 
@@ -11,9 +11,11 @@ VibePaper 专题目前先收 **Autoresearch**、**DeepScientist** 与 **AI Scien
 ## 目录（对照 HTML）
 
 - 为什么单列一个 VibePaper 专题
-- 当前先收两条锚点项目
-  - Autoresearch
-  - DeepScientist
+- 当前先收三条样本项目
+- 先用四个问题把当前锚点放到一张表里
+- 新进候选：AI Scientist-v2 先放 hub，不急着拆独立页
+- 再做一个受控 intake：AIDE ML 先作为优化实验室候选
+- 再往前走一步：三条线的 control-plane thickness 到底差在哪
 - 建议怎么读这条线
 - 这个专题会怎么持续长出来
 - 参考与本地路径
@@ -163,6 +165,8 @@ Mermaid 更适合：否，更适合 HTML 层叠卡片图。
 2. 再看 DeepScientist，理解如果把整套研究过程做成工作台，会多出哪些层。  
 3. 再看 AI Scientist-v2，理解当系统目标直接指向“论文成稿”时，控制面为什么会转成树搜索和实验经理。  
 4. 最后回到站点，判断哪些值得继续写成教程、图示和子专题。
+
+这里还有一个默认规则：三主样本负责承担站内的第一层教学入口，像 `AIDE ML` 这样的上游实验搜索底座，先留在 comparison lane，只有当它能代表一个新的系统壳层时，才考虑抬升成独立主样本或子专题。
 
 ### 这个专题会怎么持续长出来
 
