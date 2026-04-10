@@ -133,6 +133,8 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Add one four-question candidate note for `AIDE ML` without promoting it into the main sample table
 - [x] Stay on Task 6 for one bounded hierarchy-clarity cleanup after the `AIDE ML` intake
 - [x] Add one explicit VibePaper role table separating the three main samples from the upstream candidate substrate
+- [x] Stay on Task 6 for one bounded micro-visual pass after the role-table cleanup
+- [x] Add one concrete Mermaid artifact for VibePaper main samples vs candidate substrate roles
 
 ## Guardrail
 

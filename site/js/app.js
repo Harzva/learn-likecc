@@ -36,6 +36,23 @@ const MERMAID_DIAGRAMS = {
     D2 --> MID
     V2 -. pipeline-thick .-> MID`,
 
+    'vibepaper-roles': `graph TB
+    classDef goldBox fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#fcd34d;
+    classDef blueBox fill:#172130,stroke:#60a5fa,stroke-width:2px,color:#93c5fd;
+    classDef greenBox fill:#14251f,stroke:#34d399,stroke-width:2px,color:#6ee7b7;
+    classDef purpleBox fill:#241c2f,stroke:#c084fc,stroke-width:2px,color:#e9d5ff;
+    classDef grayBox fill:#1f2430,stroke:#94a3b8,stroke-width:2px,color:#cbd5e1;
+
+    HUB["VibePaper hub"]:::goldBox --> MAIN["三主样本<br/>三种壳层教学入口"]:::goldBox
+    HUB --> CAND["受控候选 / 上游底座"]:::grayBox
+
+    MAIN --> A["Autoresearch<br/>protocol shell"]:::blueBox
+    MAIN --> D["DeepScientist<br/>studio shell"]:::greenBox
+    MAIN --> V["AI Scientist-v2<br/>paper pipeline shell"]:::purpleBox
+
+    CAND --> X["AIDE ML<br/>benchmark-first optimization lab"]:::grayBox
+    X -. 承接关系 .-> V`,
+
     'agent-loop': `graph TD
     classDef yellowBox fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#e2b953;
     classDef blueBox fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#3b82f6;
