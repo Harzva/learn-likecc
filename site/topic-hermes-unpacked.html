@@ -87,6 +87,12 @@
                         <tr><td>平台与时间轴</td><td><code>gateway/</code>、<code>cron/scheduler.py</code>、<code>environments/</code></td><td>消息从哪里进来、任务何时触发、执行落在哪个环境</td></tr>
                     </table>
                     <p class="section-desc section-desc--tight">所以 Hermes 不只是“Agent 本体”，它更接近一个长期运行的 <strong>agent OS / agent operations layer</strong>。</p>
+                    <figure class="mermaid-figure mermaid-figure--main" aria-label="Hermes 六层结构图">
+                        <figcaption class="mermaid-caption">
+                            <strong>主图</strong>：把 Hermes 从入口壳、控制面、工具面、记忆技能、平台时间轴到执行后端压成一张六层结构图，便于后面逐层往下拆。
+                        </figcaption>
+                        <div class="mermaid-diagram-scroll" data-mermaid-diagram="hermes-six-layer-stack"></div>
+                    </figure>
                     <div class="course-quote">
                         <p><strong>[插图提示词]</strong></p>
                         <p>用途：画出 Hermes 的六层总图，帮助读者先建立“入口壳 → 控制面 → 工具面 → 记忆/技能 → gateway/cron → 环境后端”的分层心智。</p>

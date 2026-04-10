@@ -95,6 +95,9 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Choose a sixth Hermes pass focused on stack comparison and synthesis
 - [x] Add one final Hermes synthesis section comparing Hermes to our Claude Code / Like Code / codex-loop split
 - [x] Verify the Hermes draft now includes the new compare-stack anchor terms
+- [x] Choose one Hermes visual pass focused on the six-layer architecture
+- [x] Add one concrete Mermaid artifact for the Hermes six-layer structure
+- [x] Verify the Hermes draft and `site/js/app.js` now include the new diagram key
 
 ## Guardrail
 

@@ -1,6 +1,27 @@
 // 应用脚本
 // Mermaid 流程图定义（key 对应 data-mermaid-diagram）
 const MERMAID_DIAGRAMS = {
+    'hermes-six-layer-stack': `graph TB
+    classDef yellowBox fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#e2b953;
+    classDef blueBox fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#93c5fd;
+    classDef greenBox fill:#1c2d26,stroke:#10b981,stroke-width:2px,color:#6ee7b7;
+    classDef purpleBox fill:#2b2035,stroke:#cba6f7,stroke-width:2px,color:#e9d5ff;
+
+    IN["CLI / Messaging Gateway<br/>终端、Telegram、Discord、Slack"]:::blueBox --> CP["AIAgent Control Plane<br/>prompt · provider · tool loop · compression"]:::yellowBox
+    CP --> TP["Tool Registry / Toolsets<br/>model_tools.py · tools/registry.py"]:::blueBox
+    TP --> LS["Memory / Skills Layer<br/>MEMORY.md · USER.md · skills"]:::greenBox
+    CP --> LS
+    TP --> GX["Gateway / Cron Layer<br/>session key · delivery · scheduler"]:::purpleBox
+    LS --> GX
+    GX --> EX["Execution Backends<br/>local · docker · ssh · daytona · singularity · modal"]:::greenBox
+
+    style IN fill:#131a25,stroke:#60a5fa,stroke-width:2px
+    style CP fill:#231f13,stroke:#fbbf24,stroke-width:2px
+    style TP fill:#172130,stroke:#60a5fa,stroke-width:2px
+    style LS fill:#14251f,stroke:#34d399,stroke-width:2px
+    style GX fill:#241c2f,stroke:#c084fc,stroke-width:2px
+    style EX fill:#13261f,stroke:#34d399,stroke-width:2px`,
+
     'agent-loop': `graph TD
     classDef yellowBox fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#e2b953;
     classDef blueBox fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#3b82f6;
