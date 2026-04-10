@@ -8,7 +8,7 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧩</text></svg>">
     <meta name="description" content="从 /codex:rescue 一路拆到 codex app-server：看清 Claude 插件、子代理、codex-companion.mjs、JSON-RPC、stdio 与 socket broker 的关系。">
 </head>
-<body>
+<body class="bridge-page">
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
@@ -45,11 +45,11 @@
             <p class="hero-subtitle">
                 从 <code>/codex:rescue</code> 出发，把 <strong>Claude 插件命令</strong>、<strong>子代理</strong>、<strong><code>codex-companion.mjs</code></strong>、<strong>Codex App Server JSON-RPC</strong>、<strong>stdio / socket broker</strong> 一次拆清。
             </p>
-            <div class="hero-stats" style="display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;margin-top:1.25rem;">
-                <div class="stat-item"><span class="stat-value">6</span><span class="stat-label">关键链路层</span></div>
-                <div class="stat-item"><span class="stat-value">2</span><span class="stat-label">通信分段</span></div>
-                <div class="stat-item"><span class="stat-value">2</span><span class="stat-label">传输模式</span></div>
-                <div class="stat-item"><span class="stat-value">1</span><span class="stat-label">桥接脚本核心</span></div>
+            <div class="hero-stats hero-stats--bridge">
+                <div class="stat-item stat-item--panel stat-item--bridge"><span class="stat-value">6</span><span class="stat-label">关键链路层</span></div>
+                <div class="stat-item stat-item--panel stat-item--bridge"><span class="stat-value">2</span><span class="stat-label">通信分段</span></div>
+                <div class="stat-item stat-item--panel stat-item--bridge"><span class="stat-value">2</span><span class="stat-label">传输模式</span></div>
+                <div class="stat-item stat-item--panel stat-item--bridge"><span class="stat-value">1</span><span class="stat-label">桥接脚本核心</span></div>
             </div>
             <div class="hero-actions">
                 <a href="#chain" class="btn btn-primary">从完整调用链开始</a>

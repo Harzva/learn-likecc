@@ -45,7 +45,11 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Inspect one more high-value site-shell or page-layout detail for the next micro-iteration
 - [x] Improve mobile site-sidebar accessibility state and dismissal behavior
 - [x] Verify the sidebar update with `node --check site/js/app.js`
-- [ ] Current site shell is stable enough to branch into queued media work
+- [x] Current site shell is stable enough to branch into queued media work
+- [x] Choose one more page-level visual-maturity candidate outside the Superset page
+- [x] Replace bridge-page hero inline styling on `site/topic-claude-codex-bridge.html` with scoped classes
+- [x] Verify the bridge page no longer uses inline `style=` attributes
+- [ ] Branch into the remaining queued media workflow work
 
 ## Guardrail
 
