@@ -7580,6 +7580,30 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     margin-top: 1.25rem;
 }
 
+.personal-knowledge-page .personal-knowledge-grid {
+    margin-top: 1.5rem;
+}
+
+.personal-knowledge-page .personal-knowledge-grid--wide {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.personal-knowledge-page .personal-knowledge-grid--compact {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.personal-knowledge-page .personal-knowledge-table-wrap {
+    margin-top: 1rem;
+}
+
+.personal-knowledge-page .personal-knowledge-inline-note {
+    margin-top: 1.25rem;
+}
+
+.personal-knowledge-page .personal-knowledge-source-link {
+    color: inherit;
+}
+
 .tutorial-page .nav-container {
     max-width: min(1380px, calc(100vw - 40px));
 }
@@ -7910,6 +7934,10 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     }
 
     .skillmarket-page .skillmarket-grid {
+        gap: 16px;
+    }
+
+    .personal-knowledge-page .personal-knowledge-grid {
         gap: 16px;
     }
 }

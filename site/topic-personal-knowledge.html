@@ -8,7 +8,7 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗃️</text></svg>">
     <meta name="description" content="从 GitHub、Wiki 与 Agent 的协作关系理解个人知识库：为什么值得做、适合怎么用，以及它和站内哪些内容互补。">
 </head>
-<body>
+<body class="personal-knowledge-page">
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
@@ -66,7 +66,7 @@
                     <p>很多人已经在用大模型处理文档，但处理完之后，知识往往还是散的。上传文件、临时检索、临时拼答案，这一套能解决“眼前这个问题”，却很难解决“下次还能不能接着用”。</p>
                     <p>LLM Wiki 这套思路刚好反过来：<strong>不要每次查询都从原始资料重来一遍，而是让模型把知识先编译进一套持续更新的 Markdown wiki</strong>。这样一来，交叉引用、矛盾标记、主题归纳、阶段性判断都会沉淀下来，知识会开始复利增长。</p>
 
-                    <div class="quickstart-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-top: 1.5rem;">
+                    <div class="quickstart-grid personal-knowledge-grid personal-knowledge-grid--wide">
                         <div class="quickstart-card">
                             <h3>不是临时问答</h3>
                             <p>重点不在“这次能回答出来”，而在“下次不用再从零开始”。</p>
@@ -86,7 +86,7 @@
                     <h2>2. 三层结构：GitHub、Wiki、Agent 各管一层</h2>
                     <p>这条线最清楚的地方，在于它可以被拆成三层，各自职责很明确：</p>
 
-                    <div class="table-wrap" style="margin-top: 1rem;">
+                    <div class="table-wrap personal-knowledge-table-wrap">
                         <table class="data-table">
                             <thead>
                                 <tr><th>层级</th><th>负责什么</th><th>怎么理解</th></tr>
@@ -111,14 +111,14 @@
                         </table>
                     </div>
 
-                    <p style="margin-top: 1.25rem;">这样看就很清楚了：GitHub 不是只是“放代码”，Wiki 也不是只是“写笔记”，而 Agent 不再只是问答助手。三者拼起来，更像一个可维护的个人知识系统。</p>
+                    <p class="personal-knowledge-inline-note">这样看就很清楚了：GitHub 不是只是“放代码”，Wiki 也不是只是“写笔记”，而 Agent 不再只是问答助手。三者拼起来，更像一个可维护的个人知识系统。</p>
                 </section>
 
                 <section id="workflow" class="section-block">
                     <h2>3. 更像工程而不是笔记的工作流</h2>
                     <p>这条线最好用的地方，是它非常适合工程化地维护。核心动作其实就三步：<strong>摄入、查询、检查</strong>。</p>
 
-                    <div class="quickstart-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 1.5rem;">
+                    <div class="quickstart-grid personal-knowledge-grid personal-knowledge-grid--compact">
                         <div class="quickstart-card">
                             <h3>摄入</h3>
                             <p>把新资料放进原始资料集，让 Agent 读取、提炼、更新页面、补索引和日志。</p>
@@ -133,7 +133,7 @@
                         </div>
                     </div>
 
-                    <p style="margin-top: 1.25rem;">如果换成更接地气的话说，这不是“笔记软件怎么用”的问题，而是“如何让知识像代码库一样被维护”。资料源不断进入，页面不断修订，结构不断生长，最后形成的就不只是记录，而是一套可以调用的能力资产。</p>
+                    <p class="personal-knowledge-inline-note">如果换成更接地气的话说，这不是“笔记软件怎么用”的问题，而是“如何让知识像代码库一样被维护”。资料源不断进入，页面不断修订，结构不断生长，最后形成的就不只是记录，而是一套可以调用的能力资产。</p>
                 </section>
 
                 <section id="related" class="section-block">
@@ -174,7 +174,7 @@
 
     <footer class="footer">
         <div class="container">
-            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-personal-knowledge.md" target="_blank" rel="noopener noreferrer" style="color: inherit;">📝 Markdown 源（GitHub）</a></p>
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-personal-knowledge.md" target="_blank" rel="noopener noreferrer" class="personal-knowledge-source-link">📝 Markdown 源（GitHub）</a></p>
         </div>
     </footer>
 

@@ -65,6 +65,9 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Choose one more article-page layout candidate after the meta-agent pass
 - [x] Replace `topic-skillmarket.html` inline article layout styling with scoped classes
 - [x] Verify the skillmarket page no longer uses inline `style=` attributes
+- [x] Choose one more article-page layout candidate after the skillmarket pass
+- [x] Replace `topic-personal-knowledge.html` inline article layout styling with scoped classes
+- [x] Verify the personal-knowledge page no longer uses inline `style=` attributes
 
 ## Guardrail
 
