@@ -99,6 +99,12 @@ Mermaid 更适合：否，更适合 HTML 卡片图。
 
 后面如果再接新项目，最先要问的就不是“它火不火”，而是“它到底是在加厚哪一层壳”。这会直接决定它应该被写成 loop 教程、workspace 教程，还是 paper pipeline 教程。
 
+| 系统 | 主要加厚哪一层 | 因此更像什么 |
+| --- | --- | --- |
+| `Autoresearch` | loop contract / verify / rollback | protocol shell |
+| `DeepScientist` | quest repo / memory / workspace / connectors | studio shell |
+| `AI Scientist-v2` | tree search / experiment manager / writeup pipeline | paper pipeline shell |
+
 ### [插图提示词]
 
 用途：画三种 research control-plane thickness，对比协议壳、工作台壳、论文流水线壳。  

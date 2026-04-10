@@ -147,6 +147,28 @@
                     <h2>再往前走一步：三条线的 control-plane thickness 到底差在哪</h2>
                     <p>如果只看名字，三条线都像“自动科研系统”。但真正值得教学的是它们的控制面厚度差异：<code>Autoresearch</code> 最薄，主脑几乎全压在 loop contract 里，重点是 goal / metric / verify / rollback 这些协议面；<code>DeepScientist</code> 最厚，quest repo、stage workflow、memory、workspace、connectors 共同构成一个本地研究工作台；<code>AI Scientist-v2</code> 介于两者之间，但厚度方向不同，它不是把可视化工作台做厚，而是把 experiment manager、tree search、writeup pipeline 做厚，直接朝“论文成稿工厂”靠拢。</p>
                     <p>这组对照很有用，因为它把 VibePaper 里的三条线从“项目列表”变成了三种不同的系统壳层：第一是协议壳（Autoresearch），第二是工作台壳（DeepScientist），第三是论文流水线壳（AI Scientist-v2）。后面如果再接新项目，最先要问的就不是“它火不火”，而是“它到底是在加厚哪一层壳”。这会直接决定它应该被写成 loop 教程、workspace 教程，还是 paper pipeline 教程。</p>
+                    <table class="compare-table">
+                        <tr>
+                            <th>系统</th>
+                            <th>主要加厚哪一层</th>
+                            <th>因此更像什么</th>
+                        </tr>
+                        <tr>
+                            <td><code>Autoresearch</code></td>
+                            <td>loop contract / verify / rollback</td>
+                            <td>protocol shell</td>
+                        </tr>
+                        <tr>
+                            <td><code>DeepScientist</code></td>
+                            <td>quest repo / memory / workspace / connectors</td>
+                            <td>studio shell</td>
+                        </tr>
+                        <tr>
+                            <td><code>AI Scientist-v2</code></td>
+                            <td>tree search / experiment manager / writeup pipeline</td>
+                            <td>paper pipeline shell</td>
+                        </tr>
+                    </table>
                     <div class="course-quote">
                         <p><strong>[插图提示词]</strong></p>
                         <p>用途：画三种 research control-plane thickness，对比协议壳、工作台壳、论文流水线壳。</p>
