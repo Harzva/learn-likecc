@@ -105,6 +105,16 @@ Mermaid 更适合：否，更适合 HTML 卡片图。
 | `DeepScientist` | quest repo / memory / workspace / connectors | studio shell |
 | `AI Scientist-v2` | tree search / experiment manager / writeup pipeline | paper pipeline shell |
 
+```mermaid
+graph LR
+    A1["Autoresearch<br/>protocol shell"] --> A2["loop contract<br/>goal · metric · verify · rollback"]
+    D1["DeepScientist<br/>studio shell"] --> D2["quest repo · memory<br/>workspace · connectors"]
+    V1["AI Scientist-v2<br/>paper pipeline shell"] --> V2["idea generation · tree search<br/>experiment manager · writeup"]
+    A2 -. thinner .-> MID["控制面厚度递增"]
+    D2 --> MID
+    V2 -. pipeline-thick .-> MID
+```
+
 ### [插图提示词]
 
 用途：画三种 research control-plane thickness，对比协议壳、工作台壳、论文流水线壳。  

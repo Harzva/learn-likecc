@@ -22,6 +22,20 @@ const MERMAID_DIAGRAMS = {
     style GX fill:#241c2f,stroke:#c084fc,stroke-width:2px
     style EX fill:#13261f,stroke:#34d399,stroke-width:2px`,
 
+    'vibepaper-shells': `graph LR
+    classDef blueBox fill:#172130,stroke:#60a5fa,stroke-width:2px,color:#93c5fd;
+    classDef greenBox fill:#14251f,stroke:#34d399,stroke-width:2px,color:#6ee7b7;
+    classDef purpleBox fill:#241c2f,stroke:#c084fc,stroke-width:2px,color:#e9d5ff;
+    classDef grayBox fill:#1f2430,stroke:#94a3b8,stroke-width:2px,color:#cbd5e1;
+
+    A1["Autoresearch<br/>protocol shell"]:::blueBox --> A2["loop contract<br/>goal · metric · verify · rollback"]:::blueBox
+    D1["DeepScientist<br/>studio shell"]:::greenBox --> D2["quest repo · memory<br/>workspace · connectors"]:::greenBox
+    V1["AI Scientist-v2<br/>paper pipeline shell"]:::purpleBox --> V2["idea generation · tree search<br/>experiment manager · writeup"]:::purpleBox
+
+    A2 -. thinner .-> MID["控制面厚度递增"]:::grayBox
+    D2 --> MID
+    V2 -. pipeline-thick .-> MID`,
+
     'agent-loop': `graph TD
     classDef yellowBox fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#e2b953;
     classDef blueBox fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#3b82f6;

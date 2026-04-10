@@ -125,6 +125,9 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Stay on Task 6 for one bounded micro-visual-structure pass after the thickness note
 - [x] Add one compact thickness-summary table for protocol shell vs studio shell vs paper pipeline shell
 - [x] Verify the VibePaper draft now includes the new shell-summary table anchors
+- [x] Stay on Task 6 for one bounded visual pass after the shell-summary table
+- [x] Add one concrete Mermaid artifact for the VibePaper shell comparison
+- [x] Verify the VibePaper draft and `site/js/app.js` now include the new shell diagram key
 
 ## Guardrail
 
