@@ -45,9 +45,9 @@ VibePaper 专题目前先收 **Autoresearch**、**DeepScientist** 与 **AI Scien
 
 ### [插图提示词]
 
-用途：画 VibePaper 的两条主轴，对比插件式自主循环和工作台式研究系统。  
-形式：左右对照图。  
-提示词：左边是 Autoresearch，突出 plugin、command surface、verify loop、mechanical checklist；右边是 DeepScientist，突出 quest repo、baseline、experiment rounds、paper outputs、visible workspace、human takeover；中间标注两者共同点是长期研究循环，差异是系统壳层厚度和交互面深度。  
+用途：画 VibePaper 当前入口结构，让读者先分清三主样本和候选底座不是同一层。  
+形式：三主样本加一条候选旁路的结构图。  
+提示词：上方主线放三张主样本卡：Autoresearch，突出 plugin、command surface、verify loop、mechanical checklist；DeepScientist，突出 quest repo、baseline、experiment rounds、paper outputs、visible workspace、human takeover；AI Scientist-v2，突出 idea generation、tree search、experiment manager、writeup pipeline。旁路再放 AIDE ML，标注 benchmark-first optimization lab 与 AI Scientist-v2 的上游承接关系。图中央注明三主样本负责教学入口，候选底座先留在 comparison lane。  
 Mermaid 更适合：是。
 
 ### 先用四个问题把当前锚点放到一张表里

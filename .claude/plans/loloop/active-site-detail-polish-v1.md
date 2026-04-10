@@ -139,6 +139,8 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Sync the VibePaper Markdown guide and route note with the current three-sample plus candidate-lane structure
 - [x] Stay on Task 6 for one bounded visual-shell cleanup after the structure-sync pass
 - [x] Replace `topic-vibepaper.html` inline quickstart-card link styling with a scoped site class
+- [x] Stay on Task 6 for one bounded prompt-sync cleanup after the card-link pass
+- [x] Update the stale VibePaper opener image prompt so it reflects three main samples plus the candidate lane
 
 ## Guardrail
 
