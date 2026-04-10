@@ -25,6 +25,7 @@
 | 版本 | 要点（非穷尽） |
 | --- | --- |
 | **2.1.98** | Vertex AI 三方登录向导；新增 **Monitor tool** 用于流式读取后台脚本事件；Linux 子进程沙箱隔离与 `CLAUDE_CODE_SCRIPT_CAPS`；`--exclude-dynamic-system-prompt-sections` 改善跨用户 prompt cache；Perforce / worktree / tracing / LSP `clientInfo` 等工程向增强；同时修了一批 Bash 权限绕过与 `/resume` / hooks / transcript 问题。 |
+| **2.1.97** | `NO_FLICKER` 的 Focus View；status line `refreshInterval`；`workspace.git_worktree` 进入 status line JSON；`/agents` 显示运行中 subagents；多项权限、`/resume`、MCP OAuth、上下文压缩、OTEL tracing 与 `NO_FLICKER` 修复。 |
 | **2.1.92** | `forceRemoteSettingsRefresh` 策略；Bedrock 交互配置向导；`/cost` 按模型与缓存命中细分；`/release-notes` 改为交互选版；Remote Control 默认会话名带 hostname；移除 `/tag`、`/vim`（改走 `/config`）；Linux sandbox 附带 `apply-seccomp`；多项全屏/子代理/Homebrew 渠道修复 |
 | **2.1.91** | MCP 工具结果可通过 `_meta` 放宽长度；`disableSkillShellExecution`；deeplink 支持多行；插件 `bin/` 可执行；`--resume` 与计划模式远程会话等修复；Edit 锚点缩短降 token |
 | **2.1.90** | 新增 `/powerup` 交互教程；插件市场失败时保留缓存的 env；`.husky` 受保护；费率限制弹窗死循环、resume 与 prompt cache、PowerShell 安全与性能等多项修复 |
@@ -56,6 +57,23 @@ Mermaid 更适合：是。
 
 - 官方文档：`https://code.claude.com/docs/en/changelog`（`2.1.98`, 2026-04-09）
 - GitHub Raw：`https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md`
+
+## 邻近关键词：status line 终于更像一个控制面观察窗
+
+`2.1.97` 里最值得和上面那条 `Monitor tool` 一起读的，是 status line 的两处改动：新增 `refreshInterval`，以及把 `workspace.git_worktree` 注入 status line JSON 输入。单看是小功能，合起来其实是在补 Claude Code 的“会话外部可观测性”。
+
+为什么这条值得记：
+
+- `refreshInterval` 让状态行不再只是静态装饰，而能周期性重跑，逐步接近 lightweight dashboard
+- `workspace.git_worktree` 说明 Claude Code 开始更明确地区分“当前在哪个 worktree 上工作”，这对多分支并行和 agent 分工很关键
+- 如果把 `Monitor tool` 看成后台事件流入口，那 status line 就更像前台状态摘要入口；两者一起，控制面味道会更浓
+
+### [插图提示词]
+
+用途：画“Claude Code 可观测性双层”小图，把后台事件流和前台状态行放在同一张示意图里。  
+形式：结构图。  
+提示词：画一个 Claude Code observability 双层示意图。上层是主会话 UI，其中 status line 周期刷新并显示 worktree / branch / running 状态；下层是后台脚本持续产生事件，由 Monitor tool 读取。箭头说明：后台事件流进入控制面，前台状态行负责摘要展示。  
+Mermaid 更适合：是。
 
 ## 本站如何维护本专题
 

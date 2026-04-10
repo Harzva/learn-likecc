@@ -101,6 +101,9 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Choose Task 4 as the next recurring main-site move after Hermes stabilized
 - [x] Update the Claude Code release-watch topic with one new official changelog slice
 - [x] Verify the release-watch draft now includes the new 2.1.98 and Monitor-tool anchors
+- [x] Stay on Task 4 for one adjacent bounded changelog slice
+- [x] Update the Claude Code release-watch topic with one new 2.1.97 status-line slice
+- [x] Verify the release-watch draft now includes the new 2.1.97 and status-line anchors
 
 ## Guardrail
 

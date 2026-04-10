@@ -102,6 +102,10 @@
                             <td>Vertex AI 三方登录向导；新增 <strong>Monitor tool</strong> 用于流式读取后台脚本事件；Linux 子进程沙箱隔离与 <code>CLAUDE_CODE_SCRIPT_CAPS</code>；<code>--exclude-dynamic-system-prompt-sections</code> 改善跨用户 prompt cache；Perforce / worktree / tracing / LSP <code>clientInfo</code> 等工程向增强；同时修了一批 Bash 权限绕过与 <code>/resume</code> / hooks / transcript 问题。</td>
                         </tr>
                         <tr>
+                            <td><strong>2.1.97</strong></td>
+                            <td><code>NO_FLICKER</code> 的 Focus View；status line <code>refreshInterval</code>；<code>workspace.git_worktree</code> 进入 status line JSON；<code>/agents</code> 显示运行中 subagents；多项权限、<code>/resume</code>、MCP OAuth、上下文压缩、OTEL tracing 与 <code>NO_FLICKER</code> 修复。</td>
+                        </tr>
+                        <tr>
                             <td><strong>2.1.92</strong></td>
                             <td><code>forceRemoteSettingsRefresh</code> 策略；Bedrock 登录向导；<code>/cost</code> 按模型与缓存命中细分；<code>/release-notes</code> 交互选版；Remote Control 默认会话名带 hostname；移除 <code>/tag</code>、<code>/vim</code>（改走 <code>/config</code>）；Linux sandbox 附带 <code>apply-seccomp</code>；子代理 tmux、全屏终端、Homebrew 渠道等修复。</td>
                         </tr>
@@ -145,6 +149,19 @@
                         <p>Mermaid 更适合：是。</p>
                     </div>
                     <p><strong>本轮原始来源</strong>：<a href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener noreferrer">官方文档 changelog</a>（<code>2.1.98</code>, 2026-04-09）与 <a href="https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">GitHub Raw CHANGELOG</a>。</p>
+                </section>
+
+                <section id="statusline-keyword" class="section-block">
+                    <h2>邻近关键词：status line 终于更像一个控制面观察窗</h2>
+                    <p><code>2.1.97</code> 里最值得和上面那条 <code>Monitor tool</code> 一起读的，是 status line 的两处改动：新增 <code>refreshInterval</code>，以及把 <code>workspace.git_worktree</code> 注入 status line JSON 输入。单看是小功能，合起来其实是在补 Claude Code 的“会话外部可观测性”。</p>
+                    <p>为什么这条值得记：第一，<code>refreshInterval</code> 让状态行不再只是静态装饰，而能周期性重跑，逐步接近 lightweight dashboard；第二，<code>workspace.git_worktree</code> 说明 Claude Code 开始更明确地区分“当前在哪个 worktree 上工作”，这对多分支并行和 agent 分工很关键；第三，如果把 <code>Monitor tool</code> 看成后台事件流入口，那 status line 就更像前台状态摘要入口，两者一起，控制面味道会更浓。</p>
+                    <div class="course-quote">
+                        <p><strong>[插图提示词]</strong></p>
+                        <p>用途：画“Claude Code 可观测性双层”小图，把后台事件流和前台状态行放在同一张示意图里。</p>
+                        <p>形式：结构图。</p>
+                        <p>提示词：画一个 Claude Code observability 双层示意图。上层是主会话 UI，其中 status line 周期刷新并显示 worktree / branch / running 状态；下层是后台脚本持续产生事件，由 Monitor tool 读取。箭头说明：后台事件流进入控制面，前台状态行负责摘要展示。</p>
+                        <p>Mermaid 更适合：是。</p>
+                    </div>
                 </section>
 
                 <section id="maintain" class="section-block">
