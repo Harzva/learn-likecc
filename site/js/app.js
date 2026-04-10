@@ -472,6 +472,13 @@ function initSiteSidebar() {
         '<a class="site-sidebar__link site-sidebar__link--sub" href="tutorial.html#skills"><span class="site-sidebar__ico">🔧</span><span class="site-sidebar__txt">Skills</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-memory-harness.html"><span class="site-sidebar__ico">🧠</span><span class="site-sidebar__txt">Memory 机制</span></a>' +
         '</details>' +
+        '<details class="site-sidebar__details" data-sidebar-key="skillmarket">' +
+        '<summary class="site-sidebar__summary"><span class="site-sidebar__txt">Skill 市场</span></summary>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-skillmarket.html"><span class="site-sidebar__ico">📌</span><span class="site-sidebar__txt">专题首页</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="https://skillsmp.com/" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">🔗</span><span class="site-sidebar__txt">SkillsMP ↗</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="https://github.com/Harzva/learn-likecc/blob/main/awesome-skills.md" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">✨</span><span class="site-sidebar__txt">Awesome Skills</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="tutorial.html#skills"><span class="site-sidebar__ico">🔧</span><span class="site-sidebar__txt">Skills 教程</span></a>' +
+        '</details>' +
         '<details class="site-sidebar__details" data-sidebar-key="rag">' +
         '<summary class="site-sidebar__summary"><span class="site-sidebar__txt">RAG 专题</span></summary>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-rag.html"><span class="site-sidebar__ico">📌</span><span class="site-sidebar__txt">专题首页</span></a>' +

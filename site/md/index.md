@@ -18,6 +18,7 @@
   - 大模型专题
   - 个人知识库（`topic-personal-knowledge`）
   - 站点推荐（`topic-websites`）
+  - Skill 市场（`topic-skillmarket`）
   - 庖丁解牛专题（`topic-paoding-jieniu`）
   - Claude Code 解构（`topic-cc-unpacked-zh`，现为子专题）
   - Superset 解构（`topic-superset-unpacked`，承载 `meta-agent` 思想）
@@ -93,6 +94,10 @@
 #### 站点推荐
 
 这页改成更纯粹的“站点推荐”：收 repo 阅读入口、个人主页和优质 GitHub 仓库；当前主推荐补充 `zread.ai` 与 `karpathy.ai`，适合当长期书签页，而不是资讯流。
+
+#### Skill 市场
+
+新补的 `topic-skillmarket.html` 把 `SkillsMP` 收成独立专题页：它不负责最后的信任判断，而负责先发现 `SKILL.md` 生态里的候选 skill，再把仓库入口和安装线索导向 GitHub 与本地 skill 目录。
 
 ### 🛤️ 学习路径
 

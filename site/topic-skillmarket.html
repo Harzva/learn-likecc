@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill 市场专题 - Claude Code Course</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧩</text></svg>">
+    <meta name="description" content="基于 SkillsMP 整理 SKILL.md 生态的发现入口、仓库校验路径与后续自动安装 skill 的设计思路。">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🧩</span>
+                <span class="logo-text">Skill 市场专题</span>
+            </a>
+            <div class="nav-links">
+                <a href="#why" class="nav-link">为什么看</a>
+                <a href="#snapshot" class="nav-link">快照</a>
+                <a href="#workflow" class="nav-link">工作流</a>
+                <a href="#examples" class="nav-link">样例</a>
+                <a href="#awesome" class="nav-link">汇总</a>
+                <a href="#next" class="nav-link">下一步</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="tutorial.html#skills" class="btn-github">Skills 教程</a>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>站点专题</span>
+                <span>SkillsMP · SKILL.md · GitHub</span>
+            </div>
+            <h1 class="hero-title">
+                Skill 市场专题<br>
+                <span class="gradient-text">先发现，再安装</span>
+            </h1>
+            <p class="hero-subtitle">
+                这页把 <strong>SkillsMP</strong> 放到我们站点里单独看：它适合做 <strong>`SKILL.md` 生态的发现层</strong>，帮助我们先找到候选 skill、看到对应仓库，再决定要不要装进 Claude Code 或 Codex。对后续“自动寻找合适 skill 并下载”的能力来说，最稳的设计也不是直接跳安装，而是先走一遍 <strong>SkillsMP 发现 → GitHub 校验 → 本地安装</strong>。
+            </p>
+            <div class="hero-actions">
+                <a href="https://skillsmp.com/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">打开 SkillsMP ↗</a>
+                <a href="https://github.com/Harzva/learn-likecc/blob/main/awesome-skills.md" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">看 awesome-skills.md ↗</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="course-main devlog-main">
+        <div class="container">
+            <article class="course-content devlog-content">
+                <section id="why" class="section-block">
+                    <div class="course-quote">
+                        <p><strong>这页的核心判断很简单：</strong><a href="https://skillsmp.com/" target="_blank" rel="noopener noreferrer">SkillsMP</a> 很适合做“找 skill”这一步，但真正安装前还是应该回到 GitHub 仓库做最后校验。</p>
+                        <p>原因也很直白：市场页负责聚合、分类、搜索和暴露仓库入口；而 skill 真正会执行什么、带不带脚本、有没有模板或引用资料，最终还是要看仓库里的 <code>SKILL.md</code> 和同目录资产。</p>
+                        <p>所以如果后面我们要做一个“自动寻找合适 skill 下载”的 skill，最合理的做法不是把市场站当作最终来源，而是把它当作<strong>发现层 / 候选集生成层</strong>。这件事，方向上是对的。</p>
+                    </div>
+                </section>
+
+                <section id="snapshot" class="section-block">
+                    <h2>1. 截至 2026-04-10，SkillsMP 给了我们什么</h2>
+                    <p>按首页公开展示口径，SkillsMP 当前强调的是一个面向开放 <code>SKILL.md</code> 生态的聚合市场：它首页直接写出 <strong>805,711</strong> 个 skill，并提供<strong>分类浏览</strong>、<strong>职业分组浏览</strong>、<strong>关键词搜索</strong> 和<strong>技能详情页</strong> 四类入口。</p>
+
+                    <div class="quickstart-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 1.5rem;">
+                        <div class="quickstart-card">
+                            <h3>量级够大</h3>
+                            <p>首页展示 80 万级 skill 聚合量，足够承担“先搜一遍市场，再回 GitHub 精选”的工作流。</p>
+                        </div>
+                        <div class="quickstart-card">
+                            <h3>分组够明确</h3>
+                            <p>首页有 23 个 major groups、867 个 occupation，以及 Tools、Development、Data &amp; AI 等分类入口。</p>
+                        </div>
+                        <div class="quickstart-card">
+                            <h3>详情页有仓库指向</h3>
+                            <p>技能详情页会给出 skill 名称、简介、更新时间、仓库入口与安装提示，适合继续做二跳校验。</p>
+                        </div>
+                    </div>
+
+                    <div class="table-wrap" style="margin-top: 1.75rem;">
+                        <table class="data-table">
+                            <thead>
+                                <tr><th>入口</th><th>适合做什么</th><th>为什么重要</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Browse by Category</td>
+                                    <td>按问题域粗筛</td>
+                                    <td>适合从“我要做什么”出发，而不是先知道 skill 名字。</td>
+                                </tr>
+                                <tr>
+                                    <td>Browse Job Skills by Occupation</td>
+                                    <td>按职业角色找套路</td>
+                                    <td>适合把“开发 / 数据 / 文档 / 运营”之类真实角色映射到 skill 集。</td>
+                                </tr>
+                                <tr>
+                                    <td>Skill Detail Page</td>
+                                    <td>看仓库与安装方式</td>
+                                    <td>详情页已经接近“安装前审查面”，能直接继续跳 GitHub。</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="workflow" class="section-block">
+                    <h2>2. 为什么它适合做我们后续自动化 skill 的发现层</h2>
+                    <p>如果把“自动找 skill 并下载”拆成两半，前半其实是<strong>搜索与消歧</strong>，后半才是<strong>安装与落盘</strong>。SkillsMP 最适合承担的是前半。</p>
+
+                    <div class="quickstart-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 1.5rem;">
+                        <div class="quickstart-card">
+                            <h3>第 1 步：发现</h3>
+                            <p>根据任务、关键词、职业或分类，在 SkillsMP 找到 2 到 5 个候选 skill。</p>
+                        </div>
+                        <div class="quickstart-card">
+                            <h3>第 2 步：校验</h3>
+                            <p>打开详情页里的 GitHub 仓库，看 <code>SKILL.md</code>、脚本、模板、更新时间和维护状态。</p>
+                        </div>
+                        <div class="quickstart-card">
+                            <h3>第 3 步：安装</h3>
+                            <p>把完整 skill 目录落到 <code>~/.claude/skills/</code>、<code>.claude/skills/</code> 或 <code>~/.codex/skills/</code>。</p>
+                        </div>
+                    </div>
+
+                    <div class="table-wrap" style="margin-top: 1.75rem;">
+                        <table class="data-table">
+                            <thead>
+                                <tr><th>阶段</th><th>主要来源</th><th>我们应该信什么</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>发现候选</td>
+                                    <td>SkillsMP</td>
+                                    <td>信它的聚合、分类与搜索能力。</td>
+                                </tr>
+                                <tr>
+                                    <td>判断是否靠谱</td>
+                                    <td>GitHub 仓库</td>
+                                    <td>信仓库里的 <code>SKILL.md</code>、脚本、提交历史与目录结构。</td>
+                                </tr>
+                                <tr>
+                                    <td>真正安装</td>
+                                    <td>本地 skill 目录</td>
+                                    <td>信本机落盘后的文件内容，而不是市场页文案本身。</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p style="margin-top: 1.25rem;">换句话说，<strong>在这个网址寻找就行</strong>，但<strong>不要停在这个网址</strong>。它负责“找到谁”，GitHub 负责“核实是谁”，本地目录负责“真正装了什么”。</p>
+                </section>
+
+                <section id="examples" class="section-block">
+                    <h2>3. 现在就能拿来当样例的两个详情页</h2>
+                    <p>这两个样例够说明问题：SkillsMP 的详情页已经能把“技能是什么、来自哪个仓库、怎么装”连起来，所以它非常适合作为站内专题入口和后续自动化的前置搜索面。</p>
+
+                    <div class="table-wrap" style="margin-top: 1rem;">
+                        <table class="data-table">
+                            <thead>
+                                <tr><th>Skill</th><th>详情页能看到什么</th><th>上游仓库</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>github-repo-management</code></td>
+                                    <td>技能说明、更新时间、安装提示，以及仓库字段 <code>fanthus/agent-skills</code></td>
+                                    <td><a href="https://github.com/fanthus/agent-skills" target="_blank" rel="noopener noreferrer">fanthus/agent-skills ↗</a></td>
+                                </tr>
+                                <tr>
+                                    <td><code>slides</code></td>
+                                    <td>搜索结果直接给出安装路径提示，指向具体 skill 目录</td>
+                                    <td><a href="https://github.com/Bloody-BadAim/svsit-site/tree/main/.claude/skills/slides" target="_blank" rel="noopener noreferrer">Bloody-BadAim/svsit-site/.claude/skills/slides ↗</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="awesome" class="section-block">
+                    <h2>4. 我们已经把这条线整理成仓库内汇总</h2>
+                    <p>为了不让这件事只停留在网页入口，我把它同步沉淀成了仓库内的 <a href="https://github.com/Harzva/learn-likecc/blob/main/awesome-skills.md" target="_blank" rel="noopener noreferrer"><code>awesome-skills.md</code></a>：里面收 discovery 入口、安装落点和已验证的 SkillsMP 样例。</p>
+                    <p>这样做的好处是，之后无论是继续扩展站内专题，还是让 Agent / Skill 自动使用这条路线，我们都有一个<strong>仓库内、可 diff、可 PR、可继续补充</strong> 的锚点。</p>
+                    <p>现在仓库里也已经补上了第一版安装器：<code>tools/install_skill_from_github.py</code>。它不负责从 SkillsMP 硬抓详情页，而是接收已经核验过的 GitHub 仓库与 skill 路径，把完整 skill 目录安装到 Claude / Codex 的本地目录。</p>
+                </section>
+
+                <section id="next" class="section-block">
+                    <h2>5. 下一步怎么把它做成真正的“自动找 skill 并安装”</h2>
+                    <p>这一步我建议不要一步到位做成“搜完立刻安装”，而是先做成一个<strong>半自动 skill</strong>：</p>
+                    <ul>
+                        <li>先从用户任务里提取关键词，例如“引用管理”“仓库分析”“PR 管理”“文档整理”。</li>
+                        <li>去 SkillsMP 里找 2 到 5 个候选 skill，列出仓库地址和简要判断。</li>
+                        <li>默认先推荐，不直接落盘；只有用户明确说“就装这个”时，再用仓库内安装脚本复制完整目录。</li>
+                    </ul>
+                    <p>仓库里现在已经不是只有骨架了：<code>.claude/skills/skillsmp-find-install/SKILL.md</code> 负责工作流说明，<code>tools/install_skill_from_github.py</code> 负责真正的 GitHub 安装动作。后面继续增强时，重点就会是候选筛选和安全校验，而不是重写安装层。</p>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-skillmarket.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

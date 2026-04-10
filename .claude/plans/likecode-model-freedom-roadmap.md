@@ -144,10 +144,13 @@ learn-likecc 现在已经不只是一个 Claude Code 源码学习仓库。
 - [x] 新增 `庖丁解牛专题` 总页，并把 `CC 庖丁解牛` 调整为其子专题
 - [x] `Superset 解构` 已作为庖丁解牛专题第二子专题接入站点导航，并承载 `meta-agent` 结构线
 - [x] 新增 `full_unpackd_rep` 技能，用于把参考仓库解构成结构专题页
+- [x] 新增 `Skill 市场专题` 初稿，并接入首页/侧栏与 `awesome-skills.md` 汇总入口
+- [x] 新增 `SkillsMP` 检索安装 skill 与安装脚本，先固定“SkillsMP 发现 + GitHub 校验 + 本地安装”流程
 
 ### 待继续打钩
 
 - [ ] 再逐步统一更多页面的 `Claude Code Course` 旧口径
+- [x] 把 `SkillsMP` 检索安装 skill 从流程骨架升级为真正可半自动执行的安装工作流
 - [ ] 把自由模型路线拆到具体版本计划
 - [ ] 把多窗口设计稿进一步映射到具体版本计划与实现任务
 - [x] 将多窗口设计稿进一步映射到 `v1.0.2-likecode` 版本计划
