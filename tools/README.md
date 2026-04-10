@@ -13,3 +13,4 @@
 | `cc_loop_relay_demo.py` | 向 **stdout** 打印 NDJSON 形式 demo 事件。 |
 | `cc_loop_sse_relay.py` | 本机 **SSE** 服务（默认 `127.0.0.1:8769/events`），供 `topic-cc-loop-lab.html` 联调。 |
 | `install_skill_from_github.py` | 从 GitHub 仓库浅克隆指定 skill 目录，并安装到 `~/.claude/skills/`、`.claude/skills/` 或 `~/.codex/skills/`。 |
+| `skillsmp_find_and_install.py` | 通过 `r.jina.ai` 代理读取 SkillsMP 搜索结果，自动挑选候选 skill、回 GitHub 校验，并继续调用安装脚本。 |

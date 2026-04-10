@@ -35,6 +35,7 @@
 ## 当前交付
 
 - [x] 新增 `tools/install_skill_from_github.py`
+- [x] 新增 `tools/skillsmp_find_and_install.py`
 - [x] 将 `skillsmp-find-install` 从骨架升级为可执行工作流说明
 - [x] 更新 `awesome-skills.md`
 - [x] 更新 `tools/README.md`
@@ -45,3 +46,4 @@
 - [ ] 增加 `--from-skillsmp-url` 之类的详情页解析辅助能力
 - [ ] 增加 repo 安全检查与最近更新时间提示
 - [ ] 增加可选的安装后 smoke test
+- [ ] 增加交互确认模式与黑白名单策略

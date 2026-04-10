@@ -59,4 +59,4 @@
 - 默认先推荐与解释，最后才按用户确认去安装
 - 安装动作优先走仓库内脚本 `tools/install_skill_from_github.py`
 
-仓库里现在有两块执行面：`.claude/skills/skillsmp-find-install/SKILL.md` 负责工作流，`tools/install_skill_from_github.py` 负责实际安装。
+仓库里现在有三块执行面：`.claude/skills/skillsmp-find-install/SKILL.md` 负责工作流，`tools/install_skill_from_github.py` 负责实际安装，`tools/skillsmp_find_and_install.py` 负责根据 SkillsMP 搜索结果自动挑选候选并继续走安装链。

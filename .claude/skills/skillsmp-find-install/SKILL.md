@@ -49,6 +49,19 @@ python3 tools/install_skill_from_github.py \
   --target claude-user
 ```
 
+For the full auto path, use the search + decision wrapper:
+
+```bash
+python3 tools/skillsmp_find_and_install.py "github repo management"
+```
+
+It will:
+
+1. query SkillsMP search results
+2. rank candidates
+3. verify the selected repo by cloning it and locating `SKILL.md`
+4. call the installer automatically
+
 Common targets:
 
 - `claude-user` → `~/.claude/skills/`
@@ -60,6 +73,8 @@ Useful flags:
 - `--dry-run` to preview
 - `--force` to replace an existing installed directory
 - `--name <local-name>` to override the installed folder name
+- `--list-only` on `tools/skillsmp_find_and_install.py` to show candidates without installing
+- `--pick <n>` on `tools/skillsmp_find_and_install.py` to override the default top-ranked candidate
 
 ## Installation rules
 

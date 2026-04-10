@@ -40,6 +40,7 @@
 | 工具 | 作用 |
 |------|------|
 | [`tools/install_skill_from_github.py`](./tools/install_skill_from_github.py) | 从 GitHub 仓库浅克隆 skill 目录并安装到 Claude/Codex 本地 skill 根目录 |
+| [`tools/skillsmp_find_and_install.py`](./tools/skillsmp_find_and_install.py) | 通过 SkillsMP 搜索结果自动挑选候选 skill，校验 GitHub 仓库后调用安装器 |
 | [`.claude/skills/skillsmp-find-install/SKILL.md`](./.claude/skills/skillsmp-find-install/SKILL.md) | 先在 SkillsMP 发现候选，再回 GitHub 校验与安装的工作流 skill |
 
 ## 本站相关

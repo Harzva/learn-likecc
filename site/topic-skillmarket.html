@@ -194,7 +194,7 @@
                         <li>去 SkillsMP 里找 2 到 5 个候选 skill，列出仓库地址和简要判断。</li>
                         <li>默认先推荐，不直接落盘；只有用户明确说“就装这个”时，再用仓库内安装脚本复制完整目录。</li>
                     </ul>
-                    <p>仓库里现在已经不是只有骨架了：<code>.claude/skills/skillsmp-find-install/SKILL.md</code> 负责工作流说明，<code>tools/install_skill_from_github.py</code> 负责真正的 GitHub 安装动作。后面继续增强时，重点就会是候选筛选和安全校验，而不是重写安装层。</p>
+                    <p>仓库里现在已经不只是半自动骨架了：<code>.claude/skills/skillsmp-find-install/SKILL.md</code> 负责工作流说明，<code>tools/install_skill_from_github.py</code> 负责 GitHub 安装，<code>tools/skillsmp_find_and_install.py</code> 负责根据 SkillsMP 搜索结果自动选候选、回 GitHub 校验后继续调用安装器。后面继续增强时，重点就会是候选筛选策略和安全校验，而不是重写安装层。</p>
                 </section>
             </article>
         </div>
