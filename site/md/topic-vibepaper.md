@@ -83,6 +83,29 @@ Mermaid 更适合：否，更适合 HTML 卡片图。
 
 当前站内决策：它先作为 **short hub card / comparison sample** 保留在 VibePaper 总页里，还不急着升成独立 unpacked 页面。等后面把 `AI Scientist-v1 / v2` 差异和它引用的 AIDE 底座再看清，再决定是否单独拆页。
 
+### 再往前走一步：三条线的 control-plane thickness 到底差在哪
+
+如果只看名字，三条线都像“自动科研系统”。但真正值得教学的是它们的控制面厚度差异：
+
+- `Autoresearch` 最薄：主脑几乎全压在 loop contract 里，重点是 goal / metric / verify / rollback 这些协议面
+- `DeepScientist` 最厚：quest repo、stage workflow、memory、workspace、connectors 共同构成一个本地研究工作台
+- `AI Scientist-v2` 介于两者之间，但厚度方向不同：它不是把可视化工作台做厚，而是把 experiment manager、tree search、writeup pipeline 做厚，直接朝“论文成稿工厂”靠拢
+
+这组对照很有用，因为它把 VibePaper 里的三条线从“项目列表”变成了三种不同的系统壳层：
+
+- 协议壳：Autoresearch
+- 工作台壳：DeepScientist
+- 论文流水线壳：AI Scientist-v2
+
+后面如果再接新项目，最先要问的就不是“它火不火”，而是“它到底是在加厚哪一层壳”。这会直接决定它应该被写成 loop 教程、workspace 教程，还是 paper pipeline 教程。
+
+### [插图提示词]
+
+用途：画三种 research control-plane thickness，对比协议壳、工作台壳、论文流水线壳。  
+形式：三栏厚度对比图。  
+提示词：画一个 VibePaper control-plane thickness 对比图，三列分别是 Autoresearch、DeepScientist、AI Scientist-v2。Autoresearch 列最薄，只突出 loop contract；DeepScientist 列最厚，展示 quest repo、memory、workspace、connectors 多层外壳；AI Scientist-v2 列中等厚度，但重点放在 idea generation、tree search、experiment manager、writeup pipeline。底部标注三者分别对应 protocol shell、studio shell、paper pipeline shell。  
+Mermaid 更适合：否，更适合 HTML 层叠卡片图。
+
 ### 建议怎么读这条线
 
 1. 先看 Autoresearch，理解研究动作如何被拆成循环协议和验证链路。  

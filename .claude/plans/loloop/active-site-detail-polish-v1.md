@@ -119,6 +119,9 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Stay on Task 6 for one bounded VibePaper consolidation pass after the intake
 - [x] Integrate `AI Scientist-v2` into the main four-question comparison frame and reading route
 - [x] Verify the VibePaper draft now includes the new third-sample comparison anchors
+- [x] Stay on Task 6 for one bounded teaching-clarity pass after the consolidation
+- [x] Add one compact VibePaper section comparing research control-plane thickness across the three samples
+- [x] Verify the VibePaper draft now includes the new control-plane-thickness anchors
 
 ## Guardrail
 
