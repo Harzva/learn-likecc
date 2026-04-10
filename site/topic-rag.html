@@ -8,7 +8,7 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📎</text></svg>">
     <meta name="description" content="检索增强与大模型应用：论文精读与技术热点子专题入口。">
 </head>
-<body>
+<body class="rag-topic-page">
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
@@ -44,27 +44,27 @@
         </div>
     </section>
 
-    <section id="all-in-rag" class="section" style="background: var(--bg-secondary); padding-top: 60px;">
+    <section id="all-in-rag" class="section section--soft rag-topic-section rag-topic-section--entry">
         <div class="container">
             <h2 class="section-title">体系参考：All-in-RAG（Datawhale）</h2>
-            <p class="section-desc" style="max-width: 760px; margin: 0 auto 1.5rem;">
+            <p class="section-desc rag-topic-copy rag-topic-copy--wide rag-topic-copy--lead">
                 <a href="https://github.com/datawhalechina/all-in-rag" target="_blank" rel="noopener noreferrer"><strong>datawhalechina / all-in-rag</strong></a>《大模型应用开发实战一：RAG 技术全栈指南》——从 RAG 概念、数据准备、向量索引、混合检索、Text2SQL、生成与评估，到知识图谱 RAG、端到端项目与图 RAG 优化。<strong>非本仓库维护</strong>，版权与更新以原项目为准。
             </p>
-            <div class="hero-actions" style="justify-content: center; margin-bottom: 2rem;">
+            <div class="hero-actions rag-topic-actions rag-topic-actions--spaced">
                 <a href="https://datawhalechina.github.io/all-in-rag/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">📖 在线阅读（GitHub Pages）</a>
                 <a href="https://github.com/datawhalechina/all-in-rag" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">🐙 源码与 docs</a>
             </div>
-            <div class="quickstart-grid" style="grid-template-columns: 1fr;">
+            <div class="quickstart-grid rag-topic-grid rag-topic-grid--single">
                 <div class="quickstart-card">
                     <h3>章节骨架（便于导航）</h3>
-                    <ul style="line-height: 1.85; color: var(--text-secondary); margin: 0; padding-left: 1.2rem;">
+                    <ul class="rag-topic-list">
                         <li><strong>第一部分</strong>：第 1–2 章 RAG 入门、数据加载与分块</li>
                         <li><strong>第二部分</strong>：第 3 章 嵌入、多模态、向量库、Milvus、索引优化</li>
                         <li><strong>第三部分</strong>：第 4 章 混合检索、查询构建、Text2SQL、查询改写与进阶检索</li>
                         <li><strong>第四部分</strong>：第 5–6 章 格式化生成、系统评估与工具</li>
                         <li><strong>第五部分</strong>：第 7 章 KG RAG；第 8–9 章 项目实战与图 RAG 优化；第 10 章规划中</li>
                     </ul>
-                    <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.9rem;">
+                    <p class="rag-topic-note">
                         <strong>本机克隆</strong>：将仓库 clone 到任意路径后，以 <code>docs/</code> 章节 + <code>code/</code> 示例为主线即可（例如本地习惯放在 <code>…/rag/reference/all-in-rag/</code> 一类目录，与 learn-likecc 并列管理）。
                     </p>
                 </div>
@@ -75,14 +75,14 @@
     <section id="subs" class="section">
         <div class="container">
             <h2 class="section-title">本站子专题入口</h2>
-            <p class="section-desc" style="max-width: 720px; margin: 0 auto 2rem;">在 All-in-RAG 体系之外，这里收<strong>你自己的论文精读</strong>与<strong>外文快讯摘要表</strong>（可由 Cursor Skill 半自动从 RSS 维护）。</p>
-            <div class="quickstart-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
-                <a href="topic-rag-papers.html" class="quickstart-card" style="text-decoration: none; color: inherit;">
+            <p class="section-desc rag-topic-copy rag-topic-copy--spacious">在 All-in-RAG 体系之外，这里收<strong>你自己的论文精读</strong>与<strong>外文快讯摘要表</strong>（可由 Cursor Skill 半自动从 RSS 维护）。</p>
+            <div class="quickstart-grid rag-topic-grid">
+                <a href="topic-rag-papers.html" class="quickstart-card rag-topic-card-link">
                     <h3>📄 论文分析</h3>
                     <p>系统整理 RAG、长上下文、嵌入与评测等相关论文的阅读笔记与引用链。</p>
                     <p><strong>进入 →</strong></p>
                 </a>
-                <a href="topic-rag-hot.html" class="quickstart-card" style="text-decoration: none; color: inherit;">
+                <a href="topic-rag-hot.html" class="quickstart-card rag-topic-card-link">
                     <h3>🔥 技术热点</h3>
                     <p>外文博客 / Newsletter 的标题、链接与中文一句话摘要，按表维护。</p>
                     <p><strong>进入 →</strong></p>
@@ -94,19 +94,19 @@
     <section id="awesome-rag" class="section">
         <div class="container">
             <h2 class="section-title">Awesome · RAG 资源清单</h2>
-            <p class="section-desc" style="max-width: 720px; margin: 0 auto 1.25rem;">
+            <p class="section-desc rag-topic-copy rag-topic-copy--lead">
                 仓库根目录 <code>awesome-rag.md</code>：教程、向量库、Graph RAG、评测工具等外链汇总。姊妹清单见 <a href="topic-sourcemap.html#awesome">Source Map 源码专题 · Awesome 源码</a> 与 <a href="topic-agent.html#awesome-agent">Agent 专题 · Awesome Agent</a>。
             </p>
-            <div class="hero-actions" style="justify-content: center;">
+            <div class="hero-actions rag-topic-actions">
                 <a href="https://github.com/Harzva/learn-likecc/blob/main/awesome-rag.md" class="btn btn-primary" target="_blank" rel="noopener noreferrer">打开 Awesome RAG ↗</a>
             </div>
         </div>
     </section>
 
-    <section id="workflow" class="section" style="background: var(--bg-secondary);">
+    <section id="workflow" class="section section--soft">
         <div class="container">
             <h2 class="section-title">与 Agent 专题的关系</h2>
-            <p class="section-desc" style="max-width: 720px; margin: 0 auto;">
+            <p class="section-desc rag-topic-copy">
                 <a href="topic-agent.html">Agent 大专题</a>下有独立的论文与热点子专题；若一篇文章同时涉及 Agent 工具链与检索接地，可两条目各记一行并互链备注。源码向主线见 <a href="topic-sourcemap.html">Source Map 源码专题</a>。
             </p>
         </div>
