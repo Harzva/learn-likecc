@@ -116,6 +116,9 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Stay on Task 6 for one bounded new-candidate intake pass
 - [x] Clone one new autonomous research / paper-production repo into `reference/reference_agent/`
 - [x] Add one classified short-candidate note for the new repo to the VibePaper hub
+- [x] Stay on Task 6 for one bounded VibePaper consolidation pass after the intake
+- [x] Integrate `AI Scientist-v2` into the main four-question comparison frame and reading route
+- [x] Verify the VibePaper draft now includes the new third-sample comparison anchors
 
 ## Guardrail
 

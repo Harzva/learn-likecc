@@ -6,7 +6,7 @@
 
 ## 概要
 
-VibePaper 专题先收 **Autoresearch** 与 **DeepScientist** 两条线，关注的不是“论文工具很多”，而是：一个系统如何把论文阅读、baseline 复现、实验迭代、图表整理、成稿输出和长期记忆串成持续运行的研究工作流。
+VibePaper 专题目前先收 **Autoresearch**、**DeepScientist** 与 **AI Scientist-v2** 三条样本线，关注的不是“论文工具很多”，而是：一个系统如何把论文阅读、baseline 复现、实验迭代、图表整理、成稿输出和长期记忆串成持续运行的研究工作流。
 
 ## 目录（对照 HTML）
 
@@ -24,7 +24,7 @@ VibePaper 专题先收 **Autoresearch** 与 **DeepScientist** 两条线，关注
 
 这条线不只是在讲 paper，而是在拆“自动科研 / 自动论文系统”的结构：谁更像插件式自主循环，谁更像研究工作台，谁适合成为后续教程与可视化的核心样本。
 
-### 当前先收两条锚点项目
+### 当前先收三条样本项目
 
 - `Autoresearch`
   - 本地路径：`reference/reference_agent/autoresearch/`
@@ -32,8 +32,11 @@ VibePaper 专题先收 **Autoresearch** 与 **DeepScientist** 两条线，关注
 - `DeepScientist`
   - 本地路径：`reference/reference_agent/DeepScientist/`
   - 更像本地优先的自动科研 studio，适合看 quest repo、baseline/experiment/paper 一体化与可见研究进度。
+- `AI Scientist-v2`
+  - 本地路径：`reference/reference_agent/AI-Scientist-v2/`
+  - 更像 paper factory / agentic tree search system，适合看 idea 生成、树搜索实验管理、PDF 成稿链路。
 
-其中两条线现在都已经单独展开为：
+其中前两条线现在都已经单独展开为：
 
 - `topic-autoresearch-unpacked.html`
 - `topic-deepscientist-unpacked.html`
@@ -47,23 +50,24 @@ Mermaid 更适合：是。
 
 ### 先用四个问题把当前锚点放到一张表里
 
-Task 6 后续加新系统时，不应该先写宣传语，而应该先回答四个结构问题：它更像哪种系统形态，它的 control plane 在哪，它保留什么 durable state，它最适合长成哪类教程内容。先把当前两条锚点放进同一张表，后面加新项目时才能保持口径一致。
+Task 6 后续加新系统时，不应该先写宣传语，而应该先回答四个结构问题：它更像哪种系统形态，它的 control plane 在哪，它保留什么 durable state，它最适合长成哪类教程内容。先把当前三条样本放进同一张表，后面加新项目时才能保持口径一致。
 
 | 系统 | 更像哪种形态 | control plane 在哪 | durable state 保留什么 | 值得长成什么教程 |
 | --- | --- | --- | --- | --- |
 | `Autoresearch` | 插件式研究循环协议 | `goal + metric + scope + verify + rollback + git memory` 这套 loop contract，而不是某个厚 UI | git 历史、实验提交、verify 结果、比较日志、guide / comparison 文档 | 最适合长成“研究循环协议”“验证链路”“单循环 debug / fix / ship 方法论” |
 | `DeepScientist` | 本地优先研究工作台 | `quest + baseline/experiment/write stage workflow + quest repo`，而不是单个聊天框 | quest repo、findings memory、artifacts、paper outputs、visible workspace 状态 | 最适合长成“quest repo 操作系统”“durable research loop”“自动科研工作台分层” |
+| `AI Scientist-v2` | paper factory / agentic tree search system | `launch_scientist_bfts.py`、`bfts_config.yaml` 与 experiment manager agent 组成的树搜索调度面 | idea JSON、`experiments/` 日志、`unified_tree_viz.html`、writeup 中间产物与最终 PDF | 最适合长成“idea → tree search → experiment → paper draft”流水线教程，以及 search manager 对照课 |
 
 这张表有两个用处：
 
-- 它把 Autoresearch 和 DeepScientist 的差异压缩成站内统一口径，避免以后专题页越长越散
+- 它把 Autoresearch、DeepScientist 和 AI Scientist-v2 的差异压缩成站内统一口径，避免以后专题页越长越散
 - 它给后续新增项目提供一个最低准入模板：如果这四个问题答不清楚，就先不要急着把它抬成独立子专题
 
 ### [插图提示词]
 
 用途：画 VibePaper 四问评估框架，把“系统形态 / 控制面 / 持久状态 / 教程价值”变成可复用评估卡。  
 形式：四栏结构卡。  
-提示词：画一个 VibePaper evaluation framework 图，横向四列分别是 system shape、control plane、durable state、tutorial value，纵向放两行案例：Autoresearch 和 DeepScientist。Autoresearch 行突出 plugin protocol、loop contract、git memory、verify tutorial；DeepScientist 行突出 research studio、quest workflow、findings memory 和 paper outputs、workspace tutorial。  
+提示词：画一个 VibePaper evaluation framework 图，横向四列分别是 system shape、control plane、durable state、tutorial value，纵向放三行案例：Autoresearch、DeepScientist 和 AI Scientist-v2。Autoresearch 行突出 plugin protocol、loop contract、git memory、verify tutorial；DeepScientist 行突出 research studio、quest workflow、findings memory 和 paper outputs、workspace tutorial；AI Scientist-v2 行突出 agentic tree search、experiment manager、experiment logs 和 PDF writeup。  
 Mermaid 更适合：否，更适合 HTML 卡片图。
 
 ### 新进候选：AI Scientist-v2 先放 hub，不急着拆独立页
@@ -83,7 +87,8 @@ Mermaid 更适合：否，更适合 HTML 卡片图。
 
 1. 先看 Autoresearch，理解研究动作如何被拆成循环协议和验证链路。  
 2. 再看 DeepScientist，理解如果把整套研究过程做成工作台，会多出哪些层。  
-3. 最后回到站点，判断哪些值得继续写成教程、图示和子专题。
+3. 再看 AI Scientist-v2，理解当系统目标直接指向“论文成稿”时，控制面为什么会转成树搜索和实验经理。  
+4. 最后回到站点，判断哪些值得继续写成教程、图示和子专题。
 
 ### 这个专题会怎么持续长出来
 

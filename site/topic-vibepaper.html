@@ -41,7 +41,7 @@
                 <span class="gradient-text">把自动科研系统放到同一张图里看</span>
             </h1>
             <p class="hero-subtitle">
-                这一页先收 <strong>Autoresearch</strong> 与 <strong>DeepScientist</strong> 两条主线：前者更像可组合的自主改进循环，后者更像本地优先的研究工作台。<br>
+                这一页先收 <strong>Autoresearch</strong>、<strong>DeepScientist</strong> 与 <strong>AI Scientist-v2</strong> 三条样本线：前者更像可组合的自主改进循环，中间这条更像本地优先的研究工作台，后者则更接近面向论文成稿的 agentic tree search 系统。<br>
                 我们后面会继续把同类项目 clone 到 <code>reference/reference_agent/</code>，再按“结构、控制面、教程、图示”四条线持续补完。
             </p>
             <div class="hero-actions">
@@ -63,7 +63,7 @@
                 </section>
 
                 <section id="anchors" class="section-block">
-                    <h2>当前先收两条锚点项目</h2>
+                    <h2>当前先收三条样本项目</h2>
                     <div class="quickstart-grid">
                         <a href="topic-autoresearch-unpacked.html" class="quickstart-card" style="text-decoration:none;color:inherit;">
                             <h3>Autoresearch</h3>
@@ -77,6 +77,12 @@
                             <p><strong>站内入口</strong>：DeepScientist 解构</p>
                             <p><strong>本地路径</strong>：<code>reference/reference_agent/DeepScientist/</code></p>
                         </a>
+                        <div class="quickstart-card">
+                            <h3>AI Scientist-v2</h3>
+                            <p>更像<strong>paper factory / agentic tree search system</strong>：先生成 idea，再用树搜索推进实验、分析、写作，最后产出 PDF。适合研究“从实验管理到论文成稿”的自动流水线。</p>
+                            <p><strong>当前站内状态</strong>：先保留为 VibePaper hub 样本</p>
+                            <p><strong>本地路径</strong>：<code>reference/reference_agent/AI-Scientist-v2/</code></p>
+                        </div>
                     </div>
                     <div class="course-quote">
                         <p><strong>[插图提示词]</strong></p>
@@ -89,7 +95,7 @@
 
                 <section id="four-questions" class="section-block">
                     <h2>先用四个问题把当前锚点放到一张表里</h2>
-                    <p>Task 6 后续加新系统时，不应该先写宣传语，而应该先回答四个结构问题：它更像哪种系统形态，它的 control plane 在哪，它保留什么 durable state，它最适合长成哪类教程内容。先把当前两条锚点放进同一张表，后面加新项目时才能保持口径一致。</p>
+                    <p>Task 6 后续加新系统时，不应该先写宣传语，而应该先回答四个结构问题：它更像哪种系统形态，它的 control plane 在哪，它保留什么 durable state，它最适合长成哪类教程内容。先把当前三条样本放进同一张表，后面加新项目时才能保持口径一致。</p>
                     <table class="compare-table">
                         <tr>
                             <th>系统</th>
@@ -112,13 +118,20 @@
                             <td>quest repo、findings memory、artifacts、paper outputs、visible workspace 状态</td>
                             <td>最适合长成“quest repo 操作系统”“durable research loop”“自动科研工作台分层”</td>
                         </tr>
+                        <tr>
+                            <td><code>AI Scientist-v2</code></td>
+                            <td>paper factory / agentic tree search system</td>
+                            <td><code>launch_scientist_bfts.py</code>、<code>bfts_config.yaml</code> 与 experiment manager agent 组成的树搜索调度面</td>
+                            <td>idea JSON、<code>experiments/</code> 日志、<code>unified_tree_viz.html</code>、writeup 中间产物与最终 PDF</td>
+                            <td>最适合长成“idea → tree search → experiment → paper draft”流水线教程，以及 search manager 对照课</td>
+                        </tr>
                     </table>
-                    <p>这张表有两个用处：第一，它把 Autoresearch 和 DeepScientist 的差异压缩成站内统一口径，避免以后专题页越长越散；第二，它给后续新增项目提供一个最低准入模板，如果这四个问题答不清楚，就先不要急着把它抬成独立子专题。</p>
+                    <p>这张表有两个用处：第一，它把 Autoresearch、DeepScientist 和 AI Scientist-v2 的差异压缩成站内统一口径，避免以后专题页越长越散；第二，它给后续新增项目提供一个最低准入模板，如果这四个问题答不清楚，就先不要急着把它抬成独立子专题。</p>
                     <div class="course-quote">
                         <p><strong>[插图提示词]</strong></p>
                         <p>用途：画 VibePaper 四问评估框架，把“系统形态 / 控制面 / 持久状态 / 教程价值”变成可复用评估卡。</p>
                         <p>形式：四栏结构卡。</p>
-                        <p>提示词：画一个 VibePaper evaluation framework 图，横向四列分别是 system shape、control plane、durable state、tutorial value，纵向放两行案例：Autoresearch 和 DeepScientist。Autoresearch 行突出 plugin protocol、loop contract、git memory、verify tutorial；DeepScientist 行突出 research studio、quest workflow、findings memory 和 paper outputs、workspace tutorial。</p>
+                        <p>提示词：画一个 VibePaper evaluation framework 图，横向四列分别是 system shape、control plane、durable state、tutorial value，纵向放三行案例：Autoresearch、DeepScientist 和 AI Scientist-v2。Autoresearch 行突出 plugin protocol、loop contract、git memory、verify tutorial；DeepScientist 行突出 research studio、quest workflow、findings memory 和 paper outputs、workspace tutorial；AI Scientist-v2 行突出 agentic tree search、experiment manager、experiment logs 和 PDF writeup。</p>
                         <p>Mermaid 更适合：否，更适合 HTML 卡片图。</p>
                     </div>
                 </section>
@@ -142,7 +155,11 @@
                             <p>再看“如果把整套研究过程做成工作台，会多出哪些层”：quest repo、可视化 research map、paper-facing outputs、connector surfaces。</p>
                         </div>
                         <div class="quickstart-card">
-                            <h3>3. 回到我们的站点</h3>
+                            <h3>3. 再看 AI Scientist-v2</h3>
+                            <p>理解当系统目标直接指向“论文成稿”时，控制面为什么会转成树搜索、实验经理和 writeup 流水线。</p>
+                        </div>
+                        <div class="quickstart-card">
+                            <h3>4. 回到我们的站点</h3>
                             <p>最后再判断哪些值得写成教程、哪些适合做结构图、哪些可以接进 `codex-loop` 的长期循环任务。</p>
                         </div>
                     </div>
