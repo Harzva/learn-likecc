@@ -99,7 +99,7 @@
                         </tr>
                         <tr>
                             <td><strong>2.1.101</strong></td>
-                            <td>新增 <code>/team-onboarding</code>，可基于本地 Claude Code 使用痕迹生成 teammate ramp-up guide；默认信任操作系统 CA 证书库以适配企业 TLS 代理；远程会话相关功能可自动创建默认 cloud environment；<code>brief mode</code> 遇到 plain text 会自动重试一次结构化消息；<code>tool-not-available</code> 报错开始解释“为什么当前上下文拿不到工具”；rate-limit retry 信息开始直接显示命中的限制类型和重置时间；同时修了一批 <code>--resume</code>、插件、权限、subagent、Remote Control 与长会话内存问题。</td>
+                            <td>新增 <code>/team-onboarding</code>，可基于本地 Claude Code 使用痕迹生成 teammate ramp-up guide；默认信任操作系统 CA 证书库以适配企业 TLS 代理；远程会话相关功能可自动创建默认 cloud environment；<code>brief mode</code> 遇到 plain text 会自动重试一次结构化消息；<code>tool-not-available</code> 报错开始解释“为什么当前上下文拿不到工具”；rate-limit retry 信息开始直接显示命中的限制类型和重置时间；refusal 错误现在会带出 API 侧给出的解释；同时修了一批 <code>--resume</code>、插件、权限、subagent、Remote Control 与长会话内存问题。</td>
                         </tr>
                         <tr>
                             <td><strong>2.1.98</strong></td>
@@ -224,6 +224,21 @@
                         <p>形式：流程图。</p>
                         <p>提示词：画一个 Claude Code brief mode structured retry flow。左侧是 brief mode request，中央第一次响应偏成 plain text，系统检测到 expected structured message 未满足；随后进入 automatic retry once；右侧得到 corrected structured message。底部补一句说明：把格式偏移从用户重试变成协议层自动恢复。</p>
                         <p>Mermaid 更适合：是。</p>
+                    </div>
+                    <p><strong>本轮原始来源</strong>：<a href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener noreferrer">官方文档 changelog</a>（<code>2.1.101</code>, 2026-04-10）与 <a href="https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">GitHub Raw CHANGELOG</a>。</p>
+                </section>
+
+                <section id="refusal-keyword" class="section-block">
+                    <h2>再补一刀：refusal 错误开始把 API 侧解释带出来</h2>
+                    <p><code>2.1.101</code> 里还有一条短小但很关键的变化：Claude Code 现在会<strong>在 refusal error message 里带上 API 提供的 explanation</strong>，而不是只告诉你“被拒了”。</p>
+                    <p>这条为什么值得记：第一，它把 refusal 从一个过于抽象的结果状态，往<strong>可解释的拒绝边界</strong>推进了一步；第二，它让用户在排查问题时，终于能区分是提示内容、权限边界、策略命中还是别的上游原因，而不必面对一条没有上下文的拒绝提示；第三，这对长期运行系统很重要，因为在真实 loop 里，拒绝本身并不可怕，真正昂贵的是<strong>不知道为什么被拒、因此不知道下一步该改什么</strong>。</p>
+                    <p>如果把前面的 <code>tool-not-available</code>、rate-limit、brief retry 都看成“失败和恢复状态开始变得更可运营”，那 refusal explanation 就是在补最后一块：当系统没有继续执行时，它至少应该把上游 API 愿意透露的理由带给用户，而不是把拒绝再包成一层黑盒。</p>
+                    <div class="course-quote">
+                        <p><strong>[插图提示词]</strong></p>
+                        <p>用途：画“Claude Code refusal feedback 升级”小图，对比旧版空泛拒绝和新版带 explanation 的拒绝反馈。</p>
+                        <p>形式：对比图。</p>
+                        <p>提示词：画一个 Claude Code refusal feedback comparison。左侧是旧版 generic refusal error，只显示 request refused；右侧是新版 refusal error，附带 API-provided explanation 与 next-step hint。底部补一句说明：把拒绝从黑盒状态变成可解释的控制面反馈。</p>
+                        <p>Mermaid 更适合：否，更适合左右对比卡片图。</p>
                     </div>
                     <p><strong>本轮原始来源</strong>：<a href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener noreferrer">官方文档 changelog</a>（<code>2.1.101</code>, 2026-04-10）与 <a href="https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">GitHub Raw CHANGELOG</a>。</p>
                 </section>

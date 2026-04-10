@@ -24,7 +24,7 @@
 
 | 版本 | 要点（非穷尽） |
 | --- | --- |
-| **2.1.101** | 新增 `/team-onboarding`，可基于本地 Claude Code 使用痕迹生成 teammate ramp-up guide；默认信任操作系统 CA 证书库以适配企业 TLS 代理；远程会话相关功能可自动创建默认 cloud environment；`brief mode` 遇到 plain text 会自动重试一次结构化消息；`tool-not-available` 报错开始解释“为什么当前上下文拿不到工具”；rate-limit retry 信息开始直接显示命中的限制类型和重置时间；同时修了一批 `--resume`、插件、权限、subagent、Remote Control 与长会话内存问题。 |
+| **2.1.101** | 新增 `/team-onboarding`，可基于本地 Claude Code 使用痕迹生成 teammate ramp-up guide；默认信任操作系统 CA 证书库以适配企业 TLS 代理；远程会话相关功能可自动创建默认 cloud environment；`brief mode` 遇到 plain text 会自动重试一次结构化消息；`tool-not-available` 报错开始解释“为什么当前上下文拿不到工具”；rate-limit retry 信息开始直接显示命中的限制类型和重置时间；refusal 错误现在会带出 API 侧给出的解释；同时修了一批 `--resume`、插件、权限、subagent、Remote Control 与长会话内存问题。 |
 | **2.1.98** | Vertex AI 三方登录向导；新增 **Monitor tool** 用于流式读取后台脚本事件；Linux 子进程沙箱隔离与 `CLAUDE_CODE_SCRIPT_CAPS`；`--exclude-dynamic-system-prompt-sections` 改善跨用户 prompt cache；Perforce / worktree / tracing / LSP `clientInfo` 等工程向增强；同时修了一批 Bash 权限绕过与 `/resume` / hooks / transcript 问题。 |
 | **2.1.97** | `NO_FLICKER` 的 Focus View；status line `refreshInterval`；`workspace.git_worktree` 进入 status line JSON；`/agents` 显示运行中 subagents；多项权限、`/resume`、MCP OAuth、上下文压缩、OTEL tracing 与 `NO_FLICKER` 修复。 |
 | **2.1.92** | `forceRemoteSettingsRefresh` 策略；Bedrock 交互配置向导；`/cost` 按模型与缓存命中细分；`/release-notes` 改为交互选版；Remote Control 默认会话名带 hostname；移除 `/tag`、`/vim`（改走 `/config`）；Linux sandbox 附带 `apply-seccomp`；多项全屏/子代理/Homebrew 渠道修复 |
@@ -53,6 +53,30 @@
 形式：流程图。  
 提示词：画一个 Claude Code team onboarding flow。左侧是个人本地 Claude Code usage，包括 commands、workflows、plugins、naming habits；中间是 `/team-onboarding` 提取并整理这些模式；右侧是 teammate ramp-up guide，包含 recommended commands、project conventions、handoff notes。底部补一句说明：把 tacit usage 变成团队可复用入口。  
 Mermaid 更适合：是。
+
+### 本轮原始来源
+
+- 官方文档：`https://code.claude.com/docs/en/changelog`（`2.1.101`, 2026-04-10）
+- GitHub Raw：`https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md`
+
+## 再补一刀：refusal 错误开始把 API 侧解释带出来
+
+`2.1.101` 里还有一条短小但很关键的变化：Claude Code 现在会 **在 refusal error message 里带上 API 提供的 explanation**，而不是只告诉你“被拒了”。
+
+这条为什么值得记：
+
+- 它把 refusal 从一个过于抽象的结果状态，往 **可解释的拒绝边界** 推进了一步
+- 它让用户在排查问题时，终于能区分是提示内容、权限边界、策略命中还是别的上游原因，而不必面对一条没有上下文的拒绝提示
+- 它对长期运行系统很重要，因为在真实 loop 里，拒绝本身并不可怕，真正昂贵的是 **不知道为什么被拒、因此不知道下一步该改什么**
+
+如果把前面的 `tool-not-available`、rate-limit、brief retry 都看成“失败和恢复状态开始变得更可运营”，那 refusal explanation 就是在补最后一块：当系统没有继续执行时，它至少应该把上游 API 愿意透露的理由带给用户，而不是把拒绝再包成一层黑盒。
+
+### [插图提示词]
+
+用途：画“Claude Code refusal feedback 升级”小图，对比旧版空泛拒绝和新版带 explanation 的拒绝反馈。  
+形式：对比图。  
+提示词：画一个 Claude Code refusal feedback comparison。左侧是旧版 generic refusal error，只显示 request refused；右侧是新版 refusal error，附带 API-provided explanation 与 next-step hint。底部补一句说明：把拒绝从黑盒状态变成可解释的控制面反馈。  
+Mermaid 更适合：否，更适合左右对比卡片图。
 
 ### 本轮原始来源
 
