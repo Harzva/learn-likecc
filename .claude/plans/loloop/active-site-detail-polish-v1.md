@@ -157,6 +157,8 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Retarget the VibePaper primary hero CTA label so it points explicitly at the three current samples
 - [x] Stay on Task 6 for one more bounded hero-copy cleanup after the primary CTA wording pass
 - [x] Sync the VibePaper hero subtitle with the current three-main-samples plus AIDE candidate-lane structure
+- [x] Stay on Task 6 for one more bounded page-metadata cleanup after the hero copy sync
+- [x] Sync the VibePaper page description metadata with the current three-main-samples plus AIDE candidate-lane structure
 
 ## Guardrail
 
