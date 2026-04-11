@@ -21,6 +21,7 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - [x] Mark the current `topic-agent-comparison` subthread locally deferred after the runtime-shell and coordination-mode passes because the next likely additions would be lower-signal taxonomy churn
 - [x] Choose `topic-codex-loop-console` as the next bounded site-facing destination because `hermes-webui`, `claudecodeui`, and `hermes-hud` fit its operator-surface and session-visibility scope
 - [x] Add one repo-backed operator-surface note clarifying why session browser, multi-session workbench, and operator HUD should not be treated as one generic AI shell
+- [x] Mark the current `topic-codex-loop-console` subthread locally deferred after the operator-surface pass because another immediate pass would now be lower value than switching to a fresh reference destination
 
 ## Newly added references
 
@@ -120,3 +121,4 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - Second bounded Task 8 destination is now `topic-agent-comparison`, using `feynman`, `ChatDev 2.0`, and `Multica` to ground runtime-topology differences in repo evidence
 - Current local state: the `topic-agent-comparison` subthread is locally deferred until a stronger multi-agent runtime gap, a better repo cluster, or a clearer site destination appears
 - Third bounded Task 8 destination is now `topic-codex-loop-console`, using `hermes-webui`, `claudecodeui`, and `hermes-hud` to separate session browser, workbench, and operator-HUD surfaces before the local AI Terminal drifts into a generic “agent UI” bucket
+- Current local state: the `topic-codex-loop-console` subthread is locally deferred until a stronger operator-UX pattern, CLI-control gap, or clearer site destination appears
