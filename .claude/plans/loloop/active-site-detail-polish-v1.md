@@ -375,6 +375,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Stay on the overnight Task 3 line for one final readiness-decision pass after the workflow article house-style polish landed
 - [x] Recheck that the `36-*` workflow article still has its one compact process graphic plus all final GitHub links before deciding whether more polish is justified
 - [x] Mark the `36-*` workflow article locally ready for a future daytime publication attempt instead of forcing another low-yield overnight rewrite
+- [x] Treat the next overnight non-publish slice as Task 2 topic selection rather than reopening the now-ready `36-*` workflow article
+- [x] Review existing `site/topic-*.html` pages against current Zhihu article coverage and shortlist 1 to 3 high-value promotion candidates
+- [x] Mark `topic-vibepaper` as the strongest next Zhihu-promotion candidate, with `topic-codex-loop-console` and `topic-autoresearch-unpacked` as the next fallback lane
 
 ## Guardrail
 
