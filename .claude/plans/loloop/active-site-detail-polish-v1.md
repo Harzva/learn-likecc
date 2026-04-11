@@ -179,6 +179,8 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Sync the VibePaper Markdown source title with the current three-main-sample scope used by the HTML page
 - [x] Stay on Task 6 for one more bounded Markdown-summary sync after the source-title cleanup
 - [x] Sync the VibePaper Markdown overview summary with the current three-main-samples plus AIDE candidate-lane structure
+- [x] Stay on Task 6 for one more bounded reading-route clarity pass after the Markdown-summary sync
+- [x] Add one explicit AIDE-lane reading step to the VibePaper route so the candidate substrate is not skipped after AI Scientist-v2
 
 ## Guardrail
 
