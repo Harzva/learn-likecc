@@ -387,6 +387,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Switch the next overnight media slice to the second shortlisted Task 2 candidate instead of reopening the now-ready VibePaper draft
 - [x] Create a reusable `topic-codex-loop-console` screenshot config plus one bounded set of local captures for the control-entry, Session Stack contract, and local operator-desk surface
 - [x] Write the first `topic-codex-loop-console` Zhihu-style Markdown draft under `wemedia/zhihu/articles/` and verify that it references the new local images and standard closeout structure
+- [x] Stay on the console Task 2 subthread for one final readiness-decision pass after the first screenshot-backed draft landed
+- [x] Recheck that the `38-*` console draft still includes its three local screenshots, the main site link, and the standard `适合什么人看 / 链接放这里` closeout structure
+- [x] Mark the `38-*` console draft locally ready for a future daytime publication attempt instead of forcing another overnight rewrite
 
 ## Guardrail
 
