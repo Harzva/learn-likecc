@@ -47,6 +47,20 @@ const MERMAID_DIAGRAMS = {
     A --> D["Delivery router<br/>reply / home channel / callback"]:::greenBox
     S --> T["Transcript persistence<br/>SQLite + JSONL"]:::greenBox`,
 
+    'hermes-execution-boundary': `graph TB
+    classDef blueBox fill:#172130,stroke:#60a5fa,stroke-width:2px,color:#93c5fd;
+    classDef yellowBox fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#fcd34d;
+    classDef greenBox fill:#14251f,stroke:#34d399,stroke-width:2px,color:#6ee7b7;
+    classDef purpleBox fill:#241c2f,stroke:#c084fc,stroke-width:2px,color:#e9d5ff;
+
+    A["AIAgent + terminal tool"]:::yellowBox --> B["TERMINAL_ENV / create_environment()<br/>backend selector"]:::blueBox
+    B --> L["local · docker · ssh"]:::greenBox
+    B --> R["daytona · singularity · modal"]:::greenBox
+    B --> S["task_id / session state<br/>persistent fs · verifier"]:::purpleBox
+    S --> L
+    S --> R
+    R --> I["idle reaper / lifetime_seconds"]:::purpleBox`,
+
     'vibepaper-shells': `graph LR
     classDef blueBox fill:#172130,stroke:#60a5fa,stroke-width:2px,color:#93c5fd;
     classDef greenBox fill:#14251f,stroke:#34d399,stroke-width:2px,color:#6ee7b7;

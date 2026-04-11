@@ -178,6 +178,22 @@ Mermaid 更适合：是。
 
 这也是 Hermes 和普通“终端聊天壳”差别很大的地方：它不是只会调一个 shell，而是把 backend selection、生命周期、状态复用都纳入控制面设计。
 
+```mermaid
+graph TB
+    classDef blueBox fill:#172130,stroke:#60a5fa,stroke-width:2px,color:#93c5fd;
+    classDef yellowBox fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#fcd34d;
+    classDef greenBox fill:#14251f,stroke:#34d399,stroke-width:2px,color:#6ee7b7;
+    classDef purpleBox fill:#241c2f,stroke:#c084fc,stroke-width:2px,color:#e9d5ff;
+
+    A["AIAgent + terminal tool"]:::yellowBox --> B["TERMINAL_ENV / create_environment()<br/>backend selector"]:::blueBox
+    B --> L["local · docker · ssh"]:::greenBox
+    B --> R["daytona · singularity · modal"]:::greenBox
+    B --> S["task_id / session state<br/>persistent fs · verifier"]:::purpleBox
+    S --> L
+    S --> R
+    R --> I["idle reaper / lifetime_seconds"]:::purpleBox
+```
+
 ### [插图提示词]
 
 用途：解释 Hermes 的 execution boundary。  

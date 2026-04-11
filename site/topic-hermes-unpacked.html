@@ -168,6 +168,10 @@
                         <tr><td>Task-Scoped State</td><td><code>environments/README.md</code> 的 <code>ToolContext</code> 说明</td><td>同一个 <code>task_id</code> 会复用同一终端 / 浏览器状态，reward verifier 看到的正是模型刚才操作过的那份环境；这让 Hermes 的执行面不仅能跑工具，还能被训练和评测系统复用。</td></tr>
                         <tr><td>Research Reuse</td><td><code>environments/hermes_base_env.py</code> 与 <code>environments/README.md</code></td><td>Atropos 环境层直接通过 <code>TERMINAL_ENV</code> 接入 Hermes tool stack，说明 Hermes 的 backend 抽象不是 UI 附件，而是可被 RL / benchmark pipeline 复用的运行层。</td></tr>
                     </table>
+                    <figure class="mermaid-figure">
+                        <div class="mermaid-diagram" data-mermaid-diagram="hermes-execution-boundary"></div>
+                        <figcaption>执行边界图：统一 terminal tool 接入 backend selector，再把状态按 task/session 路由到不同执行后端。</figcaption>
+                    </figure>
                     <div class="course-quote">
                         <p><strong>[插图提示词]</strong></p>
                         <p>用途：解释 Hermes 的执行边界，说明 agent kernel、terminal tool、backend selector、persistent filesystem、idle reaper 之间的关系。</p>
