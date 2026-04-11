@@ -12946,3 +12946,61 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     justify-content: center;
     margin-top: 1.25rem;
 }
+
+.topic-sourcemap-section {
+    background: var(--bg-secondary);
+}
+
+.topic-sourcemap-section--top {
+    padding-top: 60px;
+}
+
+.topic-sourcemap-section--bottom {
+    padding-bottom: 60px;
+}
+
+.topic-sourcemap-grid-260 {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.topic-sourcemap-inline-link {
+    color: var(--accent, #89b4fa);
+}
+
+.topic-sourcemap-desc {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.topic-sourcemap-desc--event {
+    margin-bottom: 1rem;
+}
+
+.topic-sourcemap-desc--awesome {
+    margin-bottom: 1.25rem;
+}
+
+.topic-sourcemap-desc--compact {
+    max-width: 640px;
+}
+
+.topic-sourcemap-desc--center {
+    text-align: center;
+}
+
+.topic-sourcemap-chapters-lead {
+    margin-bottom: 1.5rem;
+}
+
+.topic-sourcemap-grid-200 {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+.topic-sourcemap-chapter-card {
+    padding: 12px 14px;
+}
+
+.topic-sourcemap-actions-centered {
+    justify-content: center;
+}
