@@ -17,7 +17,7 @@ Prioritize future iterations along these three lines:
 
 ## Current focus
 
-Continue Task 9 LikeCode Web UI after the session-stack operator-actions pass.
+Continue Task 9 LikeCode Web UI after the session-stack lock-shortcut pass.
 
 ## Success condition
 
@@ -232,6 +232,9 @@ Continue Task 9 LikeCode Web UI after the session-stack operator-actions pass.
 - [x] Stay on Task 9 for one bounded operator-control follow-up after the session-stack overview landed
 - [x] Add operator shortcuts and shell-focus actions so the `Session Stack` can open workspaces and focus an existing shell session
 - [x] Verify the Task 9 session-stack-action pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
+- [x] Stay on Task 9 for one more bounded operator-control follow-up after the session-stack action pass
+- [x] Add `Readonly / Writable` thread-protection shortcuts to the `Session Stack` so lock control is reachable from the overview surface
+- [x] Verify the Task 9 session-stack-lock pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail
 

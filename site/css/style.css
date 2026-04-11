@@ -11812,6 +11812,13 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     color: var(--text-secondary);
 }
 
+.codex-console-stack-card__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
 .codex-console-stack-list {
     border-radius: 18px;
     border: 1px solid rgba(148, 163, 184, 0.14);

@@ -64,3 +64,4 @@
 - 第一次打开页面、或本地布局缓存损坏时，现在会直接回到受控的 `Overview` preset，而不是依赖零散的原始 pane 几何位置
 - 新增 `Session Stack` 总览 pane，借了 Hermes WebUI / CloudCLI 的 session-sidebar 思路，把 relay、workspace、thread lock、最近动作和 shell roster 收成一处；同时把通用 monitor pane 从 `Overview` 退出，避免首屏继续堆成“很多盒子但没有 operator summary”
 - `Session Stack` 现在不只是看板，还补了小型 operator actions：可直接打开 `Thread Desk`、切到 `Shell Lab`、新建 shell，并从 roster 里一键 focus 某个现有 shell session
+- `Session Stack` 的 Thread 卡片里进一步补了 `Readonly / Writable` 快捷操作，不必先切进 `Thread Compose` 才能改当前 thread 的写保护状态

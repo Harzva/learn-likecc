@@ -955,6 +955,12 @@
         applyPreset('shell')
     })
     document.getElementById('stack-new-shell').addEventListener('click', createShell)
+    document.getElementById('stack-lock-readonly').addEventListener('click', function () {
+        setThreadLock('readonly')
+    })
+    document.getElementById('stack-lock-writable').addEventListener('click', function () {
+        setThreadLock('writable')
+    })
     document.getElementById('layout-reset').addEventListener('click', resetLayout)
     document.getElementById('pane-add-monitor').addEventListener('click', addMonitorPane)
     document.getElementById('thread-lock-readonly').addEventListener('click', function () {
