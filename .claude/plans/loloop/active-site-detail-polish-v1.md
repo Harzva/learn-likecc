@@ -181,6 +181,8 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Sync the VibePaper Markdown overview summary with the current three-main-samples plus AIDE candidate-lane structure
 - [x] Stay on Task 6 for one more bounded reading-route clarity pass after the Markdown-summary sync
 - [x] Add one explicit AIDE-lane reading step to the VibePaper route so the candidate substrate is not skipped after AI Scientist-v2
+- [x] Stay on Task 6 for one more bounded footer-navigation follow-up after the route clarity pass
+- [x] Add one direct chapter-navigation jump to the VibePaper `AIDE ML` section so the candidate lane has a matching page-bottom entry
 
 ## Guardrail
 
