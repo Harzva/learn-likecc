@@ -14,6 +14,7 @@
 - **截至 2026-04-10，SkillsMP 给了我们什么**
 - **为什么它适合做我们后续自动化 skill 的发现层**
 - **现在就能拿来当样例的两个详情页**
+- **回到 GitHub 后，可信 skill 仓库至少该暴露什么证据**
 - **我们已经把这条线整理成仓库内汇总**
 - **下一步怎么把它做成真正的“自动找 skill 并安装”**
 
@@ -45,6 +46,30 @@
 - `slides` → `Bloody-BadAim/svsit-site/.claude/skills/slides`
 
 这足以证明详情页已能承担“发现 + 跳转仓库 + 看安装提示”的前置角色。
+
+### 回到 GitHub 后，可信 skill 仓库至少该暴露什么证据
+
+Task 8 这轮再往前走一步，不是继续夸市场页，而是补一个更实用的判断标准：当 SkillsMP 把你带回 GitHub 后，一个值得继续安装的 skill / plugin 仓库，至少要把“怎么装、会跑什么、怎么发布、出了问题靠什么验证”说清楚。
+
+这一轮拿两个本地 reference 做对照：
+
+- `reference/reference_skill/baoyu-skills/`
+  - README 直接给出 `npx skills add`、`/plugin marketplace add`、`/plugin install` 三种安装路径
+  - `docs/creating-skills.md` 把 `SKILL.md` frontmatter、脚本目录、EXTEND.md、分组规则写成明确规范
+  - `docs/publishing.md` 继续把 `openclaw` metadata、共享包同步、vendor 提交与 pre-push 校验写成可维护发布链
+- `reference/reference_skill/codex-plugin-cc/`
+  - README 直接列出 `/codex:review`、`/codex:rescue`、`/codex:status` 等具体命令，而不是只说“这是个插件”
+  - `plugins/codex/.claude-plugin/plugin.json` 明确暴露 plugin name / version / description
+  - `tests/` 目录直接说明这不是纯文案仓库，而是有运行时与命令面的可验证实现
+
+所以回到 GitHub 后，最少要看这四类证据：
+
+- **安装证据**：有没有清楚的 marketplace / direct install / setup 路径
+- **执行证据**：有没有具体命令、脚本目录、运行时依赖，而不是只给口号
+- **发布证据**：有没有版本、metadata、发布脚本或同步流程
+- **验证证据**：有没有测试、pre-push 校验、或至少能说明怎样避免仓库状态和发布状态漂移
+
+这会把 Skill 市场页的角色定得更清楚：它负责把你带到候选仓库，但真正决定“能不能装、该不该装”的，仍然是仓库里的这些证据面，而不是详情页标题本身。
 
 ### 我们已经把这条线整理成仓库内汇总
 

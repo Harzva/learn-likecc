@@ -20,6 +20,7 @@
                 <a href="#snapshot" class="nav-link">快照</a>
                 <a href="#workflow" class="nav-link">工作流</a>
                 <a href="#examples" class="nav-link">样例</a>
+                <a href="#repo-evidence" class="nav-link">仓库证据</a>
                 <a href="#awesome" class="nav-link">汇总</a>
                 <a href="#next" class="nav-link">下一步</a>
             </div>
@@ -179,15 +180,58 @@
                     </div>
                 </section>
 
+                <section id="repo-evidence" class="section-block">
+                    <h2>4. 回到 GitHub 后，可信 skill 仓库至少该暴露什么证据</h2>
+                    <p>Task 8 这轮再往前走一步，不是继续夸市场页，而是补一个更实用的判断标准：当 SkillsMP 把你带回 GitHub 后，一个值得继续安装的 skill / plugin 仓库，至少要把“怎么装、会跑什么、怎么发布、出了问题靠什么验证”说清楚。</p>
+                    <p>这一轮先用两个本地 reference 做最小对照：<code>reference/reference_skill/baoyu-skills/</code> 和 <code>reference/reference_skill/codex-plugin-cc/</code>。</p>
+
+                    <div class="table-wrap skillmarket-table-wrap skillmarket-table-wrap--wide">
+                        <table class="data-table">
+                            <thead>
+                                <tr><th>仓库</th><th>这次拿它看什么</th><th>为什么值得当校验证据</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>baoyu-skills</code></td>
+                                    <td>README 安装路径、<code>docs/creating-skills.md</code> 里的 frontmatter / scripts / EXTEND 规范，以及 <code>docs/publishing.md</code> 里的 metadata / vendor / pre-push 发布链</td>
+                                    <td>说明一个 marketplace-facing skill 仓库，不只要能“被搜到”，还要把 authoring 规则、运行时依赖和发布同步面写清楚。</td>
+                                </tr>
+                                <tr>
+                                    <td><code>codex-plugin-cc</code></td>
+                                    <td>README 里的具体命令面、<code>plugins/codex/.claude-plugin/plugin.json</code> 的 plugin 元数据，以及 <code>tests/</code> 下的运行时校验</td>
+                                    <td>说明一个可装的 plugin 仓库，不能只停在简介，还应该能直接看到命令入口、版本标识和至少一层可验证实现。</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="quickstart-grid skillmarket-grid skillmarket-grid--compact">
+                        <div class="quickstart-card">
+                            <h3>安装证据</h3>
+                            <p>先看有没有清楚的 marketplace / direct install / setup 路径，而不是只留一个仓库名。</p>
+                        </div>
+                        <div class="quickstart-card">
+                            <h3>执行证据</h3>
+                            <p>再看具体命令、脚本目录、运行时依赖，确认它不是只有文案壳。</p>
+                        </div>
+                        <div class="quickstart-card">
+                            <h3>发布与验证证据</h3>
+                            <p>最后看 metadata、发布脚本、测试或 pre-push 规则，判断仓库状态和实际发布状态会不会漂移。</p>
+                        </div>
+                    </div>
+
+                    <p class="skillmarket-inline-note">这会把 SkillsMP 的角色定得更清楚：它负责把你带到候选仓库，但真正决定“能不能装、该不该装”的，仍然是 GitHub 里的安装、执行、发布和验证证据面，而不是详情页标题本身。</p>
+                </section>
+
                 <section id="awesome" class="section-block">
-                    <h2>4. 我们已经把这条线整理成仓库内汇总</h2>
+                    <h2>5. 我们已经把这条线整理成仓库内汇总</h2>
                     <p>为了不让这件事只停留在网页入口，我把它同步沉淀成了仓库内的 <a href="https://github.com/Harzva/learn-likecc/blob/main/awesome-skills.md" target="_blank" rel="noopener noreferrer"><code>awesome-skills.md</code></a>：里面收 discovery 入口、安装落点和已验证的 SkillsMP 样例。</p>
                     <p>这样做的好处是，之后无论是继续扩展站内专题，还是让 Agent / Skill 自动使用这条路线，我们都有一个<strong>仓库内、可 diff、可 PR、可继续补充</strong> 的锚点。</p>
                     <p>现在仓库里也已经补上了第一版安装器：<code>tools/install_skill_from_github.py</code>。它不负责从 SkillsMP 硬抓详情页，而是接收已经核验过的 GitHub 仓库与 skill 路径，把完整 skill 目录安装到 Claude / Codex 的本地目录。</p>
                 </section>
 
                 <section id="next" class="section-block">
-                    <h2>5. 下一步怎么把它做成真正的“自动找 skill 并安装”</h2>
+                    <h2>6. 下一步怎么把它做成真正的“自动找 skill 并安装”</h2>
                     <p>这一步我建议不要一步到位做成“搜完立刻安装”，而是先做成一个<strong>半自动 skill</strong>：</p>
                     <ul>
                         <li>先从用户任务里提取关键词，例如“引用管理”“仓库分析”“PR 管理”“文档整理”。</li>

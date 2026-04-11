@@ -17,7 +17,7 @@ Prioritize future iterations along these three lines:
 
 ## Current focus
 
-Choose the next best main-site task after the recent VibePaper shell-alignment micro-wave defer decision.
+Continue Task 8 reference mining after choosing the first bounded site-facing output.
 
 ## Success condition
 
@@ -302,6 +302,10 @@ Choose the next best main-site task after the recent VibePaper shell-alignment m
 - [x] Return to Task 6 for one final bounded shell-structure review after the shell-column / reading-route / growth-note sync chain
 - [x] Mark the current Task 6 shell-alignment micro-wave locally deferred after the final review confirms the remaining gaps are now low-yield wording churn
 - [x] Release the next tick to pick the best remaining main-site task from the pool instead of forcing another VibePaper pass by continuity alone
+- [x] Choose Task 8 as the next best main-site move after the Task 6 shell-alignment defer
+- [x] Pick `topic-skillmarket` as the first bounded reference-mining destination because the new skill/plugin repos directly strengthen its GitHub-validation thesis
+- [x] Add one reference-backed repo-evidence section to `topic-skillmarket` using `baoyu-skills` and `codex-plugin-cc`
+- [x] Verify the Task 8 Skill 市场 pass with `python3 tools/check_site_md_parity.py`
 - [x] Verify the Task 9 headline-badges pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail
