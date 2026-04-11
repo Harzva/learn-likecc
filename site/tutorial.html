@@ -376,14 +376,14 @@ paths:
     <section id="claude-dir" class="section claude-dir-section">
         <div class="container">
             <h2 class="section-title">📂 <code>.claude/</code> 与项目配置全景</h2>
-            <p class="section-desc" style="max-width: 800px; margin: 0 auto 24px; text-align: center;">
+            <p class="section-desc tutorial-page-intro-center">
                 Claude Code 通过<strong>多层目录与文件</strong>记住「你是谁、团队规范、自动化技能、子代理分工」。下方<strong>左为目录解剖、右为配置层级与合并规则</strong>（示意图）；读完图后再看三条合并规则与下表。
             </p>
 
             <div class="tutorial-claude-figures" role="group" aria-label="图 1 与图 2 并排对照">
                 <figure class="mermaid-figure tutorial-claude-figure-panel" aria-label=".claude 目录解剖示意图">
                     <figcaption class="mermaid-caption">
-                        <strong>图 1 · 项目里 Claude 常看的文件</strong>：根目录 <code>CLAUDE.md</code> 给团队共享说明；<code>CLAUDE.local.md</code> 个人覆盖；<code>.claude/</code> 下放权限、自定义斜杠命令、规则碎片、Skills、Agents 等。<span class="ref-note" style="display:inline;margin-left:4px;">请将团队需要共享的 <code>.claude/</code> 内容提交 git；带 <code>.local</code> 的保持私有。</span>
+                        <strong>图 1 · 项目里 Claude 常看的文件</strong>：根目录 <code>CLAUDE.md</code> 给团队共享说明；<code>CLAUDE.local.md</code> 个人覆盖；<code>.claude/</code> 下放权限、自定义斜杠命令、规则碎片、Skills、Agents 等。<span class="ref-note tutorial-page-ref-note-inline">请将团队需要共享的 <code>.claude/</code> 内容提交 git；带 <code>.local</code> 的保持私有。</span>
                     </figcaption>
                     <div class="tutorial-figure-img-wrap">
                         <img src="images/tutorial/claude-folder-anatomy.png" alt="your-project 根目录下 CLAUDE.md、CLAUDE.local.md 与 .claude 子目录 commands、rules、skills、agents、settings 等结构示意图" loading="lazy">
@@ -419,7 +419,7 @@ paths:
 
             <div class="claude-dir-text">
                 <h3 class="subsection-title">结合图 1：各目录干什么？</h3>
-                <table class="ref-table ref-table--detail" style="max-width: 900px; margin: 0 auto;">
+                <table class="ref-table ref-table--detail tutorial-page-ref-table-wide">
                     <tr>
                         <td><code>.claude/settings.json</code></td>
                         <td>团队配置</td>
@@ -447,7 +447,7 @@ paths:
                     </tr>
                 </table>
 
-                <p class="reference-lead" style="margin-top: 28px;">更多斜杠命令用法见本章后文 <a href="#reference">命令参考</a>；与 Memory 章节中的 <code>CLAUDE.md</code>、<code>rules</code>  frontmatter 可交叉阅读。</p>
+                <p class="reference-lead tutorial-page-reference-lead-spaced">更多斜杠命令用法见本章后文 <a href="#reference">命令参考</a>；与 Memory 章节中的 <code>CLAUDE.md</code>、<code>rules</code>  frontmatter 可交叉阅读。</p>
             </div>
         </div>
     </section>

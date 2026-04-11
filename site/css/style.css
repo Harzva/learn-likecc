@@ -8108,6 +8108,26 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     padding-bottom: 14px;
 }
 
+.tutorial-page .tutorial-page-intro-center {
+    max-width: 800px;
+    margin: 0 auto 24px;
+    text-align: center;
+}
+
+.tutorial-page .tutorial-page-ref-note-inline {
+    display: inline;
+    margin-left: 4px;
+}
+
+.tutorial-page .tutorial-page-ref-table-wide {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.tutorial-page .tutorial-page-reference-lead-spaced {
+    margin-top: 28px;
+}
+
 .cc-unpacked-page .cc-tools-section > p {
     max-width: 72rem;
     font-size: 1.08rem;
