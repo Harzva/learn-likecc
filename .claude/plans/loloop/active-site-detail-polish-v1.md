@@ -261,6 +261,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Reopen Task 9 for one bounded site-facing teaching pass after the frontend micro-wave was locally deferred
 - [x] Add one explicit five-layer `Session Stack` reading contract to `topic-codex-loop-console`
 - [x] Verify the Task 9 control-contract pass with `python3 tools/check_site_md_parity.py`
+- [x] Reopen Hermes for one bounded compare-stack visual-brief pass after the overnight media branch exposed the missing reusable illustration cue
+- [x] Add one compare-stack `[插图提示词]` block to `topic-hermes-unpacked`
+- [x] Verify the Hermes compare-stack visual-brief pass with `python3 tools/check_site_md_parity.py`
 - [x] Choose `topic-codex-loop-console` as the next fresh Task 8 destination after deferring the `topic-agent-comparison` subthread
 - [x] Add one repo-backed operator-surface note so `Session Browser / Workbench / HUD / Local Desk` boundaries are explicit on the AI Terminal topic page
 - [x] Verify the Task 8 operator-surface pass with `python3 tools/check_site_md_parity.py`

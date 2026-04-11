@@ -13,6 +13,7 @@ Scope: keep turning Hermes Agent into a stable 庖丁解牛 / unpacked topic wit
 - [x] Improve the final “what we can learn for our own stack” closeout
 - [x] Mark the current Hermes unpacked wave locally done unless a fresh reference-backed gap appears
 - [x] Reopen Hermes for one bounded self-stack mapping pass after the queued Zhihu branch became time-blocked
+- [x] Reopen Hermes for one bounded visual-prompt follow-up after the compare-stack section became a likely media-reuse target during the overnight media branch
 
 ## Anchors
 
@@ -54,6 +55,8 @@ Scope: keep turning Hermes Agent into a stable 庖丁解牛 / unpacked topic wit
 - [x] Add one gateway/session seam Mermaid so the runtime ingress boundary is not only described in prose
 - [x] Add one execution-boundary Mermaid so backend selection and task-scoped state are not only described in prose
 - [ ] Add or refine `[插图提示词]` blocks only where visual explanation adds real value
+- [x] Add or refine `[插图提示词]` blocks only where visual explanation adds real value:
+  - add one compare-stack prompt block that turns the Hermes-vs-our-stack mapping into a reusable side-by-side visual brief
 
 ## Validation
 
@@ -66,3 +69,4 @@ Scope: keep turning Hermes Agent into a stable 庖丁解牛 / unpacked topic wit
 - Canonical site page: `site/topic-hermes-unpacked.html`
 - Canonical markdown mirror: `site/md/topic-hermes-unpacked.md`
 - Canonical local source anchor: `reference/reference_agent/hermes-agent/`
+- Current local state: the broader Hermes wave remains locally done, but the page now also has one explicit compare-stack visual brief for future site and Zhihu reuse

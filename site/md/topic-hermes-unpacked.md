@@ -246,6 +246,13 @@ Mermaid 更适合：是。
 
 真正的结论不是“复制 Hermes”，而是：下一代 stack 不必搬它的产品壳，但应该吸收它在控制面、会话边界和执行边界上的工程纪律。
 
+### [插图提示词]
+
+用途：把 Hermes 与我们当前 stack 的对照压成一张“同层对照，不同落点”的教学图，方便后续做知乎或站内导读改编。  
+形式：左右对照结构图。  
+提示词：画一张左右对照的信息图。左侧是 Hermes Agent：AIAgent control plane、gateway/session seam、built-in memory/skills writeback、cron scheduler、TERMINAL_ENV execution backends。右侧是我们的当前 stack：Claude Code / Like Code 交互主脑、codex-loop plan/evolution 调度、repo 内 skills/plans/docs 外置长期记忆、site/repo/terminal/知乎 多出口 delivery path、本地工程环境与定向自动化脚本。中间用四条对照箭头强调 session seam、delivery path、memory/skills writeback、execution contract 分别在哪一侧是正式内建、在哪一侧还是外置 contract。  
+Mermaid 更适合：否。
+
 ### 参考与原始链接
 
 - https://hermes-agent.ai/
