@@ -225,6 +225,7 @@
         setText('stack-last-action-time', sessionStackState.lastActionTime)
         setText('stack-shell-focus', activeId ? activeId : 'no active session')
         setText('stack-shell-runtime', shellState.sessions.length ? 'runtime snapshot pending' : 'no shell runtime attached')
+        setText('session-stack-headnote', 'Overview · manual lane')
         badge.textContent = shellState.sessions.length + ' shell' + (shellState.sessions.length === 1 ? '' : 's')
         setStackChip('session-stack-daemon-badge', guardState.daemonRunning ? 'daemon live' : 'daemon idle', guardState.daemonRunning ? 'ready' : 'neutral')
         setStackChip(
@@ -554,6 +555,16 @@
                     : (closedSessions.length
                         ? ('closed only · ' + shellWorkspaceLabel(closedSessions[0]) + ' · ' + closedSessions.length + ' ended')
                         : 'no shell runtime attached'))
+        )
+        setText(
+            'session-stack-headnote',
+            activeSessions.length
+                ? ('Shell Lab · ' + activeSessions[0].session_id + ' @ ' + shellWorkspaceLabel(activeSessions[0]))
+                : (guardState.daemonRunning
+                    ? ('Overview · pid ' + (document.getElementById('daemon-pid') ? document.getElementById('daemon-pid').textContent : '—'))
+                    : (boundThread !== 'thread pending' && boundThread !== '—'
+                        ? ('Thread Desk · ' + boundThread)
+                        : 'Overview · manual lane'))
         )
         metrics.innerHTML =
             '<span class="codex-console-stack-pill codex-console-stack-pill--active">' + activeSessions.length + ' active</span>' +

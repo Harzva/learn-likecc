@@ -11786,6 +11786,12 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     gap: 8px;
 }
 
+.codex-console-stack-headnote {
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    line-height: 1.35;
+}
+
 .codex-console-stack-section-label {
     display: inline-flex;
     align-items: center;

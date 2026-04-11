@@ -75,5 +75,6 @@
 - `Attention Queue` 下面又加了一层 `Session Identity`，专门把 daemon pid / 当前 thread 绑定 / active shell id 这类“具体是谁”抬到 `Desk Assignments` 之前；这样 operator 先看一排 identity 就能知道当前各工位到底接着哪个对象
 - `Shell Roster` 里的每个 shell card 现在也补了一个前端派生的 workspace label，直接从 `cwd` 抽出短标识；会话多起来时，不必先读完整路径也能分辨哪个 shell 大致挂在哪个工作区
 - `Shell Roster` 表头现在还多了一行 `Active Runtime` 式摘要，把当前活跃 shell 的 `session / workspace / pid` 先压成一条；如果没有 live seat，也会退化成 standby 或 closed 的 runtime 快照
+- `Session Stack` 自己的 panel head 现在也补了一条 ownership cue：如果 shell 有 live seat，就直接在标题下露出 `Shell Lab · session @ workspace`；否则退化成 daemon pid 或当前 thread 绑定，让 operator 不滚动 body 也知道现在最热的是哪条 lane
 - `Desk Assignments` 每行现在是双 badge：既显示当前 assignment，也显示 approval / coverage 辅助标签，比如 `relay ready`、`daemon linked`、`standby N`，这样非-shell 状态也不再只能藏在说明文字里
 - `Session Stack` 顶部标题区也不再只有一个 `N shells` badge，而是直接露出 `daemon / thread / shells` 三条 headline 状态，先看 panel head 就知道主控面现在大概是什么状态
