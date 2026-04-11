@@ -22,6 +22,19 @@ const MERMAID_DIAGRAMS = {
     style GX fill:#241c2f,stroke:#c084fc,stroke-width:2px
     style EX fill:#13261f,stroke:#34d399,stroke-width:2px`,
 
+    'hermes-learning-loop': `graph LR
+    classDef blueBox fill:#172130,stroke:#60a5fa,stroke-width:2px,color:#93c5fd;
+    classDef yellowBox fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#fcd34d;
+    classDef greenBox fill:#14251f,stroke:#34d399,stroke-width:2px,color:#6ee7b7;
+    classDef purpleBox fill:#241c2f,stroke:#c084fc,stroke-width:2px,color:#e9d5ff;
+
+    U["User / Gateway message"]:::blueBox --> A["AIAgent main loop<br/>prompt · provider · tool loop"]:::yellowBox
+    A --> T["Tools finish task<br/>registry · model_tools"]:::blueBox
+    T --> R["Background review<br/>memory / skill nudges"]:::purpleBox
+    R --> M["Writeback surface<br/>MEMORY.md · USER.md · skills"]:::greenBox
+    M --> N["Next session prompt<br/>frozen memory + skill context"]:::greenBox
+    N --> A`,
+
     'vibepaper-shells': `graph LR
     classDef blueBox fill:#172130,stroke:#60a5fa,stroke-width:2px,color:#93c5fd;
     classDef greenBox fill:#14251f,stroke:#34d399,stroke-width:2px,color:#6ee7b7;
@@ -531,6 +544,16 @@ function initSiteSidebar() {
         '<a class="site-sidebar__link site-sidebar__link--sub" href="https://skillsmp.com/" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">🔗</span><span class="site-sidebar__txt">SkillsMP ↗</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="https://github.com/Harzva/learn-likecc/blob/main/awesome-skills.md" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">✨</span><span class="site-sidebar__txt">Awesome Skills</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="tutorial.html#skills"><span class="site-sidebar__ico">🔧</span><span class="site-sidebar__txt">Skills 教程</span></a>' +
+        '</details>' +
+        '<details class="site-sidebar__details" data-sidebar-key="zahuopu">' +
+        '<summary class="site-sidebar__summary"><span class="site-sidebar__txt">AI杂货铺</span></summary>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-ai-zahuopu.html"><span class="site-sidebar__ico">📌</span><span class="site-sidebar__txt">专题首页</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-ai-agents.html"><span class="site-sidebar__ico">🤖</span><span class="site-sidebar__txt">AI智能体专页</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-ai-cli-agent.html"><span class="site-sidebar__ico">⌨️</span><span class="site-sidebar__txt">CLI Agent 专页</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-ai-coding-tools.html"><span class="site-sidebar__ico">🧰</span><span class="site-sidebar__txt">AI编程工具专页</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-ai-zahuopu.html#framework-shelf"><span class="site-sidebar__ico">🧩</span><span class="site-sidebar__txt">Agent 开发工具</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-ai-api.html"><span class="site-sidebar__ico">🔌</span><span class="site-sidebar__txt">模型 API 专页</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-ai-benchmarks.html"><span class="site-sidebar__ico">📏</span><span class="site-sidebar__txt">模型评测专页</span></a>' +
         '</details>' +
         '<details class="site-sidebar__details" data-sidebar-key="rag">' +
         '<summary class="site-sidebar__summary"><span class="site-sidebar__txt">RAG 专题</span></summary>' +
@@ -1390,6 +1413,47 @@ function initExpandButtons() {
     })
 }
 
+function initToolspotGrid() {
+    document.querySelectorAll('[data-toolspot-grid]').forEach((grid) => {
+        const cards = Array.from(grid.querySelectorAll('.toolspot-card[data-related]'))
+        if (!cards.length) return
+
+        const readTokens = (card) => new Set(
+            (card.dataset.related || '')
+                .split(',')
+                .map((item) => item.trim())
+                .filter(Boolean)
+        )
+
+        const clearState = () => {
+            grid.classList.remove('has-active')
+            cards.forEach((card) => {
+                card.classList.remove('is-active', 'is-related')
+            })
+        }
+
+        const activateCard = (activeCard) => {
+            const activeTokens = readTokens(activeCard)
+            grid.classList.add('has-active')
+
+            cards.forEach((card) => {
+                const related = Array.from(readTokens(card)).some((token) => activeTokens.has(token))
+                card.classList.toggle('is-related', related)
+                card.classList.toggle('is-active', card === activeCard)
+            })
+        }
+
+        cards.forEach((card) => {
+            card.addEventListener('mouseenter', () => activateCard(card))
+            card.addEventListener('focus', () => activateCard(card))
+            card.addEventListener('mouseleave', clearState)
+            card.addEventListener('blur', clearState)
+        })
+
+        grid.addEventListener('mouseleave', clearState)
+    })
+}
+
 // 初始化新功能
 document.addEventListener('DOMContentLoaded', () => {
     initSiteSidebar()
@@ -1399,6 +1463,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initTutorialsTabs()
     initInterviewCategories()
     initExpandButtons()
+    initToolspotGrid()
     initMermaidFlowcharts()
     markActiveSiteSidebarLinks()
 })

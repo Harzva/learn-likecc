@@ -17,7 +17,7 @@ Prioritize future iterations along these three lines:
 
 ## Current focus
 
-Task 9 LikeCode Web UI is locally deferred after the session-stack headnote-standby pass; next tick should choose the next best remaining pool task.
+Continue Task 5 Hermes unpacked after the learning-loop Mermaid pass.
 
 ## Success condition
 
@@ -278,6 +278,9 @@ Task 9 LikeCode Web UI is locally deferred after the session-stack headnote-stan
 - [x] Verify the Task 9 session-stack-headnote-standby pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
 - [x] Mark the current Task 9 session-stack / shell-roster micro-wave locally deferred after repeated frontend-only passes saturated the most obvious low-risk gaps
 - [x] Record the defer decision in the dedicated LikeCode plan so the next tick can choose a different best-next task from the remaining pool
+- [x] Choose Task 5 Hermes as the next best remaining main-site move after the LikeCode micro-wave defer
+- [x] Add one real Mermaid learning-loop figure to the Hermes memory / skills section so the page has a second concrete structure visual
+- [x] Verify the Hermes learning-loop figure pass with `node --check site/js/app.js` and `python3 tools/check_site_md_parity.py`
 - [x] Verify the Task 9 headline-badges pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail

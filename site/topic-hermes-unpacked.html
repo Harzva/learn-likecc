@@ -120,6 +120,12 @@
                         <tr><td>Skills Surface</td><td><code>tools/skills_tool.py</code>、<code>tools/skill_manager_tool.py</code></td><td><code>skills_list</code> / <code>skill_view</code> 负责渐进披露，<code>skill_manage</code> 负责真正创建和改写 skill。</td></tr>
                         <tr><td>Nudges</td><td><code>run_agent.py</code> 中的 <code>_turns_since_memory</code>、<code>_iters_since_skill</code>、background review</td><td>不是每轮都写，而是由 loop 内节流和审查线程决定什么时候值得沉淀。</td></tr>
                     </table>
+                    <figure class="mermaid-figure" aria-label="Hermes learning loop">
+                        <figcaption class="mermaid-caption">
+                            <strong>闭环图</strong>：Hermes 把工具执行、background review、memory 写回和 skill 沉淀都接进同一个长期学习闭环。
+                        </figcaption>
+                        <div class="mermaid-diagram-scroll" data-mermaid-diagram="hermes-learning-loop"></div>
+                    </figure>
                     <div class="course-quote">
                         <p><strong>[插图提示词]</strong></p>
                         <p>用途：说明 Hermes 的 closed learning loop，不只是对话，还有 memory / skill review 与写回。</p>

@@ -104,6 +104,21 @@ Hermes 的 README 把它描述成 built-in learning loop，本地代码也确实
 - `tools/skill_manager_tool.py` 的 `skill_manage` 才是真正的 skill 写入面
 - `run_agent.py` 里的 `_turns_since_memory`、`_iters_since_skill` 与 background review 负责“什么时候值得沉淀”
 
+```mermaid
+graph LR
+    classDef blueBox fill:#172130,stroke:#60a5fa,stroke-width:2px,color:#93c5fd;
+    classDef yellowBox fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#fcd34d;
+    classDef greenBox fill:#14251f,stroke:#34d399,stroke-width:2px,color:#6ee7b7;
+    classDef purpleBox fill:#241c2f,stroke:#c084fc,stroke-width:2px,color:#e9d5ff;
+
+    U["User / Gateway message"]:::blueBox --> A["AIAgent main loop<br/>prompt · provider · tool loop"]:::yellowBox
+    A --> T["Tools finish task<br/>registry · model_tools"]:::blueBox
+    T --> R["Background review<br/>memory / skill nudges"]:::purpleBox
+    R --> M["Writeback surface<br/>MEMORY.md · USER.md · skills"]:::greenBox
+    M --> N["Next session prompt<br/>frozen memory + skill context"]:::greenBox
+    N --> A
+```
+
 ### [插图提示词]
 
 用途：说明 Hermes 的 closed learning loop。  
