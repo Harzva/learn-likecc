@@ -7461,6 +7461,20 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     margin-bottom: 0;
 }
 
+.cc-unpacked-page .cc-unpacked-hero-stats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.25rem;
+}
+
+.cc-unpacked-page .cc-unpacked-hero-subtitle-note {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
 .cc-unpacked-page .stat-item--superset {
     min-width: 148px;
     padding: 1rem 1.05rem 0.95rem;
@@ -7476,6 +7490,30 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 
 .cc-unpacked-page .section-desc--tight {
     margin-top: 0.8rem;
+}
+
+.cc-unpacked-page .cc-unpacked-section-desc--loop-primary,
+.cc-unpacked-page .cc-unpacked-section-desc--meta {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.cc-unpacked-page .cc-unpacked-section-desc--loop-secondary {
+    margin-top: 0.35rem;
+}
+
+.cc-unpacked-page .cc-unpacked-section-desc--loop-spine,
+.cc-unpacked-page .cc-unpacked-action-row {
+    margin-top: 1rem;
+}
+
+.cc-unpacked-page .cc-unpacked-section-desc--knowledge {
+    margin-top: 0.7rem;
+    font-size: 0.96rem;
+}
+
+.cc-unpacked-page .cc-unpacked-section-desc--muted {
+    opacity: 0.9;
 }
 
 .cc-unpacked-page .superset-viz-note {

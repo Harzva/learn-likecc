@@ -46,13 +46,13 @@
             <p class="hero-subtitle">
                 从<strong>一次按键到工具回流</strong>，到<strong>目录、内置工具、斜杠命令与实验开关</strong>——用一张地图串起本站 <strong>S/D 讲义</strong>与 <code>ccsource</code> 阅读入口。完整列表与源码请以仓库与官方版本为准。
             </p>
-            <div class="hero-stats" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin-top: 1.25rem;">
+            <div class="hero-stats cc-unpacked-hero-stats">
                 <div class="stat-item"><span class="stat-value">1900+</span><span class="stat-label">TS 文件（本站口径）</span></div>
                 <div class="stat-item"><span class="stat-value">510K+</span><span class="stat-label">代码行数（约）</span></div>
                 <div class="stat-item"><span class="stat-value">24</span><span class="stat-label">课程讲次 S+D</span></div>
                 <div class="stat-item"><span class="stat-value">50+</span><span class="stat-label">内置工具（量级）</span></div>
             </div>
-            <p class="hero-subtitle" style="margin-top: 1rem; font-size: 0.95rem; opacity: 0.9;">
+            <p class="hero-subtitle cc-unpacked-hero-subtitle-note">
                 工具/命令<strong>精确数量随版本变化</strong>；下方仅列<strong>代表项</strong>，便于对照讲义深挖。
             </p>
             <div class="hero-actions">
@@ -78,10 +78,10 @@
                 <section id="loop" class="section-block">
                     <h2>01 · 智能体主循环</h2>
                     <p>从终端或管道读入用户消息 → 模型在可用工具集上推理 → 若需执行工具则宿主运行并把 <code>tool_result</code> 写回对话 → 直到模型不再发起 <code>tool_use</code> 或会话结束。消息顺序、并行工具与流中断恢复等细节见深挖页。</p>
-                    <p class="section-desc" style="margin-top: 0.5rem;">下方为<strong>讲解型</strong>步进演示（数据来自 <code>site/data/cc-loop-steps.json</code>）：可点步骤标签、播放/暂停、倍速与键盘 <kbd>←</kbd> <kbd>→</kbd>、<kbd>Space</kbd>（点<strong>播放</strong>后也会自动聚焦面板）。步骤条下方<strong>彩色细条</strong>为下一帧<strong>倒计时</strong>；末步点播放会先回到第 1 步再自动翻页。<code>meta.loop_autoplay</code> 为 <code>true</code> 时会在末步后接回第 1 步。系统开启<strong>减少动态效果</strong>时会拉长间隔并弱化动效。<strong>非</strong>真实运行时遥测。</p>
-                    <p class="section-desc" style="margin-top: 0.35rem;"><strong>实时事件流（实验）</strong>：静态页不连接本机 Claude Code；协议见 <a href="https://github.com/Harzva/learn-likecc/blob/main/projects/cc-loop-live/README.md" target="_blank" rel="noopener noreferrer">projects/cc-loop-live/README.md</a>；NDJSON：<code>python3 tools/cc_loop_relay_demo.py</code>；本机 SSE 联调：<a href="topic-cc-loop-lab.html">Loop 实验室页</a> + <code>python3 tools/cc_loop_sse_relay.py</code>。</p>
+                    <p class="section-desc cc-unpacked-section-desc cc-unpacked-section-desc--loop-primary">下方为<strong>讲解型</strong>步进演示（数据来自 <code>site/data/cc-loop-steps.json</code>）：可点步骤标签、播放/暂停、倍速与键盘 <kbd>←</kbd> <kbd>→</kbd>、<kbd>Space</kbd>（点<strong>播放</strong>后也会自动聚焦面板）。步骤条下方<strong>彩色细条</strong>为下一帧<strong>倒计时</strong>；末步点播放会先回到第 1 步再自动翻页。<code>meta.loop_autoplay</code> 为 <code>true</code> 时会在末步后接回第 1 步。系统开启<strong>减少动态效果</strong>时会拉长间隔并弱化动效。<strong>非</strong>真实运行时遥测。</p>
+                    <p class="section-desc cc-unpacked-section-desc cc-unpacked-section-desc--loop-secondary"><strong>实时事件流（实验）</strong>：静态页不连接本机 Claude Code；协议见 <a href="https://github.com/Harzva/learn-likecc/blob/main/projects/cc-loop-live/README.md" target="_blank" rel="noopener noreferrer">projects/cc-loop-live/README.md</a>；NDJSON：<code>python3 tools/cc_loop_relay_demo.py</code>；本机 SSE 联调：<a href="topic-cc-loop-lab.html">Loop 实验室页</a> + <code>python3 tools/cc_loop_sse_relay.py</code>。</p>
                     <div id="cc-loop-player" class="cc-loop-player" data-json="data/cc-loop-steps.json" aria-label="主循环步进讲解"></div>
-                    <p class="section-desc" style="margin-top: 1rem;">如果你想把“页面里的 11 步讲解”对回 <code>ccsource/CC/claude-code-rebuild</code> 的真实代码，这里再给一张<strong>主调用脊柱图</strong>。它只保留最适合首次阅读的 happy path：从 CLI 入口、处理输入、进入 <code>queryLoop()</code>，到拿到 <code>tool_use</code>、执行工具并把 <code>tool_result</code> 回写。<strong>不是</strong>全量静态调用图，也不展开 bridge / daemon / MCP / compact 等支线。</p>
+                    <p class="section-desc cc-unpacked-section-desc cc-unpacked-section-desc--loop-spine">如果你想把“页面里的 11 步讲解”对回 <code>ccsource/CC/claude-code-rebuild</code> 的真实代码，这里再给一张<strong>主调用脊柱图</strong>。它只保留最适合首次阅读的 happy path：从 CLI 入口、处理输入、进入 <code>queryLoop()</code>，到拿到 <code>tool_use</code>、执行工具并把 <code>tool_result</code> 回写。<strong>不是</strong>全量静态调用图，也不展开 bridge / daemon / MCP / compact 等支线。</p>
                     <figure class="devlog-figure">
                         <img src="images/cc-unpacked/cc-rebuild-call-spine.png" alt="Claude Code Rebuild 主调用脊柱图：main、handlePromptSubmit、processUserInput、query、queryLoop、runTools、runToolUse 与结果回流">
                         <figcaption>主调用脊柱：按阅读顺序看 <code>main()</code> → <code>handlePromptSubmit()</code> → <code>processUserInput()</code> → <code>query()</code> / <code>queryLoop()</code> → <code>runTools()</code> → <code>runToolUse()</code> → 结果回流。适合定位“这一轮到底先后经过了哪些层”。</figcaption>
@@ -100,7 +100,7 @@
                     <h2>02 · 架构导览（目录心智模型）</h2>
                     <p>阅读 <code>ccsource/claude-code-main</code> 时可按职能分区，不必从根目录线性扫文件。下列与常见顶层目录对应关系为<strong>教学用归纳</strong>，实际以当前 tree 为准。</p>
                     <div id="cc-arch-treemap-mount" class="cc-arch-treemap" data-json="data/cc-arch-treemap.json" role="region" aria-label="src 目录架构 Treemap"></div>
-                    <p class="section-desc" style="margin-top:0.5rem;font-size:0.9rem;">Treemap 为<strong>双层</strong>：先按教学分区聚块，再细分各子目录；可<strong>单击分区下钻</strong>、用顶部<strong>面包屑</strong>返回。数据由 <code>tools/gen_cc_arch_treemap.py</code> 写入 <code>site/data/cc-arch-treemap.json</code>。</p>
+                    <p class="section-desc cc-unpacked-section-desc cc-unpacked-section-desc--meta">Treemap 为<strong>双层</strong>：先按教学分区聚块，再细分各子目录；可<strong>单击分区下钻</strong>、用顶部<strong>面包屑</strong>返回。数据由 <code>tools/gen_cc_arch_treemap.py</code> 写入 <code>site/data/cc-arch-treemap.json</code>。</p>
                     <!-- cc-overview:begin architecture-table -->
 <table class="options-table">
 <tr><th>分区</th><th>典型内容</th><th>本站延伸</th></tr>
@@ -111,7 +111,7 @@
 <tr><td>基础设施</td><td><code>utils/</code>、常量、Hooks</td><td><a href="s10.html">S10</a>、<a href="handbook.html">手册</a></td></tr>
 </table>
 <!-- cc-overview:end architecture-table -->
-                    <p style="margin-top: 1rem;"><a href="topic-sourcemap.html" class="btn btn-secondary">Source Map 源码专题 →</a>
+                    <p class="cc-unpacked-action-row"><a href="topic-sourcemap.html" class="btn btn-secondary">Source Map 源码专题 →</a>
                         &nbsp;<a href="topic-source-derived.html" class="btn btn-secondary">源码反推思想 →</a></p>
                 </section>
 
@@ -119,7 +119,7 @@
                     <h2>02B · 知识图谱（块内结构 + 块间联系）</h2>
                     <p>Treemap 适合看<strong>规模</strong>，知识图谱更适合看<strong>关系</strong>。这里把目录分成两种阅读方式：<strong>块内结构</strong>看每个教学分区下面挂了哪些主目录；<strong>块间联系</strong>看 UI、服务、工具、命令、桥接与基础设施之间如何互相牵动。</p>
                     <div id="cc-arch-knowledge-mount" class="cc-arch-knowledge" data-json="data/cc-arch-knowledge.json" role="region" aria-label="Claude Code 架构知识图谱"></div>
-                    <p class="section-desc" style="margin-top:0.7rem;font-size:0.96rem;">图谱里<strong>块内结构</strong>来自目录树统计；<strong>块间联系</strong>是教学向归纳，不是静态 import 图。它的作用是帮助你判断“先看哪里、再看哪里、哪些目录要一起看”。</p>
+                    <p class="section-desc cc-unpacked-section-desc cc-unpacked-section-desc--knowledge">图谱里<strong>块内结构</strong>来自目录树统计；<strong>块间联系</strong>是教学向归纳，不是静态 import 图。它的作用是帮助你判断“先看哪里、再看哪里、哪些目录要一起看”。</p>
                 </section>
 
                 <section id="tools" class="section-block cc-tools-section">
@@ -152,7 +152,7 @@
 <tr><td>诊断</td><td><code>/cost</code>、<code>/usage</code>、<code>/doctor</code>、<code>/release-notes</code></td><td><a href="s04.html">S04</a> · <a href="topic-cc-release-watch.html">发版监督</a></td></tr>
 <tr><td>实验性</td><td>各版本可能增减；见官方 changelog</td><td><a href="d04.html">D04 深挖</a></td></tr>
 </table>
-<p class="section-desc cc-overview-footnote" style="margin-top:0.5rem;font-size:0.9rem;opacity:0.9">表与命令 pill、工具砖墙、特性卡片数据来自 <code>site/data/cc-overview.json</code>（更新日期 2026-04-04）；改表请运行 <code>python3 tools/gen_cc_overview.py</code>；改交互块请编辑 <code>command_pills</code>、<code>tool_tiles</code>、<code>feature_cards</code>。</p>
+<p class="section-desc cc-overview-footnote cc-unpacked-section-desc cc-unpacked-section-desc--meta cc-unpacked-section-desc--muted">表与命令 pill、工具砖墙、特性卡片数据来自 <code>site/data/cc-overview.json</code>（更新日期 2026-04-04）；改表请运行 <code>python3 tools/gen_cc_overview.py</code>；改交互块请编辑 <code>command_pills</code>、<code>tool_tiles</code>、<code>feature_cards</code>。</p>
 <!-- cc-overview:end commands-table -->
                 </section>
 
