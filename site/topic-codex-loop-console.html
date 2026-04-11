@@ -279,8 +279,15 @@
                                 </div>
                                 <div class="codex-console-stack-list">
                                     <div class="codex-console-stack-list__head">
-                                        <strong>Shell Roster</strong>
-                                        <span id="stack-shell-focus">no active session</span>
+                                        <div class="codex-console-stack-list__title">
+                                            <strong>Shell Roster</strong>
+                                            <span id="stack-shell-focus">no active session</span>
+                                        </div>
+                                        <div id="stack-shell-metrics" class="codex-console-stack-roster-metrics" aria-label="shell session metrics">
+                                            <span class="codex-console-stack-pill codex-console-stack-pill--neutral">0 active</span>
+                                            <span class="codex-console-stack-pill codex-console-stack-pill--neutral">0 standby</span>
+                                            <span class="codex-console-stack-pill codex-console-stack-pill--neutral">0 closed</span>
+                                        </div>
                                     </div>
                                     <div id="stack-shells" class="codex-console-stack-shells">
                                         <div class="codex-console-stack-shell codex-console-stack-shell--empty">当前没有 shell session。</div>

@@ -11,7 +11,8 @@ Scope: continuously improve LikeCode Web UI, AI terminal experience, and the age
 - [x] Keep Task 9 active with the next bounded operator-control or agent-management follow-up after the session-stack action shortcuts
 - [x] Continue Task 9 with the next bounded follow-up after the new thread-lock shortcuts land in the session stack
 - [x] Continue Task 9 with the next bounded follow-up after the session-stack action rows and focus controls get their narrow-screen fallback
-- [ ] Continue Task 9 with the next bounded follow-up after the new ownership / approval summary strip lands in the session stack
+- [x] Continue Task 9 with the next bounded follow-up after the new ownership / approval summary strip lands in the session stack
+- [ ] Continue Task 9 with the next bounded follow-up after the shell roster is regrouped into active / standby / closed session lanes
 
 ## Main product areas
 
@@ -54,6 +55,8 @@ Scope: continuously improve LikeCode Web UI, AI terminal experience, and the age
   - harden the new session-stack action rows and focus controls for narrow-screen debugging
 - [x] UI follow-up pass in the same surface:
   - add a compact daemon/thread/shell ownership summary strip so operator control and approval state can be scanned without hopping between panes
+- [x] UI follow-up pass in the same surface:
+  - regroup the shell roster into `active / standby / closed` lanes and add shell metrics so multi-session state reads more like lightweight session management than a flat list
 - [ ] site-facing article or subtopic when a design pattern is worth documenting
 - [ ] evolution notes tying specific references to specific UI decisions
 

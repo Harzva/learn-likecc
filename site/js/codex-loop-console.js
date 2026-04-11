@@ -140,15 +140,49 @@
         el.className = 'codex-console-chip codex-console-chip--guard-' + (tone || 'neutral')
     }
 
+    function shellRosterGroupMarkup(title, tone, sessions, activeId) {
+        if (!sessions.length) return ''
+        return (
+            '<section class="codex-console-stack-group">' +
+            '<div class="codex-console-stack-group__head">' +
+            '<strong>' + esc(title) + '</strong>' +
+            '<span class="codex-console-stack-pill codex-console-stack-pill--' + esc(tone) + '">' + esc(String(sessions.length)) + '</span>' +
+            '</div>' +
+            sessions
+                .map(function (session) {
+                    var isActive = session.session_id === activeId
+                    var roleTone = isActive ? 'active' : (session.alive ? 'standby' : 'closed')
+                    var roleLabel = isActive ? 'active seat' : (session.alive ? 'standby' : 'closed')
+                    var active = isActive ? ' is-active' : ''
+                    return (
+                        '<article class="codex-console-stack-shell' + active + '">' +
+                        '<div class="codex-console-stack-shell__head">' +
+                        '<strong>' + esc(session.session_id) + '</strong>' +
+                        '<div class="codex-console-stack-shell__controls">' +
+                        '<span class="codex-console-stack-pill codex-console-stack-pill--' + roleTone + '">' + roleLabel + '</span>' +
+                        '<button type="button" class="btn btn-secondary codex-console-stack-shell__action" data-stack-focus-shell="' + esc(session.session_id) + '">Focus</button>' +
+                        '</div>' +
+                        '</div>' +
+                        '<p><strong>pid</strong><span>' + esc(session.pid || '—') + '</span></p>' +
+                        '<p><strong>cwd</strong><span>' + esc(session.cwd || '—') + '</span></p>' +
+                        '</article>'
+                    )
+                })
+                .join('') +
+            '</section>'
+        )
+    }
+
     function renderSessionStack() {
         var host = document.getElementById('stack-shells')
         var badge = document.getElementById('session-stack-badge')
+        var metrics = document.getElementById('stack-shell-metrics')
         var activeId = shellState.activeId || ''
         var relayState = guardState.relay || 'idle'
         var daemonSummary = { chip: 'manual desk', note: 'Daemon idle. Manual desk is the current write owner.', tone: 'ready' }
         var threadSummary = { chip: 'writable', note: 'Manual writes are allowed from the desk.', tone: 'ready' }
         var shellSummary = { chip: 'no shell', note: 'Spawn one from Session Stack or Shell Lab.', tone: 'neutral' }
-        if (!host || !badge) return
+        if (!host || !badge || !metrics) return
 
         setText('stack-relay', document.getElementById('relay-status') ? document.getElementById('relay-status').textContent : 'idle')
         setText('stack-daemon', document.getElementById('daemon-running') ? document.getElementById('daemon-running').textContent : '—')
@@ -246,29 +280,29 @@
         setText('stack-summary-thread-note', threadSummary.note)
         setStackChip('stack-summary-shell', shellSummary.chip, shellSummary.tone)
         setText('stack-summary-shell-note', shellSummary.note)
+        var activeSessions = shellState.sessions.filter(function (session) {
+            return session.session_id === activeId
+        })
+        var standbySessions = shellState.sessions.filter(function (session) {
+            return session.alive && session.session_id !== activeId
+        })
+        var closedSessions = shellState.sessions.filter(function (session) {
+            return !session.alive
+        })
+        metrics.innerHTML =
+            '<span class="codex-console-stack-pill codex-console-stack-pill--active">' + activeSessions.length + ' active</span>' +
+            '<span class="codex-console-stack-pill codex-console-stack-pill--standby">' + standbySessions.length + ' standby</span>' +
+            '<span class="codex-console-stack-pill codex-console-stack-pill--closed">' + closedSessions.length + ' closed</span>'
 
         if (!shellState.sessions.length) {
             host.innerHTML = '<div class="codex-console-stack-shell codex-console-stack-shell--empty">当前没有 shell session。</div>'
             return
         }
 
-        host.innerHTML = shellState.sessions.map(function (session) {
-            var active = session.session_id === activeId ? ' is-active' : ''
-            var tone = session.alive ? 'live' : 'done'
-            return (
-                '<article class="codex-console-stack-shell' + active + '">' +
-                '<div class="codex-console-stack-shell__head">' +
-                '<strong>' + esc(session.session_id) + '</strong>' +
-                '<div class="codex-console-stack-shell__controls">' +
-                '<span class="codex-console-stack-pill codex-console-stack-pill--' + tone + '">' + (session.alive ? 'live' : 'done') + '</span>' +
-                '<button type="button" class="btn btn-secondary codex-console-stack-shell__action" data-stack-focus-shell="' + esc(session.session_id) + '">Focus</button>' +
-                '</div>' +
-                '</div>' +
-                '<p><strong>pid</strong><span>' + esc(session.pid || '—') + '</span></p>' +
-                '<p><strong>cwd</strong><span>' + esc(session.cwd || '—') + '</span></p>' +
-                '</article>'
-            )
-        }).join('')
+        host.innerHTML =
+            shellRosterGroupMarkup('Active Seat', 'active', activeSessions, activeId) +
+            shellRosterGroupMarkup('Standby Sessions', 'standby', standbySessions, activeId) +
+            shellRosterGroupMarkup('Closed Sessions', 'closed', closedSessions, activeId)
 
         Array.prototype.slice.call(host.querySelectorAll('[data-stack-focus-shell]')).forEach(function (btn) {
             btn.addEventListener('click', function () {

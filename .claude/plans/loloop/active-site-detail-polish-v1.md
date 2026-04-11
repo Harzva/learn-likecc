@@ -17,7 +17,7 @@ Prioritize future iterations along these three lines:
 
 ## Current focus
 
-Continue Task 9 LikeCode Web UI after the session-stack ownership-summary pass.
+Continue Task 9 LikeCode Web UI after the grouped shell-roster pass.
 
 ## Success condition
 
@@ -241,6 +241,9 @@ Continue Task 9 LikeCode Web UI after the session-stack ownership-summary pass.
 - [x] Stay on Task 9 for one more bounded operator-clarity follow-up after the session-stack mobile pass
 - [x] Add a compact daemon/thread/shell ownership summary strip inside the `Session Stack` so control and approval state can be scanned from one surface
 - [x] Verify the Task 9 session-stack-ownership pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
+- [x] Stay on Task 9 for one more bounded session-management follow-up after the ownership-summary pass
+- [x] Regroup the `Shell Roster` into `Active Seat / Standby Sessions / Closed Sessions` lanes and add top-level shell metrics so multi-session state is easier to scan
+- [x] Verify the Task 9 grouped-shell-roster pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail
 

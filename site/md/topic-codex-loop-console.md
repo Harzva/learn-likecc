@@ -67,3 +67,4 @@
 - `Session Stack` 的 Thread 卡片里进一步补了 `Readonly / Writable` 快捷操作，不必先切进 `Thread Compose` 才能改当前 thread 的写保护状态
 - 针对这些新按钮与 roster controls，窄屏 fallback 也继续跟上：小窗或手机调试时会整列堆叠，而不是把 action row 和 focus 控件挤成一团
 - `Session Stack` 里再补了一层 compact ownership / approval summary：把 daemon ownership、thread write guard、shell seat 三件事压成一排状态条，避免 operator 还要自己从 guardrail 和多张卡片里二次拼装当前控制权
+- `Shell Roster` 进一步从平铺列表改成轻量 session-management 视图：表头直接显示 `active / standby / closed` 计数，正文按 `Active Seat / Standby Sessions / Closed Sessions` 分组，聚焦当前 shell 和扫读后台会话会更快

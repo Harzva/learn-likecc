@@ -11886,6 +11886,42 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     color: var(--text-primary);
 }
 
+.codex-console-stack-list__title {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.codex-console-stack-roster-metrics {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.codex-console-stack-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.codex-console-stack-group + .codex-console-stack-group {
+    margin-top: 14px;
+}
+
+.codex-console-stack-group__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.codex-console-stack-group__head strong {
+    color: var(--text-primary);
+}
+
 .codex-console-stack-shells {
     display: flex;
     flex-direction: column;
@@ -11956,6 +11992,26 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 .codex-console-stack-pill--done {
     background: rgba(254, 226, 226, 0.96);
     color: #b91c1c;
+}
+
+.codex-console-stack-pill--active {
+    background: rgba(220, 252, 231, 0.98);
+    color: #047857;
+}
+
+.codex-console-stack-pill--standby {
+    background: rgba(219, 234, 254, 0.96);
+    color: #1d4ed8;
+}
+
+.codex-console-stack-pill--closed {
+    background: rgba(241, 245, 249, 0.96);
+    color: #475569;
+}
+
+.codex-console-stack-pill--neutral {
+    background: rgba(241, 245, 249, 0.96);
+    color: #475569;
 }
 
 .codex-console-stack-shell__action {
@@ -12100,6 +12156,12 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     .codex-console-stack-shell__head {
         flex-direction: column;
         align-items: flex-start;
+    }
+
+    .codex-console-stack-group__head,
+    .codex-console-stack-roster-metrics {
+        width: 100%;
+        justify-content: flex-start;
     }
 
     .codex-console-stack-shell__controls {
