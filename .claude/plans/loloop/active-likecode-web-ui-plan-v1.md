@@ -9,7 +9,8 @@ Scope: continuously improve LikeCode Web UI, AI terminal experience, and the age
 - [x] Use `reference/reference_cc_ui/hermes-webui/` and `reference/reference_cc_ui/claudecodeui/` as the first bounded source pair for a session-visibility pass
 - [x] Continue the LikeCode Web UI line with the next operator-control or agent-management slice after the new session-stack overview pass
 - [x] Keep Task 9 active with the next bounded operator-control or agent-management follow-up after the session-stack action shortcuts
-- [ ] Continue Task 9 with the next bounded follow-up after the new thread-lock shortcuts land in the session stack
+- [x] Continue Task 9 with the next bounded follow-up after the new thread-lock shortcuts land in the session stack
+- [ ] Continue Task 9 with the next bounded follow-up after the session-stack action rows and focus controls get their narrow-screen fallback
 
 ## Main product areas
 
@@ -48,6 +49,8 @@ Scope: continuously improve LikeCode Web UI, AI terminal experience, and the age
   - add operator shortcuts and shell-focus actions so the session stack is actionable instead of read-only
 - [x] UI follow-up pass in the same surface:
   - add `Readonly / Writable` quick actions so thread protection can be changed from the session stack overview
+- [x] UI follow-up pass in the same surface:
+  - harden the new session-stack action rows and focus controls for narrow-screen debugging
 - [ ] site-facing article or subtopic when a design pattern is worth documenting
 - [ ] evolution notes tying specific references to specific UI decisions
 

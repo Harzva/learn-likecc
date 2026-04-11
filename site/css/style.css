@@ -12031,6 +12031,31 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
         grid-template-columns: 1fr;
     }
 
+    .codex-console-stack-actions,
+    .codex-console-stack-card__actions {
+        flex-direction: column;
+    }
+
+    .codex-console-stack-actions .btn,
+    .codex-console-stack-card__actions .btn {
+        width: 100%;
+    }
+
+    .codex-console-stack-list__head,
+    .codex-console-stack-shell__head {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .codex-console-stack-shell__controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .codex-console-stack-shell__action {
+        flex: 1 1 auto;
+    }
+
     .codex-console-canvas {
         display: grid;
         gap: 16px;
