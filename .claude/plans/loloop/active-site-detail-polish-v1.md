@@ -381,6 +381,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Stay on Task 2 after the shortlist and turn `topic-vibepaper` into the first actual draft target rather than reopening the candidate selection again
 - [x] Create a reusable VibePaper screenshot config plus one bounded set of local captures for the hero, sample-structure, shell-thickness, and route sections
 - [x] Write the first VibePaper Zhihu-style Markdown draft under `wemedia/zhihu/articles/` and verify that it references the newly captured local images
+- [x] Stay on the VibePaper Task 2 subthread for one final readiness-decision pass after the first screenshot-backed draft landed
+- [x] Recheck that the `37-*` VibePaper draft still includes its four local screenshots, the main site link, and the standard `适合什么人看 / 链接放这里` closeout structure
+- [x] Mark the `37-*` VibePaper draft locally ready for a future daytime publication attempt instead of forcing another overnight rewrite
 
 ## Guardrail
 
