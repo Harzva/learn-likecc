@@ -1,4 +1,4 @@
-# VibePaper 专题 - Claude Code Course
+# VibePaper 专题：Autoresearch / DeepScientist / AI Scientist-v2 - Claude Code Course
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-vibepaper.html  
 > **本文件**: `site/md/topic-vibepaper.md`  
