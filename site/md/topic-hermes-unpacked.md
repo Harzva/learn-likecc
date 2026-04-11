@@ -148,6 +148,20 @@ Mermaid 更适合：是。
 
 所以 gateway 真正做的是：把平台消息收束为稳定的 session identity、prompt context、history persistence 和 delivery path，而不是自己成为第二个控制面。
 
+```mermaid
+graph LR
+    classDef blueBox fill:#172130,stroke:#60a5fa,stroke-width:2px,color:#93c5fd;
+    classDef yellowBox fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#fcd34d;
+    classDef greenBox fill:#14251f,stroke:#34d399,stroke-width:2px,color:#6ee7b7;
+    classDef purpleBox fill:#241c2f,stroke:#c084fc,stroke-width:2px,color:#e9d5ff;
+
+    G["Gateway adapters<br/>Telegram · Discord · Slack"]:::blueBox --> K["build_session_key<br/>DM / group / thread / per-user"]:::yellowBox
+    K --> S["SessionStore<br/>reset policy · context prompt"]:::purpleBox
+    S --> A["Cached AIAgent kernel<br/>history + prompt context"]:::yellowBox
+    A --> D["Delivery router<br/>reply / home channel / callback"]:::greenBox
+    S --> T["Transcript persistence<br/>SQLite + JSONL"]:::greenBox
+```
+
 ### [插图提示词]
 
 用途：画 Hermes 的 gateway / session boundary 图。  

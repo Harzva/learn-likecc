@@ -7,7 +7,8 @@ Scope: keep turning Hermes Agent into a stable 庖丁解牛 / unpacked topic wit
 
 - [ ] Tighten the page so the system split, control plane, and runtime flow read more like a finished 庖丁解牛 chapter
 - [x] Add one stronger structure visual path, preferably Mermaid-ready where appropriate
-- [ ] Continue Hermes with the next bounded follow-up after the learning-loop Mermaid lands
+- [x] Continue Hermes with the next bounded follow-up after the learning-loop Mermaid lands
+- [ ] Continue Hermes with one more bounded follow-up after the gateway/session Mermaid lands
 - [ ] Improve the final “what we can learn for our own stack” closeout
 
 ## Anchors
@@ -46,6 +47,7 @@ Scope: keep turning Hermes Agent into a stable 庖丁解牛 / unpacked topic wit
 
 - [x] Add Mermaid or structure-ready notes where they help
 - [x] Add one stronger final structure diagram path for the page
+- [x] Add one gateway/session seam Mermaid so the runtime ingress boundary is not only described in prose
 - [ ] Add or refine `[插图提示词]` blocks only where visual explanation adds real value
 
 ## Validation

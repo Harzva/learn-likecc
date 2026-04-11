@@ -35,6 +35,18 @@ const MERMAID_DIAGRAMS = {
     M --> N["Next session prompt<br/>frozen memory + skill context"]:::greenBox
     N --> A`,
 
+    'hermes-gateway-session-seam': `graph LR
+    classDef blueBox fill:#172130,stroke:#60a5fa,stroke-width:2px,color:#93c5fd;
+    classDef yellowBox fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#fcd34d;
+    classDef greenBox fill:#14251f,stroke:#34d399,stroke-width:2px,color:#6ee7b7;
+    classDef purpleBox fill:#241c2f,stroke:#c084fc,stroke-width:2px,color:#e9d5ff;
+
+    G["Gateway adapters<br/>Telegram · Discord · Slack"]:::blueBox --> K["build_session_key<br/>DM / group / thread / per-user"]:::yellowBox
+    K --> S["SessionStore<br/>reset policy · context prompt"]:::purpleBox
+    S --> A["Cached AIAgent kernel<br/>history + prompt context"]:::yellowBox
+    A --> D["Delivery router<br/>reply / home channel / callback"]:::greenBox
+    S --> T["Transcript persistence<br/>SQLite + JSONL"]:::greenBox`,
+
     'vibepaper-shells': `graph LR
     classDef blueBox fill:#172130,stroke:#60a5fa,stroke-width:2px,color:#93c5fd;
     classDef greenBox fill:#14251f,stroke:#34d399,stroke-width:2px,color:#6ee7b7;

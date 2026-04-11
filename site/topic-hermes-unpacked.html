@@ -149,6 +149,10 @@
                         <tr><td>Kernel Reuse</td><td><code>gateway/run.py</code> 的 <code>_agent_cache</code> / <code>session_key</code></td><td>gateway 以 <code>session_key</code> 复用缓存的 <code>AIAgent</code>，保持 frozen prompt 和 tool schema 的缓存收益；说明平台层服务的是 kernel 复用，而不是自带另一套推理脑。</td></tr>
                         <tr><td>Transcript Persistence</td><td><code>SessionStore.append_to_transcript()</code>、<code>load_transcript()</code></td><td>SQLite + JSONL 双轨保存会话历史；gateway 管的是历史与回送，不是把业务逻辑散落在 adapter 里。</td></tr>
                     </table>
+                    <figure class="mermaid-figure">
+                        <div class="mermaid-diagram" data-mermaid-diagram="hermes-gateway-session-seam"></div>
+                        <figcaption>边界图：把 gateway adapter、session key、SessionStore、cached AIAgent 与 transcript / delivery 串成一条 session seam。</figcaption>
+                    </figure>
                     <div class="course-quote">
                         <p><strong>[插图提示词]</strong></p>
                         <p>用途：把 Hermes 的 gateway / session seam 画清楚，说明“平台消息 → session key → session context / reset policy → cached AIAgent → transcript / delivery”的边界。</p>

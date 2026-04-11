@@ -17,7 +17,7 @@ Prioritize future iterations along these three lines:
 
 ## Current focus
 
-Continue Task 5 Hermes unpacked after the learning-loop Mermaid pass.
+Continue Task 5 Hermes unpacked after the gateway/session Mermaid pass.
 
 ## Success condition
 
@@ -281,6 +281,8 @@ Continue Task 5 Hermes unpacked after the learning-loop Mermaid pass.
 - [x] Choose Task 5 Hermes as the next best remaining main-site move after the LikeCode micro-wave defer
 - [x] Add one real Mermaid learning-loop figure to the Hermes memory / skills section so the page has a second concrete structure visual
 - [x] Verify the Hermes learning-loop figure pass with `node --check site/js/app.js` and `python3 tools/check_site_md_parity.py`
+- [x] Stay on Task 5 for one bounded Hermes visual follow-up after the learning-loop figure
+- [x] Add one real Mermaid gateway/session seam figure to the Hermes runtime-ingress section and verify it with `node --check site/js/app.js` and `python3 tools/check_site_md_parity.py`
 - [x] Verify the Task 9 headline-badges pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail
