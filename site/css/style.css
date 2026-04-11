@@ -12872,3 +12872,31 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     line-height: 1.8;
     color: var(--text-secondary);
 }
+
+.topic-websites-grid--220 {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.topic-websites-grid--240 {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.topic-websites-block-top {
+    margin-top: 1.5rem;
+}
+
+.topic-websites-table-wrap {
+    margin-top: 1rem;
+}
+
+.topic-websites-table-wrap--wide {
+    margin-top: 1.75rem;
+}
+
+.topic-websites-note {
+    margin-top: 1.25rem;
+}
+
+.topic-websites-subtitle {
+    margin-top: 1.75rem;
+}

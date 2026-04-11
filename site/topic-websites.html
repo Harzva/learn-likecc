@@ -70,7 +70,7 @@
                     <p><a href="https://adocomplete.com/advent-of-claude-2025/" target="_blank" rel="noopener noreferrer">Advent of Claude: 31 Days of Claude Code</a> 发布于 <strong>2026-01-01</strong>。这页最值的地方不是“又列了 31 条技巧”，而是它把零散的日更提示重新编排成一份可回看的功能地图：从 <code>/init</code>、<code>!</code>、<code>Esc Esc</code>、<code>/context</code>，一直到 Plan Mode、Hooks、Subagents、Agent Skills、LSP、Claude Agent SDK，适合拿来补全 Claude Code 的功能认知。</p>
                     <p>更关键的是，原文正文里直接嵌了 <strong>31 个 MP4 演示视频</strong>，视频源在 <code>cdn.adocomplete.com</code>。这意味着我们在 GitHub Pages 里<strong>可以放视频链接</strong>，甚至理论上可以直接外链播放；但我更建议当前阶段先保留<strong>原文 + 视频直链索引</strong>，不把视频文件镜像进仓库。</p>
 
-                    <div class="quickstart-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 1.5rem;">
+                    <div class="quickstart-grid topic-websites-grid topic-websites-grid--220 topic-websites-block-top">
                         <div class="quickstart-card">
                             <h3>适合当速查页</h3>
                             <p>它不是按时间线硬堆 31 天内容，而是按上手、快捷键、会话、可观测性、高阶模式重新组织，更适合回查。</p>
@@ -85,7 +85,7 @@
                         </div>
                     </div>
 
-                    <div class="table-wrap" style="margin-top: 1.75rem;">
+                    <div class="table-wrap topic-websites-table-wrap topic-websites-table-wrap--wide">
                         <table class="data-table">
                             <thead>
                                 <tr><th>我们现在怎么放</th><th>结论</th><th>原因</th></tr>
@@ -110,16 +110,16 @@
                         </table>
                     </div>
 
-                    <p style="margin-top: 1.25rem;">如果后面你想把它做得更“像我们站内内容”，可以再走两步：第一步是挑 5 到 8 个最常用的视频做站内精选；第二步是给每个功能点补一行“它和我们现有教程哪一页互补”。当前这版先把入口打通，成本最低，也最稳。</p>
+                    <p class="topic-websites-note">如果后面你想把它做得更“像我们站内内容”，可以再走两步：第一步是挑 5 到 8 个最常用的视频做站内精选；第二步是给每个功能点补一行“它和我们现有教程哪一页互补”。当前这版先把入口打通，成本最低，也最稳。</p>
 
-                    <div class="hero-actions" style="margin-top: 1.5rem;">
+                    <div class="hero-actions topic-websites-block-top">
                         <a href="https://adocomplete.com/advent-of-claude-2025/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">打开原文 ↗</a>
                         <a href="https://zade23.github.io/2024/04/26/%E3%80%90Git%E3%80%91%E5%9C%A8README-md%E4%B8%AD%E5%B1%95%E7%A4%BA%E8%A7%86%E9%A2%91%E7%9A%84%E6%96%B9%E6%A1%88/index.html" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">参考 README 视频展示思路 ↗</a>
                     </div>
 
-                    <details style="margin-top: 1.5rem;">
+                    <details class="topic-websites-block-top">
                         <summary><strong>展开 31 个视频直链索引</strong></summary>
-                        <div class="table-wrap" style="margin-top: 1rem;">
+                        <div class="table-wrap topic-websites-table-wrap">
                             <table class="data-table">
                                 <thead>
                                     <tr><th>功能点</th><th>视频</th></tr>
@@ -167,7 +167,7 @@
                     <p>如果说很多“推荐站点”更像内容聚合页，那么 <strong>Zread.ai</strong> 更像一个专门为代码仓库阅读设计的入口。首页直接给出 <strong>Discover Repos</strong>、<strong>Trending Repos</strong>、<strong>Your Private Repos</strong>、<strong>Zread MCP Server</strong> 和 <strong>Zread CLI for Local Repos</strong>，这已经把它的产品方向说得很直白了：它不是让你只看 README，而是帮你把 repo 本身变成可探索对象。</p>
                     <p>放到我们站内语境里，它很适合作为“看别人仓库”这一步的外部入口，尤其适合做前置侦察：先看趋势仓库、先理解结构、先把问题问出来，再决定要不要把其中一个仓库进一步课程化。</p>
 
-                    <div class="quickstart-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 1.5rem;">
+                    <div class="quickstart-grid topic-websites-grid topic-websites-grid--220 topic-websites-block-top">
                         <div class="quickstart-card">
                             <h3>Discover / Trending</h3>
                             <p>适合找新仓库与热门仓库。更偏“发现”和“快速扫一眼哪些项目值得深入”。</p>
@@ -182,10 +182,10 @@
                         </div>
                     </div>
 
-                    <h3 style="margin-top: 1.75rem;">它和我们的 <code>projects/rep2course</code> 有什么差异</h3>
+                    <h3 class="topic-websites-subtitle">它和我们的 <code>projects/rep2course</code> 有什么差异</h3>
                     <p>截至 <strong>2026-04-09</strong>，两者看起来都围绕“理解代码仓库”展开，但目标并不一样。Zread 更像<strong>阅读入口产品</strong>；<code>rep2course</code> 更像<strong>课程生产流水线</strong>。</p>
 
-                    <div class="table-wrap" style="margin-top: 1rem;">
+                    <div class="table-wrap topic-websites-table-wrap">
                         <table class="data-table">
                             <thead>
                                 <tr><th>维度</th><th>Zread.ai</th><th><code>projects/rep2course</code></th></tr>
@@ -220,7 +220,7 @@
                         </table>
                     </div>
 
-                    <p style="margin-top: 1.25rem;">如果要把两者放进一条工作流，我会建议这样理解：<strong>Zread 负责发现和读懂，rep2course 负责提炼和产出</strong>。前者像侦察兵，后者像课程工厂。它们不是完全重叠，反而很互补。</p>
+                    <p class="topic-websites-note">如果要把两者放进一条工作流，我会建议这样理解：<strong>Zread 负责发现和读懂，rep2course 负责提炼和产出</strong>。前者像侦察兵，后者像课程工厂。它们不是完全重叠，反而很互补。</p>
                 </section>
 
                 <section id="llm-wiki" class="section-block">
@@ -228,7 +228,7 @@
                     <p>这篇内容之所以值得放进“站点推荐”，不是因为它又提出了一个新名词，而是因为它把很多人已经隐约感觉到、却一直说不清楚的问题讲透了：<strong>为什么你用大模型处理过的知识，总是留不下来？</strong></p>
                     <p>大多数人今天处理文档，还是 RAG 心智。文件丢进去，问的时候临时检索、临时拼答案，能用，但知识没有沉淀。Karpathy 的思路刚好反过来：<strong>别让模型每次临时翻书，让它替你维护一套持续更新的 wiki</strong>。每加一份新资料，LLM 不是简单存档，而是会读、会提取要点、会更新已有页面、会补交叉引用、会标记矛盾，让知识像代码库一样被持续编译。</p>
 
-                    <div class="quickstart-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-top: 1.5rem;">
+                    <div class="quickstart-grid topic-websites-grid topic-websites-grid--240 topic-websites-block-top">
                         <div class="quickstart-card">
                             <h3>核心区别</h3>
                             <p>RAG 是“查询时重新发现知识”，LLM Wiki 是“摄入时把知识编译进去”。前者临时拼凑，后者持续沉淀。</p>
@@ -243,7 +243,7 @@
                         </div>
                     </div>
 
-                    <div class="table-wrap" style="margin-top: 1.75rem;">
+                    <div class="table-wrap topic-websites-table-wrap topic-websites-table-wrap--wide">
                         <table class="data-table">
                             <thead>
                                 <tr><th>层级</th><th>作用</th><th>一句话理解</th></tr>
@@ -268,7 +268,7 @@
                         </table>
                     </div>
 
-                    <p style="margin-top: 1.25rem;">这篇指南里还有一个很重要的操作心智：<strong>摄入、查询、检查</strong>。摄入新资料时更新 wiki；查询时优先查 wiki，而不是每次回原文翻箱倒柜；定期做 lint，检查矛盾、孤儿页、缺失链接和过时结论。这个思路特别像在维护代码库，只不过这里维护的是知识。</p>
+                    <p class="topic-websites-note">这篇指南里还有一个很重要的操作心智：<strong>摄入、查询、检查</strong>。摄入新资料时更新 wiki；查询时优先查 wiki，而不是每次回原文翻箱倒柜；定期做 lint，检查矛盾、孤儿页、缺失链接和过时结论。这个思路特别像在维护代码库，只不过这里维护的是知识。</p>
                     <p>你贴过来的中文整理里，我觉得最值的一句其实是这个意思：<strong>知识要先被“编译”一次，才会开始复利增长</strong>。这也是为什么它很适合和 <code>karpathy.ai</code> 这种个人主页放在一起看，因为两者都在强调一件事：长期资产要被组织、被沉淀，而不是散在聊天记录和临时对话里。</p>
                 </section>
 
@@ -307,7 +307,7 @@
 
                 <section id="homepages" class="section-block">
                     <h2>5. 个人主页</h2>
-                    <div class="quickstart-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+                    <div class="quickstart-grid topic-websites-grid topic-websites-grid--240">
                         <div class="quickstart-card">
                             <h3>karpathy.ai</h3>
                             <p>这页最推荐。项目、课程、演讲、博客、GitHub 都收在一个非常稳的个人入口里，适合反复回看。</p>
