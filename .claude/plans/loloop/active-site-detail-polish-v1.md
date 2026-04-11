@@ -286,6 +286,8 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Treat the queued Zhihu publish as time-blocked outside the allowed window and switch the current overnight pass back to one bounded main-site task
 - [x] Reopen Hermes for one bounded self-stack mapping clarification instead of repeating more late-night publish-prep checks
 - [x] Verify the Hermes self-stack mapping pass with `python3 tools/check_site_md_parity.py`
+- [x] Reconfirm that Claude Code still has no post-`2.1.101` official changelog delta before reopening Task 4
+- [x] Use the overnight Task 4 pass for dedicated-plan reconciliation instead of forcing another stale or weak release-watch keyword
 - [x] Stay on Task 9 for one more bounded action-oriented operator-summary follow-up after the headline-badges pass
 - [x] Add a compact `Attention Queue` so relay / thread / shell each expose the next likely operator move from the same overview surface
 - [x] Verify the Task 9 attention-queue pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`

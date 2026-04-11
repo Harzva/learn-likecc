@@ -7,10 +7,12 @@ Scope: monitor Claude / Claude Code changelogs, extract worthwhile keywords or s
 
 - [x] Keep tracking recent Claude changelog deltas and choose the next keyword worth turning into a site draft
 - [x] Prefer updates that have clear teaching value for our site, not just release-note novelty
-- [ ] Keep the best-fit site destination explicit before drafting
+- [x] Keep the best-fit site destination explicit before drafting
 - [x] Continue Task 4 with the next bounded keyword after the tracing opt-in slice
 - [x] Continue Task 4 with one more bounded keyword after the managed-hooks slice
 - [x] Mark the current `2.1.101` release-watch micro-wave locally deferred until a fresh official delta or clearly higher-value gap appears
+- [x] Reconfirm that the latest official changelog still tops out at `2.1.101` before reopening Task 4
+- [x] Reconcile this dedicated plan with the already-landed `2.1.101` release-watch slices while keeping the micro-wave locally deferred
 
 ## Primary sources
 
@@ -38,6 +40,18 @@ Scope: monitor Claude / Claude Code changelogs, extract worthwhile keywords or s
   - `site/topic-cc-release-watch.html`
   - `site/md/topic-cc-release-watch.md`
 - [x] Added one `2.1.101` managed-hooks note explaining settings fault-tolerance and `allowManagedHooksOnly` policy precedence
+- [x] Destination kept explicit for the broader `2.1.101` keyword cluster:
+  - `site/topic-cc-release-watch.html`
+  - `site/md/topic-cc-release-watch.md`
+- [x] Added one `2.1.101` `/team-onboarding` note explaining why Claude Code started turning local usage into teammate ramp-up guides
+- [x] Added one `2.1.101` OS CA trust note explaining enterprise TLS proxy onboarding and the `CLAUDE_CODE_CERT_STORE=bundled` fallback
+- [x] Added one `2.1.101` default cloud environment note explaining remote-session底座前移
+- [x] Added one `2.1.101` Ultraplan gating note explaining why plan mode now hides unreachable web-only refinement paths
+- [x] Added one `2.1.101` focus-mode note explaining self-contained final-message delivery
+- [x] Added one `2.1.101` refusal-explanation note explaining more interpretable refusal boundaries
+- [x] Added one `2.1.101` brief-retry note explaining automatic structured-message recovery
+- [x] Added one `2.1.101` rate-limit note explaining limit type plus reset-time feedback
+- [x] Added one `2.1.101` tool-not-available note explaining context-specific tool gating
 
 ## Good candidate types
 
@@ -49,8 +63,9 @@ Scope: monitor Claude / Claude Code changelogs, extract worthwhile keywords or s
 ## Destination rules
 
 - [ ] Prefer updating an existing site topic when the new keyword clearly fits
+- [x] Prefer updating an existing site topic when the new keyword clearly fits
 - [ ] Only create a new draft when the changelog theme is substantial enough to stand on its own
-- [ ] Keep the destination page explicit in the plan notes before doing the writing pass
+- [x] Keep the destination page explicit in the plan notes before doing the writing pass
 
 ## Visuals
 
@@ -63,6 +78,7 @@ Scope: monitor Claude / Claude Code changelogs, extract worthwhile keywords or s
 - [x] Keep `python3 tools/check_site_md_parity.py` passing after each pass
 - [x] Prefer official docs, original repos, official changelogs, and primary sources over secondary commentary
 - [ ] Avoid publishing or landing a draft when the keyword is too weak or too thinly supported
+- [x] Avoid publishing or landing a draft when the keyword is too weak or too thinly supported
 
 ## Notes
 
