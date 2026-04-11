@@ -10991,6 +10991,10 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     color: var(--text-secondary);
 }
 
+.zahuopu-entry-link {
+    margin-top: 1rem;
+}
+
 .zahuopu-mini-card--pending {
     background: linear-gradient(180deg, rgba(255, 251, 235, 0.98), rgba(255, 237, 213, 0.92));
     border-style: dashed;

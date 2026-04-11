@@ -277,6 +277,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Keep the deferred overnight media wave closed after the Task 8 root-shelf sync and return to one bounded low-risk site-polish pass
 - [x] Replace `topic-agent-comparison.html` inline layout styling with scoped classes
 - [x] Verify the agent-comparison page no longer uses inline `style=` attributes
+- [x] Stay on the bounded low-risk site-polish line for one more pass after the agent-comparison cleanup
+- [x] Replace the remaining repeated entry-link inline spacing on `topic-ai-zahuopu.html` with one shared scoped class
+- [x] Verify the AI杂货铺 page no longer uses inline `style=` attributes
 - [x] Reopen Task 9 for one bounded site-facing teaching pass after the frontend micro-wave was locally deferred
 - [x] Add one explicit five-layer `Session Stack` reading contract to `topic-codex-loop-console`
 - [x] Verify the Task 9 control-contract pass with `python3 tools/check_site_md_parity.py`
