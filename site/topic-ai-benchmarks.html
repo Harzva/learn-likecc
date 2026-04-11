@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模型评测专页 - AI杂货铺</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📏</text></svg>">
+    <meta name="description" content="模型评测专页：MMLU、MMBench、OpenCompass、HELM 分别该怎么看。">
+</head>
+<body class="zahuopu-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="topic-ai-zahuopu.html" class="nav-logo">
+                <span class="logo-icon">📏</span>
+                <span class="logo-text">模型评测</span>
+            </a>
+            <div class="nav-links">
+                <a href="#rule" class="nav-link">总原则</a>
+                <a href="#four" class="nav-link">四个入口</a>
+                <a href="#atlas" class="nav-link">评测地图</a>
+                <a href="#read" class="nav-link">怎么看</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-ai-zahuopu.html" class="btn-github">← 返回 AI杂货铺</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero zahuopu-hero">
+        <div class="zahuopu-orb zahuopu-orb--left" aria-hidden="true"></div>
+        <div class="zahuopu-orb zahuopu-orb--right" aria-hidden="true"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>子专题</span>
+                <span>模型评测</span>
+            </div>
+            <h1 class="hero-title">
+                看榜单之前先想清楚<br>
+                <span class="gradient-text">你到底想知道模型的哪一种能力</span>
+            </h1>
+            <p class="hero-subtitle">
+                `MMLU`、`MMBench`、`OpenCompass`、`HELM` 不是同一层次的东西。<br>
+                有的是单 benchmark，有的是评测平台，有的是更强调透明框架。把它们混着看，很容易得出错误结论。
+            </p>
+        </div>
+    </section>
+
+    <main class="course-main devlog-main">
+        <div class="container">
+            <article class="course-content devlog-content">
+                <section id="rule" class="section-block">
+                    <div class="toolchain-section-heading">
+                        <span class="toolchain-eyebrow">Rule</span>
+                        <h2>先记住一个总原则</h2>
+                    </div>
+                    <div class="course-quote">
+                        <p><strong>MMLU：</strong>更像“知识与学科题”的经典单点。</p>
+                        <p><strong>MMBench：</strong>更像“多模态理解”的常驻入口。</p>
+                        <p><strong>OpenCompass：</strong>更像“多 benchmark 聚合的平台层”。</p>
+                        <p><strong>HELM：</strong>更像“透明、可复现、强调评测方法论”的框架层。</p>
+                    </div>
+                </section>
+
+                <section id="four" class="section-block">
+                    <div class="toolchain-section-heading">
+                        <span class="toolchain-eyebrow">Four</span>
+                        <h2>四个入口，分别适合什么时候打开</h2>
+                    </div>
+                    <div class="toolchain-card-grid">
+                        <section class="toolchain-topic-card">
+                            <div class="toolchain-topic-card__meta">01 · MMLU</div>
+                            <h3>MMLU</h3>
+                            <p>原始 MMLU 来自 Dan Hendrycks 团队的 <em>Measuring Massive Multitask Language Understanding</em>。官方仓库长期被当成“学科知识与通识问答能力”的老参照。它覆盖 57 个学科，所以很适合看模型在传统考试式知识题上的总体水平。</p>
+                            <ul class="toolchain-topic-card__list">
+                                <li>适合问“通识 / 学科题大致到什么水平了”</li>
+                                <li>不适合拿来当今天所有能力的总分</li>
+                            </ul>
+                            <p><a href="https://github.com/hendrycks/test" target="_blank" rel="noopener noreferrer">官方仓库 ↗</a></p>
+                        </section>
+
+                        <section class="toolchain-topic-card">
+                            <div class="toolchain-topic-card__meta">02 · MMBench</div>
+                            <h3>MMBench</h3>
+                            <p>MMBench 的论文把它定义成一个双语多模态 benchmark，用来看视觉语言模型是不是“全能型选手”。所以它最适合在你关心图文理解、视觉问答、多模态认知时打开，而不是替代 MMLU。</p>
+                            <ul class="toolchain-topic-card__list">
+                                <li>适合问“多模态模型懂图、懂文、懂组合到什么程度”</li>
+                                <li>尤其适合和 OpenCompass 多模态榜一起看</li>
+                            </ul>
+                            <p><a href="https://mmbench.opencompass.org.cn/home" target="_blank" rel="noopener noreferrer">官方入口 ↗</a></p>
+                        </section>
+
+                        <section class="toolchain-topic-card">
+                            <div class="toolchain-topic-card__meta">03 · OpenCompass</div>
+                            <h3>OpenCompass</h3>
+                            <p>OpenCompass 不只是一个 benchmark 名字，而是一个聚合很多 benchmark 的评测平台。更准确地说，它是“<strong>去哪里看很多 benchmark 的组织化结果</strong>”这个问题的答案。看大盘、看多个维度、看不同模型的宽表时，它更顺手。</p>
+                            <ul class="toolchain-topic-card__list">
+                                <li>适合需要“一页看很多 benchmark”的时候</li>
+                                <li>不适合把平台上的单个分数误读成 benchmark 本体</li>
+                            </ul>
+                            <p><a href="https://opencompass.org.cn/leaderboard-llm" target="_blank" rel="noopener noreferrer">官方榜单入口 ↗</a></p>
+                        </section>
+
+                        <section class="toolchain-topic-card">
+                            <div class="toolchain-topic-card__meta">04 · HELM</div>
+                            <h3>HELM</h3>
+                            <p>HELM 更值得被理解成“评测方法论 + 透明实现”路线。Stanford CRFM 持续强调可解释、可复现、公开 prompt / 适配方式。它适合在你已经不满足于看一个数字，而是想知道“这个榜到底怎么跑出来”的时候打开。</p>
+                            <ul class="toolchain-topic-card__list">
+                                <li>适合问“这个评测是否透明、是否可复现、是否方法论清楚”</li>
+                                <li>也是理解 benchmark 差异的好入口</li>
+                            </ul>
+                            <p><a href="https://crfm.stanford.edu/helm/latest/" target="_blank" rel="noopener noreferrer">官方入口 ↗</a></p>
+                        </section>
+                    </div>
+                </section>
+
+                <section id="read" class="section-block">
+                    <div class="toolchain-section-heading">
+                        <span class="toolchain-eyebrow">Read</span>
+                        <h2>最实用的读榜顺序</h2>
+                    </div>
+                    <div class="course-quote">
+                        <p><strong>第一步：</strong>先看你关心的是文字知识题还是多模态题。前者先看 MMLU，后者先看 MMBench。</p>
+                        <p><strong>第二步：</strong>再去 OpenCompass 看这个模型在更多 benchmark 上的横向表现，而不是只盯一个分数。</p>
+                        <p><strong>第三步：</strong>如果你开始怀疑“这些分到底怎么来的”，再回头看 HELM 这类更强调透明评测方法的入口。</p>
+                    </div>
+                </section>
+
+                <section id="atlas" class="section-block">
+                    <div class="toolchain-section-heading">
+                        <span class="toolchain-eyebrow">Atlas</span>
+                        <h2>评测地图：把你贴的这些入口放回各自语境里</h2>
+                    </div>
+                    <p class="toolspot-intro">这组不是一个维度上的名单。有的是 benchmark，有的是排行榜，有的是评测平台，有的是垂直数据集。悬停某一项时，同类会一起亮起来，比较不容易把“平台”和“题集”混看。</p>
+                    <div class="toolspot-grid" data-toolspot-grid>
+                        <article class="toolspot-card" tabindex="0" data-related="arena,vision,platform" data-accent="rose">
+                            <span class="toolspot-card__logo">MA</span>
+                            <div class="toolspot-card__body"><h3>MagicArena</h3><p>字节推出的视觉生成模型对战平台。</p><div class="toolspot-card__tags"><span>Arena</span><span>视觉生成</span><span>平台</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：LMArena、MMBench</div>
+                        </article>
+                        <article class="toolspot-card" tabindex="0" data-related="benchmark,text,knowledge" data-accent="amber">
+                            <span class="toolspot-card__logo">MU</span>
+                            <div class="toolspot-card__body"><h3>MMLU</h3><p>大规模多任务语言理解基准，适合看知识与学科题。</p><div class="toolspot-card__tags"><span>Benchmark</span><span>文本</span><span>知识能力</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：C-Eval、CMMLU、AGI-Eval</div>
+                        </article>
+                        <article class="toolspot-card" tabindex="0" data-related="leaderboard,text,platform" data-accent="slate">
+                            <span class="toolspot-card__logo">HF</span>
+                            <div class="toolspot-card__body"><h3>Open LLM Leaderboard</h3><p>Hugging Face 推出的开源大模型排行榜单。</p><div class="toolspot-card__tags"><span>Leaderboard</span><span>平台</span><span>开源模型</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：OpenCompass、FlagEval、SuperCLUE</div>
+                        </article>
+                        <article class="toolspot-card" tabindex="0" data-related="benchmark,text,zh" data-accent="blue">
+                            <span class="toolspot-card__logo">CE</span>
+                            <div class="toolspot-card__body"><h3>C-Eval</h3><p>全面的中文基础模型评估套件。</p><div class="toolspot-card__tags"><span>Benchmark</span><span>中文</span><span>知识能力</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：CMMLU、SuperCLUE、MMLU</div>
+                        </article>
+                        <article class="toolspot-card" tabindex="0" data-related="leaderboard,platform,zh" data-accent="mint">
+                            <span class="toolspot-card__logo">FE</span>
+                            <div class="toolspot-card__body"><h3>FlagEval</h3><p>智源研究院推出的 FlagEval（天秤）大模型评测平台。</p><div class="toolspot-card__tags"><span>平台</span><span>中文生态</span><span>排行榜</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：OpenCompass、Open LLM Leaderboard、SuperCLUE</div>
+                        </article>
+                        <article class="toolspot-card" tabindex="0" data-related="leaderboard,zh,text" data-accent="violet">
+                            <span class="toolspot-card__logo">SC</span>
+                            <div class="toolspot-card__body"><h3>SuperCLUE</h3><p>中文通用大模型综合性测评基准。</p><div class="toolspot-card__tags"><span>中文</span><span>综合评测</span><span>榜单</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：C-Eval、CMMLU、FlagEval</div>
+                        </article>
+                        <article class="toolspot-card" tabindex="0" data-related="benchmark,text,exam" data-accent="stone">
+                            <span class="toolspot-card__logo">AG</span>
+                            <div class="toolspot-card__body"><h3>AGI-Eval</h3><p>以考试题为主的大模型评测社区与 benchmark 路线。</p><div class="toolspot-card__tags"><span>Benchmark</span><span>考试题</span><span>文本</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：MMLU、C-Eval、CMMLU</div>
+                        </article>
+                        <a class="toolspot-card" href="https://opencompass.org.cn/leaderboard-llm" target="_blank" rel="noopener noreferrer" data-related="leaderboard,platform,multibench" data-accent="cyan">
+                            <span class="toolspot-card__logo">OC</span>
+                            <div class="toolspot-card__body"><h3>OpenCompass</h3><p>上海人工智能实验室推出的大模型开放评测体系。</p><div class="toolspot-card__tags"><span>平台</span><span>多 Benchmark</span><span>榜单</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：MMBench、FlagEval、Open LLM Leaderboard</div>
+                        </a>
+                        <article class="toolspot-card" tabindex="0" data-related="benchmark,text,zh" data-accent="amber">
+                            <span class="toolspot-card__logo">CM</span>
+                            <div class="toolspot-card__body"><h3>CMMLU</h3><p>综合性的大模型中文评估基准。</p><div class="toolspot-card__tags"><span>Benchmark</span><span>中文</span><span>知识能力</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：C-Eval、MMLU、SuperCLUE</div>
+                        </article>
+                        <a class="toolspot-card" href="https://mmbench.opencompass.org.cn/home" target="_blank" rel="noopener noreferrer" data-related="benchmark,vision,multimodal" data-accent="blue">
+                            <span class="toolspot-card__logo">MM</span>
+                            <div class="toolspot-card__body"><h3>MMBench</h3><p>全方位的多模态大模型能力评测体系。</p><div class="toolspot-card__tags"><span>Benchmark</span><span>多模态</span><span>视觉理解</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：MagicArena、OpenCompass、LMArena</div>
+                        </a>
+                        <a class="toolspot-card" href="https://crfm.stanford.edu/helm/latest/" target="_blank" rel="noopener noreferrer" data-related="framework,platform,methodology" data-accent="slate">
+                            <span class="toolspot-card__logo">HE</span>
+                            <div class="toolspot-card__body"><h3>HELM</h3><p>斯坦福大学推出的大模型评测体系，强调透明方法论。</p><div class="toolspot-card__tags"><span>评测框架</span><span>方法论</span><span>透明复现</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：OpenCompass、H2O EvalGPT</div>
+                        </a>
+                        <article class="toolspot-card" tabindex="0" data-related="arena,leaderboard,platform" data-accent="mint">
+                            <span class="toolspot-card__logo">LA</span>
+                            <div class="toolspot-card__body"><h3>LMArena</h3><p>AI 模型评估平台，常被拿来做对战式比较。</p><div class="toolspot-card__tags"><span>Arena</span><span>平台</span><span>对战比较</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：MagicArena、Open LLM Leaderboard、H2O EvalGPT</div>
+                        </article>
+                        <article class="toolspot-card" tabindex="0" data-related="benchmark,text,zh" data-accent="rose">
+                            <span class="toolspot-card__logo">L3</span>
+                            <div class="toolspot-card__body"><h3>LLMEval3</h3><p>复旦大学 NLP 实验室推出的大模型评测基准。</p><div class="toolspot-card__tags"><span>Benchmark</span><span>中文生态</span><span>文本能力</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：C-Eval、CMMLU、SuperCLUE</div>
+                        </article>
+                        <article class="toolspot-card" tabindex="0" data-related="leaderboard,platform,elo" data-accent="violet">
+                            <span class="toolspot-card__logo">H2</span>
+                            <div class="toolspot-card__body"><h3>H2O EvalGPT</h3><p>H2O.ai 推出的基于 Elo 评级方法的大模型评估系统。</p><div class="toolspot-card__tags"><span>Elo 评级</span><span>平台</span><span>对战比较</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：LMArena、HELM</div>
+                        </article>
+                        <article class="toolspot-card" tabindex="0" data-related="dataset,medical,text" data-accent="stone">
+                            <span class="toolspot-card__logo">PM</span>
+                            <div class="toolspot-card__body"><h3>PubMedQA</h3><p>生物医学研究问答数据集和模型得分排行榜。</p><div class="toolspot-card__tags"><span>数据集</span><span>垂直领域</span><span>医疗问答</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：MMLU、AGI-Eval</div>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <div class="toolchain-section-heading">
+                        <span class="toolchain-eyebrow">Sources</span>
+                        <h2>主来源</h2>
+                    </div>
+                    <p><a href="https://github.com/hendrycks/test" target="_blank" rel="noopener noreferrer">hendrycks/test ↗</a> · <a href="https://mmbench.opencompass.org.cn/home" target="_blank" rel="noopener noreferrer">MMBench ↗</a> · <a href="https://opencompass.org.cn/leaderboard-llm" target="_blank" rel="noopener noreferrer">OpenCompass ↗</a> · <a href="https://crfm.stanford.edu/helm/latest/" target="_blank" rel="noopener noreferrer">HELM ↗</a> · <a href="https://arxiv.org/abs/2307.06281" target="_blank" rel="noopener noreferrer">MMBench 论文 ↗</a></p>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-ai-benchmarks.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

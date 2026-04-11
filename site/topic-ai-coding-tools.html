@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI编程工具专页 - AI杂货铺</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧰</text></svg>">
+    <meta name="description" content="AI编程工具专页：把 AI IDE、CLI、全栈生成器和 coding studio 铺成一面可悬停联动的工具墙。">
+</head>
+<body class="zahuopu-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="topic-ai-zahuopu.html" class="nav-logo">
+                <span class="logo-icon">🧰</span>
+                <span class="logo-text">AI编程工具</span>
+            </a>
+            <div class="nav-links">
+                <a href="#map" class="nav-link">地图</a>
+                <a href="#wall" class="nav-link">工具墙</a>
+                <a href="#pick" class="nav-link">怎么逛</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-ai-zahuopu.html" class="btn-github">← 返回 AI杂货铺</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero zahuopu-hero">
+        <div class="zahuopu-orb zahuopu-orb--left" aria-hidden="true"></div>
+        <div class="zahuopu-orb zahuopu-orb--right" aria-hidden="true"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>子专题</span>
+                <span>AI编程工具</span>
+            </div>
+            <h1 class="hero-title">
+                不是所有 AI 编程工具<br>
+                <span class="gradient-text">都该放进同一个抽屉里</span>
+            </h1>
+            <p class="hero-subtitle">
+                这一页把 <strong>AI IDE</strong>、<strong>CLI Agent</strong>、<strong>全栈生成器</strong>、<strong>企业级 coding studio</strong> 和 <strong>IDE 插件</strong> 铺成一面墙。<br>
+                鼠标悬停时，同一路线的工具会一起凸显，这样一眼就能看出谁和谁是真正的同类。
+            </p>
+        </div>
+    </section>
+
+    <main class="course-main devlog-main">
+        <div class="container">
+            <article class="course-content devlog-content">
+                <section id="map" class="section-block">
+                    <div class="toolchain-section-heading">
+                        <span class="toolchain-eyebrow">Map</span>
+                        <h2>先按工作形态分 5 堆</h2>
+                    </div>
+                    <div class="zahuopu-mini-grid">
+                        <div class="zahuopu-mini-card">
+                            <strong>AI IDE</strong>
+                            <p>Cursor、TRAE、Kiro、CodeBuddy IDE、CatPaw 这一类，重点是“IDE 本身就是 agent 工作台”。</p>
+                        </div>
+                        <div class="zahuopu-mini-card">
+                            <strong>CLI Agent</strong>
+                            <p>Claude Code、Codex、iFlow CLI、OpenCode 更适合放进终端工作流里看。</p>
+                        </div>
+                        <div class="zahuopu-mini-card">
+                            <strong>全栈生成器</strong>
+                            <p>Lovable、Bolt.new、Firebase Studio、码上飞、秒哒 更偏一句话起应用。</p>
+                        </div>
+                        <div class="zahuopu-mini-card">
+                            <strong>插件 / 助手</strong>
+                            <p>通义灵码、GitHub Copilot、Kilo Code、Augment Code 更强调“贴着现有工程工作”。</p>
+                        </div>
+                        <div class="zahuopu-mini-card">
+                            <strong>Coding Studio</strong>
+                            <p>Qoder、Clacky AI、InfCode、MonkeyCode、Replit Agent、Warp Code 更偏完整研发空间。</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="wall" class="section-block">
+                    <div class="toolchain-section-heading">
+                        <span class="toolchain-eyebrow">Wall</span>
+                        <h2>AI 编程工具墙</h2>
+                    </div>
+                    <p class="toolspot-intro">悬停某个工具时，共享标签的工具会一起亮起来。这样比按字母排序更有用，因为读者真正关心的是“谁和谁是一路的”。</p>
+                    <div class="toolspot-grid" data-toolspot-grid>
+                        <a class="toolspot-card" href="https://www.trae.cn/" target="_blank" rel="noopener noreferrer" data-related="ide,official,domestic" data-accent="amber">
+                            <span class="toolspot-card__logo">TR</span>
+                            <div class="toolspot-card__body"><h3>TRAE</h3><p>字节跳动推出的 AI IDE 编程工具。</p><div class="toolspot-card__tags"><span>AI IDE</span><span>国内</span><span>官方产品</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：Kiro、Cursor、CodeBuddy IDE</div>
+                        </a>
+                        <a class="toolspot-card" href="https://ai-bot.cn/sites/65909.html" target="_blank" rel="noopener noreferrer" data-related="builder,generator,no-code" data-accent="blue">
+                            <span class="toolspot-card__logo">秒</span>
+                            <div class="toolspot-card__body"><h3>秒哒</h3><p>无代码 AI 应用开发平台，一句话做应用。</p><div class="toolspot-card__tags"><span>全栈生成</span><span>无代码</span><span>应用生成</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：码上飞、Lovable、Bolt.new</div>
+                        </a>
+                        <a class="toolspot-card" href="https://ai-bot.cn/sites/60995.html" target="_blank" rel="noopener noreferrer" data-related="builder,generator,domestic" data-accent="mint">
+                            <span class="toolspot-card__logo">飞</span>
+                            <div class="toolspot-card__body"><h3>码上飞</h3><p>免费生成小程序、APP、网页，一句话生成任意应用。</p><div class="toolspot-card__tags"><span>全栈生成</span><span>国内</span><span>应用生成</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：秒哒、Lovable、Firebase Studio</div>
+                        </a>
+                        <a class="toolspot-card" href="https://www.xiaohuanxiong.com/login?utm_source=blmay1" target="_blank" rel="noopener noreferrer" data-related="plugin,assistant,domestic" data-accent="violet">
+                            <span class="toolspot-card__logo">熊</span>
+                            <div class="toolspot-card__body"><h3>代码小浣熊</h3><p>商汤科技推出的免费 AI 编程助手。</p><div class="toolspot-card__tags"><span>编程助手</span><span>国内</span><span>插件路线</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：通义灵码、GitHub Copilot、Augment Code</div>
+                        </a>
+                        <a class="toolspot-card" href="https://www.anthropic.com/product/claude-code" target="_blank" rel="noopener noreferrer" data-related="cli,official,agent" data-accent="amber">
+                            <span class="toolspot-card__logo">CC</span>
+                            <div class="toolspot-card__body"><h3>Claude Code</h3><p>Anthropic 推出的 AI 编程工具。</p><div class="toolspot-card__tags"><span>CLI Agent</span><span>官方产品</span><span>终端工作流</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：Codex、OpenCode、iFlow CLI</div>
+                        </a>
+                        <a class="toolspot-card" href="https://www.cursor.com/" target="_blank" rel="noopener noreferrer" data-related="ide,official,editor" data-accent="stone">
+                            <span class="toolspot-card__logo">CU</span>
+                            <div class="toolspot-card__body"><h3>Cursor</h3><p>AI 代码编辑器，快速进行编程和软件开发。</p><div class="toolspot-card__tags"><span>AI IDE</span><span>编辑器</span><span>官方产品</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：TRAE、Kiro、Windsurf</div>
+                        </a>
+                        <a class="toolspot-card" href="https://qoder.com/qoderwork?utm_source=xy&amp;utm_medium=banner&amp;utm_campaign=aibot" target="_blank" rel="noopener noreferrer" data-related="studio,agent,domestic" data-accent="rose">
+                            <span class="toolspot-card__logo">QD</span>
+                            <div class="toolspot-card__body"><h3>Qoder</h3><p>阿里巴巴推出的 AI Agentic 编程工具。</p><div class="toolspot-card__tags"><span>Coding Studio</span><span>国内</span><span>Agentic</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：Clacky AI、InfCode、MonkeyCode</div>
+                        </a>
+                        <a class="toolspot-card" href="https://opencode.ai/" target="_blank" rel="noopener noreferrer" data-related="cli,open-source,agent" data-accent="slate">
+                            <span class="toolspot-card__logo">OC</span>
+                            <div class="toolspot-card__body"><h3>OpenCode</h3><p>开源 AI 编程工具，常被当成 Claude Code 的替代路线。</p><div class="toolspot-card__tags"><span>CLI Agent</span><span>开源</span><span>终端工作流</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：Claude Code、Codex、Kilo Code</div>
+                        </a>
+                        <a class="toolspot-card" href="https://kilo.ai/" target="_blank" rel="noopener noreferrer" data-related="plugin,open-source,editor" data-accent="mint">
+                            <span class="toolspot-card__logo">KL</span>
+                            <div class="toolspot-card__body"><h3>Kilo Code</h3><p>开源的 AI 编程扩展插件。</p><div class="toolspot-card__tags"><span>插件</span><span>开源</span><span>编辑器扩展</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：GitHub Copilot、通义灵码、Augment Code</div>
+                        </a>
+                        <a class="toolspot-card" href="https://antigravity.google/" target="_blank" rel="noopener noreferrer" data-related="ide,official,editor" data-accent="blue">
+                            <span class="toolspot-card__logo">GA</span>
+                            <div class="toolspot-card__body"><h3>Google Antigravity</h3><p>谷歌推出的 AI IDE 编程智能体。</p><div class="toolspot-card__tags"><span>AI IDE</span><span>官方产品</span><span>编辑器</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：Kiro、Cursor、Firebase Studio</div>
+                        </a>
+                        <a class="toolspot-card" href="https://kiro.dev/" target="_blank" rel="noopener noreferrer" data-related="ide,official,editor" data-accent="violet">
+                            <span class="toolspot-card__logo">KI</span>
+                            <div class="toolspot-card__body"><h3>Kiro</h3><p>亚马逊公司推出的 AI IDE。</p><div class="toolspot-card__tags"><span>AI IDE</span><span>官方产品</span><span>编辑器</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：Cursor、TRAE、Google Antigravity</div>
+                        </a>
+                        <a class="toolspot-card" href="https://www.youware.com/" target="_blank" rel="noopener noreferrer" data-related="studio,community,builder" data-accent="stone">
+                            <span class="toolspot-card__logo">YW</span>
+                            <div class="toolspot-card__body"><h3>YouWare</h3><p>一站式 AI 编程社区与开发平台。</p><div class="toolspot-card__tags"><span>社区平台</span><span>Coding Studio</span><span>应用生成</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：Replit Agent、Clacky AI、Lovable</div>
+                        </a>
+                        <a class="toolspot-card" href="https://openai.com/index/codex-now-generally-available" target="_blank" rel="noopener noreferrer" data-related="cli,official,agent" data-accent="blue">
+                            <span class="toolspot-card__logo">OX</span>
+                            <div class="toolspot-card__body"><h3>Codex</h3><p>OpenAI 推出的 AI 编程模型和工具。</p><div class="toolspot-card__tags"><span>CLI Agent</span><span>官方产品</span><span>平台路线</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：Claude Code、OpenCode、Warp Code</div>
+                        </a>
+                        <a class="toolspot-card" href="https://zcode-ai.com/" target="_blank" rel="noopener noreferrer" data-related="ide,domestic,editor" data-accent="cyan">
+                            <span class="toolspot-card__logo">ZC</span>
+                            <div class="toolspot-card__body"><h3>Zcode</h3><p>智谱推出的轻量级 AI IDE 编程工具。</p><div class="toolspot-card__tags"><span>AI IDE</span><span>国内</span><span>轻量工作台</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：TRAE、Kiro、通义灵码</div>
+                        </a>
+                        <a class="toolspot-card" href="https://www.codebuddy.ai/" target="_blank" rel="noopener noreferrer" data-related="ide,domestic,official" data-accent="rose">
+                            <span class="toolspot-card__logo">CB</span>
+                            <div class="toolspot-card__body"><h3>CodeBuddy IDE</h3><p>腾讯推出的全栈开发 AI IDE。</p><div class="toolspot-card__tags"><span>AI IDE</span><span>国内</span><span>全栈工作台</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：TRAE、Cursor、CatPaw</div>
+                        </a>
+                        <a class="toolspot-card" href="https://lovable.dev/" target="_blank" rel="noopener noreferrer" data-related="builder,generator,studio" data-accent="rose">
+                            <span class="toolspot-card__logo">LV</span>
+                            <div class="toolspot-card__body"><h3>Lovable</h3><p>全栈 AI 编程工具，一句话构建网站应用。</p><div class="toolspot-card__tags"><span>全栈生成</span><span>网站应用</span><span>Coding Studio</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：Bolt.new、Firebase Studio、秒哒</div>
+                        </a>
+                        <a class="toolspot-card" href="https://catpaw.meituan.com/" target="_blank" rel="noopener noreferrer" data-related="ide,domestic,official" data-accent="mint">
+                            <span class="toolspot-card__logo">CP</span>
+                            <div class="toolspot-card__body"><h3>CatPaw</h3><p>美团推出的 AI IDE 编程工具。</p><div class="toolspot-card__tags"><span>AI IDE</span><span>国内</span><span>官方产品</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：TRAE、CodeBuddy IDE、Zcode</div>
+                        </a>
+                        <a class="toolspot-card" href="https://www.augmentcode.com/" target="_blank" rel="noopener noreferrer" data-related="plugin,assistant,enterprise" data-accent="slate">
+                            <span class="toolspot-card__logo">AG</span>
+                            <div class="toolspot-card__body"><h3>Augment Code</h3><p>专为大型代码库设计的 AI 编程辅助工具。</p><div class="toolspot-card__tags"><span>插件</span><span>企业级</span><span>大仓支持</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：GitHub Copilot、InfCode、Warp Code</div>
+                        </a>
+                        <a class="toolspot-card" href="https://monkeycode-ai.com/" target="_blank" rel="noopener noreferrer" data-related="studio,open-source,enterprise" data-accent="stone">
+                            <span class="toolspot-card__logo">MK</span>
+                            <div class="toolspot-card__body"><h3>MonkeyCode</h3><p>长亭科技开源的 AI 编程助手与企业级开发平台。</p><div class="toolspot-card__tags"><span>Coding Studio</span><span>开源</span><span>企业级</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：Qoder、InfCode、Clacky AI</div>
+                        </a>
+                        <a class="toolspot-card" href="https://cli.iflow.cn/" target="_blank" rel="noopener noreferrer" data-related="cli,domestic,agent" data-accent="violet">
+                            <span class="toolspot-card__logo">IF</span>
+                            <div class="toolspot-card__body"><h3>iFlow CLI</h3><p>心流 AI 推出的免费终端 AI 智能体。</p><div class="toolspot-card__tags"><span>CLI Agent</span><span>国内</span><span>终端工作流</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：Claude Code、Codex、OpenCode</div>
+                        </a>
+                        <a class="toolspot-card" href="https://lingma.aliyun.com/lingma" target="_blank" rel="noopener noreferrer" data-related="plugin,assistant,domestic" data-accent="amber">
+                            <span class="toolspot-card__logo">灵</span>
+                            <div class="toolspot-card__body"><h3>通义灵码</h3><p>阿里推出的免费 AI 编程工具，基于通义大模型。</p><div class="toolspot-card__tags"><span>插件</span><span>国内</span><span>编程助手</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：代码小浣熊、GitHub Copilot、Kilo Code</div>
+                        </a>
+                        <a class="toolspot-card" href="https://github.com/features/copilot" target="_blank" rel="noopener noreferrer" data-related="plugin,assistant,official" data-accent="rose">
+                            <span class="toolspot-card__logo">GH</span>
+                            <div class="toolspot-card__body"><h3>GitHub Copilot</h3><p>GitHub 推出的 AI 编程工具。</p><div class="toolspot-card__tags"><span>插件</span><span>官方产品</span><span>编程助手</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：通义灵码、Augment Code、Kilo Code</div>
+                        </a>
+                        <a class="toolspot-card" href="https://ai-bot.cn/firebase-studio" target="_blank" rel="noopener noreferrer" data-related="builder,generator,official" data-accent="blue">
+                            <span class="toolspot-card__logo">FB</span>
+                            <div class="toolspot-card__body"><h3>Firebase Studio</h3><p>谷歌推出的一站式全栈 AI 开发工具。</p><div class="toolspot-card__tags"><span>全栈生成</span><span>官方产品</span><span>应用搭建</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：Lovable、Bolt.new、码上飞</div>
+                        </a>
+                        <a class="toolspot-card" href="https://ai-bot.cn/windsurf" target="_blank" rel="noopener noreferrer" data-related="ide,editor,studio" data-accent="cyan">
+                            <span class="toolspot-card__logo">WS</span>
+                            <div class="toolspot-card__body"><h3>Windsurf</h3><p>Codeium 公司推出的 AI 编程工具。</p><div class="toolspot-card__tags"><span>AI IDE</span><span>编辑器</span><span>工作台</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：Cursor、Kiro、Warp Code</div>
+                        </a>
+                        <a class="toolspot-card" href="https://ai-bot.cn/bolt%E2%80%A4new" target="_blank" rel="noopener noreferrer" data-related="builder,generator,studio" data-accent="stone">
+                            <span class="toolspot-card__logo">BN</span>
+                            <div class="toolspot-card__body"><h3>Bolt.new</h3><p>StackBlitz 推出的全栈 AI 代码工具。</p><div class="toolspot-card__tags"><span>全栈生成</span><span>Coding Studio</span><span>网站应用</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：Lovable、Firebase Studio、Replit Agent</div>
+                        </a>
+                        <a class="toolspot-card" href="https://www.tokfinity.com/infcode?utm_source=ai-bot.cn" target="_blank" rel="noopener noreferrer" data-related="studio,enterprise,domestic" data-accent="cyan">
+                            <span class="toolspot-card__logo">IN</span>
+                            <div class="toolspot-card__body"><h3>InfCode</h3><p>词元无限推出的企业级 AI 编程工具。</p><div class="toolspot-card__tags"><span>Coding Studio</span><span>企业级</span><span>国内</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：Qoder、MonkeyCode、Augment Code</div>
+                        </a>
+                        <a class="toolspot-card" href="https://www.codeflicker.ai" target="_blank" rel="noopener noreferrer" data-related="ide,domestic,editor" data-accent="amber">
+                            <span class="toolspot-card__logo">CF</span>
+                            <div class="toolspot-card__body"><h3>CodeFlicker</h3><p>快手推出的 AI 原生 IDE 编程工具。</p><div class="toolspot-card__tags"><span>AI IDE</span><span>国内</span><span>原生 IDE</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：TRAE、CodeBuddy IDE、CatPaw</div>
+                        </a>
+                        <a class="toolspot-card" href="https://ai-bot.cn/clacky-ai" target="_blank" rel="noopener noreferrer" data-related="studio,agent,enterprise" data-accent="violet">
+                            <span class="toolspot-card__logo">CK</span>
+                            <div class="toolspot-card__body"><h3>Clacky AI</h3><p>打造 L3 级 Coding Studio 的 AI 编程工具。</p><div class="toolspot-card__tags"><span>Coding Studio</span><span>Agentic</span><span>企业级</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：Qoder、Replit Agent、InfCode</div>
+                        </a>
+                        <a class="toolspot-card" href="https://ai-bot.cn/replit-agent" target="_blank" rel="noopener noreferrer" data-related="studio,agent,builder" data-accent="blue">
+                            <span class="toolspot-card__logo">RA</span>
+                            <div class="toolspot-card__body"><h3>Replit Agent</h3><p>Replit 推出的 AI 编程工具。</p><div class="toolspot-card__tags"><span>Coding Studio</span><span>Agentic</span><span>应用生成</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：Bolt.new、Clacky AI、YouWare</div>
+                        </a>
+                        <a class="toolspot-card" href="https://www.warp.dev/code?utm_source=ai-bot.cn" target="_blank" rel="noopener noreferrer" data-related="cli,studio,official" data-accent="slate">
+                            <span class="toolspot-card__logo">WP</span>
+                            <div class="toolspot-card__body"><h3>Warp Code</h3><p>Warp 推出的 AI 编程工具。</p><div class="toolspot-card__tags"><span>终端工作台</span><span>CLI 路线</span><span>平台工具</span></div></div>
+                            <div class="toolspot-card__tooltip">相关：Codex、Claude Code、Windsurf</div>
+                        </a>
+                    </div>
+                </section>
+
+                <section id="pick" class="section-block">
+                    <div class="toolchain-section-heading">
+                        <span class="toolchain-eyebrow">Pick</span>
+                        <h2>怎么逛这面墙更有效</h2>
+                    </div>
+                    <div class="course-quote">
+                        <p><strong>想找终端型主力：</strong>先看 Claude Code、Codex、OpenCode、iFlow CLI、Warp Code。</p>
+                        <p><strong>想找 IDE 主战场：</strong>先看 Cursor、TRAE、Kiro、CodeBuddy IDE、Windsurf。</p>
+                        <p><strong>想一句话起站或起应用：</strong>先看 Lovable、Bolt.new、Firebase Studio、秒哒、码上飞。</p>
+                        <p><strong>想找企业研发空间：</strong>看 Qoder、InfCode、MonkeyCode、Clacky AI、Replit Agent。</p>
+                    </div>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-ai-coding-tools.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

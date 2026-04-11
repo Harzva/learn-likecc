@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLI Agent 专页 - AI杂货铺</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⌨️</text></svg>">
+    <meta name="description" content="CLI Agent 专页：重点补 Qwen Code、MiniMax、Claude Code 与 Codex，按终端使用场景看它们的差异。">
+</head>
+<body class="zahuopu-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="topic-ai-zahuopu.html" class="nav-logo">
+                <span class="logo-icon">⌨️</span>
+                <span class="logo-text">CLI Agent</span>
+            </a>
+            <div class="nav-links">
+                <a href="#map" class="nav-link">地图</a>
+                <a href="#four" class="nav-link">四件主货</a>
+                <a href="#pick" class="nav-link">怎么选</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-ai-zahuopu.html" class="btn-github">← 返回 AI杂货铺</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero zahuopu-hero">
+        <div class="zahuopu-orb zahuopu-orb--left" aria-hidden="true"></div>
+        <div class="zahuopu-orb zahuopu-orb--right" aria-hidden="true"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>子专题</span>
+                <span>CLI Agent</span>
+            </div>
+            <h1 class="hero-title">
+                终端里的 AI Agent<br>
+                <span class="gradient-text">不是一个壳，而是一套工作方式</span>
+            </h1>
+            <p class="hero-subtitle">
+                这一页不比“谁家最强”，而是先把四个最值得放一起看的入口摆平：<strong>Claude Code</strong>、<strong>Codex</strong>、<strong>Qwen Code</strong>，以及 <strong>MiniMax 的 Codex CLI 适配路线</strong>。<br>
+                重点问题只有一个：<strong>你想在终端里用 agent 做什么，以及哪条路线最顺手</strong>。
+            </p>
+        </div>
+    </section>
+
+    <main class="course-main devlog-main">
+        <div class="container">
+            <article class="course-content devlog-content">
+                <section id="map" class="section-block">
+                    <div class="toolchain-section-heading">
+                        <span class="toolchain-eyebrow">Map</span>
+                        <h2>先把四条路线放在一张图上</h2>
+                    </div>
+                    <div class="zahuopu-mini-grid">
+                        <div class="zahuopu-mini-card">
+                            <strong>Claude Code</strong>
+                            <p>最典型的终端 agentic coding 壳层之一，强项是工作流完成度高，适合把“终端就是主战场”这件事吃透。</p>
+                        </div>
+                        <div class="zahuopu-mini-card">
+                            <strong>Codex</strong>
+                            <p>OpenAI 的编程代理入口，更适合放在“OpenAI 自家模型与平台能力如何往 coding agent 收口”这条线上看。</p>
+                        </div>
+                        <div class="zahuopu-mini-card">
+                            <strong>Qwen Code</strong>
+                            <p>Qwen 官方开源终端 agent，关键价值不是“国产替代”四个字，而是它把 agent 壳层本身开源了。</p>
+                        </div>
+                        <div class="zahuopu-mini-card">
+                            <strong>MiniMax 路线</strong>
+                            <p>目前更值得关注的是官方文档里对 <code>Codex CLI</code> 的适配，而不是硬找一个并不稳定的独立 CLI 品牌名。</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="four" class="section-block">
+                    <div class="toolchain-section-heading">
+                        <span class="toolchain-eyebrow">Four Picks</span>
+                        <h2>四件主货，分别该怎么看</h2>
+                    </div>
+
+                    <div class="toolchain-card-grid">
+                        <section class="toolchain-topic-card">
+                            <div class="toolchain-topic-card__meta">01 · Anthropic</div>
+                            <h3>Claude Code</h3>
+                            <p>如果你想看“终端里的 agentic coding 完整工作流”是什么感觉，它依然是最重要的参考对象之一。它的价值不只是补全和问答，而是把计划、执行、工具调用和会话控制放进了同一套终端体验里。</p>
+                            <ul class="toolchain-topic-card__list">
+                                <li>适合把终端当主界面的人</li>
+                                <li>也适合和本站源码课主线互相映照</li>
+                            </ul>
+                            <p><a href="https://www.anthropic.com/product/claude-code" target="_blank" rel="noopener noreferrer">官方入口 ↗</a></p>
+                        </section>
+
+                        <section class="toolchain-topic-card">
+                            <div class="toolchain-topic-card__meta">02 · OpenAI</div>
+                            <h3>Codex</h3>
+                            <p>看 Codex 时不要只盯着“能不能在终端里跑”，而要看 OpenAI 怎么把编程代理这件事和自家平台、身份体系、模型路线连接起来。它更像产品线收口，而不只是单点工具。</p>
+                            <ul class="toolchain-topic-card__list">
+                                <li>适合本来就深用 OpenAI 生态的人</li>
+                                <li>也适合观察 Web / IDE / CLI 是否会继续收敛</li>
+                            </ul>
+                            <p><a href="https://openai.com/codex" target="_blank" rel="noopener noreferrer">官方入口 ↗</a></p>
+                        </section>
+
+                        <section class="toolchain-topic-card">
+                            <div class="toolchain-topic-card__meta">03 · QwenLM</div>
+                            <h3>Qwen Code</h3>
+                            <p>Qwen Code 最值得看的地方，是它把终端 agent 做成了 <strong>官方开源仓库</strong>。官方 README 已经把它描述成 living in your terminal 的 open-source AI agent，并给出 <code>npm install -g @qwen-code/qwen-code</code> 的安装方式。</p>
+                            <ul class="toolchain-topic-card__list">
+                                <li>适合想自己研究 agent 壳层的人</li>
+                                <li>也适合做本地改造、二次分发和路由接入</li>
+                            </ul>
+                            <p><a href="https://github.com/QwenLM/qwen-code" target="_blank" rel="noopener noreferrer">官方仓库 ↗</a></p>
+                        </section>
+
+                        <section class="toolchain-topic-card">
+                            <div class="toolchain-topic-card__meta">04 · MiniMax</div>
+                            <h3>MiniMax 的 CLI 观察点</h3>
+                            <p>截至 2026-04-11，我更愿意把 MiniMax 归到“<strong>模型接入终端 agent</strong>”这一路，而不是直接把它写成一个独立成熟 CLI 品牌。官方文档里已经有 <strong>Codex CLI</strong> 适配说明，但同时也明确提示：最新版 Codex CLI 存在兼容性问题。</p>
+                            <ul class="toolchain-topic-card__list">
+                                <li>适合想用 MiniMax 模型接入现有 coding agent 的人</li>
+                                <li>暂时不建议把它当成已成熟独立 CLI 生态来理解</li>
+                            </ul>
+                            <p><a href="https://platform.minimax.io/docs/coding-plan/codex-cli" target="_blank" rel="noopener noreferrer">官方文档 ↗</a></p>
+                        </section>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <div class="toolchain-section-heading">
+                        <span class="toolchain-eyebrow">Tool Wall</span>
+                        <h2>把工具放成一面墙，悬停时看谁和谁是一路人</h2>
+                    </div>
+                    <p class="toolspot-intro">鼠标放上去时，当前工具会抬起来；和它共享同一路线标签的工具会一起凸显，其他卡片会轻微退后。这样读者一眼就能看出谁是终端主战派、谁更偏平台生态、谁更适合拿来做模型接入。</p>
+                    <div class="toolspot-grid" data-toolspot-grid>
+                        <article class="toolspot-card" tabindex="0" data-related="terminal,workflow,official" data-accent="amber">
+                            <span class="toolspot-card__logo">CC</span>
+                            <div class="toolspot-card__body">
+                                <h3>Claude Code</h3>
+                                <p>终端工作流完成度高，适合把 agent 当主界面来用。</p>
+                                <div class="toolspot-card__tags">
+                                    <span>终端主战</span>
+                                    <span>官方产品</span>
+                                    <span>工作流完整</span>
+                                </div>
+                            </div>
+                            <div class="toolspot-card__tooltip">相关：Codex、Qwen Code、Aider</div>
+                        </article>
+
+                        <article class="toolspot-card" tabindex="0" data-related="terminal,platform,official" data-accent="blue">
+                            <span class="toolspot-card__logo">OX</span>
+                            <div class="toolspot-card__body">
+                                <h3>Codex</h3>
+                                <p>更适合放进 OpenAI 平台路线里看，不只是一个终端壳。</p>
+                                <div class="toolspot-card__tags">
+                                    <span>终端主战</span>
+                                    <span>平台生态</span>
+                                    <span>官方产品</span>
+                                </div>
+                            </div>
+                            <div class="toolspot-card__tooltip">相关：Claude Code、OpenRouter、MiniMax 路线</div>
+                        </article>
+
+                        <article class="toolspot-card" tabindex="0" data-related="terminal,open-source,official" data-accent="mint">
+                            <span class="toolspot-card__logo">QW</span>
+                            <div class="toolspot-card__body">
+                                <h3>Qwen Code</h3>
+                                <p>官方开源终端 agent，适合研究壳层和做二次改造。</p>
+                                <div class="toolspot-card__tags">
+                                    <span>终端主战</span>
+                                    <span>开源壳层</span>
+                                    <span>官方出品</span>
+                                </div>
+                            </div>
+                            <div class="toolspot-card__tooltip">相关：Claude Code、Aider、MiniMax 路线</div>
+                        </article>
+
+                        <article class="toolspot-card" tabindex="0" data-related="terminal,adapter,platform" data-accent="violet">
+                            <span class="toolspot-card__logo">MM</span>
+                            <div class="toolspot-card__body">
+                                <h3>MiniMax 路线</h3>
+                                <p>更适合当模型接入方案看，重点是接进现有 coding agent。</p>
+                                <div class="toolspot-card__tags">
+                                    <span>模型接入</span>
+                                    <span>平台生态</span>
+                                    <span>适配路线</span>
+                                </div>
+                            </div>
+                            <div class="toolspot-card__tooltip">相关：Codex、OpenRouter、SiliconFlow</div>
+                        </article>
+
+                        <article class="toolspot-card" tabindex="0" data-related="terminal,open-source,workflow" data-accent="slate">
+                            <span class="toolspot-card__logo">AD</span>
+                            <div class="toolspot-card__body">
+                                <h3>Aider</h3>
+                                <p>经典开源终端 coding assistant，适合对照看 agent 壳层演进。</p>
+                                <div class="toolspot-card__tags">
+                                    <span>开源壳层</span>
+                                    <span>终端主战</span>
+                                    <span>工作流工具</span>
+                                </div>
+                            </div>
+                            <div class="toolspot-card__tooltip">相关：Claude Code、Qwen Code、Codex</div>
+                        </article>
+
+                        <article class="toolspot-card" tabindex="0" data-related="editor,platform,official" data-accent="stone">
+                            <span class="toolspot-card__logo">CS</span>
+                            <div class="toolspot-card__body">
+                                <h3>Cursor</h3>
+                                <p>更偏编辑器工作台，适合和 CLI Agent 做边界对比。</p>
+                                <div class="toolspot-card__tags">
+                                    <span>编辑器工作台</span>
+                                    <span>平台生态</span>
+                                    <span>官方产品</span>
+                                </div>
+                            </div>
+                            <div class="toolspot-card__tooltip">相关：GitHub Copilot、Claude Code、Codex</div>
+                        </article>
+
+                        <article class="toolspot-card" tabindex="0" data-related="editor,platform,official" data-accent="rose">
+                            <span class="toolspot-card__logo">GC</span>
+                            <div class="toolspot-card__body">
+                                <h3>GitHub Copilot</h3>
+                                <p>IDE 原生感更强，适合拿来对比“编辑器内嵌”和“终端代理”的差别。</p>
+                                <div class="toolspot-card__tags">
+                                    <span>编辑器工作台</span>
+                                    <span>平台生态</span>
+                                    <span>官方产品</span>
+                                </div>
+                            </div>
+                            <div class="toolspot-card__tooltip">相关：Cursor、Codex、Claude Code</div>
+                        </article>
+
+                        <article class="toolspot-card" tabindex="0" data-related="adapter,platform,open-route" data-accent="cyan">
+                            <span class="toolspot-card__logo">OR</span>
+                            <div class="toolspot-card__body">
+                                <h3>OpenRouter</h3>
+                                <p>不是 agent 壳本身，但常常是把多家模型接进工具链的那层路由。</p>
+                                <div class="toolspot-card__tags">
+                                    <span>模型接入</span>
+                                    <span>开放路由</span>
+                                    <span>平台生态</span>
+                                </div>
+                            </div>
+                            <div class="toolspot-card__tooltip">相关：MiniMax 路线、Codex、SiliconFlow</div>
+                        </article>
+                    </div>
+                </section>
+
+                <section id="pick" class="section-block">
+                    <div class="toolchain-section-heading">
+                        <span class="toolchain-eyebrow">Pick</span>
+                        <h2>如果你是来选工具，不是来考古</h2>
+                    </div>
+                    <div class="course-quote">
+                        <p><strong>想体验最完整的终端工作流：</strong>先看 Claude Code。</p>
+                        <p><strong>想跟 OpenAI 平台能力保持一致：</strong>看 Codex。</p>
+                        <p><strong>想研究开源终端 agent 壳层：</strong>看 Qwen Code。</p>
+                        <p><strong>想把 MiniMax 模型接进现有 coding agent：</strong>看 MiniMax 的 Codex CLI 适配文档，而不是先去找一个未必稳定的“MiniMax CLI”。</p>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <div class="toolchain-section-heading">
+                        <span class="toolchain-eyebrow">Sources</span>
+                        <h2>主来源</h2>
+                    </div>
+                    <p><a href="https://www.anthropic.com/product/claude-code" target="_blank" rel="noopener noreferrer">Anthropic · Claude Code ↗</a> · <a href="https://openai.com/codex" target="_blank" rel="noopener noreferrer">OpenAI · Codex ↗</a> · <a href="https://github.com/QwenLM/qwen-code" target="_blank" rel="noopener noreferrer">QwenLM/qwen-code ↗</a> · <a href="https://platform.minimax.io/docs/coding-plan/codex-cli" target="_blank" rel="noopener noreferrer">MiniMax API Docs · Codex CLI ↗</a></p>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-ai-cli-agent.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

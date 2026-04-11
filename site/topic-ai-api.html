@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模型 API 专页 - AI杂货铺</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔌</text></svg>">
+    <meta name="description" content="模型 API 专页：重点对比 七牛云、硅基流动、OhMyGPT 和 OpenRouter，看它们分别适合拿来做什么。">
+</head>
+<body class="zahuopu-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="topic-ai-zahuopu.html" class="nav-logo">
+                <span class="logo-icon">🔌</span>
+                <span class="logo-text">模型 API</span>
+            </a>
+            <div class="nav-links">
+                <a href="#frame" class="nav-link">框架</a>
+                <a href="#four" class="nav-link">四家对比</a>
+                <a href="#choose" class="nav-link">怎么选</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-ai-zahuopu.html" class="btn-github">← 返回 AI杂货铺</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero zahuopu-hero">
+        <div class="zahuopu-orb zahuopu-orb--left" aria-hidden="true"></div>
+        <div class="zahuopu-orb zahuopu-orb--right" aria-hidden="true"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>子专题</span>
+                <span>模型 API / 聚合</span>
+            </div>
+            <h1 class="hero-title">
+                模型 API 不是一类东西<br>
+                <span class="gradient-text">云厂商、聚合层、兼容层要分开看</span>
+            </h1>
+            <p class="hero-subtitle">
+                `七牛云`、`硅基流动`、`OhMyGPT`、`OpenRouter` 看起来都像“一个 Base URL + 一把 Key”，但角色其实很不一样。<br>
+                这一页的任务，就是先把它们从“都能调模型”里拆开。
+            </p>
+        </div>
+    </section>
+
+    <main class="course-main devlog-main">
+        <div class="container">
+            <article class="course-content devlog-content">
+                <section id="frame" class="section-block">
+                    <div class="toolchain-section-heading">
+                        <span class="toolchain-eyebrow">Frame</span>
+                        <h2>先别比价格，先比“你买的到底是什么”</h2>
+                    </div>
+                    <div class="zahuopu-mini-grid">
+                        <div class="zahuopu-mini-card">
+                            <strong>云厂商模型平台</strong>
+                            <p>更像基础设施层，往往还会把存储、媒体、工作流、企业接入一起打包。七牛云在这类里更典型。</p>
+                        </div>
+                        <div class="zahuopu-mini-card">
+                            <strong>一站式 MaaS 聚合</strong>
+                            <p>重点是模型丰富度、接入顺滑度和开发体验。硅基流动更像这种“多模型云服务平台”。</p>
+                        </div>
+                        <div class="zahuopu-mini-card">
+                            <strong>OpenAI 兼容网关</strong>
+                            <p>强调用一个兼容层去替换上游，代码改动小，路由和计费统一。OhMyGPT 很典型。</p>
+                        </div>
+                        <div class="zahuopu-mini-card">
+                            <strong>跨提供商路由层</strong>
+                            <p>重点不只是“能调”，而是 provider 选择、模型目录、请求路由和中立抽象。OpenRouter 是最典型代表。</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="four" class="section-block">
+                    <div class="toolchain-section-heading">
+                        <span class="toolchain-eyebrow">Four</span>
+                        <h2>四家放在一起，该怎么读</h2>
+                    </div>
+                    <div class="toolchain-card-grid">
+                        <section class="toolchain-topic-card">
+                            <div class="toolchain-topic-card__meta">01 · 七牛云</div>
+                            <h3>七牛云</h3>
+                            <p>更接近“云侧 AI 推理平台 + 多媒体能力 + 企业接入”的组合。它的开发者文档已经把 AI Coding 工具的 OpenAI Compatible 配置写得很细，并给出了统一 Base URL <code>https://api.qnaigc.com/v1</code> 的接入方式。</p>
+                            <ul class="toolchain-topic-card__list">
+                                <li>适合本来就有云资源、媒体、存储场景的人</li>
+                                <li>也适合把模型接入和业务底座一起看</li>
+                            </ul>
+                            <p><a href="https://developer.qiniu.com/aitokenapi/13195/AI-Coding" target="_blank" rel="noopener noreferrer">AI Coding 配置文档 ↗</a></p>
+                        </section>
+
+                        <section class="toolchain-topic-card">
+                            <div class="toolchain-topic-card__meta">02 · SiliconFlow</div>
+                            <h3>硅基流动</h3>
+                            <p>官方文档把自己定义成“集合顶尖大模型的一站式云服务平台”。这句话很关键，它不是单模型代理，而是强调模型覆盖、按量使用和开发体验。更像开发者友好的 MaaS 平台。</p>
+                            <ul class="toolchain-topic-card__list">
+                                <li>适合想用多种模型，但又不想自己管很多上游账号的人</li>
+                                <li>更像“平台型入口”，而不是纯兼容壳</li>
+                            </ul>
+                            <p><a href="https://docs.siliconflow.cn/" target="_blank" rel="noopener noreferrer">官方文档 ↗</a></p>
+                        </section>
+
+                        <section class="toolchain-topic-card">
+                            <div class="toolchain-topic-card__meta">03 · OhMyGPT</div>
+                            <h3>OhMyGPT</h3>
+                            <p>它最明确的定位是 <strong>OpenAI-compatible API gateway</strong>。官方文档直接写明 Base URL、兼容接口，以及“单 API 访问多家模型”的设计。它特别适合老代码平移和各种 CLI / SDK 的低摩擦改造。</p>
+                            <ul class="toolchain-topic-card__list">
+                                <li>适合想尽量少改代码的人</li>
+                                <li>也适合接各种 OpenAI 兼容客户端</li>
+                            </ul>
+                            <p><a href="https://docs.ohmygpt.com/" target="_blank" rel="noopener noreferrer">官方总览 ↗</a></p>
+                        </section>
+
+                        <section class="toolchain-topic-card">
+                            <div class="toolchain-topic-card__meta">04 · OpenRouter</div>
+                            <h3>OpenRouter</h3>
+                            <p>OpenRouter 最值得看的不是“有多少模型”，而是它把 <strong>跨 provider 路由</strong> 做成了一等公民。它更适合被理解成“模型交换层 / 路由层”，而不是单纯中转站。</p>
+                            <ul class="toolchain-topic-card__list">
+                                <li>适合经常切模型、切 provider、做 fallback 的团队</li>
+                                <li>也适合拿来做模型实验和路由策略</li>
+                            </ul>
+                            <p><a href="https://openrouter.ai/docs/quickstart" target="_blank" rel="noopener noreferrer">官方 Quickstart ↗</a></p>
+                        </section>
+                    </div>
+                </section>
+
+                <section id="choose" class="section-block">
+                    <div class="toolchain-section-heading">
+                        <span class="toolchain-eyebrow">Choose</span>
+                        <h2>一句话选型</h2>
+                    </div>
+                    <div class="course-quote">
+                        <p><strong>你要云资源和业务底座一起看：</strong>优先看七牛云。</p>
+                        <p><strong>你要一个模型很多、接起来顺的 MaaS 平台：</strong>优先看硅基流动。</p>
+                        <p><strong>你要把现有 OpenAI 兼容代码低摩擦迁过去：</strong>优先看 OhMyGPT。</p>
+                        <p><strong>你要把多家 provider 当作同一个实验与路由平面：</strong>优先看 OpenRouter。</p>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <div class="toolchain-section-heading">
+                        <span class="toolchain-eyebrow">Sources</span>
+                        <h2>主来源</h2>
+                    </div>
+                    <p><a href="https://developer.qiniu.com/aitokenapi/13195/AI-Coding" target="_blank" rel="noopener noreferrer">七牛云 · AI Coding 配置大全 ↗</a> · <a href="https://docs.siliconflow.cn/" target="_blank" rel="noopener noreferrer">SiliconFlow 官方文档 ↗</a> · <a href="https://docs.ohmygpt.com/" target="_blank" rel="noopener noreferrer">OhMyGPT Overview ↗</a> · <a href="https://docs.ohmygpt.com/docs/api" target="_blank" rel="noopener noreferrer">OhMyGPT API ↗</a> · <a href="https://openrouter.ai/docs/quickstart" target="_blank" rel="noopener noreferrer">OpenRouter Quickstart ↗</a></p>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-ai-api.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>
