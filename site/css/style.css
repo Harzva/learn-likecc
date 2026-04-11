@@ -12605,3 +12605,24 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 .agent-comparison-footer {
     margin-top: 0;
 }
+
+.cc-loop-lab-url-input {
+    max-width: 100%;
+    margin-top: 0.35rem;
+}
+
+.cc-loop-lab-close-btn {
+    margin-left: 0.5rem;
+}
+
+.cc-loop-lab-log-panel {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--bg-secondary);
+    font-size: 0.8125rem;
+    overflow: auto;
+    max-height: 22rem;
+    white-space: pre-wrap;
+}

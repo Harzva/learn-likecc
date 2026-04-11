@@ -47,14 +47,14 @@
                     <h2>连接</h2>
                     <p>
                         <label for="sse-url">SSE URL</label><br>
-                        <input id="sse-url" type="url" value="http://127.0.0.1:8769/events" size="48" class="search-input" style="max-width:100%;margin-top:0.35rem;">
+                        <input id="sse-url" type="url" value="http://127.0.0.1:8769/events" size="48" class="search-input cc-loop-lab-url-input">
                     </p>
                     <p>
                         <button type="button" id="btn-connect" class="btn btn-primary">连接</button>
-                        <button type="button" id="btn-close" class="btn btn-secondary" style="margin-left:0.5rem;">断开</button>
+                        <button type="button" id="btn-close" class="btn btn-secondary cc-loop-lab-close-btn">断开</button>
                     </p>
                     <p id="sse-status" class="section-desc" aria-live="polite">未连接</p>
-                    <pre id="sse-log" class="cc-loop-lab-log" style="margin-top:1rem;padding:1rem;border-radius:12px;border:1px solid var(--border);background:var(--bg-secondary);font-size:0.8125rem;overflow:auto;max-height:22rem;white-space:pre-wrap;"></pre>
+                    <pre id="sse-log" class="cc-loop-lab-log cc-loop-lab-log-panel"></pre>
                 </section>
             </article>
         </div>
