@@ -8703,6 +8703,10 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     color: var(--primary);
 }
 
+.oh01-source-link-spaced {
+    margin-top: 0.75rem;
+}
+
 /* 网页版 ↔ GitHub Markdown 双版本提示（深挖页等） */
 .md-source-dual {
     margin-top: 0.75rem;
