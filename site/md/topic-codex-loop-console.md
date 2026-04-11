@@ -59,3 +59,4 @@
 - 新增 `Operation Guardrails` 状态条，集中提示 relay 连接、thread 冲突风险，以及 readonly / shell 失效时的恢复建议
 - 现有 relay / daemon / thread / shell 操作状态改成统一的颜色反馈，并补了 `Last Action` 动作回执，便于快速判断刚刚是成功、等待还是失败
 - shell pane 进一步补了 session `live / done / standby` 状态、terminal footer 和 `$` prompt composer，不再只是“有外框的日志输出”
+- 各 pane 现在补了 `Control / Preview / Logs / Compose / Inspect / History / PTY` 类型层级和更清楚的头部色带，daemon、log、thread、shell 的分组更容易扫读
