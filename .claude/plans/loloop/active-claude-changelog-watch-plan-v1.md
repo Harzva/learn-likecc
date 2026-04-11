@@ -13,6 +13,8 @@ Scope: monitor Claude / Claude Code changelogs, extract worthwhile keywords or s
 - [x] Mark the current `2.1.101` release-watch micro-wave locally deferred until a fresh official delta or clearly higher-value gap appears
 - [x] Reconfirm that the latest official changelog still tops out at `2.1.101` before reopening Task 4
 - [x] Reconcile this dedicated plan with the already-landed `2.1.101` release-watch slices while keeping the micro-wave locally deferred
+- [x] Reconfirm again on `2026-04-12` that the official Claude Code changelog still tops out at `2.1.101` before reopening Task 4
+- [x] Keep Task 4 locally deferred after the new primary-source recheck still shows no post-`2.1.101` official delta
 
 ## Primary sources
 

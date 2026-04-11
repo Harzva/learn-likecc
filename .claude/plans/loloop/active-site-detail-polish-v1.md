@@ -399,6 +399,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Review the accumulated overnight media outputs after `36-*` through `39-*` all reached locally ready status
 - [x] Mark the current overnight Zhihu-draft preparation wave locally deferred instead of forcing a fifth late-night draft with weaker priority
 - [x] Release the next tick to either publish during the daytime window or choose a stronger non-media task from the remaining pool
+- [x] Use one bounded Task 4 source check to see whether an official Claude Code delta stronger than `2.1.101` now exists before reopening the deferred changelog-watch line
+- [x] Reconfirm from official Claude Code sources that the latest public changelog still tops out at `2.1.101` on `2026-04-12`
+- [x] Keep the changelog-watch line locally deferred after the fresh primary-source recheck finds no post-`2.1.101` keyword worth landing
 
 ## Guardrail
 
