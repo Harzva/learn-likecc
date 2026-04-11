@@ -17,7 +17,7 @@ Prioritize future iterations along these three lines:
 
 ## Current focus
 
-Continue Task 9 LikeCode Web UI after the dual-badge desk-assignment pass.
+Continue Task 9 LikeCode Web UI after the session-stack headline-badges pass.
 
 ## Success condition
 
@@ -256,6 +256,9 @@ Continue Task 9 LikeCode Web UI after the dual-badge desk-assignment pass.
 - [x] Stay on Task 9 for one more bounded approval-clarity follow-up after the session-pulse pass
 - [x] Upgrade the `Desk Assignments` rows to dual badges so assignment and approval/coverage context are both glanceable from the same line
 - [x] Verify the Task 9 dual-badge desk-assignment pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
+- [x] Stay on Task 9 for one more bounded top-level-scanability follow-up after the dual-badge assignment pass
+- [x] Upgrade the `Session Stack` panel head so daemon/thread/shell all have headline badges instead of leaving only the shell count visible at the title line
+- [x] Verify the Task 9 headline-badges pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail
 

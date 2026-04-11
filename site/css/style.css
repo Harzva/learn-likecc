@@ -11779,6 +11779,13 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     margin-bottom: 12px;
 }
 
+.codex-console-stack-headbadges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
 .codex-console-stack-section-label {
     display: inline-flex;
     align-items: center;
@@ -12267,6 +12274,10 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 
     .codex-console-stack-summary {
         grid-template-columns: 1fr;
+    }
+
+    .codex-console-stack-headbadges {
+        justify-content: flex-start;
     }
 
     .codex-console-stack-pulse {

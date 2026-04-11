@@ -205,6 +205,12 @@
         setText('stack-last-action-time', sessionStackState.lastActionTime)
         setText('stack-shell-focus', activeId ? activeId : 'no active session')
         badge.textContent = shellState.sessions.length + ' shell' + (shellState.sessions.length === 1 ? '' : 's')
+        setStackChip('session-stack-daemon-badge', guardState.daemonRunning ? 'daemon live' : 'daemon idle', guardState.daemonRunning ? 'ready' : 'neutral')
+        setStackChip(
+            'session-stack-thread-badge',
+            guardState.threadForce ? 'thread force' : ('thread ' + (guardState.threadLockMode || '—')),
+            guardState.threadForce ? 'risk' : (guardState.threadLockMode === 'readonly' ? 'attention' : 'neutral')
+        )
 
         if (relayState === 'idle' || relayState === 'connection error' || relayState === 'manual refresh failed') {
             daemonSummary = {
