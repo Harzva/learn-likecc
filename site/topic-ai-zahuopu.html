@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI杂货铺 - Claude Code Course</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛒</text></svg>">
+    <meta name="description" content="AI杂货铺：把 CLI Agent、AI 编辑器、Agent 开发工具、模型 API 站点与模型评测入口收成一个按场景逛的专题页。">
+    <meta name="page:updated" content="2026-04-11">
+</head>
+<body class="zahuopu-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🛒</span>
+                <span class="logo-text">AI杂货铺</span>
+            </a>
+            <div class="nav-links">
+                <a href="#why" class="nav-link">理念</a>
+                <a href="#shelves" class="nav-link">货架</a>
+                <a href="#agent-shelf" class="nav-link">智能体</a>
+                <a href="#api-shelf" class="nav-link">API</a>
+                <a href="#bench-shelf" class="nav-link">评测</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="index.html" class="btn-github">← 返回首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero zahuopu-hero">
+        <div class="zahuopu-orb zahuopu-orb--left" aria-hidden="true"></div>
+        <div class="zahuopu-orb zahuopu-orb--right" aria-hidden="true"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>📌 新大专题</span>
+                <span>AI杂货铺</span>
+            </div>
+            <h1 class="hero-title">
+                不做工具目录镜像<br>
+                <span class="gradient-text">只收值得长期回访的货架</span>
+            </h1>
+            <p class="hero-subtitle">
+                这里不是简单照搬导航站，而是把<strong>CLI Agent</strong>、<strong>AI 编辑器</strong>、<strong>Agent 开发工具</strong>、<strong>模型 API / 聚合站</strong>和<strong>模型评测入口</strong>收成一间能长期逛的铺子。<br>
+                我们更关心的是：<strong>它适合什么时候打开、为什么值得收、和站内哪些专题互补</strong>。
+            </p>
+            <div class="hero-actions">
+                <a href="#shelves" class="btn btn-primary">开始逛货架</a>
+                <a href="topic-toolchain.html" class="btn btn-secondary">工具链专题 ↗</a>
+            </div>
+            <div class="zahuopu-hero-strip">
+                <div class="zahuopu-hero-strip__item">
+                    <span class="zahuopu-hero-strip__kicker">终端</span>
+                    <strong>CLI Agent 与工作流</strong>
+                </div>
+                <div class="zahuopu-hero-strip__item">
+                    <span class="zahuopu-hero-strip__kicker">环境</span>
+                    <strong>编辑器、IDE 与 Agent 壳层</strong>
+                </div>
+                <div class="zahuopu-hero-strip__item">
+                    <span class="zahuopu-hero-strip__kicker">底座</span>
+                    <strong>模型 API、路由与评测入口</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="course-main devlog-main">
+        <div class="container">
+            <article class="course-content devlog-content">
+                <section id="why" class="section-block">
+                    <div class="toolchain-section-heading">
+                        <span class="toolchain-eyebrow">Thesis</span>
+                        <h2>这间铺子怎么和导航站拉开差异</h2>
+                    </div>
+                    <div class="zahuopu-principles">
+                        <div class="zahuopu-principle">
+                            <span class="zahuopu-principle__num">01</span>
+                            <h3>按场景分货</h3>
+                            <p>不是按“这个站把谁归到哪一类”，而是按我们真实会遇到的问题来收：终端开发、IDE 编排、Agent 框架、API 路由、基准评测。</p>
+                        </div>
+                        <div class="zahuopu-principle">
+                            <span class="zahuopu-principle__num">02</span>
+                            <h3>只收会反复打开的入口</h3>
+                            <p>不是为了凑数量。每个货架先放一批高复访入口，后续再慢慢扩，而不是一上来铺 100 个名字让人眼花。</p>
+                        </div>
+                        <div class="zahuopu-principle">
+                            <span class="zahuopu-principle__num">03</span>
+                            <h3>站内专题互相串门</h3>
+                            <p>这里和 <a href="topic-agent.html">Agent 专题</a>、<a href="topic-toolchain.html">工具链专题</a>、<a href="topic-llm.html">大模型专题</a>互补。杂货铺负责入口与分拣，深挖交给各条专题。</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="shelves" class="section-block">
+                    <div class="toolchain-section-heading">
+                        <span class="toolchain-eyebrow">Shelves</span>
+                        <h2>第一批货架</h2>
+                    </div>
+                    <div class="zahuopu-shelf-grid">
+                        <a href="topic-ai-agents.html" class="zahuopu-shelf-card">
+                            <span class="zahuopu-shelf-card__kicker">Shelf 00</span>
+                            <h3>AI智能体</h3>
+                            <p>把通用 Agent、桌面工作台、OpenClaw 生态、浏览器 Agent 和垂直行业 Agent 铺成联动墙。</p>
+                        </a>
+                        <a href="topic-ai-cli-agent.html" class="zahuopu-shelf-card">
+                            <span class="zahuopu-shelf-card__kicker">Shelf 01</span>
+                            <h3>CLI Agent</h3>
+                            <p>终端里的 agentic coding 主力工具，先收能真正替代一部分 IDE 与脚本流的入口。</p>
+                        </a>
+                        <a href="topic-ai-coding-tools.html" class="zahuopu-shelf-card">
+                            <span class="zahuopu-shelf-card__kicker">Shelf 02</span>
+                            <h3>AI编程工具</h3>
+                            <p>AI IDE、CLI、全栈生成器、插件和 coding studio，直接铺成可联动的工具墙。</p>
+                        </a>
+                        <a href="#framework-shelf" class="zahuopu-shelf-card">
+                            <span class="zahuopu-shelf-card__kicker">Shelf 03</span>
+                            <h3>Agent 开发工具</h3>
+                            <p>不是给普通用户的聊天入口，而是给想自己搭 agent、编排 workflow、做工具调用的人。</p>
+                        </a>
+                        <a href="topic-ai-api.html" class="zahuopu-shelf-card">
+                            <span class="zahuopu-shelf-card__kicker">Shelf 04</span>
+                            <h3>模型 API / 聚合</h3>
+                            <p>云厂商 API、统一路由、兼容层和中转站，之后会专门拆价格、风控与兼容性。</p>
+                        </a>
+                        <a href="topic-ai-benchmarks.html" class="zahuopu-shelf-card">
+                            <span class="zahuopu-shelf-card__kicker">Shelf 05</span>
+                            <h3>模型评测</h3>
+                            <p>MMLU、MMBench、OpenCompass、Arena 这些评测入口，先收“该去哪看”。</p>
+                        </a>
+                    </div>
+                </section>
+
+                <section id="agent-shelf" class="section-block">
+                    <div class="toolchain-section-heading">
+                        <span class="toolchain-eyebrow">Shelf 00</span>
+                        <h2>AI智能体货架</h2>
+                    </div>
+                    <div class="zahuopu-mini-grid">
+                        <a class="zahuopu-mini-card" href="topic-ai-agents.html">
+                            <strong>Manus</strong>
+                            <p>适合从这里进入 AI智能体专页，看它和 MiniMax Agent、Operator 这一类通用型路线的关系。</p>
+                        </a>
+                        <a class="zahuopu-mini-card" href="topic-ai-agents.html">
+                            <strong>OpenClaw</strong>
+                            <p>这条线不该只看单点产品，而要把 ArkClaw、AutoClaw、QClaw、RedClaw 当成一整个生态看。</p>
+                        </a>
+                        <a class="zahuopu-mini-card" href="topic-ai-agents.html">
+                            <strong>WorkBuddy</strong>
+                            <p>桌面工作台型 Agent 的代表，适合和 QoderWork、DuMate 联动比较。</p>
+                        </a>
+                        <a class="zahuopu-mini-card" href="topic-ai-agents.html">
+                            <strong>Operator</strong>
+                            <p>浏览器与通用执行这两条路线的交汇点，放在智能体墙里看更清楚。</p>
+                        </a>
+                        <a class="zahuopu-mini-card" href="topic-ai-agents.html">
+                            <strong>扣子 / MyShell</strong>
+                            <p>如果你关心的是“怎么搭”和“怎么分发”，那就不是通用 Agent，而是平台型入口。</p>
+                        </a>
+                        <a class="zahuopu-mini-card" href="topic-ai-agents.html">
+                            <strong>SciMaster / 遨虾 / Lovart</strong>
+                            <p>科研、电商、设计三条垂直线已经能看出 Agent 开始行业化分叉。</p>
+                        </a>
+                    </div>
+                    <p style="margin-top: 1rem;"><a href="topic-ai-agents.html">进入 AI智能体专页 →</a></p>
+                </section>
+
+                <section id="cli-shelf" class="section-block">
+                    <div class="toolchain-section-heading">
+                        <span class="toolchain-eyebrow">Shelf 01</span>
+                        <h2>CLI Agent 货架</h2>
+                    </div>
+                    <div class="zahuopu-mini-grid">
+                        <a class="zahuopu-mini-card" href="https://www.anthropic.com/product/claude-code" target="_blank" rel="noopener noreferrer">
+                            <strong>Claude Code</strong>
+                            <p>终端里的主流 agentic coding 壳层之一，适合和本站课程主线对照着看。</p>
+                        </a>
+                        <a class="zahuopu-mini-card" href="https://openai.com/codex" target="_blank" rel="noopener noreferrer">
+                            <strong>Codex</strong>
+                            <p>OpenAI 的编程代理产品线入口，CLI / IDE / Web 一体化方向很值得长期观察。</p>
+                        </a>
+                        <a class="zahuopu-mini-card" href="https://opencode.ai/" target="_blank" rel="noopener noreferrer">
+                            <strong>OpenCode</strong>
+                            <p>开源 CLI coding agent，适合拿来观察官方壳层之外的替代路径。</p>
+                        </a>
+                        <a class="zahuopu-mini-card" href="https://cli.iflow.cn/" target="_blank" rel="noopener noreferrer">
+                            <strong>iFlow CLI</strong>
+                            <p>国内终端 Agent 方向的一个现成入口，后面可和其他 CLI 工具做对照。</p>
+                        </a>
+                        <div class="zahuopu-mini-card zahuopu-mini-card--pending">
+                            <strong>Qwen CLI</strong>
+                            <p>已经进入补货名单，等待核对更合适的官方入口后再挂正式链接。</p>
+                        </div>
+                        <div class="zahuopu-mini-card zahuopu-mini-card--pending">
+                            <strong>MiniMax CLI</strong>
+                            <p>同样先占位。我们更想收稳定官方入口，而不是临时二手链接。</p>
+                        </div>
+                    </div>
+                    <p style="margin-top: 1rem;"><a href="topic-ai-cli-agent.html">进入 CLI Agent 专页 →</a></p>
+                </section>
+
+                <section id="editor-shelf" class="section-block">
+                    <div class="toolchain-section-heading">
+                        <span class="toolchain-eyebrow">Shelf 02</span>
+                        <h2>AI 编辑器货架</h2>
+                    </div>
+                    <div class="zahuopu-mini-grid">
+                        <a class="zahuopu-mini-card" href="topic-ai-coding-tools.html">
+                            <strong>Cursor</strong>
+                            <p>从这里进入 AI编程工具专页，可以直接在工具墙里和 Kiro、TRAE、Windsurf 联动着看。</p>
+                        </a>
+                        <a class="zahuopu-mini-card" href="topic-ai-coding-tools.html">
+                            <strong>Windsurf</strong>
+                            <p>编辑器壳层往 agentic IDE 演化的代表之一，已经并入统一工具墙方便横向对照。</p>
+                        </a>
+                        <a class="zahuopu-mini-card" href="topic-ai-coding-tools.html">
+                            <strong>TRAE</strong>
+                            <p>国内 AI IDE 入口之一，适合放在整页工具矩阵里看它和 Cursor、CodeBuddy 的关系。</p>
+                        </a>
+                        <a class="zahuopu-mini-card" href="topic-ai-coding-tools.html">
+                            <strong>Qoder</strong>
+                            <p>Agentic 编程工具与工作台形态的结合点，现在归到 AI编程工具专页统一比较。</p>
+                        </a>
+                        <a class="zahuopu-mini-card" href="topic-ai-coding-tools.html">
+                            <strong>Kiro</strong>
+                            <p>AI IDE 赛道值得单列观察的产品，现在可以在工具墙里和同类一起悬停联动。</p>
+                        </a>
+                        <a class="zahuopu-mini-card" href="topic-ai-coding-tools.html">
+                            <strong>CodeBuddy IDE</strong>
+                            <p>国内全栈开发型 AI IDE 代表，已经并入 AI编程工具墙。</p>
+                        </a>
+                    </div>
+                    <p style="margin-top: 1rem;"><a href="topic-ai-coding-tools.html">进入 AI编程工具专页 →</a></p>
+                </section>
+
+                <section id="framework-shelf" class="section-block">
+                    <div class="toolchain-section-heading">
+                        <span class="toolchain-eyebrow">Shelf 03</span>
+                        <h2>Agent 开发工具货架</h2>
+                    </div>
+                    <div class="zahuopu-mini-grid">
+                        <a class="zahuopu-mini-card" href="https://openai.github.io/openai-agents-python/" target="_blank" rel="noopener noreferrer">
+                            <strong>OpenAI Agents SDK</strong>
+                            <p>想自己写 agent、工具调用和多步执行时，非常适合作为官方起点。</p>
+                        </a>
+                        <a class="zahuopu-mini-card" href="https://langchain-ai.github.io/langgraph/" target="_blank" rel="noopener noreferrer">
+                            <strong>LangGraph</strong>
+                            <p>工作流和状态图这条线的典型工具，适合复杂编排与可控执行。</p>
+                        </a>
+                        <a class="zahuopu-mini-card" href="https://microsoft.github.io/autogen/stable/" target="_blank" rel="noopener noreferrer">
+                            <strong>AutoGen</strong>
+                            <p>多智能体协作老牌路线，值得和 Subagents / Teams 话题连起来看。</p>
+                        </a>
+                        <a class="zahuopu-mini-card" href="https://www.crewai.com/" target="_blank" rel="noopener noreferrer">
+                            <strong>CrewAI</strong>
+                            <p>角色化 agent 编排的代表，适合对照不同“团队型”建模方式。</p>
+                        </a>
+                        <a class="zahuopu-mini-card" href="https://mastra.ai/" target="_blank" rel="noopener noreferrer">
+                            <strong>Mastra</strong>
+                            <p>偏应用层工程化，适合作为“怎么把 agent 做成产品”的观察点。</p>
+                        </a>
+                        <a class="zahuopu-mini-card" href="https://ai.pydantic.dev/" target="_blank" rel="noopener noreferrer">
+                            <strong>PydanticAI</strong>
+                            <p>Python 工程师很容易上手的一条路线，结构清晰，适合教学化拆解。</p>
+                        </a>
+                    </div>
+                </section>
+
+                <section id="api-shelf" class="section-block">
+                    <div class="toolchain-section-heading">
+                        <span class="toolchain-eyebrow">Shelf 04</span>
+                        <h2>模型 API / 聚合货架</h2>
+                    </div>
+                    <div class="zahuopu-mini-grid">
+                        <a class="zahuopu-mini-card" href="https://openrouter.ai/" target="_blank" rel="noopener noreferrer">
+                            <strong>OpenRouter</strong>
+                            <p>统一多模型 API 的代表入口，适合做模型路由、fallback 与成本对照。</p>
+                        </a>
+                        <a class="zahuopu-mini-card" href="https://www.ohmygpt.com/" target="_blank" rel="noopener noreferrer">
+                            <strong>OhMyGPT</strong>
+                            <p>OpenAI 兼容聚合站思路的一个代表，后续适合做兼容层专题对比。</p>
+                        </a>
+                        <a class="zahuopu-mini-card" href="https://cloud.siliconflow.cn/" target="_blank" rel="noopener noreferrer">
+                            <strong>硅基流动</strong>
+                            <p>国内常见模型 API 入口之一，值得和云厂商、聚合站分开比较。</p>
+                        </a>
+                        <a class="zahuopu-mini-card" href="https://www.qiniu.com/" target="_blank" rel="noopener noreferrer">
+                            <strong>七牛云</strong>
+                            <p>云侧模型与推理入口会单独拆，尤其适合和用量、渠道、稳定性放一起看。</p>
+                        </a>
+                        <a class="zahuopu-mini-card" href="https://www.volcengine.com/product/ark" target="_blank" rel="noopener noreferrer">
+                            <strong>火山方舟</strong>
+                            <p>云厂商模型服务入口，后面适合和 OpenRouter / 硅基流动对照其角色差异。</p>
+                        </a>
+                        <div class="zahuopu-mini-card zahuopu-mini-card--note">
+                            <strong>这排货架后面会拆专页</strong>
+                            <p>重点不是“谁能调用谁”，而是兼容性、风控、价格、上下文、工具调用和是否适合 CLI。</p>
+                        </div>
+                    </div>
+                    <p style="margin-top: 1rem;"><a href="topic-ai-api.html">进入模型 API 专页 →</a></p>
+                </section>
+
+                <section id="bench-shelf" class="section-block">
+                    <div class="toolchain-section-heading">
+                        <span class="toolchain-eyebrow">Shelf 05</span>
+                        <h2>模型评测货架</h2>
+                    </div>
+                    <div class="zahuopu-mini-grid">
+                        <a class="zahuopu-mini-card" href="https://paperswithcode.com/sota/multi-task-language-understanding-on-mmlu" target="_blank" rel="noopener noreferrer">
+                            <strong>MMLU</strong>
+                            <p>大模型通用能力老牌基准，哪怕不完美，也还是很多讨论的共同起点。</p>
+                        </a>
+                        <a class="zahuopu-mini-card" href="https://mmbench.opencompass.org.cn/home" target="_blank" rel="noopener noreferrer">
+                            <strong>MMBench</strong>
+                            <p>多模态评测入口之一，你已经点名要收，这里先放成常驻货架。</p>
+                        </a>
+                        <a class="zahuopu-mini-card" href="https://opencompass.org.cn/leaderboard-llm" target="_blank" rel="noopener noreferrer">
+                            <strong>OpenCompass</strong>
+                            <p>国内看榜和看评测体系都很重要的入口，适合和 MMBench 一起看。</p>
+                        </a>
+                        <a class="zahuopu-mini-card" href="https://lmarena.ai/" target="_blank" rel="noopener noreferrer">
+                            <strong>LMSYS Arena</strong>
+                            <p>主观偏好与竞技场榜单入口，适合作为“用户感知”类评测补充。</p>
+                        </a>
+                        <a class="zahuopu-mini-card" href="https://crfm.stanford.edu/helm/latest/" target="_blank" rel="noopener noreferrer">
+                            <strong>HELM</strong>
+                            <p>更强调评测框架与覆盖面的代表，适合和单分数榜单区分开看。</p>
+                        </a>
+                        <a class="zahuopu-mini-card" href="https://github.com/haonan-li/CMMLU" target="_blank" rel="noopener noreferrer">
+                            <strong>CMMLU</strong>
+                            <p>中文评测维度的常见入口，后续可并入“中文能力基准”子货架。</p>
+                        </a>
+                    </div>
+                    <p style="margin-top: 1rem;"><a href="topic-ai-benchmarks.html">进入模型评测专页 →</a></p>
+                </section>
+
+                <section class="section-block zahuopu-roadmap">
+                    <div class="toolchain-section-heading">
+                        <span class="toolchain-eyebrow">Next</span>
+                        <h2>下一轮补货方向</h2>
+                    </div>
+                    <div class="course-quote">
+                        <p><strong>第一轮先把货架搭出来。</strong>第二轮开始，会把 CLI Agent、API 聚合站和模型评测拆成更细的对比稿：不仅看“有没有”，还会看<strong>适合谁、和谁重叠、风险在哪、和站内哪些文章形成互补</strong>。</p>
+                        <p>优先补的名字已经明确：<strong>Qwen CLI</strong>、<strong>MiniMax CLI</strong>、<strong>七牛云 / 硅基流动 / OhMyGPT / OpenRouter</strong> 的专门对照，以及 <strong>MMLU / MMBench / OpenCompass / HELM</strong> 的读法说明。</p>
+                    </div>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-ai-zahuopu.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>
