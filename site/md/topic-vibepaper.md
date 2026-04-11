@@ -45,6 +45,8 @@ VibePaper 专题目前先收 **Autoresearch / ARIS**、**DeepScientist** 与 **A
 - `AI Scientist-v2` 先留在 hub 里承担第三条主样本线
 - `AIDE ML` 继续留在候选底座 lane，用来解释 AI Scientist-v2 背后的上游实验搜索结构
 
+这里先不把 `ARIS` 单独抬成第四种壳，原因也很明确：它在本地 README 里把自己写成 **methodology, not a platform**，而且强调整套系统仍然是 plain Markdown skills 组合出来的研究工作流。这更像是在 `Autoresearch` 这条协议壳样本线上继续加厚，而不是长出一个新的独立控制面。
+
 ### [插图提示词]
 
 用途：画 VibePaper 当前入口结构，让读者先分清三主样本和候选底座不是同一层。  
