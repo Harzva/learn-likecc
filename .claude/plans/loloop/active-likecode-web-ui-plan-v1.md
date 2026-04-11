@@ -19,7 +19,8 @@ Scope: continuously improve LikeCode Web UI, AI terminal experience, and the age
 - [x] Continue Task 9 with the next bounded follow-up after the `Desk Assignments` rows gain dual assignment/approval badges
 - [x] Continue Task 9 with the next bounded follow-up after the `Session Stack` panel head gains daemon/thread/shell headline badges
 - [x] Continue Task 9 with the next bounded follow-up after the `Session Stack` gets an action-oriented `Attention Queue` for relay/thread/shell
-- [ ] Continue Task 9 with the next bounded follow-up after the `Session Stack` gets a compact `Session Identity` layer for daemon/thread/shell seats
+- [x] Continue Task 9 with the next bounded follow-up after the `Session Stack` gets a compact `Session Identity` layer for daemon/thread/shell seats
+- [ ] Continue Task 9 with the next bounded follow-up after the `Shell Roster` gets workspace labels derived from `cwd`
 
 ## Main product areas
 
@@ -78,6 +79,8 @@ Scope: continuously improve LikeCode Web UI, AI terminal experience, and the age
   - add an action-oriented `Attention Queue` so relay / thread / shell expose the next likely operator move instead of only reporting passive state
 - [x] UI follow-up pass in the same surface:
   - add a compact `Session Identity` layer so daemon pid / current thread bind / active shell seat can be scanned before the verbose assignment ledger
+- [x] UI follow-up pass in the same surface:
+  - add workspace labels to shell roster cards so multi-session shell scanning does not depend on reading full `cwd` paths
 - [ ] site-facing article or subtopic when a design pattern is worth documenting
 - [ ] evolution notes tying specific references to specific UI decisions
 

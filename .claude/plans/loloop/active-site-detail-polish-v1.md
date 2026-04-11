@@ -17,7 +17,7 @@ Prioritize future iterations along these three lines:
 
 ## Current focus
 
-Continue Task 9 LikeCode Web UI after the session-stack session-identity pass.
+Continue Task 9 LikeCode Web UI after the shell-roster workspace-label pass.
 
 ## Success condition
 
@@ -264,6 +264,9 @@ Continue Task 9 LikeCode Web UI after the session-stack session-identity pass.
 - [x] Stay on Task 9 for one more bounded session-identity follow-up after the attention-queue pass
 - [x] Add a compact `Session Identity` layer so daemon pid / thread bind / active shell seat are readable before the verbose assignment ledger
 - [x] Verify the Task 9 session-identity pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
+- [x] Stay on Task 9 for one more bounded shell-roster identity follow-up after the session-identity pass
+- [x] Add workspace labels to shell roster cards so multi-session shell scanning does not depend on reading full `cwd` paths
+- [x] Verify the Task 9 shell-roster workspace-label pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
 - [x] Verify the Task 9 headline-badges pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail

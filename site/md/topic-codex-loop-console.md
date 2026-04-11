@@ -73,5 +73,6 @@
 - `Control Summary` 下又补了一排 `Session Pulse` 小卡片，专门概括当前 workspace、thread bind、daemon lane 和 shell coverage；这是 cross-session 快照，不是新的控制路径
 - `Session Stack` 现在又补了一层 `Attention Queue`，把 relay / thread / shell 三条最可能需要 operator 立刻处理的信号压成一排 action-oriented 小卡片；它回答的是“下一步该处理什么”，不是重复罗列状态
 - `Attention Queue` 下面又加了一层 `Session Identity`，专门把 daemon pid / 当前 thread 绑定 / active shell id 这类“具体是谁”抬到 `Desk Assignments` 之前；这样 operator 先看一排 identity 就能知道当前各工位到底接着哪个对象
+- `Shell Roster` 里的每个 shell card 现在也补了一个前端派生的 workspace label，直接从 `cwd` 抽出短标识；会话多起来时，不必先读完整路径也能分辨哪个 shell 大致挂在哪个工作区
 - `Desk Assignments` 每行现在是双 badge：既显示当前 assignment，也显示 approval / coverage 辅助标签，比如 `relay ready`、`daemon linked`、`standby N`，这样非-shell 状态也不再只能藏在说明文字里
 - `Session Stack` 顶部标题区也不再只有一个 `N shells` badge，而是直接露出 `daemon / thread / shells` 三条 headline 状态，先看 panel head 就知道主控面现在大概是什么状态

@@ -12185,10 +12185,24 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     margin-bottom: 8px;
 }
 
+.codex-console-stack-shell__title {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.codex-console-stack-shell__meta {
+    color: var(--text-secondary);
+    font-size: 0.76rem;
+    line-height: 1.35;
+}
+
 .codex-console-stack-shell__controls {
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    flex-wrap: wrap;
 }
 
 .codex-console-stack-shell p {
@@ -12432,7 +12446,7 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 
     .codex-console-stack-shell__controls {
         width: 100%;
-        justify-content: space-between;
+        justify-content: flex-start;
     }
 
     .codex-console-stack-shell__action {

@@ -147,6 +147,14 @@
         el.className = 'codex-console-stack-pill codex-console-stack-pill--' + (tone || 'neutral')
     }
 
+    function shellWorkspaceLabel(session) {
+        var cwd = session && session.cwd ? String(session.cwd) : ''
+        if (!cwd || cwd === '—') return 'unknown cwd'
+        var parts = cwd.split('/').filter(Boolean)
+        if (!parts.length) return cwd
+        return parts[parts.length - 1]
+    }
+
     function shellRosterGroupMarkup(title, tone, sessions, activeId) {
         if (!sessions.length) return ''
         return (
@@ -161,11 +169,16 @@
                     var roleTone = isActive ? 'active' : (session.alive ? 'standby' : 'closed')
                     var roleLabel = isActive ? 'active seat' : (session.alive ? 'standby' : 'closed')
                     var active = isActive ? ' is-active' : ''
+                    var workspaceLabel = shellWorkspaceLabel(session)
                     return (
                         '<article class="codex-console-stack-shell' + active + '">' +
                         '<div class="codex-console-stack-shell__head">' +
+                        '<div class="codex-console-stack-shell__title">' +
                         '<strong>' + esc(session.session_id) + '</strong>' +
+                        '<span class="codex-console-stack-shell__meta">' + esc(workspaceLabel) + '</span>' +
+                        '</div>' +
                         '<div class="codex-console-stack-shell__controls">' +
+                        '<span class="codex-console-stack-pill codex-console-stack-pill--neutral">' + esc(workspaceLabel) + '</span>' +
                         '<span class="codex-console-stack-pill codex-console-stack-pill--' + roleTone + '">' + roleLabel + '</span>' +
                         '<button type="button" class="btn btn-secondary codex-console-stack-shell__action" data-stack-focus-shell="' + esc(session.session_id) + '">Focus</button>' +
                         '</div>' +
