@@ -17,7 +17,7 @@ Prioritize future iterations along these three lines:
 
 ## Current focus
 
-Superset 解构页的 overview 组件细节优化。
+Choose the next main-site move after the Task 7 AI Terminal validation close-out.
 
 ## Success condition
 
@@ -223,6 +223,9 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Add better narrow-screen fallback so toolbar, presets, guardrail, terminal head/footer, and shell composer stack cleanly during local mobile debugging
 - [x] Stay on Task 7 for one more bounded first-load layout-default pass after the mobile fallback
 - [x] Make first open and broken-layout recovery fall back to a curated `Overview` preset instead of raw pane geometry
+- [x] Stay on Task 7 for one bounded validation and live-relay hygiene pass after the first-load preset recovery
+- [x] Verify the AI Terminal static checks still pass and confirm an isolated relay smoke test restores the writable thread lock without orphan shell sessions
+- [x] Mark Task 7 locally done after the dedicated AI Terminal plan passes the bounded validation close-out
 
 ## Guardrail
 

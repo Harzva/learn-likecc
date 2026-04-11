@@ -1,6 +1,6 @@
 # codex-loop AI Terminal Plan v1
 
-Status: active  
+Status: done  
 Scope: local AI terminal for `codex-loop` with daemon control, protected thread interaction, shell workspace, and sustained UI polish.
 
 ## Current focus
@@ -8,6 +8,7 @@ Scope: local AI terminal for `codex-loop` with daemon control, protected thread 
 - [x] Upgrade shell rendering from plain text PTY output toward a more terminal-like experience
 - [x] Add a clearer event / timeline surface for daemon, thread lock, and shell actions
 - [x] Add workspace presets so `Overview`, `Thread Desk`, `Shell Lab`, and `Debug` can be restored quickly
+- [x] Run one bounded validation and live-relay hygiene pass before closing the current AI Terminal polish wave
 
 ## Foundations
 
@@ -41,13 +42,14 @@ Scope: local AI terminal for `codex-loop` with daemon control, protected thread 
 
 ## Validation
 
-- [ ] Keep `python3 -m py_compile tools/codex_loop_web_relay.py` passing
-- [ ] Keep `node --check site/js/codex-loop-console.js` passing
-- [ ] Keep `python3 tools/check_site_md_parity.py` passing
-- [ ] When doing live relay tests, leave no stale thread lock note or orphan shell session
+- [x] Keep `python3 -m py_compile tools/codex_loop_web_relay.py` passing
+- [x] Keep `node --check site/js/codex-loop-console.js` passing
+- [x] Keep `python3 tools/check_site_md_parity.py` passing
+- [x] When doing live relay tests, leave no stale thread lock note or orphan shell session
 
 ## Notes
 
 - Active thread target: `019d7762-4c82-7b63-9e1e-ebbca2962185`
 - Daemon PID is runtime-dependent and should be read live from status, not hardcoded here
+- Last validated on `2026-04-11` with an isolated relay smoke test on port `8870`; thread lock restored to writable and shell session list returned empty before shutdown
 - Update this file after each bounded pass and use it as the canonical checklist for Task 7
