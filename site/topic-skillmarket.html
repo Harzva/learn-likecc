@@ -221,6 +221,32 @@
                     </div>
 
                     <p class="skillmarket-inline-note">这会把 SkillsMP 的角色定得更清楚：它负责把你带到候选仓库，但真正决定“能不能装、该不该装”的，仍然是 GitHub 里的安装、执行、发布和验证证据面，而不是详情页标题本身。</p>
+
+                    <p>再往前走一步，这两类 reference 还顺手说明了一件更容易混淆的事：<strong>skill 仓库</strong>和<strong>plugin 仓库</strong>虽然都能出现在市场链路里，但你回 GitHub 后，应该看的包装面并不完全一样。</p>
+
+                    <div class="table-wrap skillmarket-table-wrap skillmarket-table-wrap--wide">
+                        <table class="data-table">
+                            <thead>
+                                <tr><th>包装形态</th><th>这轮本地样例</th><th>回 GitHub 后先看什么</th><th>它更像在交付什么</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>skill bundle / skill marketplace</td>
+                                    <td><code>reference/reference_skill/baoyu-skills/</code></td>
+                                    <td>先看 <code>.claude-plugin/marketplace.json</code> 怎样把多个 <code>skills/baoyu-*</code> 目录收进同一个 marketplace，再看各自 <code>SKILL.md</code>，以及 <code>docs/creating-skills.md</code>、<code>docs/publishing.md</code> 是否把 authoring / publish 规则写清楚。</td>
+                                    <td>一组可以被市场发现、被单独调用、但又共享发布纪律的 skill 包。</td>
+                                </tr>
+                                <tr>
+                                    <td>plugin bundle / command surface</td>
+                                    <td><code>reference/reference_skill/codex-plugin-cc/</code></td>
+                                    <td>先看 <code>.claude-plugin/marketplace.json</code> 如何指向 <code>plugins/codex</code>，再看 <code>plugins/codex/.claude-plugin/plugin.json</code> 的 plugin 元数据，以及 <code>commands/</code>、<code>agents/</code>、<code>skills/</code> 是否把命令面、代理面和内置 skill 面拆开。</td>
+                                    <td>一个可安装的 plugin，里面再挂命令、agent、skill 与 runtime 脚本。</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p class="skillmarket-inline-note">这张表的作用，是帮我们在“发现之后的 GitHub 校验”阶段少走弯路：如果看到的是 skill bundle，就重点审 <code>SKILL.md</code>、marketplace 收录方式和发布同步链；如果看到的是 plugin bundle，就重点审 plugin 元数据、命令入口、agent 入口和测试面。不要把这两类仓库都当成同一种“技能目录”去看。</p>
                 </section>
 
                 <section id="awesome" class="section-block">

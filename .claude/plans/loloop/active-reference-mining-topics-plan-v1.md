@@ -13,6 +13,7 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - [ ] Prefer insights that help our own `LikeCode` web UI, CLI control, or agent-management design
 - [x] Choose `topic-skillmarket` as the first bounded site-facing output for the current reference-mining wave because the new skill/plugin references fit its “discovery -> GitHub validation -> install” spine
 - [x] Add one repo-evidence note showing what a trustworthy skill/plugin repo should expose after SkillsMP discovery
+- [x] Add one packaging-surface note explaining how to review skill bundles versus plugin bundles after GitHub handoff
 
 ## Newly added references
 
@@ -33,6 +34,9 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - [ ] Which repos have the most useful ideas for agent / CLI / terminal control?
 - [ ] Which repos have the strongest ideas for web UI / HUD / session visibility?
 - [ ] Which repos have reusable ideas for skills, workflows, or knowledge packaging?
+- [x] First bounded packaging answer:
+  - `baoyu-skills` is a strong skill-bundle / marketplace-packaging reference
+  - `codex-plugin-cc` is a strong plugin-bundle / command-surface reference
 - [ ] Which repos deserve their own article versus only a comparison mention?
 
 ## Likely article directions
@@ -74,6 +78,8 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - [ ] terminal and pane layout patterns
 - [ ] multi-agent control and delegation surfaces
 - [ ] skills / plugins / knowledge packaging
+- [x] first bounded extraction:
+  - distinguish skill bundle packaging from plugin bundle packaging before deciding how a GitHub repo should be audited
 - [ ] safety and approval boundaries
 - [ ] event history, observability, and operator UX
 
