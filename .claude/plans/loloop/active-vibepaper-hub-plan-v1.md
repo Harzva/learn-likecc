@@ -1,6 +1,6 @@
 # VibePaper Hub Plan v1
 
-Status: active  
+Status: locally deferred  
 Scope: keep growing `VibePaper` into a durable hub for autonomous research, paper-production systems, and related subtopics.
 
 ## Current focus
@@ -10,7 +10,8 @@ Scope: keep growing `VibePaper` into a durable hub for autonomous research, pape
 - [ ] Improve the page’s teaching value: control plane, durable state, loop shape, and what to learn
 - [x] Continue Task 6 with the next bounded comparison-surface follow-up after the shell-column sync
 - [x] Continue Task 6 with one more bounded teaching-route follow-up after the shell-label reading-route sync
-- [ ] Continue Task 6 with one more bounded shell-structure follow-up after the future-growth note sync
+- [x] Continue Task 6 with one more bounded shell-structure follow-up after the future-growth note sync
+- [x] Mark the current shell-alignment micro-wave locally deferred after the recent shell-column / reading-route / future-growth sync chain because another pass is now lower value than switching to a fresher main-site line
 
 ## Hub anchors
 
@@ -42,6 +43,7 @@ Scope: keep growing `VibePaper` into a durable hub for autonomous research, pape
 - [x] Tighten the comparison table so rows feel structurally consistent
 - [x] Align the reading route with the same shell labels used by the comparison table and thickness section
 - [x] Align the future-growth note with the same shell labels used by the comparison spine
+- [x] Finish the recent shell-alignment micro-wave with a written defer condition instead of forcing one more low-yield wording pass
 - [ ] Keep the page useful for future tutorials, not hype summaries
 
 ## Growth workflow
@@ -69,3 +71,4 @@ Scope: keep growing `VibePaper` into a durable hub for autonomous research, pape
 - Canonical site page: `site/topic-vibepaper.html`
 - Canonical markdown mirror: `site/md/topic-vibepaper.md`
 - Canonical local source root: `reference/reference_agent/`
+- Current local state: the recent shell-alignment micro-wave is locally deferred until a new upstream intake, a genuinely different shell signal, or a clearer high-value structure gap appears

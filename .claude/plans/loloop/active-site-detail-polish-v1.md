@@ -17,7 +17,7 @@ Prioritize future iterations along these three lines:
 
 ## Current focus
 
-Continue Task 6 VibePaper after the shell-column sync pass.
+Choose the next best main-site task after the recent VibePaper shell-alignment micro-wave defer decision.
 
 ## Success condition
 
@@ -299,6 +299,9 @@ Continue Task 6 VibePaper after the shell-column sync pass.
 - [x] Align the VibePaper reading route with the same shell labels used by the comparison table and shell-thickness section
 - [x] Stay on Task 6 for one more bounded VibePaper future-growth pass after the reading-route sync
 - [x] Align the VibePaper future-growth note with the same shell labels used by the comparison spine
+- [x] Return to Task 6 for one final bounded shell-structure review after the shell-column / reading-route / growth-note sync chain
+- [x] Mark the current Task 6 shell-alignment micro-wave locally deferred after the final review confirms the remaining gaps are now low-yield wording churn
+- [x] Release the next tick to pick the best remaining main-site task from the pool instead of forcing another VibePaper pass by continuity alone
 - [x] Verify the Task 9 headline-badges pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail
