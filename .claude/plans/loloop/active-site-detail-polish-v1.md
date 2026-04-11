@@ -219,6 +219,8 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Add live / done / standby shell state cues, a terminal footer, and a prompt-style composer so the shell pane feels less like a log viewer
 - [x] Stay on Task 7 for one more bounded visual-hierarchy pass after the shell-terminal polish
 - [x] Add pane type labels and stronger head differentiation so daemon, log, thread, shell, monitor, and timeline surfaces are easier to scan
+- [x] Stay on Task 7 for one more bounded mobile-fallback pass after the visual-hierarchy work
+- [x] Add better narrow-screen fallback so toolbar, presets, guardrail, terminal head/footer, and shell composer stack cleanly during local mobile debugging
 
 ## Guardrail
 

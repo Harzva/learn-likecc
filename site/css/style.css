@@ -11851,6 +11851,17 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 }
 
 @media (max-width: 1100px) {
+    .codex-console-toolbar__field,
+    .codex-console-toolbar__field--small {
+        min-width: 0;
+        max-width: none;
+        flex: 1 1 100%;
+    }
+
+    .codex-console-toolbar__status {
+        width: 100%;
+    }
+
     .codex-console-guardrail__metrics {
         grid-template-columns: 1fr;
     }
@@ -11877,5 +11888,77 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 
     .codex-console-panel__resize {
         display: none;
+    }
+}
+
+@media (max-width: 760px) {
+    .codex-console-tabs {
+        gap: 8px;
+    }
+
+    .codex-console-tab {
+        flex: 1 1 calc(50% - 8px);
+        justify-content: center;
+        text-align: center;
+        padding: 10px 12px;
+    }
+
+    .codex-console-presets {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .codex-console-presets__label {
+        margin-bottom: -2px;
+    }
+
+    .codex-console-guardrail {
+        padding: 14px;
+        border-radius: 18px;
+    }
+
+    .codex-console-guardrail__head {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .codex-console-guardrail__hints {
+        padding-left: 18px;
+    }
+
+    .codex-console-canvas {
+        padding: 12px;
+        gap: 12px;
+        border-radius: 22px;
+    }
+
+    .codex-console-panel {
+        min-height: 200px;
+        border-radius: 18px;
+    }
+
+    .codex-console-panel__head,
+    .codex-console-terminal-frame__head,
+    .codex-console-terminal-frame__foot {
+        flex-wrap: wrap;
+        align-items: flex-start;
+    }
+
+    .codex-console-terminal-frame__meta {
+        margin-left: 0;
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .codex-console-shell-composer {
+        flex-direction: column;
+    }
+
+    .codex-console-shell-composer__prompt {
+        width: auto;
+        justify-content: flex-start;
+        padding: 10px 14px;
+        border-right: 0;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.14);
     }
 }
