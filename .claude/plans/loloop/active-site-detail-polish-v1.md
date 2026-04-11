@@ -372,6 +372,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Keep the overnight pass on Task 3 after the workflow article gained its first compact visual anchor and publication remained time-blocked
 - [x] Tighten the new `36-*` Zhihu workflow draft with one house-style audience section instead of adding another late-night evidence block or screenshot
 - [x] Verify the `36-*` draft now includes both `八、适合什么人看` and the renumbered `九、链接放这里` closeout before treating it as the next publication-ready workflow article candidate
+- [x] Stay on the overnight Task 3 line for one final readiness-decision pass after the workflow article house-style polish landed
+- [x] Recheck that the `36-*` workflow article still has its one compact process graphic plus all final GitHub links before deciding whether more polish is justified
+- [x] Mark the `36-*` workflow article locally ready for a future daytime publication attempt instead of forcing another low-yield overnight rewrite
 
 ## Guardrail
 
