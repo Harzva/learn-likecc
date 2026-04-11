@@ -33,6 +33,7 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - [x] Mark the current `topic-ai-cli-agent` subthread locally deferred after the CLI shell-type pass because another immediate pass would now be lower value than switching to a fresh reference destination
 - [x] Choose `topic-ai-coding-tools` as the next bounded site-facing destination because the new CLI shell-type distinction should flow back into the higher-level tool taxonomy
 - [x] Add one coding-tools hub sync note clarifying that the CLI Agent bucket now points to multiple shell types rather than one flat terminal route
+- [x] Mark the current `topic-ai-coding-tools` subthread locally deferred after the CLI taxonomy sync because another immediate pass would now be lower value than switching to a fresh reference destination
 
 ## Newly added references
 
@@ -160,3 +161,4 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - Sixth bounded Task 8 destination is now `topic-ai-cli-agent`, using `OpenCode` and `OfficeCLI` to thicken the current `Claude Code / Codex / Qwen Code / MiniMax` framing into a clearer CLI shell-type comparison
 - Current local state: the `topic-ai-cli-agent` subthread is locally deferred until a stronger CLI-control reference, new shell family, or clearer site destination appears
 - Seventh bounded Task 8 destination is now `topic-ai-coding-tools`, using a small hub-sync pass so the top-level tooling map acknowledges the internal shell-type split already added to `topic-ai-cli-agent`
+- Current local state: the `topic-ai-coding-tools` subthread is locally deferred until a stronger tooling-map intake, new tool family, or clearer reference-backed gap appears
