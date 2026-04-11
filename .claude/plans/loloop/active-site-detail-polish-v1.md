@@ -17,7 +17,7 @@ Prioritize future iterations along these three lines:
 
 ## Current focus
 
-Continue Task 9 LikeCode Web UI after the session-stack headnote-standby pass.
+Task 9 LikeCode Web UI is locally deferred after the session-stack headnote-standby pass; next tick should choose the next best remaining pool task.
 
 ## Success condition
 
@@ -276,6 +276,8 @@ Continue Task 9 LikeCode Web UI after the session-stack headnote-standby pass.
 - [x] Stay on Task 9 for one more bounded session-stack-header follow-up after the first headnote pass
 - [x] Extend the `Session Stack` headnote so shell standby pressure is visible alongside the hottest current lane when relevant
 - [x] Verify the Task 9 session-stack-headnote-standby pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
+- [x] Mark the current Task 9 session-stack / shell-roster micro-wave locally deferred after repeated frontend-only passes saturated the most obvious low-risk gaps
+- [x] Record the defer decision in the dedicated LikeCode plan so the next tick can choose a different best-next task from the remaining pool
 - [x] Verify the Task 9 headline-badges pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail

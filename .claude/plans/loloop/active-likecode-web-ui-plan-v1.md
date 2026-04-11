@@ -23,7 +23,8 @@ Scope: continuously improve LikeCode Web UI, AI terminal experience, and the age
 - [x] Continue Task 9 with the next bounded follow-up after the `Shell Roster` gets workspace labels derived from `cwd`
 - [x] Continue Task 9 with the next bounded follow-up after the `Shell Roster` header gets a compact runtime summary
 - [x] Continue Task 9 with the next bounded follow-up after the `Session Stack` header gets a compact ownership cue
-- [ ] Continue Task 9 with the next bounded follow-up after the `Session Stack` header also surfaces shell standby pressure
+- [x] Continue Task 9 with the next bounded follow-up after the `Session Stack` header also surfaces shell standby pressure
+- [x] Mark the current LikeCode session-stack micro-wave locally deferred after the latest header follow-ups because further frontend-only additions are now low-yield without a new reference signal or backend capability gap
 
 ## Main product areas
 
@@ -109,3 +110,4 @@ Scope: continuously improve LikeCode Web UI, AI terminal experience, and the age
 
 - This is the canonical checklist for LikeCode Web UI and agent-management evolution
 - Prefer bounded passes: one reference pattern, one concrete UI improvement, one validated result
+- Current local state: the recent `Session Stack` / `Shell Roster` refinement chain is locally deferred until a new reference-backed gap, stronger agent-management requirement, or backend capability change appears
