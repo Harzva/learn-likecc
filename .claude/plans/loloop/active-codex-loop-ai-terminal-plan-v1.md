@@ -31,7 +31,7 @@ Scope: local AI terminal for `codex-loop` with daemon control, protected thread 
 - [x] Make the shell pane feel more like a real terminal instead of a plain log box
 - [x] Improve visual hierarchy so status, logs, thread, and shell are easier to scan
 - [x] Add better mobile / narrow-screen fallback for local debugging
-- [ ] Refine pane defaults and spacing so the first-load layout feels intentional
+- [x] Refine pane defaults and spacing so the first-load layout feels intentional
 
 ## Observability
 

@@ -221,6 +221,8 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Add pane type labels and stronger head differentiation so daemon, log, thread, shell, monitor, and timeline surfaces are easier to scan
 - [x] Stay on Task 7 for one more bounded mobile-fallback pass after the visual-hierarchy work
 - [x] Add better narrow-screen fallback so toolbar, presets, guardrail, terminal head/footer, and shell composer stack cleanly during local mobile debugging
+- [x] Stay on Task 7 for one more bounded first-load layout-default pass after the mobile fallback
+- [x] Make first open and broken-layout recovery fall back to a curated `Overview` preset instead of raw pane geometry
 
 ## Guardrail
 

@@ -61,3 +61,4 @@
 - shell pane 进一步补了 session `live / done / standby` 状态、terminal footer 和 `$` prompt composer，不再只是“有外框的日志输出”
 - 各 pane 现在补了 `Control / Preview / Logs / Compose / Inspect / History / PTY` 类型层级和更清楚的头部色带，daemon、log、thread、shell 的分组更容易扫读
 - 窄屏下新增更可靠的 fallback：toolbar 状态整行堆叠、preset/guardrail 不再挤成一行，terminal head/footer 与 prompt composer 会自动换成更适合手机调试的布局
+- 第一次打开页面、或本地布局缓存损坏时，现在会直接回到受控的 `Overview` preset，而不是依赖零散的原始 pane 几何位置

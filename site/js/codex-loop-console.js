@@ -429,10 +429,11 @@
         saveLayout()
     }
 
-    function applyPreset(name) {
+    function applyPreset(name, options) {
         var preset = PRESET_LAYOUTS[name]
         var monitorPanel
         var monitorSelect
+        var silent = options && options.silent
         if (!preset) return
         currentPreset = name
         removeDynamicMonitors()
@@ -454,9 +455,11 @@
         }
         setPresetBadge()
         applyWorkspace(preset.workspace)
-        setStatusState('daemon-control-status', 'preset ' + (PRESET_LABELS[name] || name), 'success')
-        setLastAction('workspace preset restored', 'success')
-        pushTimeline('workspace', 'workspace preset restored', PRESET_LABELS[name] || name)
+        if (!silent) {
+            setStatusState('daemon-control-status', 'preset ' + (PRESET_LABELS[name] || name), 'success')
+            setLastAction('workspace preset restored', 'success')
+            pushTimeline('workspace', 'workspace preset restored', PRESET_LABELS[name] || name)
+        }
     }
 
     function loadLayout() {
@@ -465,7 +468,7 @@
             syncMonitorCounter()
             allPanels().forEach(panelDrag)
             bindMonitorPane(document.querySelector('[data-panel-id="monitor-1"]'))
-            applyWorkspace('overview')
+            applyPreset('overview', { silent: true })
             return
         }
 
@@ -507,7 +510,7 @@
             allPanels().forEach(panelDrag)
             bindMonitorPane(document.querySelector('[data-panel-id="monitor-1"]'))
             setPresetBadge()
-            applyWorkspace('overview')
+            applyPreset('overview', { silent: true })
         }
     }
 
