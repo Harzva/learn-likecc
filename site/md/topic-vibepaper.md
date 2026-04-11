@@ -69,16 +69,17 @@ Mermaid 更适合：是。
 
 Task 6 后续加新系统时，不应该先写宣传语，而应该先回答四个结构问题：它更像哪种系统形态，它的 control plane 在哪，它保留什么 durable state，它最适合长成哪类教程内容。先把当前三条样本放进同一张表，后面加新项目时才能保持口径一致。
 
-| 系统 | 更像哪种形态 | control plane 在哪 | durable state 保留什么 | 值得长成什么教程 |
-| --- | --- | --- | --- | --- |
-| `Autoresearch / ARIS` | 插件式研究循环协议 | `goal + metric + scope + verify + rollback + git memory` 这套 loop contract，而不是某个厚 UI | git 历史、实验提交、verify 结果、比较日志、guide / comparison 文档 | 最适合长成“研究循环协议”“验证链路”“单循环 debug / fix / ship 方法论” |
-| `DeepScientist` | 本地优先研究工作台 | `quest + baseline/experiment/write stage workflow + quest repo`，而不是单个聊天框 | quest repo、findings memory、artifacts、paper outputs、visible workspace 状态 | 最适合长成“quest repo 操作系统”“durable research loop”“自动科研工作台分层” |
-| `AI Scientist-v2` | paper factory / agentic tree search system | `launch_scientist_bfts.py`、`bfts_config.yaml` 与 experiment manager agent 组成的树搜索调度面 | idea JSON、`experiments/` 日志、`unified_tree_viz.html`、writeup 中间产物与最终 PDF | 最适合长成“idea → tree search → experiment → paper draft”流水线教程，以及 search manager 对照课 |
+| 系统 | 更像哪种形态 | 对应壳层 | control plane 在哪 | durable state 保留什么 | 值得长成什么教程 |
+| --- | --- | --- | --- | --- | --- |
+| `Autoresearch / ARIS` | 插件式研究循环协议 | protocol shell / 协议壳 | `goal + metric + scope + verify + rollback + git memory` 这套 loop contract，而不是某个厚 UI | git 历史、实验提交、verify 结果、比较日志、guide / comparison 文档 | 最适合长成“研究循环协议”“验证链路”“单循环 debug / fix / ship 方法论” |
+| `DeepScientist` | 本地优先研究工作台 | studio shell / 工作台壳 | `quest + baseline/experiment/write stage workflow + quest repo`，而不是单个聊天框 | quest repo、findings memory、artifacts、paper outputs、visible workspace 状态 | 最适合长成“quest repo 操作系统”“durable research loop”“自动科研工作台分层” |
+| `AI Scientist-v2` | paper factory / agentic tree search system | paper pipeline shell / 论文流水线壳 | `launch_scientist_bfts.py`、`bfts_config.yaml` 与 experiment manager agent 组成的树搜索调度面 | idea JSON、`experiments/` 日志、`unified_tree_viz.html`、writeup 中间产物与最终 PDF | 最适合长成“idea → tree search → experiment → paper draft”流水线教程，以及 search manager 对照课 |
 
 这张表有两个用处：
 
 - 它把 Autoresearch / ARIS、DeepScientist 和 AI Scientist-v2 的差异压缩成站内统一口径，避免以后专题页越长越散
-- 它给后续新增项目提供一个最低准入模板：如果这四个问题答不清楚，就先不要急着把它抬成独立子专题
+- 它让上面的四问总表和后面的 thickness 小节直接对上，不必来回换术语
+- 它给后续新增项目提供一个最低准入模板：如果这几列答不清楚，就先不要急着把它抬成独立子专题
 
 ### [插图提示词]
 

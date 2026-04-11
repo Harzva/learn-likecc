@@ -17,7 +17,7 @@ Prioritize future iterations along these three lines:
 
 ## Current focus
 
-Choose the next best main-site task after the current Claude changelog `2.1.101` wave defer.
+Continue Task 6 VibePaper after the shell-column sync pass.
 
 ## Success condition
 
@@ -293,6 +293,8 @@ Choose the next best main-site task after the current Claude changelog `2.1.101`
 - [x] Add one managed-hooks release-watch note explaining settings fault-tolerance and `allowManagedHooksOnly` policy precedence
 - [x] Review the accumulated `2.1.101` release-watch coverage before forcing another thin slice
 - [x] Mark the current Task 4 `2.1.101` micro-wave locally deferred so the next tick can choose a different best-next main-site line
+- [x] Choose Task 6 as the next best remaining main-site move after the current Task 4 defer
+- [x] Add one `对应壳层` column to the VibePaper four-question comparison table so it aligns directly with the later shell-thickness section
 - [x] Verify the Task 9 headline-badges pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail
