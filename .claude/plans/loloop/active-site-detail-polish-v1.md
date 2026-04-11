@@ -273,6 +273,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Continue Task 3 with the first actual Zhihu-workflow article drafting pass after the helper skill exports stabilized
 - [x] Draft the Zhihu-workflow article with final GitHub links under `wemedia/zhihu/articles/36-知乎发布工作流技能化-知乎图文.md`
 - [x] Verify the new draft includes final repository links instead of placeholders
+- [x] Continue Task 3 with one bounded visual pass on the Zhihu-workflow article after the text draft stabilized
+- [x] Generate one compact workflow graphic for `36-知乎发布工作流技能化-知乎图文.md`
+- [x] Verify the new workflow article now references the generated flow image
 - [x] Choose `topic-codex-loop-console` as the next fresh Task 8 destination after deferring the `topic-agent-comparison` subthread
 - [x] Add one repo-backed operator-surface note so `Session Browser / Workbench / HUD / Local Desk` boundaries are explicit on the AI Terminal topic page
 - [x] Verify the Task 8 operator-surface pass with `python3 tools/check_site_md_parity.py`
