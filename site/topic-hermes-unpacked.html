@@ -196,12 +196,12 @@
                 <section id="lessons" class="section-block">
                     <h2>07 · 对 Claude Code / Like Code / codex-loop 值得学什么</h2>
                     <div class="course-quote">
-                        <p><strong>第一</strong>，要把控制面和入口壳分开。Hermes 的真正主脑在 <code>AIAgent</code>，不是在 CLI 或 gateway adapter。</p>
-                        <p><strong>第二</strong>，要把记忆和技能当成 loop 内结构，而不是外挂资料夹。只有这样，系统才会真的越跑越懂自己。</p>
-                        <p><strong>第三</strong>，要把时间轴与平台回送当成正式能力。<code>codex-loop</code> 现在做的是“定时继续推进同一个任务”，Hermes 则展示了“如何把这件事做成 agent 原生能力”。</p>
-                        <p><strong>第四</strong>，Hermes 适合学的是“长期运行控制层”，不是原样照搬。我们的主脑仍应是 Claude Code / Like Code，自身再去调 memory、skills、worker、scheduler，而不是简单复制 Hermes 的产品壳。</p>
+                        <p><strong>第一</strong>，要把控制面和入口壳分开。Hermes 的真正主脑在 <code>AIAgent</code>，不是在 CLI 或 gateway adapter；我们自己的栈也该继续坚持“线程 / UI 只是入口，主脑仍在 loop”。</p>
+                        <p><strong>第二</strong>，要把记忆和技能放进正式运行结构，而不是只靠散落资料夹。Hermes 用 review + writeback 做内建沉淀；我们即使继续采用 repo 外置记忆，也该保证 plans、skills、handoff 和长期知识之间有稳定回写路径。</p>
+                        <p><strong>第三</strong>，要把时间轴、delivery 和 session seam 当成控制面的一部分。<code>codex-loop</code> 现在已经有推进链路，但 Hermes 提醒我们：真正的长期在线 agent 还要显式回答“谁在接消息、哪条 session 复用上下文、结果回送到哪里”。</p>
+                        <p><strong>第四</strong>，要把执行后端视为正式运行层，而不是工具附属物。Hermes 把 backend selector、task-scoped state、idle reaper 全部写进系统设计；这意味着我们后续如果做 Like Code / agent stack，也要尽量把 environment contract 说清，而不是隐含在 shell 默认值里。</p>
                     </div>
-                    <p>一句话收尾：<strong>Superset 教我们外层工作台如何编排多个 worker；Hermes 则进一步提醒我们，长期在线 agent 还需要把记忆、技能、平台入口和时间轴一起纳入控制面。</strong></p>
+                    <p>一句话收尾：<strong>Superset 教我们外层工作台如何编排多个 worker；Hermes 则进一步提醒我们，长期在线 agent 还必须把 session、memory、skills、delivery 和 execution contract 一起纳入控制面。</strong></p>
                 </section>
 
                 <section id="compare-stack" class="section-block">
@@ -215,8 +215,8 @@
                         <tr><td>记忆 / 技能</td><td>内建 memory、skills、review loop</td><td>更多依赖 repo 文档、skills、plans、handoff prompt</td><td>Hermes 把沉淀放进内核；我们把沉淀放进 repo 与技能系统，便于版本化和复查。</td></tr>
                         <tr><td>执行面</td><td>统一 terminal tool + 多 backend</td><td>Claude Code / Codex 工具链 + repo 自动化脚本</td><td>Hermes 把 backend abstraction 做成正式运行层；我们目前更偏“本地工程环境 + 针对性自动化”。</td></tr>
                     </table>
-                    <p>所以最值得学的不是“把 Hermes 整套产品形态搬过来”，而是它提醒我们：<strong>长期运行 agent 需要一条清楚的控制面主线</strong>。我们完全可以继续保留 Claude Code / Like Code 作为高质量交互主脑，把 <code>codex-loop</code> 当调度层，把 repo 内 skills / plans / docs 当外置长期记忆层。这样做的好处是：内核不必承担所有持久化责任，但系统仍然能持续演进。</p>
-                    <p>换句话说，Hermes 更像“把一切都内置进产品”；我们当前路线更像“把主脑、调度、知识沉淀拆开，但用明确接口把它们重新编排起来”。这两条路并不矛盾，反而正好构成了我们后续设计 agent stack 时最有价值的一组参照。</p>
+                    <p>所以最值得学的不是“把 Hermes 整套产品形态搬过来”，而是它提醒我们：<strong>长期运行 agent 需要一条清楚的控制面主线</strong>。我们完全可以继续保留 Claude Code / Like Code 作为高质量交互主脑，把 <code>codex-loop</code> 当调度层，把 repo 内 skills / plans / docs 当外置长期记忆层；但与此同时，session seam、delivery path、environment contract 这些边界就该被写得更显式。</p>
+                    <p>换句话说，Hermes 更像“把一切都内置进产品”；我们当前路线更像“把主脑、调度、知识沉淀拆开，但用明确接口把它们重新编排起来”。这两条路并不矛盾。真正的结论是：<strong>我们的下一代 stack 不必复制 Hermes 的产品壳，但应该吸收它在控制面、会话边界和执行边界上的工程纪律。</strong></p>
                 </section>
 
                 <section class="section-block">

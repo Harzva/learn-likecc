@@ -1,16 +1,17 @@
 # Hermes Agent Unpacked Plan v1
 
-Status: active  
+Status: locally done  
 Scope: keep turning Hermes Agent into a stable 庖丁解牛 / unpacked topic with code-anchored structure, series-consistent voice, and reusable diagrams.
 
 ## Current focus
 
-- [ ] Tighten the page so the system split, control plane, and runtime flow read more like a finished 庖丁解牛 chapter
+- [x] Tighten the page so the system split, control plane, and runtime flow read more like a finished 庖丁解牛 chapter
 - [x] Add one stronger structure visual path, preferably Mermaid-ready where appropriate
 - [x] Continue Hermes with the next bounded follow-up after the learning-loop Mermaid lands
 - [x] Continue Hermes with one more bounded follow-up after the gateway/session Mermaid lands
-- [ ] Continue Hermes with one final bounded follow-up after the execution-boundary Mermaid lands
-- [ ] Improve the final “what we can learn for our own stack” closeout
+- [x] Continue Hermes with one final bounded follow-up after the execution-boundary Mermaid lands
+- [x] Improve the final “what we can learn for our own stack” closeout
+- [x] Mark the current Hermes unpacked wave locally done unless a fresh reference-backed gap appears
 
 ## Anchors
 
@@ -29,7 +30,7 @@ Scope: keep turning Hermes Agent into a stable 庖丁解牛 / unpacked topic wit
 - [x] Keep the tone aligned with existing unpacked pages such as:
   - `site/topic-cc-unpacked-zh.html`
   - `site/topic-superset-unpacked.html`
-- [ ] Keep the chapter structure stable:
+- [x] Keep the chapter structure stable:
   - why this system matters
   - how it is split into layers
   - where the control plane lives
@@ -41,7 +42,7 @@ Scope: keep turning Hermes Agent into a stable 庖丁解牛 / unpacked topic wit
 - [x] Add runtime / gateway / session-boundary notes
 - [x] Add memory / skills / boundary notes
 - [x] Add stack-synthesis notes
-- [ ] Make the architecture section easier to scan with clearer code-anchor references
+- [x] Make the architecture section easier to scan with clearer code-anchor references
 - [ ] Tighten the mapping between Hermes concepts and our own Claude Code / Like Code / codex-loop discussions
 
 ## Visuals

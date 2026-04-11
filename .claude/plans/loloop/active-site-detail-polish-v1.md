@@ -17,7 +17,7 @@ Prioritize future iterations along these three lines:
 
 ## Current focus
 
-Continue Task 5 Hermes unpacked after the execution-boundary Mermaid pass.
+Choose the next best main-site task after the Hermes unpacked closeout pass.
 
 ## Success condition
 
@@ -285,6 +285,8 @@ Continue Task 5 Hermes unpacked after the execution-boundary Mermaid pass.
 - [x] Add one real Mermaid gateway/session seam figure to the Hermes runtime-ingress section and verify it with `node --check site/js/app.js` and `python3 tools/check_site_md_parity.py`
 - [x] Stay on Task 5 for one more bounded Hermes visual follow-up after the gateway/session seam figure
 - [x] Add one real Mermaid execution-boundary figure to the Hermes backend/runtime section and verify it with `node --check site/js/app.js` and `python3 tools/check_site_md_parity.py`
+- [x] Stay on Task 5 for one final bounded Hermes closeout follow-up after the execution-boundary figure
+- [x] Tighten the Hermes 07 / 08 closeout so the page lands on clearer stack-design takeaways, then mark the current Hermes wave locally done
 - [x] Verify the Task 9 headline-badges pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail

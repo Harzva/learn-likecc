@@ -213,10 +213,10 @@ Mermaid 更适合：是。
 
 ### 07 · 对 Claude Code / Like Code / codex-loop 值得学什么
 
-- 把控制面和入口壳分开：主脑在 loop，不在 UI 或平台 adapter。
-- 把记忆和技能当成 loop 内结构，而不是外挂资料夹。
-- 把时间轴与回送通道当成正式能力。
-- 学 Hermes 的“长期运行控制层”，不要照搬它的整套产品壳。
+- 把控制面和入口壳分开：主脑在 loop，不在 UI 或平台 adapter；我们自己的线程 / UI 也不该被误认成主脑。
+- 把记忆和技能当成正式运行结构，而不是散落资料夹；即使继续采用 repo 外置记忆，也要保证 plans、skills、handoff 有稳定回写路径。
+- 把时间轴、delivery 和 session seam 当成控制面的一部分，而不是后接的小功能。
+- 把执行后端视为正式运行层，而不是工具附属物；environment contract 最好显式，而不是隐含在 shell 默认值里。
 
 ### 08 · 放回我们自己的栈：Hermes 和 Claude Code / Like Code / codex-loop 到底哪里相像，哪里不同
 
@@ -233,7 +233,9 @@ Mermaid 更适合：是。
 - 记忆 / 技能：Hermes 内建沉淀；我们把沉淀放进 repo，可版本化、可复查
 - 执行面：Hermes 有正式 backend abstraction；我们目前更偏本地工程环境加定向自动化
 
-所以最值得学的不是“照搬产品壳”，而是学它那条清楚的控制面主线：主脑、入口、调度、记忆、执行面要怎么拆，拆完之后又怎么重新接起来。
+所以最值得学的不是“照搬产品壳”，而是学它那条清楚的控制面主线：主脑、入口、调度、记忆、执行面要怎么拆，拆完之后又怎么重新接起来。对我们更具体的提醒是：即使继续保留 Claude Code / Like Code 作为高质量交互主脑、把 `codex-loop` 放在外层调度、把 repo 文档当长期记忆，也应该把 session seam、delivery path、environment contract 这些边界写得更显式。
+
+真正的结论不是“复制 Hermes”，而是：下一代 stack 不必搬它的产品壳，但应该吸收它在控制面、会话边界和执行边界上的工程纪律。
 
 ### 参考与原始链接
 
