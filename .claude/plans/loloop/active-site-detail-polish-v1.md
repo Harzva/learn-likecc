@@ -448,6 +448,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Keep the deferred overnight media wave closed after the `oh01` cleanup and stay on the low-risk site-polish line
 - [x] Replace the remaining inline reference-lead spacing on `site/s12.html` with a scoped class
 - [x] Verify that `site/s12.html` no longer uses inline `style=` attributes
+- [x] Keep the deferred overnight media wave closed after the `s12` cleanup and stay on the low-risk site-polish line
+- [x] Replace the remaining inline homepage styling on `site/index.html` with scoped classes
+- [x] Verify that `site/index.html` no longer uses inline `style=` attributes
 
 ## Guardrail
 

@@ -56,10 +56,10 @@
     <section class="hero-main">
         <div class="hero-bg-gradient"></div>
         <div class="hero-particles">
-            <div class="particle" style="--delay: 0s; --x: 20%; --y: 10%;"></div>
-            <div class="particle" style="--delay: 2s; --x: 80%; --y: 30%;"></div>
-            <div class="particle" style="--delay: 4s; --x: 10%; --y: 50%;"></div>
-            <div class="particle" style="--delay: 6s; --x: 90%; --y: 70%;"></div>
+            <div class="particle particle--home-1"></div>
+            <div class="particle particle--home-2"></div>
+            <div class="particle particle--home-3"></div>
+            <div class="particle particle--home-4"></div>
         </div>
         <div class="container container-home hero-shell">
             <div class="hero-content hero-content--home">
@@ -252,8 +252,8 @@
         <div class="container">
             <h2 class="section-title">✅ 自由换模型展示</h2>
             <p class="section-subtitle">当前 LikeCode 学习版已经支持通过项目本地 <code>modelRoutes</code> 自由切换 Provider，并让 <code>/model</code> 自动展示本地已配置的外部模型。</p>
-            <figure class="mermaid-figure mermaid-figure--main" style="padding: 20px;">
-                <img src="images/likecode-model-routing-preview.png" alt="LikeCode model routing and /model preview" style="width: 100%; height: auto; display: block; border-radius: 16px; border: 1px solid rgba(255,255,255,0.08);">
+            <figure class="mermaid-figure mermaid-figure--main home-preview-figure">
+                <img src="images/likecode-model-routing-preview.png" alt="LikeCode model routing and /model preview" class="home-preview-image">
                 <figcaption class="mermaid-caption">
                     <strong>本地配置思路</strong>：在项目 `.claude/settings.local.json` 中维护 <code>modelRoutes</code>，按模型自动切换 <code>baseURL / authToken / headers</code>，并让 <code>/model</code> 菜单直接读取这些已配置路由。
                 </figcaption>
@@ -446,13 +446,13 @@
                 <div class="feature-card-main feature-topic">
                     <div class="feature-icon-main">🧩</div>
                     <h3 class="feature-title-main">OpenHarness</h3>
-                    <p class="feature-desc-main">MIT 开源 Python Agent Harness（<code>oh</code>）：工具循环、Skills、MCP、Swarm；与 24 讲互补。<a href="topic-openharness-course.html" style="color: inherit; text-decoration: underline;">思想对照课</a> + <a href="topic-openharness-course.html#oh-series" style="color: inherit; text-decoration: underline;">OH01–12 逐讲</a> 对标 S01–S12。</p>
+                    <p class="feature-desc-main">MIT 开源 Python Agent Harness（<code>oh</code>）：工具循环、Skills、MCP、Swarm；与 24 讲互补。<a href="topic-openharness-course.html" class="feature-inline-link">思想对照课</a> + <a href="topic-openharness-course.html#oh-series" class="feature-inline-link">OH01–12 逐讲</a> 对标 S01–S12。</p>
                     <div class="feature-tags">
                         <span class="tag">Harness</span>
                         <span class="tag">开源</span>
                         <span class="tag">Python</span>
                     </div>
-                    <div class="feature-arrow"><a href="topic-openharness.html" style="color: inherit; text-decoration: none;">→</a></div>
+                    <div class="feature-arrow"><a href="topic-openharness.html" class="feature-arrow-link">→</a></div>
                 </div>
 
                 <a href="topic-toolchain.html" class="feature-card-main feature-topic">

@@ -4677,6 +4677,30 @@ body {
     animation-delay: var(--delay);
 }
 
+.particle--home-1 {
+    --delay: 0s;
+    --x: 20%;
+    --y: 10%;
+}
+
+.particle--home-2 {
+    --delay: 2s;
+    --x: 80%;
+    --y: 30%;
+}
+
+.particle--home-3 {
+    --delay: 4s;
+    --x: 10%;
+    --y: 50%;
+}
+
+.particle--home-4 {
+    --delay: 6s;
+    --x: 90%;
+    --y: 70%;
+}
+
 @keyframes float {
     0%, 100% { transform: translateY(0) scale(1); opacity: 0.3; }
     50% { transform: translateY(-20px) scale(1.5); opacity: 0.8; }
@@ -6111,6 +6135,28 @@ a.hero-badge--jump:focus-visible {
 .feature-card-main:hover .feature-arrow {
     opacity: 1;
     transform: translateX(5px);
+}
+
+.home-preview-figure {
+    padding: 20px;
+}
+
+.home-preview-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.feature-inline-link {
+    color: inherit;
+    text-decoration: underline;
+}
+
+.feature-arrow-link {
+    color: inherit;
+    text-decoration: none;
 }
 
 /* 学习路径 */
