@@ -3159,6 +3159,10 @@ body {
     font-style: italic;
 }
 
+.handbook-hint-spaced {
+    margin-top: 12px;
+}
+
 /* FAQ */
 .faq-list {
     max-width: 800px;

@@ -436,6 +436,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Keep the deferred overnight media wave closed after the `topic-rag-papers` cleanup and stay on the low-risk site-polish line
 - [x] Replace the remaining inline layout styling on `site/topic-cc-unpacked-zh.html` with scoped classes
 - [x] Verify that `site/topic-cc-unpacked-zh.html` no longer uses inline `style=` attributes
+- [x] Keep the deferred overnight media wave closed after the `topic-cc-unpacked-zh` cleanup and stay on the low-risk site-polish line
+- [x] Replace the remaining inline hint spacing on `site/handbook.html` with a scoped class
+- [x] Verify that `site/handbook.html` no longer uses inline `style=` attributes
 
 ## Guardrail
 
