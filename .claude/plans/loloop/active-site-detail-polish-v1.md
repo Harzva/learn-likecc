@@ -17,7 +17,7 @@ Prioritize future iterations along these three lines:
 
 ## Current focus
 
-Continue Task 4 Claude changelog watch after the tracing opt-in slice.
+Choose the next best main-site task after the current Claude changelog `2.1.101` wave defer.
 
 ## Success condition
 
@@ -291,6 +291,8 @@ Continue Task 4 Claude changelog watch after the tracing opt-in slice.
 - [x] Add one `2.1.101` tracing-opt-in release-watch slice explaining why sensitive OTEL trace fields moved behind explicit env flags
 - [x] Stay on Task 4 for one more bounded `2.1.101` governance slice after the tracing opt-in note
 - [x] Add one managed-hooks release-watch note explaining settings fault-tolerance and `allowManagedHooksOnly` policy precedence
+- [x] Review the accumulated `2.1.101` release-watch coverage before forcing another thin slice
+- [x] Mark the current Task 4 `2.1.101` micro-wave locally deferred so the next tick can choose a different best-next main-site line
 - [x] Verify the Task 9 headline-badges pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail

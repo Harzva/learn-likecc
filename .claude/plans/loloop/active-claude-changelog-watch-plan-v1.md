@@ -1,15 +1,16 @@
 # Claude Changelog Watch Plan v1
 
-Status: active  
+Status: locally deferred  
 Scope: monitor Claude / Claude Code changelogs, extract worthwhile keywords or shifts, and turn them into site-ready topic drafts or focused updates.
 
 ## Current focus
 
 - [x] Keep tracking recent Claude changelog deltas and choose the next keyword worth turning into a site draft
-- [ ] Prefer updates that have clear teaching value for our site, not just release-note novelty
+- [x] Prefer updates that have clear teaching value for our site, not just release-note novelty
 - [ ] Keep the best-fit site destination explicit before drafting
 - [x] Continue Task 4 with the next bounded keyword after the tracing opt-in slice
-- [ ] Continue Task 4 with one more bounded keyword after the managed-hooks slice
+- [x] Continue Task 4 with one more bounded keyword after the managed-hooks slice
+- [x] Mark the current `2.1.101` release-watch micro-wave locally deferred until a fresh official delta or clearly higher-value gap appears
 
 ## Primary sources
 
@@ -40,10 +41,10 @@ Scope: monitor Claude / Claude Code changelogs, extract worthwhile keywords or s
 
 ## Good candidate types
 
-- [ ] major workflow changes
-- [ ] security / governance changes with teaching value
-- [ ] new agent control surfaces or context-management shifts
-- [ ] changes that clarify how Claude Code differs from Like Code / codex-loop / other stacks
+- [x] major workflow changes
+- [x] security / governance changes with teaching value
+- [x] new agent control surfaces or context-management shifts
+- [x] changes that clarify how Claude Code differs from Like Code / codex-loop / other stacks
 
 ## Destination rules
 
@@ -59,8 +60,8 @@ Scope: monitor Claude / Claude Code changelogs, extract worthwhile keywords or s
 
 ## Validation
 
-- [ ] Keep `python3 tools/check_site_md_parity.py` passing after each pass
-- [ ] Prefer official docs, original repos, official changelogs, and primary sources over secondary commentary
+- [x] Keep `python3 tools/check_site_md_parity.py` passing after each pass
+- [x] Prefer official docs, original repos, official changelogs, and primary sources over secondary commentary
 - [ ] Avoid publishing or landing a draft when the keyword is too weak or too thinly supported
 
 ## Notes
