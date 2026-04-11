@@ -30,6 +30,7 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - [x] Mark the current `topic-agent` subthread locally deferred after the hub-entry sync because another immediate pass would now be lower value than switching to a fresh reference destination
 - [x] Choose `topic-ai-cli-agent` as the next bounded site-facing destination because the remaining `OpenCode / OfficeCLI / Claude Code / Codex / Qwen Code` references fit its CLI-shell scope directly
 - [x] Add one repo-backed CLI shell-type note clarifying why workflow-complete terminal shells, TUI-first open shells, and artifact-control CLIs should not be taught as one flat bucket
+- [x] Mark the current `topic-ai-cli-agent` subthread locally deferred after the CLI shell-type pass because another immediate pass would now be lower value than switching to a fresh reference destination
 
 ## Newly added references
 
@@ -150,3 +151,4 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - Fifth bounded Task 8 destination is now `topic-agent`, using a small hub-entry sync so the main Agent page advertises that the refreshed hotspot lane now covers official-source projects and artifact-control CLI patterns rather than only RSS-style blog summaries
 - Current local state: the `topic-agent` subthread is locally deferred until a stronger hub-level intake, new subtopic destination, or clearer reference-backed gap appears
 - Sixth bounded Task 8 destination is now `topic-ai-cli-agent`, using `OpenCode` and `OfficeCLI` to thicken the current `Claude Code / Codex / Qwen Code / MiniMax` framing into a clearer CLI shell-type comparison
+- Current local state: the `topic-ai-cli-agent` subthread is locally deferred until a stronger CLI-control reference, new shell family, or clearer site destination appears
