@@ -11950,6 +11950,13 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     justify-content: center;
 }
 
+.codex-console-stack-ledger__badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
 .codex-console-stack-card {
     padding: 12px;
     border-radius: 16px;
@@ -12275,6 +12282,10 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     .codex-console-stack-ledger__controls {
         width: 100%;
         align-items: flex-start;
+    }
+
+    .codex-console-stack-ledger__badges {
+        justify-content: flex-start;
     }
 
     .codex-console-stack-ledger__controls .btn {

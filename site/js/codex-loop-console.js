@@ -189,9 +189,9 @@
         var daemonSummary = { chip: 'manual desk', note: 'Daemon idle. Manual desk is the current write owner.', tone: 'ready' }
         var threadSummary = { chip: 'writable', note: 'Manual writes are allowed from the desk.', tone: 'ready' }
         var shellSummary = { chip: 'no shell', note: 'Spawn one from Session Stack or Shell Lab.', tone: 'neutral' }
-        var daemonAssignment = { owner: 'daemon idle', note: 'No daemon run is active yet.', chip: 'manual', tone: 'neutral' }
-        var threadAssignment = { owner: 'thread pending', note: 'No thread binding yet.', chip: 'pending', tone: 'neutral' }
-        var shellAssignment = { owner: 'no active shell', note: 'Create or focus a shell session.', chip: 'idle', tone: 'neutral' }
+        var daemonAssignment = { owner: 'daemon idle', note: 'No daemon run is active yet.', chip: 'manual', tone: 'neutral', aux: 'relay idle', auxTone: 'neutral' }
+        var threadAssignment = { owner: 'thread pending', note: 'No thread binding yet.', chip: 'pending', tone: 'neutral', aux: 'readonly', auxTone: 'neutral' }
+        var shellAssignment = { owner: 'no active shell', note: 'Create or focus a shell session.', chip: 'idle', tone: 'neutral', aux: '0 standby', auxTone: 'neutral' }
         if (!host || !badge || !metrics) return
 
         setText('stack-relay', document.getElementById('relay-status') ? document.getElementById('relay-status').textContent : 'idle')
@@ -245,6 +245,8 @@
                 : 'Overview is the manual control surface until the daemon starts.',
             chip: guardState.daemonRunning ? 'live run' : 'manual',
             tone: guardState.daemonRunning ? 'active' : 'neutral',
+            aux: relayState === 'connected' || relayState === 'manual refresh ok' ? 'relay ready' : relayState,
+            auxTone: relayState === 'connected' || relayState === 'manual refresh ok' ? 'standby' : (relayState === 'connecting' ? 'standby' : 'neutral'),
         }
 
         if (guardState.threadForce) {
@@ -282,6 +284,8 @@
                 (guardState.threadForce ? ' Force send is armed.' : ''),
             chip: guardState.threadForce ? 'force' : (guardState.threadLockMode === 'readonly' ? 'readonly' : 'writable'),
             tone: guardState.threadForce ? 'risk' : (guardState.threadLockMode === 'readonly' ? 'standby' : 'active'),
+            aux: guardState.threadForce ? 'daemon bypass' : (guardState.daemonRunning ? 'daemon linked' : 'manual only'),
+            auxTone: guardState.threadForce ? 'risk' : (guardState.daemonRunning ? 'standby' : 'neutral'),
         }
 
         if (guardState.shellCount && guardState.shellActiveId && !guardState.shellAlive) {
@@ -304,12 +308,24 @@
             }
         }
 
+        var activeSessions = shellState.sessions.filter(function (session) {
+            return session.session_id === activeId
+        })
+        var standbySessions = shellState.sessions.filter(function (session) {
+            return session.alive && session.session_id !== activeId
+        })
+        var closedSessions = shellState.sessions.filter(function (session) {
+            return !session.alive
+        })
+
         if (guardState.shellCount && guardState.shellActiveId && guardState.shellAlive) {
             shellAssignment = {
                 owner: guardState.shellActiveId,
                 note: 'Shell Lab currently owns the live PTY seat while ' + Math.max(shellState.sessions.length - 1, 0) + ' other session' + (shellState.sessions.length - 1 === 1 ? ' is' : 's are') + ' parked.',
                 chip: 'active seat',
                 tone: 'active',
+                aux: Math.max(shellState.sessions.length - 1, 0) + ' standby',
+                auxTone: 'standby',
             }
         } else if (guardState.shellCount) {
             shellAssignment = {
@@ -317,6 +333,8 @@
                 note: guardState.shellCount + ' shell session' + (guardState.shellCount === 1 ? ' is' : 's are') + ' available, but none currently owns the live seat.',
                 chip: 'parked',
                 tone: 'standby',
+                aux: closedSessions.length + ' closed',
+                auxTone: 'neutral',
             }
         }
 
@@ -336,21 +354,15 @@
         setText('stack-ledger-daemon-owner', daemonAssignment.owner)
         setText('stack-ledger-daemon-note', daemonAssignment.note)
         setStackPill('stack-ledger-daemon-chip', daemonAssignment.chip, daemonAssignment.tone)
+        setStackPill('stack-ledger-daemon-chip-aux', daemonAssignment.aux, daemonAssignment.auxTone)
         setText('stack-ledger-thread-owner', threadAssignment.owner)
         setText('stack-ledger-thread-note', threadAssignment.note)
         setStackPill('stack-ledger-thread-chip', threadAssignment.chip, threadAssignment.tone)
+        setStackPill('stack-ledger-thread-chip-aux', threadAssignment.aux, threadAssignment.auxTone)
         setText('stack-ledger-shell-owner', shellAssignment.owner)
         setText('stack-ledger-shell-note', shellAssignment.note)
         setStackPill('stack-ledger-shell-chip', shellAssignment.chip, shellAssignment.tone)
-        var activeSessions = shellState.sessions.filter(function (session) {
-            return session.session_id === activeId
-        })
-        var standbySessions = shellState.sessions.filter(function (session) {
-            return session.alive && session.session_id !== activeId
-        })
-        var closedSessions = shellState.sessions.filter(function (session) {
-            return !session.alive
-        })
+        setStackPill('stack-ledger-shell-chip-aux', shellAssignment.aux, shellAssignment.auxTone)
         setText('stack-pulse-shell', shellState.sessions.length + ' session' + (shellState.sessions.length === 1 ? '' : 's'))
         setText(
             'stack-pulse-shell-note',

@@ -15,7 +15,8 @@ Scope: continuously improve LikeCode Web UI, AI terminal experience, and the age
 - [x] Continue Task 9 with the next bounded follow-up after the shell roster is regrouped into active / standby / closed session lanes
 - [x] Continue Task 9 with the next bounded follow-up after the new desk-assignment ledger lands in the session stack
 - [x] Continue Task 9 with the next bounded follow-up after the growing `Session Stack` gets explicit section hierarchy labels
-- [ ] Continue Task 9 with the next bounded follow-up after the new cross-session `Session Pulse` row lands under `Control Summary`
+- [x] Continue Task 9 with the next bounded follow-up after the new cross-session `Session Pulse` row lands under `Control Summary`
+- [ ] Continue Task 9 with the next bounded follow-up after the `Desk Assignments` rows gain dual assignment/approval badges
 
 ## Main product areas
 
@@ -66,6 +67,8 @@ Scope: continuously improve LikeCode Web UI, AI terminal experience, and the age
   - add explicit section hierarchy labels so `Quick Actions / Control Summary / Desk Assignments / Surface Detail / Shell Sessions` stop reading like one undifferentiated block
 - [x] UI follow-up pass in the same surface:
   - add a compact `Session Pulse` snapshot row so workspace, thread bind, daemon lane, and shell coverage are readable before the deeper assignment/detail layers
+- [x] UI follow-up pass in the same surface:
+  - upgrade `Desk Assignments` into dual-badge rows so assignment and approval/coverage context are both visible without reading the full note text
 - [ ] site-facing article or subtopic when a design pattern is worth documenting
 - [ ] evolution notes tying specific references to specific UI decisions
 
