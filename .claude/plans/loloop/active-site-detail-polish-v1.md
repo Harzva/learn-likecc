@@ -282,6 +282,7 @@ Resume the queued media work by attempting the prepared Zhihu publish for the Su
 - [x] Branch from the deferred main-site pool into queued media work by checking the Zhihu publish prerequisites for `24-Superset解构外层调度-知乎图文.md`
 - [x] Verify whether the current Zhihu cookies can still open the write page and expose the title/editor selectors
 - [x] Defer the actual Zhihu publish step until the next allowed daytime window after the overnight preflight check
+- [x] Verify that the current Superset Zhihu draft still parses cleanly for the multimodal pipeline and keep the text pipeline only as an emergency fallback
 - [x] Stay on Task 9 for one more bounded action-oriented operator-summary follow-up after the headline-badges pass
 - [x] Add a compact `Attention Queue` so relay / thread / shell each expose the next likely operator move from the same overview surface
 - [x] Verify the Task 9 attention-queue pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
