@@ -17,7 +17,7 @@ Prioritize future iterations along these three lines:
 
 ## Current focus
 
-Choose the next best task from the remaining pool after the current broader Task 8 reference-mining wave defer decision.
+Resume the queued media work by attempting the prepared Zhihu publish for the Superset orchestration article in the next allowed daytime window.
 
 ## Success condition
 
@@ -279,6 +279,9 @@ Choose the next best task from the remaining pool after the current broader Task
 - [x] Verify the Task 8 coding-tools CLI-sync pass with `python3 tools/check_site_md_parity.py`
 - [x] Mark the current `topic-ai-coding-tools` subthread locally deferred after the CLI-sync pass
 - [x] Mark the current broader Task 8 reference-mining wave locally deferred after the recent multi-destination sequence entered low-yield territory
+- [x] Branch from the deferred main-site pool into queued media work by checking the Zhihu publish prerequisites for `24-Superset解构外层调度-知乎图文.md`
+- [x] Verify whether the current Zhihu cookies can still open the write page and expose the title/editor selectors
+- [x] Defer the actual Zhihu publish step until the next allowed daytime window after the overnight preflight check
 - [x] Stay on Task 9 for one more bounded action-oriented operator-summary follow-up after the headline-badges pass
 - [x] Add a compact `Attention Queue` so relay / thread / shell each expose the next likely operator move from the same overview surface
 - [x] Verify the Task 9 attention-queue pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
