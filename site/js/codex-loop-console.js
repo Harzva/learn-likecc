@@ -193,6 +193,9 @@
         var relayQueue = { title: 'Reconnect relay', note: 'Refresh relay state before trusting ownership.', chip: 'attention', tone: 'attention' }
         var threadQueue = { title: 'Review thread guard', note: 'Check whether manual writes should stay readonly or writable.', chip: 'review', tone: 'neutral' }
         var shellQueue = { title: 'Spawn shell', note: 'Bring a live shell seat online if local PTY work is needed.', chip: 'standby', tone: 'standby' }
+        var daemonIdentity = { title: 'daemon idle', note: 'No live daemon run is attached yet.', chip: 'manual', tone: 'neutral' }
+        var threadIdentity = { title: boundThread, note: 'Thread Desk is waiting for a clearer session state.', chip: 'pending', tone: 'neutral' }
+        var shellIdentity = { title: 'no active shell', note: 'Shell Lab has not claimed a live PTY seat yet.', chip: 'idle', tone: 'neutral' }
         var daemonAssignment = { owner: 'daemon idle', note: 'No daemon run is active yet.', chip: 'manual', tone: 'neutral', aux: 'relay idle', auxTone: 'neutral' }
         var threadAssignment = { owner: 'thread pending', note: 'No thread binding yet.', chip: 'pending', tone: 'neutral', aux: 'readonly', auxTone: 'neutral' }
         var shellAssignment = { owner: 'no active shell', note: 'Create or focus a shell session.', chip: 'idle', tone: 'neutral', aux: '0 standby', auxTone: 'neutral' }
@@ -285,6 +288,17 @@
             }
         }
 
+        daemonIdentity = {
+            title: guardState.daemonRunning
+                ? ('pid ' + (document.getElementById('daemon-pid') ? document.getElementById('daemon-pid').textContent : '—'))
+                : 'daemon idle',
+            note: guardState.daemonRunning
+                ? 'Overview is attached to the live daemon run' + (tickBadge && tickBadge.textContent ? ' while tick is ' + tickBadge.textContent + '.' : '.')
+                : 'Overview remains the manual control seat until the daemon starts.',
+            chip: guardState.daemonRunning ? 'live run' : 'manual',
+            tone: guardState.daemonRunning ? 'active' : 'neutral',
+        }
+
         daemonAssignment = {
             owner: guardState.daemonRunning ? 'daemon running' : 'daemon idle',
             note: guardState.daemonRunning
@@ -360,6 +374,17 @@
             }
         }
 
+        threadIdentity = {
+            title: boundThread,
+            note: guardState.threadForce
+                ? 'Thread Desk is attached, but force send is currently armed.'
+                : (guardState.threadLockMode === 'readonly'
+                    ? 'Thread Desk is attached and guarded readonly.'
+                    : 'Thread Desk is attached and currently writable.'),
+            chip: guardState.threadForce ? 'force' : (guardState.threadLockMode === 'readonly' ? 'readonly' : (boundThread === 'thread pending' ? 'pending' : 'bound')),
+            tone: guardState.threadForce ? 'risk' : (guardState.threadLockMode === 'readonly' ? 'standby' : (boundThread === 'thread pending' ? 'neutral' : 'active')),
+        }
+
         threadAssignment = {
             owner: ((threadInput.value || '').trim() || (document.getElementById('daemon-thread') ? document.getElementById('daemon-thread').textContent : 'thread pending') || 'thread pending'),
             note:
@@ -407,6 +432,22 @@
                 title: 'Focus standby shell',
                 note: guardState.shellCount + ' parked shell session' + (guardState.shellCount === 1 ? ' is' : 's are') + ' available, but none owns the live seat.',
                 chip: 'standby',
+                tone: 'standby',
+            }
+        }
+
+        if (guardState.shellCount && guardState.shellActiveId && guardState.shellAlive) {
+            shellIdentity = {
+                title: guardState.shellActiveId,
+                note: 'Shell Lab is attached to the live PTY seat.',
+                chip: 'active seat',
+                tone: 'active',
+            }
+        } else if (guardState.shellCount) {
+            shellIdentity = {
+                title: 'standby roster',
+                note: guardState.shellCount + ' shell session' + (guardState.shellCount === 1 ? ' is' : 's are') + ' available, but none currently owns the live seat.',
+                chip: 'parked',
                 tone: 'standby',
             }
         }
@@ -462,6 +503,15 @@
         setText('stack-queue-shell', shellQueue.title)
         setText('stack-queue-shell-note', shellQueue.note)
         setStackPill('stack-queue-shell-chip', shellQueue.chip, shellQueue.tone)
+        setText('stack-identity-daemon', daemonIdentity.title)
+        setText('stack-identity-daemon-note', daemonIdentity.note)
+        setStackPill('stack-identity-daemon-chip', daemonIdentity.chip, daemonIdentity.tone)
+        setText('stack-identity-thread', threadIdentity.title)
+        setText('stack-identity-thread-note', threadIdentity.note)
+        setStackPill('stack-identity-thread-chip', threadIdentity.chip, threadIdentity.tone)
+        setText('stack-identity-shell', shellIdentity.title)
+        setText('stack-identity-shell-note', shellIdentity.note)
+        setStackPill('stack-identity-shell-chip', shellIdentity.chip, shellIdentity.tone)
         setText('stack-ledger-daemon-owner', daemonAssignment.owner)
         setText('stack-ledger-daemon-note', daemonAssignment.note)
         setStackPill('stack-ledger-daemon-chip', daemonAssignment.chip, daemonAssignment.tone)

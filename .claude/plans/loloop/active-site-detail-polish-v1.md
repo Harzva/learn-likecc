@@ -17,7 +17,7 @@ Prioritize future iterations along these three lines:
 
 ## Current focus
 
-Continue Task 9 LikeCode Web UI after the session-stack attention-queue pass.
+Continue Task 9 LikeCode Web UI after the session-stack session-identity pass.
 
 ## Success condition
 
@@ -261,6 +261,9 @@ Continue Task 9 LikeCode Web UI after the session-stack attention-queue pass.
 - [x] Stay on Task 9 for one more bounded action-oriented operator-summary follow-up after the headline-badges pass
 - [x] Add a compact `Attention Queue` so relay / thread / shell each expose the next likely operator move from the same overview surface
 - [x] Verify the Task 9 attention-queue pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
+- [x] Stay on Task 9 for one more bounded session-identity follow-up after the attention-queue pass
+- [x] Add a compact `Session Identity` layer so daemon pid / thread bind / active shell seat are readable before the verbose assignment ledger
+- [x] Verify the Task 9 session-identity pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
 - [x] Verify the Task 9 headline-badges pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail
