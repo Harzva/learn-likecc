@@ -163,13 +163,28 @@
                 '<article class="codex-console-stack-shell' + active + '">' +
                 '<div class="codex-console-stack-shell__head">' +
                 '<strong>' + esc(session.session_id) + '</strong>' +
+                '<div class="codex-console-stack-shell__controls">' +
                 '<span class="codex-console-stack-pill codex-console-stack-pill--' + tone + '">' + (session.alive ? 'live' : 'done') + '</span>' +
+                '<button type="button" class="btn btn-secondary codex-console-stack-shell__action" data-stack-focus-shell="' + esc(session.session_id) + '">Focus</button>' +
+                '</div>' +
                 '</div>' +
                 '<p><strong>pid</strong><span>' + esc(session.pid || '—') + '</span></p>' +
                 '<p><strong>cwd</strong><span>' + esc(session.cwd || '—') + '</span></p>' +
                 '</article>'
             )
         }).join('')
+
+        Array.prototype.slice.call(host.querySelectorAll('[data-stack-focus-shell]')).forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                shellState.activeId = btn.dataset.stackFocusShell
+                renderShellTabs()
+                renderShellOutput()
+                renderSessionStack()
+                applyWorkspace('shell')
+                setLastAction('shell session focused', 'success')
+                pushTimeline('workspace', 'shell session focused', shellState.activeId)
+            })
+        })
     }
 
     function renderTimeline() {
@@ -933,6 +948,13 @@
         setStatusState('daemon-control-status', 'layout saved', 'success')
         setLastAction('layout saved', 'success')
     })
+    document.getElementById('stack-open-thread').addEventListener('click', function () {
+        applyPreset('thread')
+    })
+    document.getElementById('stack-open-shell').addEventListener('click', function () {
+        applyPreset('shell')
+    })
+    document.getElementById('stack-new-shell').addEventListener('click', createShell)
     document.getElementById('layout-reset').addEventListener('click', resetLayout)
     document.getElementById('pane-add-monitor').addEventListener('click', addMonitorPane)
     document.getElementById('thread-lock-readonly').addEventListener('click', function () {

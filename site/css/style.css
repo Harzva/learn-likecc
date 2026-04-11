@@ -11772,6 +11772,13 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     margin-bottom: 12px;
 }
 
+.codex-console-stack-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
 .codex-console-stack-card {
     padding: 12px;
     border-radius: 16px;
@@ -11858,6 +11865,12 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     margin-bottom: 8px;
 }
 
+.codex-console-stack-shell__controls {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
 .codex-console-stack-shell p {
     display: flex;
     justify-content: space-between;
@@ -11890,6 +11903,11 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 .codex-console-stack-pill--done {
     background: rgba(254, 226, 226, 0.96);
     color: #b91c1c;
+}
+
+.codex-console-stack-shell__action {
+    padding: 6px 10px;
+    font-size: 0.76rem;
 }
 
 .codex-console-form {

@@ -17,7 +17,7 @@ Prioritize future iterations along these three lines:
 
 ## Current focus
 
-Continue Task 9 LikeCode Web UI after the first session-stack / operator-overview pass.
+Continue Task 9 LikeCode Web UI after the session-stack operator-actions pass.
 
 ## Success condition
 
@@ -229,6 +229,9 @@ Continue Task 9 LikeCode Web UI after the first session-stack / operator-overvie
 - [x] Choose Task 9 as the next main-site move after the Task 7 AI Terminal close-out
 - [x] Add one reference-backed `Session Stack` operator overview pane to the local LikeCode-facing AI Terminal surface
 - [x] Verify the Task 9 session-stack pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
+- [x] Stay on Task 9 for one bounded operator-control follow-up after the session-stack overview landed
+- [x] Add operator shortcuts and shell-focus actions so the `Session Stack` can open workspaces and focus an existing shell session
+- [x] Verify the Task 9 session-stack-action pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail
 

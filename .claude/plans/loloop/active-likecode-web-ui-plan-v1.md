@@ -7,7 +7,8 @@ Scope: continuously improve LikeCode Web UI, AI terminal experience, and the age
 
 - [x] Identify the highest-value Web UI / agent-management pattern we should borrow next
 - [x] Use `reference/reference_cc_ui/hermes-webui/` and `reference/reference_cc_ui/claudecodeui/` as the first bounded source pair for a session-visibility pass
-- [ ] Continue the LikeCode Web UI line with the next operator-control or agent-management slice after the new session-stack overview pass
+- [x] Continue the LikeCode Web UI line with the next operator-control or agent-management slice after the new session-stack overview pass
+- [ ] Keep Task 9 active with the next bounded operator-control or agent-management follow-up after the session-stack action shortcuts
 
 ## Main product areas
 
@@ -42,6 +43,8 @@ Scope: continuously improve LikeCode Web UI, AI terminal experience, and the age
 
 - [x] UI improvement pass in a local LikeCode-facing surface:
   - add a reference-backed `Session Stack` operator overview to `site/topic-codex-loop-console.html`
+- [x] UI follow-up pass in the same surface:
+  - add operator shortcuts and shell-focus actions so the session stack is actionable instead of read-only
 - [ ] site-facing article or subtopic when a design pattern is worth documenting
 - [ ] evolution notes tying specific references to specific UI decisions
 
