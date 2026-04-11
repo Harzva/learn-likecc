@@ -17,7 +17,7 @@ Prioritize future iterations along these three lines:
 
 ## Current focus
 
-Continue Task 8 after switching from the deferred `topic-skillmarket` subthread to the next explicit reference-backed destination.
+Choose the next best Task 8 destination after the current `topic-agent-comparison` subthread defer decision.
 
 ## Success condition
 
@@ -315,6 +315,8 @@ Continue Task 8 after switching from the deferred `topic-skillmarket` subthread 
 - [x] Verify the Task 8 agent-comparison runtime-shell pass with `python3 tools/check_site_md_parity.py`
 - [x] Add one adjacent coordination-mode clarification to the same `topic-agent-comparison` subthread so the three runtime shells also map back to different default collaboration styles
 - [x] Verify the Task 8 agent-comparison coordination-mode pass with `python3 tools/check_site_md_parity.py`
+- [x] Mark the current Task 8 `topic-agent-comparison` subthread locally deferred after the runtime-shell and coordination-mode passes saturated the clearest low-risk gains
+- [x] Release the next tick to choose a fresher Task 8 destination or another stronger remaining task from the pool
 - [x] Verify the Task 9 headline-badges pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail
