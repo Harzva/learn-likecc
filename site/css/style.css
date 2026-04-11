@@ -12659,3 +12659,29 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     max-width: 780px;
     margin: 0 auto;
 }
+
+.rag-papers-section--all-in-rag {
+    background: var(--bg-secondary);
+    padding-top: 60px;
+}
+
+.rag-papers-section-desc {
+    max-width: 720px;
+    margin: 0 auto 1.25rem;
+}
+
+.rag-papers-quickstart-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.rag-papers-quickstart-card {
+    text-decoration: none;
+    color: inherit;
+}
+
+.rag-papers-list {
+    max-width: 720px;
+    margin: 0 auto;
+    line-height: 1.8;
+    color: var(--text-secondary);
+}
