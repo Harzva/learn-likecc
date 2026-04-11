@@ -195,6 +195,8 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Add one compact table explaining what `ARIS` thickens on the Autoresearch protocol-shell line across control plane, durable state, and teaching role
 - [x] Stay on Task 6 for one more bounded ARIS reviewer-topology pass after the structure table
 - [x] Add one reviewer-topology row explaining how `ARIS` externalizes critique via cross-model review without becoming a separate shell type
+- [x] Stay on Task 6 for one more bounded ARIS automation-boundary pass after the reviewer-topology row
+- [x] Add one automation-boundary row explaining why `ARIS` is still workflow-thick but not yet a truly unattended platform layer
 
 ## Guardrail
 
