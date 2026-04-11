@@ -213,6 +213,8 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Add workspace presets so `Overview`, `Thread Desk`, `Shell Lab`, and `Debug` can restore a known pane arrangement and keep `custom` state visible
 - [x] Stay on Task 7 for one more bounded AI Terminal safety-message pass after the preset recovery work
 - [x] Add a compact guardrail strip that explains relay state, thread conflict risk, and readonly / shell-dead recovery actions in one place
+- [x] Stay on Task 7 for one more bounded AI Terminal feedback pass after the guardrail strip
+- [x] Add unified success / pending / error status styling and a `Last Action` feedback strip for relay, daemon, thread, and shell operations
 
 ## Guardrail
 

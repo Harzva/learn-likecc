@@ -59,13 +59,14 @@
                             <span>Interval (min)</span>
                             <input id="daemon-interval-input" type="number" min="1" max="240" value="10" class="search-input">
                         </label>
-                        <span class="codex-console-toolbar__status">状态：<strong id="relay-status">idle</strong></span>
+                        <span class="codex-console-toolbar__status">状态：<strong id="relay-status" class="codex-console-status codex-console-status--neutral">idle</strong></span>
                     </div>
                     <div class="codex-console-toolbar codex-console-toolbar--compact">
                         <button id="layout-save" class="btn btn-secondary" type="button">保存布局</button>
                         <button id="layout-reset" class="btn btn-secondary" type="button">重置布局</button>
                         <button id="pane-add-monitor" class="btn btn-secondary" type="button">新增监视 pane</button>
-                        <span class="codex-console-toolbar__status">daemon 控制：<strong id="daemon-control-status">idle</strong></span>
+                        <span class="codex-console-toolbar__status">daemon 控制：<strong id="daemon-control-status" class="codex-console-status codex-console-status--neutral">idle</strong></span>
+                        <span class="codex-console-toolbar__status">最近动作：<strong id="last-action-status" class="codex-console-status codex-console-status--neutral">idle</strong> <span id="last-action-time">—</span></span>
                     </div>
                 </section>
 
@@ -171,7 +172,7 @@
                                     <div class="codex-console-toolbar codex-console-toolbar--compact">
                                         <button id="thread-lock-readonly" type="button" class="btn btn-secondary">设为只读</button>
                                         <button id="thread-lock-writable" type="button" class="btn btn-secondary">解除只读</button>
-                                        <span class="codex-console-toolbar__status">lock：<strong id="thread-lock-status">idle</strong></span>
+                                        <span class="codex-console-toolbar__status">lock：<strong id="thread-lock-status" class="codex-console-status codex-console-status--neutral">idle</strong></span>
                                     </div>
                                 </div>
                                 <label class="codex-console-form">
@@ -188,7 +189,7 @@
                                 </label>
                                 <div class="codex-console-toolbar codex-console-toolbar--compact">
                                     <button id="thread-send" type="button" class="btn btn-primary">发送到 thread</button>
-                                    <span class="codex-console-toolbar__status">发送状态：<strong id="thread-send-status">idle</strong></span>
+                                    <span class="codex-console-toolbar__status">发送状态：<strong id="thread-send-status" class="codex-console-status codex-console-status--neutral">idle</strong></span>
                                 </div>
                                 <p class="codex-console-inline-note">最近回复</p>
                                 <pre id="thread-output" class="codex-console-terminal">—</pre>
@@ -238,7 +239,7 @@
                                     <button id="shell-new" type="button" class="btn btn-primary">新建 Shell</button>
                                     <button id="shell-close" type="button" class="btn btn-secondary">关闭当前</button>
                                     <button id="shell-refresh" type="button" class="btn btn-secondary">刷新输出</button>
-                                    <span class="codex-console-toolbar__status">shell：<strong id="shell-status">idle</strong></span>
+                                    <span class="codex-console-toolbar__status">shell：<strong id="shell-status" class="codex-console-status codex-console-status--neutral">idle</strong></span>
                                 </div>
                                 <div id="shell-tabs" class="codex-console-tabs codex-console-tabs--mini" role="tablist" aria-label="shell tabs"></div>
                                 <div class="codex-console-terminal-frame">

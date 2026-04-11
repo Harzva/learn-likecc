@@ -105,6 +105,13 @@
         if (el) el.textContent = text || ''
     }
 
+    function setStatusState(id, text, tone) {
+        var el = document.getElementById(id)
+        if (!el) return
+        el.textContent = text || ''
+        el.className = 'codex-console-status codex-console-status--' + (tone || 'neutral')
+    }
+
     function setHtml(id, text) {
         var el = document.getElementById(id)
         if (el) el.innerHTML = esc(text || '')
@@ -112,6 +119,11 @@
 
     function nowLabel() {
         return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })
+    }
+
+    function setLastAction(text, tone) {
+        setStatusState('last-action-status', text || 'idle', tone || 'neutral')
+        setText('last-action-time', nowLabel())
     }
 
     function renderTimeline() {
@@ -442,7 +454,8 @@
         }
         setPresetBadge()
         applyWorkspace(preset.workspace)
-        daemonControlStatus.textContent = 'preset ' + (PRESET_LABELS[name] || name)
+        setStatusState('daemon-control-status', 'preset ' + (PRESET_LABELS[name] || name), 'success')
+        setLastAction('workspace preset restored', 'success')
         pushTimeline('workspace', 'workspace preset restored', PRESET_LABELS[name] || name)
     }
 
@@ -644,7 +657,8 @@
                 renderShellOutput()
             })
             .catch(function (err) {
-                setText('shell-status', err.message)
+                setStatusState('shell-status', err.message, 'error')
+                setLastAction('shell list failed', 'error')
                 guardState.shellCount = shellState.sessions.length
                 renderGuardrail()
             })
@@ -660,13 +674,15 @@
                 renderShellOutput()
             })
             .catch(function (err) {
-                setText('shell-status', err.message)
+                setStatusState('shell-status', err.message, 'error')
+                setLastAction('shell refresh failed', 'error')
                 renderGuardrail()
             })
     }
 
     function createShell() {
-        setText('shell-status', 'creating...')
+        setStatusState('shell-status', 'creating...', 'pending')
+        setLastAction('shell create started', 'pending')
         fetchJson('/api/shell/create', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -677,12 +693,14 @@
                 shellState.activeId = data.session.session_id
                 renderShellTabs()
                 renderShellOutput()
-                setText('shell-status', 'shell ready')
+                setStatusState('shell-status', 'shell ready', 'success')
+                setLastAction('shell created', 'success')
                 pushTimeline('shell', 'shell created', data.session.session_id + ' · pid=' + data.session.pid)
                 applyWorkspace('shell')
             })
             .catch(function (err) {
-                setText('shell-status', err.message)
+                setStatusState('shell-status', err.message, 'error')
+                setLastAction('shell create failed', 'error')
                 pushTimeline('error', 'shell create failed', err.message)
             })
     }
@@ -702,11 +720,13 @@
                 shellState.activeId = shellState.sessions.length ? shellState.sessions[0].session_id : ''
                 renderShellTabs()
                 renderShellOutput()
-                setText('shell-status', 'shell closed')
+                setStatusState('shell-status', 'shell closed', 'success')
+                setLastAction('shell closed', 'success')
                 pushTimeline('shell', 'shell closed', sessionId)
             })
             .catch(function (err) {
-                setText('shell-status', err.message)
+                setStatusState('shell-status', err.message, 'error')
+                setLastAction('shell close failed', 'error')
                 pushTimeline('error', 'shell close failed', err.message)
             })
     }
@@ -714,7 +734,8 @@
     function sendShellInput() {
         var input = document.getElementById('shell-input').value || ''
         if (!shellState.activeId || !input.trim()) return
-        setText('shell-status', 'sending...')
+        setStatusState('shell-status', 'sending...', 'pending')
+        setLastAction('shell input sending', 'pending')
         fetchJson('/api/shell/write', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -726,11 +747,13 @@
                 })
                 document.getElementById('shell-input').value = ''
                 renderShellOutput()
-                setText('shell-status', 'sent')
+                setStatusState('shell-status', 'sent', 'success')
+                setLastAction('shell input sent', 'success')
                 pushTimeline('shell', 'shell input sent', shellState.activeId)
             })
             .catch(function (err) {
-                setText('shell-status', err.message)
+                setStatusState('shell-status', err.message, 'error')
+                setLastAction('shell input failed', 'error')
                 pushTimeline('error', 'shell input failed', err.message)
             })
     }
@@ -738,10 +761,12 @@
     function connectEvents() {
         if (es) es.close()
         es = new EventSource(relayBase() + '/events')
-        setText('relay-status', 'connecting')
+        setStatusState('relay-status', 'connecting', 'pending')
+        setLastAction('relay connecting', 'pending')
         setGuardRelay('connecting')
         es.onopen = function () {
-            setText('relay-status', 'connected')
+            setStatusState('relay-status', 'connected', 'success')
+            setLastAction('relay connected', 'success')
             setGuardRelay('connected')
             pushTimeline('relay', 'relay connected', relayBase())
             saveLayout()
@@ -755,11 +780,13 @@
                     refreshActiveShell()
                 }
             } catch (err) {
-                setText('relay-status', 'event parse error: ' + err)
+                setStatusState('relay-status', 'event parse error', 'error')
+                setLastAction('relay event parse error', 'error')
             }
         }
         es.onerror = function () {
-            setText('relay-status', 'connection error')
+            setStatusState('relay-status', 'connection error', 'error')
+            setLastAction('relay connection error', 'error')
             setGuardRelay('connection error')
             pushTimeline('error', 'relay connection error', relayBase())
         }
@@ -767,27 +794,31 @@
 
     function daemonAction(action) {
         var interval = Number(document.getElementById('daemon-interval-input').value || 10)
-        daemonControlStatus.textContent = action + '...'
+        setStatusState('daemon-control-status', action + '...', 'pending')
+        setLastAction('daemon ' + action + ' started', 'pending')
         fetchJson('/api/daemon/' + action, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ interval_minutes: interval }),
         })
             .then(function (data) {
-                daemonControlStatus.textContent = data.stdout || (action + ' ok')
+                setStatusState('daemon-control-status', data.stdout || (action + ' ok'), 'success')
+                setLastAction('daemon ' + action + ' ok', 'success')
                 pushTimeline('daemon', 'daemon ' + action + ' ok', (data.stdout || '').trim().slice(0, 180))
                 updateStatus({ status: data.status })
                 refreshLogs()
             })
             .catch(function (err) {
-                daemonControlStatus.textContent = err.message
+                setStatusState('daemon-control-status', err.message, 'error')
+                setLastAction('daemon ' + action + ' failed', 'error')
                 pushTimeline('error', 'daemon ' + action + ' failed', err.message)
             })
     }
 
     function setThreadLock(mode) {
         var path = mode === 'readonly' ? '/api/thread/lock' : '/api/thread/unlock'
-        lockStatus.textContent = 'updating...'
+        setStatusState('thread-lock-status', 'updating...', 'pending')
+        setLastAction('thread lock update started', 'pending')
         fetchJson(path, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -798,11 +829,13 @@
         })
             .then(function (data) {
                 updateThreadLock(data.thread_lock)
-                lockStatus.textContent = 'ok'
+                setStatusState('thread-lock-status', 'ok', 'success')
+                setLastAction('thread lock updated', 'success')
                 pushTimeline('thread', 'thread lock ' + mode, (data.thread_lock && data.thread_lock.note) || '')
             })
             .catch(function (err) {
-                lockStatus.textContent = err.message
+                setStatusState('thread-lock-status', err.message, 'error')
+                setLastAction('thread lock update failed', 'error')
                 pushTimeline('error', 'thread lock update failed', err.message)
             })
     }
@@ -814,12 +847,14 @@
                 updateStatus({ status: data })
                 refreshLogs()
                 refreshShellList()
-                setText('relay-status', 'manual refresh ok')
+                setStatusState('relay-status', 'manual refresh ok', 'success')
+                setLastAction('manual refresh ok', 'success')
                 setGuardRelay('reachable')
                 pushTimeline('relay', 'manual refresh', 'status + logs + shell list')
             })
             .catch(function (err) {
-                setText('relay-status', err.message)
+                setStatusState('relay-status', err.message, 'error')
+                setLastAction('manual refresh failed', 'error')
                 setGuardRelay('manual refresh failed')
                 pushTimeline('error', 'manual refresh failed', err.message)
             })
@@ -832,7 +867,8 @@
     })
     document.getElementById('layout-save').addEventListener('click', function () {
         saveLayout()
-        daemonControlStatus.textContent = 'layout saved'
+        setStatusState('daemon-control-status', 'layout saved', 'success')
+        setLastAction('layout saved', 'success')
     })
     document.getElementById('layout-reset').addEventListener('click', resetLayout)
     document.getElementById('pane-add-monitor').addEventListener('click', addMonitorPane)
@@ -878,7 +914,8 @@
             message: messageInput.value || '',
             force: !!forceInput.checked,
         }
-        sendStatus.textContent = 'sending...'
+        setStatusState('thread-send-status', 'sending...', 'pending')
+        setLastAction('thread send started', 'pending')
         fetch(relayBase() + '/api/thread/send', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -891,14 +928,16 @@
                 })
             })
             .then(function (data) {
-                sendStatus.textContent = 'sent'
+                setStatusState('thread-send-status', 'sent', 'success')
+                setLastAction('thread message sent', 'success')
                 if (data.thread_lock) updateThreadLock(data.thread_lock)
                 setHtml('thread-output', data.last_message || data.stdout || '')
                 pushTimeline('thread', 'thread message sent', body.thread_id || 'unknown thread')
                 refreshLogs()
             })
             .catch(function (err) {
-                sendStatus.textContent = err.message
+                setStatusState('thread-send-status', err.message, 'error')
+                setLastAction('thread send failed', 'error')
                 pushTimeline('error', 'thread send failed', err.message)
             })
     })

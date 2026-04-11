@@ -57,3 +57,4 @@
 - 新增本地 event timeline pane，集中记录 daemon、thread lock、shell 与 relay 的最近动作
 - 新增 `Overview / Thread Desk / Shell Lab / Debug` workspace presets，可一键把 pane 排回预设工位并保留 `custom` 布局状态
 - 新增 `Operation Guardrails` 状态条，集中提示 relay 连接、thread 冲突风险，以及 readonly / shell 失效时的恢复建议
+- 现有 relay / daemon / thread / shell 操作状态改成统一的颜色反馈，并补了 `Last Action` 动作回执，便于快速判断刚刚是成功、等待还是失败

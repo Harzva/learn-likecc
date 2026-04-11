@@ -11219,6 +11219,38 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     color: var(--text-secondary);
 }
 
+.codex-console-status {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-inline: 4px;
+    font-size: 0.78rem;
+    line-height: 1.2;
+    background: rgba(226, 232, 240, 0.96);
+    color: var(--text-secondary);
+}
+
+.codex-console-status--neutral {
+    background: rgba(226, 232, 240, 0.96);
+    color: var(--text-secondary);
+}
+
+.codex-console-status--pending {
+    background: rgba(254, 243, 199, 0.96);
+    color: #b45309;
+}
+
+.codex-console-status--success {
+    background: rgba(220, 252, 231, 0.96);
+    color: #047857;
+}
+
+.codex-console-status--error {
+    background: rgba(254, 226, 226, 0.98);
+    color: #b91c1c;
+}
+
 .codex-console-tabs {
     display: flex;
     flex-wrap: wrap;

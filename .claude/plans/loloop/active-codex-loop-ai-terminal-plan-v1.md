@@ -37,7 +37,7 @@ Scope: local AI terminal for `codex-loop` with daemon control, protected thread 
 
 - [x] Add an event timeline pane
 - [x] Add recent action history for daemon start/stop, thread lock/unlock, and shell create/close
-- [ ] Add clearer success / error feedback for relay actions
+- [x] Add clearer success / error feedback for relay actions
 
 ## Validation
 
