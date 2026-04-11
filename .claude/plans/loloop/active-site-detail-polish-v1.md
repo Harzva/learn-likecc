@@ -203,6 +203,8 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Mark the current `ARIS` clarification subthread locally done and freeze further micro-rows unless a genuinely new shell signal appears
 - [x] Stay on Task 6 for one bounded non-ARIS navigation pass after the ARIS subthread close-out
 - [x] Add one top-nav jump to `AI Scientist-v2` so the third main sample matches the direct-entry treatment already given to the AIDE lane and footer nav
+- [x] Stay on Task 6 for one bounded broader-hub state pass after the non-ARIS navigation fix
+- [x] Mark the current broader VibePaper polish wave as locally deferred until a new upstream intake, shell signal, or clearly higher-value structure gap appears
 
 ## Guardrail
 
