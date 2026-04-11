@@ -148,6 +148,63 @@
                     <p>这也是为什么 <code>Session Stack</code> 现在更像一个带 guardrails 的 operator summary，而不是完整 session browser，更不是 agent 自我意识看板。</p>
                 </section>
 
+                <section class="section-block">
+                    <h2>再压一层：把 <code>Session Stack</code> 读成五层控制面契约</h2>
+                    <p>如果只把这一块看成“又多了几个状态卡片”，它会继续显得很碎。更稳定的读法，是把它当成一个固定的 operator reading order。</p>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>层</th>
+                                    <th>当前表面</th>
+                                    <th>它先回答什么</th>
+                                    <th>不该承担什么</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td><code>Quick Actions</code></td>
+                                    <td>现在能立刻开哪个工位、触发哪个入口动作</td>
+                                    <td>不负责解释系统为什么异常</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td><code>Attention Queue</code></td>
+                                    <td>下一步最该处理的是 relay、thread 还是 shell</td>
+                                    <td>不重复完整状态明细</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td><code>Session Identity</code></td>
+                                    <td>当前 daemon / thread / active shell 具体是谁</td>
+                                    <td>不替代 assignment 或日志正文</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td><code>Desk Assignments</code></td>
+                                    <td><code>Overview / Thread Desk / Shell Lab</code> 这几个工位各自接管了什么对象</td>
+                                    <td>不做更深的 shell runtime 排障</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td><code>Shell Roster</code></td>
+                                    <td>进入 shell 级别，继续看 active / standby / closed 的细节</td>
+                                    <td>不回头承担全局控制面摘要</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>这样切之后，<code>Session Stack</code> 的阅读顺序就更清楚了。</p>
+                    <ul>
+                        <li>先看 <code>Quick Actions</code>，确认入口工位和恢复动作还在不在。</li>
+                        <li>再看 <code>Attention Queue</code>，判断现在最热的风险到底落在 relay、thread 还是 shell。</li>
+                        <li>再看 <code>Session Identity</code> 与 <code>Desk Assignments</code>，确认“是谁”以及“哪个工位接着它”。</li>
+                        <li>最后才下钻到 <code>Shell Roster</code>，处理具体 session 的 runtime 细节。</li>
+                    </ul>
+                    <p>这套分层对 LikeCode 的意义，不是把一页做得更复杂，而是守住一个约束：<strong>同一层只回答同一种 operator 问题</strong>。否则一旦 <code>Session Identity</code>、<code>Desk Assignments</code>、<code>Shell Roster</code> 都开始同时回答“当前谁接管了哪个 shell”，这个控制面很快又会退回“信息很多，但没人知道先看哪”的状态。</p>
+                </section>
+
                 <section id="codex-loop-console" class="section-block codex-console-shell">
                     <div class="codex-console-canvas">
                         <section class="codex-console-panel codex-console-panel--daemon" data-panel-id="daemon-status" data-workspace-group="overview,debug" style="left:0;top:0;width:320px;height:250px;">

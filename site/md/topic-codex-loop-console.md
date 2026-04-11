@@ -97,3 +97,24 @@
 - 但本页仍然只服务一个本地 loop workspace：它优先回答 `daemon / thread / shell` 现在谁接管、谁可写、下一步该处理什么
 
 这也是为什么 `Session Stack` 现在更像一个带 guardrails 的 operator summary，而不是完整 session browser，更不是 agent 自我意识看板。
+
+## 再压一层：把 `Session Stack` 读成五层控制面契约
+
+如果只把这一块看成“又多了几个状态卡片”，它会继续显得很碎。更稳定的读法，是把它当成一个固定的 operator reading order：
+
+| 层 | 当前表面 | 它先回答什么 | 不该承担什么 |
+| --- | --- | --- | --- |
+| 1 | `Quick Actions` | 现在能立刻开哪个工位、触发哪个入口动作 | 不负责解释系统为什么异常 |
+| 2 | `Attention Queue` | 下一步最该处理的是 relay、thread 还是 shell | 不重复完整状态明细 |
+| 3 | `Session Identity` | 当前 daemon / thread / active shell 具体是谁 | 不替代 assignment 或日志正文 |
+| 4 | `Desk Assignments` | `Overview / Thread Desk / Shell Lab` 这几个工位各自接管了什么对象 | 不做更深的 shell runtime 排障 |
+| 5 | `Shell Roster` | 进入 shell 级别，继续看 active / standby / closed 的细节 | 不回头承担全局控制面摘要 |
+
+这样切之后，`Session Stack` 的阅读顺序就更清楚了：
+
+- 先看 `Quick Actions`，确认入口工位和恢复动作还在不在。
+- 再看 `Attention Queue`，判断现在最热的风险到底落在 relay、thread 还是 shell。
+- 再看 `Session Identity` 与 `Desk Assignments`，确认“是谁”以及“哪个工位接着它”。
+- 最后才下钻到 `Shell Roster`，处理具体 session 的 runtime 细节。
+
+这套分层对 LikeCode 的意义，不是把一页做得更复杂，而是守住一个约束：**同一层只回答同一种 operator 问题**。否则一旦 `Session Identity`、`Desk Assignments`、`Shell Roster` 都开始同时回答“当前谁接管了哪个 shell”，这个控制面很快又会退回“信息很多，但没人知道先看哪”的状态。

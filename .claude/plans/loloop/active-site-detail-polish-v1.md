@@ -258,6 +258,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Verify the Task 9 dual-badge desk-assignment pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
 - [x] Stay on Task 9 for one more bounded top-level-scanability follow-up after the dual-badge assignment pass
 - [x] Upgrade the `Session Stack` panel head so daemon/thread/shell all have headline badges instead of leaving only the shell count visible at the title line
+- [x] Reopen Task 9 for one bounded site-facing teaching pass after the frontend micro-wave was locally deferred
+- [x] Add one explicit five-layer `Session Stack` reading contract to `topic-codex-loop-console`
+- [x] Verify the Task 9 control-contract pass with `python3 tools/check_site_md_parity.py`
 - [x] Choose `topic-codex-loop-console` as the next fresh Task 8 destination after deferring the `topic-agent-comparison` subthread
 - [x] Add one repo-backed operator-surface note so `Session Browser / Workbench / HUD / Local Desk` boundaries are explicit on the AI Terminal topic page
 - [x] Verify the Task 8 operator-surface pass with `python3 tools/check_site_md_parity.py`
