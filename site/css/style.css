@@ -13004,3 +13004,67 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 .topic-sourcemap-actions-centered {
     justify-content: center;
 }
+
+.source-derived-section {
+    background: var(--bg-secondary);
+}
+
+.source-derived-section--top {
+    padding-top: 60px;
+}
+
+.source-derived-section--bottom {
+    padding-bottom: 60px;
+}
+
+.source-derived-event-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.source-derived-boundary-note {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.source-derived-desc {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.source-derived-tools-grid {
+    max-width: 960px;
+    margin: 2rem auto 0;
+}
+
+.source-derived-table-wrap {
+    overflow-x: auto;
+    max-width: 1000px;
+    margin: 1.5rem auto 0;
+}
+
+.source-derived-options-table {
+    width: 100%;
+    min-width: 640px;
+}
+
+.source-derived-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    max-width: 900px;
+    margin: 1.5rem auto 0;
+}
+
+.source-derived-section-block {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.source-derived-section-block--spaced {
+    margin-bottom: 1.5rem;
+}
+
+.source-derived-actions {
+    text-align: center;
+    margin-top: 1.5rem;
+}

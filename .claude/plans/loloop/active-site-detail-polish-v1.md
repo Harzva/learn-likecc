@@ -463,6 +463,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Keep the deferred overnight media wave closed after the `topic-cc-buddy` cleanup and stay on the low-risk site-polish line
 - [x] Replace the remaining inline layout styling on `site/topic-sourcemap.html` with scoped classes
 - [x] Verify that `site/topic-sourcemap.html` no longer uses inline `style=` attributes
+- [x] Keep the deferred overnight media wave closed after the `topic-sourcemap` cleanup and stay on the low-risk site-polish line
+- [x] Replace the remaining inline layout styling on `site/topic-source-derived.html` with scoped classes
+- [x] Verify that `site/topic-source-derived.html` no longer uses inline `style=` attributes
 
 ## Guardrail
 

@@ -52,16 +52,16 @@
         </div>
     </section>
 
-    <section id="boundary" class="section" style="background: var(--bg-secondary); padding-top: 60px;">
+    <section id="boundary" class="section source-derived-section source-derived-section--top">
         <div class="container">
             <h2 class="section-title">材料边界（必读）</h2>
-            <ul class="source-map-event-list" style="max-width: 800px; margin: 0 auto;">
+            <ul class="source-map-event-list source-derived-event-list">
                 <li><strong>能信什么</strong>：文件路径、模块边界、类型与函数名、Feature Flag 开关、与公开 SDK（<code>@anthropic-ai/sdk</code>、<code>@modelcontextprotocol/sdk</code>）的接法——这些对理解<strong>产品外壳怎么搭</strong>足够硬。</li>
                 <li><strong>不能推什么</strong>：模型能力、训练数据、服务端策略；泄露的是<strong>客户端/CLI 控制面</strong>，不是模型权重。</li>
                 <li><strong>树是否可编译</strong>：原始快照依赖 Bun 打包特性、内联资源与内部配置，本仓库的 <code>ccsource</code> 可能经社区修补；读思想比「一键 tsc」更重要。参见仓库内 <code>.claude/rules/reverse-engineering.md</code>。</li>
                 <li><strong>合规</strong>：仅作个人学习与安全研究语境下的架构分析；勿用于绕过许可、仿冒分发或攻击。</li>
             </ul>
-            <p class="section-desc" style="margin-top: 1.5rem; text-align: center;">
+            <p class="section-desc source-derived-boundary-note">
                 事件背景与规模数据：<a href="https://github.com/Harzva/learn-likecc/blob/main/wemedia/zhihu/articles/09-SourceMap%E6%B3%84%E9%9C%B2%E4%BA%8B%E4%BB%B6%E5%A4%8D%E7%9B%98.md" target="_blank" rel="noopener noreferrer">长文复盘（MD）↗</a>
                 · <a href="https://github.com/Harzva/learn-likecc/blob/main/ccsource/CC/cli.js.map.README.md" target="_blank" rel="noopener noreferrer">cli.js.map 说明 ↗</a>
             </p>
@@ -71,10 +71,10 @@
     <section id="ideas" class="section">
         <div class="container">
             <h2 class="section-title">六条可迁移的「实现哲学」</h2>
-            <p class="section-desc" style="max-width: 720px; margin-left: auto; margin-right: auto;">
+            <p class="section-desc source-derived-desc">
                 以下从重建树中反复出现的结构归纳——适用于任何「LLM + 工具 + 终端」类产品，而非背诵某个函数名。
             </p>
-            <div class="tools-grid" style="max-width: 960px; margin: 2rem auto 0;">
+            <div class="tools-grid source-derived-tools-grid">
                 <div class="tool-card">
                     <span class="tool-icon">🎯</span>
                     <h4>编排中心化</h4>
@@ -109,12 +109,12 @@
         </div>
     </section>
 
-    <section id="modules" class="section" style="background: var(--bg-secondary);">
+    <section id="modules" class="section source-derived-section">
         <div class="container">
             <h2 class="section-title">模块 ↔ 思想（真实路径速查）</h2>
             <p class="section-desc">路径相对于仓库 <code>ccsource/claude-code-main/</code>。</p>
-            <div class="table-wrapper" style="overflow-x: auto; max-width: 1000px; margin: 1.5rem auto 0;">
-                <table class="options-table" style="width: 100%; min-width: 640px;">
+            <div class="table-wrapper source-derived-table-wrap">
+                <table class="options-table source-derived-options-table">
                     <tr><th>路径</th><th>读什么细节</th><th>提炼什么思想</th></tr>
                     <tr>
                         <td><code>src/QueryEngine.ts</code></td>
@@ -154,10 +154,10 @@
     <section id="deep-toc" class="section">
         <div class="container">
             <h2 class="section-title">硬读导航（带锚点）</h2>
-            <p class="section-desc" style="max-width: 720px; margin-left: auto; margin-right: auto;">
+            <p class="section-desc source-derived-desc">
                 下列摘录来自重建树 <code>ccsource/claude-code-main/</code>，仅作<strong>教学引用</strong>（少量连续行），便于你对照类型名与函数名；完整版权仍属原作者。
             </p>
-            <div class="quickstart-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); max-width: 900px; margin: 1.5rem auto 0;">
+            <div class="quickstart-grid source-derived-grid">
                 <div class="quickstart-card">
                     <h3><a href="#permissions-hard">权限硬读</a></h3>
                     <p><code>AutoModeRules</code>、<code>getDefaultExternalAutoModeRules</code>、<code>EXPLAIN_COMMAND_TOOL</code></p>
@@ -177,11 +177,11 @@
         </div>
     </section>
 
-    <section id="permissions-hard" class="section" style="background: var(--bg-secondary);">
+    <section id="permissions-hard" class="section source-derived-section">
         <div class="container">
             <h2 class="section-title">权限硬读 · <code>yoloClassifier</code> + <code>permissionExplainer</code></h2>
 
-            <div class="section-block" style="max-width: 900px; margin: 0 auto 1.5rem;">
+            <div class="section-block source-derived-section-block source-derived-section-block--spaced">
                 <h3 id="perm-tags">1. 策略如何落进 JSON 设置：<code>AutoModeRules</code></h3>
                 <p>三段式 <code>allow</code> / <code>soft_deny</code> / <code>environment</code> 与模板标签 <code>&lt;user_*_to_replace&gt;</code> 对齐，<code>getDefaultExternalAutoModeRules</code> 负责把模板「默认值」解析成数组——CLI 导出默认规则时不必硬编码在 TS 里。</p>
                 <div class="code-block">
@@ -202,7 +202,7 @@ export function getDefaultExternalAutoModeRules(): AutoModeRules {
                 </div>
             </div>
 
-            <div class="section-block" style="max-width: 900px; margin: 0 auto 1.5rem;">
+            <div class="section-block source-derived-section-block source-derived-section-block--spaced">
                 <h3 id="perm-explainer">2. 面向 UX 的结构化解释：<code>explain_command</code></h3>
                 <p>不是让模型自由写段落，而是<strong>强制 tool 形状</strong>输出 <code>riskLevel</code>（三档枚举）+ 短 <code>risk</code>，下游 UI 可稳定做颜色/按钮，而不是解析自然语言。</p>
                 <div class="code-block">
@@ -229,7 +229,7 @@ const EXPLAIN_COMMAND_TOOL = {
                 <p>解析侧用 <code>RiskAssessmentSchema</code>（Zod）与 tool 输出对齐，避免「模型多写一句就 JSON 失效」时无处兜底。</p>
             </div>
 
-            <div class="section-block" style="max-width: 900px; margin: 0 auto;">
+            <div class="section-block source-derived-section-block">
                 <h3 id="perm-readlist">走读清单（权限）</h3>
                 <ol>
                     <li>在 <code>yoloClassifier.ts</code> 搜 <code>isUsingExternalPermissions</code>，理清 <code>USER_TYPE</code> 与 GrowthBook 配置如何切换内外模板。</li>
@@ -244,7 +244,7 @@ const EXPLAIN_COMMAND_TOOL = {
         <div class="container">
             <h2 class="section-title">Compact 硬读 · <code>compactConversation</code></h2>
 
-            <div class="section-block" style="max-width: 900px; margin: 0 auto 1.5rem;">
+            <div class="section-block source-derived-section-block source-derived-section-block--spaced">
                 <h3 id="compact-entry">1. 入口即立边界：token 计数与参数面</h3>
                 <p><code>compactConversation</code> 接收完整 <code>messages</code> 与 <code>ToolUseContext</code>，第一步就做 <code>tokenCountWithEstimation(messages)</code>，随后进入 compact 专用 SDK 状态（如 <code>setSDKStatus('compacting')</code>）。思想：<strong>压缩是和普通对话并列的一等流程</strong>，要有独立进度与可取消信号。</p>
                 <div class="code-block">
@@ -273,12 +273,12 @@ export async function compactConversation(
                 </div>
             </div>
 
-            <div class="section-block" style="max-width: 900px; margin: 0 auto 1.5rem;">
+            <div class="section-block source-derived-section-block source-derived-section-block--spaced">
                 <h3 id="compact-hooks">2. PreCompact Hook 与指令合并</h3>
                 <p><code>executePreCompactHooks</code> 可把额外指令写回 <code>customInstructions</code>（经 <code>mergeHookInstructions</code>），等于给「自动/手动压缩」加了一层用户可插桩策略；与 D 课里「压缩不是悄悄 slice」一致。</p>
             </div>
 
-            <div class="section-block" style="max-width: 900px; margin: 0 auto;">
+            <div class="section-block source-derived-section-block">
                 <h3 id="compact-readlist">走读清单（Compact）</h3>
                 <ol>
                     <li>从 <code>compactConversation</code> 往下跟 <code>streamCompactSummary</code>，看摘要请求如何插入消息列表。</li>
@@ -289,13 +289,13 @@ export async function compactConversation(
         </div>
     </section>
 
-    <section id="map-course" class="section" style="background: var(--bg-secondary); padding-bottom: 60px;">
+    <section id="map-course" class="section source-derived-section source-derived-section--bottom">
         <div class="container">
             <h2 class="section-title">与 S / D 课程怎么配合？</h2>
-            <p class="section-desc" style="max-width: 720px; margin-left: auto; margin-right: auto;">
+            <p class="section-desc source-derived-desc">
                 主线课讲概念与伪代码；本专题给你<strong>「打开哪几个 ts 文件」</strong>。建议顺序：S01 / <a href="d01.html">D01</a>（含 <a href="d01.html#d01-practice-min-loop">最小 Loop 练习</a>与<a href="d01.html#d01-think">思考题答案</a>）→ 对照 <code>QueryEngine.ts</code>；S03/D03 → <a href="#permissions-hard">权限硬读</a>；S05/D05 → <a href="#compact-hard">Compact 硬读</a>；S07/D07 → <code>services/mcp/client.ts</code>。
             </p>
-            <p style="text-align: center; margin-top: 1.5rem;">
+            <p class="source-derived-actions">
                 <a href="index.html#courses" class="btn btn-primary">去课程表</a>
                 <a href="https://github.com/Harzva/learn-likecc/blob/main/awesome-claude-code-source.md" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Awesome 镜像列表 ↗</a>
             </p>
