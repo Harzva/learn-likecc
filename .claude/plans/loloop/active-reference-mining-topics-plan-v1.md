@@ -24,6 +24,7 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - [x] Mark the current `topic-codex-loop-console` subthread locally deferred after the operator-surface pass because another immediate pass would now be lower value than switching to a fresh reference destination
 - [x] Choose `topic-agent-hot` as the next bounded site-facing destination because `OfficeCLI` fits the curated-hot format and adds an artifact-control CLI pattern that is missing from the current page
 - [x] Add one repo-backed `OfficeCLI` hotspot note clarifying why document-control CLIs are a distinct agent tool surface, not just another coding shell
+- [x] Mark the current `topic-agent-hot` subthread locally deferred after the `OfficeCLI` hotspot pass because another immediate pass would now be lower value than switching to a fresh reference destination
 
 ## Newly added references
 
@@ -130,3 +131,4 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - Third bounded Task 8 destination is now `topic-codex-loop-console`, using `hermes-webui`, `claudecodeui`, and `hermes-hud` to separate session browser, workbench, and operator-HUD surfaces before the local AI Terminal drifts into a generic “agent UI” bucket
 - Current local state: the `topic-codex-loop-console` subthread is locally deferred until a stronger operator-UX pattern, CLI-control gap, or clearer site destination appears
 - Fourth bounded Task 8 destination is now `topic-agent-hot`, using `OfficeCLI` to show that an agent-oriented CLI can expose a full artifact control plane, embedded `SKILL.md`, and live preview loop without being another general coding shell
+- Current local state: the `topic-agent-hot` subthread is locally deferred until a stronger hotspot source, artifact-control pattern, or clearer site destination appears
