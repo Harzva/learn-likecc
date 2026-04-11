@@ -378,6 +378,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Treat the next overnight non-publish slice as Task 2 topic selection rather than reopening the now-ready `36-*` workflow article
 - [x] Review existing `site/topic-*.html` pages against current Zhihu article coverage and shortlist 1 to 3 high-value promotion candidates
 - [x] Mark `topic-vibepaper` as the strongest next Zhihu-promotion candidate, with `topic-codex-loop-console` and `topic-autoresearch-unpacked` as the next fallback lane
+- [x] Stay on Task 2 after the shortlist and turn `topic-vibepaper` into the first actual draft target rather than reopening the candidate selection again
+- [x] Create a reusable VibePaper screenshot config plus one bounded set of local captures for the hero, sample-structure, shell-thickness, and route sections
+- [x] Write the first VibePaper Zhihu-style Markdown draft under `wemedia/zhihu/articles/` and verify that it references the newly captured local images
 
 ## Guardrail
 
