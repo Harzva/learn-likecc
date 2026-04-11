@@ -83,6 +83,32 @@ Mermaid 更适合：是。
 - 官方文档：`https://code.claude.com/docs/en/changelog`（`2.1.101`, 2026-04-10）
 - GitHub Raw：`https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md`
 
+## 再补一刀：managed hooks 开始更像“策略层”，而不是脆弱配置拼图
+
+`2.1.101` 里还有两条应该放在一起看：一是 **`settings.json` 里出现无法识别的 hook event 名，也不会再让整份设置文件失效**；二是当组织策略开启 `allowManagedHooksOnly` 时，**通过 managed settings 强制启用的 plugin hooks 仍然会继续运行**。
+
+这条为什么值得单独记：
+
+- 它说明 Claude Code 团队开始把 hook system 当成治理面，而不只是本地开发者的小配置
+- 它把“用户自己写坏了一个 hook 字段”与“组织级策略必须持续生效”这两类故障拆开处理，避免本地配置问题误伤 managed policy
+- 它对企业或团队环境特别关键，因为一旦 hooks 被拿来做审计、格式化、安全检查或工作流约束，系统最怕的不是不能扩展，而是 **一个小配置错误就让整层策略一起失效**
+
+如果把前面的 Ultraplan gating 看成“能力入口按前提条件显式隐藏”，那这一刀更像“策略层按管理边界显式生效”。它提醒我们：当系统进入多人协作和托管策略阶段，配置解析容错和 managed precedence 本身就是控制面的一部分。
+
+### [插图提示词]
+
+用途：画“Claude Code managed hooks precedence”小图，说明本地 settings、plugin hooks、managed settings 之间的优先关系。  
+形式：层级图。  
+提示词：画一个 Claude Code managed hooks precedence 图。上层是 managed settings / allowManagedHooksOnly policy，中层是 force-enabled plugin hooks，下层是 user/project settings hooks。旁边标一条错误恢复支路：unrecognized hook event 不再让整个 settings.json 失效。底部补一句说明：本地配置错误不应破坏组织级策略执行。  
+Mermaid 更适合：是。
+
+### 本轮原始来源
+
+- 官方文档：`https://code.claude.com/docs/en/changelog`（`2.1.101`, 2026-04-10）
+- 官方文档：`https://code.claude.com/docs/en/hooks`
+- 官方文档：`https://code.claude.com/docs/en/permissions`
+- GitHub Raw：`https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md`
+
 ## 再补一刀：plan mode 会在 Web 根本不可达时直接隐藏 Refine with Ultraplan
 
 `2.1.101` 里还有一条很像能力前置判定的变化：当用户的 org 或 auth setup **根本到不了 Claude Code on the web** 时，plan mode 现在会 **直接隐藏 `Refine with Ultraplan`**，而不是先把按钮摆出来，再让你点到失败。

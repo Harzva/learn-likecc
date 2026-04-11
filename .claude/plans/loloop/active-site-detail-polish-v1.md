@@ -289,6 +289,8 @@ Continue Task 4 Claude changelog watch after the tracing opt-in slice.
 - [x] Tighten the Hermes 07 / 08 closeout so the page lands on clearer stack-design takeaways, then mark the current Hermes wave locally done
 - [x] Choose Task 4 as the next best remaining main-site move after the Hermes closeout
 - [x] Add one `2.1.101` tracing-opt-in release-watch slice explaining why sensitive OTEL trace fields moved behind explicit env flags
+- [x] Stay on Task 4 for one more bounded `2.1.101` governance slice after the tracing opt-in note
+- [x] Add one managed-hooks release-watch note explaining settings fault-tolerance and `allowManagedHooksOnly` policy precedence
 - [x] Verify the Task 9 headline-badges pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail

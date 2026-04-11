@@ -8,7 +8,8 @@ Scope: monitor Claude / Claude Code changelogs, extract worthwhile keywords or s
 - [x] Keep tracking recent Claude changelog deltas and choose the next keyword worth turning into a site draft
 - [ ] Prefer updates that have clear teaching value for our site, not just release-note novelty
 - [ ] Keep the best-fit site destination explicit before drafting
-- [ ] Continue Task 4 with the next bounded keyword after the tracing opt-in slice
+- [x] Continue Task 4 with the next bounded keyword after the tracing opt-in slice
+- [ ] Continue Task 4 with one more bounded keyword after the managed-hooks slice
 
 ## Primary sources
 
@@ -32,6 +33,10 @@ Scope: monitor Claude / Claude Code changelogs, extract worthwhile keywords or s
   - `site/topic-cc-release-watch.html`
   - `site/md/topic-cc-release-watch.md`
 - [x] Added one `2.1.101` tracing-opt-in note explaining why sensitive OTEL trace fields moved behind explicit env flags
+- [x] Destination kept explicit for the managed-hooks slice:
+  - `site/topic-cc-release-watch.html`
+  - `site/md/topic-cc-release-watch.md`
+- [x] Added one `2.1.101` managed-hooks note explaining settings fault-tolerance and `allowManagedHooksOnly` policy precedence
 
 ## Good candidate types
 

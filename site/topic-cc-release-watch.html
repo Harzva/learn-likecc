@@ -243,6 +243,21 @@
                     <p><strong>本轮原始来源</strong>：<a href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener noreferrer">官方文档 changelog</a>（<code>2.1.101</code>, 2026-04-10）与 <a href="https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">GitHub Raw CHANGELOG</a>。</p>
                 </section>
 
+                <section id="managed-hooks-keyword" class="section-block">
+                    <h2>再补一刀：managed hooks 开始更像“策略层”，而不是脆弱配置拼图</h2>
+                    <p><code>2.1.101</code> 里还有两条应该放在一起看：一是<strong><code>settings.json</code> 里出现无法识别的 hook event 名，也不会再让整份设置文件失效</strong>；二是当组织策略开启 <code>allowManagedHooksOnly</code> 时，<strong>通过 managed settings 强制启用的 plugin hooks 仍然会继续运行</strong>。</p>
+                    <p>这条为什么值得单独记：第一，它说明 Claude Code 团队开始把 hook system 当成治理面，而不只是本地开发者的小配置；第二，它把“用户自己写坏了一个 hook 字段”与“组织级策略必须持续生效”这两类故障拆开处理，避免本地配置问题误伤 managed policy；第三，它对企业或团队环境特别关键，因为一旦 hooks 被拿来做审计、格式化、安全检查或工作流约束，系统最怕的不是不能扩展，而是<strong>一个小配置错误就让整层策略一起失效</strong>。</p>
+                    <p>如果把前面的 Ultraplan gating 看成“能力入口按前提条件显式隐藏”，那这一刀更像“策略层按管理边界显式生效”。它提醒我们：当系统进入多人协作和托管策略阶段，配置解析容错和 managed precedence 本身就是控制面的一部分。</p>
+                    <div class="course-quote">
+                        <p><strong>[插图提示词]</strong></p>
+                        <p>用途：画“Claude Code managed hooks precedence”小图，说明本地 settings、plugin hooks、managed settings 之间的优先关系。</p>
+                        <p>形式：层级图。</p>
+                        <p>提示词：画一个 Claude Code managed hooks precedence 图。上层是 managed settings / allowManagedHooksOnly policy，中层是 force-enabled plugin hooks，下层是 user/project settings hooks。旁边标一条错误恢复支路：unrecognized hook event 不再让整个 settings.json 失效。底部补一句说明：本地配置错误不应破坏组织级策略执行。</p>
+                        <p>Mermaid 更适合：是。</p>
+                    </div>
+                    <p><strong>本轮原始来源</strong>：<a href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener noreferrer">官方文档 changelog</a>（<code>2.1.101</code>, 2026-04-10）、<a href="https://code.claude.com/docs/en/hooks" target="_blank" rel="noopener noreferrer">Hooks reference</a>、<a href="https://code.claude.com/docs/en/permissions" target="_blank" rel="noopener noreferrer">Permissions docs</a> 与 <a href="https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">GitHub Raw CHANGELOG</a>。</p>
+                </section>
+
                 <section id="refusal-keyword" class="section-block">
                     <h2>再补一刀：refusal 错误开始把 API 侧解释带出来</h2>
                     <p><code>2.1.101</code> 里还有一条短小但很关键的变化：Claude Code 现在会<strong>在 refusal error message 里带上 API 提供的 explanation</strong>，而不是只告诉你“被拒了”。</p>
