@@ -2,7 +2,61 @@
     var root = document.getElementById('codex-loop-console')
     if (!root) return
 
-    var STORAGE_KEY = 'codex-loop-console-layout-v3'
+    var STORAGE_KEY = 'codex-loop-console-layout-v4'
+    var PRESET_LABELS = {
+        overview: 'Overview',
+        thread: 'Thread Desk',
+        shell: 'Shell Lab',
+        debug: 'Debug',
+        custom: 'Custom',
+    }
+    var PRESET_LAYOUTS = {
+        overview: {
+            workspace: 'overview',
+            monitorSource: 'daemon',
+            panels: {
+                'daemon-status': { left: '0px', top: '0px', width: '300px', height: '230px' },
+                'thread-preview': { left: '320px', top: '0px', width: '380px', height: '230px' },
+                'daemon-log': { left: '0px', top: '250px', width: '340px', height: '300px' },
+                'latest-tick': { left: '360px', top: '250px', width: '340px', height: '300px' },
+                'monitor-1': { left: '720px', top: '0px', width: '340px', height: '230px' },
+                'event-timeline': { left: '720px', top: '250px', width: '340px', height: '300px' },
+            },
+        },
+        thread: {
+            workspace: 'thread',
+            monitorSource: 'last-message',
+            panels: {
+                'thread-compose': { left: '0px', top: '0px', width: '520px', height: '550px' },
+                'latest-tick': { left: '540px', top: '0px', width: '420px', height: '260px' },
+                'event-timeline': { left: '980px', top: '0px', width: '340px', height: '260px' },
+            },
+        },
+        shell: {
+            workspace: 'shell',
+            monitorSource: 'daemon',
+            panels: {
+                'shell-pane': { left: '0px', top: '0px', width: '680px', height: '550px' },
+                'daemon-log': { left: '700px', top: '0px', width: '340px', height: '260px' },
+                'monitor-1': { left: '1060px', top: '0px', width: '340px', height: '260px' },
+                'event-timeline': { left: '700px', top: '280px', width: '340px', height: '270px' },
+            },
+        },
+        debug: {
+            workspace: 'debug',
+            monitorSource: 'tick',
+            panels: {
+                'daemon-status': { left: '0px', top: '0px', width: '280px', height: '220px' },
+                'thread-preview': { left: '300px', top: '0px', width: '320px', height: '220px' },
+                'daemon-log': { left: '0px', top: '240px', width: '460px', height: '310px' },
+                'latest-tick': { left: '480px', top: '240px', width: '460px', height: '310px' },
+                'monitor-1': { left: '640px', top: '0px', width: '300px', height: '220px' },
+                'event-timeline': { left: '960px', top: '0px', width: '340px', height: '270px' },
+                'thread-compose': { left: '1320px', top: '0px', width: '360px', height: '550px' },
+                'shell-pane': { left: '960px', top: '290px', width: '340px', height: '260px' },
+            },
+        },
+    }
     var relayInput = document.getElementById('relay-url')
     var threadInput = document.getElementById('thread-id')
     var messageInput = document.getElementById('thread-message')
@@ -23,6 +77,7 @@
     var shellState = { sessions: [], activeId: '' }
     var timelineState = []
     var lastTickTimelineKey = ''
+    var currentPreset = 'overview'
     var es = null
 
     function esc(s) {
@@ -87,6 +142,19 @@
         renderTimeline()
     }
 
+    function setPresetBadge() {
+        setText('workspace-preset-status', PRESET_LABELS[currentPreset] || currentPreset)
+        Array.prototype.slice.call(document.querySelectorAll('[data-workspace-preset]')).forEach(function (btn) {
+            btn.classList.toggle('is-active', btn.dataset.workspacePreset === currentPreset)
+        })
+    }
+
+    function markPresetCustom() {
+        if (currentPreset === 'custom') return
+        currentPreset = 'custom'
+        setPresetBadge()
+    }
+
     function fetchJson(path, options) {
         return fetch(relayBase() + path, options).then(function (r) {
             return r.json().then(function (data) {
@@ -149,6 +217,7 @@
             mode = null
             document.removeEventListener('pointermove', onMove)
             document.removeEventListener('pointerup', onUp)
+            markPresetCustom()
             saveLayout()
         }
 
@@ -211,6 +280,7 @@
             removeBtn.dataset.bound = 'true'
             removeBtn.addEventListener('click', function () {
                 panel.remove()
+                markPresetCustom()
                 saveLayout()
             })
         }
@@ -241,6 +311,7 @@
             relayUrl: relayInput.value || '',
             interval: document.getElementById('daemon-interval-input').value || '',
             workspace: currentWorkspace,
+            preset: currentPreset,
             panels: allPanels().map(panelState),
         }
         localStorage.setItem(STORAGE_KEY, JSON.stringify(payload))
@@ -270,6 +341,35 @@
         saveLayout()
     }
 
+    function applyPreset(name) {
+        var preset = PRESET_LAYOUTS[name]
+        var monitorPanel
+        var monitorSelect
+        if (!preset) return
+        currentPreset = name
+        removeDynamicMonitors()
+        Object.keys(preset.panels).forEach(function (panelId) {
+            var panel = root.querySelector('[data-panel-id="' + panelId + '"]')
+            var state = preset.panels[panelId]
+            if (!panel || !state) return
+            panel.style.left = state.left || panel.style.left
+            panel.style.top = state.top || panel.style.top
+            panel.style.width = state.width || panel.style.width
+            panel.style.height = state.height || panel.style.height
+        })
+        monitorPanel = root.querySelector('[data-panel-id="monitor-1"]')
+        if (monitorPanel && preset.monitorSource) {
+            monitorPanel.dataset.monitorSource = preset.monitorSource
+            monitorSelect = monitorPanel.querySelector('[data-monitor-select]')
+            if (monitorSelect) monitorSelect.value = preset.monitorSource
+            updateMonitorPane(monitorPanel)
+        }
+        setPresetBadge()
+        applyWorkspace(preset.workspace)
+        daemonControlStatus.textContent = 'preset ' + (PRESET_LABELS[name] || name)
+        pushTimeline('workspace', 'workspace preset restored', PRESET_LABELS[name] || name)
+    }
+
     function loadLayout() {
         var raw = localStorage.getItem(STORAGE_KEY)
         if (!raw) {
@@ -284,6 +384,7 @@
             var payload = JSON.parse(raw)
             if (payload.relayUrl) relayInput.value = payload.relayUrl
             if (payload.interval) document.getElementById('daemon-interval-input').value = payload.interval
+            currentPreset = payload.preset || 'overview'
             removeDynamicMonitors()
             ;(payload.panels || []).forEach(function (state) {
                 var panel = state.panelId ? root.querySelector('[data-panel-id="' + state.panelId + '"]') : null
@@ -310,11 +411,13 @@
                 else panelDrag(panel)
             })
             syncMonitorCounter()
+            setPresetBadge()
             applyWorkspace(payload.workspace || 'overview')
         } catch (err) {
             console.warn('layout restore failed', err)
             allPanels().forEach(panelDrag)
             bindMonitorPane(document.querySelector('[data-panel-id="monitor-1"]'))
+            setPresetBadge()
             applyWorkspace('overview')
         }
     }
@@ -333,6 +436,7 @@
         canvas.appendChild(node)
         bindMonitorPane(node)
         bumpPanel(node)
+        markPresetCustom()
         saveLayout()
     }
 
@@ -658,7 +762,14 @@
 
     Array.prototype.slice.call(document.querySelectorAll('[data-workspace-tab]')).forEach(function (btn) {
         btn.addEventListener('click', function () {
+            markPresetCustom()
             applyWorkspace(btn.dataset.workspaceTab)
+        })
+    })
+
+    Array.prototype.slice.call(document.querySelectorAll('[data-workspace-preset]')).forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            applyPreset(btn.dataset.workspacePreset)
         })
     })
 
@@ -693,6 +804,7 @@
             })
     })
 
+    setPresetBadge()
     loadLayout()
     renderTimeline()
     connectEvents()

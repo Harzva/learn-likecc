@@ -7,7 +7,7 @@ Scope: local AI terminal for `codex-loop` with daemon control, protected thread 
 
 - [x] Upgrade shell rendering from plain text PTY output toward a more terminal-like experience
 - [x] Add a clearer event / timeline surface for daemon, thread lock, and shell actions
-- [ ] Add workspace presets so `Overview`, `Thread Desk`, `Shell Lab`, and `Debug` can be restored quickly
+- [x] Add workspace presets so `Overview`, `Thread Desk`, `Shell Lab`, and `Debug` can be restored quickly
 
 ## Foundations
 

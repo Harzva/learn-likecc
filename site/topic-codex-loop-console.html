@@ -75,12 +75,23 @@
                         <button type="button" class="codex-console-tab is-active" data-workspace-tab="overview">Overview</button>
                         <button type="button" class="codex-console-tab" data-workspace-tab="thread">Thread Desk</button>
                         <button type="button" class="codex-console-tab" data-workspace-tab="shell">Shell Lab</button>
+                        <button type="button" class="codex-console-tab" data-workspace-tab="debug">Debug</button>
+                    </div>
+                    <div class="codex-console-presets">
+                        <span class="codex-console-presets__label">Presets</span>
+                        <div class="codex-console-tabs codex-console-tabs--presets" role="group" aria-label="workspace presets">
+                            <button type="button" class="codex-console-tab codex-console-tab--preset is-active" data-workspace-preset="overview">Overview</button>
+                            <button type="button" class="codex-console-tab codex-console-tab--preset" data-workspace-preset="thread">Thread Desk</button>
+                            <button type="button" class="codex-console-tab codex-console-tab--preset" data-workspace-preset="shell">Shell Lab</button>
+                            <button type="button" class="codex-console-tab codex-console-tab--preset" data-workspace-preset="debug">Debug</button>
+                        </div>
+                        <span class="codex-console-toolbar__status">当前 preset：<strong id="workspace-preset-status">Overview</strong></span>
                     </div>
                 </section>
 
                 <section id="codex-loop-console" class="section-block codex-console-shell">
                     <div class="codex-console-canvas">
-                        <section class="codex-console-panel" data-panel-id="daemon-status" data-workspace-group="overview" style="left:0;top:0;width:320px;height:250px;">
+                        <section class="codex-console-panel" data-panel-id="daemon-status" data-workspace-group="overview,debug" style="left:0;top:0;width:320px;height:250px;">
                             <div class="codex-console-panel__head">
                                 <strong>Daemon 状态</strong>
                                 <span class="codex-console-chip" id="heartbeat-badge">unknown</span>
@@ -99,7 +110,7 @@
                             <div class="codex-console-panel__resize" aria-hidden="true"></div>
                         </section>
 
-                        <section class="codex-console-panel" data-panel-id="thread-preview" data-workspace-group="overview" style="left:340px;top:0;width:420px;height:250px;">
+                        <section class="codex-console-panel" data-panel-id="thread-preview" data-workspace-group="overview,debug" style="left:340px;top:0;width:420px;height:250px;">
                             <div class="codex-console-panel__head">
                                 <strong>Thread 预览</strong>
                             </div>
@@ -111,7 +122,7 @@
                             <div class="codex-console-panel__resize" aria-hidden="true"></div>
                         </section>
 
-                        <section class="codex-console-panel" data-panel-id="daemon-log" data-workspace-group="overview,shell" style="left:0;top:270px;width:390px;height:280px;">
+                        <section class="codex-console-panel" data-panel-id="daemon-log" data-workspace-group="overview,shell,debug" style="left:0;top:270px;width:390px;height:280px;">
                             <div class="codex-console-panel__head">
                                 <strong>Daemon Log</strong>
                             </div>
@@ -122,7 +133,7 @@
                             <div class="codex-console-panel__resize" aria-hidden="true"></div>
                         </section>
 
-                        <section class="codex-console-panel" data-panel-id="latest-tick" data-workspace-group="overview,thread" style="left:410px;top:270px;width:390px;height:280px;">
+                        <section class="codex-console-panel" data-panel-id="latest-tick" data-workspace-group="overview,thread,debug" style="left:410px;top:270px;width:390px;height:280px;">
                             <div class="codex-console-panel__head">
                                 <strong>Latest Tick Log</strong>
                             </div>
@@ -133,7 +144,7 @@
                             <div class="codex-console-panel__resize" aria-hidden="true"></div>
                         </section>
 
-                        <section class="codex-console-panel" data-panel-id="thread-compose" data-workspace-group="thread,overview" style="left:820px;top:0;width:380px;height:550px;">
+                        <section class="codex-console-panel" data-panel-id="thread-compose" data-workspace-group="thread,debug" style="left:820px;top:0;width:380px;height:550px;">
                             <div class="codex-console-panel__head">
                                 <strong>Thread Compose</strong>
                             </div>
@@ -171,7 +182,7 @@
                             <div class="codex-console-panel__resize" aria-hidden="true"></div>
                         </section>
 
-                        <section class="codex-console-panel codex-console-panel--monitor" data-panel-id="monitor-1" data-workspace-group="overview,shell" data-monitor-source="daemon" style="left:1220px;top:0;width:360px;height:260px;">
+                        <section class="codex-console-panel codex-console-panel--monitor" data-panel-id="monitor-1" data-workspace-group="overview,shell,debug" data-monitor-source="daemon" style="left:1220px;top:0;width:360px;height:260px;">
                             <div class="codex-console-panel__head">
                                 <strong>Monitor Pane</strong>
                                 <button type="button" class="codex-console-close" data-pane-remove>×</button>
@@ -190,7 +201,7 @@
                             <div class="codex-console-panel__resize" aria-hidden="true"></div>
                         </section>
 
-                        <section class="codex-console-panel codex-console-panel--timeline" data-panel-id="event-timeline" data-workspace-group="overview,thread,shell" style="left:1220px;top:280px;width:360px;height:270px;">
+                        <section class="codex-console-panel codex-console-panel--timeline" data-panel-id="event-timeline" data-workspace-group="overview,thread,shell,debug" style="left:1220px;top:280px;width:360px;height:270px;">
                             <div class="codex-console-panel__head">
                                 <strong>Event Timeline</strong>
                                 <span class="codex-console-chip" id="timeline-count">0</span>
@@ -204,7 +215,7 @@
                             <div class="codex-console-panel__resize" aria-hidden="true"></div>
                         </section>
 
-                        <section class="codex-console-panel codex-console-panel--shell" data-panel-id="shell-pane" data-workspace-group="shell,overview" style="left:820px;top:0;width:520px;height:550px;">
+                        <section class="codex-console-panel codex-console-panel--shell" data-panel-id="shell-pane" data-workspace-group="shell,debug" style="left:820px;top:0;width:520px;height:550px;">
                             <div class="codex-console-panel__head">
                                 <strong>Shell Workspace</strong>
                             </div>
@@ -255,7 +266,7 @@
         </div>
     </footer>
     <template id="monitor-pane-template">
-        <section class="codex-console-panel codex-console-panel--monitor" data-workspace-group="overview,shell" data-monitor-source="daemon" style="left:80px;top:80px;width:360px;height:260px;">
+        <section class="codex-console-panel codex-console-panel--monitor" data-workspace-group="overview,shell,debug" data-monitor-source="daemon" style="left:80px;top:80px;width:360px;height:260px;">
             <div class="codex-console-panel__head">
                 <strong>Monitor Pane</strong>
                 <button type="button" class="codex-console-close" data-pane-remove>×</button>

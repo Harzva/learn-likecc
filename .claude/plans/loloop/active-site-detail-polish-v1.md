@@ -209,6 +209,8 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Upgrade the AI Terminal shell pane from a plain PTY log box to a framed terminal view with live session cwd and line-count meta
 - [x] Stay on Task 7 for one more bounded AI Terminal observability pass after the shell-frame upgrade
 - [x] Add a local event timeline pane so daemon, thread, shell, and relay actions are easier to scan without tailing multiple panes at once
+- [x] Stay on Task 7 for one more bounded AI Terminal layout-recovery pass after the timeline pane
+- [x] Add workspace presets so `Overview`, `Thread Desk`, `Shell Lab`, and `Debug` can restore a known pane arrangement and keep `custom` state visible
 
 ## Guardrail
 

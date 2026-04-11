@@ -11226,6 +11226,10 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     margin-top: 8px;
 }
 
+.codex-console-tabs--presets {
+    margin-top: 0;
+}
+
 .codex-console-tab {
     border: 1px solid rgba(148, 163, 184, 0.2);
     background: rgba(255, 255, 255, 0.78);
@@ -11248,6 +11252,25 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 .codex-console-tab--mini {
     padding: 8px 12px;
     font-size: 0.82rem;
+}
+
+.codex-console-tab--preset {
+    padding-inline: 12px;
+}
+
+.codex-console-presets {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-top: 14px;
+}
+
+.codex-console-presets__label {
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
 }
 
 .codex-console-shell {
@@ -11509,6 +11532,11 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 .codex-console-timeline__kind--tick {
     background: rgba(243, 232, 255, 0.94);
     color: #7c3aed;
+}
+
+.codex-console-timeline__kind--workspace {
+    background: rgba(224, 231, 255, 0.96);
+    color: #4338ca;
 }
 
 .codex-console-timeline__kind--error {
