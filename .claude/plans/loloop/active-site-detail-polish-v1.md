@@ -201,6 +201,8 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Add one memory-surface row explaining how `ARIS` turns plain-file artifacts into queryable research memory without becoming a separate memory service
 - [x] Stay on Task 6 for one final bounded ARIS subthread close-out pass after the memory-surface row
 - [x] Mark the current `ARIS` clarification subthread locally done and freeze further micro-rows unless a genuinely new shell signal appears
+- [x] Stay on Task 6 for one bounded non-ARIS navigation pass after the ARIS subthread close-out
+- [x] Add one top-nav jump to `AI Scientist-v2` so the third main sample matches the direct-entry treatment already given to the AIDE lane and footer nav
 
 ## Guardrail
 
