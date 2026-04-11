@@ -559,12 +559,14 @@
         setText(
             'session-stack-headnote',
             activeSessions.length
-                ? ('Shell Lab · ' + activeSessions[0].session_id + ' @ ' + shellWorkspaceLabel(activeSessions[0]))
+                ? ('Shell Lab · ' + activeSessions[0].session_id + ' @ ' + shellWorkspaceLabel(activeSessions[0]) + (standbySessions.length ? ' · +' + standbySessions.length + ' standby' : ''))
                 : (guardState.daemonRunning
                     ? ('Overview · pid ' + (document.getElementById('daemon-pid') ? document.getElementById('daemon-pid').textContent : '—'))
-                    : (boundThread !== 'thread pending' && boundThread !== '—'
+                    : (standbySessions.length
+                        ? ('Shell Lab · standby ' + standbySessions.length + ' @ ' + shellWorkspaceLabel(standbySessions[0]))
+                        : (boundThread !== 'thread pending' && boundThread !== '—'
                         ? ('Thread Desk · ' + boundThread)
-                        : 'Overview · manual lane'))
+                        : 'Overview · manual lane')))
         )
         metrics.innerHTML =
             '<span class="codex-console-stack-pill codex-console-stack-pill--active">' + activeSessions.length + ' active</span>' +

@@ -17,7 +17,7 @@ Prioritize future iterations along these three lines:
 
 ## Current focus
 
-Continue Task 9 LikeCode Web UI after the session-stack headnote pass.
+Continue Task 9 LikeCode Web UI after the session-stack headnote-standby pass.
 
 ## Success condition
 
@@ -273,6 +273,9 @@ Continue Task 9 LikeCode Web UI after the session-stack headnote pass.
 - [x] Stay on Task 9 for one more bounded session-stack header follow-up after the shell-roster runtime-summary pass
 - [x] Add a compact ownership cue to the `Session Stack` header so the hottest current lane is visible before scrolling into the body
 - [x] Verify the Task 9 session-stack-headnote pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
+- [x] Stay on Task 9 for one more bounded session-stack-header follow-up after the first headnote pass
+- [x] Extend the `Session Stack` headnote so shell standby pressure is visible alongside the hottest current lane when relevant
+- [x] Verify the Task 9 session-stack-headnote-standby pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
 - [x] Verify the Task 9 headline-badges pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail

@@ -22,7 +22,8 @@ Scope: continuously improve LikeCode Web UI, AI terminal experience, and the age
 - [x] Continue Task 9 with the next bounded follow-up after the `Session Stack` gets a compact `Session Identity` layer for daemon/thread/shell seats
 - [x] Continue Task 9 with the next bounded follow-up after the `Shell Roster` gets workspace labels derived from `cwd`
 - [x] Continue Task 9 with the next bounded follow-up after the `Shell Roster` header gets a compact runtime summary
-- [ ] Continue Task 9 with the next bounded follow-up after the `Session Stack` header gets a compact ownership cue
+- [x] Continue Task 9 with the next bounded follow-up after the `Session Stack` header gets a compact ownership cue
+- [ ] Continue Task 9 with the next bounded follow-up after the `Session Stack` header also surfaces shell standby pressure
 
 ## Main product areas
 
@@ -87,6 +88,8 @@ Scope: continuously improve LikeCode Web UI, AI terminal experience, and the age
   - add a compact runtime summary to the shell roster header so the active session / workspace / pid can be scanned before entering the card list
 - [x] UI follow-up pass in the same surface:
   - add a compact ownership cue to the `Session Stack` header so the hottest current lane is visible before entering the body
+- [x] UI follow-up pass in the same surface:
+  - extend the `Session Stack` headnote so it also exposes shell standby pressure instead of only naming the hottest current lane
 - [ ] site-facing article or subtopic when a design pattern is worth documenting
 - [ ] evolution notes tying specific references to specific UI decisions
 
