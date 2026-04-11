@@ -228,6 +228,21 @@
                     <p><strong>本轮原始来源</strong>：<a href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener noreferrer">官方文档 changelog</a>（<code>2.1.101</code>, 2026-04-10）与 <a href="https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">GitHub Raw CHANGELOG</a>。</p>
                 </section>
 
+                <section id="tracing-optin-keyword" class="section-block">
+                    <h2>再补一刀：beta tracing 开始把敏感 span 内容改成显式 opt-in</h2>
+                    <p><code>2.1.101</code> 里还有一条很容易被忽略，但对工程团队很值钱的变化：beta tracing 现在会<strong>尊重 <code>OTEL_LOG_USER_PROMPTS</code>、<code>OTEL_LOG_TOOL_DETAILS</code>、<code>OTEL_LOG_TOOL_CONTENT</code> 这三个开关</strong>，而且敏感 span attributes <strong>默认不再发出，除非你显式打开</strong>。</p>
+                    <p>这条为什么值得单独记：第一，它说明 Claude Code 团队开始把 tracing 从“能不能打出来”往“哪些内容默认可以出现在 trace 里”推进；第二，它把 observability 和 data exposure 绑到了一起处理，而不是先全量打点，再让用户自己承担敏感信息外泄风险；第三，这对我们自己的 <code>codex-loop</code>、Like Code 和站点工具链都很相关，因为长期运行系统越强调可观测，越要回答<strong>哪类 prompt / tool / content 可以进入日志，哪类必须默认收住</strong>。</p>
+                    <p>如果把前面的 <code>Monitor tool</code>、status line、refusal explanation 看成“控制面反馈越来越丰富”，那 tracing opt-in 更像是在补另一半：<strong>反馈变丰富以后，哪些细节应该默认可见，哪些必须变成显式授权</strong>。这不是小修小补，而是 observability contract 开始带上 privacy boundary。</p>
+                    <div class="course-quote">
+                        <p><strong>[插图提示词]</strong></p>
+                        <p>用途：画“Claude Code tracing opt-in boundary”小图，强调默认安全与显式开关之间的关系。</p>
+                        <p>形式：结构图。</p>
+                        <p>提示词：画一个 Claude Code tracing opt-in boundary 图。左侧是 beta tracing pipeline，中间是三个开关：OTEL_LOG_USER_PROMPTS、OTEL_LOG_TOOL_DETAILS、OTEL_LOG_TOOL_CONTENT；默认路径只输出低敏 span metadata，开启开关后才允许 prompt、tool detail、tool content 进入 trace。右侧标出 observability value 与 privacy boundary。底部补一句说明：敏感 trace 内容改成显式 opt-in，而不是默认外发。</p>
+                        <p>Mermaid 更适合：是。</p>
+                    </div>
+                    <p><strong>本轮原始来源</strong>：<a href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener noreferrer">官方文档 changelog</a>（<code>2.1.101</code>, 2026-04-10）与 <a href="https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">GitHub Raw CHANGELOG</a>。</p>
+                </section>
+
                 <section id="refusal-keyword" class="section-block">
                     <h2>再补一刀：refusal 错误开始把 API 侧解释带出来</h2>
                     <p><code>2.1.101</code> 里还有一条短小但很关键的变化：Claude Code 现在会<strong>在 refusal error message 里带上 API 提供的 explanation</strong>，而不是只告诉你“被拒了”。</p>

@@ -17,7 +17,7 @@ Prioritize future iterations along these three lines:
 
 ## Current focus
 
-Choose the next best main-site task after the Hermes unpacked closeout pass.
+Continue Task 4 Claude changelog watch after the tracing opt-in slice.
 
 ## Success condition
 
@@ -287,6 +287,8 @@ Choose the next best main-site task after the Hermes unpacked closeout pass.
 - [x] Add one real Mermaid execution-boundary figure to the Hermes backend/runtime section and verify it with `node --check site/js/app.js` and `python3 tools/check_site_md_parity.py`
 - [x] Stay on Task 5 for one final bounded Hermes closeout follow-up after the execution-boundary figure
 - [x] Tighten the Hermes 07 / 08 closeout so the page lands on clearer stack-design takeaways, then mark the current Hermes wave locally done
+- [x] Choose Task 4 as the next best remaining main-site move after the Hermes closeout
+- [x] Add one `2.1.101` tracing-opt-in release-watch slice explaining why sensitive OTEL trace fields moved behind explicit env flags
 - [x] Verify the Task 9 headline-badges pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail

@@ -59,6 +59,30 @@ Mermaid 更适合：是。
 - 官方文档：`https://code.claude.com/docs/en/changelog`（`2.1.101`, 2026-04-10）
 - GitHub Raw：`https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md`
 
+## 再补一刀：beta tracing 开始把敏感 span 内容改成显式 opt-in
+
+`2.1.101` 里还有一条很容易被忽略，但对工程团队很值钱的变化：beta tracing 现在会 **尊重 `OTEL_LOG_USER_PROMPTS`、`OTEL_LOG_TOOL_DETAILS`、`OTEL_LOG_TOOL_CONTENT` 这三个开关**，而且敏感 span attributes **默认不再发出，除非你显式打开**。
+
+这条为什么值得单独记：
+
+- 它说明 Claude Code 团队开始把 tracing 从“能不能打出来”往“哪些内容默认可以出现在 trace 里”推进
+- 它把 observability 和 data exposure 绑到了一起处理，而不是先全量打点，再让用户自己承担敏感信息外泄风险
+- 它对我们自己的 `codex-loop`、Like Code 和站点工具链都很相关，因为长期运行系统越强调可观测，越要回答 **哪类 prompt / tool / content 可以进入日志，哪类必须默认收住**
+
+如果把前面的 `Monitor tool`、status line、refusal explanation 看成“控制面反馈越来越丰富”，那 tracing opt-in 更像是在补另一半：**反馈变丰富以后，哪些细节应该默认可见，哪些必须变成显式授权**。这不是小修小补，而是 observability contract 开始带上 privacy boundary。
+
+### [插图提示词]
+
+用途：画“Claude Code tracing opt-in boundary”小图，强调默认安全与显式开关之间的关系。  
+形式：结构图。  
+提示词：画一个 Claude Code tracing opt-in boundary 图。左侧是 beta tracing pipeline，中间是三个开关：OTEL_LOG_USER_PROMPTS、OTEL_LOG_TOOL_DETAILS、OTEL_LOG_TOOL_CONTENT；默认路径只输出低敏 span metadata，开启开关后才允许 prompt、tool detail、tool content 进入 trace。右侧标出 observability value 与 privacy boundary。底部补一句说明：敏感 trace 内容改成显式 opt-in，而不是默认外发。  
+Mermaid 更适合：是。
+
+### 本轮原始来源
+
+- 官方文档：`https://code.claude.com/docs/en/changelog`（`2.1.101`, 2026-04-10）
+- GitHub Raw：`https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md`
+
 ## 再补一刀：plan mode 会在 Web 根本不可达时直接隐藏 Refine with Ultraplan
 
 `2.1.101` 里还有一条很像能力前置判定的变化：当用户的 org 或 auth setup **根本到不了 Claude Code on the web** 时，plan mode 现在会 **直接隐藏 `Refine with Ultraplan`**，而不是先把按钮摆出来，再让你点到失败。
