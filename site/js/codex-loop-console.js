@@ -625,10 +625,13 @@
     function renderShellOutput() {
         var session = activeShell()
         if (!session) {
-            setText('shell-output', '暂无 shell session。点击“新建 Shell”。')
+            setText('shell-output', '暂无 shell session。\n\n$ 点击“新建 Shell”创建一个本地 PTY。\n$ Ctrl+Enter 会把下方 composer 的内容送进当前 session。')
             setText('shell-session-meta', 'none')
             setText('shell-cwd', 'cwd: —')
             setText('shell-lines', '0 lines')
+            setText('shell-mode', 'mode: standby')
+            setText('shell-alive-badge', 'standby')
+            document.getElementById('shell-alive-badge').className = 'codex-console-chip codex-console-chip--guard-neutral'
             guardState.shellActiveId = ''
             guardState.shellAlive = false
             guardState.shellCount = shellState.sessions.length
@@ -640,6 +643,9 @@
         setText('shell-cwd', 'cwd: ' + (session.cwd || '—'))
         var lineCount = session.buffer ? session.buffer.split(/\r?\n/).length : 0
         setText('shell-lines', String(lineCount) + ' lines')
+        setText('shell-mode', 'mode: ' + (session.alive ? 'interactive' : 'session ended'))
+        setText('shell-alive-badge', session.alive ? 'live' : 'done')
+        document.getElementById('shell-alive-badge').className = 'codex-console-chip ' + (session.alive ? 'codex-console-chip--guard-ready' : 'codex-console-chip--guard-attention')
         guardState.shellActiveId = session.session_id
         guardState.shellAlive = !!session.alive
         guardState.shellCount = shellState.sessions.length

@@ -250,16 +250,24 @@
                                             <span></span>
                                         </div>
                                         <div class="codex-console-terminal-frame__title">Shell PTY</div>
+                                        <span id="shell-alive-badge" class="codex-console-chip codex-console-chip--guard-neutral">standby</span>
                                         <div class="codex-console-terminal-frame__meta">
                                             <span id="shell-cwd">cwd: —</span>
                                             <span id="shell-lines">0 lines</span>
                                         </div>
                                     </div>
                                     <pre id="shell-output" class="codex-console-terminal codex-console-terminal--shell">暂无 shell session。点击“新建 Shell”。</pre>
+                                    <div class="codex-console-terminal-frame__foot">
+                                        <span id="shell-mode">mode: standby</span>
+                                        <span>Ctrl+Enter to send</span>
+                                    </div>
                                 </div>
-                                <label class="codex-console-form">
+                                <label class="codex-console-form codex-console-form--terminal">
                                     <span>shell input</span>
-                                    <textarea id="shell-input" rows="4" class="search-input" placeholder="输入 shell 命令，按发送或 Ctrl+Enter。"></textarea>
+                                    <div class="codex-console-shell-composer">
+                                        <span class="codex-console-shell-composer__prompt">$</span>
+                                        <textarea id="shell-input" rows="4" class="search-input" placeholder="输入 shell 命令，按发送或 Ctrl+Enter。"></textarea>
+                                    </div>
                                 </label>
                                 <div class="codex-console-toolbar codex-console-toolbar--compact">
                                     <button id="shell-send" type="button" class="btn btn-primary">发送到 shell</button>

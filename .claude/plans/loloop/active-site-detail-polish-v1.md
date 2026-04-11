@@ -215,6 +215,8 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Add a compact guardrail strip that explains relay state, thread conflict risk, and readonly / shell-dead recovery actions in one place
 - [x] Stay on Task 7 for one more bounded AI Terminal feedback pass after the guardrail strip
 - [x] Add unified success / pending / error status styling and a `Last Action` feedback strip for relay, daemon, thread, and shell operations
+- [x] Stay on Task 7 for one more bounded shell-terminal polish pass after the feedback strip
+- [x] Add live / done / standby shell state cues, a terminal footer, and a prompt-style composer so the shell pane feels less like a log viewer
 
 ## Guardrail
 

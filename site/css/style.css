@@ -11560,6 +11560,19 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     justify-content: flex-end;
 }
 
+.codex-console-terminal-frame__foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 14px 10px;
+    border-top: 1px solid rgba(148, 163, 184, 0.1);
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.92), rgba(2, 6, 23, 0.98));
+    color: rgba(148, 163, 184, 0.94);
+    font-size: 0.75rem;
+    letter-spacing: 0.03em;
+}
+
 .codex-console-terminal-frame .codex-console-terminal--shell {
     margin: 0;
     border: 0;
@@ -11671,6 +11684,49 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 .codex-console-form textarea.search-input {
     min-height: 168px;
     resize: vertical;
+}
+
+.codex-console-form--terminal .search-input {
+    margin: 0;
+}
+
+.codex-console-shell-composer {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid rgba(51, 65, 85, 0.24);
+    background:
+        linear-gradient(180deg, rgba(15, 23, 42, 0.96), rgba(2, 6, 23, 0.98)),
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.1), transparent 30%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.codex-console-shell-composer__prompt {
+    display: inline-flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 40px;
+    padding: 14px 0;
+    background: rgba(15, 23, 42, 0.84);
+    color: #34d399;
+    font-weight: 700;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    border-right: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+.codex-console-shell-composer textarea.search-input {
+    min-height: 112px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: #dbeafe;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+.codex-console-shell-composer textarea.search-input::placeholder {
+    color: rgba(148, 163, 184, 0.82);
 }
 
 .codex-console-select {
