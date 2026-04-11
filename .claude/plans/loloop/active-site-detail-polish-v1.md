@@ -393,6 +393,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Use the next overnight media slice for the third shortlisted Task 2 candidate instead of reopening the now-ready VibePaper or console drafts
 - [x] Create a reusable `topic-autoresearch-unpacked` screenshot config plus one bounded set of local captures for the hero, five-layer breakdown, and protocol-vs-studio comparison
 - [x] Write the first `topic-autoresearch-unpacked` Zhihu-style Markdown draft under `wemedia/zhihu/articles/` and verify that it references the new local images and standard closeout structure
+- [x] Stay on the Autoresearch Task 2 subthread for one final readiness-decision pass after the first screenshot-backed draft landed
+- [x] Recheck that the `39-*` Autoresearch draft still includes its three local screenshots, the main site link, and the standard `适合什么人看 / 链接放这里` closeout structure
+- [x] Mark the `39-*` Autoresearch draft locally ready for a future daytime publication attempt instead of forcing another overnight rewrite
 
 ## Guardrail
 
