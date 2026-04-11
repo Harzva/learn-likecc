@@ -991,6 +991,12 @@ function markActiveSiteSidebarLinks(scope = document) {
         const samePage = !path || path === currentPage
         const active = hash ? samePage && `#${hash}` === currentHash : path === currentPage
         link.classList.toggle('site-sidebar__link--active', active)
+
+        if (active) {
+            link.setAttribute('aria-current', hash ? 'location' : 'page')
+        } else {
+            link.removeAttribute('aria-current')
+        }
     })
 }
 
@@ -1115,7 +1121,8 @@ function initPageSubnav() {
                             const activeClass = item.active ? ' page-subnav__link--active page-subnav__link--active-page' : ''
                             const typeClass = item.type === 'anchor' ? ' page-subnav__link--anchor' : ''
                             const accentClass = item.accent ? ` page-subnav__link--part-${item.accent}` : ''
-                            return `<a class="page-subnav__link${activeClass}${typeClass}${accentClass}" href="${item.href}">${item.label}</a>`
+                            const ariaCurrent = item.active ? ' aria-current="page"' : ''
+                            return `<a class="page-subnav__link${activeClass}${typeClass}${accentClass}" href="${item.href}"${ariaCurrent}>${item.label}</a>`
                         })
                         .join('') +
                     '</section>'
@@ -1205,6 +1212,22 @@ function initPageSubnav() {
         return href.startsWith('#')
     })
 
+    function syncAnchorLinkState(activeId) {
+        anchorLinks.forEach((link) => {
+            const isActive = link.getAttribute('href') === activeId
+            link.classList.toggle('page-subnav__link--active', isActive)
+            if (isActive) {
+                link.setAttribute('aria-current', 'location')
+            } else {
+                link.removeAttribute('aria-current')
+            }
+        })
+    }
+
+    if (window.location.hash) {
+        syncAnchorLinkState(window.location.hash)
+    }
+
     const observerTargets = anchorLinks
         .map((link) => document.querySelector(link.getAttribute('href')))
         .filter(Boolean)
@@ -1218,9 +1241,7 @@ function initPageSubnav() {
 
                 if (!visible) return
                 const activeId = `#${visible.target.id}`
-                anchorLinks.forEach((link) => {
-                    link.classList.toggle('page-subnav__link--active', link.getAttribute('href') === activeId)
-                })
+                syncAnchorLinkState(activeId)
             },
             {
                 rootMargin: '-20% 0px -65% 0px',
