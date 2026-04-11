@@ -199,6 +199,8 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Add one automation-boundary row explaining why `ARIS` is still workflow-thick but not yet a truly unattended platform layer
 - [x] Stay on Task 6 for one more bounded ARIS memory-surface pass after the automation-boundary row
 - [x] Add one memory-surface row explaining how `ARIS` turns plain-file artifacts into queryable research memory without becoming a separate memory service
+- [x] Stay on Task 6 for one final bounded ARIS subthread close-out pass after the memory-surface row
+- [x] Mark the current `ARIS` clarification subthread locally done and freeze further micro-rows unless a genuinely new shell signal appears
 
 ## Guardrail
 

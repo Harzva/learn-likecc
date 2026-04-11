@@ -56,6 +56,8 @@ VibePaper 专题目前先收 **Autoresearch / ARIS**、**DeepScientist** 与 **A
 | memory surface | 记忆更多是散在 git、日志和对照文档里的结果痕迹 | 开始长出可主动查询和回写的 memory surface：`/research-wiki`、multi-file memory index、`/plan`、`/tasks` 会把 papers、ideas、claims、failed runs 组织成可检索的文件化研究记忆，但这层仍然是 plain files，不是独立 memory service |
 | 站内教学定位 | 讲清“单循环协议”怎么跑通 | 讲清“协议壳怎样扩成多工作流研究方法论”，所以先并在同一条样本线里，而不是另开第四种壳 |
 
+当前先把 `ARIS` 收在这里，不再继续按“再补一行”无限展开。除非后面出现新的独立控制面信号，例如它真的长出独立服务层、稳定 daemon 编排层，或者不再以 plain-file workflow 为主，否则站内就继续把它并在 `Autoresearch` 这条协议壳样本线里教。
+
 ### [插图提示词]
 
 用途：画 VibePaper 当前入口结构，让读者先分清三主样本和候选底座不是同一层。  
