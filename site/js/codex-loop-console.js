@@ -189,6 +189,10 @@
         var daemonSummary = { chip: 'manual desk', note: 'Daemon idle. Manual desk is the current write owner.', tone: 'ready' }
         var threadSummary = { chip: 'writable', note: 'Manual writes are allowed from the desk.', tone: 'ready' }
         var shellSummary = { chip: 'no shell', note: 'Spawn one from Session Stack or Shell Lab.', tone: 'neutral' }
+        var boundThread = ((threadInput.value || '').trim() || (document.getElementById('daemon-thread') ? document.getElementById('daemon-thread').textContent : 'thread pending') || 'thread pending')
+        var relayQueue = { title: 'Reconnect relay', note: 'Refresh relay state before trusting ownership.', chip: 'attention', tone: 'attention' }
+        var threadQueue = { title: 'Review thread guard', note: 'Check whether manual writes should stay readonly or writable.', chip: 'review', tone: 'neutral' }
+        var shellQueue = { title: 'Spawn shell', note: 'Bring a live shell seat online if local PTY work is needed.', chip: 'standby', tone: 'standby' }
         var daemonAssignment = { owner: 'daemon idle', note: 'No daemon run is active yet.', chip: 'manual', tone: 'neutral', aux: 'relay idle', auxTone: 'neutral' }
         var threadAssignment = { owner: 'thread pending', note: 'No thread binding yet.', chip: 'pending', tone: 'neutral', aux: 'readonly', auxTone: 'neutral' }
         var shellAssignment = { owner: 'no active shell', note: 'Create or focus a shell session.', chip: 'idle', tone: 'neutral', aux: '0 standby', auxTone: 'neutral' }
@@ -218,11 +222,23 @@
                 note: 'Ownership may be outdated until relay state is refreshed.',
                 tone: 'attention',
             }
+            relayQueue = {
+                title: 'Reconnect relay',
+                note: 'Status is stale, so daemon and thread ownership cannot be trusted yet.',
+                chip: 'attention',
+                tone: 'attention',
+            }
         } else if (relayState === 'connecting') {
             daemonSummary = {
                 chip: 'syncing',
                 note: 'Relay is connecting. Wait before trusting operator ownership.',
                 tone: 'attention',
+            }
+            relayQueue = {
+                title: 'Wait for sync',
+                note: 'Hold state-changing actions until the relay settles into a readable state.',
+                chip: 'syncing',
+                tone: 'standby',
             }
         } else if (guardState.daemonRunning && guardState.threadForce) {
             daemonSummary = {
@@ -230,17 +246,42 @@
                 note: 'Daemon is active and force send is armed, so writes are no longer single-owner.',
                 tone: 'risk',
             }
+            relayQueue = {
+                title: 'Relay clear',
+                note: 'Status feed is healthy; the next operator decision is about write collisions, not connectivity.',
+                chip: 'ready',
+                tone: 'active',
+            }
         } else if (guardState.daemonRunning && guardState.threadLockMode === 'readonly') {
             daemonSummary = {
                 chip: 'daemon lead',
                 note: 'Daemon owns the write path while Thread Desk stays guarded readonly.',
                 tone: 'ready',
             }
+            relayQueue = {
+                title: 'Relay clear',
+                note: 'Feed is live and the daemon lane is being tracked correctly from the overview surface.',
+                chip: 'ready',
+                tone: 'active',
+            }
         } else if (guardState.daemonRunning) {
             daemonSummary = {
                 chip: 'daemon lead',
                 note: 'Daemon is active, but the thread is still writable from the desk.',
                 tone: 'attention',
+            }
+            relayQueue = {
+                title: 'Relay clear',
+                note: 'Connectivity is not the blocker; the next decision is whether thread writes should stay open.',
+                chip: 'ready',
+                tone: 'active',
+            }
+        } else {
+            relayQueue = {
+                title: 'Relay clear',
+                note: 'Connectivity is healthy, so the desk state can be scanned without forcing another refresh.',
+                chip: 'ready',
+                tone: 'active',
             }
         }
 
@@ -261,11 +302,23 @@
                 note: 'Manual sends can bypass the daemon/write guard.',
                 tone: 'risk',
             }
+            threadQueue = {
+                title: 'Disarm force send',
+                note: 'Force is armed, so the next manual send can bypass the normal protection path.',
+                chip: 'risk',
+                tone: 'risk',
+            }
         } else if (guardState.threadLockMode === 'readonly' && guardState.daemonRunning) {
             threadSummary = {
                 chip: 'readonly',
                 note: 'Thread writes are guarded while the daemon is running.',
                 tone: 'ready',
+            }
+            threadQueue = {
+                title: 'Thread guarded',
+                note: 'Readonly protection is already restored while the daemon owns the write lane.',
+                chip: 'clear',
+                tone: 'active',
             }
         } else if (guardState.threadLockMode === 'readonly') {
             threadSummary = {
@@ -273,11 +326,37 @@
                 note: 'Thread writes are paused until you switch back to writable.',
                 tone: 'neutral',
             }
+            threadQueue = {
+                title: 'Reopen writes if needed',
+                note: 'Daemon is not currently active, so readonly is now a deliberate manual hold.',
+                chip: 'hold',
+                tone: 'standby',
+            }
         } else if (guardState.daemonRunning) {
             threadSummary = {
                 chip: 'writable',
                 note: 'Manual sends risk colliding with daemon ticks until readonly is restored.',
                 tone: 'risk',
+            }
+            threadQueue = {
+                title: 'Restore readonly',
+                note: 'Daemon is active while the thread remains writable from the manual desk.',
+                chip: 'risk',
+                tone: 'risk',
+            }
+        } else if (boundThread === 'thread pending' || boundThread === '—') {
+            threadQueue = {
+                title: 'Bind thread',
+                note: 'Thread Desk still lacks a concrete thread target to guard or reopen.',
+                chip: 'pending',
+                tone: 'attention',
+            }
+        } else {
+            threadQueue = {
+                title: 'Thread clear',
+                note: 'Manual writes are available and no daemon-collision signal is currently active.',
+                chip: 'ready',
+                tone: 'active',
             }
         }
 
@@ -300,17 +379,35 @@
                 note: guardState.shellActiveId + ' ended. Focus another shell or create a fresh one.',
                 tone: 'attention',
             }
+            shellQueue = {
+                title: 'Replace ended shell',
+                note: guardState.shellActiveId + ' has ended, so the live PTY seat needs a new owner.',
+                chip: 'attention',
+                tone: 'attention',
+            }
         } else if (guardState.shellCount && guardState.shellActiveId) {
             shellSummary = {
                 chip: 'active shell',
                 note: guardState.shellActiveId + ' currently owns the live PTY seat.',
                 tone: 'ready',
             }
+            shellQueue = {
+                title: 'Shell clear',
+                note: guardState.shellActiveId + ' already owns the live seat; standby sessions can stay parked.',
+                chip: 'ready',
+                tone: 'active',
+            }
         } else if (guardState.shellCount) {
             shellSummary = {
                 chip: 'parked',
                 note: guardState.shellCount + ' shell session' + (guardState.shellCount === 1 ? ' is' : 's are') + ' available to focus.',
                 tone: 'neutral',
+            }
+            shellQueue = {
+                title: 'Focus standby shell',
+                note: guardState.shellCount + ' parked shell session' + (guardState.shellCount === 1 ? ' is' : 's are') + ' available, but none owns the live seat.',
+                chip: 'standby',
+                tone: 'standby',
             }
         }
 
@@ -352,11 +449,19 @@
         setText('stack-summary-shell-note', shellSummary.note)
         setText('stack-pulse-workspace', PRESET_LABELS[currentWorkspace] || currentWorkspace)
         setText('stack-pulse-workspace-note', 'Preset ' + (PRESET_LABELS[currentPreset] || currentPreset) + ' is currently loaded.')
-        var boundThread = ((threadInput.value || '').trim() || (document.getElementById('daemon-thread') ? document.getElementById('daemon-thread').textContent : 'thread pending') || 'thread pending')
         setText('stack-pulse-thread', boundThread)
         setText('stack-pulse-thread-note', guardState.threadLockMode === 'readonly' ? 'Thread is guarded readonly.' : 'Thread is writable from the desk.')
         setText('stack-pulse-daemon', guardState.daemonRunning ? 'daemon live' : 'manual lane')
         setText('stack-pulse-daemon-note', guardState.daemonRunning ? (tickBadge && tickBadge.textContent ? 'Latest tick: ' + tickBadge.textContent + '.' : 'Daemon run is active.') : 'Overview remains the manual control lane.')
+        setText('stack-queue-relay', relayQueue.title)
+        setText('stack-queue-relay-note', relayQueue.note)
+        setStackPill('stack-queue-relay-chip', relayQueue.chip, relayQueue.tone)
+        setText('stack-queue-thread', threadQueue.title)
+        setText('stack-queue-thread-note', threadQueue.note)
+        setStackPill('stack-queue-thread-chip', threadQueue.chip, threadQueue.tone)
+        setText('stack-queue-shell', shellQueue.title)
+        setText('stack-queue-shell-note', shellQueue.note)
+        setStackPill('stack-queue-shell-chip', shellQueue.chip, shellQueue.tone)
         setText('stack-ledger-daemon-owner', daemonAssignment.owner)
         setText('stack-ledger-daemon-note', daemonAssignment.note)
         setStackPill('stack-ledger-daemon-chip', daemonAssignment.chip, daemonAssignment.tone)

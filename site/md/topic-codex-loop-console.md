@@ -71,5 +71,6 @@
 - 在 `Session Stack` 里又补了一个 `Desk Assignments` ledger，把 `Overview / Thread Desk / Shell Lab` 三个工位当前到底接管了什么对象直接列出来，并保留一行一个 `Open` 跳转，减少 operator 在 summary、card、roster 之间来回比对
 - `Session Stack` 继续做了结构化分段，把 `Quick Actions / Control Summary / Desk Assignments / Surface Detail / Shell Sessions` 明确拆开；在信息已经变厚之后，这比继续堆新状态层更有价值
 - `Control Summary` 下又补了一排 `Session Pulse` 小卡片，专门概括当前 workspace、thread bind、daemon lane 和 shell coverage；这是 cross-session 快照，不是新的控制路径
+- `Session Stack` 现在又补了一层 `Attention Queue`，把 relay / thread / shell 三条最可能需要 operator 立刻处理的信号压成一排 action-oriented 小卡片；它回答的是“下一步该处理什么”，不是重复罗列状态
 - `Desk Assignments` 每行现在是双 badge：既显示当前 assignment，也显示 approval / coverage 辅助标签，比如 `relay ready`、`daemon linked`、`standby N`，这样非-shell 状态也不再只能藏在说明文字里
 - `Session Stack` 顶部标题区也不再只有一个 `N shells` badge，而是直接露出 `daemon / thread / shells` 三条 headline 状态，先看 panel head 就知道主控面现在大概是什么状态
