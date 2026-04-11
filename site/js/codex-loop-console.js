@@ -17,9 +17,9 @@
             panels: {
                 'daemon-status': { left: '0px', top: '0px', width: '300px', height: '230px' },
                 'thread-preview': { left: '320px', top: '0px', width: '380px', height: '230px' },
+                'session-stack': { left: '720px', top: '0px', width: '340px', height: '230px' },
                 'daemon-log': { left: '0px', top: '250px', width: '340px', height: '300px' },
                 'latest-tick': { left: '360px', top: '250px', width: '340px', height: '300px' },
-                'monitor-1': { left: '720px', top: '0px', width: '340px', height: '230px' },
                 'event-timeline': { left: '720px', top: '250px', width: '340px', height: '300px' },
             },
         },
@@ -28,8 +28,9 @@
             monitorSource: 'last-message',
             panels: {
                 'thread-compose': { left: '0px', top: '0px', width: '520px', height: '550px' },
-                'latest-tick': { left: '540px', top: '0px', width: '420px', height: '260px' },
-                'event-timeline': { left: '980px', top: '0px', width: '340px', height: '260px' },
+                'session-stack': { left: '540px', top: '0px', width: '360px', height: '260px' },
+                'latest-tick': { left: '920px', top: '0px', width: '400px', height: '260px' },
+                'event-timeline': { left: '540px', top: '280px', width: '380px', height: '270px' },
             },
         },
         shell: {
@@ -48,8 +49,9 @@
             panels: {
                 'daemon-status': { left: '0px', top: '0px', width: '280px', height: '220px' },
                 'thread-preview': { left: '300px', top: '0px', width: '320px', height: '220px' },
-                'daemon-log': { left: '0px', top: '240px', width: '460px', height: '310px' },
-                'latest-tick': { left: '480px', top: '240px', width: '460px', height: '310px' },
+                'session-stack': { left: '0px', top: '240px', width: '280px', height: '310px' },
+                'daemon-log': { left: '300px', top: '240px', width: '320px', height: '310px' },
+                'latest-tick': { left: '640px', top: '240px', width: '320px', height: '310px' },
                 'monitor-1': { left: '640px', top: '0px', width: '300px', height: '220px' },
                 'event-timeline': { left: '960px', top: '0px', width: '340px', height: '270px' },
                 'thread-compose': { left: '1320px', top: '0px', width: '360px', height: '550px' },
@@ -87,6 +89,7 @@
     var timelineState = []
     var lastTickTimelineKey = ''
     var currentPreset = 'overview'
+    var sessionStackState = { lastActionText: 'idle', lastActionTime: '—' }
     var es = null
 
     function esc(s) {
@@ -110,6 +113,7 @@
         if (!el) return
         el.textContent = text || ''
         el.className = 'codex-console-status codex-console-status--' + (tone || 'neutral')
+        renderSessionStack()
     }
 
     function setHtml(id, text) {
@@ -122,8 +126,50 @@
     }
 
     function setLastAction(text, tone) {
+        sessionStackState.lastActionText = text || 'idle'
+        sessionStackState.lastActionTime = nowLabel()
         setStatusState('last-action-status', text || 'idle', tone || 'neutral')
-        setText('last-action-time', nowLabel())
+        setText('last-action-time', sessionStackState.lastActionTime)
+        renderSessionStack()
+    }
+
+    function renderSessionStack() {
+        var host = document.getElementById('stack-shells')
+        var badge = document.getElementById('session-stack-badge')
+        var activeId = shellState.activeId || ''
+        if (!host || !badge) return
+
+        setText('stack-relay', document.getElementById('relay-status') ? document.getElementById('relay-status').textContent : 'idle')
+        setText('stack-daemon', document.getElementById('daemon-running') ? document.getElementById('daemon-running').textContent : '—')
+        setText('stack-tick', tickBadge ? tickBadge.textContent : '—')
+        setText('stack-workspace', PRESET_LABELS[currentWorkspace] || currentWorkspace)
+        setText('stack-preset', PRESET_LABELS[currentPreset] || currentPreset)
+        setText('stack-thread', (threadInput.value || '').trim() || (document.getElementById('daemon-thread') ? document.getElementById('daemon-thread').textContent : '—'))
+        setText('stack-lock', document.getElementById('thread-lock-mode') ? document.getElementById('thread-lock-mode').textContent : '—')
+        setText('stack-last-action', sessionStackState.lastActionText)
+        setText('stack-last-action-time', sessionStackState.lastActionTime)
+        setText('stack-shell-focus', activeId ? activeId : 'no active session')
+        badge.textContent = shellState.sessions.length + ' shell' + (shellState.sessions.length === 1 ? '' : 's')
+
+        if (!shellState.sessions.length) {
+            host.innerHTML = '<div class="codex-console-stack-shell codex-console-stack-shell--empty">当前没有 shell session。</div>'
+            return
+        }
+
+        host.innerHTML = shellState.sessions.map(function (session) {
+            var active = session.session_id === activeId ? ' is-active' : ''
+            var tone = session.alive ? 'live' : 'done'
+            return (
+                '<article class="codex-console-stack-shell' + active + '">' +
+                '<div class="codex-console-stack-shell__head">' +
+                '<strong>' + esc(session.session_id) + '</strong>' +
+                '<span class="codex-console-stack-pill codex-console-stack-pill--' + tone + '">' + (session.alive ? 'live' : 'done') + '</span>' +
+                '</div>' +
+                '<p><strong>pid</strong><span>' + esc(session.pid || '—') + '</span></p>' +
+                '<p><strong>cwd</strong><span>' + esc(session.cwd || '—') + '</span></p>' +
+                '</article>'
+            )
+        }).join('')
     }
 
     function renderTimeline() {
@@ -455,6 +501,7 @@
         }
         setPresetBadge()
         applyWorkspace(preset.workspace)
+        renderSessionStack()
         if (!silent) {
             setStatusState('daemon-control-status', 'preset ' + (PRESET_LABELS[name] || name), 'success')
             setLastAction('workspace preset restored', 'success')
@@ -505,12 +552,14 @@
             syncMonitorCounter()
             setPresetBadge()
             applyWorkspace(payload.workspace || 'overview')
+            renderSessionStack()
         } catch (err) {
             console.warn('layout restore failed', err)
             allPanels().forEach(panelDrag)
             bindMonitorPane(document.querySelector('[data-panel-id="monitor-1"]'))
             setPresetBadge()
             applyPreset('overview', { silent: true })
+            renderSessionStack()
         }
     }
 
@@ -561,6 +610,7 @@
         setText('last-message-preview', tick.last_message_preview || '—')
         lastTickPath.textContent = tick.raw_log_path || '—'
         updateThreadLock(status.thread_lock || data.thread_lock || {})
+        renderSessionStack()
         var tickKey = [tick.phase || '', tick.started_at || '', tick.finished_at || '', tick.returncode].join('|')
         if (tickKey !== '|||' && tickKey !== lastTickTimelineKey) {
             lastTickTimelineKey = tickKey
@@ -664,6 +714,7 @@
                 if (!shellState.sessions.length) shellState.activeId = ''
                 renderShellTabs()
                 renderShellOutput()
+                renderSessionStack()
             })
             .catch(function (err) {
                 setStatusState('shell-status', err.message, 'error')
@@ -702,6 +753,7 @@
                 shellState.activeId = data.session.session_id
                 renderShellTabs()
                 renderShellOutput()
+                renderSessionStack()
                 setStatusState('shell-status', 'shell ready', 'success')
                 setLastAction('shell created', 'success')
                 pushTimeline('shell', 'shell created', data.session.session_id + ' · pid=' + data.session.pid)
@@ -729,6 +781,7 @@
                 shellState.activeId = shellState.sessions.length ? shellState.sessions[0].session_id : ''
                 renderShellTabs()
                 renderShellOutput()
+                renderSessionStack()
                 setStatusState('shell-status', 'shell closed', 'success')
                 setLastAction('shell closed', 'success')
                 pushTimeline('shell', 'shell closed', sessionId)
@@ -756,6 +809,7 @@
                 })
                 document.getElementById('shell-input').value = ''
                 renderShellOutput()
+                renderSessionStack()
                 setStatusState('shell-status', 'sent', 'success')
                 setLastAction('shell input sent', 'success')
                 pushTimeline('shell', 'shell input sent', shellState.activeId)
@@ -954,6 +1008,7 @@
     setPresetBadge()
     renderGuardrail()
     loadLayout()
+    renderSessionStack()
     renderTimeline()
     connectEvents()
     refreshLogs()

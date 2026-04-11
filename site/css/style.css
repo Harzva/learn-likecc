@@ -11459,6 +11459,10 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     background: linear-gradient(180deg, rgba(255, 247, 237, 0.96), rgba(254, 242, 242, 0.92));
 }
 
+.codex-console-panel--stack .codex-console-panel__head {
+    background: linear-gradient(180deg, rgba(236, 253, 245, 0.98), rgba(209, 250, 229, 0.92));
+}
+
 .codex-console-panel--daemon .codex-console-panel__kicker::before {
     background: #f97316;
     box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.12);
@@ -11483,6 +11487,11 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 .codex-console-panel--timeline .codex-console-panel__kicker::before {
     background: #ef4444;
     box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12);
+}
+
+.codex-console-panel--stack .codex-console-panel__kicker::before {
+    background: #10b981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.12);
 }
 
 .codex-console-panel--shell .codex-console-panel__kicker::before {
@@ -11756,6 +11765,133 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     overflow-wrap: anywhere;
 }
 
+.codex-console-stack-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.codex-console-stack-card {
+    padding: 12px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(148, 163, 184, 0.14);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+}
+
+.codex-console-stack-card__label {
+    display: inline-flex;
+    margin-bottom: 8px;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+}
+
+.codex-console-stack-card p {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 0 0 8px;
+    font-size: 0.84rem;
+}
+
+.codex-console-stack-card p:last-child {
+    margin-bottom: 0;
+}
+
+.codex-console-stack-card strong {
+    color: var(--text-secondary);
+}
+
+.codex-console-stack-list {
+    border-radius: 18px;
+    border: 1px solid rgba(148, 163, 184, 0.14);
+    background: rgba(248, 250, 252, 0.88);
+    padding: 12px;
+}
+
+.codex-console-stack-list__head {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 10px;
+    color: var(--text-secondary);
+    font-size: 0.84rem;
+}
+
+.codex-console-stack-list__head strong {
+    color: var(--text-primary);
+}
+
+.codex-console-stack-shells {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.codex-console-stack-shell {
+    padding: 12px;
+    border-radius: 16px;
+    border: 1px solid rgba(148, 163, 184, 0.14);
+    background: rgba(255, 255, 255, 0.94);
+}
+
+.codex-console-stack-shell.is-active {
+    border-color: rgba(16, 185, 129, 0.32);
+    box-shadow: 0 12px 24px rgba(16, 185, 129, 0.12);
+}
+
+.codex-console-stack-shell--empty {
+    color: var(--text-secondary);
+    text-align: center;
+    background: rgba(255, 255, 255, 0.82);
+}
+
+.codex-console-stack-shell__head {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.codex-console-stack-shell p {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 0 0 6px;
+    font-size: 0.82rem;
+}
+
+.codex-console-stack-shell p:last-child {
+    margin-bottom: 0;
+}
+
+.codex-console-stack-shell strong {
+    color: var(--text-secondary);
+}
+
+.codex-console-stack-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 8px;
+    border-radius: 999px;
+    font-size: 0.72rem;
+}
+
+.codex-console-stack-pill--live {
+    background: rgba(220, 252, 231, 0.94);
+    color: #047857;
+}
+
+.codex-console-stack-pill--done {
+    background: rgba(254, 226, 226, 0.96);
+    color: #b91c1c;
+}
+
 .codex-console-form {
     display: flex;
     flex-direction: column;
@@ -11863,6 +11999,10 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     }
 
     .codex-console-guardrail__metrics {
+        grid-template-columns: 1fr;
+    }
+
+    .codex-console-stack-grid {
         grid-template-columns: 1fr;
     }
 

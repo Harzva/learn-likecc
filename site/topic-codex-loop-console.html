@@ -212,7 +212,50 @@
                             <div class="codex-console-panel__resize" aria-hidden="true"></div>
                         </section>
 
-                        <section class="codex-console-panel codex-console-panel--monitor" data-panel-id="monitor-1" data-workspace-group="overview,shell,debug" data-monitor-source="daemon" style="left:1220px;top:0;width:360px;height:260px;">
+                        <section class="codex-console-panel codex-console-panel--stack" data-panel-id="session-stack" data-workspace-group="overview,thread,debug" style="left:780px;top:0;width:360px;height:250px;">
+                            <div class="codex-console-panel__head">
+                                <div class="codex-console-panel__titlegroup">
+                                    <span class="codex-console-panel__kicker">Sessions</span>
+                                    <strong>Session Stack</strong>
+                                </div>
+                                <span class="codex-console-chip" id="session-stack-badge">0 shells</span>
+                            </div>
+                            <div class="codex-console-panel__body">
+                                <p class="codex-console-inline-note">借了 Hermes WebUI 和 CloudCLI UI 的 session/sidebar 思路，把 operator 当前真正要看的 relay、thread、workspace 与 shell roster 收成一个总览面。</p>
+                                <div class="codex-console-stack-grid">
+                                    <article class="codex-console-stack-card">
+                                        <span class="codex-console-stack-card__label">Control</span>
+                                        <p><strong>relay</strong><span id="stack-relay">idle</span></p>
+                                        <p><strong>daemon</strong><span id="stack-daemon">—</span></p>
+                                        <p><strong>tick</strong><span id="stack-tick">—</span></p>
+                                    </article>
+                                    <article class="codex-console-stack-card">
+                                        <span class="codex-console-stack-card__label">Desk</span>
+                                        <p><strong>workspace</strong><span id="stack-workspace">Overview</span></p>
+                                        <p><strong>preset</strong><span id="stack-preset">Overview</span></p>
+                                        <p><strong>last action</strong><span id="stack-last-action">idle</span></p>
+                                    </article>
+                                    <article class="codex-console-stack-card">
+                                        <span class="codex-console-stack-card__label">Thread</span>
+                                        <p><strong>thread</strong><span id="stack-thread">—</span></p>
+                                        <p><strong>lock</strong><span id="stack-lock">—</span></p>
+                                        <p><strong>action at</strong><span id="stack-last-action-time">—</span></p>
+                                    </article>
+                                </div>
+                                <div class="codex-console-stack-list">
+                                    <div class="codex-console-stack-list__head">
+                                        <strong>Shell Roster</strong>
+                                        <span id="stack-shell-focus">no active session</span>
+                                    </div>
+                                    <div id="stack-shells" class="codex-console-stack-shells">
+                                        <div class="codex-console-stack-shell codex-console-stack-shell--empty">当前没有 shell session。</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="codex-console-panel__resize" aria-hidden="true"></div>
+                        </section>
+
+                        <section class="codex-console-panel codex-console-panel--monitor" data-panel-id="monitor-1" data-workspace-group="shell,debug" data-monitor-source="daemon" style="left:1220px;top:0;width:360px;height:260px;">
                             <div class="codex-console-panel__head">
                                 <div class="codex-console-panel__titlegroup">
                                     <span class="codex-console-panel__kicker">Inspect</span>
@@ -313,7 +356,7 @@
         </div>
     </footer>
     <template id="monitor-pane-template">
-        <section class="codex-console-panel codex-console-panel--monitor" data-workspace-group="overview,shell,debug" data-monitor-source="daemon" style="left:80px;top:80px;width:360px;height:260px;">
+        <section class="codex-console-panel codex-console-panel--monitor" data-workspace-group="shell,debug" data-monitor-source="daemon" style="left:80px;top:80px;width:360px;height:260px;">
             <div class="codex-console-panel__head">
                 <div class="codex-console-panel__titlegroup">
                     <span class="codex-console-panel__kicker">Inspect</span>

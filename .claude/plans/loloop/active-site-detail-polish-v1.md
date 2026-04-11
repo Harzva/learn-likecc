@@ -17,7 +17,7 @@ Prioritize future iterations along these three lines:
 
 ## Current focus
 
-Choose the next main-site move after the Task 7 AI Terminal validation close-out.
+Continue Task 9 LikeCode Web UI after the first session-stack / operator-overview pass.
 
 ## Success condition
 
@@ -226,6 +226,9 @@ Choose the next main-site move after the Task 7 AI Terminal validation close-out
 - [x] Stay on Task 7 for one bounded validation and live-relay hygiene pass after the first-load preset recovery
 - [x] Verify the AI Terminal static checks still pass and confirm an isolated relay smoke test restores the writable thread lock without orphan shell sessions
 - [x] Mark Task 7 locally done after the dedicated AI Terminal plan passes the bounded validation close-out
+- [x] Choose Task 9 as the next main-site move after the Task 7 AI Terminal close-out
+- [x] Add one reference-backed `Session Stack` operator overview pane to the local LikeCode-facing AI Terminal surface
+- [x] Verify the Task 9 session-stack pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail
 

@@ -62,3 +62,4 @@
 - 各 pane 现在补了 `Control / Preview / Logs / Compose / Inspect / History / PTY` 类型层级和更清楚的头部色带，daemon、log、thread、shell 的分组更容易扫读
 - 窄屏下新增更可靠的 fallback：toolbar 状态整行堆叠、preset/guardrail 不再挤成一行，terminal head/footer 与 prompt composer 会自动换成更适合手机调试的布局
 - 第一次打开页面、或本地布局缓存损坏时，现在会直接回到受控的 `Overview` preset，而不是依赖零散的原始 pane 几何位置
+- 新增 `Session Stack` 总览 pane，借了 Hermes WebUI / CloudCLI 的 session-sidebar 思路，把 relay、workspace、thread lock、最近动作和 shell roster 收成一处；同时把通用 monitor pane 从 `Overview` 退出，避免首屏继续堆成“很多盒子但没有 operator summary”
