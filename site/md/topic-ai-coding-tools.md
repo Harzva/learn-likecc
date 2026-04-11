@@ -8,11 +8,14 @@
 - 插件 / 编程助手
 - Coding Studio
 
+这里的 `CLI Agent` 现在不再只按“是不是终端里跑”来粗分；站内已经进一步把它拆成 workflow-complete terminal shell、TUI-first open shell、artifact-control CLI 三种壳，入口见 `topic-ai-cli-agent.html`。
+
 ## 这页重点
 
 - 不按字母排，而是按工作形态分堆
 - 鼠标悬停时，同路线工具一起高亮
 - 用来回答“谁和谁是一路的”
+- 其中 `CLI Agent` 这堆内部还要再看壳层差异，而不是把 Claude Code、OpenCode、OfficeCLI 一股脑算成同一种终端工具
 
 ## 第一批收录
 

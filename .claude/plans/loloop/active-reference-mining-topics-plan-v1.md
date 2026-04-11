@@ -31,6 +31,8 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - [x] Choose `topic-ai-cli-agent` as the next bounded site-facing destination because the remaining `OpenCode / OfficeCLI / Claude Code / Codex / Qwen Code` references fit its CLI-shell scope directly
 - [x] Add one repo-backed CLI shell-type note clarifying why workflow-complete terminal shells, TUI-first open shells, and artifact-control CLIs should not be taught as one flat bucket
 - [x] Mark the current `topic-ai-cli-agent` subthread locally deferred after the CLI shell-type pass because another immediate pass would now be lower value than switching to a fresh reference destination
+- [x] Choose `topic-ai-coding-tools` as the next bounded site-facing destination because the new CLI shell-type distinction should flow back into the higher-level tool taxonomy
+- [x] Add one coding-tools hub sync note clarifying that the CLI Agent bucket now points to multiple shell types rather than one flat terminal route
 
 ## Newly added references
 
@@ -106,6 +108,9 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - [x] Current explicit destination for the sixth bounded pass:
   - `site/topic-ai-cli-agent.html`
   - `site/md/topic-ai-cli-agent.md`
+- [x] Current explicit destination for the seventh bounded pass:
+  - `site/topic-ai-coding-tools.html`
+  - `site/md/topic-ai-coding-tools.md`
 
 ## What to extract for LikeCode
 
@@ -120,6 +125,8 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
   - reflect fresh hotspot scope back into the main Agent entry surface so leaf-page intake does not stay invisible at the hub level
 - [x] bounded extraction on the CLI-shell line:
   - distinguish workflow-complete terminal shells, TUI-first open shells, and artifact-control CLIs before teaching “CLI Agent” as one category
+- [x] bounded extraction on the tool-taxonomy line:
+  - reflect the CLI shell-type distinction back into the higher-level AI coding-tools map so top-level categories do not flatten the subtopic
 - [x] first bounded extraction on the multi-agent line:
   - distinguish research-agent CLI shells, workflow-orchestration shells, and managed-agent platform shells before treating all “agent teams” as one runtime shape
 - [x] second bounded extraction on the multi-agent line:
@@ -152,3 +159,4 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - Current local state: the `topic-agent` subthread is locally deferred until a stronger hub-level intake, new subtopic destination, or clearer reference-backed gap appears
 - Sixth bounded Task 8 destination is now `topic-ai-cli-agent`, using `OpenCode` and `OfficeCLI` to thicken the current `Claude Code / Codex / Qwen Code / MiniMax` framing into a clearer CLI shell-type comparison
 - Current local state: the `topic-ai-cli-agent` subthread is locally deferred until a stronger CLI-control reference, new shell family, or clearer site destination appears
+- Seventh bounded Task 8 destination is now `topic-ai-coding-tools`, using a small hub-sync pass so the top-level tooling map acknowledges the internal shell-type split already added to `topic-ai-cli-agent`

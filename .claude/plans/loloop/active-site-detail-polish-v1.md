@@ -17,7 +17,7 @@ Prioritize future iterations along these three lines:
 
 ## Current focus
 
-Choose the next best Task 8 destination after the current `topic-ai-cli-agent` shell-type subthread defer decision.
+Continue Task 8 on the fresh `topic-ai-coding-tools` CLI sync and decide whether one adjacent reference-backed clarification is still justified.
 
 ## Success condition
 
@@ -274,6 +274,9 @@ Choose the next best Task 8 destination after the current `topic-ai-cli-agent` s
 - [x] Add one repo-backed CLI shell-type note so the CLI Agent page stops treating all terminal agents as one flat category
 - [x] Verify the Task 8 CLI-agent shell-type pass with `python3 tools/check_site_md_parity.py`
 - [x] Mark the current `topic-ai-cli-agent` subthread locally deferred after the shell-type pass
+- [x] Choose `topic-ai-coding-tools` as the next fresh Task 8 destination after deferring the `topic-ai-cli-agent` subthread
+- [x] Add one coding-tools hub sync note so the top-level CLI Agent bucket now points toward multiple shell types instead of one flat terminal route
+- [x] Verify the Task 8 coding-tools CLI-sync pass with `python3 tools/check_site_md_parity.py`
 - [x] Stay on Task 9 for one more bounded action-oriented operator-summary follow-up after the headline-badges pass
 - [x] Add a compact `Attention Queue` so relay / thread / shell each expose the next likely operator move from the same overview surface
 - [x] Verify the Task 9 attention-queue pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
