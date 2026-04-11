@@ -289,6 +289,53 @@
                     </div>
                 </section>
 
+                <section class="section-block">
+                    <div class="toolchain-section-heading">
+                        <span class="toolchain-eyebrow">Approval</span>
+                        <h2>Repo-backed 再补一层：CLI Agent 的 approval surface 也不一样</h2>
+                    </div>
+                    <p>只分壳层还不够，因为很多 CLI agent 真正让人卡住的，不是“能不能进终端”，而是<strong>它到底让你批准什么</strong>。</p>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>approval surface</th>
+                                    <th>代表样本</th>
+                                    <th>真正被批准的对象</th>
+                                    <th>选型时该怎么看</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>action approval</td>
+                                    <td><code>reference/reference_agent/reference_control-agent-cli/opencode/README.md</code> + <code>internal/permission/permission.go</code></td>
+                                    <td>单次 tool action，或当前 session 的持续放行</td>
+                                    <td>适合重视即时操作流畅度的人，但要分清它批准的是动作，不是整个工作区都“安全了”</td>
+                                </tr>
+                                <tr>
+                                    <td>artifact review</td>
+                                    <td><code>reference/reference_agent/reference_control-agent-cli/OfficeCLI/SKILL.md</code></td>
+                                    <td>文稿修改提案，先 <code>mark</code> 再 review / apply</td>
+                                    <td>适合文档、表格、演示文稿这类产物控制场景；重点不是快，而是先审再落盘</td>
+                                </tr>
+                                <tr>
+                                    <td>dangerous-command gate</td>
+                                    <td><code>reference/reference_agent/hermes-agent/hermes_cli/main.py</code></td>
+                                    <td>危险命令执行；默认要过 prompt，只有显式 <code>--yolo</code> 才整体绕过</td>
+                                    <td>适合把它当风险姿态来理解，而不是把 <code>--yolo</code> 当普通 convenience flag</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>所以 CLI Agent 不只是“产品壳 / 开源壳 / 文档壳”的差别，还要看 approval model：</p>
+                    <ul>
+                        <li>如果你主要想降低日常 tool 调用摩擦，优先看 action approval 做得是否清楚。</li>
+                        <li>如果你主要在改文档、表格、演示稿，优先看 artifact review 是否独立存在。</li>
+                        <li>如果某个工具把全局绕过 approval 当卖点，那更像风险开关，不该被包装成普通工作流体验。</li>
+                    </ul>
+                    <p>这样看，<code>Claude Code / Codex / Qwen Code / MiniMax 接入路线</code> 这条主战线之外，<code>OpenCode / OfficeCLI / Hermes Agent</code> 更像是在补三种不同的 approval surface，而不是只是在补“更多名字”。</p>
+                </section>
+
                 <section id="pick" class="section-block">
                     <div class="toolchain-section-heading">
                         <span class="toolchain-eyebrow">Pick</span>

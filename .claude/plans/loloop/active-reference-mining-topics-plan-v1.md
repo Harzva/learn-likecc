@@ -31,6 +31,8 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - [x] Choose `topic-ai-cli-agent` as the next bounded site-facing destination because the remaining `OpenCode / OfficeCLI / Claude Code / Codex / Qwen Code` references fit its CLI-shell scope directly
 - [x] Add one repo-backed CLI shell-type note clarifying why workflow-complete terminal shells, TUI-first open shells, and artifact-control CLIs should not be taught as one flat bucket
 - [x] Mark the current `topic-ai-cli-agent` subthread locally deferred after the CLI shell-type pass because another immediate pass would now be lower value than switching to a fresh reference destination
+- [x] Reopen `topic-ai-cli-agent` for one bounded approval-surface pass once the console page proves the approval-boundary evidence is strong enough to travel beyond Task 9
+- [x] Add one repo-backed approval-surface note clarifying why action approval, artifact review, and dangerous-command bypass should not be flattened into one generic CLI “safety” label
 - [x] Choose `topic-ai-coding-tools` as the next bounded site-facing destination because the new CLI shell-type distinction should flow back into the higher-level tool taxonomy
 - [x] Add one coding-tools hub sync note clarifying that the CLI Agent bucket now points to multiple shell types rather than one flat terminal route
 - [x] Mark the current `topic-ai-coding-tools` subthread locally deferred after the CLI taxonomy sync because another immediate pass would now be lower value than switching to a fresh reference destination
@@ -136,6 +138,8 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - [x] first bounded extraction:
   - distinguish skill bundle packaging from plugin bundle packaging before deciding how a GitHub repo should be audited
 - [ ] safety and approval boundaries
+- [x] bounded extraction on the CLI approval line:
+  - distinguish action approval, artifact review, and dangerous-command bypass before teaching CLI agents as if they all expose the same operator risk surface
 - [ ] event history, observability, and operator UX
 
 ## Validation
@@ -161,5 +165,6 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - Current local state: the `topic-agent` subthread is locally deferred until a stronger hub-level intake, new subtopic destination, or clearer reference-backed gap appears
 - Sixth bounded Task 8 destination is now `topic-ai-cli-agent`, using `OpenCode` and `OfficeCLI` to thicken the current `Claude Code / Codex / Qwen Code / MiniMax` framing into a clearer CLI shell-type comparison
 - Current local state: the `topic-ai-cli-agent` subthread is locally deferred until a stronger CLI-control reference, new shell family, or clearer site destination appears
+- Current local state: the `topic-ai-cli-agent` subthread now also carries one approval-surface note from `OpenCode / OfficeCLI / Hermes Agent`; defer further passes again unless a new CLI-control family or stronger primary-source boundary signal appears
 - Seventh bounded Task 8 destination is now `topic-ai-coding-tools`, using a small hub-sync pass so the top-level tooling map acknowledges the internal shell-type split already added to `topic-ai-cli-agent`
 - Current local state: the `topic-ai-coding-tools` subthread is locally deferred until a stronger tooling-map intake, new tool family, or clearer reference-backed gap appears
