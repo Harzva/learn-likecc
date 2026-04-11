@@ -129,6 +129,47 @@
 
                 <section class="section-block">
                     <div class="toolchain-section-heading">
+                        <span class="toolchain-eyebrow">Shell Types</span>
+                        <h2>Repo-backed 补充：CLI Agent 其实至少有三种壳</h2>
+                    </div>
+                    <p>如果把所有终端 agent 都放进一个篮子里，很容易误判它们到底在解决什么问题。结合 <code>reference/</code> 里的样本，更稳妥的教法是先分壳层。</p>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>壳层类型</th>
+                                    <th>代表样本</th>
+                                    <th>它主要解决什么</th>
+                                    <th>该怎么看</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>workflow-complete terminal shell</td>
+                                    <td>Claude Code / Codex / Qwen Code / MiniMax 接入路线</td>
+                                    <td>把计划、执行、工具调用、模型接入和终端工作流压进一个主入口</td>
+                                    <td>适合把终端当主界面来用，重点看 workflow 完整度与生态收口</td>
+                                </tr>
+                                <tr>
+                                    <td>TUI-first open shell</td>
+                                    <td><code>reference/reference_agent/reference_control-agent-cli/anomalyco-opencode/</code></td>
+                                    <td>把 terminal UI、本地/远程 client、provider-agnostic 接入、内置 agent 模式做成更偏终端原生的交互壳</td>
+                                    <td>适合研究开源壳层、交互设计和 client/server 终端体验，而不只是“能不能写代码”</td>
+                                </tr>
+                                <tr>
+                                    <td>artifact-control CLI</td>
+                                    <td><code>reference/reference_agent/reference_control-agent-cli/OfficeCLI/</code></td>
+                                    <td>让 agent 直接控制 Word / Excel / PowerPoint 这类文档产物，而不是只管代码仓库</td>
+                                    <td>适合把它看成 document control plane，不该再混回 generic coding shell</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>所以这页后面再扩时，重点不该是“再多列几个名字”，而是先判断你要选的是哪一类终端壳。</p>
+                </section>
+
+                <section class="section-block">
+                    <div class="toolchain-section-heading">
                         <span class="toolchain-eyebrow">Tool Wall</span>
                         <h2>把工具放成一面墙，悬停时看谁和谁是一路人</h2>
                     </div>

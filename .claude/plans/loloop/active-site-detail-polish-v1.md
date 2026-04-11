@@ -17,7 +17,7 @@ Prioritize future iterations along these three lines:
 
 ## Current focus
 
-Choose the next best Task 8 destination after the current `topic-agent` hub-entry sync defer decision.
+Continue Task 8 on the fresh `topic-ai-cli-agent` shell-type thread and decide whether one adjacent reference-backed clarification is still justified.
 
 ## Success condition
 
@@ -270,6 +270,9 @@ Choose the next best Task 8 destination after the current `topic-agent` hub-entr
 - [x] Add one hub-entry sync note so the main Agent page now advertises official-source hotspot projects and artifact-control CLI patterns
 - [x] Verify the Task 8 Agent-hub sync pass with `python3 tools/check_site_md_parity.py`
 - [x] Mark the current `topic-agent` subthread locally deferred after the hub-entry sync
+- [x] Choose `topic-ai-cli-agent` as the next fresh Task 8 destination after deferring the `topic-agent` subthread
+- [x] Add one repo-backed CLI shell-type note so the CLI Agent page stops treating all terminal agents as one flat category
+- [x] Verify the Task 8 CLI-agent shell-type pass with `python3 tools/check_site_md_parity.py`
 - [x] Stay on Task 9 for one more bounded action-oriented operator-summary follow-up after the headline-badges pass
 - [x] Add a compact `Attention Queue` so relay / thread / shell each expose the next likely operator move from the same overview surface
 - [x] Verify the Task 9 attention-queue pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`

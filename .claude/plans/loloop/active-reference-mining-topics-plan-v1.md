@@ -28,6 +28,8 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - [x] Choose `topic-agent` as the next bounded site-facing destination because the refreshed hotspot lane should be reflected back into the main Agent hub entry copy
 - [x] Add one hub-entry sync note clarifying that `技术热点` now also covers official-source projects like `Hermes Agent` and artifact-control CLIs like `OfficeCLI`
 - [x] Mark the current `topic-agent` subthread locally deferred after the hub-entry sync because another immediate pass would now be lower value than switching to a fresh reference destination
+- [x] Choose `topic-ai-cli-agent` as the next bounded site-facing destination because the remaining `OpenCode / OfficeCLI / Claude Code / Codex / Qwen Code` references fit its CLI-shell scope directly
+- [x] Add one repo-backed CLI shell-type note clarifying why workflow-complete terminal shells, TUI-first open shells, and artifact-control CLIs should not be taught as one flat bucket
 
 ## Newly added references
 
@@ -100,6 +102,9 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - [x] Current explicit destination for the fifth bounded pass:
   - `site/topic-agent.html`
   - `site/md/topic-agent.md`
+- [x] Current explicit destination for the sixth bounded pass:
+  - `site/topic-ai-cli-agent.html`
+  - `site/md/topic-ai-cli-agent.md`
 
 ## What to extract for LikeCode
 
@@ -112,6 +117,8 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
   - distinguish document / artifact control CLIs from generic coding shells before treating all “agent CLI” references as the same surface
 - [x] bounded extraction on the hub-alignment line:
   - reflect fresh hotspot scope back into the main Agent entry surface so leaf-page intake does not stay invisible at the hub level
+- [x] bounded extraction on the CLI-shell line:
+  - distinguish workflow-complete terminal shells, TUI-first open shells, and artifact-control CLIs before teaching “CLI Agent” as one category
 - [x] first bounded extraction on the multi-agent line:
   - distinguish research-agent CLI shells, workflow-orchestration shells, and managed-agent platform shells before treating all “agent teams” as one runtime shape
 - [x] second bounded extraction on the multi-agent line:
@@ -142,3 +149,4 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - Current local state: the `topic-agent-hot` subthread is locally deferred until a stronger hotspot source, artifact-control pattern, or clearer site destination appears
 - Fifth bounded Task 8 destination is now `topic-agent`, using a small hub-entry sync so the main Agent page advertises that the refreshed hotspot lane now covers official-source projects and artifact-control CLI patterns rather than only RSS-style blog summaries
 - Current local state: the `topic-agent` subthread is locally deferred until a stronger hub-level intake, new subtopic destination, or clearer reference-backed gap appears
+- Sixth bounded Task 8 destination is now `topic-ai-cli-agent`, using `OpenCode` and `OfficeCLI` to thicken the current `Claude Code / Codex / Qwen Code / MiniMax` framing into a clearer CLI shell-type comparison
