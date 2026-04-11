@@ -17,7 +17,7 @@ Prioritize future iterations along these three lines:
 
 ## Current focus
 
-Continue Task 9 LikeCode Web UI after the grouped shell-roster pass.
+Continue Task 9 LikeCode Web UI after the desk-assignment-ledger pass.
 
 ## Success condition
 
@@ -244,6 +244,9 @@ Continue Task 9 LikeCode Web UI after the grouped shell-roster pass.
 - [x] Stay on Task 9 for one more bounded session-management follow-up after the ownership-summary pass
 - [x] Regroup the `Shell Roster` into `Active Seat / Standby Sessions / Closed Sessions` lanes and add top-level shell metrics so multi-session state is easier to scan
 - [x] Verify the Task 9 grouped-shell-roster pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
+- [x] Stay on Task 9 for one more bounded assignment-clarity follow-up after the grouped-shell-roster pass
+- [x] Add a `Desk Assignments` ledger so `Overview / Thread Desk / Shell Lab` visibly declare which seat they currently own and can be reopened from one row
+- [x] Verify the Task 9 desk-assignment-ledger pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail
 

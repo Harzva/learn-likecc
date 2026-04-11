@@ -253,6 +253,45 @@
                                         <p id="stack-summary-shell-note">Waiting for shell roster.</p>
                                     </article>
                                 </div>
+                                <div class="codex-console-stack-ledger" aria-label="surface assignment ledger">
+                                    <div class="codex-console-stack-ledger__head">
+                                        <strong>Desk Assignments</strong>
+                                        <span>which surface is currently holding which seat</span>
+                                    </div>
+                                    <article class="codex-console-stack-ledger__row">
+                                        <div class="codex-console-stack-ledger__meta">
+                                            <span class="codex-console-stack-ledger__label">Overview</span>
+                                            <strong id="stack-ledger-daemon-owner">daemon idle</strong>
+                                            <p id="stack-ledger-daemon-note">No daemon run is active yet.</p>
+                                        </div>
+                                        <div class="codex-console-stack-ledger__controls">
+                                            <span id="stack-ledger-daemon-chip" class="codex-console-stack-pill codex-console-stack-pill--neutral">manual</span>
+                                            <button id="stack-ledger-open-overview" type="button" class="btn btn-secondary">Open</button>
+                                        </div>
+                                    </article>
+                                    <article class="codex-console-stack-ledger__row">
+                                        <div class="codex-console-stack-ledger__meta">
+                                            <span class="codex-console-stack-ledger__label">Thread Desk</span>
+                                            <strong id="stack-ledger-thread-owner">thread pending</strong>
+                                            <p id="stack-ledger-thread-note">No thread binding yet.</p>
+                                        </div>
+                                        <div class="codex-console-stack-ledger__controls">
+                                            <span id="stack-ledger-thread-chip" class="codex-console-stack-pill codex-console-stack-pill--neutral">pending</span>
+                                            <button id="stack-ledger-open-thread" type="button" class="btn btn-secondary">Open</button>
+                                        </div>
+                                    </article>
+                                    <article class="codex-console-stack-ledger__row">
+                                        <div class="codex-console-stack-ledger__meta">
+                                            <span class="codex-console-stack-ledger__label">Shell Lab</span>
+                                            <strong id="stack-ledger-shell-owner">no active shell</strong>
+                                            <p id="stack-ledger-shell-note">Create or focus a shell session.</p>
+                                        </div>
+                                        <div class="codex-console-stack-ledger__controls">
+                                            <span id="stack-ledger-shell-chip" class="codex-console-stack-pill codex-console-stack-pill--neutral">idle</span>
+                                            <button id="stack-ledger-open-shell" type="button" class="btn btn-secondary">Open</button>
+                                        </div>
+                                    </article>
+                                </div>
                                 <div class="codex-console-stack-grid">
                                     <article class="codex-console-stack-card">
                                         <span class="codex-console-stack-card__label">Control</span>

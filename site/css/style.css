@@ -11825,6 +11825,73 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     line-height: 1.55;
 }
 
+.codex-console-stack-ledger {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.codex-console-stack-ledger__head {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: baseline;
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+}
+
+.codex-console-stack-ledger__head strong {
+    color: var(--text-primary);
+    font-size: 0.94rem;
+}
+
+.codex-console-stack-ledger__row {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 12px;
+    border-radius: 18px;
+    border: 1px solid rgba(148, 163, 184, 0.14);
+    background: rgba(255, 255, 255, 0.88);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+}
+
+.codex-console-stack-ledger__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.codex-console-stack-ledger__label {
+    display: inline-flex;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+}
+
+.codex-console-stack-ledger__meta strong {
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+.codex-console-stack-ledger__meta p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    line-height: 1.5;
+}
+
+.codex-console-stack-ledger__controls {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-end;
+    justify-content: center;
+}
+
 .codex-console-stack-card {
     padding: 12px;
     border-radius: 16px;
@@ -12135,6 +12202,21 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 
     .codex-console-stack-summary {
         grid-template-columns: 1fr;
+    }
+
+    .codex-console-stack-ledger__head,
+    .codex-console-stack-ledger__row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .codex-console-stack-ledger__controls {
+        width: 100%;
+        align-items: flex-start;
+    }
+
+    .codex-console-stack-ledger__controls .btn {
+        width: 100%;
     }
 
     .codex-console-stack-actions,
