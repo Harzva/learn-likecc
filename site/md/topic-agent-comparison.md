@@ -96,6 +96,20 @@
 | workflow-orchestration shell | `ChatDev 2.0` | 用零代码配置 agent、workflow、task，让用户搭配不同多代理流程并在 Web Console 里执行 | 它说明 Agent Teams 还可以进一步抽象成“编排平台”，不再只是固定角色聊天 |
 | managed-agent platform shell | `Multica` | 把 agent 当长期 teammate，围绕 board、runtime、daemon、workspace 和 issue assignment 管完整生命周期 | 它说明团队协作真正变厚时，难点会转成 runtime 管理、任务分发和状态可视化，而不是 prompt 本身 |
 
+如果再往前收一层，可以直接看它们各自默认的协调方式：
+
+- `feynman`
+  - 更像 **一个主入口替你调度多个研究角色**
+  - 协作结果尽量收束到单条研究终端与产物目录里
+- `ChatDev 2.0`
+  - 更像 **把代理之间的协作关系写成 workflow**
+  - 重点是可配置编排，而不是长期 team board
+- `Multica`
+  - 更像 **把代理当长期成员持续接任务**
+  - 重点是 runtime、issue、comment、status 和 daemon 组成的队友生命周期
+
+这会帮助读者把 “Agent Teams” 这件事再拆细一点：有的系统主要在优化单入口多角色工作流，有的在优化可配置编排，有的已经开始优化长期的人机协作组织面。
+
 ### 三、小结：两条线怎么一起想
 
 收束「技能包层」与「运行时多代理层」如何叠加：前者偏**内容与流程资产**，后者偏**执行与状态管理**；与主线 S 课可交叉阅读。

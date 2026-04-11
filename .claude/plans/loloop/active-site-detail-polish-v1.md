@@ -313,6 +313,8 @@ Continue Task 8 after switching from the deferred `topic-skillmarket` subthread 
 - [x] Choose `topic-agent-comparison` as the next bounded Task 8 destination after the `topic-skillmarket` subthread defer
 - [x] Add one repo-backed runtime-shell note to `topic-agent-comparison` using `feynman`, `ChatDev 2.0`, and `Multica`
 - [x] Verify the Task 8 agent-comparison runtime-shell pass with `python3 tools/check_site_md_parity.py`
+- [x] Add one adjacent coordination-mode clarification to the same `topic-agent-comparison` subthread so the three runtime shells also map back to different default collaboration styles
+- [x] Verify the Task 8 agent-comparison coordination-mode pass with `python3 tools/check_site_md_parity.py`
 - [x] Verify the Task 9 headline-badges pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail

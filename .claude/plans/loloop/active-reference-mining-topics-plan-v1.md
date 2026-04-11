@@ -17,6 +17,7 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - [x] Mark the current `topic-skillmarket` subthread locally deferred after the repo-evidence and packaging-surface passes because another pass on the same pair would now be lower value than switching to a fresh reference destination
 - [x] Choose `topic-agent-comparison` as the next bounded site-facing destination because the remaining `feynman / ChatDev / multica` references fit its runtime-topology scope
 - [x] Add one repo-backed runtime-shell note so “Subagents vs Agent Teams” is grounded in concrete reference projects rather than staying purely abstract
+- [x] Add one adjacent coordination-mode clarification so the three runtime shells also map back to distinct default collaboration styles
 
 ## Newly added references
 
@@ -88,6 +89,8 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - [ ] multi-agent control and delegation surfaces
 - [x] first bounded extraction on the multi-agent line:
   - distinguish research-agent CLI shells, workflow-orchestration shells, and managed-agent platform shells before treating all “agent teams” as one runtime shape
+- [x] second bounded extraction on the multi-agent line:
+  - distinguish single-entry role dispatch, configurable workflow orchestration, and long-lived teammate lifecycle as three different default coordination modes
 - [ ] skills / plugins / knowledge packaging
 - [x] first bounded extraction:
   - distinguish skill bundle packaging from plugin bundle packaging before deciding how a GitHub repo should be audited
