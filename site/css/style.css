@@ -4200,6 +4200,11 @@ body {
     font-weight: 600;
 }
 
+.s12-reference-lead-tight {
+    margin-top: 1.5rem;
+    margin-bottom: 0.25rem;
+}
+
 .reference-detail-wrap {
     max-width: 1000px;
     margin: 0 auto;
