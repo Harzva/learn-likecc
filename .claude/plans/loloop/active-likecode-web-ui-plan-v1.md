@@ -13,7 +13,8 @@ Scope: continuously improve LikeCode Web UI, AI terminal experience, and the age
 - [x] Continue Task 9 with the next bounded follow-up after the session-stack action rows and focus controls get their narrow-screen fallback
 - [x] Continue Task 9 with the next bounded follow-up after the new ownership / approval summary strip lands in the session stack
 - [x] Continue Task 9 with the next bounded follow-up after the shell roster is regrouped into active / standby / closed session lanes
-- [ ] Continue Task 9 with the next bounded follow-up after the new desk-assignment ledger lands in the session stack
+- [x] Continue Task 9 with the next bounded follow-up after the new desk-assignment ledger lands in the session stack
+- [ ] Continue Task 9 with the next bounded follow-up after the growing `Session Stack` gets explicit section hierarchy labels
 
 ## Main product areas
 
@@ -60,6 +61,8 @@ Scope: continuously improve LikeCode Web UI, AI terminal experience, and the age
   - regroup the shell roster into `active / standby / closed` lanes and add shell metrics so multi-session state reads more like lightweight session management than a flat list
 - [x] UI follow-up pass in the same surface:
   - add a `Desk Assignments` ledger so `Overview / Thread Desk / Shell Lab` visibly declare which seat they currently own and can be reopened from one row
+- [x] UI follow-up pass in the same surface:
+  - add explicit section hierarchy labels so `Quick Actions / Control Summary / Desk Assignments / Surface Detail / Shell Sessions` stop reading like one undifferentiated block
 - [ ] site-facing article or subtopic when a design pattern is worth documenting
 - [ ] evolution notes tying specific references to specific UI decisions
 

@@ -69,3 +69,4 @@
 - `Session Stack` 里再补了一层 compact ownership / approval summary：把 daemon ownership、thread write guard、shell seat 三件事压成一排状态条，避免 operator 还要自己从 guardrail 和多张卡片里二次拼装当前控制权
 - `Shell Roster` 进一步从平铺列表改成轻量 session-management 视图：表头直接显示 `active / standby / closed` 计数，正文按 `Active Seat / Standby Sessions / Closed Sessions` 分组，聚焦当前 shell 和扫读后台会话会更快
 - 在 `Session Stack` 里又补了一个 `Desk Assignments` ledger，把 `Overview / Thread Desk / Shell Lab` 三个工位当前到底接管了什么对象直接列出来，并保留一行一个 `Open` 跳转，减少 operator 在 summary、card、roster 之间来回比对
+- `Session Stack` 继续做了结构化分段，把 `Quick Actions / Control Summary / Desk Assignments / Surface Detail / Shell Sessions` 明确拆开；在信息已经变厚之后，这比继续堆新状态层更有价值

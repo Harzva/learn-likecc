@@ -11779,6 +11779,26 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     margin-bottom: 12px;
 }
 
+.codex-console-stack-section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+}
+
+.codex-console-stack-section-label::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: rgba(59, 130, 246, 0.72);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
 .codex-console-stack-summary {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
