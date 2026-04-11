@@ -288,6 +288,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Verify the Hermes self-stack mapping pass with `python3 tools/check_site_md_parity.py`
 - [x] Reconfirm that Claude Code still has no post-`2.1.101` official changelog delta before reopening Task 4
 - [x] Use the overnight Task 4 pass for dedicated-plan reconciliation instead of forcing another stale or weak release-watch keyword
+- [x] Use the blocked overnight media window for Task 2 topic selection instead of repeating more publish-prep checks
+- [x] Choose `topic-hermes-unpacked` as the next Zhihu-worthy site topic based on page maturity, visuals, and the lack of an existing dedicated Zhihu article
+- [x] Create a reusable screenshot config plus one new Hermes Zhihu draft under `wemedia/zhihu/` without attempting late-night publication
 - [x] Stay on Task 9 for one more bounded action-oriented operator-summary follow-up after the headline-badges pass
 - [x] Add a compact `Attention Queue` so relay / thread / shell each expose the next likely operator move from the same overview surface
 - [x] Verify the Task 9 attention-queue pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
