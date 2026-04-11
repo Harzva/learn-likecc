@@ -205,6 +205,8 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Add one top-nav jump to `AI Scientist-v2` so the third main sample matches the direct-entry treatment already given to the AIDE lane and footer nav
 - [x] Stay on Task 6 for one bounded broader-hub state pass after the non-ARIS navigation fix
 - [x] Mark the current broader VibePaper polish wave as locally deferred until a new upstream intake, shell signal, or clearly higher-value structure gap appears
+- [x] Choose Task 7 as the next main-site move after the broader VibePaper wave was locally deferred
+- [x] Upgrade the AI Terminal shell pane from a plain PTY log box to a framed terminal view with live session cwd and line-count meta
 
 ## Guardrail
 

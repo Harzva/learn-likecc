@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>codex-loop AI Terminal（本地）- Claude Code Course</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖥️</text></svg>">
+    <meta name="description" content="本地 codex-loop 网页控制台：多面板、拖拽、日志、状态与 thread 受保护写入。">
+</head>
+<body class="codex-console-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🖥️</span>
+                <span class="logo-text">codex-loop AI Terminal</span>
+            </a>
+            <div class="nav-links">
+                <a href="topic-cc-loop-lab.html" class="nav-link">Loop 实验室</a>
+                <a href="topic-vibepaper.html" class="nav-link">VibePaper</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="course-main devlog-main">
+        <div class="container">
+            <article class="course-content devlog-content">
+                <h1 class="course-title">codex-loop <span class="subtitle">AI Terminal（本地 MVP+）</span></h1>
+                <div class="course-quote">
+                    <p>这不是 GitHub Pages 线上能力，而是一个<strong>本地 relay + 本地静态页</strong>的最小网页端。它先解决四件事：看 daemon 状态、看日志、以受保护模式接入当前 <code>thread</code>、并用多 pane 观察同一条 loop。</p>
+                    <p>默认设计是<strong>安全优先</strong>：当 daemon 仍在运行时，网页端默认不直接往同一个 thread 发消息，避免和后台 tick 同时写入同一条会话。</p>
+                </div>
+
+                <section class="section-block">
+                    <h2>启动方式</h2>
+                    <ol>
+                        <li>终端一：<code>python3 tools/codex_loop_web_relay.py --workspace /home/clashuser/hzh/item_bo/learn-likecc</code></li>
+                        <li>终端二：<code>cd site && python3 -m http.server 8080</code></li>
+                        <li>浏览器打开 <code>http://127.0.0.1:8080/topic-codex-loop-console.html</code></li>
+                    </ol>
+                </section>
+
+                <section class="section-block">
+                    <h2>Relay</h2>
+                    <div class="codex-console-toolbar">
+                        <label class="codex-console-toolbar__field">
+                            <span>Relay URL</span>
+                            <input id="relay-url" type="url" value="http://127.0.0.1:8770" class="search-input">
+                        </label>
+                        <button id="relay-connect" class="btn btn-primary" type="button">连接</button>
+                        <button id="relay-refresh" class="btn btn-secondary" type="button">刷新</button>
+                        <button id="daemon-start" class="btn btn-secondary" type="button">启动 daemon</button>
+                        <button id="daemon-stop" class="btn btn-secondary" type="button">停止 daemon</button>
+                        <label class="codex-console-toolbar__field codex-console-toolbar__field--small">
+                            <span>Interval (min)</span>
+                            <input id="daemon-interval-input" type="number" min="1" max="240" value="10" class="search-input">
+                        </label>
+                        <span class="codex-console-toolbar__status">状态：<strong id="relay-status">idle</strong></span>
+                    </div>
+                    <div class="codex-console-toolbar codex-console-toolbar--compact">
+                        <button id="layout-save" class="btn btn-secondary" type="button">保存布局</button>
+                        <button id="layout-reset" class="btn btn-secondary" type="button">重置布局</button>
+                        <button id="pane-add-monitor" class="btn btn-secondary" type="button">新增监视 pane</button>
+                        <span class="codex-console-toolbar__status">daemon 控制：<strong id="daemon-control-status">idle</strong></span>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2>Workspace</h2>
+                    <div class="codex-console-tabs" role="tablist" aria-label="workspace tabs">
+                        <button type="button" class="codex-console-tab is-active" data-workspace-tab="overview">Overview</button>
+                        <button type="button" class="codex-console-tab" data-workspace-tab="thread">Thread Desk</button>
+                        <button type="button" class="codex-console-tab" data-workspace-tab="shell">Shell Lab</button>
+                    </div>
+                </section>
+
+                <section id="codex-loop-console" class="section-block codex-console-shell">
+                    <div class="codex-console-canvas">
+                        <section class="codex-console-panel" data-panel-id="daemon-status" data-workspace-group="overview" style="left:0;top:0;width:320px;height:250px;">
+                            <div class="codex-console-panel__head">
+                                <strong>Daemon 状态</strong>
+                                <span class="codex-console-chip" id="heartbeat-badge">unknown</span>
+                            </div>
+                            <div class="codex-console-panel__body codex-console-panel__body--metrics">
+                                <p><strong>daemon_running</strong><span id="daemon-running">—</span></p>
+                                <p><strong>pid</strong><span id="daemon-pid">—</span></p>
+                                <p><strong>thread_id</strong><span id="daemon-thread">—</span></p>
+                                <p><strong>heartbeat</strong><span id="daemon-phase">—</span></p>
+                                <p><strong>interval</strong><span id="daemon-interval">—</span></p>
+                                <p><strong>tick phase</strong><span id="tick-badge">—</span></p>
+                                <p><strong>tick started</strong><span id="last-tick-started">—</span></p>
+                                <p><strong>tick finished</strong><span id="last-tick-finished">—</span></p>
+                                <p><strong>returncode</strong><span id="last-tick-returncode">—</span></p>
+                            </div>
+                            <div class="codex-console-panel__resize" aria-hidden="true"></div>
+                        </section>
+
+                        <section class="codex-console-panel" data-panel-id="thread-preview" data-workspace-group="overview" style="left:340px;top:0;width:420px;height:250px;">
+                            <div class="codex-console-panel__head">
+                                <strong>Thread 预览</strong>
+                            </div>
+                            <div class="codex-console-panel__body">
+                                <p class="codex-console-inline-note">当前 thread 预览来自 daemon 状态与最近一轮输出。</p>
+                                <p><strong>预览</strong></p>
+                                <pre id="last-message-preview" class="codex-console-terminal">—</pre>
+                            </div>
+                            <div class="codex-console-panel__resize" aria-hidden="true"></div>
+                        </section>
+
+                        <section class="codex-console-panel" data-panel-id="daemon-log" data-workspace-group="overview,shell" style="left:0;top:270px;width:390px;height:280px;">
+                            <div class="codex-console-panel__head">
+                                <strong>Daemon Log</strong>
+                            </div>
+                            <div class="codex-console-panel__body">
+                                <p class="codex-console-inline-note">路径：<code id="daemon-log-path">—</code></p>
+                                <pre id="daemon-log" class="codex-console-terminal">connecting…</pre>
+                            </div>
+                            <div class="codex-console-panel__resize" aria-hidden="true"></div>
+                        </section>
+
+                        <section class="codex-console-panel" data-panel-id="latest-tick" data-workspace-group="overview,thread" style="left:410px;top:270px;width:390px;height:280px;">
+                            <div class="codex-console-panel__head">
+                                <strong>Latest Tick Log</strong>
+                            </div>
+                            <div class="codex-console-panel__body">
+                                <p class="codex-console-inline-note">路径：<code id="last-tick-path">—</code></p>
+                                <pre id="tick-log" class="codex-console-terminal">connecting…</pre>
+                            </div>
+                            <div class="codex-console-panel__resize" aria-hidden="true"></div>
+                        </section>
+
+                        <section class="codex-console-panel" data-panel-id="thread-compose" data-workspace-group="thread,overview" style="left:820px;top:0;width:380px;height:550px;">
+                            <div class="codex-console-panel__head">
+                                <strong>Thread Compose</strong>
+                            </div>
+                            <div class="codex-console-panel__body">
+                                <p class="codex-console-inline-note">默认保护：daemon 运行时不直接写 thread。需要强制发送时勾选风险开关。</p>
+                                <div class="codex-console-lockbox">
+                                    <p><strong>lock mode</strong><span id="thread-lock-mode">—</span></p>
+                                    <p><strong>lock source</strong><span id="thread-lock-source">—</span></p>
+                                    <p><strong>lock note</strong><span id="thread-lock-note">—</span></p>
+                                    <div class="codex-console-toolbar codex-console-toolbar--compact">
+                                        <button id="thread-lock-readonly" type="button" class="btn btn-secondary">设为只读</button>
+                                        <button id="thread-lock-writable" type="button" class="btn btn-secondary">解除只读</button>
+                                        <span class="codex-console-toolbar__status">lock：<strong id="thread-lock-status">idle</strong></span>
+                                    </div>
+                                </div>
+                                <label class="codex-console-form">
+                                    <span>thread id</span>
+                                    <input id="thread-id" type="text" class="search-input" value="">
+                                </label>
+                                <label class="codex-console-form">
+                                    <span>message</span>
+                                    <textarea id="thread-message" rows="9" class="search-input" placeholder="Send a bounded message to the current codex thread…"></textarea>
+                                </label>
+                                <label class="codex-console-check">
+                                    <input id="thread-force" type="checkbox">
+                                    <span>daemon 运行中仍强制写入 thread（有冲突风险）</span>
+                                </label>
+                                <div class="codex-console-toolbar codex-console-toolbar--compact">
+                                    <button id="thread-send" type="button" class="btn btn-primary">发送到 thread</button>
+                                    <span class="codex-console-toolbar__status">发送状态：<strong id="thread-send-status">idle</strong></span>
+                                </div>
+                                <p class="codex-console-inline-note">最近回复</p>
+                                <pre id="thread-output" class="codex-console-terminal">—</pre>
+                            </div>
+                            <div class="codex-console-panel__resize" aria-hidden="true"></div>
+                        </section>
+
+                        <section class="codex-console-panel codex-console-panel--monitor" data-panel-id="monitor-1" data-workspace-group="overview,shell" data-monitor-source="daemon" style="left:1220px;top:0;width:360px;height:260px;">
+                            <div class="codex-console-panel__head">
+                                <strong>Monitor Pane</strong>
+                                <button type="button" class="codex-console-close" data-pane-remove>×</button>
+                            </div>
+                            <div class="codex-console-panel__body">
+                                <label class="codex-console-form">
+                                    <span>source</span>
+                                    <select class="search-input codex-console-select" data-monitor-select>
+                                        <option value="daemon">daemon log</option>
+                                        <option value="tick">latest tick</option>
+                                        <option value="last-message">last message</option>
+                                    </select>
+                                </label>
+                                <pre class="codex-console-terminal" data-monitor-output>waiting…</pre>
+                            </div>
+                            <div class="codex-console-panel__resize" aria-hidden="true"></div>
+                        </section>
+
+                        <section class="codex-console-panel codex-console-panel--shell" data-panel-id="shell-pane" data-workspace-group="shell,overview" style="left:820px;top:0;width:520px;height:550px;">
+                            <div class="codex-console-panel__head">
+                                <strong>Shell Workspace</strong>
+                            </div>
+                            <div class="codex-console-panel__body">
+                                <div class="codex-console-toolbar codex-console-toolbar--compact">
+                                    <button id="shell-new" type="button" class="btn btn-primary">新建 Shell</button>
+                                    <button id="shell-close" type="button" class="btn btn-secondary">关闭当前</button>
+                                    <button id="shell-refresh" type="button" class="btn btn-secondary">刷新输出</button>
+                                    <span class="codex-console-toolbar__status">shell：<strong id="shell-status">idle</strong></span>
+                                </div>
+                                <div id="shell-tabs" class="codex-console-tabs codex-console-tabs--mini" role="tablist" aria-label="shell tabs"></div>
+                                <div class="codex-console-terminal-frame">
+                                    <div class="codex-console-terminal-frame__head">
+                                        <div class="codex-console-terminal-frame__chrome" aria-hidden="true">
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                        </div>
+                                        <div class="codex-console-terminal-frame__title">Shell PTY</div>
+                                        <div class="codex-console-terminal-frame__meta">
+                                            <span id="shell-cwd">cwd: —</span>
+                                            <span id="shell-lines">0 lines</span>
+                                        </div>
+                                    </div>
+                                    <pre id="shell-output" class="codex-console-terminal codex-console-terminal--shell">暂无 shell session。点击“新建 Shell”。</pre>
+                                </div>
+                                <label class="codex-console-form">
+                                    <span>shell input</span>
+                                    <textarea id="shell-input" rows="4" class="search-input" placeholder="输入 shell 命令，按发送或 Ctrl+Enter。"></textarea>
+                                </label>
+                                <div class="codex-console-toolbar codex-console-toolbar--compact">
+                                    <button id="shell-send" type="button" class="btn btn-primary">发送到 shell</button>
+                                    <span class="codex-console-toolbar__status">session：<strong id="shell-session-meta">none</strong></span>
+                                </div>
+                            </div>
+                            <div class="codex-console-panel__resize" aria-hidden="true"></div>
+                        </section>
+                    </div>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-codex-loop-console.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <template id="monitor-pane-template">
+        <section class="codex-console-panel codex-console-panel--monitor" data-workspace-group="overview,shell" data-monitor-source="daemon" style="left:80px;top:80px;width:360px;height:260px;">
+            <div class="codex-console-panel__head">
+                <strong>Monitor Pane</strong>
+                <button type="button" class="codex-console-close" data-pane-remove>×</button>
+            </div>
+            <div class="codex-console-panel__body">
+                <label class="codex-console-form">
+                    <span>source</span>
+                    <select class="search-input codex-console-select" data-monitor-select>
+                        <option value="daemon">daemon log</option>
+                        <option value="tick">latest tick</option>
+                        <option value="last-message">last message</option>
+                    </select>
+                </label>
+                <pre class="codex-console-terminal" data-monitor-output>waiting…</pre>
+            </div>
+            <div class="codex-console-panel__resize" aria-hidden="true"></div>
+        </section>
+    </template>
+    <script src="js/app.js"></script>
+    <script src="js/codex-loop-console.js"></script>
+</body>
+</html>
