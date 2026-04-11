@@ -326,6 +326,13 @@
         setText('stack-summary-thread-note', threadSummary.note)
         setStackChip('stack-summary-shell', shellSummary.chip, shellSummary.tone)
         setText('stack-summary-shell-note', shellSummary.note)
+        setText('stack-pulse-workspace', PRESET_LABELS[currentWorkspace] || currentWorkspace)
+        setText('stack-pulse-workspace-note', 'Preset ' + (PRESET_LABELS[currentPreset] || currentPreset) + ' is currently loaded.')
+        var boundThread = ((threadInput.value || '').trim() || (document.getElementById('daemon-thread') ? document.getElementById('daemon-thread').textContent : 'thread pending') || 'thread pending')
+        setText('stack-pulse-thread', boundThread)
+        setText('stack-pulse-thread-note', guardState.threadLockMode === 'readonly' ? 'Thread is guarded readonly.' : 'Thread is writable from the desk.')
+        setText('stack-pulse-daemon', guardState.daemonRunning ? 'daemon live' : 'manual lane')
+        setText('stack-pulse-daemon-note', guardState.daemonRunning ? (tickBadge && tickBadge.textContent ? 'Latest tick: ' + tickBadge.textContent + '.' : 'Daemon run is active.') : 'Overview remains the manual control lane.')
         setText('stack-ledger-daemon-owner', daemonAssignment.owner)
         setText('stack-ledger-daemon-note', daemonAssignment.note)
         setStackPill('stack-ledger-daemon-chip', daemonAssignment.chip, daemonAssignment.tone)
@@ -344,6 +351,13 @@
         var closedSessions = shellState.sessions.filter(function (session) {
             return !session.alive
         })
+        setText('stack-pulse-shell', shellState.sessions.length + ' session' + (shellState.sessions.length === 1 ? '' : 's'))
+        setText(
+            'stack-pulse-shell-note',
+            activeSessions.length
+                ? activeSessions[0].session_id + ' owns the live seat; ' + standbySessions.length + ' standby.'
+                : (shellState.sessions.length ? standbySessions.length + ' standby, ' + closedSessions.length + ' closed.' : 'No active shell seat.')
+        )
         metrics.innerHTML =
             '<span class="codex-console-stack-pill codex-console-stack-pill--active">' + activeSessions.length + ' active</span>' +
             '<span class="codex-console-stack-pill codex-console-stack-pill--standby">' + standbySessions.length + ' standby</span>' +

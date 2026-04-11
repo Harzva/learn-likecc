@@ -11845,6 +11845,44 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     line-height: 1.55;
 }
 
+.codex-console-stack-pulse {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.codex-console-stack-pulse__item {
+    padding: 12px;
+    border-radius: 16px;
+    border: 1px solid rgba(148, 163, 184, 0.14);
+    background: rgba(255, 255, 255, 0.86);
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.04);
+}
+
+.codex-console-stack-pulse__label {
+    display: inline-flex;
+    margin-bottom: 6px;
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+}
+
+.codex-console-stack-pulse__item strong {
+    display: block;
+    color: var(--text-primary);
+    line-height: 1.2;
+    margin-bottom: 6px;
+}
+
+.codex-console-stack-pulse__item p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
 .codex-console-stack-ledger {
     display: flex;
     flex-direction: column;
@@ -12221,6 +12259,10 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     }
 
     .codex-console-stack-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .codex-console-stack-pulse {
         grid-template-columns: 1fr;
     }
 

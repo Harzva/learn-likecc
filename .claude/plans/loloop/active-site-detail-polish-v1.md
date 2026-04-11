@@ -17,7 +17,7 @@ Prioritize future iterations along these three lines:
 
 ## Current focus
 
-Continue Task 9 LikeCode Web UI after the session-stack section-hierarchy pass.
+Continue Task 9 LikeCode Web UI after the session-pulse pass.
 
 ## Success condition
 
@@ -250,6 +250,9 @@ Continue Task 9 LikeCode Web UI after the session-stack section-hierarchy pass.
 - [x] Stay on Task 9 for one more bounded structural-clarity follow-up after the desk-assignment-ledger pass
 - [x] Add explicit section labels inside the `Session Stack` so actions, summaries, assignments, detail cards, and shell sessions do not blur into one block
 - [x] Verify the Task 9 section-hierarchy pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
+- [x] Stay on Task 9 for one more bounded cross-session-summary follow-up after the section-hierarchy pass
+- [x] Add a compact `Session Pulse` row under `Control Summary` so workspace, thread bind, daemon lane, and shell coverage are visible before the deeper layers
+- [x] Verify the Task 9 session-pulse pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail
 
