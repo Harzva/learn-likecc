@@ -183,6 +183,8 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Add one explicit AIDE-lane reading step to the VibePaper route so the candidate substrate is not skipped after AI Scientist-v2
 - [x] Stay on Task 6 for one more bounded footer-navigation follow-up after the route clarity pass
 - [x] Add one direct chapter-navigation jump to the VibePaper `AIDE ML` section so the candidate lane has a matching page-bottom entry
+- [x] Stay on Task 6 for one more bounded top-navigation follow-up after the footer-link pass
+- [x] Add one top-nav jump to the VibePaper `AIDE ML` section so the candidate substrate is reachable from every major entry layer
 
 ## Guardrail
 
