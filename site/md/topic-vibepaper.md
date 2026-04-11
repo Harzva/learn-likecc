@@ -189,13 +189,13 @@ Mermaid 更适合：否，更适合 HTML 层叠卡片图。
 
 ### 这个专题会怎么持续长出来
 
-后续会继续：
+后续会继续沿着三种壳层入口去长，而不是把新项目随手堆进来：
 
-- 发现新的自动科研 / 自动论文系统并 clone 到 `reference/reference_agent/`
-- 挑最值得讲的项目，补结构分析、对照表、插图提示词与教程路线
-- 把成熟项目继续拆成独立子页，如 `topic-*-unpacked.html`
+- **协议壳线**：继续找像 `Autoresearch / ARIS` 这样把研究动作压成 loop contract 的系统，并优先补“协议 / verify / rollback”类教程
+- **工作台壳线**：继续找像 `DeepScientist` 这样把 workspace、memory、quest repo 做厚的系统，并优先补结构对照和操作路径
+- **论文流水线壳线**：继续找像 `AI Scientist-v2` 这样直接面向 writeup / PDF 成稿的系统，并优先补 tree search、experiment manager 和 paper pipeline 视角
 
-当前这一波围绕 `ARIS` 澄清和入口导航对称性的局部收口已经完成。下一次再动这页，优先等新的上游 repo intake、真正不同的壳层信号，或者新的高价值结构缺口出现，而不是继续做低收益的微调。
+当前这一波围绕 `ARIS` 澄清、总表壳层对齐和阅读路线同步的局部收口已经完成。下一次再动这页，优先等新的上游 repo intake、真正不同的壳层信号，或者新的高价值结构缺口出现，而不是继续做低收益的微调。
 
 ### 参考与本地路径
 

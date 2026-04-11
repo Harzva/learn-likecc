@@ -9,7 +9,8 @@ Scope: keep growing `VibePaper` into a durable hub for autonomous research, pape
 - [ ] Keep `Autoresearch / ARIS` as the lead sample while making room for the next strong candidates
 - [ ] Improve the page’s teaching value: control plane, durable state, loop shape, and what to learn
 - [x] Continue Task 6 with the next bounded comparison-surface follow-up after the shell-column sync
-- [ ] Continue Task 6 with one more bounded teaching-route follow-up after the shell-label reading-route sync
+- [x] Continue Task 6 with one more bounded teaching-route follow-up after the shell-label reading-route sync
+- [ ] Continue Task 6 with one more bounded shell-structure follow-up after the future-growth note sync
 
 ## Hub anchors
 
@@ -40,6 +41,7 @@ Scope: keep growing `VibePaper` into a durable hub for autonomous research, pape
   - what is worth teaching from it
 - [x] Tighten the comparison table so rows feel structurally consistent
 - [x] Align the reading route with the same shell labels used by the comparison table and thickness section
+- [x] Align the future-growth note with the same shell labels used by the comparison spine
 - [ ] Keep the page useful for future tutorials, not hype summaries
 
 ## Growth workflow

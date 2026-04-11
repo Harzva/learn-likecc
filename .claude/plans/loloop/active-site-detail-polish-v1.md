@@ -297,6 +297,8 @@ Continue Task 6 VibePaper after the shell-column sync pass.
 - [x] Add one `对应壳层` column to the VibePaper four-question comparison table so it aligns directly with the later shell-thickness section
 - [x] Stay on Task 6 for one more bounded VibePaper teaching-route pass after the shell-column sync
 - [x] Align the VibePaper reading route with the same shell labels used by the comparison table and shell-thickness section
+- [x] Stay on Task 6 for one more bounded VibePaper future-growth pass after the reading-route sync
+- [x] Align the VibePaper future-growth note with the same shell labels used by the comparison spine
 - [x] Verify the Task 9 headline-badges pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail
