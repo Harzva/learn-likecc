@@ -12123,6 +12123,12 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     gap: 4px;
 }
 
+.codex-console-stack-list__meta {
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    line-height: 1.35;
+}
+
 .codex-console-stack-roster-metrics {
     display: flex;
     flex-wrap: wrap;

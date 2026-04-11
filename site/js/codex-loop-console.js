@@ -224,6 +224,7 @@
         setText('stack-last-action', sessionStackState.lastActionText)
         setText('stack-last-action-time', sessionStackState.lastActionTime)
         setText('stack-shell-focus', activeId ? activeId : 'no active session')
+        setText('stack-shell-runtime', shellState.sessions.length ? 'runtime snapshot pending' : 'no shell runtime attached')
         badge.textContent = shellState.sessions.length + ' shell' + (shellState.sessions.length === 1 ? '' : 's')
         setStackChip('session-stack-daemon-badge', guardState.daemonRunning ? 'daemon live' : 'daemon idle', guardState.daemonRunning ? 'ready' : 'neutral')
         setStackChip(
@@ -543,6 +544,16 @@
             activeSessions.length
                 ? activeSessions[0].session_id + ' owns the live seat; ' + standbySessions.length + ' standby.'
                 : (shellState.sessions.length ? standbySessions.length + ' standby, ' + closedSessions.length + ' closed.' : 'No active shell seat.')
+        )
+        setText(
+            'stack-shell-runtime',
+            activeSessions.length
+                ? (activeSessions[0].session_id + ' · ' + shellWorkspaceLabel(activeSessions[0]) + ' · pid ' + (activeSessions[0].pid || '—'))
+                : (standbySessions.length
+                    ? ('standby ready · ' + shellWorkspaceLabel(standbySessions[0]) + ' · ' + standbySessions.length + ' parked')
+                    : (closedSessions.length
+                        ? ('closed only · ' + shellWorkspaceLabel(closedSessions[0]) + ' · ' + closedSessions.length + ' ended')
+                        : 'no shell runtime attached'))
         )
         metrics.innerHTML =
             '<span class="codex-console-stack-pill codex-console-stack-pill--active">' + activeSessions.length + ' active</span>' +
