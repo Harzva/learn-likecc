@@ -185,6 +185,8 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Add one direct chapter-navigation jump to the VibePaper `AIDE ML` section so the candidate lane has a matching page-bottom entry
 - [x] Stay on Task 6 for one more bounded top-navigation follow-up after the footer-link pass
 - [x] Add one top-nav jump to the VibePaper `AIDE ML` section so the candidate substrate is reachable from every major entry layer
+- [x] Stay on Task 6 for one more bounded chapter-navigation symmetry pass after the top-nav follow-up
+- [x] Add one chapter-navigation jump to the VibePaper `AI Scientist-v2` section so the third main sample is not missing from the page-bottom entry set
 
 ## Guardrail
 
