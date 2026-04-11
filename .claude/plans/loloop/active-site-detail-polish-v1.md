@@ -267,6 +267,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Branch into queued Task 3 export prep while Zhihu publication remains time-blocked overnight
 - [x] Harden the standalone export docs for `exports/zhihu-publish-skill`
 - [x] Commit and push the refreshed `zhihu-publish-skill` export repo to GitHub
+- [x] Continue Task 3 with the second bounded export pass on `exports/gen-zhihu-article-skill`
+- [x] Harden the standalone export docs for `exports/gen-zhihu-article-skill`
+- [x] Commit and push the refreshed `gen-zhihu-article-skill` export repo to GitHub
 - [x] Choose `topic-codex-loop-console` as the next fresh Task 8 destination after deferring the `topic-agent-comparison` subthread
 - [x] Add one repo-backed operator-surface note so `Session Browser / Workbench / HUD / Local Desk` boundaries are explicit on the AI Terminal topic page
 - [x] Verify the Task 8 operator-surface pass with `python3 tools/check_site_md_parity.py`
