@@ -17,7 +17,7 @@ Prioritize future iterations along these three lines:
 
 ## Current focus
 
-Continue Task 8 reference mining after choosing the first bounded site-facing output.
+Choose the next best Task 8 destination after the current `topic-skillmarket` subthread defer decision.
 
 ## Success condition
 
@@ -306,6 +306,10 @@ Continue Task 8 reference mining after choosing the first bounded site-facing ou
 - [x] Pick `topic-skillmarket` as the first bounded reference-mining destination because the new skill/plugin repos directly strengthen its GitHub-validation thesis
 - [x] Add one reference-backed repo-evidence section to `topic-skillmarket` using `baoyu-skills` and `codex-plugin-cc`
 - [x] Verify the Task 8 Skill 市场 pass with `python3 tools/check_site_md_parity.py`
+- [x] Add one packaging-surface note to `topic-skillmarket` so skill-bundle and plugin-bundle GitHub review paths stop blurring together
+- [x] Verify the Task 8 packaging-surface pass with `python3 tools/check_site_md_parity.py`
+- [x] Mark the current Task 8 `topic-skillmarket` subthread locally deferred after the recent repo-evidence and packaging-surface passes saturated the clearest low-risk gains
+- [x] Release the next tick to choose a fresher Task 8 destination or another stronger remaining task from the pool
 - [x] Verify the Task 9 headline-badges pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail

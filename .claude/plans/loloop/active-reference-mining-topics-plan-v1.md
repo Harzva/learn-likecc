@@ -14,6 +14,7 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - [x] Choose `topic-skillmarket` as the first bounded site-facing output for the current reference-mining wave because the new skill/plugin references fit its “discovery -> GitHub validation -> install” spine
 - [x] Add one repo-evidence note showing what a trustworthy skill/plugin repo should expose after SkillsMP discovery
 - [x] Add one packaging-surface note explaining how to review skill bundles versus plugin bundles after GitHub handoff
+- [x] Mark the current `topic-skillmarket` subthread locally deferred after the repo-evidence and packaging-surface passes because another pass on the same pair would now be lower value than switching to a fresh reference destination
 
 ## Newly added references
 
@@ -94,3 +95,4 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - This plan is the canonical checklist for turning `reference/` discoveries into site content
 - Favor bounded passes: inspect one pattern family, choose one site destination, produce one concrete improvement
 - First bounded Task 8 output landed in the Skill 市场专题 rather than opening a new topic, because the new `baoyu-skills` / `codex-plugin-cc` references directly strengthen the existing trust-chain explanation
+- Current local state: the `topic-skillmarket` subthread is locally deferred until a new packaging reference, a stronger market-installation gap, or a better skills-ecosystem destination appears
