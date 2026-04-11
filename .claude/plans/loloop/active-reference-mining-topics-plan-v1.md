@@ -19,6 +19,8 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - [x] Add one repo-backed runtime-shell note so “Subagents vs Agent Teams” is grounded in concrete reference projects rather than staying purely abstract
 - [x] Add one adjacent coordination-mode clarification so the three runtime shells also map back to distinct default collaboration styles
 - [x] Mark the current `topic-agent-comparison` subthread locally deferred after the runtime-shell and coordination-mode passes because the next likely additions would be lower-signal taxonomy churn
+- [x] Choose `topic-codex-loop-console` as the next bounded site-facing destination because `hermes-webui`, `claudecodeui`, and `hermes-hud` fit its operator-surface and session-visibility scope
+- [x] Add one repo-backed operator-surface note clarifying why session browser, multi-session workbench, and operator HUD should not be treated as one generic AI shell
 
 ## Newly added references
 
@@ -82,10 +84,15 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - [x] Current explicit destination for the second bounded pass:
   - `site/topic-agent-comparison.html`
   - `site/md/topic-agent-comparison.md`
+- [x] Current explicit destination for the third bounded pass:
+  - `site/topic-codex-loop-console.html`
+  - `site/md/topic-codex-loop-console.md`
 
 ## What to extract for LikeCode
 
 - [ ] session and thread visibility
+- [x] bounded extraction on the operator-surface line:
+  - distinguish session browser, multi-session workbench, and operator HUD before deciding what the local `Session Stack` should become
 - [ ] terminal and pane layout patterns
 - [ ] multi-agent control and delegation surfaces
 - [x] first bounded extraction on the multi-agent line:
@@ -112,3 +119,4 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - Current local state: the `topic-skillmarket` subthread is locally deferred until a new packaging reference, a stronger market-installation gap, or a better skills-ecosystem destination appears
 - Second bounded Task 8 destination is now `topic-agent-comparison`, using `feynman`, `ChatDev 2.0`, and `Multica` to ground runtime-topology differences in repo evidence
 - Current local state: the `topic-agent-comparison` subthread is locally deferred until a stronger multi-agent runtime gap, a better repo cluster, or a clearer site destination appears
+- Third bounded Task 8 destination is now `topic-codex-loop-console`, using `hermes-webui`, `claudecodeui`, and `hermes-hud` to separate session browser, workbench, and operator-HUD surfaces before the local AI Terminal drifts into a generic “agent UI” bucket

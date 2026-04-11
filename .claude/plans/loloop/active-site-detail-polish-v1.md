@@ -17,7 +17,7 @@ Prioritize future iterations along these three lines:
 
 ## Current focus
 
-Choose the next best Task 8 destination after the current `topic-agent-comparison` subthread defer decision.
+Continue the Task 8 `topic-codex-loop-console` operator-surface subthread and decide whether one more repo-backed clarification is still justified.
 
 ## Success condition
 
@@ -258,6 +258,9 @@ Choose the next best Task 8 destination after the current `topic-agent-compariso
 - [x] Verify the Task 9 dual-badge desk-assignment pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
 - [x] Stay on Task 9 for one more bounded top-level-scanability follow-up after the dual-badge assignment pass
 - [x] Upgrade the `Session Stack` panel head so daemon/thread/shell all have headline badges instead of leaving only the shell count visible at the title line
+- [x] Choose `topic-codex-loop-console` as the next fresh Task 8 destination after deferring the `topic-agent-comparison` subthread
+- [x] Add one repo-backed operator-surface note so `Session Browser / Workbench / HUD / Local Desk` boundaries are explicit on the AI Terminal topic page
+- [x] Verify the Task 8 operator-surface pass with `python3 tools/check_site_md_parity.py`
 - [x] Stay on Task 9 for one more bounded action-oriented operator-summary follow-up after the headline-badges pass
 - [x] Add a compact `Attention Queue` so relay / thread / shell each expose the next likely operator move from the same overview surface
 - [x] Verify the Task 9 attention-queue pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`

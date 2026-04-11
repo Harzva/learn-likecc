@@ -79,3 +79,21 @@
 - 这条 headnote 现在还会顺手带出 shell standby 压力：有 live seat 时直接补 `+N standby`，没有 live seat 但还有 parked shells 时则退成 `Shell Lab · standby N @ workspace`
 - `Desk Assignments` 每行现在是双 badge：既显示当前 assignment，也显示 approval / coverage 辅助标签，比如 `relay ready`、`daemon linked`、`standby N`，这样非-shell 状态也不再只能藏在说明文字里
 - `Session Stack` 顶部标题区也不再只有一个 `N shells` badge，而是直接露出 `daemon / thread / shells` 三条 headline 状态，先看 panel head 就知道主控面现在大概是什么状态
+
+## Repo-backed 补充：别把 Session Browser、Operator HUD、Local Desk 混成一层
+
+最近补 `Session Stack` 时，最容易犯的错不是“功能不够多”，而是把不同参考项目解决的问题揉成同一种控制面。把边界拆开之后，LikeCode 本地 AI Terminal 应该学什么，会更清楚。
+
+| 参考仓库 | 默认表面 | 它主要回答什么 | 对 `codex-loop AI Terminal` 的启发 |
+| --- | --- | --- | --- |
+| `reference/reference_cc_ui/hermes-webui/` | session browser | 用三栏 WebUI 把 `session / tools / workspace` 接回已有 agent，追求 CLI parity | 说明 `Session Stack` 可以借“左侧 session 总览 + 工位切换”，但不必把整页做成完整聊天前台 |
+| `reference/reference_cc_ui/claudecodeui/` | multi-session workbench | 让多个 agent CLI session、文件树、Git、插件、移动端访问收进一个统一工作台 | 说明我们要学的是“session discovery + operator entrypoint”，不是立刻复制整套 file/git/plugin 面 |
+| `reference/reference_cc_ui/hermes-hud/` | operator HUD | 让 operator 看见 agent 的 health、growth、cron、approval queue、tmux seat | 说明 `Attention Queue / Session Identity / headline badges` 该偏向告警与 ownership，而不是继续堆聊天 UI |
+
+所以当前这页更准确的定位不是“又一个 Claude 风格聊天壳”，而是 **local operator desk**：
+
+- `Hermes WebUI / CloudCLI UI` 提醒我们要把 session、workspace、入口工位收拢
+- `Hermes HUD` 提醒我们要把 self-observability、approval queue、runtime cues 抬到第一屏
+- 但本页仍然只服务一个本地 loop workspace：它优先回答 `daemon / thread / shell` 现在谁接管、谁可写、下一步该处理什么
+
+这也是为什么 `Session Stack` 现在更像一个带 guardrails 的 operator summary，而不是完整 session browser，更不是 agent 自我意识看板。

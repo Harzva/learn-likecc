@@ -104,6 +104,50 @@
                     </div>
                 </section>
 
+                <section class="section-block">
+                    <h2>Repo-backed 补充：别把 Session Browser、Operator HUD、Local Desk 混成一层</h2>
+                    <p>最近补 <code>Session Stack</code> 时，最容易犯的错不是“功能不够多”，而是把不同参考项目解决的问题揉成同一种控制面。把边界拆开之后，LikeCode 本地 AI Terminal 应该学什么，会更清楚。</p>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>参考仓库</th>
+                                    <th>默认表面</th>
+                                    <th>它主要回答什么</th>
+                                    <th>对 <code>codex-loop AI Terminal</code> 的启发</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>reference/reference_cc_ui/hermes-webui/</code></td>
+                                    <td>session browser</td>
+                                    <td>用三栏 WebUI 把 <code>session / tools / workspace</code> 接回已有 agent，追求 CLI parity</td>
+                                    <td>说明 <code>Session Stack</code> 可以借“左侧 session 总览 + 工位切换”，但不必把整页做成完整聊天前台</td>
+                                </tr>
+                                <tr>
+                                    <td><code>reference/reference_cc_ui/claudecodeui/</code></td>
+                                    <td>multi-session workbench</td>
+                                    <td>让多个 agent CLI session、文件树、Git、插件、移动端访问收进一个统一工作台</td>
+                                    <td>说明我们要学的是“session discovery + operator entrypoint”，不是立刻复制整套 file/git/plugin 面</td>
+                                </tr>
+                                <tr>
+                                    <td><code>reference/reference_cc_ui/hermes-hud/</code></td>
+                                    <td>operator HUD</td>
+                                    <td>让 operator 看见 agent 的 health、growth、cron、approval queue、tmux seat</td>
+                                    <td>说明 <code>Attention Queue / Session Identity / headline badges</code> 该偏向告警与 ownership，而不是继续堆聊天 UI</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>所以当前这页更准确的定位不是“又一个 Claude 风格聊天壳”，而是 <strong>local operator desk</strong>。</p>
+                    <ul>
+                        <li><code>Hermes WebUI / CloudCLI UI</code> 提醒我们要把 session、workspace、入口工位收拢。</li>
+                        <li><code>Hermes HUD</code> 提醒我们要把 self-observability、approval queue、runtime cues 抬到第一屏。</li>
+                        <li>但本页仍然只服务一个本地 loop workspace：它优先回答 <code>daemon / thread / shell</code> 现在谁接管、谁可写、下一步该处理什么。</li>
+                    </ul>
+                    <p>这也是为什么 <code>Session Stack</code> 现在更像一个带 guardrails 的 operator summary，而不是完整 session browser，更不是 agent 自我意识看板。</p>
+                </section>
+
                 <section id="codex-loop-console" class="section-block codex-console-shell">
                     <div class="codex-console-canvas">
                         <section class="codex-console-panel codex-console-panel--daemon" data-panel-id="daemon-status" data-workspace-group="overview,debug" style="left:0;top:0;width:320px;height:250px;">
