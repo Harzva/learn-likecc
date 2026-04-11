@@ -191,6 +191,8 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Reconcile the local `ARIS` hub edits by treating it as the Autoresearch sample-line extension across the VibePaper HTML and Markdown sources
 - [x] Stay on Task 6 for one more bounded ARIS framing pass after the intake reconciliation
 - [x] Add one explicit note explaining why `ARIS` stays on the Autoresearch protocol-shell lane instead of becoming a fourth shell type
+- [x] Stay on Task 6 for one more bounded ARIS structure-note pass after the framing note
+- [x] Add one compact table explaining what `ARIS` thickens on the Autoresearch protocol-shell line across control plane, durable state, and teaching role
 
 ## Guardrail
 
