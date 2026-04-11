@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autoresearch / ARIS 解构 - VibePaper 专题</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔁</text></svg>">
+    <meta name="description" content="VibePaper 子专题：拆解 Autoresearch / ARIS 如何把 goal、metric、scope、verify、rollback、git memory 和多个研究/发货子命令收成一个 plugin-style research loop protocol。">
+</head>
+<body class="cc-unpacked-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🔁</span>
+                <span class="logo-text">Autoresearch / ARIS 解构</span>
+            </a>
+            <div class="nav-links">
+                <a href="#attribution" class="nav-link">说明</a>
+                <a href="#why" class="nav-link">01 为什么重要</a>
+                <a href="#layers" class="nav-link">02 分层</a>
+                <a href="#control-plane" class="nav-link">03 控制面</a>
+                <a href="#commands" class="nav-link">04 命令面</a>
+                <a href="#loop" class="nav-link">05 主循环</a>
+                <a href="#lessons" class="nav-link">06 值得学什么</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-vibepaper.html" class="btn-github">VibePaper 专题</a>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>VibePaper · 子专题</span>
+                <span>Plugin Loop / Verify Protocol</span>
+            </div>
+            <h1 class="hero-title">
+                Autoresearch / ARIS<br>
+                <span class="gradient-text">解构</span>
+            </h1>
+            <p class="hero-subtitle">
+                如果说 <code>DeepScientist</code> 更像把自动科研做成一个本地研究工作台，<br>
+                那么 <code>Autoresearch / ARIS</code> 走的是更轻的一条路：把 <strong>goal、metric、scope、verify、rollback、git memory</strong> 收成一个 plugin-style 的研究循环协议。
+            </p>
+            <div class="hero-actions">
+                <a href="#why" class="btn btn-primary">先看 01 为什么重要</a>
+                <a href="topic-superpowers-autoresearch.html" class="btn btn-secondary">回原对照页</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="course-main devlog-main">
+        <div class="container container--layout-wide">
+            <article class="course-content devlog-content">
+
+                <section id="attribution" class="section-block">
+                    <h2>参考来源与版本锚定</h2>
+                    <div class="course-quote">
+                        <p><strong>本页目标不是重复 README 的安装说明</strong>，而是把 Autoresearch / ARIS 拆成适合站内教学的结构图：它到底把哪些研究控制点做成了协议，哪些部分仍依赖 Claude Code 的宿主能力。</p>
+                        <p><strong>官方来源</strong>：<a href="https://github.com/uditgoenka/autoresearch" target="_blank" rel="noopener noreferrer">uditgoenka/autoresearch</a>、README、COMPARISON，以及 <a href="https://github.com/karpathy/autoresearch" target="_blank" rel="noopener noreferrer">Karpathy autoresearch</a> 的方法源头；当前也补充对照 <a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener noreferrer">wanshuiyin/Auto-claude-code-research-in-sleep</a>，作为 <strong>ARIS（Auto-Research In Sleep）</strong> 这条延伸分支。</p>
+                        <p><strong>本地锚点</strong>：<code>reference/reference_agent/autoresearch/README.md</code>、<code>COMPARISON.md</code>、<code>claude-plugin/.claude-plugin/plugin.json</code>、<code>claude-plugin/skills/autoresearch/SKILL.md</code>、<code>claude-plugin/commands/autoresearch/</code>、<code>guide/</code>，以及 <code>reference/reference_agent/aris/README.md</code>、<code>skills/</code>、<code>docs/</code>、<code>templates/</code>。</p>
+                    </div>
+                </section>
+
+                <section id="why" class="section-block">
+                    <h2>01 · 为什么 Autoresearch / ARIS 值得单独拆</h2>
+                    <p>Autoresearch / ARIS 最值得讲的，不是“它有很多子命令”，而是它把一个原本很散的研究 / 改进过程，压缩成了一套很清晰的 loop 协议：先定义 goal、metric、scope、verify，再让系统在小步修改、机械验证、自动回滚和 git memory 之间持续迭代。</p>
+                    <p>这使它更像一个<strong>研究循环协议层</strong>，而不是厚重工作台。它依赖 Claude Code 作为宿主，但在宿主之上补了一层“如何定义研究改进问题并持续迭代”的方法面。</p>
+                </section>
+
+                <section id="layers" class="section-block">
+                    <h2>02 · 先拆成五层：Autoresearch 到底在拼什么</h2>
+                    <table class="options-table">
+                        <tr><th>层次</th><th>关键锚点</th><th>解决的问题</th></tr>
+                        <tr><td>宿主层</td><td>Claude Code / plugin 安装路径</td><td>循环并不是自己凭空运行，而是借宿主的会话、文件与命令能力</td></tr>
+                        <tr><td>协议层</td><td>README 的 goal / metric / scope / verify / rollback / git memory</td><td>如何把“改进”定义成可机械验证的任务</td></tr>
+                        <tr><td>主循环层</td><td><code>/autoresearch</code> 主命令与 guide/autoresearch.md</td><td>如何做 one change per iteration、验证、保留或回滚</td></tr>
+                        <tr><td>子命令面</td><td><code>plan / security / ship / debug / fix / scenario / predict / learn / reason</code></td><td>把不同研究或发货动作拆成可复用 protocol</td></tr>
+                        <tr><td>知识与文档层</td><td><code>guide/</code>、references、COMPARISON</td><td>让这个 loop 不只是 prompt，而是一套可教学、可演化的方法系统</td></tr>
+                    </table>
+                    <p class="section-desc section-desc--tight">所以 Autoresearch / ARIS 更像一个 <strong>plugin-style research loop protocol</strong>，而不是完整 studio。</p>
+                    <div class="course-quote">
+                        <p><strong>[插图提示词]</strong></p>
+                        <p>用途：画出 Autoresearch 的五层总图，让读者先分清宿主、协议、主循环、子命令面和知识层。</p>
+                        <p>形式：分层结构图；优先 Mermaid。</p>
+                        <p>提示词：画一个 Autoresearch 五层架构图，底部是 Claude Code 宿主能力，中间是 goal/metric/scope/verify/rollback/git memory 协议层，再上面是 /autoresearch 主循环，右侧展开 plan/security/ship/debug/fix/scenario/predict/learn/reason 子命令面，顶部是 guide 和 comparison 文档层，箭头标出配置、迭代、验证、回滚和日志沉淀。</p>
+                        <p>Mermaid 更适合：是。</p>
+                    </div>
+                </section>
+
+                <section id="control-plane" class="section-block">
+                    <h2>03 · 它的控制面到底在哪：不是界面，而是那套 loop contract</h2>
+                    <p>Autoresearch / ARIS 的主脑不在某个页面，也不在某个 dashboard，而在那套很明确的 contract：goal、metric、scope、verify、guard、rollback、git memory。只要这些条件定义清楚，它就能把“一个模糊的改进愿望”转成连续迭代的问题。</p>
+                    <p>也正因为这样，它特别适合做方法教学。和厚重 studio 相比，Autoresearch / ARIS 的优点是：你更容易一眼看清“系统到底靠什么在继续迭代”。它的控制点非常显式，没有太多 UI 壳层把真正逻辑藏起来。</p>
+                </section>
+
+                <section id="commands" class="section-block">
+                    <h2>04 · 九条子命令不是散功能，而是扩展协议面</h2>
+                    <p>README 列出的 <code>plan</code>、<code>security</code>、<code>ship</code>、<code>debug</code>、<code>fix</code>、<code>scenario</code>、<code>predict</code>、<code>learn</code>、<code>reason</code>，表面看像工具箱，实际更像围绕同一套 loop contract 做的不同子协议。</p>
+                    <table class="options-table">
+                        <tr><th>子命令</th><th>它扩展的是哪一面</th><th>更像什么</th></tr>
+                        <tr><td><code>plan</code></td><td>把目标转成可验证配置</td><td>配置向导</td></tr>
+                        <tr><td><code>debug</code> / <code>fix</code></td><td>把循环转到 bug hunting / repair</td><td>问题追猎协议</td></tr>
+                        <tr><td><code>security</code></td><td>把循环转到 STRIDE / OWASP / red team</td><td>安全审计协议</td></tr>
+                        <tr><td><code>ship</code></td><td>把循环转到发货与上线</td><td>shipping protocol</td></tr>
+                        <tr><td><code>scenario</code> / <code>predict</code> / <code>reason</code></td><td>把循环扩到边界场景、多视角预测和主观辩论</td><td>探索与论证协议</td></tr>
+                        <tr><td><code>learn</code></td><td>把循环转到文档与知识沉淀</td><td>知识维护协议</td></tr>
+                    </table>
+                    <p>所以它的“命令很多”并不等于功能堆砌，反而说明它试图把同一种研究 loop 扩展到多个高频任务域里。ARIS 这条分支则进一步把这种方法包装成更强调“睡觉时持续推进”的叙事和更广的跨代理适配层。</p>
+                </section>
+
+                <section id="loop" class="section-block">
+                    <h2>05 · 它和 DeepScientist 的根本差异：研究协议 vs 研究工作台</h2>
+                    <table class="options-table">
+                        <tr><th>维度</th><th>Autoresearch / ARIS</th><th>DeepScientist</th></tr>
+                        <tr><td>主隐喻</td><td>plugin / command surface / loop contract</td><td>quest repo / local-first research studio</td></tr>
+                        <tr><td>控制面</td><td>goal + metric + verify + rollback</td><td>quest + stage workflow + visible workspace</td></tr>
+                        <tr><td>持久状态</td><td>更偏 git history、logs、机械验证结果</td><td>更偏 repo、memory、artifact、paper outputs</td></tr>
+                        <tr><td>适合学什么</td><td>怎么把研究问题定义成可迭代协议</td><td>怎么把整条研究链做成工作台</td></tr>
+                    </table>
+                    <p>这也是为什么 `VibePaper` 需要同时保留两条线。Autoresearch / ARIS 适合拿来教“研究 loop 的 contract 是什么”，DeepScientist 则适合拿来教“如果把这套 contract 做成真正的工作台，会多出哪些层”。</p>
+                </section>
+
+                <section id="lessons" class="section-block">
+                    <h2>06 · 对我们自己的站点和值得学什么</h2>
+                    <div class="course-quote">
+                        <p><strong>第一</strong>，自动科研系统不一定都要先做厚 UI。Autoresearch / ARIS 证明，先把 loop contract 讲清楚，也能形成非常强的方法系统。</p>
+                        <p><strong>第二</strong>，站内教程可以直接借它的结构：goal、metric、scope、verify、rollback、git memory 这些概念很适合做成教学骨架。</p>
+                        <p><strong>第三</strong>，后续 VibePaper 的比较页应该继续围绕“控制面在哪里、持久状态是什么、是否需要厚工作台”来写，而不是只比 feature list。</p>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2>参考与原始链接</h2>
+                    <ul>
+                        <li><a href="https://github.com/uditgoenka/autoresearch" target="_blank" rel="noopener noreferrer">uditgoenka/autoresearch</a></li>
+                        <li><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener noreferrer">wanshuiyin/Auto-claude-code-research-in-sleep (ARIS)</a></li>
+                        <li><a href="https://github.com/karpathy/autoresearch" target="_blank" rel="noopener noreferrer">Karpathy autoresearch</a></li>
+                        <li><code>reference/reference_agent/autoresearch/README.md</code></li>
+                        <li><code>reference/reference_agent/autoresearch/COMPARISON.md</code></li>
+                        <li><code>reference/reference_agent/autoresearch/claude-plugin/.claude-plugin/plugin.json</code></li>
+                        <li><code>reference/reference_agent/autoresearch/claude-plugin/skills/autoresearch/SKILL.md</code></li>
+                        <li><code>reference/reference_agent/autoresearch/claude-plugin/commands/autoresearch/</code></li>
+                        <li><code>reference/reference_agent/autoresearch/guide/</code></li>
+                        <li><code>reference/reference_agent/aris/README.md</code></li>
+                        <li><code>reference/reference_agent/aris/skills/</code></li>
+                        <li><code>reference/reference_agent/aris/docs/</code></li>
+                    </ul>
+                </section>
+
+                <div class="chapter-navigation">
+                    <a href="topic-vibepaper.html" class="btn btn-secondary">← VibePaper 专题</a>
+                    <a href="topic-deepscientist-unpacked.html" class="btn btn-primary">对照 DeepScientist →</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container container--layout-wide">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-autoresearch-unpacked.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

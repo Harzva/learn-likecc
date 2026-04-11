@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepScientist 解构 - VibePaper 专题</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧪</text></svg>">
+    <meta name="description" content="VibePaper 子专题：拆解 DeepScientist 如何把 quest repo、baseline、experiment、paper output 与多入口 connector 拼成一个本地优先的自动科研工作台。">
+</head>
+<body class="cc-unpacked-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🧪</span>
+                <span class="logo-text">DeepScientist 解构</span>
+            </a>
+            <div class="nav-links">
+                <a href="#attribution" class="nav-link">说明</a>
+                <a href="#why" class="nav-link">01 为什么重要</a>
+                <a href="#layers" class="nav-link">02 分层</a>
+                <a href="#control-plane" class="nav-link">03 控制面</a>
+                <a href="#quest-state" class="nav-link">04 Quest 状态</a>
+                <a href="#surfaces" class="nav-link">05 界面与连接器</a>
+                <a href="#loop" class="nav-link">06 研究循环</a>
+                <a href="#lessons" class="nav-link">07 值得学什么</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-vibepaper.html" class="btn-github">VibePaper 专题</a>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>VibePaper · 子专题</span>
+                <span>Research Studio / Quest Repo</span>
+            </div>
+            <h1 class="hero-title">
+                DeepScientist<br>
+                <span class="gradient-text">解构</span>
+            </h1>
+            <p class="hero-subtitle">
+                如果说 <code>Autoresearch</code> 更像把研究动作封进一个 plugin loop，<br>
+                那么 <code>DeepScientist</code> 走的是另一条路：把 <strong>quest repo、baseline、experiment、paper output、connector、Web/TUI 工作区</strong> 拼成一个本地优先的自动科研 studio。
+            </p>
+            <div class="hero-actions">
+                <a href="#why" class="btn btn-primary">先看 01 为什么重要</a>
+                <a href="topic-vibepaper.html" class="btn btn-secondary">回到 VibePaper 总页</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="course-main devlog-main">
+        <div class="container container--layout-wide">
+            <article class="course-content devlog-content">
+
+                <section id="attribution" class="section-block">
+                    <h2>参考来源与版本锚定</h2>
+                    <div class="course-quote">
+                        <p><strong>本页目标不是做产品安利</strong>，而是把 DeepScientist 拆成适合站内教学的结构图：它到底把哪些科研控制点做成了正式层。</p>
+                        <p><strong>官方来源</strong>：<a href="https://github.com/ResearAI/DeepScientist" target="_blank" rel="noopener noreferrer">ResearAI/DeepScientist</a>、<a href="https://deepscientist.cc/" target="_blank" rel="noopener noreferrer">deepscientist.cc</a>、<a href="https://openreview.net/forum?id=cZFgsLq8Gs" target="_blank" rel="noopener noreferrer">OpenReview paper</a>、中英文 README 与 docs。</p>
+                        <p><strong>本地锚点</strong>：<code>reference/reference_agent/DeepScientist/README.md</code>、<code>README_ZH.md</code>、<code>docs/en/12_GUIDED_WORKFLOW_TOUR.md</code>、<code>docs/en/02_START_RESEARCH_GUIDE.md</code>、<code>src/</code>、<code>tests/test_init_and_quest.py</code>、<code>tests/test_memory_and_artifact.py</code>、<code>tests/test_connector_bridges.py</code>。</p>
+                    </div>
+                </section>
+
+                <section id="why" class="section-block">
+                    <h2>01 · 为什么 DeepScientist 值得单独拆</h2>
+                    <p>它不是“会读 paper 的聊天机器人”，也不只是“自动跑实验的脚本集合”。从 README 和文档看，DeepScientist 真正想做的是一个<strong>本地优先的自动科研工作台</strong>：每个 quest 都是真实仓库，baseline/experiment/paper output 都落在同一套工程状态里，而且人类可以随时 takeover。</p>
+                    <p>这使它和一般的 research agent 拉开差距。很多系统只负责前半段，例如读论文、提 idea、给 checklist；DeepScientist 则试图把 <strong>启动课题、修 baseline、持续试验、整理结果、出图出稿、跨界面跟进</strong> 一起做进同一条主流程里。</p>
+                </section>
+
+                <section id="layers" class="section-block">
+                    <h2>02 · 先拆成六层：DeepScientist 到底在拼什么</h2>
+                    <table class="options-table">
+                        <tr><th>层次</th><th>关键锚点</th><th>解决的问题</th></tr>
+                        <tr><td>课题入口层</td><td>README 的 paper / repo / natural-language quest 启动方式</td><td>研究工作从什么输入开始，如何变成可执行 quest</td></tr>
+                        <tr><td>Quest 仓库层</td><td>README 的 one repo per quest；相关 init / git 测试</td><td>如何把研究过程沉淀成真实仓库，而不是一次性会话</td></tr>
+                        <tr><td>研究控制面</td><td><code>src/</code> 主流程、guided workflow tour、baseline / experiment / write 阶段文档</td><td>如何把 baseline、实验、写作、图表与复盘串进同一条长链</td></tr>
+                        <tr><td>持久状态层</td><td>Findings Memory、artifact / memory 相关测试与文档</td><td>实验结论、失败路线、paper-facing outputs 如何变成 durable state</td></tr>
+                        <tr><td>可见工作区层</td><td>Web workspace、Canvas、Studio + Details 预览图</td><td>如何让自动科研过程不变成黑盒</td></tr>
+                        <tr><td>协作与 connector 层</td><td>Weixin / QQ / Telegram / Feishu 等 connector 文档与测试</td><td>如何让研究进展从本地工作台延伸到外部协作面</td></tr>
+                    </table>
+                    <p class="section-desc section-desc--tight">所以 DeepScientist 更像一个 <strong>research studio / quest operating system</strong>，而不是单纯的研究 prompt 包。</p>
+                    <div class="course-quote">
+                        <p><strong>[插图提示词]</strong></p>
+                        <p>用途：画出 DeepScientist 的六层总图，帮助读者先分清“课题入口 → quest repo → research control plane → durable state → visible workspace → connectors”。</p>
+                        <p>形式：分层结构图；优先 Mermaid。</p>
+                        <p>提示词：画一个 DeepScientist 六层架构图，顶部是 paper/repo/natural-language quest 输入，中间是 quest repo、baseline/experiment/write control plane，左侧是 findings memory 与 artifacts，右侧是 web workspace、canvas、studio details，底部是 weixin/qq/telegram/feishu connectors 与 local-first machine，箭头标出研究推进、结果沉淀、人工 takeover 与外部进度回送。</p>
+                        <p>Mermaid 更适合：是。</p>
+                    </div>
+                </section>
+
+                <section id="control-plane" class="section-block">
+                    <h2>03 · 它的控制面到底在哪：不是聊天框，而是 quest + stage workflow</h2>
+                    <p>DeepScientist 最关键的判断，是不要把它理解成“一个长上下文聊天窗口”。从 README、Quick Start 和 Guided Workflow Tour 来看，真正的控制面更像是<strong>quest 驱动的阶段流程</strong>：问题被转成 quest，quest 绑定真实仓库，然后再沿 baseline、experiment、analysis、write 这些阶段往前推进。</p>
+                    <p>也就是说，它的主脑不在某个聊天 UI，而在“研究阶段 + 仓库状态 + 记忆沉淀”这三者的组合里。聊天只是入口之一，真正的系统边界落在 quest repo 和 stage workflow 上。这一点和我们看 Hermes 或 codex-loop 时的判断不同：DeepScientist 更强调的是<strong>研究工程的 durable state machine</strong>。</p>
+                </section>
+
+                <section id="quest-state" class="section-block">
+                    <h2>04 · DeepScientist 的核心资产：Quest repo + Findings Memory + Paper outputs</h2>
+                    <p>README 里最值得抓的一句是 <strong>one repo per quest</strong>。这意味着它没有把研究过程存在一个抽象数据库里，而是尽量让分支、worktree、文件、artifact 自己表达研究结构。再叠加 Findings Memory 和 artifact 相关测试，可以看出它在努力做一件很重要的事：把“失败了什么、修好了什么、哪个实验值得保留、哪段论证已经成型”都变成下一轮可复用输入。</p>
+                    <p>这比“自动写论文”更本质。真正难的不是把摘要扩成 introduction，而是让 baseline、实验、分析、图表和文稿共享同一份上下文主线。DeepScientist 的价值，就在于它试图把这些资产收拢回 quest repo 内部，而不是让它们散落在终端、笔记、聊天和外部 SaaS 里。</p>
+                    <div class="course-quote">
+                        <p><strong>[插图提示词]</strong></p>
+                        <p>用途：说明 DeepScientist 的 durable research loop，不只是跑实验，而是让 quest repo、memory 和 paper outputs 相互喂养。</p>
+                        <p>形式：闭环流程图；优先 Mermaid。</p>
+                        <p>提示词：画一个 DeepScientist research loop：paper/repo/goal 输入生成 quest repo，baseline reproduction 进入 experiment rounds，结果沉淀为 findings memory 和 artifacts，再流向 figures/reports/paper draft，人工可以在任意阶段 takeover，最后这些结果反过来成为下一轮 hypothesis 和 plan 的输入。</p>
+                        <p>Mermaid 更适合：是。</p>
+                    </div>
+                </section>
+
+                <section id="surfaces" class="section-block">
+                    <h2>05 · Web、Canvas、TUI、Connectors：它为什么不像黑盒</h2>
+                    <p>很多自动科研系统一旦跑起来，最大的心理阻力就是“我不知道它在干嘛”。DeepScientist 在产品叙事上刻意回避这一点：README 反复强调 visible research progress、web workspace、canvas、studio details、human takeover anytime，说明它把“过程可见”本身当成产品基线，而不是锦上添花。</p>
+                    <p>再加上 Weixin、QQ、Telegram、Feishu 等 connector 文档与测试，可以看出它不是只考虑单机 UI，而是在设计“研究工作如何被外部协作面持续看到”。这和我们现在做的 codex-loop + 连接器思路很接近，只是 DeepScientist 把它产品化得更彻底。</p>
+                </section>
+
+                <section id="loop" class="section-block">
+                    <h2>06 · 它和 Autoresearch 的根本差异：工作台厚度不同</h2>
+                    <table class="options-table">
+                        <tr><th>维度</th><th>Autoresearch</th><th>DeepScientist</th></tr>
+                        <tr><td>主隐喻</td><td>plugin / command surface / verify loop</td><td>local-first research studio / quest repo</td></tr>
+                        <tr><td>控制面</td><td>命令协议与机械验证链</td><td>quest + stage workflow + visible workspace</td></tr>
+                        <tr><td>持久状态</td><td>更偏 checklist、log、improvement protocol</td><td>更偏 repo、memory、artifact、paper-facing outputs</td></tr>
+                        <tr><td>适合学什么</td><td>怎么把研究动作拆成可验证循环</td><td>怎么把整条研究链做成可长期运行的工作台</td></tr>
+                    </table>
+                    <p>所以 VibePaper 这条线不能只写一个总评。Autoresearch 和 DeepScientist 看的是同一个问题，但把问题切开的方式完全不同：一个更像“研究循环协议”，一个更像“研究工作台操作层”。</p>
+                </section>
+
+                <section id="lessons" class="section-block">
+                    <h2>07 · 对我们自己的站点和值得学什么</h2>
+                    <div class="course-quote">
+                        <p><strong>第一</strong>，如果要讲自动科研，不能只讲模型和 prompt，要讲 quest repo、artifact、memory 和人类 takeover 这些 durable state。</p>
+                        <p><strong>第二</strong>，专题页不能只做项目清单，更应该拆“控制面在哪里、持久状态是什么、哪些值得变成教程”。</p>
+                        <p><strong>第三</strong>，VibePaper 后续可以沿两条线继续长：一条是像 Autoresearch 这样的 research loop 协议；另一条是像 DeepScientist 这样的 research studio。</p>
+                        <p><strong>第四</strong>，对我们自己的 `codex-loop` 来说，最值得学的不是整套产品壳，而是“如何把 loop 的结果沉淀回 durable research assets，而不是只停在 chat transcript 里”。</p>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2>参考与原始链接</h2>
+                    <ul>
+                        <li><a href="https://github.com/ResearAI/DeepScientist" target="_blank" rel="noopener noreferrer">ResearAI/DeepScientist</a></li>
+                        <li><a href="https://deepscientist.cc/" target="_blank" rel="noopener noreferrer">DeepScientist 官网</a></li>
+                        <li><a href="https://openreview.net/forum?id=cZFgsLq8Gs" target="_blank" rel="noopener noreferrer">OpenReview 论文</a></li>
+                        <li><code>reference/reference_agent/DeepScientist/README.md</code></li>
+                        <li><code>reference/reference_agent/DeepScientist/README_ZH.md</code></li>
+                        <li><code>reference/reference_agent/DeepScientist/docs/en/12_GUIDED_WORKFLOW_TOUR.md</code></li>
+                        <li><code>reference/reference_agent/DeepScientist/docs/en/02_START_RESEARCH_GUIDE.md</code></li>
+                        <li><code>reference/reference_agent/DeepScientist/src/</code></li>
+                        <li><code>reference/reference_agent/DeepScientist/tests/test_init_and_quest.py</code></li>
+                        <li><code>reference/reference_agent/DeepScientist/tests/test_memory_and_artifact.py</code></li>
+                    </ul>
+                </section>
+
+                <div class="chapter-navigation">
+                    <a href="topic-vibepaper.html" class="btn btn-secondary">← VibePaper 专题</a>
+                    <a href="topic-superpowers-autoresearch.html" class="btn btn-primary">对照 Autoresearch →</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container container--layout-wide">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-deepscientist-unpacked.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>
