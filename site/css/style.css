@@ -12553,11 +12553,51 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
         flex-direction: column;
     }
 
-    .codex-console-shell-composer__prompt {
+.codex-console-shell-composer__prompt {
         width: auto;
         justify-content: flex-start;
         padding: 10px 14px;
         border-right: 0;
         border-bottom: 1px solid rgba(148, 163, 184, 0.14);
     }
+}
+
+.agent-comparison-section--muted {
+    background: var(--bg-secondary);
+}
+
+.agent-comparison-section--intro {
+    padding-top: 60px;
+}
+
+.agent-comparison-lead {
+    margin-bottom: 0;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.agent-comparison-source-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.agent-comparison-block-spaced {
+    margin-top: 2rem;
+}
+
+.agent-comparison-subtitle {
+    font-size: 1.35rem;
+    margin-top: 2rem;
+}
+
+.agent-comparison-table-wrap {
+    overflow-x: auto;
+}
+
+.agent-comparison-note {
+    margin-top: 1rem;
+}
+
+.agent-comparison-footer {
+    margin-top: 0;
 }

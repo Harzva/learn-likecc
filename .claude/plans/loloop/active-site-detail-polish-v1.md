@@ -274,6 +274,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Reopen Task 8 for one final bounded root-shelf sync pass so `topic-ai-zahuopu` also points to the CLI shell-type plus approval-surface split
 - [x] Add one root-shelf sync note clarifying that the `CLI Agent` lane should now be read as shell type plus approval surface rather than a flat terminal-tools bucket
 - [x] Verify the root-shelf approval-sync pass with `python3 tools/check_site_md_parity.py`
+- [x] Keep the deferred overnight media wave closed after the Task 8 root-shelf sync and return to one bounded low-risk site-polish pass
+- [x] Replace `topic-agent-comparison.html` inline layout styling with scoped classes
+- [x] Verify the agent-comparison page no longer uses inline `style=` attributes
 - [x] Reopen Task 9 for one bounded site-facing teaching pass after the frontend micro-wave was locally deferred
 - [x] Add one explicit five-layer `Session Stack` reading contract to `topic-codex-loop-console`
 - [x] Verify the Task 9 control-contract pass with `python3 tools/check_site_md_parity.py`
