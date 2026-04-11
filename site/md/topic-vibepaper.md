@@ -6,7 +6,7 @@
 
 ## 概要
 
-VibePaper 专题目前先收 **Autoresearch**、**DeepScientist** 与 **AI Scientist-v2** 三条样本线，关注的不是“论文工具很多”，而是：一个系统如何把论文阅读、baseline 复现、实验迭代、图表整理、成稿输出和长期记忆串成持续运行的研究工作流。
+VibePaper 专题目前先收 **Autoresearch**、**DeepScientist** 与 **AI Scientist-v2** 三条主样本线，并保留 **AIDE ML** 作为候选底座 lane。关注的不是“论文工具很多”，而是：一个系统如何把论文阅读、baseline 复现、实验迭代、图表整理、成稿输出和长期记忆串成持续运行的研究工作流。
 
 ## 目录（对照 HTML）
 
