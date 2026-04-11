@@ -28,6 +28,11 @@ AI杂货铺不是一个“工具站镜像页”，而是一间按场景分货的
 - Qwen CLI（待补更稳的官方入口）
 - MiniMax CLI（待补更稳的官方入口）
 
+这条货架现在不再只按“终端里跑不跑”来理解；站内已经把它进一步拆成：
+
+- 不同壳层：workflow-complete shell、TUI-first open shell、artifact-control CLI
+- 不同 approval surface：action approval、artifact review、dangerous-command gate
+
 ### AI 编辑器
 
 - Cursor
@@ -68,3 +73,7 @@ AI杂货铺不是一个“工具站镜像页”，而是一间按场景分货的
 - CLI Agent 专页：重点补 Qwen CLI / MiniMax CLI
 - API 聚合专页：重点比 OpenRouter / OhMyGPT / 硅基流动 / 七牛云
 - 模型评测专页：解释 MMLU / MMBench / OpenCompass / HELM 分别适合看什么
+
+主货架同步约束：
+
+- `CLI Agent` 这条线后续都要沿着“先分壳，再看 approval friction”的读法同步，不再把 OpenCode、OfficeCLI、Hermes Agent 只当成更多终端工具名字。

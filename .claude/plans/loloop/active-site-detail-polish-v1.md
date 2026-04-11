@@ -270,6 +270,10 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Reopen Task 8 for one bounded tooling-hub sync pass so the higher-level AI coding-tools map also reflects the new CLI approval-surface split
 - [x] Add one coding-tools hub sync note clarifying that the CLI Agent bucket now points to multiple approval surfaces rather than only shell categories
 - [x] Verify the coding-tools approval-sync pass with `python3 tools/check_site_md_parity.py`
+- [x] Keep the deferred overnight media wave closed after the coding-tools approval sync and continue the same Task 8 propagation only if the root `AI杂货铺` entrance still flattens the CLI lane
+- [x] Reopen Task 8 for one final bounded root-shelf sync pass so `topic-ai-zahuopu` also points to the CLI shell-type plus approval-surface split
+- [x] Add one root-shelf sync note clarifying that the `CLI Agent` lane should now be read as shell type plus approval surface rather than a flat terminal-tools bucket
+- [x] Verify the root-shelf approval-sync pass with `python3 tools/check_site_md_parity.py`
 - [x] Reopen Task 9 for one bounded site-facing teaching pass after the frontend micro-wave was locally deferred
 - [x] Add one explicit five-layer `Session Stack` reading contract to `topic-codex-loop-console`
 - [x] Verify the Task 9 control-contract pass with `python3 tools/check_site_md_parity.py`

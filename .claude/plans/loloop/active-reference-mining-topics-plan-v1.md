@@ -38,6 +38,8 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - [x] Mark the current `topic-ai-coding-tools` subthread locally deferred after the CLI taxonomy sync because another immediate pass would now be lower value than switching to a fresh reference destination
 - [x] Reopen `topic-ai-coding-tools` for one bounded hub-sync pass once the CLI approval-surface distinction lands on `topic-ai-cli-agent`
 - [x] Add one coding-tools hub sync note clarifying that the CLI Agent bucket now also points to multiple approval surfaces rather than only shell categories
+- [x] Reopen the root `topic-ai-zahuopu` shelf for one bounded CLI-lane sync once the coding-tools hub also reflects the approval-surface distinction
+- [x] Add one root-shelf sync note clarifying that the `CLI Agent` lane should now be read as shell type plus approval surface, not just “terminal tools”
 
 ## Newly added references
 
@@ -134,6 +136,8 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
   - reflect the CLI shell-type distinction back into the higher-level AI coding-tools map so top-level categories do not flatten the subtopic
 - [x] bounded extraction on the tooling-hub approval line:
   - reflect the CLI approval-surface distinction back into the higher-level AI coding-tools map so top-level tooling categories do not flatten approval friction into one generic terminal label
+- [x] bounded extraction on the root-shelf approval line:
+  - reflect the CLI approval-surface distinction back into the main `AI杂货铺` shelf so the root entrance also stops flattening terminal tools into one bucket
 - [x] first bounded extraction on the multi-agent line:
   - distinguish research-agent CLI shells, workflow-orchestration shells, and managed-agent platform shells before treating all “agent teams” as one runtime shape
 - [x] second bounded extraction on the multi-agent line:
@@ -173,3 +177,4 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - Seventh bounded Task 8 destination is now `topic-ai-coding-tools`, using a small hub-sync pass so the top-level tooling map acknowledges the internal shell-type split already added to `topic-ai-cli-agent`
 - Current local state: the `topic-ai-coding-tools` subthread is locally deferred until a stronger tooling-map intake, new tool family, or clearer reference-backed gap appears
 - Current local state: the `topic-ai-coding-tools` subthread now also points readers toward the CLI approval-surface split; defer further passes again unless a stronger top-level tooling-map gap or new tool family appears
+- Current local state: the root `topic-ai-zahuopu` CLI shelf now also points readers toward the shell-type plus approval-surface split; defer further Task 8 propagation unless a stronger cross-page taxonomy gap appears
