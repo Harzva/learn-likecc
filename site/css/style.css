@@ -12626,3 +12626,36 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     max-height: 22rem;
     white-space: pre-wrap;
 }
+
+.llm-section--gallery,
+.llm-section--related {
+    background: var(--bg-secondary);
+}
+
+.llm-section--gallery {
+    padding-top: 60px;
+}
+
+.llm-section-desc--gallery {
+    max-width: 760px;
+    margin: 0 auto 1.5rem;
+}
+
+.llm-hero-actions--gallery {
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.llm-quickstart-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.llm-tools-grid {
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.llm-section-desc--related {
+    max-width: 780px;
+    margin: 0 auto;
+}
