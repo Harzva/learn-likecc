@@ -22,6 +22,8 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - [x] Choose `topic-codex-loop-console` as the next bounded site-facing destination because `hermes-webui`, `claudecodeui`, and `hermes-hud` fit its operator-surface and session-visibility scope
 - [x] Add one repo-backed operator-surface note clarifying why session browser, multi-session workbench, and operator HUD should not be treated as one generic AI shell
 - [x] Mark the current `topic-codex-loop-console` subthread locally deferred after the operator-surface pass because another immediate pass would now be lower value than switching to a fresh reference destination
+- [x] Choose `topic-agent-hot` as the next bounded site-facing destination because `OfficeCLI` fits the curated-hot format and adds an artifact-control CLI pattern that is missing from the current page
+- [x] Add one repo-backed `OfficeCLI` hotspot note clarifying why document-control CLIs are a distinct agent tool surface, not just another coding shell
 
 ## Newly added references
 
@@ -88,6 +90,9 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - [x] Current explicit destination for the third bounded pass:
   - `site/topic-codex-loop-console.html`
   - `site/md/topic-codex-loop-console.md`
+- [x] Current explicit destination for the fourth bounded pass:
+  - `site/topic-agent-hot.html`
+  - `site/md/topic-agent-hot.md`
 
 ## What to extract for LikeCode
 
@@ -96,6 +101,8 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
   - distinguish session browser, multi-session workbench, and operator HUD before deciding what the local `Session Stack` should become
 - [ ] terminal and pane layout patterns
 - [ ] multi-agent control and delegation surfaces
+- [x] bounded extraction on the artifact-control line:
+  - distinguish document / artifact control CLIs from generic coding shells before treating all “agent CLI” references as the same surface
 - [x] first bounded extraction on the multi-agent line:
   - distinguish research-agent CLI shells, workflow-orchestration shells, and managed-agent platform shells before treating all “agent teams” as one runtime shape
 - [x] second bounded extraction on the multi-agent line:
@@ -122,3 +129,4 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - Current local state: the `topic-agent-comparison` subthread is locally deferred until a stronger multi-agent runtime gap, a better repo cluster, or a clearer site destination appears
 - Third bounded Task 8 destination is now `topic-codex-loop-console`, using `hermes-webui`, `claudecodeui`, and `hermes-hud` to separate session browser, workbench, and operator-HUD surfaces before the local AI Terminal drifts into a generic “agent UI” bucket
 - Current local state: the `topic-codex-loop-console` subthread is locally deferred until a stronger operator-UX pattern, CLI-control gap, or clearer site destination appears
+- Fourth bounded Task 8 destination is now `topic-agent-hot`, using `OfficeCLI` to show that an agent-oriented CLI can expose a full artifact control plane, embedded `SKILL.md`, and live preview loop without being another general coding shell

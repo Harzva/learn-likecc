@@ -17,7 +17,7 @@ Prioritize future iterations along these three lines:
 
 ## Current focus
 
-Choose the next best Task 8 destination after the current `topic-codex-loop-console` subthread defer decision.
+Continue Task 8 on the fresh `topic-agent-hot` / `OfficeCLI` hotspot subthread and decide whether one adjacent primary-source clarification is still justified.
 
 ## Success condition
 
@@ -262,6 +262,9 @@ Choose the next best Task 8 destination after the current `topic-codex-loop-cons
 - [x] Add one repo-backed operator-surface note so `Session Browser / Workbench / HUD / Local Desk` boundaries are explicit on the AI Terminal topic page
 - [x] Verify the Task 8 operator-surface pass with `python3 tools/check_site_md_parity.py`
 - [x] Mark the current `topic-codex-loop-console` subthread locally deferred after the operator-surface pass
+- [x] Choose `topic-agent-hot` as the next fresh Task 8 destination after deferring the `topic-codex-loop-console` subthread
+- [x] Add one repo-backed `OfficeCLI` hotspot note so the Agent hot page covers artifact-control CLIs rather than only memory / skills / architecture links
+- [x] Verify the Task 8 `OfficeCLI` hot-page pass with `python3 tools/check_site_md_parity.py`
 - [x] Stay on Task 9 for one more bounded action-oriented operator-summary follow-up after the headline-badges pass
 - [x] Add a compact `Attention Queue` so relay / thread / shell each expose the next likely operator move from the same overview surface
 - [x] Verify the Task 9 attention-queue pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
