@@ -53,6 +53,7 @@ VibePaper 专题目前先收 **Autoresearch / ARIS**、**DeepScientist** 与 **A
 | durable state | 更偏 git 历史、verify 结果、比较日志与 guide 文档 | 进一步把 state 扩到 `research-wiki`、brief、report、rebuttal 等文件化研究产物，但仍然保持 plain-file 持久化，而不是长出独立数据库平台 |
 | review topology | 更多还是单循环里的自检、verify 和结果回写 | 把 reviewer 面显式外置成 cross-model collaboration：执行端跑研究，外部 reviewer 通过 `Codex MCP` 等桥接来挑错、打分和追问，所以方法论厚度明显增加，但壳仍然是 workflow-first |
 | automation boundary | 默认更像“有人盯着的循环协议”，重点是把一次研究迭代跑通 | workflow 已经延伸到 overnight research、auto-review 和多阶段 pipeline，但 README 仍明确把 daemon mode 列为未完成项；现在靠状态文件跨 session 恢复，而不是已经长成真正无人值守的平台编排层 |
+| memory surface | 记忆更多是散在 git、日志和对照文档里的结果痕迹 | 开始长出可主动查询和回写的 memory surface：`/research-wiki`、multi-file memory index、`/plan`、`/tasks` 会把 papers、ideas、claims、failed runs 组织成可检索的文件化研究记忆，但这层仍然是 plain files，不是独立 memory service |
 | 站内教学定位 | 讲清“单循环协议”怎么跑通 | 讲清“协议壳怎样扩成多工作流研究方法论”，所以先并在同一条样本线里，而不是另开第四种壳 |
 
 ### [插图提示词]
