@@ -17,7 +17,7 @@ Prioritize future iterations along these three lines:
 
 ## Current focus
 
-Choose the next best Task 8 destination after the current `topic-ai-coding-tools` CLI-sync subthread defer decision.
+Choose the next best task from the remaining pool after the current broader Task 8 reference-mining wave defer decision.
 
 ## Success condition
 
@@ -278,6 +278,7 @@ Choose the next best Task 8 destination after the current `topic-ai-coding-tools
 - [x] Add one coding-tools hub sync note so the top-level CLI Agent bucket now points toward multiple shell types instead of one flat terminal route
 - [x] Verify the Task 8 coding-tools CLI-sync pass with `python3 tools/check_site_md_parity.py`
 - [x] Mark the current `topic-ai-coding-tools` subthread locally deferred after the CLI-sync pass
+- [x] Mark the current broader Task 8 reference-mining wave locally deferred after the recent multi-destination sequence entered low-yield territory
 - [x] Stay on Task 9 for one more bounded action-oriented operator-summary follow-up after the headline-badges pass
 - [x] Add a compact `Attention Queue` so relay / thread / shell each expose the next likely operator move from the same overview surface
 - [x] Verify the Task 9 attention-queue pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`

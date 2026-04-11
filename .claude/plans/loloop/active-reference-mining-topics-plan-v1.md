@@ -148,6 +148,7 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 
 - This plan is the canonical checklist for turning `reference/` discoveries into site content
 - Favor bounded passes: inspect one pattern family, choose one site destination, produce one concrete improvement
+- Current broader local state: the recent Task 8 wave is locally deferred until a stronger new reference family, repo cluster, or clearer destination appears; do not keep forcing fresh pages out of the same exhausted sample set
 - First bounded Task 8 output landed in the Skill 市场专题 rather than opening a new topic, because the new `baoyu-skills` / `codex-plugin-cc` references directly strengthen the existing trust-chain explanation
 - Current local state: the `topic-skillmarket` subthread is locally deferred until a new packaging reference, a stronger market-installation gap, or a better skills-ecosystem destination appears
 - Second bounded Task 8 destination is now `topic-agent-comparison`, using `feynman`, `ChatDev 2.0`, and `Multica` to ground runtime-topology differences in repo evidence
