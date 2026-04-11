@@ -207,6 +207,8 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Mark the current broader VibePaper polish wave as locally deferred until a new upstream intake, shell signal, or clearly higher-value structure gap appears
 - [x] Choose Task 7 as the next main-site move after the broader VibePaper wave was locally deferred
 - [x] Upgrade the AI Terminal shell pane from a plain PTY log box to a framed terminal view with live session cwd and line-count meta
+- [x] Stay on Task 7 for one more bounded AI Terminal observability pass after the shell-frame upgrade
+- [x] Add a local event timeline pane so daemon, thread, shell, and relay actions are easier to scan without tailing multiple panes at once
 
 ## Guardrail
 

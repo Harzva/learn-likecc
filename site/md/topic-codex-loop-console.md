@@ -54,3 +54,4 @@
 - 新增 thread lock 控制，能把当前 thread 标成只读或恢复可写
 - 新增 shell workspace：可创建多个本地 shell session，并在 tab 间切换
 - shell pane 现在带 terminal frame、session cwd 与输出行数，不再只是裸 PTY 日志框
+- 新增本地 event timeline pane，集中记录 daemon、thread lock、shell 与 relay 的最近动作

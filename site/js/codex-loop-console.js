@@ -21,6 +21,8 @@
     var currentWorkspace = 'overview'
     var lastData = { daemonLog: '', tickLog: '', lastMessage: '' }
     var shellState = { sessions: [], activeId: '' }
+    var timelineState = []
+    var lastTickTimelineKey = ''
     var es = null
 
     function esc(s) {
@@ -42,6 +44,47 @@
     function setHtml(id, text) {
         var el = document.getElementById(id)
         if (el) el.innerHTML = esc(text || '')
+    }
+
+    function nowLabel() {
+        return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })
+    }
+
+    function renderTimeline() {
+        var host = document.getElementById('event-timeline-list')
+        var count = document.getElementById('timeline-count')
+        if (!host || !count) return
+        count.textContent = String(timelineState.length)
+        if (!timelineState.length) {
+            host.innerHTML = '<div class="codex-console-timeline__empty">暂无事件。先连接 relay 或执行一次本地操作。</div>'
+            return
+        }
+        host.innerHTML = timelineState
+            .map(function (item) {
+                var detail = item.detail ? '<div class="codex-console-timeline__detail">' + esc(item.detail) + '</div>' : ''
+                return (
+                    '<article class="codex-console-timeline__item">' +
+                    '<div class="codex-console-timeline__meta">' +
+                    '<span class="codex-console-timeline__time">' + esc(item.time) + '</span>' +
+                    '<span class="codex-console-timeline__kind codex-console-timeline__kind--' + esc(item.kind) + '">' + esc(item.kind) + '</span>' +
+                    '</div>' +
+                    '<strong class="codex-console-timeline__title">' + esc(item.title) + '</strong>' +
+                    detail +
+                    '</article>'
+                )
+            })
+            .join('')
+    }
+
+    function pushTimeline(kind, title, detail) {
+        timelineState.unshift({
+            kind: kind || 'info',
+            title: title || 'event',
+            detail: detail || '',
+            time: nowLabel(),
+        })
+        timelineState = timelineState.slice(0, 24)
+        renderTimeline()
     }
 
     function fetchJson(path, options) {
@@ -319,6 +362,11 @@
         setText('last-message-preview', tick.last_message_preview || '—')
         lastTickPath.textContent = tick.raw_log_path || '—'
         updateThreadLock(status.thread_lock || data.thread_lock || {})
+        var tickKey = [tick.phase || '', tick.started_at || '', tick.finished_at || '', tick.returncode].join('|')
+        if (tickKey !== '|||' && tickKey !== lastTickTimelineKey) {
+            lastTickTimelineKey = tickKey
+            pushTimeline('tick', 'daemon tick ' + (tick.phase || 'unknown'), (tick.finished_at || tick.started_at || '—') + ' · returncode=' + (typeof tick.returncode === 'number' ? tick.returncode : '—'))
+        }
     }
 
     function refreshLogs() {
@@ -436,10 +484,12 @@
                 renderShellTabs()
                 renderShellOutput()
                 setText('shell-status', 'shell ready')
+                pushTimeline('shell', 'shell created', data.session.session_id + ' · pid=' + data.session.pid)
                 applyWorkspace('shell')
             })
             .catch(function (err) {
                 setText('shell-status', err.message)
+                pushTimeline('error', 'shell create failed', err.message)
             })
     }
 
@@ -459,9 +509,11 @@
                 renderShellTabs()
                 renderShellOutput()
                 setText('shell-status', 'shell closed')
+                pushTimeline('shell', 'shell closed', sessionId)
             })
             .catch(function (err) {
                 setText('shell-status', err.message)
+                pushTimeline('error', 'shell close failed', err.message)
             })
     }
 
@@ -481,9 +533,11 @@
                 document.getElementById('shell-input').value = ''
                 renderShellOutput()
                 setText('shell-status', 'sent')
+                pushTimeline('shell', 'shell input sent', shellState.activeId)
             })
             .catch(function (err) {
                 setText('shell-status', err.message)
+                pushTimeline('error', 'shell input failed', err.message)
             })
     }
 
@@ -493,6 +547,7 @@
         setText('relay-status', 'connecting')
         es.onopen = function () {
             setText('relay-status', 'connected')
+            pushTimeline('relay', 'relay connected', relayBase())
             saveLayout()
         }
         es.onmessage = function (ev) {
@@ -509,6 +564,7 @@
         }
         es.onerror = function () {
             setText('relay-status', 'connection error')
+            pushTimeline('error', 'relay connection error', relayBase())
         }
     }
 
@@ -522,11 +578,13 @@
         })
             .then(function (data) {
                 daemonControlStatus.textContent = data.stdout || (action + ' ok')
+                pushTimeline('daemon', 'daemon ' + action + ' ok', (data.stdout || '').trim().slice(0, 180))
                 updateStatus({ status: data.status })
                 refreshLogs()
             })
             .catch(function (err) {
                 daemonControlStatus.textContent = err.message
+                pushTimeline('error', 'daemon ' + action + ' failed', err.message)
             })
     }
 
@@ -544,9 +602,11 @@
             .then(function (data) {
                 updateThreadLock(data.thread_lock)
                 lockStatus.textContent = 'ok'
+                pushTimeline('thread', 'thread lock ' + mode, (data.thread_lock && data.thread_lock.note) || '')
             })
             .catch(function (err) {
                 lockStatus.textContent = err.message
+                pushTimeline('error', 'thread lock update failed', err.message)
             })
     }
 
@@ -558,9 +618,11 @@
                 refreshLogs()
                 refreshShellList()
                 setText('relay-status', 'manual refresh ok')
+                pushTimeline('relay', 'manual refresh', 'status + logs + shell list')
             })
             .catch(function (err) {
                 setText('relay-status', err.message)
+                pushTimeline('error', 'manual refresh failed', err.message)
             })
     })
     document.getElementById('daemon-start').addEventListener('click', function () {
@@ -622,14 +684,17 @@
                 sendStatus.textContent = 'sent'
                 if (data.thread_lock) updateThreadLock(data.thread_lock)
                 setHtml('thread-output', data.last_message || data.stdout || '')
+                pushTimeline('thread', 'thread message sent', body.thread_id || 'unknown thread')
                 refreshLogs()
             })
             .catch(function (err) {
                 sendStatus.textContent = err.message
+                pushTimeline('error', 'thread send failed', err.message)
             })
     })
 
     loadLayout()
+    renderTimeline()
     connectEvents()
     refreshLogs()
     refreshShellList()

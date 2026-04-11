@@ -11297,6 +11297,10 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     background: linear-gradient(180deg, rgba(239, 246, 255, 0.96), rgba(224, 242, 254, 0.92));
 }
 
+.codex-console-panel--timeline .codex-console-panel__head {
+    background: linear-gradient(180deg, rgba(255, 247, 237, 0.96), rgba(254, 242, 242, 0.92));
+}
+
 .codex-console-panel__body {
     padding: 14px 16px 18px;
     height: calc(100% - 53px);
@@ -11443,6 +11447,86 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     margin-top: 0;
     color: var(--text-secondary);
     font-size: 0.9rem;
+}
+
+.codex-console-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.codex-console-timeline__empty {
+    padding: 14px;
+    border-radius: 14px;
+    background: rgba(248, 250, 252, 0.9);
+    border: 1px dashed rgba(148, 163, 184, 0.18);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.codex-console-timeline__item {
+    padding: 12px 13px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(148, 163, 184, 0.14);
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.05);
+}
+
+.codex-console-timeline__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+    color: var(--text-secondary);
+    font-size: 0.76rem;
+}
+
+.codex-console-timeline__kind {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: rgba(226, 232, 240, 0.92);
+}
+
+.codex-console-timeline__kind--daemon {
+    background: rgba(254, 215, 170, 0.9);
+    color: #9a3412;
+}
+
+.codex-console-timeline__kind--thread {
+    background: rgba(219, 234, 254, 0.94);
+    color: #1d4ed8;
+}
+
+.codex-console-timeline__kind--shell {
+    background: rgba(220, 252, 231, 0.94);
+    color: #047857;
+}
+
+.codex-console-timeline__kind--relay,
+.codex-console-timeline__kind--tick {
+    background: rgba(243, 232, 255, 0.94);
+    color: #7c3aed;
+}
+
+.codex-console-timeline__kind--error {
+    background: rgba(254, 226, 226, 0.96);
+    color: #b91c1c;
+}
+
+.codex-console-timeline__title {
+    display: block;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.codex-console-timeline__detail {
+    color: var(--text-secondary);
+    font-size: 0.86rem;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
 }
 
 .codex-console-form {

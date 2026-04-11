@@ -190,6 +190,20 @@
                             <div class="codex-console-panel__resize" aria-hidden="true"></div>
                         </section>
 
+                        <section class="codex-console-panel codex-console-panel--timeline" data-panel-id="event-timeline" data-workspace-group="overview,thread,shell" style="left:1220px;top:280px;width:360px;height:270px;">
+                            <div class="codex-console-panel__head">
+                                <strong>Event Timeline</strong>
+                                <span class="codex-console-chip" id="timeline-count">0</span>
+                            </div>
+                            <div class="codex-console-panel__body">
+                                <p class="codex-console-inline-note">记录 daemon、thread lock、shell 与 relay 的最近动作，优先帮助判断“刚刚到底发生了什么”。</p>
+                                <div id="event-timeline-list" class="codex-console-timeline">
+                                    <div class="codex-console-timeline__empty">暂无事件。先连接 relay 或执行一次本地操作。</div>
+                                </div>
+                            </div>
+                            <div class="codex-console-panel__resize" aria-hidden="true"></div>
+                        </section>
+
                         <section class="codex-console-panel codex-console-panel--shell" data-panel-id="shell-pane" data-workspace-group="shell,overview" style="left:820px;top:0;width:520px;height:550px;">
                             <div class="codex-console-panel__head">
                                 <strong>Shell Workspace</strong>
