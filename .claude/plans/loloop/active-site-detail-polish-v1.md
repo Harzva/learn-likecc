@@ -396,6 +396,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Stay on the Autoresearch Task 2 subthread for one final readiness-decision pass after the first screenshot-backed draft landed
 - [x] Recheck that the `39-*` Autoresearch draft still includes its three local screenshots, the main site link, and the standard `适合什么人看 / 链接放这里` closeout structure
 - [x] Mark the `39-*` Autoresearch draft locally ready for a future daytime publication attempt instead of forcing another overnight rewrite
+- [x] Review the accumulated overnight media outputs after `36-*` through `39-*` all reached locally ready status
+- [x] Mark the current overnight Zhihu-draft preparation wave locally deferred instead of forcing a fifth late-night draft with weaker priority
+- [x] Release the next tick to either publish during the daytime window or choose a stronger non-media task from the remaining pool
 
 ## Guardrail
 
