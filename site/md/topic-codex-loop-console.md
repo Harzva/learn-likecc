@@ -118,3 +118,21 @@
 - 最后才下钻到 `Shell Roster`，处理具体 session 的 runtime 细节。
 
 这套分层对 LikeCode 的意义，不是把一页做得更复杂，而是守住一个约束：**同一层只回答同一种 operator 问题**。否则一旦 `Session Identity`、`Desk Assignments`、`Shell Roster` 都开始同时回答“当前谁接管了哪个 shell”，这个控制面很快又会退回“信息很多，但没人知道先看哪”的状态。
+
+## 别把 approval 也揉成一种：它至少有三层边界
+
+如果只盯着 `Session Stack` 的 ownership 和 reading order，还是会漏掉另一条更硬的 operator 约束：**“谁在接管”** 和 **“谁能放行动作”** 不是一回事。参考仓里至少已经能看到三种不同的 approval 边界：
+
+| 参考源 | 真正被批准的对象 | 暴露给 operator 的表面 | 对 LikeCode 的直接约束 |
+| --- | --- | --- | --- |
+| `reference/reference_agent/reference_control-agent-cli/opencode/README.md` + `internal/permission/permission.go` | 单次 tool action，或当前 session 的持续放行 | TUI permission dialog，支持 `Allow` / `Allow for session` / `Deny` | 说明 tool approval 该绑定“这次动作能不能做”，不要和 session ownership 混成一个 badge |
+| `reference/reference_agent/reference_control-agent-cli/OfficeCLI/SKILL.md` | 对文稿修改的提案，不是直接落盘写入 | `mark` 先挂起 edit proposal，再单独 review / apply | 说明 artifact review 是另一层：即使当前工位可写，也不该跳过“先看提案再落盘” |
+| `reference/reference_agent/hermes-agent/hermes_cli/main.py` | 危险命令执行 | 默认 approval prompt；只有显式 `--yolo` 才会整体绕过 | 说明“全局放开”必须是高风险姿态，不能伪装成普通运行状态 |
+
+把这三类边界放回 LikeCode，本地 operator desk 更合理的读法应该是：
+
+- `Readonly / Writable` 先回答 thread 现在有没有写入口，这是 ownership guard，不是动作批准本身。
+- `Attention Queue` 或后续更细的 approval cue，才应该回答“哪个动作正在等你放行”。
+- 真正涉及文件或产物改写时，还应该保留 proposal / review 的独立层，而不是因为 thread 已经 writable 就默认可以直接写。
+
+所以更稳的控制面约束不是“所有安全都进一个状态条”，而是把它拆成一条 approval ladder：**entry guard -> action approval -> artifact review**。这样 `Session Stack` 负责把人带到正确工位，但不会假装自己已经替 operator 完成了审批。

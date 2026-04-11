@@ -258,6 +258,10 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Verify the Task 9 dual-badge desk-assignment pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
 - [x] Stay on Task 9 for one more bounded top-level-scanability follow-up after the dual-badge assignment pass
 - [x] Upgrade the `Session Stack` panel head so daemon/thread/shell all have headline badges instead of leaving only the shell count visible at the title line
+- [x] Keep the deferred overnight media wave closed and choose one stronger non-media pass from the remaining pool
+- [x] Reopen Task 9 for one bounded site-facing teaching pass focused on approval boundaries rather than more frontend micro-tuning
+- [x] Add one reference-backed approval-boundary ladder to `topic-codex-loop-console` so ownership guard, action approval, and artifact review are taught as separate operator surfaces
+- [x] Verify the approval-boundary teaching pass with `python3 tools/check_site_md_parity.py`
 - [x] Reopen Task 9 for one bounded site-facing teaching pass after the frontend micro-wave was locally deferred
 - [x] Add one explicit five-layer `Session Stack` reading contract to `topic-codex-loop-console`
 - [x] Verify the Task 9 control-contract pass with `python3 tools/check_site_md_parity.py`

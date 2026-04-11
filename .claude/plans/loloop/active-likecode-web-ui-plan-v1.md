@@ -26,6 +26,7 @@ Scope: continuously improve LikeCode Web UI, AI terminal experience, and the age
 - [x] Continue Task 9 with the next bounded follow-up after the `Session Stack` header also surfaces shell standby pressure
 - [x] Mark the current LikeCode session-stack micro-wave locally deferred after the latest header follow-ups because further frontend-only additions are now low-yield without a new reference signal or backend capability gap
 - [x] Reopen Task 9 for one bounded site-facing teaching pass once the frontend micro-wave is deferred, so the existing `Session Stack` layers read like an explicit operator-control contract instead of a pile of UI tweaks
+- [x] Continue Task 9 with one bounded approval-boundary teaching pass after the five-layer operator-control contract landed
 
 ## Main product areas
 
@@ -95,6 +96,8 @@ Scope: continuously improve LikeCode Web UI, AI terminal experience, and the age
 - [ ] site-facing article or subtopic when a design pattern is worth documenting
 - [x] site-facing article or subtopic when a design pattern is worth documenting:
   - turn the existing `Session Stack` implementation into a five-layer operator-control contract on `site/topic-codex-loop-console.html`
+- [x] site-facing article or subtopic when a design pattern is worth documenting:
+  - add one approval-boundary ladder clarifying why ownership guard, action approval, and artifact review should not be flattened into one generic “safe / unsafe” state on `site/topic-codex-loop-console.html`
 - [ ] evolution notes tying specific references to specific UI decisions
 
 ## Destination hints
@@ -115,3 +118,4 @@ Scope: continuously improve LikeCode Web UI, AI terminal experience, and the age
 - Prefer bounded passes: one reference pattern, one concrete UI improvement, one validated result
 - Current local state: the recent `Session Stack` / `Shell Roster` refinement chain is locally deferred until a new reference-backed gap, stronger agent-management requirement, or backend capability change appears
 - Current local state: the frontend micro-wave is still deferred, but the page now also has one explicit teaching layer explaining `Quick Actions -> Attention Queue -> Session Identity -> Desk Assignments -> Shell Roster` as a control-surface reading order
+- Current local state: the latest bounded teaching follow-up now also spells out an approval ladder from `OpenCode / OfficeCLI / Hermes Agent`; do not reopen this page again unless a stronger backend approval surface or genuinely new operator-control reference appears
