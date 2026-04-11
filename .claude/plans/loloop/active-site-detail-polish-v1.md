@@ -266,6 +266,10 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Reopen Task 8 for one bounded CLI-agent teaching pass focused on approval surfaces rather than shell-type drift
 - [x] Add one repo-backed approval-surface note to `topic-ai-cli-agent` so action approval, artifact review, and dangerous-command bypass are taught as separate CLI risk models
 - [x] Verify the CLI-agent approval-surface pass with `python3 tools/check_site_md_parity.py`
+- [x] Keep the deferred overnight media wave closed after the CLI-agent approval pass and choose one fresh bounded non-media sync move from the remaining pool
+- [x] Reopen Task 8 for one bounded tooling-hub sync pass so the higher-level AI coding-tools map also reflects the new CLI approval-surface split
+- [x] Add one coding-tools hub sync note clarifying that the CLI Agent bucket now points to multiple approval surfaces rather than only shell categories
+- [x] Verify the coding-tools approval-sync pass with `python3 tools/check_site_md_parity.py`
 - [x] Reopen Task 9 for one bounded site-facing teaching pass after the frontend micro-wave was locally deferred
 - [x] Add one explicit five-layer `Session Stack` reading contract to `topic-codex-loop-console`
 - [x] Verify the Task 9 control-contract pass with `python3 tools/check_site_md_parity.py`

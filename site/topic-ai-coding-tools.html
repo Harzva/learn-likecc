@@ -61,7 +61,7 @@
                         </div>
                         <div class="zahuopu-mini-card">
                             <strong>CLI Agent</strong>
-                            <p>Claude Code、Codex、iFlow CLI、OpenCode 更适合放进终端工作流里看；但这堆内部还要再拆 workflow-complete shell、TUI-first shell 和 artifact-control CLI。</p>
+                            <p>Claude Code、Codex、iFlow CLI、OpenCode 更适合放进终端工作流里看；但这堆内部还要再拆 workflow-complete shell、TUI-first shell、artifact-control CLI，以及不同的 approval surface。</p>
                         </div>
                         <div class="zahuopu-mini-card">
                             <strong>全栈生成器</strong>
@@ -238,13 +238,26 @@
                     </div>
                 </section>
 
+                <section class="section-block">
+                    <div class="toolchain-section-heading">
+                        <span class="toolchain-eyebrow">CLI Lens</span>
+                        <h2>CLI Agent 这一堆，别只看壳，还要看 approval surface</h2>
+                    </div>
+                    <p>在这张工具墙上，<code>CLI Agent</code> 现在至少要拆两层。</p>
+                    <ul>
+                        <li>第一层是壳层：workflow-complete shell、TUI-first open shell、artifact-control CLI。</li>
+                        <li>第二层是 approval surface：<code>OpenCode</code> 更偏 action approval，<code>OfficeCLI</code> 更偏 artifact review，<code>Hermes Agent</code> 则把 dangerous-command gate 单独抬出来。</li>
+                    </ul>
+                    <p>所以在这页扫工具时，<code>CLI Agent</code> 这堆不该再被读成“都能在终端里跑，所以差不多”。更稳的读法是：先判断你要的是哪种终端壳，再判断你接受的是哪种 approval friction。</p>
+                </section>
+
                 <section id="pick" class="section-block">
                     <div class="toolchain-section-heading">
                         <span class="toolchain-eyebrow">Pick</span>
                         <h2>怎么逛这面墙更有效</h2>
                     </div>
                     <div class="course-quote">
-                        <p><strong>想找终端型主力：</strong>先看 Claude Code、Codex、OpenCode、iFlow CLI、Warp Code；再回 <a href="topic-ai-cli-agent.html">CLI Agent 专页</a> 区分它们到底属于 workflow-complete shell、TUI-first shell 还是别的终端壳。</p>
+                        <p><strong>想找终端型主力：</strong>先看 Claude Code、Codex、OpenCode、iFlow CLI、Warp Code；再回 <a href="topic-ai-cli-agent.html">CLI Agent 专页</a> 区分它们到底属于 workflow-complete shell、TUI-first shell、artifact-control CLI，还是落在不同的 approval surface 上。</p>
                         <p><strong>想找 IDE 主战场：</strong>先看 Cursor、TRAE、Kiro、CodeBuddy IDE、Windsurf。</p>
                         <p><strong>想一句话起站或起应用：</strong>先看 Lovable、Bolt.new、Firebase Studio、秒哒、码上飞。</p>
                         <p><strong>想找企业研发空间：</strong>看 Qoder、InfCode、MonkeyCode、Clacky AI、Replit Agent。</p>

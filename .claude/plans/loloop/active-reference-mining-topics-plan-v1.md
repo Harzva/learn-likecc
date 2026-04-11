@@ -36,6 +36,8 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - [x] Choose `topic-ai-coding-tools` as the next bounded site-facing destination because the new CLI shell-type distinction should flow back into the higher-level tool taxonomy
 - [x] Add one coding-tools hub sync note clarifying that the CLI Agent bucket now points to multiple shell types rather than one flat terminal route
 - [x] Mark the current `topic-ai-coding-tools` subthread locally deferred after the CLI taxonomy sync because another immediate pass would now be lower value than switching to a fresh reference destination
+- [x] Reopen `topic-ai-coding-tools` for one bounded hub-sync pass once the CLI approval-surface distinction lands on `topic-ai-cli-agent`
+- [x] Add one coding-tools hub sync note clarifying that the CLI Agent bucket now also points to multiple approval surfaces rather than only shell categories
 
 ## Newly added references
 
@@ -130,6 +132,8 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
   - distinguish workflow-complete terminal shells, TUI-first open shells, and artifact-control CLIs before teaching “CLI Agent” as one category
 - [x] bounded extraction on the tool-taxonomy line:
   - reflect the CLI shell-type distinction back into the higher-level AI coding-tools map so top-level categories do not flatten the subtopic
+- [x] bounded extraction on the tooling-hub approval line:
+  - reflect the CLI approval-surface distinction back into the higher-level AI coding-tools map so top-level tooling categories do not flatten approval friction into one generic terminal label
 - [x] first bounded extraction on the multi-agent line:
   - distinguish research-agent CLI shells, workflow-orchestration shells, and managed-agent platform shells before treating all “agent teams” as one runtime shape
 - [x] second bounded extraction on the multi-agent line:
@@ -168,3 +172,4 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - Current local state: the `topic-ai-cli-agent` subthread now also carries one approval-surface note from `OpenCode / OfficeCLI / Hermes Agent`; defer further passes again unless a new CLI-control family or stronger primary-source boundary signal appears
 - Seventh bounded Task 8 destination is now `topic-ai-coding-tools`, using a small hub-sync pass so the top-level tooling map acknowledges the internal shell-type split already added to `topic-ai-cli-agent`
 - Current local state: the `topic-ai-coding-tools` subthread is locally deferred until a stronger tooling-map intake, new tool family, or clearer reference-backed gap appears
+- Current local state: the `topic-ai-coding-tools` subthread now also points readers toward the CLI approval-surface split; defer further passes again unless a stronger top-level tooling-map gap or new tool family appears
