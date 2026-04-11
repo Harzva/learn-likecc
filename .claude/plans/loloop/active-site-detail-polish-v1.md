@@ -17,7 +17,7 @@ Prioritize future iterations along these three lines:
 
 ## Current focus
 
-Continue Task 9 LikeCode Web UI after the session-stack mobile-fallback pass.
+Continue Task 9 LikeCode Web UI after the session-stack ownership-summary pass.
 
 ## Success condition
 
@@ -238,6 +238,9 @@ Continue Task 9 LikeCode Web UI after the session-stack mobile-fallback pass.
 - [x] Stay on Task 9 for one more bounded fallback-hardening pass after the session-stack lock shortcuts
 - [x] Harden the new session-stack action rows and shell-focus controls for narrow-screen local debugging
 - [x] Verify the Task 9 session-stack-mobile pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
+- [x] Stay on Task 9 for one more bounded operator-clarity follow-up after the session-stack mobile pass
+- [x] Add a compact daemon/thread/shell ownership summary strip inside the `Session Stack` so control and approval state can be scanned from one surface
+- [x] Verify the Task 9 session-stack-ownership pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail
 

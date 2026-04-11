@@ -66,3 +66,4 @@
 - `Session Stack` 现在不只是看板，还补了小型 operator actions：可直接打开 `Thread Desk`、切到 `Shell Lab`、新建 shell，并从 roster 里一键 focus 某个现有 shell session
 - `Session Stack` 的 Thread 卡片里进一步补了 `Readonly / Writable` 快捷操作，不必先切进 `Thread Compose` 才能改当前 thread 的写保护状态
 - 针对这些新按钮与 roster controls，窄屏 fallback 也继续跟上：小窗或手机调试时会整列堆叠，而不是把 action row 和 focus 控件挤成一团
+- `Session Stack` 里再补了一层 compact ownership / approval summary：把 daemon ownership、thread write guard、shell seat 三件事压成一排状态条，避免 operator 还要自己从 guardrail 和多张卡片里二次拼装当前控制权

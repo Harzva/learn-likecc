@@ -133,10 +133,21 @@
         renderSessionStack()
     }
 
+    function setStackChip(id, text, tone) {
+        var el = document.getElementById(id)
+        if (!el) return
+        el.textContent = text || ''
+        el.className = 'codex-console-chip codex-console-chip--guard-' + (tone || 'neutral')
+    }
+
     function renderSessionStack() {
         var host = document.getElementById('stack-shells')
         var badge = document.getElementById('session-stack-badge')
         var activeId = shellState.activeId || ''
+        var relayState = guardState.relay || 'idle'
+        var daemonSummary = { chip: 'manual desk', note: 'Daemon idle. Manual desk is the current write owner.', tone: 'ready' }
+        var threadSummary = { chip: 'writable', note: 'Manual writes are allowed from the desk.', tone: 'ready' }
+        var shellSummary = { chip: 'no shell', note: 'Spawn one from Session Stack or Shell Lab.', tone: 'neutral' }
         if (!host || !badge) return
 
         setText('stack-relay', document.getElementById('relay-status') ? document.getElementById('relay-status').textContent : 'idle')
@@ -150,6 +161,91 @@
         setText('stack-last-action-time', sessionStackState.lastActionTime)
         setText('stack-shell-focus', activeId ? activeId : 'no active session')
         badge.textContent = shellState.sessions.length + ' shell' + (shellState.sessions.length === 1 ? '' : 's')
+
+        if (relayState === 'idle' || relayState === 'connection error' || relayState === 'manual refresh failed') {
+            daemonSummary = {
+                chip: 'relay stale',
+                note: 'Ownership may be outdated until relay state is refreshed.',
+                tone: 'attention',
+            }
+        } else if (relayState === 'connecting') {
+            daemonSummary = {
+                chip: 'syncing',
+                note: 'Relay is connecting. Wait before trusting operator ownership.',
+                tone: 'attention',
+            }
+        } else if (guardState.daemonRunning && guardState.threadForce) {
+            daemonSummary = {
+                chip: 'shared path',
+                note: 'Daemon is active and force send is armed, so writes are no longer single-owner.',
+                tone: 'risk',
+            }
+        } else if (guardState.daemonRunning && guardState.threadLockMode === 'readonly') {
+            daemonSummary = {
+                chip: 'daemon lead',
+                note: 'Daemon owns the write path while Thread Desk stays guarded readonly.',
+                tone: 'ready',
+            }
+        } else if (guardState.daemonRunning) {
+            daemonSummary = {
+                chip: 'daemon lead',
+                note: 'Daemon is active, but the thread is still writable from the desk.',
+                tone: 'attention',
+            }
+        }
+
+        if (guardState.threadForce) {
+            threadSummary = {
+                chip: 'force armed',
+                note: 'Manual sends can bypass the daemon/write guard.',
+                tone: 'risk',
+            }
+        } else if (guardState.threadLockMode === 'readonly' && guardState.daemonRunning) {
+            threadSummary = {
+                chip: 'readonly',
+                note: 'Thread writes are guarded while the daemon is running.',
+                tone: 'ready',
+            }
+        } else if (guardState.threadLockMode === 'readonly') {
+            threadSummary = {
+                chip: 'readonly',
+                note: 'Thread writes are paused until you switch back to writable.',
+                tone: 'neutral',
+            }
+        } else if (guardState.daemonRunning) {
+            threadSummary = {
+                chip: 'writable',
+                note: 'Manual sends risk colliding with daemon ticks until readonly is restored.',
+                tone: 'risk',
+            }
+        }
+
+        if (guardState.shellCount && guardState.shellActiveId && !guardState.shellAlive) {
+            shellSummary = {
+                chip: 'reopen',
+                note: guardState.shellActiveId + ' ended. Focus another shell or create a fresh one.',
+                tone: 'attention',
+            }
+        } else if (guardState.shellCount && guardState.shellActiveId) {
+            shellSummary = {
+                chip: 'active shell',
+                note: guardState.shellActiveId + ' currently owns the live PTY seat.',
+                tone: 'ready',
+            }
+        } else if (guardState.shellCount) {
+            shellSummary = {
+                chip: 'parked',
+                note: guardState.shellCount + ' shell session' + (guardState.shellCount === 1 ? ' is' : 's are') + ' available to focus.',
+                tone: 'neutral',
+            }
+        }
+
+        setStackChip('stack-summary-daemon', daemonSummary.chip, daemonSummary.tone)
+        setText('stack-summary-daemon-note', daemonSummary.note)
+        setStackChip('stack-summary-thread', threadSummary.chip, threadSummary.tone)
+        setText('stack-summary-thread-note', threadSummary.note)
+        setStackChip('stack-summary-shell', shellSummary.chip, shellSummary.tone)
+        setText('stack-summary-shell-note', shellSummary.note)
 
         if (!shellState.sessions.length) {
             host.innerHTML = '<div class="codex-console-stack-shell codex-console-stack-shell--empty">当前没有 shell session。</div>'

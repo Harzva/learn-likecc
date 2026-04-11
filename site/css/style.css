@@ -11779,6 +11779,52 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     margin-bottom: 12px;
 }
 
+.codex-console-stack-summary {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.codex-console-stack-summary__item {
+    padding: 12px;
+    border-radius: 18px;
+    border: 1px solid rgba(148, 163, 184, 0.14);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(248, 250, 252, 0.92)),
+        radial-gradient(circle at top right, rgba(59, 130, 246, 0.08), transparent 34%);
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.05);
+}
+
+.codex-console-stack-summary__label {
+    display: inline-flex;
+    margin-bottom: 8px;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+}
+
+.codex-console-stack-summary__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.codex-console-stack-summary__head strong {
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+.codex-console-stack-summary__item p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    line-height: 1.55;
+}
+
 .codex-console-stack-card {
     padding: 12px;
     border-radius: 16px;
@@ -12031,9 +12077,18 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
         grid-template-columns: 1fr;
     }
 
+    .codex-console-stack-summary {
+        grid-template-columns: 1fr;
+    }
+
     .codex-console-stack-actions,
     .codex-console-stack-card__actions {
         flex-direction: column;
+    }
+
+    .codex-console-stack-summary__head {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     .codex-console-stack-actions .btn,

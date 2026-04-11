@@ -227,6 +227,32 @@
                                     <button id="stack-open-shell" type="button" class="btn btn-secondary">Shell Lab</button>
                                     <button id="stack-new-shell" type="button" class="btn btn-primary">New Shell</button>
                                 </div>
+                                <div class="codex-console-stack-summary" aria-label="operator ownership summary">
+                                    <article class="codex-console-stack-summary__item">
+                                        <span class="codex-console-stack-summary__label">Owner</span>
+                                        <div class="codex-console-stack-summary__head">
+                                            <strong>Daemon Ownership</strong>
+                                            <span id="stack-summary-daemon" class="codex-console-chip codex-console-chip--guard-neutral">checking</span>
+                                        </div>
+                                        <p id="stack-summary-daemon-note">Waiting for relay state.</p>
+                                    </article>
+                                    <article class="codex-console-stack-summary__item">
+                                        <span class="codex-console-stack-summary__label">Approval</span>
+                                        <div class="codex-console-stack-summary__head">
+                                            <strong>Thread Writes</strong>
+                                            <span id="stack-summary-thread" class="codex-console-chip codex-console-chip--guard-neutral">checking</span>
+                                        </div>
+                                        <p id="stack-summary-thread-note">Waiting for thread lock state.</p>
+                                    </article>
+                                    <article class="codex-console-stack-summary__item">
+                                        <span class="codex-console-stack-summary__label">Seat</span>
+                                        <div class="codex-console-stack-summary__head">
+                                            <strong>Shell Seat</strong>
+                                            <span id="stack-summary-shell" class="codex-console-chip codex-console-chip--guard-neutral">checking</span>
+                                        </div>
+                                        <p id="stack-summary-shell-note">Waiting for shell roster.</p>
+                                    </article>
+                                </div>
                                 <div class="codex-console-stack-grid">
                                     <article class="codex-console-stack-card">
                                         <span class="codex-console-stack-card__label">Control</span>
