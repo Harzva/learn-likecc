@@ -6,6 +6,7 @@ on:
     paths:
       - 'site/**'
       - 'tools/check_site_md_parity.py'
+      - 'tools/check_site_git_tracking.py'
       - 'tools/gen_cc_overview.py'
       - 'tools/gen_cc_arch_treemap.py'
       - 'tools/check_cc_loop_steps.py'
@@ -18,6 +19,7 @@ on:
     paths:
       - 'site/**'
       - 'tools/check_site_md_parity.py'
+      - 'tools/check_site_git_tracking.py'
       - 'tools/gen_cc_overview.py'
       - 'tools/gen_cc_arch_treemap.py'
       - 'tools/check_cc_loop_steps.py'
@@ -37,6 +39,8 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v5
+      - name: Verify site topic pages are tracked by git
+        run: python3 tools/check_site_git_tracking.py
       - name: Verify HTML ↔ site/md pairs and blob links
         run: python3 tools/check_site_md_parity.py
       - name: CC overview — JSON valid and HTML in sync
