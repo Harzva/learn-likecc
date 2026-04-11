@@ -718,7 +718,7 @@
         </div>
     </section>
 
-    <section class="section" style="padding-top: 42px;">
+    <section class="section cc-buddy-section--intro">
         <div class="container">
             <div class="buddy-metrics">
                 <div class="buddy-metric">
@@ -745,11 +745,11 @@
         </div>
     </section>
 
-    <section id="showcase" class="section" style="background: var(--bg-secondary);">
+    <section id="showcase" class="section cc-buddy-section--muted">
         <div class="container">
             <div class="section-kicker">图鉴入口</div>
             <h2 class="section-title">不是一句“有 18 种宠物”，而是能被浏览的宠物系统</h2>
-            <p class="section-desc" style="max-width: 840px; margin: 0 auto;">
+            <p class="section-desc cc-buddy-section-desc">
                 参考图文里把 Buddy 做成了完整图鉴，这一版则把重点收束为站内更适合阅读的结构：先给你能一眼记住的宠物展示，再把它背后的系统拆给你看。
             </p>
 
@@ -828,9 +828,9 @@
                 </figcaption>
             </figure>
 
-            <div class="section-kicker" style="margin-top: 2rem;">完整 ASCII 图鉴墙</div>
-            <h3 class="section-title" style="font-size: 2rem; margin-bottom: 0.6rem;">18 只宠物一次看完</h3>
-            <p class="section-desc" style="max-width: 840px; margin: 0 auto;">
+            <div class="section-kicker cc-buddy-kicker-spaced">完整 ASCII 图鉴墙</div>
+            <h3 class="section-title cc-buddy-title-compact">18 只宠物一次看完</h3>
+            <p class="section-desc cc-buddy-section-desc">
                 下面这组把 Buddy 源码里出现的 18 个物种都排成统一风格的终端卡片，方便直接浏览、截图或继续扩展成更完整的图鉴页。
             </p>
 
@@ -1058,7 +1058,7 @@
         <div class="container">
             <div class="section-kicker">为什么值得看</div>
             <h2 class="section-title">Buddy 值得单独做一页，因为它暴露的是“产品人格层”</h2>
-            <div class="quickstart-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+            <div class="quickstart-grid cc-buddy-grid-260">
                 <div class="quickstart-card">
                     <h3>不是纯工程能力</h3>
                     <p>它不直接决定 Agent Loop、工具系统或 MCP 的上限，但非常能说明团队已经在终端里经营情绪价值、陪伴感和记忆点。</p>
@@ -1075,7 +1075,7 @@
         </div>
     </section>
 
-    <section id="variants" class="section" style="background: var(--bg-secondary);">
+    <section id="variants" class="section cc-buddy-section--muted">
         <div class="container">
             <div class="section-kicker">变体系统</div>
             <h2 class="section-title">Buddy 好玩，不只因为“有宠物”，而是因为每一层都做了变体</h2>
@@ -1238,17 +1238,17 @@ const HATS = ['none', 'crown', 'tophat', 'propeller', 'halo', 'wizard', 'beanie'
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296
   }
 }</pre>
-                    <p style="margin-top: 1rem; color: var(--text-secondary);">这种 seeded RNG 的设计也很妙: 它让宠物像“命中注定”，不是每次刷新都能刷出来的随机贴纸。</p>
+                    <p class="cc-buddy-inline-note">这种 seeded RNG 的设计也很妙: 它让宠物像“命中注定”，不是每次刷新都能刷出来的随机贴纸。</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section" style="background: var(--bg-secondary);">
+    <section class="section cc-buddy-section--muted">
         <div class="container">
             <div class="section-kicker">站内阅读路径</div>
             <h2 class="section-title">怎么把这页接回主线</h2>
-            <div class="course-quote" style="max-width: 900px; margin: 0 auto;">
+            <div class="course-quote cc-buddy-quote-wide">
                 <p><strong>建议顺序</strong>：先看 <a href="topic-sourcemap.html">Source Map 源码专题</a> 建立事件背景，再看这页 Buddy 图鉴，最后回到 <a href="topic-source-derived.html">源码反推思想</a> 或 <a href="topic-cc-unpacked-zh.html">Claude Code 解构</a>，把“有趣彩蛋”重新接回主线结构。</p>
                 <p><strong>怎么理解它的位置</strong>：Buddy 不属于主线工程骨架，但特别适合用来讲“一个现代 coding agent 产品，除了工具调用和上下文管理，还会刻意设计人格、情绪与陪伴感”。</p>
             </div>
@@ -1259,7 +1259,7 @@ const HATS = ['none', 'crown', 'tophat', 'propeller', 'halo', 'wizard', 'beanie'
         <div class="container">
             <div class="section-kicker">参考与边界</div>
             <h2 class="section-title">这一页保留图鉴感，但仍然按站内写法重组</h2>
-            <div class="reference-panel" style="max-width: 940px; margin: 0 auto;">
+            <div class="reference-panel cc-buddy-reference-wide">
                 <p>本页没有直接照搬外部图鉴的整套排版，而是结合站内专题风格，重组为更适合学习路径的版本。图鉴信息主要参考社区图文，系统结构则回到 Source Map / source-derived 语境中解释。</p>
                 <div class="reference-list">
                     <div class="reference-item">
@@ -1278,7 +1278,7 @@ const HATS = ['none', 'crown', 'tophat', 'propeller', 'halo', 'wizard', 'beanie'
                         <a href="topic-sourcemap.html" rel="noopener noreferrer">返回 Source Map 专题继续读 →</a>
                     </div>
                 </div>
-                <div class="hero-actions" style="justify-content: center; margin-top: 1.25rem;">
+                <div class="hero-actions cc-buddy-actions-centered">
                     <a href="https://zhuanlan.zhihu.com/p/2022780058985603650" class="btn btn-primary" target="_blank" rel="noopener noreferrer">打开参考图文 ↗</a>
                     <a href="topic-sourcemap.html" class="btn btn-secondary">返回 Source Map 专题</a>
                 </div>

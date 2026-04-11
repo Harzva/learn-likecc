@@ -12900,3 +12900,49 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 .topic-websites-subtitle {
     margin-top: 1.75rem;
 }
+
+.cc-buddy-section--intro {
+    padding-top: 42px;
+}
+
+.cc-buddy-section--muted {
+    background: var(--bg-secondary);
+}
+
+.cc-buddy-section-desc {
+    max-width: 840px;
+    margin: 0 auto;
+}
+
+.cc-buddy-kicker-spaced {
+    margin-top: 2rem;
+}
+
+.cc-buddy-title-compact {
+    font-size: 2rem;
+    margin-bottom: 0.6rem;
+}
+
+.cc-buddy-grid-260 {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.cc-buddy-inline-note {
+    margin-top: 1rem;
+    color: var(--text-secondary);
+}
+
+.cc-buddy-quote-wide {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.cc-buddy-reference-wide {
+    max-width: 940px;
+    margin: 0 auto;
+}
+
+.cc-buddy-actions-centered {
+    justify-content: center;
+    margin-top: 1.25rem;
+}
