@@ -21,6 +21,7 @@
   - Agent Teams（智能体团队）：协作与共享状态
   - 一句话对照
   - 设计原则（摘自 Daily Dose 文章）
+  - Repo-backed 补充：三种团队运行时壳
 - **三、小结：两条线怎么一起想**
 
 ## 各节摘要（对照 HTML）
@@ -72,6 +73,28 @@
 #### 设计原则（摘自 Daily Dose 文章）
 
 提炼原文中的设计原则列表，指导读者在选型时自查。
+
+#### Repo-backed 补充：三种团队运行时壳
+
+这一节不是再讲抽象概念，而是用本地 reference 把三种更具体的运行时壳摆在一起：
+
+- `reference/reference_agent/feynman/`
+  - 更像 **research-agent CLI shell**
+  - 核心是单入口 CLI + bundled research agents + bundled skills，重点在研究工作流与产物生成
+- `reference/reference_agent/ChatDev/`
+  - 更像 **workflow-orchestration shell**
+  - 核心是零代码配置 agent / workflow / task，再配 Web Console 承接更长的多代理编排
+- `reference/reference_agent/multica/`
+  - 更像 **managed-agent platform shell**
+  - 核心是 board、workspace、runtime、daemon、agent profile，把 agent 当长期队友管理，而不是一次性跑完一个 flow
+
+这三者对读者有个直接帮助：看到 “Agent Teams” 时，不要只想成一个概念词，而要继续追问它到底更偏哪种壳层。
+
+| 运行时壳 | 这轮本地样例 | 更像解决什么问题 | 为什么值得和 Subagents / Teams 一起看 |
+| --- | --- | --- | --- |
+| research-agent CLI shell | `feynman` | 用单入口 CLI 把 research、review、draft、audit 这些多代理研究动作压成一套可直接调用的研究终端 | 它说明多代理不一定先长成“团队平台”，也可以先长成强工作流的研究壳 |
+| workflow-orchestration shell | `ChatDev 2.0` | 用零代码配置 agent、workflow、task，让用户搭配不同多代理流程并在 Web Console 里执行 | 它说明 Agent Teams 还可以进一步抽象成“编排平台”，不再只是固定角色聊天 |
+| managed-agent platform shell | `Multica` | 把 agent 当长期 teammate，围绕 board、runtime、daemon、workspace 和 issue assignment 管完整生命周期 | 它说明团队协作真正变厚时，难点会转成 runtime 管理、任务分发和状态可视化，而不是 prompt 本身 |
 
 ### 三、小结：两条线怎么一起想
 

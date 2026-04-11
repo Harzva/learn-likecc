@@ -17,7 +17,7 @@ Prioritize future iterations along these three lines:
 
 ## Current focus
 
-Choose the next best Task 8 destination after the current `topic-skillmarket` subthread defer decision.
+Continue Task 8 after switching from the deferred `topic-skillmarket` subthread to the next explicit reference-backed destination.
 
 ## Success condition
 
@@ -310,6 +310,9 @@ Choose the next best Task 8 destination after the current `topic-skillmarket` su
 - [x] Verify the Task 8 packaging-surface pass with `python3 tools/check_site_md_parity.py`
 - [x] Mark the current Task 8 `topic-skillmarket` subthread locally deferred after the recent repo-evidence and packaging-surface passes saturated the clearest low-risk gains
 - [x] Release the next tick to choose a fresher Task 8 destination or another stronger remaining task from the pool
+- [x] Choose `topic-agent-comparison` as the next bounded Task 8 destination after the `topic-skillmarket` subthread defer
+- [x] Add one repo-backed runtime-shell note to `topic-agent-comparison` using `feynman`, `ChatDev 2.0`, and `Multica`
+- [x] Verify the Task 8 agent-comparison runtime-shell pass with `python3 tools/check_site_md_parity.py`
 - [x] Verify the Task 9 headline-badges pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail

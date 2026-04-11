@@ -15,6 +15,8 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - [x] Add one repo-evidence note showing what a trustworthy skill/plugin repo should expose after SkillsMP discovery
 - [x] Add one packaging-surface note explaining how to review skill bundles versus plugin bundles after GitHub handoff
 - [x] Mark the current `topic-skillmarket` subthread locally deferred after the repo-evidence and packaging-surface passes because another pass on the same pair would now be lower value than switching to a fresh reference destination
+- [x] Choose `topic-agent-comparison` as the next bounded site-facing destination because the remaining `feynman / ChatDev / multica` references fit its runtime-topology scope
+- [x] Add one repo-backed runtime-shell note so “Subagents vs Agent Teams” is grounded in concrete reference projects rather than staying purely abstract
 
 ## Newly added references
 
@@ -56,6 +58,9 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
   - `ChatDev`
   - `multica`
   - `feynman`
+- [x] First bounded destination on this line:
+  - `site/topic-agent-comparison.html`
+  - `site/md/topic-agent-comparison.md`
 - [ ] Skills / plugin packaging reference:
   - `baoyu-skills`
   - `hermes-agent`
@@ -72,12 +77,17 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - [x] Current explicit destination for the first bounded pass:
   - `site/topic-skillmarket.html`
   - `site/md/topic-skillmarket.md`
+- [x] Current explicit destination for the second bounded pass:
+  - `site/topic-agent-comparison.html`
+  - `site/md/topic-agent-comparison.md`
 
 ## What to extract for LikeCode
 
 - [ ] session and thread visibility
 - [ ] terminal and pane layout patterns
 - [ ] multi-agent control and delegation surfaces
+- [x] first bounded extraction on the multi-agent line:
+  - distinguish research-agent CLI shells, workflow-orchestration shells, and managed-agent platform shells before treating all “agent teams” as one runtime shape
 - [ ] skills / plugins / knowledge packaging
 - [x] first bounded extraction:
   - distinguish skill bundle packaging from plugin bundle packaging before deciding how a GitHub repo should be audited
@@ -96,3 +106,4 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - Favor bounded passes: inspect one pattern family, choose one site destination, produce one concrete improvement
 - First bounded Task 8 output landed in the Skill 市场专题 rather than opening a new topic, because the new `baoyu-skills` / `codex-plugin-cc` references directly strengthen the existing trust-chain explanation
 - Current local state: the `topic-skillmarket` subthread is locally deferred until a new packaging reference, a stronger market-installation gap, or a better skills-ecosystem destination appears
+- Second bounded Task 8 destination is now `topic-agent-comparison`, using `feynman`, `ChatDev 2.0`, and `Multica` to ground runtime-topology differences in repo evidence

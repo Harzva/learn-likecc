@@ -218,6 +218,50 @@
                     <li>先单代理推到极限，再为可度量的痛点加多代理；编码场景慎用多个代理<strong>同时写代码</strong>，易隐含冲突。</li>
                 </ul>
             </div>
+
+            <div class="section-block">
+                <h3>Repo-backed 补充：三种团队运行时壳</h3>
+                <p>这一节不是再讲抽象概念，而是用本地 reference 把三种更具体的运行时壳摆在一起：<code>reference/reference_agent/feynman/</code>、<code>reference/reference_agent/ChatDev/</code>、<code>reference/reference_agent/multica/</code>。</p>
+                <ul>
+                    <li><strong><code>feynman</code></strong> 更像 <strong>research-agent CLI shell</strong>：单入口 CLI + bundled research agents + bundled skills，重点在研究工作流与产物生成。</li>
+                    <li><strong><code>ChatDev 2.0</code></strong> 更像 <strong>workflow-orchestration shell</strong>：用零代码配置 agent / workflow / task，再配 Web Console 承接更长的多代理编排。</li>
+                    <li><strong><code>Multica</code></strong> 更像 <strong>managed-agent platform shell</strong>：围绕 board、workspace、runtime、daemon、agent profile 和 issue assignment 管完整生命周期。</li>
+                </ul>
+                <p>这三者对读者有个直接帮助：看到 “Agent Teams” 时，不要只想成一个概念词，而要继续追问它到底更偏哪种壳层。</p>
+
+                <div style="overflow-x: auto;">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>运行时壳</th>
+                                <th>这轮本地样例</th>
+                                <th>更像解决什么问题</th>
+                                <th>为什么值得和 Subagents / Teams 一起看</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>research-agent CLI shell</td>
+                                <td><code>feynman</code></td>
+                                <td>用单入口 CLI 把 research、review、draft、audit 这些多代理研究动作压成一套可直接调用的研究终端。</td>
+                                <td>它说明多代理不一定先长成“团队平台”，也可以先长成强工作流的研究壳。</td>
+                            </tr>
+                            <tr>
+                                <td>workflow-orchestration shell</td>
+                                <td><code>ChatDev 2.0</code></td>
+                                <td>用零代码配置 agent、workflow、task，让用户搭配不同多代理流程并在 Web Console 里执行。</td>
+                                <td>它说明 Agent Teams 还可以进一步抽象成“编排平台”，不再只是固定角色聊天。</td>
+                            </tr>
+                            <tr>
+                                <td>managed-agent platform shell</td>
+                                <td><code>Multica</code></td>
+                                <td>把 agent 当长期 teammate，围绕 board、runtime、daemon、workspace 和 issue assignment 管完整生命周期。</td>
+                                <td>它说明团队协作真正变厚时，难点会转成 runtime 管理、任务分发和状态可视化，而不是 prompt 本身。</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </section>
 
