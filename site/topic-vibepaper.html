@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VibePaper 专题：Autoresearch / DeepScientist / AI Scientist-v2 - Claude Code Course</title>
+    <title>VibePaper 专题：Autoresearch / ARIS / DeepScientist / AI Scientist-v2 - Claude Code Course</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>">
-    <meta name="description" content="VibePaper 专题：围绕 Autoresearch、DeepScientist、AI Scientist-v2 与 AIDE ML 候选底座，持续积累自动科研与自动论文系统的结构分析、比较图和教程路线。">
+    <meta name="description" content="VibePaper 专题：围绕 Autoresearch / ARIS、DeepScientist、AI Scientist-v2 与 AIDE ML 候选底座，持续积累自动科研与自动论文系统的结构分析、比较图和教程路线。">
 </head>
 <body>
     <nav class="navbar">
@@ -44,7 +44,7 @@
                 <span class="gradient-text">把自动科研系统放到同一张图里看</span>
             </h1>
             <p class="hero-subtitle">
-                这一页先收 <strong>Autoresearch</strong>、<strong>DeepScientist</strong> 与 <strong>AI Scientist-v2</strong> 三条主样本线：前者更像可组合的自主改进循环，中间这条更像本地优先的研究工作台，后者则更接近面向论文成稿的 agentic tree search 系统；<strong>AIDE ML</strong> 目前先留在上游候选底座 lane，用来解释 AI Scientist-v2 背后的实验搜索结构。<br>
+                这一页先收 <strong>Autoresearch / ARIS</strong>、<strong>DeepScientist</strong> 与 <strong>AI Scientist-v2</strong> 三条主样本线：前者更像可组合的自主改进循环，中间这条更像本地优先的研究工作台，后者则更接近面向论文成稿的 agentic tree search 系统；<strong>AIDE ML</strong> 目前先留在上游候选底座 lane，用来解释 AI Scientist-v2 背后的实验搜索结构。<br>
                 我们后面会继续把同类项目 clone 到 <code>reference/reference_agent/</code>，再按“结构、控制面、教程、图示”四条线持续补完。
             </p>
             <div class="hero-actions">
@@ -69,10 +69,10 @@
                     <h2>当前先收三条样本项目</h2>
                     <div class="quickstart-grid">
                         <a href="topic-autoresearch-unpacked.html" class="quickstart-card quickstart-card-link">
-                            <h3>Autoresearch</h3>
-                            <p>更像<strong>单插件 / 单循环协议</strong>：强调自主改进、机械验证、发货检查与可度量的 iteration 过程。适合研究“把科研动作拆成命令协议和 verify loop”这条线。</p>
+                            <h3>Autoresearch / ARIS</h3>
+                            <p>更像<strong>单插件 / 单循环协议</strong>：强调自主改进、机械验证、发货检查与可度量的 iteration 过程。当前在 VibePaper 里把 <strong>ARIS（Auto-Research In Sleep）</strong> 视作这条样本线的延伸分支来读。</p>
                             <p><strong>站内入口</strong>：Autoresearch 解构</p>
-                            <p><strong>本地路径</strong>：<code>reference/reference_agent/autoresearch/</code></p>
+                            <p><strong>本地路径</strong>：<code>reference/reference_agent/autoresearch/</code> · <code>reference/reference_agent/aris/</code></p>
                         </a>
                         <a href="topic-deepscientist-unpacked.html" class="quickstart-card quickstart-card-link">
                             <h3>DeepScientist</h3>
@@ -87,7 +87,7 @@
                             <p><strong>本地路径</strong>：<code>reference/reference_agent/AI-Scientist-v2/</code></p>
                         </div>
                     </div>
-                    <p>当前站内状态可以先这样理解：<code>Autoresearch</code> 和 <code>DeepScientist</code> 已经各自展开成独立解构页；<code>AI Scientist-v2</code> 先留在 hub 里承担第三条主样本线；<code>AIDE ML</code> 则继续留在候选底座 lane，用来解释 AI Scientist-v2 背后的上游实验搜索结构。</p>
+                    <p>当前站内状态可以先这样理解：<code>Autoresearch / ARIS</code> 和 <code>DeepScientist</code> 已经各自展开成独立解构页；<code>AI Scientist-v2</code> 先留在 hub 里承担第三条主样本线；<code>AIDE ML</code> 则继续留在候选底座 lane，用来解释 AI Scientist-v2 背后的上游实验搜索结构。</p>
                     <div class="course-quote">
                         <p><strong>[插图提示词]</strong></p>
                         <p>用途：画 VibePaper 当前入口结构，让读者先分清三主样本和候选底座不是同一层。</p>
@@ -109,7 +109,7 @@
                             <th>值得长成什么教程</th>
                         </tr>
                         <tr>
-                            <td><code>Autoresearch</code></td>
+                            <td><code>Autoresearch / ARIS</code></td>
                             <td>插件式研究循环协议</td>
                             <td><code>goal + metric + scope + verify + rollback + git memory</code> 这套 loop contract，而不是某个厚 UI</td>
                             <td>git 历史、实验提交、verify 结果、比较日志、guide / comparison 文档</td>
@@ -130,7 +130,7 @@
                             <td>最适合长成“idea → tree search → experiment → paper draft”流水线教程，以及 search manager 对照课</td>
                         </tr>
                     </table>
-                    <p>这张表有两个用处：第一，它把 Autoresearch、DeepScientist 和 AI Scientist-v2 的差异压缩成站内统一口径，避免以后专题页越长越散；第二，它给后续新增项目提供一个最低准入模板，如果这四个问题答不清楚，就先不要急着把它抬成独立子专题。</p>
+                    <p>这张表有两个用处：第一，它把 Autoresearch / ARIS、DeepScientist 和 AI Scientist-v2 的差异压缩成站内统一口径，避免以后专题页越长越散；第二，它给后续新增项目提供一个最低准入模板，如果这四个问题答不清楚，就先不要急着把它抬成独立子专题。</p>
                     <div class="course-quote">
                         <p><strong>[插图提示词]</strong></p>
                         <p>用途：画 VibePaper 四问评估框架，把“系统形态 / 控制面 / 持久状态 / 教程价值”变成可复用评估卡。</p>
@@ -159,7 +159,7 @@
                             <th>为什么先放在这个层级</th>
                         </tr>
                         <tr>
-                            <td><code>Autoresearch</code></td>
+                            <td><code>Autoresearch / ARIS</code></td>
                             <td>主样本</td>
                             <td>它把研究动作压成 loop contract，足够独立，适合单独承担“协议壳”教学入口。</td>
                         </tr>
@@ -191,8 +191,8 @@
 
                 <section id="control-plane-thickness" class="section-block">
                     <h2>再往前走一步：三条线的 control-plane thickness 到底差在哪</h2>
-                    <p>如果只看名字，三条线都像“自动科研系统”。但真正值得教学的是它们的控制面厚度差异：<code>Autoresearch</code> 最薄，主脑几乎全压在 loop contract 里，重点是 goal / metric / verify / rollback 这些协议面；<code>DeepScientist</code> 最厚，quest repo、stage workflow、memory、workspace、connectors 共同构成一个本地研究工作台；<code>AI Scientist-v2</code> 介于两者之间，但厚度方向不同，它不是把可视化工作台做厚，而是把 experiment manager、tree search、writeup pipeline 做厚，直接朝“论文成稿工厂”靠拢。</p>
-                    <p>这组对照很有用，因为它把 VibePaper 里的三条线从“项目列表”变成了三种不同的系统壳层：第一是协议壳（Autoresearch），第二是工作台壳（DeepScientist），第三是论文流水线壳（AI Scientist-v2）。后面如果再接新项目，最先要问的就不是“它火不火”，而是“它到底是在加厚哪一层壳”。这会直接决定它应该被写成 loop 教程、workspace 教程，还是 paper pipeline 教程。</p>
+                    <p>如果只看名字，三条线都像“自动科研系统”。但真正值得教学的是它们的控制面厚度差异：<code>Autoresearch / ARIS</code> 最薄，主脑几乎全压在 loop contract 里，重点是 goal / metric / verify / rollback 这些协议面；<code>DeepScientist</code> 最厚，quest repo、stage workflow、memory、workspace、connectors 共同构成一个本地研究工作台；<code>AI Scientist-v2</code> 介于两者之间，但厚度方向不同，它不是把可视化工作台做厚，而是把 experiment manager、tree search、writeup pipeline 做厚，直接朝“论文成稿工厂”靠拢。</p>
+                    <p>这组对照很有用，因为它把 VibePaper 里的三条线从“项目列表”变成了三种不同的系统壳层：第一是协议壳（Autoresearch / ARIS），第二是工作台壳（DeepScientist），第三是论文流水线壳（AI Scientist-v2）。后面如果再接新项目，最先要问的就不是“它火不火”，而是“它到底是在加厚哪一层壳”。这会直接决定它应该被写成 loop 教程、workspace 教程，还是 paper pipeline 教程。</p>
                     <table class="compare-table">
                         <tr>
                             <th>系统</th>
@@ -200,7 +200,7 @@
                             <th>因此更像什么</th>
                         </tr>
                         <tr>
-                            <td><code>Autoresearch</code></td>
+                            <td><code>Autoresearch / ARIS</code></td>
                             <td>loop contract / verify / rollback</td>
                             <td>protocol shell</td>
                         </tr>
@@ -235,7 +235,7 @@
                     <h2>建议怎么读这条线</h2>
                     <div class="quickstart-grid">
                         <div class="quickstart-card">
-                            <h3>1. 先看 Autoresearch</h3>
+                            <h3>1. 先看 Autoresearch / ARIS</h3>
                             <p>先理解“研究动作如何被拆成循环协议、检查表、验证与发货链路”。它更轻，更容易快速把方法论看清楚。</p>
                         </div>
                         <div class="quickstart-card">
@@ -273,6 +273,7 @@
                     <h2>参考与本地路径</h2>
                     <ul>
                         <li><a href="https://github.com/uditgoenka/autoresearch" target="_blank" rel="noopener noreferrer">uditgoenka/autoresearch</a></li>
+                        <li><a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep" target="_blank" rel="noopener noreferrer">wanshuiyin/Auto-claude-code-research-in-sleep (ARIS)</a></li>
                         <li><a href="https://github.com/ResearAI/DeepScientist" target="_blank" rel="noopener noreferrer">ResearAI/DeepScientist</a></li>
                         <li><a href="https://deepscientist.cc/" target="_blank" rel="noopener noreferrer">DeepScientist 官网</a></li>
                         <li><a href="https://openreview.net/forum?id=cZFgsLq8Gs" target="_blank" rel="noopener noreferrer">DeepScientist paper (OpenReview)</a></li>
@@ -281,6 +282,7 @@
                         <li><a href="https://github.com/WecoAI/aideml" target="_blank" rel="noopener noreferrer">WecoAI/aideml</a></li>
                         <li><a href="https://arxiv.org/abs/2502.13138" target="_blank" rel="noopener noreferrer">AIDE paper</a></li>
                         <li><code>reference/reference_agent/autoresearch/</code></li>
+                        <li><code>reference/reference_agent/aris/</code></li>
                         <li><code>reference/reference_agent/DeepScientist/</code></li>
                         <li><code>reference/reference_agent/AI-Scientist-v2/</code></li>
                         <li><code>reference/reference_agent/aideml/</code></li>

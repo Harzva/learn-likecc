@@ -187,6 +187,8 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Add one top-nav jump to the VibePaper `AIDE ML` section so the candidate substrate is reachable from every major entry layer
 - [x] Stay on Task 6 for one more bounded chapter-navigation symmetry pass after the top-nav follow-up
 - [x] Add one chapter-navigation jump to the VibePaper `AI Scientist-v2` section so the third main sample is not missing from the page-bottom entry set
+- [x] Stay on Task 6 for one more bounded ARIS intake-reconciliation pass after the chapter-navigation symmetry fix
+- [x] Reconcile the local `ARIS` hub edits by treating it as the Autoresearch sample-line extension across the VibePaper HTML and Markdown sources
 
 ## Guardrail
 
