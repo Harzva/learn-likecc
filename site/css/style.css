@@ -11510,6 +11510,76 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     display: none;
 }
 
+.codex-console-panel--seed-daemon {
+    left: 0;
+    top: 0;
+    width: 320px;
+    height: 250px;
+}
+
+.codex-console-panel--seed-preview {
+    left: 340px;
+    top: 0;
+    width: 420px;
+    height: 250px;
+}
+
+.codex-console-panel--seed-daemon-log {
+    left: 0;
+    top: 270px;
+    width: 390px;
+    height: 280px;
+}
+
+.codex-console-panel--seed-latest-tick {
+    left: 410px;
+    top: 270px;
+    width: 390px;
+    height: 280px;
+}
+
+.codex-console-panel--seed-thread-compose {
+    left: 820px;
+    top: 0;
+    width: 380px;
+    height: 550px;
+}
+
+.codex-console-panel--seed-session-stack {
+    left: 780px;
+    top: 0;
+    width: 360px;
+    height: 250px;
+}
+
+.codex-console-panel--seed-monitor {
+    left: 1220px;
+    top: 0;
+    width: 360px;
+    height: 260px;
+}
+
+.codex-console-panel--seed-timeline {
+    left: 1220px;
+    top: 280px;
+    width: 360px;
+    height: 270px;
+}
+
+.codex-console-panel--seed-shell {
+    left: 820px;
+    top: 0;
+    width: 520px;
+    height: 550px;
+}
+
+.codex-console-panel--seed-monitor-template {
+    left: 80px;
+    top: 80px;
+    width: 360px;
+    height: 260px;
+}
+
 .codex-console-panel__head {
     display: flex;
     justify-content: space-between;
