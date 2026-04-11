@@ -75,6 +75,15 @@
     var currentWorkspace = 'overview'
     var lastData = { daemonLog: '', tickLog: '', lastMessage: '' }
     var shellState = { sessions: [], activeId: '' }
+    var guardState = {
+        relay: 'idle',
+        daemonRunning: false,
+        threadLockMode: '—',
+        threadForce: false,
+        shellCount: 0,
+        shellActiveId: '',
+        shellAlive: false,
+    }
     var timelineState = []
     var lastTickTimelineKey = ''
     var currentPreset = 'overview'
@@ -140,6 +149,73 @@
         })
         timelineState = timelineState.slice(0, 24)
         renderTimeline()
+    }
+
+    function setGuardRelay(state) {
+        guardState.relay = state || 'idle'
+        renderGuardrail()
+    }
+
+    function renderGuardrail() {
+        var overallEl = document.getElementById('guard-overall')
+        var hintsEl = document.getElementById('guard-hints')
+        var hints = []
+        var overall = 'ready'
+        var threadState = 'writable'
+        var shellStateText = 'no session'
+
+        if (!overallEl || !hintsEl) return
+
+        if (guardState.daemonRunning && guardState.threadForce) threadState = 'force armed'
+        else if (guardState.daemonRunning && guardState.threadLockMode !== 'readonly') threadState = 'conflict risk'
+        else if (guardState.daemonRunning && guardState.threadLockMode === 'readonly') threadState = 'guarded readonly'
+        else if (guardState.threadLockMode === 'readonly') threadState = 'readonly'
+
+        if (!guardState.shellCount) shellStateText = 'no session'
+        else if (guardState.shellActiveId && !guardState.shellAlive) shellStateText = 'needs reopen'
+        else shellStateText = 'active'
+
+        if (guardState.relay === 'connection error' || guardState.relay === 'idle' || guardState.relay === 'manual refresh failed') {
+            overall = 'attention'
+            hints.push('Relay 还没稳定连上。先点“连接”或“刷新”，不要把 thread / shell 状态当成最新。')
+        } else if (guardState.relay === 'connecting') {
+            overall = 'attention'
+            hints.push('Relay 正在连接中。等状态进入 connected 或 reachable 再判断 daemon 与 thread。')
+        }
+
+        if (guardState.daemonRunning && guardState.threadLockMode !== 'readonly' && !guardState.threadForce) {
+            overall = 'risk'
+            hints.push('daemon 正在跑，而 thread 不是只读。现在人工发消息最容易和后台 tick 撞写。')
+        } else if (guardState.daemonRunning && guardState.threadLockMode === 'readonly') {
+            hints.push('daemon 正在跑，但 thread 已被只读保护。要人工写入，先停 daemon 或明确解除只读。')
+        } else if (!guardState.daemonRunning && guardState.threadLockMode === 'readonly') {
+            hints.push('daemon 已停，但 thread 仍是只读。要手动发消息，先点“解除只读”。')
+        }
+
+        if (guardState.threadForce) {
+            overall = 'risk'
+            hints.push('你已经勾上 force。下一次 thread 发送会绕过默认保护，确认这是有意为之。')
+        }
+
+        if (!guardState.shellCount) {
+            hints.push('当前没有 shell session。需要本地命令面板时，先点“新建 Shell”。')
+        } else if (guardState.shellActiveId && !guardState.shellAlive) {
+            overall = overall === 'risk' ? 'risk' : 'attention'
+            hints.push('当前 shell session 已结束。建议先关闭当前 session，再新建一个干净 shell。')
+        }
+
+        if (!hints.length) {
+            hints.push('当前控制面没有明显冲突信号，可以按正常顺序操作 relay、thread 和 shell。')
+        }
+
+        setText('guard-relay', guardState.relay)
+        setText('guard-thread', threadState)
+        setText('guard-shell', shellStateText)
+        overallEl.textContent = overall
+        overallEl.className = 'codex-console-chip codex-console-chip--guard-' + overall
+        hintsEl.innerHTML = hints.map(function (item) {
+            return '<li>' + esc(item) + '</li>'
+        }).join('')
     }
 
     function setPresetBadge() {
@@ -445,12 +521,15 @@
         setText('thread-lock-mode', lock.mode || '—')
         setText('thread-lock-source', lock.source || '—')
         setText('thread-lock-note', lock.note || '—')
+        guardState.threadLockMode = lock.mode || '—'
+        renderGuardrail()
     }
 
     function updateStatus(data) {
         if (!data || !data.status) return
         var status = data.status
         setText('daemon-running', String(status.daemon_running))
+        guardState.daemonRunning = !!status.daemon_running
         setText('daemon-pid', status.pid ? String(status.pid) : '—')
         setText('daemon-thread', status.thread_id || '—')
         if (!threadInput.value || threadInput.value === '—') threadInput.value = status.thread_id || ''
@@ -537,6 +616,10 @@
             setText('shell-session-meta', 'none')
             setText('shell-cwd', 'cwd: —')
             setText('shell-lines', '0 lines')
+            guardState.shellActiveId = ''
+            guardState.shellAlive = false
+            guardState.shellCount = shellState.sessions.length
+            renderGuardrail()
             return
         }
         setHtml('shell-output', session.buffer || '')
@@ -544,6 +627,10 @@
         setText('shell-cwd', 'cwd: ' + (session.cwd || '—'))
         var lineCount = session.buffer ? session.buffer.split(/\r?\n/).length : 0
         setText('shell-lines', String(lineCount) + ' lines')
+        guardState.shellActiveId = session.session_id
+        guardState.shellAlive = !!session.alive
+        guardState.shellCount = shellState.sessions.length
+        renderGuardrail()
     }
 
     function refreshShellList() {
@@ -558,6 +645,8 @@
             })
             .catch(function (err) {
                 setText('shell-status', err.message)
+                guardState.shellCount = shellState.sessions.length
+                renderGuardrail()
             })
     }
 
@@ -572,6 +661,7 @@
             })
             .catch(function (err) {
                 setText('shell-status', err.message)
+                renderGuardrail()
             })
     }
 
@@ -649,8 +739,10 @@
         if (es) es.close()
         es = new EventSource(relayBase() + '/events')
         setText('relay-status', 'connecting')
+        setGuardRelay('connecting')
         es.onopen = function () {
             setText('relay-status', 'connected')
+            setGuardRelay('connected')
             pushTimeline('relay', 'relay connected', relayBase())
             saveLayout()
         }
@@ -668,6 +760,7 @@
         }
         es.onerror = function () {
             setText('relay-status', 'connection error')
+            setGuardRelay('connection error')
             pushTimeline('error', 'relay connection error', relayBase())
         }
     }
@@ -722,10 +815,12 @@
                 refreshLogs()
                 refreshShellList()
                 setText('relay-status', 'manual refresh ok')
+                setGuardRelay('reachable')
                 pushTimeline('relay', 'manual refresh', 'status + logs + shell list')
             })
             .catch(function (err) {
                 setText('relay-status', err.message)
+                setGuardRelay('manual refresh failed')
                 pushTimeline('error', 'manual refresh failed', err.message)
             })
     })
@@ -759,6 +854,10 @@
     })
     relayInput.addEventListener('change', saveLayout)
     document.getElementById('daemon-interval-input').addEventListener('change', saveLayout)
+    forceInput.addEventListener('change', function () {
+        guardState.threadForce = !!forceInput.checked
+        renderGuardrail()
+    })
 
     Array.prototype.slice.call(document.querySelectorAll('[data-workspace-tab]')).forEach(function (btn) {
         btn.addEventListener('click', function () {
@@ -805,6 +904,7 @@
     })
 
     setPresetBadge()
+    renderGuardrail()
     loadLayout()
     renderTimeline()
     connectEvents()

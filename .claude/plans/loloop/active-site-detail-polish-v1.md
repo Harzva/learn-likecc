@@ -211,6 +211,8 @@ Superset 解构页的 overview 组件细节优化。
 - [x] Add a local event timeline pane so daemon, thread, shell, and relay actions are easier to scan without tailing multiple panes at once
 - [x] Stay on Task 7 for one more bounded AI Terminal layout-recovery pass after the timeline pane
 - [x] Add workspace presets so `Overview`, `Thread Desk`, `Shell Lab`, and `Debug` can restore a known pane arrangement and keep `custom` state visible
+- [x] Stay on Task 7 for one more bounded AI Terminal safety-message pass after the preset recovery work
+- [x] Add a compact guardrail strip that explains relay state, thread conflict risk, and readonly / shell-dead recovery actions in one place
 
 ## Guardrail
 

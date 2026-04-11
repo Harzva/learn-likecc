@@ -87,6 +87,20 @@
                         </div>
                         <span class="codex-console-toolbar__status">当前 preset：<strong id="workspace-preset-status">Overview</strong></span>
                     </div>
+                    <div class="codex-console-guardrail">
+                        <div class="codex-console-guardrail__head">
+                            <strong>Operation Guardrails</strong>
+                            <span id="guard-overall" class="codex-console-chip codex-console-chip--guard-neutral">checking</span>
+                        </div>
+                        <div class="codex-console-guardrail__metrics">
+                            <p><strong>relay</strong><span id="guard-relay">idle</span></p>
+                            <p><strong>thread writes</strong><span id="guard-thread">—</span></p>
+                            <p><strong>shell</strong><span id="guard-shell">—</span></p>
+                        </div>
+                        <ul id="guard-hints" class="codex-console-guardrail__hints">
+                            <li>等待 relay 状态与本地 shell 状态完成首次同步。</li>
+                        </ul>
+                    </div>
                 </section>
 
                 <section id="codex-loop-console" class="section-block codex-console-shell">

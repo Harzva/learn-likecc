@@ -11273,6 +11273,58 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     color: var(--text-secondary);
 }
 
+.codex-console-guardrail {
+    margin-top: 16px;
+    padding: 16px 18px;
+    border-radius: 20px;
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(248, 250, 252, 0.94)),
+        radial-gradient(circle at top right, rgba(251, 146, 60, 0.08), transparent 30%);
+    box-shadow: 0 16px 32px rgba(15, 23, 42, 0.05);
+}
+
+.codex-console-guardrail__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.codex-console-guardrail__metrics {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.codex-console-guardrail__metrics p {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 0;
+    padding: 10px 12px;
+    border-radius: 14px;
+    background: rgba(248, 250, 252, 0.86);
+    border: 1px solid rgba(148, 163, 184, 0.14);
+    font-size: 0.9rem;
+}
+
+.codex-console-guardrail__metrics strong {
+    color: var(--text-secondary);
+}
+
+.codex-console-guardrail__hints {
+    margin: 0;
+    padding-left: 20px;
+    color: var(--text-secondary);
+}
+
+.codex-console-guardrail__hints li + li {
+    margin-top: 6px;
+}
+
 .codex-console-shell {
     padding-bottom: 8px;
 }
@@ -11370,6 +11422,26 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     font-size: 0.78rem;
     color: var(--text-secondary);
     background: rgba(226, 232, 240, 0.9);
+}
+
+.codex-console-chip--guard-ready {
+    background: rgba(220, 252, 231, 0.96);
+    color: #047857;
+}
+
+.codex-console-chip--guard-attention {
+    background: rgba(254, 243, 199, 0.96);
+    color: #b45309;
+}
+
+.codex-console-chip--guard-risk {
+    background: rgba(254, 226, 226, 0.98);
+    color: #b91c1c;
+}
+
+.codex-console-chip--guard-neutral {
+    background: rgba(226, 232, 240, 0.96);
+    color: var(--text-secondary);
 }
 
 .codex-console-terminal {
@@ -11609,6 +11681,10 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
 }
 
 @media (max-width: 1100px) {
+    .codex-console-guardrail__metrics {
+        grid-template-columns: 1fr;
+    }
+
     .codex-console-canvas {
         display: grid;
         gap: 16px;

@@ -23,8 +23,8 @@ Scope: local AI terminal for `codex-loop` with daemon control, protected thread 
 
 - [x] Prevent silent conflict between daemon loop and manual thread write by default
 - [x] Expose thread lock state in the UI
-- [ ] Add more explicit conflict-state messaging between daemon, thread, and shell operations
-- [ ] Add recovery guidance when a thread is readonly-locked or a shell session dies
+- [x] Add more explicit conflict-state messaging between daemon, thread, and shell operations
+- [x] Add recovery guidance when a thread is readonly-locked or a shell session dies
 
 ## UX and polish
 
