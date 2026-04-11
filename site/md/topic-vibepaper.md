@@ -177,11 +177,13 @@ Mermaid 更适合：否，更适合 HTML 层叠卡片图。
 
 ### 建议怎么读这条线
 
-1. 先看 Autoresearch / ARIS，理解研究动作如何被拆成循环协议和验证链路。  
-2. 再看 DeepScientist，理解如果把整套研究过程做成工作台，会多出哪些层。  
-3. 再看 AI Scientist-v2，理解当系统目标直接指向“论文成稿”时，控制面为什么会转成树搜索和实验经理。  
-4. 补看 AIDE ML，理解 benchmark-first 优化实验室怎样承接 AI Scientist-v2 背后的实验搜索结构，而不是把它误读成第四个主样本。  
-5. 最后回到站点，判断哪些值得继续写成教程、图示和子专题。
+最省力的读法，是把这条路线直接按三种壳层来走：先看 **protocol shell**，再看 **studio shell**，最后看 **paper pipeline shell**。这样上面的总表、厚度图和下面的阅读顺序会自动对齐。
+
+1. 先看 Autoresearch / ARIS：**protocol shell / 协议壳**，理解研究动作如何被拆成循环协议和验证链路。  
+2. 再看 DeepScientist：**studio shell / 工作台壳**，理解如果把整套研究过程做成工作台，会多出哪些层。  
+3. 再看 AI Scientist-v2：**paper pipeline shell / 论文流水线壳**，理解当系统目标直接指向“论文成稿”时，控制面为什么会转成树搜索和实验经理。  
+4. 补看 AIDE ML：**candidate substrate / 候选底座**，理解 benchmark-first 优化实验室怎样承接 AI Scientist-v2 背后的实验搜索结构，而不是把它误读成第四个主样本。  
+5. 最后回到站点，判断哪些值得继续写成教程、图示和子专题，并优先沿着“协议壳 / 工作台壳 / 论文流水线壳”这三种入口继续扩展。
 
 这里还有一个默认规则：三主样本负责承担站内的第一层教学入口，像 `AIDE ML` 这样的上游实验搜索底座，先留在 comparison lane，只有当它能代表一个新的系统壳层时，才考虑抬升成独立主样本或子专题。
 
