@@ -17,7 +17,7 @@ Prioritize future iterations along these three lines:
 
 ## Current focus
 
-Resume the queued media work by attempting the prepared Zhihu publish for the Superset orchestration article in the next allowed daytime window.
+Resume the queued Zhihu publish when daytime allows, but treat the overnight window as time-blocked and use the current pass for one bounded main-site polish slice instead of more publish-prep churn.
 
 ## Success condition
 
@@ -283,6 +283,9 @@ Resume the queued media work by attempting the prepared Zhihu publish for the Su
 - [x] Verify whether the current Zhihu cookies can still open the write page and expose the title/editor selectors
 - [x] Defer the actual Zhihu publish step until the next allowed daytime window after the overnight preflight check
 - [x] Verify that the current Superset Zhihu draft still parses cleanly for the multimodal pipeline and keep the text pipeline only as an emergency fallback
+- [x] Treat the queued Zhihu publish as time-blocked outside the allowed window and switch the current overnight pass back to one bounded main-site task
+- [x] Reopen Hermes for one bounded self-stack mapping clarification instead of repeating more late-night publish-prep checks
+- [x] Verify the Hermes self-stack mapping pass with `python3 tools/check_site_md_parity.py`
 - [x] Stay on Task 9 for one more bounded action-oriented operator-summary follow-up after the headline-badges pass
 - [x] Add a compact `Attention Queue` so relay / thread / shell each expose the next likely operator move from the same overview surface
 - [x] Verify the Task 9 attention-queue pass with `node --check site/js/codex-loop-console.js` and `python3 tools/check_site_md_parity.py`

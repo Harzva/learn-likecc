@@ -12,6 +12,7 @@ Scope: keep turning Hermes Agent into a stable 庖丁解牛 / unpacked topic wit
 - [x] Continue Hermes with one final bounded follow-up after the execution-boundary Mermaid lands
 - [x] Improve the final “what we can learn for our own stack” closeout
 - [x] Mark the current Hermes unpacked wave locally done unless a fresh reference-backed gap appears
+- [x] Reopen Hermes for one bounded self-stack mapping pass after the queued Zhihu branch became time-blocked
 
 ## Anchors
 
@@ -44,6 +45,7 @@ Scope: keep turning Hermes Agent into a stable 庖丁解牛 / unpacked topic wit
 - [x] Add stack-synthesis notes
 - [x] Make the architecture section easier to scan with clearer code-anchor references
 - [ ] Tighten the mapping between Hermes concepts and our own Claude Code / Like Code / codex-loop discussions
+- [x] Tighten the mapping between Hermes concepts and our own Claude Code / Like Code / codex-loop discussions
 
 ## Visuals
 

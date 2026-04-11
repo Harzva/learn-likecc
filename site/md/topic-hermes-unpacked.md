@@ -233,6 +233,15 @@ Mermaid 更适合：是。
 - 记忆 / 技能：Hermes 内建沉淀；我们把沉淀放进 repo，可版本化、可复查
 - 执行面：Hermes 有正式 backend abstraction；我们目前更偏本地工程环境加定向自动化
 
+如果把“哪里已经有对应物、哪里还只是隐含约定”再压得更具体一点，可以得到一张更实用的映射表：
+
+| Hermes 概念 | Hermes 的正式落点 | 我们当前最近的承接层 | 还缺什么 |
+| --- | --- | --- | --- |
+| session seam | `gateway/session.py`、`SessionStore`、`session_key` | `codex-loop` thread + plan / handoff + 人工切换的工作区语义 | 还缺一个正式写下来的 session identity / reset policy，而不是靠操作习惯默认成立 |
+| delivery path | gateway adapters + home channel / callback route | 站点、仓库、终端、知乎这几条分散出口 | 还缺统一 delivery contract，说明一次结果应该回送到哪个面、以什么形态落地 |
+| memory / skills writeback | built-in review + memory / skill manager | repo 内 `skills / plans / docs / handoff` 的外置沉淀链 | 我们已经有可版本化优势，但还缺更明确的“何时升级成 skill、何时只写进 plan”规则 |
+| execution contract | `TERMINAL_ENV` + backend lifecycle + verifier | 本地工程环境 + 定向自动化脚本 | 还缺更显式的 environment contract，让“哪些状态可复用、哪些只是本轮临时上下文”不再只靠经验判断 |
+
 所以最值得学的不是“照搬产品壳”，而是学它那条清楚的控制面主线：主脑、入口、调度、记忆、执行面要怎么拆，拆完之后又怎么重新接起来。对我们更具体的提醒是：即使继续保留 Claude Code / Like Code 作为高质量交互主脑、把 `codex-loop` 放在外层调度、把 repo 文档当长期记忆，也应该把 session seam、delivery path、environment contract 这些边界写得更显式。
 
 真正的结论不是“复制 Hermes”，而是：下一代 stack 不必搬它的产品壳，但应该吸收它在控制面、会话边界和执行边界上的工程纪律。
