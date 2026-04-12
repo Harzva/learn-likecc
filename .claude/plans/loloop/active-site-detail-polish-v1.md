@@ -596,6 +596,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Stay on Task 15 for one last bounded enforcement-hook pass because the only remaining low-risk frontier was whether the new guardrails could produce an actual runtime decision
 - [x] Land one bounded Task 15 enforcement-hook pass by adding a relay `bridge check` endpoint that evaluates direct-inject safety from daemon, thread-lock, and connector state
 - [x] Verify the Task 15 enforcement-hook pass with `python3 -m py_compile tools/codex_loop_web_relay.py`, `node --check site/js/likecode-workspace.js`, `python3 tools/check_site_md_parity.py`, and `python3 tools/build_loop_task_board.py`
+- [x] Switch away from the now-locally-healthy Task 15 line and reopen Task 11 because the new connector design page was still missing from the main site map despite already being present in the topic index
+- [x] Land one bounded Task 11 site-map pass by attaching `Connector Runtime / Daemon Design` to the `Loop Lab / 本地工作台` branch and syncing the page copy
+- [x] Verify the Task 11 connector-branch pass with `python3 tools/refresh_site_topic_metadata.py`, `python3 tools/check_site_md_parity.py`, and `node --check site/js/app.js`
 
 ## Guardrail
 
@@ -621,4 +624,5 @@ Keep each round bounded to one page or one UI component cluster.
 - treat the third Task 15 runtime-separation pass as locally landed; next reopen should prefer the minimal conversation-bridge contract or delivery-layer decision over more lane-label polish
 - treat the fourth Task 15 bridge-guardrail pass as locally landed; next reopen should prefer a concrete delivery-layer decision over more bridge-label polish
 - treat the fifth Task 15 enforcement-hook pass as locally landed; next reopen should prefer switching away unless there is a clearly stronger pre-runtime enforcement slice than the other active plans
+- treat the latest Task 11 connector-branch pass as locally landed too; next reopen should prefer another equally clear site-map / metadata sync gap rather than more retelling of the same `Loop Lab` branch
 - choose the next pass by mapping it to one of the three optimization pillars above

@@ -32,7 +32,7 @@
   - 热点 intake / 路由页
   - Agent 技术热点 / RAG 技术热点
   - 本地工作台 / Loop Lab
-  - codex-loop AI Terminal / LikeCode Workspace App
+  - codex-loop AI Terminal / LikeCode Workspace App / Connector Runtime / Daemon Design
   - 模型 API / 评测
   - Hermes Agent 解构
   - Autoresearch / ARIS
@@ -43,6 +43,8 @@
 同一轮同步里，`热门话题专项 → 热点 intake / 路由页 → Agent 技术热点 / RAG 技术热点` 也被展开了。这样读者能直接看懂：热点页不是另一个孤立 hub，而是站内专题的上游 intake 层。
 
 这次还把 `本地工作台 / Loop Lab → codex-loop AI Terminal / LikeCode Workspace App` 挂进了主图。这样 `app-likecode-workspace.html` 就不再只存在于局部实验页语境里，而是被教成站内一条独立的本地操作面。
+
+同一条本地工作台支线里，这轮再把 `Connector Runtime / Daemon Design` 接了回来。这样 connector shell / WeChat bind 这条设计线也不再只是隐藏在 workspace app 和设计说明里，而是回到了站点主导览。
 
 ## 更新时间索引怎么维护
 

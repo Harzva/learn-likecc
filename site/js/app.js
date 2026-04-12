@@ -127,6 +127,7 @@ const MERMAID_DIAGRAMS = {
     HOTWIRE --> HOTRAG["RAG 技术热点"]:::topic
     WORKSPACE --> CONSOLE["codex-loop AI Terminal"]:::topic
     WORKSPACE --> WSAPP["LikeCode Workspace App"]:::lab
+    WORKSPACE --> CONNECTOR["Connector Runtime / Daemon Design"]:::lab
 
     AGENT --> HOT["技术热点 / 对比 / 论文"]:::topic
     PAPER --> ARIS["Autoresearch / ARIS"]:::lab

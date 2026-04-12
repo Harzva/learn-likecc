@@ -1,7 +1,7 @@
 {
   "meta": {
     "updated": "2026-04-12",
-    "count": 43,
+    "count": 44,
     "source": "git history + site/topic-*.html"
   },
   "groups": [
@@ -363,6 +363,14 @@
           "group": "其他专题",
           "href": "topic-codex-loop-in-sleep.html",
           "md_path": "site/md/topic-codex-loop-in-sleep.md"
+        },
+        {
+          "slug": "topic-connector-runtime-daemon",
+          "title": "Connector / Runtime / Daemon - CodeXLoop 架构专题",
+          "updated": "2026-04-12",
+          "group": "其他专题",
+          "href": "topic-connector-runtime-daemon.html",
+          "md_path": "site/md/topic-connector-runtime-daemon.md"
         },
         {
           "slug": "topic-superset-unpacked",
