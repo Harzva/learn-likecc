@@ -337,6 +337,21 @@
         if (el && href) el.href = href
     }
 
+    function setLinkState(id, href, fallbackText) {
+        var el = document.getElementById(id)
+        if (!el) return
+        if (href) {
+            el.href = href
+            el.removeAttribute('aria-disabled')
+            el.classList.remove('is-disabled')
+        } else {
+            el.href = '#'
+            el.setAttribute('aria-disabled', 'true')
+            el.classList.add('is-disabled')
+        }
+        if (fallbackText) el.textContent = fallbackText
+    }
+
     function applyWorkspaceMeta(meta) {
         workspaceMeta = meta || {}
         document.title = (workspaceMeta.shell_title || 'Workspace Shell') + '（本地）'
@@ -344,6 +359,14 @@
         setText('workspace-brand-title', workspaceMeta.shell_title || '任务池 + 计划编辑 + Runtime 同屏')
         setText('workspace-brand-summary', workspaceMeta.shell_summary || '本地 workspace shell')
         setText('workspace-runtime-note', 'workspace: ' + (workspaceMeta.workspace_root || '—'))
+        setText('workspace-meta-name', 'workspace: ' + (workspaceMeta.workspace_name || '—'))
+        setText('workspace-meta-root', workspaceMeta.workspace_root || '—')
+        setText('workspace-meta-site-base', workspaceMeta.site_base_url || '—')
+        setText('workspace-meta-task-board', workspaceMeta.task_board_path || '—')
+        setText('workspace-meta-config', workspaceMeta.config_path || '—')
+        setLinkState('workspace-meta-site-link', workspaceMeta.site_base_url || '', 'Pages Base')
+        setLinkState('workspace-meta-repo-link', workspaceMeta.github_repo_url || '', 'Repo')
+        setLinkState('workspace-meta-blob-link', workspaceMeta.github_blob_base || '', 'Blob Base')
 
         var links = workspaceMeta.links || {}
         setHref('workspace-link-task-board', links.task_board || 'topic-loop-task-board.html')

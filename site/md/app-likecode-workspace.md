@@ -37,6 +37,8 @@
 - relay 现在还补了一个最小 `bridge check`，可以根据 daemon / thread lock / connector state 给出一次 direct-inject 判定
 - 右侧是 runtime + 最近 log
 - branding、Pages 基址和入口链接可以通过 `.codex-loop/workspace-shell.json` 覆盖，而不是继续写死到页面里
+- 这轮又补了一个 `Workspace Contract` 面板，会把 relay 已经知道的 `workspace root / site base / task board path / config path / repo & blob base` 直接显示出来
+- 这样跨工程复用不再只是“后端其实支持”，而是前端自己也把当前 workspace contract 讲清楚
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
