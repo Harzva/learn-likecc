@@ -204,6 +204,28 @@
 
                 <section class="section-block">
                     <div class="toolchain-section-heading">
+                        <span class="toolchain-eyebrow">Project Line</span>
+                        <h2>站内实验线：Everything Agent-CLI to Claude Code</h2>
+                    </div>
+                    <p>如果前面的内容是在回答“<strong>CLI Agent 有哪些路线</strong>”，那这个仓库回答的是另一个更工程化的问题：<strong>怎么把网页登录 + 官方 CLI 才能用的能力重新接回 Claude Code / LikeCode 主工作流</strong>。</p>
+                    <div class="toolchain-card-grid">
+                        <section class="toolchain-topic-card">
+                            <div class="toolchain-topic-card__meta">Umbrella Repo</div>
+                            <h3>everything-agent-cli-to-claude-code</h3>
+                            <p>这个仓库把 Claude Code / LikeCode 当成 control plane，把 `codex`、`gemini`、`qwen`、`grok` 等官方 CLI 当成外部 worker，用统一的 `usecli:*` 命名和 workflow 规范把它们编排回同一个 coding loop。</p>
+                            <ul class="toolchain-topic-card__list">
+                                <li>适合想做多模型 CLI 编排的人</li>
+                                <li>也适合观察 `gemini-plugin-cc`、`qwen-plugin-cc`、`grok-plugin-cc` 到 `cursor/qoder/trae-plugin-cc` 这一整条插件家族怎么拆</li>
+                                <li>站内本地路径：<code>projects/everything-agent-cli-to-claude-code/</code></li>
+                            </ul>
+                            <p><a href="https://github.com/Harzva/everything-agent-cli-to-claude-code" target="_blank" rel="noopener noreferrer">GitHub 仓库 ↗</a></p>
+                        </section>
+                    </div>
+                    <p>相比“再多装一个终端工具”，这条实验线更值得看的地方是：它试图把被登录态和 CLI 壳隔离的模型能力，重新恢复成 <strong>可调度、可验证、可复用</strong> 的工作流组件。</p>
+                </section>
+
+                <section class="section-block">
+                    <div class="toolchain-section-heading">
                         <span class="toolchain-eyebrow">Adjacent</span>
                         <h2>别混淆：有些产品和 CLI Agent 有关，但不该直接当成纯 CLI</h2>
                     </div>

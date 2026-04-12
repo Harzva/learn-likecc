@@ -1,24 +1,30 @@
 # CLI Agent 专页
 
-重点看四条线：
+重点先看一张更完整的谱系图：
 
 - Claude Code
 - Codex
 - Qwen Code
+- OpenCode
+- Gemini CLI
 - MiniMax 的 Codex CLI 适配路线
+- Cursor / Qoder / Trae 这类终端相邻工作台
 
 这页不做“谁最强”的抽象排名，更关心：
 
 - 你是不是把终端当主工作界面
 - 你是要用产品，还是要研究开源 agent 壳层
-- 你是选完整工作流，还是选平台生态收口
+- 你是选完整工作流、开源终端壳，还是终端相邻工作台
 
 ## 一句话理解
 
 - Claude Code：终端工作流完成度很高
 - Codex：OpenAI 编程代理产品线入口
 - Qwen Code：官方开源终端 agent
+- OpenCode：更偏 TUI-first 的开源终端壳层
+- Gemini CLI：Google 模型生态进入 terminal workflow 的代表
 - MiniMax：更适合作为模型接入现有 CLI agent，而不是单独成熟 CLI 品牌来看
+- Cursor / Qoder / Trae：和 CLI Agent 有交集，但更适合归到编辑器或工作台路线
 
 ## Repo-backed 补充：CLI Agent 其实至少有三种壳
 
@@ -30,7 +36,36 @@
 | TUI-first open shell | `reference/reference_agent/reference_control-agent-cli/anomalyco-opencode/` | 把 terminal UI、本地/远程 client、provider-agnostic 接入、内置 agent 模式做成更偏终端原生的交互壳 | 适合研究开源壳层、交互设计和 client/server 终端体验，而不只是“能不能写代码” |
 | artifact-control CLI | `reference/reference_agent/reference_control-agent-cli/OfficeCLI/` | 让 agent 直接控制 Word / Excel / PowerPoint 这类文档产物，而不是只管代码仓库 | 适合把它看成 document control plane，不该再混回 generic coding shell |
 
-所以这页后面再扩时，重点不该是“再多列几个名字”，而是先判断你要选的是哪一类终端壳。
+所以这页后面再扩时，重点不是只把名字越列越多，而是先判断你要选的是哪一类终端壳。
+
+## 站内实验线：Everything Agent-CLI to Claude Code
+
+如果前面的内容是在回答“CLI Agent 有哪些路线”，那这个仓库回答的是另一个更工程化的问题：
+
+**怎么把网页登录 + 官方 CLI 才能用的能力重新接回 Claude Code / LikeCode 主工作流。**
+
+- 仓库：<https://github.com/Harzva/everything-agent-cli-to-claude-code>
+- 本地路径：`projects/everything-agent-cli-to-claude-code/`
+
+它的核心思路是：
+
+- Claude Code / LikeCode 继续当 control plane
+- `codex`、`gemini`、`qwen`、`grok` 等官方 CLI 变成外部 worker
+- 通过统一的 `usecli:*` 命名和 workflow 规范，把这些能力编排回同一个 coding loop
+
+这也是它值得挂进 CLI Agent 专题的原因：
+
+- 它不是再多列一个产品名
+- 而是在回答“终端里的多模型能力如何真正被调度起来”
+- 同时也给 `gemini-plugin-cc`、`qwen-plugin-cc`、`grok-plugin-cc` 到 `cursor/qoder/trae-plugin-cc` 这一整条插件家族提供 umbrella repo
+
+## 别混淆：有些产品和 CLI Agent 有关，但不该直接当成纯 CLI
+
+| 路线 | 代表样本 | 为什么会被误放进 CLI Agent | 更准确的归类 |
+| --- | --- | --- | --- |
+| terminal-adjacent IDE | Cursor | 它有 terminal、agent、命令执行和工作流自动化，因此经常被口头叫成“Cursor CLI” | 更适合归到 AI IDE / 编辑器工作台，而不是纯 CLI 主战壳 |
+| coding studio / workspace | Qoder | 它有 agentic 编程和研发空间属性，很多人会把整个平台误缩写成一个 CLI | 更像研发空间或 agent 工作台 |
+| AI IDE with agent mode | Trae | 它和 Solo、编辑器、Agent 模式经常一起出现，容易在讨论里被压扁成单个 CLI | 更适合归到 AI IDE / agent 工作台路线 |
 
 ## Repo-backed 再补一层：CLI Agent 的 approval surface 也不一样
 
