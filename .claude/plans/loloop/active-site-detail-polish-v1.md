@@ -620,6 +620,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Stay on the still-open daytime media lane for one more bounded Task 2 publish because `31-工具系统设计-知乎图文.md` remained a mature, image-complete, unpublished systems article with broader teaching value than the current non-media frontiers
 - [x] Recheck the ready `31-工具系统设计-知乎图文.md` draft for publish evidence, image completeness, and topic maturity before attempting publication
 - [x] Publish `31-工具系统设计-知乎图文.md` to Zhihu with the multimodal pipeline and record the returned article URL
+- [x] Stay on the still-open daytime media lane for one more bounded Task 2 publish because `30-AgentLoop主循环-知乎图文.md` remained a mature, image-complete, unpublished foundational article with stronger long-term teaching value than the current non-media frontiers
+- [x] Recheck the ready `30-AgentLoop主循环-知乎图文.md` draft for publish evidence, image completeness, and topic maturity before attempting publication
+- [x] Publish `30-AgentLoop主循环-知乎图文.md` to Zhihu with the multimodal pipeline and record the returned article URL
 
 ## Guardrail
 
@@ -653,4 +656,5 @@ Keep each round bounded to one page or one UI component cluster.
 - treat the `27-*` Buddy spread draft as now published too; next media reopen should prefer the next strongest unpublished draft rather than overfocusing on one topic family
 - treat the `33-*` Claude-to-Codex bridge draft as now published too; next media reopen should prefer another clearly ready unpublished draft from a different high-value lane or switch back to a non-media recurring slice
 - treat the `31-*` 工具系统设计 draft as now published too; next media reopen should prefer another clearly ready unpublished draft from a distinct lane or switch back to a non-media recurring slice
+- treat the `30-*` Agent Loop 主循环 draft as now published too; next media reopen should prefer another clearly ready unpublished draft from a distinct lane or switch back to a non-media recurring slice
 - choose the next pass by mapping it to one of the three optimization pillars above
