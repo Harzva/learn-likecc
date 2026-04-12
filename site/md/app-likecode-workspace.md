@@ -34,9 +34,10 @@
   - `bridge_lock_rule`
   - `delivery_guardrail`
 - 这样“daemon 正在推进时是否允许注入 thread”至少先是显式策略，不再只是口头约定
+- relay 现在还补了一个最小 `bridge check`，可以根据 daemon / thread lock / connector state 给出一次 direct-inject 判定
 - 右侧是 runtime + 最近 log
 - branding、Pages 基址和入口链接可以通过 `.codex-loop/workspace-shell.json` 覆盖，而不是继续写死到页面里
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
-- connector shell 从 lock / queue / guardrail 合同继续长到真正的 delivery-layer 决策，再决定是否值得接真实 QR auth flow
+- connector shell 从最小 guardrail enforcement 继续长到真正的 delivery-layer 决策，再决定是否值得接真实 QR auth flow

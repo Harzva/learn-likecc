@@ -107,6 +107,14 @@
         return lock + ' / ' + delivery
     }
 
+    function renderGuardDecision(decision) {
+        var text = 'decision: unchecked'
+        if (decision && decision.decision) {
+            text = 'decision: ' + decision.decision + ' / ' + (decision.reason || '')
+        }
+        setText('workspace-connector-guard-decision', text)
+    }
+
     function renderConnectorShell() {
         setText('workspace-connector-mode', connectorState.shell_mode || 'ui-shell')
         setText('workspace-connector-bind-state', connectorState.bind_state || 'unbound')
@@ -197,6 +205,20 @@
         }).catch(function (error) {
             setStatus(document.getElementById('workspace-connector-status'), 'qr wait failed', 'risk')
             setText('workspace-connector-qr-preview', 'qr error: ' + error.message)
+        })
+    }
+
+    function checkConnectorGuardrail() {
+        return fetchJson(relayBase() + '/api/connector/bridge/check', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({}),
+        }).then(function (payload) {
+            var decision = payload && payload.decision
+            renderGuardDecision(decision)
+        }).catch(function (error) {
+            setText('workspace-connector-guard-decision', 'decision error: ' + error.message)
+            setStatus(document.getElementById('workspace-connector-status'), 'guardrail check failed', 'risk')
         })
     }
 
@@ -726,6 +748,7 @@
             bridge_lock_rule: 'daemon-holds-thread',
             delivery_guardrail: 'queue-only',
         })
+    })
     document.getElementById('workspace-connector-guard-queue').addEventListener('click', function () {
         saveConnectorState({
             bridge_lock_rule: 'daemon-holds-thread',
@@ -750,11 +773,14 @@
             bridge_status: 'guarded',
         })
     })
+    document.getElementById('workspace-connector-guard-check').addEventListener('click', function () {
+        checkConnectorGuardrail()
     })
 
     loadConnectorState()
     renderConnectorShell()
     fetchConnectorState()
+    renderGuardDecision(null)
     loadWorkspaceMeta().then(loadTasks).catch(loadTasks)
     refreshRuntime()
     refreshLog('latest')

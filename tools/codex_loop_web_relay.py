@@ -422,6 +422,65 @@ def wait_connector_qr(workspace: Path, session_key: str = "") -> dict:
     return state
 
 
+def check_connector_bridge_guardrail(workspace: Path) -> dict:
+    connector = read_connector_state(workspace)
+    status = run_status(workspace)
+    thread_lock = read_thread_lock(workspace)
+    bridge_mode = connector.get("bridge_mode") or "queue-ticket"
+    bridge_lock_rule = connector.get("bridge_lock_rule") or "daemon-holds-thread"
+    delivery_guardrail = connector.get("delivery_guardrail") or "queue-only"
+
+    decision = {
+        "allow_direct_inject": False,
+        "decision": "ticket-path",
+        "reason": "bridge mode is not thread-inject; keep connector traffic on ticket or task-handoff path",
+        "suggested_action": "keep queue-ticket or task-handoff mode",
+    }
+
+    if bridge_mode == "thread-inject":
+        if bridge_lock_rule == "daemon-holds-thread" and status.get("daemon_running"):
+            decision = {
+                "allow_direct_inject": False,
+                "decision": "queue-only",
+                "reason": "daemon is active and the current lock rule keeps thread writes on the daemon side",
+                "suggested_action": "switch to queue-ticket or stop the daemon first",
+            }
+        elif bridge_lock_rule == "runtime-readonly-when-daemon-active" and status.get("daemon_running"):
+            decision = {
+                "allow_direct_inject": False,
+                "decision": "runtime-readonly",
+                "reason": "runtime guardrail blocks direct inject while the daemon is active",
+                "suggested_action": "keep connector traffic queued until the daemon is idle",
+            }
+        elif bridge_lock_rule == "manual-unlock-before-inject" and thread_lock.get("mode") == "readonly":
+            decision = {
+                "allow_direct_inject": False,
+                "decision": "unlock-required",
+                "reason": "thread lock is readonly and manual unlock is required before inject",
+                "suggested_action": "unlock the thread before using thread-inject",
+            }
+        else:
+            decision = {
+                "allow_direct_inject": True,
+                "decision": "allow-direct-inject",
+                "reason": "current bridge rule permits direct inject under the active daemon and thread-lock state",
+                "suggested_action": "inject only into the explicitly bound thread target",
+            }
+
+    decision.update(
+        {
+            "bridge_mode": bridge_mode,
+            "bridge_target": connector.get("bridge_target") or "workspace",
+            "bridge_lock_rule": bridge_lock_rule,
+            "delivery_guardrail": delivery_guardrail,
+            "daemon_running": bool(status.get("daemon_running")),
+            "thread_lock_mode": thread_lock.get("mode") or "unknown",
+            "thread_id": status.get("thread_id") or "",
+        }
+    )
+    return decision
+
+
 def infer_git_remote(workspace: Path) -> str:
     result = subprocess.run(
         ["git", "remote", "get-url", "origin"],
@@ -551,6 +610,7 @@ class Handler(BaseHTTPRequestHandler):
                 "POST /api/connector/state\n"
                 "POST /api/connector/qr/start\n"
                 "POST /api/connector/qr/wait\n"
+                "POST /api/connector/bridge/check\n"
                 "POST /api/thread/lock\n"
                 "POST /api/thread/unlock\n"
                 "POST /api/thread/send\n"
@@ -800,6 +860,15 @@ class Handler(BaseHTTPRequestHandler):
                 self._send_json({"ok": False, "error": str(exc)}, 400)
                 return
             self._send_json({"ok": True, "connector": state, "path": CONNECTOR_SHELL_FILE})
+            return
+
+        if parsed.path == "/api/connector/bridge/check":
+            try:
+                decision = check_connector_bridge_guardrail(self.workspace)
+            except Exception as exc:  # noqa: BLE001
+                self._send_json({"ok": False, "error": str(exc)}, 500)
+                return
+            self._send_json({"ok": True, "decision": decision})
             return
 
         if parsed.path == "/api/shell/create":

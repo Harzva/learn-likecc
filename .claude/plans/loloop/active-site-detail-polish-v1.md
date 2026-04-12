@@ -593,6 +593,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Stay on Task 15 for one more bounded bridge-guardrail pass because the only clearly unfinished low-risk frontier was the daemon-vs-connector write conflict rule
 - [x] Land one bounded Task 15 bridge-guardrail pass by turning `bridge_lock_rule / delivery_guardrail` into relay-visible connector state and workspace controls
 - [x] Verify the Task 15 bridge-guardrail pass with `python3 -m py_compile tools/codex_loop_web_relay.py`, `node --check site/js/likecode-workspace.js`, `python3 tools/check_site_md_parity.py`, and `python3 tools/build_loop_task_board.py`
+- [x] Stay on Task 15 for one last bounded enforcement-hook pass because the only remaining low-risk frontier was whether the new guardrails could produce an actual runtime decision
+- [x] Land one bounded Task 15 enforcement-hook pass by adding a relay `bridge check` endpoint that evaluates direct-inject safety from daemon, thread-lock, and connector state
+- [x] Verify the Task 15 enforcement-hook pass with `python3 -m py_compile tools/codex_loop_web_relay.py`, `node --check site/js/likecode-workspace.js`, `python3 tools/check_site_md_parity.py`, and `python3 tools/build_loop_task_board.py`
 
 ## Guardrail
 
@@ -617,4 +620,5 @@ Keep each round bounded to one page or one UI component cluster.
 - treat the second Task 15 QR-auth-contract pass as locally landed; next reopen should prefer `mock flow / adapter flow / real runtime` separation or the conversation-bridge contract over more connector-shell cosmetics
 - treat the third Task 15 runtime-separation pass as locally landed; next reopen should prefer the minimal conversation-bridge contract or delivery-layer decision over more lane-label polish
 - treat the fourth Task 15 bridge-guardrail pass as locally landed; next reopen should prefer a concrete delivery-layer decision over more bridge-label polish
+- treat the fifth Task 15 enforcement-hook pass as locally landed; next reopen should prefer switching away unless there is a clearly stronger pre-runtime enforcement slice than the other active plans
 - choose the next pass by mapping it to one of the three optimization pillars above

@@ -154,6 +154,25 @@
 - `runtime-readonly-when-daemon-active / queue-gated`
   - 预留给未来真实 runtime 接入后的强保护模式
 
+### Minimal enforcement hook
+
+在真实 delivery worker 出现之前，runtime 至少应能回答一个问题：
+
+- 当前 bridge 合同下，是否允许 direct inject
+
+最小检查输入：
+
+- connector state
+- daemon running state
+- thread lock mode
+
+最小检查输出：
+
+- `allow_direct_inject`
+- `decision`
+- `reason`
+- `suggested_action`
+
 ## Recommended implementation phases
 
 ### Phase 1

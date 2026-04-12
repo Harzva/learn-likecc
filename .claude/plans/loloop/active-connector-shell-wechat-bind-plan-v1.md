@@ -42,7 +42,7 @@
 ### 4. Runtime separation
 
 - [x] 区分 connector runtime、daemon runtime、workspace shell 的边界
-- [ ] 评估后续是否需要单独 watchdog / queue / delivery layer
+- [x] 评估后续是否需要单独 watchdog / queue / delivery layer
 
 ## Workspace outputs
 
@@ -73,4 +73,4 @@
 
 ## Current status
 
-这条线已经完成又一个收口：workspace shell 和 relay 现在不仅能表达 `mock flow / adapter flow / external runtime` 三条 lane，也把 `bridge lock rule / delivery guardrail` 收成显式字段，用来防止 daemon 与外部聊天入口同时写同一 thread。下一步更值当的是判断是否真的需要单独 delivery / queue layer，而不是过早承诺真实微信绑定已经可用。
+这条线已经完成又一个收口：workspace shell 和 relay 现在不仅能表达 `mock flow / adapter flow / external runtime` 三条 lane，也把 `bridge lock rule / delivery guardrail` 收成显式字段，并补上一个最小 `bridge check` enforcement hook。当前决定是先不单独拆出 delivery worker，而是继续把 queue / guardrail 维持成 relay-visible contract，直到真的出现外部消息吞吐或并发写入压力。下一步更值当的是切到别的高价值低风险任务，除非要继续做真实 runtime 之前的最后一层 enforcement。
