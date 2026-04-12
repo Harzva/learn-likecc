@@ -8,6 +8,8 @@ Scope: keep improving the umbrella repo `projects/everything-agent-cli-to-claude
 - [x] Land one bounded README-positioning pass: explain why the umbrella repo is recommendable now, make the umbrella-vs-plugin split explicit, and verify the wrappers locally
 - [x] Land one bounded split-guidance pass: turn the umbrella-vs-plugin split into a reusable decision rubric and sync that guidance back into the site recommendation
 - [x] Land one bounded runnable-proof pass: make the shortest no-login and workflow-demo path obvious from the repo and the site recommendation
+- [x] Land one bounded dual-role pass: explain the umbrella repo as both a usable repo and an architecture sample, and sync that framing back into the site topic
+- [x] Land one bounded family-verification pass: add one umbrella-level entry that checks the current `*-plugin-cc` smoke matrix and sync that proof back into the site recommendation
 - [ ] Continue stabilizing the umbrella repo as a recommendable CLI Agent reference with the next bounded split / example / verification slice
 
 ## Main product areas
@@ -37,7 +39,7 @@ Scope: keep improving the umbrella repo `projects/everything-agent-cli-to-claude
 
 - [x] local repo tests pass
 - [x] site / md parity stays valid
-- [ ] the project can be explained as both a usable repo and a research / architecture sample
+- [x] the project can be explained as both a usable repo and a research / architecture sample
 
 ## Notes
 
@@ -47,4 +49,6 @@ Scope: keep improving the umbrella repo `projects/everything-agent-cli-to-claude
 - 2026-04-12: first bounded Task 10 pass landed across `README.md`, `README_CN.md`, `registry/plugins.md`, and the site recommendation block on `topic-ai-cli-agent`; local verification passed with `bash tests/test_wrappers.sh` and `python3 tools/check_site_md_parity.py`
 - 2026-04-12: second bounded Task 10 pass landed across `docs/repo-strategy.md`, `README.md`, `README_CN.md`, and the site recommendation block on `topic-ai-cli-agent`; the split is now a reusable routing rubric instead of only a README claim
 - 2026-04-12: third bounded Task 10 pass landed across `docs/workflows/multi-model-review.md`, `README.md`, `README_CN.md`, and the site recommendation block on `topic-ai-cli-agent`; the repo now has an explicit fastest runnable proof path instead of only deeper workflow docs
-- Next strong bounded candidate: only continue Task 10 if there is a sharper verification or example artifact than the other recurring frontiers; otherwise switch plans
+- 2026-04-12: fourth bounded Task 10 pass landed across `README.md`, `site/topic-everything-agent-cli.html`, and `site/md/topic-everything-agent-cli.md`; the umbrella repo is now taught explicitly in two modes: usable repo and architecture sample
+- 2026-04-12: fifth bounded Task 10 pass landed across `tests/test_plugin_family.sh`, `README.md`, `README_CN.md`, `topic-everything-agent-cli`, and `topic-ai-cli-agent`; the umbrella repo now exposes one family-level verification entry instead of only repo-local smoke proof
+- Next strong bounded candidate: only continue Task 10 if there is a sharper provider-ready demo artifact or cross-repo verification surface than the other recurring frontiers; otherwise switch plans

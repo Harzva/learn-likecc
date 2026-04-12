@@ -78,6 +78,8 @@ web-login entitlement / subscription / free quota
 
 - umbrella wrapper 测试：
   - `projects/everything-agent-cli-to-claude-code/tests/test_wrappers.sh`
+- plugin family 汇总验证：
+  - `projects/everything-agent-cli-to-claude-code/tests/test_plugin_family.sh`
 - provider 测试：
   - `projects/gemini-plugin-cc/tests/test_wrapper.sh`
   - `projects/qwen-plugin-cc/tests/test_wrapper.sh`
@@ -91,8 +93,33 @@ web-login entitlement / subscription / free quota
 
 - 已接入的 provider 在测命令构造和 workflow 输出
 - 还没真实接上的 scaffold 仓库，也先测统一参数面和占位契约
+- umbrella repo 现在还能顺序检查整条 `*-plugin-cc` 家族，而不只是证明自己那层 wrapper 能跑
 
-## 05 · 它和 CLI Agent 专题的关系
+## 05 · 为什么它同时是可用仓库和架构样本
+
+这条线最好用两种读法去看：
+
+- usable repo
+  - 先看 `tests/test_wrappers.sh`
+  - 再看 `tests/test_plugin_family.sh`
+  - 再看 `examples/workflows/multi-model-review.sh`
+  - 再看 `bin/usecli-*.sh`
+- architecture sample
+  - 先看 `docs/repo-strategy.md`
+  - 再看 `registry/plugins.md`
+  - 再看 `docs/workflows/multi-model-review.md`
+
+这样分开的意义是：
+
+- 如果你只关心“现在能不能跑”，第一条读法已经够了
+- 如果你关心“为什么这个 umbrella repo 值得学”，第二条读法会更清楚地展示 control plane 和 provider worker 的拆法
+
+所以它现在不只是一个能跑 wrapper 的仓库，也是一个很清楚的架构样本：
+
+- 总仓库负责统一命名、workflow 和外层故事
+- provider 细节继续下沉到 `*-plugin-cc`
+
+## 06 · 它和 CLI Agent 专题的关系
 
 `topic-ai-cli-agent.html` 讲的是：
 

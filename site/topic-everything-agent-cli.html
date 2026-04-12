@@ -118,18 +118,29 @@ web-login entitlement / subscription / free quota</code></pre>
                     <table class="options-table">
                         <tr><th>验证对象</th><th>脚本</th><th>说明</th></tr>
                         <tr><td>umbrella wrapper</td><td><code>projects/everything-agent-cli-to-claude-code/tests/test_wrappers.sh</code></td><td>验证 `codex / gemini / qwen / grok` wrapper 的 help、参数拼装与 workflow 输出</td></tr>
+                        <tr><td>plugin family matrix</td><td><code>projects/everything-agent-cli-to-claude-code/tests/test_plugin_family.sh</code></td><td>顺序调用同一 <code>projects/</code> 根目录下的 `*-plugin-cc` smoke test，检查这条推荐链不是只停在 umbrella repo README 里</td></tr>
                         <tr><td>Gemini provider</td><td><code>projects/gemini-plugin-cc/tests/test_wrapper.sh</code></td><td>验证 wrapper 命令构造</td></tr>
                         <tr><td>Qwen provider</td><td><code>projects/qwen-plugin-cc/tests/test_wrapper.sh</code></td><td>验证 `qwen-oauth` 参数面</td></tr>
                         <tr><td>Grok provider</td><td><code>projects/grok-plugin-cc/tests/test_wrapper.sh</code></td><td>验证 headless prompt 调用</td></tr>
                         <tr><td>Cursor / Qoder / Trae scaffold</td><td>各自 <code>tests/test_wrapper.sh</code></td><td>验证 placeholder 也具备统一参数面和探测输出</td></tr>
                     </table>
                     <div class="course-quote">
-                        <p><strong>这一步很关键</strong>：哪怕仓库还处在 scaffold 阶段，也先把“命令契约”和“占位状态”测起来。这样未来从 placeholder 升级到真实 CLI 接入时，至少不会从零开始补质量基线。</p>
+                        <p><strong>这一步很关键</strong>：哪怕仓库还处在 scaffold 阶段，也先把“命令契约”和“占位状态”测起来。现在连整条 `*-plugin-cc` 家族都能从 umbrella repo 一次顺着验过去，所以未来从 placeholder 升级到真实 CLI 接入时，至少不会从零开始补质量基线。</p>
                     </div>
                 </section>
 
                 <section class="section-block">
-                    <h2>05 · 它和站内 CLI Agent 专题的关系</h2>
+                    <h2>05 · 为什么它同时是可用仓库和架构样本</h2>
+                    <table class="options-table">
+                        <tr><th>读法</th><th>先看什么</th><th>你会得到什么</th></tr>
+                        <tr><td>usable repo</td><td><code>tests/test_wrappers.sh</code>、<code>tests/test_plugin_family.sh</code>、<code>examples/workflows/multi-model-review.sh</code>、<code>bin/usecli-*.sh</code></td><td>确认这不是只会讲概念的 umbrella repo，而是已经有最小 wrapper、family smoke matrix 和 workflow proof</td></tr>
+                        <tr><td>architecture sample</td><td><code>docs/repo-strategy.md</code>、<code>registry/plugins.md</code>、<code>docs/workflows/multi-model-review.md</code></td><td>看懂为什么主工作台留在 Claude Code / LikeCode，而 provider CLI 留在外部 worker 层</td></tr>
+                    </table>
+                    <p>所以这条线的价值不只在“现在能不能跑”，也在于它已经给出了一个很清楚的 control-plane 拆法：<strong>总仓库负责统一命名、workflow 和外层故事，provider 细节继续下沉到 `*-plugin-cc` 家族。</strong></p>
+                </section>
+
+                <section class="section-block">
+                    <h2>06 · 它和站内 CLI Agent 专题的关系</h2>
                     <p><a href="topic-ai-cli-agent.html">CLI Agent 专页</a> 回答的是“有哪些路线、该怎么分类”；而这一页回答的是“如果我真想把多个 provider CLI 接回一个主工作流，工程上该怎么搭”。两页放在一起，前者给你地图，后者给你施工方案。</p>
                 </section>
 

@@ -599,6 +599,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Switch away from the now-locally-healthy Task 15 line and reopen Task 11 because the new connector design page was still missing from the main site map despite already being present in the topic index
 - [x] Land one bounded Task 11 site-map pass by attaching `Connector Runtime / Daemon Design` to the `Loop Lab / 本地工作台` branch and syncing the page copy
 - [x] Verify the Task 11 connector-branch pass with `python3 tools/refresh_site_topic_metadata.py`, `python3 tools/check_site_md_parity.py`, and `node --check site/js/app.js`
+- [x] Switch away from the now-locally-healthy Task 11 line and reopen Task 10 because the umbrella repo still had one sharper low-risk verification frontier than the remaining recurring slices
+- [x] Land one bounded Task 10 family-verification pass by adding an umbrella-level script that checks the current `*-plugin-cc` smoke matrix and syncing that proof back into the site recommendation
+- [x] Verify the Task 10 family-verification pass with `bash projects/everything-agent-cli-to-claude-code/tests/test_wrappers.sh`, `bash projects/everything-agent-cli-to-claude-code/tests/test_plugin_family.sh`, and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail
 
@@ -625,4 +628,5 @@ Keep each round bounded to one page or one UI component cluster.
 - treat the fourth Task 15 bridge-guardrail pass as locally landed; next reopen should prefer a concrete delivery-layer decision over more bridge-label polish
 - treat the fifth Task 15 enforcement-hook pass as locally landed; next reopen should prefer switching away unless there is a clearly stronger pre-runtime enforcement slice than the other active plans
 - treat the latest Task 11 connector-branch pass as locally landed too; next reopen should prefer another equally clear site-map / metadata sync gap rather than more retelling of the same `Loop Lab` branch
+- treat the latest Task 10 family-verification pass as locally landed too; next reopen should prefer a sharper provider-ready demo or cross-repo verification artifact rather than more recommendation framing
 - choose the next pass by mapping it to one of the three optimization pillars above
