@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LikeCode Workspace（本地）- Learn LikeCode</title>
+    <title>Workspace Shell（本地）- Codex Loop</title>
     <link rel="stylesheet" href="css/style.css">
-    <meta name="description" content="独立 app 风格的 LikeCode 本地工作台：任务池、计划编辑、runtime 状态与日志同屏。">
+    <meta name="description" content="独立 app 风格的 codex-loop 本地工作台：任务池、计划编辑、runtime 状态与日志同屏。">
 </head>
 <body class="likecode-workspace-page">
     <div id="likecode-workspace" class="likecode-workspace-app">
         <aside class="likecode-workspace-sidebar">
             <div class="likecode-workspace-brand">
-                <p class="likecode-workspace-brand__eyebrow">LikeCode Web Workspace</p>
-                <h1>任务池 + 计划编辑 + Runtime 同屏</h1>
-                <p>这版先把长期任务池、active plan 编辑和 relay runtime 收到一个真正可操作的 app 壳里，不再只停留在文章页监视器。</p>
+                <p id="workspace-brand-eyebrow" class="likecode-workspace-brand__eyebrow">Codex Loop Workspace</p>
+                <h1 id="workspace-brand-title">任务池 + 计划编辑 + Runtime 同屏</h1>
+                <p id="workspace-brand-summary">这版先把长期任务池、active plan 编辑和 relay runtime 收到一个真正可操作的 app 壳里，不再只停留在文章页监视器。</p>
             </div>
 
             <div class="likecode-workspace-controls">
@@ -27,8 +27,9 @@
                 </label>
                 <div class="likecode-workspace-actionrow">
                     <button id="workspace-refresh" type="button" class="btn btn-primary">刷新工作台</button>
-                    <a href="topic-loop-task-board.html" class="btn btn-secondary">任务板</a>
-                    <a href="topic-codex-loop-console.html" class="btn btn-secondary">监视器</a>
+                    <a id="workspace-link-task-board" href="topic-loop-task-board.html" class="btn btn-secondary">任务板</a>
+                    <a id="workspace-link-monitor" href="topic-codex-loop-console.html" class="btn btn-secondary">监视器</a>
+                    <a id="workspace-link-home" href="index.html" class="btn btn-secondary">首页</a>
                 </div>
             </div>
 
@@ -123,6 +124,49 @@
                 <section class="likecode-workspace-panel">
                     <div class="likecode-workspace-panel__head">
                         <div>
+                            <p class="likecode-workspace-panel__eyebrow">Connector Shell</p>
+                            <h3>WeChat Bind Draft</h3>
+                        </div>
+                        <div class="likecode-workspace-actionrow">
+                            <span id="workspace-connector-status" class="likecode-workspace-status likecode-workspace-status--neutral">ui shell only</span>
+                        </div>
+                    </div>
+                    <div class="likecode-workspace-runtime">
+                        <article class="likecode-workspace-runtimecard">
+                            <strong>shell mode</strong>
+                            <span id="workspace-connector-mode">ui-shell</span>
+                        </article>
+                        <article class="likecode-workspace-runtimecard">
+                            <strong>bind state</strong>
+                            <span id="workspace-connector-bind-state">unbound</span>
+                        </article>
+                        <article class="likecode-workspace-runtimecard">
+                            <strong>target dialog</strong>
+                            <span id="workspace-connector-target">--</span>
+                        </article>
+                    </div>
+                    <label class="likecode-workspace-field">
+                        <span>Target Dialog</span>
+                        <input id="workspace-connector-target-input" type="text" placeholder="例如：文件传输助手 / 某个测试群 / connector-demo">
+                    </label>
+                    <label class="likecode-workspace-field">
+                        <span>Connector Note</span>
+                        <input id="workspace-connector-note-input" type="text" placeholder="这版只做 UI shell / mock bind，不直接打通微信协议">
+                    </label>
+                    <div class="likecode-workspace-actionrow">
+                        <button id="workspace-connector-qr" type="button" class="btn btn-secondary">预填 QR 等待态</button>
+                        <button id="workspace-connector-bound" type="button" class="btn btn-secondary">标记已绑定</button>
+                        <button id="workspace-connector-reset" type="button" class="btn btn-secondary">重置 shell</button>
+                    </div>
+                    <div class="likecode-workspace-foot">
+                        <span id="workspace-connector-note-preview" class="likecode-workspace-status likecode-workspace-status--neutral">note: local draft only</span>
+                        <span>first layer: local shell state, no relay QR API yet</span>
+                    </div>
+                </section>
+
+                <section class="likecode-workspace-panel">
+                    <div class="likecode-workspace-panel__head">
+                        <div>
                             <p class="likecode-workspace-panel__eyebrow">Runtime</p>
                             <h3>Relay / Daemon / Thread</h3>
                         </div>
@@ -188,6 +232,7 @@
             <footer class="footer">
                 <div class="container">
                     <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/app-likecode-workspace.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+                    <p id="workspace-runtime-note" class="md-source-link">当前页正在使用本地 relay 读取 workspace 元数据。</p>
                 </div>
             </footer>
         </main>

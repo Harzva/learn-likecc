@@ -790,7 +790,7 @@
       "has_topic": false,
       "has_evolution": false,
       "is_publish_ready": false,
-      "search_text": "Loop task: keep building the connector shell and WeChat bind line for `codex-loop` by following the dedicated plan file: Loop task: keep building the connector shell and WeChat bind line for `codex-loop` by following the dedicated plan file: - `.claude/plans/loloop/active-connector-shell-wechat-bind-plan-v1.md` Execution rule: 1. Read that plan first. 2. Continue the current unchecked / active item instead of randomly switching. 3. After each bounded pass: - mark progress in the plan file - check off any completed item connector-shell-wechat-bind Active Connector Shell WeChat Bind Plan v1 - [x] 完成参考审计：确认 `DeepScientist` 已经具备网页端微信扫码绑定流程 - [x] 抽出最小链路：`start qr -> wait qr -> persist token -> long poll connector` - [x] 把这条路线接入 `prompt.md` 长循环任务池 - [ ] 决定 `codex-loop` 第一版 connector shell 先做到哪一层 - [ ] `python3 tools/build_loop_task_board.py` - [ ] 如涉及 workspace 代码，补： - `python3 -m py_compile tools/codex_loop_web_relay.py` - `node --check site/js/likecode-workspace.js` - `python3 tools/check_site_md_parity.py`",
+      "search_text": "Loop task: keep building the connector shell and WeChat bind line for `codex-loop` by following the dedicated plan file: Loop task: keep building the connector shell and WeChat bind line for `codex-loop` by following the dedicated plan file: - `.claude/plans/loloop/active-connector-shell-wechat-bind-plan-v1.md` Execution rule: 1. Read that plan first. 2. Continue the current unchecked / active item instead of randomly switching. 3. After each bounded pass: - mark progress in the plan file - check off any completed item connector-shell-wechat-bind Active Connector Shell WeChat Bind Plan v1 - [x] 完成参考审计：确认 `DeepScientist` 已经具备网页端微信扫码绑定流程 - [x] 抽出最小链路：`start qr -> wait qr -> persist token -> long poll connector` - [x] 把这条路线接入 `prompt.md` 长循环任务池 - [x] 决定 `codex-loop` 第一版 connector shell 先做到哪一层 - [ ] `python3 tools/build_loop_task_board.py` - [ ] 如涉及 workspace 代码，补： - `python3 -m py_compile tools/codex_loop_web_relay.py` - `node --check site/js/likecode-workspace.js` - `python3 tools/check_site_md_parity.py`",
       "plan": {
         "title": "Active Connector Shell WeChat Bind Plan v1",
         "status": "unknown",
@@ -800,7 +800,7 @@
           "- [x] 完成参考审计：确认 `DeepScientist` 已经具备网页端微信扫码绑定流程",
           "- [x] 抽出最小链路：`start qr -> wait qr -> persist token -> long poll connector`",
           "- [x] 把这条路线接入 `prompt.md` 长循环任务池",
-          "- [ ] 决定 `codex-loop` 第一版 connector shell 先做到哪一层"
+          "- [x] 决定 `codex-loop` 第一版 connector shell 先做到哪一层"
         ],
         "scope": [],
         "validation": [
@@ -811,9 +811,9 @@
           "- `python3 tools/check_site_md_parity.py`"
         ],
         "notes": [],
-        "completed_count": 7,
+        "completed_count": 10,
         "total_count": 26,
-        "progress": 27
+        "progress": 38
       }
     }
   ],

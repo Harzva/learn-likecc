@@ -581,6 +581,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Stay on Task 14 for one final bounded hub-pinning pass because the route-back wave still had one clear unchecked output item with direct main-site leverage
 - [x] Land one bounded Task 14 AI-Scientist-hub pass by turning `topic-codex-loop-in-sleep` from an ordinary linked page into a long-term subtopic entry on `topic-ai-scientist`
 - [x] Verify the Task 14 hub-pinning pass with `python3 tools/refresh_site_topic_metadata.py`, `python3 tools/build_loop_task_board.py`, and `python3 tools/check_site_md_parity.py`
+- [x] Switch from the now-locally-healthy Task 14 route-back wave to Task 15 because its first unchecked frontier is cleaner than the broader remaining pools
+- [x] Land one bounded Task 15 first-layer pass by adding a connector shell draft panel to `app-likecode-workspace` and deciding that v1 should stay UI-shell + local state only
+- [x] Verify the Task 15 connector-shell pass with `node --check site/js/likecode-workspace.js` and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail
 
@@ -601,4 +604,5 @@ Keep each round bounded to one page or one UI component cluster.
 - treat the second Task 14 route-back pass as locally landed too; next reopen should prefer `watchdog` boundary clarification or AI-Scientist hub pinning over more memory-layout prose
 - treat the third Task 14 route-back pass as locally landed too; next reopen should prefer AI-Scientist hub pinning or a concrete structure diagram over more prose-only `watchdog` explanation
 - treat the fourth Task 14 hub-pinning pass as locally landed too; next reopen should prefer one concrete structure diagram, otherwise switch away from Task 14
+- treat the first Task 15 connector-shell pass as locally landed; next reopen should prefer QR auth flow contract design over more UI-shell prose
 - choose the next pass by mapping it to one of the three optimization pillars above

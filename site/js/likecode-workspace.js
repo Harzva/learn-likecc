@@ -14,10 +14,20 @@
     var evolutionPath = document.getElementById('workspace-evolution-path')
     var evolutionStatus = document.getElementById('workspace-evolution-status')
     var daemonJump = document.getElementById('workspace-daemon-jump')
+    var connectorTargetInput = document.getElementById('workspace-connector-target-input')
+    var connectorNoteInput = document.getElementById('workspace-connector-note-input')
     var activeTask = null
     var taskPayload = null
     var currentLogMode = 'latest'
     var daemonTaskId = null
+    var workspaceMeta = null
+    var connectorState = {
+        shell_mode: 'ui-shell',
+        bind_state: 'unbound',
+        target_dialog: '',
+        note: 'local draft only',
+    }
+    var CONNECTOR_STATE_KEY = 'likecode_workspace_connector_shell_v1'
 
     function esc(s) {
         return String(s || '')
@@ -39,6 +49,48 @@
         if (!el) return
         el.textContent = text
         el.className = 'likecode-workspace-status likecode-workspace-status--' + (tone || 'neutral')
+    }
+
+    function loadConnectorState() {
+        try {
+            var raw = window.localStorage.getItem(CONNECTOR_STATE_KEY)
+            if (!raw) return
+            var parsed = JSON.parse(raw)
+            connectorState = Object.assign({}, connectorState, parsed || {})
+        } catch (error) {}
+    }
+
+    function persistConnectorState() {
+        try {
+            window.localStorage.setItem(CONNECTOR_STATE_KEY, JSON.stringify(connectorState))
+        } catch (error) {}
+    }
+
+    function connectorTone(state) {
+        if (state === 'bound') return 'ready'
+        if (state === 'qr-wait') return 'attention'
+        if (state === 'adapter-draft') return 'attention'
+        return 'neutral'
+    }
+
+    function renderConnectorShell() {
+        setText('workspace-connector-mode', connectorState.shell_mode || 'ui-shell')
+        setText('workspace-connector-bind-state', connectorState.bind_state || 'unbound')
+        setText('workspace-connector-target', connectorState.target_dialog || '--')
+        if (connectorTargetInput) connectorTargetInput.value = connectorState.target_dialog || ''
+        if (connectorNoteInput) connectorNoteInput.value = connectorState.note || ''
+        setStatus(
+            document.getElementById('workspace-connector-status'),
+            (connectorState.shell_mode || 'ui-shell') + ' / ' + (connectorState.bind_state || 'unbound'),
+            connectorTone(connectorState.bind_state)
+        )
+        setText('workspace-connector-note-preview', 'note: ' + (connectorState.note || 'local draft only'))
+    }
+
+    function updateConnectorState(patch) {
+        connectorState = Object.assign({}, connectorState, patch || {})
+        persistConnectorState()
+        renderConnectorShell()
     }
 
     function parseChecklist(text) {
@@ -149,6 +201,25 @@
             if (!response.ok) throw new Error('HTTP ' + response.status)
             return response.json()
         })
+    }
+
+    function setHref(id, href) {
+        var el = document.getElementById(id)
+        if (el && href) el.href = href
+    }
+
+    function applyWorkspaceMeta(meta) {
+        workspaceMeta = meta || {}
+        document.title = (workspaceMeta.shell_title || 'Workspace Shell') + '（本地）'
+        setText('workspace-brand-eyebrow', workspaceMeta.shell_eyebrow || 'Codex Loop Workspace')
+        setText('workspace-brand-title', workspaceMeta.shell_title || '任务池 + 计划编辑 + Runtime 同屏')
+        setText('workspace-brand-summary', workspaceMeta.shell_summary || '本地 workspace shell')
+        setText('workspace-runtime-note', 'workspace: ' + (workspaceMeta.workspace_root || '—'))
+
+        var links = workspaceMeta.links || {}
+        setHref('workspace-link-task-board', links.task_board || 'topic-loop-task-board.html')
+        setHref('workspace-link-monitor', links.monitor || 'topic-codex-loop-console.html')
+        setHref('workspace-link-home', links.home || 'index.html')
     }
 
     function stateTone(state) {
@@ -331,20 +402,28 @@
     }
 
     function loadTasks() {
-        return fetchJson('data/loop-task-board.json')
+        return fetchJson(relayBase() + '/api/task-board')
             .then(function (payload) {
-                taskPayload = payload
+                taskPayload = payload.task_board || payload
                 renderTaskList()
                 var current = activeTask
                 if (current) {
-                    var refreshed = ((payload.recurring || []).find(function (item) { return item.id === current.id }))
+                    var refreshed = (((taskPayload || {}).recurring || []).find(function (item) { return item.id === current.id }))
                     if (refreshed) {
                         renderTaskSummary(refreshed)
                     }
-                } else if ((payload.recurring || []).length) {
-                    selectTask(filteredTasks()[0] || payload.recurring[0])
+                } else if (((taskPayload || {}).recurring || []).length) {
+                    selectTask(filteredTasks()[0] || taskPayload.recurring[0])
                 }
             })
+    }
+
+    function loadWorkspaceMeta() {
+        return fetchJson(relayBase() + '/api/workspace/meta')
+            .then(function (payload) {
+                applyWorkspaceMeta(payload.meta || {})
+            })
+            .catch(function () {})
     }
 
     function savePlan() {
@@ -417,8 +496,42 @@
     evolutionPath.addEventListener('input', function () {
         setStatus(evolutionStatus, 'edited', 'neutral')
     })
+    if (connectorTargetInput) {
+        connectorTargetInput.addEventListener('input', function () {
+            updateConnectorState({ target_dialog: connectorTargetInput.value.trim() })
+        })
+    }
+    if (connectorNoteInput) {
+        connectorNoteInput.addEventListener('input', function () {
+            updateConnectorState({ note: connectorNoteInput.value.trim() || 'local draft only' })
+        })
+    }
+    document.getElementById('workspace-connector-qr').addEventListener('click', function () {
+        updateConnectorState({
+            shell_mode: 'mock-qr',
+            bind_state: 'qr-wait',
+        })
+    })
+    document.getElementById('workspace-connector-bound').addEventListener('click', function () {
+        updateConnectorState({
+            shell_mode: 'adapter-draft',
+            bind_state: 'bound',
+        })
+    })
+    document.getElementById('workspace-connector-reset').addEventListener('click', function () {
+        connectorState = {
+            shell_mode: 'ui-shell',
+            bind_state: 'unbound',
+            target_dialog: '',
+            note: 'local draft only',
+        }
+        persistConnectorState()
+        renderConnectorShell()
+    })
 
-    loadTasks()
+    loadConnectorState()
+    renderConnectorShell()
+    loadWorkspaceMeta().then(loadTasks).catch(loadTasks)
     refreshRuntime()
     refreshLog('latest')
 })()
