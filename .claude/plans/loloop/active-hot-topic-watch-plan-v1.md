@@ -28,7 +28,7 @@ Scope: build and maintain a site-level 热门话题专项 that aggregates AIbase
 - [x] `site/md/topic-hot-watch.md`
 - [x] `.claude/skills/hot-topic-curation/`
 - [x] one downstream routed hotspot update from a newly fetched item
-- [ ] one stronger source-policy refinement after more real usage
+- [x] one stronger source-policy refinement after more real usage
 
 ## Route targets
 
@@ -52,3 +52,4 @@ Scope: build and maintain a site-level 热门话题专项 that aggregates AIbase
 - The hot-topic hub is an intake + routing surface, not the final destination for every item.
 - 2026-04-12: first bounded downstream route landed on `site/topic-agent-hot.html` by taking `Build Agents That Don't Fail in Production` from the local snapshot and turning it into a real curated entry instead of leaving it stranded inside the intake layer
 - 2026-04-12: source roster now also includes `Hugging Face Blog` via `https://huggingface.co/blog/feed.xml`; this gives the intake layer a stable official-blog RSS lane for model / embedding / infra / agent-adjacent ecosystem items
+- 2026-04-12: source policy now explicitly separates three lanes after real usage: discovery digest, independent RSS commentary, and official product / ecosystem blog RSS

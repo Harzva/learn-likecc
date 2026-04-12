@@ -548,6 +548,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Stay on Task 12 for one more bounded source-roster pass because the intake plan still had one equally clear low-risk expansion path using an RSS source the current fetcher already supports
 - [x] Add `Hugging Face Blog` as the third trusted hot-topic source and verify that the current fetch pipeline writes its entries into `site/data/hot-topic-snapshot.json`
 - [x] Verify the Task 12 source-roster pass with `python3 tools/fetch_hot_topic_sources.py --write`, `python3 tools/refresh_site_topic_metadata.py`, `python3 tools/build_loop_task_board.py`, and `python3 tools/check_site_md_parity.py`
+- [x] Stay on Task 12 for one more bounded policy pass because the plan still had one clear unchecked item that could now be grounded in real usage instead of speculation
+- [x] Refine the hot-topic source policy into three explicit lanes after the first real route and third-source expansion, and sync the same editorial rule back into `topic-hot-watch`
+- [x] Verify the Task 12 source-policy pass with `python3 tools/refresh_site_topic_metadata.py`, `python3 tools/build_loop_task_board.py`, and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail
 
@@ -558,5 +561,5 @@ Keep each round bounded to one page or one UI component cluster.
 - tighten one more detail on `site/topic-superset-unpacked.html`
 - review another data-driven page for repeated fetch or loading-state gaps
 - stay on Task 11 only if there is one more bounded site-map / metadata sync gap with the same main-site leverage
-- stay on Task 12 only if there is one more similarly clear source-roster or downstream-route follow-up with low editorial risk
+- treat Task 12 as locally healthy unless a new low-risk route target, source class, or source-policy gap appears
 - choose the next pass by mapping it to one of the three optimization pillars above

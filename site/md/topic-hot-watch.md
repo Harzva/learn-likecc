@@ -18,6 +18,12 @@
 - Daily Dose of Data Science（RSS）
 - Hugging Face Blog（官方博客 RSS）
 
+当前来源池按三条 lane 管理：
+
+- 公开聚合页负责 discovery
+- 独立 RSS 负责稳定工程评论
+- 官方博客 RSS 负责 primary-source 校准
+
 源配置文件：
 
 - `site/data/hot-topic-sources.json`
@@ -49,4 +55,5 @@ python3 tools/fetch_hot_topic_sources.py --write
 
 - 新增源时，先改 `site/data/hot-topic-sources.json`
 - 刷新时，运行 `python3 tools/fetch_hot_topic_sources.py --write`
+- 新增源后，先判断它属于 discovery digest、independent RSS 还是 official blog RSS，再决定默认 route hints，不要把所有 RSS 当成同一类
 - 如果来源池或路由逻辑变了，也要同步更新这页和相关热点页

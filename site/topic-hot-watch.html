@@ -80,6 +80,7 @@
                             <p>代表官方产品 / 生态博客 RSS。适合补模型发布、embedding / reranker、infra 与开源生态向热点，再路由到工具链 / 大模型 / RAG 相关页。</p>
                         </div>
                     </div>
+                    <p>当前来源池按三条 lane 管理：公开聚合页负责 discovery，独立 RSS 负责稳定工程评论，官方博客 RSS 负责 primary-source 校准。这样做的目的，是避免某一类源把整个 intake 面压扁成单一视角。</p>
                     <p class="hot-watch-inline-note">技能入口：<code>.claude/skills/hot-topic-curation/SKILL.md</code>；源配置：<code>site/data/hot-topic-sources.json</code>。</p>
                 </section>
 
@@ -116,6 +117,7 @@
                     <ol>
                         <li>先改 <code>site/data/hot-topic-sources.json</code>，不要把新源只写进文案里。</li>
                         <li>运行 <code>python3 tools/fetch_hot_topic_sources.py --write</code> 刷新本地快照。</li>
+                        <li>新增源后，先判断它属于 discovery digest、independent RSS 还是 official blog RSS，再决定默认 route hints，不要把所有 RSS 当成同一类。</li>
                         <li>如果来源池或路由逻辑有明显变化，同步更新这页和对应热点页。</li>
                         <li>如果某条热点足够重要，再交给 <code>keyword-site-topic</code> 做深一层的站内稿件。</li>
                     </ol>

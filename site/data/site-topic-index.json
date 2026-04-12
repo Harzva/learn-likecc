@@ -1,7 +1,7 @@
 {
   "meta": {
     "updated": "2026-04-12",
-    "count": 41,
+    "count": 42,
     "source": "git history + site/topic-*.html"
   },
   "groups": [
@@ -348,6 +348,14 @@
     {
       "name": "其他专题",
       "items": [
+        {
+          "slug": "topic-ai-scientist",
+          "title": "AI-Scientist 专题",
+          "updated": "2026-04-12",
+          "group": "其他专题",
+          "href": "topic-ai-scientist.html",
+          "md_path": "site/md/topic-ai-scientist.md"
+        },
         {
           "slug": "topic-superset-unpacked",
           "title": "Superset 解构 - 庖丁解牛专题",
