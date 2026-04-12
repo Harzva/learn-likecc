@@ -57,7 +57,9 @@
 
 - 它不是再多列一个产品名
 - 而是在回答“终端里的多模型能力如何真正被调度起来”
+- 它已经附带 `tests/test_wrappers.sh` 这类本地 smoke test，不只是概念说明
 - 同时也给 `gemini-plugin-cc`、`qwen-plugin-cc`、`grok-plugin-cc` 到 `cursor/qoder/trae-plugin-cc` 这一整条插件家族提供 umbrella repo
+- 而且分层是清楚的：统一命名、workflow 和 wrapper 留在总仓库，provider 细节下沉到各自 `*-plugin-cc`
 
 ## 别混淆：有些产品和 CLI Agent 有关，但不该直接当成纯 CLI
 

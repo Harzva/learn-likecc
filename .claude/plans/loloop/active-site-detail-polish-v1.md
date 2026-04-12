@@ -530,6 +530,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Switch from the deferred Task 9 logo wave to a fresh bounded Task 8 reference-mining slice with a clearer unchecked current-focus item
 - [x] Reopen `site/topic-agent-comparison.html` for one bounded `ChatDev 2.0` generation-shift note so the runtime-shell section no longer over-inherits the older virtual-software-company framing
 - [x] Verify the Task 8 generation-shift pass with `python3 tools/check_site_md_parity.py`
+- [x] Switch from the now-recooled Task 8 slice to Task 10 because the umbrella repo plan has a clearer active unchecked focus than the broader reference-mining pool
+- [x] Land one bounded Task 10 README-positioning pass on `projects/everything-agent-cli-to-claude-code/` and sync the same recommendation logic back into `site/topic-ai-cli-agent.html`
+- [x] Verify the Task 10 umbrella-repo pass with `bash projects/everything-agent-cli-to-claude-code/tests/test_wrappers.sh` and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail
 
@@ -539,5 +542,5 @@ Keep each round bounded to one page or one UI component cluster.
 
 - tighten one more detail on `site/topic-superset-unpacked.html`
 - review another data-driven page for repeated fetch or loading-state gaps
-- choose the next higher-value recurring slice now that the first Task 9 logo wave is locally deferred
+- continue Task 10 only if there is one more bounded umbrella-repo split / example / verification improvement with a clearer active frontier than the other recurring plans
 - choose the next pass by mapping it to one of the three optimization pillars above
