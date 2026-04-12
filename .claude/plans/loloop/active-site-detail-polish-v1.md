@@ -602,6 +602,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Switch away from the now-locally-healthy Task 11 line and reopen Task 10 because the umbrella repo still had one sharper low-risk verification frontier than the remaining recurring slices
 - [x] Land one bounded Task 10 family-verification pass by adding an umbrella-level script that checks the current `*-plugin-cc` smoke matrix and syncing that proof back into the site recommendation
 - [x] Verify the Task 10 family-verification pass with `bash projects/everything-agent-cli-to-claude-code/tests/test_wrappers.sh`, `bash projects/everything-agent-cli-to-claude-code/tests/test_plugin_family.sh`, and `python3 tools/check_site_md_parity.py`
+- [x] Branch from the currently stable non-media frontiers back into queued media work because the local time is inside the allowed Zhihu publish window and Task 1 still points at a ready image-rich article
+- [x] Re-run the queued Task 1 Superset Zhihu publish through the multimodal pipeline and confirm that the current cookie, selector, image-upload, and final publish path still succeed end-to-end
+- [x] Reconcile the stale queued-media contract after the rerun showed `24-Superset解构外层调度-知乎图文.md` already had a prior published record; treat Task 1 as closed unless the user explicitly asks for an overwrite/edit pass
 
 ## Guardrail
 
@@ -629,4 +632,5 @@ Keep each round bounded to one page or one UI component cluster.
 - treat the fifth Task 15 enforcement-hook pass as locally landed; next reopen should prefer switching away unless there is a clearly stronger pre-runtime enforcement slice than the other active plans
 - treat the latest Task 11 connector-branch pass as locally landed too; next reopen should prefer another equally clear site-map / metadata sync gap rather than more retelling of the same `Loop Lab` branch
 - treat the latest Task 10 family-verification pass as locally landed too; next reopen should prefer a sharper provider-ready demo or cross-repo verification artifact rather than more recommendation framing
+- treat the queued `24-*` Superset Zhihu publish as fully closed now; next media reopen should start from another ready draft or an explicit overwrite request, not from the stale Task 1 pointer
 - choose the next pass by mapping it to one of the three optimization pillars above
