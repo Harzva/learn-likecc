@@ -490,6 +490,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Close the current ready daytime Zhihu publish wave after `39-*` instead of forcing another weaker media move
 - [x] Return to one bounded low-risk site-polish slice after the ready publication queue is exhausted
 - [x] Replace the remaining inline hero-particle seed styling on `site/index-old.html` with scoped classes and verify the page no longer uses inline `style=` attributes
+- [x] Stay on the site-polish line for one more bounded site-shell accessibility pass after the legacy homepage cleanup
+- [x] Improve theme-toggle accessibility by syncing semantic labels with the current and next theme state
+- [x] Verify the theme-toggle accessibility update with `node --check site/js/app.js`
 
 ## Guardrail
 

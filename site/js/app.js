@@ -1281,7 +1281,19 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateThemeIcon(theme) {
         const themeToggle = document.getElementById('theme-toggle')
         if (themeToggle) {
-            themeToggle.innerHTML = `<span>${themeNames[theme] || '🎨'}</span>`
+            const currentLabel = themeNames[theme] || '🎨'
+            const themeIndex = themes.indexOf(theme)
+            const nextTheme = themes[(themeIndex + 1 + themes.length) % themes.length] || themes[0]
+            const nextLabel = themeNames[nextTheme] || '🎨'
+            const labelText = `切换主题，当前：${currentLabel}；下一个：${nextLabel}`
+
+            themeToggle.replaceChildren()
+            const label = document.createElement('span')
+            label.textContent = currentLabel
+            themeToggle.appendChild(label)
+            themeToggle.setAttribute('aria-label', labelText)
+            themeToggle.title = labelText
+            themeToggle.dataset.theme = theme
         }
     }
 
