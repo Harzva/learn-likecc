@@ -542,6 +542,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Switch from the now-locally-mature Task 10 explanation wave to Task 11 because the site-wide map / metadata plan strengthens the main site more directly
 - [x] Make the `CLI Agent -> everything-agent-cli` branch explicit in the site map diagram and page copy so the umbrella-repo line is visible from the main navigation graph instead of only the topic page and generated index
 - [x] Verify the Task 11 site-map pass with `python3 tools/refresh_site_topic_metadata.py`, `python3 tools/check_site_md_parity.py`, and `node --check site/js/app.js`
+- [x] Switch from the now-cleared Task 11 site-map gap to Task 12 because the hot-topic intake plan still had a sharper unchecked follow-up than the other recurring slices
+- [x] Route one fresh item from `site/data/hot-topic-snapshot.json` into `site/topic-agent-hot.html` as the first bounded downstream editorial follow-up for the hot-topic intake layer
+- [x] Verify the Task 12 downstream-route pass with `python3 tools/refresh_site_topic_metadata.py`, `python3 tools/build_loop_task_board.py`, and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail
 
@@ -552,4 +555,5 @@ Keep each round bounded to one page or one UI component cluster.
 - tighten one more detail on `site/topic-superset-unpacked.html`
 - review another data-driven page for repeated fetch or loading-state gaps
 - stay on Task 11 only if there is one more bounded site-map / metadata sync gap with the same main-site leverage
+- stay on Task 12 only if there is one more similarly clear source-roster or downstream-route follow-up with low editorial risk
 - choose the next pass by mapping it to one of the three optimization pillars above

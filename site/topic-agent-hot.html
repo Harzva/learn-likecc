@@ -38,7 +38,7 @@
     <section id="curated" class="section section--soft agent-hot-section agent-hot-section--entry">
         <div class="container">
             <h2 class="section-title">精选摘要表</h2>
-            <p class="section-desc agent-hot-copy agent-hot-copy--lead">示例条目来自 <a href="https://blog.dailydoseofds.com/" target="_blank" rel="noopener noreferrer">Daily Dose of Data Science</a> 公开 RSS。批量更新请用 Skill：<code>.cursor/skills/curate-external-feed-topics/</code> + <code>tools/fetch_substack_rss.py</code>。</p>
+            <p class="section-desc agent-hot-copy agent-hot-copy--lead">示例条目来自 <a href="https://blog.dailydoseofds.com/" target="_blank" rel="noopener noreferrer">Daily Dose of Data Science</a> 公开 RSS 与站内 <a href="topic-hot-watch.html">热门话题专项</a> 的 intake 路线。批量更新请用 Skill：<code>.claude/skills/hot-topic-curation/</code>，并通过 <code>tools/fetch_hot_topic_sources.py</code> 刷新本地快照。</p>
             <div class="agent-hot-table-wrap">
                 <table class="ref-table ref-table--detail">
                     <thead>
@@ -50,6 +50,12 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <tr>
+                            <td>2026-04-09</td>
+                            <td class="ref-usage"><strong>Build Agents That Don’t Fail in Production</strong>：讨论把 Agent 从 demo 推到生产环境时最容易失控的环节，包括失败恢复、状态边界、监控与人工兜底。它很适合和本站的 <a href="topic-hot-watch.html">热门话题专项</a> intake 路线一起看，因为这正是“热点标题值得继续往下沉淀”的典型下游落点。</td>
+                            <td><a href="https://blog.dailydoseofds.com/p/build-agents-that-dont-fail-in-production" target="_blank" rel="noopener noreferrer">Daily Dose →</a></td>
+                            <td>来自本地热点快照；production agent / reliability</td>
+                        </tr>
                         <tr>
                             <td>2026-04</td>
                             <td class="ref-usage"><strong>Hermes Agent（Nous Research）</strong>：一个把<strong>持久化记忆</strong>、<strong>自改进 skills</strong>、<strong>40+ tools</strong> 与 <strong>消息网关</strong>放进同一条 Agent 主链的开源项目。它同时支持 CLI 与 Telegram/Discord/Slack 等入口，适合与本站的 Memory、Skills、loop/daemon 讨论放在同一视角下理解。</td>
@@ -100,12 +106,13 @@
                 <div class="quickstart-card">
                     <h3>推荐路径</h3>
                     <ol class="agent-hot-list">
-                        <li>用 <code>python3 tools/fetch_substack_rss.py --json</code> 拉最新 <code>&lt;title&gt;</code> / <code>&lt;link&gt;</code>。</li>
-                        <li>按 Skill 中的关键词规则分到 RAG 或 Agent 热点页。</li>
+                        <li>优先运行 <code>python3 tools/fetch_hot_topic_sources.py --write</code> 刷新热点快照。</li>
+                        <li>先挑一条真的值得继续讲的条目，再像上面的 <em>Build Agents That Don’t Fail in Production</em> 一样路由进下游热点页，而不是把 snapshot 原样堆在 intake 层。</li>
+                        <li>按 <code>hot-topic-curation</code> 的路由规则分到 Agent、RAG 或其他专题热点页。</li>
                         <li>用模型生成<strong>短中文摘要</strong>，人工校对后插入表格。</li>
                         <li>避免整篇转载；保留原文链接与作者站点署名。</li>
                     </ol>
-                    <p class="agent-hot-inline-note"><a href="topic-rag-hot.html#ingest">RAG 热点页的 robots/RSS 说明 →</a></p>
+                    <p class="agent-hot-inline-note"><a href="topic-hot-watch.html">热门话题专项入口 →</a> · <a href="topic-rag-hot.html#ingest">RAG 热点页的 robots/RSS 说明 →</a></p>
                 </div>
             </div>
         </div>
