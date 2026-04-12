@@ -21,6 +21,7 @@
 - 真正还差的，是三层外壳再加厚
 - 第一条真正回写到 codex-loop 路线图的借鉴能力
 - persistent wiki 应该先从哪一层长出来
+- watchdog health layer 应该怎么与 daemon / workspace 分层
 - 把这条线做成长期子专题，最顺的开展路线
 
 ## 各节摘要
@@ -128,6 +129,35 @@ Mermaid 更适合：是。
 
 等这三层真的不够用了，再考虑单独长出 `project wiki`。
 
+### watchdog health layer 应该怎么与 daemon / workspace 分层
+
+这一轮先不做独立 watchdog 进程，而是先把三层边界说清：
+
+| 层 | 主要职责 | 不该承担什么 | 当前 codex-loop 对应物 |
+| --- | --- | --- | --- |
+| daemon | 驱动 tick、选任务、推进 handoff、维护主循环节奏 | 不该把所有健康探测和人工操作入口都塞进自己 | `.codex-loop/prompt.md` + daemon tick / thread resume 约束 |
+| workspace | 给操作者看状态、改计划、写 evolution、做局部控制 | 不该替代主循环做全局调度，也不该自己判断长期健康 | `site/app-likecode-workspace.html` + relay shell |
+| watchdog | 低频、独立、面向异常的健康检查与告警 | 不该承担内容生产、任务选择或富交互工作台职责 | 目前还没有独立层，只是一个明确缺口 |
+
+从 `ARIS` 的 `watchdog.py` 看，watchdog 更像：
+
+- 单独注册任务
+- 低频轮询 session / GPU / download / idle
+- 输出状态文件和 summary
+- 只在异常时发出 `DEAD / STALLED / IDLE` 一类信号
+
+所以对 `codex-loop` 来说，最合适的边界不是“再造一个大 daemon”，而是：
+
+1. daemon 继续负责推进循环
+2. workspace 继续负责人工可视化和局部控制
+3. watchdog 以后如果要长出来，只负责健康探测、异常摘要和恢复提示
+
+因此这轮也顺手定一个收缩决策：
+
+- 暂时不单独新开 `watchdog` 计划线
+- 先把它保留在 `codex-loop in sleep` 这个子专题里
+- 等真的出现反复的 shell orphan、relay 卡死、session 丢失或下载挂起，再把它升级成独立计划线
+
 ### 最顺的开展路线
 
 建议顺序：
@@ -135,7 +165,8 @@ Mermaid 更适合：是。
 1. 固定站内口径：ARIS = 研究专用 in-sleep system，codex-loop = 通用型 in-sleep shell
 2. 先把 `meta-optimize` 落成最小回写规则：每轮提炼一条 `loop improvement candidate`
 3. 再把 `persistent wiki` 落成 `topic wiki + working memory + failed-attempt memory` 的三层布局
-4. 在 AI-Scientist 专题里承担“研究系统如何长出 sleep 层”的解释任务
+4. 再把 `watchdog` 固定成健康探测层，而不是再膨胀一个执行层
+5. 在 AI-Scientist 专题里承担“研究系统如何长出 sleep 层”的解释任务
 
 ## 参考与原始链接
 

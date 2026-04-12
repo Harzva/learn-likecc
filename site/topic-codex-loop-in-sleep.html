@@ -23,6 +23,7 @@
                 <a href="#gaps" class="nav-link">还差什么</a>
                 <a href="#meta-opt-routeback" class="nav-link">第一条回写</a>
                 <a href="#wiki-layout" class="nav-link">Wiki 布局</a>
+                <a href="#watchdog-boundary" class="nav-link">Watchdog 边界</a>
                 <a href="#route" class="nav-link">开展路线</a>
             </div>
             <div class="nav-actions">
@@ -274,6 +275,55 @@
         </div>
     </section>
 
+    <section id="watchdog-boundary" class="section section--soft">
+        <div class="container">
+            <h2 class="section-title">watchdog health layer 应该怎么与 daemon / workspace 分层</h2>
+            <p class="section-desc meta-topic-copy meta-topic-copy--lead">
+                这一轮先不做独立 watchdog 进程，而是先把三层边界说清。对 `codex-loop` 来说，关键不是“再造一个大 daemon”，而是把 <strong>推进循环</strong>、<strong>人工操作</strong>、<strong>异常健康检查</strong> 三类职责拆干净。
+            </p>
+            <table class="compare-table">
+                <tr>
+                    <th>层</th>
+                    <th>主要职责</th>
+                    <th>不该承担什么</th>
+                    <th>当前 codex-loop 对应物</th>
+                </tr>
+                <tr>
+                    <td>daemon</td>
+                    <td>驱动 tick、选任务、推进 handoff、维护主循环节奏</td>
+                    <td>不该把所有健康探测和人工操作入口都塞进自己</td>
+                    <td><code>.codex-loop/prompt.md</code> + daemon tick / thread resume 约束</td>
+                </tr>
+                <tr>
+                    <td>workspace</td>
+                    <td>给操作者看状态、改计划、写 evolution、做局部控制</td>
+                    <td>不该替代主循环做全局调度，也不该自己判断长期健康</td>
+                    <td><code>site/app-likecode-workspace.html</code> + relay shell</td>
+                </tr>
+                <tr>
+                    <td>watchdog</td>
+                    <td>低频、独立、面向异常的健康检查与告警</td>
+                    <td>不该承担内容生产、任务选择或富交互工作台职责</td>
+                    <td>目前还没有独立层，只是一个明确缺口</td>
+                </tr>
+            </table>
+            <div class="quickstart-grid meta-topic-grid meta-topic-grid--stack">
+                <div class="quickstart-card">
+                    <h3>ARIS 给的样子</h3>
+                    <p><code>watchdog.py</code> 更像任务注册 + 低频轮询 + 状态文件输出，只在 `DEAD / STALLED / IDLE` 这类异常上发信号。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>codex-loop 现在该怎么读</h3>
+                    <p>daemon 继续负责推进循环，workspace 继续负责人工可视化和局部控制，watchdog 以后如果要长出来，只负责健康探测、异常摘要和恢复提示。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>这轮的收缩决策</h3>
+                    <p>暂时不单独新开 `watchdog` 计划线；只有当 shell orphan、relay 卡死、session 丢失或下载挂起反复出现时，再升级成独立计划线。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="route" class="section section--soft">
         <div class="container">
             <h2 class="section-title">把这条线做成长期子专题，最顺的开展路线</h2>
@@ -291,7 +341,11 @@
                     <p>先把 <code>topic wiki + working memory + failed-attempt memory</code> 读清，再决定要不要单独长出更重的 project wiki。</p>
                 </div>
                 <div class="quickstart-card">
-                    <h3>第四步：作为 AI-Scientist 邻接样本</h3>
+                    <h3>第四步：把 watchdog 固定成健康层</h3>
+                    <p>把 <code>watchdog</code> 固定成健康探测、异常摘要和恢复提示层，而不是再膨胀一个执行层。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>第五步：作为 AI-Scientist 邻接样本</h3>
                     <p>让它承担 “研究系统如何长出 sleep 层” 的解释任务，而不是跟 paper pipeline 混成一页。</p>
                 </div>
             </div>

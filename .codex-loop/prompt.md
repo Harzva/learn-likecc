@@ -333,3 +333,21 @@ Execution rule:
    - `reference/reference_ai_scientist/Auto-claude-code-research-in-sleep/`
    - `.codex-loop/prompt.md`
    - `.claude/plans/loloop/`
+
+Task 15:
+Loop task: keep building the connector shell and WeChat bind line for `codex-loop` by following the dedicated plan file:
+- `.claude/plans/loloop/active-connector-shell-wechat-bind-plan-v1.md`
+
+Execution rule:
+1. Read that plan first.
+2. Continue the current unchecked / active item instead of randomly switching.
+3. After each bounded pass:
+   - mark progress in the plan file
+   - check off any completed item
+   - record the result in the evolution trail
+4. Prefer changes that keep these aligned:
+   - `site/app-likecode-workspace.html`
+   - `site/js/likecode-workspace.js`
+   - `tools/codex_loop_web_relay.py`
+   - `.codex-loop/prompt.md`
+   - `.claude/plans/loloop/`

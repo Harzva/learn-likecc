@@ -35,8 +35,8 @@
 ### 3. Watchdog health layer
 
 - [x] 识别 `watchdog.py` 提供了健康层样本
-- [ ] 把 daemon / workspace / watchdog 三层边界写清
-- [ ] 决定要不要在 `codex-loop` 里单独建 watchdog 计划线
+- [x] 把 daemon / workspace / watchdog 三层边界写清
+- [x] 决定要不要在 `codex-loop` 里单独建 watchdog 计划线
 
 ### 4. Workflow family
 
@@ -74,4 +74,4 @@
 
 ## Current status
 
-第二条 route-back 也已落地：`persistent wiki` 先不长成一个过宽的 `project wiki`，而是先把现有结构读成三层 memory layout：`topic wiki = site topic pages`、`working memory = active plans`、`failed-attempt memory = evolution trail`。下一步重点可以切到 `watchdog` 边界，或者在 `AI-Scientist` 总页里把这条子专题入口固定下来。
+第三条 route-back 也已落地：`watchdog` 先不独立成新 daemon，而是先被固定成健康探测层。当前边界已经明确：`daemon = 推进循环`、`workspace = 人工操作与可视化`、`watchdog = 低频异常健康检查`。而且在没有反复健康事故前，暂不单独新开 watchdog 计划线。下一步重点可以切到 `AI-Scientist` 总页 pinning，或者回到其他更高价值的循环切片。
