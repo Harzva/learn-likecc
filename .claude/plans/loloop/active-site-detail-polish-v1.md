@@ -605,6 +605,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Branch from the currently stable non-media frontiers back into queued media work because the local time is inside the allowed Zhihu publish window and Task 1 still points at a ready image-rich article
 - [x] Re-run the queued Task 1 Superset Zhihu publish through the multimodal pipeline and confirm that the current cookie, selector, image-upload, and final publish path still succeed end-to-end
 - [x] Reconcile the stale queued-media contract after the rerun showed `24-Superset解构外层调度-知乎图文.md` already had a prior published record; treat Task 1 as closed unless the user explicitly asks for an overwrite/edit pass
+- [x] Stay on the still-open daytime media lane for one bounded Task 2 publish because `25-SourceMap源码专题-知乎图文.md` was a mature, image-complete, unpublished hub-style draft with stronger spread value than the current non-media frontiers
+- [x] Recheck the ready `25-SourceMap源码专题-知乎图文.md` draft for publish evidence, image completeness, and topic maturity before attempting publication
+- [x] Publish `25-SourceMap源码专题-知乎图文.md` to Zhihu with the multimodal pipeline and record the returned article URL
 
 ## Guardrail
 
@@ -633,4 +636,5 @@ Keep each round bounded to one page or one UI component cluster.
 - treat the latest Task 11 connector-branch pass as locally landed too; next reopen should prefer another equally clear site-map / metadata sync gap rather than more retelling of the same `Loop Lab` branch
 - treat the latest Task 10 family-verification pass as locally landed too; next reopen should prefer a sharper provider-ready demo or cross-repo verification artifact rather than more recommendation framing
 - treat the queued `24-*` Superset Zhihu publish as fully closed now; next media reopen should start from another ready draft or an explicit overwrite request, not from the stale Task 1 pointer
+- treat the `25-*` SourceMap hub draft as now published too; next media reopen should prefer another clearly ready unpublished draft instead of revisiting the SourceMap hub line
 - choose the next pass by mapping it to one of the three optimization pillars above
