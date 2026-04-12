@@ -10,6 +10,7 @@ Scope: keep improving the umbrella repo `projects/everything-agent-cli-to-claude
 - [x] Land one bounded runnable-proof pass: make the shortest no-login and workflow-demo path obvious from the repo and the site recommendation
 - [x] Land one bounded dual-role pass: explain the umbrella repo as both a usable repo and an architecture sample, and sync that framing back into the site topic
 - [x] Land one bounded family-verification pass: add one umbrella-level entry that checks the current `*-plugin-cc` smoke matrix and sync that proof back into the site recommendation
+- [x] Land one bounded provider-demo pass: turn the currently empty `examples/` surface into a provider-ready demo matrix and sync that entry back into the site recommendation
 - [ ] Continue stabilizing the umbrella repo as a recommendable CLI Agent reference with the next bounded split / example / verification slice
 
 ## Main product areas
@@ -51,4 +52,5 @@ Scope: keep improving the umbrella repo `projects/everything-agent-cli-to-claude
 - 2026-04-12: third bounded Task 10 pass landed across `docs/workflows/multi-model-review.md`, `README.md`, `README_CN.md`, and the site recommendation block on `topic-ai-cli-agent`; the repo now has an explicit fastest runnable proof path instead of only deeper workflow docs
 - 2026-04-12: fourth bounded Task 10 pass landed across `README.md`, `site/topic-everything-agent-cli.html`, and `site/md/topic-everything-agent-cli.md`; the umbrella repo is now taught explicitly in two modes: usable repo and architecture sample
 - 2026-04-12: fifth bounded Task 10 pass landed across `tests/test_plugin_family.sh`, `README.md`, `README_CN.md`, `topic-everything-agent-cli`, and `topic-ai-cli-agent`; the umbrella repo now exposes one family-level verification entry instead of only repo-local smoke proof
-- Next strong bounded candidate: only continue Task 10 if there is a sharper provider-ready demo artifact or cross-repo verification surface than the other recurring frontiers; otherwise switch plans
+- 2026-04-12: sixth bounded Task 10 pass landed across `examples/README.md`, `README.md`, `README_CN.md`, `topic-everything-agent-cli`, and `topic-ai-cli-agent`; the umbrella repo now has one provider-ready demo matrix instead of leaving `examples/` as an empty placeholder
+- Next strong bounded candidate: only continue Task 10 if there is a sharper cross-repo verification or truly runnable provider demo artifact than the other recurring frontiers; otherwise switch plans

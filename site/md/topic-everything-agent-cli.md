@@ -80,6 +80,8 @@ web-login entitlement / subscription / free quota
   - `projects/everything-agent-cli-to-claude-code/tests/test_wrappers.sh`
 - plugin family 汇总验证：
   - `projects/everything-agent-cli-to-claude-code/tests/test_plugin_family.sh`
+- provider-ready demo 入口：
+  - `projects/everything-agent-cli-to-claude-code/examples/README.md`
 - provider 测试：
   - `projects/gemini-plugin-cc/tests/test_wrapper.sh`
   - `projects/qwen-plugin-cc/tests/test_wrapper.sh`
@@ -94,6 +96,7 @@ web-login entitlement / subscription / free quota
 - 已接入的 provider 在测命令构造和 workflow 输出
 - 还没真实接上的 scaffold 仓库，也先测统一参数面和占位契约
 - umbrella repo 现在还能顺序检查整条 `*-plugin-cc` 家族，而不只是证明自己那层 wrapper 能跑
+- umbrella repo 现在还给出一个 provider-ready demo matrix，让读者能先挑最短的一条 wrapper proof，再进入更长 workflow
 
 ## 05 · 为什么它同时是可用仓库和架构样本
 
@@ -102,6 +105,7 @@ web-login entitlement / subscription / free quota
 - usable repo
   - 先看 `tests/test_wrappers.sh`
   - 再看 `tests/test_plugin_family.sh`
+  - 再看 `examples/README.md`
   - 再看 `examples/workflows/multi-model-review.sh`
   - 再看 `bin/usecli-*.sh`
 - architecture sample
