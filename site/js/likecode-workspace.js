@@ -10,6 +10,9 @@
     var runtimeStatus = document.getElementById('workspace-runtime-status')
     var planStatus = document.getElementById('workspace-plan-status')
     var checklistHost = document.getElementById('workspace-checklist')
+    var evolutionEditor = document.getElementById('workspace-evolution-editor')
+    var evolutionPath = document.getElementById('workspace-evolution-path')
+    var evolutionStatus = document.getElementById('workspace-evolution-status')
     var activeTask = null
     var taskPayload = null
     var currentLogMode = 'latest'
@@ -50,6 +53,52 @@
                 }
             })
             .filter(Boolean)
+    }
+
+    function todayStamp() {
+        var now = new Date()
+        var year = now.getFullYear()
+        var month = String(now.getMonth() + 1).padStart(2, '0')
+        var day = String(now.getDate()).padStart(2, '0')
+        return year + '-' + month + '-' + day
+    }
+
+    function evolutionFilename(task) {
+        if (!task) return '.claude/plans/loloop/evolution-' + todayStamp() + '-note.md'
+        return '.claude/plans/loloop/evolution-' + todayStamp() + '-' + String(task.slug || 'task-note') + '.md'
+    }
+
+    function evolutionTemplate(task) {
+        var title = ((task || {}).plan || {}).title || (task || {}).headline || 'task'
+        var planPath = (task || {}).plan_path || '.claude/plans/loloop/active-*.md'
+        return [
+            '# ' + evolutionFilename(task).split('/').pop(),
+            '',
+            '## Plan',
+            '',
+            '- path: `' + planPath + '`',
+            '- bounded target: ',
+            '',
+            '## Completed',
+            '',
+            '- ',
+            '',
+            '## Failed or Deferred',
+            '',
+            '- ',
+            '',
+            '## Decisions',
+            '',
+            '- active task: `' + title + '`',
+            '- ',
+            '',
+            '## Next Handoff',
+            '',
+            '```text',
+            'Use codex-loop to continue the active plan at ' + planPath + '.',
+            '```',
+            '',
+        ].join('\n')
     }
 
     function renderChecklist() {
@@ -180,6 +229,7 @@
         }
         setText('workspace-evolution-name', task.latest_evolution ? task.latest_evolution.name : '暂无 evolution')
         setText('workspace-evolution-summary', task.latest_evolution ? (task.latest_evolution.summary || '暂无摘要。') : '还没有 evolution 摘要。')
+        resetEvolutionDraft(task)
     }
 
     function loadPlan(task) {
@@ -202,6 +252,15 @@
     function selectTask(task) {
         renderTaskSummary(task)
         loadPlan(task)
+    }
+
+    function resetEvolutionDraft(task) {
+        var target = task || activeTask
+        if (!target) return
+        evolutionPath.value = evolutionFilename(target)
+        evolutionEditor.value = evolutionTemplate(target)
+        setStatus(evolutionStatus, 'drafted', 'neutral')
+        setText('workspace-evolution-updated', 'updated: local draft')
     }
 
     function refreshRuntime() {
@@ -275,6 +334,25 @@
         })
     }
 
+    function saveEvolution() {
+        if (!evolutionPath.value.trim()) return
+        setStatus(evolutionStatus, 'saving', 'neutral')
+        fetchJson(relayBase() + '/api/plan/write', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                path: evolutionPath.value.trim(),
+                text: evolutionEditor.value,
+            }),
+        }).then(function (payload) {
+            setStatus(evolutionStatus, 'saved', 'ready')
+            setText('workspace-evolution-updated', 'updated: ' + (payload.updated_at || 'unknown'))
+        }).catch(function (error) {
+            setStatus(evolutionStatus, 'save failed', 'risk')
+            setText('workspace-evolution-updated', 'error: ' + error.message)
+        })
+    }
+
     document.getElementById('workspace-refresh').addEventListener('click', function () {
         loadTasks()
         refreshRuntime()
@@ -288,10 +366,18 @@
     document.getElementById('workspace-log-tick').addEventListener('click', function () { refreshLog('latest') })
     document.getElementById('workspace-log-message').addEventListener('click', function () { refreshLog('message') })
     planSave.addEventListener('click', savePlan)
+    document.getElementById('workspace-evolution-save').addEventListener('click', saveEvolution)
+    document.getElementById('workspace-evolution-reset').addEventListener('click', function () { resetEvolutionDraft(activeTask) })
     taskSearch.addEventListener('input', renderTaskList)
     planEditor.addEventListener('input', function () {
         renderChecklist()
         setStatus(planStatus, 'edited', 'neutral')
+    })
+    evolutionEditor.addEventListener('input', function () {
+        setStatus(evolutionStatus, 'edited', 'neutral')
+    })
+    evolutionPath.addEventListener('input', function () {
+        setStatus(evolutionStatus, 'edited', 'neutral')
     })
 
     loadTasks()

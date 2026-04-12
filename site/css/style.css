@@ -13812,6 +13812,10 @@ body.site-shell-overlay-open {
     line-height: 1.5;
 }
 
+.likecode-workspace-editor--compact {
+    min-height: 280px;
+}
+
 .likecode-workspace-foot {
     margin-top: 10px;
     display: flex;

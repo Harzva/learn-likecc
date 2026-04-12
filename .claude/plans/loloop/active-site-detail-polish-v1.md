@@ -557,6 +557,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Switch from the now-locally-healthy Task 11 site-map wave to Task 13 because the independent LikeCode workspace app still had a clear first unchecked product frontier
 - [x] Add checklist-aware plan interactions to the LikeCode workspace app so markdown tasks can be toggled from a dedicated checklist lane instead of only through raw editor text
 - [x] Verify the Task 13 checklist-aware pass with `node --check site/js/likecode-workspace.js`, `python3 -m py_compile tools/codex_loop_web_relay.py`, and `python3 tools/check_site_md_parity.py`
+- [x] Stay on Task 13 for one more bounded workspace-shell pass because the next unchecked item can still ride the existing guarded write path without reopening backend complexity
+- [x] Add a lightweight evolution composer to the LikeCode workspace app so a bounded-pass note can be drafted and saved from the same app shell instead of bouncing back to raw files
+- [x] Verify the Task 13 evolution-composer pass with `node --check site/js/likecode-workspace.js`, `python3 -m py_compile tools/codex_loop_web_relay.py`, and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail
 
@@ -570,4 +573,5 @@ Keep each round bounded to one page or one UI component cluster.
 - treat Task 12 as locally healthy unless a new low-risk route target, source class, or source-policy gap appears
 - treat the hot-topic intake chain as now visible from the main guide; only reopen Task 11 or Task 12 if another similarly clear navigation or routing gap appears
 - prefer Task 13 only if the next bounded move cleanly advances either evolution-note write-back or stronger active-task sync instead of reopening generic workspace-shell cosmetics
+- after the new evolution composer lands, prefer staying on Task 13 only for a stronger daemon-selected active-task sync; otherwise switch to the next clearer recurring frontier
 - choose the next pass by mapping it to one of the three optimization pillars above
