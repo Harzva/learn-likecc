@@ -92,6 +92,35 @@ const MERMAID_DIAGRAMS = {
     CAND --> X["AIDE ML<br/>benchmark-first optimization lab"]:::grayBox
     X -. 承接关系 .-> V`,
 
+    'codex-loop-in-sleep-ladder': `graph LR
+    classDef blueBox fill:#172130,stroke:#60a5fa,stroke-width:2px,color:#93c5fd;
+    classDef greenBox fill:#14251f,stroke:#34d399,stroke-width:2px,color:#6ee7b7;
+    classDef yellowBox fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#fcd34d;
+    classDef purpleBox fill:#241c2f,stroke:#c084fc,stroke-width:2px,color:#e9d5ff;
+    classDef grayBox fill:#1f2430,stroke:#94a3b8,stroke-width:2px,color:#cbd5e1;
+
+    subgraph A["ARIS / Auto-Research In Sleep"]
+        A1["workflow family<br/>idea-discovery · experiment-bridge · paper-writing"]:::blueBox
+        A2["persistent wiki<br/>research-wiki · anti-repeat memory"]:::greenBox
+        A3["meta optimize<br/>skill/runtime writeback"]:::yellowBox
+        A4["watchdog health layer<br/>watchdog.py · DEAD / STALLED / IDLE"]:::purpleBox
+        A5["cross-model review<br/>executor / reviewer split"]:::grayBox
+    end
+
+    subgraph C["codex-loop in sleep"]
+        C1["workflow family<br/>site · publish · reference · workspace<br/>部分已有"]:::blueBox
+        C2["topic wiki / working memory / evolution trail<br/>部分已有"]:::greenBox
+        C3["loop improvement candidate<br/>已有最小回写规则"]:::yellowBox
+        C4["daemon / workspace 已分层<br/>watchdog 待建设"]:::purpleBox
+        C5["reviewer role 仍待试点<br/>缺失"]:::grayBox
+    end
+
+    A1 --> C1
+    A2 --> C2
+    A3 --> C3
+    A4 --> C4
+    A5 --> C5`,
+
     'site-topic-map': `graph TB
     classDef core fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#fcd34d;
     classDef hub fill:#172130,stroke:#60a5fa,stroke-width:2px,color:#93c5fd;

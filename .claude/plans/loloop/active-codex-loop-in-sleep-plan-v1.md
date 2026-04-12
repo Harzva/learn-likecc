@@ -41,8 +41,8 @@
 ### 4. Workflow family
 
 - [x] 识别 `workflow family` 是 ARIS 的方法厚度来源之一
-- [ ] 判断 `codex-loop` 现在已有的 site / publish / reference / workspace 线是否足够形成 family map
-- [ ] 在站内补一张 `workflow family vs single loop shell` 对照图
+- [x] 判断 `codex-loop` 现在已有的 site / publish / reference / workspace 线是否足够形成 family map
+- [x] 在站内补一张 `workflow family vs single loop shell` 对照图
 
 ### 5. Cross-model review
 
@@ -54,7 +54,7 @@
 
 - [x] `site/topic-codex-loop-in-sleep.html`
 - [x] `site/md/topic-codex-loop-in-sleep.md`
-- [ ] 从这页继续拆出一张结构图或方法图
+- [x] 从这页继续拆出一张结构图或方法图
 - [x] 在 `AI-Scientist` 总页里把它固定成长期子专题入口
 
 ## Routing rules
@@ -74,4 +74,4 @@
 
 ## Current status
 
-`codex-loop in sleep` 现在已经完成三条 route-back，并且在 `AI-Scientist` 总页里被固定成长期子专题入口。下一步如果继续留在 Task 14，更值得做的是一张 concrete structure diagram；否则可以把这条子线先视为本地收口，切回其他更高价值的循环切片。
+`codex-loop in sleep` 现在已经完成三条 route-back，并且在 `AI-Scientist` 总页里被固定成长期子专题入口。这轮又补上了一张 concrete structure diagram，把 `workflow family / persistent wiki / meta optimize / watchdog / cross-model review` 五条借鉴线收成可扫的 `ARIS vs codex-loop in sleep` 结构图。下一步除非要继续拆 watchdog 或 reviewer-role 的更细切片，否则可以把这条子线先视为本地收口，切回其他更高价值的循环切片。

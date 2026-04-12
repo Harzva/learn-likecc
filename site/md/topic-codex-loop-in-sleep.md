@@ -60,6 +60,16 @@
 提示词：左列放 ARIS，右列放 codex-loop，中间用五条横向梯子连接：workflow family、persistent wiki、meta optimize、watchdog health layer、cross-model review。ARIS 一侧标出对应模块名，codex-loop 一侧标出当前状态（已有 / 部分已有 / 缺失 / 待建设）。  
 Mermaid 更适合：是。
 
+### Mermaid 结构图
+
+这页现在把那张“ARIS 到 codex-loop 的可借鉴能力梯子”真正落成了一张结构图，重点不是再讲一遍概念，而是把五条线当前分别处在：
+
+- 已有最小落点
+- 部分已有
+- 还是明确缺口
+
+这样后面 reopen Task 14 时，就不需要再从整段 prose 里重新推断当前状态。
+
 ### 我们已经有什么
 
 `codex-loop` 目前已经有这些通用型 in-sleep 壳层：
