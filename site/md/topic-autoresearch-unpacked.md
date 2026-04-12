@@ -2,7 +2,7 @@
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-autoresearch-unpacked.html  
 > **本文件**: `site/md/topic-autoresearch-unpacked.md`  
-> **更新时间**: 2026-04-11
+> **更新时间**: 2026-04-12
 
 本页归入 **VibePaper 专题**，目标不是介绍 Autoresearch 有多少子命令，而是拆它如何把 `goal + metric + scope + verify + rollback + git memory` 收成一个 plugin-style 的研究循环协议；当前也把 **ARIS（Auto-Research In Sleep）** 作为这条样本线的延伸分支一并纳入。
 

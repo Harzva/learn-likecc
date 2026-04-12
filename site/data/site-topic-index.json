@@ -1,7 +1,7 @@
 {
   "meta": {
     "updated": "2026-04-12",
-    "count": 39,
+    "count": 40,
     "source": "git history + site/topic-*.html"
   },
   "groups": [
@@ -11,7 +11,7 @@
         {
           "slug": "topic-agent",
           "title": "Agent 大专题",
-          "updated": "2026-04-11",
+          "updated": "2026-04-12",
           "group": "核心入口",
           "href": "topic-agent.html",
           "md_path": "site/md/topic-agent.md"
@@ -35,7 +35,7 @@
         {
           "slug": "topic-paoding-jieniu",
           "title": "庖丁解牛专题",
-          "updated": "2026-04-10",
+          "updated": "2026-04-12",
           "group": "核心入口",
           "href": "topic-paoding-jieniu.html",
           "md_path": "site/md/topic-paoding-jieniu.md"
@@ -43,7 +43,7 @@
         {
           "slug": "topic-rag",
           "title": "RAG 大专题",
-          "updated": "2026-04-10",
+          "updated": "2026-04-12",
           "group": "核心入口",
           "href": "topic-rag.html",
           "md_path": "site/md/topic-rag.md"
@@ -59,7 +59,7 @@
         {
           "slug": "topic-skillmarket",
           "title": "Skill 市场专题",
-          "updated": "2026-04-11",
+          "updated": "2026-04-12",
           "group": "核心入口",
           "href": "topic-skillmarket.html",
           "md_path": "site/md/topic-skillmarket.md"
@@ -75,7 +75,7 @@
         {
           "slug": "topic-toolchain",
           "title": "工具链专题",
-          "updated": "2026-04-08",
+          "updated": "2026-04-12",
           "group": "核心入口",
           "href": "topic-toolchain.html",
           "md_path": "site/md/topic-toolchain.md"
@@ -83,7 +83,7 @@
         {
           "slug": "topic-vibepaper",
           "title": "VibePaper 专题：Autoresearch / ARIS / DeepScientist / AI Scientist-v2",
-          "updated": "2026-04-11",
+          "updated": "2026-04-12",
           "group": "核心入口",
           "href": "topic-vibepaper.html",
           "md_path": "site/md/topic-vibepaper.md"
@@ -112,7 +112,7 @@
         {
           "slug": "topic-cc-release-watch",
           "title": "发版监督 · Claude Code 官方版本速览",
-          "updated": "2026-04-11",
+          "updated": "2026-04-12",
           "group": "Claude Code / LikeCode 深挖",
           "href": "topic-cc-release-watch.html",
           "md_path": "site/md/topic-cc-release-watch.md"
@@ -128,7 +128,7 @@
         {
           "slug": "topic-claude-codex-bridge",
           "title": "Claude 调 Codex 的桥接链路",
-          "updated": "2026-04-10",
+          "updated": "2026-04-12",
           "group": "Claude Code / LikeCode 深挖",
           "href": "topic-claude-codex-bridge.html",
           "md_path": "site/md/topic-claude-codex-bridge.md"
@@ -142,9 +142,17 @@
           "md_path": "site/md/topic-codex-loop-console.md"
         },
         {
+          "slug": "topic-loop-task-board",
+          "title": "Loop 任务驾驶舱",
+          "updated": "2026-04-12",
+          "group": "Claude Code / LikeCode 深挖",
+          "href": "topic-loop-task-board.html",
+          "md_path": "site/md/topic-loop-task-board.md"
+        },
+        {
           "slug": "topic-memory-harness",
           "title": "Memory 长期记忆：写入、整合、检索与安全",
-          "updated": "2026-04-04",
+          "updated": "2026-04-12",
           "group": "Claude Code / LikeCode 深挖",
           "href": "topic-memory-harness.html",
           "md_path": "site/md/topic-memory-harness.md"
@@ -152,7 +160,7 @@
         {
           "slug": "topic-openharness-course",
           "title": "OpenHarness 源码课 · 与 Claude Code 思想架构对照",
-          "updated": "2026-04-08",
+          "updated": "2026-04-12",
           "group": "Claude Code / LikeCode 深挖",
           "href": "topic-openharness-course.html",
           "md_path": "site/md/topic-openharness-course.md"
@@ -160,7 +168,7 @@
         {
           "slug": "topic-openharness",
           "title": "OpenHarness 专题 · 完全开源 Agent Harness",
-          "updated": "2026-04-07",
+          "updated": "2026-04-12",
           "group": "Claude Code / LikeCode 深挖",
           "href": "topic-openharness.html",
           "md_path": "site/md/topic-openharness.md"
@@ -176,7 +184,7 @@
         {
           "slug": "topic-superpowers-autoresearch",
           "title": "Superpowers 市场 vs Autoresearch",
-          "updated": "2026-04-04",
+          "updated": "2026-04-12",
           "group": "Claude Code / LikeCode 深挖",
           "href": "topic-superpowers-autoresearch.html",
           "md_path": "site/md/topic-superpowers-autoresearch.md"
@@ -205,7 +213,7 @@
         {
           "slug": "topic-agent-hot",
           "title": "Agent · 技术热点",
-          "updated": "2026-04-11",
+          "updated": "2026-04-12",
           "group": "Agent / CLI / 杂货铺子专题",
           "href": "topic-agent-hot.html",
           "md_path": "site/md/topic-agent-hot.md"
@@ -213,7 +221,7 @@
         {
           "slug": "topic-agent-papers",
           "title": "Agent · 论文分析",
-          "updated": "2026-04-10",
+          "updated": "2026-04-12",
           "group": "Agent / CLI / 杂货铺子专题",
           "href": "topic-agent-papers.html",
           "md_path": "site/md/topic-agent-papers.md"
@@ -229,7 +237,7 @@
         {
           "slug": "topic-ai-api",
           "title": "模型 API 专页",
-          "updated": "2026-04-11",
+          "updated": "2026-04-12",
           "group": "Agent / CLI / 杂货铺子专题",
           "href": "topic-ai-api.html",
           "md_path": "site/md/topic-ai-api.md"
@@ -237,7 +245,7 @@
         {
           "slug": "topic-ai-benchmarks",
           "title": "模型评测专页",
-          "updated": "2026-04-11",
+          "updated": "2026-04-12",
           "group": "Agent / CLI / 杂货铺子专题",
           "href": "topic-ai-benchmarks.html",
           "md_path": "site/md/topic-ai-benchmarks.md"
@@ -269,7 +277,7 @@
         {
           "slug": "topic-meta-agent",
           "title": "Meta-Agent 专题",
-          "updated": "2026-04-10",
+          "updated": "2026-04-12",
           "group": "Agent / CLI / 杂货铺子专题",
           "href": "topic-meta-agent.html",
           "md_path": "site/md/topic-meta-agent.md"
@@ -277,7 +285,7 @@
         {
           "slug": "topic-personal-knowledge",
           "title": "个人知识库 · GitHub、Wiki 与 Agent",
-          "updated": "2026-04-10",
+          "updated": "2026-04-12",
           "group": "Agent / CLI / 杂货铺子专题",
           "href": "topic-personal-knowledge.html",
           "md_path": "site/md/topic-personal-knowledge.md"
@@ -290,7 +298,7 @@
         {
           "slug": "topic-autoresearch-unpacked",
           "title": "Autoresearch / ARIS 解构 - VibePaper 专题",
-          "updated": "2026-04-11",
+          "updated": "2026-04-12",
           "group": "RAG / VibePaper 子专题",
           "href": "topic-autoresearch-unpacked.html",
           "md_path": "site/md/topic-autoresearch-unpacked.md"
@@ -298,7 +306,7 @@
         {
           "slug": "topic-deepscientist-unpacked",
           "title": "DeepScientist 解构 - VibePaper 专题",
-          "updated": "2026-04-11",
+          "updated": "2026-04-12",
           "group": "RAG / VibePaper 子专题",
           "href": "topic-deepscientist-unpacked.html",
           "md_path": "site/md/topic-deepscientist-unpacked.md"
@@ -314,7 +322,7 @@
         {
           "slug": "topic-rag-hot",
           "title": "RAG · 技术热点",
-          "updated": "2026-04-10",
+          "updated": "2026-04-12",
           "group": "RAG / VibePaper 子专题",
           "href": "topic-rag-hot.html",
           "md_path": "site/md/topic-rag-hot.md"
@@ -335,7 +343,7 @@
         {
           "slug": "topic-superset-unpacked",
           "title": "Superset 解构 - 庖丁解牛专题",
-          "updated": "2026-04-10",
+          "updated": "2026-04-12",
           "group": "其他专题",
           "href": "topic-superset-unpacked.html",
           "md_path": "site/md/topic-superset-unpacked.md"

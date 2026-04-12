@@ -1,5 +1,5 @@
 # Superpowers 市场 vs Autoresearch（本站镜像）
-> **更新时间**: 2026-04-04
+> **更新时间**: 2026-04-12
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-superpowers-autoresearch.html  
 > **本文件**: `site/md/topic-superpowers-autoresearch.md`  

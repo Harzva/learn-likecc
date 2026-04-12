@@ -2,7 +2,7 @@
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-superset-unpacked.html  
 > **本文件**: `site/md/topic-superset-unpacked.md`  
-> **更新时间**: 2026-04-10
+> **更新时间**: 2026-04-12
 
 本页现已归入 **庖丁解牛专题**，是其中的第二个子专题：用结构网页的方式拆解 `reference/reference_agent/reference_control-agent-cli/superset`，把它从"多 agent 产品"拆成五层能力图，并把 `meta-agent` 思想落到具体工程结构上。
 

@@ -2,7 +2,7 @@
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-deepscientist-unpacked.html  
 > **本文件**: `site/md/topic-deepscientist-unpacked.md`  
-> **更新时间**: 2026-04-11
+> **更新时间**: 2026-04-12
 
 本页归入 **VibePaper 专题**，目标不是介绍 DeepScientist 有多少功能，而是拆它如何把 `quest repo + baseline/experiment + findings memory + paper outputs + visible workspace + connectors` 拼成一个本地优先的自动科研工作台。
 

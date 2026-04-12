@@ -1,5 +1,5 @@
 # OpenHarness 专题 · 完全开源 Agent Harness
-> **更新时间**: 2026-04-07
+> **更新时间**: 2026-04-12
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-openharness.html  
 > **本文件**: `site/md/topic-openharness.md`  

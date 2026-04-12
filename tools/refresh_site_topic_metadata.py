@@ -41,6 +41,7 @@ GROUPS = OrderedDict(
                 "topic-cc-release-watch",
                 "topic-claude-codex-bridge",
                 "topic-codex-loop-console",
+                "topic-loop-task-board",
                 "topic-memory-harness",
                 "topic-openharness",
                 "topic-openharness-course",

@@ -1,0 +1,365 @@
+{
+  "meta": {
+    "updated_from": ".codex-loop/prompt.md",
+    "task_count": 11,
+    "recurring_count": 8,
+    "inline_count": 3,
+    "state_counts": {
+      "deferred": 2,
+      "done": 2,
+      "active": 4
+    }
+  },
+  "recurring": [
+    {
+      "id": 4,
+      "headline": "Loop task: keep tracking Claude changelogs and turning worthwhile updates into site-ready topic drafts by following the dedicated plan file:",
+      "prompt_excerpt": "Loop task: keep tracking Claude changelogs and turning worthwhile updates into site-ready topic drafts by following the dedicated plan file:\n- `.claude/plans/loloop/active-claude-changelog-watch-plan-v1.md`\nExecution rule:\n1. Read that plan first.\n2. Continue the current unchecked / active item instead of randomly switching.\n3. After each bounded pass:\n- mark progress in the plan file\n- check off any completed item",
+      "type": "recurring",
+      "state": "deferred",
+      "plan_path": ".claude/plans/loloop/active-claude-changelog-watch-plan-v1.md",
+      "slug": "claude-changelog-watch",
+      "plan": {
+        "title": "Claude Changelog Watch Plan v1",
+        "status": "locally deferred",
+        "goal": "monitor Claude / Claude Code changelogs, extract worthwhile keywords or shifts, and turn them into site-ready topic drafts or focused updates.",
+        "current_focus": [
+          "- [x] Keep tracking recent Claude changelog deltas and choose the next keyword worth turning into a site draft",
+          "- [x] Prefer updates that have clear teaching value for our site, not just release-note novelty",
+          "- [x] Keep the best-fit site destination explicit before drafting",
+          "- [x] Continue Task 4 with the next bounded keyword after the tracing opt-in slice",
+          "- [x] Continue Task 4 with one more bounded keyword after the managed-hooks slice",
+          "- [x] Mark the current `2.1.101` release-watch micro-wave locally deferred until a fresh official delta or clearly higher-value gap appears"
+        ],
+        "scope": [
+          "- [x] Treat changelog entries as a keyword / theme source, not as article text to paraphrase directly",
+          "- [x] For each worthwhile keyword:",
+          "- identify the feature, shift, or theme",
+          "- decide whether it belongs in an existing topic page or needs a fresh draft",
+          "- do live research with primary-source preference",
+          "- produce or update a publish-ready `site/md/*.md` draft",
+          "- [ ] Keep references and original-source links at the end of the resulting draft"
+        ],
+        "validation": [
+          "- [x] Keep `python3 tools/check_site_md_parity.py` passing after each pass",
+          "- [x] Prefer official docs, original repos, official changelogs, and primary sources over secondary commentary",
+          "- [ ] Avoid publishing or landing a draft when the keyword is too weak or too thinly supported",
+          "- [x] Avoid publishing or landing a draft when the keyword is too weak or too thinly supported"
+        ],
+        "notes": [
+          "- This plan is the canonical checklist for changelog-driven site updates",
+          "- Each completed keyword pass should leave behind:",
+          "- a checked item here",
+          "- a matching evolution note"
+        ],
+        "completed_count": 37,
+        "total_count": 45,
+        "progress": 82
+      }
+    },
+    {
+      "id": 5,
+      "headline": "Loop task: keep advancing the Hermes Agent 庖丁解牛 line by following the dedicated plan file:",
+      "prompt_excerpt": "Loop task: keep advancing the Hermes Agent 庖丁解牛 line by following the dedicated plan file:\n- `.claude/plans/loloop/active-hermes-unpacked-plan-v1.md`\nExecution rule:\n1. Read that plan first.\n2. Continue the current unchecked / active item instead of randomly switching.\n3. After each bounded pass:\n- mark progress in the plan file\n- check off any completed item",
+      "type": "recurring",
+      "state": "done",
+      "plan_path": ".claude/plans/loloop/active-hermes-unpacked-plan-v1.md",
+      "slug": "hermes-unpacked",
+      "plan": {
+        "title": "Hermes Agent Unpacked Plan v1",
+        "status": "locally done",
+        "goal": "keep turning Hermes Agent into a stable 庖丁解牛 / unpacked topic with code-anchored structure, series-consistent voice, and reusable diagrams.",
+        "current_focus": [
+          "- [x] Tighten the page so the system split, control plane, and runtime flow read more like a finished 庖丁解牛 chapter",
+          "- [x] Add one stronger structure visual path, preferably Mermaid-ready where appropriate",
+          "- [x] Continue Hermes with the next bounded follow-up after the learning-loop Mermaid lands",
+          "- [x] Continue Hermes with one more bounded follow-up after the gateway/session Mermaid lands",
+          "- [x] Continue Hermes with one final bounded follow-up after the execution-boundary Mermaid lands",
+          "- [x] Improve the final “what we can learn for our own stack” closeout"
+        ],
+        "scope": [],
+        "validation": [
+          "- [ ] Keep `python3 tools/check_site_md_parity.py` passing after each pass",
+          "- [ ] Keep references and original-source links present at the end",
+          "- [ ] If the local Hermes clone is stale, refresh it before doing deeper structural claims"
+        ],
+        "notes": [
+          "- Canonical site page: `site/topic-hermes-unpacked.html`",
+          "- Canonical markdown mirror: `site/md/topic-hermes-unpacked.md`",
+          "- Canonical local source anchor: `reference/reference_agent/hermes-agent/`",
+          "- Current local state: the broader Hermes wave remains locally done, but the page now also has one explicit compare-stack visual brief for future site and Zhihu reuse"
+        ],
+        "completed_count": 24,
+        "total_count": 30,
+        "progress": 80
+      }
+    },
+    {
+      "id": 6,
+      "headline": "Loop task: keep expanding `VibePaper` as a rolling hub for autonomous research and paper-production systems by following the dedicated plan file:",
+      "prompt_excerpt": "Loop task: keep expanding `VibePaper` as a rolling hub for autonomous research and paper-production systems by following the dedicated plan file:\n- `.claude/plans/loloop/active-vibepaper-hub-plan-v1.md`\nExecution rule:\n1. Read that plan first.\n2. Continue the current unchecked / active item instead of randomly switching.\n3. After each bounded pass:\n- mark progress in the plan file\n- check off any completed item",
+      "type": "recurring",
+      "state": "deferred",
+      "plan_path": ".claude/plans/loloop/active-vibepaper-hub-plan-v1.md",
+      "slug": "vibepaper-hub",
+      "plan": {
+        "title": "VibePaper Hub Plan v1",
+        "status": "locally deferred",
+        "goal": "keep growing `VibePaper` into a durable hub for autonomous research, paper-production systems, and related subtopics.",
+        "current_focus": [
+          "- [ ] Strengthen the hub as a comparison surface, not just a collection page",
+          "- [ ] Keep `Autoresearch / ARIS` as the lead sample while making room for the next strong candidates",
+          "- [ ] Improve the page’s teaching value: control plane, durable state, loop shape, and what to learn",
+          "- [x] Continue Task 6 with the next bounded comparison-surface follow-up after the shell-column sync",
+          "- [x] Continue Task 6 with one more bounded teaching-route follow-up after the shell-label reading-route sync",
+          "- [x] Continue Task 6 with one more bounded shell-structure follow-up after the future-growth note sync"
+        ],
+        "scope": [
+          "- [x] `Autoresearch / ARIS`",
+          "- [x] `DeepScientist`",
+          "- [x] `AIDE`",
+          "- [x] `AI Scientist-v2`",
+          "- [ ] Evaluate whether the next candidate should get:",
+          "- a short card",
+          "- a comparison row",
+          "- or a dedicated subtopic page"
+        ],
+        "validation": [
+          "- [ ] Keep `python3 tools/check_site_md_parity.py` passing after each pass",
+          "- [ ] Keep references and local repo anchors present",
+          "- [ ] Avoid adding a new sample system without a clear structural reason"
+        ],
+        "notes": [
+          "- Canonical site page: `site/topic-vibepaper.html`",
+          "- Canonical markdown mirror: `site/md/topic-vibepaper.md`",
+          "- Canonical local source root: `reference/reference_agent/`",
+          "- Current local state: the recent shell-alignment micro-wave is locally deferred until a new upstream intake, a genuinely different shell signal, or a clearer high-value structure gap appears"
+        ],
+        "completed_count": 17,
+        "total_count": 29,
+        "progress": 59
+      }
+    },
+    {
+      "id": 7,
+      "headline": "Loop task: keep improving the local `codex-loop` AI Terminal by following the dedicated plan file:",
+      "prompt_excerpt": "Loop task: keep improving the local `codex-loop` AI Terminal by following the dedicated plan file:\n- `.claude/plans/loloop/active-codex-loop-ai-terminal-plan-v1.md`\nExecution rule:\n1. Read that plan first.\n2. Continue the current unchecked / active item instead of randomly switching.\n3. After each bounded pass:\n- mark progress in the plan file\n- check off any completed item",
+      "type": "recurring",
+      "state": "done",
+      "plan_path": ".claude/plans/loloop/active-codex-loop-ai-terminal-plan-v1.md",
+      "slug": "codex-loop-ai-terminal",
+      "plan": {
+        "title": "codex-loop AI Terminal Plan v1",
+        "status": "done",
+        "goal": "local AI terminal for `codex-loop` with daemon control, protected thread interaction, shell workspace, and sustained UI polish.",
+        "current_focus": [
+          "- [x] Upgrade shell rendering from plain text PTY output toward a more terminal-like experience",
+          "- [x] Add a clearer event / timeline surface for daemon, thread lock, and shell actions",
+          "- [x] Add workspace presets so `Overview`, `Thread Desk`, `Shell Lab`, and `Debug` can be restored quickly",
+          "- [x] Run one bounded validation and live-relay hygiene pass before closing the current AI Terminal polish wave"
+        ],
+        "scope": [],
+        "validation": [
+          "- [x] Keep `python3 -m py_compile tools/codex_loop_web_relay.py` passing",
+          "- [x] Keep `node --check site/js/codex-loop-console.js` passing",
+          "- [x] Keep `python3 tools/check_site_md_parity.py` passing",
+          "- [x] When doing live relay tests, leave no stale thread lock note or orphan shell session"
+        ],
+        "notes": [
+          "- Active thread target: `019d7762-4c82-7b63-9e1e-ebbca2962185`",
+          "- Daemon PID is runtime-dependent and should be read live from status, not hardcoded here",
+          "- Last validated on `2026-04-11` with an isolated relay smoke test on port `8870`; thread lock restored to writable and shell session list returned empty before shutdown",
+          "- Update this file after each bounded pass and use it as the canonical checklist for Task 7"
+        ],
+        "completed_count": 26,
+        "total_count": 26,
+        "progress": 100
+      }
+    },
+    {
+      "id": 8,
+      "headline": "Loop task: keep mining `reference/` for interesting agent / CLI / UI ideas and turn them into new site subtopics or even new hub topics by following the dedicated plan file:",
+      "prompt_excerpt": "Loop task: keep mining `reference/` for interesting agent / CLI / UI ideas and turn them into new site subtopics or even new hub topics by following the dedicated plan file:\n- `.claude/plans/loloop/active-reference-mining-topics-plan-v1.md`\nExecution rule:\n1. Read that plan first.\n2. Continue the current unchecked / active item instead of randomly switching.\n3. After each bounded pass:\n- mark progress in the plan file\n- check off any completed item",
+      "type": "recurring",
+      "state": "active",
+      "plan_path": ".claude/plans/loloop/active-reference-mining-topics-plan-v1.md",
+      "slug": "reference-mining-topics",
+      "plan": {
+        "title": "Reference Mining Topics Plan v1",
+        "status": "active",
+        "goal": "mine `reference/` for strong ideas around agent control, CLI orchestration, skills, Web UI, HUD, and multi-agent workflow design, then turn them into site-ready subtopics or larger topic expansions.",
+        "current_focus": [
+          "- [ ] Review the newly added reference repos and identify the strongest web UI / agent-control ideas that can help LikeCode",
+          "- [ ] Choose the first site-facing output:",
+          "- a new subtopic article",
+          "- an update to an existing topic page",
+          "- or a justified new major topic",
+          "- [ ] Prefer insights that help our own `LikeCode` web UI, CLI control, or agent-management design"
+        ],
+        "scope": [
+          "- [ ] LikeCode Web UI inspiration set:",
+          "- `claudecodeui`",
+          "- `hermes-webui`",
+          "- `hermes-hud`",
+          "- `opencode`",
+          "- [ ] Agent control / CLI orchestration comparison:",
+          "- `OfficeCLI`",
+          "- `opencode`"
+        ],
+        "validation": [
+          "- [ ] Keep `python3 tools/check_site_md_parity.py` passing after each site-writing pass",
+          "- [ ] Use primary repo evidence instead of vague summary",
+          "- [ ] Leave clear local repo paths in the final article or topic notes"
+        ],
+        "notes": [
+          "- This plan is the canonical checklist for turning `reference/` discoveries into site content",
+          "- Favor bounded passes: inspect one pattern family, choose one site destination, produce one concrete improvement",
+          "- Current broader local state: the recent Task 8 wave is locally deferred until a stronger new reference family, repo cluster, or clearer destination appears; do not keep forcing fresh pages out of the same exhausted sample set",
+          "- First bounded Task 8 output landed in the Skill 市场专题 rather than opening a new topic, because the new `baoyu-skills` / `codex-plugin-cc` references directly strengthen the existing trust-chain explanation"
+        ],
+        "completed_count": 62,
+        "total_count": 85,
+        "progress": 73
+      }
+    },
+    {
+      "id": 9,
+      "headline": "Loop task: keep improving LikeCode Web UI and the agent-management panel by following the dedicated plan file:",
+      "prompt_excerpt": "Loop task: keep improving LikeCode Web UI and the agent-management panel by following the dedicated plan file:\n- `.claude/plans/loloop/active-likecode-web-ui-plan-v1.md`\nExecution rule:\n1. Read that plan first.\n2. Continue the current unchecked / active item instead of randomly switching.\n3. After each bounded pass:\n- mark progress in the plan file\n- check off any completed item",
+      "type": "recurring",
+      "state": "active",
+      "plan_path": ".claude/plans/loloop/active-likecode-web-ui-plan-v1.md",
+      "slug": "likecode-web-ui",
+      "plan": {
+        "title": "LikeCode Web UI Plan v1",
+        "status": "active",
+        "goal": "continuously improve LikeCode Web UI, AI terminal experience, and the agent-management panel using repo-local implementation work plus strong reference evidence from `reference/`.",
+        "current_focus": [
+          "- [x] Add a durable tool-logo asset pass for the site tool walls: local logo assets + image-first rendering + letter fallback, and keep Task 9 on this line until the first complete version lands",
+          "- [x] Extend the first logo-asset version from `site/topic-ai-coding-tools.html` to one more high-value wall or adjacent agent / CLI page now that the local asset path and fallback behavior exist",
+          "- [x] Extend the image-first logo system to one more wall with a broader product mix after the CLI-agent wall reuse pass",
+          "- [x] Decide whether the first logo-asset wave is locally complete enough to defer after the broader agent-wall pass",
+          "- [x] Identify the highest-value Web UI / agent-management pattern we should borrow next",
+          "- [x] Use `reference/reference_cc_ui/hermes-webui/` and `reference/reference_cc_ui/claudecodeui/` as the first bounded source pair for a session-visibility pass"
+        ],
+        "scope": [
+          "- [ ] Web UI information architecture",
+          "- [ ] AI terminal / workspace flow",
+          "- [ ] agent list, session list, and status visibility",
+          "- [ ] operator control surfaces",
+          "- [ ] event history, observability, and debugging UX",
+          "- [ ] multi-pane / multi-tab coordination",
+          "- [ ] local logo asset system for tool walls and product cards"
+        ],
+        "validation": [
+          "- [x] Keep code changes locally verifiable",
+          "- [ ] Keep site / md parity valid when site docs are updated",
+          "- [ ] Name the borrowed pattern and its source repo in the evolution note"
+        ],
+        "notes": [
+          "- This is the canonical checklist for LikeCode Web UI and agent-management evolution",
+          "- Prefer bounded passes: one reference pattern, one concrete UI improvement, one validated result",
+          "- Logo-system line: prefer repo-local assets under a stable site path, render image logos first, and keep the existing letter badges as the guaranteed fallback for tools whose official icon is missing or unstable",
+          "- Current local state: the recent `Session Stack` / `Shell Roster` refinement chain is locally deferred until a new reference-backed gap, stronger agent-management requirement, or backend capability change appears"
+        ],
+        "completed_count": 60,
+        "total_count": 79,
+        "progress": 76
+      }
+    },
+    {
+      "id": 10,
+      "headline": "Loop task: keep improving the umbrella repo `everything-agent-cli-to-claude-code`, its related `*-plugin-cc` family story, and the matching site recommendation by following the dedicated plan file:",
+      "prompt_excerpt": "Loop task: keep improving the umbrella repo `everything-agent-cli-to-claude-code`, its related `*-plugin-cc` family story, and the matching site recommendation by following the dedicated plan file:\n- `.claude/plans/loloop/active-everything-agent-cli-plan-v1.md`\nExecution rule:\n1. Read that plan first.\n2. Continue the current unchecked / active item instead of randomly switching.\n3. After each bounded pass:\n- mark progress in the plan file\n- check off any completed item",
+      "type": "recurring",
+      "state": "active",
+      "plan_path": ".claude/plans/loloop/active-everything-agent-cli-plan-v1.md",
+      "slug": "everything-agent-cli",
+      "plan": {
+        "title": "Everything Agent-CLI to Claude Code Plan v1",
+        "status": "active",
+        "goal": "keep improving the umbrella repo `projects/everything-agent-cli-to-claude-code/`, keep its related `*-plugin-cc` family legible, and keep the site recommendation / documentation line in sync.",
+        "current_focus": [
+          "- [x] Land one bounded README-positioning pass: explain why the umbrella repo is recommendable now, make the umbrella-vs-plugin split explicit, and verify the wrappers locally",
+          "- [ ] Continue stabilizing the umbrella repo as a recommendable CLI Agent reference with the next bounded split / example / verification slice"
+        ],
+        "scope": [
+          "- [x] umbrella repo positioning and quick-start clarity",
+          "- [x] wrapper verification and example workflow tests",
+          "- [x] related plugin-family registry clarity",
+          "- [x] site-facing recommendation and teaching copy",
+          "- [ ] future plugin-repo split guidance"
+        ],
+        "validation": [
+          "- [x] local repo tests pass",
+          "- [x] site / md parity stays valid",
+          "- [ ] the project can be explained as both a usable repo and a research / architecture sample"
+        ],
+        "notes": [
+          "- Keep `prompt.md` short; detailed repo-improvement logic belongs here",
+          "- Prefer bounded passes: one repo improvement, one validation step, one site sync",
+          "- Treat the umbrella repo as the control tower, not the permanent home of every provider-specific detail",
+          "- 2026-04-12: first bounded Task 10 pass landed across `README.md`, `README_CN.md`, `registry/plugins.md`, and the site recommendation block on `topic-ai-cli-agent`; local verification passed with `bash tests/test_wrappers.sh` and `python3 tools/check_site_md_parity.py`"
+        ],
+        "completed_count": 12,
+        "total_count": 19,
+        "progress": 63
+      }
+    },
+    {
+      "id": 11,
+      "headline": "Loop task: keep the site-wide mind map and per-topic last-updated metadata synchronized by following the dedicated plan file:",
+      "prompt_excerpt": "Loop task: keep the site-wide mind map and per-topic last-updated metadata synchronized by following the dedicated plan file:\n- `.claude/plans/loloop/active-site-map-plan-v1.md`\nExecution rule:\n1. Read that plan first.\n2. Continue the current unchecked / active item instead of randomly switching.\n3. After each bounded pass:\n- mark progress in the plan file\n- check off any completed item",
+      "type": "recurring",
+      "state": "active",
+      "plan_path": ".claude/plans/loloop/active-site-map-plan-v1.md",
+      "slug": "site-map",
+      "plan": {
+        "title": "Site Map / Topic Updates Plan v1",
+        "status": "active",
+        "goal": "",
+        "current_focus": [],
+        "scope": [
+          "- [ ] Maintain a dedicated site map / mind map page that introduces the whole website.",
+          "- [ ] Keep a generated topic index with per-page last-updated dates.",
+          "- [ ] Ensure every `site/topic-*.html` page has a stable `page:updated` date.",
+          "- [ ] Ensure every matching `site/md/topic-*.md` mirror records its own `更新时间`.",
+          "- [ ] Keep homepage / hub entry points aligned with the current topic tree when the site map changes materially."
+        ],
+        "validation": [
+          "- [ ] `python3 tools/refresh_site_topic_metadata.py`",
+          "- [ ] `python3 tools/check_site_md_parity.py`",
+          "- [ ] Manually verify `site/topic-site-map.html`",
+          "- [ ] Spot-check at least one changed topic page for footer update display"
+        ],
+        "notes": [],
+        "completed_count": 0,
+        "total_count": 9,
+        "progress": 0
+      }
+    }
+  ],
+  "inline": [
+    {
+      "id": 1,
+      "headline": "Please use `zhihu-publish` and first try to automatically publish:",
+      "prompt_excerpt": "Please use `zhihu-publish` and first try to automatically publish:\n`/home/clashuser/hzh/item_bo/learn-likecc/wemedia/zhihu/articles/24-Superset解构外层调度-知乎图文.md`\nto Zhihu.\nRequirements:\n1. Check prerequisites first:\n- whether `wemedia/zhihu/cookies.json` exists and is usable\n- whether the article file exists\n- whether all local images referenced by the article exist",
+      "type": "inline",
+      "state": "queued"
+    },
+    {
+      "id": 2,
+      "headline": "Please combine `gen-zhihu-article`, `webpage-screenshot-md`, and `zhihu-publish` to pick 1 to 3 site topics worth promoting, generate new Zhihu-style Markdown drafts, and publish when conditions allow.",
+      "prompt_excerpt": "Please combine `gen-zhihu-article`, `webpage-screenshot-md`, and `zhihu-publish` to pick 1 to 3 site topics worth promoting, generate new Zhihu-style Markdown drafts, and publish when conditions allow.\nRequirements:\n1. Do topic selection first instead of writing immediately:\n- choose from `site/topic-*.html`\n- prefer topics that are structurally clear, visual, mature, and worth spreading\n2. Use repo evidence for topic selection:\n- topic source pages: `site/topic-*.html`\n- existing Zhihu articles: `wemedia/zhihu/articles/*.md`",
+      "type": "inline",
+      "state": "queued"
+    },
+    {
+      "id": 3,
+      "headline": "Please document and publish our Zhihu publishing workflow itself as a new article, and make the related skills independently publishable before the article goes live.",
+      "prompt_excerpt": "Please document and publish our Zhihu publishing workflow itself as a new article, and make the related skills independently publishable before the article goes live.\nRequirements:\n1. First turn the relevant workflow skills into independent GitHub-ready repositories under `exports/` when they are still only repo-local:\n- include the Zhihu publishing skill\n- include any directly relevant helper skill if it is part of the final article workflow\n2. For each exported skill:\n- make it a standalone repository under `exports/`\n- ensure it has a usable README",
+      "type": "inline",
+      "state": "queued"
+    }
+  ]
+}

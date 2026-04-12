@@ -1,5 +1,5 @@
 # Claude 调 Codex 的桥接链路
-> **更新时间**: 2026-04-10
+> **更新时间**: 2026-04-12
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-claude-codex-bridge.html  
 > **本文件**: `site/md/topic-claude-codex-bridge.md`  

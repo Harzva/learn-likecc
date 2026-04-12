@@ -1,5 +1,5 @@
 # 工具链专题
-> **更新时间**: 2026-04-08
+> **更新时间**: 2026-04-12
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-toolchain.html  
 > **本文件**: `site/md/topic-toolchain.md`
