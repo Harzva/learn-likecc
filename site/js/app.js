@@ -1606,6 +1606,25 @@ function initToolspotGrid() {
     })
 }
 
+function initToolspotLogos() {
+    document.querySelectorAll('.toolspot-card__logo-image').forEach((image) => {
+        const logo = image.closest('.toolspot-card__logo')
+        if (!logo) return
+
+        const syncLogoState = () => {
+            const loaded = image.complete && image.naturalWidth > 0 && image.naturalHeight > 0
+            logo.classList.toggle('has-image', loaded)
+        }
+
+        image.addEventListener('load', syncLogoState)
+        image.addEventListener('error', () => {
+            logo.classList.remove('has-image')
+        })
+
+        syncLogoState()
+    })
+}
+
 // 初始化新功能
 document.addEventListener('DOMContentLoaded', () => {
     initSiteSidebar()
@@ -1616,6 +1635,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initInterviewCategories()
     initExpandButtons()
     initToolspotGrid()
+    initToolspotLogos()
     initMermaidFlowcharts()
     markActiveSiteSidebarLinks()
 })

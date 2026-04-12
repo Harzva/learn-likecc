@@ -5,6 +5,8 @@ Scope: continuously improve LikeCode Web UI, AI terminal experience, and the age
 
 ## Current focus
 
+- [x] Add a durable tool-logo asset pass for the site tool walls: local logo assets + image-first rendering + letter fallback, and keep Task 9 on this line until the first complete version lands
+- [ ] Extend the first logo-asset version from `site/topic-ai-coding-tools.html` to one more high-value wall or adjacent agent / CLI page now that the local asset path and fallback behavior exist
 - [x] Identify the highest-value Web UI / agent-management pattern we should borrow next
 - [x] Use `reference/reference_cc_ui/hermes-webui/` and `reference/reference_cc_ui/claudecodeui/` as the first bounded source pair for a session-visibility pass
 - [x] Continue the LikeCode Web UI line with the next operator-control or agent-management slice after the new session-stack overview pass
@@ -36,6 +38,7 @@ Scope: continuously improve LikeCode Web UI, AI terminal experience, and the age
 - [ ] operator control surfaces
 - [ ] event history, observability, and debugging UX
 - [ ] multi-pane / multi-tab coordination
+- [ ] local logo asset system for tool walls and product cards
 
 ## Strong reference set
 
@@ -56,6 +59,7 @@ Scope: continuously improve LikeCode Web UI, AI terminal experience, and the age
 - [ ] daemon / task / runtime status presentation
 - [ ] safety controls and approval boundaries
 - [ ] workflow shortcuts that improve operator speed
+- [x] logo handling patterns: official mark placement, fallback behavior, and stable local asset packaging
 
 ## Expected outputs
 
@@ -94,6 +98,8 @@ Scope: continuously improve LikeCode Web UI, AI terminal experience, and the age
 - [x] UI follow-up pass in the same surface:
   - extend the `Session Stack` headnote so it also exposes shell standby pressure instead of only naming the hottest current lane
 - [ ] site-facing article or subtopic when a design pattern is worth documenting
+- [x] site-facing UI asset pass for tool walls:
+  - build a local logo asset folder and convert key tool cards from letter badges to image-first logos with graceful letter fallback
 - [x] site-facing article or subtopic when a design pattern is worth documenting:
   - turn the existing `Session Stack` implementation into a five-layer operator-control contract on `site/topic-codex-loop-console.html`
 - [x] site-facing article or subtopic when a design pattern is worth documenting:
@@ -103,12 +109,14 @@ Scope: continuously improve LikeCode Web UI, AI terminal experience, and the age
 ## Destination hints
 
 - [ ] `site/topic-codex-loop-console.html`
+- [x] `site/topic-ai-coding-tools.html`
+- [ ] `site/topic-ai-cli-agent.html`
 - [ ] existing agent / loop / terminal related site topics
 - [ ] future LikeCode Web UI topic if this grows large enough
 
 ## Validation
 
-- [ ] Keep code changes locally verifiable
+- [x] Keep code changes locally verifiable
 - [ ] Keep site / md parity valid when site docs are updated
 - [ ] Name the borrowed pattern and its source repo in the evolution note
 
@@ -116,6 +124,7 @@ Scope: continuously improve LikeCode Web UI, AI terminal experience, and the age
 
 - This is the canonical checklist for LikeCode Web UI and agent-management evolution
 - Prefer bounded passes: one reference pattern, one concrete UI improvement, one validated result
+- Logo-system line: prefer repo-local assets under a stable site path, render image logos first, and keep the existing letter badges as the guaranteed fallback for tools whose official icon is missing or unstable
 - Current local state: the recent `Session Stack` / `Shell Roster` refinement chain is locally deferred until a new reference-backed gap, stronger agent-management requirement, or backend capability change appears
 - Current local state: the frontend micro-wave is still deferred, but the page now also has one explicit teaching layer explaining `Quick Actions -> Attention Queue -> Session Identity -> Desk Assignments -> Shell Roster` as a control-surface reading order
 - Current local state: the latest bounded teaching follow-up now also spells out an approval ladder from `OpenCode / OfficeCLI / Hermes Agent`; do not reopen this page again unless a stronger backend approval surface or genuinely new operator-control reference appears

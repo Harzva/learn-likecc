@@ -11246,6 +11246,8 @@ body.site-shell-overlay-open {
     height: 54px;
     flex: 0 0 54px;
     border-radius: 18px;
+    position: relative;
+    overflow: hidden;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -11254,6 +11256,29 @@ body.site-shell-overlay-open {
     color: #0f172a;
     background: color-mix(in srgb, var(--toolspot-accent) 18%, white);
     box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--toolspot-accent) 26%, white);
+}
+
+.toolspot-card__logo-fallback {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.toolspot-card__logo-image {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+    display: none;
+}
+
+.toolspot-card__logo.has-image .toolspot-card__logo-image {
+    display: block;
+}
+
+.toolspot-card__logo.has-image .toolspot-card__logo-fallback {
+    display: none;
 }
 
 .toolspot-card__body {
