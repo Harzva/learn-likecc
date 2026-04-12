@@ -475,6 +475,12 @@ function initMermaidFlowcharts() {
     })
 }
 
+function syncSiteShellOverlayLock() {
+    const isMobileShellViewport = window.matchMedia('(max-width: 1100px)').matches
+    const hasOpenOverlay = Boolean(document.querySelector('.site-sidebar.site-sidebar--open, .page-subnav.page-subnav--open'))
+    document.body.classList.toggle('site-shell-overlay-open', isMobileShellViewport && hasOpenOverlay)
+}
+
 /** 可收缩站点侧栏：html 根节点设 data-site-sidebar 启用 */
 function initSiteSidebar() {
     const root = document.documentElement
@@ -677,6 +683,7 @@ function initSiteSidebar() {
         fab.title = fabLabel
         aside.setAttribute('aria-hidden', isMobile && !open ? 'true' : 'false')
         backdrop.setAttribute('aria-hidden', open ? 'false' : 'true')
+        syncSiteShellOverlayLock()
     }
 
     function saveOpenDetails() {
@@ -1207,6 +1214,7 @@ function initPageSubnav() {
         fab.title = fabLabel
         aside.setAttribute('aria-hidden', isMobile() && !open ? 'true' : 'false')
         backdrop.setAttribute('aria-hidden', open ? 'false' : 'true')
+        syncSiteShellOverlayLock()
     }
 
     function setCollapsed(next) {

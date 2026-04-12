@@ -503,6 +503,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Stay on the site-polish line for one more bounded site-shell accessibility pass after the mobile panel focus-flow pair is aligned
 - [x] Sync `site-sidebar` and `page-subnav` trigger labels so open / close state is reflected in `aria-label` and `title`
 - [x] Verify the site-shell trigger-label update with `node --check site/js/app.js`
+- [x] Stay on the site-polish line for one more bounded shared mobile overlay-behavior pass after the trigger-label sync
+- [x] Prevent background page scroll while mobile `site-sidebar` or `page-subnav` overlays are open
+- [x] Verify the mobile overlay-lock update with `node --check site/js/app.js` and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail
 

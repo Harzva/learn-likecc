@@ -7137,6 +7137,10 @@ body.has-site-sidebar.sidebar-collapsed .main-header {
     width: calc(100% - var(--site-sidebar-w-collapsed));
 }
 
+body.site-shell-overlay-open {
+    overflow: hidden;
+}
+
 .site-sidebar {
     position: fixed;
     top: 0;
