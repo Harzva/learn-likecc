@@ -1175,6 +1175,17 @@ function initPageSubnav() {
     const toggleBtn = aside.querySelector('.page-subnav__toggle')
     const links = Array.from(aside.querySelectorAll('.page-subnav__link'))
     const isMobile = () => window.matchMedia('(max-width: 1100px)').matches
+    let lastSubnavTrigger = fab
+
+    function focusFirstSubnavControl() {
+        const firstFocusable = aside.querySelector(
+            '.page-subnav__toggle, .page-subnav__link'
+        )
+        if (!firstFocusable) return
+        requestAnimationFrame(() => {
+            firstFocusable.focus()
+        })
+    }
 
     function syncSubnavA11y() {
         const open = aside.classList.contains('page-subnav--open')
@@ -1193,10 +1204,17 @@ function initPageSubnav() {
         syncSubnavA11y()
     }
 
-    function closeMobilePanel() {
+    function closeMobilePanel(focusReturnTarget = null) {
         aside.classList.remove('page-subnav--open')
         backdrop.hidden = true
         syncSubnavA11y()
+
+        const target = focusReturnTarget || lastSubnavTrigger
+        if (target && typeof target.focus === 'function') {
+            requestAnimationFrame(() => {
+                target.focus()
+            })
+        }
     }
 
     toggleBtn.addEventListener('click', () => {
@@ -1204,6 +1222,12 @@ function initPageSubnav() {
             const open = aside.classList.toggle('page-subnav--open')
             backdrop.hidden = !open
             syncSubnavA11y()
+            if (open) {
+                lastSubnavTrigger = toggleBtn
+                focusFirstSubnavControl()
+            } else {
+                closeMobilePanel(toggleBtn)
+            }
             return
         }
         setCollapsed(!aside.classList.contains('page-subnav--collapsed'))
@@ -1212,22 +1236,23 @@ function initPageSubnav() {
     fab.addEventListener('click', () => {
         aside.classList.add('page-subnav--open')
         backdrop.hidden = false
+        lastSubnavTrigger = fab
         syncSubnavA11y()
+        focusFirstSubnavControl()
     })
 
-    backdrop.addEventListener('click', closeMobilePanel)
+    backdrop.addEventListener('click', () => closeMobilePanel(fab))
 
     document.addEventListener('keydown', (event) => {
         if (event.key !== 'Escape') return
         if (!isMobile()) return
         if (!aside.classList.contains('page-subnav--open')) return
-        closeMobilePanel()
-        fab.focus()
+        closeMobilePanel(fab)
     })
 
     links.forEach((link) => {
         link.addEventListener('click', () => {
-            if (isMobile()) closeMobilePanel()
+            if (isMobile()) closeMobilePanel(lastSubnavTrigger)
         })
     })
 

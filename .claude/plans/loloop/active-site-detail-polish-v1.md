@@ -496,6 +496,10 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Stay on the site-polish line for one more bounded mobile site-shell accessibility pass after the theme-toggle update
 - [x] Improve mobile `site-sidebar` focus management by moving focus into the panel on open and returning it to the trigger on close
 - [x] Verify the `site-sidebar` focus-management update with `node --check site/js/app.js`
+- [x] Push the previously completed `site-sidebar` focus-flow commit so the `site/**` change reaches GitHub and can trigger Pages redeploy
+- [x] Stay on the site-polish line for one more bounded mobile site-shell accessibility pass after the `site-sidebar` focus-flow push succeeds
+- [x] Improve mobile `page-subnav` focus management by moving focus into the panel on open and returning it to the trigger on close
+- [x] Verify the `page-subnav` focus-management update with `node --check site/js/app.js`
 
 ## Guardrail
 
