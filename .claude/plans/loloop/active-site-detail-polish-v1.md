@@ -478,6 +478,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Use the still-open daytime window for one more publication-weighted bounded move instead of dropping straight back to non-media polish
 - [x] Recheck the ready `36-*` workflow article for image and final-link completeness before attempting publication
 - [x] Publish `36-知乎发布工作流技能化-知乎图文.md` to Zhihu with the multimodal pipeline and record the returned article URL
+- [x] Keep the daytime publication-weighted priority after the `36-*` workflow publish instead of dropping back to non-media polish too early
+- [x] Recheck the ready `37-*` VibePaper article for cookie, image, and final-link completeness before attempting publication
+- [x] Publish `37-VibePaper专题-知乎图文.md` to Zhihu with the multimodal pipeline and record the returned article URL
 
 ## Guardrail
 
