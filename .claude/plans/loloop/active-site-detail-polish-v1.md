@@ -551,6 +551,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Stay on Task 12 for one more bounded policy pass because the plan still had one clear unchecked item that could now be grounded in real usage instead of speculation
 - [x] Refine the hot-topic source policy into three explicit lanes after the first real route and third-source expansion, and sync the same editorial rule back into `topic-hot-watch`
 - [x] Verify the Task 12 source-policy pass with `python3 tools/refresh_site_topic_metadata.py`, `python3 tools/build_loop_task_board.py`, and `python3 tools/check_site_md_parity.py`
+- [x] Switch back from the now-locally-healthy Task 12 intake layer to Task 11 because the new hot-topic routing chain still was not visible from the main site map
+- [x] Make the `热门话题专项 -> 热点 intake / 路由页 -> Agent 技术热点 / RAG 技术热点` chain explicit in the site map diagram and page copy so the intake layer is taught as an upstream route, not a standalone hub
+- [x] Verify the second Task 11 site-map pass with `python3 tools/refresh_site_topic_metadata.py`, `python3 tools/check_site_md_parity.py`, and `node --check site/js/app.js`
 
 ## Guardrail
 
@@ -562,4 +565,5 @@ Keep each round bounded to one page or one UI component cluster.
 - review another data-driven page for repeated fetch or loading-state gaps
 - stay on Task 11 only if there is one more bounded site-map / metadata sync gap with the same main-site leverage
 - treat Task 12 as locally healthy unless a new low-risk route target, source class, or source-policy gap appears
+- treat the hot-topic intake chain as now visible from the main guide; only reopen Task 11 or Task 12 if another similarly clear navigation or routing gap appears
 - choose the next pass by mapping it to one of the three optimization pillars above

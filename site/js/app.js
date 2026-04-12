@@ -122,6 +122,8 @@ const MERMAID_DIAGRAMS = {
     SHOP --> BENCH["模型评测"]:::topic
     SHOP --> CODING["AI 编程工具"]:::topic
     HOTWATCH --> HOTWIRE["热点 intake / 路由页"]:::topic
+    HOTWIRE --> HOTAG["Agent 技术热点"]:::topic
+    HOTWIRE --> HOTRAG["RAG 技术热点"]:::topic
 
     AGENT --> HOT["技术热点 / 对比 / 论文"]:::topic
     PAPER --> ARIS["Autoresearch / ARIS"]:::lab

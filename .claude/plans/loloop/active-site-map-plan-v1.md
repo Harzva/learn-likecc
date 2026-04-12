@@ -35,3 +35,4 @@ Current focus: keep the site-wide mind map and per-topic update metadata synchro
 
 - 2026-04-12: first bounded Task 11 pass should make the `CLI Agent -> everything-agent-cli` branch explicit in the site map so the umbrella repo line is no longer only discoverable from the topic page and generated index
 - 2026-04-12: first bounded Task 11 pass landed in `site/js/app.js`, `site/topic-site-map.html`, and `site/md/topic-site-map.md`; `python3 tools/refresh_site_topic_metadata.py` refreshed the metadata chain without additional structural drift
+- 2026-04-12: second bounded Task 11 pass should make the new hot-topic intake chain visible from the site map itself so `topic-hot-watch` is taught as an upstream router into `topic-agent-hot` and `topic-rag-hot`, not just another standalone hub
