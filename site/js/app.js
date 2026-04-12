@@ -789,6 +789,13 @@ function initSiteSidebar() {
         setMobileOpen(false, fab)
     })
 
+    window.addEventListener('resize', () => {
+        if (!window.matchMedia('(max-width: 900px)').matches) {
+            backdrop.hidden = true
+        }
+        syncSidebarA11y()
+    })
+
     detailNodes.forEach((node) => {
         node.addEventListener('toggle', () => {
             saveOpenDetails()
@@ -1268,6 +1275,13 @@ function initPageSubnav() {
         if (!isMobile()) return
         if (!aside.classList.contains('page-subnav--open')) return
         closeMobilePanel(fab)
+    })
+
+    window.addEventListener('resize', () => {
+        if (!isMobile()) {
+            backdrop.hidden = true
+        }
+        syncSubnavA11y()
     })
 
     links.forEach((link) => {
