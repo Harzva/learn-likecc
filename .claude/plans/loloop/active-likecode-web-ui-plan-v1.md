@@ -8,7 +8,7 @@ Scope: continuously improve LikeCode Web UI, AI terminal experience, and the age
 - [x] Add a durable tool-logo asset pass for the site tool walls: local logo assets + image-first rendering + letter fallback, and keep Task 9 on this line until the first complete version lands
 - [x] Extend the first logo-asset version from `site/topic-ai-coding-tools.html` to one more high-value wall or adjacent agent / CLI page now that the local asset path and fallback behavior exist
 - [x] Extend the image-first logo system to one more wall with a broader product mix after the CLI-agent wall reuse pass
-- [ ] Decide whether the first logo-asset wave is locally complete enough to defer after the broader agent-wall pass
+- [x] Decide whether the first logo-asset wave is locally complete enough to defer after the broader agent-wall pass
 - [x] Identify the highest-value Web UI / agent-management pattern we should borrow next
 - [x] Use `reference/reference_cc_ui/hermes-webui/` and `reference/reference_cc_ui/claudecodeui/` as the first bounded source pair for a session-visibility pass
 - [x] Continue the LikeCode Web UI line with the next operator-control or agent-management slice after the new session-stack overview pass
@@ -133,3 +133,4 @@ Scope: continuously improve LikeCode Web UI, AI terminal experience, and the age
 - Current local state: the latest bounded teaching follow-up now also spells out an approval ladder from `OpenCode / OfficeCLI / Hermes Agent`; do not reopen this page again unless a stronger backend approval surface or genuinely new operator-control reference appears
 - Current local state: the logo-system line is now live on both `site/topic-ai-coding-tools.html` and `site/topic-ai-cli-agent.html`; prefer one more reuse pass on a broader tool wall before declaring the first logo wave locally done
 - Current local state: the logo-system line now also covers a representative subset of `site/topic-ai-agents.html`; the next pass should first decide whether the first logo wave is locally mature enough to defer instead of reflexively adding more icons
+- Current local state: the first logo-asset wave is now locally deferred; do not reopen it unless a new high-signal wall, more stable official assets, or a stronger reference-backed identity pattern makes another pass clearly worthwhile

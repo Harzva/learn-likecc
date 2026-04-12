@@ -525,6 +525,8 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Stay on the active Task 9 logo-asset line for one more bounded broader-tool-wall pass after the CLI-agent reuse pass
 - [x] Extend the same repo-local image-first / letter-fallback logo system to representative cards on `site/topic-ai-agents.html`
 - [x] Verify the broader agent-wall logo pass with `node --check site/js/app.js` and `python3 tools/check_site_md_parity.py`
+- [x] Review the first Task 9 logo-asset wave after the broader agent-wall pass and decide whether another icon-only follow-up is still justified
+- [x] Mark the first Task 9 logo-asset wave locally deferred after it proved reusable across the coding-tools wall, CLI-agent wall, and a representative agent-wall subset
 
 ## Guardrail
 
@@ -534,5 +536,5 @@ Keep each round bounded to one page or one UI component cluster.
 
 - tighten one more detail on `site/topic-superset-unpacked.html`
 - review another data-driven page for repeated fetch or loading-state gaps
-- decide whether the first Task 9 logo wave is locally complete enough to defer, or whether one smaller follow-up is still justified
+- choose the next higher-value recurring slice now that the first Task 9 logo wave is locally deferred
 - choose the next pass by mapping it to one of the three optimization pillars above
