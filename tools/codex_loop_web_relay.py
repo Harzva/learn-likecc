@@ -537,6 +537,8 @@ def workspace_meta(workspace: Path) -> dict:
         "github_repo_url": infer_git_remote(workspace),
         "workspace_root": str(workspace),
         "config_path": WORKSPACE_SHELL_FILE,
+        "allowed_edit_roots": list(ALLOWED_EDIT_ROOTS_REL),
+        "allowed_edit_files": list(ALLOWED_EDIT_FILES_REL),
         "links": config.get("links", {}),
     }
 
