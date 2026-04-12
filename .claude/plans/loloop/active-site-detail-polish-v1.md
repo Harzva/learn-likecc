@@ -475,6 +475,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Resume the queued daytime Zhihu publish once the local time enters the allowed `08:00-23:00` window
 - [x] Recheck the Task 1 publish prerequisites for `24-Superset解构外层调度-知乎图文.md` from repo-local evidence before publishing
 - [x] Publish `24-Superset解构外层调度-知乎图文.md` to Zhihu with the multimodal pipeline and record the returned article URL
+- [x] Use the still-open daytime window for one more publication-weighted bounded move instead of dropping straight back to non-media polish
+- [x] Recheck the ready `36-*` workflow article for image and final-link completeness before attempting publication
+- [x] Publish `36-知乎发布工作流技能化-知乎图文.md` to Zhihu with the multimodal pipeline and record the returned article URL
 
 ## Guardrail
 
