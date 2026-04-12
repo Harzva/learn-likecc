@@ -10,7 +10,7 @@ Scope: build and maintain a site-level 热门话题专项 that aggregates AIbase
 - [x] Create the first site-facing hot-topic hub page and Markdown mirror
 - [x] Link the new hub back into `AI杂货铺`
 - [x] Refresh the existing Agent / RAG hotspot copy so it points to the repo-local hot-topic workflow instead of the old placeholder skill path
-- [ ] Expand the source roster carefully beyond the first two trusted examples
+- [x] Expand the source roster carefully beyond the first two trusted examples
 - [x] Route one fresh fetched item into a downstream hotspot or long-form topic as the first bounded editorial follow-up
 
 ## Source classes
@@ -51,3 +51,4 @@ Scope: build and maintain a site-level 热门话题专项 that aggregates AIbase
 - Keep `prompt.md` short and keep the operational detail here.
 - The hot-topic hub is an intake + routing surface, not the final destination for every item.
 - 2026-04-12: first bounded downstream route landed on `site/topic-agent-hot.html` by taking `Build Agents That Don't Fail in Production` from the local snapshot and turning it into a real curated entry instead of leaving it stranded inside the intake layer
+- 2026-04-12: source roster now also includes `Hugging Face Blog` via `https://huggingface.co/blog/feed.xml`; this gives the intake layer a stable official-blog RSS lane for model / embedding / infra / agent-adjacent ecosystem items

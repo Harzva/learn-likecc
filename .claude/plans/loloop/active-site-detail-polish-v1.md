@@ -545,6 +545,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Switch from the now-cleared Task 11 site-map gap to Task 12 because the hot-topic intake plan still had a sharper unchecked follow-up than the other recurring slices
 - [x] Route one fresh item from `site/data/hot-topic-snapshot.json` into `site/topic-agent-hot.html` as the first bounded downstream editorial follow-up for the hot-topic intake layer
 - [x] Verify the Task 12 downstream-route pass with `python3 tools/refresh_site_topic_metadata.py`, `python3 tools/build_loop_task_board.py`, and `python3 tools/check_site_md_parity.py`
+- [x] Stay on Task 12 for one more bounded source-roster pass because the intake plan still had one equally clear low-risk expansion path using an RSS source the current fetcher already supports
+- [x] Add `Hugging Face Blog` as the third trusted hot-topic source and verify that the current fetch pipeline writes its entries into `site/data/hot-topic-snapshot.json`
+- [x] Verify the Task 12 source-roster pass with `python3 tools/fetch_hot_topic_sources.py --write`, `python3 tools/refresh_site_topic_metadata.py`, `python3 tools/build_loop_task_board.py`, and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail
 

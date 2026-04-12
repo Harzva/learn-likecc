@@ -1,0 +1,42 @@
+{
+  "sources": [
+    {
+      "id": "aibase-daily",
+      "label": "AIbase AI日报",
+      "kind": "aibase-daily",
+      "url": "https://www.aibase.com/zh/daily",
+      "route_hints": [
+        "topic-hot-watch",
+        "topic-ai-zahuopu",
+        "topic-agent-hot",
+        "topic-llm"
+      ],
+      "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。"
+    },
+    {
+      "id": "daily-dose-of-data-science",
+      "label": "Daily Dose of Data Science",
+      "kind": "rss",
+      "url": "https://blog.dailydoseofds.com/feed",
+      "route_hints": [
+        "topic-hot-watch",
+        "topic-agent-hot",
+        "topic-rag-hot"
+      ],
+      "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。"
+    },
+    {
+      "id": "hugging-face-blog",
+      "label": "Hugging Face Blog",
+      "kind": "rss",
+      "url": "https://huggingface.co/blog/feed.xml",
+      "route_hints": [
+        "topic-hot-watch",
+        "topic-toolchain",
+        "topic-llm",
+        "topic-rag-hot"
+      ],
+      "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。"
+    }
+  ]
+}

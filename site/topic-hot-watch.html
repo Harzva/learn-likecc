@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>热门话题专项 - Learn LikeCode</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛰️</text></svg>">
+    <meta name="description" content="聚合 AIbase Daily、RSS 与公开热点入口的站内热门话题专项；负责 intake、路由与后续专题沉淀。">
+    <meta name="page:updated" content="2026-04-12">
+</head>
+<body class="hot-watch-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🛰️</span>
+                <span class="logo-text">热门话题专项</span>
+            </a>
+            <div class="nav-links">
+                <a href="#overview" class="nav-link">定位</a>
+                <a href="#sources" class="nav-link">来源池</a>
+                <a href="#board" class="nav-link">实时摘要</a>
+                <a href="#routes" class="nav-link">落点规则</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-ai-zahuopu.html" class="btn-github">← AI杂货铺</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>热点 intake</span>
+                <span>AI 日报 / RSS / 路由</span>
+            </div>
+            <h1 class="hero-title">
+                热门话题专项<br>
+                <span class="gradient-text">先聚合，再路由，再沉淀成专题</span>
+            </h1>
+            <p class="hero-subtitle">
+                这页不是另一个新闻站，而是 Learn LikeCode 的<strong>热点 intake 面</strong>：先汇总外部热点源，再把值得讲的内容分流到 Agent、RAG、AI 杂货铺、工具链或大模型专题里。当前第一批受控来源以 <strong>AIbase AI日报</strong>、<strong>RSS 友好英文博客</strong> 和 <strong>官方产品 / 生态博客 RSS</strong> 为起点。
+            </p>
+            <div class="hero-actions">
+                <a href="#board" class="btn btn-primary">看当前摘要</a>
+                <a href="#maintenance" class="btn btn-secondary">看维护规则</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="course-main devlog-main">
+        <div class="container">
+            <article class="course-content devlog-content">
+                <section id="overview" class="section-block">
+                    <h2>这条专项解决什么问题</h2>
+                    <div class="course-quote">
+                        <p><strong>站内需要一个“先收热点，再决定写到哪”的 intake 层。</strong> 否则每次看到 AI 日报、外部快讯、产品榜单和 RSS 更新，都只能靠人工临时记忆，很难形成长期维护的站内路线。</p>
+                    </div>
+                    <ul>
+                        <li>它负责把公开热点源聚合成一份轻量快照。</li>
+                        <li>它不做全文镜像，只保留标题、链接、日期和一行判断。</li>
+                        <li>它最终要把线索路由回站内现有专题，而不是把所有内容都困在一页里。</li>
+                    </ul>
+                </section>
+
+                <section id="sources" class="section-block">
+                    <h2>第一批来源池</h2>
+                    <div class="zahuopu-mini-grid hot-watch-source-grid">
+                        <div class="zahuopu-mini-card">
+                            <strong>AIbase AI日报</strong>
+                            <p>代表“公开日更聚合页”这类来源。它很适合做热点 intake，但需要二次路由，不能直接当最终专题。</p>
+                        </div>
+                        <div class="zahuopu-mini-card">
+                            <strong>Daily Dose of Data Science</strong>
+                            <p>代表 RSS 友好源。稳定、结构清晰，适合半自动抓取和后续送往 Agent / RAG 热点页。</p>
+                        </div>
+                        <div class="zahuopu-mini-card">
+                            <strong>Hugging Face Blog</strong>
+                            <p>代表官方产品 / 生态博客 RSS。适合补模型发布、embedding / reranker、infra 与开源生态向热点，再路由到工具链 / 大模型 / RAG 相关页。</p>
+                        </div>
+                    </div>
+                    <p class="hot-watch-inline-note">技能入口：<code>.claude/skills/hot-topic-curation/SKILL.md</code>；源配置：<code>site/data/hot-topic-sources.json</code>。</p>
+                </section>
+
+                <section id="board" class="section-block">
+                    <h2>当前热点摘要</h2>
+                    <p class="section-desc">下面的数据来自本地快照 <code>site/data/hot-topic-snapshot.json</code>。如果你刚新增了一个源或需要刷新当天条目，运行 <code>python3 tools/fetch_hot_topic_sources.py --write</code>。</p>
+                    <div id="hot-topic-source-board" class="hot-watch-board" data-hot-topic-src="data/hot-topic-snapshot.json"></div>
+                </section>
+
+                <section id="routes" class="section-block">
+                    <h2>抓完之后写到哪里</h2>
+                    <div class="zahuopu-mini-grid">
+                        <a class="zahuopu-mini-card" href="topic-agent-hot.html">
+                            <strong>Agent 技术热点</strong>
+                            <p>给 Agent、CLI、workflow、managed agent、coding shell 这一类新闻做摘要和短评。</p>
+                        </a>
+                        <a class="zahuopu-mini-card" href="topic-rag-hot.html">
+                            <strong>RAG 技术热点</strong>
+                            <p>给 retrieval、grounding、eval、向量库和 indexing 这一类内容做分流。</p>
+                        </a>
+                        <a class="zahuopu-mini-card" href="topic-ai-zahuopu.html">
+                            <strong>AI杂货铺</strong>
+                            <p>当热点更像“入口发现”或“工具地图”时，先回到杂货铺，而不是硬写成长文。</p>
+                        </a>
+                        <a class="zahuopu-mini-card" href="topic-toolchain.html">
+                            <strong>工具链 / 大模型专题</strong>
+                            <p>当热点直指 API、provider、价格、模型版本或 infra 变化时，适合送往工具链或大模型主线。</p>
+                        </a>
+                    </div>
+                </section>
+
+                <section id="maintenance" class="section-block">
+                    <h2>维护规则</h2>
+                    <ol>
+                        <li>先改 <code>site/data/hot-topic-sources.json</code>，不要把新源只写进文案里。</li>
+                        <li>运行 <code>python3 tools/fetch_hot_topic_sources.py --write</code> 刷新本地快照。</li>
+                        <li>如果来源池或路由逻辑有明显变化，同步更新这页和对应热点页。</li>
+                        <li>如果某条热点足够重要，再交给 <code>keyword-site-topic</code> 做深一层的站内稿件。</li>
+                    </ol>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-hot-watch.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>© 2026 Learn LikeCode. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script src="js/hot-topic-watch.js"></script>
+</body>
+</html>

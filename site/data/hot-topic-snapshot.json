@@ -1,0 +1,201 @@
+{
+  "meta": {
+    "generated_at": "2026-04-12T05:23:52.940974+00:00",
+    "source_count": 3,
+    "config": "site/data/hot-topic-sources.json"
+  },
+  "sources": [
+    {
+      "source_id": "aibase-daily",
+      "label": "AIbase AI日报",
+      "kind": "aibase-daily",
+      "source_url": "https://www.aibase.com/zh/daily",
+      "current_issue": {
+        "title": "2026年4月10号 16:00AI 日报AI日报：MiniMax 发布 Music 2.6；扣子2.5重磅升级；AI人格测试产品SBTI走红网络查看日报",
+        "link": "https://www.aibase.com/daily/27029"
+      },
+      "route_hints": [
+        "topic-hot-watch",
+        "topic-ai-zahuopu",
+        "topic-agent-hot",
+        "topic-llm"
+      ],
+      "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
+      "items": [
+        {
+          "title": "AI 音乐进入“翻唱”时代！MiniMax 发布 Music 2.6：推出全新 Cover 功能与 Agent 技能",
+          "link": "https://www.aibase.com/news/27025",
+          "date": "2026年4月10号 16:00",
+          "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
+        },
+        {
+          "title": "字节跳动Seed团队核心人才流失:一年内70人离职，腾讯阿里成主要去向",
+          "link": "https://www.aibase.com/news/27024",
+          "date": "2026年4月10号 16:00",
+          "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
+        },
+        {
+          "title": "​iOS 26 重磅更新！短信应用引入 AI 智能搜索功能",
+          "link": "https://www.aibase.com/news/27022",
+          "date": "2026年4月10号 16:00",
+          "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
+        },
+        {
+          "title": "​梁文锋透露 DeepSeek V4 将于 4 月下旬发布",
+          "link": "https://www.aibase.com/news/27014",
+          "date": "2026年4月10号 16:00",
+          "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
+        },
+        {
+          "title": "扣子 2.5 重磅升级！给 AI Agent 配云电脑 + 云手机 + 独立邮箱，还建了个“平行世界”",
+          "link": "https://www.aibase.com/news/27013",
+          "date": "2026年4月10号 16:00",
+          "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
+        },
+        {
+          "title": "DeepSeek V4将于4月下旬发布:万亿参数规模并深度适配国产芯片",
+          "link": "https://www.aibase.com/news/27011",
+          "date": "2026年4月10号 16:00",
+          "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
+        },
+        {
+          "title": "阿里黑科技炸场！0.6B 小模型“魔改”成 17B MoE，激活参数仅 5%，CPU 直接跑 30token/s！",
+          "link": "https://www.aibase.com/news/27009",
+          "date": "2026年4月10号 16:00",
+          "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
+        },
+        {
+          "title": "AI人格测试产品SBTI走红网络:主打抽象标签与AI合成技术",
+          "link": "https://www.aibase.com/news/26998",
+          "date": "2026年4月10号 16:00",
+          "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
+        }
+      ]
+    },
+    {
+      "source_id": "daily-dose-of-data-science",
+      "label": "Daily Dose of Data Science",
+      "kind": "rss",
+      "source_url": "https://blog.dailydoseofds.com/feed",
+      "route_hints": [
+        "topic-hot-watch",
+        "topic-agent-hot",
+        "topic-rag-hot"
+      ],
+      "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
+      "items": [
+        {
+          "title": "Advisor Strategy in Agents",
+          "link": "https://blog.dailydoseofds.com/p/advisor-strategy-in-agents",
+          "date": "Fri, 10 Apr 2026 19:31:48 GMT",
+          "note": "Reduce token costs and improve performance...and how to use it with Claude!"
+        },
+        {
+          "title": "Build Agents That Don’t Fail in Production",
+          "link": "https://blog.dailydoseofds.com/p/build-agents-that-dont-fail-in-production",
+          "date": "Thu, 09 Apr 2026 21:59:46 GMT",
+          "note": "...a step-by-step guide (with code)."
+        },
+        {
+          "title": "The Next Step After Karpathy's Wiki Idea",
+          "link": "https://blog.dailydoseofds.com/p/the-next-step-after-karpathys-wiki",
+          "date": "Wed, 08 Apr 2026 22:02:16 GMT",
+          "note": "100% open-source and runs locally!"
+        },
+        {
+          "title": "Six Key Metrics for AI Agent Evaluation",
+          "link": "https://blog.dailydoseofds.com/p/six-key-metrics-for-ai-agent-evaluation",
+          "date": "Tue, 07 Apr 2026 20:01:47 GMT",
+          "note": "...explained with code!"
+        },
+        {
+          "title": "The Anatomy of an Agent Harness",
+          "link": "https://blog.dailydoseofds.com/p/the-anatomy-of-an-agent-harness",
+          "date": "Mon, 06 Apr 2026 21:09:35 GMT",
+          "note": "A deep dive into what Anthropic, OpenAI, Perplexity and LangChain are actually building."
+        },
+        {
+          "title": "MLOps and LLMOps Case Studies",
+          "link": "https://blog.dailydoseofds.com/p/mlops-and-llmops-case-studies",
+          "date": "Sun, 05 Apr 2026 20:23:23 GMT",
+          "note": "How Booking.com, Uber, Stripe, and more actually think about ML and AI systems in production."
+        },
+        {
+          "title": "A Memory-efficient Technique to Train Large Models",
+          "link": "https://blog.dailydoseofds.com/p/a-memory-efficient-technique-to-train-242",
+          "date": "Fri, 03 Apr 2026 20:51:13 GMT",
+          "note": "...that even LLMs like GPTs and LLaMAs use."
+        },
+        {
+          "title": "What are Agent Skills and How Agents Use Them?",
+          "link": "https://blog.dailydoseofds.com/p/what-are-agent-skills-and-how-agents",
+          "date": "Thu, 02 Apr 2026 21:49:19 GMT",
+          "note": "A 7-step process, explained visually!"
+        }
+      ]
+    },
+    {
+      "source_id": "hugging-face-blog",
+      "label": "Hugging Face Blog",
+      "kind": "rss",
+      "source_url": "https://huggingface.co/blog/feed.xml",
+      "route_hints": [
+        "topic-hot-watch",
+        "topic-toolchain",
+        "topic-llm",
+        "topic-rag-hot"
+      ],
+      "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
+      "items": [
+        {
+          "title": "Waypoint-1.5: Higher-Fidelity Interactive Worlds for Everyday GPUs",
+          "link": "https://huggingface.co/blog/waypoint-1-5",
+          "date": "Thu, 09 Apr 2026 00:00:00 GMT",
+          "note": ""
+        },
+        {
+          "title": "Multimodal Embedding & Reranker Models with Sentence Transformers",
+          "link": "https://huggingface.co/blog/multimodal-sentence-transformers",
+          "date": "Thu, 09 Apr 2026 00:00:00 GMT",
+          "note": ""
+        },
+        {
+          "title": "ALTK‑Evolve: On‑the‑Job Learning for AI Agents",
+          "link": "https://huggingface.co/blog/ibm-research/altk-evolve",
+          "date": "Wed, 08 Apr 2026 14:27:42 GMT",
+          "note": ""
+        },
+        {
+          "title": "Safetensors is Joining the PyTorch Foundation",
+          "link": "https://huggingface.co/blog/safetensors-joins-pytorch-foundation",
+          "date": "Wed, 08 Apr 2026 00:00:00 GMT",
+          "note": ""
+        },
+        {
+          "title": "Welcome Gemma 4: Frontier multimodal intelligence on device",
+          "link": "https://huggingface.co/blog/gemma4",
+          "date": "Thu, 02 Apr 2026 00:00:00 GMT",
+          "note": ""
+        },
+        {
+          "title": "Holo3: Breaking the Computer Use Frontier",
+          "link": "https://huggingface.co/blog/Hcompany/holo3",
+          "date": "Wed, 01 Apr 2026 16:36:15 GMT",
+          "note": ""
+        },
+        {
+          "title": "Falcon Perception",
+          "link": "https://huggingface.co/blog/tiiuae/falcon-perception",
+          "date": "Wed, 01 Apr 2026 07:13:20 GMT",
+          "note": ""
+        },
+        {
+          "title": "Any Custom Frontend with Gradio's Backend",
+          "link": "https://huggingface.co/blog/introducing-gradio-server",
+          "date": "Wed, 01 Apr 2026 00:00:00 GMT",
+          "note": ""
+        }
+      ]
+    }
+  ]
+}
