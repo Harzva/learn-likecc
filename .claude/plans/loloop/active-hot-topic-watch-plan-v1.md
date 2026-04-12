@@ -35,7 +35,7 @@ Scope: build and maintain a site-level 热门话题专项 that aggregates AIbase
 - [x] `site/topic-agent-hot.html`
 - [x] `site/topic-rag-hot.html`
 - [x] `site/topic-ai-zahuopu.html`
-- [ ] `site/topic-toolchain.html`
+- [x] `site/topic-toolchain.html`
 - [ ] `site/topic-llm.html`
 
 ## Validation
@@ -53,3 +53,4 @@ Scope: build and maintain a site-level 热门话题专项 that aggregates AIbase
 - 2026-04-12: first bounded downstream route landed on `site/topic-agent-hot.html` by taking `Build Agents That Don't Fail in Production` from the local snapshot and turning it into a real curated entry instead of leaving it stranded inside the intake layer
 - 2026-04-12: source roster now also includes `Hugging Face Blog` via `https://huggingface.co/blog/feed.xml`; this gives the intake layer a stable official-blog RSS lane for model / embedding / infra / agent-adjacent ecosystem items
 - 2026-04-12: source policy now explicitly separates three lanes after real usage: discovery digest, independent RSS commentary, and official product / ecosystem blog RSS
+- 2026-04-12: second bounded downstream route landed on `site/topic-toolchain.html` by taking `Safetensors is Joining the PyTorch Foundation` from the Hugging Face Blog snapshot and treating it as a long-lived toolchain / infra signal instead of leaving it stranded in the intake hub
