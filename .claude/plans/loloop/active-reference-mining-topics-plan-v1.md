@@ -40,6 +40,8 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - [x] Add one coding-tools hub sync note clarifying that the CLI Agent bucket now also points to multiple approval surfaces rather than only shell categories
 - [x] Reopen the root `topic-ai-zahuopu` shelf for one bounded CLI-lane sync once the coding-tools hub also reflects the approval-surface distinction
 - [x] Add one root-shelf sync note clarifying that the `CLI Agent` lane should now be read as shell type plus approval surface, not just “terminal tools”
+- [x] Reopen `topic-agent-comparison` for one bounded generation-shift pass now that `ChatDev 2.0` has become a stronger runtime-shell teaching sample than the older role-play framing
+- [x] Add one repo-backed generation-shift note clarifying that `ChatDev 2.0` should now be taught as a zero-code orchestration platform rather than only as a virtual software company script
 
 ## Newly added references
 

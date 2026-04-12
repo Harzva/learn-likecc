@@ -108,6 +108,8 @@
   - 更像 **把代理当长期成员持续接任务**
   - 重点是 runtime、issue、comment、status 和 daemon 组成的队友生命周期
 
+还要防一个常见误读：`ChatDev 2.0` 已经不是早期那种 “CEO / CTO / Programmer” 角色扮演式虚拟软件公司主叙事了。按本地 `reference/reference_agent/ChatDev/README.md`，它在 `2026-01-07` 明确转向了 **Zero-Code Multi-Agent Platform**，重点变成用户自己配置 agent / workflow / task。换句话说，今天再拿 ChatDev 举例，教学重点应该放在**编排壳**，而不是只记住那套经典角色剧本。
+
 这会帮助读者把 “Agent Teams” 这件事再拆细一点：有的系统主要在优化单入口多角色工作流，有的在优化可配置编排，有的已经开始优化长期的人机协作组织面。
 
 ### 三、小结：两条线怎么一起想

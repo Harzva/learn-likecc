@@ -527,6 +527,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Verify the broader agent-wall logo pass with `node --check site/js/app.js` and `python3 tools/check_site_md_parity.py`
 - [x] Review the first Task 9 logo-asset wave after the broader agent-wall pass and decide whether another icon-only follow-up is still justified
 - [x] Mark the first Task 9 logo-asset wave locally deferred after it proved reusable across the coding-tools wall, CLI-agent wall, and a representative agent-wall subset
+- [x] Switch from the deferred Task 9 logo wave to a fresh bounded Task 8 reference-mining slice with a clearer unchecked current-focus item
+- [x] Reopen `site/topic-agent-comparison.html` for one bounded `ChatDev 2.0` generation-shift note so the runtime-shell section no longer over-inherits the older virtual-software-company framing
+- [x] Verify the Task 8 generation-shift pass with `python3 tools/check_site_md_parity.py`
 
 ## Guardrail
 
