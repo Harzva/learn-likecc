@@ -61,6 +61,11 @@
 - 同时也给 `gemini-plugin-cc`、`qwen-plugin-cc`、`grok-plugin-cc` 到 `cursor/qoder/trae-plugin-cc` 这一整条插件家族提供 umbrella repo
 - 而且分层是清楚的：统一命名、workflow 和 wrapper 留在总仓库，provider 细节下沉到各自 `*-plugin-cc`
 
+如果要继续往下拆，站内已经单独开了一页子专题：
+
+- `topic-everything-agent-cli.html`
+- https://harzva.github.io/learn-likecc/topic-everything-agent-cli.html
+
 ## 别混淆：有些产品和 CLI Agent 有关，但不该直接当成纯 CLI
 
 | 路线 | 代表样本 | 为什么会被误放进 CLI Agent | 更准确的归类 |

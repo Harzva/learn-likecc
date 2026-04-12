@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Everything Agent-CLI to Claude Code - Learn LikeCode</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧰</text></svg>">
+    <meta name="description" content="把网页登录和官方 CLI 才能用的能力重新接回 Claude Code / LikeCode：从 umbrella repo、plugin-cc 家族、wrapper smoke test 到多模型 CLI 编排。">
+</head>
+<body class="bridge-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="topic-ai-cli-agent.html" class="nav-logo">
+                <span class="logo-icon">🧰</span>
+                <span class="logo-text">Everything Agent-CLI</span>
+            </a>
+            <div class="nav-links">
+                <a href="#takeaway" class="nav-link">结论</a>
+                <a href="#problem" class="nav-link">01 问题</a>
+                <a href="#architecture" class="nav-link">02 架构</a>
+                <a href="#family" class="nav-link">03 仓库家族</a>
+                <a href="#verify" class="nav-link">04 验证</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-ai-cli-agent.html" class="btn-github">CLI Agent 专页</a>
+                <a href="topic-ai-zahuopu.html" class="btn-github">← AI杂货铺</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>实验子专题</span>
+                <span>CLI 编排 / 多模型工作流</span>
+            </div>
+            <h1 class="hero-title">
+                Everything Agent-CLI<br>
+                <span class="gradient-text">to Claude Code</span>
+            </h1>
+            <p class="hero-subtitle">
+                这条线不只是“再列几个 CLI 工具”，而是在回答一个更实用的问题：<strong>怎么把网页登录、订阅权益、官方 CLI 才能用的能力重新接回 Claude Code / LikeCode 主工作流</strong>。
+            </p>
+            <div class="hero-stats hero-stats--bridge">
+                <div class="stat-item stat-item--panel stat-item--bridge"><span class="stat-value">1</span><span class="stat-label">umbrella repo</span></div>
+                <div class="stat-item stat-item--panel stat-item--bridge"><span class="stat-value">7+</span><span class="stat-label">plugin-cc 家族</span></div>
+                <div class="stat-item stat-item--panel stat-item--bridge"><span class="stat-value">6</span><span class="stat-label">本地 smoke test</span></div>
+                <div class="stat-item stat-item--panel stat-item--bridge"><span class="stat-value">N</span><span class="stat-label">未来多模型 worker</span></div>
+            </div>
+            <div class="hero-actions">
+                <a href="#architecture" class="btn btn-primary">先看架构</a>
+                <a href="https://github.com/Harzva/everything-agent-cli-to-claude-code" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">GitHub 仓库 ↗</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="course-main devlog-main">
+        <div class="container">
+            <article class="course-content devlog-content">
+                <section id="takeaway" class="section-block">
+                    <h2>一句话结论</h2>
+                    <div class="course-quote">
+                        <p><strong>Everything Agent-CLI to Claude Code</strong> 的核心不是“给 Claude 再接一个 API”，而是把被网页登录和官方 CLI 壳隔离的能力，重新恢复成 <strong>Claude Code / LikeCode 可调度的外部 worker</strong>。</p>
+                    </div>
+                </section>
+
+                <section id="problem" class="section-block">
+                    <h2>01 · 它到底在解决什么问题</h2>
+                    <table class="options-table">
+                        <tr><th>真实困境</th><th>为什么普通 API 思路不够</th><th>这个项目的回答</th></tr>
+                        <tr><td>很多能力绑定在网页登录和官方 CLI 上</td><td>你有额度、有订阅，但没有对等公开 API</td><td>把官方 CLI 当执行面，把主工作流留在 Claude Code / LikeCode</td></tr>
+                        <tr><td>同一任务里想混用多个模型</td><td>原生单 provider / 单模型路径切换摩擦大</td><td>让不同 provider CLI 变成不同 worker</td></tr>
+                        <tr><td>不想开七个终端来回切</td><td>上下文、文件、审稿、review 都会断裂</td><td>把不同 CLI 编排进一个统一 workflow</td></tr>
+                    </table>
+                    <p>所以它最适合被理解成：<strong>多模型 CLI 编排层</strong>，而不是又一个“模型聚合 API”。</p>
+                </section>
+
+                <section id="architecture" class="section-block">
+                    <h2>02 · 它的架构为什么值得看</h2>
+                    <pre><code>Claude Code / LikeCode
+        ->
+umbrella skill: usecli:*
+        ->
+provider wrapper
+        ->
+official provider CLI
+        ->
+web-login entitlement / subscription / free quota</code></pre>
+                    <p>这条链路有两个特别关键的设计点：</p>
+                    <ul>
+                        <li><strong>Claude Code / LikeCode</strong> 继续做 control plane，不把主工作台让出去。</li>
+                        <li>外部模型能力不再被当作“聊天标签页”，而是变成可以被调度的命令型 worker。</li>
+                    </ul>
+                    <p>在这个模型下，`codex`、`gemini`、`qwen`、`grok` 可以进入同一个 review / planning / doc-generation loop；而 `cursor / qoder / trae` 这类还没确认稳定命令面的工具，也能先以 scaffold repo 的方式占位。</p>
+                </section>
+
+                <section id="family" class="section-block">
+                    <h2>03 · 仓库家族怎么分层</h2>
+                    <table class="options-table">
+                        <tr><th>仓库</th><th>角色</th><th>当前状态</th></tr>
+                        <tr><td><code>everything-agent-cli-to-claude-code</code></td><td>umbrella repo，放定位、命名、workflow、registry、总入口</td><td>已补 README 与 wrapper smoke test</td></tr>
+                        <tr><td><code>gemini-plugin-cc</code></td><td>Gemini provider bridge</td><td>已补最小 smoke test</td></tr>
+                        <tr><td><code>qwen-plugin-cc</code></td><td>Qwen provider bridge</td><td>已补最小 smoke test</td></tr>
+                        <tr><td><code>grok-plugin-cc</code></td><td>Grok provider bridge</td><td>已补最小 smoke test</td></tr>
+                        <tr><td><code>cursor-plugin-cc</code></td><td>Cursor scaffold bridge</td><td>已补“可测试 placeholder”</td></tr>
+                        <tr><td><code>qoder-plugin-cc</code></td><td>Qoder scaffold bridge</td><td>已补“可测试 placeholder”</td></tr>
+                        <tr><td><code>trae-plugin-cc</code></td><td>Trae scaffold bridge</td><td>已补“可测试 placeholder”</td></tr>
+                    </table>
+                    <p>这种拆法的好处是：<strong>总仓库讲控制面和统一命名，子仓库讲 provider 细节和本机差异</strong>。这样后面往 skill、workflow、自动评审链扩展会更稳。</p>
+                </section>
+
+                <section id="verify" class="section-block">
+                    <h2>04 · 我们现在怎么验证这条线</h2>
+                    <p>目前已经不是纯概念页，而是有最小可跑的验证闭环。</p>
+                    <table class="options-table">
+                        <tr><th>验证对象</th><th>脚本</th><th>说明</th></tr>
+                        <tr><td>umbrella wrapper</td><td><code>projects/everything-agent-cli-to-claude-code/tests/test_wrappers.sh</code></td><td>验证 `codex / gemini / qwen / grok` wrapper 的 help、参数拼装与 workflow 输出</td></tr>
+                        <tr><td>Gemini provider</td><td><code>projects/gemini-plugin-cc/tests/test_wrapper.sh</code></td><td>验证 wrapper 命令构造</td></tr>
+                        <tr><td>Qwen provider</td><td><code>projects/qwen-plugin-cc/tests/test_wrapper.sh</code></td><td>验证 `qwen-oauth` 参数面</td></tr>
+                        <tr><td>Grok provider</td><td><code>projects/grok-plugin-cc/tests/test_wrapper.sh</code></td><td>验证 headless prompt 调用</td></tr>
+                        <tr><td>Cursor / Qoder / Trae scaffold</td><td>各自 <code>tests/test_wrapper.sh</code></td><td>验证 placeholder 也具备统一参数面和探测输出</td></tr>
+                    </table>
+                    <div class="course-quote">
+                        <p><strong>这一步很关键</strong>：哪怕仓库还处在 scaffold 阶段，也先把“命令契约”和“占位状态”测起来。这样未来从 placeholder 升级到真实 CLI 接入时，至少不会从零开始补质量基线。</p>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2>05 · 它和站内 CLI Agent 专题的关系</h2>
+                    <p><a href="topic-ai-cli-agent.html">CLI Agent 专页</a> 回答的是“有哪些路线、该怎么分类”；而这一页回答的是“如果我真想把多个 provider CLI 接回一个主工作流，工程上该怎么搭”。两页放在一起，前者给你地图，后者给你施工方案。</p>
+                </section>
+
+                <div class="chapter-navigation">
+                    <a href="topic-ai-cli-agent.html" class="btn btn-secondary">← 返回 CLI Agent 专页</a>
+                    <a href="topic-ai-zahuopu.html" class="btn btn-primary">回到 AI杂货铺 →</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-everything-agent-cli.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>© 2026 Learn LikeCode. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>
