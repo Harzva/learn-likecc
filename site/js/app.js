@@ -656,6 +656,7 @@ function initSiteSidebar() {
     const collapseBtn = aside.querySelector('.site-sidebar__collapse')
     const collapseAllBtn = aside.querySelector('[data-sidebar-action="collapse-all"]')
     const detailNodes = Array.from(aside.querySelectorAll('.site-sidebar__details[data-sidebar-key]'))
+    const navLinks = Array.from(aside.querySelectorAll('a.site-sidebar__link'))
     let lastSidebarTrigger = fab
 
     function focusFirstSidebarControl() {
@@ -801,6 +802,14 @@ function initSiteSidebar() {
     detailNodes.forEach((node) => {
         node.addEventListener('toggle', () => {
             saveOpenDetails()
+        })
+    })
+
+    navLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+            if (window.matchMedia('(max-width: 900px)').matches) {
+                setMobileOpen(false, lastSidebarTrigger)
+            }
         })
     })
 
