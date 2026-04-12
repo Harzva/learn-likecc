@@ -6,7 +6,7 @@
     <title>CLI Agent 专页 - AI杂货铺</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⌨️</text></svg>">
-    <meta name="description" content="CLI Agent 专页：重点补 Qwen Code、MiniMax、Claude Code 与 Codex，按终端使用场景看它们的差异。">
+    <meta name="description" content="CLI Agent 专页：不只看 Claude Code、Codex、Qwen Code，还把 OpenCode、Gemini CLI 以及 Cursor / Qoder / Trae 这类终端相邻路线一起放进谱系里。">
 </head>
 <body class="zahuopu-page">
     <nav class="navbar">
@@ -17,7 +17,7 @@
             </a>
             <div class="nav-links">
                 <a href="#map" class="nav-link">地图</a>
-                <a href="#four" class="nav-link">四件主货</a>
+                <a href="#landscape" class="nav-link">主流谱系</a>
                 <a href="#pick" class="nav-link">怎么选</a>
             </div>
             <div class="nav-actions">
@@ -40,8 +40,8 @@
                 <span class="gradient-text">不是一个壳，而是一套工作方式</span>
             </h1>
             <p class="hero-subtitle">
-                这一页不比“谁家最强”，而是先把四个最值得放一起看的入口摆平：<strong>Claude Code</strong>、<strong>Codex</strong>、<strong>Qwen Code</strong>，以及 <strong>MiniMax 的 Codex CLI 适配路线</strong>。<br>
-                重点问题只有一个：<strong>你想在终端里用 agent 做什么，以及哪条路线最顺手</strong>。
+                这一页不只摆四个名字，而是把 <strong>Claude Code</strong>、<strong>Codex</strong>、<strong>Qwen Code</strong>、<strong>OpenCode</strong>、<strong>Gemini CLI</strong>，以及 <strong>Cursor / Qoder / Trae</strong> 这类终端相邻路线一起放到一张图里。<br>
+                重点问题只有一个：<strong>你想在终端里用 agent 做什么，以及哪些产品其实不该被混成同一种 CLI</strong>。
             </p>
         </div>
     </section>
@@ -52,7 +52,7 @@
                 <section id="map" class="section-block">
                     <div class="toolchain-section-heading">
                         <span class="toolchain-eyebrow">Map</span>
-                        <h2>先把四条路线放在一张图上</h2>
+                        <h2>先把主流 CLI Agent 谱系放在一张图上</h2>
                     </div>
                     <div class="zahuopu-mini-grid">
                         <div class="zahuopu-mini-card">
@@ -68,16 +68,28 @@
                             <p>Qwen 官方开源终端 agent，关键价值不是“国产替代”四个字，而是它把 agent 壳层本身开源了。</p>
                         </div>
                         <div class="zahuopu-mini-card">
+                            <strong>OpenCode</strong>
+                            <p>更偏开源终端壳层路线，适合看 TUI、本地/远程 client 和 provider-agnostic 接入，而不只是“替代谁”。</p>
+                        </div>
+                        <div class="zahuopu-mini-card">
+                            <strong>Gemini CLI</strong>
+                            <p>Google 这条线的终端入口，适合放在“官方模型生态如何进入 terminal workflow”这条线上看。</p>
+                        </div>
+                        <div class="zahuopu-mini-card">
                             <strong>MiniMax 路线</strong>
-                            <p>目前更值得关注的是官方文档里对 <code>Codex CLI</code> 的适配，而不是硬找一个并不稳定的独立 CLI 品牌名。</p>
+                            <p>更值得关注的是官方文档里对 <code>Codex CLI</code> 的适配，而不是硬找一个并不稳定的独立 CLI 品牌名。</p>
+                        </div>
+                        <div class="zahuopu-mini-card">
+                            <strong>Cursor / Qoder / Trae</strong>
+                            <p>它们都和终端 agent 有交集，但更适合归到“终端相邻工作台”而不是纯 CLI 主战壳层。</p>
                         </div>
                     </div>
                 </section>
 
-                <section id="four" class="section-block">
+                <section id="landscape" class="section-block">
                     <div class="toolchain-section-heading">
-                        <span class="toolchain-eyebrow">Four Picks</span>
-                        <h2>四件主货，分别该怎么看</h2>
+                        <span class="toolchain-eyebrow">Landscape</span>
+                        <h2>主流谱系，不只是四件主货</h2>
                     </div>
 
                     <div class="toolchain-card-grid">
@@ -124,6 +136,28 @@
                             </ul>
                             <p><a href="https://platform.minimax.io/docs/coding-plan/codex-cli" target="_blank" rel="noopener noreferrer">官方文档 ↗</a></p>
                         </section>
+
+                        <section class="toolchain-topic-card">
+                            <div class="toolchain-topic-card__meta">05 · Open Source Shell</div>
+                            <h3>OpenCode</h3>
+                            <p>OpenCode 值得单列，是因为它不是单纯补一个名字，而是把 <strong>TUI-first shell</strong>、远程 attach、provider-agnostic 接入和开源 client/server 体验拉成了完整路线。</p>
+                            <ul class="toolchain-topic-card__list">
+                                <li>适合研究终端原生交互壳怎么做</li>
+                                <li>也适合拿来对照官方产品壳和开源替代壳的边界</li>
+                            </ul>
+                            <p><a href="https://opencode.ai/" target="_blank" rel="noopener noreferrer">官方入口 ↗</a></p>
+                        </section>
+
+                        <section class="toolchain-topic-card">
+                            <div class="toolchain-topic-card__meta">06 · Google</div>
+                            <h3>Gemini CLI</h3>
+                            <p>Gemini CLI 更适合放在“Google 模型与开发者工作流如何进入 terminal”这条线上看。对比价值不只是谁能写代码，而是谁把终端接进了自家模型与平台体系。</p>
+                            <ul class="toolchain-topic-card__list">
+                                <li>适合本来就在 Google / Gemini 生态里的人</li>
+                                <li>也适合和 Codex、Claude Code 对照看平台型入口差异</li>
+                            </ul>
+                            <p><a href="topic-ai-zahuopu.html#cli-shelf">先从杂货铺货架入口看 ↗</a></p>
+                        </section>
                     </div>
                 </section>
 
@@ -165,7 +199,47 @@
                             </tbody>
                         </table>
                     </div>
-                    <p>所以这页后面再扩时，重点不该是“再多列几个名字”，而是先判断你要选的是哪一类终端壳。</p>
+                    <p>所以这页后面再扩时，重点不是只把名字越列越多，而是先判断你要选的是哪一类终端壳：主战 CLI、开源终端壳、文档控制 CLI，还是终端相邻工作台。</p>
+                </section>
+
+                <section class="section-block">
+                    <div class="toolchain-section-heading">
+                        <span class="toolchain-eyebrow">Adjacent</span>
+                        <h2>别混淆：有些产品和 CLI Agent 有关，但不该直接当成纯 CLI</h2>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>路线</th>
+                                    <th>代表样本</th>
+                                    <th>为什么会被误放进 CLI Agent</th>
+                                    <th>更准确的归类</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>terminal-adjacent IDE</td>
+                                    <td>Cursor</td>
+                                    <td>它有 terminal、agent、命令执行和工作流自动化，因此经常被口头叫成“Cursor CLI”</td>
+                                    <td>更适合归到 AI IDE / 编辑器工作台，而不是纯 CLI 主战壳</td>
+                                </tr>
+                                <tr>
+                                    <td>coding studio / workspace</td>
+                                    <td>Qoder</td>
+                                    <td>它有 agentic 编程和研发空间属性，很多人会把整个平台误缩写成一个 CLI</td>
+                                    <td>更像研发空间或 agent 工作台</td>
+                                </tr>
+                                <tr>
+                                    <td>AI IDE with agent mode</td>
+                                    <td>Trae</td>
+                                    <td>它和 Solo、编辑器、Agent 模式经常一起出现，容易在讨论里被压扁成单个 CLI</td>
+                                    <td>更适合归到 AI IDE / agent 工作台路线</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>这也是为什么你在做选型时，不该只问“有没有 CLI”。更该问的是：<strong>你要的是主战终端、终端旁路、还是编辑器工作台</strong>。</p>
                 </section>
 
                 <section class="section-block">
@@ -176,7 +250,7 @@
                     <p class="toolspot-intro">鼠标放上去时，当前工具会抬起来；和它共享同一路线标签的工具会一起凸显，其他卡片会轻微退后。这样读者一眼就能看出谁是终端主战派、谁更偏平台生态、谁更适合拿来做模型接入。</p>
                     <div class="toolspot-grid" data-toolspot-grid>
                         <article class="toolspot-card" tabindex="0" data-related="terminal,workflow,official" data-accent="amber">
-                            <span class="toolspot-card__logo">CC</span>
+                            <span class="toolspot-card__logo" aria-hidden="true"><img class="toolspot-card__logo-image" src="images/tool-logos/claude-code.png" alt="" loading="lazy"><span class="toolspot-card__logo-fallback">CC</span></span>
                             <div class="toolspot-card__body">
                                 <h3>Claude Code</h3>
                                 <p>终端工作流完成度高，适合把 agent 当主界面来用。</p>
@@ -201,6 +275,20 @@
                                 </div>
                             </div>
                             <div class="toolspot-card__tooltip">相关：Claude Code、OpenRouter、MiniMax 路线</div>
+                        </article>
+
+                        <article class="toolspot-card" tabindex="0" data-related="terminal,official,platform" data-accent="cyan">
+                            <span class="toolspot-card__logo" aria-hidden="true"><img class="toolspot-card__logo-image" src="images/tool-logos/gemini-cli.png" alt="" loading="lazy"><span class="toolspot-card__logo-fallback">GM</span></span>
+                            <div class="toolspot-card__body">
+                                <h3>Gemini CLI</h3>
+                                <p>Google 模型路线进入 terminal workflow 的代表，更适合放在平台入口线上看。</p>
+                                <div class="toolspot-card__tags">
+                                    <span>终端主战</span>
+                                    <span>平台生态</span>
+                                    <span>官方产品</span>
+                                </div>
+                            </div>
+                            <div class="toolspot-card__tooltip">相关：Codex、Claude Code、Qwen Code</div>
                         </article>
 
                         <article class="toolspot-card" tabindex="0" data-related="terminal,open-source,official" data-accent="mint">
@@ -231,6 +319,20 @@
                             <div class="toolspot-card__tooltip">相关：Codex、OpenRouter、SiliconFlow</div>
                         </article>
 
+                        <article class="toolspot-card" tabindex="0" data-related="terminal,open-source,tui" data-accent="rose">
+                            <span class="toolspot-card__logo" aria-hidden="true"><img class="toolspot-card__logo-image" src="images/tool-logos/opencode.png" alt="" loading="lazy"><span class="toolspot-card__logo-fallback">OC</span></span>
+                            <div class="toolspot-card__body">
+                                <h3>OpenCode</h3>
+                                <p>开源 TUI-first shell，适合拿来看终端原生壳层和 provider-agnostic 路线。</p>
+                                <div class="toolspot-card__tags">
+                                    <span>开源壳层</span>
+                                    <span>TUI</span>
+                                    <span>终端工作流</span>
+                                </div>
+                            </div>
+                            <div class="toolspot-card__tooltip">相关：Claude Code、Qwen Code、Aider</div>
+                        </article>
+
                         <article class="toolspot-card" tabindex="0" data-related="terminal,open-source,workflow" data-accent="slate">
                             <span class="toolspot-card__logo">AD</span>
                             <div class="toolspot-card__body">
@@ -246,7 +348,7 @@
                         </article>
 
                         <article class="toolspot-card" tabindex="0" data-related="editor,platform,official" data-accent="stone">
-                            <span class="toolspot-card__logo">CS</span>
+                            <span class="toolspot-card__logo" aria-hidden="true"><img class="toolspot-card__logo-image" src="images/tool-logos/cursor.png" alt="" loading="lazy"><span class="toolspot-card__logo-fallback">CS</span></span>
                             <div class="toolspot-card__body">
                                 <h3>Cursor</h3>
                                 <p>更偏编辑器工作台，适合和 CLI Agent 做边界对比。</p>
@@ -256,11 +358,39 @@
                                     <span>官方产品</span>
                                 </div>
                             </div>
-                            <div class="toolspot-card__tooltip">相关：GitHub Copilot、Claude Code、Codex</div>
+                            <div class="toolspot-card__tooltip">相关：Trae、Qoder、GitHub Copilot</div>
+                        </article>
+
+                        <article class="toolspot-card" tabindex="0" data-related="editor,workspace,agentic" data-accent="amber">
+                            <span class="toolspot-card__logo">QD</span>
+                            <div class="toolspot-card__body">
+                                <h3>Qoder</h3>
+                                <p>更偏研发空间与 agent 工作台，不宜被压扁成单个 CLI 名字来理解。</p>
+                                <div class="toolspot-card__tags">
+                                    <span>工作台</span>
+                                    <span>Agentic</span>
+                                    <span>研发空间</span>
+                                </div>
+                            </div>
+                            <div class="toolspot-card__tooltip">相关：Trae、Cursor、CodeBuddy IDE</div>
+                        </article>
+
+                        <article class="toolspot-card" tabindex="0" data-related="editor,workspace,agentic" data-accent="mint">
+                            <span class="toolspot-card__logo">TR</span>
+                            <div class="toolspot-card__body">
+                                <h3>Trae</h3>
+                                <p>AI IDE 与 agent 模式耦合得更紧，适合和 Cursor、Qoder 放一组看工作台形态。</p>
+                                <div class="toolspot-card__tags">
+                                    <span>AI IDE</span>
+                                    <span>Agent 模式</span>
+                                    <span>工作台</span>
+                                </div>
+                            </div>
+                            <div class="toolspot-card__tooltip">相关：Cursor、Qoder、Windsurf</div>
                         </article>
 
                         <article class="toolspot-card" tabindex="0" data-related="editor,platform,official" data-accent="rose">
-                            <span class="toolspot-card__logo">GC</span>
+                            <span class="toolspot-card__logo" aria-hidden="true"><img class="toolspot-card__logo-image" src="images/tool-logos/github-copilot.png" alt="" loading="lazy"><span class="toolspot-card__logo-fallback">GC</span></span>
                             <div class="toolspot-card__body">
                                 <h3>GitHub Copilot</h3>
                                 <p>IDE 原生感更强，适合拿来对比“编辑器内嵌”和“终端代理”的差别。</p>

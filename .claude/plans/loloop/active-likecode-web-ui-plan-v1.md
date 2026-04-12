@@ -6,7 +6,8 @@ Scope: continuously improve LikeCode Web UI, AI terminal experience, and the age
 ## Current focus
 
 - [x] Add a durable tool-logo asset pass for the site tool walls: local logo assets + image-first rendering + letter fallback, and keep Task 9 on this line until the first complete version lands
-- [ ] Extend the first logo-asset version from `site/topic-ai-coding-tools.html` to one more high-value wall or adjacent agent / CLI page now that the local asset path and fallback behavior exist
+- [x] Extend the first logo-asset version from `site/topic-ai-coding-tools.html` to one more high-value wall or adjacent agent / CLI page now that the local asset path and fallback behavior exist
+- [ ] Extend the image-first logo system to one more wall with a broader product mix after the CLI-agent wall reuse pass
 - [x] Identify the highest-value Web UI / agent-management pattern we should borrow next
 - [x] Use `reference/reference_cc_ui/hermes-webui/` and `reference/reference_cc_ui/claudecodeui/` as the first bounded source pair for a session-visibility pass
 - [x] Continue the LikeCode Web UI line with the next operator-control or agent-management slice after the new session-stack overview pass
@@ -110,7 +111,7 @@ Scope: continuously improve LikeCode Web UI, AI terminal experience, and the age
 
 - [ ] `site/topic-codex-loop-console.html`
 - [x] `site/topic-ai-coding-tools.html`
-- [ ] `site/topic-ai-cli-agent.html`
+- [x] `site/topic-ai-cli-agent.html`
 - [ ] existing agent / loop / terminal related site topics
 - [ ] future LikeCode Web UI topic if this grows large enough
 
@@ -128,3 +129,4 @@ Scope: continuously improve LikeCode Web UI, AI terminal experience, and the age
 - Current local state: the recent `Session Stack` / `Shell Roster` refinement chain is locally deferred until a new reference-backed gap, stronger agent-management requirement, or backend capability change appears
 - Current local state: the frontend micro-wave is still deferred, but the page now also has one explicit teaching layer explaining `Quick Actions -> Attention Queue -> Session Identity -> Desk Assignments -> Shell Roster` as a control-surface reading order
 - Current local state: the latest bounded teaching follow-up now also spells out an approval ladder from `OpenCode / OfficeCLI / Hermes Agent`; do not reopen this page again unless a stronger backend approval surface or genuinely new operator-control reference appears
+- Current local state: the logo-system line is now live on both `site/topic-ai-coding-tools.html` and `site/topic-ai-cli-agent.html`; prefer one more reuse pass on a broader tool wall before declaring the first logo wave locally done
