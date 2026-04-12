@@ -55,7 +55,7 @@
 - [x] `site/topic-codex-loop-in-sleep.html`
 - [x] `site/md/topic-codex-loop-in-sleep.md`
 - [ ] 从这页继续拆出一张结构图或方法图
-- [ ] 在 `AI-Scientist` 总页里把它固定成长期子专题入口
+- [x] 在 `AI-Scientist` 总页里把它固定成长期子专题入口
 
 ## Routing rules
 
@@ -74,4 +74,4 @@
 
 ## Current status
 
-第三条 route-back 也已落地：`watchdog` 先不独立成新 daemon，而是先被固定成健康探测层。当前边界已经明确：`daemon = 推进循环`、`workspace = 人工操作与可视化`、`watchdog = 低频异常健康检查`。而且在没有反复健康事故前，暂不单独新开 watchdog 计划线。下一步重点可以切到 `AI-Scientist` 总页 pinning，或者回到其他更高价值的循环切片。
+`codex-loop in sleep` 现在已经完成三条 route-back，并且在 `AI-Scientist` 总页里被固定成长期子专题入口。下一步如果继续留在 Task 14，更值得做的是一张 concrete structure diagram；否则可以把这条子线先视为本地收口，切回其他更高价值的循环切片。

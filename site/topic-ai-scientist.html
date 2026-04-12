@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Scientist 专题 - Claude Code Course</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔬</text></svg>">
+    <meta name="description" content="AI-Scientist 专题：把 AI-Scientist v1 / v2、DeepScientist、EvoScientist 与自动数据科学邻居样本放到同一张结构图里看，拆出 paper pipeline、research studio 与 data-scientist neighbor 三条线。">
+    <meta name="page:updated" content="2026-04-12">
+</head>
+<body class="meta-topic-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🔬</span>
+                <span class="logo-text">AI-Scientist</span>
+            </a>
+            <div class="nav-links">
+                <a href="#why" class="nav-link">为什么值得单列</a>
+                <a href="#lanes" class="nav-link">四条线</a>
+                <a href="#compare" class="nav-link">结构比较</a>
+                <a href="#sleep" class="nav-link">In Sleep</a>
+                <a href="#search" class="nav-link">GitHub 搜索补样</a>
+                <a href="#route" class="nav-link">开展路线</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-vibepaper.html" class="btn-github">VibePaper</a>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>🔬 新主线</span>
+                <span>paper pipeline · research studio · data-scientist neighbors</span>
+            </div>
+            <h1 class="hero-title">
+                AI-Scientist<br>
+                <span class="gradient-text">把自动科研家族画成一张谱系图</span>
+            </h1>
+            <p class="hero-subtitle">
+                `AI-Scientist` 这条线不该只剩下一张 <code>AI-Scientist-v2</code> 卡片。<br>
+                更合理的读法是把 <strong>v1 / v2</strong>、<strong>DeepScientist</strong>、<strong>EvoScientist</strong>，以及 <strong>DeepBI / open-data-scientist / Auto-Analyst</strong> 这些邻居样本放到同一张图里看：谁在做 <strong>paper pipeline</strong>，谁在做 <strong>research studio</strong>，谁只是 <strong>data-scientist neighbor</strong>。
+            </p>
+        </div>
+    </section>
+
+    <section id="why" class="section section--soft meta-topic-section meta-topic-section--entry">
+        <div class="container">
+            <h2 class="section-title">为什么这条线值得单列成大专题</h2>
+            <p class="section-desc meta-topic-copy meta-topic-copy--lead">
+                现在自动科研类项目已经不是一条线在演化，而是至少分成了三种不同的壳层：
+            </p>
+            <div class="quickstart-grid meta-topic-grid meta-topic-grid--concept">
+                <div class="quickstart-card">
+                    <h3>paper pipeline</h3>
+                    <p>从 idea 到 experiment，再到 writeup / PDF 的自动论文流水线。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>research studio</h3>
+                    <p>把 quest、workspace、memory、connector 拼成一个可持续运行的本地研究工作台。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>data-scientist neighbors</h3>
+                    <p>更偏自动数据分析、BI、数据科学助理，不该被误读成同一类 paper factory。</p>
+                </div>
+            </div>
+            <p class="section-desc meta-topic-copy meta-topic-copy--tail">
+                所以本站后续更应该讲“<strong>系统壳层谱系</strong>”，而不是继续把所有项目都堆到一张热点卡片里。
+            </p>
+        </div>
+    </section>
+
+    <section id="lanes" class="section">
+        <div class="container">
+            <h2 class="section-title">当前先按四条线来收</h2>
+            <div class="quickstart-grid meta-topic-grid meta-topic-grid--stack">
+                <div class="quickstart-card">
+                    <h3>1. 模板化 paper pipeline</h3>
+                    <p><code>AI-Scientist</code> + <code>AI-Scientist-ICLR2025-Workshop-Experiment</code></p>
+                    <p>关键词：template、baseline setup、paper draft、review。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>2. 树搜索 / experiment manager</h3>
+                    <p><code>AI-Scientist-v2</code> + 上游 <code>AIDE ML</code></p>
+                    <p>关键词：agentic tree search、experiment manager、idea JSON、writeup pipeline。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>3. research studio / self-evolving scientist</h3>
+                    <p><code>DeepScientist</code> + <code>EvoScientist</code></p>
+                    <p>关键词：quest repo、memory、workspace、multi-channel、human-on-the-loop。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>4. data-scientist 邻居线</h3>
+                    <p><code>DeepBI</code>、<code>Auto-Analyst</code>、<code>open-data-scientist</code>、<code>AI-CoScientist</code></p>
+                    <p>关键词：data analysis、BI、report、ReAct、peer review topology。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="compare" class="section section--soft">
+        <div class="container">
+            <h2 class="section-title">先把主样本放到同一张对照表</h2>
+            <table class="compare-table">
+                <tr>
+                    <th>样本</th>
+                    <th>当前更像什么</th>
+                    <th>control plane 在哪</th>
+                    <th>durable state 在哪</th>
+                    <th>站内建议角色</th>
+                </tr>
+                <tr>
+                    <td><code>AI-Scientist</code></td>
+                    <td>模板化 paper pipeline</td>
+                    <td>模板、实验脚本、review / writeup 流程</td>
+                    <td>template runs、example papers、paper review 结果</td>
+                    <td>讲清 v1 为什么依赖模板，适合当“早期自动论文流水线”基线页。</td>
+                </tr>
+                <tr>
+                    <td><code>AI-Scientist-v2</code></td>
+                    <td>agentic tree search paper factory</td>
+                    <td><code>launch_scientist_bfts.py</code>、<code>bfts_config.yaml</code>、experiment manager</td>
+                    <td>idea JSON、experiments logs、tree viz、writeup 中间产物、最终 PDF</td>
+                    <td>讲清 v2 怎样从 template 走向 search manager，是这条线的核心壳层页。</td>
+                </tr>
+                <tr>
+                    <td><code>DeepScientist</code></td>
+                    <td>research studio / quest workspace</td>
+                    <td>quest repo + stage workflow + findings memory</td>
+                    <td>quest repo、artifacts、paper outputs、workspace 状态</td>
+                    <td>已经是独立 unpacked 子页，继续承担 studio shell 入口。</td>
+                </tr>
+                <tr>
+                    <td><code>EvoScientist</code></td>
+                    <td>self-evolving research buddy</td>
+                    <td>multi-agent team、persistent memory、channels、adaptive tools</td>
+                    <td>memory base、skills、toolsets、channel state</td>
+                    <td>更适合和 DeepScientist 对照，讲“工作台壳”往多渠道自进化延伸时会加厚什么。</td>
+                </tr>
+            </table>
+            <div class="course-quote">
+                <p><strong>[插图提示词]</strong></p>
+                <p>用途：画 AI-Scientist family map，把 v1、v2、DeepScientist、EvoScientist 和 data-scientist neighbors 放到同一张总图里。</p>
+                <p>形式：分层谱系图；Mermaid 很合适。</p>
+                <p>提示词：顶部放 AI-Scientist family hub，左线是 template-based paper pipeline（AI-Scientist v1，ICLR workshop experiment），中线是 tree-search paper pipeline（AI-Scientist-v2，AIDE ML substrate），右线是 research studio / self-evolving scientist（DeepScientist，EvoScientist），底部单独放 data-scientist neighbors（DeepBI，Auto-Analyst，open-data-scientist，AI-CoScientist），并用不同颜色区分主样本与邻居样本。</p>
+                <p>Mermaid 更适合：是。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="sleep" class="section">
+        <div class="container">
+            <h2 class="section-title">新增子专题：把 “in sleep” 这一层单独讲清楚</h2>
+            <div class="quickstart-grid meta-topic-grid meta-topic-grid--concept">
+                <a href="topic-codex-loop-in-sleep.html" class="quickstart-card quickstart-card-link">
+                    <h3>Codex-Loop In Sleep</h3>
+                    <p>把 <code>ARIS / Auto-Research In Sleep</code> 和我们自己的 <code>codex-loop</code> 放到同一张图里看，不再只说“都有 loop”，而是拆出 <strong>workflow family、persistent wiki、meta optimize、watchdog、cross-model review</strong> 五层方法差异。</p>
+                    <p><strong>站内角色</strong>：解释研究系统怎样长出 sleep 层，以及我们为什么可以把当前路线读成一种通用型 <code>codex-loop in sleep</code>。</p>
+                    <p><strong>长期子专题入口</strong>：它现在已经不是一张一次性分析页，而是这条家族线上专门承接 <code>meta-opt</code>、<code>persistent wiki</code>、<code>watchdog health layer</code> route-back 的固定入口。</p>
+                </a>
+                <div class="quickstart-card">
+                    <h3>为什么值得单列</h3>
+                    <p>它刚好补齐了 `paper pipeline / studio shell / data-scientist neighbors` 之外的第四类解释维度：<strong>长期循环如何长出外层自优化和健康层</strong>。</p>
+                </div>
+            </div>
+            <table class="compare-table">
+                <tr>
+                    <th>子专题入口</th>
+                    <th>当前已固定的 route-back</th>
+                    <th>在 AI-Scientist 总页里的角色</th>
+                </tr>
+                <tr>
+                    <td><a href="topic-codex-loop-in-sleep.html"><code>Codex-Loop In Sleep</code></a></td>
+                    <td><code>meta-opt rule</code>、`persistent wiki` 三层 memory layout、`daemon / workspace / watchdog` 边界</td>
+                    <td>长期解释 “研究系统如何从 loop 壳长出 sleep 层” 的固定子专题，而不是一次性旁注</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <section id="search" class="section">
+        <div class="container">
+            <h2 class="section-title">用 GitHub 搜索 skill 补出来的相关候选</h2>
+            <p class="section-desc meta-topic-copy meta-topic-copy--lead">
+                这一轮不是只按固定名单 clone，还额外用 <code>github-repo-search-download</code> 做了 GitHub 搜索补样。真正有用的不是“找到更多名字”，而是把候选分层。
+            </p>
+            <div class="quickstart-grid meta-topic-grid meta-topic-grid--concept">
+                <div class="quickstart-card">
+                    <h3>值得继续跟的高信号候选</h3>
+                    <p><code>DeepAnalyze</code>、<code>NanoResearch</code>、<code>Kosmos</code>、<code>infiAgent</code></p>
+                    <p>这些更可能给这条线补新的系统壳层或更完整的实验叙事。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>更像生态工具，不急着单独拆</h3>
+                    <p><code>scientific-agent-skills</code>、<code>paper-search-mcp</code>、<code>Awesome-AI-Scientist</code></p>
+                    <p>更适合当生态层、技能层和检索层的补充，不宜直接当主样本。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>当前判断</h3>
+                    <p>下一步最值得继续拆的不是再 clone 更多仓库，而是先写清：<strong>v1-v2 差异</strong> 和 <strong>DeepScientist vs EvoScientist</strong>。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="route" class="section section--soft">
+        <div class="container">
+            <h2 class="section-title">这条专题下一步怎么开展最顺</h2>
+            <div class="quickstart-grid meta-topic-grid meta-topic-grid--stack">
+                <div class="quickstart-card">
+                    <h3>第一步：先做 family hub</h3>
+                    <p>先把 `AI-Scientist` 总页当入口页，固定四条线和主样本 / 邻居样本边界。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>第二步：优先拆两篇子页</h3>
+                    <p>优先顺序建议是：<code>AI-Scientist v1 vs v2</code>，然后 <code>DeepScientist vs EvoScientist</code>。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>第三步：把 in-sleep 方法线固定下来</h3>
+                    <p><code>topic-codex-loop-in-sleep.html</code> 现在承担的是第四类样本解释：研究系统如何从 loop 壳继续长出 meta-optimize、wiki 和 watchdog，而且已经应该被视为一个长期子专题入口，而不是临时分析页。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>第四步：再收 data-scientist 邻居</h3>
+                    <p>等主样本口径稳定后，再把 `DeepBI / open-data-scientist / Auto-Analyst / AI-CoScientist` 收成邻居对照页。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>第五步：回写到 VibePaper</h3>
+                    <p>让 `VibePaper` 总页继续做总轴，`AI-Scientist` 总专题负责承接这条家族线的细分展开。</p>
+                </div>
+            </div>
+            <p class="section-desc meta-topic-copy meta-topic-copy--tail">
+                也就是说，这条专题最顺的打法不是“继续加卡片”，而是：<strong>先固定家族谱系，再做高价值对照子页和 in-sleep 方法线，最后再处理生态与邻居样本。</strong>
+            </p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-ai-scientist.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>本地锚点：<code>reference/reference_agent/AI-Scientist/</code>、<code>reference/reference_agent/AI-Scientist-v2/</code>、<code>reference/reference_agent/DeepScientist/</code>、<code>reference/reference_agent/EvoScientist/</code>、<code>reference/reference_agent/reference_ai_scientist/</code></p>
+            <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -578,6 +578,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Stay on Task 14 for one more bounded watchdog-boundary pass because `watchdog health layer` still has a single clear unchecked frontier that can be resolved by clarifying responsibility boundaries instead of adding backend complexity
 - [x] Land one bounded Task 14 watchdog pass by defining the `daemon / workspace / watchdog` split and deciding that `watchdog` should stay inside this subtopic until repeated health incidents justify a separate plan line
 - [x] Verify the Task 14 watchdog-boundary pass with `python3 tools/refresh_site_topic_metadata.py`, `python3 tools/build_loop_task_board.py`, and `python3 tools/check_site_md_parity.py`
+- [x] Stay on Task 14 for one final bounded hub-pinning pass because the route-back wave still had one clear unchecked output item with direct main-site leverage
+- [x] Land one bounded Task 14 AI-Scientist-hub pass by turning `topic-codex-loop-in-sleep` from an ordinary linked page into a long-term subtopic entry on `topic-ai-scientist`
+- [x] Verify the Task 14 hub-pinning pass with `python3 tools/refresh_site_topic_metadata.py`, `python3 tools/build_loop_task_board.py`, and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail
 
@@ -597,4 +600,5 @@ Keep each round bounded to one page or one UI component cluster.
 - treat the first Task 14 route-back pass as locally landed; next reopen should prefer `persistent wiki` or `watchdog` over more abstract `ARIS vs codex-loop` comparison copy
 - treat the second Task 14 route-back pass as locally landed too; next reopen should prefer `watchdog` boundary clarification or AI-Scientist hub pinning over more memory-layout prose
 - treat the third Task 14 route-back pass as locally landed too; next reopen should prefer AI-Scientist hub pinning or a concrete structure diagram over more prose-only `watchdog` explanation
+- treat the fourth Task 14 hub-pinning pass as locally landed too; next reopen should prefer one concrete structure diagram, otherwise switch away from Task 14
 - choose the next pass by mapping it to one of the three optimization pillars above
