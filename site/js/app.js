@@ -791,7 +791,9 @@ function initSiteSidebar() {
 
     window.addEventListener('resize', () => {
         if (!window.matchMedia('(max-width: 900px)').matches) {
+            aside.classList.remove('site-sidebar--open')
             backdrop.hidden = true
+            localStorage.setItem(mobileOpenStorageKey, '0')
         }
         syncSidebarA11y()
     })
@@ -1279,6 +1281,7 @@ function initPageSubnav() {
 
     window.addEventListener('resize', () => {
         if (!isMobile()) {
+            aside.classList.remove('page-subnav--open')
             backdrop.hidden = true
         }
         syncSubnavA11y()

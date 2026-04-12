@@ -509,6 +509,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Stay on the site-polish line for one more bounded shell-state resilience pass after the mobile overlay lock
 - [x] Re-sync mobile `site-sidebar` and `page-subnav` overlay state on viewport resize so hidden backdrops and body locks do not linger across breakpoint changes
 - [x] Verify the shell resize-sync update with `node --check site/js/app.js` and `python3 tools/check_site_md_parity.py`
+- [x] Stay on the site-polish line for one more bounded breakpoint-transition resilience pass after the shell resize-sync update
+- [x] Clear stale mobile `site-sidebar` and `page-subnav` open state when resizing back to desktop so overlays do not unexpectedly revive on a later narrow viewport
+- [x] Verify the breakpoint-transition cleanup with `node --check site/js/app.js` and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail
 
