@@ -29,8 +29,8 @@
 ### 2. Persistent wiki line
 
 - [x] 识别 `research-wiki` 是核心差异层
-- [ ] 决定 `codex-loop` 应该先长 project wiki、topic wiki 还是 failed-attempt memory
-- [ ] 把第一版 memory layout 写回站内和计划文件
+- [x] 决定 `codex-loop` 应该先长 project wiki、topic wiki 还是 failed-attempt memory
+- [x] 把第一版 memory layout 写回站内和计划文件
 
 ### 3. Watchdog health layer
 
@@ -74,4 +74,4 @@
 
 ## Current status
 
-第一条 route-back 已经落地：先把 `meta-optimize` 回写成一条最小 prompt 规则，要求每轮把重复性的 loop 低效点收敛成一条 `loop improvement candidate`，并且只有在重复出现或明确改善下一 tick 时才升级进 `.codex-loop/prompt.md`。下一步重点可以切到 `persistent wiki` 或 `watchdog`，而不是继续泛写对照分析。
+第二条 route-back 也已落地：`persistent wiki` 先不长成一个过宽的 `project wiki`，而是先把现有结构读成三层 memory layout：`topic wiki = site topic pages`、`working memory = active plans`、`failed-attempt memory = evolution trail`。下一步重点可以切到 `watchdog` 边界，或者在 `AI-Scientist` 总页里把这条子专题入口固定下来。

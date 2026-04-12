@@ -22,6 +22,7 @@
                 <a href="#codex-loop" class="nav-link">我们已经有什么</a>
                 <a href="#gaps" class="nav-link">还差什么</a>
                 <a href="#meta-opt-routeback" class="nav-link">第一条回写</a>
+                <a href="#wiki-layout" class="nav-link">Wiki 布局</a>
                 <a href="#route" class="nav-link">开展路线</a>
             </div>
             <div class="nav-actions">
@@ -221,6 +222,58 @@
         </div>
     </section>
 
+    <section id="wiki-layout" class="section">
+        <div class="container">
+            <h2 class="section-title">persistent wiki 应该先从哪一层长出来</h2>
+            <p class="section-desc meta-topic-copy meta-topic-copy--lead">
+                这一轮先把三选一问题定死：<strong>第一承载层先选 <code>topic wiki</code></strong>，而不是先做一个过宽的 <code>project wiki</code>，也不是先孤立地新建一份 `failed-attempt memory`。
+            </p>
+            <div class="quickstart-grid meta-topic-grid meta-topic-grid--stack">
+                <div class="quickstart-card">
+                    <h3>不先做 project wiki</h3>
+                    <p>因为 `codex-loop` 现在是多 topic、多页面、多发布链路并行生长；太早压回一个总账本，反而会把边界重新糊掉。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>也不先孤立做失败库</h3>
+                    <p>因为 `.claude/plans/loloop/evolution-*.md` 已经天然记录了 bounded pass 的 defer、decision 和 anti-repeat 线索。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>先把现有三层读清</h3>
+                    <p>topic page 是 topic wiki，active plan 是 working memory，evolution trail 是 failed-attempt memory。</p>
+                </div>
+            </div>
+            <table class="compare-table">
+                <tr>
+                    <th>层</th>
+                    <th>当前承载</th>
+                    <th>角色</th>
+                    <th>为什么先这样定</th>
+                </tr>
+                <tr>
+                    <td>topic wiki</td>
+                    <td><code>site/md/topic-*.md</code> + <code>site/topic-*.html</code></td>
+                    <td>对外稳定知识面</td>
+                    <td>每个长期子专题已经有稳定 URL、结构和读者语义</td>
+                </tr>
+                <tr>
+                    <td>working memory</td>
+                    <td><code>.claude/plans/loloop/active-*.md</code></td>
+                    <td>当前线程的执行上下文</td>
+                    <td>最适合放 active focus、checklist、scope 和 routing rule</td>
+                </tr>
+                <tr>
+                    <td>failed-attempt memory</td>
+                    <td><code>.claude/plans/loloop/evolution-*.md</code></td>
+                    <td>anti-repeat memory</td>
+                    <td>bounded pass 的 failed / deferred / decision 已经是“别重复踩坑”的最小单元</td>
+                </tr>
+            </table>
+            <p class="section-desc meta-topic-copy meta-topic-copy--tail">
+                所以 <code>persistent wiki</code> 的第一版，不是马上新建一套很大的 memory 系统，而是先把现有的 `topic page / active plan / evolution trail` 三层明确读成一套可复用的 memory layout。
+            </p>
+        </div>
+    </section>
+
     <section id="route" class="section section--soft">
         <div class="container">
             <h2 class="section-title">把这条线做成长期子专题，最顺的开展路线</h2>
@@ -234,8 +287,8 @@
                     <p>先把每轮提炼一条 <code>loop improvement candidate</code> 这件事固定下来，再谈更重的自优化系统。</p>
                 </div>
                 <div class="quickstart-card">
-                    <h3>第三步：继续补 wiki 与 watchdog</h3>
-                    <p>再把 <code>persistent wiki</code>、<code>watchdog health layer</code> 接进 prompt、workspace shell、task board 和独立 plan。</p>
+                    <h3>第三步：先落三层 wiki 布局</h3>
+                    <p>先把 <code>topic wiki + working memory + failed-attempt memory</code> 读清，再决定要不要单独长出更重的 project wiki。</p>
                 </div>
                 <div class="quickstart-card">
                     <h3>第四步：作为 AI-Scientist 邻接样本</h3>

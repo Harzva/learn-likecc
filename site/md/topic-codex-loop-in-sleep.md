@@ -20,6 +20,7 @@
 - 我们已经有的部分，其实已经很像通用型 in-sleep shell
 - 真正还差的，是三层外壳再加厚
 - 第一条真正回写到 codex-loop 路线图的借鉴能力
+- persistent wiki 应该先从哪一层长出来
 - 把这条线做成长期子专题，最顺的开展路线
 
 ## 各节摘要
@@ -97,13 +98,43 @@ Mermaid 更适合：是。
 | prompt | 主 prompt 已经能约束 task selection 和 publishing window | prompt 变更更多是人工临时补充，缺少“何时允许写回 prompt”的门槛 | 增加“重复出现或能改善下一 tick 才能升级到 prompt”的规则 |
 | skill / plan | 会按 skill 执行，也会更新 active plan | 缺少把 loop-level 经验沉淀成可复用操作约束的薄层 | 先把 meta-opt 定位成短规则回写，而不是大而全的新系统 |
 
+### persistent wiki 应该先从哪一层长出来
+
+这一轮把三选一问题先定死：
+
+- 不先做 `project wiki`
+- 也不单独先做一份孤立的 `failed-attempt memory`
+- 第一承载层先选 `topic wiki`
+
+原因很直接：
+
+- `codex-loop` 现在最稳定的长循环产物，本来就是按 topic 和 page 在生长
+- `active-*.md` 和 `evolution-*.md` 已经天然承担了每个 topic 的操作记忆与失败记忆
+- 如果先做 project wiki，很容易把多 topic、多页面、多发布链路重新压回一个过宽的总账本里
+
+因此第一版 memory layout 先定成下面这三层：
+
+| 层 | 当前承载 | 角色 | 为什么先这样定 |
+| --- | --- | --- | --- |
+| topic wiki | `site/md/topic-*.md` + `site/topic-*.html` | 对外稳定知识面 | 每个长期子专题已经有稳定 URL、结构和读者语义 |
+| working memory | `.claude/plans/loloop/active-*.md` | 当前线程的执行上下文 | 这里最适合放 active focus、checklist、scope 和 routing rule |
+| failed-attempt memory | `.claude/plans/loloop/evolution-*.md` | anti-repeat memory | bounded pass 的失败、defer、decision 已经天然是“别重复踩坑”的最小单元 |
+
+所以 `persistent wiki` 的第一版，不是新建一个很大的 memory 系统，而是先把：
+
+1. `topic page` 读成 topic wiki
+2. `active plan` 读成 working memory
+3. `evolution trail` 读成 failed-attempt memory
+
+等这三层真的不够用了，再考虑单独长出 `project wiki`。
+
 ### 最顺的开展路线
 
 建议顺序：
 
 1. 固定站内口径：ARIS = 研究专用 in-sleep system，codex-loop = 通用型 in-sleep shell
 2. 先把 `meta-optimize` 落成最小回写规则：每轮提炼一条 `loop improvement candidate`
-3. 再继续补 `persistent wiki`、`watchdog` 这两条更重的外层能力
+3. 再把 `persistent wiki` 落成 `topic wiki + working memory + failed-attempt memory` 的三层布局
 4. 在 AI-Scientist 专题里承担“研究系统如何长出 sleep 层”的解释任务
 
 ## 参考与原始链接
