@@ -484,6 +484,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Keep the daytime publication-weighted priority after the `37-*` VibePaper publish instead of dropping back to non-media polish too early
 - [x] Recheck the ready `38-*` codex-loop console article for cookie, image, and final-link completeness before attempting publication
 - [x] Publish `38-codex-loop本地AI终端-知乎图文.md` to Zhihu with the multimodal pipeline and record the returned article URL
+- [x] Keep the daytime publication-weighted priority after the `38-*` codex-loop console publish instead of dropping back to non-media polish too early
+- [x] Recheck the ready `39-*` Autoresearch article for cookie, image, and final-link completeness before attempting publication
+- [x] Publish `39-Autoresearch-ARIS解构-知乎图文.md` to Zhihu with the multimodal pipeline and record the returned article URL
 
 ## Guardrail
 
