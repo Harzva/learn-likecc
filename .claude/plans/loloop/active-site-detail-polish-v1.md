@@ -626,6 +626,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Stay on the still-open daytime media lane for one more bounded Task 2 publish because `32-斜杠命令系统-知乎图文.md` remained a mature, image-complete, unpublished interface-layer article that cleanly extends the newly published Agent Loop and tools-system line
 - [x] Recheck the ready `32-斜杠命令系统-知乎图文.md` draft for publish evidence, image completeness, and topic maturity before attempting publication
 - [x] Publish `32-斜杠命令系统-知乎图文.md` to Zhihu with the multimodal pipeline and record the returned article URL
+- [x] Stay on the still-open daytime media lane for one more bounded Task 3 publish because `34-Codex站点到知乎发布流水线-知乎图文.md` remained an unpublished workflow case-study article and did not require the higher-risk multimodal path
+- [x] Recheck the ready `34-Codex站点到知乎发布流水线-知乎图文.md` draft for publish evidence, no-image text-pipeline fit, and topic maturity before attempting publication
+- [x] Publish `34-Codex站点到知乎发布流水线-知乎图文.md` to Zhihu with the text pipeline and record the returned article URL
 
 ## Guardrail
 
@@ -661,4 +664,5 @@ Keep each round bounded to one page or one UI component cluster.
 - treat the `31-*` 工具系统设计 draft as now published too; next media reopen should prefer another clearly ready unpublished draft from a distinct lane or switch back to a non-media recurring slice
 - treat the `30-*` Agent Loop 主循环 draft as now published too; next media reopen should prefer another clearly ready unpublished draft from a distinct lane or switch back to a non-media recurring slice
 - treat the `32-*` 斜杠命令系统 draft as now published too; next media reopen should prefer another clearly ready unpublished draft from a distinct lane or switch back to a non-media recurring slice
+- treat the `34-*` workflow-case article as now published too; next media reopen should prefer another clearly ready unpublished draft or switch back to a non-media recurring slice
 - choose the next pass by mapping it to one of the three optimization pillars above
