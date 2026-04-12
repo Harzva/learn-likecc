@@ -1387,11 +1387,9 @@ function switchCodeLanguage(lang) {
 
     // 切换所有代码块
     document.querySelectorAll('code[data-lang]').forEach(code => {
-        if (code.getAttribute('data-lang') === lang) {
-            code.style.display = 'block'
-        } else {
-            code.style.display = 'none'
-        }
+        const visible = code.getAttribute('data-lang') === lang
+        code.hidden = !visible
+        code.setAttribute('aria-hidden', visible ? 'false' : 'true')
     })
 
     // 更新代码块标签

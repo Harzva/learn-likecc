@@ -116,7 +116,7 @@ export type QueryEngineConfig = {
   getAppState: () => AppState    // 状态获取
   setAppState: (f) => void       // 状态更新
   // ...
-}</code><code class="language-python" data-lang="python" style="display:none"># 源码位置: src/query_engine.py
+}</code><code class="language-python" data-lang="python" hidden aria-hidden="true"># 源码位置: src/query_engine.py
 
 @dataclass
 class QueryEngineConfig:
@@ -176,7 +176,7 @@ class QueryEngineConfig:
     // 5. 追加工具结果
     messages.push({ role: 'user', content: toolResults })
   }
-}</code><code class="language-python" data-lang="python" style="display:none">async def agent_loop(query: str, config: QueryEngineConfig):
+}</code><code class="language-python" data-lang="python" hidden aria-hidden="true">async def agent_loop(query: str, config: QueryEngineConfig):
     messages = [
         {"role": "user", "content": query}
     ]
@@ -226,7 +226,7 @@ messages: Message[]
 
 // 每次循环追加两条消息
 messages.push(assistantMessage)  // 助手响应
-messages.push(userMessage)       // 工具结果</code><code class="language-python" data-lang="python" style="display:none"># 消息持续累积，形成完整对话历史
+messages.push(userMessage)       // 工具结果</code><code class="language-python" data-lang="python" hidden aria-hidden="true"># 消息持续累积，形成完整对话历史
 messages: List[Message]
 
 # 每次循环追加两条消息
@@ -241,7 +241,7 @@ messages.append(user_message)       # 工具结果</code></pre>
                                 <pre><code class="language-typescript" data-lang="typescript">// 只有 stop_reason 不是 "tool_use" 才退出
 if (response.stop_reason !== 'tool_use') {
   return  // 可能是 "end_turn", "max_tokens", "stop_sequence"
-}</code><code class="language-python" data-lang="python" style="display:none"># 只有 stop_reason 不是 "tool_use" 才退出
+}</code><code class="language-python" data-lang="python" hidden aria-hidden="true"># 只有 stop_reason 不是 "tool_use" 才退出
 if response.stop_reason != "tool_use":
     return  # 可能是 "end_turn", "max_tokens", "stop_sequence"</code></pre>
                             </div>
@@ -256,7 +256,7 @@ for (const block of response.content) {
     const output = await executeTool(block.name, block.input)
     results.push(output)
   }
-}</code><code class="language-python" data-lang="python" style="display:none"># 每个工具独立执行，结果收集后一起返回
+}</code><code class="language-python" data-lang="python" hidden aria-hidden="true"># 每个工具独立执行，结果收集后一起返回
 for block in response.content:
     if block.type == "tool_use":
         output = await execute_tool(block.name, block.input)

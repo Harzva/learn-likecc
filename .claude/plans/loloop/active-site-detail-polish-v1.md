@@ -469,6 +469,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Keep the deferred overnight media wave closed after the `topic-source-derived` cleanup and stay on the low-risk site-polish line
 - [x] Improve site-shell current-location accessibility by syncing `aria-current` on the site sidebar and page subnav
 - [x] Verify the site-shell accessibility update with `node --check site/js/app.js`
+- [x] Keep the deferred overnight media wave closed after the site-shell `aria-current` pass and stay on the low-risk site-polish line
+- [x] Replace the remaining functional inline code-language hiding on `site/s01.html` with semantic `hidden` state
+- [x] Verify the code-language state update with `node --check site/js/app.js`
 
 ## Guardrail
 
