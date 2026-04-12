@@ -110,6 +110,7 @@ const MERMAID_DIAGRAMS = {
     HOME --> LLM["大模型"]:::hub
     HOME --> SKILL["Skill 市场"]:::hub
     HOME --> TOOL["工具链"]:::hub
+    HOME --> WORKSPACE["本地工作台 / Loop Lab"]:::hub
     HOME --> PAPER["VibePaper"]:::hub
 
     BUTCHER --> CC["Claude Code 解构"]:::topic
@@ -124,6 +125,8 @@ const MERMAID_DIAGRAMS = {
     HOTWATCH --> HOTWIRE["热点 intake / 路由页"]:::topic
     HOTWIRE --> HOTAG["Agent 技术热点"]:::topic
     HOTWIRE --> HOTRAG["RAG 技术热点"]:::topic
+    WORKSPACE --> CONSOLE["codex-loop AI Terminal"]:::topic
+    WORKSPACE --> WSAPP["LikeCode Workspace App"]:::lab
 
     AGENT --> HOT["技术热点 / 对比 / 论文"]:::topic
     PAPER --> ARIS["Autoresearch / ARIS"]:::lab

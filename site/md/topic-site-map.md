@@ -31,6 +31,8 @@
   - 热门话题专项
   - 热点 intake / 路由页
   - Agent 技术热点 / RAG 技术热点
+  - 本地工作台 / Loop Lab
+  - codex-loop AI Terminal / LikeCode Workspace App
   - 模型 API / 评测
   - Hermes Agent 解构
   - Autoresearch / ARIS
@@ -39,6 +41,8 @@
 现在在导览图里，`AI杂货铺 → CLI Agent 专页 → everything-agent-cli umbrella 实验线` 已经是一条显式子链，方便把“CLI 路线分类页”和“多模型 CLI 编排仓库”区分开来看。
 
 同一轮同步里，`热门话题专项 → 热点 intake / 路由页 → Agent 技术热点 / RAG 技术热点` 也被展开了。这样读者能直接看懂：热点页不是另一个孤立 hub，而是站内专题的上游 intake 层。
+
+这次还把 `本地工作台 / Loop Lab → codex-loop AI Terminal / LikeCode Workspace App` 挂进了主图。这样 `app-likecode-workspace.html` 就不再只存在于局部实验页语境里，而是被教成站内一条独立的本地操作面。
 
 ## 更新时间索引怎么维护
 

@@ -563,6 +563,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Stay on Task 13 for one final bounded workspace-shell sync pass because the remaining unchecked item can still be resolved with a frontend-only inference from existing daemon status
 - [x] Add a stronger active-task sync to the LikeCode workspace app so the latest daemon-selected task is highlighted in the pool and can be jumped to from the hero strip
 - [x] Verify the Task 13 active-task-sync pass with `node --check site/js/likecode-workspace.js`, `python3 -m py_compile tools/codex_loop_web_relay.py`, and `python3 tools/check_site_md_parity.py`
+- [x] Switch away from the now-locally-healthy Task 13 app-foundation wave to Task 11 because the newly landed workspace app still was not visible from the main site map
+- [x] Make the `本地工作台 / Loop Lab -> codex-loop AI Terminal / LikeCode Workspace App` branch explicit in the site map diagram and page copy so the new local app surface is discoverable from the main guide
+- [x] Verify the third Task 11 site-map pass with `python3 tools/refresh_site_topic_metadata.py`, `python3 tools/check_site_md_parity.py`, and `node --check site/js/app.js`
 
 ## Guardrail
 
@@ -578,4 +581,5 @@ Keep each round bounded to one page or one UI component cluster.
 - prefer Task 13 only if the next bounded move cleanly advances either evolution-note write-back or stronger active-task sync instead of reopening generic workspace-shell cosmetics
 - after the new evolution composer lands, prefer staying on Task 13 only for a stronger daemon-selected active-task sync; otherwise switch to the next clearer recurring frontier
 - treat the current Task 13 foundational app wave as locally healthy after checklist, evolution composer, and daemon-task sync all land; only reopen if a clearly stronger multi-pane or runtime-control gap appears
+- treat the workspace app as now visible from the main guide too; only reopen Task 11 if another similarly clear map/index synchronization gap appears
 - choose the next pass by mapping it to one of the three optimization pillars above
