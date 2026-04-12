@@ -26,7 +26,12 @@ Current focus: keep the site-wide mind map and per-topic update metadata synchro
 
 ## Validation
 
-- [ ] `python3 tools/refresh_site_topic_metadata.py`
-- [ ] `python3 tools/check_site_md_parity.py`
-- [ ] Manually verify `site/topic-site-map.html`
-- [ ] Spot-check at least one changed topic page for footer update display
+- [x] `python3 tools/refresh_site_topic_metadata.py`
+- [x] `python3 tools/check_site_md_parity.py`
+- [x] Manually verify `site/topic-site-map.html`
+- [x] Spot-check at least one changed topic page for footer update display
+
+## Notes
+
+- 2026-04-12: first bounded Task 11 pass should make the `CLI Agent -> everything-agent-cli` branch explicit in the site map so the umbrella repo line is no longer only discoverable from the topic page and generated index
+- 2026-04-12: first bounded Task 11 pass landed in `site/js/app.js`, `site/topic-site-map.html`, and `site/md/topic-site-map.md`; `python3 tools/refresh_site_topic_metadata.py` refreshed the metadata chain without additional structural drift

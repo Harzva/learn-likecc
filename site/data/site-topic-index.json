@@ -1,7 +1,7 @@
 {
   "meta": {
     "updated": "2026-04-12",
-    "count": 40,
+    "count": 41,
     "source": "git history + site/topic-*.html"
   },
   "groups": [
@@ -23,6 +23,14 @@
           "group": "核心入口",
           "href": "topic-ai-zahuopu.html",
           "md_path": "site/md/topic-ai-zahuopu.md"
+        },
+        {
+          "slug": "topic-hot-watch",
+          "title": "热门话题专项",
+          "updated": "2026-04-12",
+          "group": "核心入口",
+          "href": "topic-hot-watch.html",
+          "md_path": "site/md/topic-hot-watch.md"
         },
         {
           "slug": "topic-llm",

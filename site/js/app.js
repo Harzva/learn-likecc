@@ -104,6 +104,7 @@ const MERMAID_DIAGRAMS = {
     HOME --> BUTCHER["庖丁解牛专题"]:::hub
     HOME --> GUIDE["教程 / 手册"]:::hub
     HOME --> SHOP["AI杂货铺"]:::hub
+    HOME --> HOTWATCH["热门话题专项"]:::hub
     HOME --> AGENT["Agent"]:::hub
     HOME --> RAG["RAG"]:::hub
     HOME --> LLM["大模型"]:::hub
@@ -116,9 +117,11 @@ const MERMAID_DIAGRAMS = {
     BUTCHER --> HERMES["Hermes Agent 解构"]:::topic
 
     SHOP --> CLI["CLI Agent 专页"]:::topic
+    CLI --> USECLI["everything-agent-cli<br/>umbrella 实验线"]:::lab
     SHOP --> API["模型 API / 聚合"]:::topic
     SHOP --> BENCH["模型评测"]:::topic
     SHOP --> CODING["AI 编程工具"]:::topic
+    HOTWATCH --> HOTWIRE["热点 intake / 路由页"]:::topic
 
     AGENT --> HOT["技术热点 / 对比 / 论文"]:::topic
     PAPER --> ARIS["Autoresearch / ARIS"]:::lab

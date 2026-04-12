@@ -539,6 +539,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Stay on Task 10 for one more bounded runnable-proof pass because the umbrella repo still has a sharper example/verification frontier than the other recurring slices
 - [x] Make the shortest no-login proof and workflow-demo path explicit in `projects/everything-agent-cli-to-claude-code/` and sync that runnable-proof framing back into `site/topic-ai-cli-agent.html`
 - [x] Verify the Task 10 runnable-proof pass with `bash projects/everything-agent-cli-to-claude-code/tests/test_wrappers.sh`, `bash projects/everything-agent-cli-to-claude-code/examples/workflows/multi-model-review.sh --help`, and `python3 tools/check_site_md_parity.py`
+- [x] Switch from the now-locally-mature Task 10 explanation wave to Task 11 because the site-wide map / metadata plan strengthens the main site more directly
+- [x] Make the `CLI Agent -> everything-agent-cli` branch explicit in the site map diagram and page copy so the umbrella-repo line is visible from the main navigation graph instead of only the topic page and generated index
+- [x] Verify the Task 11 site-map pass with `python3 tools/refresh_site_topic_metadata.py`, `python3 tools/check_site_md_parity.py`, and `node --check site/js/app.js`
 
 ## Guardrail
 
@@ -548,5 +551,5 @@ Keep each round bounded to one page or one UI component cluster.
 
 - tighten one more detail on `site/topic-superset-unpacked.html`
 - review another data-driven page for repeated fetch or loading-state gaps
-- prefer switching away from Task 10 unless another clearly stronger verification artifact appears; the current umbrella repo explanation wave is now locally mature
+- stay on Task 11 only if there is one more bounded site-map / metadata sync gap with the same main-site leverage
 - choose the next pass by mapping it to one of the three optimization pillars above
