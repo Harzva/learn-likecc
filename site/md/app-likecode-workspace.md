@@ -21,9 +21,13 @@
 - 现在还多了一个本地 `connector shell` 草图面板，用来先表达 `shell mode / bind status / target dialog`
 - 这层已经开始走 relay 合同：workspace 会优先读写 `.codex-loop/connector-shell.json`，并暴露 `session_key / login_status / qrcode_content`
 - `QR auth flow` 这轮先只定义 `start qr / wait qr` 的 mock API，不承诺真实微信 runtime 已经接通
+- connector shell 现在还明确区分三条 runtime lane：
+  - `mock-flow / workspace-shell / local-draft`
+  - `adapter-flow / relay-adapter / single-thread-bind`
+  - `external-runtime / connector-runtime / queue-gated`
 - 右侧是 runtime + 最近 log
 - branding、Pages 基址和入口链接可以通过 `.codex-loop/workspace-shell.json` 覆盖，而不是继续写死到页面里
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
-- connector shell 从 mock QR relay 合同继续长到 adapter/runtime 边界，再决定是否值得接真实 QR auth flow
+- connector shell 从 runtime lane 区分继续长到 conversation bridge contract，再决定是否值得接真实 QR auth flow

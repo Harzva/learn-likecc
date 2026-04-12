@@ -587,6 +587,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Stay on Task 15 for one bounded QR-auth-contract pass because the relay still had a single clear unchecked frontier after the shell-only layer landed
 - [x] Land one bounded Task 15 QR-auth pass by defining mock `start qr / wait qr` relay endpoints and moving the connector shell to relay-visible persisted state
 - [x] Verify the Task 15 QR-auth-contract pass with `python3 -m py_compile tools/codex_loop_web_relay.py`, `node --check site/js/likecode-workspace.js`, `python3 tools/check_site_md_parity.py`, and `python3 tools/build_loop_task_board.py`
+- [x] Stay on Task 15 for one more bounded runtime-separation pass because the new QR contract still had a single clear unchecked frontier around `mock flow / adapter flow / real runtime`
+- [x] Land one bounded Task 15 runtime-separation pass by turning the three connector lanes into relay-visible state with explicit `runtime owner / write policy` boundaries
+- [x] Verify the Task 15 runtime-separation pass with `python3 -m py_compile tools/codex_loop_web_relay.py`, `node --check site/js/likecode-workspace.js`, `python3 tools/check_site_md_parity.py`, and `python3 tools/build_loop_task_board.py`
 
 ## Guardrail
 
@@ -609,4 +612,5 @@ Keep each round bounded to one page or one UI component cluster.
 - treat the fourth Task 14 hub-pinning pass as locally landed too; next reopen should prefer one concrete structure diagram, otherwise switch away from Task 14
 - treat the first Task 15 connector-shell pass as locally landed; next reopen should prefer QR auth flow contract design over more UI-shell prose
 - treat the second Task 15 QR-auth-contract pass as locally landed; next reopen should prefer `mock flow / adapter flow / real runtime` separation or the conversation-bridge contract over more connector-shell cosmetics
+- treat the third Task 15 runtime-separation pass as locally landed; next reopen should prefer the minimal conversation-bridge contract or delivery-layer decision over more lane-label polish
 - choose the next pass by mapping it to one of the three optimization pillars above

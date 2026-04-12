@@ -324,6 +324,8 @@ def default_connector_state() -> dict:
         "qrcode_content": "",
         "login_status": "idle",
         "runtime_mode": "mock-flow",
+        "runtime_owner": "workspace-shell",
+        "write_policy": "local-draft",
         "updated_at": "",
     }
 
@@ -356,6 +358,8 @@ def write_connector_state(workspace: Path, patch: dict) -> dict:
         "qrcode_content",
         "login_status",
         "runtime_mode",
+        "runtime_owner",
+        "write_policy",
     }
     state = read_connector_state(workspace)
     for key, value in (patch or {}).items():
@@ -373,6 +377,8 @@ def start_connector_qr(workspace: Path, target_dialog: str = "", note: str = "")
         "bind_state": "qr-wait",
         "login_status": "waiting_scan",
         "runtime_mode": "mock-flow",
+        "runtime_owner": "workspace-shell",
+        "write_policy": "local-draft",
         "session_key": token,
         "qrcode_content": f"mock://wechat-bind/{token}",
     }

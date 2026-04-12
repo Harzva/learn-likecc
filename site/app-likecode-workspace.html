@@ -156,6 +156,14 @@
                             <strong>runtime mode</strong>
                             <span id="workspace-connector-runtime-mode">mock-flow</span>
                         </article>
+                        <article class="likecode-workspace-runtimecard">
+                            <strong>runtime owner</strong>
+                            <span id="workspace-connector-runtime-owner">workspace-shell</span>
+                        </article>
+                        <article class="likecode-workspace-runtimecard">
+                            <strong>write policy</strong>
+                            <span id="workspace-connector-write-policy">local-draft</span>
+                        </article>
                     </div>
                     <label class="likecode-workspace-field">
                         <span>Target Dialog</span>
@@ -171,9 +179,15 @@
                         <button id="workspace-connector-bound" type="button" class="btn btn-secondary">标记已绑定</button>
                         <button id="workspace-connector-reset" type="button" class="btn btn-secondary">重置 shell</button>
                     </div>
+                    <div class="likecode-workspace-actionrow">
+                        <button id="workspace-connector-lane-mock" type="button" class="btn btn-secondary">Mock Lane</button>
+                        <button id="workspace-connector-lane-adapter" type="button" class="btn btn-secondary">Adapter Lane</button>
+                        <button id="workspace-connector-lane-runtime" type="button" class="btn btn-secondary">Runtime Lane</button>
+                    </div>
                     <div class="likecode-workspace-foot">
                         <span id="workspace-connector-note-preview" class="likecode-workspace-status likecode-workspace-status--neutral">note: local draft only</span>
                         <span id="workspace-connector-qr-preview">qr: --</span>
+                        <span id="workspace-connector-runtime-preview">lane: workspace shell only</span>
                     </div>
                 </section>
 

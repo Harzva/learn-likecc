@@ -30,6 +30,8 @@
         qrcode_content: '',
         login_status: 'idle',
         runtime_mode: 'mock-flow',
+        runtime_owner: 'workspace-shell',
+        write_policy: 'local-draft',
     }
     var CONNECTOR_STATE_KEY = 'likecode_workspace_connector_shell_v1'
 
@@ -77,6 +79,13 @@
         return 'neutral'
     }
 
+    function connectorRuntimePreview(state) {
+        var mode = state.runtime_mode || 'mock-flow'
+        var owner = state.runtime_owner || 'workspace-shell'
+        var policy = state.write_policy || 'local-draft'
+        return mode + ' / ' + owner + ' / ' + policy
+    }
+
     function renderConnectorShell() {
         setText('workspace-connector-mode', connectorState.shell_mode || 'ui-shell')
         setText('workspace-connector-bind-state', connectorState.bind_state || 'unbound')
@@ -84,6 +93,8 @@
         setText('workspace-connector-login-status', connectorState.login_status || 'idle')
         setText('workspace-connector-session-key', connectorState.session_key || '--')
         setText('workspace-connector-runtime-mode', connectorState.runtime_mode || 'mock-flow')
+        setText('workspace-connector-runtime-owner', connectorState.runtime_owner || 'workspace-shell')
+        setText('workspace-connector-write-policy', connectorState.write_policy || 'local-draft')
         if (connectorTargetInput) connectorTargetInput.value = connectorState.target_dialog || ''
         if (connectorNoteInput) connectorNoteInput.value = connectorState.note || ''
         setStatus(
@@ -93,6 +104,7 @@
         )
         setText('workspace-connector-note-preview', 'note: ' + (connectorState.note || 'local draft only'))
         setText('workspace-connector-qr-preview', 'qr: ' + (connectorState.qrcode_content || '--'))
+        setText('workspace-connector-runtime-preview', 'lane: ' + connectorRuntimePreview(connectorState))
     }
 
     function updateConnectorState(patch) {
@@ -594,10 +606,37 @@
             qrcode_content: '',
             login_status: 'idle',
             runtime_mode: 'mock-flow',
+            runtime_owner: 'workspace-shell',
+            write_policy: 'local-draft',
         }
         persistConnectorState()
         renderConnectorShell()
         saveConnectorState(connectorState)
+    })
+    document.getElementById('workspace-connector-lane-mock').addEventListener('click', function () {
+        saveConnectorState({
+            runtime_mode: 'mock-flow',
+            runtime_owner: 'workspace-shell',
+            write_policy: 'local-draft',
+            note: (connectorNoteInput && connectorNoteInput.value.trim()) || 'mock QR stays inside workspace shell',
+        })
+    })
+    document.getElementById('workspace-connector-lane-adapter').addEventListener('click', function () {
+        saveConnectorState({
+            runtime_mode: 'adapter-flow',
+            runtime_owner: 'relay-adapter',
+            write_policy: 'single-thread-bind',
+            shell_mode: 'adapter-draft',
+            note: (connectorNoteInput && connectorNoteInput.value.trim()) || 'adapter flow owns protocol translation but not external delivery yet',
+        })
+    })
+    document.getElementById('workspace-connector-lane-runtime').addEventListener('click', function () {
+        saveConnectorState({
+            runtime_mode: 'external-runtime',
+            runtime_owner: 'connector-runtime',
+            write_policy: 'queue-gated',
+            note: (connectorNoteInput && connectorNoteInput.value.trim()) || 'external runtime should sit behind queue or delivery gates',
+        })
     })
 
     loadConnectorState()

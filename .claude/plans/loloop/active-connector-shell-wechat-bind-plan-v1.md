@@ -41,7 +41,7 @@
 
 ### 4. Runtime separation
 
-- [ ] 区分 connector runtime、daemon runtime、workspace shell 的边界
+- [x] 区分 connector runtime、daemon runtime、workspace shell 的边界
 - [ ] 评估后续是否需要单独 watchdog / queue / delivery layer
 
 ## Workspace outputs
@@ -70,4 +70,4 @@
 
 ## Current status
 
-这条线已经完成第二层选择：`workspace app` 不再只停在本地 draft，而是开始通过 relay 读写 `.codex-loop/connector-shell.json`，并把 `start qr / wait qr` 收成 mock QR contract。下一步更值当的是区分 `mock flow / adapter flow / real runtime` 的边界，或者继续补 `conversation bridge`，而不是过早承诺真实微信绑定已经可用。
+这条线已经完成第三层选择：`workspace app` 和 relay 不再只表达 `QR auth flow`，还把 `mock flow / adapter flow / external runtime` 收成显式 lane，并用 `runtime owner / write policy` 区分 workspace shell、relay adapter、connector runtime 的责任边界。下一步更值当的是继续补 `conversation bridge` 合同，或者再决定是否真的需要独立 delivery / queue layer，而不是过早承诺真实微信绑定已经可用。

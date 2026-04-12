@@ -811,9 +811,9 @@
           "- [x] `python3 tools/check_site_md_parity.py`"
         ],
         "notes": [],
-        "completed_count": 18,
+        "completed_count": 19,
         "total_count": 26,
-        "progress": 69
+        "progress": 73
       }
     }
   ],
