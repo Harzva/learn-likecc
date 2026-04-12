@@ -487,6 +487,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Keep the daytime publication-weighted priority after the `38-*` codex-loop console publish instead of dropping back to non-media polish too early
 - [x] Recheck the ready `39-*` Autoresearch article for cookie, image, and final-link completeness before attempting publication
 - [x] Publish `39-Autoresearch-ARIS解构-知乎图文.md` to Zhihu with the multimodal pipeline and record the returned article URL
+- [x] Close the current ready daytime Zhihu publish wave after `39-*` instead of forcing another weaker media move
+- [x] Return to one bounded low-risk site-polish slice after the ready publication queue is exhausted
+- [x] Replace the remaining inline hero-particle seed styling on `site/index-old.html` with scoped classes and verify the page no longer uses inline `style=` attributes
 
 ## Guardrail
 

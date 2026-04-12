@@ -570,6 +570,36 @@ body {
     animation: float 10s ease-in-out infinite;
 }
 
+.index-old-hero-particle--1 {
+    top: 10%;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.index-old-hero-particle--2 {
+    top: 30%;
+    left: 80%;
+    animation-delay: 2s;
+}
+
+.index-old-hero-particle--3 {
+    top: 50%;
+    left: 10%;
+    animation-delay: 4s;
+}
+
+.index-old-hero-particle--4 {
+    top: 70%;
+    left: 90%;
+    animation-delay: 6s;
+}
+
+.index-old-hero-particle--5 {
+    top: 90%;
+    left: 50%;
+    animation-delay: 8s;
+}
+
 .hero-content {
     flex: 1;
     max-width: 600px;
