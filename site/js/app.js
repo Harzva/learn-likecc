@@ -161,7 +161,8 @@ const MERMAID_DIAGRAMS = {
     AGENT --> HOT["技术热点 / 对比 / 论文"]:::topic
     PAPER --> ARIS["Autoresearch / ARIS"]:::lab
     PAPER --> DS["DeepScientist"]:::lab
-    PAPER --> AIS["AI Scientist-v2"]:::lab`,
+    PAPER --> AIS["AI Scientist-v2"]:::lab
+    AIS --> SLEEP["codex-loop in sleep"]:::topic`,
 
     'agent-loop': `graph TD
     classDef yellowBox fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#e2b953;

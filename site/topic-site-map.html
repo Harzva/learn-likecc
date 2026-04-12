@@ -63,7 +63,7 @@
                     <h2>站点思维导图</h2>
                     <figure class="mermaid-figure mermaid-figure--main" aria-label="Learn LikeCode 站点思维导图">
                         <figcaption class="mermaid-caption">
-                            <strong>一张图看站点结构</strong>：从首页出发，先分核心入口，再把 AI 杂货铺、热门话题专项、Agent、VibePaper 等专题线连起来，并把 `CLI Agent → everything-agent-cli`、`热门话题专项 → Agent / RAG 热点页`、`本地工作台 → LikeCode Workspace App / Connector Runtime Design` 这三条新子链显式挂出来。
+                            <strong>一张图看站点结构</strong>：从首页出发，先分核心入口，再把 AI 杂货铺、热门话题专项、Agent、VibePaper 等专题线连起来，并把 `CLI Agent → everything-agent-cli`、`热门话题专项 → Agent / RAG 热点页`、`本地工作台 → LikeCode Workspace App / Connector Runtime Design`、`AI Scientist-v2 → codex-loop in sleep` 这四条关键子链显式挂出来。
                         </figcaption>
                         <div class="mermaid-diagram-scroll mermaid-diagram-scroll--xl" data-mermaid-diagram="site-topic-map"></div>
                     </figure>
@@ -71,6 +71,7 @@
                     <p>同一轮同步里，`热门话题专项 → 热点 intake / 路由页 → Agent 技术热点 / RAG 技术热点` 也被展开了。这样读者能直接看懂：热点页不是另一个孤立 hub，而是站内专题的上游 intake 层。</p>
                     <p>这次还把 `本地工作台 / Loop Lab → codex-loop AI Terminal / LikeCode Workspace App` 挂进了主图。这样 `app-likecode-workspace.html` 就不再只存在于局部实验页语境里，而是被教成站内一条独立的本地操作面。</p>
                     <p>同一条本地工作台支线里，这轮再把 `Connector Runtime / Daemon Design` 接了回来。这样 connector shell / WeChat bind 这条设计线也不再只是隐藏在 workspace app 和设计说明里，而是回到了站点主导览。</p>
+                    <p>这轮再把 `VibePaper → AI Scientist-v2 → codex-loop in sleep` 接成显式子链。这样睡眠态自动研究 / 自动推进这条线不再只藏在单页里，而是明确回到 AI-Scientist 语境下，告诉读者它是在解释“研究系统如何长出 sleep 层”。</p>
                 </section>
 
                 <section id="directory" class="section-block">
