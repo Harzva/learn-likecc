@@ -493,6 +493,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Stay on the site-polish line for one more bounded site-shell accessibility pass after the legacy homepage cleanup
 - [x] Improve theme-toggle accessibility by syncing semantic labels with the current and next theme state
 - [x] Verify the theme-toggle accessibility update with `node --check site/js/app.js`
+- [x] Stay on the site-polish line for one more bounded mobile site-shell accessibility pass after the theme-toggle update
+- [x] Improve mobile `site-sidebar` focus management by moving focus into the panel on open and returning it to the trigger on close
+- [x] Verify the `site-sidebar` focus-management update with `node --check site/js/app.js`
 
 ## Guardrail
 

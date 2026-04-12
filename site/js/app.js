@@ -650,6 +650,17 @@ function initSiteSidebar() {
     const collapseBtn = aside.querySelector('.site-sidebar__collapse')
     const collapseAllBtn = aside.querySelector('[data-sidebar-action="collapse-all"]')
     const detailNodes = Array.from(aside.querySelectorAll('.site-sidebar__details[data-sidebar-key]'))
+    let lastSidebarTrigger = fab
+
+    function focusFirstSidebarControl() {
+        const firstFocusable = aside.querySelector(
+            '.site-sidebar__toolbar .site-sidebar__link, .site-sidebar__toolbar button, .site-sidebar__summary, .site-sidebar__link'
+        )
+        if (!firstFocusable) return
+        requestAnimationFrame(() => {
+            firstFocusable.focus()
+        })
+    }
 
     function syncSidebarA11y() {
         const isMobile = window.matchMedia('(max-width: 900px)').matches
@@ -696,11 +707,24 @@ function initSiteSidebar() {
         saveOpenDetails()
     }
 
-    function setMobileOpen(next) {
+    function setMobileOpen(next, focusReturnTarget = null) {
         aside.classList.toggle('site-sidebar--open', next)
         backdrop.hidden = !next
         localStorage.setItem(mobileOpenStorageKey, next ? '1' : '0')
         syncSidebarA11y()
+
+        if (next) {
+            lastSidebarTrigger = focusReturnTarget || document.activeElement || fab
+            focusFirstSidebarControl()
+            return
+        }
+
+        const target = focusReturnTarget || lastSidebarTrigger
+        if (target && typeof target.focus === 'function') {
+            requestAnimationFrame(() => {
+                target.focus()
+            })
+        }
     }
 
     function setCollapsed(next) {
@@ -726,7 +750,8 @@ function initSiteSidebar() {
 
     collapseBtn.addEventListener('click', () => {
         if (window.matchMedia('(max-width: 900px)').matches) {
-            setMobileOpen(!aside.classList.contains('site-sidebar--open'))
+            const next = !aside.classList.contains('site-sidebar--open')
+            setMobileOpen(next, next ? collapseBtn : fab)
             return
         }
         setCollapsed(!aside.classList.contains('site-sidebar--collapsed'))
@@ -737,19 +762,18 @@ function initSiteSidebar() {
     })
 
     backdrop.addEventListener('click', () => {
-        setMobileOpen(false)
+        setMobileOpen(false, fab)
     })
 
     fab.addEventListener('click', () => {
-        setMobileOpen(true)
+        setMobileOpen(true, fab)
     })
 
     document.addEventListener('keydown', (event) => {
         if (event.key !== 'Escape') return
         if (!window.matchMedia('(max-width: 900px)').matches) return
         if (!aside.classList.contains('site-sidebar--open')) return
-        setMobileOpen(false)
-        fab.focus()
+        setMobileOpen(false, fab)
     })
 
     detailNodes.forEach((node) => {
