@@ -488,6 +488,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Recheck the ready `39-*` Autoresearch article for cookie, image, and final-link completeness before attempting publication
 - [x] Publish `39-Autoresearch-ARIS解构-知乎图文.md` to Zhihu with the multimodal pipeline and record the returned article URL
 - [x] Close the current ready daytime Zhihu publish wave after `39-*` instead of forcing another weaker media move
+- [x] Reopen the daytime publication-weighted lane after the queued `24-*` Superset publish because `35-HermesAgent解构-知乎图文.md` was still a clearly ready draft with local images and no published record yet
+- [x] Recheck the ready `35-HermesAgent解构-知乎图文.md` draft for cookies, image completeness, and existing publish evidence before attempting publication
+- [x] Publish `35-HermesAgent解构-知乎图文.md` to Zhihu with the multimodal pipeline and record the returned article URL
 - [x] Return to one bounded low-risk site-polish slice after the ready publication queue is exhausted
 - [x] Replace the remaining inline hero-particle seed styling on `site/index-old.html` with scoped classes and verify the page no longer uses inline `style=` attributes
 - [x] Stay on the site-polish line for one more bounded site-shell accessibility pass after the legacy homepage cleanup
