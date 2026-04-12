@@ -164,6 +164,30 @@
                             <strong>write policy</strong>
                             <span id="workspace-connector-write-policy">local-draft</span>
                         </article>
+                        <article class="likecode-workspace-runtimecard">
+                            <strong>bridge mode</strong>
+                            <span id="workspace-connector-bridge-mode">queue-ticket</span>
+                        </article>
+                        <article class="likecode-workspace-runtimecard">
+                            <strong>bridge target</strong>
+                            <span id="workspace-connector-bridge-target">workspace</span>
+                        </article>
+                        <article class="likecode-workspace-runtimecard">
+                            <strong>bridge policy</strong>
+                            <span id="workspace-connector-bridge-policy">daemon-safe</span>
+                        </article>
+                        <article class="likecode-workspace-runtimecard">
+                            <strong>bridge status</strong>
+                            <span id="workspace-connector-bridge-status">draft</span>
+                        </article>
+                        <article class="likecode-workspace-runtimecard">
+                            <strong>lock rule</strong>
+                            <span id="workspace-connector-bridge-lock-rule">daemon-holds-thread</span>
+                        </article>
+                        <article class="likecode-workspace-runtimecard">
+                            <strong>delivery guardrail</strong>
+                            <span id="workspace-connector-delivery-guardrail">queue-only</span>
+                        </article>
                     </div>
                     <label class="likecode-workspace-field">
                         <span>Target Dialog</span>
@@ -172,6 +196,10 @@
                     <label class="likecode-workspace-field">
                         <span>Connector Note</span>
                         <input id="workspace-connector-note-input" type="text" placeholder="这版只做 UI shell / mock bind，不直接打通微信协议">
+                    </label>
+                    <label class="likecode-workspace-field">
+                        <span>Bridge Target</span>
+                        <input id="workspace-connector-bridge-target-input" type="text" placeholder="例如：workspace / thread:019d... / task:15 / inbox:wechat">
                     </label>
                     <div class="likecode-workspace-actionrow">
                         <button id="workspace-connector-qr" type="button" class="btn btn-secondary">启动 mock QR</button>
@@ -184,10 +212,22 @@
                         <button id="workspace-connector-lane-adapter" type="button" class="btn btn-secondary">Adapter Lane</button>
                         <button id="workspace-connector-lane-runtime" type="button" class="btn btn-secondary">Runtime Lane</button>
                     </div>
+                    <div class="likecode-workspace-actionrow">
+                        <button id="workspace-connector-bridge-queue" type="button" class="btn btn-secondary">Queue Ticket</button>
+                        <button id="workspace-connector-bridge-thread" type="button" class="btn btn-secondary">Thread Inject</button>
+                        <button id="workspace-connector-bridge-task" type="button" class="btn btn-secondary">Task Handoff</button>
+                    </div>
+                    <div class="likecode-workspace-actionrow">
+                        <button id="workspace-connector-guard-queue" type="button" class="btn btn-secondary">Queue Guard</button>
+                        <button id="workspace-connector-guard-lock" type="button" class="btn btn-secondary">Lock Before Inject</button>
+                        <button id="workspace-connector-guard-runtime" type="button" class="btn btn-secondary">Runtime Guard</button>
+                    </div>
                     <div class="likecode-workspace-foot">
                         <span id="workspace-connector-note-preview" class="likecode-workspace-status likecode-workspace-status--neutral">note: local draft only</span>
                         <span id="workspace-connector-qr-preview">qr: --</span>
                         <span id="workspace-connector-runtime-preview">lane: workspace shell only</span>
+                        <span id="workspace-connector-bridge-preview">bridge: queue-ticket / workspace / daemon-safe / draft</span>
+                        <span id="workspace-connector-guard-preview">guard: daemon-holds-thread / queue-only</span>
                     </div>
                 </section>
 

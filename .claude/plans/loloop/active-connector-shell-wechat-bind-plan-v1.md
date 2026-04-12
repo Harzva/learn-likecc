@@ -35,9 +35,9 @@
 
 ### 3. Conversation bridge
 
-- [ ] 设计微信会话与 `codex-loop` thread / task / workspace 的绑定关系
-- [ ] 明确 inbound / outbound 最小 contract
-- [ ] 避免 daemon 与外部聊天入口同时写同一 thread
+- [x] 设计微信会话与 `codex-loop` thread / task / workspace 的绑定关系
+- [x] 明确 inbound / outbound 最小 contract
+- [x] 避免 daemon 与外部聊天入口同时写同一 thread
 
 ### 4. Runtime separation
 
@@ -49,7 +49,10 @@
 - [x] `site/app-likecode-workspace.html` 补 connector shell 区块
 - [x] `site/js/likecode-workspace.js` 补 connector 状态视图与交互入口
 - [x] `tools/codex_loop_web_relay.py` 预留 connector API 契约
-- [ ] 如有必要，再单独建 connector 专题页或设计页
+- [x] 单独建 connector 架构专题页：
+  - `site/topic-connector-runtime-daemon.html`
+- [x] 写第一版设计说明首页：
+  - `docs/connector-runtime-daemon-design.md`
 
 ## Routing rules
 
@@ -70,4 +73,4 @@
 
 ## Current status
 
-这条线已经完成第三层选择：`workspace app` 和 relay 不再只表达 `QR auth flow`，还把 `mock flow / adapter flow / external runtime` 收成显式 lane，并用 `runtime owner / write policy` 区分 workspace shell、relay adapter、connector runtime 的责任边界。下一步更值当的是继续补 `conversation bridge` 合同，或者再决定是否真的需要独立 delivery / queue layer，而不是过早承诺真实微信绑定已经可用。
+这条线已经完成又一个收口：workspace shell 和 relay 现在不仅能表达 `mock flow / adapter flow / external runtime` 三条 lane，也把 `bridge lock rule / delivery guardrail` 收成显式字段，用来防止 daemon 与外部聊天入口同时写同一 thread。下一步更值当的是判断是否真的需要单独 delivery / queue layer，而不是过早承诺真实微信绑定已经可用。

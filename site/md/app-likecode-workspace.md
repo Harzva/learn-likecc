@@ -25,9 +25,18 @@
   - `mock-flow / workspace-shell / local-draft`
   - `adapter-flow / relay-adapter / single-thread-bind`
   - `external-runtime / connector-runtime / queue-gated`
+- 在 runtime lane 之外，这版还补了 conversation bridge contract：
+  - `queue-ticket / workspace / daemon-safe / draft`
+  - `thread-inject / thread:pending / single-thread-bind / risky`
+  - `task-handoff / task:pending / ticket-first / planned`
+- 这意味着 workspace 已经能表达“外部聊天入口应不应该直写 thread，还是先变成 queue / task handoff”，而不只是停留在扫码壳层
+- 这轮再往前补了两类 guardrail 字段：
+  - `bridge_lock_rule`
+  - `delivery_guardrail`
+- 这样“daemon 正在推进时是否允许注入 thread”至少先是显式策略，不再只是口头约定
 - 右侧是 runtime + 最近 log
 - branding、Pages 基址和入口链接可以通过 `.codex-loop/workspace-shell.json` 覆盖，而不是继续写死到页面里
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
-- connector shell 从 runtime lane 区分继续长到 conversation bridge contract，再决定是否值得接真实 QR auth flow
+- connector shell 从 lock / queue / guardrail 合同继续长到真正的 delivery-layer 决策，再决定是否值得接真实 QR auth flow

@@ -16,6 +16,7 @@
     var daemonJump = document.getElementById('workspace-daemon-jump')
     var connectorTargetInput = document.getElementById('workspace-connector-target-input')
     var connectorNoteInput = document.getElementById('workspace-connector-note-input')
+    var connectorBridgeTargetInput = document.getElementById('workspace-connector-bridge-target-input')
     var activeTask = null
     var taskPayload = null
     var currentLogMode = 'latest'
@@ -32,6 +33,12 @@
         runtime_mode: 'mock-flow',
         runtime_owner: 'workspace-shell',
         write_policy: 'local-draft',
+        bridge_mode: 'queue-ticket',
+        bridge_target: 'workspace',
+        bridge_policy: 'daemon-safe',
+        bridge_status: 'draft',
+        bridge_lock_rule: 'daemon-holds-thread',
+        delivery_guardrail: 'queue-only',
     }
     var CONNECTOR_STATE_KEY = 'likecode_workspace_connector_shell_v1'
 
@@ -86,6 +93,20 @@
         return mode + ' / ' + owner + ' / ' + policy
     }
 
+    function connectorBridgePreview(state) {
+        var mode = state.bridge_mode || 'queue-ticket'
+        var target = state.bridge_target || 'workspace'
+        var policy = state.bridge_policy || 'daemon-safe'
+        var status = state.bridge_status || 'draft'
+        return mode + ' / ' + target + ' / ' + policy + ' / ' + status
+    }
+
+    function connectorGuardPreview(state) {
+        var lock = state.bridge_lock_rule || 'daemon-holds-thread'
+        var delivery = state.delivery_guardrail || 'queue-only'
+        return lock + ' / ' + delivery
+    }
+
     function renderConnectorShell() {
         setText('workspace-connector-mode', connectorState.shell_mode || 'ui-shell')
         setText('workspace-connector-bind-state', connectorState.bind_state || 'unbound')
@@ -95,8 +116,15 @@
         setText('workspace-connector-runtime-mode', connectorState.runtime_mode || 'mock-flow')
         setText('workspace-connector-runtime-owner', connectorState.runtime_owner || 'workspace-shell')
         setText('workspace-connector-write-policy', connectorState.write_policy || 'local-draft')
+        setText('workspace-connector-bridge-mode', connectorState.bridge_mode || 'queue-ticket')
+        setText('workspace-connector-bridge-target', connectorState.bridge_target || 'workspace')
+        setText('workspace-connector-bridge-policy', connectorState.bridge_policy || 'daemon-safe')
+        setText('workspace-connector-bridge-status', connectorState.bridge_status || 'draft')
+        setText('workspace-connector-bridge-lock-rule', connectorState.bridge_lock_rule || 'daemon-holds-thread')
+        setText('workspace-connector-delivery-guardrail', connectorState.delivery_guardrail || 'queue-only')
         if (connectorTargetInput) connectorTargetInput.value = connectorState.target_dialog || ''
         if (connectorNoteInput) connectorNoteInput.value = connectorState.note || ''
+        if (connectorBridgeTargetInput) connectorBridgeTargetInput.value = connectorState.bridge_target || 'workspace'
         setStatus(
             document.getElementById('workspace-connector-status'),
             (connectorState.shell_mode || 'ui-shell') + ' / ' + (connectorState.login_status || connectorState.bind_state || 'idle'),
@@ -105,6 +133,8 @@
         setText('workspace-connector-note-preview', 'note: ' + (connectorState.note || 'local draft only'))
         setText('workspace-connector-qr-preview', 'qr: ' + (connectorState.qrcode_content || '--'))
         setText('workspace-connector-runtime-preview', 'lane: ' + connectorRuntimePreview(connectorState))
+        setText('workspace-connector-bridge-preview', 'bridge: ' + connectorBridgePreview(connectorState))
+        setText('workspace-connector-guard-preview', 'guard: ' + connectorGuardPreview(connectorState))
     }
 
     function updateConnectorState(patch) {
@@ -583,6 +613,11 @@
             saveConnectorState({ note: connectorNoteInput.value.trim() || 'local draft only' })
         })
     }
+    if (connectorBridgeTargetInput) {
+        connectorBridgeTargetInput.addEventListener('input', function () {
+            saveConnectorState({ bridge_target: connectorBridgeTargetInput.value.trim() || 'workspace' })
+        })
+    }
     document.getElementById('workspace-connector-qr').addEventListener('click', function () {
         startConnectorQr()
     })
@@ -608,6 +643,12 @@
             runtime_mode: 'mock-flow',
             runtime_owner: 'workspace-shell',
             write_policy: 'local-draft',
+            bridge_mode: 'queue-ticket',
+            bridge_target: 'workspace',
+            bridge_policy: 'daemon-safe',
+            bridge_status: 'draft',
+            bridge_lock_rule: 'daemon-holds-thread',
+            delivery_guardrail: 'queue-only',
         }
         persistConnectorState()
         renderConnectorShell()
@@ -618,6 +659,12 @@
             runtime_mode: 'mock-flow',
             runtime_owner: 'workspace-shell',
             write_policy: 'local-draft',
+            bridge_mode: 'queue-ticket',
+            bridge_target: (connectorBridgeTargetInput && connectorBridgeTargetInput.value.trim()) || 'workspace',
+            bridge_policy: 'daemon-safe',
+            bridge_status: 'draft',
+            bridge_lock_rule: 'daemon-holds-thread',
+            delivery_guardrail: 'queue-only',
             note: (connectorNoteInput && connectorNoteInput.value.trim()) || 'mock QR stays inside workspace shell',
         })
     })
@@ -627,6 +674,12 @@
             runtime_owner: 'relay-adapter',
             write_policy: 'single-thread-bind',
             shell_mode: 'adapter-draft',
+            bridge_mode: 'task-handoff',
+            bridge_target: (connectorBridgeTargetInput && connectorBridgeTargetInput.value.trim()) || 'task:pending',
+            bridge_policy: 'ticket-first',
+            bridge_status: 'planned',
+            bridge_lock_rule: 'manual-unlock-before-inject',
+            delivery_guardrail: 'operator-ack',
             note: (connectorNoteInput && connectorNoteInput.value.trim()) || 'adapter flow owns protocol translation but not external delivery yet',
         })
     })
@@ -635,8 +688,68 @@
             runtime_mode: 'external-runtime',
             runtime_owner: 'connector-runtime',
             write_policy: 'queue-gated',
+            bridge_mode: 'queue-ticket',
+            bridge_target: (connectorBridgeTargetInput && connectorBridgeTargetInput.value.trim()) || 'inbox:wechat',
+            bridge_policy: 'runtime-locked',
+            bridge_status: 'guarded',
+            bridge_lock_rule: 'runtime-readonly-when-daemon-active',
+            delivery_guardrail: 'queue-gated',
             note: (connectorNoteInput && connectorNoteInput.value.trim()) || 'external runtime should sit behind queue or delivery gates',
         })
+    })
+    document.getElementById('workspace-connector-bridge-queue').addEventListener('click', function () {
+        saveConnectorState({
+            bridge_mode: 'queue-ticket',
+            bridge_target: (connectorBridgeTargetInput && connectorBridgeTargetInput.value.trim()) || 'workspace',
+            bridge_policy: 'daemon-safe',
+            bridge_status: 'draft',
+            bridge_lock_rule: 'daemon-holds-thread',
+            delivery_guardrail: 'queue-only',
+        })
+    })
+    document.getElementById('workspace-connector-bridge-thread').addEventListener('click', function () {
+        saveConnectorState({
+            bridge_mode: 'thread-inject',
+            bridge_target: (connectorBridgeTargetInput && connectorBridgeTargetInput.value.trim()) || 'thread:pending',
+            bridge_policy: 'single-thread-bind',
+            bridge_status: 'risky',
+            bridge_lock_rule: 'manual-unlock-before-inject',
+            delivery_guardrail: 'operator-ack',
+        })
+    })
+    document.getElementById('workspace-connector-bridge-task').addEventListener('click', function () {
+        saveConnectorState({
+            bridge_mode: 'task-handoff',
+            bridge_target: (connectorBridgeTargetInput && connectorBridgeTargetInput.value.trim()) || 'task:pending',
+            bridge_policy: 'ticket-first',
+            bridge_status: 'planned',
+            bridge_lock_rule: 'daemon-holds-thread',
+            delivery_guardrail: 'queue-only',
+        })
+    document.getElementById('workspace-connector-guard-queue').addEventListener('click', function () {
+        saveConnectorState({
+            bridge_lock_rule: 'daemon-holds-thread',
+            delivery_guardrail: 'queue-only',
+            bridge_policy: 'daemon-safe',
+            bridge_status: 'draft',
+        })
+    })
+    document.getElementById('workspace-connector-guard-lock').addEventListener('click', function () {
+        saveConnectorState({
+            bridge_lock_rule: 'manual-unlock-before-inject',
+            delivery_guardrail: 'operator-ack',
+            bridge_policy: 'single-thread-bind',
+            bridge_status: 'guarded',
+        })
+    })
+    document.getElementById('workspace-connector-guard-runtime').addEventListener('click', function () {
+        saveConnectorState({
+            bridge_lock_rule: 'runtime-readonly-when-daemon-active',
+            delivery_guardrail: 'queue-gated',
+            bridge_policy: 'runtime-locked',
+            bridge_status: 'guarded',
+        })
+    })
     })
 
     loadConnectorState()

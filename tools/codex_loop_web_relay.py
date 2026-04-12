@@ -326,6 +326,12 @@ def default_connector_state() -> dict:
         "runtime_mode": "mock-flow",
         "runtime_owner": "workspace-shell",
         "write_policy": "local-draft",
+        "bridge_mode": "queue-ticket",
+        "bridge_target": "workspace",
+        "bridge_policy": "daemon-safe",
+        "bridge_status": "draft",
+        "bridge_lock_rule": "daemon-holds-thread",
+        "delivery_guardrail": "queue-only",
         "updated_at": "",
     }
 
@@ -360,6 +366,12 @@ def write_connector_state(workspace: Path, patch: dict) -> dict:
         "runtime_mode",
         "runtime_owner",
         "write_policy",
+        "bridge_mode",
+        "bridge_target",
+        "bridge_policy",
+        "bridge_status",
+        "bridge_lock_rule",
+        "delivery_guardrail",
     }
     state = read_connector_state(workspace)
     for key, value in (patch or {}).items():
@@ -379,6 +391,12 @@ def start_connector_qr(workspace: Path, target_dialog: str = "", note: str = "")
         "runtime_mode": "mock-flow",
         "runtime_owner": "workspace-shell",
         "write_policy": "local-draft",
+        "bridge_mode": "queue-ticket",
+        "bridge_target": "workspace",
+        "bridge_policy": "daemon-safe",
+        "bridge_status": "draft",
+        "bridge_lock_rule": "daemon-holds-thread",
+        "delivery_guardrail": "queue-only",
         "session_key": token,
         "qrcode_content": f"mock://wechat-bind/{token}",
     }
