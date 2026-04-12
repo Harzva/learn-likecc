@@ -217,6 +217,7 @@
                             <ul class="toolchain-topic-card__list">
                                 <li>适合想做多模型 CLI 编排的人</li>
                                 <li>仓库里已经附带 `tests/test_wrappers.sh` 这类本地 smoke test，不只是概念说明</li>
+                                <li>它现在也有一条很短的 runnable proof：先跑 `tests/test_wrappers.sh`，再看 `docs/workflows/multi-model-review.md`，有本地 CLI 时还能直接跑 workflow 示例</li>
                                 <li>也适合观察 `gemini-plugin-cc`、`qwen-plugin-cc`、`grok-plugin-cc` 到 `cursor/qoder/trae-plugin-cc` 这一整条插件家族怎么拆</li>
                                 <li>适合把它当 umbrella control tower 来看：统一命名、workflow 和 wrapper 留在总仓库，provider 细节下沉到各自 `*-plugin-cc`</li>
                                 <li>如果你卡在“这段能力该留在总仓库还是拆子仓库”，现在可以直接先看 <code>docs/repo-strategy.md</code></li>

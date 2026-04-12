@@ -536,6 +536,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Stay on Task 10 for one more bounded split-guidance pass because the umbrella repo still has a sharper active frontier than the other recurring slices
 - [x] Turn the umbrella-vs-plugin split into a reusable routing rubric in `projects/everything-agent-cli-to-claude-code/docs/repo-strategy.md` and sync that decision aid back into `site/topic-ai-cli-agent.html`
 - [x] Verify the Task 10 split-guidance pass with `bash projects/everything-agent-cli-to-claude-code/tests/test_wrappers.sh` and `python3 tools/check_site_md_parity.py`
+- [x] Stay on Task 10 for one more bounded runnable-proof pass because the umbrella repo still has a sharper example/verification frontier than the other recurring slices
+- [x] Make the shortest no-login proof and workflow-demo path explicit in `projects/everything-agent-cli-to-claude-code/` and sync that runnable-proof framing back into `site/topic-ai-cli-agent.html`
+- [x] Verify the Task 10 runnable-proof pass with `bash projects/everything-agent-cli-to-claude-code/tests/test_wrappers.sh`, `bash projects/everything-agent-cli-to-claude-code/examples/workflows/multi-model-review.sh --help`, and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail
 
@@ -545,5 +548,5 @@ Keep each round bounded to one page or one UI component cluster.
 
 - tighten one more detail on `site/topic-superset-unpacked.html`
 - review another data-driven page for repeated fetch or loading-state gaps
-- continue Task 10 only if there is one more bounded runnable-example / workflow-proof improvement with a clearer active frontier than the other recurring plans
+- prefer switching away from Task 10 unless another clearly stronger verification artifact appears; the current umbrella repo explanation wave is now locally mature
 - choose the next pass by mapping it to one of the three optimization pillars above
