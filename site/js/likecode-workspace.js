@@ -13,9 +13,11 @@
     var evolutionEditor = document.getElementById('workspace-evolution-editor')
     var evolutionPath = document.getElementById('workspace-evolution-path')
     var evolutionStatus = document.getElementById('workspace-evolution-status')
+    var daemonJump = document.getElementById('workspace-daemon-jump')
     var activeTask = null
     var taskPayload = null
     var currentLogMode = 'latest'
+    var daemonTaskId = null
 
     function esc(s) {
         return String(s || '')
@@ -164,6 +166,9 @@
             if (!query) return true
             return String(task.search_text || '').toLowerCase().indexOf(query) !== -1
         }).sort(function (a, b) {
+            var aDaemon = a.id === daemonTaskId ? 0 : 1
+            var bDaemon = b.id === daemonTaskId ? 0 : 1
+            if (aDaemon !== bDaemon) return aDaemon - bDaemon
             var aState = a.state === 'active' ? 0 : 1
             var bState = b.state === 'active' ? 0 : 1
             if (aState !== bState) return aState - bState
@@ -183,12 +188,16 @@
         }
         taskList.innerHTML = tasks.map(function (task) {
             var active = activeTask && activeTask.id === task.id ? ' is-active' : ''
+            var daemon = daemonTaskId === task.id ? ' is-daemon' : ''
             var plan = task.plan || {}
             return (
-                '<button type="button" class="likecode-workspace-task' + active + '" data-task-id="' + esc(task.id) + '">' +
+                '<button type="button" class="likecode-workspace-task' + active + daemon + '" data-task-id="' + esc(task.id) + '">' +
                 '<span class="likecode-workspace-task__topline">' +
                 '<span>Task ' + esc(task.id) + '</span>' +
+                '<span class="likecode-workspace-task__badges">' +
                 '<span class="likecode-workspace-badge likecode-workspace-badge--' + esc(stateTone(task.state)) + '">' + esc(plan.status || task.state) + '</span>' +
+                (daemonTaskId === task.id ? '<span class="likecode-workspace-badge likecode-workspace-badge--attention">daemon</span>' : '') +
+                '</span>' +
                 '</span>' +
                 '<strong>' + esc(plan.title || task.headline) + '</strong>' +
                 '<span class="likecode-workspace-task__goal">' + esc(plan.goal || task.headline) + '</span>' +
@@ -232,6 +241,27 @@
         resetEvolutionDraft(task)
     }
 
+    function inferDaemonTask(status) {
+        var preview = String((status || {}).last_message_preview || '')
+        var match = preview.match(/Task\s+(\d+)/)
+        if (!match) return null
+        var id = Number(match[1])
+        return ((taskPayload && taskPayload.recurring) || []).find(function (task) { return task.id === id }) || null
+    }
+
+    function renderDaemonTask(status) {
+        var task = inferDaemonTask(status)
+        daemonTaskId = task ? task.id : null
+        if (task) {
+            setText('workspace-daemon-task', 'daemon task: Task ' + task.id + ' · ' + ((task.plan || {}).title || task.headline))
+            daemonJump.disabled = false
+        } else {
+            setText('workspace-daemon-task', 'daemon task: unavailable')
+            daemonJump.disabled = true
+        }
+        renderTaskList()
+    }
+
     function loadPlan(task) {
         if (!task || !task.plan_path) return
         setStatus(planStatus, 'loading', 'neutral')
@@ -273,11 +303,14 @@
                 setText('workspace-last-tick', ((payload.last_tick || {}).finished_at) || ((payload.last_tick || {}).started_at) || '—')
                 setText('workspace-thread-lock', ((payload.thread_lock || {}).mode) || '—')
                 setText('workspace-runtime-workspace', ((payload.last_tick || {}).workspace) || '—')
+                renderDaemonTask(payload)
                 setStatus(runtimeStatus, 'synced', 'ready')
             })
             .catch(function (error) {
                 setStatus(runtimeStatus, 'sync failed', 'risk')
                 setText('workspace-runtime-workspace', error.message)
+                setText('workspace-daemon-task', 'daemon task: unavailable')
+                daemonJump.disabled = true
             })
     }
 
@@ -368,6 +401,11 @@
     planSave.addEventListener('click', savePlan)
     document.getElementById('workspace-evolution-save').addEventListener('click', saveEvolution)
     document.getElementById('workspace-evolution-reset').addEventListener('click', function () { resetEvolutionDraft(activeTask) })
+    daemonJump.addEventListener('click', function () {
+        if (!daemonTaskId || !taskPayload) return
+        var task = (taskPayload.recurring || []).find(function (item) { return item.id === daemonTaskId })
+        if (task) selectTask(task)
+    })
     taskSearch.addEventListener('input', renderTaskList)
     planEditor.addEventListener('input', function () {
         renderChecklist()

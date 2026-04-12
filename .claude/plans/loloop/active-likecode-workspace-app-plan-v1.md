@@ -11,7 +11,7 @@ Scope: grow the current codex-loop monitor into a separate app-style LikeCode wo
 - [x] Show runtime status and one switchable log lane (`daemon / latest tick / last message`) in the same app shell
 - [x] Add checklist-aware plan interactions instead of raw markdown-only save
 - [x] Add a lightweight evolution composer so the app can record bounded passes without leaving the page
-- [ ] Add a stronger active-task sync so the workspace can highlight the daemon-selected task rather than only the plan-declared task
+- [x] Add a stronger active-task sync so the workspace can highlight the daemon-selected task rather than only the plan-declared task
 
 ## Main product areas
 
@@ -44,3 +44,4 @@ Scope: grow the current codex-loop monitor into a separate app-style LikeCode wo
 - The first version should stay conservative: whitelist editable plan paths, prefer raw markdown save over risky rich editing, and avoid pretending to be a full collaborative IDE yet.
 - 2026-04-12: first bounded Task 13 follow-up landed checklist-aware plan interactions inside the app shell; plan markdown now exposes a dedicated clickable checklist lane that writes back into the same editor text before save, without adding a second relay mutation API
 - 2026-04-12: second bounded Task 13 follow-up landed a lightweight evolution composer inside the app shell; it seeds an `evolution-YYYY-MM-DD-*.md` path plus a minimal template and saves through the same guarded plan-write endpoint instead of requiring a separate backend route
+- 2026-04-12: third bounded Task 13 follow-up landed a daemon-task sync strip; the app now infers the latest daemon-selected task from `last_message_preview`, highlights that task in the pool, and offers a one-click jump without overriding the operator's manual selection

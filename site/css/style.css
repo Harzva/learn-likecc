@@ -13681,9 +13681,21 @@ body.site-shell-overlay-open {
     color: var(--muted-text);
 }
 
+.likecode-workspace-task__badges {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 6px;
+}
+
 .likecode-workspace-task__goal {
     font-size: 0.92rem;
     color: var(--muted-text);
+}
+
+.likecode-workspace-task.is-daemon {
+    border-color: rgba(56, 110, 207, 0.28);
+    box-shadow: 0 18px 40px rgba(40, 87, 171, 0.09);
 }
 
 .likecode-workspace-main {
@@ -13712,6 +13724,10 @@ body.site-shell-overlay-open {
     margin: 8px 0 0;
     max-width: 72ch;
     color: var(--muted-text);
+}
+
+.likecode-workspace-daemon-row {
+    margin-top: 12px;
 }
 
 .likecode-workspace-badges,
