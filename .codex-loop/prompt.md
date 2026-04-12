@@ -258,3 +258,20 @@ Execution rule:
    - wrapper verification and runnable examples
    - clarity of the related plugin-family repos
    - site-facing recommendation and teaching copy
+
+Task 11:
+Loop task: keep the site-wide mind map and per-topic last-updated metadata synchronized by following the dedicated plan file:
+- `.claude/plans/loloop/active-site-map-plan-v1.md`
+
+Execution rule:
+1. Read that plan first.
+2. Continue the current unchecked / active item instead of randomly switching.
+3. After each bounded pass:
+   - mark progress in the plan file
+   - check off any completed item
+   - record the result in the evolution trail
+4. Prefer changes that keep these aligned:
+   - `site/topic-site-map.html`
+   - `site/md/topic-site-map.md`
+   - `site/data/site-topic-index.json`
+   - per-page `page:updated` metadata on `site/topic-*.html`

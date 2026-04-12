@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧩</text></svg>">
     <meta name="description" content="基于本仓库 reference_agent 内 vend 的 obra/superpowers-marketplace 与 uditgoenka/autoresearch 快照：市场目录 vs 单一自主改进插件，附 Mermaid 对照图。">
+    <meta name="page:updated" content="2026-04-04">
 </head>
 <body>
     <nav class="navbar">
@@ -21,6 +22,7 @@
                 <a href="#market" class="nav-link">市场</a>
                 <a href="#ar" class="nav-link">Autoresearch</a>
                 <a href="#table" class="nav-link">差异表</a>
+                <a href="#timing" class="nav-link">循环方式</a>
                 <a href="#evidence" class="nav-link">证据路径</a>
             </div>
             <div class="nav-actions">
@@ -86,8 +88,51 @@
                     </div>
                 </section>
 
+                <section id="timing" class="section-block">
+                    <h2>5. 几种循环 / 定时方式有什么区别</h2>
+                    <p>把 Agent 连续跑起来，常见不止一种做法。名字都像“循环”，但<strong>驱动者</strong>完全不同：有的是产品原生 loop，有的是 hook 拦截退出，有的是后台 daemon 定时唤醒，有的是操作系统 cron 负责外层调度。</p>
+                    <div class="table-wrap">
+                        <table class="data-table">
+                            <thead>
+                                <tr><th>方式</th><th>谁驱动循环</th><th>最大优势</th><th>典型短板</th><th>适合什么</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>原生 Loop</strong></td>
+                                    <td>产品自身 runtime</td>
+                                    <td>体验最顺，用户几乎不用自己搭调度层</td>
+                                    <td>强依赖平台原生支持，迁移性差</td>
+                                    <td>产品已经内建 loop / 定时唤醒能力时</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Hook 内循环</strong></td>
+                                    <td>会话生命周期 hook（如 Stop hook）</td>
+                                    <td>上下文连续性最好，循环发生在当前 session 里</td>
+                                    <td>依赖 hook 接口；没有 hook 的平台很难直接复刻</td>
+                                    <td>像 Ralph loop 这类“拦住退出，再把同一 prompt 喂回去”的场景</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Daemon 循环</strong></td>
+                                    <td>后台常驻进程</td>
+                                    <td>最工程化，可写状态、日志、锁文件，也更容易跨项目复用</td>
+                                    <td>要自己维护后台进程；默认不会像 hook 那样天然贴在当前会话里</td>
+                                    <td>像我们做的 <code>codex-loop</code>：定时唤醒、复用 thread、长期推进 plan</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Cron 调度</strong></td>
+                                    <td>操作系统定时器</td>
+                                    <td>最稳定，适合开机拉起、巡检、定时健康检查</td>
+                                    <td>更像“按时执行脚本”，不是 thread-aware loop 本体</td>
+                                    <td>守护 daemon、开机恢复、限定运行时段</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>如果只记一句：<strong>Hook</strong> 最像“会话内自循环”，<strong>daemon</strong> 最像“工程化长期运行”，<strong>cron</strong> 更像“外层守护与调度”。因此 cron 往往不单独作为 loop 本体，而是拿来<strong>守护 daemon</strong>。</p>
+                </section>
+
                 <section id="evidence" class="section-block">
-                    <h2>5. 证据路径（本仓库）</h2>
+                    <h2>6. 证据路径（本仓库）</h2>
                     <ul>
                         <li><code>reference/reference_agent/superpowers-marketplace/.claude-plugin/marketplace.json</code></li>
                         <li><code>reference/reference_agent/superpowers-marketplace/README.md</code></li>

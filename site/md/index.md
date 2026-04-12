@@ -14,6 +14,7 @@
 - **✅ 绿钩进度 + 🪄 私人订制 Todo**
 - **2026 年 3 月：Source Map 事件是怎么回事？**
 - **📚 学习入口**
+  - 站点导览（`topic-site-map`）
   - Source Map 源码专题
   - 大模型专题
   - 个人知识库（`topic-personal-knowledge`）
@@ -28,6 +29,7 @@
   - RAG 大专题
   - Agent 大专题（含 Memory `topic-memory-harness`、插件对照 `topic-superpowers-autoresearch`）
   - 工具链专题（`topic-toolchain`）
+  - VibePaper 专题（`topic-vibepaper`）
 - **🛤️ 学习路径**
 - **📚 源码课程章节**
 - **💼 面试题库**
@@ -71,6 +73,10 @@
 
 指向以 Source Map 与重建源码为主线的专题页，承接上方事件背景。
 
+#### 站点导览
+
+`topic-site-map.html`：用一张站点思维导图把首页、源码专题、庖丁解牛、AI杂货铺、Agent、RAG、工具链和 VibePaper 等入口收在一起；同时汇总每个 `topic-*.html` 子页的最近更新时间，方便读者导航，也方便维护者检查哪些页最近被改动过。
+
 #### 庖丁解牛专题
 
 `topic-paoding-jieniu.html`：新的总页，先把“庖丁解牛”升级成专题，再把具体拆解分成子页。目前先收两条线：`topic-cc-unpacked-zh.html` 的 **Claude Code 解构**，以及 `topic-superset-unpacked.html` 的 **Superset 解构**。后者继续承载 `meta-agent` 这条结构理解线。
@@ -98,6 +104,10 @@
 #### Skill 市场
 
 新补的 `topic-skillmarket.html` 把 `SkillsMP` 收成独立专题页：它不负责最后的信任判断，而负责先发现 `SKILL.md` 生态里的候选 skill，再把仓库入口和安装线索导向 GitHub 与本地 skill 目录。
+
+#### VibePaper 专题
+
+`topic-vibepaper.html`：把自动科研与自动论文系统单列成新的专题轴。第一版先收 `Autoresearch` 与 `DeepScientist`，后续继续 clone 相关项目到 `reference/reference_agent/`，再补结构分析、图示和教程路线。
 
 ### 🛤️ 学习路径
 

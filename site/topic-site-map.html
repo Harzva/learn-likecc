@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>站点导览 / 思维导图 - Learn LikeCode</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+    <meta name="description" content="用思维导图和专题索引快速理解 Learn LikeCode 站点结构，并查看每个专题页的最后更新时间。">
+    <meta name="page:updated" content="2026-04-12">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🗺️</span>
+                <span class="logo-text">站点导览</span>
+            </a>
+            <div class="nav-links">
+                <a href="#overview" class="nav-link">总览</a>
+                <a href="#mindmap" class="nav-link">思维导图</a>
+                <a href="#directory" class="nav-link">专题索引</a>
+                <a href="#maintenance" class="nav-link">维护规则</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>站点导览</span>
+                <span>思维导图 / 更新时间索引</span>
+            </div>
+            <h1 class="hero-title">
+                Learn LikeCode<br>
+                <span class="gradient-text">站点思维导图与专题更新时间</span>
+            </h1>
+            <p class="hero-subtitle">
+                这页负责两件事：一是把整站内容用一张图讲清楚，二是把每个专题页的最后更新时间收拢到一个可维护索引里。以后站内新增或重构专题时，这里也应该同步更新。
+            </p>
+            <div class="hero-actions">
+                <a href="#mindmap" class="btn btn-primary">先看思维导图</a>
+                <a href="#directory" class="btn btn-secondary">查看专题索引</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="course-main devlog-main">
+        <div class="container">
+            <article class="course-content devlog-content">
+                <section id="overview" class="section-block">
+                    <h2>这一页解决什么问题</h2>
+                    <div class="course-quote">
+                        <p><strong>整站越来越大时，最容易失控的不是内容本身，而是总览和维护感。</strong> 所以这里把“站点结构图”和“专题更新时间”放在一起：前者解决新读者不知道从哪进，后者解决维护者不知道哪些页最近动过、哪些页长期没更新。</p>
+                    </div>
+                </section>
+
+                <section id="mindmap" class="section-block">
+                    <h2>站点思维导图</h2>
+                    <figure class="mermaid-figure mermaid-figure--main" aria-label="Learn LikeCode 站点思维导图">
+                        <figcaption class="mermaid-caption">
+                            <strong>一张图看站点结构</strong>：从首页出发，先分核心入口，再把 AI 杂货铺、Agent、VibePaper 等专题线连起来。
+                        </figcaption>
+                        <div class="mermaid-diagram-scroll mermaid-diagram-scroll--xl" data-mermaid-diagram="site-topic-map"></div>
+                    </figure>
+                </section>
+
+                <section id="directory" class="section-block">
+                    <h2>专题索引与更新时间</h2>
+                    <p id="site-topic-index-meta" class="site-map-topline">索引加载中…</p>
+                    <div data-topic-index-src="data/site-topic-index.json" data-topic-index-meta="site-topic-index-meta"></div>
+                </section>
+
+                <section id="maintenance" class="section-block">
+                    <h2>维护规则</h2>
+                    <ul>
+                        <li>新增或重构 <code>site/topic-*.html</code> 页面后，运行 <code>python3 tools/refresh_site_topic_metadata.py</code>。</li>
+                        <li>这条脚本会同步刷新三类信息：页面 <code>page:updated</code>、Markdown 镜像里的 <code>更新时间</code>、以及这页所用的专题索引 JSON。</li>
+                        <li>如果站点结构发生明显变化，比如新增一个大专题或一条新的子专题簇，也要回到这页，更新思维导图的结构说明。</li>
+                    </ul>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-site-map.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>© 2026 Learn LikeCode. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js" crossorigin="anonymous"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

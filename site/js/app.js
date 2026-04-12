@@ -92,6 +92,39 @@ const MERMAID_DIAGRAMS = {
     CAND --> X["AIDE ML<br/>benchmark-first optimization lab"]:::grayBox
     X -. 承接关系 .-> V`,
 
+    'site-topic-map': `graph TB
+    classDef core fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#fcd34d;
+    classDef hub fill:#172130,stroke:#60a5fa,stroke-width:2px,color:#93c5fd;
+    classDef topic fill:#14251f,stroke:#34d399,stroke-width:2px,color:#6ee7b7;
+    classDef lab fill:#241c2f,stroke:#c084fc,stroke-width:2px,color:#e9d5ff;
+
+    HOME["Learn LikeCode<br/>站点首页"]:::core
+
+    HOME --> SOURCE["Source Map 源码专题"]:::hub
+    HOME --> BUTCHER["庖丁解牛专题"]:::hub
+    HOME --> GUIDE["教程 / 手册"]:::hub
+    HOME --> SHOP["AI杂货铺"]:::hub
+    HOME --> AGENT["Agent"]:::hub
+    HOME --> RAG["RAG"]:::hub
+    HOME --> LLM["大模型"]:::hub
+    HOME --> SKILL["Skill 市场"]:::hub
+    HOME --> TOOL["工具链"]:::hub
+    HOME --> PAPER["VibePaper"]:::hub
+
+    BUTCHER --> CC["Claude Code 解构"]:::topic
+    BUTCHER --> SUPER["Superset 解构"]:::topic
+    BUTCHER --> HERMES["Hermes Agent 解构"]:::topic
+
+    SHOP --> CLI["CLI Agent 专页"]:::topic
+    SHOP --> API["模型 API / 聚合"]:::topic
+    SHOP --> BENCH["模型评测"]:::topic
+    SHOP --> CODING["AI 编程工具"]:::topic
+
+    AGENT --> HOT["技术热点 / 对比 / 论文"]:::topic
+    PAPER --> ARIS["Autoresearch / ARIS"]:::lab
+    PAPER --> DS["DeepScientist"]:::lab
+    PAPER --> AIS["AI Scientist-v2"]:::lab`,
+
     'agent-loop': `graph TD
     classDef yellowBox fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#e2b953;
     classDef blueBox fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#3b82f6;
@@ -1625,6 +1658,61 @@ function initToolspotLogos() {
     })
 }
 
+function initSiteTopicIndex() {
+    document.querySelectorAll('[data-topic-index-src]').forEach(async (container) => {
+        const src = container.getAttribute('data-topic-index-src')
+        if (!src) return
+
+        try {
+            const response = await fetch(src)
+            if (!response.ok) throw new Error(`failed to fetch ${src}`)
+            const payload = await response.json()
+            const groups = Array.isArray(payload.groups) ? payload.groups : []
+
+            const metaTargetId = container.getAttribute('data-topic-index-meta')
+            const metaTarget = metaTargetId ? document.getElementById(metaTargetId) : null
+            if (metaTarget && payload.meta) {
+                metaTarget.textContent = `索引刷新：${payload.meta.updated} · 共 ${payload.meta.count} 个专题页`
+            }
+
+            const fragments = groups
+                .filter((group) => Array.isArray(group.items) && group.items.length)
+                .map((group) => {
+                    const cards = group.items
+                        .map((item) => `
+                            <a class="toolchain-topic-card site-map-card" href="${item.href}">
+                                <div class="toolchain-topic-card__meta">${group.name}</div>
+                                <h3>${item.title}</h3>
+                                <p class="site-map-card__path">${item.href}</p>
+                                <p class="site-map-card__updated">上次更新：${item.updated}</p>
+                            </a>
+                        `)
+                        .join('')
+
+                    return `
+                        <section class="site-map-group">
+                            <div class="toolchain-section-heading site-map-group__heading">
+                                <span class="toolchain-eyebrow">Directory</span>
+                                <h2>${group.name}</h2>
+                            </div>
+                            <div class="toolchain-card-grid site-map-grid">${cards}</div>
+                        </section>
+                    `
+                })
+                .join('')
+
+            container.innerHTML = fragments
+        } catch (error) {
+            container.innerHTML = `
+                <div class="course-quote">
+                    <p>站点专题索引加载失败，请先运行 <code>python3 tools/refresh_site_topic_metadata.py</code> 重新生成数据。</p>
+                </div>
+            `
+            console.error(error)
+        }
+    })
+}
+
 // 初始化新功能
 document.addEventListener('DOMContentLoaded', () => {
     initSiteSidebar()
@@ -1636,6 +1724,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initExpandButtons()
     initToolspotGrid()
     initToolspotLogos()
+    initSiteTopicIndex()
     initMermaidFlowcharts()
     markActiveSiteSidebarLinks()
 })

@@ -1,4 +1,5 @@
 # OpenHarness 源码课 · 与 Claude Code 思想架构对照
+> **更新时间**: 2026-04-08
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-openharness-course.html  
 > **本文件**: `site/md/topic-openharness-course.md`  

@@ -1,4 +1,5 @@
 # 站点推荐 · 教程、个人主页与 GitHub 仓库
+> **更新时间**: 2026-04-12
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-websites.html  
 > **本文件**: `site/md/topic-websites.md`  

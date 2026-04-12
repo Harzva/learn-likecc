@@ -1,4 +1,5 @@
 # Claude Code 解构
+> **更新时间**: 2026-04-12
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-cc-unpacked-zh.html  
 > **本文件**: `site/md/topic-cc-unpacked-zh.md`  

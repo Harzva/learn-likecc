@@ -1,4 +1,5 @@
 # 从重建源码提炼设计思想 - Claude Code Course
+> **更新时间**: 2026-04-12
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-source-derived.html  
 > **本文件**: `site/md/topic-source-derived.md`  

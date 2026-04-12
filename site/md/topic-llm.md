@@ -1,4 +1,5 @@
 # 大模型专题
+> **更新时间**: 2026-04-12
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-llm.html  
 > **本文件**: `site/md/topic-llm.md`

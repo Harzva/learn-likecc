@@ -1,4 +1,5 @@
 # Agent · 论文分析 - Claude Code Course
+> **更新时间**: 2026-04-10
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-agent-papers.html  
 > **本文件**: `site/md/topic-agent-papers.md`  

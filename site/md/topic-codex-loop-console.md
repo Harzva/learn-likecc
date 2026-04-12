@@ -1,4 +1,5 @@
 # codex-loop AI Terminal（本地 MVP+）
+> **更新时间**: 2026-04-12
 
 > **在线页**（需本机 HTTP）：<http://127.0.0.1:8080/topic-codex-loop-console.html>（示例端口）  
 > **HTML**：[`site/topic-codex-loop-console.html`](../topic-codex-loop-console.html)  

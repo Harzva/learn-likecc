@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧩</text></svg>">
     <meta name="description" content="基于 SkillsMP 整理 SKILL.md 生态的发现入口、仓库校验路径与后续自动安装 skill 的设计思路。">
+    <meta name="page:updated" content="2026-04-11">
 </head>
 <body class="skillmarket-page">
     <nav class="navbar">
@@ -21,6 +22,7 @@
                 <a href="#workflow" class="nav-link">工作流</a>
                 <a href="#examples" class="nav-link">样例</a>
                 <a href="#repo-evidence" class="nav-link">仓库证据</a>
+                <a href="#practical-flows" class="nav-link">工具流</a>
                 <a href="#awesome" class="nav-link">汇总</a>
                 <a href="#next" class="nav-link">下一步</a>
             </div>
@@ -249,15 +251,83 @@
                     <p class="skillmarket-inline-note">这张表的作用，是帮我们在“发现之后的 GitHub 校验”阶段少走弯路：如果看到的是 skill bundle，就重点审 <code>SKILL.md</code>、marketplace 收录方式和发布同步链；如果看到的是 plugin bundle，就重点审 plugin 元数据、命令入口、agent 入口和测试面。不要把这两类仓库都当成同一种“技能目录”去看。</p>
                 </section>
 
+                <section id="practical-flows" class="section-block">
+                    <h2>5. 这 6 个仓库更适合被当作“实用工具流”来读</h2>
+                    <p>按 2026-02-05 掘金文章 <a href="https://juejin.cn/post/7602929352716468224" target="_blank" rel="noopener noreferrer">《GitHub这 6 个超神的 SKills，赶紧收藏》</a> 提到的 6 个仓库，我们已经把源码快照落到 <code>reference/reference_skill/practical-toolflows/</code>。把它们并排看，会发现它们的价值不只是“多一个 skill”，而是把一整段可重复执行的工作流收敛成了 skill + scripts + references + install surface 的组合。</p>
+
+                    <div class="table-wrap skillmarket-table-wrap skillmarket-table-wrap--wide">
+                        <table class="data-table">
+                            <thead>
+                                <tr><th>仓库</th><th>本地快照</th><th>它接住了哪一段工具流</th><th>为什么不该只当成 prompt 包看</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>remotion-dev/skills</code></td>
+                                    <td><code>reference/reference_skill/practical-toolflows/remotion-dev-skills/</code></td>
+                                    <td>React 视频制作：脚手架、预览、单帧检查，以及字幕 / FFmpeg / 音频可视化等规则调用。</td>
+                                    <td>核心不是 README，而是 <code>skills/remotion/SKILL.md</code> 把 Remotion 的领域知识拆成一组可按需加载的规则文件。</td>
+                                </tr>
+                                <tr>
+                                    <td><code>op7418/Youtube-clipper-skill</code></td>
+                                    <td><code>reference/reference_skill/practical-toolflows/Youtube-clipper-skill/</code></td>
+                                    <td>YouTube 下载 → 字幕解析 → AI 语义分章 → 精确剪辑 → 字幕翻译 / 烧录 → 社媒文案。</td>
+                                    <td><code>SKILL.md</code> 只负责编排，真正落地的是 <code>scripts/</code> 里的下载、裁剪、翻译、烧录脚本。这就是完整视频处理流水线。</td>
+                                </tr>
+                                <tr>
+                                    <td><code>GBSOSS/skill-from-masters</code></td>
+                                    <td><code>reference/reference_skill/practical-toolflows/skill-from-masters/</code></td>
+                                    <td>先找实践高手与失败案例，再归纳有效 / 无效模式，最后把这些经验转成新 skill。</td>
+                                    <td>它不是终端能力 skill，而是“制造 skill 的工作流”。其中 <code>skills/skill-from-github/</code> 还把“从优秀仓库提炼 skill”做成了专门子流。</td>
+                                </tr>
+                                <tr>
+                                    <td><code>PleasePrompto/notebooklm-skill</code></td>
+                                    <td><code>reference/reference_skill/practical-toolflows/notebooklm-skill/</code></td>
+                                    <td>认证 → Notebook 库管理 → 问答 → 自动追问补全 → CLI 继续执行。</td>
+                                    <td>重点不在一句“问 NotebookLM”，而在 <code>scripts/run.py</code> 统一虚拟环境、浏览器自动化和状态管理，把知识库问答嵌进本地编码流。</td>
+                                </tr>
+                                <tr>
+                                    <td><code>wshuyi/x-article-publisher-skill</code></td>
+                                    <td><code>reference/reference_skill/practical-toolflows/x-article-publisher-skill/</code></td>
+                                    <td>Markdown 解析 → 结构化 HTML / block index → 浏览器自动化 → X Articles 草稿。</td>
+                                    <td>这是典型发布分发流。<code>.claude-plugin/plugin.json</code> 已经把依赖面说清：Playwright MCP + Python 图像处理，而不是单纯复制粘贴。</td>
+                                </tr>
+                                <tr>
+                                    <td><code>anthropics/skills</code></td>
+                                    <td><code>reference/reference_skill/practical-toolflows/anthropics-skills/</code></td>
+                                    <td>官方技能仓库、marketplace 入口、模板与规范底座。</td>
+                                    <td>它更像“生态基础设施”：<code>skills/</code> 给样例，<code>spec/</code> 给协议，<code>template/</code> 给起手架，适合当所有后续工具流的公共参照系。</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="quickstart-grid skillmarket-grid skillmarket-grid--compact">
+                        <div class="quickstart-card">
+                            <h3>共同模式 1</h3>
+                            <p>真正能打的 skill 仓库，往往都会长出 <code>scripts/</code>、<code>references/</code>、<code>plugin.json</code> 或模板目录，而不是只留一页说明。</p>
+                        </div>
+                        <div class="quickstart-card">
+                            <h3>共同模式 2</h3>
+                            <p>模型负责判断和编排，脚本负责确定性执行。越接近“实用工具流”，这条分工越清楚。</p>
+                        </div>
+                        <div class="quickstart-card">
+                            <h3>共同模式 3</h3>
+                            <p>最值得分析的不是“它叫什么 skill”，而是“它到底替用户省掉了哪几次手工切换”。</p>
+                        </div>
+                    </div>
+
+                    <p class="skillmarket-inline-note">所以这 6 个样本放到站内，最合适的读法不是“又发现了几个 skill”，而是“我们已经看到六条可复用的工具流原型”：视频生成、视频剪辑、skill 生产、知识库问答、内容发布、官方生态底座。</p>
+                </section>
+
                 <section id="awesome" class="section-block">
-                    <h2>5. 我们已经把这条线整理成仓库内汇总</h2>
+                    <h2>6. 我们已经把这条线整理成仓库内汇总</h2>
                     <p>为了不让这件事只停留在网页入口，我把它同步沉淀成了仓库内的 <a href="https://github.com/Harzva/learn-likecc/blob/main/awesome-skills.md" target="_blank" rel="noopener noreferrer"><code>awesome-skills.md</code></a>：里面收 discovery 入口、安装落点和已验证的 SkillsMP 样例。</p>
                     <p>这样做的好处是，之后无论是继续扩展站内专题，还是让 Agent / Skill 自动使用这条路线，我们都有一个<strong>仓库内、可 diff、可 PR、可继续补充</strong> 的锚点。</p>
                     <p>现在仓库里也已经补上了第一版安装器：<code>tools/install_skill_from_github.py</code>。它不负责从 SkillsMP 硬抓详情页，而是接收已经核验过的 GitHub 仓库与 skill 路径，把完整 skill 目录安装到 Claude / Codex 的本地目录。</p>
                 </section>
 
                 <section id="next" class="section-block">
-                    <h2>6. 下一步怎么把它做成真正的“自动找 skill 并安装”</h2>
+                    <h2>7. 下一步怎么把它做成真正的“自动找 skill 并安装”</h2>
                     <p>这一步我建议不要一步到位做成“搜完立刻安装”，而是先做成一个<strong>半自动 skill</strong>：</p>
                     <ul>
                         <li>先从用户任务里提取关键词，例如“引用管理”“仓库分析”“PR 管理”“文档整理”。</li>

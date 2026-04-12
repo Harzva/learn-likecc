@@ -1,4 +1,5 @@
 # 个人知识库 · GitHub、Wiki 与 Agent
+> **更新时间**: 2026-04-10
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-personal-knowledge.html  
 > **本文件**: `site/md/topic-personal-knowledge.md`  

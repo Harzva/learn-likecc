@@ -1,4 +1,5 @@
 # Loop 事件流实验室（本地）
+> **更新时间**: 2026-04-12
 
 > **在线页**（需本机 HTTP）：<http://127.0.0.1:8080/topic-cc-loop-lab.html>（示例端口）  
 > **HTML**：[`site/topic-cc-loop-lab.html`](../topic-cc-loop-lab.html)  

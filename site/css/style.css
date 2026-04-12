@@ -2151,6 +2151,42 @@ body {
     margin-top: 1rem;
 }
 
+.site-map-topline {
+    margin: 0 0 1rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.site-map-grid {
+    margin-top: 1.25rem;
+}
+
+.site-map-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.site-map-card:hover h3,
+.site-map-card:focus-visible h3 {
+    color: var(--primary);
+}
+
+.site-map-card__path,
+.site-map-card__updated {
+    margin: 0.4rem 0 0;
+    font-size: 0.92rem;
+    color: var(--text-muted);
+}
+
+.site-map-group + .site-map-group {
+    margin-top: 2.5rem;
+}
+
+.site-map-group__heading {
+    margin-bottom: 0.75rem;
+}
+
 /* 响应式 */
 @media (max-width: 1024px) {
     .hero {

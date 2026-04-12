@@ -1,4 +1,5 @@
 # Claude Code 发版监督 · 官方版本速览
+> **更新时间**: 2026-04-11
 
 > **在线页面**: [https://harzva.github.io/learn-likecc/topic-cc-release-watch.html](https://harzva.github.io/learn-likecc/topic-cc-release-watch.html)  
 > **本文件**: `site/md/topic-cc-release-watch.md`

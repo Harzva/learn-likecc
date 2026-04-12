@@ -1,4 +1,5 @@
 # Source Map 源码专题 - Claude Code Course
+> **更新时间**: 2026-04-12
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-sourcemap.html  
 > **本文件**: `site/md/topic-sourcemap.md`  

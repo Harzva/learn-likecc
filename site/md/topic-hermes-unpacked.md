@@ -2,7 +2,7 @@
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-hermes-unpacked.html  
 > **本文件**: `site/md/topic-hermes-unpacked.md`  
-> **更新时间**: 2026-04-10
+> **更新时间**: 2026-04-12
 
 本页归入 **庖丁解牛专题**，目标不是介绍 Hermes Agent 有多“全能”，而是拆它如何把 `agent loop + tools registry + memory/skills + gateway + cron + environments` 拼成一个长期运行的 agent 控制层。
 

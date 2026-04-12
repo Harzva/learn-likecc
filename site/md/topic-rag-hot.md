@@ -1,4 +1,5 @@
 # RAG · 技术热点 - Claude Code Course
+> **更新时间**: 2026-04-10
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-rag-hot.html  
 > **本文件**: `site/md/topic-rag-hot.md`  
