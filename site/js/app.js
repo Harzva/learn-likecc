@@ -667,8 +667,14 @@ function initSiteSidebar() {
         const open = aside.classList.contains('site-sidebar--open')
         const collapsedDesktop = aside.classList.contains('site-sidebar--collapsed') && !isMobile
         const expanded = open || !collapsedDesktop
+        const collapseLabel = expanded ? '收起侧栏' : '展开侧栏'
+        const fabLabel = open ? '关闭导航' : '打开导航'
         collapseBtn.setAttribute('aria-expanded', expanded ? 'true' : 'false')
+        collapseBtn.setAttribute('aria-label', collapseLabel)
+        collapseBtn.title = collapseLabel
         fab.setAttribute('aria-expanded', open ? 'true' : 'false')
+        fab.setAttribute('aria-label', fabLabel)
+        fab.title = fabLabel
         aside.setAttribute('aria-hidden', isMobile && !open ? 'true' : 'false')
         backdrop.setAttribute('aria-hidden', open ? 'false' : 'true')
     }
@@ -1191,8 +1197,14 @@ function initPageSubnav() {
         const open = aside.classList.contains('page-subnav--open')
         const collapsedDesktop = aside.classList.contains('page-subnav--collapsed') && !isMobile()
         const expanded = open || !collapsedDesktop
+        const toggleLabel = expanded ? '收起页内目录' : '展开页内目录'
+        const fabLabel = open ? '关闭页内目录' : '打开页内目录'
         toggleBtn.setAttribute('aria-expanded', expanded ? 'true' : 'false')
+        toggleBtn.setAttribute('aria-label', toggleLabel)
+        toggleBtn.title = toggleLabel
         fab.setAttribute('aria-expanded', open ? 'true' : 'false')
+        fab.setAttribute('aria-label', fabLabel)
+        fab.title = fabLabel
         aside.setAttribute('aria-hidden', isMobile() && !open ? 'true' : 'false')
         backdrop.setAttribute('aria-hidden', open ? 'false' : 'true')
     }
