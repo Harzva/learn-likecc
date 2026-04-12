@@ -19,6 +19,19 @@
       "state": "deferred",
       "plan_path": ".claude/plans/loloop/active-claude-changelog-watch-plan-v1.md",
       "slug": "claude-changelog-watch",
+      "plan_href": "https://github.com/Harzva/learn-likecc/blob/main/.claude/plans/loloop/active-claude-changelog-watch-plan-v1.md",
+      "latest_evolution": {
+        "name": "evolution-2026-04-12-cc-release-watch-still-deferred.md",
+        "path": ".claude/plans/loloop/evolution-2026-04-12-cc-release-watch-still-deferred.md",
+        "href": "https://github.com/Harzva/learn-likecc/blob/main/.claude/plans/loloop/evolution-2026-04-12-cc-release-watch-still-deferred.md"
+      },
+      "topic_links": [
+        {
+          "label": "topic-cc-release-watch",
+          "path": "site/topic-cc-release-watch.html",
+          "href": "topic-cc-release-watch.html"
+        }
+      ],
       "plan": {
         "title": "Claude Changelog Watch Plan v1",
         "status": "locally deferred",
@@ -65,6 +78,24 @@
       "state": "done",
       "plan_path": ".claude/plans/loloop/active-hermes-unpacked-plan-v1.md",
       "slug": "hermes-unpacked",
+      "plan_href": "https://github.com/Harzva/learn-likecc/blob/main/.claude/plans/loloop/active-hermes-unpacked-plan-v1.md",
+      "latest_evolution": {
+        "name": "evolution-2026-04-12-site-hermes-compare-stack-visual-brief.md",
+        "path": ".claude/plans/loloop/evolution-2026-04-12-site-hermes-compare-stack-visual-brief.md",
+        "href": "https://github.com/Harzva/learn-likecc/blob/main/.claude/plans/loloop/evolution-2026-04-12-site-hermes-compare-stack-visual-brief.md"
+      },
+      "topic_links": [
+        {
+          "label": "topic-hermes-unpacked",
+          "path": "site/topic-hermes-unpacked.html",
+          "href": "topic-hermes-unpacked.html"
+        },
+        {
+          "label": "topic-paoding-jieniu",
+          "path": "site/topic-paoding-jieniu.html",
+          "href": "topic-paoding-jieniu.html"
+        }
+      ],
       "plan": {
         "title": "Hermes Agent Unpacked Plan v1",
         "status": "locally done",
@@ -102,6 +133,19 @@
       "state": "deferred",
       "plan_path": ".claude/plans/loloop/active-vibepaper-hub-plan-v1.md",
       "slug": "vibepaper-hub",
+      "plan_href": "https://github.com/Harzva/learn-likecc/blob/main/.claude/plans/loloop/active-vibepaper-hub-plan-v1.md",
+      "latest_evolution": {
+        "name": "evolution-2026-04-11-site-vibepaper-wave-deferred.md",
+        "path": ".claude/plans/loloop/evolution-2026-04-11-site-vibepaper-wave-deferred.md",
+        "href": "https://github.com/Harzva/learn-likecc/blob/main/.claude/plans/loloop/evolution-2026-04-11-site-vibepaper-wave-deferred.md"
+      },
+      "topic_links": [
+        {
+          "label": "topic-vibepaper",
+          "path": "site/topic-vibepaper.html",
+          "href": "topic-vibepaper.html"
+        }
+      ],
       "plan": {
         "title": "VibePaper Hub Plan v1",
         "status": "locally deferred",
@@ -148,6 +192,19 @@
       "state": "done",
       "plan_path": ".claude/plans/loloop/active-codex-loop-ai-terminal-plan-v1.md",
       "slug": "codex-loop-ai-terminal",
+      "plan_href": "https://github.com/Harzva/learn-likecc/blob/main/.claude/plans/loloop/active-codex-loop-ai-terminal-plan-v1.md",
+      "latest_evolution": {
+        "name": "evolution-2026-04-12-site-console-control-contract.md",
+        "path": ".claude/plans/loloop/evolution-2026-04-12-site-console-control-contract.md",
+        "href": "https://github.com/Harzva/learn-likecc/blob/main/.claude/plans/loloop/evolution-2026-04-12-site-console-control-contract.md"
+      },
+      "topic_links": [
+        {
+          "label": "topic-codex-loop-console",
+          "path": "site/topic-codex-loop-console.html",
+          "href": "topic-codex-loop-console.html"
+        }
+      ],
       "plan": {
         "title": "codex-loop AI Terminal Plan v1",
         "status": "done",
@@ -184,6 +241,29 @@
       "state": "active",
       "plan_path": ".claude/plans/loloop/active-reference-mining-topics-plan-v1.md",
       "slug": "reference-mining-topics",
+      "plan_href": "https://github.com/Harzva/learn-likecc/blob/main/.claude/plans/loloop/active-reference-mining-topics-plan-v1.md",
+      "latest_evolution": {
+        "name": "evolution-2026-04-12-site-console-control-contract.md",
+        "path": ".claude/plans/loloop/evolution-2026-04-12-site-console-control-contract.md",
+        "href": "https://github.com/Harzva/learn-likecc/blob/main/.claude/plans/loloop/evolution-2026-04-12-site-console-control-contract.md"
+      },
+      "topic_links": [
+        {
+          "label": "topic-agent-comparison",
+          "path": "site/topic-agent-comparison.html",
+          "href": "topic-agent-comparison.html"
+        },
+        {
+          "label": "topic-ai-cli-agent",
+          "path": "site/topic-ai-cli-agent.html",
+          "href": "topic-ai-cli-agent.html"
+        },
+        {
+          "label": "topic-skillmarket",
+          "path": "site/topic-skillmarket.html",
+          "href": "topic-skillmarket.html"
+        }
+      ],
       "plan": {
         "title": "Reference Mining Topics Plan v1",
         "status": "active",
@@ -230,6 +310,29 @@
       "state": "active",
       "plan_path": ".claude/plans/loloop/active-likecode-web-ui-plan-v1.md",
       "slug": "likecode-web-ui",
+      "plan_href": "https://github.com/Harzva/learn-likecc/blob/main/.claude/plans/loloop/active-likecode-web-ui-plan-v1.md",
+      "latest_evolution": {
+        "name": "evolution-2026-04-12-tool-logo-wave-deferred.md",
+        "path": ".claude/plans/loloop/evolution-2026-04-12-tool-logo-wave-deferred.md",
+        "href": "https://github.com/Harzva/learn-likecc/blob/main/.claude/plans/loloop/evolution-2026-04-12-tool-logo-wave-deferred.md"
+      },
+      "topic_links": [
+        {
+          "label": "topic-codex-loop-console",
+          "path": "site/topic-codex-loop-console.html",
+          "href": "topic-codex-loop-console.html"
+        },
+        {
+          "label": "topic-ai-coding-tools",
+          "path": "site/topic-ai-coding-tools.html",
+          "href": "topic-ai-coding-tools.html"
+        },
+        {
+          "label": "topic-ai-agents",
+          "path": "site/topic-ai-agents.html",
+          "href": "topic-ai-agents.html"
+        }
+      ],
       "plan": {
         "title": "LikeCode Web UI Plan v1",
         "status": "active",
@@ -275,12 +378,31 @@
       "state": "active",
       "plan_path": ".claude/plans/loloop/active-everything-agent-cli-plan-v1.md",
       "slug": "everything-agent-cli",
+      "plan_href": "https://github.com/Harzva/learn-likecc/blob/main/.claude/plans/loloop/active-everything-agent-cli-plan-v1.md",
+      "latest_evolution": {
+        "name": "evolution-2026-04-12-everything-agent-cli-split-rubric.md",
+        "path": ".claude/plans/loloop/evolution-2026-04-12-everything-agent-cli-split-rubric.md",
+        "href": "https://github.com/Harzva/learn-likecc/blob/main/.claude/plans/loloop/evolution-2026-04-12-everything-agent-cli-split-rubric.md"
+      },
+      "topic_links": [
+        {
+          "label": "topic-everything-agent-cli",
+          "path": "site/topic-everything-agent-cli.html",
+          "href": "topic-everything-agent-cli.html"
+        },
+        {
+          "label": "topic-ai-cli-agent",
+          "path": "site/topic-ai-cli-agent.html",
+          "href": "topic-ai-cli-agent.html"
+        }
+      ],
       "plan": {
         "title": "Everything Agent-CLI to Claude Code Plan v1",
         "status": "active",
         "goal": "keep improving the umbrella repo `projects/everything-agent-cli-to-claude-code/`, keep its related `*-plugin-cc` family legible, and keep the site recommendation / documentation line in sync.",
         "current_focus": [
           "- [x] Land one bounded README-positioning pass: explain why the umbrella repo is recommendable now, make the umbrella-vs-plugin split explicit, and verify the wrappers locally",
+          "- [x] Land one bounded split-guidance pass: turn the umbrella-vs-plugin split into a reusable decision rubric and sync that guidance back into the site recommendation",
           "- [ ] Continue stabilizing the umbrella repo as a recommendable CLI Agent reference with the next bounded split / example / verification slice"
         ],
         "scope": [
@@ -288,7 +410,7 @@
           "- [x] wrapper verification and example workflow tests",
           "- [x] related plugin-family registry clarity",
           "- [x] site-facing recommendation and teaching copy",
-          "- [ ] future plugin-repo split guidance"
+          "- [x] future plugin-repo split guidance"
         ],
         "validation": [
           "- [x] local repo tests pass",
@@ -301,9 +423,9 @@
           "- Treat the umbrella repo as the control tower, not the permanent home of every provider-specific detail",
           "- 2026-04-12: first bounded Task 10 pass landed across `README.md`, `README_CN.md`, `registry/plugins.md`, and the site recommendation block on `topic-ai-cli-agent`; local verification passed with `bash tests/test_wrappers.sh` and `python3 tools/check_site_md_parity.py`"
         ],
-        "completed_count": 12,
-        "total_count": 19,
-        "progress": 63
+        "completed_count": 14,
+        "total_count": 20,
+        "progress": 70
       }
     },
     {
@@ -314,6 +436,15 @@
       "state": "active",
       "plan_path": ".claude/plans/loloop/active-site-map-plan-v1.md",
       "slug": "site-map",
+      "plan_href": "https://github.com/Harzva/learn-likecc/blob/main/.claude/plans/loloop/active-site-map-plan-v1.md",
+      "latest_evolution": null,
+      "topic_links": [
+        {
+          "label": "topic-site-map",
+          "path": "site/topic-site-map.html",
+          "href": "topic-site-map.html"
+        }
+      ],
       "plan": {
         "title": "Site Map / Topic Updates Plan v1",
         "status": "active",

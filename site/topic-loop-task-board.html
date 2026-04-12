@@ -100,6 +100,13 @@
                         <span class="toolchain-eyebrow">Recurring</span>
                         <h2>长循环任务</h2>
                     </div>
+                    <div class="task-board-filters" role="group" aria-label="task state filters">
+                        <button type="button" class="task-board-filter is-active" data-task-filter="all">全部</button>
+                        <button type="button" class="task-board-filter" data-task-filter="active">active</button>
+                        <button type="button" class="task-board-filter" data-task-filter="deferred">deferred</button>
+                        <button type="button" class="task-board-filter" data-task-filter="done">done</button>
+                        <button type="button" class="task-board-filter" data-task-filter="queued">queued</button>
+                    </div>
                     <div id="loop-task-recurring" class="task-board-grid">
                         <p class="site-map-topline">任务数据加载中…</p>
                     </div>

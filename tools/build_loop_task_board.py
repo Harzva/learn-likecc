@@ -10,14 +10,54 @@ ROOT = Path(__file__).resolve().parents[1]
 PROMPT_PATH = ROOT / ".codex-loop" / "prompt.md"
 PLANS_DIR = ROOT / ".claude" / "plans" / "loloop"
 OUTPUT_PATH = ROOT / "site" / "data" / "loop-task-board.json"
+GITHUB_BLOB_BASE = "https://github.com/Harzva/learn-likecc/blob/main"
 
 
 TASK_BLOCK_RE = re.compile(r"^Task (\d+):\n(.*?)(?=^Task \d+:|\Z)", re.MULTILINE | re.DOTALL)
 CHECKBOX_RE = re.compile(r"^- \[( |x)\] (.+)$", re.MULTILINE)
 
+TASK_LINK_HINTS = {
+    "claude-changelog-watch": {
+        "topics": ["site/topic-cc-release-watch.html"],
+        "evolution_patterns": ["cc-release-watch"],
+    },
+    "hermes-unpacked": {
+        "topics": ["site/topic-hermes-unpacked.html", "site/topic-paoding-jieniu.html"],
+        "evolution_patterns": ["site-hermes"],
+    },
+    "vibepaper-hub": {
+        "topics": ["site/topic-vibepaper.html"],
+        "evolution_patterns": ["site-vibepaper"],
+    },
+    "codex-loop-ai-terminal": {
+        "topics": ["site/topic-codex-loop-console.html"],
+        "evolution_patterns": ["site-codex-loop-terminal", "site-console"],
+    },
+    "reference-mining-topics": {
+        "topics": ["site/topic-agent-comparison.html", "site/topic-ai-cli-agent.html", "site/topic-skillmarket.html"],
+        "evolution_patterns": ["site-agent-comparison", "site-skillmarket", "site-console", "site-agent-hot", "site-ai-cli-agent"],
+    },
+    "likecode-web-ui": {
+        "topics": ["site/topic-codex-loop-console.html", "site/topic-ai-coding-tools.html", "site/topic-ai-agents.html"],
+        "evolution_patterns": ["site-likecode", "tool-logo"],
+    },
+    "everything-agent-cli": {
+        "topics": ["site/topic-everything-agent-cli.html", "site/topic-ai-cli-agent.html"],
+        "evolution_patterns": ["everything-agent-cli", "cli-agent"],
+    },
+    "site-map": {
+        "topics": ["site/topic-site-map.html"],
+        "evolution_patterns": ["site-map", "topic-index"],
+    },
+}
+
 
 def slug_from_plan(path: str) -> str:
     return Path(path).stem.replace("active-", "").replace("-plan-v1", "")
+
+
+def repo_blob_link(rel_path: str) -> str:
+    return f"{GITHUB_BLOB_BASE}/{rel_path}"
 
 
 def extract_section(text: str, heading: str) -> list[str]:
@@ -101,6 +141,40 @@ def infer_state_label(status: str) -> str:
     return "queued"
 
 
+def latest_evolution_for(slug: str) -> dict | None:
+    hints = TASK_LINK_HINTS.get(slug, {})
+    patterns = hints.get("evolution_patterns", [])
+    matches = []
+    for path in PLANS_DIR.glob("evolution-*.md"):
+        name = path.name
+        if any(pattern in name for pattern in patterns):
+            matches.append(path)
+    if not matches:
+        return None
+    latest = sorted(matches)[-1]
+    return {
+        "name": latest.name,
+        "path": str(latest.relative_to(ROOT)),
+        "href": repo_blob_link(str(latest.relative_to(ROOT))),
+    }
+
+
+def topic_links_for(slug: str) -> list[dict[str, str]]:
+    hints = TASK_LINK_HINTS.get(slug, {})
+    links = []
+    for rel in hints.get("topics", []):
+        path = ROOT / rel
+        if path.exists():
+            links.append(
+                {
+                    "label": path.stem,
+                    "path": rel,
+                    "href": path.name,
+                }
+            )
+    return links
+
+
 def build_payload() -> dict:
     prompt_text = PROMPT_PATH.read_text(encoding="utf-8")
     tasks = []
@@ -120,6 +194,7 @@ def build_payload() -> dict:
         if plan_match:
             rel_plan = plan_match.group(1)
             plan_path = ROOT / rel_plan
+            slug = slug_from_plan(rel_plan)
             plan = parse_plan(plan_path)
             state = infer_state_label(plan["status"])
             recurring.append(
@@ -128,7 +203,10 @@ def build_payload() -> dict:
                     "type": "recurring",
                     "state": state,
                     "plan_path": rel_plan,
-                    "slug": slug_from_plan(rel_plan),
+                    "slug": slug,
+                    "plan_href": repo_blob_link(rel_plan),
+                    "latest_evolution": latest_evolution_for(slug),
+                    "topic_links": topic_links_for(slug),
                     "plan": plan,
                 }
             )

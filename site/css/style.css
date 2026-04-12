@@ -2232,6 +2232,30 @@ body {
     gap: 22px;
 }
 
+.task-board-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0 0 1rem;
+}
+
+.task-board-filter {
+    border: 1px solid var(--border);
+    background: color-mix(in srgb, var(--bg-card) 92%, transparent);
+    color: var(--text-secondary);
+    border-radius: 999px;
+    padding: 8px 14px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.task-board-filter:hover,
+.task-board-filter.is-active {
+    color: var(--text-primary);
+    border-color: color-mix(in srgb, var(--primary) 40%, var(--border));
+    background: color-mix(in srgb, var(--primary) 12%, var(--bg-card));
+}
+
 .task-board-card {
     background:
         linear-gradient(180deg, color-mix(in srgb, var(--bg-card) 95%, transparent), color-mix(in srgb, var(--bg-card) 100%, transparent));
@@ -2333,6 +2357,24 @@ body {
     font-size: 0.88rem;
 }
 
+.task-board-card__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+    margin: 0 0 1rem;
+}
+
+.task-board-card__links a,
+.task-board-card__evolution a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.task-board-card__links a:hover,
+.task-board-card__evolution a:hover {
+    text-decoration: underline;
+}
+
 .task-board-card__section + .task-board-card__section {
     margin-top: 1rem;
 }
@@ -2340,6 +2382,11 @@ body {
 .task-board-card__section strong {
     display: block;
     margin-bottom: 0.4rem;
+}
+
+.task-board-card__evolution {
+    margin: 0;
+    color: var(--text-secondary);
 }
 
 .task-board-card__section ul {

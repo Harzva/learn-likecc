@@ -1,7 +1,11 @@
 ;(function () {
     var recurringHost = document.getElementById('loop-task-recurring')
     var inlineHost = document.getElementById('loop-task-inline')
+    var filterButtons = Array.prototype.slice.call(document.querySelectorAll('[data-task-filter]'))
     if (!recurringHost || !inlineHost) return
+
+    var recurringData = []
+    var activeFilter = 'all'
 
     function esc(s) {
         return String(s || '')
@@ -31,6 +35,21 @@
         )
     }
 
+    function linksMarkup(task) {
+        var chunks = []
+        if (task.plan_path && task.plan_href) {
+            chunks.push('<a href="' + esc(task.plan_href) + '" target="_blank" rel="noopener noreferrer">Plan ↗</a>')
+        }
+        if (task.latest_evolution && task.latest_evolution.href) {
+            chunks.push('<a href="' + esc(task.latest_evolution.href) + '" target="_blank" rel="noopener noreferrer">Evolution ↗</a>')
+        }
+        ;(task.topic_links || []).forEach(function (link) {
+            chunks.push('<a href="' + esc(link.href) + '">Topic ↗</a>')
+        })
+        if (!chunks.length) return ''
+        return '<div class="task-board-card__links">' + chunks.join('') + '</div>'
+    }
+
     function listMarkup(items, emptyText) {
         if (!items || !items.length) {
             return '<p class="task-board-empty">' + esc(emptyText) + '</p>'
@@ -54,10 +73,16 @@
                     '<span><strong>Checklist</strong> ' + esc(plan.completed_count || 0) + '/' + esc(plan.total_count || 0) + '</span>' +
                     '<span><strong>Plan</strong> <code>' + esc(task.plan_path || '') + '</code></span>' +
                 '</div>' +
+                linksMarkup(task) +
                 '<div class="task-board-card__section">' +
                     '<strong>当前 focus</strong>' +
                     listMarkup(plan.current_focus, '当前 focus 还没结构化到 plan。') +
                 '</div>' +
+                (
+                    task.latest_evolution
+                        ? '<div class="task-board-card__section"><strong>最近 evolution note</strong><p class="task-board-card__evolution"><a href="' + esc(task.latest_evolution.href) + '" target="_blank" rel="noopener noreferrer">' + esc(task.latest_evolution.name) + ' ↗</a></p></div>'
+                        : ''
+                ) +
                 '<div class="task-board-card__section">' +
                     '<strong>长期 scope</strong>' +
                     listMarkup(plan.scope, '该 plan 还没写出结构化 scope。') +
@@ -88,6 +113,29 @@
         if (el) el.textContent = String(value)
     }
 
+    function renderRecurring() {
+        var visible = recurringData.filter(function (task) {
+            return activeFilter === 'all' ? true : task.state === activeFilter
+        })
+
+        if (!visible.length) {
+            recurringHost.innerHTML = '<p class="task-board-empty">当前过滤条件下没有匹配任务。</p>'
+            return
+        }
+
+        recurringHost.innerHTML = visible.map(recurringCard).join('')
+    }
+
+    filterButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            activeFilter = button.getAttribute('data-task-filter') || 'all'
+            filterButtons.forEach(function (btn) {
+                btn.classList.toggle('is-active', btn === button)
+            })
+            renderRecurring()
+        })
+    })
+
     fetch('data/loop-task-board.json')
         .then(function (res) { return res.json() })
         .then(function (payload) {
@@ -96,7 +144,8 @@
             var meta = payload.meta || {}
             var states = meta.state_counts || {}
 
-            recurringHost.innerHTML = recurring.map(recurringCard).join('')
+            recurringData = recurring
+            renderRecurring()
             inlineHost.innerHTML = inline.map(inlineCard).join('')
 
             setText('task-board-total', meta.task_count || 0)
