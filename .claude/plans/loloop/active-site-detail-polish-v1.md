@@ -472,6 +472,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Keep the deferred overnight media wave closed after the site-shell `aria-current` pass and stay on the low-risk site-polish line
 - [x] Replace the remaining functional inline code-language hiding on `site/s01.html` with semantic `hidden` state
 - [x] Verify the code-language state update with `node --check site/js/app.js`
+- [x] Resume the queued daytime Zhihu publish once the local time enters the allowed `08:00-23:00` window
+- [x] Recheck the Task 1 publish prerequisites for `24-Superset解构外层调度-知乎图文.md` from repo-local evidence before publishing
+- [x] Publish `24-Superset解构外层调度-知乎图文.md` to Zhihu with the multimodal pipeline and record the returned article URL
 
 ## Guardrail
 
