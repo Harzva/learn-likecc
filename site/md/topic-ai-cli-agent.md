@@ -61,6 +61,7 @@
 - 它已经附带 `tests/test_wrappers.sh` 这类本地 smoke test，不只是概念说明
 - 同时也给 `gemini-plugin-cc`、`qwen-plugin-cc`、`grok-plugin-cc` 到 `cursor/qoder/trae-plugin-cc` 这一整条插件家族提供 umbrella repo
 - 而且分层是清楚的：统一命名、workflow 和 wrapper 留在总仓库，provider 细节下沉到各自 `*-plugin-cc`
+- 如果你卡在“某段能力该留在总仓库还是拆子仓库”，现在可以直接先看 `docs/repo-strategy.md`
 
 如果要继续往下拆，站内已经单独开了一页子专题：
 

@@ -6,6 +6,7 @@ Scope: keep improving the umbrella repo `projects/everything-agent-cli-to-claude
 ## Current focus
 
 - [x] Land one bounded README-positioning pass: explain why the umbrella repo is recommendable now, make the umbrella-vs-plugin split explicit, and verify the wrappers locally
+- [x] Land one bounded split-guidance pass: turn the umbrella-vs-plugin split into a reusable decision rubric and sync that guidance back into the site recommendation
 - [ ] Continue stabilizing the umbrella repo as a recommendable CLI Agent reference with the next bounded split / example / verification slice
 
 ## Main product areas
@@ -14,7 +15,7 @@ Scope: keep improving the umbrella repo `projects/everything-agent-cli-to-claude
 - [x] wrapper verification and example workflow tests
 - [x] related plugin-family registry clarity
 - [x] site-facing recommendation and teaching copy
-- [ ] future plugin-repo split guidance
+- [x] future plugin-repo split guidance
 
 ## Strong reference set
 
@@ -43,4 +44,5 @@ Scope: keep improving the umbrella repo `projects/everything-agent-cli-to-claude
 - Prefer bounded passes: one repo improvement, one validation step, one site sync
 - Treat the umbrella repo as the control tower, not the permanent home of every provider-specific detail
 - 2026-04-12: first bounded Task 10 pass landed across `README.md`, `README_CN.md`, `registry/plugins.md`, and the site recommendation block on `topic-ai-cli-agent`; local verification passed with `bash tests/test_wrappers.sh` and `python3 tools/check_site_md_parity.py`
-- Next strong bounded candidate: add one clearer runnable example or split-guidance artifact that helps explain when a capability should stay in the umbrella repo versus split into a `*-plugin-cc` repo
+- 2026-04-12: second bounded Task 10 pass landed across `docs/repo-strategy.md`, `README.md`, `README_CN.md`, and the site recommendation block on `topic-ai-cli-agent`; the split is now a reusable routing rubric instead of only a README claim
+- Next strong bounded candidate: add one clearer runnable example or example-selection note that proves how the umbrella repo should be read as a usable workflow sample, not only a strategy doc set
