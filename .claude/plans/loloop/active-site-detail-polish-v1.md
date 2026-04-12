@@ -584,6 +584,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Switch from the now-locally-healthy Task 14 route-back wave to Task 15 because its first unchecked frontier is cleaner than the broader remaining pools
 - [x] Land one bounded Task 15 first-layer pass by adding a connector shell draft panel to `app-likecode-workspace` and deciding that v1 should stay UI-shell + local state only
 - [x] Verify the Task 15 connector-shell pass with `node --check site/js/likecode-workspace.js` and `python3 tools/check_site_md_parity.py`
+- [x] Stay on Task 15 for one bounded QR-auth-contract pass because the relay still had a single clear unchecked frontier after the shell-only layer landed
+- [x] Land one bounded Task 15 QR-auth pass by defining mock `start qr / wait qr` relay endpoints and moving the connector shell to relay-visible persisted state
+- [x] Verify the Task 15 QR-auth-contract pass with `python3 -m py_compile tools/codex_loop_web_relay.py`, `node --check site/js/likecode-workspace.js`, `python3 tools/check_site_md_parity.py`, and `python3 tools/build_loop_task_board.py`
 
 ## Guardrail
 
@@ -605,4 +608,5 @@ Keep each round bounded to one page or one UI component cluster.
 - treat the third Task 14 route-back pass as locally landed too; next reopen should prefer AI-Scientist hub pinning or a concrete structure diagram over more prose-only `watchdog` explanation
 - treat the fourth Task 14 hub-pinning pass as locally landed too; next reopen should prefer one concrete structure diagram, otherwise switch away from Task 14
 - treat the first Task 15 connector-shell pass as locally landed; next reopen should prefer QR auth flow contract design over more UI-shell prose
+- treat the second Task 15 QR-auth-contract pass as locally landed; next reopen should prefer `mock flow / adapter flow / real runtime` separation or the conversation-bridge contract over more connector-shell cosmetics
 - choose the next pass by mapping it to one of the three optimization pillars above

@@ -26,6 +26,10 @@
         bind_state: 'unbound',
         target_dialog: '',
         note: 'local draft only',
+        session_key: '',
+        qrcode_content: '',
+        login_status: 'idle',
+        runtime_mode: 'mock-flow',
     }
     var CONNECTOR_STATE_KEY = 'likecode_workspace_connector_shell_v1'
 
@@ -77,20 +81,81 @@
         setText('workspace-connector-mode', connectorState.shell_mode || 'ui-shell')
         setText('workspace-connector-bind-state', connectorState.bind_state || 'unbound')
         setText('workspace-connector-target', connectorState.target_dialog || '--')
+        setText('workspace-connector-login-status', connectorState.login_status || 'idle')
+        setText('workspace-connector-session-key', connectorState.session_key || '--')
+        setText('workspace-connector-runtime-mode', connectorState.runtime_mode || 'mock-flow')
         if (connectorTargetInput) connectorTargetInput.value = connectorState.target_dialog || ''
         if (connectorNoteInput) connectorNoteInput.value = connectorState.note || ''
         setStatus(
             document.getElementById('workspace-connector-status'),
-            (connectorState.shell_mode || 'ui-shell') + ' / ' + (connectorState.bind_state || 'unbound'),
+            (connectorState.shell_mode || 'ui-shell') + ' / ' + (connectorState.login_status || connectorState.bind_state || 'idle'),
             connectorTone(connectorState.bind_state)
         )
         setText('workspace-connector-note-preview', 'note: ' + (connectorState.note || 'local draft only'))
+        setText('workspace-connector-qr-preview', 'qr: ' + (connectorState.qrcode_content || '--'))
     }
 
     function updateConnectorState(patch) {
         connectorState = Object.assign({}, connectorState, patch || {})
         persistConnectorState()
         renderConnectorShell()
+    }
+
+    function fetchConnectorState() {
+        return fetchJson(relayBase() + '/api/connector/state')
+            .then(function (payload) {
+                if (payload && payload.connector) updateConnectorState(payload.connector)
+                return payload
+            })
+            .catch(function () {
+                renderConnectorShell()
+                return null
+            })
+    }
+
+    function saveConnectorState(patch) {
+        updateConnectorState(patch)
+        return fetchJson(relayBase() + '/api/connector/state', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ connector: patch || {} }),
+        }).then(function (payload) {
+            if (payload && payload.connector) updateConnectorState(payload.connector)
+            return payload
+        }).catch(function () {
+            return null
+        })
+    }
+
+    function startConnectorQr() {
+        return fetchJson(relayBase() + '/api/connector/qr/start', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                target_dialog: connectorTargetInput ? connectorTargetInput.value.trim() : connectorState.target_dialog,
+                note: connectorNoteInput ? (connectorNoteInput.value.trim() || 'local draft only') : connectorState.note,
+            }),
+        }).then(function (payload) {
+            if (payload && payload.connector) updateConnectorState(payload.connector)
+        }).catch(function (error) {
+            setStatus(document.getElementById('workspace-connector-status'), 'qr start failed', 'risk')
+            setText('workspace-connector-qr-preview', 'qr error: ' + error.message)
+        })
+    }
+
+    function waitConnectorQr() {
+        return fetchJson(relayBase() + '/api/connector/qr/wait', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                session_key: connectorState.session_key || '',
+            }),
+        }).then(function (payload) {
+            if (payload && payload.connector) updateConnectorState(payload.connector)
+        }).catch(function (error) {
+            setStatus(document.getElementById('workspace-connector-status'), 'qr wait failed', 'risk')
+            setText('workspace-connector-qr-preview', 'qr error: ' + error.message)
+        })
     }
 
     function parseChecklist(text) {
@@ -498,24 +563,25 @@
     })
     if (connectorTargetInput) {
         connectorTargetInput.addEventListener('input', function () {
-            updateConnectorState({ target_dialog: connectorTargetInput.value.trim() })
+            saveConnectorState({ target_dialog: connectorTargetInput.value.trim() })
         })
     }
     if (connectorNoteInput) {
         connectorNoteInput.addEventListener('input', function () {
-            updateConnectorState({ note: connectorNoteInput.value.trim() || 'local draft only' })
+            saveConnectorState({ note: connectorNoteInput.value.trim() || 'local draft only' })
         })
     }
     document.getElementById('workspace-connector-qr').addEventListener('click', function () {
-        updateConnectorState({
-            shell_mode: 'mock-qr',
-            bind_state: 'qr-wait',
-        })
+        startConnectorQr()
+    })
+    document.getElementById('workspace-connector-wait').addEventListener('click', function () {
+        waitConnectorQr()
     })
     document.getElementById('workspace-connector-bound').addEventListener('click', function () {
-        updateConnectorState({
+        saveConnectorState({
             shell_mode: 'adapter-draft',
             bind_state: 'bound',
+            login_status: 'bound',
         })
     })
     document.getElementById('workspace-connector-reset').addEventListener('click', function () {
@@ -524,13 +590,19 @@
             bind_state: 'unbound',
             target_dialog: '',
             note: 'local draft only',
+            session_key: '',
+            qrcode_content: '',
+            login_status: 'idle',
+            runtime_mode: 'mock-flow',
         }
         persistConnectorState()
         renderConnectorShell()
+        saveConnectorState(connectorState)
     })
 
     loadConnectorState()
     renderConnectorShell()
+    fetchConnectorState()
     loadWorkspaceMeta().then(loadTasks).catch(loadTasks)
     refreshRuntime()
     refreshLog('latest')

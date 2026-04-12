@@ -144,6 +144,18 @@
                             <strong>target dialog</strong>
                             <span id="workspace-connector-target">--</span>
                         </article>
+                        <article class="likecode-workspace-runtimecard">
+                            <strong>login status</strong>
+                            <span id="workspace-connector-login-status">idle</span>
+                        </article>
+                        <article class="likecode-workspace-runtimecard">
+                            <strong>session key</strong>
+                            <span id="workspace-connector-session-key">--</span>
+                        </article>
+                        <article class="likecode-workspace-runtimecard">
+                            <strong>runtime mode</strong>
+                            <span id="workspace-connector-runtime-mode">mock-flow</span>
+                        </article>
                     </div>
                     <label class="likecode-workspace-field">
                         <span>Target Dialog</span>
@@ -154,13 +166,14 @@
                         <input id="workspace-connector-note-input" type="text" placeholder="这版只做 UI shell / mock bind，不直接打通微信协议">
                     </label>
                     <div class="likecode-workspace-actionrow">
-                        <button id="workspace-connector-qr" type="button" class="btn btn-secondary">预填 QR 等待态</button>
+                        <button id="workspace-connector-qr" type="button" class="btn btn-secondary">启动 mock QR</button>
+                        <button id="workspace-connector-wait" type="button" class="btn btn-secondary">轮询 QR 状态</button>
                         <button id="workspace-connector-bound" type="button" class="btn btn-secondary">标记已绑定</button>
                         <button id="workspace-connector-reset" type="button" class="btn btn-secondary">重置 shell</button>
                     </div>
                     <div class="likecode-workspace-foot">
                         <span id="workspace-connector-note-preview" class="likecode-workspace-status likecode-workspace-status--neutral">note: local draft only</span>
-                        <span>first layer: local shell state, no relay QR API yet</span>
+                        <span id="workspace-connector-qr-preview">qr: --</span>
                     </div>
                 </section>
 

@@ -18,10 +18,12 @@
 - editor 旁边会把 `- [ ]` / `- [x]` 解析成可点 checklist，并回写到 markdown
 - 同一个 app 壳里还可以生成并保存一份轻量 evolution note 草稿
 - 顶部会尽量根据 daemon 最近一次消息推断“它刚刚实际跑的是哪个 Task”，并提供一键跳转
-- 现在还多了一个本地 `connector shell` 草图面板，用来先表达 `shell mode / bind status / target dialog`，但不急着承诺微信协议已经接通
+- 现在还多了一个本地 `connector shell` 草图面板，用来先表达 `shell mode / bind status / target dialog`
+- 这层已经开始走 relay 合同：workspace 会优先读写 `.codex-loop/connector-shell.json`，并暴露 `session_key / login_status / qrcode_content`
+- `QR auth flow` 这轮先只定义 `start qr / wait qr` 的 mock API，不承诺真实微信 runtime 已经接通
 - 右侧是 runtime + 最近 log
 - branding、Pages 基址和入口链接可以通过 `.codex-loop/workspace-shell.json` 覆盖，而不是继续写死到页面里
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
-- connector shell 从本地状态继续长到 relay 合同，再决定是否值得接 QR auth flow
+- connector shell 从 mock QR relay 合同继续长到 adapter/runtime 边界，再决定是否值得接真实 QR auth flow

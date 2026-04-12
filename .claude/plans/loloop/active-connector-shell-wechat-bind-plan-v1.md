@@ -25,13 +25,13 @@
 
 - [x] 在 `codex-loop` workspace 里预留 connector 管理区
 - [x] 显示 connector 状态、绑定状态、当前目标对话
-- [ ] 保持这层先以 UI shell 和本地状态为主，不急着直接打通微信协议
+- [x] 保持这层先以 UI shell 和本地状态为主，不急着直接打通微信协议
 
 ### 2. QR auth flow
 
-- [ ] 设计 `start qr / wait qr` 的 relay API 形态
-- [ ] 规划 session_key、qrcode_content、login status 的本地状态结构
-- [ ] 决定第一版是 mock flow、adapter flow，还是直接接某个上游 runtime
+- [x] 设计 `start qr / wait qr` 的 relay API 形态
+- [x] 规划 session_key、qrcode_content、login status 的本地状态结构
+- [x] 决定第一版是 mock flow、adapter flow，还是直接接某个上游 runtime
 
 ### 3. Conversation bridge
 
@@ -46,9 +46,9 @@
 
 ## Workspace outputs
 
-- [ ] `site/app-likecode-workspace.html` 补 connector shell 区块
-- [ ] `site/js/likecode-workspace.js` 补 connector 状态视图与交互入口
-- [ ] `tools/codex_loop_web_relay.py` 预留 connector API 契约
+- [x] `site/app-likecode-workspace.html` 补 connector shell 区块
+- [x] `site/js/likecode-workspace.js` 补 connector 状态视图与交互入口
+- [x] `tools/codex_loop_web_relay.py` 预留 connector API 契约
 - [ ] 如有必要，再单独建 connector 专题页或设计页
 
 ## Routing rules
@@ -62,12 +62,12 @@
 
 ## Validation
 
-- [ ] `python3 tools/build_loop_task_board.py`
+- [x] `python3 tools/build_loop_task_board.py`
 - [ ] 如涉及 workspace 代码，补：
-  - `python3 -m py_compile tools/codex_loop_web_relay.py`
-  - `node --check site/js/likecode-workspace.js`
-  - `python3 tools/check_site_md_parity.py`
+  - [x] `python3 -m py_compile tools/codex_loop_web_relay.py`
+  - [x] `node --check site/js/likecode-workspace.js`
+  - [x] `python3 tools/check_site_md_parity.py`
 
 ## Current status
 
-这条线已经完成第一层选择：先做 `workspace app` 里的 connector shell，本地表达 `shell mode / bind status / target dialog`，并把它持久化成 operator-facing draft，而不是立刻对接微信协议。下一步更值当的是继续决定 `QR auth flow` 的 relay contract 形态，而不是过早承诺完整 runtime。
+这条线已经完成第二层选择：`workspace app` 不再只停在本地 draft，而是开始通过 relay 读写 `.codex-loop/connector-shell.json`，并把 `start qr / wait qr` 收成 mock QR contract。下一步更值当的是区分 `mock flow / adapter flow / real runtime` 的边界，或者继续补 `conversation bridge`，而不是过早承诺真实微信绑定已经可用。
