@@ -37,6 +37,11 @@ Loop rule:
 - after the iteration, update the evolution note trail, prepare the next handoff, and after each successful iteration update GitHub
 - when updating GitHub, also make sure GitHub Pages is updated or redeployed if the site-facing content changed
 
+Meta-opt rule:
+- when a bounded pass exposes a repeated loop-level inefficiency in selection, verification, publishing, or handoff, record exactly one short `loop improvement candidate` in the relevant plan or evolution note
+- only promote a `loop improvement candidate` into `.codex-loop/prompt.md` after it has repeated or clearly improves the next tick
+- keep prompt-level self-optimization short and operational; prefer rules that change future loop behavior rather than one-off content instructions
+
 Task state rule:
 - every loop task should be treated as having an implicit state: `active`, `blocked`, `deferred`, or `done`
 - when a task becomes the current focus, mark it in the plan / evolution trail as the active task for the next tick
@@ -275,3 +280,56 @@ Execution rule:
    - `site/md/topic-site-map.md`
    - `site/data/site-topic-index.json`
    - per-page `page:updated` metadata on `site/topic-*.html`
+
+Task 12:
+Loop task: keep the hot-topic intake layer healthy by following the dedicated plan file:
+- `.claude/plans/loloop/active-hot-topic-watch-plan-v1.md`
+
+Execution rule:
+1. Read that plan first.
+2. Continue the current unchecked / active item instead of randomly switching.
+3. After each bounded pass:
+   - mark progress in the plan file
+   - check off any completed item
+   - record the result in the evolution trail
+4. Prefer changes that keep these aligned:
+   - `.claude/skills/hot-topic-curation/`
+   - `site/data/hot-topic-sources.json`
+   - `site/data/hot-topic-snapshot.json`
+   - `site/topic-hot-watch.html`
+   - routed hotspot pages such as `site/topic-agent-hot.html` and `site/topic-rag-hot.html`
+
+Task 13:
+Loop task: keep growing the independent LikeCode workspace app by following the dedicated plan file:
+- `.claude/plans/loloop/active-likecode-workspace-app-plan-v1.md`
+
+Execution rule:
+1. Read that plan first.
+2. Continue the current unchecked / active item instead of randomly switching.
+3. After each bounded pass:
+   - mark progress in the plan file
+   - check off any completed item
+   - record the result in the evolution trail
+4. Prefer changes that keep these aligned:
+   - `site/app-likecode-workspace.html`
+   - `site/js/likecode-workspace.js`
+   - `site/md/app-likecode-workspace.md`
+   - `tools/codex_loop_web_relay.py`
+
+Task 14:
+Loop task: keep advancing the `codex-loop in sleep` line by following the dedicated plan file:
+- `.claude/plans/loloop/active-codex-loop-in-sleep-plan-v1.md`
+
+Execution rule:
+1. Read that plan first.
+2. Continue the current unchecked / active item instead of randomly switching.
+3. After each bounded pass:
+   - mark progress in the plan file
+   - check off any completed item
+   - record the result in the evolution trail
+4. Prefer changes that keep these aligned:
+   - `site/topic-codex-loop-in-sleep.html`
+   - `site/md/topic-codex-loop-in-sleep.md`
+   - `reference/reference_ai_scientist/Auto-claude-code-research-in-sleep/`
+   - `.codex-loop/prompt.md`
+   - `.claude/plans/loloop/`

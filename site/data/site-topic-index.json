@@ -1,7 +1,7 @@
 {
   "meta": {
     "updated": "2026-04-12",
-    "count": 42,
+    "count": 43,
     "source": "git history + site/topic-*.html"
   },
   "groups": [
@@ -355,6 +355,14 @@
           "group": "其他专题",
           "href": "topic-ai-scientist.html",
           "md_path": "site/md/topic-ai-scientist.md"
+        },
+        {
+          "slug": "topic-codex-loop-in-sleep",
+          "title": "Codex-Loop In Sleep - AI-Scientist 专题",
+          "updated": "2026-04-12",
+          "group": "其他专题",
+          "href": "topic-codex-loop-in-sleep.html",
+          "md_path": "site/md/topic-codex-loop-in-sleep.md"
         },
         {
           "slug": "topic-superset-unpacked",

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codex-Loop In Sleep - AI-Scientist 专题</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌙</text></svg>">
+    <meta name="description" content="AI-Scientist 子专题：把 Auto-Research In Sleep 与 codex-loop 放到同一张图里看，拆出 workflow family、persistent wiki、meta-optimize、watchdog health layer 与 cross-model review 五条可借鉴主线。">
+    <meta name="page:updated" content="2026-04-12">
+</head>
+<body class="meta-topic-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🌙</span>
+                <span class="logo-text">Codex-Loop In Sleep</span>
+            </a>
+            <div class="nav-links">
+                <a href="#why" class="nav-link">为什么单列</a>
+                <a href="#aris" class="nav-link">ARIS 提供了什么</a>
+                <a href="#codex-loop" class="nav-link">我们已经有什么</a>
+                <a href="#gaps" class="nav-link">还差什么</a>
+                <a href="#meta-opt-routeback" class="nav-link">第一条回写</a>
+                <a href="#route" class="nav-link">开展路线</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-ai-scientist.html" class="btn-github">AI-Scientist 专题</a>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>AI-Scientist · 子专题</span>
+                <span>ARIS / Codex Loop / In-Sleep Workflow</span>
+            </div>
+            <h1 class="hero-title">
+                Codex-Loop In Sleep<br>
+                <span class="gradient-text">把 ARIS 的方法借到通用长循环里</span>
+            </h1>
+            <p class="hero-subtitle">
+                <code>Auto-Research In Sleep</code> 更像面向科研的 <strong>in-sleep system</strong>，<br>
+                而 <code>codex-loop</code> 已经长成面向工程、站点、内容和发布的 <strong>通用长循环壳</strong>。<br>
+                这一页不只是比较谁更强，而是要讲清：<strong>我们已经有哪些 sleep 能力</strong>，以及 <strong>还该从 ARIS 借哪几层</strong>。
+            </p>
+            <div class="hero-actions">
+                <a href="#aris" class="btn btn-primary">先看 ARIS 的方法厚度</a>
+                <a href="#gaps" class="btn btn-secondary">直接看下一步路线</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="why" class="section section--soft meta-topic-section meta-topic-section--entry">
+        <div class="container">
+            <h2 class="section-title">为什么这条线值得从 AI-Scientist 里单独拆出来</h2>
+            <p class="section-desc meta-topic-copy meta-topic-copy--lead">
+                因为 <code>ARIS</code> 和我们自己的 <code>codex-loop</code> 都不只是“跑一个循环”。它们都在回答同一类问题：
+            </p>
+            <div class="quickstart-grid meta-topic-grid meta-topic-grid--concept">
+                <div class="quickstart-card">
+                    <h3>循环如何持续</h3>
+                    <p>不是一次性 prompt，而是 plan、evolution、状态和 handoff 怎么留存。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>循环如何自我修正</h3>
+                    <p>失败、偏航、模型分工、健康检查，哪些会反过来改下一轮行为。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>循环如何沉淀长期记忆</h3>
+                    <p>不是只改完代码，而是把项目知识、失败记录和参考洞察沉淀下来。</p>
+                </div>
+            </div>
+            <p class="section-desc meta-topic-copy meta-topic-copy--tail">
+                所以这里值得讲的不是“它也有 loop，我们也有 loop”，而是：<strong>ARIS 更像研究专用的 in-sleep system，codex-loop 更像通用型 in-sleep shell</strong>。
+            </p>
+        </div>
+    </section>
+
+    <section id="aris" class="section">
+        <div class="container">
+            <h2 class="section-title">ARIS 真正比我们厚的，不是 daemon，而是外层方法系统</h2>
+            <table class="compare-table">
+                <tr>
+                    <th>能力层</th>
+                    <th>ARIS / Auto-Research In Sleep</th>
+                    <th>对 codex-loop 的启发</th>
+                </tr>
+                <tr>
+                    <td>workflow family</td>
+                    <td><code>idea-discovery</code>、<code>experiment-bridge</code>、<code>auto-review-loop</code>、<code>paper-writing</code>、<code>rebuttal</code></td>
+                    <td>不只保留一个 loop 壳，而是继续长出 site-growth、publish-loop、reference-mining 等专门 workflow。</td>
+                </tr>
+                <tr>
+                    <td>persistent wiki</td>
+                    <td><code>research-wiki</code> 会沉淀 paper、idea、negative results 和 anti-repeat memory</td>
+                    <td>从 plan/evolution 再往外长一层 project wiki / topic memory / failed-attempt memory。</td>
+                </tr>
+                <tr>
+                    <td>meta optimize</td>
+                    <td><code>meta-optimize</code> 会根据技能调用、失败日志和覆盖情况反向改技能</td>
+                    <td>让运行日志不只是记录，而是反过来推动 prompt、skill、plan 的外层自优化。</td>
+                </tr>
+                <tr>
+                    <td>watchdog health layer</td>
+                    <td>单独的 <code>watchdog.py</code> 负责 session / download / GPU / idle 健康监控</td>
+                    <td>把执行 daemon 与健康 watchdog 拆开，避免所有监控都挤在主循环里。</td>
+                </tr>
+                <tr>
+                    <td>cross-model review</td>
+                    <td>明确强调 executor / reviewer 可以来自不同模型族</td>
+                    <td>后面可以把 codex-loop 长成 executor、critic、publish reviewer 三种角色分工。</td>
+                </tr>
+            </table>
+            <div class="course-quote">
+                <p><strong>[插图提示词]</strong></p>
+                <p>用途：画 ARIS 到 codex-loop 的“可借鉴能力梯子”。</p>
+                <p>形式：五层能力梯子图；Mermaid 适合。</p>
+                <p>提示词：左列放 ARIS，右列放 codex-loop，中间用五条横向梯子连接：workflow family、persistent wiki、meta optimize、watchdog health layer、cross-model review。ARIS 一侧标出对应模块名，codex-loop 一侧标出当前状态（已有 / 部分已有 / 缺失 / 待建设）。</p>
+                <p>Mermaid 更适合：是。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="codex-loop" class="section section--soft">
+        <div class="container">
+            <h2 class="section-title">我们已经有的部分，其实已经很像通用型 in-sleep shell</h2>
+            <div class="quickstart-grid meta-topic-grid meta-topic-grid--stack">
+                <div class="quickstart-card">
+                    <h3>长循环壳</h3>
+                    <p><code>codex-loop</code> 已经有 daemon、thread resume、prompt contract、status、tick logs。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>计划与演化</h3>
+                    <p>已经有 dedicated plans、evolution notes、sticky active task、task board 和 workspace shell。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>多域任务</h3>
+                    <p>不是只跑科研，还能跑 site、CLI、workspace、知乎、热榜、reference-mining 等长期任务。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>发布闭环</h3>
+                    <p>GitHub、GitHub Pages、知乎发布时间窗和内容分发都已经接进 loop contract 里。</p>
+                </div>
+            </div>
+            <p class="section-desc meta-topic-copy meta-topic-copy--tail">
+                所以更准确的说法不是“我们也做了个 ARIS”，而是：<strong>我们已经有了一个面向工程与知识站点的通用型 codex-loop in sleep 外壳</strong>。
+            </p>
+        </div>
+    </section>
+
+    <section id="gaps" class="section">
+        <div class="container">
+            <h2 class="section-title">真正还差的，是三层外壳再加厚</h2>
+            <div class="quickstart-grid meta-topic-grid meta-topic-grid--concept">
+                <div class="quickstart-card">
+                    <h3>1. 外层自优化</h3>
+                    <p>现在更多是人工看日志再改 prompt；下一步应该让 loop 能根据失败与命中情况自动建议改写 task / skill / plan。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>2. 长期知识层</h3>
+                    <p>现在有 plan 和 evolution，但还缺 topic wiki、negative memory 和 reference insight memory。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>3. 健康与执行分层</h3>
+                    <p>daemon、状态台和 workspace 已有雏形，但 watchdog 还没有真正独立成一层。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="meta-opt-routeback" class="section section--soft">
+        <div class="container">
+            <h2 class="section-title">第一条真正回写到 codex-loop 路线图的借鉴能力</h2>
+            <p class="section-desc meta-topic-copy meta-topic-copy--lead">
+                这一轮先不直接做“自动改 prompt”的大系统，而是先把 <code>meta-optimize</code> 落成一条最小可执行规则：<strong>每次 bounded pass 如果暴露了重复性的 loop 低效点，就提炼出一条短的 <code>loop improvement candidate</code></strong>。
+            </p>
+            <div class="quickstart-grid meta-topic-grid meta-topic-grid--stack">
+                <div class="quickstart-card">
+                    <h3>先记候选规则</h3>
+                    <p>每轮最多提炼一条 loop-level 改进候选，避免把演进记录写成无边界 wishlist。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>再决定是否升级</h3>
+                    <p>只有在问题重复出现，或者新规则明显能改善下一 tick 时，才允许写回 <code>.codex-loop/prompt.md</code>。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>保持操作性</h3>
+                    <p>prompt 级回写必须改变后续的 task selection、verification、publishing 或 handoff 行为，而不是多补一段解释文字。</p>
+                </div>
+            </div>
+            <table class="compare-table">
+                <tr>
+                    <th>层</th>
+                    <th>当前状态</th>
+                    <th>缺口</th>
+                    <th>这次的最小回写</th>
+                </tr>
+                <tr>
+                    <td>logs</td>
+                    <td>已有 tick logs、evolution notes、handoff</td>
+                    <td>记录很多，但没有把重复低效点收敛成固定候选规则</td>
+                    <td>要求每轮只提炼一条 <code>loop improvement candidate</code></td>
+                </tr>
+                <tr>
+                    <td>prompt</td>
+                    <td>主 prompt 已经能约束 task selection 和 publishing window</td>
+                    <td>prompt 变更更多是人工临时补充，缺少“何时允许写回 prompt”的门槛</td>
+                    <td>增加“重复出现或能改善下一 tick 才能升级到 prompt”的规则</td>
+                </tr>
+                <tr>
+                    <td>skill / plan</td>
+                    <td>会按 skill 执行，也会更新 active plan</td>
+                    <td>缺少把 loop-level 经验沉淀成可复用操作约束的薄层</td>
+                    <td>先把 meta-opt 定位成短规则回写，而不是大而全的新系统</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <section id="route" class="section section--soft">
+        <div class="container">
+            <h2 class="section-title">把这条线做成长期子专题，最顺的开展路线</h2>
+            <div class="quickstart-grid meta-topic-grid meta-topic-grid--stack">
+                <div class="quickstart-card">
+                    <h3>第一步：先固定站内口径</h3>
+                    <p>把 <code>ARIS</code> 读成研究专用 in-sleep system，把 <code>codex-loop</code> 读成通用型 in-sleep shell。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>第二步：先落一条最小 meta-opt 规则</h3>
+                    <p>先把每轮提炼一条 <code>loop improvement candidate</code> 这件事固定下来，再谈更重的自优化系统。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>第三步：继续补 wiki 与 watchdog</h3>
+                    <p>再把 <code>persistent wiki</code>、<code>watchdog health layer</code> 接进 prompt、workspace shell、task board 和独立 plan。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>第四步：作为 AI-Scientist 邻接样本</h3>
+                    <p>让它承担 “研究系统如何长出 sleep 层” 的解释任务，而不是跟 paper pipeline 混成一页。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-codex-loop-in-sleep.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>本地锚点：<code>reference/reference_ai_scientist/Auto-claude-code-research-in-sleep/</code>、<code>.codex-loop/prompt.md</code>、<code>.claude/plans/loloop/</code>、<code>tools/codex_loop_web_relay.py</code></p>
+            <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

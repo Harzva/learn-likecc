@@ -569,6 +569,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Switch away from the now-locally-healthy Task 13 app-foundation wave to Task 11 because the newly landed workspace app still was not visible from the main site map
 - [x] Make the `本地工作台 / Loop Lab -> codex-loop AI Terminal / LikeCode Workspace App` branch explicit in the site map diagram and page copy so the new local app surface is discoverable from the main guide
 - [x] Verify the third Task 11 site-map pass with `python3 tools/refresh_site_topic_metadata.py`, `python3 tools/check_site_md_parity.py`, and `node --check site/js/app.js`
+- [x] Switch from the now-locally-healthy Task 11/13 wave to the fresh Task 14 `codex-loop in sleep` plan because it has a clear unchecked route-back frontier with direct main-site teaching value
+- [x] Land one bounded Task 14 meta-opt route-back pass by turning the first ARIS borrowing line into a short operational prompt rule and syncing the same logic into `topic-codex-loop-in-sleep`
+- [x] Verify the Task 14 meta-opt route-back pass with `python3 tools/refresh_site_topic_metadata.py`, `python3 tools/build_loop_task_board.py`, and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail
 
@@ -585,4 +588,5 @@ Keep each round bounded to one page or one UI component cluster.
 - after the new evolution composer lands, prefer staying on Task 13 only for a stronger daemon-selected active-task sync; otherwise switch to the next clearer recurring frontier
 - treat the current Task 13 foundational app wave as locally healthy after checklist, evolution composer, and daemon-task sync all land; only reopen if a clearly stronger multi-pane or runtime-control gap appears
 - treat the workspace app as now visible from the main guide too; only reopen Task 11 if another similarly clear map/index synchronization gap appears
+- treat the first Task 14 route-back pass as locally landed; next reopen should prefer `persistent wiki` or `watchdog` over more abstract `ARIS vs codex-loop` comparison copy
 - choose the next pass by mapping it to one of the three optimization pillars above
