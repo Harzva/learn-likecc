@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LikeCode Workspace（本地）- Learn LikeCode</title>
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="description" content="独立 app 风格的 LikeCode 本地工作台：任务池、计划编辑、runtime 状态与日志同屏。">
+</head>
+<body class="likecode-workspace-page">
+    <div id="likecode-workspace" class="likecode-workspace-app">
+        <aside class="likecode-workspace-sidebar">
+            <div class="likecode-workspace-brand">
+                <p class="likecode-workspace-brand__eyebrow">LikeCode Web Workspace</p>
+                <h1>任务池 + 计划编辑 + Runtime 同屏</h1>
+                <p>这版先把长期任务池、active plan 编辑和 relay runtime 收到一个真正可操作的 app 壳里，不再只停留在文章页监视器。</p>
+            </div>
+
+            <div class="likecode-workspace-controls">
+                <label class="likecode-workspace-field">
+                    <span>搜索任务</span>
+                    <input id="workspace-task-search" type="search" placeholder="搜索任务名、计划目标、evolution 摘要…">
+                </label>
+                <label class="likecode-workspace-field">
+                    <span>Relay URL</span>
+                    <input id="workspace-relay-url" type="url" value="http://127.0.0.1:8770">
+                </label>
+                <div class="likecode-workspace-actionrow">
+                    <button id="workspace-refresh" type="button" class="btn btn-primary">刷新工作台</button>
+                    <a href="topic-loop-task-board.html" class="btn btn-secondary">任务板</a>
+                    <a href="topic-codex-loop-console.html" class="btn btn-secondary">监视器</a>
+                </div>
+            </div>
+
+            <section class="likecode-workspace-sidebar__section">
+                <div class="likecode-workspace-sidebar__head">
+                    <strong>任务池</strong>
+                    <span id="workspace-task-count">--</span>
+                </div>
+                <div id="workspace-task-list" class="likecode-workspace-tasklist">
+                    <p class="likecode-workspace-empty">任务池加载中…</p>
+                </div>
+            </section>
+        </aside>
+
+        <main class="likecode-workspace-main">
+            <section class="likecode-workspace-panel likecode-workspace-panel--hero">
+                <div>
+                    <p class="likecode-workspace-panel__eyebrow">Active Task</p>
+                    <h2 id="workspace-active-title">选择一个长期任务</h2>
+                    <p id="workspace-active-goal" class="likecode-workspace-panel__summary">左侧选中任务后，这里会展示它的目标、状态、topic 快捷入口和最近 evolution 摘要。</p>
+                </div>
+                <div class="likecode-workspace-badges">
+                    <span id="workspace-active-state" class="likecode-workspace-badge likecode-workspace-badge--neutral">queued</span>
+                    <span id="workspace-active-progress" class="likecode-workspace-badge likecode-workspace-badge--neutral">progress --</span>
+                </div>
+            </section>
+
+            <div class="likecode-workspace-grid">
+                <section class="likecode-workspace-panel">
+                    <div class="likecode-workspace-panel__head">
+                        <div>
+                            <p class="likecode-workspace-panel__eyebrow">Planner</p>
+                            <h3>Plan Editor</h3>
+                        </div>
+                        <div class="likecode-workspace-actionrow">
+                            <span id="workspace-plan-path" class="likecode-workspace-pill">no plan</span>
+                            <button id="workspace-plan-save" type="button" class="btn btn-primary">保存计划</button>
+                        </div>
+                    </div>
+                    <textarea id="workspace-plan-editor" class="likecode-workspace-editor" spellcheck="false" placeholder="选择任务后在这里直接编辑 plan markdown…"></textarea>
+                    <div class="likecode-workspace-foot">
+                        <span id="workspace-plan-status" class="likecode-workspace-status likecode-workspace-status--neutral">idle</span>
+                        <span id="workspace-plan-updated">updated: --</span>
+                    </div>
+                </section>
+
+                <section class="likecode-workspace-panel">
+                    <div class="likecode-workspace-panel__head">
+                        <div>
+                            <p class="likecode-workspace-panel__eyebrow">Checklist</p>
+                            <h3>Plan Tasks</h3>
+                        </div>
+                        <div class="likecode-workspace-actionrow">
+                            <span id="workspace-checklist-meta" class="likecode-workspace-pill">0 / 0 done</span>
+                        </div>
+                    </div>
+                    <div id="workspace-checklist" class="likecode-workspace-checklist">
+                        <p class="likecode-workspace-empty">选择任务后，这里会把 plan 里的 checkbox 解析成可点的 checklist。</p>
+                    </div>
+                    <div class="likecode-workspace-foot">
+                        <span class="likecode-workspace-status likecode-workspace-status--neutral">markdown-backed</span>
+                        <span>toggle 会直接回写到左侧 plan editor，再统一保存</span>
+                    </div>
+                </section>
+
+                <section class="likecode-workspace-panel">
+                    <div class="likecode-workspace-panel__head">
+                        <div>
+                            <p class="likecode-workspace-panel__eyebrow">Runtime</p>
+                            <h3>Relay / Daemon / Thread</h3>
+                        </div>
+                        <div class="likecode-workspace-actionrow">
+                            <button id="workspace-runtime-refresh" type="button" class="btn btn-secondary">刷新 runtime</button>
+                            <span id="workspace-runtime-status" class="likecode-workspace-status likecode-workspace-status--neutral">idle</span>
+                        </div>
+                    </div>
+                    <div class="likecode-workspace-runtime">
+                        <article class="likecode-workspace-runtimecard">
+                            <strong>daemon</strong>
+                            <span id="workspace-daemon-running">--</span>
+                        </article>
+                        <article class="likecode-workspace-runtimecard">
+                            <strong>pid</strong>
+                            <span id="workspace-daemon-pid">--</span>
+                        </article>
+                        <article class="likecode-workspace-runtimecard">
+                            <strong>thread</strong>
+                            <span id="workspace-thread-id">--</span>
+                        </article>
+                        <article class="likecode-workspace-runtimecard">
+                            <strong>tick</strong>
+                            <span id="workspace-last-tick">--</span>
+                        </article>
+                        <article class="likecode-workspace-runtimecard">
+                            <strong>lock</strong>
+                            <span id="workspace-thread-lock">--</span>
+                        </article>
+                        <article class="likecode-workspace-runtimecard">
+                            <strong>workspace</strong>
+                            <span id="workspace-runtime-workspace">--</span>
+                        </article>
+                    </div>
+                    <div class="likecode-workspace-links" id="workspace-topic-links"></div>
+                    <div class="likecode-workspace-evolution">
+                        <strong>最近 evolution</strong>
+                        <p id="workspace-evolution-name">--</p>
+                        <p id="workspace-evolution-summary">还没有 evolution 摘要。</p>
+                    </div>
+                </section>
+
+                <section class="likecode-workspace-panel likecode-workspace-panel--log">
+                    <div class="likecode-workspace-panel__head">
+                        <div>
+                            <p class="likecode-workspace-panel__eyebrow">Logs</p>
+                            <h3>Latest Tick</h3>
+                        </div>
+                        <div class="likecode-workspace-actionrow">
+                            <button id="workspace-log-daemon" type="button" class="btn btn-secondary">daemon log</button>
+                            <button id="workspace-log-tick" type="button" class="btn btn-secondary">latest tick</button>
+                            <button id="workspace-log-message" type="button" class="btn btn-secondary">last message</button>
+                        </div>
+                    </div>
+                    <pre id="workspace-log-output" class="likecode-workspace-log">日志加载中…</pre>
+                    <div class="likecode-workspace-foot">
+                        <span id="workspace-log-label">latest tick</span>
+                        <span id="workspace-log-path">path: --</span>
+                    </div>
+                </section>
+            </div>
+
+            <footer class="footer">
+                <div class="container">
+                    <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/app-likecode-workspace.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/likecode-workspace.js"></script>
+</body>
+</html>

@@ -554,6 +554,9 @@ Resume the queued Zhihu publish when daytime allows, but treat the overnight win
 - [x] Switch back from the now-locally-healthy Task 12 intake layer to Task 11 because the new hot-topic routing chain still was not visible from the main site map
 - [x] Make the `热门话题专项 -> 热点 intake / 路由页 -> Agent 技术热点 / RAG 技术热点` chain explicit in the site map diagram and page copy so the intake layer is taught as an upstream route, not a standalone hub
 - [x] Verify the second Task 11 site-map pass with `python3 tools/refresh_site_topic_metadata.py`, `python3 tools/check_site_md_parity.py`, and `node --check site/js/app.js`
+- [x] Switch from the now-locally-healthy Task 11 site-map wave to Task 13 because the independent LikeCode workspace app still had a clear first unchecked product frontier
+- [x] Add checklist-aware plan interactions to the LikeCode workspace app so markdown tasks can be toggled from a dedicated checklist lane instead of only through raw editor text
+- [x] Verify the Task 13 checklist-aware pass with `node --check site/js/likecode-workspace.js`, `python3 -m py_compile tools/codex_loop_web_relay.py`, and `python3 tools/check_site_md_parity.py`
 
 ## Guardrail
 
@@ -566,4 +569,5 @@ Keep each round bounded to one page or one UI component cluster.
 - stay on Task 11 only if there is one more bounded site-map / metadata sync gap with the same main-site leverage
 - treat Task 12 as locally healthy unless a new low-risk route target, source class, or source-policy gap appears
 - treat the hot-topic intake chain as now visible from the main guide; only reopen Task 11 or Task 12 if another similarly clear navigation or routing gap appears
+- prefer Task 13 only if the next bounded move cleanly advances either evolution-note write-back or stronger active-task sync instead of reopening generic workspace-shell cosmetics
 - choose the next pass by mapping it to one of the three optimization pillars above
