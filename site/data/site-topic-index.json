@@ -1,7 +1,7 @@
 {
   "meta": {
-    "updated": "2026-04-12",
-    "count": 44,
+    "updated": "2026-04-13",
+    "count": 46,
     "source": "git history + site/topic-*.html"
   },
   "groups": [
@@ -10,7 +10,7 @@
       "items": [
         {
           "slug": "topic-agent",
-          "title": "Agent 大专题",
+          "title": "Agent 大专题 - Everything in Claude-Code",
           "updated": "2026-04-12",
           "group": "核心入口",
           "href": "topic-agent.html",
@@ -18,7 +18,7 @@
         },
         {
           "slug": "topic-ai-zahuopu",
-          "title": "AI杂货铺",
+          "title": "AI杂货铺 - Everything in Claude-Code",
           "updated": "2026-04-12",
           "group": "核心入口",
           "href": "topic-ai-zahuopu.html",
@@ -26,7 +26,7 @@
         },
         {
           "slug": "topic-hot-watch",
-          "title": "热门话题专项",
+          "title": "热门话题专项 - Everything in Claude-Code",
           "updated": "2026-04-12",
           "group": "核心入口",
           "href": "topic-hot-watch.html",
@@ -34,7 +34,7 @@
         },
         {
           "slug": "topic-llm",
-          "title": "大模型专题",
+          "title": "大模型专题 - Everything in Claude-Code",
           "updated": "2026-04-12",
           "group": "核心入口",
           "href": "topic-llm.html",
@@ -42,15 +42,15 @@
         },
         {
           "slug": "topic-paoding-jieniu",
-          "title": "庖丁解牛专题",
-          "updated": "2026-04-12",
+          "title": "庖丁解牛专题 - Everything in Claude-Code",
+          "updated": "2026-04-13",
           "group": "核心入口",
           "href": "topic-paoding-jieniu.html",
           "md_path": "site/md/topic-paoding-jieniu.md"
         },
         {
           "slug": "topic-rag",
-          "title": "RAG 大专题",
+          "title": "RAG 大专题 - Everything in Claude-Code",
           "updated": "2026-04-12",
           "group": "核心入口",
           "href": "topic-rag.html",
@@ -58,7 +58,7 @@
         },
         {
           "slug": "topic-site-map",
-          "title": "站点导览 / 思维导图",
+          "title": "站点导览 / 思维导图 - Everything in Claude-Code",
           "updated": "2026-04-12",
           "group": "核心入口",
           "href": "topic-site-map.html",
@@ -66,7 +66,7 @@
         },
         {
           "slug": "topic-skillmarket",
-          "title": "Skill 市场专题",
+          "title": "Skill 市场专题 - Everything in Claude-Code",
           "updated": "2026-04-12",
           "group": "核心入口",
           "href": "topic-skillmarket.html",
@@ -74,7 +74,7 @@
         },
         {
           "slug": "topic-sourcemap",
-          "title": "Source Map 源码专题",
+          "title": "Source Map 源码专题 - Everything in Claude-Code",
           "updated": "2026-04-12",
           "group": "核心入口",
           "href": "topic-sourcemap.html",
@@ -82,7 +82,7 @@
         },
         {
           "slug": "topic-toolchain",
-          "title": "工具链专题",
+          "title": "工具链专题 - Everything in Claude-Code",
           "updated": "2026-04-12",
           "group": "核心入口",
           "href": "topic-toolchain.html",
@@ -90,7 +90,7 @@
         },
         {
           "slug": "topic-vibepaper",
-          "title": "VibePaper 专题：Autoresearch / ARIS / DeepScientist / AI Scientist-v2",
+          "title": "VibePaper 专题：Autoresearch / ARIS / DeepScientist / AI Scientist-v2 - Everything in Claude-Code",
           "updated": "2026-04-12",
           "group": "核心入口",
           "href": "topic-vibepaper.html",
@@ -103,7 +103,7 @@
       "items": [
         {
           "slug": "topic-cc-buddy",
-          "title": "Claude Code Buddy 彩蛋专题",
+          "title": "Claude Code Buddy 彩蛋专题 - Everything in Claude-Code",
           "updated": "2026-04-12",
           "group": "Claude Code / LikeCode 深挖",
           "href": "topic-cc-buddy.html",
@@ -119,7 +119,7 @@
         },
         {
           "slug": "topic-cc-release-watch",
-          "title": "发版监督 · Claude Code 官方版本速览",
+          "title": "发版监督 · Claude Code 官方版本速览 - Everything in Claude-Code",
           "updated": "2026-04-12",
           "group": "Claude Code / LikeCode 深挖",
           "href": "topic-cc-release-watch.html",
@@ -135,7 +135,7 @@
         },
         {
           "slug": "topic-claude-codex-bridge",
-          "title": "Claude 调 Codex 的桥接链路",
+          "title": "Claude 调 Codex 的桥接链路 - Everything in Claude-Code",
           "updated": "2026-04-12",
           "group": "Claude Code / LikeCode 深挖",
           "href": "topic-claude-codex-bridge.html",
@@ -151,7 +151,7 @@
         },
         {
           "slug": "topic-loop-task-board",
-          "title": "Loop 任务驾驶舱",
+          "title": "Loop 任务驾驶舱 - Everything in Claude-Code",
           "updated": "2026-04-12",
           "group": "Claude Code / LikeCode 深挖",
           "href": "topic-loop-task-board.html",
@@ -159,7 +159,7 @@
         },
         {
           "slug": "topic-memory-harness",
-          "title": "Memory 长期记忆：写入、整合、检索与安全",
+          "title": "Memory 长期记忆：写入、整合、检索与安全 - Everything in Claude-Code",
           "updated": "2026-04-12",
           "group": "Claude Code / LikeCode 深挖",
           "href": "topic-memory-harness.html",
@@ -167,7 +167,7 @@
         },
         {
           "slug": "topic-openharness-course",
-          "title": "OpenHarness 源码课 · 与 Claude Code 思想架构对照",
+          "title": "OpenHarness 源码课 · 与 Claude Code 思想架构对照 - Everything in Claude-Code",
           "updated": "2026-04-12",
           "group": "Claude Code / LikeCode 深挖",
           "href": "topic-openharness-course.html",
@@ -175,7 +175,7 @@
         },
         {
           "slug": "topic-openharness",
-          "title": "OpenHarness 专题 · 完全开源 Agent Harness",
+          "title": "OpenHarness 专题 · 完全开源 Agent Harness - Everything in Claude-Code",
           "updated": "2026-04-12",
           "group": "Claude Code / LikeCode 深挖",
           "href": "topic-openharness.html",
@@ -183,7 +183,7 @@
         },
         {
           "slug": "topic-source-derived",
-          "title": "从重建源码提炼设计思想",
+          "title": "从重建源码提炼设计思想 - Everything in Claude-Code",
           "updated": "2026-04-12",
           "group": "Claude Code / LikeCode 深挖",
           "href": "topic-source-derived.html",
@@ -191,7 +191,7 @@
         },
         {
           "slug": "topic-superpowers-autoresearch",
-          "title": "Superpowers 市场 vs Autoresearch",
+          "title": "Superpowers 市场 vs Autoresearch - Everything in Claude-Code",
           "updated": "2026-04-12",
           "group": "Claude Code / LikeCode 深挖",
           "href": "topic-superpowers-autoresearch.html",
@@ -199,7 +199,7 @@
         },
         {
           "slug": "topic-websites",
-          "title": "站点推荐 · 教程、个人主页与 GitHub 仓库",
+          "title": "站点推荐 · 教程、个人主页与 GitHub 仓库 - Everything in Claude-Code",
           "updated": "2026-04-12",
           "group": "Claude Code / LikeCode 深挖",
           "href": "topic-websites.html",
@@ -212,7 +212,7 @@
       "items": [
         {
           "slug": "topic-agent-comparison",
-          "title": "Agent 生态对比：技能包与子代理",
+          "title": "Agent 生态对比：技能包与子代理 - Everything in Claude-Code",
           "updated": "2026-04-12",
           "group": "Agent / CLI / 杂货铺子专题",
           "href": "topic-agent-comparison.html",
@@ -220,7 +220,7 @@
         },
         {
           "slug": "topic-agent-hot",
-          "title": "Agent · 技术热点",
+          "title": "Agent · 技术热点 - Everything in Claude-Code",
           "updated": "2026-04-12",
           "group": "Agent / CLI / 杂货铺子专题",
           "href": "topic-agent-hot.html",
@@ -228,7 +228,7 @@
         },
         {
           "slug": "topic-agent-papers",
-          "title": "Agent · 论文分析",
+          "title": "Agent · 论文分析 - Everything in Claude-Code",
           "updated": "2026-04-12",
           "group": "Agent / CLI / 杂货铺子专题",
           "href": "topic-agent-papers.html",
@@ -276,7 +276,7 @@
         },
         {
           "slug": "topic-everything-agent-cli",
-          "title": "Everything Agent-CLI to Claude Code",
+          "title": "Everything Agent-CLI to Claude Code - Everything in Claude-Code",
           "updated": "2026-04-12",
           "group": "Agent / CLI / 杂货铺子专题",
           "href": "topic-everything-agent-cli.html",
@@ -284,15 +284,15 @@
         },
         {
           "slug": "topic-meta-agent",
-          "title": "Meta-Agent 专题",
-          "updated": "2026-04-12",
+          "title": "(Managed) Meta-Agent 专题 - Everything in Claude-Code",
+          "updated": "2026-04-13",
           "group": "Agent / CLI / 杂货铺子专题",
           "href": "topic-meta-agent.html",
           "md_path": "site/md/topic-meta-agent.md"
         },
         {
           "slug": "topic-personal-knowledge",
-          "title": "个人知识库 · GitHub、Wiki 与 Agent",
+          "title": "个人知识库 · GitHub、Wiki 与 Agent - Everything in Claude-Code",
           "updated": "2026-04-12",
           "group": "Agent / CLI / 杂货铺子专题",
           "href": "topic-personal-knowledge.html",
@@ -329,7 +329,7 @@
         },
         {
           "slug": "topic-rag-hot",
-          "title": "RAG · 技术热点",
+          "title": "RAG · 技术热点 - Everything in Claude-Code",
           "updated": "2026-04-12",
           "group": "RAG / VibePaper 子专题",
           "href": "topic-rag-hot.html",
@@ -337,7 +337,7 @@
         },
         {
           "slug": "topic-rag-papers",
-          "title": "RAG · 论文分析",
+          "title": "RAG · 论文分析 - Everything in Claude-Code",
           "updated": "2026-04-12",
           "group": "RAG / VibePaper 子专题",
           "href": "topic-rag-papers.html",
@@ -350,11 +350,19 @@
       "items": [
         {
           "slug": "topic-ai-scientist",
-          "title": "AI-Scientist 专题",
+          "title": "AI-Scientist 专题 - Everything in Claude-Code",
           "updated": "2026-04-12",
           "group": "其他专题",
           "href": "topic-ai-scientist.html",
           "md_path": "site/md/topic-ai-scientist.md"
+        },
+        {
+          "slug": "topic-cabinet-unpacked",
+          "title": "Cabinet 解构 - (Managed) Meta-Agent 专题",
+          "updated": "2026-04-13",
+          "group": "其他专题",
+          "href": "topic-cabinet-unpacked.html",
+          "md_path": "site/md/topic-cabinet-unpacked.md"
         },
         {
           "slug": "topic-codex-loop-in-sleep",
@@ -367,10 +375,18 @@
         {
           "slug": "topic-connector-runtime-daemon",
           "title": "Connector / Runtime / Daemon - CodeXLoop 架构专题",
-          "updated": "2026-04-12",
+          "updated": "2026-04-13",
           "group": "其他专题",
           "href": "topic-connector-runtime-daemon.html",
           "md_path": "site/md/topic-connector-runtime-daemon.md"
+        },
+        {
+          "slug": "topic-multica-unpacked",
+          "title": "Multica 解构 - (Managed) Meta-Agent 专题",
+          "updated": "2026-04-13",
+          "group": "其他专题",
+          "href": "topic-multica-unpacked.html",
+          "md_path": "site/md/topic-multica-unpacked.md"
         },
         {
           "slug": "topic-superset-unpacked",

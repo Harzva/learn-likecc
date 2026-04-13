@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cabinet 解构 - (Managed) Meta-Agent 专题</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗄️</text></svg>">
+    <meta name="description" content="Managed Meta-Agent 子专题：拆 Cabinet 如何把 markdown knowledge base、Git 历史、AI team、cron 与 web terminal 拼成 knowledge-first 的 startup OS。">
+    <meta name="page:updated" content="2026-04-13">
+</head>
+<body class="cc-unpacked-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🗄️</span>
+                <span class="logo-text">Cabinet 解构</span>
+            </a>
+            <div class="nav-links">
+                <a href="#why" class="nav-link">01 为什么值得拆</a>
+                <a href="#layers" class="nav-link">02 分层</a>
+                <a href="#control" class="nav-link">03 控制面</a>
+                <a href="#memory" class="nav-link">04 记忆与 Git</a>
+                <a href="#team" class="nav-link">05 AI Team</a>
+                <a href="#lessons" class="nav-link">06 值得学什么</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-meta-agent.html" class="btn-github">Meta-Agent 专题</a>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>Meta-Agent · 子专题</span>
+                <span>Knowledge-first Startup OS</span>
+            </div>
+            <h1 class="hero-title">
+                Cabinet<br>
+                <span class="gradient-text">解构</span>
+            </h1>
+            <p class="hero-subtitle">
+                `Cabinet` 不像 Claude Managed Agents 那样先从基础设施层出发，它走的是另一条路：<strong>先把团队知识库、AI team、cron jobs、web terminal 和 Git 历史收成一个 knowledge-first 的 startup OS</strong>，再让 agent 在这个壳里持续工作。
+            </p>
+            <div class="hero-actions">
+                <a href="#layers" class="btn btn-primary">先看 02 分层</a>
+                <a href="topic-meta-agent.html" class="btn btn-secondary">回到总专题</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="course-main devlog-main">
+        <div class="container container--layout-wide">
+            <article class="course-content devlog-content">
+                <section id="why" class="section-block">
+                    <h2>01 · 为什么 Cabinet 值得单独拆</h2>
+                    <p>`Cabinet` 的关键，不在于“它也有 agent”，而在于它把上下文问题收成了一个产品原则：<strong>上下文不是聊天窗口里的临时附属，而是整个团队知识库本身</strong>。</p>
+                    <p>从 README 看，它的核心口号不是执行引擎，而是 <code>Your knowledge base. Your AI team.</code>。也就是说，Cabinet 先假定：如果没有持久知识库，再好的 agent 也会不断忘记、不断重来。</p>
+                </section>
+
+                <section id="layers" class="section-block">
+                    <h2>02 · Cabinet 先拼的是哪几层</h2>
+                    <table class="options-table">
+                        <tr><th>层次</th><th>关键锚点</th><th>解决的问题</th></tr>
+                        <tr><td>知识库层</td><td>markdown on disk、WYSIWYG + Markdown、embedded HTML apps</td><td>上下文从哪来，如何可见、可改、可版本化</td></tr>
+                        <tr><td>历史层</td><td>Git-backed history、auto-commit、diff viewer</td><td>记忆如何有版本、能回退、能审计</td></tr>
+                        <tr><td>团队层</td><td>20 个 AI team templates、departments</td><td>agent 不再只是孤立 worker，而是团队角色</td></tr>
+                        <tr><td>调度层</td><td>scheduled jobs、missions & tasks</td><td>如何让 agent 在知识库里持续工作，而不只等待人工点一下</td></tr>
+                        <tr><td>交互层</td><td>web terminal、internal chat</td><td>怎样把 CLI 与知识库工作台接回同一壳层</td></tr>
+                    </table>
+                </section>
+
+                <section id="control" class="section-block">
+                    <h2>03 · 它的控制面不在 runtime，而在 knowledge base</h2>
+                    <p>如果说 `Managed Agents` 更像“先把 runtime 和隔离壳搭好”，那 `Cabinet` 的主脑更像是 <strong>knowledge base + agent team + scheduled work</strong> 这组组合。</p>
+                    <p>这条路线回答的是另一个问题：当 agent 真要长期工作时，它们吃的不是 prompt，而是 <strong>沉淀在知识库里的项目语义、页面、历史、任务板和团队角色</strong>。</p>
+                </section>
+
+                <section id="memory" class="section-block">
+                    <h2>04 · 为什么它把 Git 当成记忆机制，而不是附件</h2>
+                    <p>Cabinet 这条线最值得我们学的，是它把 <code>Git everything</code> 直接写成原则。这里 Git 不是开发者工具，而是 agent memory 的历史系统。</p>
+                    <p>这和我们做 `codex-loop` 的 `plan + evolution + task board` 很接近，只是 Cabinet 更激进：它把页面本体、HTML app、cron 任务、知识结构都尽量推回文件系统和 Git 历史里。</p>
+                    <div class="course-quote">
+                        <p><strong>[插图提示词]</strong></p>
+                        <p>用途：画 Cabinet 的 knowledge-first managed agent shell。</p>
+                        <p>形式：分层结构图；Mermaid 很合适。</p>
+                        <p>提示词：顶部是 markdown knowledge base 与 rich editor，中层是 AI team、missions/tasks、scheduled jobs，右侧是 web terminal 与 internal chat，底部是 git-backed history 与 file-based storage，箭头标出“knowledge compounds over time”。</p>
+                        <p>Mermaid 更适合：是。</p>
+                    </div>
+                </section>
+
+                <section id="team" class="section-block">
+                    <h2>05 · Cabinet 真正在卖的不是 Agent，而是 AI Team</h2>
+                    <p>它预置的不是单个 coder，而是一整套 CEO、CTO、Marketing、Analytics、Ops 等模板。这个动作很重要：它把 agent 从“工具调用器”抬成了“团队角色容器”。</p>
+                    <p>这说明 Cabinet 不只是一个 CLI 代理面板，它更像是：<strong>让知识库、角色、定时任务和终端工作位合并成同一个 startup OS。</strong></p>
+                </section>
+
+                <section id="lessons" class="section-block">
+                    <h2>06 · 对 LikeCode / codex-loop 最值得学什么</h2>
+                    <div class="course-quote">
+                        <p><strong>第一</strong>，上下文工程不要只停在 prompt engineering，要把 durable knowledge base 视为正式层。</p>
+                        <p><strong>第二</strong>，Git 不只服务代码，也可以服务 agent memory 的历史、回滚和审计。</p>
+                        <p><strong>第三</strong>，`AI team` 这个概念很适合给我们后面的 workspace / connector / task board 做更高层的人机叙事。</p>
+                        <p><strong>第四</strong>，Cabinet 更像 knowledge-first managed shell，不要误把它当成和 Multica 一样的 runtime-first 平台。</p>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2>参考与原始链接</h2>
+                    <ul>
+                        <li><a href="https://github.com/hilash/cabinet" target="_blank" rel="noopener noreferrer">hilash/cabinet</a></li>
+                        <li><a href="https://runcabinet.com" target="_blank" rel="noopener noreferrer">Cabinet 官网</a></li>
+                        <li><code>reference/reference_meta(Manage)agent/cabinet/README.md</code></li>
+                        <li><code>reference/reference_meta(Manage)agent/cabinet/server/</code></li>
+                        <li><code>reference/reference_meta(Manage)agent/cabinet/src/</code></li>
+                    </ul>
+                </section>
+
+                <div class="chapter-navigation">
+                    <a href="topic-meta-agent.html" class="btn btn-secondary">← Meta-Agent 总专题</a>
+                    <a href="topic-multica-unpacked.html" class="btn btn-primary">继续看 Multica →</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container container--layout-wide">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-cabinet-unpacked.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>© 2026 Everything in Claude-Code. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

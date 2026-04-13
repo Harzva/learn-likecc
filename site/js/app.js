@@ -121,6 +121,25 @@ const MERMAID_DIAGRAMS = {
     A4 --> C4
     A5 --> C5`,
 
+    'managed-meta-agent-landscape': `graph TB
+    classDef goldBox fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#fcd34d;
+    classDef blueBox fill:#172130,stroke:#60a5fa,stroke-width:2px,color:#93c5fd;
+    classDef greenBox fill:#14251f,stroke:#34d399,stroke-width:2px,color:#6ee7b7;
+    classDef purpleBox fill:#241c2f,stroke:#c084fc,stroke-width:2px,color:#e9d5ff;
+    classDef grayBox fill:#1f2430,stroke:#94a3b8,stroke-width:2px,color:#cbd5e1;
+
+    HUB["Managed / Meta-Agent<br/>谁来管理 agent"]:::goldBox
+
+    HUB --> CMA["Claude Managed Agents<br/>基础设施层"]:::blueBox
+    HUB --> CAB["Cabinet<br/>knowledge-first startup OS"]:::greenBox
+    HUB --> MUL["Multica<br/>runtime-first managed board"]:::purpleBox
+    HUB --> SUP["Superset<br/>orchestration shell"]:::grayBox
+
+    CMA --> CMA1["brain / hand / memory<br/>container + event log + vault"]:::blueBox
+    CAB --> CAB1["knowledge base + AI team<br/>cron + web terminal + git history"]:::greenBox
+    MUL --> MUL1["board + workspace + daemon<br/>runtime registry + skill compounding"]:::purpleBox
+    SUP --> SUP1["host-service + workspace/worktree<br/>panes + inner-agent dispatch"]:::grayBox`,
+
     'site-topic-map': `graph TB
     classDef core fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#fcd34d;
     classDef hub fill:#172130,stroke:#60a5fa,stroke-width:2px,color:#93c5fd;
@@ -670,6 +689,20 @@ function initSiteSidebar() {
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-memory-harness.html"><span class="site-sidebar__ico">🧠</span><span class="site-sidebar__txt">Memory 机制</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-superpowers-autoresearch.html"><span class="site-sidebar__ico">🧩</span><span class="site-sidebar__txt">Superpowers vs Autoresearch</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="https://github.com/Harzva/learn-likecc/blob/main/awesome-agent.md" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">✨</span><span class="site-sidebar__txt">Awesome Agent</span></a>' +
+        '</details>' +
+        '<details class="site-sidebar__details" data-sidebar-key="meta-agent">' +
+        '<summary class="site-sidebar__summary"><span class="site-sidebar__txt">Meta-Agent 专题</span></summary>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-meta-agent.html"><span class="site-sidebar__ico">📌</span><span class="site-sidebar__txt">专题首页</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-cabinet-unpacked.html"><span class="site-sidebar__ico">🗄️</span><span class="site-sidebar__txt">Cabinet 解构</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-multica-unpacked.html"><span class="site-sidebar__ico">🧷</span><span class="site-sidebar__txt">Multica 解构</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-superset-unpacked.html"><span class="site-sidebar__ico">🛰️</span><span class="site-sidebar__txt">Superset 解构</span></a>' +
+        '</details>' +
+        '<details class="site-sidebar__details" data-sidebar-key="ai-scientist">' +
+        '<summary class="site-sidebar__summary"><span class="site-sidebar__txt">AI-Scientist 专题</span></summary>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-ai-scientist.html"><span class="site-sidebar__ico">🧪</span><span class="site-sidebar__txt">专题首页</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-codex-loop-in-sleep.html"><span class="site-sidebar__ico">🌙</span><span class="site-sidebar__txt">Codex-Loop In Sleep</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-deepscientist-unpacked.html"><span class="site-sidebar__ico">🧬</span><span class="site-sidebar__txt">DeepScientist 解构</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-autoresearch-unpacked.html"><span class="site-sidebar__ico">📚</span><span class="site-sidebar__txt">Autoresearch / ARIS</span></a>' +
         '</details>' +
         '<details class="site-sidebar__details" data-sidebar-key="openharness">' +
         '<summary class="site-sidebar__summary"><span class="site-sidebar__txt">开源 Harness</span></summary>' +

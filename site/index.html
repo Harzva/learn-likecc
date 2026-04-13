@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Claude Code Course - AI 编程助手学习指南</title>
+    <title>Everything in Claude-Code</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Claude Code Course - AI 编程助手学习指南">
-    <meta property="og:description" content="从 Source Map 分析到可运行版本，系统学习 Claude Code 源码">
+    <meta property="og:title" content="Everything in Claude-Code">
+    <meta property="og:description" content="不止是 Claude Code 使用教学，更面向开发者拆解 Claude Code、复刻工作流并持续扩展 Agent CLI / UI / Loop 系统。">
     <meta property="og:type" content="website">
 </head>
 <body class="home-page">
@@ -19,7 +19,7 @@
             <div class="main-nav-start">
             <a href="index.html" class="nav-logo">
                 <span class="logo-icon">🧠</span>
-                <span class="logo-text">Claude Code Course</span>
+                <span class="logo-text">Everything in Claude-Code</span>
             </a>
             <nav class="main-nav-links" aria-label="专题与栏目">
                 <a href="topic-sourcemap.html">Source Map 源码</a>
@@ -30,6 +30,8 @@
                 <a href="handbook.html">手册</a>
                 <a href="topic-ai-zahuopu.html" class="main-nav-link--feature">AI杂货铺</a>
                 <a href="topic-agent.html">Agent</a>
+                <a href="topic-ai-scientist.html">AI-Scientist</a>
+                <a href="topic-meta-agent.html">Meta-Agent</a>
                 <a href="topic-rag.html">RAG</a>
                 <a href="topic-llm.html">大模型</a>
                 <a href="topic-skillmarket.html">Skill 市场</a>
@@ -69,82 +71,104 @@
                     <span>🔥 2026.03 Source Map 事件</span>
                     <span class="hero-badge-hint" aria-hidden="true">发生了什么？</span>
                 </a>
-                <p class="hero-kicker">Claude Code</p>
+                <p class="hero-kicker">Everything in Claude-Code</p>
                 <h1 class="hero-title hero-title--home">
-                    <span class="hero-title-mainline">完全学习指南</span>
+                    <span class="hero-title-mainline">开发者视角的 Claude Code 总入口</span>
                 </h1>
                 <p class="hero-subtitle hero-subtitle--home">
-                    从源码分析到实战应用，系统学习 AI 编程助手
+                    不只讲如何使用 Claude Code，也系统拆解其工作流、源码结构与开发思路，把教程、源码、实验系统、工作台和发布链路收到同一个开发者门户里。
                 </p>
+                <div class="hero-lane-grid" aria-label="开发者入口四象限">
+                    <div class="hero-lane-card">
+                        <span class="hero-lane-card__eyebrow">Read</span>
+                        <strong>教程 / 手册 / 发版监督</strong>
+                        <p>先理解命令、技能、hooks、loop 和 changelog 这条使用面。</p>
+                    </div>
+                    <div class="hero-lane-card">
+                        <span class="hero-lane-card__eyebrow">Rebuild</span>
+                        <strong>源码拆解 / 可运行复刻</strong>
+                        <p>从 Source Map、庖丁解牛到 LikeCode，重点看系统边界与实现思路。</p>
+                    </div>
+                    <div class="hero-lane-card">
+                        <span class="hero-lane-card__eyebrow">Operate</span>
+                        <strong>Loop / Task Board / Workspace</strong>
+                        <p>把长期任务、AI Terminal、Workspace Shell 收成能持续运行的控制面。</p>
+                    </div>
+                    <div class="hero-lane-card">
+                        <span class="hero-lane-card__eyebrow">Publish</span>
+                        <strong>站点 / GitHub / Zhihu</strong>
+                        <p>从技术情报整理到专题沉淀，再到多渠道发布闭环。</p>
+                    </div>
+                </div>
                 <p class="hero-proofline">
-                    <strong>1900+</strong> 文件 · <strong>51万+</strong> 行代码 · <strong>✅ 编译通过</strong>
+                    <strong>1900+</strong> 文件 · <strong>51万+</strong> 行代码 · <strong>15+</strong> 长循环任务 · <strong>✅ 编译通过</strong>
                 </p>
                 <div class="hero-stats hero-stats--grid">
                     <div class="stat-item stat-item--panel">
                         <span class="stat-value">1900+</span>
-                        <span class="stat-label">TypeScript 文件</span>
+                        <span class="stat-label">源码与站点文件</span>
                     </div>
                     <div class="stat-item stat-item--panel">
                         <span class="stat-value">510K+</span>
-                        <span class="stat-label">代码行数</span>
+                        <span class="stat-label">代码与文档行数</span>
                     </div>
                     <div class="stat-item stat-item--panel">
                         <span class="stat-value">24</span>
-                        <span class="stat-label">课程讲次</span>
+                        <span class="stat-label">源码课讲次</span>
                     </div>
                     <div class="stat-item stat-item--panel">
-                        <span class="stat-value">✅</span>
-                        <span class="stat-label">可运行版本</span>
+                        <span class="stat-value">15+</span>
+                        <span class="stat-label">Loop / 专项任务</span>
                     </div>
                 </div>
                 <div class="hero-actions hero-actions--home">
-                    <a href="#courses" class="btn-hero btn-primary">🔬 源码课程</a>
+                    <a href="topic-loop-task-board.html" class="btn-hero btn-primary">🛰️ 打开任务驾驶舱</a>
+                    <a href="app-likecode-workspace.html" class="btn-hero btn-secondary">🧰 Workspace App</a>
                     <a href="topic-paoding-jieniu.html" class="btn-hero btn-secondary" title="庖丁解牛专题：CC 解构与 Superset 解构">🧩 庖丁解牛专题</a>
-                    <a href="tutorial.html" class="btn-hero btn-secondary">📖 Claude Code 教程</a>
-                    <a href="topic-ai-zahuopu.html" class="btn-hero btn-secondary">🛒 AI杂货铺</a>
+                    <a href="topic-sourcemap.html" class="btn-hero btn-secondary">🔬 Source Map 源码专题</a>
                 </div>
             </div>
             <aside class="hero-visual-card hero-visual-card--home" aria-label="首页导览">
                 <div class="hero-visual-head">
-                    <p class="hero-visual-kicker">精选入口</p>
-                    <h2>快速找到你想看的内容</h2>
-                    <p>这里整理了事件、课程、教程和专题入口，方便你直接开始浏览。</p>
+                    <p class="hero-visual-kicker">Portal Map</p>
+                    <h2>从入口到系统壳，一眼看清工作流</h2>
+                    <p>这块不只列页面入口，而是把“学习、拆解、运行、发布”四层开发路径收成可直接跳转的工作台。</p>
                 </div>
                 <div class="hero-flow">
                     <div class="hero-flow-node hero-flow-node-session">
-                        <span class="hero-flow-label">事件</span>
-                        <strong>2026.03 Source Map 事件</strong>
+                        <span class="hero-flow-label">入口</span>
+                        <strong>Source Map / 庖丁解牛 / 教程</strong>
                     </div>
                     <div class="hero-flow-arrow">↓</div>
                     <div class="hero-flow-node hero-flow-node-router">
-                        <span class="hero-flow-label">路径</span>
-                        <strong>源码课程 → 教程 → 专题深挖</strong>
+                        <span class="hero-flow-label">收口</span>
+                        <strong>Task Board → Workspace → Runtime Monitor</strong>
                     </div>
                 </div>
                 <div class="hero-provider-grid">
                     <a class="hero-provider-card hero-provider-card--link" href="topic-sourcemap.html">
-                        <span class="hero-provider-name">源码课程</span>
-                        <span class="hero-provider-meta">24 讲课程、事件与源码清单</span>
+                        <span class="hero-provider-name">Source Map 源码专题</span>
+                        <span class="hero-provider-meta">事件、课程、源码清单与复刻线索</span>
                     </a>
                     <a class="hero-provider-card hero-provider-card--link" href="tutorial.html">
-                        <span class="hero-provider-name">官方教程</span>
-                        <span class="hero-provider-meta">安装、配置、技能与使用说明</span>
+                        <span class="hero-provider-name">教程 / 手册</span>
+                        <span class="hero-provider-meta">安装、配置、技能、更新与上手路径</span>
                     </a>
                     <a class="hero-provider-card hero-provider-card--link" href="topic-paoding-jieniu.html">
-                        <span class="hero-provider-name">庖丁解牛</span>
-                        <span class="hero-provider-meta">Claude Code 与 Superset 专题解析</span>
+                        <span class="hero-provider-name">庖丁解牛专题</span>
+                        <span class="hero-provider-meta">Claude Code、Superset 与系统壳拆解</span>
                     </a>
-                    <a class="hero-provider-card hero-provider-card--link" href="handbook.html">
-                        <span class="hero-provider-name">完全手册</span>
-                        <span class="hero-provider-meta">从入门到进阶的路线图</span>
+                    <a class="hero-provider-card hero-provider-card--link" href="topic-loop-task-board.html">
+                        <span class="hero-provider-name">任务驾驶舱</span>
+                        <span class="hero-provider-meta">看长期任务、进度、evolution 与待发布视图</span>
                     </a>
-                    <a class="hero-provider-card hero-provider-card--link" href="topic-ai-zahuopu.html">
-                        <span class="hero-provider-name">AI杂货铺</span>
-                        <span class="hero-provider-meta">AI智能体、编程工具、API 与评测专题</span>
+                    <a class="hero-provider-card hero-provider-card--link" href="app-likecode-workspace.html">
+                        <span class="hero-provider-name">Workspace App</span>
+                        <span class="hero-provider-meta">计划编辑、connector shell、runtime 同屏</span>
                     </a>
-                    <a class="hero-provider-card hero-provider-card--link" href="topic-ai-agents.html">
-                        <span class="hero-provider-name">AI智能体</span>
-                        <span class="hero-provider-meta">通用 Agent、OpenClaw 生态与浏览器路线</span>
+                    <a class="hero-provider-card hero-provider-card--link" href="topic-codex-loop-console.html">
+                        <span class="hero-provider-name">AI Terminal</span>
+                        <span class="hero-provider-meta">daemon、thread、shell pane 与日志监视</span>
                     </a>
                 </div>
             </aside>
@@ -167,8 +191,8 @@
                     <div class="home-map-core">
                         <span class="home-map-core__kicker">首页</span>
                         <span class="home-map-core__icon" aria-hidden="true">🧠</span>
-                        <h3>Claude Code 学习主页</h3>
-                        <p>在这里可以快速找到课程、教程、专题和扩展阅读内容。</p>
+                        <h3>Everything in Claude-Code</h3>
+                        <p>在这里快速进入教程、源码拆解、专题研究、开发实验与站点级工作台。</p>
                     </div>
 
                     <a class="home-map-node home-map-node--source" href="topic-sourcemap.html">
@@ -1276,7 +1300,7 @@ jobs:
         <div class="container">
             <div class="footer-grid-main">
                 <div class="footer-brand-main">
-                    <span class="footer-logo-main">🧠 Claude Code Course</span>
+                    <span class="footer-logo-main">🧠 Everything in Claude-Code</span>
                     <p>深入理解 AI 编程助手的构建原理</p>
                     <p class="footer-disclaimer">本项目与 Anthropic 官方无关</p>
                 </div>
@@ -1325,7 +1349,7 @@ jobs:
             </div>
             <div class="footer-bottom-main">
                 <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/index.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
-                <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+                <p>© 2026 Everything in Claude-Code. 仅供学习研究使用。</p>
             </div>
         </div>
     </footer>

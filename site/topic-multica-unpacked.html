@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multica 解构 - (Managed) Meta-Agent 专题</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧷</text></svg>">
+    <meta name="description" content="Managed Meta-Agent 子专题：拆 Multica 如何把 board、workspace、local daemon、runtime registry 与 skill compounding 组织成更接近 Claude Managed Agents 的开源替代。">
+    <meta name="page:updated" content="2026-04-13">
+</head>
+<body class="cc-unpacked-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🧷</span>
+                <span class="logo-text">Multica 解构</span>
+            </a>
+            <div class="nav-links">
+                <a href="#why" class="nav-link">01 为什么值得拆</a>
+                <a href="#layers" class="nav-link">02 分层</a>
+                <a href="#daemon" class="nav-link">03 Daemon / Runtime</a>
+                <a href="#board" class="nav-link">04 Board 视角</a>
+                <a href="#skills" class="nav-link">05 Skill Compounding</a>
+                <a href="#lessons" class="nav-link">06 值得学什么</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-meta-agent.html" class="btn-github">Meta-Agent 专题</a>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>Meta-Agent · 子专题</span>
+                <span>Managed Agents Platform</span>
+            </div>
+            <h1 class="hero-title">
+                Multica<br>
+                <span class="gradient-text">解构</span>
+            </h1>
+            <p class="hero-subtitle">
+                `Multica` 更接近大家口中的“开源版 Managed Agents”。它不是从知识库先出发，而是把 <strong>board、workspace、local daemon、runtime registry 和 skill compounding</strong> 拼成一个更像 AI 版 Linear 的 managed agents 平台。
+            </p>
+            <div class="hero-actions">
+                <a href="#layers" class="btn btn-primary">先看 02 分层</a>
+                <a href="topic-meta-agent.html" class="btn btn-secondary">回到总专题</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="course-main devlog-main">
+        <div class="container container--layout-wide">
+            <article class="course-content devlog-content">
+                <section id="why" class="section-block">
+                    <h2>01 · 为什么 Multica 值得单独拆</h2>
+                    <p>`Multica` 之所以重要，是因为它把“多个 coding agents 如何像人类队友一样被管理”这件事做成了产品壳，而不只是一组后台 worker。</p>
+                    <p>从 README 看，它最核心的动作是：把 agent 放到 board 上，让它们被分配任务、发评论、汇报阻塞、沉淀 skill。也就是说，它不是在卖某个模型，而是在卖 <strong>managed agents project platform</strong>。</p>
+                </section>
+
+                <section id="layers" class="section-block">
+                    <h2>02 · Multica 先拼的是哪几层</h2>
+                    <table class="options-table">
+                        <tr><th>层次</th><th>关键锚点</th><th>解决的问题</th></tr>
+                        <tr><td>前端层</td><td>Next.js board / workspace</td><td>人和 agent 如何在同一个任务面上协作</td></tr>
+                        <tr><td>后端层</td><td>Go backend + websocket + PostgreSQL</td><td>任务流、状态流、runtime 注册如何统一</td></tr>
+                        <tr><td>runtime 层</td><td>local daemon、cloud runtime、CLI auto-detect</td><td>Agent 到底在哪台机器、用哪个 provider 干活</td></tr>
+                        <tr><td>agent 执行层</td><td>Claude Code / Codex / OpenClaw / OpenCode</td><td>真正执行代码任务的 worker 从哪来</td></tr>
+                        <tr><td>能力沉淀层</td><td>successful solutions become reusable skills</td><td>成功经验如何变成团队资产，而不是只存在一次任务里</td></tr>
+                    </table>
+                </section>
+
+                <section id="daemon" class="section-block">
+                    <h2>03 · 它最关键的地方：Daemon 和 Runtime 被正式命名了</h2>
+                    <p>`Multica` 很值得我们参考的一点，是它把很多项目里“默认藏着的层”都正式命名了：`daemon`、`runtime`、`workspace`、`agent`。</p>
+                    <p>这和我们现在给 `codex-loop` 补的 `connector / runtime / daemon` 三层很接近。区别是 Multica 先把这套东西产品化成了 board + daemon 的形式，让“agent 在哪台机器上跑、当前活着没有、能接什么 CLI”都变成可见状态。</p>
+                </section>
+
+                <section id="board" class="section-block">
+                    <h2>04 · 它不是聊天前端，而是 Board 视角的多 Agent 协作面</h2>
+                    <p>如果说 Cabinet 把知识库当主壳，Multica 则明显把 board 当主壳。这里最重要的不是一个更华丽的聊天框，而是：<strong>agent 像同事一样出现在任务板上</strong>。</p>
+                    <p>这意味着它的主视角不是“我和一个 agent 对话”，而是“团队里有哪些 agent、谁领了什么活、谁卡住了、谁交付了结果”。这就是 managed agents 和单 agent 工具最大的产品观差异。</p>
+                    <div class="course-quote">
+                        <p><strong>[插图提示词]</strong></p>
+                        <p>用途：画 Multica 的 board-first managed agents 架构。</p>
+                        <p>形式：分层结构图；Mermaid 很合适。</p>
+                        <p>提示词：顶部是 Next.js board/workspace，中间是 Go backend + websocket + postgres，下面是 local daemon 与 runtime registry，再下面是 Claude Code / Codex / OpenClaw / OpenCode worker providers，侧边加 reusable skills 回灌到 team memory。</p>
+                        <p>Mermaid 更适合：是。</p>
+                    </div>
+                </section>
+
+                <section id="skills" class="section-block">
+                    <h2>05 · “成功方案沉淀成 Skill” 是最有产品味的一层</h2>
+                    <p>README 里这句非常关键：<code>successful solutions automatically become reusable skills</code>。这不是一个可有可无的小功能，而是 Multica 最像“团队系统”的地方。</p>
+                    <p>它不只是把 agent 任务跑完，而是试图把团队里一次次成功的处理方式收成下一次可以复用的 skill。这个思路和我们自己的 `skills + plan + evolution` 很接近，只是 Multica 把它更明确地和 board、runtime、workspace 绑在了一起。</p>
+                </section>
+
+                <section id="lessons" class="section-block">
+                    <h2>06 · 对 LikeCode / codex-loop 最值得学什么</h2>
+                    <div class="course-quote">
+                        <p><strong>第一</strong>，daemon / runtime / worker provider 要成为正式层，而不是隐形脚本。</p>
+                        <p><strong>第二</strong>，多 agent 协作的主视角更适合落在 board / assignment / blocker / status，而不是单个聊天窗口。</p>
+                        <p><strong>第三</strong>，skill compounding 很值得学，它让结果不只回到 transcript，而是回到团队长期能力里。</p>
+                        <p><strong>第四</strong>，Multica 更像 runtime-first 的 managed agents 平台，这点和 Cabinet 的 knowledge-first 形成了很好的对照。</p>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2>参考与原始链接</h2>
+                    <ul>
+                        <li><a href="https://github.com/multica-ai/multica" target="_blank" rel="noopener noreferrer">multica-ai/multica</a></li>
+                        <li><a href="https://multica.ai" target="_blank" rel="noopener noreferrer">Multica 官网</a></li>
+                        <li><code>reference/reference_meta(Manage)agent/multica/README.md</code></li>
+                        <li><code>reference/reference_meta(Manage)agent/multica/docs/</code></li>
+                        <li><code>reference/reference_meta(Manage)agent/multica/cli/</code></li>
+                    </ul>
+                </section>
+
+                <div class="chapter-navigation">
+                    <a href="topic-cabinet-unpacked.html" class="btn btn-secondary">← Cabinet 解构</a>
+                    <a href="topic-meta-agent.html" class="btn btn-primary">回到 Meta-Agent 总专题 →</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container container--layout-wide">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-multica-unpacked.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>© 2026 Everything in Claude-Code. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

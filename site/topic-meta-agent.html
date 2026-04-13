@@ -3,24 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meta-Agent 专题 - Claude Code Course</title>
+    <title>(Managed) Meta-Agent 专题 - Everything in Claude-Code</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛰️</text></svg>">
-    <meta name="description" content="Meta-Agent 专题：以 Superset 为参考，拆解外层 agent 如何调度内层 agent，并推导 Like Code 如何以 Claude Code 为中心走出差异化。">
-    <meta name="page:updated" content="2026-04-12">
+    <meta name="description" content="Managed / Meta-Agent 专题：从 Claude Managed Agents、Cabinet、Multica、Superset 四条线看，谁在管理 agent，runtime / daemon / board / knowledge base 又是如何协同的。">
+    <meta name="page:updated" content="2026-04-13">
 </head>
 <body class="meta-topic-page">
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
                 <span class="logo-icon">🛰️</span>
-                <span class="logo-text">Meta-Agent</span>
+                <span class="logo-text">(Managed) Meta-Agent</span>
             </a>
             <div class="nav-links">
-                <a href="#meaning" class="nav-link">定义</a>
-                <a href="#superset" class="nav-link">Superset</a>
-                <a href="#likecode" class="nav-link">Like Code</a>
-                <a href="#baseline" class="nav-link">产品基线</a>
+                <a href="#why" class="nav-link">为什么现在看</a>
+                <a href="#managed" class="nav-link">Claude Managed Agents</a>
+                <a href="#compare" class="nav-link">三种路线</a>
+                <a href="#unpacked" class="nav-link">庖丁解牛</a>
+                <a href="#search" class="nav-link">相关仓库</a>
+                <a href="#route" class="nav-link">专题展开</a>
             </div>
             <div class="nav-actions">
                 <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
@@ -33,99 +35,197 @@
     <section class="hero handbook-hero">
         <div class="hero-content">
             <div class="hero-badge">
-                <span>🛰️ 子专题</span>
-                <span>外层 agent 调内层 agent</span>
+                <span>🛰️ 新总专题</span>
+                <span>Managed Agents · Meta-Agent · Runtime / Daemon / Board</span>
             </div>
             <h1 class="hero-title">
-                Meta-Agent<br>
-                <span class="gradient-text">学会去 agent 一个 agent</span>
+                (Managed) Meta-Agent<br>
+                <span class="gradient-text">学会去管理 agent，而不只是再开一个 agent</span>
             </h1>
             <p class="hero-subtitle">
-                今天是 <strong>2026-04-09</strong>，我们先把这个能力正式命名为 <strong>meta-agent</strong>。<br>
-                它关心的不是“多开几个模型”，而是：<strong>外层 agent 如何理解任务、拆任务、调度 inner agent、再回收结果</strong>。
+                这条专题讨论的不是“哪个模型更聪明”，而是：<strong>当一个团队里同时跑多个 agent 时，谁来调度、谁来记忆、谁来隔离、谁来把结果回收到一个可管理的工作台里。</strong><br>
+                这也是为什么 `Claude Managed Agents` 一出来，开源社区立刻出现了 <code>Cabinet</code> 和 <code>Multica</code> 这样的回应路线。
             </p>
+            <div class="hero-actions">
+                <a href="#compare" class="btn btn-primary">先看结构对照</a>
+                <a href="#unpacked" class="btn btn-secondary">进入庖丁解牛入口</a>
+            </div>
         </div>
     </section>
 
-    <section id="meaning" class="section section--soft meta-topic-section meta-topic-section--entry">
+    <section id="why" class="section section--soft meta-topic-section meta-topic-section--entry">
         <div class="container">
-            <h2 class="section-title">它到底是什么意思</h2>
+            <h2 class="section-title">为什么现在应该把它单独立成大专题</h2>
             <p class="section-desc meta-topic-copy meta-topic-copy--lead">
-                这里的 `meta-agent` 不是更强一点的模型名字，而是一个结构概念：
+                过去很多人把 agent 理解成“一个终端里的一个会话”。但一旦你要同时让多个 agent 写代码、跑测试、监控服务、读文档、做 review，这个抽象就不够了。
             </p>
             <div class="quickstart-grid meta-topic-grid meta-topic-grid--concept">
                 <div class="quickstart-card">
-                    <h3>外层 agent</h3>
-                    <p>负责理解任务、拆任务、决定谁去做、什么时候回收结果。</p>
+                    <h3>不再只是单 Agent</h3>
+                    <p>问题不再是“Agent 会不会做”，而是“多个 agent 怎么不打架、怎么恢复、怎么并行”。</p>
                 </div>
                 <div class="quickstart-card">
-                    <h3>内层 agent</h3>
-                    <p>负责执行具体任务，可以是 Claude Code、Codex、Gemini CLI 等 worker。</p>
+                    <h3>控制面开始成型</h3>
+                    <p>Board、daemon、runtime、container、session log、connector、skill library 开始成为正式层，而不是零散脚本。</p>
                 </div>
                 <div class="quickstart-card">
-                    <h3>关键能力</h3>
-                    <p>真正难的不是多开窗口，而是让外层系统持续看见、控制、回收这些 inner agents。</p>
+                    <h3>LikeCode 也会走到这里</h3>
+                    <p>我们自己的 workspace、codex-loop、connector shell，本质上也正在从“单任务代理”走向“managed agents shell”。</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="superset" class="section">
+    <section id="managed" class="section">
         <div class="container">
-            <h2 class="section-title">Superset 是怎么做到的</h2>
+            <h2 class="section-title">Claude Managed Agents 到底讲清了什么</h2>
             <p class="section-desc meta-topic-copy meta-topic-copy--lead">
-                从参考工程看，`Superset` 本质上不是单个 agent，而是一个 <strong>agent orchestration shell</strong>。它把这五层拼在一起：
+                这条官方路线真正有价值的，不是“Anthropic 又发了新功能”，而是它把 agent 拆成了更清楚的三层：
             </p>
             <div class="quickstart-grid meta-topic-grid meta-topic-grid--stack">
-                <div class="quickstart-card"><h3>1. Workspace / Worktree</h3><p>给每个任务一个独立容器，解决隔离问题。</p></div>
-                <div class="quickstart-card"><h3>2. Terminal</h3><p>把 CLI agent 变成可拉起、可附着、可回放的运行体。</p></div>
-                <div class="quickstart-card"><h3>3. Chat</h3><p>不是普通聊天框，而是控制协议入口。</p></div>
-                <div class="quickstart-card"><h3>4. Panes / Tabs</h3><p>把 worker 变成可切换、可观察的工作位。</p></div>
-                <div class="quickstart-card"><h3>5. Host-Service</h3><p>真正的外层调度中枢，统一 runtime、事件、terminal、git、fs 状态。</p></div>
+                <div class="quickstart-card">
+                    <h3>大脑</h3>
+                    <p>模型 + 调度器，负责规划和决策。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>手</h3>
+                    <p>一次性的 sandbox / container，负责执行；挂了就换，不和凭证直接耦合。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>记忆</h3>
+                    <p>append-only session events，让 agent crash 后还能恢复。</p>
+                </div>
             </div>
             <p class="section-desc meta-topic-copy meta-topic-copy--tail">
-                所以 `Superset` 不是“多终端工具”，而是“系统替你管理多个 inner agents”。这就是它的 meta-agent 味道。
+                这套拆法有个很强的启发：<strong>Managed Agents 不是更强的单个 agent，而是一个“谁来管 agent”的基础设施层。</strong>
             </p>
+            <div class="course-quote">
+                <p><strong>官方锚点</strong>：<a href="https://claude.com/blog/claude-managed-agents" target="_blank" rel="noopener noreferrer">Claude Managed Agents</a></p>
+                <p><strong>这页关注的不是营销文案</strong>，而是它如何把 runtime、container、安全隔离和 event log 组合成正式运行时。</p>
+            </div>
         </div>
     </section>
 
-    <section id="likecode" class="section section--soft">
+    <section id="compare" class="section section--soft">
         <div class="container">
-            <h2 class="section-title">Like Code 应该怎么学它</h2>
+            <h2 class="section-title">现在至少要区分三种路线</h2>
+            <table class="compare-table">
+                <tr>
+                    <th>样本</th>
+                    <th>更像什么</th>
+                    <th>控制面在哪</th>
+                    <th>持久状态在哪</th>
+                    <th>最值得学什么</th>
+                </tr>
+                <tr>
+                    <td><code>Claude Managed Agents</code></td>
+                    <td>基础设施层</td>
+                    <td>managed runtime + container + event log</td>
+                    <td>session events、sandbox state、vault</td>
+                    <td>脑/手/记忆彻底解耦，agent 不再直接等于终端会话。</td>
+                </tr>
+                <tr>
+                    <td><code>Cabinet</code></td>
+                    <td>knowledge-first startup OS</td>
+                    <td>知识库、agent team、cron jobs、web terminal</td>
+                    <td>markdown on disk + git history</td>
+                    <td>上下文工程怎样变成团队知识库，而不是会话临时上下文。</td>
+                </tr>
+                <tr>
+                    <td><code>Multica</code></td>
+                    <td>managed agents project board</td>
+                    <td>board、Go backend、local daemon、workspace</td>
+                    <td>Postgres + runtime registry + skill compounding</td>
+                    <td>怎么把多个 coding agents 变成“像同事一样被派单”的队友。</td>
+                </tr>
+                <tr>
+                    <td><code>Superset</code></td>
+                    <td>orchestration shell</td>
+                    <td>host-service、workspace/worktree、panes</td>
+                    <td>terminal / worktree / pane state</td>
+                    <td>如何在工作台外层调 inner agent，并维持可见工作位。</td>
+                </tr>
+            </table>
+            <figure class="mermaid-figure mermaid-figure--main" aria-label="Managed Meta-Agent 四条路线总图">
+                <figcaption class="mermaid-caption">
+                    <strong>Managed / Meta-Agent 四条路线总图</strong>
+                </figcaption>
+                <div class="mermaid-diagram-scroll mermaid-diagram-scroll--xl" data-mermaid-diagram="managed-meta-agent-landscape"></div>
+            </figure>
+        </div>
+    </section>
+
+    <section id="unpacked" class="section">
+        <div class="container">
+            <h2 class="section-title">庖丁解牛入口：不要只看概念，要看工程壳层</h2>
+            <div class="quickstart-grid meta-topic-grid meta-topic-grid--entry">
+                <a href="topic-cabinet-unpacked.html" class="quickstart-card quickstart-card-link">
+                    <h3>🗄️ Cabinet 解构</h3>
+                    <p>看它如何把 markdown knowledge base、Git history、AI team、scheduled jobs 与 web terminal 收成一个 AI-first startup OS。</p>
+                    <p><strong>进入 →</strong></p>
+                </a>
+                <a href="topic-multica-unpacked.html" class="quickstart-card quickstart-card-link">
+                    <h3>🧷 Multica 解构</h3>
+                    <p>看它如何把 board、workspace、local daemon、runtime 和 skill compounding 收成一个更接近 managed agents 的开源替代。</p>
+                    <p><strong>进入 →</strong></p>
+                </a>
+                <a href="topic-superset-unpacked.html" class="quickstart-card quickstart-card-link">
+                    <h3>🛰️ Superset 解构</h3>
+                    <p>看外层 orchestration shell 怎样调 inner agent，适合和 Managed Agents 路线做对照。</p>
+                    <p><strong>进入 →</strong></p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="search" class="section section--soft">
+        <div class="container">
+            <h2 class="section-title">用 GitHub 搜索 skill 补出来的相关候选</h2>
             <p class="section-desc meta-topic-copy meta-topic-copy--lead">
-                我们不应该照着 `Superset` 再造一个外部总控台。真正要拿走的是：
+                除了 `Cabinet` 和 `Multica`，这一轮还用仓库搜索技能补看了几类更大的 managed / orchestration 平台。
             </p>
             <div class="quickstart-grid meta-topic-grid meta-topic-grid--concept">
                 <div class="quickstart-card">
-                    <h3>worker runtime</h3>
-                    <p>把外部 CLI agent 抽象成可调用 worker，而不是一堆散乱终端。</p>
+                    <h3>基础设施 / orchestration 大盘</h3>
+                    <p><code>agno</code>、<code>trigger.dev</code>、<code>symphony</code>、<code>swarm</code></p>
+                    <p>更适合当“Managed Agents 更大背景”的候选，不一定都要单独开页。</p>
                 </div>
                 <div class="quickstart-card">
-                    <h3>统一状态流</h3>
-                    <p>pane、subagent、repo/worktree、prompt、progress、result 都要能串起来。</p>
+                    <h3>更接近多 agent 指挥台</h3>
+                    <p><code>ruflo</code>、<code>mission-control</code>、<code>kiwiq</code>、<code>routa</code></p>
+                    <p>这些更像 `Cabinet / Multica / Superset` 的同类或邻居样本，后面值得继续筛。</p>
                 </div>
                 <div class="quickstart-card">
-                    <h3>Claude Code 为中心</h3>
-                    <p>不是外面再造一个中心，而是让 Claude Code / Like Code 自己学会调度别的 agent。</p>
+                    <h3>当前判断</h3>
+                    <p>这条专题下一步最值当的不是继续 clone 一堆仓库，而是先把 <strong>knowledge-first</strong> 与 <strong>runtime-first</strong> 两条主线写清楚。</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="baseline" class="section">
+    <section id="route" class="section">
         <div class="container">
-            <h2 class="section-title">把什么做到基线，才算产品</h2>
-            <p class="section-desc meta-topic-copy meta-topic-copy--lead">
-                这条线上，产品基线不该是“支持很多 agent”这种口号，而应该是这几件事：
-            </p>
+            <h2 class="section-title">这条专题最顺的展开路线</h2>
             <div class="quickstart-grid meta-topic-grid meta-topic-grid--stack">
-                <div class="quickstart-card"><h3>可拉起</h3><p>在主线程里一键拉起外部 worker。</p></div>
-                <div class="quickstart-card"><h3>可看见</h3><p>知道它在哪个 pane、哪个 repo/worktree、当前状态如何。</p></div>
-                <div class="quickstart-card"><h3>可控制</h3><p>支持中断、重试、继续、回收结果。</p></div>
-                <div class="quickstart-card"><h3>可回灌</h3><p>结果能重新并回主线程 transcript，而不是散落在外部终端。</p></div>
+                <div class="quickstart-card">
+                    <h3>第一步：先固化总页</h3>
+                    <p>把 `Managed Agents / Cabinet / Multica / Superset` 放到同一张结构图里，先固定“谁更像基础设施、谁更像工作台”。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>第二步：做 Cabinet / Multica 解构</h3>
+                    <p>把最有代表性的两个开源样本拆成庖丁解牛子页，而不是只在总页里挂几句摘要。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>第三步：回写到 LikeCode</h3>
+                    <p>把 `workspace shell / connector shell / runtime-daemon-connector` 这些设计讨论回写到我们自己的工程里。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>第四步：补更多邻居样本</h3>
+                    <p>等总页和两篇子页稳定后，再继续引入 `ruflo / mission-control / kiwiq` 等更像 managed control plane 的候选。</p>
+                </div>
             </div>
             <p class="section-desc meta-topic-copy meta-topic-copy--tail">
-                一句话收尾：<strong>Superset 教我们“如何在外层调度 agent”；Like Code 要做的是“如何让 Claude Code 自己学会调度 agent”。</strong>
+                一句话收尾：<strong>Meta-Agent 专题的重点不是“再找一个更强 agent”，而是“谁来管理 agent，以及怎样把 agent 变成可运营的系统层”。</strong>
             </p>
         </div>
     </section>
@@ -133,9 +233,11 @@
     <footer class="footer">
         <div class="container">
             <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-meta-agent.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
-            <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+            <p>本地锚点：<code>reference/reference_meta(Manage)agent/cabinet/</code>、<code>reference/reference_meta(Manage)agent/multica/</code>、<code>reference/reference_agent/multica/</code></p>
+            <p>© 2026 Everything in Claude-Code. 仅供学习研究使用。</p>
         </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js" crossorigin="anonymous"></script>
     <script src="js/app.js"></script>
 </body>
 </html>
