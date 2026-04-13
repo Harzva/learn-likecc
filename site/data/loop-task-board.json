@@ -1,13 +1,13 @@
 {
   "meta": {
     "updated_from": ".codex-loop/prompt.md",
-    "task_count": 16,
-    "recurring_count": 13,
+    "task_count": 17,
+    "recurring_count": 14,
     "inline_count": 3,
     "state_counts": {
       "deferred": 2,
       "done": 2,
-      "active": 7,
+      "active": 8,
       "queued": 2
     },
     "semantic_groups": [
@@ -18,7 +18,7 @@
       "发布跟踪 / 热点观察",
       "站点治理 / 导览结构"
     ],
-    "zhihu_ready_count": 7
+    "zhihu_ready_count": 8
   },
   "recurring": [
     {
@@ -847,25 +847,25 @@
       "has_evolution": false,
       "is_publish_ready": false,
       "is_zhihu_ready": false,
-      "search_text": "Loop task: keep growing the `Design/UI` line for deck pages, slides, programmatic video, and drawing/demo plugins by following the dedicated plan file: Loop task: keep growing the `Design/UI` line for deck pages, slides, programmatic video, and drawing/demo plugins by following the dedicated plan file: - `.claude/plans/loloop/active-design-ui-topic-plan-v1.md` Execution rule: 1. Read that plan first. 2. Continue the current unchecked / active item instead of randomly switching. 3. After each bounded pass: - mark progress in the plan file - check off any completed item design-ui-topic Design/UI Topic Plan v1 build `Design/UI` into a stable long-running line that covers deck generation, developer slides, programmatic video, and drawing/demo plugin workflows for the site, teaching pages, and media output. - [x] Create a top-level `Design/UI` hub under `site/topic-design-ui.html` - [x] Split the line into one tutorial page and one unpacked page - [x] Clone `LivePPT`, `Remotion`, and `Slidev` into `reference/reference_design_ui/` - [x] Connect the topic into top navigation and the left sidebar - [ ] Add a first follow-up pass that turns one mature site topic into a concrete `deck / slides / video` workflow comparison - [ ] Add a first plugin-facing pass that maps existing drawing capabilities (`Mermaid / html-card-to-png / screenshot`) onto this Design/UI line - [ ] design/ui topic hub - [ ] tutorial path for creators - [ ] unpacked comparison path - [ ] drawing and demo plugin line - [ ] reference-backed workflow recipes - [ ] future site-to-deck / site-to-slides / site-to-video experiments - [ ] `node --check site/js/app.js` - [ ] `python3 tools/refresh_site_topic_metadata.py` - [ ] `python3 tools/build_loop_task_board.py` - [ ] `python3 tools/check_site_md_parity.py`",
+      "search_text": "Loop task: keep growing the `Design/UI` line for deck pages, slides, programmatic video, and drawing/demo plugins by following the dedicated plan file: Loop task: keep growing the `Design/UI` line for deck pages, slides, programmatic video, and drawing/demo plugins by following the dedicated plan file: - `.claude/plans/loloop/active-design-ui-topic-plan-v1.md` Execution rule: 1. Read that plan first. 2. Continue the current unchecked / active item instead of randomly switching. 3. After each bounded pass: - mark progress in the plan file - check off any completed item design-ui-topic Design/UI Topic Plan v1 build `Design/UI` into a stable long-running line that covers deck generation, developer slides, programmatic video, and drawing/demo plugin workflows for the site, teaching pages, and media output. - [x] Create a top-level `Design/UI` hub under `site/topic-design-ui.html` - [x] Split the line into one tutorial page and one unpacked page - [x] Clone `LivePPT`, `Remotion`, and `Slidev` into `reference/reference_design_ui/` - [x] Connect the topic into top navigation and the left sidebar - [x] Add a first follow-up pass that turns one mature site topic into a concrete `deck / slides / video` workflow comparison - [x] Add a first plugin-facing pass that maps existing drawing capabilities (`Mermaid / html-card-to-png / screenshot`) onto this Design/UI line - [ ] design/ui topic hub - [ ] tutorial path for creators - [ ] unpacked comparison path - [x] drawing and demo plugin line - [ ] reference-backed workflow recipes - [ ] future site-to-deck / site-to-slides / site-to-video experiments - [ ] `node --check site/js/app.js` - [ ] `python3 tools/refresh_site_topic_metadata.py` - [ ] `python3 tools/build_loop_task_board.py` - [ ] `python3 tools/check_site_md_parity.py`",
       "plan": {
         "title": "Design/UI Topic Plan v1",
         "status": "active",
         "goal": "build `Design/UI` into a stable long-running line that covers deck generation, developer slides, programmatic video, and drawing/demo plugin workflows for the site, teaching pages, and media output.",
-        "updated_at": "unknown",
+        "updated_at": "2026-04-13",
         "current_focus": [
           "- [x] Create a top-level `Design/UI` hub under `site/topic-design-ui.html`",
           "- [x] Split the line into one tutorial page and one unpacked page",
           "- [x] Clone `LivePPT`, `Remotion`, and `Slidev` into `reference/reference_design_ui/`",
           "- [x] Connect the topic into top navigation and the left sidebar",
-          "- [ ] Add a first follow-up pass that turns one mature site topic into a concrete `deck / slides / video` workflow comparison",
-          "- [ ] Add a first plugin-facing pass that maps existing drawing capabilities (`Mermaid / html-card-to-png / screenshot`) onto this Design/UI line"
+          "- [x] Add a first follow-up pass that turns one mature site topic into a concrete `deck / slides / video` workflow comparison",
+          "- [x] Add a first plugin-facing pass that maps existing drawing capabilities (`Mermaid / html-card-to-png / screenshot`) onto this Design/UI line"
         ],
         "scope": [
           "- [ ] design/ui topic hub",
           "- [ ] tutorial path for creators",
           "- [ ] unpacked comparison path",
-          "- [ ] drawing and demo plugin line",
+          "- [x] drawing and demo plugin line",
           "- [ ] reference-backed workflow recipes",
           "- [ ] future site-to-deck / site-to-slides / site-to-video experiments"
         ],
@@ -881,9 +881,62 @@
           "- `LivePPT` = deck / fast presentation layer",
           "- `Slidev` = developer slide system"
         ],
-        "completed_count": 8,
+        "completed_count": 13,
         "total_count": 22,
-        "progress": 36
+        "progress": 59
+      }
+    },
+    {
+      "id": 17,
+      "headline": "Loop task: keep growing the paper-reading topic line by following the dedicated plan file:",
+      "prompt_excerpt": "Loop task: keep growing the paper-reading topic line by following the dedicated plan file:\n- `.claude/plans/loloop/active-paper-reading-topic-plan-v1.md`\nExecution rule:\n1. Read that plan first.\n2. Continue the current unchecked / active item instead of randomly switching.\n3. After each bounded pass:\n- mark progress in the plan file\n- check off any completed item",
+      "type": "recurring",
+      "state": "active",
+      "plan_path": ".claude/plans/loloop/active-paper-reading-topic-plan-v1.md",
+      "slug": "paper-reading-topic",
+      "plan_href": "https://github.com/Harzva/learn-likecc/blob/main/.claude/plans/loloop/active-paper-reading-topic-plan-v1.md",
+      "semantic_group": "其他循环任务",
+      "latest_evolution": null,
+      "topic_links": [],
+      "has_topic": false,
+      "has_evolution": false,
+      "is_publish_ready": true,
+      "is_zhihu_ready": true,
+      "search_text": "Loop task: keep growing the paper-reading topic line by following the dedicated plan file: Loop task: keep growing the paper-reading topic line by following the dedicated plan file: - `.claude/plans/loloop/active-paper-reading-topic-plan-v1.md` Execution rule: 1. Read that plan first. 2. Continue the current unchecked / active item instead of randomly switching. 3. After each bounded pass: - mark progress in the plan file - check off any completed item paper-reading-topic Paper Reading Topic Plan v1 grow the site-level paper-reading line into a reusable hub for paper shelves, per-paper analysis pages, screenshot previews, and future topic-specific paper clusters. - [x] Upgrade `topic-agent-papers.html` from a placeholder into a real paper-reading hub - [x] Download the first four `Agent Skills` papers into `reference/reference_paper/agent-skills-papers/` - [x] Extract first-page preview screenshots for each paper - [x] Create one analysis page per paper for the first four papers - [ ] Add the first site navigation / topic-hub linkage pass so the paper-reading line is easier to discover outside the Agent topic - [ ] Define the next paper cluster after `Agent Skills` and decide whether it belongs under Agent, AI-Scientist, RAG, or a new paper sub-hub - [ ] paper-reading hub page - [ ] local paper shelf and PDF references - [ ] screenshot-first paper previews - [ ] per-paper analysis pages - [ ] future topic-specific paper clusters - [ ] screenshot / diagram / zhihu adaptation opportunities - [ ] `python3 tools/refresh_site_topic_metadata.py` - [ ] `python3 tools/build_loop_task_board.py` - [ ] `python3 tools/check_site_md_parity.py`",
+      "plan": {
+        "title": "Paper Reading Topic Plan v1",
+        "status": "active",
+        "goal": "grow the site-level paper-reading line into a reusable hub for paper shelves, per-paper analysis pages, screenshot previews, and future topic-specific paper clusters.",
+        "updated_at": "unknown",
+        "current_focus": [
+          "- [x] Upgrade `topic-agent-papers.html` from a placeholder into a real paper-reading hub",
+          "- [x] Download the first four `Agent Skills` papers into `reference/reference_paper/agent-skills-papers/`",
+          "- [x] Extract first-page preview screenshots for each paper",
+          "- [x] Create one analysis page per paper for the first four papers",
+          "- [ ] Add the first site navigation / topic-hub linkage pass so the paper-reading line is easier to discover outside the Agent topic",
+          "- [ ] Define the next paper cluster after `Agent Skills` and decide whether it belongs under Agent, AI-Scientist, RAG, or a new paper sub-hub"
+        ],
+        "scope": [
+          "- [ ] paper-reading hub page",
+          "- [ ] local paper shelf and PDF references",
+          "- [ ] screenshot-first paper previews",
+          "- [ ] per-paper analysis pages",
+          "- [ ] future topic-specific paper clusters",
+          "- [ ] screenshot / diagram / zhihu adaptation opportunities"
+        ],
+        "validation": [
+          "- [ ] `python3 tools/refresh_site_topic_metadata.py`",
+          "- [ ] `python3 tools/build_loop_task_board.py`",
+          "- [ ] `python3 tools/check_site_md_parity.py`"
+        ],
+        "notes": [
+          "- Keep the first wave narrow and coherent; `Agent Skills` is the first shelf because it directly connects to the site's existing skills / loop / workspace / managed-agent lines.",
+          "- Prefer primary paper PDFs plus screenshot previews, not only secondary article summaries.",
+          "- Treat paper-reading pages as explainers with strong mapping back to existing site topics rather than isolated summaries."
+        ],
+        "completed_count": 8,
+        "total_count": 21,
+        "progress": 38
       }
     }
   ],

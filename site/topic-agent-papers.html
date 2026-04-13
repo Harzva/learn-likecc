@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agent · 论文分析 - Claude Code Course</title>
+    <title>论文解读专题 · Agent Skills - Everything in Claude-Code</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>">
-    <meta name="description" content="Agent 相关论文精读笔记入口。">
+    <meta name="description" content="论文解读大专题：围绕 Agent Skills 的架构、市场、恶意技能安全与自我进化技能库四条线，建立可持续扩展的论文解读入口。">
     <meta name="page:updated" content="2026-04-12">
 </head>
 <body class="agent-papers-page">
@@ -14,10 +14,12 @@
         <div class="nav-container">
             <a href="topic-agent.html" class="nav-logo">
                 <span class="logo-icon">📄</span>
-                <span class="logo-text">Agent · 论文</span>
+                <span class="logo-text">论文解读专题</span>
             </a>
             <div class="nav-links">
-                <a href="#list" class="nav-link">笔记列表</a>
+                <a href="#why" class="nav-link">为什么单列</a>
+                <a href="#list" class="nav-link">论文列表</a>
+                <a href="#shelf" class="nav-link">本地论文架</a>
             </div>
             <div class="nav-actions">
                 <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
@@ -28,9 +30,9 @@
 
     <section class="hero handbook-hero">
         <div class="hero-content">
-            <div class="hero-badge"><span>子专题</span><span>论文分析</span></div>
-            <h1 class="hero-title">Agent <span class="gradient-text">论文分析</span></h1>
-            <p class="hero-subtitle">挂载你对<strong>工具型 Agent、规划、多智能体协作、评测基准</strong>等方向的精读长文。下列占位列表可替换为真实条目。</p>
+            <div class="hero-badge"><span>大专题</span><span>Paper Reading · Agent Skills</span></div>
+            <h1 class="hero-title">论文解读专题<br><span class="gradient-text">先从 Agent Skills 这一组开刀</span></h1>
+            <p class="hero-subtitle">这条专题先不追求“把所有 AI 论文都收进去”，而是先围绕 <strong>Agent Skills</strong> 收出一条清楚的解释链：架构综述、市场/生态实证、安全研究，以及自我进化技能库。</p>
             <div class="hero-actions">
                 <a href="topic-agent-hot.html" class="btn btn-secondary">技术热点 →</a>
                 <a href="topic-agent-comparison.html" class="btn btn-primary">生态对比 →</a>
@@ -38,20 +40,96 @@
         </div>
     </section>
 
+    <section id="why" class="section section--soft">
+        <div class="container">
+            <h2 class="section-title">为什么先做 Agent Skills 论文解读线</h2>
+            <div class="quickstart-grid meta-topic-grid meta-topic-grid--concept">
+                <div class="quickstart-card">
+                    <h3>它和我们现有站点直接相关</h3>
+                    <p>站内已经有 `Skills`、`codex-loop`、`workspace shell`、`managed agent` 等多条线，Agent Skills 正好能把这些系统能力放到论文视角重新串一次。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>它不是单篇热点，而是一个体系</h3>
+                    <p>这一组论文刚好覆盖：架构、数据驱动生态、安全攻击与自我进化技能库，适合做成一条长期更新的 paper shelf。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>它很适合截图展示</h3>
+                    <p>每篇论文都可以挂第一页预览图、本地 PDF 与解读页，不会只剩文字摘要。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="list" class="section section--soft agent-papers-section agent-papers-section--entry">
         <div class="container">
-            <h2 class="section-title">论文 / 精读笔记</h2>
-            <ul class="agent-papers-list">
-                <li><strong>（占位）</strong>在此添加条目，例如：<code>《Your Agent Paper》</code> — 仓库内 MD 或 arXiv 链接。</li>
-                <li><strong>（占位）</strong>建议标注：单 Agent / 多 Agent、是否涉及 MCP 或工具 DSL、实验可复现性。</li>
-            </ul>
+            <h2 class="section-title">首批 4 篇 Agent Skills 论文</h2>
+            <div class="quickstart-grid meta-topic-grid meta-topic-grid--entry">
+                <a href="topic-paper-agent-skills-architecture.html" class="quickstart-card quickstart-card-link">
+                    <h3>01 · 架构综述</h3>
+                    <p><code>Agent Skills for Large Language Models</code>：解释 skills 作为能力抽象层，如何把架构、MCP、安全与 skill acquisition 串起来。</p>
+                    <p><strong>进入解读 →</strong></p>
+                </a>
+                <a href="topic-paper-agent-skills-data-driven.html" class="quickstart-card quickstart-card-link">
+                    <h3>02 · 生态实证</h3>
+                    <p><code>Agent Skills: A Data-Driven Analysis...</code>：分析公开技能市场的增长、分布、采用与供需失衡。</p>
+                    <p><strong>进入解读 →</strong></p>
+                </a>
+                <a href="topic-paper-malicious-agent-skills.html" class="quickstart-card quickstart-card-link">
+                    <h3>03 · 恶意技能安全</h3>
+                    <p><code>Malicious Agent Skills in the Wild</code>：把第三方技能的攻击面、恶意样本与 hook/权限滥用讲清楚。</p>
+                    <p><strong>进入解读 →</strong></p>
+                </a>
+                <a href="topic-paper-sage-skill-library.html" class="quickstart-card quickstart-card-link">
+                    <h3>04 · 自我进化技能库</h3>
+                    <p><code>Reinforcement Learning for Self-Improving Agent with Skill Library</code>：看 skill library 如何和 RL 自我进化结合。</p>
+                    <p><strong>进入解读 →</strong></p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="shelf" class="section">
+        <div class="container">
+            <h2 class="section-title">本地论文架与预览截图</h2>
+            <table class="compare-table">
+                <tr>
+                    <th>论文</th>
+                    <th>本地 PDF</th>
+                    <th>截图展示</th>
+                    <th>主题角色</th>
+                </tr>
+                <tr>
+                    <td><code>2602.12430</code></td>
+                    <td><a href="https://github.com/Harzva/learn-likecc/blob/main/reference/reference_paper/agent-skills-papers/2602.12430/paper.pdf" target="_blank" rel="noopener noreferrer">paper.pdf</a></td>
+                    <td><img src="images/paper-reading/agent-skills-architecture.png" alt="Agent Skills architecture paper first-page preview" style="max-width:160px;border-radius:12px;border:1px solid rgba(0,0,0,0.08);"></td>
+                    <td>总述与议程设定</td>
+                </tr>
+                <tr>
+                    <td><code>2602.08004</code></td>
+                    <td><a href="https://github.com/Harzva/learn-likecc/blob/main/reference/reference_paper/agent-skills-papers/2602.08004/paper.pdf" target="_blank" rel="noopener noreferrer">paper.pdf</a></td>
+                    <td><img src="images/paper-reading/agent-skills-data-driven.png" alt="Agent skills data-driven paper first-page preview" style="max-width:160px;border-radius:12px;border:1px solid rgba(0,0,0,0.08);"></td>
+                    <td>市场与生态快照</td>
+                </tr>
+                <tr>
+                    <td><code>2602.06547</code></td>
+                    <td><a href="https://github.com/Harzva/learn-likecc/blob/main/reference/reference_paper/agent-skills-papers/2602.06547/paper.pdf" target="_blank" rel="noopener noreferrer">paper.pdf</a></td>
+                    <td><img src="images/paper-reading/malicious-agent-skills.png" alt="Malicious agent skills paper first-page preview" style="max-width:160px;border-radius:12px;border:1px solid rgba(0,0,0,0.08);"></td>
+                    <td>安全与治理</td>
+                </tr>
+                <tr>
+                    <td><code>2512.17102</code></td>
+                    <td><a href="https://github.com/Harzva/learn-likecc/blob/main/reference/reference_paper/agent-skills-papers/2512.17102/paper.pdf" target="_blank" rel="noopener noreferrer">paper.pdf</a></td>
+                    <td><img src="images/paper-reading/sage-skill-library.png" alt="SAGE paper first-page preview" style="max-width:160px;border-radius:12px;border:1px solid rgba(0,0,0,0.08);"></td>
+                    <td>自我进化与 skill library</td>
+                </tr>
+            </table>
         </div>
     </section>
 
     <footer class="footer">
         <div class="container">
             <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-agent-papers.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
-            <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+            <p>© 2026 Everything in Claude-Code. 仅供学习研究使用。</p>
         </div>
     </footer>
     <script src="js/app.js"></script>

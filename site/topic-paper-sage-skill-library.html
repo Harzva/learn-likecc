@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAGE 自我进化技能库 - 论文解读专题</title>
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="description" content="解读 Reinforcement Learning for Self-Improving Agent with Skill Library，重点看 SAGE 如何把 skill library 与自我进化 RL 结合。">
+    <meta name="page:updated" content="2026-04-13">
+</head>
+<body class="agent-papers-page">
+    <nav class="navbar"><div class="nav-container"><a href="topic-agent-papers.html" class="nav-logo"><span class="logo-icon">📄</span><span class="logo-text">论文解读专题</span></a><div class="nav-links"><a href="#paper" class="nav-link">论文</a><a href="#takeaways" class="nav-link">核心解读</a></div><div class="nav-actions"><button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button><a href="topic-agent-papers.html" class="btn-github">← 返回专题</a></div></div></nav>
+    <section class="hero handbook-hero"><div class="hero-content"><div class="hero-badge"><span>Paper 04</span><span>Self-Evolution</span></div><h1 class="hero-title">SAGE：Self-Improving Agent with Skill Library<br><span class="gradient-text">自我进化技能库</span></h1><p class="hero-subtitle">这篇论文最值得看的，不是 RL 本身，而是 skill library 怎样从“静态能力包”变成 agent 持续进化的一部分。</p></div></section>
+    <main class="course-main devlog-main"><div class="container"><article class="course-content devlog-content">
+        <section id="paper" class="section-block"><h2>论文与截图展示</h2><figure class="devlog-figure"><img src="images/paper-reading/sage-skill-library.png" alt="SAGE paper first page preview"><figcaption>本地 PDF 第一页预览。原文已下载到 <code>reference/reference_paper/agent-skills-papers/2512.17102/paper.pdf</code>。</figcaption></figure><p><strong>本地 PDF / GitHub</strong>：<a href="https://github.com/Harzva/learn-likecc/blob/main/reference/reference_paper/agent-skills-papers/2512.17102/paper.pdf" target="_blank" rel="noopener noreferrer">打开 paper.pdf</a></p></section>
+        <section id="takeaways" class="section-block"><h2>核心解读</h2><div class="course-quote"><p><strong>第一</strong>：SAGE 说明 skill library 不是只能做人写的外部包，也能进入 agent 的自我改进闭环。</p><p><strong>第二</strong>：Sequential Rollout 这类设计，把“上一轮学到的技能能否帮下一轮”变成可训练、可累积的问题。</p><p><strong>第三</strong>：这条线和我们站内的 `codex-loop in sleep` 很相关，因为它都在问：经验如何沉淀成未来可复用的能力。</p></div></section>
+    </article></div></main>
+    <footer class="footer"><div class="container"><p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-paper-sage-skill-library.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p><p>© 2026 Everything in Claude-Code. 仅供学习研究使用。</p></div></footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

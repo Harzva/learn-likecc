@@ -1,7 +1,7 @@
 {
   "meta": {
     "updated": "2026-04-13",
-    "count": 50,
+    "count": 54,
     "source": "git history + site/topic-*.html"
   },
   "groups": [
@@ -83,7 +83,7 @@
         {
           "slug": "topic-toolchain",
           "title": "工具链专题 - Everything in Claude-Code",
-          "updated": "2026-04-12",
+          "updated": "2026-04-13",
           "group": "核心入口",
           "href": "topic-toolchain.html",
           "md_path": "site/md/topic-toolchain.md"
@@ -236,7 +236,7 @@
         },
         {
           "slug": "topic-agent-papers",
-          "title": "Agent · 论文分析 - Everything in Claude-Code",
+          "title": "论文解读专题 · Agent Skills - Everything in Claude-Code",
           "updated": "2026-04-12",
           "group": "Agent / CLI / 杂货铺子专题",
           "href": "topic-agent-papers.html",
@@ -419,6 +419,38 @@
           "group": "其他专题",
           "href": "topic-multica-unpacked.html",
           "md_path": "site/md/topic-multica-unpacked.md"
+        },
+        {
+          "slug": "topic-paper-agent-skills-architecture",
+          "title": "Agent Skills 架构综述 - 论文解读专题",
+          "updated": "2026-04-13",
+          "group": "其他专题",
+          "href": "topic-paper-agent-skills-architecture.html",
+          "md_path": "site/md/topic-paper-agent-skills-architecture.md"
+        },
+        {
+          "slug": "topic-paper-agent-skills-data-driven",
+          "title": "Agent Skills 生态实证 - 论文解读专题",
+          "updated": "2026-04-13",
+          "group": "其他专题",
+          "href": "topic-paper-agent-skills-data-driven.html",
+          "md_path": "site/md/topic-paper-agent-skills-data-driven.md"
+        },
+        {
+          "slug": "topic-paper-malicious-agent-skills",
+          "title": "恶意 Agent Skills 安全研究 - 论文解读专题",
+          "updated": "2026-04-13",
+          "group": "其他专题",
+          "href": "topic-paper-malicious-agent-skills.html",
+          "md_path": "site/md/topic-paper-malicious-agent-skills.md"
+        },
+        {
+          "slug": "topic-paper-sage-skill-library",
+          "title": "SAGE 自我进化技能库 - 论文解读专题",
+          "updated": "2026-04-13",
+          "group": "其他专题",
+          "href": "topic-paper-sage-skill-library.html",
+          "md_path": "site/md/topic-paper-sage-skill-library.md"
         },
         {
           "slug": "topic-superset-unpacked",

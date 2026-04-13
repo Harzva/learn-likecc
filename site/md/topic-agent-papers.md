@@ -1,4 +1,4 @@
-# Agent · 论文分析 - Claude Code Course
+# 论文解读专题 · Agent Skills - Everything in Claude-Code
 > **更新时间**: 2026-04-12
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-agent-papers.html  
@@ -7,7 +7,14 @@
 
 ## 概要
 
-Agent **论文与精读笔记**聚合页：为单/多智能体、工具学习、规划与评测等方向提供条目列表（具体字段与链接以 HTML 表为准），可与 `topic-agent.html` 总专题互跳。
+这页已经从占位页升级成一个真正的 **论文解读大专题**，当前第一批先围绕 `Agent Skills` 收 4 篇核心论文：
+
+- 架构综述
+- 数据驱动生态分析
+- 恶意技能安全研究
+- 自我进化技能库 / SAGE
+
+目标不是把摘要堆一遍，而是给站内的 `Skills / Loop / Managed Agent / Workspace` 这些线补一个论文视角的解释层。
 
 ## 目录（对照 HTML）
 
@@ -15,6 +22,36 @@ Agent **论文与精读笔记**聚合页：为单/多智能体、工具学习、
 
 ## 各节摘要（对照 HTML）
 
-### 论文 / 精读笔记
+### 为什么先做 Agent Skills 线
 
-本节为整页主体：以列表或表格维护论文条目，建议字段包含题目、会议/年份、链接、**任务类型**（单 Agent / 多 Agent）、是否涉及 MCP 或工具 DSL、以及可复现性备注。教学目的是把分散的 Agent 研究**映射到课程概念**（如 S01 Loop、S07 MCP），便于写讲义或作业时引用；新增条目时应保持与 HTML 同步，避免 MD 与表格脱节。
+- 它和站内现有的 `Skills`、`codex-loop`、`workspace shell`、`managed agent` 等路线都能对上。
+- 这组论文本身覆盖了：
+  - 架构
+  - 生态
+  - 安全
+  - 自我进化
+- 每篇论文都已经下载到本地，并抽了第一页截图预览。
+
+### 首批 4 篇
+
+- `2602.12430` → 架构综述
+- `2602.08004` → 数据驱动市场分析
+- `2602.06547` → 恶意技能安全
+- `2512.17102` → SAGE 自我进化技能库
+
+### 本地论文架
+
+路径：
+
+- `reference/reference_paper/agent-skills-papers/`
+
+站内展示包含：
+
+- 每篇本地 PDF
+- 每篇第一页截图
+- 每篇单独分析页
+
+后续可以继续往这条专题里扩：
+
+- `Agent Skills` 邻近论文
+- 技能治理 / skill market / managed agents 相关论文

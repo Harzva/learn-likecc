@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>恶意 Agent Skills 安全研究 - 论文解读专题</title>
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="description" content="解读 Malicious Agent Skills in the Wild，重点看第三方技能的攻击面、漏洞分布与治理意义。">
+    <meta name="page:updated" content="2026-04-13">
+</head>
+<body class="agent-papers-page">
+    <nav class="navbar"><div class="nav-container"><a href="topic-agent-papers.html" class="nav-logo"><span class="logo-icon">📄</span><span class="logo-text">论文解读专题</span></a><div class="nav-links"><a href="#paper" class="nav-link">论文</a><a href="#takeaways" class="nav-link">核心解读</a></div><div class="nav-actions"><button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button><a href="topic-agent-papers.html" class="btn-github">← 返回专题</a></div></div></nav>
+    <section class="hero handbook-hero"><div class="hero-content"><div class="hero-badge"><span>Paper 03</span><span>Security</span></div><h1 class="hero-title">Malicious Agent Skills in the Wild<br><span class="gradient-text">恶意技能安全研究</span></h1><p class="hero-subtitle">这篇论文的价值在于：它把“第三方技能有风险”从口头担忧变成了一个有数据集、有漏洞统计、有攻击类型的安全研究问题。</p></div></section>
+    <main class="course-main devlog-main"><div class="container"><article class="course-content devlog-content">
+        <section id="paper" class="section-block"><h2>论文与截图展示</h2><figure class="devlog-figure"><img src="images/paper-reading/malicious-agent-skills.png" alt="Malicious Agent Skills paper first page preview"><figcaption>本地 PDF 第一页预览。原文已下载到 <code>reference/reference_paper/agent-skills-papers/2602.06547/paper.pdf</code>。</figcaption></figure><p><strong>本地 PDF / GitHub</strong>：<a href="https://github.com/Harzva/learn-likecc/blob/main/reference/reference_paper/agent-skills-papers/2602.06547/paper.pdf" target="_blank" rel="noopener noreferrer">打开 paper.pdf</a></p></section>
+        <section id="takeaways" class="section-block"><h2>核心解读</h2><div class="course-quote"><p><strong>第一</strong>：论文把恶意技能区分成 Data Thieves 和 Agent Hijackers，这让安全风险不再只是“会不会有后门”这么宽泛。</p><p><strong>第二</strong>：hook、权限标志和影子能力是关键危险点，这和我们自己做 skill/runtime/connector 时必须注意的边界直接相关。</p><p><strong>第三</strong>：它说明 skills 生态不是天然可信的，治理、分级权限和生命周期管理必须从系统层设计进去。</p></div></section>
+    </article></div></main>
+    <footer class="footer"><div class="container"><p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-paper-malicious-agent-skills.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p><p>© 2026 Everything in Claude-Code. 仅供学习研究使用。</p></div></footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Skills 架构综述 - 论文解读专题</title>
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="description" content="解读 Agent Skills for Large Language Models 这篇综述，重点看 architecture、acquisition、security 与 path forward。">
+    <meta name="page:updated" content="2026-04-13">
+</head>
+<body class="agent-papers-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="topic-agent-papers.html" class="nav-logo"><span class="logo-icon">📄</span><span class="logo-text">论文解读专题</span></a>
+            <div class="nav-links">
+                <a href="#paper" class="nav-link">论文</a>
+                <a href="#takeaways" class="nav-link">核心解读</a>
+                <a href="#site-map" class="nav-link">站内映射</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-agent-papers.html" class="btn-github">← 返回专题</a>
+            </div>
+        </div>
+    </nav>
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge"><span>Paper 01</span><span>Survey</span></div>
+            <h1 class="hero-title">Agent Skills for Large Language Models<br><span class="gradient-text">架构综述解读</span></h1>
+            <p class="hero-subtitle">这篇综述最有价值的地方，不只是把技能系统讲清楚，而是把 <strong>architecture / acquisition / deployment / security</strong> 四条线收成了一套完整研究议程。</p>
+        </div>
+    </section>
+    <main class="course-main devlog-main">
+        <div class="container">
+            <article class="course-content devlog-content">
+                <section id="paper" class="section-block">
+                    <h2>论文与截图展示</h2>
+                    <figure class="devlog-figure">
+                        <img src="images/paper-reading/agent-skills-architecture.png" alt="Agent Skills for Large Language Models first page preview">
+                        <figcaption>本地 PDF 第一页预览。原文已下载到 <code>reference/reference_paper/agent-skills-papers/2602.12430/paper.pdf</code>。</figcaption>
+                    </figure>
+                    <p><strong>本地 PDF / GitHub</strong>：<a href="https://github.com/Harzva/learn-likecc/blob/main/reference/reference_paper/agent-skills-papers/2602.12430/paper.pdf" target="_blank" rel="noopener noreferrer">打开 paper.pdf</a></p>
+                </section>
+                <section id="takeaways" class="section-block">
+                    <h2>核心解读</h2>
+                    <div class="course-quote">
+                        <p><strong>第一</strong>：这篇论文把 skills 定义成一种高于 tool、低于 agent runtime 的能力抽象层。</p>
+                        <p><strong>第二</strong>：它强调 progressive disclosure、portable skill definitions 和 MCP 的互补关系，这和我们站内一直在讲的 `skill + runtime + context` 三角非常对齐。</p>
+                        <p><strong>第三</strong>：它不只讲架构，还把 acquisition、deployment、security 一起收进来，所以适合作为这条专题的总引子。</p>
+                    </div>
+                </section>
+                <section id="site-map" class="section-block">
+                    <h2>对站内最重要的映射</h2>
+                    <table class="options-table">
+                        <tr><th>论文线索</th><th>站内对应</th></tr>
+                        <tr><td>skills 作为能力抽象层</td><td><a href="topic-skillmarket.html">Skills / SkillMarket</a></td></tr>
+                        <tr><td>skills 与 runtime / context 的关系</td><td><a href="topic-codex-loop-in-sleep.html">codex-loop in sleep</a>、<a href="topic-codex-loop-console.html">AI Terminal</a></td></tr>
+                        <tr><td>security / governance</td><td><a href="topic-meta-agent.html">Meta-Agent</a>、后续 skill trust 专题</td></tr>
+                    </table>
+                </section>
+            </article>
+        </div>
+    </main>
+    <footer class="footer"><div class="container"><p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-paper-agent-skills-architecture.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p><p>© 2026 Everything in Claude-Code. 仅供学习研究使用。</p></div></footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

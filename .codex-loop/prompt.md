@@ -369,3 +369,21 @@ Execution rule:
    - `site/topic-design-ui-unpacked.html`
    - `reference/reference_design_ui/`
    - drawing / demo plugin integration paths for the site and media workflow
+
+Task 17:
+Loop task: keep growing the paper-reading topic line by following the dedicated plan file:
+- `.claude/plans/loloop/active-paper-reading-topic-plan-v1.md`
+
+Execution rule:
+1. Read that plan first.
+2. Continue the current unchecked / active item instead of randomly switching.
+3. After each bounded pass:
+   - mark progress in the plan file
+   - check off any completed item
+   - record the result in the evolution trail
+4. Prefer changes that keep these aligned:
+   - `site/topic-agent-papers.html`
+   - `site/topic-paper-*.html`
+   - `site/images/paper-reading/`
+   - `reference/reference_paper/`
+   - future paper-topic hubs and their analysis pages
