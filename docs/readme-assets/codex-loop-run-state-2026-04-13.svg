@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1180" viewBox="0 0 1600 1180" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="60" x2="1480" y2="1120" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1B1E27"/>
+      <stop offset="1" stop-color="#0E1015"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="120" y1="160" x2="1480" y2="1060" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#20242D"/>
+      <stop offset="1" stop-color="#16191F"/>
+    </linearGradient>
+    <filter id="shadow" x="0" y="0" width="1600" height="1180" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="28" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+    <style>
+      .title { fill: #F5F7FB; font-family: 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; font-size: 38px; font-weight: 700; }
+      .subtitle { fill: #A4ADBC; font-family: 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; font-size: 19px; font-weight: 500; }
+      .panel-title { fill: #D8DEEA; font-family: 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; font-size: 20px; font-weight: 600; }
+      .body { fill: #F3F6FC; font-family: 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; font-size: 24px; font-weight: 500; }
+      .body-dim { fill: #CAD2E2; font-family: 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; font-size: 22px; font-weight: 500; }
+      .mono { fill: #E7ECF8; font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace; font-size: 21px; font-weight: 500; }
+      .small { fill: #9AA5B7; font-family: 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif; font-size: 18px; font-weight: 500; }
+      .badge { fill: #DCE3F0; font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace; font-size: 15px; font-weight: 700; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="1180" fill="url(#bg)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="72" y="68" width="1456" height="1044" rx="32" fill="url(#panel)" stroke="#2A313D"/>
+  </g>
+
+  <text x="120" y="132" class="title">codex-loop 实际运行截图整理版</text>
+  <text x="120" y="168" class="subtitle">根据 2026-04-13 的 3 张真实运行截图整理，保留 plan anchoring、evolution note、验证闭环三个关键信号。</text>
+
+  <g>
+    <rect x="116" y="224" width="1368" height="248" rx="26" fill="#181C23" stroke="#2B3240"/>
+    <text x="148" y="270" class="panel-title">Working for 1m 1s</text>
+    <rect x="145" y="302" width="188" height="34" rx="17" fill="#262C37"/>
+    <text x="166" y="325" class="badge">codex-loop + frontend-skill</text>
+    <text x="145" y="376" class="body-dim">先锚定一个小迭代目标，只做两件事：把 drawer 做成更像 inspector，再把</text>
+    <text x="145" y="412" class="body-dim">archive / soft delete / restore / hard delete 接进 drawer。</text>
+    <rect x="128" y="430" width="1180" height="66" rx="33" fill="none" stroke="#FF5C69" stroke-width="6"/>
+    <text x="145" y="472" class="body">我没找到现成的 loop 计划文件，这轮会先新建一个轻量计划和 evolution note，</text>
+    <text x="145" y="506" class="body">按 codex-loop 的方式把这次迭代接住。</text>
+  </g>
+
+  <g>
+    <rect x="116" y="510" width="1368" height="282" rx="26" fill="#181C23" stroke="#2B3240"/>
+    <text x="148" y="556" class="panel-title">Working for 2m 14s</text>
+    <text x="145" y="620" class="body-dim">我把 drawer 视图往 Linear / Raycast inspector 方向收：更轻的层次、更强的元信息排布，</text>
+    <text x="145" y="656" class="body-dim">再补 lifecycle action rail。</text>
+    <text x="145" y="712" class="body-dim">我把 drawer 的内容结构重排成 inspector：头部 summary stats、操作栏、下面才是详细块。</text>
+    <rect x="128" y="728" width="906" height="62" rx="31" fill="none" stroke="#FF5C69" stroke-width="6"/>
+    <text x="145" y="768" class="body">我顺手把这轮 loop 落成 plan + evolution note，</text>
+    <text x="760" y="768" class="body">这样下一轮还能从同一个上下文继续。</text>
+  </g>
+
+  <g>
+    <rect x="116" y="830" width="1368" height="228" rx="26" fill="#181C23" stroke="#2B3240"/>
+    <text x="148" y="876" class="panel-title">验证与落盘</text>
+    <text x="145" y="932" class="body">功能链路已经补齐了，我先做语法检查和打包验证。</text>
+    <text x="145" y="972" class="body-dim">我把这次 loop 结果补进 evolution note 和 DSE 记录，方便下一轮直接接着做。</text>
+    <rect x="145" y="1002" width="650" height="30" rx="15" fill="#232A34"/>
+    <text x="164" y="1023" class="mono">evolution-2026-04-13-codex-managed-agent-inspector.md   +3  -2</text>
+    <rect x="145" y="1042" width="338" height="30" rx="15" fill="#232A34"/>
+    <text x="164" y="1063" class="mono">DSE_REPORT.md   +5  -2</text>
+  </g>
+
+  <rect x="1194" y="112" width="290" height="38" rx="19" fill="#242A35" stroke="#343D4B"/>
+  <text x="1220" y="137" class="badge">actual run snapshot · 2026-04-13</text>
+</svg>
