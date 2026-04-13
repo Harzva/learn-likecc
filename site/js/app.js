@@ -155,7 +155,20 @@ const MERMAID_DIAGRAMS = {
     SL --> SL1["讲义 / live coding / drawing / export"]:::greenBox
     RM --> RM1["代码驱动动画 / 视频 / 叙事可视化"]:::purpleBox`,
 
-    'site-topic-map': `graph TB
+    'loop-lab-branches': `graph LR
+    classDef goldBox fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#fcd34d;
+    classDef blueBox fill:#172130,stroke:#60a5fa,stroke-width:2px,color:#93c5fd;
+    classDef greenBox fill:#14251f,stroke:#34d399,stroke-width:2px,color:#6ee7b7;
+    classDef purpleBox fill:#241c2f,stroke:#c084fc,stroke-width:2px,color:#e9d5ff;
+
+    HUB["Loop Lab / 本地工作台"]:::goldBox --> CONSOLE["codex-loop AI Terminal<br/>观察面 / operator desk"]:::blueBox
+    HUB --> WORKSPACE["LikeCode Workspace App<br/>plan editor / runtime shell"]:::purpleBox
+    HUB --> CONNECTOR["Connector Runtime / Daemon Design<br/>connector / runtime / daemon"]:::greenBox
+    WORKSPACE --> TASKS["Task Board / active plan / logs"]:::purpleBox
+    CONSOLE --> SHELL["thread / shell / daemon monitor"]:::blueBox
+    CONNECTOR --> BRIDGE["conversation bridge / QR bind"]:::greenBox`,
+
+    'site-topic-map': `graph LR
     classDef core fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#fcd34d;
     classDef hub fill:#172130,stroke:#60a5fa,stroke-width:2px,color:#93c5fd;
     classDef topic fill:#14251f,stroke:#34d399,stroke-width:2px,color:#6ee7b7;
@@ -163,18 +176,33 @@ const MERMAID_DIAGRAMS = {
 
     HOME["Learn LikeCode<br/>站点首页"]:::core
 
-    HOME --> SOURCE["Source Map 源码专题"]:::hub
-    HOME --> BUTCHER["庖丁解牛专题"]:::hub
-    HOME --> GUIDE["教程 / 手册"]:::hub
-    HOME --> SHOP["AI杂货铺"]:::hub
-    HOME --> HOTWATCH["热门话题专项"]:::hub
-    HOME --> AGENT["Agent"]:::hub
-    HOME --> RAG["RAG"]:::hub
-    HOME --> LLM["大模型"]:::hub
-    HOME --> SKILL["Skill 市场"]:::hub
-    HOME --> TOOL["工具链"]:::hub
-    HOME --> WORKSPACE["本地工作台 / Loop Lab"]:::hub
-    HOME --> PAPER["VibePaper"]:::hub
+    subgraph CORE["核心入口"]
+        direction TB
+        SOURCE["Source Map 源码专题"]:::hub
+        BUTCHER["庖丁解牛专题"]:::hub
+        GUIDE["教程 / 手册"]:::hub
+        TOOL["工具链"]:::hub
+        SKILL["Skill 市场"]:::hub
+    end
+
+    subgraph SITEOPS["站点专题与热点"]
+        direction TB
+        SHOP["AI杂货铺"]:::hub
+        HOTWATCH["热门话题专项"]:::hub
+        AGENT["Agent"]:::hub
+        RAG["RAG"]:::hub
+        LLM["大模型"]:::hub
+    end
+
+    subgraph LABS["工作台与科研线"]
+        direction TB
+        WORKSPACE["本地工作台 / Loop Lab"]:::hub
+        PAPER["VibePaper"]:::hub
+    end
+
+    HOME --> CORE
+    HOME --> SITEOPS
+    HOME --> LABS
 
     BUTCHER --> CC["Claude Code 解构"]:::topic
     BUTCHER --> SUPER["Superset 解构"]:::topic
@@ -185,14 +213,16 @@ const MERMAID_DIAGRAMS = {
     SHOP --> API["模型 API / 聚合"]:::topic
     SHOP --> BENCH["模型评测"]:::topic
     SHOP --> CODING["AI 编程工具"]:::topic
+
     HOTWATCH --> HOTWIRE["热点 intake / 路由页"]:::topic
     HOTWIRE --> HOTAG["Agent 技术热点"]:::topic
     HOTWIRE --> HOTRAG["RAG 技术热点"]:::topic
+    AGENT --> HOT["技术热点 / 对比 / 论文"]:::topic
+
     WORKSPACE --> CONSOLE["codex-loop AI Terminal"]:::topic
     WORKSPACE --> WSAPP["LikeCode Workspace App"]:::lab
     WORKSPACE --> CONNECTOR["Connector Runtime / Daemon Design"]:::lab
 
-    AGENT --> HOT["技术热点 / 对比 / 论文"]:::topic
     PAPER --> ARIS["Autoresearch / ARIS"]:::lab
     PAPER --> DS["DeepScientist"]:::lab
     PAPER --> AIS["AI Scientist-v2"]:::lab
@@ -686,6 +716,7 @@ function initSiteSidebar() {
         '<details class="site-sidebar__details" data-sidebar-key="zahuopu">' +
         '<summary class="site-sidebar__summary"><span class="site-sidebar__txt">AI杂货铺</span></summary>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-ai-zahuopu.html"><span class="site-sidebar__ico">📌</span><span class="site-sidebar__txt">专题首页</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-hot-watch.html"><span class="site-sidebar__ico">🛰️</span><span class="site-sidebar__txt">热门话题专项</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-ai-agents.html"><span class="site-sidebar__ico">🤖</span><span class="site-sidebar__txt">AI智能体专页</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-ai-cli-agent.html"><span class="site-sidebar__ico">⌨️</span><span class="site-sidebar__txt">CLI Agent 专页</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-ai-coding-tools.html"><span class="site-sidebar__ico">🧰</span><span class="site-sidebar__txt">AI编程工具专页</span></a>' +
@@ -757,6 +788,7 @@ function initSiteSidebar() {
         '<a class="site-sidebar__link site-sidebar__link--sub" href="column-shangshou-cikeng.html"><span class="site-sidebar__ico">🛠️</span><span class="site-sidebar__txt">上手与踩坑</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="column-show-your-usage.html"><span class="site-sidebar__ico">📊</span><span class="site-sidebar__txt">Show usage</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="column-channel-review.html"><span class="site-sidebar__ico">🛒</span><span class="site-sidebar__txt">渠道评测</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-github-achievements.html"><span class="site-sidebar__ico">🏅</span><span class="site-sidebar__txt">GitHub 成就 / 图标</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="devlog.html"><span class="site-sidebar__ico">📝</span><span class="site-sidebar__txt">开发日志</span></a>' +
         '</details>' +
         '<a class="site-sidebar__link" href="https://github.com/Harzva/learn-likecc" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__txt">GitHub</span></a>' +
