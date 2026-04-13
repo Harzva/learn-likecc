@@ -140,6 +140,21 @@ const MERMAID_DIAGRAMS = {
     MUL --> MUL1["board + workspace + daemon<br/>runtime registry + skill compounding"]:::purpleBox
     SUP --> SUP1["host-service + workspace/worktree<br/>panes + inner-agent dispatch"]:::grayBox`,
 
+    'design-ui-landscape': `graph TB
+    classDef goldBox fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#fcd34d;
+    classDef blueBox fill:#172130,stroke:#60a5fa,stroke-width:2px,color:#93c5fd;
+    classDef greenBox fill:#14251f,stroke:#34d399,stroke-width:2px,color:#6ee7b7;
+    classDef purpleBox fill:#241c2f,stroke:#c084fc,stroke-width:2px,color:#e9d5ff;
+
+    HUB["Design / UI topic<br/>演示、视频、前端表达"]:::goldBox
+    HUB --> LP["LivePPT<br/>Markdown / README -> HTML 演示页"]:::blueBox
+    HUB --> SL["Slidev<br/>面向开发者的 Markdown Slides"]:::greenBox
+    HUB --> RM["Remotion<br/>React 程序化视频框架"]:::purpleBox
+
+    LP --> LP1["快速出 deck<br/>主题 / 品牌 / 分享页"]:::blueBox
+    SL --> SL1["讲义 / live coding / drawing / export"]:::greenBox
+    RM --> RM1["代码驱动动画 / 视频 / 叙事可视化"]:::purpleBox`,
+
     'site-topic-map': `graph TB
     classDef core fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#fcd34d;
     classDef hub fill:#172130,stroke:#60a5fa,stroke-width:2px,color:#93c5fd;
@@ -696,6 +711,12 @@ function initSiteSidebar() {
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-cabinet-unpacked.html"><span class="site-sidebar__ico">🗄️</span><span class="site-sidebar__txt">Cabinet 解构</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-multica-unpacked.html"><span class="site-sidebar__ico">🧷</span><span class="site-sidebar__txt">Multica 解构</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-superset-unpacked.html"><span class="site-sidebar__ico">🛰️</span><span class="site-sidebar__txt">Superset 解构</span></a>' +
+        '</details>' +
+        '<details class="site-sidebar__details" data-sidebar-key="design-ui">' +
+        '<summary class="site-sidebar__summary"><span class="site-sidebar__txt">Design/UI 专题</span></summary>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-design-ui.html"><span class="site-sidebar__ico">📌</span><span class="site-sidebar__txt">专题首页</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-design-ui-tutorial.html"><span class="site-sidebar__ico">🧭</span><span class="site-sidebar__txt">教程页</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-design-ui-unpacked.html"><span class="site-sidebar__ico">🧩</span><span class="site-sidebar__txt">解构页</span></a>' +
         '</details>' +
         '<details class="site-sidebar__details" data-sidebar-key="ai-scientist">' +
         '<summary class="site-sidebar__summary"><span class="site-sidebar__txt">AI-Scientist 专题</span></summary>' +

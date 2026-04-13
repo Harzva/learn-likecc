@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design/UI 专题 - Everything in Claude-Code</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+    <meta name="description" content="Design/UI 专题：把 LivePPT、Slidev、Remotion 这三条线收进同一入口，拆成教程、解构和绘图/演示插件线，服务站点讲解页、演示页与程序化可视化表达。">
+    <meta name="page:updated" content="2026-04-13">
+</head>
+<body class="meta-topic-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🎨</span>
+                <span class="logo-text">Design/UI</span>
+            </a>
+            <div class="nav-links">
+                <a href="#why" class="nav-link">为什么单列</a>
+                <a href="#landscape" class="nav-link">三条路线</a>
+                <a href="#subs" class="nav-link">子入口</a>
+                <a href="#plugin-line" class="nav-link">绘图/演示插件线</a>
+                <a href="#route" class="nav-link">开展路线</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-toolchain.html" class="btn-github">工具链专题</a>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>🎨 新专题</span>
+                <span>Slides · Demo Pages · Programmatic Video</span>
+            </div>
+            <h1 class="hero-title">
+                Design/UI<br>
+                <span class="gradient-text">把讲解、演示和程序化表达收成一条线</span>
+            </h1>
+            <p class="hero-subtitle">
+                这条专题不只看“页面好不好看”，更关心：<strong>Markdown/README 怎样变成演示页、Slides 怎样服务开发者内容、程序化视频怎样变成新的讲解媒介。</strong>
+                `LivePPT`、`Slidev`、`Remotion` 三条线合在一起，刚好构成站内的讲解 UI / 演示 UI / 代码驱动视觉表达轴。
+            </p>
+        </div>
+    </section>
+
+    <section id="why" class="section section--soft">
+        <div class="container">
+            <h2 class="section-title">为什么值得单独立一个 Design/UI 专题</h2>
+            <div class="quickstart-grid meta-topic-grid meta-topic-grid--concept">
+                <div class="quickstart-card">
+                    <h3>不是普通前端页</h3>
+                    <p>这里更关心“如何讲解”，不是通用后台 UI 或营销站模版。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>它服务我们的内容系统</h3>
+                    <p>站内专题、知乎稿、图文页、演示页和未来的视频解说都能从这里长出来。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>它能变成绘图插件线</h3>
+                    <p>从 Mermaid、HTML 卡片图，到 Slidev 绘图、Remotion 视频和 LivePPT deck，都是一条连续谱。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="landscape" class="section">
+        <div class="container">
+            <h2 class="section-title">三条路线放到一张图里看</h2>
+            <figure class="mermaid-figure mermaid-figure--main" aria-label="Design/UI 三条路线总图">
+                <figcaption class="mermaid-caption">
+                    <strong>Design/UI 三条路线总图</strong>
+                </figcaption>
+                <div class="mermaid-diagram-scroll mermaid-diagram-scroll--xl" data-mermaid-diagram="design-ui-landscape"></div>
+            </figure>
+            <table class="compare-table">
+                <tr>
+                    <th>样本</th>
+                    <th>更像什么</th>
+                    <th>最适合我们学什么</th>
+                </tr>
+                <tr>
+                    <td><code>LivePPT</code></td>
+                    <td>Markdown / README 到 HTML 演示页的快速生成器</td>
+                    <td>如何把已有内容快速变成可演示、可分享的 deck</td>
+                </tr>
+                <tr>
+                    <td><code>Slidev</code></td>
+                    <td>开发者讲义 / slides 工作台</td>
+                    <td>如何把 Markdown、live coding、绘图和 export 收到同一套讲义系统</td>
+                </tr>
+                <tr>
+                    <td><code>Remotion</code></td>
+                    <td>React 程序化视频框架</td>
+                    <td>如何把前端和代码表达延伸到动画、视频和解释性可视化</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <section id="subs" class="section section--soft">
+        <div class="container">
+            <h2 class="section-title">子入口：教程页 + 解构页</h2>
+            <div class="quickstart-grid meta-topic-grid meta-topic-grid--entry">
+                <a href="topic-design-ui-tutorial.html" class="quickstart-card quickstart-card-link">
+                    <h3>🧭 Design/UI 教程页</h3>
+                    <p>先讲“什么时候该用 LivePPT，什么时候该用 Slidev，什么时候该上 Remotion”，给站内后续内容生产一个明确工作流。</p>
+                    <p><strong>进入 →</strong></p>
+                </a>
+                <a href="topic-design-ui-unpacked.html" class="quickstart-card quickstart-card-link">
+                    <h3>🧩 Design/UI 解构页</h3>
+                    <p>把三者放到一张结构图和对照表里，看它们分别站在“演示页 / 幻灯片 / 程序化视频”哪一层。</p>
+                    <p><strong>进入 →</strong></p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="plugin-line" class="section">
+        <div class="container">
+            <h2 class="section-title">绘图 / 演示插件线</h2>
+            <div class="quickstart-grid meta-topic-grid meta-topic-grid--stack">
+                <div class="quickstart-card">
+                    <h3>第一层：站内插图</h3>
+                    <p>Mermaid、HTML 卡片图、截图块，用来快速服务专题解释。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>第二层：讲义 / 演示页</h3>
+                    <p>LivePPT / Slidev 用来把专题页升级成演示版本，适合分享和公开讲解。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>第三层：程序化视频</h3>
+                    <p>Remotion 适合把静态讲解再提升到动画和视频层，后面可以做成解释性片段和短视频素材。</p>
+                </div>
+            </div>
+            <p class="section-desc meta-topic-copy meta-topic-copy--tail">
+                所以这条线最终不只是“找几个 UI 仓库”，而是：<strong>为站点建立从插图，到 slides，到程序化视频的连续表达能力。</strong>
+            </p>
+        </div>
+    </section>
+
+    <section id="route" class="section section--soft">
+        <div class="container">
+            <h2 class="section-title">后续最顺的开展路线</h2>
+            <div class="quickstart-grid meta-topic-grid meta-topic-grid--stack">
+                <div class="quickstart-card">
+                    <h3>第一步</h3>
+                    <p>先固定这三种角色：`LivePPT = deck`，`Slidev = slides`，`Remotion = video`。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>第二步</h3>
+                    <p>从站内找一篇成熟专题，分别做成 deck / slides / video 的最小样稿。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>第三步</h3>
+                    <p>把这条线回写到绘图插件与内容生产工作流里，形成真正的设计/演示工具链。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-design-ui.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>本地锚点：<code>reference/reference_design_ui/LivePPT/</code>、<code>reference/reference_design_ui/remotion/</code>、<code>reference/reference_design_ui/slidev/</code></p>
+            <p>© 2026 Everything in Claude-Code. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js" crossorigin="anonymous"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

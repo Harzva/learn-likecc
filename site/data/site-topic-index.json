@@ -1,7 +1,7 @@
 {
   "meta": {
     "updated": "2026-04-13",
-    "count": 46,
+    "count": 50,
     "source": "git history + site/topic-*.html"
   },
   "groups": [
@@ -219,6 +219,14 @@
           "md_path": "site/md/topic-agent-comparison.md"
         },
         {
+          "slug": "topic-agent-dev-stack",
+          "title": "开源 Agent Dev 栈专题 - Everything in Claude-Code",
+          "updated": "2026-04-13",
+          "group": "Agent / CLI / 杂货铺子专题",
+          "href": "topic-agent-dev-stack.html",
+          "md_path": "site/md/topic-agent-dev-stack.md"
+        },
+        {
           "slug": "topic-agent-hot",
           "title": "Agent · 技术热点 - Everything in Claude-Code",
           "updated": "2026-04-12",
@@ -379,6 +387,30 @@
           "group": "其他专题",
           "href": "topic-connector-runtime-daemon.html",
           "md_path": "site/md/topic-connector-runtime-daemon.md"
+        },
+        {
+          "slug": "topic-design-ui-tutorial",
+          "title": "Design/UI 教程页 - Everything in Claude-Code",
+          "updated": "2026-04-13",
+          "group": "其他专题",
+          "href": "topic-design-ui-tutorial.html",
+          "md_path": "site/md/topic-design-ui-tutorial.md"
+        },
+        {
+          "slug": "topic-design-ui-unpacked",
+          "title": "Design/UI 解构页 - Everything in Claude-Code",
+          "updated": "2026-04-13",
+          "group": "其他专题",
+          "href": "topic-design-ui-unpacked.html",
+          "md_path": "site/md/topic-design-ui-unpacked.md"
+        },
+        {
+          "slug": "topic-design-ui",
+          "title": "Design/UI 专题 - Everything in Claude-Code",
+          "updated": "2026-04-13",
+          "group": "其他专题",
+          "href": "topic-design-ui.html",
+          "md_path": "site/md/topic-design-ui.md"
         },
         {
           "slug": "topic-multica-unpacked",

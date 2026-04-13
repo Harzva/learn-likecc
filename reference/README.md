@@ -11,6 +11,7 @@
 | **`reference_rag/`** | RAG 全栈教程与实验数据（例如 Datawhale **all-in-rag** 克隆）。 |
 | **`reference_agent/`** | Agent、论文导读、研究站点等（例如 **AgentGuide** 整包）；撰稿用浅克隆见该目录下 **`README.md`**（如 `superpowers-marketplace`、`autoresearch`、`DeepScientist`、`hermes-agent`）。 |
 | **`reference_cc_ui/`** | Claude Code / agent 可视化控制台、Web UI、HUD 参考（如 `claudecodeui`、`hermes-webui`、`hermes-hud`），适合给 LikeCode 的 Web UI 借鉴。 |
+| **`reference_design_ui/`** | 演示页、Slides、程序化视频与前端表达参考（如 `LivePPT`、`Remotion`、`Slidev`），适合给站点专题、可视化讲解、演示稿和绘图/演示插件线借鉴。 |
 | **`reference_meta(Manage)agent/`** | Managed / meta-agent 平台与多 agent 工作台参考（如 `cabinet`、`multica`），适合研究“谁来管理 agent”“runtime / daemon / board / knowledge base 如何协同”。 |
 | **`reference_skill/`** | 技能库、技能打包与知识胶囊型仓库（如 `baoyu-skills`），适合给技能市场、知识组织与 prompt packaging 借鉴。 |
 | **`reference_sourcemap/`** | Claude Code **泄露 / 逆向 / 镜像** 工程、对话抽取、中文 howto，以及原 `course_reference/` 里除 all-in-rag 外的学习材料（如 learn-claude-code、claude-code-book、openclaw-learn 等）。其中 **`claude-code`、`claude-code2`、`leaked-claude-code`、`open-claude-code`** 在本仓库中以 **git submodule（gitlink）** 登记，拉取主仓库后请在对应目录下执行 `git submodule update --init`。 |
@@ -81,6 +82,17 @@
 - 可视化控制台
 - 运行状态与事件可观测性
 - agent session 的前端表达
+
+### `reference_design_ui/`
+
+- `LivePPT/`
+- `remotion/`
+- `slidev/`
+
+这类仓库更适合借鉴：
+- Markdown / README 如何直接变成演示页
+- 前端讲解页、讲义页、发布页如何更具可演示性
+- 程序化视频、动效叙事、绘图/演示插件线如何融入开发者内容门户
 
 ### `reference_meta(Manage)agent/`
 

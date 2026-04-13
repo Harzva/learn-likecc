@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design/UI 教程页 - Everything in Claude-Code</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧭</text></svg>">
+    <meta name="description" content="Design/UI 教程页：给出 LivePPT、Slidev、Remotion 的使用场景判断与上手顺序，帮助站内内容选择合适的讲解媒介。">
+    <meta name="page:updated" content="2026-04-13">
+</head>
+<body class="toolchain-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🧭</span>
+                <span class="logo-text">Design/UI 教程页</span>
+            </a>
+            <div class="nav-links">
+                <a href="#pick" class="nav-link">怎么选</a>
+                <a href="#liveppt" class="nav-link">LivePPT</a>
+                <a href="#slidev" class="nav-link">Slidev</a>
+                <a href="#remotion" class="nav-link">Remotion</a>
+                <a href="#workflow" class="nav-link">推荐工作流</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-design-ui.html" class="btn-github">Design/UI 专题</a>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>Design/UI · 教程</span>
+                <span>Deck / Slides / Video</span>
+            </div>
+            <h1 class="hero-title">
+                先别急着选工具<br>
+                <span class="gradient-text">先判断你要表达什么</span>
+            </h1>
+            <p class="hero-subtitle">
+                这页的目标不是列命令，而是先帮我们判断：什么时候应该选 `LivePPT`，什么时候更适合 `Slidev`，什么时候值得直接上 `Remotion`。
+            </p>
+        </div>
+    </section>
+
+    <main class="course-main devlog-main">
+        <div class="container">
+            <article class="course-content devlog-content">
+                <section id="pick" class="section-block">
+                    <h2>怎么选：先看输出形态</h2>
+                    <table class="options-table">
+                        <tr><th>目标</th><th>更适合</th><th>原因</th></tr>
+                        <tr><td>把现成 README / Markdown 立刻变成可分享演示页</td><td><code>LivePPT</code></td><td>最快把已有内容变成 deck</td></tr>
+                        <tr><td>做开发者讲义、技术分享、live coding 幻灯片</td><td><code>Slidev</code></td><td>Markdown slides + drawing + export 很成熟</td></tr>
+                        <tr><td>做带动画、镜头感和节奏的视频表达</td><td><code>Remotion</code></td><td>React 程序化视频更自由</td></tr>
+                    </table>
+                </section>
+
+                <section id="liveppt" class="section-block">
+                    <h2>LivePPT：先把内容变成可演示页</h2>
+                    <p>如果你手上已经有 README、站内专题稿或 Markdown 草稿，`LivePPT` 的价值是最低成本把它变成一个可点击翻页、可分享的 HTML deck。</p>
+                    <p>对我们最有价值的场景是：把成熟的站内专题快速导出成演示版，而不是重新写一套幻灯片。</p>
+                </section>
+
+                <section id="slidev" class="section-block">
+                    <h2>Slidev：更适合开发者讲义和现场演示</h2>
+                    <p>`Slidev` 的优势在于它天然面向开发者内容：代码块、live coding、绘图、Mermaid、导出和 presenter mode 都很成熟。</p>
+                    <p>如果你要做的是“讲解一个技术系统”，而不是单纯导出一个 deck，它通常比 LivePPT 更像一个真正的讲义工作台。</p>
+                </section>
+
+                <section id="remotion" class="section-block">
+                    <h2>Remotion：当静态页不够时，就上程序化视频</h2>
+                    <p>`Remotion` 的优势不是“它也能放字”，而是你终于可以用 React、CSS、Canvas、SVG 和代码逻辑来控制镜头、节奏和动画。</p>
+                    <p>这特别适合后面把站内的系统解构页，升级成短视频、讲解片段或视觉解释素材。</p>
+                </section>
+
+                <section id="workflow" class="section-block">
+                    <h2>推荐工作流：站内内容如何升级成更强表达</h2>
+                    <div class="course-quote">
+                        <p><strong>第一步</strong>：先写出成熟专题页</p>
+                        <p><strong>第二步</strong>：如果只是要快速演示，走 <code>LivePPT</code></p>
+                        <p><strong>第三步</strong>：如果要做讲义或公开分享，走 <code>Slidev</code></p>
+                        <p><strong>第四步</strong>：如果要做动态叙事或视频，走 <code>Remotion</code></p>
+                    </div>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-design-ui-tutorial.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>© 2026 Everything in Claude-Code. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

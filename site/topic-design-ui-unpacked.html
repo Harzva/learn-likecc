@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design/UI 解构页 - Everything in Claude-Code</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧩</text></svg>">
+    <meta name="description" content="Design/UI 解构页：对照 LivePPT、Slidev、Remotion 三种不同的表达壳层，拆出 deck、slides、video 三种系统角色。">
+    <meta name="page:updated" content="2026-04-13">
+</head>
+<body class="cc-unpacked-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🧩</span>
+                <span class="logo-text">Design/UI 解构</span>
+            </a>
+            <div class="nav-links">
+                <a href="#roles" class="nav-link">角色</a>
+                <a href="#liveppt" class="nav-link">LivePPT</a>
+                <a href="#slidev" class="nav-link">Slidev</a>
+                <a href="#remotion" class="nav-link">Remotion</a>
+                <a href="#lessons" class="nav-link">值得学什么</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-design-ui.html" class="btn-github">Design/UI 专题</a>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>Design/UI · 解构</span>
+                <span>Deck vs Slides vs Video</span>
+            </div>
+            <h1 class="hero-title">
+                Design/UI 解构页<br>
+                <span class="gradient-text">把三种表达壳层拆开看</span>
+            </h1>
+            <p class="hero-subtitle">
+                `LivePPT`、`Slidev`、`Remotion` 都在解决“怎样讲清楚一件事”，但它们不是同一层工具。最值得做的不是列功能，而是先拆角色。
+            </p>
+        </div>
+    </section>
+
+    <main class="course-main devlog-main">
+        <div class="container container--layout-wide">
+            <article class="course-content devlog-content">
+                <section id="roles" class="section-block">
+                    <h2>三者的角色先拆开</h2>
+                    <table class="options-table">
+                        <tr><th>样本</th><th>更像什么</th><th>核心优势</th></tr>
+                        <tr><td><code>LivePPT</code></td><td>演示页生成器</td><td>把已有 Markdown / README 快速变成 HTML deck</td></tr>
+                        <tr><td><code>Slidev</code></td><td>开发者讲义系统</td><td>Markdown slides + live coding + drawing + export</td></tr>
+                        <tr><td><code>Remotion</code></td><td>程序化视频引擎</td><td>用 React 直接做可编排的视频和动画表达</td></tr>
+                    </table>
+                </section>
+
+                <section id="liveppt" class="section-block">
+                    <h2>LivePPT：最像内容变演示页的壳</h2>
+                    <p>它最吸引人的点，不是功能大全，而是非常直接：把现有内容快速变成可演示的结果。这种“内容先行”的姿势，很适合给站内成熟专题做演示版。</p>
+                </section>
+
+                <section id="slidev" class="section-block">
+                    <h2>Slidev：最像开发者讲解工作台</h2>
+                    <p>它在 Markdown slides、绘图、Presenter Mode、Mermaid、代码高亮和 export 之间达成了比较完整的开发者讲义形态。</p>
+                </section>
+
+                <section id="remotion" class="section-block">
+                    <h2>Remotion：最像代码驱动的视频表达层</h2>
+                    <p>一旦你不满足于静态页和 slides，而想把解释升级成动画、片段和节奏化叙事，Remotion 就会显出它的层级差异。</p>
+                    <div class="course-quote">
+                        <p><strong>[插图提示词]</strong></p>
+                        <p>用途：画 Design/UI 三条路线对照图。</p>
+                        <p>形式：分层结构图；Mermaid 很合适。</p>
+                        <p>提示词：顶部是 Design/UI hub，左边 LivePPT 标注 markdown/readme to html deck，中间 Slidev 标注 developer slides / drawing / export，右边 Remotion 标注 react programmatic video / animation / storytelling，底部画出从文章到演示页到视频的升级路径。</p>
+                        <p>Mermaid 更适合：是。</p>
+                    </div>
+                </section>
+
+                <section id="lessons" class="section-block">
+                    <h2>对我们最值得学什么</h2>
+                    <div class="course-quote">
+                        <p><strong>第一</strong>，LivePPT 告诉我们“已有内容快速变演示页”这件事可以单独成为一层。</p>
+                        <p><strong>第二</strong>，Slidev 说明开发者讲义页和普通 PPT 不是一回事。</p>
+                        <p><strong>第三</strong>，Remotion 给了站点未来一条从图文走向视频的扩展路线。</p>
+                    </div>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-design-ui-unpacked.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>© 2026 Everything in Claude-Code. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

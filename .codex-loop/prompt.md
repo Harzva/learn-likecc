@@ -5,7 +5,7 @@ then work from the task pool below.
 Task types:
 - temporary task:
   - a one-off task given by the user for immediate handling
-  - do not add it into the recurring 10-minute loop task pool unless the user explicitly promotes it into a loop task
+  - do not add it into the recurring daemon loop task pool unless the user explicitly promotes it into a loop task
   - finish it once, report the result, and stop tracking it in the daemon prompt
 - loop task:
   - a recurring task that should stay in the long-running task pool
@@ -351,3 +351,21 @@ Execution rule:
    - `tools/codex_loop_web_relay.py`
    - `.codex-loop/prompt.md`
    - `.claude/plans/loloop/`
+
+Task 16:
+Loop task: keep growing the `Design/UI` line for deck pages, slides, programmatic video, and drawing/demo plugins by following the dedicated plan file:
+- `.claude/plans/loloop/active-design-ui-topic-plan-v1.md`
+
+Execution rule:
+1. Read that plan first.
+2. Continue the current unchecked / active item instead of randomly switching.
+3. After each bounded pass:
+   - mark progress in the plan file
+   - check off any completed item
+   - record the result in the evolution trail
+4. Prefer changes that keep these aligned:
+   - `site/topic-design-ui.html`
+   - `site/topic-design-ui-tutorial.html`
+   - `site/topic-design-ui-unpacked.html`
+   - `reference/reference_design_ui/`
+   - drawing / demo plugin integration paths for the site and media workflow

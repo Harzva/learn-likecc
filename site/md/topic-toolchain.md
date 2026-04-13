@@ -39,3 +39,4 @@
 ## 备注
 
 - [Show me your usage](../column-show-your-usage.html) 现在作为工具链专题里的一个子专题保留，更偏“用量自证 / 透明度页”。
+- [Design/UI 专题](../topic-design-ui.html) 已单独成立，负责收 `LivePPT / Slidev / Remotion` 这条讲解、演示与程序化视频表达线。
