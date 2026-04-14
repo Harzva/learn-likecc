@@ -190,6 +190,7 @@
         if (!shellRecentHost) return
         var recent = normalizeRecentCommands(shellState.recentCommands || [])
         var cue = shellRecentCue()
+        var active = activeShell()
         var activeCommand = currentSeatRecentCommand()
         shellState.recentCommands = recent
         if (!recent.length) {
@@ -201,8 +202,10 @@
         shellRecentHost.innerHTML =
             '<span class="likecode-workspace-badge likecode-workspace-badge--' + esc(cue.tone) + '">' + esc(cue.text) + '</span>' +
             recent.map(function (command) {
-                var buttonClass = command === activeCommand ? 'btn btn-primary' : 'btn btn-secondary'
-                return '<button type="button" class="' + buttonClass + '" data-shell-command="' + esc(command) + '">' + esc(command) + '</button>'
+                var isCurrent = !!activeCommand && command === activeCommand
+                var buttonClass = isCurrent ? 'btn btn-primary' : 'btn btn-secondary'
+                var buttonLabel = (!isCurrent && active) ? ('shared · ' + command) : command
+                return '<button type="button" class="' + buttonClass + '" data-shell-command="' + esc(command) + '">' + esc(buttonLabel) + '</button>'
         }).join('')
         Array.prototype.slice.call(shellRecentHost.querySelectorAll('[data-shell-command]')).forEach(function (button) {
             button.addEventListener('click', function () {

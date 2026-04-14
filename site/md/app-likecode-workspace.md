@@ -73,6 +73,8 @@
 - 所以切换 shell seat 时，recent replay 不会继续像全局命令条那样悬空，而是会直接标出当前 seat 以及它最近一次本地命令是否已经对齐
 - 这轮再把当前 seat 的最近本地命令在 `Recent Commands` 里做了高亮
 - 所以 replay 按钮本身也会和 `output from` / current-seat cue 对齐，而不只是靠一条 badge 文案提醒操作者当前上下文
+- 这轮再把非当前命令的 replay button 标成 `shared · ...`
+- 所以同一行里现在会直接区分“当前 seat 的本地命令”和“仍可复用、但不属于当前 seat 上下文的全局 recent memory”
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
