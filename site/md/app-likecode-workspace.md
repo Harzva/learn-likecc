@@ -185,6 +185,8 @@
 - 所以点这个按钮时，status lane 现在会明确显示 `正在刷新当前输出 / 当前输出已刷新 / 输出刷新失败`，不再像一个无声的读操作
 - 这轮再把 shell 输出读取时间单独拆成了一个 `output sync` cue
 - 所以现在页面会把“最近一次从 relay 读到当前输出的时间”和下面 `updated` 表示的本地命令 provenance 时间分开显示，不再混成同一条时间线
+- 这轮再把这条双时间线差异直接写回了 shell lane
+- 所以 `output sync` 下面现在会明确说明：它表示最近一次从 relay 读取当前输出，而 `updated` 表示最近一次本地命令 provenance 时间，操作者不用自己猜这两个时间戳的分工
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
