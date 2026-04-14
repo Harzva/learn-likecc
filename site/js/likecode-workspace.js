@@ -489,13 +489,20 @@
         var time = document.getElementById('workspace-shell-output-time')
         var scope = document.getElementById('workspace-shell-output-scope')
         var hint = document.getElementById('workspace-shell-output-hint')
+        var hasSessions = !!((shellState.sessions || []).length)
         if (!host) return
         if (!session) {
-            host.textContent = '先新建或选中一个 shell，再按 Enter 发命令或点常用探针，这里就会显示最近输出。'
+            host.textContent = hasSessions
+                ? '先选中一个 shell，再按 Enter 发命令或点常用探针，这里就会显示最近输出。'
+                : '先新建一个 shell，再按 Enter 发命令或点常用探针，这里就会显示最近输出。'
             setStatus(label, 'output from: --', 'neutral')
             setText('workspace-shell-output-time', 'updated: --')
             setBadge(scope, 'seat-local hint', 'neutral')
-            if (hint) hint.textContent = 'hint: create or select a seat first, then send a command with Enter or the quick probes above to inspect local provenance here.'
+            if (hint) {
+                hint.textContent = hasSessions
+                    ? 'hint: select a seat first, then send a command with Enter or the quick probes above to inspect local provenance here.'
+                    : 'hint: create a seat first, then send a command with Enter or the quick probes above to inspect local provenance here.'
+            }
             return
         }
         host.textContent = session.buffer || '(empty)'

@@ -223,6 +223,8 @@
 - 所以 `active seat · 第二步` 不会在空 roster 时继续写成 `先选中一个 shell`，而是会直接改成 `先新建一个 shell`
 - 这轮再把同一排里的 `cwd / pid` 空态提示也补成了同样的分支
 - 所以空 roster 时，它们不会继续写成 `先选中后查看`，而会直接改成 `先新建后查看`
+- 这轮再把输出面板本身的 no-session 文案也改成了 `空 roster / 未选中` 分支
+- 所以输出区不会继续笼统地写成 `先新建或选中`，而是会在空 roster 时直接指向 `先新建一个 shell`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
