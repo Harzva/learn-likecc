@@ -155,6 +155,8 @@
 - 所以 `cwd` 现在会直接标成 `selected shell`，而在还没选中 shell 时，这格也不会只留 `—`，而会直接提示先选中后查看目录
 - 这轮再把 `pid` runtime card 的 active-seat 依赖也写回了卡片本身
 - 所以 `pid` 现在也会直接标成 `selected shell`，而在还没选中 shell 时，这格不会只留 `—`，而会直接提示先选中后查看 pid
+- 这轮再把 shell summary row 的 scope 词整体收成了一套更统一的说法
+- 所以 `sessions · roster scope / cwd · selected shell / pid · selected shell` 这组混搭词现在收成了 `sessions · 会话总览 / cwd · 当前会话 / pid · 当前会话`，count 值也改成了 `共 N 个`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
