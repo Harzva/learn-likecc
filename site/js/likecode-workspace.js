@@ -444,12 +444,17 @@
         }
         shellListHost.innerHTML = sessions.map(function (session) {
             var active = session.session_id === shellState.activeId ? ' is-active' : ''
-            var state = session.alive ? 'ready' : 'done'
+            var state = session.alive ? '' : ' is-done'
+            var title = session.session_id + (active ? ' · 当前会话' : '')
+            var meta = (session.cwd || '—') + ' · pid ' + (session.pid || '—')
+            var status = session.alive ? '状态: 就绪' : '状态: 已关闭'
             return (
-                '<button type="button" class="likecode-workspace-checkitem' + active + '" data-shell-id="' + esc(session.session_id) + '">' +
+                '<button type="button" class="likecode-workspace-checkitem' + active + state + '" data-shell-id="' + esc(session.session_id) + '">' +
                 '<span class="likecode-workspace-checkitem__box">' + esc(session.alive ? '>' : 'x') + '</span>' +
                 '<span class="likecode-workspace-checkitem__label">' +
-                esc(session.session_id + ' · ' + (session.cwd || '—') + ' · pid ' + (session.pid || '—') + ' · ' + (session.alive ? 'alive' : 'closed')) +
+                '<span class="likecode-workspace-shellitem__title">' + esc(title) + '</span>' +
+                '<span class="likecode-workspace-shellitem__meta">' + esc(meta) + '</span>' +
+                '<span class="likecode-workspace-shellitem__meta">' + esc(status) + '</span>' +
                 '</span>' +
                 '</button>'
             )
