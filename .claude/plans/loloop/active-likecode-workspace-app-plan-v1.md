@@ -65,3 +65,5 @@ Scope: grow the current codex-loop monitor into a separate app-style LikeCode wo
 - 2026-04-14: eleventh bounded Task 13 follow-up should add safe shell presets so the new shell write surface can trigger the most common probes without manual typing
 - 2026-04-14: eleventh bounded Task 13 follow-up landed a compact `Shell Presets` row plus shared shell-send feedback; the app now exposes `pwd / ls / git status / python -V` as one-click probes and reports `no active shell / empty command / sent <command>` in the existing status lane
 - 2026-04-14: twelfth bounded Task 13 follow-up should add a tiny recent-command memory or replay affordance so the one-line shell lane keeps just enough operator context after each preset or manual send
+- 2026-04-14: twelfth bounded Task 13 follow-up landed a local `Recent Commands` replay strip; the shell lane now keeps the latest successful probes in browser storage and lets the operator re-run them without retyping after refresh
+- 2026-04-14: thirteenth bounded Task 13 follow-up should add a tiny shell-lane context cue that shows which command most recently produced the current output so replay and output stay visually paired

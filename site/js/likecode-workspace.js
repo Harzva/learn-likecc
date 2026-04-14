@@ -19,6 +19,7 @@
     var connectorBridgeTargetInput = document.getElementById('workspace-connector-bridge-target-input')
     var shellListHost = document.getElementById('workspace-shell-list')
     var shellCommandInput = document.getElementById('workspace-shell-command')
+    var shellRecentHost = document.getElementById('workspace-shell-recent')
     var activeTask = null
     var taskPayload = null
     var currentLogMode = 'latest'
@@ -47,6 +48,7 @@
         delivery_guardrail: 'queue-only',
     }
     var CONNECTOR_STATE_KEY = 'likecode_workspace_connector_shell_v1'
+    var SHELL_RECENT_KEY = 'likecode_workspace_shell_recent_v1'
 
     function esc(s) {
         return String(s || '')
@@ -83,6 +85,59 @@
         try {
             window.localStorage.setItem(CONNECTOR_STATE_KEY, JSON.stringify(connectorState))
         } catch (error) {}
+    }
+
+    function loadShellRecentCommands() {
+        try {
+            var raw = window.localStorage.getItem(SHELL_RECENT_KEY)
+            if (!raw) return []
+            return JSON.parse(raw) || []
+        } catch (error) {
+            return []
+        }
+    }
+
+    function persistShellRecentCommands(commands) {
+        try {
+            window.localStorage.setItem(SHELL_RECENT_KEY, JSON.stringify(commands || []))
+        } catch (error) {}
+    }
+
+    function normalizeRecentCommands(commands) {
+        var seen = {}
+        return (commands || [])
+            .map(function (item) { return String(item || '').trim() })
+            .filter(function (item) {
+                if (!item || seen[item]) return false
+                seen[item] = true
+                return true
+            })
+            .slice(0, 4)
+    }
+
+    function renderShellRecentCommands() {
+        if (!shellRecentHost) return
+        var recent = normalizeRecentCommands(shellState.recentCommands || [])
+        shellState.recentCommands = recent
+        if (!recent.length) {
+            shellRecentHost.innerHTML = '<span class="likecode-workspace-empty">最近成功命令会显示在这里，支持一键重放。</span>'
+            return
+        }
+        shellRecentHost.innerHTML = recent.map(function (command) {
+            return '<button type="button" class="btn btn-secondary" data-shell-command="' + esc(command) + '">' + esc(command) + '</button>'
+        }).join('')
+        Array.prototype.slice.call(shellRecentHost.querySelectorAll('[data-shell-command]')).forEach(function (button) {
+            button.addEventListener('click', function () {
+                dispatchShellCommand(button.getAttribute('data-shell-command') || '')
+            })
+        })
+    }
+
+    function rememberShellCommand(command) {
+        var recent = normalizeRecentCommands([command].concat(shellState.recentCommands || []))
+        shellState.recentCommands = recent
+        persistShellRecentCommands(recent)
+        renderShellRecentCommands()
     }
 
     function connectorTone(state) {
@@ -346,6 +401,7 @@
             }),
         }).then(function () {
             setStatus(statusEl, 'sent: ' + command, 'ready')
+            rememberShellCommand(command)
             shellCommandInput.value = ''
             return refreshShellOutput()
         }).catch(function (error) {
@@ -998,6 +1054,8 @@
         checkConnectorGuardrail()
     })
 
+    shellState.recentCommands = loadShellRecentCommands()
+    renderShellRecentCommands()
     loadConnectorState()
     renderConnectorShell()
     fetchConnectorState()
