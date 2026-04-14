@@ -166,15 +166,33 @@
             .slice(0, 4)
     }
 
+    function shellRecentCue() {
+        var active = activeShell()
+        if (!active) return { tone: 'neutral', text: 'current seat: --' }
+        var context = ((shellState.lastCommandBySeat || {})[active.session_id]) || {}
+        if (!context.command) {
+            return { tone: 'attention', text: 'current seat: ' + active.session_id + ' · no local match' }
+        }
+        return {
+            tone: 'ready',
+            text: 'current seat: ' + active.session_id + ' · ' + shellPreviewText(context.command),
+        }
+    }
+
     function renderShellRecentCommands() {
         if (!shellRecentHost) return
         var recent = normalizeRecentCommands(shellState.recentCommands || [])
+        var cue = shellRecentCue()
         shellState.recentCommands = recent
         if (!recent.length) {
-            shellRecentHost.innerHTML = '<span class="likecode-workspace-empty">最近成功命令会显示在这里，支持一键重放。</span>'
+            shellRecentHost.innerHTML =
+                '<span class="likecode-workspace-badge likecode-workspace-badge--' + esc(cue.tone) + '">' + esc(cue.text) + '</span>' +
+                '<span class="likecode-workspace-empty">最近成功命令会显示在这里，支持一键重放。</span>'
             return
         }
-        shellRecentHost.innerHTML = recent.map(function (command) {
+        shellRecentHost.innerHTML =
+            '<span class="likecode-workspace-badge likecode-workspace-badge--' + esc(cue.tone) + '">' + esc(cue.text) + '</span>' +
+            recent.map(function (command) {
             return '<button type="button" class="btn btn-secondary" data-shell-command="' + esc(command) + '">' + esc(command) + '</button>'
         }).join('')
         Array.prototype.slice.call(shellRecentHost.querySelectorAll('[data-shell-command]')).forEach(function (button) {
@@ -355,6 +373,7 @@
         if (!shellListHost) return
         var sessions = shellState.sessions || []
         renderShellSummary()
+        renderShellRecentCommands()
         if (!sessions.length) {
             shellListHost.innerHTML = '<p class="likecode-workspace-empty">当前还没有 shell seat。可以直接新建一个本地登录 shell。</p>'
             return

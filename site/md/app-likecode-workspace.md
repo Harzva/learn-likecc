@@ -69,6 +69,8 @@
 - 所以正常路径现在只会提示“这个 seat 正在和上面的本地 probe 对齐”，不再在成功态里反复讲实现细节
 - 这轮再把说明层级拆成了两个 badge
 - 所以 panel 里的 `browser-local memory` 继续表示全局本地记忆范围，而 `seat-local hint / gap / cue` 专门表示当前 shell seat 的 provenance 状态，两层信息不会再混在一行文字里
+- 这轮再给 `Recent Commands` 行首补了一个 current-seat cue
+- 所以切换 shell seat 时，recent replay 不会继续像全局命令条那样悬空，而是会直接标出当前 seat 以及它最近一次本地命令是否已经对齐
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
