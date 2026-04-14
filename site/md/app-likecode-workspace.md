@@ -95,6 +95,8 @@
 - 所以 intentional reset 现在会继续可见，但不会再和异常 / 缺口提示混成同一种 attention 信号，也不会冒充正常发送成功的 ready 态
 - 这轮再把 clear-status 的 scope 词汇和 panel note 对齐了
 - 所以 shell status 现在会直接写成 `browser-local memory cleared`，而不是继续用更短、和别处不完全一致的 `local memory`
+- 这轮再把 clear-action 自身的 wording 也对齐到了同一套 scope 词汇
+- 所以按钮现在会直接写成 `清空全部浏览器本地记忆`，不再让 action、panel note 和 status line 各自用一套接近但不完全相同的说法
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
