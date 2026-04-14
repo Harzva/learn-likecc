@@ -374,6 +374,7 @@
     }
 
     function syncShellActionState(active) {
+        var createButton = document.getElementById('workspace-shell-create')
         var refreshOutput = document.getElementById('workspace-shell-refresh-output')
         var closeButton = document.getElementById('workspace-shell-close')
         var sendButton = document.getElementById('workspace-shell-send')
@@ -396,6 +397,11 @@
         if (focusLiveButton) {
             focusLiveButton.disabled = !fallbackLive
             focusLiveButton.textContent = fallbackLive ? ('切到存活会话 · ' + fallbackLive.session_id) : '切到首个存活会话'
+        }
+        if (createButton) {
+            createButton.textContent = active && !active.alive && !fallbackLive
+                ? '新建 shell · 恢复会话'
+                : '新建 shell · 第一步'
         }
         if (commandInput) {
             commandInput.disabled = disabled
