@@ -75,3 +75,5 @@ Scope: grow the current codex-loop monitor into a separate app-style LikeCode wo
 - 2026-04-14: sixteenth bounded Task 13 follow-up should add one tiny clear-history affordance so local replay memory can be intentionally reset without clearing all browser storage
 - 2026-04-14: sixteenth bounded Task 13 follow-up landed a `清空本地记忆` affordance; recent replay history plus local output provenance can now be reset from the shell panel without touching broader browser storage
 - 2026-04-14: seventeenth bounded Task 13 follow-up should add one tiny shell-memory scope note so the UI teaches that replay and provenance are browser-local rather than relay-backed session history
+- 2026-04-14: seventeenth bounded Task 13 follow-up landed a shell-memory scope note in the panel itself; the UI now explicitly teaches that replay and provenance are browser-local memory rather than relay-backed session history
+- 2026-04-14: eighteenth bounded Task 13 follow-up should add one tiny current-seat reset affordance or hint so operators can distinguish global local-memory reset from seat-specific provenance gaps

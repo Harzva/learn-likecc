@@ -59,6 +59,8 @@
 - 所以如果某个 shell seat 的输出不是从当前 workspace shell 发出来的，页面会明确提示 `unknown on this seat / no local send yet`，而不是继续拿 `--` 糊过去
 - 这轮再补了一个 `清空本地记忆` 入口
 - 所以 recent replay、`output from` 和 `updated` 这些本地 provenance 都可以在页面里显式重置，不需要手动清整个浏览器存储
+- 这轮再补了一条 scope note
+- 所以页面会明确提醒：`Recent Commands`、`output from`、`updated` 都只是浏览器本地记忆，不是 relay 端持久化出来的 shell 历史
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
