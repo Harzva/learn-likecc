@@ -73,6 +73,12 @@
         el.className = 'likecode-workspace-status likecode-workspace-status--' + (tone || 'neutral')
     }
 
+    function setBadge(el, text, tone) {
+        if (!el) return
+        el.textContent = text
+        el.className = 'likecode-workspace-badge likecode-workspace-badge--' + (tone || 'neutral')
+    }
+
     function loadConnectorState() {
         try {
             var raw = window.localStorage.getItem(CONNECTOR_STATE_KEY)
@@ -317,12 +323,14 @@
         var host = document.getElementById('workspace-shell-output')
         var label = document.getElementById('workspace-shell-output-label')
         var time = document.getElementById('workspace-shell-output-time')
+        var scope = document.getElementById('workspace-shell-output-scope')
         var hint = document.getElementById('workspace-shell-output-hint')
         if (!host) return
         if (!session) {
             host.textContent = '选中 shell 后，这里会显示最近输出。'
             setStatus(label, 'output from: --', 'neutral')
             setText('workspace-shell-output-time', 'updated: --')
+            setBadge(scope, 'seat-local hint', 'neutral')
             if (hint) hint.textContent = 'hint: select a seat to inspect its local provenance context.'
             return
         }
@@ -333,11 +341,13 @@
         if (lastCommand === '--') {
             setStatus(label, 'output from: unknown on this seat', 'attention')
             if (time) time.textContent = 'updated: no local send yet'
+            setBadge(scope, 'seat-local gap', 'attention')
             if (hint) hint.textContent = 'hint: this seat output may predate this browser memory, or local provenance may have been cleared globally.'
             return
         }
         setStatus(label, 'output from: ' + lastCommand, 'ready')
         if (time) time.textContent = 'updated: ' + (lastAt || 'unknown')
+        setBadge(scope, 'seat-local cue', 'ready')
         if (hint) hint.textContent = 'hint: this seat is currently paired with the last local probe shown above.'
     }
 
