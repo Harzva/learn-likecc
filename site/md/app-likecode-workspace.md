@@ -215,6 +215,8 @@
 - 所以 closed seat 不会再统一只显示 `已关闭`，而是会进一步区分成 `已关闭 · 可切换` 或 `已关闭 · 需恢复`
 - 这轮再把发送输入框的 placeholder 也补成了同样的 closed-seat 分支提示
 - 所以当前会话关闭时，输入框不会只停在笼统的“先新建或切换”，而会直接提示 `切到存活会话 <id>` 或 `新建 shell · 恢复会话`
+- 这轮再把 disabled 的 live-seat recovery 按钮文案也收紧成了结果态
+- 所以当 roster 里根本没有别的 live seat 时，按钮不会继续像一个待执行动作那样显示 `切到首个存活会话`，而是会直接说明 `没有其它存活会话`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
