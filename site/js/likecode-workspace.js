@@ -381,12 +381,25 @@
     function renderShellSummary() {
         var sessions = shellState.sessions || []
         var active = activeShell()
+        var liveCount = sessions.filter(function (item) { return !!item.alive }).length
+        var closedCount = sessions.length - liveCount
         syncShellActionState(active)
         setText('workspace-shell-count', '共 ' + sessions.length + ' 个')
         setText('workspace-shell-active', active ? active.session_id : '先选中一个 shell')
         setText('workspace-shell-cwd', active ? (active.cwd || '—') : '先选中后查看目录')
         setText('workspace-shell-pid', active ? (active.pid || '—') : '先选中后查看 pid')
         setText('workspace-shell-preview', '预览: ' + (active ? shellPreviewText(active.buffer) : '--'))
+        setStatus(
+            document.getElementById('workspace-shell-roster-pulse-badge'),
+            sessions.length ? 'roster pulse' : 'empty roster',
+            sessions.length ? 'neutral' : 'attention'
+        )
+        setText(
+            'workspace-shell-roster-pulse-text',
+            sessions.length
+                ? ('当前会话 ' + (active ? active.session_id : '--') + ' · live ' + liveCount + ' · closed ' + closedCount)
+                : '还没有 shell 会话 · live 0 · closed 0'
+        )
         setStatus(
             document.getElementById('workspace-shell-active-route-badge'),
             active ? 'active seat routing' : 'active seat route',
