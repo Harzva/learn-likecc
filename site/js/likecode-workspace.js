@@ -358,9 +358,20 @@
         return sessions.find(function (item) { return item.session_id === shellState.activeId }) || sessions[0] || null
     }
 
+    function syncShellActionState(active) {
+        var refreshOutput = document.getElementById('workspace-shell-refresh-output')
+        var closeButton = document.getElementById('workspace-shell-close')
+        var disabled = !active
+        ;[refreshOutput, closeButton].forEach(function (button) {
+            if (!button) return
+            button.disabled = disabled
+        })
+    }
+
     function renderShellSummary() {
         var sessions = shellState.sessions || []
         var active = activeShell()
+        syncShellActionState(active)
         setText('workspace-shell-count', '共 ' + sessions.length + ' 个')
         setText('workspace-shell-active', active ? active.session_id : '先选中一个 shell')
         setText('workspace-shell-cwd', active ? (active.cwd || '—') : '先选中后查看目录')
