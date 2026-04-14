@@ -408,7 +408,9 @@
             if (!active) {
                 commandInput.placeholder = '先新建或选中一个 shell，再按 Enter 发命令'
             } else if (!active.alive) {
-                commandInput.placeholder = '当前 shell 已关闭；请先新建或切换到存活会话'
+                commandInput.placeholder = fallbackLive
+                    ? ('当前 shell 已关闭；先切到存活会话 ' + fallbackLive.session_id + ' 再发命令')
+                    : '当前 shell 已关闭；请先新建 shell · 恢复会话'
             } else {
                 commandInput.placeholder = '输入一条 shell 命令，例如：pwd 或 ls；按 Enter 发送'
             }
