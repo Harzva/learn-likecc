@@ -205,7 +205,9 @@
                 var isCurrent = !!activeCommand && command === activeCommand
                 var buttonClass = isCurrent ? 'btn btn-primary' : 'btn btn-secondary'
                 var buttonLabel = isCurrent ? command : ('shared · ' + command)
-                return '<button type="button" class="' + buttonClass + '" data-shell-command="' + esc(command) + '">' + esc(buttonLabel) + '</button>'
+                var buttonHint = isCurrent ? '' : 'browser-local shared replay; not relay-backed shell history'
+                var buttonAttrs = isCurrent ? '' : (' title="' + esc(buttonHint) + '" aria-label="' + esc(buttonLabel + ' (' + buttonHint + ')') + '"')
+                return '<button type="button" class="' + buttonClass + '" data-shell-command="' + esc(command) + '"' + buttonAttrs + '>' + esc(buttonLabel) + '</button>'
         }).join('')
         Array.prototype.slice.call(shellRecentHost.querySelectorAll('[data-shell-command]')).forEach(function (button) {
             button.addEventListener('click', function () {

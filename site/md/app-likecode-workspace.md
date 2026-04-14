@@ -77,6 +77,8 @@
 - 所以同一行里现在会直接区分“当前 seat 的本地命令”和“仍可复用、但不属于当前 seat 上下文的全局 recent memory”
 - 这轮再把 no-seat 场景也收口成 shared replay 文案
 - 所以在还没选 shell seat 时，`Recent Commands` 也不会回退成裸命令列表，而会继续明确告诉操作者这是一组 browser-local 的 shared replay
+- 这轮再给 `shared` replay button 补了一个 browser-local hover hint
+- 所以操作者把鼠标停在这些按钮上时，页面会继续明确说明它们只是本地 shared replay，不是 relay 端保存下来的 shell 历史
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
