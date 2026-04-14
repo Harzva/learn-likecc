@@ -518,7 +518,7 @@
         var active = activeShell()
         var statusEl = document.getElementById('workspace-shell-status')
         if (!active) {
-            setStatus(statusEl, 'no active shell', 'risk')
+            setStatus(statusEl, 'no active shell · create/select one, then Enter or quick probes', 'risk')
             setText('workspace-shell-preview', 'preview: create/select a shell first, then press Enter or use quick probes')
             return
         }
