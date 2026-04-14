@@ -202,6 +202,12 @@
         setText('workspace-shell-preview', 'preview: ' + (active ? shellPreviewText(active.buffer) : '--'))
     }
 
+    function renderShellOutput(session) {
+        var host = document.getElementById('workspace-shell-output')
+        if (!host) return
+        host.textContent = session ? (session.buffer || '(empty)') : '选中 shell 后，这里会显示最近输出。'
+    }
+
     function renderShellRoster() {
         if (!shellListHost) return
         var sessions = shellState.sessions || []
@@ -217,8 +223,7 @@
                 '<button type="button" class="likecode-workspace-checkitem' + active + '" data-shell-id="' + esc(session.session_id) + '">' +
                 '<span class="likecode-workspace-checkitem__box">' + esc(session.alive ? '>' : 'x') + '</span>' +
                 '<span class="likecode-workspace-checkitem__label">' +
-                esc(session.session_id + ' · ' + (session.cwd || '—') + ' · pid ' + (session.pid || '—')) +
-                ' <span class="likecode-workspace-badge likecode-workspace-badge--' + esc(state) + '">' + esc(session.alive ? 'alive' : 'closed') + '</span>' +
+                esc(session.session_id + ' · ' + (session.cwd || '—') + ' · pid ' + (session.pid || '—') + ' · ' + (session.alive ? 'alive' : 'closed')) +
                 '</span>' +
                 '</button>'
             )
@@ -227,8 +232,29 @@
             button.addEventListener('click', function () {
                 shellState.activeId = button.getAttribute('data-shell-id') || ''
                 renderShellRoster()
+                refreshShellOutput()
             })
         })
+    }
+
+    function refreshShellOutput() {
+        var active = activeShell()
+        if (!active) {
+            renderShellOutput(null)
+            return Promise.resolve()
+        }
+        return fetchJson(relayBase() + '/api/shell/read?id=' + encodeURIComponent(active.session_id))
+            .then(function (payload) {
+                var session = payload.session || active
+                shellState.sessions = (shellState.sessions || []).map(function (item) {
+                    return item.session_id === session.session_id ? session : item
+                })
+                renderShellSummary()
+                renderShellOutput(session)
+            })
+            .catch(function (error) {
+                renderShellOutput({ buffer: 'shell read failed: ' + error.message })
+            })
     }
 
     function refreshShells() {
@@ -242,11 +268,13 @@
                 }
                 renderShellRoster()
                 setStatus(statusEl, 'synced', 'ready')
+                return refreshShellOutput()
             })
             .catch(function (error) {
                 shellState.sessions = []
                 shellState.activeId = ''
                 renderShellRoster()
+                renderShellOutput(null)
                 setStatus(statusEl, 'sync failed', 'risk')
                 setText('workspace-shell-preview', 'preview: ' + error.message)
             })
