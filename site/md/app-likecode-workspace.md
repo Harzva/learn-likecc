@@ -161,6 +161,8 @@
 - 所以 shell preview 现在统一写成 `预览:`，不再让 summary row 已经转成中文后，这条紧邻的状态线还停在旧的 `preview:` 前缀
 - 这轮再把 no-seat 的 shell preview 指引句本身也收成了中文操作语气
 - 所以在还没选中 shell 时，preview 不再写 `create/select a shell first...`，而会直接提示 `先新建或选中一个 shell，再按 Enter 发命令或点常用探针`
+- 这轮再把 no-seat 的 shell status 句本身也收成了中文操作语气
+- 所以在还没选中 shell 时，status 不再写 `no active shell · create/select one...`，而会直接写成 `还没有激活 shell · 先新建或选中，再按 Enter 或点常用探针`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
