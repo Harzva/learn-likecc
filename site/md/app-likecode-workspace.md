@@ -110,11 +110,13 @@
 - 这轮再给这句 helper 末尾补了一个强调词
 - 所以按钮旁边现在会写成 `relay 端的 shell seat 本身`，更像正常操作文案里的“不会动到这个对象本身”
 - 这轮再把 clear button 本身也补了 hover / assistive scope hint
-- 所以就算不看旁边那句 helper，鼠标停在按钮上或读到按钮的辅助文案时，也能直接知道它只清空浏览器里的回放与来源记忆，不会重置 relay 端的 shell seat 本身
+- 所以就算不看旁边那句 helper，鼠标停在按钮上或读到按钮的辅助文案时，也能直接知道它只清空浏览器里的回放与来源记忆，不会重置 relay 端的 shell 会话位本身
 - 这轮再把 clear button 的 hover / assistive hint 和可见 helper 做了一次去重
-- 所以按钮现在用更短的 hover 提示 `只清空浏览器本地记忆`，同时通过 helper 的同一句边界文案告诉人和辅助技术：`relay 端的 shell seat 本身不变`
+- 所以按钮现在用更短的 hover 提示 `只清空浏览器本地记忆`，同时通过 helper 的同一句边界文案告诉人和辅助技术：`relay 端的 shell 会话位本身不变`
 - 这轮再把共享 helper 里的 `shell seat` 收成了更顺口的中文对象名
 - 所以按钮旁边现在会写成 `relay 端的 shell 会话位本身不变`，还保留 seat 级边界，但更像正常操作提示
+- 这轮再把紧邻当前状态的 markdown 说明也同步成 `shell 会话位`
+- 所以这条 clear-action 文案微线程的记录不会停在旧的 `shell seat` 说法上，当前页面说明和最近几轮 handoff 用的是同一套词
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
