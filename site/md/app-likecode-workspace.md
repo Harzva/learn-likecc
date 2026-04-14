@@ -165,6 +165,8 @@
 - 所以在还没选中 shell 时，status 不再写 `no active shell · create/select one...`，而会直接写成 `还没有激活 shell · 先新建或选中，再按 Enter 或点常用探针`
 - 这轮再把 shell 发送过程里的瞬时状态也收成了中文操作语气
 - 所以 `empty command / sending / sent / send failed` 现在统一写成了 `命令为空 / 发送中 / 已发送 / 发送失败`，不再让 status lane 前半段已经中文化后，发送反馈还停在英文短语上
+- 这轮再把 shell preview 里的错误正文也收成了中文操作语气
+- 所以 `预览:` 后面现在不会直接裸贴英文异常，而会先补成 `同步错误 / 新建错误 / 关闭错误 / 发送错误` 这类短前缀，再保留原始异常细节给操作者排查
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局

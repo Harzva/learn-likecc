@@ -469,7 +469,7 @@
                 renderShellRoster()
                 renderShellOutput(null)
                 setStatus(statusEl, 'sync failed', 'risk')
-                setText('workspace-shell-preview', '预览: ' + error.message)
+                setText('workspace-shell-preview', '预览: 同步错误 · ' + error.message)
             })
     }
 
@@ -486,7 +486,7 @@
             return refreshShells()
         }).catch(function (error) {
             setStatus(statusEl, 'create failed', 'risk')
-            setText('workspace-shell-preview', '预览: ' + error.message)
+            setText('workspace-shell-preview', '预览: 新建错误 · ' + error.message)
         })
     }
 
@@ -504,7 +504,7 @@
             return refreshShells()
         }).catch(function (error) {
             setStatus(statusEl, 'close failed', 'risk')
-            setText('workspace-shell-preview', '预览: ' + error.message)
+            setText('workspace-shell-preview', '预览: 关闭错误 · ' + error.message)
         })
     }
 
@@ -552,7 +552,7 @@
             return refreshShellOutput()
         }).catch(function (error) {
             setStatus(statusEl, '发送失败: ' + command, 'risk')
-            setText('workspace-shell-preview', '预览: ' + error.message)
+            setText('workspace-shell-preview', '预览: 发送错误 · ' + error.message)
         })
     }
 
