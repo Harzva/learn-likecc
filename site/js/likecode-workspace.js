@@ -194,9 +194,11 @@
         var activeCommand = currentSeatRecentCommand()
         var hasSharedButtons = !!activeCommand && recent.some(function (command) { return command !== activeCommand })
         var cueText = cue.text
+        var cueTone = cue.tone
         var emptyText = '最近成功命令会显示在这里，支持一键重放。'
         if (!active && !recent.length) {
             cueText = 'current seat: -- · no seat selected'
+            cueTone = 'attention'
             emptyText = '还没有 shared replay；发送成功命令后会显示在这里，支持一键重放。'
         }
         if (active && !activeCommand && recent.length) {
@@ -210,7 +212,7 @@
         shellState.recentCommands = recent
         if (!recent.length) {
             shellRecentHost.innerHTML =
-                '<span class="likecode-workspace-badge likecode-workspace-badge--' + esc(cue.tone) + '">' + esc(cueText) + '</span>' +
+                '<span class="likecode-workspace-badge likecode-workspace-badge--' + esc(cueTone) + '">' + esc(cueText) + '</span>' +
                 '<span class="likecode-workspace-empty">' + esc(emptyText) + '</span>'
             return
         }
