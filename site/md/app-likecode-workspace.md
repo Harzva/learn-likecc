@@ -109,6 +109,8 @@
 - 所以按钮旁边现在会写成 `relay 端的 shell seat`，不再像两个边界词直接硬拼在一起
 - 这轮再给这句 helper 末尾补了一个强调词
 - 所以按钮旁边现在会写成 `relay 端的 shell seat 本身`，更像正常操作文案里的“不会动到这个对象本身”
+- 这轮再把 clear button 本身也补了 hover / assistive scope hint
+- 所以就算不看旁边那句 helper，鼠标停在按钮上或读到按钮的辅助文案时，也能直接知道它只清空浏览器里的回放与来源记忆，不会重置 relay 端的 shell seat 本身
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
