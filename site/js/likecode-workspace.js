@@ -395,6 +395,7 @@
         })
         if (focusLiveButton) {
             focusLiveButton.disabled = !fallbackLive
+            focusLiveButton.textContent = fallbackLive ? ('切到存活会话 · ' + fallbackLive.session_id) : '切到首个存活会话'
         }
         if (commandInput) {
             commandInput.disabled = disabled
