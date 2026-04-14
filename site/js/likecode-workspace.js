@@ -195,11 +195,11 @@
         var hasSharedButtons = !!activeCommand && recent.some(function (command) { return command !== activeCommand })
         var cueText = cue.text
         var cueTone = cue.tone
-        var emptyText = '最近成功命令会显示在这里，支持一键重放。'
+        var emptyText = '上面可按 Enter 发送命令或直接点常用探针；最近成功命令会显示在这里，支持一键重放。'
         if (!active && !recent.length) {
             cueText = 'current seat: -- · no seat selected'
             cueTone = 'attention'
-            emptyText = '还没有 shared replay；发送成功命令后会显示在这里，支持一键重放。'
+            emptyText = '还没有 shared replay；上面可按 Enter 发送命令或直接点常用探针，成功后会显示在这里，支持一键重放。'
         }
         if (active && !activeCommand && recent.length) {
             cueText += ' · shared replay below'
@@ -207,7 +207,7 @@
             cueText += ' + shared replay below'
         }
         if (active && !activeCommand && !recent.length) {
-            emptyText = '当前 seat 还没有本地 replay；发送成功命令后会显示在这里，支持一键重放。'
+            emptyText = '当前 seat 还没有本地 replay；上面可按 Enter 发送命令或直接点常用探针，成功后会显示在这里，支持一键重放。'
         }
         shellState.recentCommands = recent
         if (!recent.length) {

@@ -129,6 +129,8 @@
 - 所以 `pwd / ls / git status / python -V` 这一排前面现在会直接写 `常用探针`，不用只靠上一行说明去猜这些按钮的角色
 - 这轮再把 browser-local memory 这一行和上面的发送 / 探针 cluster 连起来了
 - 所以 `Recent Commands`、`output from`、`updated` 现在会直接说明：它们记录的是上面手动发送或常用探针写进来的浏览器本地记忆，不再像一条孤立的 reset 说明
+- 这轮再把 `Recent Commands` 的空状态也接回了上面的 `Enter / 常用探针` 路径
+- 所以在还没有 replay 时，页面不会只说“这里支持一键重放”，还会直接提醒你可以先按 `Enter` 发送命令或点 `常用探针` 来产生命令记录
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
