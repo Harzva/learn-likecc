@@ -61,6 +61,8 @@
 - 所以 recent replay、`output from` 和 `updated` 这些本地 provenance 都可以在页面里显式重置，不需要手动清整个浏览器存储
 - 这轮再补了一条 scope note
 - 所以页面会明确提醒：`Recent Commands`、`output from`、`updated` 都只是浏览器本地记忆，不是 relay 端持久化出来的 shell 历史
+- 这轮又把 reset 的作用域补清楚了
+- 所以 `清空全部本地记忆` 明确表示这是全局本地清空，不是只针对当前 shell seat 的单独 provenance reset
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局

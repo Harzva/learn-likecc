@@ -77,3 +77,5 @@ Scope: grow the current codex-loop monitor into a separate app-style LikeCode wo
 - 2026-04-14: seventeenth bounded Task 13 follow-up should add one tiny shell-memory scope note so the UI teaches that replay and provenance are browser-local rather than relay-backed session history
 - 2026-04-14: seventeenth bounded Task 13 follow-up landed a shell-memory scope note in the panel itself; the UI now explicitly teaches that replay and provenance are browser-local memory rather than relay-backed session history
 - 2026-04-14: eighteenth bounded Task 13 follow-up should add one tiny current-seat reset affordance or hint so operators can distinguish global local-memory reset from seat-specific provenance gaps
+- 2026-04-14: eighteenth bounded Task 13 follow-up landed a current-seat reset hint; the clear action now explicitly says it is `清空全部本地记忆` and that seat-scoped reset is not yet supported
+- 2026-04-14: nineteenth bounded Task 13 follow-up should add one tiny seat-scoped provenance explanation near the `unknown on this seat` cue so operators can connect that empty state back to the current global-only reset model
