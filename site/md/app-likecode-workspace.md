@@ -199,6 +199,8 @@
 - 所以操作者在点 `刷新输出` 或 `关闭选中` 前，不需要先回到底下列表或 runtime card 确认 seat 还活着；按钮旁边现在会直接显示 `会话状态: 就绪/已关闭/未选择`
 - 这轮再把 active-seat gating 从刷新/关闭补到了整条发送链
 - 所以在还没选中 shell 时，不只是 `刷新输出` 和 `关闭选中` 会禁用，`发送命令`、输入框和下面的 `常用探针` 也会一起停用，界面规则终于和实际依赖保持一致
+- 这轮再把 `Recent Commands` 的 replay 行也接回了同一条 active-seat gating
+- 所以在还没选中 shell 时，最近命令不再还能被误点后才报 no-seat，而会直接表现为不可重放；shared replay 终于和上面的发送链用同一套依赖规则
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局

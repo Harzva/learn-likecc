@@ -203,6 +203,10 @@
             cueTone = 'attention'
             emptyText = '还没有 shared replay；上面可按 Enter 发送命令或直接点常用探针，成功后会显示在这里，支持一键重放。'
         }
+        if (!active && recent.length) {
+            cueText = 'current seat: -- · select a seat to replay'
+            cueTone = 'attention'
+        }
         if (active && !activeCommand && recent.length) {
             cueText += ' · shared replay below'
         } else if (hasSharedButtons) {
@@ -224,9 +228,18 @@
                 var isCurrent = !!activeCommand && command === activeCommand
                 var buttonClass = isCurrent ? 'btn btn-primary' : 'btn btn-secondary'
                 var buttonLabel = isCurrent ? command : ('shared · ' + command)
-                var buttonHint = isCurrent ? '' : 'browser-local shared replay; not relay-backed shell history'
-                var buttonAttrs = isCurrent ? '' : (' title="' + esc(buttonHint) + '" aria-label="' + esc(buttonLabel + ' (' + buttonHint + ')') + '"')
-                return '<button type="button" class="' + buttonClass + '" data-shell-command="' + esc(command) + '"' + buttonAttrs + '>' + esc(buttonLabel) + '</button>'
+                var buttonHint = !active
+                    ? 'select an active shell first'
+                    : (isCurrent ? '' : 'browser-local shared replay; not relay-backed shell history')
+                var buttonAttrs = []
+                if (buttonHint) {
+                    buttonAttrs.push(' title="' + esc(buttonHint) + '"')
+                    buttonAttrs.push(' aria-label="' + esc(buttonLabel + ' (' + buttonHint + ')') + '"')
+                }
+                if (!active) {
+                    buttonAttrs.push(' disabled')
+                }
+                return '<button type="button" class="' + buttonClass + '" data-shell-command="' + esc(command) + '"' + buttonAttrs.join('') + '>' + esc(buttonLabel) + '</button>'
         }).join('')
         Array.prototype.slice.call(shellRecentHost.querySelectorAll('[data-shell-command]')).forEach(function (button) {
             button.addEventListener('click', function () {
