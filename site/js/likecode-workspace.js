@@ -468,7 +468,7 @@
                 shellState.activeId = ''
                 renderShellRoster()
                 renderShellOutput(null)
-                setStatus(statusEl, 'sync failed', 'risk')
+                setStatus(statusEl, '同步失败', 'risk')
                 setText('workspace-shell-preview', '预览: 同步错误 · ' + error.message)
             })
     }
@@ -485,7 +485,7 @@
             shellState.activeId = session.session_id || ''
             return refreshShells()
         }).catch(function (error) {
-            setStatus(statusEl, 'create failed', 'risk')
+            setStatus(statusEl, '新建失败', 'risk')
             setText('workspace-shell-preview', '预览: 新建错误 · ' + error.message)
         })
     }
@@ -503,7 +503,7 @@
             shellState.activeId = ''
             return refreshShells()
         }).catch(function (error) {
-            setStatus(statusEl, 'close failed', 'risk')
+            setStatus(statusEl, '关闭失败', 'risk')
             setText('workspace-shell-preview', '预览: 关闭错误 · ' + error.message)
         })
     }

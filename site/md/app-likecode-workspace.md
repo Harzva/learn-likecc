@@ -167,6 +167,8 @@
 - 所以 `empty command / sending / sent / send failed` 现在统一写成了 `命令为空 / 发送中 / 已发送 / 发送失败`，不再让 status lane 前半段已经中文化后，发送反馈还停在英文短语上
 - 这轮再把 shell preview 里的错误正文也收成了中文操作语气
 - 所以 `预览:` 后面现在不会直接裸贴英文异常，而会先补成 `同步错误 / 新建错误 / 关闭错误 / 发送错误` 这类短前缀，再保留原始异常细节给操作者排查
+- 这轮再把 shell status 里的错误短标签也收成了中文操作语气
+- 所以 `sync failed / create failed / close failed` 现在也统一写成了 `同步失败 / 新建失败 / 关闭失败`，不再让 status lane 和 preview lane 的错误语气分叉
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
