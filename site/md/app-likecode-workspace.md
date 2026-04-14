@@ -187,6 +187,8 @@
 - 所以现在页面会把“最近一次从 relay 读到当前输出的时间”和下面 `updated` 表示的本地命令 provenance 时间分开显示，不再混成同一条时间线
 - 这轮再把这条双时间线差异直接写回了 shell lane
 - 所以 `output sync` 下面现在会明确说明：它表示最近一次从 relay 读取当前输出，而 `updated` 表示最近一次本地命令 provenance 时间，操作者不用自己猜这两个时间戳的分工
+- 这轮再把 active seat 和下方动作链路的关系写回了 runtime 区
+- 所以下面那条 output lane 不再只是默认跟着选中的 shell 变化，页面现在会直接说明“当前会话”正在驱动输出预览、刷新输出和关闭动作；没选中时也会明确提示这些动作为什么还没有跟着切换
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局

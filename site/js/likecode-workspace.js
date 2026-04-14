@@ -387,6 +387,17 @@
         setText('workspace-shell-cwd', active ? (active.cwd || '—') : '先选中后查看目录')
         setText('workspace-shell-pid', active ? (active.pid || '—') : '先选中后查看 pid')
         setText('workspace-shell-preview', '预览: ' + (active ? shellPreviewText(active.buffer) : '--'))
+        setStatus(
+            document.getElementById('workspace-shell-active-route-badge'),
+            active ? 'active seat routing' : 'active seat route',
+            active ? 'ready' : 'neutral'
+        )
+        setText(
+            'workspace-shell-active-route-text',
+            active
+                ? ('当前会话 ' + active.session_id + ' 正在驱动下面的输出预览、刷新输出和关闭动作。')
+                : '先选中一个 shell，下面的输出预览、刷新输出和关闭动作才会跟着当前会话切换。'
+        )
         renderShellSyncMeta()
     }
 
