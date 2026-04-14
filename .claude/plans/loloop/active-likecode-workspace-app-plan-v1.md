@@ -71,3 +71,5 @@ Scope: grow the current codex-loop monitor into a separate app-style LikeCode wo
 - 2026-04-14: fourteenth bounded Task 13 follow-up should add one tiny shell-lane timestamp cue so recent replay, last command, and visible output share the same minimal chronology
 - 2026-04-14: fourteenth bounded Task 13 follow-up landed an `updated` timestamp cue beside `output from`; the shell output context now shows both the latest local command and the local send time for the visible seat
 - 2026-04-14: fifteenth bounded Task 13 follow-up should add one tiny seat-sensitive empty state so switching to a shell with no local command history explains that the output context is unknown rather than merely blank
+- 2026-04-14: fifteenth bounded Task 13 follow-up landed a seat-sensitive unknown-state cue; shell output context now explicitly says `unknown on this seat / no local send yet` when the visible output has no local command provenance
+- 2026-04-14: sixteenth bounded Task 13 follow-up should add one tiny clear-history affordance so local replay memory can be intentionally reset without clearing all browser storage

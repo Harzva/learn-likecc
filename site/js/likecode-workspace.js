@@ -318,8 +318,13 @@
         var context = ((shellState.lastCommandBySeat || {})[session.session_id]) || {}
         var lastCommand = context.command || '--'
         var lastAt = context.at || '--'
-        setStatus(label, 'output from: ' + lastCommand, lastCommand === '--' ? 'neutral' : 'ready')
-        if (time) time.textContent = 'updated: ' + lastAt
+        if (lastCommand === '--') {
+            setStatus(label, 'output from: unknown on this seat', 'attention')
+            if (time) time.textContent = 'updated: no local send yet'
+            return
+        }
+        setStatus(label, 'output from: ' + lastCommand, 'ready')
+        if (time) time.textContent = 'updated: ' + (lastAt || 'unknown')
     }
 
     function renderShellRoster() {

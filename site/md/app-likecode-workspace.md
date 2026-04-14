@@ -55,6 +55,8 @@
 - 所以当前看到的输出会尽量标出它最近是由哪条命令打出来的，减少重放以后“这块输出到底对应哪次 probe”的歧义
 - 这轮再往前补了一个本地 `updated` 时间戳
 - 所以最近一次重放、命令标签和当前输出之间现在至少共享一条最小时间线，不会只知道“是什么命令”却不知道“是什么时候打出来的”
+- 这轮又把 seat 级别的 provenance 空状态补清楚了
+- 所以如果某个 shell seat 的输出不是从当前 workspace shell 发出来的，页面会明确提示 `unknown on this seat / no local send yet`，而不是继续拿 `--` 糊过去
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
