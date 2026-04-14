@@ -317,11 +317,13 @@
         var host = document.getElementById('workspace-shell-output')
         var label = document.getElementById('workspace-shell-output-label')
         var time = document.getElementById('workspace-shell-output-time')
+        var hint = document.getElementById('workspace-shell-output-hint')
         if (!host) return
         if (!session) {
             host.textContent = '选中 shell 后，这里会显示最近输出。'
             setStatus(label, 'output from: --', 'neutral')
             setText('workspace-shell-output-time', 'updated: --')
+            if (hint) hint.textContent = 'hint: select a seat to inspect its local provenance context.'
             return
         }
         host.textContent = session.buffer || '(empty)'
@@ -331,10 +333,12 @@
         if (lastCommand === '--') {
             setStatus(label, 'output from: unknown on this seat', 'attention')
             if (time) time.textContent = 'updated: no local send yet'
+            if (hint) hint.textContent = 'hint: this seat output may predate this browser memory, or local provenance may have been cleared globally.'
             return
         }
         setStatus(label, 'output from: ' + lastCommand, 'ready')
         if (time) time.textContent = 'updated: ' + (lastAt || 'unknown')
+        if (hint) hint.textContent = 'hint: local provenance shown here comes from this browser session, not relay-backed shell history.'
     }
 
     function renderShellRoster() {

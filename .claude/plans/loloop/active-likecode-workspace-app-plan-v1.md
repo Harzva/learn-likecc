@@ -79,3 +79,5 @@ Scope: grow the current codex-loop monitor into a separate app-style LikeCode wo
 - 2026-04-14: eighteenth bounded Task 13 follow-up should add one tiny current-seat reset affordance or hint so operators can distinguish global local-memory reset from seat-specific provenance gaps
 - 2026-04-14: eighteenth bounded Task 13 follow-up landed a current-seat reset hint; the clear action now explicitly says it is `清空全部本地记忆` and that seat-scoped reset is not yet supported
 - 2026-04-14: nineteenth bounded Task 13 follow-up should add one tiny seat-scoped provenance explanation near the `unknown on this seat` cue so operators can connect that empty state back to the current global-only reset model
+- 2026-04-14: nineteenth bounded Task 13 follow-up landed a dynamic provenance hint under shell output; the `unknown on this seat` state now explains that output may predate current browser memory or follow a global local-memory clear
+- 2026-04-14: twentieth bounded Task 13 follow-up should add one tiny success-state hint cleanup so the known-provenance path reads less defensively and more like a normal operator cue
