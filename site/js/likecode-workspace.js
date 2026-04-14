@@ -386,6 +386,7 @@
         syncShellActionState(active)
         setText('workspace-shell-count', '共 ' + sessions.length + ' 个')
         setText('workspace-shell-active', active ? active.session_id : '先选中一个 shell')
+        setText('workspace-shell-action-target', active ? ('当前会话: ' + active.session_id) : '当前会话: 未选择')
         setText('workspace-shell-cwd', active ? (active.cwd || '—') : '先选中后查看目录')
         setText('workspace-shell-pid', active ? (active.pid || '—') : '先选中后查看 pid')
         setText('workspace-shell-preview', '预览: ' + (active ? shellPreviewText(active.buffer) : '--'))
