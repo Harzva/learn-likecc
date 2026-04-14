@@ -135,6 +135,8 @@
 - 所以当当前 seat 还没有本地 provenance 时，页面不会只说这是个 gap，还会直接提示你可以先按 `Enter` 发一条新命令，或用上面的常用探针重新配对本地上下文
 - 这轮再把 no-seat output hint 也接回了 shell create / send 路径
 - 所以在还没选中 shell 时，这块提示不会只说“选一个 seat 来看输出”，而会直接提示你先新建或选中 shell，再按 `Enter` 发命令或点上面的常用探针
+- 这轮再把 no-seat output 的正文提示也改成了同一条起手路径
+- 所以在还没选中 shell 时，输出框正文不再只是被动地说“选中后这里会显示最近输出”，而会直接告诉你先新建或选中 shell，再按 `Enter` 发命令或点常用探针
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局

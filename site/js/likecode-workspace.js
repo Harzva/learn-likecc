@@ -376,7 +376,7 @@
         var hint = document.getElementById('workspace-shell-output-hint')
         if (!host) return
         if (!session) {
-            host.textContent = '选中 shell 后，这里会显示最近输出。'
+            host.textContent = '先新建或选中一个 shell，再按 Enter 发命令或点常用探针，这里就会显示最近输出。'
             setStatus(label, 'output from: --', 'neutral')
             setText('workspace-shell-output-time', 'updated: --')
             setBadge(scope, 'seat-local hint', 'neutral')
