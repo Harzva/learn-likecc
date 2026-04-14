@@ -67,3 +67,5 @@ Scope: grow the current codex-loop monitor into a separate app-style LikeCode wo
 - 2026-04-14: twelfth bounded Task 13 follow-up should add a tiny recent-command memory or replay affordance so the one-line shell lane keeps just enough operator context after each preset or manual send
 - 2026-04-14: twelfth bounded Task 13 follow-up landed a local `Recent Commands` replay strip; the shell lane now keeps the latest successful probes in browser storage and lets the operator re-run them without retyping after refresh
 - 2026-04-14: thirteenth bounded Task 13 follow-up should add a tiny shell-lane context cue that shows which command most recently produced the current output so replay and output stay visually paired
+- 2026-04-14: thirteenth bounded Task 13 follow-up landed a seat-scoped `output from` cue; the shell output area now labels the latest local command associated with the visible seat output instead of leaving replay context implicit
+- 2026-04-14: fourteenth bounded Task 13 follow-up should add one tiny shell-lane timestamp cue so recent replay, last command, and visible output share the same minimal chronology

@@ -49,6 +49,7 @@
     }
     var CONNECTOR_STATE_KEY = 'likecode_workspace_connector_shell_v1'
     var SHELL_RECENT_KEY = 'likecode_workspace_shell_recent_v1'
+    var SHELL_CONTEXT_KEY = 'likecode_workspace_shell_context_v1'
 
     function esc(s) {
         return String(s || '')
@@ -100,6 +101,22 @@
     function persistShellRecentCommands(commands) {
         try {
             window.localStorage.setItem(SHELL_RECENT_KEY, JSON.stringify(commands || []))
+        } catch (error) {}
+    }
+
+    function loadShellContext() {
+        try {
+            var raw = window.localStorage.getItem(SHELL_CONTEXT_KEY)
+            if (!raw) return {}
+            return JSON.parse(raw) || {}
+        } catch (error) {
+            return {}
+        }
+    }
+
+    function persistShellContext(context) {
+        try {
+            window.localStorage.setItem(SHELL_CONTEXT_KEY, JSON.stringify(context || {}))
         } catch (error) {}
     }
 
@@ -260,8 +277,16 @@
 
     function renderShellOutput(session) {
         var host = document.getElementById('workspace-shell-output')
+        var label = document.getElementById('workspace-shell-output-label')
         if (!host) return
-        host.textContent = session ? (session.buffer || '(empty)') : '选中 shell 后，这里会显示最近输出。'
+        if (!session) {
+            host.textContent = '选中 shell 后，这里会显示最近输出。'
+            setStatus(label, 'output from: --', 'neutral')
+            return
+        }
+        host.textContent = session.buffer || '(empty)'
+        var lastCommand = ((shellState.lastCommandBySeat || {})[session.session_id]) || '--'
+        setStatus(label, 'output from: ' + lastCommand, lastCommand === '--' ? 'neutral' : 'ready')
     }
 
     function renderShellRoster() {
@@ -402,6 +427,12 @@
         }).then(function () {
             setStatus(statusEl, 'sent: ' + command, 'ready')
             rememberShellCommand(command)
+            shellState.lastCommandBySeat = Object.assign({}, shellState.lastCommandBySeat || {}, (function () {
+                var patch = {}
+                patch[active.session_id] = command
+                return patch
+            })())
+            persistShellContext(shellState.lastCommandBySeat)
             shellCommandInput.value = ''
             return refreshShellOutput()
         }).catch(function (error) {
@@ -1055,6 +1086,7 @@
     })
 
     shellState.recentCommands = loadShellRecentCommands()
+    shellState.lastCommandBySeat = loadShellContext()
     renderShellRecentCommands()
     loadConnectorState()
     renderConnectorShell()

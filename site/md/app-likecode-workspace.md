@@ -51,6 +51,8 @@
 - 所以对最常见的检查动作，已经不需要先手打命令，直接点 `pwd / ls / git status / python -V` 就能触发一次最小 shell probe
 - 这轮再补了一个本地 `Recent Commands` 回放条
 - 所以最近几条成功命令会留在页面里，刷新后也还能一键重放，不需要反复重打同样的 probe
+- 这轮又给 shell 输出补了一个 `output from` 标签
+- 所以当前看到的输出会尽量标出它最近是由哪条命令打出来的，减少重放以后“这块输出到底对应哪次 probe”的歧义
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
