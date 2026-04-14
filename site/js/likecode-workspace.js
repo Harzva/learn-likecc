@@ -195,6 +195,10 @@
         var hasSharedButtons = !!activeCommand && recent.some(function (command) { return command !== activeCommand })
         var cueText = cue.text
         var emptyText = '最近成功命令会显示在这里，支持一键重放。'
+        if (!active && !recent.length) {
+            cueText = 'current seat: -- · no seat selected'
+            emptyText = '还没有 shared replay；发送成功命令后会显示在这里，支持一键重放。'
+        }
         if (active && !activeCommand && recent.length) {
             cueText += ' · shared replay below'
         } else if (hasSharedButtons) {
