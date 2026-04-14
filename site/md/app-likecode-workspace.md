@@ -65,6 +65,8 @@
 - 所以 `清空全部本地记忆` 明确表示这是全局本地清空，不是只针对当前 shell seat 的单独 provenance reset
 - 这轮再给 `unknown on this seat` 补了一条动态 hint
 - 所以当某个 seat 没有本地 provenance 时，页面会直接提示这通常意味着“输出早于当前浏览器记忆”或“本地记忆刚被全局清空”
+- 这轮又把已知 provenance 的 success hint 收短了
+- 所以正常路径现在只会提示“这个 seat 正在和上面的本地 probe 对齐”，不再在成功态里反复讲实现细节
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局

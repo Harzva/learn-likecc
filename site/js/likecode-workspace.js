@@ -338,7 +338,7 @@
         }
         setStatus(label, 'output from: ' + lastCommand, 'ready')
         if (time) time.textContent = 'updated: ' + (lastAt || 'unknown')
-        if (hint) hint.textContent = 'hint: local provenance shown here comes from this browser session, not relay-backed shell history.'
+        if (hint) hint.textContent = 'hint: this seat is currently paired with the last local probe shown above.'
     }
 
     function renderShellRoster() {

@@ -81,3 +81,5 @@ Scope: grow the current codex-loop monitor into a separate app-style LikeCode wo
 - 2026-04-14: nineteenth bounded Task 13 follow-up should add one tiny seat-scoped provenance explanation near the `unknown on this seat` cue so operators can connect that empty state back to the current global-only reset model
 - 2026-04-14: nineteenth bounded Task 13 follow-up landed a dynamic provenance hint under shell output; the `unknown on this seat` state now explains that output may predate current browser memory or follow a global local-memory clear
 - 2026-04-14: twentieth bounded Task 13 follow-up should add one tiny success-state hint cleanup so the known-provenance path reads less defensively and more like a normal operator cue
+- 2026-04-14: twentieth bounded Task 13 follow-up landed a shorter success-state provenance hint; the known-provenance path now reads like a simple operator cue instead of repeating storage-scope implementation detail
+- 2026-04-14: twenty-first bounded Task 13 follow-up should add one tiny visual distinction between global shell-memory notes and seat-scoped output hints so the two explanatory layers do not blur together
