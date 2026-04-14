@@ -1014,6 +1014,11 @@
     document.getElementById('workspace-shell-create').addEventListener('click', createShellSeat)
     document.getElementById('workspace-shell-close').addEventListener('click', closeShellSeat)
     document.getElementById('workspace-shell-send').addEventListener('click', sendShellCommand)
+    shellCommandInput.addEventListener('keydown', function (event) {
+        if (event.key !== 'Enter' || event.shiftKey || event.isComposing) return
+        event.preventDefault()
+        sendShellCommand()
+    })
     document.getElementById('workspace-shell-preset-pwd').addEventListener('click', function () { dispatchShellCommand('pwd') })
     document.getElementById('workspace-shell-preset-ls').addEventListener('click', function () { dispatchShellCommand('ls') })
     document.getElementById('workspace-shell-preset-git').addEventListener('click', function () { dispatchShellCommand('git status') })

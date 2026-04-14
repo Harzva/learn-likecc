@@ -117,6 +117,8 @@
 - 所以按钮旁边现在会写成 `relay 端的 shell 会话位本身不变`，还保留 seat 级边界，但更像正常操作提示
 - 这轮再把紧邻当前状态的 markdown 说明也同步成 `shell 会话位`
 - 所以这条 clear-action 文案微线程的记录不会停在旧的 `shell seat` 说法上，当前页面说明和最近几轮 handoff 用的是同一套词
+- 这轮从 clear-action 文案微线程退回到更实用的 shell lane 可用性
+- 所以 shell 命令输入框现在不只支持点按钮，按 `Enter` 也能直接发送；同时会避开输入法合成中的误触发
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
