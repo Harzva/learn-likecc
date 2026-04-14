@@ -89,6 +89,8 @@
 - 所以如果当前还没选 shell seat，而且页面里也还没有任何 recent replay，badge 会直接写成 `no seat selected`，占位提示也会明确说“还没有 shared replay”
 - 这轮再把这个 no-seat empty-row 的 badge tone 也和 shared-history 态拆开了
 - 所以“还没选 seat、也还没有任何 replay”的 setup state 现在会直接用 attention badge，而不是继续和“已有 shared replay 但没选 seat”的 neutral 状态混在一起
+- 这轮再把 `清空本地记忆` 之后的状态文案也收口了
+- 所以 shell status 不会只停在 `local memory cleared`，而会直接补成 `replay row reset to setup state`，把操作者的注意力拉回刚刚被清空的 replay 行
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
