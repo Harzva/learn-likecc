@@ -219,6 +219,8 @@
 - 所以当 roster 里根本没有别的 live seat 时，按钮不会继续像一个待执行动作那样显示 `切到首个存活会话`，而是会直接说明 `没有其它存活会话`
 - 这轮再把 no-active 的 route cue 也分成了 `空 roster` 和 `未选中` 两种情况
 - 所以当还没有任何 shell seat 时，提示不会继续误导成“先选中”，而是会直接指向 `先新建一个 shell`
+- 这轮再把 runtime card 里的 `active seat` 空态文案也和上面的分支保持一致
+- 所以 `active seat · 第二步` 不会在空 roster 时继续写成 `先选中一个 shell`，而是会直接改成 `先新建一个 shell`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局

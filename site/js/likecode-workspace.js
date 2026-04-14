@@ -443,7 +443,7 @@
         }
         syncShellActionState(active)
         setText('workspace-shell-count', '共 ' + sessions.length + ' 个')
-        setText('workspace-shell-active', active ? active.session_id : '先选中一个 shell')
+        setText('workspace-shell-active', active ? active.session_id : (sessions.length ? '先选中一个 shell' : '先新建一个 shell'))
         setText('workspace-shell-action-target', active ? ('当前会话: ' + active.session_id) : '当前会话: 未选择')
         setText('workspace-shell-action-state', actionStateText)
         setText('workspace-shell-cwd', active ? (active.cwd || '—') : '先选中后查看目录')
