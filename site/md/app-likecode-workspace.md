@@ -163,6 +163,8 @@
 - 所以在还没选中 shell 时，preview 不再写 `create/select a shell first...`，而会直接提示 `先新建或选中一个 shell，再按 Enter 发命令或点常用探针`
 - 这轮再把 no-seat 的 shell status 句本身也收成了中文操作语气
 - 所以在还没选中 shell 时，status 不再写 `no active shell · create/select one...`，而会直接写成 `还没有激活 shell · 先新建或选中，再按 Enter 或点常用探针`
+- 这轮再把 shell 发送过程里的瞬时状态也收成了中文操作语气
+- 所以 `empty command / sending / sent / send failed` 现在统一写成了 `命令为空 / 发送中 / 已发送 / 发送失败`，不再让 status lane 前半段已经中文化后，发送反馈还停在英文短语上
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局

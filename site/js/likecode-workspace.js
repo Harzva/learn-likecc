@@ -525,10 +525,10 @@
         if (!shellCommandInput) return
         command = String(command || '').trim()
         if (!command) {
-            setStatus(statusEl, 'empty command', 'attention')
+            setStatus(statusEl, '命令为空', 'attention')
             return
         }
-        setStatus(statusEl, 'sending: ' + command, 'neutral')
+        setStatus(statusEl, '发送中: ' + command, 'neutral')
         return fetchJson(relayBase() + '/api/shell/write', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -537,7 +537,7 @@
                 text: command + '\n',
             }),
         }).then(function () {
-            setStatus(statusEl, 'sent: ' + command, 'ready')
+            setStatus(statusEl, '已发送: ' + command, 'ready')
             rememberShellCommand(command)
             shellState.lastCommandBySeat = Object.assign({}, shellState.lastCommandBySeat || {}, (function () {
                 var patch = {}
@@ -551,7 +551,7 @@
             shellCommandInput.value = ''
             return refreshShellOutput()
         }).catch(function (error) {
-            setStatus(statusEl, 'send failed: ' + command, 'risk')
+            setStatus(statusEl, '发送失败: ' + command, 'risk')
             setText('workspace-shell-preview', '预览: ' + error.message)
         })
     }
