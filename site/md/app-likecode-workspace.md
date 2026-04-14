@@ -93,6 +93,8 @@
 - 所以 shell status 不会只停在 `local memory cleared`，而会直接补成 `replay row reset to setup state`，把操作者的注意力拉回刚刚被清空的 replay 行
 - 这轮再把这条 clear-status 的 tone 从 warning 拉回中性态
 - 所以 intentional reset 现在会继续可见，但不会再和异常 / 缺口提示混成同一种 attention 信号，也不会冒充正常发送成功的 ready 态
+- 这轮再把 clear-status 的 scope 词汇和 panel note 对齐了
+- 所以 shell status 现在会直接写成 `browser-local memory cleared`，而不是继续用更短、和别处不完全一致的 `local memory`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
