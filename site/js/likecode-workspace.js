@@ -365,7 +365,7 @@
         setText('workspace-shell-active', active ? active.session_id : '先选中一个 shell')
         setText('workspace-shell-cwd', active ? (active.cwd || '—') : '先选中后查看目录')
         setText('workspace-shell-pid', active ? (active.pid || '—') : '先选中后查看 pid')
-        setText('workspace-shell-preview', 'preview: ' + (active ? shellPreviewText(active.buffer) : '--'))
+        setText('workspace-shell-preview', '预览: ' + (active ? shellPreviewText(active.buffer) : '--'))
     }
 
     function renderShellOutput(session) {
@@ -469,7 +469,7 @@
                 renderShellRoster()
                 renderShellOutput(null)
                 setStatus(statusEl, 'sync failed', 'risk')
-                setText('workspace-shell-preview', 'preview: ' + error.message)
+                setText('workspace-shell-preview', '预览: ' + error.message)
             })
     }
 
@@ -486,7 +486,7 @@
             return refreshShells()
         }).catch(function (error) {
             setStatus(statusEl, 'create failed', 'risk')
-            setText('workspace-shell-preview', 'preview: ' + error.message)
+            setText('workspace-shell-preview', '预览: ' + error.message)
         })
     }
 
@@ -504,7 +504,7 @@
             return refreshShells()
         }).catch(function (error) {
             setStatus(statusEl, 'close failed', 'risk')
-            setText('workspace-shell-preview', 'preview: ' + error.message)
+            setText('workspace-shell-preview', '预览: ' + error.message)
         })
     }
 
@@ -519,7 +519,7 @@
         var statusEl = document.getElementById('workspace-shell-status')
         if (!active) {
             setStatus(statusEl, 'no active shell · create/select one, then Enter or quick probes', 'risk')
-            setText('workspace-shell-preview', 'preview: create/select a shell first, then press Enter or use quick probes')
+            setText('workspace-shell-preview', '预览: create/select a shell first, then press Enter or use quick probes')
             return
         }
         if (!shellCommandInput) return
@@ -552,7 +552,7 @@
             return refreshShellOutput()
         }).catch(function (error) {
             setStatus(statusEl, 'send failed: ' + command, 'risk')
-            setText('workspace-shell-preview', 'preview: ' + error.message)
+            setText('workspace-shell-preview', '预览: ' + error.message)
         })
     }
 
