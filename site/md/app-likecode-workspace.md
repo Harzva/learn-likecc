@@ -131,6 +131,8 @@
 - 所以 `Recent Commands`、`output from`、`updated` 现在会直接说明：它们记录的是上面手动发送或常用探针写进来的浏览器本地记忆，不再像一条孤立的 reset 说明
 - 这轮再把 `Recent Commands` 的空状态也接回了上面的 `Enter / 常用探针` 路径
 - 所以在还没有 replay 时，页面不会只说“这里支持一键重放”，还会直接提醒你可以先按 `Enter` 发送命令或点 `常用探针` 来产生命令记录
+- 这轮再把 selected-seat output 的 gap hint 也接回了上面的发送 / 探针路径
+- 所以当当前 seat 还没有本地 provenance 时，页面不会只说这是个 gap，还会直接提示你可以先按 `Enter` 发一条新命令，或用上面的常用探针重新配对本地上下文
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局

@@ -391,7 +391,7 @@
             setStatus(label, 'output from: unknown on this seat', 'attention')
             if (time) time.textContent = 'updated: no local send yet'
             setBadge(scope, 'seat-local gap', 'attention')
-            if (hint) hint.textContent = 'hint: this seat output may predate this browser memory, or local provenance may have been cleared globally.'
+            if (hint) hint.textContent = 'hint: this seat output may predate this browser memory; send a fresh command with Enter or the quick probes above to pair new local provenance.'
             return
         }
         setStatus(label, 'output from: ' + lastCommand, 'ready')
