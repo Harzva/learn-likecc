@@ -6,6 +6,19 @@
     <title>Workspace Shell（本地）- Codex Loop</title>
     <link rel="stylesheet" href="css/style.css">
     <meta name="description" content="独立 app 风格的 codex-loop 本地工作台：任务池、计划编辑、runtime 状态与日志同屏。">
+    <style>
+        .likecode-workspace-app .btn:disabled {
+            opacity: 0.46;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+            filter: saturate(0.72);
+        }
+
+        .likecode-workspace-app .btn:disabled:hover {
+            background: inherit;
+        }
+    </style>
 </head>
 <body class="likecode-workspace-page">
     <div id="likecode-workspace" class="likecode-workspace-app">
