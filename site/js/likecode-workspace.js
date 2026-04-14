@@ -452,7 +452,7 @@
 
     function refreshShells() {
         var statusEl = document.getElementById('workspace-shell-status')
-        setStatus(statusEl, 'loading', 'neutral')
+        setStatus(statusEl, 'syncing shell roster', 'neutral')
         return fetchJson(relayBase() + '/api/shell/list')
             .then(function (payload) {
                 shellState.sessions = payload.sessions || []
@@ -460,7 +460,7 @@
                     shellState.activeId = shellState.sessions.length ? shellState.sessions[0].session_id : ''
                 }
                 renderShellRoster()
-                setStatus(statusEl, 'synced', 'ready')
+                setStatus(statusEl, 'shell roster synced', 'ready')
                 return refreshShellOutput()
             })
             .catch(function (error) {

@@ -147,6 +147,8 @@
 - 所以 `active seat` 现在会直接标成 `第二步`，而在还没进入可发送状态时，这格也不会只留 `—`，而会直接提示先选中一个 shell
 - 这轮再把 close 动作的对象边界也写回按钮本身
 - 所以关闭按钮现在会直接写成 `关闭选中 · 当前会话`，而 status 里也会明确显示 `closing selected shell`，不再只留一个泛泛的 `closing`
+- 这轮再把 refresh 动作的角色边界也写回按钮本身
+- 所以刷新按钮现在会直接写成 `刷新 shell · 仅同步`，而 status 里也会明确显示 `syncing shell roster / shell roster synced`，不再让它看起来像创建或切换流程的一部分
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
