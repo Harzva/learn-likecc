@@ -101,6 +101,8 @@
 - 所以按钮旁边现在会直接说明：清空的是浏览器里的 replay / provenance 记忆，不会重置 relay-backed shell seat，不再只从“不是按 seat 清理”这个反面角度解释
 - 这轮再把这句 helper 里的 `replay / provenance` 收成了中文表达
 - 所以按钮旁边现在会直接说“回放 / 来源记忆”，比中英混排更顺口，但 scope 边界不变
+- 这轮再把 helper 末尾的 `relay-backed shell seat` 收成了更顺口的边界说法
+- 所以按钮旁边现在会直接写成 `relay 端 shell seat`，保留实现边界，但不再用更生硬的英文复合词
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
