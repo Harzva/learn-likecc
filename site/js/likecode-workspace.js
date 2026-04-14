@@ -120,6 +120,34 @@
         } catch (error) {}
     }
 
+    function normalizeShellContext(context) {
+        var next = {}
+        Object.keys(context || {}).forEach(function (seatId) {
+            var value = context[seatId]
+            if (!value) return
+            if (typeof value === 'string') {
+                next[seatId] = { command: value, at: '' }
+                return
+            }
+            var command = String(value.command || '').trim()
+            var at = String(value.at || '').trim()
+            if (!command && !at) return
+            next[seatId] = { command: command, at: at }
+        })
+        return next
+    }
+
+    function shellTimeStamp() {
+        var now = new Date()
+        var year = now.getFullYear()
+        var month = String(now.getMonth() + 1).padStart(2, '0')
+        var day = String(now.getDate()).padStart(2, '0')
+        var hours = String(now.getHours()).padStart(2, '0')
+        var minutes = String(now.getMinutes()).padStart(2, '0')
+        var seconds = String(now.getSeconds()).padStart(2, '0')
+        return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds
+    }
+
     function normalizeRecentCommands(commands) {
         var seen = {}
         return (commands || [])
@@ -278,15 +306,20 @@
     function renderShellOutput(session) {
         var host = document.getElementById('workspace-shell-output')
         var label = document.getElementById('workspace-shell-output-label')
+        var time = document.getElementById('workspace-shell-output-time')
         if (!host) return
         if (!session) {
             host.textContent = '选中 shell 后，这里会显示最近输出。'
             setStatus(label, 'output from: --', 'neutral')
+            setText('workspace-shell-output-time', 'updated: --')
             return
         }
         host.textContent = session.buffer || '(empty)'
-        var lastCommand = ((shellState.lastCommandBySeat || {})[session.session_id]) || '--'
+        var context = ((shellState.lastCommandBySeat || {})[session.session_id]) || {}
+        var lastCommand = context.command || '--'
+        var lastAt = context.at || '--'
         setStatus(label, 'output from: ' + lastCommand, lastCommand === '--' ? 'neutral' : 'ready')
+        if (time) time.textContent = 'updated: ' + lastAt
     }
 
     function renderShellRoster() {
@@ -429,7 +462,10 @@
             rememberShellCommand(command)
             shellState.lastCommandBySeat = Object.assign({}, shellState.lastCommandBySeat || {}, (function () {
                 var patch = {}
-                patch[active.session_id] = command
+                patch[active.session_id] = {
+                    command: command,
+                    at: shellTimeStamp(),
+                }
                 return patch
             })())
             persistShellContext(shellState.lastCommandBySeat)
@@ -1086,7 +1122,7 @@
     })
 
     shellState.recentCommands = loadShellRecentCommands()
-    shellState.lastCommandBySeat = loadShellContext()
+    shellState.lastCommandBySeat = normalizeShellContext(loadShellContext())
     renderShellRecentCommands()
     loadConnectorState()
     renderConnectorShell()
