@@ -446,7 +446,7 @@
                 renderShellOutput(session)
             })
             .catch(function (error) {
-                renderShellOutput({ buffer: 'shell read failed: ' + error.message })
+                renderShellOutput({ buffer: '读取 shell 输出失败: ' + error.message })
             })
     }
 

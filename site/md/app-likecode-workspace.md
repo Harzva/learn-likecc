@@ -173,6 +173,8 @@
 - 所以 `syncing shell roster / shell roster synced` 现在也统一写成了 `正在同步 shell 会话 / shell 会话已同步`，和旁边已经写成 `刷新 shell · 仅同步` 的按钮角色提示保持了一致
 - 这轮再把 shell 新建 / 关闭链路里的 loading 状态也收成了中文操作语气
 - 所以 `creating / closing selected shell` 现在也统一写成了 `正在新建 shell / 正在关闭当前 shell`，status lane 里只剩更深一层的 fallback 文案还没收口
+- 这轮再把 shell 输出读取失败时的 fallback 文本也收成了中文操作语气
+- 所以 `shell read failed: ...` 现在也统一写成了 `读取 shell 输出失败: ...`，这条连续几轮的 shell wording 微线程可以先告一段落，下一轮更适合回到结构层面的 workspace 改进
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
