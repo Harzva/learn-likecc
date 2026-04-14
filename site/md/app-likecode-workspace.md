@@ -45,6 +45,8 @@
 - 所以 app 现在不只知道 daemon / thread / log，也能直接看见当前 shell seat、创建新 shell、关闭选中的 shell，而不用先跳去另一张监视器页
 - 这轮再往前补了一层：选中 shell seat 后，app 会直接读取并显示这条 seat 的最近输出
 - 所以 `Shell Seats` 不再只是生命周期面板，而开始长成真正的只读 shell surface
+- 这轮又把 `/api/shell/write` 接成了最小命令发送框
+- 所以现在可以对选中的 shell seat 直接发一条 `pwd / ls / git status` 这类命令，而不用先跳回监视器页
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局

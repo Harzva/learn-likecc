@@ -18,6 +18,7 @@
     var connectorNoteInput = document.getElementById('workspace-connector-note-input')
     var connectorBridgeTargetInput = document.getElementById('workspace-connector-bridge-target-input')
     var shellListHost = document.getElementById('workspace-shell-list')
+    var shellCommandInput = document.getElementById('workspace-shell-command')
     var activeTask = null
     var taskPayload = null
     var currentLogMode = 'latest'
@@ -311,6 +312,30 @@
             return refreshShells()
         }).catch(function (error) {
             setStatus(statusEl, 'close failed', 'risk')
+            setText('workspace-shell-preview', 'preview: ' + error.message)
+        })
+    }
+
+    function sendShellCommand() {
+        var active = activeShell()
+        if (!active || !shellCommandInput) return
+        var command = shellCommandInput.value.trim()
+        if (!command) return
+        var statusEl = document.getElementById('workspace-shell-status')
+        setStatus(statusEl, 'sending', 'neutral')
+        return fetchJson(relayBase() + '/api/shell/write', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                id: active.session_id,
+                text: command + '\n',
+            }),
+        }).then(function () {
+            setStatus(statusEl, 'sent', 'ready')
+            shellCommandInput.value = ''
+            return refreshShellOutput()
+        }).catch(function (error) {
+            setStatus(statusEl, 'send failed', 'risk')
             setText('workspace-shell-preview', 'preview: ' + error.message)
         })
     }
@@ -772,6 +797,7 @@
     document.getElementById('workspace-shell-refresh').addEventListener('click', refreshShells)
     document.getElementById('workspace-shell-create').addEventListener('click', createShellSeat)
     document.getElementById('workspace-shell-close').addEventListener('click', closeShellSeat)
+    document.getElementById('workspace-shell-send').addEventListener('click', sendShellCommand)
     document.getElementById('workspace-log-daemon').addEventListener('click', function () { refreshLog('daemon') })
     document.getElementById('workspace-log-tick').addEventListener('click', function () { refreshLog('latest') })
     document.getElementById('workspace-log-message').addEventListener('click', function () { refreshLog('message') })
@@ -807,6 +833,14 @@
     if (connectorBridgeTargetInput) {
         connectorBridgeTargetInput.addEventListener('input', function () {
             saveConnectorState({ bridge_target: connectorBridgeTargetInput.value.trim() || 'workspace' })
+        })
+    }
+    if (shellCommandInput) {
+        shellCommandInput.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault()
+                sendShellCommand()
+            }
         })
     }
     document.getElementById('workspace-connector-qr').addEventListener('click', function () {

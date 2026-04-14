@@ -60,3 +60,5 @@ Scope: grow the current codex-loop monitor into a separate app-style LikeCode wo
 - 2026-04-14: eighth bounded Task 13 follow-up landed a minimal `Shell Seats` roster in the app shell; the page can now list, create, select, and close relay-backed shell sessions without sending the operator back to the monitor page
 - 2026-04-14: ninth bounded Task 13 follow-up should extend the new `Shell Seats` roster with a selected-seat output preview so shell read capability stops being hidden behind the relay API
 - 2026-04-14: ninth bounded Task 13 follow-up landed a selected-seat output preview in the app shell; `Shell Seats` now shows recent output for the active shell instead of stopping at lifecycle visibility
+- 2026-04-14: tenth bounded Task 13 follow-up should expose one-line shell write inside the app so `/api/shell/write` stops being relay-only capability and the shell surface becomes minimally operable
+- 2026-04-14: tenth bounded Task 13 follow-up landed a one-line shell command sender in the app shell; `Shell Seats` can now send a single command to the active seat and refresh the returned output without pretending to be a full terminal
