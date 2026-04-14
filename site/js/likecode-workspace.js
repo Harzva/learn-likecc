@@ -364,7 +364,7 @@
         setText('workspace-shell-count', sessions.length + ' total')
         setText('workspace-shell-active', active ? active.session_id : '先选中一个 shell')
         setText('workspace-shell-cwd', active ? (active.cwd || '—') : '先选中后查看目录')
-        setText('workspace-shell-pid', active ? (active.pid || '—') : '—')
+        setText('workspace-shell-pid', active ? (active.pid || '—') : '先选中后查看 pid')
         setText('workspace-shell-preview', 'preview: ' + (active ? shellPreviewText(active.buffer) : '--'))
     }
 
