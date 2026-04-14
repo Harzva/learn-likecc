@@ -247,7 +247,7 @@
         persistShellContext({})
         renderShellRecentCommands()
         renderShellOutput(activeShell())
-        setStatus(document.getElementById('workspace-shell-status'), 'local memory cleared · replay row reset to setup state', 'attention')
+        setStatus(document.getElementById('workspace-shell-status'), 'local memory cleared · replay row reset to setup state', 'neutral')
     }
 
     function connectorTone(state) {
