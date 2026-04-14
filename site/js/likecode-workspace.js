@@ -168,7 +168,7 @@
 
     function shellRecentCue() {
         var active = activeShell()
-        if (!active) return { tone: 'neutral', text: 'current seat: --' }
+        if (!active) return { tone: 'neutral', text: 'current seat: -- · shared replay only' }
         var context = ((shellState.lastCommandBySeat || {})[active.session_id]) || {}
         if (!context.command) {
             return { tone: 'attention', text: 'current seat: ' + active.session_id + ' · no local match' }
@@ -204,7 +204,7 @@
             recent.map(function (command) {
                 var isCurrent = !!activeCommand && command === activeCommand
                 var buttonClass = isCurrent ? 'btn btn-primary' : 'btn btn-secondary'
-                var buttonLabel = (!isCurrent && active) ? ('shared · ' + command) : command
+                var buttonLabel = isCurrent ? command : ('shared · ' + command)
                 return '<button type="button" class="' + buttonClass + '" data-shell-command="' + esc(command) + '">' + esc(buttonLabel) + '</button>'
         }).join('')
         Array.prototype.slice.call(shellRecentHost.querySelectorAll('[data-shell-command]')).forEach(function (button) {
