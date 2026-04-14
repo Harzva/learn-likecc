@@ -428,6 +428,9 @@
         var active = activeShell()
         var liveCount = sessions.filter(function (item) { return !!item.alive }).length
         var closedCount = sessions.length - liveCount
+        var fallbackLive = sessions.find(function (item) {
+            return !!item.alive && (!active || item.session_id !== active.session_id)
+        })
         syncShellActionState(active)
         setText('workspace-shell-count', '共 ' + sessions.length + ' 个')
         setText('workspace-shell-active', active ? active.session_id : '先选中一个 shell')
@@ -452,7 +455,12 @@
             setText('workspace-shell-active-route-text', '先选中一个 shell，下面的输出预览、刷新输出和关闭动作才会跟着当前会话切换。')
         } else if (!active.alive) {
             setStatus(document.getElementById('workspace-shell-active-route-badge'), 'closed active seat', 'attention')
-            setText('workspace-shell-active-route-text', '当前会话 ' + active.session_id + ' 已关闭；下面的输出刷新、发送和关闭动作当前停用。')
+            setText(
+                'workspace-shell-active-route-text',
+                fallbackLive
+                    ? ('当前会话 ' + active.session_id + ' 已关闭；可以直接切到上面的存活会话 ' + fallbackLive.session_id + ' 继续刷新、发送和关闭动作。')
+                    : ('当前会话 ' + active.session_id + ' 已关闭；当前没有其它 live seat，可用上面的 `新建 shell · 恢复会话` 继续。')
+            )
         } else {
             setStatus(document.getElementById('workspace-shell-active-route-badge'), 'active seat routing', 'ready')
             setText('workspace-shell-active-route-text', '当前会话 ' + active.session_id + ' 正在驱动下面的输出预览、刷新输出和关闭动作。')

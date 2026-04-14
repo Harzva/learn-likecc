@@ -209,6 +209,8 @@
 - 所以当 roster 里确实有别的 live seat 可切时，按钮不会只停在泛泛的“切到存活会话”，而会直接显示将要切到的 `session id`
 - 这轮再把没有 live seat 可切时的恢复语气写回了 `新建 shell`
 - 所以当当前会话已关闭且 roster 里也没有别的 live seat 时，按钮不会继续停在抽象的“第一步”，而会直接改成 `新建 shell · 恢复会话`
+- 这轮再把 closed seat 的 route cue 也改成了分支提示，而不是只说动作停用
+- 所以当前会话关闭后，如果还有别的 live seat，提示会直接点名可以切去哪个会话；如果已经没有 live seat，则会明确指回上面的 `新建 shell · 恢复会话`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
