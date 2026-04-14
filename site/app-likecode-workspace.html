@@ -329,6 +329,45 @@
                     </div>
                 </section>
 
+                <section class="likecode-workspace-panel">
+                    <div class="likecode-workspace-panel__head">
+                        <div>
+                            <p class="likecode-workspace-panel__eyebrow">Shell Seats</p>
+                            <h3>Local Shell Roster</h3>
+                        </div>
+                        <div class="likecode-workspace-actionrow">
+                            <button id="workspace-shell-refresh" type="button" class="btn btn-secondary">刷新 shell</button>
+                            <button id="workspace-shell-create" type="button" class="btn btn-secondary">新建 shell</button>
+                            <button id="workspace-shell-close" type="button" class="btn btn-secondary">关闭选中</button>
+                        </div>
+                    </div>
+                    <div class="likecode-workspace-runtime">
+                        <article class="likecode-workspace-runtimecard">
+                            <strong>sessions</strong>
+                            <span id="workspace-shell-count">--</span>
+                        </article>
+                        <article class="likecode-workspace-runtimecard">
+                            <strong>active seat</strong>
+                            <span id="workspace-shell-active">--</span>
+                        </article>
+                        <article class="likecode-workspace-runtimecard">
+                            <strong>cwd</strong>
+                            <span id="workspace-shell-cwd">--</span>
+                        </article>
+                        <article class="likecode-workspace-runtimecard">
+                            <strong>pid</strong>
+                            <span id="workspace-shell-pid">--</span>
+                        </article>
+                    </div>
+                    <div id="workspace-shell-list" class="likecode-workspace-checklist">
+                        <p class="likecode-workspace-empty">shell roster 加载中…</p>
+                    </div>
+                    <div class="likecode-workspace-foot">
+                        <span id="workspace-shell-status" class="likecode-workspace-status likecode-workspace-status--neutral">idle</span>
+                        <span id="workspace-shell-preview">preview: --</span>
+                    </div>
+                </section>
+
                 <section class="likecode-workspace-panel likecode-workspace-panel--log">
                     <div class="likecode-workspace-panel__head">
                         <div>

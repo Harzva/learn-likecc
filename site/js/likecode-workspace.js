@@ -17,11 +17,16 @@
     var connectorTargetInput = document.getElementById('workspace-connector-target-input')
     var connectorNoteInput = document.getElementById('workspace-connector-note-input')
     var connectorBridgeTargetInput = document.getElementById('workspace-connector-bridge-target-input')
+    var shellListHost = document.getElementById('workspace-shell-list')
     var activeTask = null
     var taskPayload = null
     var currentLogMode = 'latest'
     var daemonTaskId = null
     var workspaceMeta = null
+    var shellState = {
+        sessions: [],
+        activeId: '',
+    }
     var connectorState = {
         shell_mode: 'ui-shell',
         bind_state: 'unbound',
@@ -174,6 +179,111 @@
             return payload
         }).catch(function () {
             return null
+        })
+    }
+
+    function shellPreviewText(buffer) {
+        var lines = String(buffer || '').split('\n').map(function (line) { return line.trim() }).filter(Boolean)
+        return lines.length ? lines[lines.length - 1] : '--'
+    }
+
+    function activeShell() {
+        var sessions = shellState.sessions || []
+        return sessions.find(function (item) { return item.session_id === shellState.activeId }) || sessions[0] || null
+    }
+
+    function renderShellSummary() {
+        var sessions = shellState.sessions || []
+        var active = activeShell()
+        setText('workspace-shell-count', sessions.length)
+        setText('workspace-shell-active', active ? active.session_id : '—')
+        setText('workspace-shell-cwd', active ? (active.cwd || '—') : '—')
+        setText('workspace-shell-pid', active ? (active.pid || '—') : '—')
+        setText('workspace-shell-preview', 'preview: ' + (active ? shellPreviewText(active.buffer) : '--'))
+    }
+
+    function renderShellRoster() {
+        if (!shellListHost) return
+        var sessions = shellState.sessions || []
+        renderShellSummary()
+        if (!sessions.length) {
+            shellListHost.innerHTML = '<p class="likecode-workspace-empty">当前还没有 shell seat。可以直接新建一个本地登录 shell。</p>'
+            return
+        }
+        shellListHost.innerHTML = sessions.map(function (session) {
+            var active = session.session_id === shellState.activeId ? ' is-active' : ''
+            var state = session.alive ? 'ready' : 'done'
+            return (
+                '<button type="button" class="likecode-workspace-checkitem' + active + '" data-shell-id="' + esc(session.session_id) + '">' +
+                '<span class="likecode-workspace-checkitem__box">' + esc(session.alive ? '>' : 'x') + '</span>' +
+                '<span class="likecode-workspace-checkitem__label">' +
+                esc(session.session_id + ' · ' + (session.cwd || '—') + ' · pid ' + (session.pid || '—')) +
+                ' <span class="likecode-workspace-badge likecode-workspace-badge--' + esc(state) + '">' + esc(session.alive ? 'alive' : 'closed') + '</span>' +
+                '</span>' +
+                '</button>'
+            )
+        }).join('')
+        Array.prototype.slice.call(shellListHost.querySelectorAll('[data-shell-id]')).forEach(function (button) {
+            button.addEventListener('click', function () {
+                shellState.activeId = button.getAttribute('data-shell-id') || ''
+                renderShellRoster()
+            })
+        })
+    }
+
+    function refreshShells() {
+        var statusEl = document.getElementById('workspace-shell-status')
+        setStatus(statusEl, 'loading', 'neutral')
+        return fetchJson(relayBase() + '/api/shell/list')
+            .then(function (payload) {
+                shellState.sessions = payload.sessions || []
+                if (!shellState.sessions.find(function (item) { return item.session_id === shellState.activeId })) {
+                    shellState.activeId = shellState.sessions.length ? shellState.sessions[0].session_id : ''
+                }
+                renderShellRoster()
+                setStatus(statusEl, 'synced', 'ready')
+            })
+            .catch(function (error) {
+                shellState.sessions = []
+                shellState.activeId = ''
+                renderShellRoster()
+                setStatus(statusEl, 'sync failed', 'risk')
+                setText('workspace-shell-preview', 'preview: ' + error.message)
+            })
+    }
+
+    function createShellSeat() {
+        var statusEl = document.getElementById('workspace-shell-status')
+        setStatus(statusEl, 'creating', 'neutral')
+        return fetchJson(relayBase() + '/api/shell/create', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({}),
+        }).then(function (payload) {
+            var session = payload.session || {}
+            shellState.activeId = session.session_id || ''
+            return refreshShells()
+        }).catch(function (error) {
+            setStatus(statusEl, 'create failed', 'risk')
+            setText('workspace-shell-preview', 'preview: ' + error.message)
+        })
+    }
+
+    function closeShellSeat() {
+        var active = activeShell()
+        if (!active) return
+        var statusEl = document.getElementById('workspace-shell-status')
+        setStatus(statusEl, 'closing', 'neutral')
+        return fetchJson(relayBase() + '/api/shell/close', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: active.session_id }),
+        }).then(function () {
+            shellState.activeId = ''
+            return refreshShells()
+        }).catch(function (error) {
+            setStatus(statusEl, 'close failed', 'risk')
+            setText('workspace-shell-preview', 'preview: ' + error.message)
         })
     }
 
@@ -624,11 +734,16 @@
         loadTasks()
         refreshRuntime()
         refreshLog(currentLogMode)
+        refreshShells()
     })
     document.getElementById('workspace-runtime-refresh').addEventListener('click', function () {
         refreshRuntime()
         refreshLog(currentLogMode)
+        refreshShells()
     })
+    document.getElementById('workspace-shell-refresh').addEventListener('click', refreshShells)
+    document.getElementById('workspace-shell-create').addEventListener('click', createShellSeat)
+    document.getElementById('workspace-shell-close').addEventListener('click', closeShellSeat)
     document.getElementById('workspace-log-daemon').addEventListener('click', function () { refreshLog('daemon') })
     document.getElementById('workspace-log-tick').addEventListener('click', function () { refreshLog('latest') })
     document.getElementById('workspace-log-message').addEventListener('click', function () { refreshLog('message') })
@@ -810,4 +925,5 @@
     loadWorkspaceMeta().then(loadTasks).catch(loadTasks)
     refreshRuntime()
     refreshLog('latest')
+    refreshShells()
 })()

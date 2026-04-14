@@ -41,6 +41,8 @@
 - 这样跨工程复用不再只是“后端其实支持”，而是前端自己也把当前 workspace contract 讲清楚
 - 这轮再补一层写入边界：面板现在也会显示 `site root / allowed edit roots / allowed edit files`
 - 这样操作者在页面里就能直接看到 plan / evolution 写回到底被限制在什么范围，不需要再去翻 relay 源码猜写入合同
+- 这轮还把 relay 已有的 shell session API 接成了一个最小 `Shell Seats` roster
+- 所以 app 现在不只知道 daemon / thread / log，也能直接看见当前 shell seat、创建新 shell、关闭选中的 shell，而不用先跳去另一张监视器页
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
