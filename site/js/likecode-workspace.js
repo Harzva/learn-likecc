@@ -28,6 +28,8 @@
     var shellState = {
         sessions: [],
         activeId: '',
+        lastOutputSyncAt: '',
+        lastOutputSyncFailedAt: '',
     }
     var connectorState = {
         shell_mode: 'ui-shell',
@@ -368,6 +370,14 @@
         })
     }
 
+    function renderShellSyncMeta() {
+        if (shellState.lastOutputSyncFailedAt) {
+            setText('workspace-shell-sync-time', 'output sync failed: ' + shellState.lastOutputSyncFailedAt)
+            return
+        }
+        setText('workspace-shell-sync-time', shellState.lastOutputSyncAt ? ('output sync: ' + shellState.lastOutputSyncAt) : 'output sync: --')
+    }
+
     function renderShellSummary() {
         var sessions = shellState.sessions || []
         var active = activeShell()
@@ -377,6 +387,7 @@
         setText('workspace-shell-cwd', active ? (active.cwd || '—') : '先选中后查看目录')
         setText('workspace-shell-pid', active ? (active.pid || '—') : '先选中后查看 pid')
         setText('workspace-shell-preview', '预览: ' + (active ? shellPreviewText(active.buffer) : '--'))
+        renderShellSyncMeta()
     }
 
     function renderShellOutput(session) {
@@ -444,6 +455,9 @@
     function refreshShellOutput() {
         var active = activeShell()
         if (!active) {
+            shellState.lastOutputSyncAt = ''
+            shellState.lastOutputSyncFailedAt = ''
+            renderShellSyncMeta()
             renderShellOutput(null)
             return Promise.resolve({ ok: false, skipped: true })
         }
@@ -453,11 +467,16 @@
                 shellState.sessions = (shellState.sessions || []).map(function (item) {
                     return item.session_id === session.session_id ? session : item
                 })
+                shellState.lastOutputSyncAt = shellTimeStamp()
+                shellState.lastOutputSyncFailedAt = ''
                 renderShellSummary()
                 renderShellOutput(session)
                 return { ok: true, session: session }
             })
             .catch(function (error) {
+                shellState.lastOutputSyncAt = ''
+                shellState.lastOutputSyncFailedAt = shellTimeStamp()
+                renderShellSyncMeta()
                 renderShellOutput({ buffer: '读取 shell 输出失败: ' + error.message })
                 return { ok: false, error: error }
             })
