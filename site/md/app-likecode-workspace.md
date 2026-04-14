@@ -57,6 +57,8 @@
 - 所以最近一次重放、命令标签和当前输出之间现在至少共享一条最小时间线，不会只知道“是什么命令”却不知道“是什么时候打出来的”
 - 这轮又把 seat 级别的 provenance 空状态补清楚了
 - 所以如果某个 shell seat 的输出不是从当前 workspace shell 发出来的，页面会明确提示 `unknown on this seat / no local send yet`，而不是继续拿 `--` 糊过去
+- 这轮再补了一个 `清空本地记忆` 入口
+- 所以 recent replay、`output from` 和 `updated` 这些本地 provenance 都可以在页面里显式重置，不需要手动清整个浏览器存储
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局

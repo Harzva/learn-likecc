@@ -73,3 +73,5 @@ Scope: grow the current codex-loop monitor into a separate app-style LikeCode wo
 - 2026-04-14: fifteenth bounded Task 13 follow-up should add one tiny seat-sensitive empty state so switching to a shell with no local command history explains that the output context is unknown rather than merely blank
 - 2026-04-14: fifteenth bounded Task 13 follow-up landed a seat-sensitive unknown-state cue; shell output context now explicitly says `unknown on this seat / no local send yet` when the visible output has no local command provenance
 - 2026-04-14: sixteenth bounded Task 13 follow-up should add one tiny clear-history affordance so local replay memory can be intentionally reset without clearing all browser storage
+- 2026-04-14: sixteenth bounded Task 13 follow-up landed a `清空本地记忆` affordance; recent replay history plus local output provenance can now be reset from the shell panel without touching broader browser storage
+- 2026-04-14: seventeenth bounded Task 13 follow-up should add one tiny shell-memory scope note so the UI teaches that replay and provenance are browser-local rather than relay-backed session history

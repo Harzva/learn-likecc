@@ -185,6 +185,16 @@
         renderShellRecentCommands()
     }
 
+    function clearShellMemory() {
+        shellState.recentCommands = []
+        shellState.lastCommandBySeat = {}
+        persistShellRecentCommands([])
+        persistShellContext({})
+        renderShellRecentCommands()
+        renderShellOutput(activeShell())
+        setStatus(document.getElementById('workspace-shell-status'), 'local memory cleared', 'attention')
+    }
+
     function connectorTone(state) {
         if (state === 'bound') return 'ready'
         if (state === 'qr-wait') return 'attention'
@@ -944,6 +954,7 @@
     document.getElementById('workspace-shell-preset-ls').addEventListener('click', function () { dispatchShellCommand('ls') })
     document.getElementById('workspace-shell-preset-git').addEventListener('click', function () { dispatchShellCommand('git status') })
     document.getElementById('workspace-shell-preset-python').addEventListener('click', function () { dispatchShellCommand('python -V') })
+    document.getElementById('workspace-shell-clear-memory').addEventListener('click', clearShellMemory)
     document.getElementById('workspace-log-daemon').addEventListener('click', function () { refreshLog('daemon') })
     document.getElementById('workspace-log-tick').addEventListener('click', function () { refreshLog('latest') })
     document.getElementById('workspace-log-message').addEventListener('click', function () { refreshLog('message') })
