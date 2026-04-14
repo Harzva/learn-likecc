@@ -1011,6 +1011,7 @@
         refreshShells()
     })
     document.getElementById('workspace-shell-refresh').addEventListener('click', refreshShells)
+    document.getElementById('workspace-shell-refresh-output').addEventListener('click', refreshShellOutput)
     document.getElementById('workspace-shell-create').addEventListener('click', createShellSeat)
     document.getElementById('workspace-shell-close').addEventListener('click', closeShellSeat)
     document.getElementById('workspace-shell-send').addEventListener('click', sendShellCommand)

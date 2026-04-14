@@ -175,6 +175,8 @@
 - 所以 `creating / closing selected shell` 现在也统一写成了 `正在新建 shell / 正在关闭当前 shell`，status lane 里只剩更深一层的 fallback 文案还没收口
 - 这轮再把 shell 输出读取失败时的 fallback 文本也收成了中文操作语气
 - 所以 `shell read failed: ...` 现在也统一写成了 `读取 shell 输出失败: ...`，这条连续几轮的 shell wording 微线程可以先告一段落，下一轮更适合回到结构层面的 workspace 改进
+- 这轮回到结构层面，给 `Shell Seats` 补了一个独立的当前输出刷新入口
+- 所以现在不需要每次都点 `刷新 shell · 仅同步` 才能重看当前会话输出，旁边已经直接多了一个 `刷新输出 · 当前会话`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
