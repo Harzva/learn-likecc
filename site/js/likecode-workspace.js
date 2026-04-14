@@ -452,7 +452,7 @@
 
     function refreshShells() {
         var statusEl = document.getElementById('workspace-shell-status')
-        setStatus(statusEl, 'syncing shell roster', 'neutral')
+        setStatus(statusEl, '正在同步 shell 会话', 'neutral')
         return fetchJson(relayBase() + '/api/shell/list')
             .then(function (payload) {
                 shellState.sessions = payload.sessions || []
@@ -460,7 +460,7 @@
                     shellState.activeId = shellState.sessions.length ? shellState.sessions[0].session_id : ''
                 }
                 renderShellRoster()
-                setStatus(statusEl, 'shell roster synced', 'ready')
+                setStatus(statusEl, 'shell 会话已同步', 'ready')
                 return refreshShellOutput()
             })
             .catch(function (error) {
