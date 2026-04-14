@@ -121,3 +121,5 @@ Scope: grow the current codex-loop monitor into a separate app-style LikeCode wo
 - 2026-04-14: thirty-ninth bounded Task 13 follow-up should add one tiny clear-action helper rhythm cleanup so the helper reads less like two noun chunks glued by slashes while keeping both replay/provenance and relay-seat boundaries visible
 - 2026-04-14: thirty-ninth bounded Task 13 follow-up landed a clear-action helper rhythm cleanup; the helper now says `回放与来源记忆` instead of the slash-joined `回放 / 来源记忆`
 - 2026-04-14: fortieth bounded Task 13 follow-up should add one tiny clear-action helper wording cleanup so `shell seat` also reads a bit more native in the same sentence without dropping the seat-level boundary it names
+- 2026-04-14: fortieth bounded Task 13 follow-up landed a clear-action helper wording cleanup; the helper now says `relay 端的 shell seat` so the seat-side boundary reads less like two hard-glued noun chunks
+- 2026-04-14: forty-first bounded Task 13 follow-up should add one tiny clear-action helper localization cleanup so the remaining `shell seat` term reads a bit more native while keeping the seat-level object explicit
