@@ -384,16 +384,20 @@
             document.getElementById('workspace-shell-preset-git'),
             document.getElementById('workspace-shell-preset-python'),
         ]
-        var disabled = !active
+        var disabled = !(active && active.alive)
         ;[refreshOutput, closeButton, sendButton].concat(presetButtons).forEach(function (button) {
             if (!button) return
             button.disabled = disabled
         })
         if (commandInput) {
             commandInput.disabled = disabled
-            commandInput.placeholder = disabled
-                ? '先新建或选中一个 shell，再按 Enter 发命令'
-                : '输入一条 shell 命令，例如：pwd 或 ls；按 Enter 发送'
+            if (!active) {
+                commandInput.placeholder = '先新建或选中一个 shell，再按 Enter 发命令'
+            } else if (!active.alive) {
+                commandInput.placeholder = '当前 shell 已关闭；请先新建或切换到存活会话'
+            } else {
+                commandInput.placeholder = '输入一条 shell 命令，例如：pwd 或 ls；按 Enter 发送'
+            }
         }
     }
 
@@ -429,17 +433,16 @@
                 ? ('当前会话 ' + (active ? active.session_id : '--') + ' · live ' + liveCount + ' · closed ' + closedCount)
                 : '还没有 shell 会话 · live 0 · closed 0'
         )
-        setStatus(
-            document.getElementById('workspace-shell-active-route-badge'),
-            active ? 'active seat routing' : 'active seat route',
-            active ? 'ready' : 'neutral'
-        )
-        setText(
-            'workspace-shell-active-route-text',
-            active
-                ? ('当前会话 ' + active.session_id + ' 正在驱动下面的输出预览、刷新输出和关闭动作。')
-                : '先选中一个 shell，下面的输出预览、刷新输出和关闭动作才会跟着当前会话切换。'
-        )
+        if (!active) {
+            setStatus(document.getElementById('workspace-shell-active-route-badge'), 'active seat route', 'neutral')
+            setText('workspace-shell-active-route-text', '先选中一个 shell，下面的输出预览、刷新输出和关闭动作才会跟着当前会话切换。')
+        } else if (!active.alive) {
+            setStatus(document.getElementById('workspace-shell-active-route-badge'), 'closed active seat', 'attention')
+            setText('workspace-shell-active-route-text', '当前会话 ' + active.session_id + ' 已关闭；下面的输出刷新、发送和关闭动作当前停用。')
+        } else {
+            setStatus(document.getElementById('workspace-shell-active-route-badge'), 'active seat routing', 'ready')
+            setText('workspace-shell-active-route-text', '当前会话 ' + active.session_id + ' 正在驱动下面的输出预览、刷新输出和关闭动作。')
+        }
         renderShellSyncMeta()
     }
 
