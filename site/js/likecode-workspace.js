@@ -475,7 +475,7 @@
 
     function createShellSeat() {
         var statusEl = document.getElementById('workspace-shell-status')
-        setStatus(statusEl, 'creating', 'neutral')
+        setStatus(statusEl, '正在新建 shell', 'neutral')
         return fetchJson(relayBase() + '/api/shell/create', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -494,7 +494,7 @@
         var active = activeShell()
         if (!active) return
         var statusEl = document.getElementById('workspace-shell-status')
-        setStatus(statusEl, 'closing selected shell', 'neutral')
+        setStatus(statusEl, '正在关闭当前 shell', 'neutral')
         return fetchJson(relayBase() + '/api/shell/close', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

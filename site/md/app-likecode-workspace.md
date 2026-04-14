@@ -171,6 +171,8 @@
 - 所以 `sync failed / create failed / close failed` 现在也统一写成了 `同步失败 / 新建失败 / 关闭失败`，不再让 status lane 和 preview lane 的错误语气分叉
 - 这轮再把 shell 刷新链路里的 loading / success 状态也收成了中文操作语气
 - 所以 `syncing shell roster / shell roster synced` 现在也统一写成了 `正在同步 shell 会话 / shell 会话已同步`，和旁边已经写成 `刷新 shell · 仅同步` 的按钮角色提示保持了一致
+- 这轮再把 shell 新建 / 关闭链路里的 loading 状态也收成了中文操作语气
+- 所以 `creating / closing selected shell` 现在也统一写成了 `正在新建 shell / 正在关闭当前 shell`，status lane 里只剩更深一层的 fallback 文案还没收口
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
