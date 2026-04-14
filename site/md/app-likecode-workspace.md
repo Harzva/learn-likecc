@@ -71,6 +71,8 @@
 - 所以 panel 里的 `browser-local memory` 继续表示全局本地记忆范围，而 `seat-local hint / gap / cue` 专门表示当前 shell seat 的 provenance 状态，两层信息不会再混在一行文字里
 - 这轮再给 `Recent Commands` 行首补了一个 current-seat cue
 - 所以切换 shell seat 时，recent replay 不会继续像全局命令条那样悬空，而是会直接标出当前 seat 以及它最近一次本地命令是否已经对齐
+- 这轮再把当前 seat 的最近本地命令在 `Recent Commands` 里做了高亮
+- 所以 replay 按钮本身也会和 `output from` / current-seat cue 对齐，而不只是靠一条 badge 文案提醒操作者当前上下文
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局

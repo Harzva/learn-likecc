@@ -179,10 +179,18 @@
         }
     }
 
+    function currentSeatRecentCommand() {
+        var active = activeShell()
+        if (!active) return ''
+        var context = ((shellState.lastCommandBySeat || {})[active.session_id]) || {}
+        return String(context.command || '').trim()
+    }
+
     function renderShellRecentCommands() {
         if (!shellRecentHost) return
         var recent = normalizeRecentCommands(shellState.recentCommands || [])
         var cue = shellRecentCue()
+        var activeCommand = currentSeatRecentCommand()
         shellState.recentCommands = recent
         if (!recent.length) {
             shellRecentHost.innerHTML =
@@ -193,7 +201,8 @@
         shellRecentHost.innerHTML =
             '<span class="likecode-workspace-badge likecode-workspace-badge--' + esc(cue.tone) + '">' + esc(cue.text) + '</span>' +
             recent.map(function (command) {
-            return '<button type="button" class="btn btn-secondary" data-shell-command="' + esc(command) + '">' + esc(command) + '</button>'
+                var buttonClass = command === activeCommand ? 'btn btn-primary' : 'btn btn-secondary'
+                return '<button type="button" class="' + buttonClass + '" data-shell-command="' + esc(command) + '">' + esc(command) + '</button>'
         }).join('')
         Array.prototype.slice.call(shellRecentHost.querySelectorAll('[data-shell-command]')).forEach(function (button) {
             button.addEventListener('click', function () {
