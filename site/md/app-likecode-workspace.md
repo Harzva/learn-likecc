@@ -79,6 +79,8 @@
 - 所以在还没选 shell seat 时，`Recent Commands` 也不会回退成裸命令列表，而会继续明确告诉操作者这是一组 browser-local 的 shared replay
 - 这轮再给 `shared` replay button 补了一个 browser-local hover hint
 - 所以操作者把鼠标停在这些按钮上时，页面会继续明确说明它们只是本地 shared replay，不是 relay 端保存下来的 shell 历史
+- 这轮再把 mixed row 的 badge 文案收口了
+- 所以当一行里同时出现一个 current-seat replay 和几个 `shared` replay 时，badge 会直接补一句 `+ shared replay below`，减少操作者自己脑补按钮分层
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局

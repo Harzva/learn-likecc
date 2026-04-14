@@ -192,15 +192,17 @@
         var cue = shellRecentCue()
         var active = activeShell()
         var activeCommand = currentSeatRecentCommand()
+        var hasSharedButtons = !!activeCommand && recent.some(function (command) { return command !== activeCommand })
+        var cueText = cue.text + (hasSharedButtons ? ' + shared replay below' : '')
         shellState.recentCommands = recent
         if (!recent.length) {
             shellRecentHost.innerHTML =
-                '<span class="likecode-workspace-badge likecode-workspace-badge--' + esc(cue.tone) + '">' + esc(cue.text) + '</span>' +
+                '<span class="likecode-workspace-badge likecode-workspace-badge--' + esc(cue.tone) + '">' + esc(cueText) + '</span>' +
                 '<span class="likecode-workspace-empty">最近成功命令会显示在这里，支持一键重放。</span>'
             return
         }
         shellRecentHost.innerHTML =
-            '<span class="likecode-workspace-badge likecode-workspace-badge--' + esc(cue.tone) + '">' + esc(cue.text) + '</span>' +
+            '<span class="likecode-workspace-badge likecode-workspace-badge--' + esc(cue.tone) + '">' + esc(cueText) + '</span>' +
             recent.map(function (command) {
                 var isCurrent = !!activeCommand && command === activeCommand
                 var buttonClass = isCurrent ? 'btn btn-primary' : 'btn btn-secondary'
