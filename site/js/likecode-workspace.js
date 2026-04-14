@@ -519,7 +519,7 @@
         var statusEl = document.getElementById('workspace-shell-status')
         if (!active) {
             setStatus(statusEl, 'no active shell', 'risk')
-            setText('workspace-shell-preview', 'preview: select or create a shell seat first')
+            setText('workspace-shell-preview', 'preview: create/select a shell first, then press Enter or use quick probes')
             return
         }
         if (!shellCommandInput) return

@@ -137,6 +137,8 @@
 - 所以在还没选中 shell 时，这块提示不会只说“选一个 seat 来看输出”，而会直接提示你先新建或选中 shell，再按 `Enter` 发命令或点上面的常用探针
 - 这轮再把 no-seat output 的正文提示也改成了同一条起手路径
 - 所以在还没选中 shell 时，输出框正文不再只是被动地说“选中后这里会显示最近输出”，而会直接告诉你先新建或选中 shell，再按 `Enter` 发命令或点常用探针
+- 这轮再把 no-seat shell status preview 也接回了同一条起手路径
+- 所以在还没选中 shell 时，状态区里的 `preview` 不再只说“先选 seat”，而会直接补全成先新建或选中 shell，再按 `Enter` 发命令或点常用探针
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
