@@ -141,6 +141,8 @@
 - 所以在还没选中 shell 时，状态区里的 `preview` 不再只说“先选 seat”，而会直接补全成先新建或选中 shell，再按 `Enter` 发命令或点常用探针
 - 这轮再把 no-seat shell status 正文本身也接回了同一条起手路径
 - 所以在还没选中 shell 时，状态区不再只停在 `no active shell`，而会直接把“先新建或选中 shell，再按 `Enter` 或点常用探针”压缩进主状态文案
+- 这轮再把 shell create 动作本身也接回了这条起手路径
+- 所以 `新建 shell` 按钮现在会直接写成 `新建 shell · 第一步`，而空 roster 也会继续说明新建之后就能按 `Enter` 发命令或点常用探针
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
