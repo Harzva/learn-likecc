@@ -317,12 +317,26 @@
     }
 
     function sendShellCommand() {
-        var active = activeShell()
-        if (!active || !shellCommandInput) return
+        if (!shellCommandInput) return
         var command = shellCommandInput.value.trim()
-        if (!command) return
+        return dispatchShellCommand(command)
+    }
+
+    function dispatchShellCommand(command) {
+        var active = activeShell()
         var statusEl = document.getElementById('workspace-shell-status')
-        setStatus(statusEl, 'sending', 'neutral')
+        if (!active) {
+            setStatus(statusEl, 'no active shell', 'risk')
+            setText('workspace-shell-preview', 'preview: select or create a shell seat first')
+            return
+        }
+        if (!shellCommandInput) return
+        command = String(command || '').trim()
+        if (!command) {
+            setStatus(statusEl, 'empty command', 'attention')
+            return
+        }
+        setStatus(statusEl, 'sending: ' + command, 'neutral')
         return fetchJson(relayBase() + '/api/shell/write', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -331,11 +345,11 @@
                 text: command + '\n',
             }),
         }).then(function () {
-            setStatus(statusEl, 'sent', 'ready')
+            setStatus(statusEl, 'sent: ' + command, 'ready')
             shellCommandInput.value = ''
             return refreshShellOutput()
         }).catch(function (error) {
-            setStatus(statusEl, 'send failed', 'risk')
+            setStatus(statusEl, 'send failed: ' + command, 'risk')
             setText('workspace-shell-preview', 'preview: ' + error.message)
         })
     }
@@ -798,6 +812,10 @@
     document.getElementById('workspace-shell-create').addEventListener('click', createShellSeat)
     document.getElementById('workspace-shell-close').addEventListener('click', closeShellSeat)
     document.getElementById('workspace-shell-send').addEventListener('click', sendShellCommand)
+    document.getElementById('workspace-shell-preset-pwd').addEventListener('click', function () { dispatchShellCommand('pwd') })
+    document.getElementById('workspace-shell-preset-ls').addEventListener('click', function () { dispatchShellCommand('ls') })
+    document.getElementById('workspace-shell-preset-git').addEventListener('click', function () { dispatchShellCommand('git status') })
+    document.getElementById('workspace-shell-preset-python').addEventListener('click', function () { dispatchShellCommand('python -V') })
     document.getElementById('workspace-log-daemon').addEventListener('click', function () { refreshLog('daemon') })
     document.getElementById('workspace-log-tick').addEventListener('click', function () { refreshLog('latest') })
     document.getElementById('workspace-log-message').addEventListener('click', function () { refreshLog('message') })

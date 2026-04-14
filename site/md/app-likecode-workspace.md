@@ -47,6 +47,8 @@
 - 所以 `Shell Seats` 不再只是生命周期面板，而开始长成真正的只读 shell surface
 - 这轮又把 `/api/shell/write` 接成了最小命令发送框
 - 所以现在可以对选中的 shell seat 直接发一条 `pwd / ls / git status` 这类命令，而不用先跳回监视器页
+- 这轮再把这层操作面补成 `Shell Presets`
+- 所以对最常见的检查动作，已经不需要先手打命令，直接点 `pwd / ls / git status / python -V` 就能触发一次最小 shell probe
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
