@@ -133,6 +133,8 @@
 - 所以在还没有 replay 时，页面不会只说“这里支持一键重放”，还会直接提醒你可以先按 `Enter` 发送命令或点 `常用探针` 来产生命令记录
 - 这轮再把 selected-seat output 的 gap hint 也接回了上面的发送 / 探针路径
 - 所以当当前 seat 还没有本地 provenance 时，页面不会只说这是个 gap，还会直接提示你可以先按 `Enter` 发一条新命令，或用上面的常用探针重新配对本地上下文
+- 这轮再把 no-seat output hint 也接回了 shell create / send 路径
+- 所以在还没选中 shell 时，这块提示不会只说“选一个 seat 来看输出”，而会直接提示你先新建或选中 shell，再按 `Enter` 发命令或点上面的常用探针
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局

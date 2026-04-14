@@ -380,7 +380,7 @@
             setStatus(label, 'output from: --', 'neutral')
             setText('workspace-shell-output-time', 'updated: --')
             setBadge(scope, 'seat-local hint', 'neutral')
-            if (hint) hint.textContent = 'hint: select a seat to inspect its local provenance context.'
+            if (hint) hint.textContent = 'hint: create or select a seat first, then send a command with Enter or the quick probes above to inspect local provenance here.'
             return
         }
         host.textContent = session.buffer || '(empty)'
