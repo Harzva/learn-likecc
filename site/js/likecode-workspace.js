@@ -363,11 +363,25 @@
     function syncShellActionState(active) {
         var refreshOutput = document.getElementById('workspace-shell-refresh-output')
         var closeButton = document.getElementById('workspace-shell-close')
+        var sendButton = document.getElementById('workspace-shell-send')
+        var commandInput = document.getElementById('workspace-shell-command')
+        var presetButtons = [
+            document.getElementById('workspace-shell-preset-pwd'),
+            document.getElementById('workspace-shell-preset-ls'),
+            document.getElementById('workspace-shell-preset-git'),
+            document.getElementById('workspace-shell-preset-python'),
+        ]
         var disabled = !active
-        ;[refreshOutput, closeButton].forEach(function (button) {
+        ;[refreshOutput, closeButton, sendButton].concat(presetButtons).forEach(function (button) {
             if (!button) return
             button.disabled = disabled
         })
+        if (commandInput) {
+            commandInput.disabled = disabled
+            commandInput.placeholder = disabled
+                ? '先新建或选中一个 shell，再按 Enter 发命令'
+                : '输入一条 shell 命令，例如：pwd 或 ls；按 Enter 发送'
+        }
     }
 
     function renderShellSyncMeta() {
