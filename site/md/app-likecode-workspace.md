@@ -81,6 +81,8 @@
 - 所以操作者把鼠标停在这些按钮上时，页面会继续明确说明它们只是本地 shared replay，不是 relay 端保存下来的 shell 历史
 - 这轮再把 mixed row 的 badge 文案收口了
 - 所以当一行里同时出现一个 current-seat replay 和几个 `shared` replay 时，badge 会直接补一句 `+ shared replay below`，减少操作者自己脑补按钮分层
+- 这轮再把 `no local match` 的 row 文案收口了
+- 所以如果当前 seat 还没有自己的本地 replay，但下面已经有一排 `shared` 按钮，badge 会直接补成 `no local match · shared replay below`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局

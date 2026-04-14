@@ -193,7 +193,12 @@
         var active = activeShell()
         var activeCommand = currentSeatRecentCommand()
         var hasSharedButtons = !!activeCommand && recent.some(function (command) { return command !== activeCommand })
-        var cueText = cue.text + (hasSharedButtons ? ' + shared replay below' : '')
+        var cueText = cue.text
+        if (active && !activeCommand && recent.length) {
+            cueText += ' · shared replay below'
+        } else if (hasSharedButtons) {
+            cueText += ' + shared replay below'
+        }
         shellState.recentCommands = recent
         if (!recent.length) {
             shellRecentHost.innerHTML =
