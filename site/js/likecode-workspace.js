@@ -462,7 +462,12 @@
         )
         if (!active) {
             setStatus(document.getElementById('workspace-shell-active-route-badge'), 'active seat route', 'neutral')
-            setText('workspace-shell-active-route-text', '先选中一个 shell，下面的输出预览、刷新输出和关闭动作才会跟着当前会话切换。')
+            setText(
+                'workspace-shell-active-route-text',
+                sessions.length
+                    ? '先选中一个 shell，下面的输出预览、刷新输出和关闭动作才会跟着当前会话切换。'
+                    : '先新建一个 shell，下面的输出预览、刷新输出和关闭动作才会开始跟着当前会话切换。'
+            )
         } else if (!active.alive) {
             setStatus(document.getElementById('workspace-shell-active-route-badge'), 'closed active seat', 'attention')
             setText(

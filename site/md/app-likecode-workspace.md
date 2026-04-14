@@ -217,6 +217,8 @@
 - 所以当前会话关闭时，输入框不会只停在笼统的“先新建或切换”，而会直接提示 `切到存活会话 <id>` 或 `新建 shell · 恢复会话`
 - 这轮再把 disabled 的 live-seat recovery 按钮文案也收紧成了结果态
 - 所以当 roster 里根本没有别的 live seat 时，按钮不会继续像一个待执行动作那样显示 `切到首个存活会话`，而是会直接说明 `没有其它存活会话`
+- 这轮再把 no-active 的 route cue 也分成了 `空 roster` 和 `未选中` 两种情况
+- 所以当还没有任何 shell seat 时，提示不会继续误导成“先选中”，而是会直接指向 `先新建一个 shell`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
