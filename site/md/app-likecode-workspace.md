@@ -83,6 +83,8 @@
 - 所以当一行里同时出现一个 current-seat replay 和几个 `shared` replay 时，badge 会直接补一句 `+ shared replay below`，减少操作者自己脑补按钮分层
 - 这轮再把 `no local match` 的 row 文案收口了
 - 所以如果当前 seat 还没有自己的本地 replay，但下面已经有一排 `shared` 按钮，badge 会直接补成 `no local match · shared replay below`
+- 这轮再把 selected-seat 且 empty-recent 的占位文案也收口了
+- 所以如果当前 seat 已选中、还没有任何本地 replay，而且下面也还没有 recent 按钮，空状态会直接说“当前 seat 还没有本地 replay”，不再退回完全泛化的占位提示
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
