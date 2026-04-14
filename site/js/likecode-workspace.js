@@ -519,7 +519,7 @@
         var statusEl = document.getElementById('workspace-shell-status')
         if (!active) {
             setStatus(statusEl, 'no active shell · create/select one, then Enter or quick probes', 'risk')
-            setText('workspace-shell-preview', '预览: create/select a shell first, then press Enter or use quick probes')
+            setText('workspace-shell-preview', '预览: 先新建或选中一个 shell，再按 Enter 发命令或点常用探针')
             return
         }
         if (!shellCommandInput) return

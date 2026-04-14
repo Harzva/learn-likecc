@@ -159,6 +159,8 @@
 - 所以 `sessions · roster scope / cwd · selected shell / pid · selected shell` 这组混搭词现在收成了 `sessions · 会话总览 / cwd · 当前会话 / pid · 当前会话`，count 值也改成了 `共 N 个`
 - 这轮再把 shell preview 的标签也收成了当前页面的中文操作语气
 - 所以 shell preview 现在统一写成 `预览:`，不再让 summary row 已经转成中文后，这条紧邻的状态线还停在旧的 `preview:` 前缀
+- 这轮再把 no-seat 的 shell preview 指引句本身也收成了中文操作语气
+- 所以在还没选中 shell 时，preview 不再写 `create/select a shell first...`，而会直接提示 `先新建或选中一个 shell，再按 Enter 发命令或点常用探针`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
