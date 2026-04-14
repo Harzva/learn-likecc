@@ -377,6 +377,7 @@
         var refreshOutput = document.getElementById('workspace-shell-refresh-output')
         var closeButton = document.getElementById('workspace-shell-close')
         var sendButton = document.getElementById('workspace-shell-send')
+        var focusLiveButton = document.getElementById('workspace-shell-focus-live')
         var commandInput = document.getElementById('workspace-shell-command')
         var presetButtons = [
             document.getElementById('workspace-shell-preset-pwd'),
@@ -384,11 +385,17 @@
             document.getElementById('workspace-shell-preset-git'),
             document.getElementById('workspace-shell-preset-python'),
         ]
+        var fallbackLive = (shellState.sessions || []).find(function (item) {
+            return !!item.alive && (!active || item.session_id !== active.session_id)
+        })
         var disabled = !(active && active.alive)
         ;[refreshOutput, closeButton, sendButton].concat(presetButtons).forEach(function (button) {
             if (!button) return
             button.disabled = disabled
         })
+        if (focusLiveButton) {
+            focusLiveButton.disabled = !fallbackLive
+        }
         if (commandInput) {
             commandInput.disabled = disabled
             if (!active) {
@@ -511,6 +518,17 @@
                 refreshShellOutput()
             })
         })
+    }
+
+    function focusFirstLiveShell() {
+        var nextLive = (shellState.sessions || []).find(function (item) {
+            return !!item.alive && item.session_id !== shellState.activeId
+        })
+        if (!nextLive) return
+        shellState.activeId = nextLive.session_id
+        renderShellRoster()
+        setStatus(document.getElementById('workspace-shell-status'), '已切到存活会话: ' + nextLive.session_id, 'ready')
+        refreshShellOutput()
     }
 
     function refreshShellOutput() {
@@ -1128,6 +1146,7 @@
     document.getElementById('workspace-shell-refresh').addEventListener('click', refreshShells)
     document.getElementById('workspace-shell-refresh-output').addEventListener('click', refreshShellOutputWithFeedback)
     document.getElementById('workspace-shell-create').addEventListener('click', createShellSeat)
+    document.getElementById('workspace-shell-focus-live').addEventListener('click', focusFirstLiveShell)
     document.getElementById('workspace-shell-close').addEventListener('click', closeShellSeat)
     document.getElementById('workspace-shell-send').addEventListener('click', sendShellCommand)
     shellCommandInput.addEventListener('keydown', function (event) {
