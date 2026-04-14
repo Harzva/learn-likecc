@@ -125,6 +125,8 @@
 - 所以手动输入和下面那排 preset probe 现在会共用同一行短提示：手动命令可以按 `Enter` 发送，也可以直接点常用探针，不再把快捷知识藏在 placeholder 里
 - 这轮再把 `Enter` 提示推到了发送按钮本身
 - 所以就算不看 placeholder 和 helper row，也能直接从按钮文案看到 `发送命令 · Enter`
+- 这轮再让 preset row 本身也声明了自己的用途
+- 所以 `pwd / ls / git status / python -V` 这一排前面现在会直接写 `常用探针`，不用只靠上一行说明去猜这些按钮的角色
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
