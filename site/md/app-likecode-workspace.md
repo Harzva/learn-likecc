@@ -145,6 +145,8 @@
 - 所以 `新建 shell` 按钮现在会直接写成 `新建 shell · 第一步`，而空 roster 也会继续说明新建之后就能按 `Enter` 发命令或点常用探针
 - 这轮再把 active-seat runtime card 也接回了这条起手路径
 - 所以 `active seat` 现在会直接标成 `第二步`，而在还没进入可发送状态时，这格也不会只留 `—`，而会直接提示先选中一个 shell
+- 这轮再把 close 动作的对象边界也写回按钮本身
+- 所以关闭按钮现在会直接写成 `关闭选中 · 当前会话`，而 status 里也会明确显示 `closing selected shell`，不再只留一个泛泛的 `closing`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局

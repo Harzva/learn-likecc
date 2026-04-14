@@ -494,7 +494,7 @@
         var active = activeShell()
         if (!active) return
         var statusEl = document.getElementById('workspace-shell-status')
-        setStatus(statusEl, 'closing', 'neutral')
+        setStatus(statusEl, 'closing selected shell', 'neutral')
         return fetchJson(relayBase() + '/api/shell/close', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
