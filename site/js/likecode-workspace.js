@@ -445,7 +445,7 @@
         var active = activeShell()
         if (!active) {
             renderShellOutput(null)
-            return Promise.resolve()
+            return Promise.resolve({ ok: false, skipped: true })
         }
         return fetchJson(relayBase() + '/api/shell/read?id=' + encodeURIComponent(active.session_id))
             .then(function (payload) {
@@ -455,10 +455,34 @@
                 })
                 renderShellSummary()
                 renderShellOutput(session)
+                return { ok: true, session: session }
             })
             .catch(function (error) {
                 renderShellOutput({ buffer: '读取 shell 输出失败: ' + error.message })
+                return { ok: false, error: error }
             })
+    }
+
+    function refreshShellOutputWithFeedback() {
+        var statusEl = document.getElementById('workspace-shell-status')
+        var active = activeShell()
+        if (!active) {
+            setStatus(statusEl, '还没有激活 shell · 先新建或选中，再按 Enter 或点常用探针', 'risk')
+            setText('workspace-shell-preview', '预览: 先新建或选中一个 shell，再按 Enter 发命令或点常用探针')
+            return Promise.resolve({ ok: false, skipped: true })
+        }
+        setStatus(statusEl, '正在刷新当前输出', 'neutral')
+        return refreshShellOutput().then(function (result) {
+            if (!result || result.ok === false) {
+                setStatus(statusEl, '输出刷新失败', 'risk')
+                if (result && result.error) {
+                    setText('workspace-shell-preview', '预览: 输出刷新错误 · ' + result.error.message)
+                }
+                return result
+            }
+            setStatus(statusEl, '当前输出已刷新', 'ready')
+            return result
+        })
     }
 
     function refreshShells() {
@@ -1022,7 +1046,7 @@
         refreshShells()
     })
     document.getElementById('workspace-shell-refresh').addEventListener('click', refreshShells)
-    document.getElementById('workspace-shell-refresh-output').addEventListener('click', refreshShellOutput)
+    document.getElementById('workspace-shell-refresh-output').addEventListener('click', refreshShellOutputWithFeedback)
     document.getElementById('workspace-shell-create').addEventListener('click', createShellSeat)
     document.getElementById('workspace-shell-close').addEventListener('click', closeShellSeat)
     document.getElementById('workspace-shell-send').addEventListener('click', sendShellCommand)
