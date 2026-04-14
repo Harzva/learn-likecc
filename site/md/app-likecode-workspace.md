@@ -127,6 +127,8 @@
 - 所以就算不看 placeholder 和 helper row，也能直接从按钮文案看到 `发送命令 · Enter`
 - 这轮再让 preset row 本身也声明了自己的用途
 - 所以 `pwd / ls / git status / python -V` 这一排前面现在会直接写 `常用探针`，不用只靠上一行说明去猜这些按钮的角色
+- 这轮再把 browser-local memory 这一行和上面的发送 / 探针 cluster 连起来了
+- 所以 `Recent Commands`、`output from`、`updated` 现在会直接说明：它们记录的是上面手动发送或常用探针写进来的浏览器本地记忆，不再像一条孤立的 reset 说明
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
