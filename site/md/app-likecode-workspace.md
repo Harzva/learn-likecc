@@ -149,6 +149,8 @@
 - 所以关闭按钮现在会直接写成 `关闭选中 · 当前会话`，而 status 里也会明确显示 `closing selected shell`，不再只留一个泛泛的 `closing`
 - 这轮再把 refresh 动作的角色边界也写回按钮本身
 - 所以刷新按钮现在会直接写成 `刷新 shell · 仅同步`，而 status 里也会明确显示 `syncing shell roster / shell roster synced`，不再让它看起来像创建或切换流程的一部分
+- 这轮再把 shell-count summary card 的范围也写回了卡片本身
+- 所以 count 卡片现在会直接标成 `sessions · roster scope`，数值也会写成 `N total`，不再和旁边的 `active seat · 第二步` 混成同一种“当前选中态”信息
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局

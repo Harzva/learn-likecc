@@ -361,7 +361,7 @@
     function renderShellSummary() {
         var sessions = shellState.sessions || []
         var active = activeShell()
-        setText('workspace-shell-count', sessions.length)
+        setText('workspace-shell-count', sessions.length + ' total')
         setText('workspace-shell-active', active ? active.session_id : '先选中一个 shell')
         setText('workspace-shell-cwd', active ? (active.cwd || '—') : '—')
         setText('workspace-shell-pid', active ? (active.pid || '—') : '—')
