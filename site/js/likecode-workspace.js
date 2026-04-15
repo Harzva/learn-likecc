@@ -170,7 +170,7 @@
 
     function shellRecentCue() {
         var active = activeShell()
-        if (!active) return { tone: 'neutral', text: 'current seat: no shell yet · shared replay only' }
+        if (!active) return { tone: 'neutral', text: 'current seat: no shell yet · replay memory only' }
         var context = ((shellState.lastCommandBySeat || {})[active.session_id]) || {}
         if (!context.command) {
             return { tone: 'attention', text: 'current seat: ' + active.session_id + ' · no local match' }

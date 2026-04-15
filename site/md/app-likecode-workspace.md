@@ -259,6 +259,8 @@
 - 所以还没有任何 shell 时，这里不再继续写 `-- / no seat selected / select a seat`，而会直接写成 `no shell yet / no shared replay yet / create a shell to replay`
 - 这轮再把这组 empty replay 文案里残留的 `shared replay` 也收成了更直接的中文提示
 - 所以空 roster 且还没有任何 recent command 时，这里不再继续写 `no shared replay yet / 还没有 shared replay`，而会直接写成 `no replay yet / 还没有可重放命令`
+- 这轮再把默认 cue 里的 `shared replay only` 也收成了更像 UI 提示的说法
+- 所以空 roster 但还挂着浏览器本地 replay 记忆时，这里不再继续写 `shared replay only`，而会直接写成 `replay memory only`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
