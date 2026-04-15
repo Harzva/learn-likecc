@@ -243,6 +243,8 @@
 - 所以空 roster 时，badge 不会继续泛泛地写成 `seat-local hint`，而会直接写成 `empty shell hint`
 - 这轮再把这个 empty-shell badge 的 tone 也和空态对齐
 - 所以空 roster 时，它不再继续沿用 neutral 外观，而会直接用 attention 态提醒当前还没有 shell
+- 这轮再把 `output from: no shell yet` 的 tone 也和空态对齐
+- 所以空 roster 时，输出来源标签不再继续沿用 neutral，而会直接用 attention 态说明当前还没有 shell
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
