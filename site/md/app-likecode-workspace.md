@@ -249,6 +249,8 @@
 - 所以当 shell 已存在但当前还没进入对应 seat 上下文时，这两块不再继续沿用 neutral，而会直接用 attention 态提醒先选中 shell
 - 这轮再把这条等待态里的 `updated` 也从占位改成了动作提示
 - 所以当 shell 已存在但当前还没选中对应 seat 时，这里不再继续停在 `updated: --`，而会直接写成 `updated: select a seat first`
+- 这轮再把同一条等待态里的 `output from` 也从占位改成了动作提示
+- 所以当 shell 已存在但当前还没选中对应 seat 时，它不再继续停在 `output from: --`，而会直接写成 `output from: select a seat first`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
