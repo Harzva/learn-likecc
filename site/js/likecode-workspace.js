@@ -210,7 +210,7 @@
         if (active && !activeCommand && recent.length) {
             cueText += ' · try replay below'
         } else if (hasSharedButtons) {
-            cueText += ' + shared replay below'
+            cueText += ' + more replay below'
         }
         if (active && !activeCommand && !recent.length) {
             emptyText = '当前 seat 还没有本地 replay；上面可按 Enter 发送命令或直接点常用探针，成功后会显示在这里，支持一键重放。'
