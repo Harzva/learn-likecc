@@ -257,6 +257,8 @@
 - 所以空 roster 时，列表区不再继续写 `shell seat / 本地登录 shell`，而会直接改成 `shell 会话 / 新建 shell`
 - 这轮再把 `Recent Commands` 在空 roster 下的 current-seat cue 也改成了真正的 no-shell 提示
 - 所以还没有任何 shell 时，这里不再继续写 `-- / no seat selected / select a seat`，而会直接写成 `no shell yet / no shared replay yet / create a shell to replay`
+- 这轮再把这组 empty replay 文案里残留的 `shared replay` 也收成了更直接的中文提示
+- 所以空 roster 且还没有任何 recent command 时，这里不再继续写 `no shared replay yet / 还没有 shared replay`，而会直接写成 `no replay yet / 还没有可重放命令`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
