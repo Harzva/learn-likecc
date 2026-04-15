@@ -422,7 +422,12 @@
             setText('workspace-shell-sync-time', 'output sync failed: ' + shellState.lastOutputSyncFailedAt)
             return
         }
-        setText('workspace-shell-sync-time', shellState.lastOutputSyncAt ? ('output sync: ' + shellState.lastOutputSyncAt) : 'output sync: --')
+        setText(
+            'workspace-shell-sync-time',
+            shellState.lastOutputSyncAt
+                ? ('output sync: ' + shellState.lastOutputSyncAt)
+                : ((shellState.sessions || []).length ? 'output sync: --' : 'output sync: no shell yet')
+        )
     }
 
     function renderShellSummary() {

@@ -235,6 +235,8 @@
 - 所以空 roster 时，标题标签本身就会先说明当前是 `empty shell route`，不需要只靠正文去推断
 - 这轮再把 runtime row 里的 `sessions · 会话总览` 空态也补成了结果态
 - 所以空 roster 时，这一格不会继续只显示 `共 0 个`，而会直接写成 `还没有 shell`
+- 这轮再把 `output sync` 空态也补成了同样的结果态
+- 所以空 roster 时，这一格不会继续停在 `output sync: --`，而会直接写成 `output sync: no shell yet`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
