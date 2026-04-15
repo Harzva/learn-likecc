@@ -461,7 +461,7 @@
                 : '还没有 shell 会话 · live 0 · closed 0'
         )
         if (!active) {
-            setStatus(document.getElementById('workspace-shell-active-route-badge'), 'active seat route', 'neutral')
+            setStatus(document.getElementById('workspace-shell-active-route-badge'), sessions.length ? 'active seat route' : 'empty shell route', 'neutral')
             setText(
                 'workspace-shell-active-route-text',
                 sessions.length
