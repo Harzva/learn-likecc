@@ -500,8 +500,8 @@
             host.textContent = hasSessions
                 ? '先选中一个 shell，再按 Enter 发命令或点常用探针，这里就会显示最近输出。'
                 : '先新建一个 shell，再按 Enter 发命令或点常用探针，这里就会显示最近输出。'
-            setStatus(label, 'output from: --', 'neutral')
-            setText('workspace-shell-output-time', 'updated: --')
+            setStatus(label, hasSessions ? 'output from: --' : 'output from: no shell yet', 'neutral')
+            setText('workspace-shell-output-time', hasSessions ? 'updated: --' : 'updated: no shell yet')
             setBadge(scope, 'seat-local hint', 'neutral')
             if (hint) {
                 hint.textContent = hasSessions
