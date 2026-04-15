@@ -251,6 +251,8 @@
 - 所以当 shell 已存在但当前还没选中对应 seat 时，这里不再继续停在 `updated: --`，而会直接写成 `updated: select a seat first`
 - 这轮再把同一条等待态里的 `output from` 也从占位改成了动作提示
 - 所以当 shell 已存在但当前还没选中对应 seat 时，它不再继续停在 `output from: --`，而会直接写成 `output from: select a seat first`
+- 这轮再把同一条等待态里的 badge 也从泛称改成了动作提示
+- 所以当 shell 已存在但当前还没选中对应 seat 时，badge 不再继续写 `seat-local hint`，而会直接写成 `select seat hint`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
