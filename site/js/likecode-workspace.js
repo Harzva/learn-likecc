@@ -208,7 +208,7 @@
             cueTone = 'attention'
         }
         if (active && !activeCommand && recent.length) {
-            cueText += ' · shared replay below'
+            cueText += ' · try replay below'
         } else if (hasSharedButtons) {
             cueText += ' + shared replay below'
         }

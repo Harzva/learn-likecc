@@ -263,6 +263,8 @@
 - 所以空 roster 但还挂着浏览器本地 replay 记忆时，这里不再继续写 `shared replay only`，而会直接写成 `replay memory only`
 - 这轮再把 active seat 但还没有本地命令上下文时的 `no local match` 也收成了更直接的 replay 提示
 - 所以当前已经选中 shell、但这一路还没有本地 recent command 对上时，这里不再继续像内部判断那样写 `no local match`，而会直接写成 `no local replay yet`
+- 这轮再把下面可用的 replay 提示也收成了动作导向，而不是实现导向
+- 所以当前已经选中 shell、但这一路还没有本地 replay 可对上且下面确实有 recent command 可试时，这里不再继续写 `shared replay below`，而会直接写成 `try replay below`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
