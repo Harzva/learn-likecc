@@ -227,7 +227,7 @@
             recent.map(function (command) {
                 var isCurrent = !!activeCommand && command === activeCommand
                 var buttonClass = isCurrent ? 'btn btn-primary' : 'btn btn-secondary'
-                var buttonLabel = isCurrent ? command : ('shared · ' + command)
+                var buttonLabel = isCurrent ? command : ('saved · ' + command)
                 var buttonHint = !active
                     ? 'select an active shell first'
                     : (isCurrent ? '' : 'saved replay from this browser; not current shell history')
