@@ -253,6 +253,8 @@
 - 所以当 shell 已存在但当前还没选中对应 seat 时，它不再继续停在 `output from: --`，而会直接写成 `output from: select a seat first`
 - 这轮再把同一条等待态里的 badge 也从泛称改成了动作提示
 - 所以当 shell 已存在但当前还没选中对应 seat 时，badge 不再继续写 `seat-local hint`，而会直接写成 `select seat hint`
+- 这轮再把 roster 空态里那句还混着英文的提示也收成了一套语气
+- 所以空 roster 时，列表区不再继续写 `shell seat / 本地登录 shell`，而会直接改成 `shell 会话 / 新建 shell`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局

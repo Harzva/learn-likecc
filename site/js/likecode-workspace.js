@@ -533,7 +533,7 @@
         renderShellSummary()
         renderShellRecentCommands()
         if (!sessions.length) {
-            shellListHost.innerHTML = '<p class="likecode-workspace-empty">当前还没有 shell seat。先新建一个本地登录 shell，然后就可以按 Enter 发命令或点常用探针。</p>'
+            shellListHost.innerHTML = '<p class="likecode-workspace-empty">当前还没有 shell 会话。先新建一个 shell，然后就可以按 Enter 发命令或点常用探针。</p>'
             return
         }
         shellListHost.innerHTML = sessions.map(function (session) {
