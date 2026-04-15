@@ -230,7 +230,7 @@
                 var buttonLabel = isCurrent ? command : ('shared · ' + command)
                 var buttonHint = !active
                     ? 'select an active shell first'
-                    : (isCurrent ? '' : 'browser-local shared replay; not relay-backed shell history')
+                    : (isCurrent ? '' : 'saved replay from this browser; not current shell history')
                 var buttonAttrs = []
                 if (buttonHint) {
                     buttonAttrs.push(' title="' + esc(buttonHint) + '"')
