@@ -255,6 +255,8 @@
 - 所以当 shell 已存在但当前还没选中对应 seat 时，badge 不再继续写 `seat-local hint`，而会直接写成 `select seat hint`
 - 这轮再把 roster 空态里那句还混着英文的提示也收成了一套语气
 - 所以空 roster 时，列表区不再继续写 `shell seat / 本地登录 shell`，而会直接改成 `shell 会话 / 新建 shell`
+- 这轮再把 `Recent Commands` 在空 roster 下的 current-seat cue 也改成了真正的 no-shell 提示
+- 所以还没有任何 shell 时，这里不再继续写 `-- / no seat selected / select a seat`，而会直接写成 `no shell yet / no shared replay yet / create a shell to replay`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局

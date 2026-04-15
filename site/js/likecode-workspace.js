@@ -170,7 +170,7 @@
 
     function shellRecentCue() {
         var active = activeShell()
-        if (!active) return { tone: 'neutral', text: 'current seat: -- · shared replay only' }
+        if (!active) return { tone: 'neutral', text: 'current seat: no shell yet · shared replay only' }
         var context = ((shellState.lastCommandBySeat || {})[active.session_id]) || {}
         if (!context.command) {
             return { tone: 'attention', text: 'current seat: ' + active.session_id + ' · no local match' }
@@ -199,12 +199,12 @@
         var cueTone = cue.tone
         var emptyText = '上面可按 Enter 发送命令或直接点常用探针；最近成功命令会显示在这里，支持一键重放。'
         if (!active && !recent.length) {
-            cueText = 'current seat: -- · no seat selected'
+            cueText = 'current seat: no shell yet · no shared replay yet'
             cueTone = 'attention'
             emptyText = '还没有 shared replay；上面可按 Enter 发送命令或直接点常用探针，成功后会显示在这里，支持一键重放。'
         }
         if (!active && recent.length) {
-            cueText = 'current seat: -- · select a seat to replay'
+            cueText = 'current seat: no shell yet · create a shell to replay'
             cueTone = 'attention'
         }
         if (active && !activeCommand && recent.length) {
