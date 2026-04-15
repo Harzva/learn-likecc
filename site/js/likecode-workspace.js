@@ -213,7 +213,7 @@
             cueText += ' + more replay below'
         }
         if (active && !activeCommand && !recent.length) {
-            emptyText = '当前 seat 还没有本地 replay；上面可按 Enter 发送命令或直接点常用探针，成功后会显示在这里，支持一键重放。'
+            emptyText = '当前 seat 还没有本地可重放命令；上面可按 Enter 发送命令或直接点常用探针，成功后会显示在这里，支持一键重放。'
         }
         shellState.recentCommands = recent
         if (!recent.length) {

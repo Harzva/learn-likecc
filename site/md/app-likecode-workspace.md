@@ -267,6 +267,8 @@
 - 所以当前已经选中 shell、但这一路还没有本地 replay 可对上且下面确实有 recent command 可试时，这里不再继续写 `shared replay below`，而会直接写成 `try replay below`
 - 这轮再把“当前这条已经有本地 replay，但下面还有别的 recent command 可试”这支也收成了动作导向
 - 所以当前 seat 已经有本地 replay、但下方还挂着别的 recent command 可试时，这里不再继续写 `+ shared replay below`，而会直接写成 `+ more replay below`
+- 这轮再把 selected seat 无本地 recent command 时的空态说明也收成了完整中文语义
+- 所以当前已经选中 shell、但这一路还没有本地可重放命令时，这里不再继续写半技术化的 `本地 replay`，而会直接写成 `本地可重放命令`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
