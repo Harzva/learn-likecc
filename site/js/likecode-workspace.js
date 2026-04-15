@@ -500,9 +500,9 @@
             host.textContent = hasSessions
                 ? '先选中一个 shell，再按 Enter 发命令或点常用探针，这里就会显示最近输出。'
                 : '先新建一个 shell，再按 Enter 发命令或点常用探针，这里就会显示最近输出。'
-            setStatus(label, hasSessions ? 'output from: --' : 'output from: no shell yet', hasSessions ? 'neutral' : 'attention')
+            setStatus(label, hasSessions ? 'output from: --' : 'output from: no shell yet', 'attention')
             setText('workspace-shell-output-time', hasSessions ? 'updated: --' : 'updated: no shell yet')
-            setBadge(scope, hasSessions ? 'seat-local hint' : 'empty shell hint', hasSessions ? 'neutral' : 'attention')
+            setBadge(scope, hasSessions ? 'seat-local hint' : 'empty shell hint', 'attention')
             if (hint) {
                 hint.textContent = hasSessions
                     ? 'hint: select a seat first, then send a command with Enter or the quick probes above to inspect local provenance here.'
