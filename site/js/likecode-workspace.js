@@ -502,7 +502,7 @@
                 : '先新建一个 shell，再按 Enter 发命令或点常用探针，这里就会显示最近输出。'
             setStatus(label, hasSessions ? 'output from: --' : 'output from: no shell yet', 'neutral')
             setText('workspace-shell-output-time', hasSessions ? 'updated: --' : 'updated: no shell yet')
-            setBadge(scope, 'seat-local hint', 'neutral')
+            setBadge(scope, hasSessions ? 'seat-local hint' : 'empty shell hint', 'neutral')
             if (hint) {
                 hint.textContent = hasSessions
                     ? 'hint: select a seat first, then send a command with Enter or the quick probes above to inspect local provenance here.'
