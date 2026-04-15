@@ -261,6 +261,8 @@
 - 所以空 roster 且还没有任何 recent command 时，这里不再继续写 `no shared replay yet / 还没有 shared replay`，而会直接写成 `no replay yet / 还没有可重放命令`
 - 这轮再把默认 cue 里的 `shared replay only` 也收成了更像 UI 提示的说法
 - 所以空 roster 但还挂着浏览器本地 replay 记忆时，这里不再继续写 `shared replay only`，而会直接写成 `replay memory only`
+- 这轮再把 active seat 但还没有本地命令上下文时的 `no local match` 也收成了更直接的 replay 提示
+- 所以当前已经选中 shell、但这一路还没有本地 recent command 对上时，这里不再继续像内部判断那样写 `no local match`，而会直接写成 `no local replay yet`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
