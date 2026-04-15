@@ -433,7 +433,7 @@
         var fallbackLive = sessions.find(function (item) {
             return !!item.alive && (!active || item.session_id !== active.session_id)
         })
-        var actionStateText = '会话状态: 未选择'
+        var actionStateText = sessions.length ? '会话状态: 未选择' : '会话状态: 还没有 shell'
         if (active) {
             if (active.alive) {
                 actionStateText = '会话状态: 就绪'
