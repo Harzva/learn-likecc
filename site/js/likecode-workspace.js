@@ -228,8 +228,9 @@
                 var isCurrent = !!activeCommand && command === activeCommand
                 var buttonClass = isCurrent ? 'btn btn-primary' : 'btn btn-secondary'
                 var buttonLabel = isCurrent ? command : ('saved · ' + command)
+                var shellCount = (shellState.shells || []).length
                 var buttonHint = !active
-                    ? 'select an active shell first'
+                    ? (shellCount ? 'select an active shell first' : 'create a shell first')
                     : (isCurrent ? '' : 'saved replay from this browser; not current shell history')
                 var buttonAttrs = []
                 if (buttonHint) {

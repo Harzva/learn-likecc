@@ -273,6 +273,8 @@
 - 所以当某条 replay 只是浏览器里记住的旧命令、而不是当前 shell 的本地历史时，提示不再继续写 `browser-local shared replay / relay-backed shell history`，而会直接写成 `saved replay from this browser / not current shell history`
 - 这轮再把非当前 replay 按钮本身的 `shared ·` 前缀也和 tooltip 统一成了保存态说法
 - 所以当某条命令只是浏览器里记住的旧 replay 时，按钮标签不再继续写 `shared · <command>`，而会直接写成 `saved · <command>`
+- 这轮再把 disabled replay 按钮在 `空 roster / 未选中` 两种 no-active 场景下的 tooltip 也补成了分支提示
+- 所以当还没有任何 shell 时，按钮不再继续统一提示 `select an active shell first`，而会直接改成 `create a shell first`；只有 roster 已存在但还没选中时，才继续提示先选中
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
