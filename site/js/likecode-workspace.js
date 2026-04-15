@@ -448,7 +448,7 @@
         setText('workspace-shell-action-state', actionStateText)
         setText('workspace-shell-cwd', active ? (active.cwd || '—') : (sessions.length ? '先选中后查看目录' : '先新建后查看目录'))
         setText('workspace-shell-pid', active ? (active.pid || '—') : (sessions.length ? '先选中后查看 pid' : '先新建后查看 pid'))
-        setText('workspace-shell-preview', '预览: ' + (active ? shellPreviewText(active.buffer) : '--'))
+        setText('workspace-shell-preview', active ? ('预览: ' + shellPreviewText(active.buffer)) : (sessions.length ? '预览: 先选中一个 shell' : '预览: 先新建一个 shell'))
         setStatus(
             document.getElementById('workspace-shell-roster-pulse-badge'),
             sessions.length ? 'roster pulse' : 'empty roster',
