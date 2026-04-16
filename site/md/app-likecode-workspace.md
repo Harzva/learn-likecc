@@ -339,6 +339,8 @@
 - 所以聚焦输出块时，读屏除了区域名，也能读到当前 seat-local provenance / fallback 提示
 - 这轮再把 shell 命令输入框和 manual/presets 说明关联起来
 - 所以输入框的动态状态标签负责说明能否发送，静态说明负责提示 Enter 发送与常用探针入口
+- 这轮再把四个常用探针按钮收进带名称的 `group`
+- 所以 pwd / ls / git status / python -V 不再只是并排按钮，而会被辅助技术识别为“常用探针”这一组
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
