@@ -711,7 +711,7 @@
         }
         if (!active.alive) {
             setStatus(statusEl, '当前 shell 已关闭 · 先切换或新建，再发送或重放命令', 'risk')
-            setText('workspace-shell-preview', '预览: 当前 shell 已关闭；请先切到存活会话或新建 shell')
+            setText('workspace-shell-preview', '预览: 当前 shell 已关闭；请先切到存活会话或新建 shell，再发送或重放命令')
             return
         }
         if (!shellCommandInput) return
