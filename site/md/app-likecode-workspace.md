@@ -331,6 +331,8 @@
 - 所以读屏会直接说明它只清空浏览器本地记忆，不会重置 relay 端的 shell 会话位
 - 这轮再把“刷新 shell · 仅同步”按钮补上静态 `title` / `aria-label`
 - 所以它会明确说明只同步 shell roster，不发送命令，也不刷新当前会话输出
+- 这轮再把 shell 状态条补成 polite live region
+- 所以同步、新建、关闭、发送和刷新失败这类状态变化，不再只是视觉文本，也能被辅助技术按状态更新读取
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
