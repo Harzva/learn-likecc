@@ -205,7 +205,7 @@
             emptyText = '还没有可重放命令；上面可按 Enter 发送命令或直接点常用探针，成功后会显示在这里，支持一键重放。'
         }
         if (!active && recent.length) {
-            cueText = 'current seat: no shell yet · create a shell to replay'
+            cueText = 'current seat: no shell yet · create a shell first'
             cueTone = 'attention'
         }
         if (active && !activeCommand && recent.length) {

@@ -281,6 +281,8 @@
 - 所以同一组 recent command 按钮不再对每个按钮重复读取一次 `shellState.sessions.length`，而是在渲染这一行时复用同一个 roster 计数
 - 这轮再把非空 recent command 列表的 badge tone 也改成复用 `cueTone`
 - 所以当有浏览器保存的 replay、但当前还没有 active shell 时，`Recent Commands` 不会再把文案改成 `create a shell to replay` 却继续沿用原始 neutral tone，而会和空态分支一样显示 attention
+- 这轮再把同一条 no-shell saved replay badge 的动作语气也和按钮 tooltip 对齐
+- 所以当有浏览器保存的 replay、但当前还没有 shell 时，badge 不再继续写 `create a shell to replay`，而会直接写成和 tooltip 一致的 `create a shell first`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
