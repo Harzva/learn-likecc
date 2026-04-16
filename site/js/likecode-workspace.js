@@ -224,7 +224,7 @@
             return
         }
         shellRecentHost.innerHTML =
-            '<span class="likecode-workspace-badge likecode-workspace-badge--' + esc(cue.tone) + '">' + esc(cueText) + '</span>' +
+            '<span class="likecode-workspace-badge likecode-workspace-badge--' + esc(cueTone) + '">' + esc(cueText) + '</span>' +
             recent.map(function (command) {
                 var isCurrent = !!activeCommand && command === activeCommand
                 var buttonClass = isCurrent ? 'btn btn-primary' : 'btn btn-secondary'
