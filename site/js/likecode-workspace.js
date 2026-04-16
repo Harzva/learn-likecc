@@ -54,7 +54,9 @@
     var SHELL_CONTEXT_KEY = 'likecode_workspace_shell_context_v1'
     var NO_ACTIVE_SHELL_STATUS = '还没有激活 shell · 先新建或选中，再按 Enter 或点常用探针'
     var NO_ACTIVE_SHELL_PREVIEW = '预览: 先新建或选中一个 shell，再按 Enter 发命令或点常用探针'
+    var NO_ACTIVE_SHELL_CONTROL_HINT = '先新建或选中一个 shell，再发送命令、点常用探针或刷新输出'
     var CLOSED_SHELL_BUTTON_HINT = 'current shell is closed; switch or create a shell first'
+    var CLOSED_SHELL_CONTROL_HINT = '当前 shell 已关闭；先切到存活会话或新建 shell'
     var CLOSED_SHELL_STATUS = '当前 shell 已关闭 · 先切换或新建，再发送或重放命令'
     var CLOSED_SHELL_PREVIEW = '预览: 当前 shell 已关闭；请先切到存活会话或新建 shell，再发送或重放命令'
     var CLOSED_SHELL_REFRESH_STATUS = '当前 shell 已关闭 · 先切换或新建，再刷新输出'
@@ -409,9 +411,17 @@
             return !!item.alive && (!active || item.session_id !== active.session_id)
         })
         var disabled = !(active && active.alive)
+        var disabledHint = !active ? NO_ACTIVE_SHELL_CONTROL_HINT : (!active.alive ? CLOSED_SHELL_CONTROL_HINT : '')
         ;[refreshOutput, closeButton, sendButton].concat(presetButtons).forEach(function (button) {
             if (!button) return
             button.disabled = disabled
+            if (disabledHint) {
+                button.title = disabledHint
+                button.setAttribute('aria-label', button.textContent + ' (' + disabledHint + ')')
+            } else {
+                button.removeAttribute('title')
+                button.removeAttribute('aria-label')
+            }
         })
         if (focusLiveButton) {
             focusLiveButton.disabled = !fallbackLive
