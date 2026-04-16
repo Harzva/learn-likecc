@@ -735,6 +735,7 @@
             }),
         }).then(function () {
             setStatus(statusEl, '已发送: ' + command, 'ready')
+            setText('workspace-shell-preview', '预览: 已发送到 ' + active.session_id + ' · 等待输出刷新')
             rememberShellCommand(command)
             shellState.lastCommandBySeat = Object.assign({}, shellState.lastCommandBySeat || {}, (function () {
                 var patch = {}
