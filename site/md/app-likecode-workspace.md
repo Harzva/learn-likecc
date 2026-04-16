@@ -355,6 +355,8 @@
 - 所以当前会话、live 数和 closed 数会作为同一组 shell roster 脉冲上下文被读取
 - 这轮再把 active seat route 和路由说明收进带名称的 `group`
 - 所以“先选中一个 shell，输出、刷新和关闭才会跟随当前会话”会作为同一组路由上下文被读取
+- 这轮再把 `time cues` 和时间字段说明收进带名称的 `group`
+- 所以 `output sync` 与 `updated` 的区别会作为同一组 shell 时间语义说明被读取
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
