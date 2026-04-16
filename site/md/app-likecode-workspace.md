@@ -335,6 +335,8 @@
 - 所以同步、新建、关闭、发送和刷新失败这类状态变化，不再只是视觉文本，也能被辅助技术按状态更新读取
 - 这轮再把 shell 输出预览区补成可聚焦区域
 - 所以键盘用户可以直接进入可滚动输出块查看当前 shell 输出，同时读屏能听到这是“当前 shell 输出预览”
+- 这轮再把 shell 输出预览区和现有 output hint 关联起来
+- 所以聚焦输出块时，读屏除了区域名，也能读到当前 seat-local provenance / fallback 提示
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
