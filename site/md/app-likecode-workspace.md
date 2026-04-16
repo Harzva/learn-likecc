@@ -337,6 +337,8 @@
 - 所以键盘用户可以直接进入可滚动输出块查看当前 shell 输出，同时读屏能听到这是“当前 shell 输出预览”
 - 这轮再把 shell 输出预览区和现有 output hint 关联起来
 - 所以聚焦输出块时，读屏除了区域名，也能读到当前 seat-local provenance / fallback 提示
+- 这轮再把 shell 命令输入框和 manual/presets 说明关联起来
+- 所以输入框的动态状态标签负责说明能否发送，静态说明负责提示 Enter 发送与常用探针入口
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
