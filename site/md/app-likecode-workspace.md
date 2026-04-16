@@ -343,6 +343,8 @@
 - 所以 pwd / ls / git status / python -V 不再只是并排按钮，而会被辅助技术识别为“常用探针”这一组
 - 这轮再把 `Recent Commands` 区域补成带名称的 `group`
 - 所以动态出现的一键重放按钮会落在“最近成功命令，可一键重放”这个明确区域里
+- 这轮再把“清空全部浏览器本地记忆”动作和说明收进带名称的 `group`
+- 所以清空按钮、relay 不变说明和 browser-local memory 边界会被读成同一组操作上下文
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
