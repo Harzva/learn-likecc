@@ -210,6 +210,9 @@
             cueText = 'current seat: no shell yet · create a shell first'
             cueTone = 'attention'
         }
+        if (active && !active.alive && recent.length) {
+            cueText += ' · switch or create first'
+        }
         if (active && active.alive && !activeCommand && recent.length) {
             cueText += ' · try replay below'
         } else if (hasSharedButtons) {

@@ -293,6 +293,8 @@
 - 所以当前 shell 已关闭时，旧命令不会继续以 primary/current-command 样式出现，也不会在 `shell closed` badge 后追加 `try replay below`
 - 这轮再把 closed shell 且没有 recent commands 的空态也改成恢复路线
 - 所以当前 shell 已关闭且没有可重放命令时，不会继续提示按 Enter 发送，而会先提示切到存活会话或新建 shell
+- 这轮再把 closed shell 且已有 recent commands 的 badge 也补上恢复路线
+- 所以当前 shell 已关闭但下方还有浏览器保存的 replay 时，badge 会写 `switch or create first`，不只停在 `shell closed`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
