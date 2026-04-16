@@ -283,6 +283,10 @@
 - 所以当有浏览器保存的 replay、但当前还没有 active shell 时，`Recent Commands` 不会再把文案改成 `create a shell to replay` 却继续沿用原始 neutral tone，而会和空态分支一样显示 attention
 - 这轮再把同一条 no-shell saved replay badge 的动作语气也和按钮 tooltip 对齐
 - 所以当有浏览器保存的 replay、但当前还没有 shell 时，badge 不再继续写 `create a shell to replay`，而会直接写成和 tooltip 一致的 `create a shell first`
+- 这轮再把 Recent Commands replay 按钮也接上了 closed-shell gating
+- 所以当前 shell 已关闭时，replay 按钮不再只因为存在 active shell 就保持可点，而会禁用并提示 `current shell is closed; switch or create a shell first`
+- 这轮同时在 `dispatchShellCommand()` 里补了同一层 hard guard
+- 所以就算后续还有别的入口绕过按钮禁用，也不会继续把命令发给已关闭的 shell，而会提示先切到存活会话或新建 shell
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局

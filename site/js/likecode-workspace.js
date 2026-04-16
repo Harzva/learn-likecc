@@ -195,6 +195,7 @@
         var active = activeShell()
         var activeCommand = currentSeatRecentCommand()
         var shellCount = (shellState.sessions || []).length
+        var replayDisabled = !active || !active.alive
         var hasSharedButtons = !!activeCommand && recent.some(function (command) { return command !== activeCommand })
         var cueText = cue.text
         var cueTone = cue.tone
@@ -231,13 +232,16 @@
                 var buttonLabel = isCurrent ? command : ('saved · ' + command)
                 var buttonHint = !active
                     ? (shellCount ? 'select an active shell first' : 'create a shell first')
-                    : (isCurrent ? '' : 'saved replay from this browser; not current shell history')
+                    : (!active.alive ? 'current shell is closed; switch or create a shell first' : '')
+                buttonHint = buttonHint || (
+                    isCurrent ? '' : 'saved replay from this browser; not current shell history'
+                )
                 var buttonAttrs = []
                 if (buttonHint) {
                     buttonAttrs.push(' title="' + esc(buttonHint) + '"')
                     buttonAttrs.push(' aria-label="' + esc(buttonLabel + ' (' + buttonHint + ')') + '"')
                 }
-                if (!active) {
+                if (replayDisabled) {
                     buttonAttrs.push(' disabled')
                 }
                 return '<button type="button" class="' + buttonClass + '" data-shell-command="' + esc(command) + '"' + buttonAttrs.join('') + '>' + esc(buttonLabel) + '</button>'
@@ -696,6 +700,11 @@
         if (!active) {
             setStatus(statusEl, '还没有激活 shell · 先新建或选中，再按 Enter 或点常用探针', 'risk')
             setText('workspace-shell-preview', '预览: 先新建或选中一个 shell，再按 Enter 发命令或点常用探针')
+            return
+        }
+        if (!active.alive) {
+            setStatus(statusEl, '当前 shell 已关闭 · 先切换或新建，再重放命令', 'risk')
+            setText('workspace-shell-preview', '预览: 当前 shell 已关闭；请先切到存活会话或新建 shell')
             return
         }
         if (!shellCommandInput) return
