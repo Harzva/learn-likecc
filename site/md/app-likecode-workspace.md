@@ -329,6 +329,8 @@
 - 所以手动发送会写出当前 session，常用探针还会写出即将发送的命令和目标 session
 - 这轮再把“清空全部浏览器本地记忆”按钮补上稳定的 `aria-label`
 - 所以读屏会直接说明它只清空浏览器本地记忆，不会重置 relay 端的 shell 会话位
+- 这轮再把“刷新 shell · 仅同步”按钮补上静态 `title` / `aria-label`
+- 所以它会明确说明只同步 shell roster，不发送命令，也不刷新当前会话输出
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
