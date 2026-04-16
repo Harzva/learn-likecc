@@ -287,6 +287,8 @@
 - 所以当前 shell 已关闭时，replay 按钮不再只因为存在 active shell 就保持可点，而会禁用并提示 `current shell is closed; switch or create a shell first`
 - 这轮同时在 `dispatchShellCommand()` 里补了同一层 hard guard
 - 所以就算后续还有别的入口绕过按钮禁用，也不会继续把命令发给已关闭的 shell，而会提示先切到存活会话或新建 shell
+- 这轮再把 `Recent Commands` 顶部 badge 也接上了 closed-shell cue
+- 所以当前 shell 已关闭时，badge 不会继续显示本地 replay 命令或 ready 状态，而会直接写成 `shell closed`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
