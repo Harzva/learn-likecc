@@ -295,6 +295,8 @@
 - 所以当前 shell 已关闭且没有可重放命令时，不会继续提示按 Enter 发送，而会先提示切到存活会话或新建 shell
 - 这轮再把 closed shell 且已有 recent commands 的 badge 也补上恢复路线
 - 所以当前 shell 已关闭但下方还有浏览器保存的 replay 时，badge 会写 `switch or create first`，不只停在 `shell closed`
+- 这轮再把 closed shell 硬拦截状态文案也从只说重放改成发送/重放两用
+- 所以无论入口来自手动输入、常用探针还是 recent replay，状态条都会提示先切换或新建，再发送或重放命令
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
