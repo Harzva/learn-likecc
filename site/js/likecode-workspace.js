@@ -60,6 +60,8 @@
     var NO_SHELL_FOCUS_LIVE_HINT = '还没有 shell；先新建一个 shell'
     var NO_FALLBACK_LIVE_SHELL_HINT = '当前已经是存活会话；没有其它存活会话可切换'
     var CLOSED_NO_FALLBACK_LIVE_SHELL_HINT = '当前 shell 已关闭且没有其它存活会话；请新建 shell 恢复会话'
+    var CREATE_SHELL_FIRST_STEP_HINT = '新建一个 relay-backed shell 会话，然后才能发送命令或刷新输出'
+    var CREATE_SHELL_RECOVERY_HINT = '当前 shell 已关闭且没有其它存活会话；新建 shell 恢复操作入口'
     var CLOSED_SHELL_STATUS = '当前 shell 已关闭 · 先切换或新建，再发送或重放命令'
     var CLOSED_SHELL_PREVIEW = '预览: 当前 shell 已关闭；请先切到存活会话或新建 shell，再发送或重放命令'
     var CLOSED_SHELL_REFRESH_STATUS = '当前 shell 已关闭 · 先切换或新建，再刷新输出'
@@ -444,6 +446,12 @@
             createButton.textContent = active && !active.alive && !fallbackLive
                 ? '新建 shell · 恢复会话'
                 : '新建 shell · 第一步'
+            applyButtonHint(
+                createButton,
+                active && !active.alive && !fallbackLive
+                    ? CREATE_SHELL_RECOVERY_HINT
+                    : CREATE_SHELL_FIRST_STEP_HINT
+            )
         }
         if (commandInput) {
             commandInput.disabled = disabled
