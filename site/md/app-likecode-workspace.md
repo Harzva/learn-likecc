@@ -349,6 +349,8 @@
 - 所以 `output from` 与 `updated` 会作为同一组输出元信息被读取，而不是两个孤立状态文本
 - 这轮再把 `seat-local hint` 与 hint 文案收进带名称的 `group`
 - 所以输出提示范围和当前操作建议也会被读成同一组上下文
+- 这轮再把 shell 状态、输出预览和同步时间收进带名称的 `group`
+- 所以 `idle`、`预览` 与 `output sync` 会作为同一组当前会话状态上下文被读取
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
