@@ -1258,14 +1258,6 @@
             saveConnectorState({ bridge_target: connectorBridgeTargetInput.value.trim() || 'workspace' })
         })
     }
-    if (shellCommandInput) {
-        shellCommandInput.addEventListener('keydown', function (event) {
-            if (event.key === 'Enter' && !event.shiftKey) {
-                event.preventDefault()
-                sendShellCommand()
-            }
-        })
-    }
     document.getElementById('workspace-connector-qr').addEventListener('click', function () {
         startConnectorQr()
     })

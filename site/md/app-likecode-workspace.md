@@ -301,6 +301,8 @@
 - 所以状态条和预览区都会指向同一条恢复路线：先切到存活会话或新建 shell，再发送或重放命令
 - 这轮再把 closed shell 的按钮提示、状态条、预览区文案收进同一组常量
 - 所以后续如果要调整恢复路线，不需要在 replay button 和 hard guard 分支之间重复改三处字符串
+- 这轮再删掉了 `workspace-shell-command` 上重复绑定的第二个 Enter 发送监听器
+- 所以普通 Enter 不会同时触发两次 `sendShellCommand()`，输入法 composition 也继续由保留下来的主监听器保护
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
