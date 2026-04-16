@@ -52,6 +52,9 @@
     var CONNECTOR_STATE_KEY = 'likecode_workspace_connector_shell_v1'
     var SHELL_RECENT_KEY = 'likecode_workspace_shell_recent_v1'
     var SHELL_CONTEXT_KEY = 'likecode_workspace_shell_context_v1'
+    var CLOSED_SHELL_BUTTON_HINT = 'current shell is closed; switch or create a shell first'
+    var CLOSED_SHELL_STATUS = '当前 shell 已关闭 · 先切换或新建，再发送或重放命令'
+    var CLOSED_SHELL_PREVIEW = '预览: 当前 shell 已关闭；请先切到存活会话或新建 shell，再发送或重放命令'
 
     function esc(s) {
         return String(s || '')
@@ -239,7 +242,7 @@
                 var buttonLabel = isCurrent ? command : ('saved · ' + command)
                 var buttonHint = !active
                     ? (shellCount ? 'select an active shell first' : 'create a shell first')
-                    : (!active.alive ? 'current shell is closed; switch or create a shell first' : '')
+                    : (!active.alive ? CLOSED_SHELL_BUTTON_HINT : '')
                 buttonHint = buttonHint || (
                     isCurrent ? '' : 'saved replay from this browser; not current shell history'
                 )
@@ -710,8 +713,8 @@
             return
         }
         if (!active.alive) {
-            setStatus(statusEl, '当前 shell 已关闭 · 先切换或新建，再发送或重放命令', 'risk')
-            setText('workspace-shell-preview', '预览: 当前 shell 已关闭；请先切到存活会话或新建 shell，再发送或重放命令')
+            setStatus(statusEl, CLOSED_SHELL_STATUS, 'risk')
+            setText('workspace-shell-preview', CLOSED_SHELL_PREVIEW)
             return
         }
         if (!shellCommandInput) return
