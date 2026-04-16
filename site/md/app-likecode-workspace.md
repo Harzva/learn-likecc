@@ -351,6 +351,8 @@
 - 所以输出提示范围和当前操作建议也会被读成同一组上下文
 - 这轮再把 shell 状态、输出预览和同步时间收进带名称的 `group`
 - 所以 `idle`、`预览` 与 `output sync` 会作为同一组当前会话状态上下文被读取
+- 这轮再把 roster pulse 和会话数量摘要收进带名称的 `group`
+- 所以当前会话、live 数和 closed 数会作为同一组 shell roster 脉冲上下文被读取
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
