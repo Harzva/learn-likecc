@@ -359,6 +359,8 @@
 - 所以 `output sync` 与 `updated` 的区别会作为同一组 shell 时间语义说明被读取
 - 这轮再把手动命令输入框和发送按钮收进带名称的 `group`
 - 所以输入命令和点击发送会作为同一条“手动 shell 命令输入和发送”操作通道被读取
+- 这轮再把 `manual + presets` 和命令入口说明收进带名称的 `group`
+- 所以 Enter 发送与常用探针入口会作为同一组命令操作说明被读取
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
