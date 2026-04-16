@@ -57,6 +57,9 @@
     var NO_ACTIVE_SHELL_CONTROL_HINT = '先新建或选中一个 shell，再发送命令、点常用探针或刷新输出'
     var CLOSED_SHELL_BUTTON_HINT = 'current shell is closed; switch or create a shell first'
     var CLOSED_SHELL_CONTROL_HINT = '当前 shell 已关闭；先切到存活会话或新建 shell'
+    var NO_SHELL_FOCUS_LIVE_HINT = '还没有 shell；先新建一个 shell'
+    var NO_FALLBACK_LIVE_SHELL_HINT = '当前已经是存活会话；没有其它存活会话可切换'
+    var CLOSED_NO_FALLBACK_LIVE_SHELL_HINT = '当前 shell 已关闭且没有其它存活会话；请新建 shell 恢复会话'
     var CLOSED_SHELL_STATUS = '当前 shell 已关闭 · 先切换或新建，再发送或重放命令'
     var CLOSED_SHELL_PREVIEW = '预览: 当前 shell 已关闭；请先切到存活会话或新建 shell，再发送或重放命令'
     var CLOSED_SHELL_REFRESH_STATUS = '当前 shell 已关闭 · 先切换或新建，再刷新输出'
@@ -412,20 +415,30 @@
         })
         var disabled = !(active && active.alive)
         var disabledHint = !active ? NO_ACTIVE_SHELL_CONTROL_HINT : (!active.alive ? CLOSED_SHELL_CONTROL_HINT : '')
-        ;[refreshOutput, closeButton, sendButton].concat(presetButtons).forEach(function (button) {
+        function applyButtonHint(button, hint) {
             if (!button) return
-            button.disabled = disabled
-            if (disabledHint) {
-                button.title = disabledHint
-                button.setAttribute('aria-label', button.textContent + ' (' + disabledHint + ')')
+            if (hint) {
+                button.title = hint
+                button.setAttribute('aria-label', button.textContent + ' (' + hint + ')')
             } else {
                 button.removeAttribute('title')
                 button.removeAttribute('aria-label')
             }
+        }
+        ;[refreshOutput, closeButton, sendButton].concat(presetButtons).forEach(function (button) {
+            if (!button) return
+            button.disabled = disabled
+            applyButtonHint(button, disabledHint)
         })
         if (focusLiveButton) {
             focusLiveButton.disabled = !fallbackLive
             focusLiveButton.textContent = fallbackLive ? ('切到存活会话 · ' + fallbackLive.session_id) : '没有其它存活会话'
+            applyButtonHint(
+                focusLiveButton,
+                fallbackLive
+                    ? ''
+                    : (!active ? NO_SHELL_FOCUS_LIVE_HINT : (!active.alive ? CLOSED_NO_FALLBACK_LIVE_SHELL_HINT : NO_FALLBACK_LIVE_SHELL_HINT))
+            )
         }
         if (createButton) {
             createButton.textContent = active && !active.alive && !fallbackLive
