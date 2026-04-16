@@ -52,6 +52,8 @@
     var CONNECTOR_STATE_KEY = 'likecode_workspace_connector_shell_v1'
     var SHELL_RECENT_KEY = 'likecode_workspace_shell_recent_v1'
     var SHELL_CONTEXT_KEY = 'likecode_workspace_shell_context_v1'
+    var NO_ACTIVE_SHELL_STATUS = '还没有激活 shell · 先新建或选中，再按 Enter 或点常用探针'
+    var NO_ACTIVE_SHELL_PREVIEW = '预览: 先新建或选中一个 shell，再按 Enter 发命令或点常用探针'
     var CLOSED_SHELL_BUTTON_HINT = 'current shell is closed; switch or create a shell first'
     var CLOSED_SHELL_STATUS = '当前 shell 已关闭 · 先切换或新建，再发送或重放命令'
     var CLOSED_SHELL_PREVIEW = '预览: 当前 shell 已关闭；请先切到存活会话或新建 shell，再发送或重放命令'
@@ -624,8 +626,8 @@
         var statusEl = document.getElementById('workspace-shell-status')
         var active = activeShell()
         if (!active) {
-            setStatus(statusEl, '还没有激活 shell · 先新建或选中，再按 Enter 或点常用探针', 'risk')
-            setText('workspace-shell-preview', '预览: 先新建或选中一个 shell，再按 Enter 发命令或点常用探针')
+            setStatus(statusEl, NO_ACTIVE_SHELL_STATUS, 'risk')
+            setText('workspace-shell-preview', NO_ACTIVE_SHELL_PREVIEW)
             return Promise.resolve({ ok: false, skipped: true })
         }
         if (!active.alive) {
@@ -717,8 +719,8 @@
         var active = activeShell()
         var statusEl = document.getElementById('workspace-shell-status')
         if (!active) {
-            setStatus(statusEl, '还没有激活 shell · 先新建或选中，再按 Enter 或点常用探针', 'risk')
-            setText('workspace-shell-preview', '预览: 先新建或选中一个 shell，再按 Enter 发命令或点常用探针')
+            setStatus(statusEl, NO_ACTIVE_SHELL_STATUS, 'risk')
+            setText('workspace-shell-preview', NO_ACTIVE_SHELL_PREVIEW)
             return
         }
         if (!active.alive) {
