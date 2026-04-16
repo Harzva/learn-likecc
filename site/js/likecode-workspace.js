@@ -184,7 +184,7 @@
 
     function currentSeatRecentCommand() {
         var active = activeShell()
-        if (!active) return ''
+        if (!active || !active.alive) return ''
         var context = ((shellState.lastCommandBySeat || {})[active.session_id]) || {}
         return String(context.command || '').trim()
     }
@@ -210,7 +210,7 @@
             cueText = 'current seat: no shell yet · create a shell first'
             cueTone = 'attention'
         }
-        if (active && !activeCommand && recent.length) {
+        if (active && active.alive && !activeCommand && recent.length) {
             cueText += ' · try replay below'
         } else if (hasSharedButtons) {
             cueText += ' + more replay below'
