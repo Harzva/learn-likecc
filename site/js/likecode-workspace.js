@@ -627,6 +627,7 @@
             return Promise.resolve({ ok: false, skipped: true })
         }
         setStatus(statusEl, '正在刷新当前输出', 'neutral')
+        setText('workspace-shell-preview', '预览: 正在刷新当前输出 · ' + active.session_id)
         return refreshShellOutput().then(function (result) {
             if (!result || result.ok === false) {
                 setStatus(statusEl, '输出刷新失败', 'risk')
@@ -636,6 +637,7 @@
                 return result
             }
             setStatus(statusEl, '当前输出已刷新', 'ready')
+            setText('workspace-shell-preview', '预览: 当前输出已刷新 · ' + active.session_id)
             return result
         })
     }
