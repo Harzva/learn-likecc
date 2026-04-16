@@ -725,6 +725,7 @@
             return
         }
         setStatus(statusEl, '发送中: ' + command, 'neutral')
+        setText('workspace-shell-preview', '预览: 发送到 ' + active.session_id + ' · ' + command)
         return fetchJson(relayBase() + '/api/shell/write', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
