@@ -55,6 +55,8 @@
     var CLOSED_SHELL_BUTTON_HINT = 'current shell is closed; switch or create a shell first'
     var CLOSED_SHELL_STATUS = '当前 shell 已关闭 · 先切换或新建，再发送或重放命令'
     var CLOSED_SHELL_PREVIEW = '预览: 当前 shell 已关闭；请先切到存活会话或新建 shell，再发送或重放命令'
+    var CLOSED_SHELL_REFRESH_STATUS = '当前 shell 已关闭 · 先切换或新建，再刷新输出'
+    var CLOSED_SHELL_REFRESH_PREVIEW = '预览: 当前 shell 已关闭；请先切到存活会话或新建 shell，再刷新输出'
 
     function esc(s) {
         return String(s || '')
@@ -624,6 +626,11 @@
         if (!active) {
             setStatus(statusEl, '还没有激活 shell · 先新建或选中，再按 Enter 或点常用探针', 'risk')
             setText('workspace-shell-preview', '预览: 先新建或选中一个 shell，再按 Enter 发命令或点常用探针')
+            return Promise.resolve({ ok: false, skipped: true })
+        }
+        if (!active.alive) {
+            setStatus(statusEl, CLOSED_SHELL_REFRESH_STATUS, 'risk')
+            setText('workspace-shell-preview', CLOSED_SHELL_REFRESH_PREVIEW)
             return Promise.resolve({ ok: false, skipped: true })
         }
         setStatus(statusEl, '正在刷新当前输出', 'neutral')
