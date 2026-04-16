@@ -413,7 +413,7 @@
                         <span class="likecode-workspace-status likecode-workspace-status--neutral">time cues</span>
                         <span>output sync 表示最近一次从 relay 读取当前输出；updated 表示最近一次本地命令 provenance 时间。</span>
                     </div>
-                    <div class="likecode-workspace-actionrow">
+                    <div class="likecode-workspace-actionrow" role="group" aria-label="手动 shell 命令输入和发送">
                         <input id="workspace-shell-command" type="text" class="likecode-workspace-editor" placeholder="输入一条 shell 命令，例如：pwd 或 ls；按 Enter 发送" spellcheck="false" aria-describedby="workspace-shell-command-note">
                         <button id="workspace-shell-send" type="button" class="btn btn-primary">发送命令 · Enter</button>
                     </div>
