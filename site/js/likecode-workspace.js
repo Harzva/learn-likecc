@@ -62,6 +62,8 @@
     var CLOSED_NO_FALLBACK_LIVE_SHELL_HINT = '当前 shell 已关闭且没有其它存活会话；请新建 shell 恢复会话'
     var CREATE_SHELL_FIRST_STEP_HINT = '新建一个 relay-backed shell 会话，然后才能发送命令或刷新输出'
     var CREATE_SHELL_RECOVERY_HINT = '当前 shell 已关闭且没有其它存活会话；新建 shell 恢复操作入口'
+    var REFRESH_ACTIVE_SHELL_HINT = '刷新当前 shell 输出'
+    var CLOSE_ACTIVE_SHELL_HINT = '关闭当前 shell 会话'
     var CLOSED_SHELL_STATUS = '当前 shell 已关闭 · 先切换或新建，再发送或重放命令'
     var CLOSED_SHELL_PREVIEW = '预览: 当前 shell 已关闭；请先切到存活会话或新建 shell，再发送或重放命令'
     var CLOSED_SHELL_REFRESH_STATUS = '当前 shell 已关闭 · 先切换或新建，再刷新输出'
@@ -427,11 +429,19 @@
                 button.removeAttribute('aria-label')
             }
         }
-        ;[refreshOutput, closeButton, sendButton].concat(presetButtons).forEach(function (button) {
+        ;[sendButton].concat(presetButtons).forEach(function (button) {
             if (!button) return
             button.disabled = disabled
             applyButtonHint(button, disabledHint)
         })
+        if (refreshOutput) {
+            refreshOutput.disabled = disabled
+            applyButtonHint(refreshOutput, disabledHint || (active && active.alive ? (REFRESH_ACTIVE_SHELL_HINT + ' · ' + active.session_id) : ''))
+        }
+        if (closeButton) {
+            closeButton.disabled = disabled
+            applyButtonHint(closeButton, disabledHint || (active && active.alive ? (CLOSE_ACTIVE_SHELL_HINT + ' · ' + active.session_id) : ''))
+        }
         if (focusLiveButton) {
             focusLiveButton.disabled = !fallbackLive
             focusLiveButton.textContent = fallbackLive ? ('切到存活会话 · ' + fallbackLive.session_id) : '没有其它存活会话'

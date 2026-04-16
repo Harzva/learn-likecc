@@ -323,6 +323,8 @@
 - 所以它在正常入口会说明这是启动 relay-backed shell 的第一步，在 closed shell 且无 fallback 时会说明这是恢复操作入口
 - 这轮再把命令输入框本身也接上 title / aria-label 提示
 - 所以 no-active、closed-with-fallback、closed-without-fallback 三种不能输入的状态，不再只靠 placeholder 表达
+- 这轮再把 live 状态下的“刷新输出”和“关闭选中”按钮补成目标明确的提示
+- 所以两个当前会话动作在可用时也会通过 hover / 读屏标签写出即将作用的 session id
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
