@@ -721,6 +721,7 @@
         command = String(command || '').trim()
         if (!command) {
             setStatus(statusEl, '命令为空', 'attention')
+            setText('workspace-shell-preview', '预览: 请输入命令，或点击上方常用探针')
             return
         }
         setStatus(statusEl, '发送中: ' + command, 'neutral')

@@ -303,6 +303,8 @@
 - 所以后续如果要调整恢复路线，不需要在 replay button 和 hard guard 分支之间重复改三处字符串
 - 这轮再删掉了 `workspace-shell-command` 上重复绑定的第二个 Enter 发送监听器
 - 所以普通 Enter 不会同时触发两次 `sendShellCommand()`，输入法 composition 也继续由保留下来的主监听器保护
+- 这轮再给空命令分支补上预览区提示
+- 所以输入框为空时不会只在状态条显示 `命令为空`、预览区却继续停留在上一条命令或错误信息，而会明确提示输入命令或点击常用探针
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
