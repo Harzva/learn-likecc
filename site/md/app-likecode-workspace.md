@@ -277,6 +277,8 @@
 - 所以当还没有任何 shell 时，按钮不再继续统一提示 `select an active shell first`，而会直接改成 `create a shell first`；只有 roster 已存在但还没选中时，才继续提示先选中
 - 这轮再把这个 replay tooltip 分支的计数来源修正回 `shellState.sessions`
 - 所以按钮 tooltip 的 `create / select` 判断不再读一个不存在的 `shellState.shells`，而会和 `activeShell()` 使用同一个 session roster 来源
+- 这轮再把 replay 按钮用到的 shell 数量从按钮循环里提到了循环外
+- 所以同一组 recent command 按钮不再对每个按钮重复读取一次 `shellState.sessions.length`，而是在渲染这一行时复用同一个 roster 计数
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
