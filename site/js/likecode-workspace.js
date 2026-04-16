@@ -218,6 +218,9 @@
         if (active && !activeCommand && !recent.length) {
             emptyText = '当前 seat 还没有本地可重放命令；上面可按 Enter 发送命令或直接点常用探针，成功后会显示在这里，支持一键重放。'
         }
+        if (active && !active.alive && !recent.length) {
+            emptyText = '当前 shell 已关闭；先切到存活会话或新建 shell，再发送或重放命令。'
+        }
         shellState.recentCommands = recent
         if (!recent.length) {
             shellRecentHost.innerHTML =

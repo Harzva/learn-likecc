@@ -291,6 +291,8 @@
 - 所以当前 shell 已关闭时，badge 不会继续显示本地 replay 命令或 ready 状态，而会直接写成 `shell closed`
 - 这轮再把 closed shell 从当前 seat replay 高亮里排除
 - 所以当前 shell 已关闭时，旧命令不会继续以 primary/current-command 样式出现，也不会在 `shell closed` badge 后追加 `try replay below`
+- 这轮再把 closed shell 且没有 recent commands 的空态也改成恢复路线
+- 所以当前 shell 已关闭且没有可重放命令时，不会继续提示按 Enter 发送，而会先提示切到存活会话或新建 shell
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
