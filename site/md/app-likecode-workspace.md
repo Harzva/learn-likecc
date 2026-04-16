@@ -321,6 +321,8 @@
 - 所以这个按钮在无 shell、当前已是唯一存活会话、或 closed shell 且无其它存活会话时，会说清楚为什么不能切换
 - 这轮再把“新建 shell”按钮也接到同一套 hover / 读屏提示
 - 所以它在正常入口会说明这是启动 relay-backed shell 的第一步，在 closed shell 且无 fallback 时会说明这是恢复操作入口
+- 这轮再把命令输入框本身也接上 title / aria-label 提示
+- 所以 no-active、closed-with-fallback、closed-without-fallback 三种不能输入的状态，不再只靠 placeholder 表达
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
