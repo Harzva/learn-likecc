@@ -64,6 +64,8 @@
     var CREATE_SHELL_RECOVERY_HINT = '当前 shell 已关闭且没有其它存活会话；新建 shell 恢复操作入口'
     var REFRESH_ACTIVE_SHELL_HINT = '刷新当前 shell 输出'
     var CLOSE_ACTIVE_SHELL_HINT = '关闭当前 shell 会话'
+    var SEND_ACTIVE_SHELL_HINT = '发送输入框命令到当前 shell'
+    var PRESET_ACTIVE_SHELL_HINT = '发送常用探针到当前 shell'
     var CLOSED_SHELL_STATUS = '当前 shell 已关闭 · 先切换或新建，再发送或重放命令'
     var CLOSED_SHELL_PREVIEW = '预览: 当前 shell 已关闭；请先切到存活会话或新建 shell，再发送或重放命令'
     var CLOSED_SHELL_REFRESH_STATUS = '当前 shell 已关闭 · 先切换或新建，再刷新输出'
@@ -409,10 +411,10 @@
         var focusLiveButton = document.getElementById('workspace-shell-focus-live')
         var commandInput = document.getElementById('workspace-shell-command')
         var presetButtons = [
-            document.getElementById('workspace-shell-preset-pwd'),
-            document.getElementById('workspace-shell-preset-ls'),
-            document.getElementById('workspace-shell-preset-git'),
-            document.getElementById('workspace-shell-preset-python'),
+            { button: document.getElementById('workspace-shell-preset-pwd'), command: 'pwd' },
+            { button: document.getElementById('workspace-shell-preset-ls'), command: 'ls' },
+            { button: document.getElementById('workspace-shell-preset-git'), command: 'git status' },
+            { button: document.getElementById('workspace-shell-preset-python'), command: 'python -V' },
         ]
         var fallbackLive = (shellState.sessions || []).find(function (item) {
             return !!item.alive && (!active || item.session_id !== active.session_id)
@@ -429,10 +431,15 @@
                 button.removeAttribute('aria-label')
             }
         }
-        ;[sendButton].concat(presetButtons).forEach(function (button) {
+        if (sendButton) {
+            sendButton.disabled = disabled
+            applyButtonHint(sendButton, disabledHint || (active && active.alive ? (SEND_ACTIVE_SHELL_HINT + ' · ' + active.session_id) : ''))
+        }
+        presetButtons.forEach(function (item) {
+            var button = item.button
             if (!button) return
             button.disabled = disabled
-            applyButtonHint(button, disabledHint)
+            applyButtonHint(button, disabledHint || (active && active.alive ? (PRESET_ACTIVE_SHELL_HINT + ' · ' + item.command + ' · ' + active.session_id) : ''))
         })
         if (refreshOutput) {
             refreshOutput.disabled = disabled
