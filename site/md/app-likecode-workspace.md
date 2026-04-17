@@ -389,6 +389,8 @@
 - 所以当前 shell 的 seat-local 提示变化会有更明确的动态暴露点
 - 这轮再把 `output-scope` 徽标补成一个轻量 `status` 区域
 - 所以当前 shell 提示范围标识变化会有更明确的动态暴露点
+- 这轮再把 Latest Tick 的日志视图切换按钮收进带名称的 `group`
+- 所以 daemon / latest tick / last message 三个入口会作为同一组日志视图切换上下文被读取
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
