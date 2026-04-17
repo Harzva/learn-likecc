@@ -363,6 +363,8 @@
 - 所以 Enter 发送与常用探针入口会作为同一组命令操作说明被读取
 - 这轮再把 `browser-local memory` 和 relay 边界说明收进带名称的 `group`
 - 所以浏览器本地记忆与 relay 持久化历史的边界会作为同一组说明被读取
+- 这轮再把 shell 会话总览和运行时卡片收进带名称的 `group`
+- 所以 sessions / active seat / cwd / pid 会作为同一组当前会话运行时上下文被读取
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
