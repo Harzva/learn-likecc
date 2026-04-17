@@ -828,6 +828,7 @@
         }
         setStatus(statusEl, '发送中: ' + command, 'neutral')
         setText('workspace-shell-preview', '预览: 发送到 ' + active.session_id + ' · ' + command)
+        setShellOutputBusy(true)
         return fetchJson(relayBase() + '/api/shell/write', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -851,6 +852,7 @@
             shellCommandInput.value = ''
             return refreshShellOutput()
         }).catch(function (error) {
+            setShellOutputBusy(false)
             setStatus(statusEl, '发送失败: ' + command, 'risk')
             setText('workspace-shell-preview', '预览: 发送错误 · ' + error.message)
         })
