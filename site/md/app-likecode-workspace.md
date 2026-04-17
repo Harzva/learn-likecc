@@ -521,6 +521,8 @@
 - 因为刷新、新建、切换和关闭路径都会刷新或改写 `workspace-shell-preview`，所以顶部操作也要声明会影响这条预览状态
 - 这轮再把动态 shell seat 按钮的目标区域补上 shell 预览
 - 因为选择 seat 会刷新当前输出并改写 `workspace-shell-preview`，所以会话按钮也要声明会影响这条预览状态
+- 这轮再把清空浏览器本地记忆按钮的目标区域补上 shell 预览
+- 因为清空记忆后会重绘当前输出并改写 `workspace-shell-preview`，所以本地记忆按钮也要声明会影响这条预览状态
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
