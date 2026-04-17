@@ -485,6 +485,8 @@
 - 所以“当前会话”和“会话状态”播报时，也会带上输出跟随当前会话和 live/closed 数量上下文
 - 这轮再把 shell 输出预览日志关联到 active route 说明
 - 所以焦点落在输出日志本身时，也会知道它跟随当前选中的 shell 会话
+- 这轮再把动态 shell seat 按钮关联到 roster pulse 说明
+- 所以每个会话按钮不仅说明选中后输出会跟随当前会话，也会带上当前会话和 live/closed 数量
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
