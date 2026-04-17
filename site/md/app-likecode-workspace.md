@@ -441,6 +441,8 @@
 - 所以清空动作会声明它会影响 recent-command replay、当前 shell 输出和 shell 状态提示
 - 这轮再把清空浏览器本地记忆操作行关联到边界说明
 - 所以这组操作会整体带上“只清空浏览器本地记忆，不会重置 relay 会话位”的上下文
+- 这轮再把浏览器本地记忆的详细边界文案接入清空操作行
+- 所以 `Recent Commands`、`output from`、`updated` 的本地记忆范围，会和清空按钮处在同一个说明上下文里
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局

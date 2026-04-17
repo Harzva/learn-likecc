@@ -431,13 +431,13 @@
                     <div id="workspace-shell-recent" class="likecode-workspace-actionrow" role="group" aria-label="最近成功命令，可一键重放" aria-describedby="workspace-shell-command-note" aria-controls="workspace-shell-output" aria-live="polite" aria-atomic="false">
                         <span class="likecode-workspace-empty">最近成功命令会显示在这里，支持一键重放。</span>
                     </div>
-                    <div class="likecode-workspace-actionrow" role="group" aria-labelledby="workspace-shell-clear-memory-label" aria-describedby="workspace-shell-clear-memory-note">
+                    <div class="likecode-workspace-actionrow" role="group" aria-labelledby="workspace-shell-clear-memory-label" aria-describedby="workspace-shell-clear-memory-note workspace-shell-clear-memory-boundary">
                         <button id="workspace-shell-clear-memory" type="button" class="btn btn-secondary" title="只清空浏览器本地记忆" aria-label="清空全部浏览器本地记忆，不会重置 relay 端的 shell 会话位" aria-describedby="workspace-shell-clear-memory-note" aria-controls="workspace-shell-recent workspace-shell-output workspace-shell-status">清空全部浏览器本地记忆</button>
                         <span id="workspace-shell-clear-memory-note" class="likecode-workspace-status likecode-workspace-status--neutral">只清空浏览器本地记忆，relay 端的 shell 会话位本身不变。</span>
                     </div>
                     <div class="likecode-workspace-foot" role="group" aria-label="浏览器本地记忆和 relay 边界说明">
                         <span id="workspace-shell-clear-memory-label" class="likecode-workspace-status likecode-workspace-status--neutral">browser-local memory</span>
-                        <span>`Recent Commands`、`output from` 和 `updated` 只记录上面手动发送或常用探针写进来的浏览器本地操作记忆，不等于 relay 持久化 shell 历史。</span>
+                        <span id="workspace-shell-clear-memory-boundary">`Recent Commands`、`output from` 和 `updated` 只记录上面手动发送或常用探针写进来的浏览器本地操作记忆，不等于 relay 持久化 shell 历史。</span>
                     </div>
                     <div id="workspace-shell-output-meta" class="likecode-workspace-foot" role="group" aria-label="当前 shell 输出来源和更新时间">
                         <span id="workspace-shell-output-label" class="likecode-workspace-status likecode-workspace-status--neutral" role="status" aria-live="polite" aria-atomic="true">output from: --</span>
