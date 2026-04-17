@@ -371,6 +371,8 @@
 - 所以加载中的 shell 会话列表会作为同一组当前 shell roster 上下文被读取
 - 这轮把 shell 输出预览补成 `log` 区域，并加上温和的 `aria-live`
 - 所以当前会话输出刷新时，会作为当前 shell 输出日志区域被更明确地暴露出来
+- 这轮再把 shell action row 的组名校正到覆盖按钮、目标和状态
+- 所以刷新 / 新建 / 关闭动作不会再落在一个只提“目标和状态”的过窄标签下面
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
