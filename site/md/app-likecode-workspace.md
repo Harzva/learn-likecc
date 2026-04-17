@@ -411,6 +411,8 @@
 - 所以切换 daemon、latest tick、last message 时，这组控制入口也会直接带着当前日志上下文一起被读取
 - 这轮回到当前 shell 输出区，把 `output from / updated` 元信息行补成输出日志的描述上下文
 - 所以焦点落进当前 shell 输出预览时，会同时带上来源、更新时间和 seat-local 提示
+- 这轮再把手动发送、常用探针和最近命令重放按钮补上对当前 shell 输出日志的 `aria-controls` 关联
+- 所以会触发输出刷新的命令入口，会直接声明它们控制同一个 `workspace-shell-output` 区域
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局

@@ -271,7 +271,7 @@
                 buttonHint = buttonHint || (
                     isCurrent ? '' : 'saved replay from this browser; not current shell history'
                 )
-                var buttonAttrs = []
+                var buttonAttrs = [' aria-controls="workspace-shell-output"']
                 if (buttonHint) {
                     buttonAttrs.push(' title="' + esc(buttonHint) + '"')
                     buttonAttrs.push(' aria-label="' + esc(buttonLabel + ' (' + buttonHint + ')') + '"')
