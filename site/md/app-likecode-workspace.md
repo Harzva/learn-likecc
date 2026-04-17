@@ -475,6 +475,8 @@
 - 所以切换、创建或关闭当前 shell 后，当前进程号会在总览卡片里独立播报
 - 这轮再把 runtime summary 组关联到 active route 和 roster pulse 说明
 - 所以四张总览卡片会一起带上当前会话路由规则，以及 live/closed 会话数量上下文
+- 这轮再把 shell roster 列表组关联到 active route 说明
+- 所以整个会话列表除了 live/closed 数量，也会带上“选择 seat 后输出和动作跟随当前会话”的路由规则
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
