@@ -525,6 +525,8 @@
 - 因为清空记忆后会重绘当前输出并改写 `workspace-shell-preview`，所以本地记忆按钮也要声明会影响这条预览状态
 - 这轮再把 shell 命令输入框的目标区域补齐
 - 因为输入框本身支持 Enter 发送，也会改写输出元信息、输出日志、shell 状态和预览状态，所以它也要声明这些目标区域
+- 这轮再把 shell 命令输入框的 Enter 快捷键语义补齐
+- 因为 Enter 发送已经是输入框自身行为，所以用 `aria-keyshortcuts="Enter"` 把这个键盘路径暴露出来
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
