@@ -443,6 +443,8 @@
 - 所以这组操作会整体带上“只清空浏览器本地记忆，不会重置 relay 会话位”的上下文
 - 这轮再把浏览器本地记忆的详细边界文案接入清空操作行
 - 所以 `Recent Commands`、`output from`、`updated` 的本地记忆范围，会和清空按钮处在同一个说明上下文里
+- 这轮再把清空浏览器本地记忆按钮也关联到详细边界说明
+- 所以按钮本身会同时带上 `Recent Commands`、`output from`、`updated` 都只是浏览器本地记忆的范围说明
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
