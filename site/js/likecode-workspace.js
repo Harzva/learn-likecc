@@ -271,7 +271,10 @@
                 buttonHint = buttonHint || (
                     isCurrent ? '' : 'saved replay from this browser; not current shell history'
                 )
-                var buttonAttrs = [' aria-controls="workspace-shell-output-meta workspace-shell-output workspace-shell-status workspace-shell-preview"']
+                var buttonAttrs = [
+                    ' aria-describedby="workspace-shell-command-note"',
+                    ' aria-controls="workspace-shell-output-meta workspace-shell-output workspace-shell-status workspace-shell-preview"',
+                ]
                 if (buttonHint) {
                     buttonAttrs.push(' title="' + esc(buttonHint) + '"')
                     buttonAttrs.push(' aria-label="' + esc(buttonLabel + ' (' + buttonHint + ')') + '"')

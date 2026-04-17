@@ -537,6 +537,8 @@
 - 因为按钮和 Enter 发送走同一条路径，所以按钮也要引用同一条手动输入、自动补全和常用探针说明
 - 这轮再把四个常用探针按钮和 shell 命令输入说明关联起来
 - 因为 preset probe 也是发送命令入口，所以 `pwd`、`ls`、`git status` 和 `python -V` 也引用同一条手动输入说明
+- 这轮再把动态 recent replay 按钮和 shell 命令输入说明关联起来
+- 因为最近命令重放也是发送命令入口，所以 JS 渲染出的 replay 按钮也引用同一条手动输入说明
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
