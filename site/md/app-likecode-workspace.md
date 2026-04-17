@@ -489,6 +489,8 @@
 - 所以每个会话按钮不仅说明选中后输出会跟随当前会话，也会带上当前会话和 live/closed 数量
 - 这轮再把刷新输出按钮的目标区域补上输出元信息
 - 因为刷新当前会话输出会同步更新 `output from / updated / hint`，所以按钮的 `aria-controls` 不只指向日志本体
+- 这轮再把刷新 shell / 同步 roster 按钮的目标区域补上输出元信息
+- 因为同步 roster 后也会刷新当前输出，所以这个总刷新入口也要声明它会影响输出元信息行
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
