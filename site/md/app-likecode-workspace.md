@@ -397,6 +397,8 @@
 - 所以日志模式和日志路径变化会有更明确的动态暴露点
 - 这轮再把 Latest Tick 的日志输出区补成一个轻量 `log` 区域
 - 所以 latest tick 内容刷新时会在同一块日志输出上下文里被更明确地暴露
+- 这轮再把 Latest Tick 输出区和日志元信息行补上关联描述
+- 所以日志输出焦点会直接关联到同面板的 `latest tick / path` 元信息说明
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
