@@ -395,6 +395,8 @@
 - 所以 `latest tick` 与 `path` 会作为同一组当前日志元信息上下文被读取
 - 这轮再把 Latest Tick 页脚里的 `latest tick` 与 `path` 文本补成轻量 `status` 区域
 - 所以日志模式和日志路径变化会有更明确的动态暴露点
+- 这轮再把 Latest Tick 的日志输出区补成一个轻量 `log` 区域
+- 所以 latest tick 内容刷新时会在同一块日志输出上下文里被更明确地暴露
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
