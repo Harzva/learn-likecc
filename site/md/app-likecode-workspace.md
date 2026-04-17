@@ -431,6 +431,8 @@
 - 所以输入框和发送按钮所在的操作组，会一起带上 Enter 发送和常用探针的上下文
 - 这轮再把常用探针按钮组也关联到 `manual + presets` 说明
 - 所以 `pwd / ls / git status / python -V` 这组快捷入口会直接带上“点探针即可发送”的说明
+- 这轮再把最近成功命令重放区补上对当前 shell 输出日志的目标关联
+- 所以即使还没有具体重放按钮，recent-command 容器本身也会声明它影响 `workspace-shell-output`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
