@@ -495,6 +495,8 @@
 - 因为这些操作会改变当前会话或输出预览状态，所以也要声明它们会影响 `output from / updated / hint`
 - 这轮再把动态 shell seat 按钮的目标区域补上输出元信息
 - 因为选择 seat 会切换当前输出来源、更新时间和提示，所以 seat 本身也要声明它控制 `output from / updated / hint`
+- 这轮再把手动发送和常用探针按钮的目标区域补上输出元信息
+- 因为这些发送入口会触发输出刷新，所以按钮也要声明它们会影响 `output from / updated / hint`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
