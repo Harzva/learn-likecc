@@ -435,6 +435,8 @@
 - 所以即使还没有具体重放按钮，recent-command 容器本身也会声明它影响 `workspace-shell-output`
 - 这轮再把最近成功命令重放区补成轻量 live region
 - 所以最近命令从空态变成可重放、或随当前 seat 切换而刷新时，会在同一个 replay 区域里温和暴露
+- 这轮再把最近成功命令重放区关联到 `manual + presets` 说明
+- 所以 replay 区域会同时带上“手动 Enter / 常用探针会生成可重放命令”的上下文
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
