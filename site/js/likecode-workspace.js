@@ -99,6 +99,16 @@
         el.className = 'likecode-workspace-badge likecode-workspace-badge--' + (tone || 'neutral')
     }
 
+    function syncLogModeButtons() {
+        var daemonButton = document.getElementById('workspace-log-daemon')
+        var tickButton = document.getElementById('workspace-log-tick')
+        var messageButton = document.getElementById('workspace-log-message')
+        if (!daemonButton || !tickButton || !messageButton) return
+        daemonButton.setAttribute('aria-pressed', currentLogMode === 'daemon' ? 'true' : 'false')
+        tickButton.setAttribute('aria-pressed', currentLogMode === 'latest' ? 'true' : 'false')
+        messageButton.setAttribute('aria-pressed', currentLogMode === 'message' ? 'true' : 'false')
+    }
+
     function loadConnectorState() {
         try {
             var raw = window.localStorage.getItem(CONNECTOR_STATE_KEY)
@@ -1190,6 +1200,7 @@
 
     function refreshLog(mode) {
         currentLogMode = mode || currentLogMode
+        syncLogModeButtons()
         var path = '/api/logs/latest?lines=160'
         if (currentLogMode === 'daemon') path = '/api/logs/daemon?lines=160'
         if (currentLogMode === 'message') path = '/api/last-message?lines=160'
