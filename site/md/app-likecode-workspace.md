@@ -487,6 +487,8 @@
 - 所以焦点落在输出日志本身时，也会知道它跟随当前选中的 shell 会话
 - 这轮再把动态 shell seat 按钮关联到 roster pulse 说明
 - 所以每个会话按钮不仅说明选中后输出会跟随当前会话，也会带上当前会话和 live/closed 数量
+- 这轮再把刷新输出按钮的目标区域补上输出元信息
+- 因为刷新当前会话输出会同步更新 `output from / updated / hint`，所以按钮的 `aria-controls` 不只指向日志本体
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
