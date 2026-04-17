@@ -461,6 +461,8 @@
 - 因为 `refreshShells()` 会在同步 roster 后刷新当前输出，所以按钮不再说“仅同步”，并声明它影响 roster、当前会话状态和输出预览
 - 这轮再把新建 shell 按钮关联到 `active seat route` 说明
 - 所以创建新会话时，按钮也会带上“输出预览、刷新输出和关闭动作会跟随当前会话”的后续路由规则
+- 这轮再把刷新 shell 按钮关联到 `active seat route` 说明
+- 因为同步 roster 后也会刷新当前输出，所以按钮本身也要带上当前会话路由上下文
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
