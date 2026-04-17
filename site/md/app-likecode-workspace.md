@@ -403,6 +403,8 @@
 - 所以 daemon / latest tick / last message 切换入口会直接声明它们控制同一个日志输出区
 - 这轮再把 Latest Tick 三个日志切换按钮补成同步的 `aria-pressed` 状态
 - 所以当前激活的是 daemon、latest tick 还是 last message，会在按钮层直接暴露出来
+- 这轮再把 Latest Tick 的日志输出区补成同步的 `aria-busy` 加载状态
+- 所以日志切换和重新拉取过程中，输出区域本身会直接暴露“正在加载”的状态
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局

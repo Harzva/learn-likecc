@@ -1201,17 +1201,25 @@
     function refreshLog(mode) {
         currentLogMode = mode || currentLogMode
         syncLogModeButtons()
+        var logOutput = document.getElementById('workspace-log-output')
         var path = '/api/logs/latest?lines=160'
         if (currentLogMode === 'daemon') path = '/api/logs/daemon?lines=160'
         if (currentLogMode === 'message') path = '/api/last-message?lines=160'
+        if (logOutput) logOutput.setAttribute('aria-busy', 'true')
         fetchJson(relayBase() + path)
             .then(function (payload) {
                 setText('workspace-log-label', currentLogMode === 'daemon' ? 'daemon log' : (currentLogMode === 'message' ? 'last message' : 'latest tick'))
                 setText('workspace-log-path', 'path: ' + (payload.path || '—'))
-                document.getElementById('workspace-log-output').textContent = payload.text || '(empty)'
+                if (logOutput) {
+                    logOutput.textContent = payload.text || '(empty)'
+                    logOutput.setAttribute('aria-busy', 'false')
+                }
             })
             .catch(function (error) {
-                document.getElementById('workspace-log-output').textContent = 'log load failed: ' + error.message
+                if (logOutput) {
+                    logOutput.textContent = 'log load failed: ' + error.message
+                    logOutput.setAttribute('aria-busy', 'false')
+                }
             })
     }
 
