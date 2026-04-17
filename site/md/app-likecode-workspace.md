@@ -465,6 +465,8 @@
 - 因为同步 roster 后也会刷新当前输出，所以按钮本身也要带上当前会话路由上下文
 - 这轮再把 shell 操作行里的当前会话目标 pill 暴露成 live status
 - 所以选择、新建、刷新 roster 后，`当前会话` 目标变化会和会话状态一样被单独播报
+- 这轮再把 runtime summary 里的 `sessions` 数量暴露成 live status
+- 所以同步 roster、新建或关闭 shell 后，会话总数变化会在总览卡片里独立播报
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
