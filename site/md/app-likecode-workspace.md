@@ -407,6 +407,8 @@
 - 所以日志切换和重新拉取过程中，输出区域本身会直接暴露“正在加载”的状态
 - 这轮再把 Latest Tick 的日志输出区补成可键盘聚焦的滚动日志区域
 - 所以不用鼠标也可以把焦点落进这块日志输出里直接查看和滚动最新 tick 内容
+- 这轮再把 Latest Tick 的日志切换按钮组补上对当前 `latest tick / path` 元信息行的描述关联
+- 所以切换 daemon、latest tick、last message 时，这组控制入口也会直接带着当前日志上下文一起被读取
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
