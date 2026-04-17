@@ -425,6 +425,8 @@
 - 所以创建 / 关闭请求发出到列表重新同步完成之间，roster 不会短暂漏掉加载语义
 - 这轮再把发送 shell 命令的 write 阶段也纳入输出日志 `aria-busy`
 - 所以命令写入请求发出到后续输出回读完成之间，输出区不会短暂漏掉加载语义
+- 这轮再把 shell roster 列表关联到 roster pulse 摘要
+- 所以进入会话列表时，会同时带上当前会话编号、live 数和 closed 数这组上下文
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
