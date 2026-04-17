@@ -435,7 +435,7 @@
                         <button id="workspace-shell-clear-memory" type="button" class="btn btn-secondary" title="只清空浏览器本地记忆" aria-label="清空全部浏览器本地记忆，不会重置 relay 端的 shell 会话位" aria-describedby="workspace-shell-clear-memory-note">清空全部浏览器本地记忆</button>
                         <span id="workspace-shell-clear-memory-note" class="likecode-workspace-status likecode-workspace-status--neutral">只清空浏览器本地记忆，relay 端的 shell 会话位本身不变。</span>
                     </div>
-                    <div class="likecode-workspace-foot">
+                    <div class="likecode-workspace-foot" role="group" aria-label="浏览器本地记忆和 relay 边界说明">
                         <span id="workspace-shell-clear-memory-label" class="likecode-workspace-status likecode-workspace-status--neutral">browser-local memory</span>
                         <span>`Recent Commands`、`output from` 和 `updated` 只记录上面手动发送或常用探针写进来的浏览器本地操作记忆，不等于 relay 持久化 shell 历史。</span>
                     </div>
