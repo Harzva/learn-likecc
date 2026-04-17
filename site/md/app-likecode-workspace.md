@@ -429,6 +429,8 @@
 - 所以进入会话列表时，会同时带上当前会话编号、live 数和 closed 数这组上下文
 - 这轮再把手动 shell 命令输入行关联到 `manual + presets` 说明
 - 所以输入框和发送按钮所在的操作组，会一起带上 Enter 发送和常用探针的上下文
+- 这轮再把常用探针按钮组也关联到 `manual + presets` 说明
+- 所以 `pwd / ls / git status / python -V` 这组快捷入口会直接带上“点探针即可发送”的说明
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
