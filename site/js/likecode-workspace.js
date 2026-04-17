@@ -272,7 +272,7 @@
                     isCurrent ? '' : 'saved replay from this browser; not current shell history'
                 )
                 var buttonAttrs = [
-                    ' aria-describedby="workspace-shell-command-note"',
+                    ' aria-describedby="workspace-shell-command-note workspace-shell-clear-memory-boundary"',
                     ' aria-controls="workspace-shell-output-meta workspace-shell-output workspace-shell-status workspace-shell-preview"',
                 ]
                 if (buttonHint) {

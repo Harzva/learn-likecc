@@ -539,6 +539,8 @@
 - 因为 preset probe 也是发送命令入口，所以 `pwd`、`ls`、`git status` 和 `python -V` 也引用同一条手动输入说明
 - 这轮再把动态 recent replay 按钮和 shell 命令输入说明关联起来
 - 因为最近命令重放也是发送命令入口，所以 JS 渲染出的 replay 按钮也引用同一条手动输入说明
+- 这轮再把最近命令重放区和浏览器本地记忆边界说明关联起来
+- 因为 replay 按钮重放的是浏览器本地 `Recent Commands`，不等于 relay 持久化 shell 历史，所以 recent host 和动态 replay 按钮都引用这条边界说明
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
