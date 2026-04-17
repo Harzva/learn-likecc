@@ -471,6 +471,8 @@
 - 所以选择、新建或切到首个存活 shell 后，当前 active seat 会在总览卡片里独立播报
 - 这轮再把 runtime summary 里的 `cwd` 暴露成 live status
 - 所以切换或创建当前 shell 后，当前工作目录会在总览卡片里独立播报
+- 这轮再把 runtime summary 里的 `pid` 暴露成 live status
+- 所以切换、创建或关闭当前 shell 后，当前进程号会在总览卡片里独立播报
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
