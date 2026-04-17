@@ -501,6 +501,8 @@
 - 因为重放成功命令也会刷新当前输出，所以 replay 区域同样要声明它会影响 `output from / updated / hint`
 - 这轮再把清空浏览器本地记忆按钮的目标区域补上输出元信息
 - 因为清空记忆后会重新渲染当前输出预览，所以也要声明它会影响 `output from / updated / hint`
+- 这轮再把刷新输出按钮的目标区域补上 shell 状态
+- 因为刷新输出会播报正在刷新、失败或成功状态，所以按钮也要声明它会影响 `workspace-shell-status`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
