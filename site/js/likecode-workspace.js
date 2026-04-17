@@ -642,7 +642,7 @@
             var meta = (session.cwd || '—') + ' · pid ' + (session.pid || '—')
             var status = session.alive ? '状态: 就绪' : '状态: 已关闭'
             return (
-                '<button type="button" class="likecode-workspace-checkitem' + active + state + '" data-shell-id="' + esc(session.session_id) + '" aria-pressed="' + pressed + '" aria-controls="workspace-shell-output">' +
+                '<button type="button" class="likecode-workspace-checkitem' + active + state + '" data-shell-id="' + esc(session.session_id) + '" aria-pressed="' + pressed + '" aria-describedby="workspace-shell-active-route-text" aria-controls="workspace-shell-output">' +
                 '<span class="likecode-workspace-checkitem__box">' + esc(session.alive ? '>' : 'x') + '</span>' +
                 '<span class="likecode-workspace-checkitem__label">' +
                 '<span class="likecode-workspace-shellitem__title">' + esc(title) + '</span>' +
