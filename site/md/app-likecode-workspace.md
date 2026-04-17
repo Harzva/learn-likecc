@@ -385,6 +385,8 @@
 - 所以当前 shell 输出来源变化会有更明确的动态暴露点
 - 这轮再把 `updated` 文本补成一个轻量 `status` 区域
 - 所以当前 shell 输出更新时间变化会有更明确的动态暴露点
+- 这轮再把 `output-hint` 文本补成一个轻量 `status` 区域
+- 所以当前 shell 的 seat-local 提示变化会有更明确的动态暴露点
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
