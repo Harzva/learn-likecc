@@ -543,6 +543,8 @@
 - 因为 replay 按钮重放的是浏览器本地 `Recent Commands`，不等于 relay 持久化 shell 历史，所以 recent host 和动态 replay 按钮都引用这条边界说明
 - 这轮再把手动命令组和常用探针组的目标区域补齐
 - 因为这两个 action group 都包含会改写输出元信息、输出日志、shell 状态和预览状态的发送入口，所以组级 `aria-controls` 也和内部按钮保持一致
+- 这轮再把清空本地记忆 action group 的目标区域补齐
+- 因为清空入口会重绘 recent commands、输出元信息、输出日志、shell 状态和预览状态，所以组级 `aria-controls` 也和内部按钮保持一致
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
