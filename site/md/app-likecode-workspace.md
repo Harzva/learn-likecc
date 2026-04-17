@@ -367,6 +367,8 @@
 - 所以 sessions / active seat / cwd / pid 会作为同一组当前会话运行时上下文被读取
 - 这轮再把当前 shell 操作目标和会话状态收进带名称的 `group`
 - 所以“当前会话”和“会话状态”会作为同一组当前 shell 操作上下文被读取
+- 这轮再把 shell roster 列表容器收进带名称的 `group`
+- 所以加载中的 shell 会话列表会作为同一组当前 shell roster 上下文被读取
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
