@@ -513,6 +513,8 @@
 - 因为 replay 入口同样会走发送路径并播报发送中、已发送或失败，所以它们也要声明会影响 `workspace-shell-status`
 - 这轮再把动态 shell seat 按钮的目标区域补上 shell 状态
 - 因为选择 seat 后会刷新当前输出并播报刷新状态，所以会话按钮也要声明会影响 `workspace-shell-status`
+- 这轮再把手动发送和常用探针按钮的目标区域补上 shell 预览
+- 因为发送入口会即时改写 `workspace-shell-preview`，所以按钮也要声明会影响这条预览状态
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
