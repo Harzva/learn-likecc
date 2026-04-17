@@ -445,6 +445,8 @@
 - 所以 `Recent Commands`、`output from`、`updated` 的本地记忆范围，会和清空按钮处在同一个说明上下文里
 - 这轮再把清空浏览器本地记忆按钮也关联到详细边界说明
 - 所以按钮本身会同时带上 `Recent Commands`、`output from`、`updated` 都只是浏览器本地记忆的范围说明
+- 这轮再把 shell 顶部操作按钮组关联到 `active seat route` 说明
+- 所以刷新输出、切到存活会话、关闭选中这些动作会直接带着“跟随当前会话”的路由规则
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
