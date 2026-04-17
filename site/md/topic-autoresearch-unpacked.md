@@ -6,6 +6,8 @@
 
 本页归入 **VibePaper 专题**，目标不是介绍 Autoresearch 有多少子命令，而是拆它如何把 `goal + metric + scope + verify + rollback + git memory` 收成一个 plugin-style 的研究循环协议；当前也把 **ARIS（Auto-Research In Sleep）** 作为这条样本线的延伸分支一并纳入。
 
+本轮视觉升级把页面改成更强的“协议回路”表达：Hero 增加 `goal / metric / scope / verify / rollback` 轨道和三块核心机制摘要；正文前增加控制面、命令面、状态面速览；五层结构区补了可扫读的栈式可视块。
+
 ## 目录（对照 HTML）
 
 ### 参考来源与版本锚定

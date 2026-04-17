@@ -9,7 +9,7 @@
     <meta name="description" content="VibePaper 子专题：拆解 Autoresearch / ARIS 如何把 goal、metric、scope、verify、rollback、git memory 和多个研究/发货子命令收成一个 plugin-style research loop protocol。">
     <meta name="page:updated" content="2026-04-12">
 </head>
-<body class="cc-unpacked-page">
+<body class="cc-unpacked-page vibe-unpacked-page vibe-unpacked-page--protocol">
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
@@ -33,7 +33,7 @@
         </div>
     </nav>
 
-    <section class="hero handbook-hero">
+    <section class="hero handbook-hero aris-hero vibe-unpacked-hero">
         <div class="hero-content">
             <div class="hero-badge">
                 <span>VibePaper · 子专题</span>
@@ -50,6 +50,51 @@
             <div class="hero-actions">
                 <a href="#why" class="btn btn-primary">先看 01 为什么重要</a>
                 <a href="topic-superpowers-autoresearch.html" class="btn btn-secondary">回原对照页</a>
+            </div>
+            <div class="vibe-hero-console" aria-label="Autoresearch 协议回路视觉摘要">
+                <div class="vibe-hero-console__rail">
+                    <span>goal</span>
+                    <span>metric</span>
+                    <span>scope</span>
+                    <span>verify</span>
+                    <span>rollback</span>
+                </div>
+                <div class="vibe-hero-console__grid">
+                    <div class="vibe-hero-console__node vibe-hero-console__node--hot">
+                        <strong>Loop Contract</strong>
+                        <span>把改进愿望压成可验证循环</span>
+                    </div>
+                    <div class="vibe-hero-console__node">
+                        <strong>Command Surface</strong>
+                        <span>plan / debug / ship / learn</span>
+                    </div>
+                    <div class="vibe-hero-console__node">
+                        <strong>Git Memory</strong>
+                        <span>小步改动、验证、保留或回滚</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="vibe-unpacked-strip" aria-label="Autoresearch 协议速览">
+        <div class="container container--layout-wide">
+            <div class="vibe-strip-grid">
+                <div>
+                    <span class="vibe-strip-kicker">CONTROL</span>
+                    <strong>控制面不是 UI，是 loop contract</strong>
+                    <p>goal、metric、scope、verify、rollback 决定这一轮能不能继续。</p>
+                </div>
+                <div>
+                    <span class="vibe-strip-kicker">SURFACE</span>
+                    <strong>子命令是协议分叉，不是功能菜单</strong>
+                    <p>debug / ship / learn / reason 都是在同一回路上换任务语境。</p>
+                </div>
+                <div>
+                    <span class="vibe-strip-kicker">STATE</span>
+                    <strong>git memory 负责留下可追溯的进展</strong>
+                    <p>验证通过就沉淀，验证失败就回滚，避免研究漂移。</p>
+                </div>
             </div>
         </div>
     </section>
@@ -75,6 +120,33 @@
 
                 <section id="layers" class="section-block">
                     <h2>02 · 先拆成五层：Autoresearch 到底在拼什么</h2>
+                    <div class="aris-visual-stack" aria-label="Autoresearch 五层结构可视化">
+                        <div class="aris-stack-layer aris-stack-layer--top">
+                            <span>05</span>
+                            <strong>Guide / Comparison</strong>
+                            <em>知识与文档层</em>
+                        </div>
+                        <div class="aris-stack-layer">
+                            <span>04</span>
+                            <strong>plan · debug · ship · learn · reason</strong>
+                            <em>子命令协议面</em>
+                        </div>
+                        <div class="aris-stack-layer aris-stack-layer--hot">
+                            <span>03</span>
+                            <strong>/autoresearch main loop</strong>
+                            <em>one change → verify → keep / rollback</em>
+                        </div>
+                        <div class="aris-stack-layer">
+                            <span>02</span>
+                            <strong>goal · metric · scope · verify · rollback</strong>
+                            <em>loop contract</em>
+                        </div>
+                        <div class="aris-stack-layer aris-stack-layer--base">
+                            <span>01</span>
+                            <strong>Claude Code host</strong>
+                            <em>会话、文件、命令、git 能力</em>
+                        </div>
+                    </div>
                     <table class="options-table">
                         <tr><th>层次</th><th>关键锚点</th><th>解决的问题</th></tr>
                         <tr><td>宿主层</td><td>Claude Code / plugin 安装路径</td><td>循环并不是自己凭空运行，而是借宿主的会话、文件与命令能力</td></tr>
@@ -164,7 +236,7 @@
     <footer class="footer">
         <div class="container container--layout-wide">
             <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-autoresearch-unpacked.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
-            <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+            <p>© 2026 Everything in Claude-Code. 仅供学习研究使用。</p>
         </div>
     </footer>
     <script src="js/app.js"></script>
