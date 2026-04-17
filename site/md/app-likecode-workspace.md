@@ -529,6 +529,8 @@
 - 因为 Enter 发送已经是输入框自身行为，所以用 `aria-keyshortcuts="Enter"` 把这个键盘路径暴露出来
 - 这轮再把 shell 命令输入框的浏览器自动改写关掉
 - 因为 shell 命令区不适合浏览器自动补全或首字母大写，所以输入框显式设置 `autocomplete="off"` 和 `autocapitalize="off"`
+- 这轮再把 shell 命令输入框的软键盘回车意图补齐
+- 因为这个输入框的 Enter 行为就是发送命令，所以用 `enterkeyhint="send"` 提示移动端键盘把回车呈现为发送
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
