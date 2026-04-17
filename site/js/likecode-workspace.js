@@ -621,6 +621,10 @@
         if (host) host.setAttribute('aria-busy', isBusy ? 'true' : 'false')
     }
 
+    function setShellListBusy(isBusy) {
+        if (shellListHost) shellListHost.setAttribute('aria-busy', isBusy ? 'true' : 'false')
+    }
+
     function renderShellRoster() {
         if (!shellListHost) return
         var sessions = shellState.sessions || []
@@ -734,12 +738,14 @@
     function refreshShells() {
         var statusEl = document.getElementById('workspace-shell-status')
         setStatus(statusEl, '正在同步 shell 会话', 'neutral')
+        setShellListBusy(true)
         return fetchJson(relayBase() + '/api/shell/list')
             .then(function (payload) {
                 shellState.sessions = payload.sessions || []
                 if (!shellState.sessions.find(function (item) { return item.session_id === shellState.activeId })) {
                     shellState.activeId = shellState.sessions.length ? shellState.sessions[0].session_id : ''
                 }
+                setShellListBusy(false)
                 renderShellRoster()
                 setStatus(statusEl, 'shell 会话已同步', 'ready')
                 return refreshShellOutput()
@@ -747,6 +753,7 @@
             .catch(function (error) {
                 shellState.sessions = []
                 shellState.activeId = ''
+                setShellListBusy(false)
                 renderShellRoster()
                 renderShellOutput(null)
                 setStatus(statusEl, '同步失败', 'risk')
