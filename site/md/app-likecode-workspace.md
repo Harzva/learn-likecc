@@ -437,6 +437,8 @@
 - 所以最近命令从空态变成可重放、或随当前 seat 切换而刷新时，会在同一个 replay 区域里温和暴露
 - 这轮再把最近成功命令重放区关联到 `manual + presets` 说明
 - 所以 replay 区域会同时带上“手动 Enter / 常用探针会生成可重放命令”的上下文
+- 这轮再把清空浏览器本地记忆按钮补上受影响区域关联
+- 所以清空动作会声明它会影响 recent-command replay、当前 shell 输出和 shell 状态提示
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
