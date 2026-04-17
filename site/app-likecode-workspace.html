@@ -457,9 +457,9 @@
                             <h3>Latest Tick</h3>
                         </div>
                         <div class="likecode-workspace-actionrow" role="group" aria-label="Latest Tick 日志视图切换按钮">
-                            <button id="workspace-log-daemon" type="button" class="btn btn-secondary">daemon log</button>
-                            <button id="workspace-log-tick" type="button" class="btn btn-secondary">latest tick</button>
-                            <button id="workspace-log-message" type="button" class="btn btn-secondary">last message</button>
+                            <button id="workspace-log-daemon" type="button" class="btn btn-secondary" aria-controls="workspace-log-output">daemon log</button>
+                            <button id="workspace-log-tick" type="button" class="btn btn-secondary" aria-controls="workspace-log-output">latest tick</button>
+                            <button id="workspace-log-message" type="button" class="btn btn-secondary" aria-controls="workspace-log-output">last message</button>
                         </div>
                     </div>
                     <pre id="workspace-log-output" class="likecode-workspace-log" role="log" aria-live="polite" aria-atomic="false" aria-label="Latest Tick 日志输出，可滚动查看" aria-describedby="workspace-log-meta">日志加载中…</pre>

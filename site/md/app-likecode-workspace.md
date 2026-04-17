@@ -399,6 +399,8 @@
 - 所以 latest tick 内容刷新时会在同一块日志输出上下文里被更明确地暴露
 - 这轮再把 Latest Tick 输出区和日志元信息行补上关联描述
 - 所以日志输出焦点会直接关联到同面板的 `latest tick / path` 元信息说明
+- 这轮再把 Latest Tick 三个日志切换按钮都补上 `aria-controls`
+- 所以 daemon / latest tick / last message 切换入口会直接声明它们控制同一个日志输出区
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
