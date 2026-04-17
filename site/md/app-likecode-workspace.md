@@ -393,6 +393,8 @@
 - 所以 daemon / latest tick / last message 三个入口会作为同一组日志视图切换上下文被读取
 - 这轮再把 Latest Tick 页脚里的日志标签和路径收进带名称的 `group`
 - 所以 `latest tick` 与 `path` 会作为同一组当前日志元信息上下文被读取
+- 这轮再把 Latest Tick 页脚里的 `latest tick` 与 `path` 文本补成轻量 `status` 区域
+- 所以日志模式和日志路径变化会有更明确的动态暴露点
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
