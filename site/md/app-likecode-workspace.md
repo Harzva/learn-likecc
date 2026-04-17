@@ -447,6 +447,8 @@
 - 所以按钮本身会同时带上 `Recent Commands`、`output from`、`updated` 都只是浏览器本地记忆的范围说明
 - 这轮再把 shell 顶部操作按钮组关联到 `active seat route` 说明
 - 所以刷新输出、切到存活会话、关闭选中这些动作会直接带着“跟随当前会话”的路由规则
+- 这轮再把 `active seat route` 说明下沉到三个当前会话按钮
+- 所以焦点直接落在刷新输出、切到首个存活会话、关闭选中时，也能读到这些动作依赖当前会话路由
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
