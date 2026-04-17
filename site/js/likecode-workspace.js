@@ -764,6 +764,7 @@
     function createShellSeat() {
         var statusEl = document.getElementById('workspace-shell-status')
         setStatus(statusEl, '正在新建 shell', 'neutral')
+        setShellListBusy(true)
         return fetchJson(relayBase() + '/api/shell/create', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -773,6 +774,7 @@
             shellState.activeId = session.session_id || ''
             return refreshShells()
         }).catch(function (error) {
+            setShellListBusy(false)
             setStatus(statusEl, '新建失败', 'risk')
             setText('workspace-shell-preview', '预览: 新建错误 · ' + error.message)
         })
@@ -783,6 +785,7 @@
         if (!active) return
         var statusEl = document.getElementById('workspace-shell-status')
         setStatus(statusEl, '正在关闭当前 shell', 'neutral')
+        setShellListBusy(true)
         return fetchJson(relayBase() + '/api/shell/close', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -791,6 +794,7 @@
             shellState.activeId = ''
             return refreshShells()
         }).catch(function (error) {
+            setShellListBusy(false)
             setStatus(statusEl, '关闭失败', 'risk')
             setText('workspace-shell-preview', '预览: 关闭错误 · ' + error.message)
         })

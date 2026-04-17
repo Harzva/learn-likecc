@@ -421,6 +421,8 @@
 - 所以刷新当前会话输出、切换 seat 触发读取、发送命令后回读输出时，输出区本身会暴露正在加载 / 已完成状态
 - 这轮再把 shell roster 列表补上 `aria-busy` 加载状态
 - 所以同步 shell 会话列表时，roster 区域本身会暴露正在加载 / 已完成状态
+- 这轮再把新建和关闭 shell 的 mutation 阶段也纳入 roster `aria-busy`
+- 所以创建 / 关闭请求发出到列表重新同步完成之间，roster 不会短暂漏掉加载语义
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
