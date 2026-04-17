@@ -414,7 +414,7 @@
                         <span>output sync 表示最近一次从 relay 读取当前输出；updated 表示最近一次本地命令 provenance 时间。</span>
                     </div>
                     <div class="likecode-workspace-actionrow" role="group" aria-label="手动 shell 命令输入和发送" aria-describedby="workspace-shell-command-note">
-                        <input id="workspace-shell-command" type="text" class="likecode-workspace-editor" placeholder="输入一条 shell 命令，例如：pwd 或 ls；按 Enter 发送" spellcheck="false" aria-describedby="workspace-shell-command-note">
+                        <input id="workspace-shell-command" type="text" class="likecode-workspace-editor" placeholder="输入一条 shell 命令，例如：pwd 或 ls；按 Enter 发送" spellcheck="false" aria-describedby="workspace-shell-command-note" aria-controls="workspace-shell-output-meta workspace-shell-output workspace-shell-status workspace-shell-preview">
                         <button id="workspace-shell-send" type="button" class="btn btn-primary" aria-controls="workspace-shell-output-meta workspace-shell-output workspace-shell-status workspace-shell-preview">发送命令 · Enter</button>
                     </div>
                     <div class="likecode-workspace-foot" role="group" aria-label="手动命令和常用探针说明">
