@@ -527,6 +527,8 @@
 - 因为输入框本身支持 Enter 发送，也会改写输出元信息、输出日志、shell 状态和预览状态，所以它也要声明这些目标区域
 - 这轮再把 shell 命令输入框的 Enter 快捷键语义补齐
 - 因为 Enter 发送已经是输入框自身行为，所以用 `aria-keyshortcuts="Enter"` 把这个键盘路径暴露出来
+- 这轮再把 shell 命令输入框的浏览器自动改写关掉
+- 因为 shell 命令区不适合浏览器自动补全或首字母大写，所以输入框显式设置 `autocomplete="off"` 和 `autocapitalize="off"`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
