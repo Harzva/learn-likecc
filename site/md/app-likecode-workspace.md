@@ -405,6 +405,8 @@
 - 所以当前激活的是 daemon、latest tick 还是 last message，会在按钮层直接暴露出来
 - 这轮再把 Latest Tick 的日志输出区补成同步的 `aria-busy` 加载状态
 - 所以日志切换和重新拉取过程中，输出区域本身会直接暴露“正在加载”的状态
+- 这轮再把 Latest Tick 的日志输出区补成可键盘聚焦的滚动日志区域
+- 所以不用鼠标也可以把焦点落进这块日志输出里直接查看和滚动最新 tick 内容
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
