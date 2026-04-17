@@ -479,6 +479,8 @@
 - 所以整个会话列表除了 live/closed 数量，也会带上“选择 seat 后输出和动作跟随当前会话”的路由规则
 - 这轮再把 shell 顶部操作行关联到 roster pulse 说明
 - 所以刷新、新建、关闭这些会影响会话列表的操作，会和当前会话、live/closed 数量处在同一个说明上下文里
+- 这轮再把 roster 相关按钮直接关联到 roster pulse 说明
+- 所以刷新 roster、新建、切到存活会话、关闭选中时，按钮本身也会带上当前会话和 live/closed 数量
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
