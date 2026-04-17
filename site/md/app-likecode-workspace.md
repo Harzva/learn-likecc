@@ -545,6 +545,8 @@
 - 因为这两个 action group 都包含会改写输出元信息、输出日志、shell 状态和预览状态的发送入口，所以组级 `aria-controls` 也和内部按钮保持一致
 - 这轮再把清空本地记忆 action group 的目标区域补齐
 - 因为清空入口会重绘 recent commands、输出元信息、输出日志、shell 状态和预览状态，所以组级 `aria-controls` 也和内部按钮保持一致
+- 这轮再把清空浏览器本地记忆后的 live status 文案收紧
+- 因为清空动作不会重置 relay 端 shell 会话，所以状态播报现在直接说明 `relay shell sessions unchanged`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
