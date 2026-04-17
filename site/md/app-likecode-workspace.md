@@ -493,6 +493,8 @@
 - 因为同步 roster 后也会刷新当前输出，所以这个总刷新入口也要声明它会影响输出元信息行
 - 这轮再把新建、切到存活、关闭选中三个按钮的目标区域补上输出元信息
 - 因为这些操作会改变当前会话或输出预览状态，所以也要声明它们会影响 `output from / updated / hint`
+- 这轮再把动态 shell seat 按钮的目标区域补上输出元信息
+- 因为选择 seat 会切换当前输出来源、更新时间和提示，所以 seat 本身也要声明它控制 `output from / updated / hint`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
