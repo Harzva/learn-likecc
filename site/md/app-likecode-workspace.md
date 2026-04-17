@@ -413,6 +413,8 @@
 - 所以焦点落进当前 shell 输出预览时，会同时带上来源、更新时间和 seat-local 提示
 - 这轮再把手动发送、常用探针和最近命令重放按钮补上对当前 shell 输出日志的 `aria-controls` 关联
 - 所以会触发输出刷新的命令入口，会直接声明它们控制同一个 `workspace-shell-output` 区域
+- 这轮再把 shell 顶部的刷新、新建、切换存活会话和关闭按钮补上目标区域关联
+- 所以 roster 同步类动作会指向 `workspace-shell-list`，当前会话输出类动作会同时指向 `workspace-shell-output`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
