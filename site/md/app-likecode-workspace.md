@@ -509,6 +509,8 @@
 - 因为这些会话操作都会播报执行中、切换或关闭结果，所以它们也要声明会影响 `workspace-shell-status`
 - 这轮再把手动发送和常用探针按钮的目标区域补上 shell 状态
 - 因为发送入口会播报空命令、发送中、已发送或发送失败，所以它们也要声明会影响 `workspace-shell-status`
+- 这轮再把最近命令重放区和动态重放按钮的目标区域补上 shell 状态
+- 因为 replay 入口同样会走发送路径并播报发送中、已发送或失败，所以它们也要声明会影响 `workspace-shell-status`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
