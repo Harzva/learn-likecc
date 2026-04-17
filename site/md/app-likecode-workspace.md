@@ -379,6 +379,8 @@
 - 所以当前会话编号以及 live / closed 数变化会有更明确的动态暴露点
 - 这轮再把 `预览` 文本补成一个轻量 `status` 区域
 - 所以当前 shell 输出预览摘要变化会有更明确的动态暴露点
+- 这轮再把 `output sync` 文本补成一个轻量 `status` 区域
+- 所以当前 shell 输出同步时间变化会有更明确的动态暴露点
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
