@@ -415,6 +415,8 @@
 - 所以会触发输出刷新的命令入口，会直接声明它们控制同一个 `workspace-shell-output` 区域
 - 这轮再把 shell 顶部的刷新、新建、切换存活会话和关闭按钮补上目标区域关联
 - 所以 roster 同步类动作会指向 `workspace-shell-list`，当前会话输出类动作会同时指向 `workspace-shell-output`
+- 这轮再把动态 shell roster 里的 seat 按钮补上 `aria-pressed` 和输出目标关联
+- 所以当前选中会话不只靠视觉高亮表达，切换 seat 时也会声明它控制下面的 `workspace-shell-output`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
