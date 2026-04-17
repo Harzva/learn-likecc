@@ -616,6 +616,11 @@
         if (hint) hint.textContent = 'hint: this seat is currently paired with the last local probe shown above.'
     }
 
+    function setShellOutputBusy(isBusy) {
+        var host = document.getElementById('workspace-shell-output')
+        if (host) host.setAttribute('aria-busy', isBusy ? 'true' : 'false')
+    }
+
     function renderShellRoster() {
         if (!shellListHost) return
         var sessions = shellState.sessions || []
@@ -668,10 +673,12 @@
         if (!active) {
             shellState.lastOutputSyncAt = ''
             shellState.lastOutputSyncFailedAt = ''
+            setShellOutputBusy(false)
             renderShellSyncMeta()
             renderShellOutput(null)
             return Promise.resolve({ ok: false, skipped: true })
         }
+        setShellOutputBusy(true)
         return fetchJson(relayBase() + '/api/shell/read?id=' + encodeURIComponent(active.session_id))
             .then(function (payload) {
                 var session = payload.session || active
@@ -680,6 +687,7 @@
                 })
                 shellState.lastOutputSyncAt = shellTimeStamp()
                 shellState.lastOutputSyncFailedAt = ''
+                setShellOutputBusy(false)
                 renderShellSummary()
                 renderShellOutput(session)
                 return { ok: true, session: session }
@@ -687,6 +695,7 @@
             .catch(function (error) {
                 shellState.lastOutputSyncAt = ''
                 shellState.lastOutputSyncFailedAt = shellTimeStamp()
+                setShellOutputBusy(false)
                 renderShellSyncMeta()
                 renderShellOutput({ buffer: '读取 shell 输出失败: ' + error.message })
                 return { ok: false, error: error }

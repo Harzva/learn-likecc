@@ -417,6 +417,8 @@
 - 所以 roster 同步类动作会指向 `workspace-shell-list`，当前会话输出类动作会同时指向 `workspace-shell-output`
 - 这轮再把动态 shell roster 里的 seat 按钮补上 `aria-pressed` 和输出目标关联
 - 所以当前选中会话不只靠视觉高亮表达，切换 seat 时也会声明它控制下面的 `workspace-shell-output`
+- 这轮再把当前 shell 输出日志补上 `aria-busy` 加载状态
+- 所以刷新当前会话输出、切换 seat 触发读取、发送命令后回读输出时，输出区本身会暴露正在加载 / 已完成状态
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
