@@ -531,6 +531,8 @@
 - 因为 shell 命令区不适合浏览器自动补全或首字母大写，所以输入框显式设置 `autocomplete="off"` 和 `autocapitalize="off"`
 - 这轮再把 shell 命令输入框的软键盘回车意图补齐
 - 因为这个输入框的 Enter 行为就是发送命令，所以用 `enterkeyhint="send"` 提示移动端键盘把回车呈现为发送
+- 这轮再把 shell 命令输入说明和输入框 guardrail 对齐
+- 因为输入框已经关闭自动补全和自动大写，所以可见说明也明确这是按原样发送的命令输入路径
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
