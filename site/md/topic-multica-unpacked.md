@@ -8,6 +8,8 @@
 
 本轮质量提升把页面从文字笔记升级为结构专题：Hero 增加 `board / workspace / daemon / runtime / skills` 视觉摘要，首屏下方增加 `PRODUCT VIEW / RUNTIME / COMPOUNDING` 三点速览，分层区补五层结构栈，Board 区把原来的插图提示词替换成页面内可读的 managed agents 架构图。
 
+本次连续美化 pass 又补了阅读路径组件：先看分层，再看 daemon/runtime，重点看 board 视角，最后看 skill compounding。
+
 ## 目录（对照 HTML）
 
 - 01 为什么 Multica 值得单独拆

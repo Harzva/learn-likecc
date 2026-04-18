@@ -9,7 +9,7 @@
     <meta name="description" content="Managed Meta-Agent 子专题：拆 Cabinet 如何把 markdown knowledge base、Git 历史、AI team、cron 与 web terminal 拼成 knowledge-first 的 startup OS。">
     <meta name="page:updated" content="2026-04-13">
 </head>
-<body class="cc-unpacked-page">
+<body class="cc-unpacked-page unpacked-quality-page unpacked-quality-page--cabinet">
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
@@ -49,6 +49,47 @@
                 <a href="#layers" class="btn btn-primary">先看 02 分层</a>
                 <a href="topic-meta-agent.html" class="btn btn-secondary">回到总专题</a>
             </div>
+            <div class="unpacked-hero-map" aria-label="Cabinet knowledge-first shell 视觉摘要">
+                <div class="unpacked-hero-map__rail">
+                    <span>markdown</span>
+                    <span>git history</span>
+                    <span>AI team</span>
+                    <span>cron</span>
+                    <span>terminal</span>
+                </div>
+                <div class="unpacked-hero-map__core">
+                    <strong>Knowledge-first Startup OS</strong>
+                    <span>让 agent 在团队知识库、历史、任务和终端共同组成的壳里长期工作。</span>
+                </div>
+                <div class="unpacked-hero-map__flow">
+                    <span>Knowledge Base</span>
+                    <span>Git Memory</span>
+                    <span>AI Team</span>
+                    <span>Scheduled Work</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="unpacked-quality-strip" aria-label="Cabinet 解构速览">
+        <div class="container container--layout-wide">
+            <div class="unpacked-strip-grid">
+                <div>
+                    <span class="unpacked-strip-kicker">CONTEXT</span>
+                    <strong>它把上下文做成知识库本体</strong>
+                    <p>上下文不再是 prompt 附件，而是可见、可编辑、可版本化的 markdown workspace。</p>
+                </div>
+                <div>
+                    <span class="unpacked-strip-kicker">MEMORY</span>
+                    <strong>Git 是 agent memory 的历史系统</strong>
+                    <p>auto-commit、diff viewer 和回滚让知识变化有轨迹，不只服务代码。</p>
+                </div>
+                <div>
+                    <span class="unpacked-strip-kicker">TEAM</span>
+                    <strong>它卖的是 AI team，不是单个 agent</strong>
+                    <p>CEO、CTO、Marketing、Ops 等角色把 agent 从工具调用器抬成团队容器。</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -59,10 +100,24 @@
                     <h2>01 · 为什么 Cabinet 值得单独拆</h2>
                     <p>`Cabinet` 的关键，不在于“它也有 agent”，而在于它把上下文问题收成了一个产品原则：<strong>上下文不是聊天窗口里的临时附属，而是整个团队知识库本身</strong>。</p>
                     <p>从 README 看，它的核心口号不是执行引擎，而是 <code>Your knowledge base. Your AI team.</code>。也就是说，Cabinet 先假定：如果没有持久知识库，再好的 agent 也会不断忘记、不断重来。</p>
+                    <div class="unpacked-reading-path" aria-label="Cabinet 阅读路径">
+                        <span>阅读路径</span>
+                        <a href="#layers">先看五层</a>
+                        <a href="#control">再看控制面</a>
+                        <a href="#memory">重点读 Git memory</a>
+                        <a href="#team">最后看 AI team</a>
+                    </div>
                 </section>
 
                 <section id="layers" class="section-block">
                     <h2>02 · Cabinet 先拼的是哪几层</h2>
+                    <div class="unpacked-layer-stack unpacked-layer-stack--cabinet" aria-label="Cabinet 五层结构栈">
+                        <div class="unpacked-layer-stack__item"><span>01</span><strong>Markdown Knowledge Base</strong><em>上下文可见、可改、可版本化</em></div>
+                        <div class="unpacked-layer-stack__item"><span>02</span><strong>Git-backed History</strong><em>auto-commit · diff viewer · rollback</em></div>
+                        <div class="unpacked-layer-stack__item unpacked-layer-stack__item--hot"><span>03</span><strong>AI Team Templates</strong><em>角色、部门与任务语义</em></div>
+                        <div class="unpacked-layer-stack__item"><span>04</span><strong>Scheduled Missions</strong><em>让 agent 在知识库里持续工作</em></div>
+                        <div class="unpacked-layer-stack__item"><span>05</span><strong>Web Terminal / Internal Chat</strong><em>CLI 与知识库工作台接回同一壳层</em></div>
+                    </div>
                     <table class="options-table">
                         <tr><th>层次</th><th>关键锚点</th><th>解决的问题</th></tr>
                         <tr><td>知识库层</td><td>markdown on disk、WYSIWYG + Markdown、embedded HTML apps</td><td>上下文从哪来，如何可见、可改、可版本化</td></tr>
@@ -83,12 +138,29 @@
                     <h2>04 · 为什么它把 Git 当成记忆机制，而不是附件</h2>
                     <p>Cabinet 这条线最值得我们学的，是它把 <code>Git everything</code> 直接写成原则。这里 Git 不是开发者工具，而是 agent memory 的历史系统。</p>
                     <p>这和我们做 `codex-loop` 的 `plan + evolution + task board` 很接近，只是 Cabinet 更激进：它把页面本体、HTML app、cron 任务、知识结构都尽量推回文件系统和 Git 历史里。</p>
-                    <div class="course-quote">
-                        <p><strong>[插图提示词]</strong></p>
-                        <p>用途：画 Cabinet 的 knowledge-first managed agent shell。</p>
-                        <p>形式：分层结构图；Mermaid 很合适。</p>
-                        <p>提示词：顶部是 markdown knowledge base 与 rich editor，中层是 AI team、missions/tasks、scheduled jobs，右侧是 web terminal 与 internal chat，底部是 git-backed history 与 file-based storage，箭头标出“knowledge compounds over time”。</p>
-                        <p>Mermaid 更适合：是。</p>
+                    <div class="unpacked-board-diagram unpacked-board-diagram--cabinet" aria-label="Cabinet knowledge-first managed shell 架构图">
+                        <div class="unpacked-board-diagram__lane unpacked-board-diagram__lane--top">
+                            <strong>Markdown Knowledge Base + Rich Editor</strong>
+                            <span>页面、HTML app、项目语义和上下文都先落到文件系统</span>
+                        </div>
+                        <div class="unpacked-board-diagram__lane unpacked-board-diagram__lane--hot">
+                            <strong>AI Team + Missions + Scheduled Jobs</strong>
+                            <span>角色、任务和定时工作让 agent 围绕知识库持续行动</span>
+                        </div>
+                        <div class="unpacked-board-diagram__providers">
+                            <span>CEO</span>
+                            <span>CTO</span>
+                            <span>Marketing</span>
+                            <span>Ops</span>
+                        </div>
+                        <div class="unpacked-board-diagram__lane">
+                            <strong>Web Terminal + Internal Chat</strong>
+                            <span>CLI 和协作消息不再游离在知识库之外</span>
+                        </div>
+                        <div class="unpacked-board-diagram__memory">
+                            <strong>Git-backed History</strong>
+                            <span>knowledge compounds over time：每次变化都有 diff、commit 和回滚点</span>
+                        </div>
                     </div>
                 </section>
 

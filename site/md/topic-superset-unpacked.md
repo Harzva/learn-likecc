@@ -8,6 +8,8 @@
 
 本轮质量提升把页面改成更接近 `Claude Code 解构` 的结构专题：Hero 增加五层结构视觉，首屏下方增加 `FIRST READ / CONTROL / LIKECODE` 三点速览，正文的五层总图区补了栈式可视模块，并统一了 section、table、quote 的阅读质感。
 
+本次连续美化 pass 又补了阅读路径组件：先看五层总图，再看目录规模，重点读 host-service 调度中枢，最后回到 Meta-Agent 拼装。
+
 ## 目录（对照 HTML）
 
 ### 参考来源与版本锚定

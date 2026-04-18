@@ -8014,6 +8014,15 @@ body.site-shell-overlay-open {
         linear-gradient(145deg, #fbf6ff 0%, #fffaf0 46%, #edf2ff 100%);
 }
 
+.unpacked-quality-page--cabinet {
+    --unpacked-accent: #7d5524;
+    --unpacked-accent-2: #2c5a45;
+    background:
+        radial-gradient(circle at 7% 0%, rgba(125, 85, 36, 0.2), transparent 30rem),
+        radial-gradient(circle at 92% 4%, rgba(44, 90, 69, 0.16), transparent 32rem),
+        linear-gradient(145deg, #fff7e7 0%, #f7f1df 48%, #edf3e7 100%);
+}
+
 .unpacked-quality-page .navbar {
     background: rgba(255, 248, 235, 0.76);
     border-bottom: 1px solid rgba(88, 54, 28, 0.1);
@@ -8044,6 +8053,13 @@ body.site-shell-overlay-open {
         linear-gradient(132deg, #171425 0%, #2b2242 42%, #e7d6ff 100%);
 }
 
+.unpacked-quality-page--cabinet .hero.handbook-hero {
+    background:
+        radial-gradient(circle at 82% 26%, rgba(224, 241, 205, 0.68), transparent 24rem),
+        radial-gradient(circle at 14% 18%, rgba(125, 85, 36, 0.34), transparent 28rem),
+        linear-gradient(132deg, #1c1710 0%, #3b2817 42%, #dbe8c8 100%);
+}
+
 .unpacked-quality-page .hero.handbook-hero::after {
     content: "";
     position: absolute;
@@ -8063,6 +8079,7 @@ body.site-shell-overlay-open {
     gap: clamp(30px, 5vw, 74px);
     align-items: center;
     max-width: min(1240px, calc(100vw - 44px));
+    padding-inline: clamp(18px, 3vw, 40px);
 }
 
 .unpacked-quality-page .hero-badge,
@@ -8362,8 +8379,59 @@ body.site-shell-overlay-open {
     background: #21172f;
 }
 
+.unpacked-quality-page--cabinet .options-table th {
+    background: #241a10;
+}
+
 .unpacked-quality-page .options-table td {
     border-color: rgba(86, 52, 26, 0.1);
+}
+
+.unpacked-reading-path {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin-top: 20px;
+    padding: 14px;
+    border-radius: 22px;
+    background:
+        radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--unpacked-accent) 12%, transparent), transparent 36%),
+        rgba(255, 250, 238, 0.74);
+    border: 1px solid var(--unpacked-line);
+}
+
+.unpacked-reading-path span,
+.unpacked-reading-path a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+}
+
+.unpacked-reading-path span {
+    padding: 7px 12px;
+    color: #fff7df;
+    background: var(--unpacked-accent);
+    font-weight: 850;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.unpacked-reading-path a {
+    padding: 7px 11px;
+    color: var(--unpacked-ink);
+    background: rgba(255, 255, 255, 0.58);
+    border: 1px solid rgba(86, 52, 26, 0.12);
+    text-decoration: none;
+    transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.unpacked-reading-path a:hover {
+    transform: translateY(-1px);
+    background: rgba(255, 255, 255, 0.82);
+    border-color: color-mix(in srgb, var(--unpacked-accent) 34%, transparent);
 }
 
 .unpacked-layer-stack {
@@ -8382,6 +8450,12 @@ body.site-shell-overlay-open {
     background:
         radial-gradient(circle at 10% 0%, rgba(122, 63, 157, 0.24), transparent 36%),
         linear-gradient(145deg, #151321, #251d35);
+}
+
+.unpacked-quality-page--cabinet .unpacked-layer-stack {
+    background:
+        radial-gradient(circle at 10% 0%, rgba(125, 85, 36, 0.25), transparent 36%),
+        linear-gradient(145deg, #17120c, #2b2114);
 }
 
 .unpacked-layer-stack__item {
@@ -8483,6 +8557,22 @@ body.site-shell-overlay-open {
     font-weight: 800;
     color: #1d1628;
     background: #eadcff;
+}
+
+.unpacked-board-diagram--cabinet {
+    background:
+        radial-gradient(circle at 90% 0%, rgba(153, 112, 54, 0.2), transparent 34%),
+        linear-gradient(145deg, #17120c, #2b2114);
+}
+
+.unpacked-board-diagram--cabinet .unpacked-board-diagram__providers span {
+    color: #241a10;
+    background: #f2dbad;
+}
+
+.unpacked-board-diagram--cabinet .unpacked-board-diagram__lane--hot {
+    background: linear-gradient(135deg, rgba(125, 85, 36, 0.3), rgba(44, 90, 69, 0.2));
+    border-color: rgba(242, 219, 173, 0.38);
 }
 
 @media (max-width: 1180px) {
