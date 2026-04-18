@@ -269,7 +269,7 @@
                     ? (shellCount ? 'select an active shell first' : 'create a shell first')
                     : (!active.alive ? CLOSED_SHELL_BUTTON_HINT : '')
                 buttonHint = buttonHint || (
-                    isCurrent ? '' : 'saved replay from this browser; not current shell history'
+                    isCurrent ? 'replay current shell command from this browser' : 'saved replay from this browser; not current shell history'
                 )
                 var buttonAttrs = [
                     ' aria-describedby="workspace-shell-command-note workspace-shell-clear-memory-boundary"',

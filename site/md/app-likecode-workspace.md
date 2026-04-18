@@ -549,6 +549,8 @@
 - 因为清空动作不会重置 relay 端 shell 会话，所以状态播报现在直接说明 `relay shell sessions unchanged`
 - 这轮再把清空浏览器本地记忆的 no-op 状态分支补上
 - 因为 recent commands 和本地 provenance 已经为空时再次点击不会实际清除新内容，所以 live status 会播报 `browser-local memory already empty`
+- 这轮再把当前命令 replay 按钮的提示补上
+- 因为 recent row 里的当前命令按钮以前没有 title / aria-label hint，所以现在明确标注它会从本浏览器重放当前 shell command
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
