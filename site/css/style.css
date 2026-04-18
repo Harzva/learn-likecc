@@ -13552,38 +13552,56 @@ body.site-shell-overlay-open {
 }
 
 .likecode-workspace-page {
+    --lcw-ink: #16201b;
+    --lcw-muted: #64706a;
+    --lcw-panel: rgba(255, 252, 244, 0.9);
+    --lcw-panel-solid: #fffaf0;
+    --lcw-line: rgba(28, 45, 37, 0.12);
+    --lcw-accent: #c66a2f;
+    --lcw-accent-strong: #9d3f17;
+    --lcw-green: #245b3d;
+    --lcw-shadow: 0 24px 80px rgba(31, 39, 28, 0.12);
     background:
-        radial-gradient(circle at top left, rgba(234, 122, 20, 0.11), transparent 28rem),
-        radial-gradient(circle at top right, rgba(34, 139, 230, 0.12), transparent 30rem),
-        linear-gradient(180deg, #fffaf3 0%, #fffdf8 48%, #f8f5ee 100%);
+        linear-gradient(115deg, rgba(11, 28, 23, 0.04) 0 1px, transparent 1px 18px),
+        radial-gradient(circle at 7% 5%, rgba(214, 117, 45, 0.2), transparent 24rem),
+        radial-gradient(circle at 92% 0%, rgba(61, 111, 79, 0.2), transparent 28rem),
+        linear-gradient(140deg, #f9f0df 0%, #fffaf1 36%, #eef0e2 100%);
+    color: var(--lcw-ink);
 }
 
 .likecode-workspace-app {
     min-height: 100vh;
     display: grid;
-    grid-template-columns: 320px minmax(0, 1fr);
-    color: var(--text-color);
+    grid-template-columns: 340px minmax(0, 1fr);
+    color: var(--lcw-ink);
 }
 
 .likecode-workspace-sidebar {
-    border-right: 1px solid rgba(195, 132, 38, 0.18);
-    background: rgba(255, 250, 242, 0.92);
-    backdrop-filter: blur(16px);
-    padding: 28px 22px;
+    position: sticky;
+    top: 0;
+    min-height: 100vh;
+    border-right: 1px solid rgba(255, 255, 255, 0.34);
+    background:
+        linear-gradient(180deg, rgba(20, 37, 30, 0.94), rgba(38, 51, 36, 0.9)),
+        radial-gradient(circle at 20% 0%, rgba(222, 132, 61, 0.26), transparent 18rem);
+    color: #fff8ea;
+    padding: 34px 24px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 22px;
+    box-shadow: 18px 0 70px rgba(20, 34, 28, 0.16);
 }
 
 .likecode-workspace-brand h1 {
     margin: 8px 0 10px;
-    font-size: clamp(1.6rem, 2vw, 2.1rem);
-    line-height: 1.08;
+    font-size: clamp(1.9rem, 2.5vw, 2.6rem);
+    line-height: 0.98;
+    letter-spacing: -0.05em;
 }
 
 .likecode-workspace-brand p {
     margin: 0;
-    color: var(--muted-text);
+    color: rgba(255, 248, 234, 0.72);
 }
 
 .likecode-workspace-brand__eyebrow,
@@ -13592,20 +13610,27 @@ body.site-shell-overlay-open {
     font-size: 0.78rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: #bc6310;
+    color: var(--lcw-accent-strong);
+}
+
+.likecode-workspace-brand__eyebrow {
+    color: #f2bb78;
 }
 
 .likecode-workspace-controls,
 .likecode-workspace-sidebar__section,
 .likecode-workspace-panel {
-    border: 1px solid rgba(195, 132, 38, 0.16);
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.84);
-    box-shadow: 0 24px 60px rgba(114, 70, 16, 0.08);
+    border: 1px solid var(--lcw-line);
+    border-radius: 24px;
+    background: var(--lcw-panel);
+    box-shadow: var(--lcw-shadow);
 }
 
 .likecode-workspace-controls,
 .likecode-workspace-sidebar__section {
+    border-color: rgba(255, 255, 255, 0.13);
+    background: rgba(255, 248, 230, 0.08);
+    box-shadow: none;
     padding: 16px;
 }
 
@@ -13617,23 +13642,70 @@ body.site-shell-overlay-open {
 
 .likecode-workspace-field span {
     font-size: 0.85rem;
-    color: var(--muted-text);
+    color: var(--lcw-muted);
+}
+
+.likecode-workspace-sidebar .likecode-workspace-field span,
+.likecode-workspace-sidebar__head {
+    color: rgba(255, 248, 234, 0.74);
 }
 
 .likecode-workspace-field input,
 .likecode-workspace-editor {
     border-radius: 14px;
-    border: 1px solid rgba(195, 132, 38, 0.18);
-    background: rgba(255, 252, 247, 0.95);
+    border: 1px solid var(--lcw-line);
+    background: rgba(255, 253, 247, 0.94);
     color: inherit;
     padding: 12px 14px;
     font: inherit;
 }
 
+.likecode-workspace-sidebar input {
+    border-color: rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff8ea;
+}
+
+.likecode-workspace-sidebar input::placeholder {
+    color: rgba(255, 248, 234, 0.44);
+}
+
 .likecode-workspace-actionrow {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 8px;
+}
+
+.likecode-workspace-app .btn {
+    border-radius: 999px;
+    padding: 0.65rem 0.95rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    box-shadow: none;
+}
+
+.likecode-workspace-app .btn-primary {
+    background: #1e3229;
+    color: #fff7e4;
+    border: 1px solid rgba(30, 50, 41, 0.28);
+}
+
+.likecode-workspace-app .btn-secondary {
+    background: rgba(255, 251, 241, 0.7);
+    color: #27362f;
+    border: 1px solid var(--lcw-line);
+}
+
+.likecode-workspace-sidebar .btn-primary {
+    background: #f0b76b;
+    color: #1c261f;
+    border-color: transparent;
+}
+
+.likecode-workspace-sidebar .btn-secondary {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff8ea;
+    border-color: rgba(255, 255, 255, 0.14);
 }
 
 .likecode-workspace-sidebar__head,
@@ -13656,10 +13728,11 @@ body.site-shell-overlay-open {
 .likecode-workspace-task {
     width: 100%;
     text-align: left;
-    border: 1px solid rgba(195, 132, 38, 0.14);
-    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 18px;
     padding: 12px 13px;
-    background: rgba(255, 254, 250, 0.98);
+    background: rgba(255, 255, 255, 0.07);
+    color: #fff8ea;
     display: grid;
     gap: 8px;
     cursor: pointer;
@@ -13669,8 +13742,9 @@ body.site-shell-overlay-open {
 .likecode-workspace-task:hover,
 .likecode-workspace-task.is-active {
     transform: translateY(-1px);
-    border-color: rgba(195, 132, 38, 0.35);
-    box-shadow: 0 18px 40px rgba(114, 70, 16, 0.1);
+    border-color: rgba(242, 183, 106, 0.45);
+    box-shadow: 0 20px 42px rgba(0, 0, 0, 0.14);
+    background: rgba(255, 255, 255, 0.12);
 }
 
 .likecode-workspace-task__topline {
@@ -13678,7 +13752,7 @@ body.site-shell-overlay-open {
     justify-content: space-between;
     gap: 10px;
     font-size: 0.85rem;
-    color: var(--muted-text);
+    color: rgba(255, 248, 234, 0.62);
 }
 
 .likecode-workspace-task__badges {
@@ -13690,22 +13764,23 @@ body.site-shell-overlay-open {
 
 .likecode-workspace-task__goal {
     font-size: 0.92rem;
-    color: var(--muted-text);
+    color: rgba(255, 248, 234, 0.68);
 }
 
 .likecode-workspace-task.is-daemon {
-    border-color: rgba(56, 110, 207, 0.28);
-    box-shadow: 0 18px 40px rgba(40, 87, 171, 0.09);
+    border-color: rgba(120, 205, 160, 0.42);
+    box-shadow: 0 18px 44px rgba(54, 120, 78, 0.16);
 }
 
 .likecode-workspace-main {
-    padding: 28px;
+    padding: 34px;
     display: grid;
-    gap: 18px;
+    gap: 22px;
 }
 
 .likecode-workspace-panel {
-    padding: 18px;
+    padding: 22px;
+    backdrop-filter: blur(16px);
 }
 
 .likecode-workspace-panel--hero {
@@ -13713,17 +13788,51 @@ body.site-shell-overlay-open {
     justify-content: space-between;
     gap: 18px;
     align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+    min-height: 220px;
+    padding: clamp(26px, 4vw, 44px);
+    border: 0;
+    background:
+        radial-gradient(circle at 88% 20%, rgba(239, 172, 84, 0.34), transparent 18rem),
+        linear-gradient(135deg, #20382d 0%, #314936 54%, #efe0c4 100%);
+    color: #fff8ea;
+}
+
+.likecode-workspace-panel--hero::after {
+    content: "";
+    position: absolute;
+    right: -8%;
+    bottom: -30%;
+    width: 42%;
+    aspect-ratio: 1;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 248, 234, 0.26);
+    box-shadow: inset 0 0 0 36px rgba(255, 248, 234, 0.06);
+    pointer-events: none;
 }
 
 .likecode-workspace-panel--hero h2,
 .likecode-workspace-panel__head h3 {
     margin: 6px 0 0;
+    letter-spacing: -0.04em;
+}
+
+.likecode-workspace-panel--hero h2 {
+    max-width: 11ch;
+    font-size: clamp(2.35rem, 6vw, 5.4rem);
+    line-height: 0.9;
 }
 
 .likecode-workspace-panel__summary {
     margin: 8px 0 0;
     max-width: 72ch;
-    color: var(--muted-text);
+    color: var(--lcw-muted);
+}
+
+.likecode-workspace-panel--hero .likecode-workspace-panel__eyebrow,
+.likecode-workspace-panel--hero .likecode-workspace-panel__summary {
+    color: rgba(255, 248, 234, 0.76);
 }
 
 .likecode-workspace-daemon-row {
@@ -13741,23 +13850,24 @@ body.site-shell-overlay-open {
 .likecode-workspace-pill {
     display: inline-flex;
     align-items: center;
-    padding: 8px 12px;
+    padding: 7px 11px;
     border-radius: 999px;
     font-size: 0.84rem;
-    border: 1px solid rgba(195, 132, 38, 0.16);
-    background: rgba(255, 249, 239, 0.9);
+    border: 1px solid var(--lcw-line);
+    background: rgba(255, 250, 238, 0.8);
+    color: #314139;
 }
 
-.likecode-workspace-badge--ready { background: rgba(213, 244, 225, 0.9); }
-.likecode-workspace-badge--done { background: rgba(213, 234, 255, 0.9); }
-.likecode-workspace-badge--attention { background: rgba(255, 237, 201, 0.95); }
-.likecode-workspace-badge--risk { background: rgba(255, 223, 223, 0.94); }
-.likecode-workspace-badge--neutral { background: rgba(242, 238, 232, 0.95); }
+.likecode-workspace-badge--ready { background: rgba(214, 237, 203, 0.9); }
+.likecode-workspace-badge--done { background: rgba(215, 230, 220, 0.9); }
+.likecode-workspace-badge--attention { background: rgba(245, 221, 170, 0.92); }
+.likecode-workspace-badge--risk { background: rgba(239, 202, 190, 0.92); }
+.likecode-workspace-badge--neutral { background: rgba(238, 231, 218, 0.84); }
 
 .likecode-workspace-grid {
     display: grid;
-    grid-template-columns: 1.25fr 1fr;
-    gap: 18px;
+    grid-template-columns: minmax(0, 1.18fr) minmax(340px, 0.82fr);
+    gap: 20px;
 }
 
 .likecode-workspace-panel--log {
@@ -13771,9 +13881,9 @@ body.site-shell-overlay-open {
 
 .likecode-workspace-checkitem {
     width: 100%;
-    border: 1px solid rgba(195, 132, 38, 0.14);
-    border-radius: 16px;
-    background: rgba(255, 252, 247, 0.96);
+    border: 1px solid var(--lcw-line);
+    border-radius: 18px;
+    background: rgba(255, 253, 247, 0.74);
     padding: 12px 13px;
     display: grid;
     grid-template-columns: 22px minmax(0, 1fr);
@@ -13786,21 +13896,21 @@ body.site-shell-overlay-open {
 
 .likecode-workspace-checkitem:hover {
     transform: translateY(-1px);
-    border-color: rgba(195, 132, 38, 0.35);
-    box-shadow: 0 18px 40px rgba(114, 70, 16, 0.08);
+    border-color: rgba(62, 89, 72, 0.26);
+    box-shadow: 0 18px 40px rgba(31, 39, 28, 0.08);
 }
 
 .likecode-workspace-checkitem.is-done {
-    background: rgba(236, 250, 241, 0.96);
-    border-color: rgba(68, 162, 97, 0.24);
+    background: rgba(230, 242, 223, 0.78);
+    border-color: rgba(68, 128, 84, 0.24);
 }
 
 .likecode-workspace-checkitem__box {
     width: 22px;
     height: 22px;
     border-radius: 8px;
-    border: 1px solid rgba(195, 132, 38, 0.24);
-    background: rgba(255, 248, 235, 0.96);
+    border: 1px solid rgba(63, 86, 70, 0.24);
+    background: rgba(255, 248, 235, 0.86);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -13815,7 +13925,7 @@ body.site-shell-overlay-open {
 }
 
 .likecode-workspace-checkitem__label {
-    color: var(--text-color);
+    color: var(--lcw-ink);
     line-height: 1.45;
 }
 
@@ -13838,7 +13948,7 @@ body.site-shell-overlay-open {
     justify-content: space-between;
     gap: 10px;
     font-size: 0.84rem;
-    color: var(--muted-text);
+    color: var(--lcw-muted);
 }
 
 .likecode-workspace-status {
@@ -13849,9 +13959,9 @@ body.site-shell-overlay-open {
     font-size: 0.82rem;
 }
 
-.likecode-workspace-status--neutral { background: rgba(242, 238, 232, 0.95); }
-.likecode-workspace-status--ready { background: rgba(213, 244, 225, 0.9); }
-.likecode-workspace-status--risk { background: rgba(255, 223, 223, 0.94); }
+.likecode-workspace-status--neutral { background: rgba(238, 231, 218, 0.84); }
+.likecode-workspace-status--ready { background: rgba(214, 237, 203, 0.9); }
+.likecode-workspace-status--risk { background: rgba(239, 202, 190, 0.92); }
 
 .likecode-workspace-runtime {
     display: grid;
@@ -13860,9 +13970,9 @@ body.site-shell-overlay-open {
 }
 
 .likecode-workspace-runtimecard {
-    border-radius: 16px;
-    border: 1px solid rgba(195, 132, 38, 0.14);
-    background: rgba(255, 252, 247, 0.96);
+    border-radius: 18px;
+    border: 1px solid var(--lcw-line);
+    background: rgba(255, 253, 247, 0.66);
     padding: 13px 14px;
     display: grid;
     gap: 8px;
@@ -13870,7 +13980,7 @@ body.site-shell-overlay-open {
 
 .likecode-workspace-runtimecard strong {
     font-size: 0.84rem;
-    color: var(--muted-text);
+    color: var(--lcw-muted);
 }
 
 .likecode-workspace-evolution {
@@ -13889,11 +13999,15 @@ body.site-shell-overlay-open {
     max-height: 420px;
     overflow: auto;
     padding: 16px;
-    border-radius: 18px;
-    background: #1e1410;
-    color: #f4e8df;
+    border-radius: 20px;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 38px),
+        #111a16;
+    color: #e7f0df;
     font-size: 0.88rem;
     line-height: 1.45;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 .likecode-workspace-empty {
@@ -14504,7 +14618,6 @@ body.site-shell-overlay-open {
         grid-template-columns: 1fr;
     }
 }
-
 
 @media (max-width: 1180px) {
     .likecode-workspace-app {
