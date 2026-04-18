@@ -299,13 +299,23 @@
     }
 
     function clearShellMemory() {
+        var hadMemory = !!(
+            (shellState.recentCommands || []).length ||
+            Object.keys(shellState.lastCommandBySeat || {}).length
+        )
         shellState.recentCommands = []
         shellState.lastCommandBySeat = {}
         persistShellRecentCommands([])
         persistShellContext({})
         renderShellRecentCommands()
         renderShellOutput(activeShell())
-        setStatus(document.getElementById('workspace-shell-status'), 'browser-local memory cleared · relay shell sessions unchanged', 'neutral')
+        setStatus(
+            document.getElementById('workspace-shell-status'),
+            hadMemory
+                ? 'browser-local memory cleared · relay shell sessions unchanged'
+                : 'browser-local memory already empty · relay shell sessions unchanged',
+            'neutral'
+        )
     }
 
     function connectorTone(state) {

@@ -547,6 +547,8 @@
 - 因为清空入口会重绘 recent commands、输出元信息、输出日志、shell 状态和预览状态，所以组级 `aria-controls` 也和内部按钮保持一致
 - 这轮再把清空浏览器本地记忆后的 live status 文案收紧
 - 因为清空动作不会重置 relay 端 shell 会话，所以状态播报现在直接说明 `relay shell sessions unchanged`
+- 这轮再把清空浏览器本地记忆的 no-op 状态分支补上
+- 因为 recent commands 和本地 provenance 已经为空时再次点击不会实际清除新内容，所以 live status 会播报 `browser-local memory already empty`
 
 下一步会继续往真正的 LikeCode workspace 推：
 - 更像多 pane terminal 的工作台布局
