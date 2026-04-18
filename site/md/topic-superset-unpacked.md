@@ -6,6 +6,8 @@
 
 本页现已归入 **庖丁解牛专题**，是其中的第二个子专题：用结构网页的方式拆解 `reference/reference_agent/reference_control-agent-cli/superset`，把它从"多 agent 产品"拆成五层能力图，并把 `meta-agent` 思想落到具体工程结构上。
 
+本轮质量提升把页面改成更接近 `Claude Code 解构` 的结构专题：Hero 增加五层结构视觉，首屏下方增加 `FIRST READ / CONTROL / LIKECODE` 三点速览，正文的五层总图区补了栈式可视模块，并统一了 section、table、quote 的阅读质感。
+
 ## 目录（对照 HTML）
 
 ### 参考来源与版本锚定
@@ -15,6 +17,14 @@
 ### 01 · 五层总图：Superset 到底在拼什么
 
 先给出整体公式：`产品壳 + 工作位引擎 + host-service + chat/terminal runtime + worktree 隔离`。先知道它在拼哪五层，后面读目录才不会散。
+
+本区新增五层结构栈：
+
+- Product Shell：`apps/desktop`、`apps/web`、`apps/api`
+- Pane / Workspace Engine：`packages/panes`
+- Host-Service Control Plane：`db / git / fs / event / terminal / router`
+- Chat / Terminal Runtime：可发消息、可附着、可继续
+- Worktree Isolation：并行任务隔离与结果回收
 
 ### 02 · 架构导览（目录心智模型）
 

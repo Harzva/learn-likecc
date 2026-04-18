@@ -9,7 +9,7 @@
     <meta name="description" content="庖丁解牛专题子页：拆解 Superset 如何通过产品壳、panes、host-service、chat runtime 与 worktree/terminal 形成 meta-agent 外层调度能力。">
     <meta name="page:updated" content="2026-04-12">
 </head>
-<body class="cc-unpacked-page">
+<body class="cc-unpacked-page unpacked-quality-page unpacked-quality-page--superset">
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
@@ -58,6 +58,47 @@
                 <a href="#stack" class="btn btn-primary">从 01 总图开始</a>
                 <a href="topic-cc-unpacked-zh.html" class="btn btn-secondary">先看 Claude Code 解构</a>
             </div>
+            <div class="unpacked-hero-map" aria-label="Superset 五层结构视觉摘要">
+                <div class="unpacked-hero-map__rail">
+                    <span>apps</span>
+                    <span>panes</span>
+                    <span>host-service</span>
+                    <span>runtime</span>
+                    <span>worktree</span>
+                </div>
+                <div class="unpacked-hero-map__core">
+                    <strong>Orchestration Shell</strong>
+                    <span>外层工作台把 inner agents 收进可观察、可调度、可回灌的运行面。</span>
+                </div>
+                <div class="unpacked-hero-map__flow">
+                    <span>Product Shell</span>
+                    <span>Pane Engine</span>
+                    <span>Control Plane</span>
+                    <span>Agent Runtime</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="unpacked-quality-strip" aria-label="Superset 解构速览">
+        <div class="container container--layout-wide">
+            <div class="unpacked-strip-grid">
+                <div>
+                    <span class="unpacked-strip-kicker">FIRST READ</span>
+                    <strong>先看五层，不要先钻源码树</strong>
+                    <p>产品壳、工位引擎、调度服务、运行时、隔离层先合成一张心智地图。</p>
+                </div>
+                <div>
+                    <span class="unpacked-strip-kicker">CONTROL</span>
+                    <strong>真正的主脑在 host-service</strong>
+                    <p>UI 负责呈现，host-service 才负责把 db、git、fs、event、terminal 与 chat runtime 串起来。</p>
+                </div>
+                <div>
+                    <span class="unpacked-strip-kicker">LIKECODE</span>
+                    <strong>借鉴的是调度面，不是照抄外壳</strong>
+                    <p>LikeCode 更应该把可拉起、可看见、可控制、可回灌变成 Claude Code 内生能力。</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -77,6 +118,13 @@
                 <section id="stack" class="section-block">
                     <h2>01 · 五层总图：Superset 到底在拼什么</h2>
                     <p>如果只看 README，很容易把 <code>Superset</code> 记成"一个能同时跑很多 agent 的桌面应用"。但从工程拆解角度，它更接近一个五层拼装体：<strong>产品壳、工作位引擎、调度服务、chat/terminal runtime、worktree 隔离</strong>。先记住这条总图，后面每一层才知道自己在补哪块。</p>
+                    <div class="unpacked-layer-stack unpacked-layer-stack--superset" aria-label="Superset 五层结构栈">
+                        <div class="unpacked-layer-stack__item"><span>01</span><strong>Product Shell</strong><em>apps/desktop · apps/web · apps/api</em></div>
+                        <div class="unpacked-layer-stack__item"><span>02</span><strong>Pane / Workspace Engine</strong><em>packages/panes</em></div>
+                        <div class="unpacked-layer-stack__item unpacked-layer-stack__item--hot"><span>03</span><strong>Host-Service Control Plane</strong><em>db · git · fs · event · terminal · router</em></div>
+                        <div class="unpacked-layer-stack__item"><span>04</span><strong>Chat / Terminal Runtime</strong><em>可发消息、可附着、可继续</em></div>
+                        <div class="unpacked-layer-stack__item"><span>05</span><strong>Worktree Isolation</strong><em>并行任务隔离与结果回收</em></div>
+                    </div>
                     <table class="options-table">
                         <tr><th>层次</th><th>关键目录 / 文件</th><th>真正解决的问题</th></tr>
                         <tr><td>产品壳</td><td><code>apps/desktop</code>、<code>apps/web</code>、<code>apps/api</code></td><td>给多 agent 危同一个统一工作台，而不是一堆独立终端</td></tr>
@@ -184,7 +232,7 @@
     <footer class="footer">
         <div class="container container--layout-wide">
             <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-superset-unpacked.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
-            <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+            <p>© 2026 Everything in Claude-Code. 仅供学习研究使用。</p>
         </div>
     </footer>
     <script src="js/app.js"></script>

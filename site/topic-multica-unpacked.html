@@ -9,7 +9,7 @@
     <meta name="description" content="Managed Meta-Agent 子专题：拆 Multica 如何把 board、workspace、local daemon、runtime registry 与 skill compounding 组织成更接近 Claude Managed Agents 的开源替代。">
     <meta name="page:updated" content="2026-04-13">
 </head>
-<body class="cc-unpacked-page">
+<body class="cc-unpacked-page unpacked-quality-page unpacked-quality-page--multica">
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
@@ -49,6 +49,47 @@
                 <a href="#layers" class="btn btn-primary">先看 02 分层</a>
                 <a href="topic-meta-agent.html" class="btn btn-secondary">回到总专题</a>
             </div>
+            <div class="unpacked-hero-map" aria-label="Multica managed agents 视觉摘要">
+                <div class="unpacked-hero-map__rail">
+                    <span>board</span>
+                    <span>workspace</span>
+                    <span>daemon</span>
+                    <span>runtime</span>
+                    <span>skills</span>
+                </div>
+                <div class="unpacked-hero-map__core">
+                    <strong>Managed Agents Board</strong>
+                    <span>把 coding agents 当成队友管理：分配任务、查看阻塞、回收交付、沉淀技能。</span>
+                </div>
+                <div class="unpacked-hero-map__flow">
+                    <span>Assignment</span>
+                    <span>Status</span>
+                    <span>Runtime</span>
+                    <span>Skill Memory</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="unpacked-quality-strip" aria-label="Multica 解构速览">
+        <div class="container container--layout-wide">
+            <div class="unpacked-strip-grid">
+                <div>
+                    <span class="unpacked-strip-kicker">PRODUCT VIEW</span>
+                    <strong>它的主视角是 board，不是 chat</strong>
+                    <p>agent 像团队成员一样出现在任务板上，状态、阻塞和交付都被产品化。</p>
+                </div>
+                <div>
+                    <span class="unpacked-strip-kicker">RUNTIME</span>
+                    <strong>daemon / runtime 是正式层</strong>
+                    <p>本地 daemon、cloud runtime、CLI provider 决定 agent 到底在哪里工作。</p>
+                </div>
+                <div>
+                    <span class="unpacked-strip-kicker">COMPOUNDING</span>
+                    <strong>成功方案会回到 skill memory</strong>
+                    <p>它想做的不是一次性完成任务，而是让团队能力随任务不断复利。</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -63,6 +104,13 @@
 
                 <section id="layers" class="section-block">
                     <h2>02 · Multica 先拼的是哪几层</h2>
+                    <div class="unpacked-layer-stack unpacked-layer-stack--multica" aria-label="Multica 五层结构栈">
+                        <div class="unpacked-layer-stack__item"><span>01</span><strong>Board / Workspace</strong><em>人和 agent 在同一个任务面协作</em></div>
+                        <div class="unpacked-layer-stack__item"><span>02</span><strong>Go Backend + Realtime State</strong><em>任务流、状态流、runtime 注册</em></div>
+                        <div class="unpacked-layer-stack__item unpacked-layer-stack__item--hot"><span>03</span><strong>Daemon / Runtime Registry</strong><em>本地或云端执行位置被正式管理</em></div>
+                        <div class="unpacked-layer-stack__item"><span>04</span><strong>Worker Providers</strong><em>Claude Code · Codex · OpenClaw · OpenCode</em></div>
+                        <div class="unpacked-layer-stack__item"><span>05</span><strong>Skill Compounding</strong><em>成功经验沉淀成团队长期资产</em></div>
+                    </div>
                     <table class="options-table">
                         <tr><th>层次</th><th>关键锚点</th><th>解决的问题</th></tr>
                         <tr><td>前端层</td><td>Next.js board / workspace</td><td>人和 agent 如何在同一个任务面上协作</td></tr>
@@ -83,12 +131,29 @@
                     <h2>04 · 它不是聊天前端，而是 Board 视角的多 Agent 协作面</h2>
                     <p>如果说 Cabinet 把知识库当主壳，Multica 则明显把 board 当主壳。这里最重要的不是一个更华丽的聊天框，而是：<strong>agent 像同事一样出现在任务板上</strong>。</p>
                     <p>这意味着它的主视角不是“我和一个 agent 对话”，而是“团队里有哪些 agent、谁领了什么活、谁卡住了、谁交付了结果”。这就是 managed agents 和单 agent 工具最大的产品观差异。</p>
-                    <div class="course-quote">
-                        <p><strong>[插图提示词]</strong></p>
-                        <p>用途：画 Multica 的 board-first managed agents 架构。</p>
-                        <p>形式：分层结构图；Mermaid 很合适。</p>
-                        <p>提示词：顶部是 Next.js board/workspace，中间是 Go backend + websocket + postgres，下面是 local daemon 与 runtime registry，再下面是 Claude Code / Codex / OpenClaw / OpenCode worker providers，侧边加 reusable skills 回灌到 team memory。</p>
-                        <p>Mermaid 更适合：是。</p>
+                    <div class="unpacked-board-diagram" aria-label="Multica board-first managed agents 架构图">
+                        <div class="unpacked-board-diagram__lane unpacked-board-diagram__lane--top">
+                            <strong>Next.js Board / Workspace</strong>
+                            <span>assignment · blocker · comment · delivery</span>
+                        </div>
+                        <div class="unpacked-board-diagram__lane">
+                            <strong>Go Backend + WebSocket + PostgreSQL</strong>
+                            <span>任务流、状态流、runtime registry 统一落库</span>
+                        </div>
+                        <div class="unpacked-board-diagram__lane unpacked-board-diagram__lane--hot">
+                            <strong>Local Daemon / Cloud Runtime</strong>
+                            <span>让 worker provider 变成可管理执行体</span>
+                        </div>
+                        <div class="unpacked-board-diagram__providers">
+                            <span>Claude Code</span>
+                            <span>Codex</span>
+                            <span>OpenClaw</span>
+                            <span>OpenCode</span>
+                        </div>
+                        <div class="unpacked-board-diagram__memory">
+                            <strong>Reusable Skills</strong>
+                            <span>成功方案回灌到 team memory</span>
+                        </div>
                     </div>
                 </section>
 
