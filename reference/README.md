@@ -4,6 +4,15 @@
 
 > 说明：原消息里的两个 `reference_agent` 按意图拆成 **`reference_rag`** 与 **`reference_agent`**；与 Source Map / Claude Code 逆向相关的仓库集中在 **`reference_sourcemap`**。
 
+另见：
+
+- **`reference/REFERENCE-STRUCTURE.md`**
+
+这份文件用于维护：
+- 当前 `reference/` 结构镜像
+- 哪些仓库已经被站点吸收
+- 哪些仓库仍缺少合适的站点落点
+
 ## 子目录一览
 
 | 目录 | 内容定位 |
@@ -11,6 +20,7 @@
 | **`reference_rag/`** | RAG 全栈教程与实验数据（例如 Datawhale **all-in-rag** 克隆）。 |
 | **`reference_agent/`** | Agent、论文导读、研究站点等（例如 **AgentGuide** 整包）；撰稿用浅克隆见该目录下 **`README.md`**（如 `superpowers-marketplace`、`autoresearch`、`DeepScientist`、`hermes-agent`）。 |
 | **`reference_cc_ui/`** | Claude Code / agent 可视化控制台、Web UI、HUD 参考（如 `claudecodeui`、`hermes-webui`、`hermes-hud`），适合给 LikeCode 的 Web UI 借鉴。 |
+| **`reference_cli_platform/`** | 平台型 CLI 与 connector-platform workflow 参考（如 `twitter-cli`、`xiaohongshu-cli`、`bilibili-cli`、`discord-cli`、`tg-cli`），适合研究“平台对象如何压成 CLI，以及如何继续接入 connector / workspace / automation”。 |
 | **`reference_design_ui/`** | 演示页、Slides、程序化视频与前端表达参考（如 `LivePPT`、`Remotion`、`Slidev`），适合给站点专题、可视化讲解、演示稿和绘图/演示插件线借鉴。 |
 | **`reference_meta(Manage)agent/`** | Managed / meta-agent 平台与多 agent 工作台参考（如 `cabinet`、`multica`），适合研究“谁来管理 agent”“runtime / daemon / board / knowledge base 如何协同”。 |
 | **`reference_skill/`** | 技能库、技能打包与知识胶囊型仓库（如 `baoyu-skills`），适合给技能市场、知识组织与 prompt packaging 借鉴。 |
@@ -27,6 +37,15 @@
 | `reference/claude-code2/`、`reference/claw-code/` 等逆向镜像 | `reference/reference_sourcemap/<同名>/` |
 
 个人脚本或文档里若仍写旧路径，请按上表替换。
+
+`reference_sourcemap/` 这组现在还补进了：
+
+- `everything-claude-code/`
+
+它更适合被看成：
+- 跨 harness 分发壳
+- agents / skills / commands / rules 的统一工作流表面
+- 向 dashboard / control plane 继续演化的样本
 
 ## 2026-04 新增参考分类
 
@@ -82,6 +101,22 @@
 - 可视化控制台
 - 运行状态与事件可观测性
 - agent session 的前端表达
+
+### `reference_cli_platform/`
+
+- `twitter-cli/`
+- `xiaohongshu-cli/`
+- `bilibili-cli/`
+- `discord-cli/`
+- `tg-cli/`
+
+这类仓库更适合借鉴：
+- 平台对象如何压成稳定 CLI
+- 本地优先同步 / 搜索 / 导出如何组织
+- connector-platform workflow 如何和 agent、workspace、automation 接起来
+
+这条线不要只当“平台抓取工具”看，更适合归到：
+- `connector-platform workflow`
 
 ### `reference_design_ui/`
 

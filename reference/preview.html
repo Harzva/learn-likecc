@@ -1,0 +1,1121 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Architecture Explorer Demo</title>
+  <style>
+    :root {
+      --bg: #0b0b0d;
+      --panel: rgba(18, 18, 22, 0.88);
+      --panel-2: rgba(12, 12, 16, 0.72);
+      --line: rgba(255, 255, 255, 0.10);
+      --line-strong: rgba(255, 255, 255, 0.16);
+      --text: #f3eee5;
+      --muted: #b7aea0;
+      --muted-2: #8f877a;
+      --gold: #d5ad55;
+      --green: #79b56a;
+      --blue: #85add1;
+      --orange: #c98a66;
+      --gray: #a8a39b;
+      --purple: #a98bc8;
+      --shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+      --radius: 18px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      --serif: Georgia, ui-serif, Cambria, "Times New Roman", Times, serif;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 700px at 20% 0%, rgba(212, 172, 80, 0.08), transparent 55%),
+        radial-gradient(900px 600px at 85% 20%, rgba(120, 170, 210, 0.06), transparent 55%),
+        linear-gradient(180deg, #0a0a0d 0%, #09090b 45%, #0a0a0d 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.22;
+      background-image:
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 3px),
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0 1px, transparent 1px 3px);
+      mix-blend-mode: soft-light;
+    }
+
+    .page {
+      width: min(1280px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 28px 0 36px;
+    }
+
+    .kicker {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--gold);
+      font-family: var(--mono);
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      margin-bottom: 10px;
+    }
+
+    .kicker::after {
+      content: "";
+      display: block;
+      height: 1px;
+      flex: 1;
+      background: linear-gradient(90deg, rgba(213,173,85,.45), rgba(213,173,85,.12));
+    }
+
+    h1 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(40px, 6vw, 72px);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+    }
+
+    .subtitle {
+      margin: 16px 0 26px;
+      color: var(--muted);
+      font-family: var(--serif);
+      font-size: clamp(20px, 2.5vw, 32px);
+      line-height: 1.2;
+    }
+
+    .shell {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(18,18,22,.84), rgba(12,12,16,.76));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+    }
+
+    .toolbar-left, .toolbar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font: inherit;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      border-color: rgba(213,173,85,.35);
+      box-shadow: 0 10px 26px rgba(0,0,0,.18);
+      background: rgba(255,255,255,0.065);
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .ghost {
+      background: rgba(255,255,255,0.02);
+      color: var(--muted);
+    }
+
+    .gold {
+      background: rgba(213,173,85,.10);
+      border-color: rgba(213,173,85,.24);
+      color: #f4ddb0;
+    }
+
+    .path {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      min-height: 44px;
+    }
+
+    .crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    .crumb.active {
+      color: #111;
+      background: rgba(213,173,85,.92);
+      border-color: transparent;
+    }
+
+    .crumb-sep {
+      color: var(--muted-2);
+      font-family: var(--mono);
+      font-size: 12px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(620px, 1.55fr) minmax(300px, 0.85fr);
+      gap: 0;
+    }
+
+    .canvas-wrap {
+      padding: 20px;
+      border-right: 1px solid var(--line);
+    }
+
+    .panel {
+      padding: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,.015), rgba(255,255,255,0));
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 14px;
+      margin-bottom: 18px;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 4px;
+      box-shadow: 0 0 0 1px rgba(255,255,255,.08) inset;
+    }
+
+    .scope {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 6px 0 16px;
+    }
+
+    .scope .title {
+      font-family: var(--mono);
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .scope .meta {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .treemap {
+      position: relative;
+      min-height: 620px;
+      height: 62vh;
+      max-height: 760px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: radial-gradient(circle at top left, rgba(255,255,255,.03), transparent 45%), rgba(0,0,0,.24);
+      overflow: hidden;
+    }
+
+    .tile {
+      position: absolute;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,.22);
+      overflow: hidden;
+      padding: 0;
+      text-align: left;
+      color: #101010;
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.08),
+        0 18px 40px rgba(0,0,0,.18);
+      transition:
+        transform .18s ease,
+        box-shadow .22s ease,
+        filter .22s ease,
+        outline-color .22s ease,
+        background .18s ease;
+      animation: tileIn .28s ease both;
+    }
+
+    .tile:hover {
+      transform: translateY(-2px) scale(1.005);
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.12),
+        0 20px 44px rgba(0,0,0,.25);
+      filter: saturate(1.04) brightness(1.03);
+    }
+
+    .tile.selected {
+      outline: 2px solid rgba(244, 221, 176, 0.98);
+      outline-offset: -2px;
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.16),
+        0 20px 52px rgba(0,0,0,.28),
+        0 0 0 1px rgba(213,173,85,.18);
+    }
+
+    .tile-inner {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 14px;
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+    }
+
+    .tile-top {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .tile-title {
+      font-family: var(--mono);
+      font-size: clamp(13px, 1vw, 16px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: rgba(16,16,16,.96);
+    }
+
+    .tile-meta {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: rgba(16,16,16,.72);
+    }
+
+    .tile-desc {
+      font-size: 12px;
+      line-height: 1.35;
+      color: rgba(16,16,16,.66);
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      max-width: 26ch;
+    }
+
+    .tile-tag {
+      align-self: flex-start;
+      font-family: var(--mono);
+      font-size: 11px;
+      line-height: 1;
+      border-radius: 999px;
+      padding: 6px 8px;
+      color: rgba(16,16,16,.72);
+      background: rgba(255,255,255,.34);
+      backdrop-filter: blur(4px);
+    }
+
+    .panel h2 {
+      margin: 0 0 10px;
+      font-family: var(--serif);
+      font-size: 32px;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 10px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      background: rgba(255,255,255,.02);
+      margin-bottom: 14px;
+    }
+
+    .eyebrow .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin: 16px 0 18px;
+    }
+
+    .stat {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      background: rgba(255,255,255,.03);
+    }
+
+    .stat .label {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    .stat .value {
+      font-family: var(--mono);
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .copy {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .section-title {
+      margin: 20px 0 10px;
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted-2);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 12px;
+    }
+
+    .panel-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .hint {
+      margin-top: 18px;
+      padding: 14px;
+      border: 1px dashed rgba(255,255,255,.14);
+      border-radius: 14px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+      background: rgba(255,255,255,.015);
+    }
+
+    .footer-note {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 16px 20px 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted-2);
+      font-size: 13px;
+      background: rgba(255,255,255,.015);
+    }
+
+    .muted { color: var(--muted); }
+
+    .empty {
+      display: grid;
+      place-items: center;
+      height: 100%;
+      color: var(--muted);
+      padding: 24px;
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    @keyframes tileIn {
+      from { opacity: 0; transform: translateY(8px) scale(.995); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @media (max-width: 1080px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .canvas-wrap {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .treemap {
+        min-height: 520px;
+        height: 56vh;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page { width: min(100vw - 16px, 1280px); padding-top: 16px; }
+      .toolbar, .canvas-wrap, .panel, .footer-note { padding-left: 14px; padding-right: 14px; }
+      .detail-grid { grid-template-columns: 1fr; }
+      .treemap { min-height: 430px; height: 55vh; }
+      h1 { font-size: 40px; }
+      .subtitle { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="kicker">02</div>
+    <h1>Architecture Explorer</h1>
+    <p class="subtitle">点击源码树，按目录钻取查看内部结构。</p>
+
+    <div class="shell">
+      <div class="toolbar">
+        <div class="toolbar-left">
+          <button id="backBtn" class="ghost">← 返回上级</button>
+          <button id="homeBtn" class="ghost">⌂ 回到 src</button>
+          <button id="focusBtn" class="gold">聚焦当前节点</button>
+        </div>
+        <div class="toolbar-right path" id="breadcrumbs"></div>
+      </div>
+
+      <div class="layout">
+        <div class="canvas-wrap">
+          <div class="legend" id="legend"></div>
+          <div class="scope">
+            <div>
+              <div class="title" id="scopeTitle">src</div>
+              <div class="meta" id="scopeMeta"></div>
+            </div>
+            <div class="meta" id="scopeHint">单击目录卡片下钻，面包屑可返回任意层级</div>
+          </div>
+          <div class="treemap" id="treemap"></div>
+        </div>
+
+        <aside class="panel">
+          <div id="details"></div>
+        </aside>
+      </div>
+
+      <div class="footer-note">
+        <div>Demo 逻辑：<span class="muted">目录 JSON → treemap 布局 → 绝对定位 div → 点击钻取</span></div>
+        <div>适合改造成：<span class="muted">Astro / React / Vue / 纯 HTML 原型</span></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const CATEGORY_COLORS = {
+      'Tools & Commands': 'rgba(214, 174, 84, 0.94)',
+      'Core Processing': 'rgba(121, 181, 106, 0.93)',
+      'UI Layer': 'rgba(133, 173, 209, 0.95)',
+      'Infrastructure': 'rgba(201, 138, 102, 0.93)',
+      'Support & Utilities': 'rgba(168, 163, 155, 0.95)',
+      'Personality & UX': 'rgba(169, 139, 200, 0.93)'
+    };
+
+    const TREE = {
+      name: 'src',
+      description: '应用源码根目录。这里用目录体积、职责分层和点击钻取，复刻 ccunpacked.dev 的 Architecture Explorer 思路。',
+      children: [
+        {
+          name: 'utils',
+          category: 'Support & Utilities',
+          description: '通用工具函数、解析器和适配层，通常数量最多。',
+          examples: ['fs.ts', 'path.ts', 'diff.ts', 'git.ts'],
+          children: [
+            { name: 'fs', files: 120, description: '文件系统读写、watch、缓存。', examples: ['readFile.ts', 'watchTree.ts'] },
+            { name: 'pathing', files: 98, description: '路径规范化、别名解析、glob。', examples: ['resolvePath.ts', 'matchGlob.ts'] },
+            { name: 'git', files: 84, description: 'git 状态、diff、分支与变更整合。', examples: ['gitStatus.ts', 'parseDiff.ts'] },
+            { name: 'cache', files: 60, description: '内存缓存、LRU 和结果复用。', examples: ['memo.ts', 'lru.ts'] },
+            { name: 'markdown', files: 55, description: 'Markdown AST、渲染和裁剪。', examples: ['parseMarkdown.ts'] },
+            { name: 'format', files: 40, description: '文本格式化、输出对齐、token 裁剪。', examples: ['wrap.ts', 'truncate.ts'] },
+            { name: 'telemetry', files: 45, description: '埋点清洗、发送与脱敏。', examples: ['events.ts', 'sanitize.ts'] },
+            { name: 'testing', files: 62, description: '测试桩、fixture 与 mock helper。', examples: ['fixtures.ts', 'mockRepo.ts'] }
+          ]
+        },
+        {
+          name: 'components',
+          category: 'UI Layer',
+          description: '终端 UI、界面组件、交互反馈。',
+          examples: ['StatusBar.tsx', 'CommandPalette.tsx'],
+          children: [
+            {
+              name: 'chat',
+              description: '消息区与流式响应。',
+              children: [
+                { name: 'messages', files: 88, description: '消息列表、token 流拼接。', examples: ['MessageList.tsx'] },
+                { name: 'composer', files: 72, description: '输入区、快捷键与提交控制。', examples: ['Composer.tsx'] },
+                { name: 'attachments', files: 55, description: '文件附件、拖拽与预览。', examples: ['AttachmentRow.tsx'] }
+              ]
+            },
+            {
+              name: 'chrome',
+              description: '外框 UI 与状态显示。',
+              children: [
+                { name: 'status-bar', files: 44, description: 'token、模型、工具状态栏。', examples: ['StatusBar.tsx'] },
+                { name: 'toasts', files: 36, description: '提示信息与错误反馈。', examples: ['ToastHost.tsx'] },
+                { name: 'modals', files: 40, description: '确认弹窗和多步骤面板。', examples: ['ConfirmModal.tsx'] }
+              ]
+            },
+            {
+              name: 'editor',
+              description: '预览、diff、富文本和代码块。',
+              children: [
+                { name: 'diff-view', files: 28, description: '补丁预览和变更对比。', examples: ['PatchView.tsx'] },
+                { name: 'code-block', files: 16, description: '代码高亮与复制按钮。', examples: ['CodeBlock.tsx'] },
+                { name: 'tables', files: 10, description: '表格化结果渲染。', examples: ['ResultsTable.tsx'] }
+              ]
+            }
+          ]
+        },
+        {
+          name: 'commands',
+          category: 'Tools & Commands',
+          description: '斜杠命令、命令路由与参数解析。',
+          examples: ['/init', '/compact', '/review'],
+          children: [
+            { name: 'builtin', files: 82, description: '内置命令定义、权限和帮助文案。', examples: ['init.ts', 'review.ts'] },
+            { name: 'parsers', files: 42, description: '命令行参数、flag、schema 校验。', examples: ['parseFlags.ts'] },
+            { name: 'router', files: 33, description: '命令分派、中间件和执行器。', examples: ['commandRouter.ts'] },
+            { name: 'history', files: 18, description: '命令历史与补全。', examples: ['commandHistory.ts'] },
+            { name: 'help', files: 14, description: '命令说明与 examples 面板。', examples: ['helpText.ts'] }
+          ]
+        },
+        {
+          name: 'tools',
+          category: 'Tools & Commands',
+          description: '工具调用协议、工具清单与执行包装。',
+          examples: ['ReadTool.ts', 'EditTool.ts'],
+          children: [
+            { name: 'filesystem', files: 64, description: '读取、写入、搜索、批量修改。', examples: ['ReadTool.ts', 'EditTool.ts'] },
+            { name: 'shell', files: 40, description: '命令执行、沙箱与流式输出。', examples: ['BashTool.ts'] },
+            { name: 'planning', files: 26, description: '计划更新、任务拆分和状态同步。', examples: ['PlanTool.ts'] },
+            { name: 'connectors', files: 30, description: '外部系统桥接，如 MCP 或插件。', examples: ['ConnectorRegistry.ts'] },
+            { name: 'safety', files: 24, description: '危险操作确认与风险分级。', examples: ['safetyGate.ts'] }
+          ]
+        },
+        {
+          name: 'services',
+          category: 'Core Processing',
+          description: '面向场景的核心服务层。',
+          examples: ['ContextService.ts', 'AgentLoop.ts'],
+          children: [
+            { name: 'context', files: 38, description: '会话上下文整理、摘要和裁剪。', examples: ['ContextService.ts'] },
+            { name: 'agent-loop', files: 34, description: '循环执行、工具决策和阶段切换。', examples: ['AgentLoop.ts'] },
+            { name: 'render', files: 18, description: '输出渲染、chunk 合并和刷新策略。', examples: ['RenderService.ts'] },
+            { name: 'prompts', files: 16, description: '系统提示、模板与多层拼接。', examples: ['promptBuilder.ts'] },
+            { name: 'session', files: 24, description: '会话管理、恢复和状态持久化。', examples: ['SessionStore.ts'] }
+          ]
+        },
+        {
+          name: 'hooks',
+          category: 'UI Layer',
+          description: '跨组件共享状态和副作用逻辑。',
+          examples: ['useHotkeys.ts', 'useStreaming.ts'],
+          children: [
+            { name: 'streaming', files: 34, description: '流式响应控制与断点恢复。', examples: ['useStreaming.ts'] },
+            { name: 'input', files: 26, description: '输入状态、提交逻辑与快捷键。', examples: ['useComposer.ts'] },
+            { name: 'layout', files: 18, description: '面板尺寸、聚焦与滚动行为。', examples: ['useLayout.ts'] },
+            { name: 'history', files: 14, description: '消息历史与页面还原。', examples: ['useHistory.ts'] },
+            { name: 'theme', files: 12, description: '主题和视觉偏好。', examples: ['useTheme.ts'] }
+          ]
+        },
+        {
+          name: 'ink',
+          category: 'UI Layer',
+          description: 'CLI 渲染器与底层终端抽象。',
+          examples: ['render.ts', 'measureText.ts'],
+          children: [
+            { name: 'renderer', files: 46, description: '终端树渲染与 reconciliation。', examples: ['render.ts'] },
+            { name: 'widgets', files: 22, description: '基础控件，如框、滚动、列表。', examples: ['Box.tsx', 'Text.tsx'] },
+            { name: 'events', files: 14, description: '键盘、窗口大小和输入事件。', examples: ['inputManager.ts'] },
+            { name: 'layout', files: 14, description: '字符宽度、换行与测量。', examples: ['measureText.ts'] }
+          ]
+        },
+        {
+          name: 'bridge',
+          category: 'Infrastructure',
+          description: '主程序与工具/外部进程之间的桥接层。',
+          examples: ['ipcBridge.ts', 'protocol.ts'],
+          children: [
+            { name: 'ipc', files: 13, description: '进程通信协议。', examples: ['ipcBridge.ts'] },
+            { name: 'serialization', files: 10, description: '事件与消息序列化。', examples: ['protocol.ts'] },
+            { name: 'retries', files: 8, description: '重试、幂等与故障恢复。', examples: ['retry.ts'] }
+          ]
+        },
+        {
+          name: 'constants',
+          category: 'Support & Utilities',
+          description: '常量、枚举和共享配置。',
+          examples: ['tokens.ts', 'routes.ts'],
+          children: [
+            { name: 'model', files: 8, description: '模型、token 上限和 provider 常量。', examples: ['tokens.ts'] },
+            { name: 'ui', files: 7, description: 'UI 常量与快捷键映射。', examples: ['shortcuts.ts'] },
+            { name: 'routes', files: 6, description: '命令和路由名。', examples: ['routes.ts'] }
+          ]
+        },
+        {
+          name: 'skills',
+          category: 'Tools & Commands',
+          description: '预设技能、专家模式和任务模板。',
+          examples: ['debug.md', 'review.md'],
+          children: [
+            { name: 'debug', files: 7, description: '排错工作流。', examples: ['debug.md'] },
+            { name: 'review', files: 6, description: '代码审查模板。', examples: ['review.md'] },
+            { name: 'refactor', files: 4, description: '重构步骤说明。', examples: ['refactor.md'] },
+            { name: 'release', files: 3, description: '发布前检查列表。', examples: ['release.md'] }
+          ]
+        },
+        {
+          name: 'cli',
+          category: 'Infrastructure',
+          description: '入口、参数解析和启动流程。',
+          examples: ['main.ts', 'bootstrap.ts'],
+          children: [
+            { name: 'bootstrap', files: 9, description: '环境初始化、依赖装配。', examples: ['bootstrap.ts'] },
+            { name: 'argv', files: 6, description: 'CLI 参数定义。', examples: ['argv.ts'] },
+            { name: 'main', files: 5, description: '应用入口。', examples: ['main.ts'] }
+          ]
+        },
+        {
+          name: 'personality',
+          category: 'Personality & UX',
+          description: '人格化表达、语气与偏好管理。',
+          examples: ['tone.ts', 'persona.ts'],
+          children: [
+            { name: 'voice', files: 8, description: '语气与措辞。', examples: ['tone.ts'] },
+            { name: 'prefs', files: 6, description: '用户偏好与开关。', examples: ['persona.ts'] },
+            { name: 'formatters', files: 4, description: '回应风格格式化。', examples: ['style.ts'] }
+          ]
+        },
+        {
+          name: 'providers',
+          category: 'Core Processing',
+          description: '模型供应商适配器。',
+          examples: ['OpenAIProvider.ts', 'AnthropicProvider.ts'],
+          children: [
+            { name: 'anthropic', files: 9, description: 'Anthropic 协议适配。', examples: ['AnthropicProvider.ts'] },
+            { name: 'openai', files: 8, description: 'OpenAI 协议适配。', examples: ['OpenAIProvider.ts'] },
+            { name: 'vertex', files: 5, description: '云环境 provider。', examples: ['VertexProvider.ts'] }
+          ]
+        },
+        {
+          name: 'mcp',
+          category: 'Core Processing',
+          description: 'MCP 连接、注册和代理调用。',
+          examples: ['mcpClient.ts', 'registry.ts'],
+          children: [
+            { name: 'client', files: 7, description: '客户端封装。', examples: ['mcpClient.ts'] },
+            { name: 'registry', files: 6, description: '服务注册和发现。', examples: ['registry.ts'] },
+            { name: 'proxy', files: 4, description: '工具调用代理。', examples: ['proxy.ts'] }
+          ]
+        },
+        {
+          name: 'telemetry',
+          category: 'Infrastructure',
+          description: '监控、诊断和性能指标。',
+          examples: ['trace.ts', 'metrics.ts'],
+          children: [
+            { name: 'trace', files: 7, description: '请求链路和阶段追踪。', examples: ['trace.ts'] },
+            { name: 'metrics', files: 5, description: '耗时、数量和错误率。', examples: ['metrics.ts'] },
+            { name: 'exporters', files: 4, description: '导出到外部系统。', examples: ['otelExporter.ts'] }
+          ]
+        }
+      ]
+    };
+
+    let currentRoot = TREE;
+    let selectedNode = TREE;
+    let trail = [TREE];
+
+    function enrich(node, inheritedCategory = null, parentPath = '') {
+      node.category = node.category || inheritedCategory || 'Support & Utilities';
+      node.path = parentPath ? `${parentPath}/${node.name}` : node.name;
+      if (node.children && node.children.length) {
+        node.children.forEach(child => enrich(child, node.category, node.path));
+        node.value = node.children.reduce((sum, child) => sum + child.value, 0);
+      } else {
+        node.value = node.files || 0;
+      }
+      node.files = node.value;
+      return node;
+    }
+
+    enrich(TREE);
+
+    function countDirectories(node) {
+      if (!node.children || !node.children.length) return 0;
+      return node.children.length + node.children.reduce((sum, child) => sum + countDirectories(child), 0);
+    }
+
+    function getDepth(node) {
+      if (!node.children || !node.children.length) return 1;
+      return 1 + Math.max(...node.children.map(getDepth));
+    }
+
+    function categoryBreakdown(node) {
+      const counts = new Map();
+      if (node.children && node.children.length) {
+        node.children.forEach(child => {
+          counts.set(child.category, (counts.get(child.category) || 0) + child.value);
+        });
+      }
+      return [...counts.entries()].sort((a, b) => b[1] - a[1]);
+    }
+
+    function balanceSplit(items) {
+      const groupA = [];
+      const groupB = [];
+      let sumA = 0;
+      let sumB = 0;
+
+      for (const item of items) {
+        if (sumA <= sumB) {
+          groupA.push(item);
+          sumA += item.value;
+        } else {
+          groupB.push(item);
+          sumB += item.value;
+        }
+      }
+
+      if (!groupB.length && groupA.length > 1) {
+        const moved = groupA.pop();
+        groupB.push(moved);
+        sumA -= moved.value;
+        sumB += moved.value;
+      }
+
+      return { groupA, groupB, sumA, sumB };
+    }
+
+    function binaryTreemap(items, x, y, width, height, out = []) {
+      if (!items.length || width <= 0 || height <= 0) return out;
+      if (items.length === 1) {
+        out.push({ node: items[0], x, y, width, height });
+        return out;
+      }
+
+      const sorted = [...items].sort((a, b) => b.value - a.value);
+      const total = sorted.reduce((sum, item) => sum + item.value, 0);
+      const { groupA, groupB, sumA, sumB } = balanceSplit(sorted);
+
+      if (!groupB.length) {
+        out.push({ node: sorted[0], x, y, width, height });
+        return out;
+      }
+
+      if (width >= height) {
+        const split = width * (sumA / total);
+        binaryTreemap(groupA, x, y, split, height, out);
+        binaryTreemap(groupB, x + split, y, width - split, height, out);
+      } else {
+        const split = height * (sumA / total);
+        binaryTreemap(groupA, x, y, width, split, out);
+        binaryTreemap(groupB, x, y + split, width, height - split, out);
+      }
+      return out;
+    }
+
+    function colorFor(category) {
+      return CATEGORY_COLORS[category] || CATEGORY_COLORS['Support & Utilities'];
+    }
+
+    function el(tag, className, text) {
+      const node = document.createElement(tag);
+      if (className) node.className = className;
+      if (text !== undefined) node.textContent = text;
+      return node;
+    }
+
+    function renderLegend() {
+      const legend = document.getElementById('legend');
+      legend.innerHTML = '';
+      Object.entries(CATEGORY_COLORS).forEach(([label, color]) => {
+        const item = el('div', 'legend-item');
+        const dot = el('span', 'legend-dot');
+        dot.style.background = color;
+        item.append(dot, document.createTextNode(label));
+        legend.appendChild(item);
+      });
+    }
+
+    function renderBreadcrumbs() {
+      const wrap = document.getElementById('breadcrumbs');
+      wrap.innerHTML = '';
+      trail.forEach((node, index) => {
+        const crumb = el('button', 'crumb' + (index === trail.length - 1 ? ' active' : ''));
+        crumb.textContent = node.name;
+        crumb.addEventListener('click', () => {
+          currentRoot = node;
+          selectedNode = node;
+          trail = trail.slice(0, index + 1);
+          render();
+        });
+        wrap.appendChild(crumb);
+        if (index !== trail.length - 1) {
+          wrap.appendChild(el('span', 'crumb-sep', '/'));
+        }
+      });
+    }
+
+    function renderScope() {
+      document.getElementById('scopeTitle').textContent = currentRoot.path;
+      const childrenCount = currentRoot.children?.length || 0;
+      document.getElementById('scopeMeta').textContent = `${currentRoot.value} files · ${childrenCount} immediate items · depth ${getDepth(currentRoot)}`;
+      document.getElementById('backBtn').disabled = trail.length <= 1;
+    }
+
+    function renderDetails(node = selectedNode) {
+      const details = document.getElementById('details');
+      const breakdown = categoryBreakdown(node);
+      const childCount = node.children?.length || 0;
+      const examples = node.examples || [];
+      const dotColor = colorFor(node.category);
+
+      details.innerHTML = '';
+      const eyebrow = el('div', 'eyebrow');
+      const dot = el('span', 'dot');
+      dot.style.background = dotColor;
+      eyebrow.append(dot, document.createTextNode(node.category));
+      details.appendChild(eyebrow);
+
+      details.appendChild(el('h2', '', node.name));
+      const pathText = el('div', 'copy');
+      pathText.textContent = node.path;
+      pathText.style.marginBottom = '12px';
+      pathText.style.fontFamily = 'var(--mono)';
+      pathText.style.fontSize = '13px';
+      pathText.style.color = 'var(--muted-2)';
+      details.appendChild(pathText);
+
+      const p = el('p', 'copy', node.description || '无说明。');
+      details.appendChild(p);
+
+      const stats = el('div', 'detail-grid');
+      const statData = [
+        ['文件总数', `${node.value}`],
+        ['直接子项', `${childCount}`],
+        ['目录总数', `${countDirectories(node)}`],
+        ['层级深度', `${getDepth(node)}`]
+      ];
+      statData.forEach(([label, value]) => {
+        const stat = el('div', 'stat');
+        stat.appendChild(el('span', 'label', label));
+        stat.appendChild(el('div', 'value', value));
+        stats.appendChild(stat);
+      });
+      details.appendChild(stats);
+
+      if (examples.length) {
+        details.appendChild(el('div', 'section-title', 'Representative Files'));
+        const chips = el('div', 'chips');
+        examples.forEach(example => chips.appendChild(el('div', 'chip', example)));
+        details.appendChild(chips);
+      }
+
+      if (breakdown.length) {
+        details.appendChild(el('div', 'section-title', 'Immediate Category Mix'));
+        const chips = el('div', 'chips');
+        breakdown.slice(0, 6).forEach(([name, value]) => {
+          const chip = el('div', 'chip');
+          const color = el('span', 'legend-dot');
+          color.style.width = '10px';
+          color.style.height = '10px';
+          color.style.borderRadius = '999px';
+          color.style.background = colorFor(name);
+          chip.append(color, document.createTextNode(`${name} · ${value}`));
+          chips.appendChild(chip);
+        });
+        details.appendChild(chips);
+      }
+
+      const actions = el('div', 'panel-actions');
+      const zoom = el('button', 'gold', node.children?.length ? `进入 ${node.name}` : '这是叶子节点');
+      zoom.disabled = !(node.children && node.children.length);
+      zoom.addEventListener('click', () => {
+        if (!node.children?.length) return;
+        currentRoot = node;
+        const existingIndex = trail.findIndex(item => item.path === node.path);
+        if (existingIndex >= 0) {
+          trail = trail.slice(0, existingIndex + 1);
+        } else {
+          trail = [...trail, node];
+        }
+        selectedNode = node;
+        render();
+      });
+      const peek = el('button', 'ghost', '选中当前作用域');
+      peek.addEventListener('click', () => {
+        selectedNode = currentRoot;
+        renderDetails(selectedNode);
+        highlightSelected();
+      });
+      actions.append(zoom, peek);
+      details.appendChild(actions);
+
+      const hint = el('div', 'hint');
+      hint.innerHTML = `
+        <strong>交互说明</strong><br>
+        1. 点击 treemap 中的卡片可以下钻到子目录。<br>
+        2. 右上角面包屑支持直接返回任意层。<br>
+        3. 这个 demo 用 <span style="font-family: var(--mono)">binary treemap</span> 做布局，真实项目可以替换成 d3-hierarchy 的 treemap 算法。
+      `;
+      details.appendChild(hint);
+    }
+
+    function highlightSelected() {
+      document.querySelectorAll('.tile').forEach(tile => {
+        tile.classList.toggle('selected', tile.dataset.path === selectedNode.path);
+      });
+    }
+
+    function renderTreemap() {
+      const root = document.getElementById('treemap');
+      root.innerHTML = '';
+
+      if (!currentRoot.children || !currentRoot.children.length) {
+        const empty = el('div', 'empty');
+        empty.innerHTML = `当前节点 <strong>${currentRoot.path}</strong> 没有子目录。<br>点击右上方面包屑可返回上层。`;
+        root.appendChild(empty);
+        return;
+      }
+
+      const width = root.clientWidth;
+      const height = root.clientHeight;
+      const gutter = 6;
+      const pad = 10;
+      const boxes = binaryTreemap(currentRoot.children, 0, 0, width, height);
+
+      boxes.forEach(({ node, x, y, width, height }, index) => {
+        const tile = el('button', 'tile');
+        tile.dataset.path = node.path;
+        tile.style.left = `${x + gutter / 2}px`;
+        tile.style.top = `${y + gutter / 2}px`;
+        tile.style.width = `${Math.max(18, width - gutter)}px`;
+        tile.style.height = `${Math.max(18, height - gutter)}px`;
+        tile.style.background = colorFor(node.category);
+        tile.style.animationDelay = `${Math.min(index * 18, 180)}ms`;
+
+        const inner = el('div', 'tile-inner');
+        inner.style.padding = `${Math.max(10, Math.min(16, Math.min(width, height) * 0.06))}px`;
+        const top = el('div', 'tile-top');
+        top.appendChild(el('div', 'tile-title', `${node.name}/`));
+
+        const canShowMeta = width > 90 && height > 54;
+        const canShowDesc = width > 170 && height > 90;
+        const canShowTag = width > 130 && height > 54;
+        if (canShowMeta) top.appendChild(el('div', 'tile-meta', `${node.value} files`));
+        if (canShowDesc) top.appendChild(el('div', 'tile-desc', node.description || ''));
+        inner.appendChild(top);
+        if (canShowTag) inner.appendChild(el('div', 'tile-tag', node.category));
+        tile.appendChild(inner);
+
+        tile.addEventListener('mouseenter', () => {
+          selectedNode = node;
+          renderDetails(node);
+          highlightSelected();
+        });
+
+        tile.addEventListener('click', () => {
+          selectedNode = node;
+          if (node.children && node.children.length) {
+            currentRoot = node;
+            trail = [...trail, node];
+            render();
+          } else {
+            renderDetails(node);
+            highlightSelected();
+          }
+        });
+
+        root.appendChild(tile);
+      });
+
+      highlightSelected();
+    }
+
+    function render() {
+      renderBreadcrumbs();
+      renderScope();
+      renderTreemap();
+      renderDetails(selectedNode.path.startsWith(currentRoot.path) ? selectedNode : currentRoot);
+    }
+
+    document.getElementById('backBtn').addEventListener('click', () => {
+      if (trail.length <= 1) return;
+      trail.pop();
+      currentRoot = trail[trail.length - 1];
+      selectedNode = currentRoot;
+      render();
+    });
+
+    document.getElementById('homeBtn').addEventListener('click', () => {
+      currentRoot = TREE;
+      selectedNode = TREE;
+      trail = [TREE];
+      render();
+    });
+
+    document.getElementById('focusBtn').addEventListener('click', () => {
+      selectedNode = currentRoot;
+      renderDetails(currentRoot);
+      highlightSelected();
+    });
+
+    renderLegend();
+    render();
+    window.addEventListener('resize', () => renderTreemap());
+  </script>
+</body>
+</html>

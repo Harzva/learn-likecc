@@ -1,0 +1,49 @@
+Agent / RAG Competitions Links
+==============================
+
+Kaggle / RAG-style Competitions
+-------------------------------
+WattBot 2025
+https://www.kaggle.com/competitions/WattBot2025/code
+
+LLM Agentic Legal Information Retrieval
+https://www.kaggle.com/competitions/llm-agentic-legal-information-retrieval/overview/description
+
+AgentEval Part I: Grounded RAG Benchmark
+https://www.kaggle.com/competitions/agent-eval-part-i-grounded-rag-benchmark/overview/abstract
+
+RAGnarok
+https://www.kaggle.com/competitions/ra-gnarok
+
+ACM-ICAIF '24 FinanceRAG Challenge
+https://www.kaggle.com/competitions/icaif-24-finance-rag-challenge
+
+Pure Agent Competitions
+-----------------------
+Orak Game Agent Challenge 2025
+https://www.aicrowd.com/challenges/orak-game-agent-challenge-2025
+
+Agentic AI Challenge: The B2B Billing Automator!
+https://www.kaggle.com/competitions/agentic-ai-challenge-the-b-2-b-billing-automator
+
+AgentX–AgentBeats (Berkeley RDI)
+https://rdi.berkeley.edu/agentx-agentbeats.html
+
+Research / Benchmark Challenges
+-------------------------------
+Meta CRAG / KDD Cup 2024
+https://www.aicrowd.com/challenges/meta-comprehensive-rag-benchmark-kdd-cup-2024
+
+LiveRAG Challenge (SIGIR 2025)
+https://liverag.tii.ae/
+
+MMU-RAGent (NeurIPS 2025 Competition)
+https://neurips.cc/virtual/2025/competition/127730
+
+Vision / Multimodal Agent-RAG Competitions
+------------------------------------------
+Meta CRAG-MM Challenge 2025
+https://www.aicrowd.com/challenges/meta-crag-mm-challenge-2025
+
+MICCAI FLARE 2025 Task 6: Agentic System for Medical Data Analysis
+https://www.codabench.org/competitions/7152/

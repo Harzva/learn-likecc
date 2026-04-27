@@ -1,0 +1,248 @@
+Agent Papers Links (focused on vision / CV)
+Generated on 2026-04-13
+
+==============================
+1. Document / OCR / DocQA
+==============================
+AgentOCR
+https://arxiv.org/abs/2601.04786
+
+MemOCR
+https://arxiv.org/abs/2601.21468
+
+AgenticOCR
+https://arxiv.org/abs/2602.24134
+
+OCR-Agent
+https://arxiv.org/abs/2602.21053
+
+DeepRead
+https://arxiv.org/html/2602.05014v1
+
+DocDancer
+https://arxiv.org/abs/2601.05163
+
+ARIAL
+https://arxiv.org/abs/2511.18192
+
+ORCA
+https://arxiv.org/abs/2603.02438
+
+DocLens
+https://arxiv.org/html/2511.11552v1
+
+MDocAgent
+https://arxiv.org/abs/2503.13964
+
+Agentar-Fin-OCR
+https://arxiv.org/abs/2603.11044
+
+==============================
+2. GUI / Computer Use
+==============================
+CogAgent
+https://arxiv.org/abs/2312.08914
+
+SeeClick
+https://arxiv.org/abs/2401.10935
+
+AppAgent
+https://arxiv.org/abs/2312.13771
+
+AppAgent v2
+https://arxiv.org/abs/2408.11824
+
+ShowUI
+https://arxiv.org/abs/2411.17465
+
+OS-ATLAS
+https://arxiv.org/abs/2410.23218
+
+Navigating the Digital World as Humans Do / UGround
+https://arxiv.org/abs/2410.05243
+
+Aria-UI
+https://arxiv.org/abs/2412.16256
+
+Aguvis
+https://arxiv.org/abs/2412.04454
+
+UI-TARS
+https://arxiv.org/abs/2501.12326
+
+UI-R1
+https://arxiv.org/abs/2503.21620
+
+GUI-R1
+https://arxiv.org/abs/2504.10458
+
+Mobile-Agent-v3 / GUI-Owl
+https://arxiv.org/abs/2508.15144
+
+Mobile-Agent-v3.5 / GUI-Owl-1.5
+https://arxiv.org/abs/2602.16855
+
+ShowUI-Aloha
+https://arxiv.org/abs/2601.07181
+
+==============================
+3. Visual Web Agents
+==============================
+SeeAct (GPT-4V(ision) is a Generalist Web Agent, if Grounded)
+https://arxiv.org/abs/2401.01614
+
+WebVoyager
+https://arxiv.org/abs/2401.13919
+
+WebSight
+https://arxiv.org/abs/2508.16987
+
+MolmoWeb
+https://arxiv.org/abs/2604.08516
+
+See and Remember / V-GEMS
+https://arxiv.org/abs/2603.02626
+
+PhishAgent
+https://arxiv.org/abs/2408.10738
+
+==============================
+4. Embodied / 3D / VLA
+==============================
+PaLM-E
+https://arxiv.org/abs/2303.03378
+
+RT-2
+https://arxiv.org/abs/2307.15818
+
+OpenVLA
+https://arxiv.org/abs/2406.09246
+
+LEO
+https://arxiv.org/abs/2311.12871
+
+Embodied-Reasoner
+https://arxiv.org/abs/2503.21696
+
+ThinkAct
+https://arxiv.org/abs/2507.16815
+
+Fast-ThinkAct
+https://arxiv.org/abs/2601.09708
+
+Green-VLA
+https://arxiv.org/abs/2602.00919
+
+VIMA
+https://arxiv.org/abs/2210.03094
+
+Sea² / See, Act, Adapt
+https://arxiv.org/abs/2602.23806
+
+==============================
+5. Video Agents
+==============================
+VideoAgent
+https://arxiv.org/abs/2403.10517
+
+VideoAgent2
+https://arxiv.org/abs/2504.04471
+
+Ego-R1
+https://arxiv.org/abs/2506.13654
+
+ReAgent-V
+https://arxiv.org/abs/2506.01300
+
+VCA
+https://arxiv.org/abs/2412.10471
+
+Deep Video Discovery
+https://arxiv.org/abs/2505.18079
+
+LensWalk
+https://arxiv.org/abs/2603.24558
+
+Agentic Very Long Video Understanding / EGAgent
+https://arxiv.org/abs/2601.18157
+
+==============================
+6. Medical / Chart / Image Editing
+==============================
+VoxelPrompt
+https://arxiv.org/abs/2410.08397
+
+CT-Agent
+https://arxiv.org/abs/2505.16229
+
+MedOpenClaw
+https://arxiv.org/abs/2603.24649
+
+MACRO
+https://arxiv.org/abs/2603.05860
+
+MMedAgent-RL
+https://arxiv.org/abs/2506.00555
+
+MedVistaGym
+https://arxiv.org/abs/2601.07107
+
+MedSAM-Agent
+https://arxiv.org/abs/2602.03320
+
+ChartAgent
+https://arxiv.org/abs/2510.04514
+
+GenArtist
+https://arxiv.org/abs/2407.05600
+
+PhotoAgent
+https://arxiv.org/abs/2602.22809
+
+Agent Banana
+https://arxiv.org/abs/2602.09084
+
+ImAgent
+https://arxiv.org/abs/2511.11483
+
+==============================
+7. Core CV-Oriented Agent / Tool-Use / Reasoning
+==============================
+DeepEyes
+https://arxiv.org/abs/2505.14362
+
+Active-O3
+https://arxiv.org/abs/2505.21457
+
+VISTA-Gym / VISTA-R1
+https://arxiv.org/abs/2511.19773
+
+V-Thinker
+https://arxiv.org/abs/2511.04460
+
+Walk the Talk
+https://arxiv.org/abs/2604.06777
+
+Act Wisely
+https://arxiv.org/abs/2604.08545
+
+Orion
+https://arxiv.org/abs/2511.14210
+
+ToolScope
+https://arxiv.org/html/2510.27363v1
+
+VTC-Bench
+https://arxiv.org/abs/2603.15030
+
+AgentVista
+https://arxiv.org/abs/2602.23166
+
+Thinking with Images for Multimodal Reasoning
+https://arxiv.org/html/2506.23918v3
+
+A Survey on Agentic Multimodal Large Language Models
+https://arxiv.org/abs/2510.10991
+
+分割
+https://arxiv.org/abs/2601.03054
