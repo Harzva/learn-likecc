@@ -1,4 +1,0 @@
-Ultraplan prompt content is unavailable in this reconstructed source tree.
-
-If this command is reached in an external build, treat it as disabled unless a
-project-specific prompt is supplied.
