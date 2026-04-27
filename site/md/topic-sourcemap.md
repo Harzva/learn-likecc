@@ -1,4 +1,4 @@
-# Source Map 源码专题 - Claude Code Course
+# Source Map 源码专题 - Everything in Claude-Code
 > **更新时间**: 2026-04-12
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-sourcemap.html  
@@ -15,9 +15,11 @@
   - 📚 24 讲源码课程
   - 🗺️ Source Map 事件
   - 🔍 源码反推思想
+  - 🧠 终端 Agent Runtime
   - 🐾 Buddy 彩蛋
   - 📋 发版监督（官方 CLI changelog 速览）
   - 📦 CC 结构导览（中文主循环/工具/命令地图，参考 ccunpacked.dev）
+  - 🧰 Everything Claude Code 解构（跨 harness 壳层样本）
 - **Source Map 事件（摘要）**
 - **十二章列表（S + D）**
 - **Awesome · 源码镜像清单**
@@ -40,6 +42,10 @@
 #### 🔍 源码反推思想
 
 指向 `topic-source-derived.html` 一类「从实现抽哲学」的内容，与逐行读课形成互补。
+
+#### 🧠 终端 Agent Runtime
+
+把启动、状态、query loop、工具控制面、扩展隔离与上下文治理放进一张运行时主线里看，适合放在 `topic-source-derived` 之后继续读。
 
 #### 🐾 Buddy 彩蛋
 

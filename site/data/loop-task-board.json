@@ -1,13 +1,13 @@
 {
   "meta": {
     "updated_from": ".codex-loop/prompt.md",
-    "task_count": 17,
-    "recurring_count": 14,
+    "task_count": 20,
+    "recurring_count": 17,
     "inline_count": 3,
     "state_counts": {
       "deferred": 2,
       "done": 2,
-      "active": 8,
+      "active": 11,
       "queued": 2
     },
     "semantic_groups": [
@@ -292,7 +292,7 @@
     {
       "id": 8,
       "headline": "Loop task: keep mining `reference/` for interesting agent / CLI / UI ideas and turn them into new site subtopics or even new hub topics by following the dedicated plan file:",
-      "prompt_excerpt": "Loop task: keep mining `reference/` for interesting agent / CLI / UI ideas and turn them into new site subtopics or even new hub topics by following the dedicated plan file:\n- `.claude/plans/loloop/active-reference-mining-topics-plan-v1.md`\nExecution rule:\n1. Read that plan first.\n2. Continue the current unchecked / active item instead of randomly switching.\n3. After each bounded pass:\n- mark progress in the plan file\n- check off any completed item",
+      "prompt_excerpt": "Loop task: keep mining `reference/` for interesting agent / CLI / UI ideas and turn them into new site subtopics or even new hub topics by following the dedicated plan file:\n- `.claude/plans/loloop/active-reference-mining-topics-plan-v1.md`\n- `reference/REFERENCE-STRUCTURE.md`\nExecution rule:\n1. Read that plan first.\n2. Refresh `reference/REFERENCE-STRUCTURE.md` before a bounded pass:\n- compare the current `reference/` tree with the structure file\n- record any newly added repo",
       "type": "recurring",
       "state": "active",
       "plan_path": ".claude/plans/loloop/active-reference-mining-topics-plan-v1.md",
@@ -333,19 +333,19 @@
       "has_evolution": true,
       "is_publish_ready": true,
       "is_zhihu_ready": true,
-      "search_text": "Loop task: keep mining `reference/` for interesting agent / CLI / UI ideas and turn them into new site subtopics or even new hub topics by following the dedicated plan file: Loop task: keep mining `reference/` for interesting agent / CLI / UI ideas and turn them into new site subtopics or even new hub topics by following the dedicated plan file: - `.claude/plans/loloop/active-reference-mining-topics-plan-v1.md` Execution rule: 1. Read that plan first. 2. Continue the current unchecked / active item instead of randomly switching. 3. After each bounded pass: - mark progress in the plan file - check off any completed item reference-mining-topics Reference Mining Topics Plan v1 mine `reference/` for strong ideas around agent control, CLI orchestration, skills, Web UI, HUD, and multi-agent workflow design, then turn them into site-ready subtopics or larger topic expansions. - [ ] Review the newly added reference repos and identify the strongest web UI / agent-control ideas that can help LikeCode - [ ] Choose the first site-facing output: - a new subtopic article - an update to an existing topic page - or a justified new major topic - [ ] Prefer insights that help our own `LikeCode` web UI, CLI control, or agent-management design - [ ] LikeCode Web UI inspiration set: - `claudecodeui` - `hermes-webui` - `hermes-hud` - `opencode` - [ ] Agent control / CLI orchestration comparison: - `OfficeCLI` - `opencode` - [ ] Keep `python3 tools/check_site_md_parity.py` passing after each site-writing pass - [ ] Use primary repo evidence instead of vague summary - [ ] Leave clear local repo paths in the final article or topic notes evolution-2026-04-12-site-console-control-contract.md path: `.claude/plans/loloop/active-site-detail-polish-v1.md` milestone: keep the overnight loop moving while Zhihu publication remains time-blocked",
+      "search_text": "Loop task: keep mining `reference/` for interesting agent / CLI / UI ideas and turn them into new site subtopics or even new hub topics by following the dedicated plan file: Loop task: keep mining `reference/` for interesting agent / CLI / UI ideas and turn them into new site subtopics or even new hub topics by following the dedicated plan file: - `.claude/plans/loloop/active-reference-mining-topics-plan-v1.md` - `reference/REFERENCE-STRUCTURE.md` Execution rule: 1. Read that plan first. 2. Refresh `reference/REFERENCE-STRUCTURE.md` before a bounded pass: - compare the current `reference/` tree with the structure file - record any newly added repo reference-mining-topics Reference Mining Topics Plan v1 mine `reference/` for strong ideas around agent control, CLI orchestration, skills, Web UI, HUD, and multi-agent workflow design, then turn them into site-ready subtopics or larger topic expansions. - [ ] Create and maintain `reference/REFERENCE-STRUCTURE.md` as the canonical reference index: - structure - current site-linking status - next planned site-facing outputs - [ ] On each Task 8 pass, compare the live `reference/` tree against `reference/REFERENCE-STRUCTURE.md` - [ ] Prioritize newly added repos, or repos still missing a site-facing destination, before opening lower-value parallel branches - [ ] LikeCode Web UI inspiration set: - `claudecodeui` - `hermes-webui` - `hermes-hud` - `opencode` - [ ] Agent control / CLI orchestration comparison: - `OfficeCLI` - `opencode` - [ ] Refresh `reference/REFERENCE-STRUCTURE.md` whenever the `reference/` tree changes - [ ] Explicitly mark which repos are: - already reflected on the site - partially reflected - not yet reflected - [ ] Keep `python3 tools/check_site_md_parity.py` passing after each site-writing pass evolution-2026-04-12-site-console-control-contract.md path: `.claude/plans/loloop/active-site-detail-polish-v1.md` milestone: keep the overnight loop moving while Zhihu publication remains time-blocked",
       "plan": {
         "title": "Reference Mining Topics Plan v1",
         "status": "active",
         "goal": "mine `reference/` for strong ideas around agent control, CLI orchestration, skills, Web UI, HUD, and multi-agent workflow design, then turn them into site-ready subtopics or larger topic expansions.",
         "updated_at": "2026-04-12",
         "current_focus": [
-          "- [ ] Review the newly added reference repos and identify the strongest web UI / agent-control ideas that can help LikeCode",
-          "- [ ] Choose the first site-facing output:",
-          "- a new subtopic article",
-          "- an update to an existing topic page",
-          "- or a justified new major topic",
-          "- [ ] Prefer insights that help our own `LikeCode` web UI, CLI control, or agent-management design"
+          "- [ ] Create and maintain `reference/REFERENCE-STRUCTURE.md` as the canonical reference index:",
+          "- structure",
+          "- current site-linking status",
+          "- next planned site-facing outputs",
+          "- [ ] On each Task 8 pass, compare the live `reference/` tree against `reference/REFERENCE-STRUCTURE.md`",
+          "- [ ] Prioritize newly added repos, or repos still missing a site-facing destination, before opening lower-value parallel branches"
         ],
         "scope": [
           "- [ ] LikeCode Web UI inspiration set:",
@@ -358,19 +358,22 @@
           "- `opencode`"
         ],
         "validation": [
-          "- [ ] Keep `python3 tools/check_site_md_parity.py` passing after each site-writing pass",
-          "- [ ] Use primary repo evidence instead of vague summary",
-          "- [ ] Leave clear local repo paths in the final article or topic notes"
+          "- [ ] Refresh `reference/REFERENCE-STRUCTURE.md` whenever the `reference/` tree changes",
+          "- [ ] Explicitly mark which repos are:",
+          "- already reflected on the site",
+          "- partially reflected",
+          "- not yet reflected",
+          "- [ ] Keep `python3 tools/check_site_md_parity.py` passing after each site-writing pass"
         ],
         "notes": [
           "- This plan is the canonical checklist for turning `reference/` discoveries into site content",
+          "- `reference/REFERENCE-STRUCTURE.md` is the canonical structural mirror for the local `reference/` tree; Task 8 should refresh it before deciding what to mine next",
           "- Favor bounded passes: inspect one pattern family, choose one site destination, produce one concrete improvement",
-          "- Current broader local state: the recent Task 8 wave is locally deferred until a stronger new reference family, repo cluster, or clearer destination appears; do not keep forcing fresh pages out of the same exhausted sample set",
-          "- First bounded Task 8 output landed in the Skill 市场专题 rather than opening a new topic, because the new `baoyu-skills` / `codex-plugin-cc` references directly strengthen the existing trust-chain explanation"
+          "- Current broader local state: the recent Task 8 wave is locally deferred until a stronger new reference family, repo cluster, or clearer destination appears; do not keep forcing fresh pages out of the same exhausted sample set"
         ],
-        "completed_count": 62,
-        "total_count": 85,
-        "progress": 73
+        "completed_count": 70,
+        "total_count": 102,
+        "progress": 69
       }
     },
     {
@@ -716,7 +719,7 @@
         "title": "LikeCode Workspace App Plan v1",
         "status": "active",
         "goal": "grow the current codex-loop monitor into a separate app-style LikeCode workspace that can read tasks, edit plans in the browser, and keep runtime/log context visible without living inside an article shell.",
-        "updated_at": "2026-04-12",
+        "updated_at": "2026-04-14",
         "current_focus": [
           "- [x] Seed a first independent app shell under `site/app-likecode-workspace.html`",
           "- [x] Add relay-backed plan read/write for dedicated plan files and the guarded prompt contract",
@@ -907,7 +910,7 @@
         "title": "Paper Reading Topic Plan v1",
         "status": "active",
         "goal": "grow the site-level paper-reading line into a reusable hub for paper shelves, per-paper analysis pages, screenshot previews, and future topic-specific paper clusters.",
-        "updated_at": "unknown",
+        "updated_at": "2026-04-13",
         "current_focus": [
           "- [x] Upgrade `topic-agent-papers.html` from a placeholder into a real paper-reading hub",
           "- [x] Download the first four `Agent Skills` papers into `reference/reference_paper/agent-skills-papers/`",
@@ -933,6 +936,157 @@
           "- Keep the first wave narrow and coherent; `Agent Skills` is the first shelf because it directly connects to the site's existing skills / loop / workspace / managed-agent lines.",
           "- Prefer primary paper PDFs plus screenshot previews, not only secondary article summaries.",
           "- Treat paper-reading pages as explainers with strong mapping back to existing site topics rather than isolated summaries."
+        ],
+        "completed_count": 8,
+        "total_count": 21,
+        "progress": 38
+      }
+    },
+    {
+      "id": 18,
+      "headline": "Loop task: keep growing the GitHub achievements / badge line by following the dedicated plan file:",
+      "prompt_excerpt": "Loop task: keep growing the GitHub achievements / badge line by following the dedicated plan file:\n- `.claude/plans/loloop/active-github-achievements-topic-plan-v1.md`\nExecution rule:\n1. Read that plan first.\n2. Continue the current unchecked / active item instead of randomly switching.\n3. After each bounded pass:\n- mark progress in the plan file\n- check off any completed item",
+      "type": "recurring",
+      "state": "active",
+      "plan_path": ".claude/plans/loloop/active-github-achievements-topic-plan-v1.md",
+      "slug": "github-achievements-topic",
+      "plan_href": "https://github.com/Harzva/learn-likecc/blob/main/.claude/plans/loloop/active-github-achievements-topic-plan-v1.md",
+      "semantic_group": "其他循环任务",
+      "latest_evolution": null,
+      "topic_links": [],
+      "has_topic": false,
+      "has_evolution": false,
+      "is_publish_ready": false,
+      "is_zhihu_ready": false,
+      "search_text": "Loop task: keep growing the GitHub achievements / badge line by following the dedicated plan file: Loop task: keep growing the GitHub achievements / badge line by following the dedicated plan file: - `.claude/plans/loloop/active-github-achievements-topic-plan-v1.md` Execution rule: 1. Read that plan first. 2. Continue the current unchecked / active item instead of randomly switching. 3. After each bounded pass: - mark progress in the plan file - check off any completed item github-achievements-topic GitHub Achievements Topic Plan v1 build a small but reusable topic line around GitHub achievements / badges, including what they are, why developers care, how to recognize them, and how they fit the site's broader toolchain and developer-identity threads. - [x] Open a first topic page for GitHub achievements / badges - [x] Connect it into the toolchain topic and left sidebar - [ ] Add a first structured badge gallery with clearer category grouping - [ ] Add one bounded pass that explains which parts are official GitHub achievements versus community icon/documentation layers - [ ] Add one bounded pass that turns the topic into a small how-to reference for profile presentation and developer identity - [ ] topic page - [ ] toolchain integration - [ ] sidebar discoverability - [ ] badge gallery and interpretation - [ ] official vs community source boundary - [ ] `node --check site/js/app.js` - [ ] `python3 tools/refresh_site_topic_metadata.py` - [ ] `python3 tools/build_loop_task_board.py` - [ ] `python3 tools/check_site_md_parity.py`",
+      "plan": {
+        "title": "GitHub Achievements Topic Plan v1",
+        "status": "active",
+        "goal": "build a small but reusable topic line around GitHub achievements / badges, including what they are, why developers care, how to recognize them, and how they fit the site's broader toolchain and developer-identity threads.",
+        "updated_at": "unknown",
+        "current_focus": [
+          "- [x] Open a first topic page for GitHub achievements / badges",
+          "- [x] Connect it into the toolchain topic and left sidebar",
+          "- [ ] Add a first structured badge gallery with clearer category grouping",
+          "- [ ] Add one bounded pass that explains which parts are official GitHub achievements versus community icon/documentation layers",
+          "- [ ] Add one bounded pass that turns the topic into a small how-to reference for profile presentation and developer identity"
+        ],
+        "scope": [
+          "- [ ] topic page",
+          "- [ ] toolchain integration",
+          "- [ ] sidebar discoverability",
+          "- [ ] badge gallery and interpretation",
+          "- [ ] official vs community source boundary"
+        ],
+        "validation": [
+          "- [ ] `node --check site/js/app.js`",
+          "- [ ] `python3 tools/refresh_site_topic_metadata.py`",
+          "- [ ] `python3 tools/build_loop_task_board.py`",
+          "- [ ] `python3 tools/check_site_md_parity.py`"
+        ],
+        "notes": [
+          "- This line should stay modest and useful; it is a subtopic under the broader developer toolchain / profile culture line, not a giant standalone hub.",
+          "- Be explicit about the boundary between official GitHub achievements and community-maintained icon documentation pages."
+        ],
+        "completed_count": 5,
+        "total_count": 19,
+        "progress": 26
+      }
+    },
+    {
+      "id": 19,
+      "headline": "Loop task: keep running the site-wide 文案体检 by following the dedicated plan file:",
+      "prompt_excerpt": "Loop task: keep running the site-wide 文案体检 by following the dedicated plan file:\n- `.claude/plans/loloop/active-site-copy-tone-plan-v1.md`\nExecution rule:\n1. Read that plan first.\n2. Continue the current unchecked / active item instead of randomly switching.\n3. After each bounded pass:\n- mark progress in the plan file\n- check off any completed item",
+      "type": "recurring",
+      "state": "active",
+      "plan_path": ".claude/plans/loloop/active-site-copy-tone-plan-v1.md",
+      "slug": "site-copy-tone",
+      "plan_href": "https://github.com/Harzva/learn-likecc/blob/main/.claude/plans/loloop/active-site-copy-tone-plan-v1.md",
+      "semantic_group": "其他循环任务",
+      "latest_evolution": null,
+      "topic_links": [],
+      "has_topic": false,
+      "has_evolution": false,
+      "is_publish_ready": false,
+      "is_zhihu_ready": false,
+      "search_text": "Loop task: keep running the site-wide 文案体检 by following the dedicated plan file: Loop task: keep running the site-wide 文案体检 by following the dedicated plan file: - `.claude/plans/loloop/active-site-copy-tone-plan-v1.md` Execution rule: 1. Read that plan first. 2. Continue the current unchecked / active item instead of randomly switching. 3. After each bounded pass: - mark progress in the plan file - check off any completed item site-copy-tone 文案体检 Plan v1 - [x] Tighten homepage hero wording so it is shorter, sharper, and less repetitive. - [ ] Run a site-wide wording scan and build a prioritized audit list. - [ ] Reduce over-explaining phrases such as `不只讲` / `不只列` / `不是...而是...` when they make the copy feel heavy. - [ ] Keep the site voice developer-facing, confident, and information-dense without sounding salesy. - [ ] Normalize high-traffic hub pages so intros, section captions, and navigation-adjacent helper text stay concise. - [ ] Build a reusable wording standard for future site copy edits. - [ ] Finish the scan in batches instead of only fixing pages ad hoc. - [ ] `python3 tools/check_site_md_parity.py` - [ ] Spot-check edited pages for shorter, cleaner first-screen copy - [ ] Confirm the page still sounds like the same site, just tighter",
+      "plan": {
+        "title": "文案体检 Plan v1",
+        "status": "active",
+        "goal": "",
+        "updated_at": "unknown",
+        "current_focus": [],
+        "scope": [
+          "- [x] Tighten homepage hero wording so it is shorter, sharper, and less repetitive.",
+          "- [ ] Run a site-wide wording scan and build a prioritized audit list.",
+          "- [ ] Reduce over-explaining phrases such as `不只讲` / `不只列` / `不是...而是...` when they make the copy feel heavy.",
+          "- [ ] Keep the site voice developer-facing, confident, and information-dense without sounding salesy.",
+          "- [ ] Normalize high-traffic hub pages so intros, section captions, and navigation-adjacent helper text stay concise.",
+          "- [ ] Build a reusable wording standard for future site copy edits.",
+          "- [ ] Finish the scan in batches instead of only fixing pages ad hoc."
+        ],
+        "validation": [
+          "- [ ] `python3 tools/check_site_md_parity.py`",
+          "- [ ] Spot-check edited pages for shorter, cleaner first-screen copy",
+          "- [ ] Confirm the page still sounds like the same site, just tighter"
+        ],
+        "notes": [
+          "- 2026-04-13: this task exists because homepage copy drifted toward explanatory contrast phrasing that felt verbose in Chinese (`不只讲 / 不只列 / 不是...而是...`).",
+          "- 2026-04-13: first bounded pass already tightened the homepage hero and portal-map helper copy without changing page structure.",
+          "- 2026-04-13: a first site-wide string scan confirms this task should be treated as a full-site wording audit, not just a homepage polish task; exact `不只讲` usage is already rare, while `不是` appears broadly and needs selective review rather than global replacement."
+        ],
+        "completed_count": 3,
+        "total_count": 17,
+        "progress": 18
+      }
+    },
+    {
+      "id": 20,
+      "headline": "Loop task: keep growing the Claude official resources translation line by following the dedicated plan file:",
+      "prompt_excerpt": "Loop task: keep growing the Claude official resources translation line by following the dedicated plan file:\n- `.claude/plans/loloop/active-claude-official-resources-plan-v1.md`\nExecution rule:\n1. Read that plan first.\n2. Continue the current unchecked / active item instead of randomly switching.\n3. After each bounded pass:\n- mark progress in the plan file\n- check off any completed item",
+      "type": "recurring",
+      "state": "active",
+      "plan_path": ".claude/plans/loloop/active-claude-official-resources-plan-v1.md",
+      "slug": "claude-official-resources",
+      "plan_href": "https://github.com/Harzva/learn-likecc/blob/main/.claude/plans/loloop/active-claude-official-resources-plan-v1.md",
+      "semantic_group": "其他循环任务",
+      "latest_evolution": null,
+      "topic_links": [],
+      "has_topic": false,
+      "has_evolution": false,
+      "is_publish_ready": false,
+      "is_zhihu_ready": false,
+      "search_text": "Loop task: keep growing the Claude official resources translation line by following the dedicated plan file: Loop task: keep growing the Claude official resources translation line by following the dedicated plan file: - `.claude/plans/loloop/active-claude-official-resources-plan-v1.md` Execution rule: 1. Read that plan first. 2. Continue the current unchecked / active item instead of randomly switching. 3. After each bounded pass: - mark progress in the plan file - check off any completed item claude-official-resources Claude Official Resources Plan v1 grow a stable tutorial-side subtopic for Claude official resources translation, covering `tutorials`, `use-cases`, and `Anthropic Engineering`, with image-preserving article translation and site-facing routing. - [x] Create a tutorial-side hub for official resources translation - [x] Preserve overview screenshots for the three source lanes - [x] Add the hub into the tutorial page and the left sidebar - [ ] Open the first engineering-article translation page - [ ] Define the first `tutorials / use-cases / engineering` routing rules back into existing site topics - [ ] official resource hub page - [ ] screenshot-preserving translation lane - [ ] engineering article translation queue - [ ] tutorial-side entry and discoverability - [ ] site routing back into existing topics - [ ] `node --check site/js/app.js` - [ ] `python3 tools/refresh_site_topic_metadata.py` - [ ] `python3 tools/build_loop_task_board.py` - [ ] `python3 tools/check_site_md_parity.py`",
+      "plan": {
+        "title": "Claude Official Resources Plan v1",
+        "status": "active",
+        "goal": "grow a stable tutorial-side subtopic for Claude official resources translation, covering `tutorials`, `use-cases`, and `Anthropic Engineering`, with image-preserving article translation and site-facing routing.",
+        "updated_at": "unknown",
+        "current_focus": [
+          "- [x] Create a tutorial-side hub for official resources translation",
+          "- [x] Preserve overview screenshots for the three source lanes",
+          "- [x] Add the hub into the tutorial page and the left sidebar",
+          "- [ ] Open the first engineering-article translation page",
+          "- [ ] Define the first `tutorials / use-cases / engineering` routing rules back into existing site topics"
+        ],
+        "scope": [
+          "- [ ] official resource hub page",
+          "- [ ] screenshot-preserving translation lane",
+          "- [ ] engineering article translation queue",
+          "- [ ] tutorial-side entry and discoverability",
+          "- [ ] site routing back into existing topics"
+        ],
+        "validation": [
+          "- [ ] `node --check site/js/app.js`",
+          "- [ ] `python3 tools/refresh_site_topic_metadata.py`",
+          "- [ ] `python3 tools/build_loop_task_board.py`",
+          "- [ ] `python3 tools/check_site_md_parity.py`"
+        ],
+        "notes": [
+          "- Treat `engineering` as the main high-value translation lane.",
+          "- Treat `tutorials` as product-facing supplements to `tutorial.html`.",
+          "- Treat `use-cases` as a scenario library to be routed selectively, not blindly translated as a whole shelf.",
+          "- Keep image retention mandatory for single-article translations."
         ],
         "completed_count": 8,
         "total_count": 21,

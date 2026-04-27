@@ -1,4 +1,4 @@
-# 从重建源码提炼设计思想 - Claude Code Course
+# 从重建源码提炼设计思想 - Everything in Claude-Code
 > **更新时间**: 2026-04-12
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-source-derived.html  
@@ -16,6 +16,7 @@
 - **模块 ↔ 思想（真实路径速查）**
 - **硬读导航（带锚点）**
   - 权限硬读 / Compact 硬读 / 其他速览
+  - 进阶子页：终端 Agent Runtime
 - **权限硬读 · yoloClassifier + permissionExplainer**
   - 策略如何落进 JSON 设置：AutoModeRules
   - 面向 UX 的结构化解释：explain_command
@@ -47,6 +48,10 @@
 #### 权限硬读 / Compact 硬读 / 其他速览
 
 分别指向页内更长的专项段落；其他速览可覆盖 hooks、MCP 客户端等尚未独立成章的线索。
+
+#### 进阶子页：终端 Agent Runtime
+
+把本页里分散的启动、状态、query loop、工具控制面、扩展隔离和上下文治理收成一条主脊柱，适合作为第二轮阅读。
 
 ### 权限硬读 · yoloClassifier + permissionExplainer
 

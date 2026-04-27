@@ -1,4 +1,4 @@
-# RAG 大专题 - Claude Code Course
+# RAG 大专题 - Everything in Claude-Code
 > **更新时间**: 2026-04-12
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-rag.html  

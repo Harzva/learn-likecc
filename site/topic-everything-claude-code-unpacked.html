@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Everything Claude Code 解构 - Everything in Claude-Code</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧰</text></svg>">
+    <meta name="description" content="解构 everything-claude-code：它不只是 Claude Code 资料汇总，更像一个跨 harness 的性能系统、技能包与插件生态壳。">
+    <meta name="page:updated" content="2026-04-17">
+</head>
+<body class="meta-topic-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="topic-sourcemap.html" class="nav-logo">
+                <span class="logo-icon">🧰</span>
+                <span class="logo-text">Everything Claude Code 解构</span>
+            </a>
+            <div class="nav-links">
+                <a href="#why" class="nav-link">为什么值得看</a>
+                <a href="#shape" class="nav-link">它到底是什么</a>
+                <a href="#layers" class="nav-link">五层结构</a>
+                <a href="#lessons" class="nav-link">我们该学什么</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-sourcemap.html" class="btn-github">源码专题</a>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>🧰 Source Map 邻居样本</span>
+                <span>Claude Code · Codex · OpenCode · Gemini</span>
+            </div>
+            <h1 class="hero-title">
+                Everything Claude Code<br>
+                <span class="gradient-text">跨 harness 壳层样本</span>
+            </h1>
+            <p class="hero-subtitle">
+                这个仓库表面上像“Claude Code 大礼包”，但往目录和 README 里拆，会发现它更像一个完整的 harness performance system：
+                同时提供 agents、skills、commands、rules、插件打包、跨平台安装与后续的 `ECC 2.0` 控制面原型。
+            </p>
+        </div>
+    </section>
+
+    <section id="why" class="section section--soft">
+        <div class="container">
+            <h2 class="section-title">为什么值得重点解构</h2>
+            <div class="quickstart-grid meta-topic-grid meta-topic-grid--concept">
+                <div class="quickstart-card">
+                    <h3>不是普通教程仓库</h3>
+                    <p>它有指南和图文，但真正厚的部分是 agents / skills / commands / rules / plugin manifest / cross-harness 安装面。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>它在做系统外壳</h3>
+                    <p>README 直接把自己定义成 harness performance system。重点是壳层、运行时和持续演化，而不是只教几条命令。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>它和我们当前线很近</h3>
+                    <p>它横跨 Claude Code、Codex、Cursor、OpenCode、Gemini，这和我们正在做的 workspace shell、codex-loop、umbrella CLI 线非常相邻。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="shape" class="section">
+        <div class="container">
+            <h2 class="section-title">它到底是什么</h2>
+            <table class="compare-table">
+                <tr>
+                    <th>如果只看表面</th>
+                    <th>如果往里拆</th>
+                    <th>对我们最有价值的判断</th>
+                </tr>
+                <tr>
+                    <td>Claude Code 技巧、资源、命令和安装大全</td>
+                    <td>跨 harness 的 agents / skills / commands / rules / plugin / dashboard / control-plane 组合系统</td>
+                    <td>更适合被当成“跨 harness 外壳系统样本”，不是普通教程仓库</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <section id="layers" class="section section--soft">
+        <div class="container">
+            <h2 class="section-title">五层结构</h2>
+            <div class="quickstart-grid meta-topic-grid meta-topic-grid--stack">
+                <div class="quickstart-card">
+                    <h3>1. 学习层</h3>
+                    <p>`README`、多语言文档、guides 图片和 quick start 负责把整套系统包装成可读入口。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>2. 工作流层</h3>
+                    <p>`agents/`、`commands/`、`skills/`、`rules/` 是最核心的工作流表面，表达“这套系统能做什么”。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>3. 分发层</h3>
+                    <p>`.claude-plugin/`、`.codex-plugin/`、`.opencode/`、`.trae/`、`.gemini/` 等目录把同一套壳打到多个 harness 上。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>4. 运行与评估层</h3>
+                    <p>`EVALUATION.md`、session/state 基础设施、hook / harness 优化说明，表明它在做持续运行和验证，不只是一套静态配置。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>5. 控制面原型层</h3>
+                    <p>README 提到的 `ECC 2.0 alpha` 和 dashboard，说明它已经在往真正的 runtime / control plane 方向伸出去。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="lessons" class="section">
+        <div class="container">
+            <h2 class="section-title">我们该重点学什么</h2>
+            <div class="quickstart-grid meta-topic-grid meta-topic-grid--entry">
+                <div class="quickstart-card">
+                    <h3>跨 harness 分发面</h3>
+                    <p>同一套工作流如何同时落到 Claude Code、Codex、OpenCode、Gemini，而不是每个平台重写一遍。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>技能 / agents / commands 的统一叙事</h3>
+                    <p>它把三层一起卖，不是只讲 Skills。这对我们的 `codex-loop`、skill 仓库和 umbrella repo 很有参考价值。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>从内容系统长成控制面</h3>
+                    <p>这个仓库已经从“指南 + 插件”长到 dashboard 和 alpha control plane，这条演化路径很适合对照我们的 workspace shell。</p>
+                </div>
+            </div>
+            <p class="section-desc meta-topic-copy meta-topic-copy--tail">
+                本地锚点：<code>reference/reference_sourcemap/everything-claude-code/</code>。当前快照 commit：<code>e0ddb33</code>。
+            </p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-everything-claude-code-unpacked.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>上游仓库：<a href="https://github.com/affaan-m/everything-claude-code" target="_blank" rel="noopener noreferrer">affaan-m/everything-claude-code ↗</a></p>
+            <p>© 2026 Everything in Claude-Code. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -2,7 +2,13 @@
 
 ## Unreleased
 
-- 待补充
+- 新增一组可落盘的终端对比快照，记录 `Like Code + SiliconFlow MiniMax-M2.5[1m]` 已成功跑通，而原生 `Claude Code` 在同一路由上会报 `400 thinking type should be enabled or disabled`
+- 新增针对 SiliconFlow API 格式的 thinking 兼容修复：避免沿用 Anthropic 官方默认的 `adaptive thinking` 语义去请求 SiliconFlow 的兼容接口
+- 明确补充 SiliconFlow 路由配置细节：`ANTHROPIC_BASE_URL` 与 `modelRoutes.*.baseURL` 应写为 `https://api.siliconflow.cn`，不应写成 `https://api.siliconflow.cn/v1/messages`
+- README 已同步补充这次验证结论与成功/失败对比图，方便后续回顾 Like Code 相对原生 Claude Code 在 SiliconFlow 路由上的兼容增强成果
+- 站点新增 `Skill 市场专题`：基于 `https://skillsmp.com/` 解释为什么它适合作为 SKILL.md 生态的发现层，并把“SkillsMP 发现 + GitHub 校验 + 本地安装”整理成站内入口
+- 首页、侧栏与 Markdown 镜像已接入 `topic-skillmarket.html`，同时新增仓库级汇总 `awesome-skills.md`
+- 新增 `.claude/skills/skillsmp-find-install/SKILL.md`，并补上 `tools/install_skill_from_github.py`，把“自动寻找合适 skill 并下载安装”的第一版流程从骨架升级为可执行安装链
 
 ## 1.0.2-likecode - 2026-04-07
 

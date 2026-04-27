@@ -1,0 +1,4 @@
+interface:
+  display_name: "Zhihu Publish"
+  short_description: "Publish Zhihu posts with text or multimodal repo scripts."
+  default_prompt: "Use this skill to publish a Zhihu Markdown article with the local text-first or multimodal browser-automation pipeline."

@@ -57,6 +57,8 @@ Treat the diagnosis as effectively blocking when:
 - hype words or slogan-like claims dominate the article
 - evidence is thin relative to the strength of the claims
 - the prose feels like template-generated commentary rather than a technical article
+- the article reads mostly like recommendation copy or praise copy while lacking concrete technical substance
+- the article keeps citing code paths as core evidence but never shows the relevant code excerpt
 
 ## Script path
 

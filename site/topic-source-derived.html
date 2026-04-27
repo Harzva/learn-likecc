@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>从重建源码提炼设计思想 - Claude Code Course</title>
+    <title>从重建源码提炼设计思想 - Everything in Claude-Code</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔍</text></svg>">
     <meta name="description" content="基于 Source Map 泄露后社区重建的 Claude Code 树，对照真实路径提炼权限、压缩、MCP、Query 编排等设计思想；供与 S/D 课程交叉阅读。">
@@ -174,6 +174,11 @@
                     <p><strong>QueryEngine</strong>：依赖注入壳，见上文模块表。</p>
                     <p><strong>MCP</strong>：<code>ListToolsResultSchema</code> / <code>CallToolResultSchema</code>，见 <code>services/mcp/client.ts</code> 首部 import。</p>
                 </div>
+                <div class="quickstart-card">
+                    <h3>进阶子页</h3>
+                    <p><strong>终端 Agent Runtime</strong>：从启动、状态、query loop、工具控制面、扩展隔离到上下文治理，拉出一条更完整的运行时主链。</p>
+                    <p><a href="topic-agent-runtime.html">进入终端 Agent Runtime →</a></p>
+                </div>
             </div>
         </div>
     </section>
@@ -298,6 +303,7 @@ export async function compactConversation(
             </p>
             <p class="source-derived-actions">
                 <a href="index.html#courses" class="btn btn-primary">去课程表</a>
+                <a href="topic-agent-runtime.html" class="btn btn-secondary">终端 Agent Runtime →</a>
                 <a href="https://github.com/Harzva/learn-likecc/blob/main/awesome-claude-code-source.md" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Awesome 镜像列表 ↗</a>
             </p>
         </div>
@@ -306,7 +312,7 @@ export async function compactConversation(
     <footer class="footer">
         <div class="container">
             <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-source-derived.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
-            <p>© 2026 Claude Code Course. 仅供学习研究使用。</p>
+            <p>© 2026 Everything in Claude-Code. 仅供学习研究使用。</p>
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js" crossorigin="anonymous"></script>

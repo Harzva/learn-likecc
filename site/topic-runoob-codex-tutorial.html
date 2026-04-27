@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>菜鸟 Codex 教程怎么读 - Everything in Claude-Code</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📘</text></svg>">
+    <meta name="description" content="分析 runoob 的 Codex 教程值不值得收进站内：它适合当中文入口索引，但模型、权限、云端能力等更新快的部分应回到官方文档核对。">
+    <meta name="page:updated" content="2026-04-17">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">📘</span>
+                <span class="logo-text">菜鸟 Codex 教程</span>
+            </a>
+            <div class="nav-links">
+                <a href="#verdict" class="nav-link">结论</a>
+                <a href="#covers" class="nav-link">覆盖面</a>
+                <a href="#strengths" class="nav-link">优点</a>
+                <a href="#limits" class="nav-link">边界</a>
+                <a href="#route" class="nav-link">阅读顺序</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-websites.html" class="btn-github">站点推荐</a>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>外部教程拆解</span>
+                <span>Codex 中文入口</span>
+            </div>
+            <h1 class="hero-title">
+                这个菜鸟教程<br>
+                <span class="gradient-text">值得收，但不该照单全收</span>
+            </h1>
+            <p class="hero-subtitle">
+                `https://www.runoob.com/codex` 这条线适合当 <strong>Codex 中文索引入口</strong>：安装、CLI、配置、Skills、Sandbox、Prompting、Models、Hooks、Advanced、Cloud 都有覆盖。
+                但它毕竟是第三方整理页，遇到 <strong>模型名、权限模式、云端能力、CLI 能力边界</strong> 这些更新快的内容，最好还是回到 OpenAI 官方文档核对。
+            </p>
+            <div class="hero-actions">
+                <a href="https://www.runoob.com/codex" class="btn btn-primary" target="_blank" rel="noopener noreferrer">打开菜鸟教程 ↗</a>
+                <a href="https://platform.openai.com/docs/codex" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">打开官方 Codex Docs ↗</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="course-main devlog-main">
+        <div class="container">
+            <article class="course-content devlog-content">
+                <section id="verdict" class="section-block">
+                    <h2>1. 结论先说</h2>
+                    <div class="course-quote">
+                        <p><strong>可以分析并放进我们的网站。</strong> 但更合适的放法不是把它当“权威教程”抄进站内，而是把它作为 <strong>外部中文教程入口</strong> 来拆解：告诉读者它覆盖了什么、适合谁、哪里该切回官方文档。</p>
+                        <p>如果你把它当“中文导航页”，它的价值很高；如果你把它当“最终准绳”，就容易在版本快速变化的地方踩空。</p>
+                    </div>
+                </section>
+
+                <section id="covers" class="section-block">
+                    <h2>2. 它覆盖了哪些 Codex 主题</h2>
+                    <table class="options-table">
+                        <tr><th>模块</th><th>菜鸟教程覆盖点</th><th>适合作什么</th></tr>
+                        <tr><td>安装与首次使用</td><td>安装、认证、TUI 入口、常见问题</td><td>新手第一次跑起来时的中文索引</td></tr>
+                        <tr><td>CLI 主工作流</td><td>approval、sandbox、斜杠命令、`exec`、快捷键</td><td>把本地 Codex 当终端工具来理解</td></tr>
+                        <tr><td>配置与扩展</td><td>config、skills、hooks、MCP</td><td>看“怎么把 Codex 接回自己的工作流”</td></tr>
+                        <tr><td>使用技巧</td><td>prompting、advanced、实用示例</td><td>补方法感和操作感</td></tr>
+                        <tr><td>能力分支</td><td>models、IDE、cloud/web</td><td>建立 Codex 不只是一条 CLI 的全景认知</td></tr>
+                    </table>
+                    <p>这一点其实很值。很多中文资料只讲安装或只讲 Prompt，而菜鸟这组页面至少把 Codex 的几个主面都铺开了。</p>
+                </section>
+
+                <section id="strengths" class="section-block">
+                    <h2>3. 为什么值得收进站内</h2>
+                    <div class="quickstart-grid topic-websites-grid topic-websites-grid--240">
+                        <div class="quickstart-card">
+                            <h3>中文密集入口</h3>
+                            <p>适合给第一次接触 Codex 的读者一个成体系的中文落点，而不是东一篇西一篇搜零散博客。</p>
+                        </div>
+                        <div class="quickstart-card">
+                            <h3>CLI 视角够完整</h3>
+                            <p>从安装、认证、TUI 到 approval / sandbox / `exec` 都有提到，足够建立本地工作流的第一层认知。</p>
+                        </div>
+                        <div class="quickstart-card">
+                            <h3>适合做站内跳板</h3>
+                            <p>我们可以把它当“中文索引页”，再把更深的原理、架构、对比和实战接回站内专题。</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="limits" class="section-block">
+                    <h2>4. 但它的边界也要写清</h2>
+                    <table class="options-table">
+                        <tr><th>风险点</th><th>为什么要小心</th><th>更稳的做法</th></tr>
+                        <tr><td>模型与默认配置</td><td>Codex 的模型别名、推荐模型、默认行为会变</td><td>回 OpenAI 官方文档核对当前模型线</td></tr>
+                        <tr><td>云端 / 本地能力边界</td><td>Codex cloud、CLI、本地 shell、IDE 的能力收敛很快</td><td>用官方 docs 判断“这项能力今天在哪个端可用”</td></tr>
+                        <tr><td>权限与沙箱</td><td>approval / sandbox 的描述一旦过时，会影响安全理解</td><td>把菜鸟教程当解释页，把官方 docs 当最新规则源</td></tr>
+                        <tr><td>第三方整理口吻</td><td>教程会优先讲“怎么用”，未必讲清能力边界与设计取舍</td><td>再配一层站内解读页，把“怎么读”讲清楚</td></tr>
+                    </table>
+                    <p>截至 <strong>2026-04-15</strong>，OpenAI 官方文档已经把 Codex 明确分成 cloud、本地 CLI、IDE extension、SDK 等多条界面与运行面，这种产品线变化速度，不太适合只靠第三方教程记忆。</p>
+                </section>
+
+                <section id="route" class="section-block">
+                    <h2>5. 更推荐的阅读顺序</h2>
+                    <table class="options-table">
+                        <tr><th>阶段</th><th>先看什么</th><th>为什么</th></tr>
+                        <tr><td>第一步</td><td>菜鸟 Codex 教程</td><td>先用中文入口快速建地图，知道有哪些模块</td></tr>
+                        <tr><td>第二步</td><td>OpenAI 官方 Codex Docs</td><td>核对当前模型、云端能力、CLI 边界、MCP 与工具链</td></tr>
+                        <tr><td>第三步</td><td>站内专题</td><td>看更偏工程与工作流的解读，而不是只停在“怎么装怎么点”</td></tr>
+                    </table>
+                    <div class="course-quote">
+                        <p><strong>一句话建议</strong>：菜鸟教程适合当中文索引，官方文档负责定事实，站内内容负责补“为什么”和“怎么接进真实工作流”。</p>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2>6. 和站内哪几页最互补</h2>
+                    <ul>
+                        <li><a href="topic-ai-cli-agent.html">CLI Agent 专页</a>：看 Codex 在终端 agent 谱系里的位置。</li>
+                        <li><a href="topic-claude-codex-compare.html">Claude Code vs Codex</a>：看执行型与编排型差异。</li>
+                        <li><a href="topic-claude-codex-bridge.html">Claude 调 Codex</a>：看桥接与调用链，不再只看“命令怎么敲”。</li>
+                        <li><a href="topic-websites.html">站点推荐</a>：把它当外部教程入口，而不是站内唯一讲解源。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>7. 参考链接</h2>
+                    <ul>
+                        <li><a href="https://www.runoob.com/codex/codex-cli.html" target="_blank" rel="noopener noreferrer">菜鸟教程 · Codex 命令行工具 ↗</a></li>
+                        <li><a href="https://www.runoob.com/codex/codex-config.html" target="_blank" rel="noopener noreferrer">菜鸟教程 · Codex CLI 配置 ↗</a></li>
+                        <li><a href="https://www.runoob.com/codex/codex-cli-skills.html" target="_blank" rel="noopener noreferrer">菜鸟教程 · Codex CLI Skills ↗</a></li>
+                        <li><a href="https://www.runoob.com/codex/codex-sandbox.html" target="_blank" rel="noopener noreferrer">菜鸟教程 · Codex CLI 沙箱与安全 ↗</a></li>
+                        <li><a href="https://www.runoob.com/codex/codex-cli-prompting.html" target="_blank" rel="noopener noreferrer">菜鸟教程 · Codex CLI 提示词技巧 ↗</a></li>
+                        <li><a href="https://www.runoob.com/codex/codex-cli-models.html" target="_blank" rel="noopener noreferrer">菜鸟教程 · Codex CLI 模型选择 ↗</a></li>
+                        <li><a href="https://www.runoob.com/codex/codex-hooks.html" target="_blank" rel="noopener noreferrer">菜鸟教程 · Codex 规则与钩子 ↗</a></li>
+                        <li><a href="https://platform.openai.com/docs/codex" target="_blank" rel="noopener noreferrer">OpenAI 官方 · Codex Docs ↗</a></li>
+                        <li><a href="https://platform.openai.com/docs/guides/code-generation" target="_blank" rel="noopener noreferrer">OpenAI 官方 · Code generation / Use Codex ↗</a></li>
+                    </ul>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-runoob-codex-tutorial.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>© 2026 Everything in Claude-Code. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

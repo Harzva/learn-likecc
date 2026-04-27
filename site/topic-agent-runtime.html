@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>终端 Agent Runtime 解构 - Everything in Claude-Code</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+    <meta name="description" content="结合 Claude Code 重建源码去理解终端 Agent Runtime：启动、会话状态、query loop、工具控制面、扩展隔离与上下文治理。">
+    <meta name="page:updated" content="2026-04-17">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🧠</span>
+                <span class="logo-text">Agent Runtime</span>
+            </a>
+            <div class="nav-links">
+                <a href="#thesis" class="nav-link">判断</a>
+                <a href="#runtime-stage" class="nav-link">六层图</a>
+                <a href="#runtime-map" class="nav-link">总图</a>
+                <a href="#spine" class="nav-link">主脊柱</a>
+                <a href="#evidence" class="nav-link">源码片段</a>
+                <a href="#compare" class="nav-link">CLI 对比</a>
+                <a href="#anchors" class="nav-link">源码锚点</a>
+                <a href="#learn" class="nav-link">怎么学</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️</button>
+                <a href="topic-sourcemap.html" class="btn-github">源码专题</a>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>Source Map 进阶子页</span>
+                <span>Agent Runtime</span>
+            </div>
+            <h1 class="hero-title">
+                终端 Agent Runtime<br>
+                <span class="gradient-text">从重建源码看 Claude Code 到底重在哪</span>
+            </h1>
+            <p class="hero-subtitle">
+                这页不重复讲 Source Map 事件本身，而是把重建出来的 TypeScript 树当成证据，回答一个更实在的问题：<strong>Claude Code 为什么已经不像普通 CLI，而更像一个终端 Agent Runtime</strong>。
+            </p>
+            <div class="hero-actions">
+                <a href="#runtime-stage" class="btn btn-primary">先看六层动态图</a>
+                <a href="topic-source-derived.html" class="btn btn-secondary">回到源码反推思想</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="thesis" class="section agent-runtime-page">
+        <div class="container">
+            <h2 class="section-title">核心判断</h2>
+            <p class="section-desc">
+                如果只看表面，Claude Code 像是“终端里调模型 + 读写文件 + 跑命令”。把源码层真正重的部分摊开看，重心却明显在模型外面：<strong>启动路径、trust 边界、会话状态、query loop、工具协议、权限裁决、MCP 扩展、子代理隔离、上下文治理与终端渲染</strong>。这些拼起来，才构成一个能长期跑下去的本地 Agent 运行时。
+            </p>
+            <div class="quickstart-grid">
+                <div class="quickstart-card">
+                    <h3>普通 CLI 关注什么</h3>
+                    <p>解析命令、执行动作、打印结果。一次调用结束后，状态可以直接扔掉。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>Agent Runtime 关注什么</h3>
+                    <p>维护长期会话、处理权限与恢复、管理工具与扩展、压缩上下文、在终端里持续交互。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>这页的阅读角度</h3>
+                    <p>我们不抄新闻，不只讲“泄露了什么”，而是结合源码锚点理解这套运行时为什么能比较稳定地扛住本地 coding agent。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="runtime-stage" class="section">
+        <div class="container">
+            <h2 class="section-title">六层动态分层图</h2>
+            <p class="section-desc">
+                下面这块不是实时遥测，而是把运行时最该先抓住的六层做成一个可切换的讲解面。先看顺序，再回头点源码路径，会比直接淹进 1900+ 文件里稳得多。
+            </p>
+            <div id="agent-runtime-stage" class="agent-runtime-stage" data-json="data/agent-runtime-stages.json" aria-label="终端 Agent Runtime 六层动态分层图"></div>
+        </div>
+    </section>
+
+    <section id="runtime-map" class="section">
+        <div class="container">
+            <h2 class="section-title">Mermaid 总架构图</h2>
+            <p class="section-desc">
+                如果把这页压成一张图，主链就是：<strong>启动与 trust</strong> 把边界立起来，<strong>会话状态核</strong> 持有上下文，<strong>query loop</strong> 推进一轮轮对话，<strong>工具控制面</strong> 负责能力与权限，<strong>扩展隔离层</strong> 把 MCP / Skills / Plugins / Subagent 接进来，最后由 <strong>memory / compact / renderer</strong> 兜住长期运行体验。
+            </p>
+            <figure class="mermaid-figure mermaid-figure--main" aria-label="终端 Agent Runtime 总架构图">
+                <figcaption class="mermaid-caption">
+                    <strong>Claude Code 终端 Agent Runtime</strong>
+                    <span>从启动边界到上下文治理的一条完整运行时脊柱</span>
+                </figcaption>
+                <div class="mermaid-diagram-scroll mermaid-diagram-scroll--xl" data-mermaid-diagram="agent-runtime-landscape"></div>
+            </figure>
+        </div>
+    </section>
+
+    <section id="spine" class="section agent-runtime-page">
+        <div class="container">
+            <h2 class="section-title">从源码里拉一条主脊柱</h2>
+            <div class="options-table-wrapper">
+                <table class="options-table">
+                    <tr>
+                        <th>脊柱段</th>
+                        <th>代表文件</th>
+                        <th>这里解决什么</th>
+                    </tr>
+                    <tr>
+                        <td>启动与可信目录</td>
+                        <td><code>src/main.tsx</code> · <code>src/entrypoints/init.ts</code> · <code>src/components/interactiveHelpers.tsx</code></td>
+                        <td>决定什么能先并行，什么必须等 trust 过后再继续。</td>
+                    </tr>
+                    <tr>
+                        <td>会话状态核</td>
+                        <td><code>src/services/AppStateStore.ts</code> · <code>src/query/QueryEngine.ts</code></td>
+                        <td>把工具权限、MCP、remote、usage、notifications 全收进一个会话对象。</td>
+                    </tr>
+                    <tr>
+                        <td>主循环</td>
+                        <td><code>src/query/query.ts</code></td>
+                        <td>把 prefetch、streaming、tool execution、compact、continuation 串成一个长期状态机。</td>
+                    </tr>
+                    <tr>
+                        <td>控制面</td>
+                        <td><code>src/tools/Tool.ts</code> · <code>src/commands/commands.ts</code> · <code>src/tools/toolOrchestration.ts</code></td>
+                        <td>区分用户命令与模型能力，处理并发安全、只读/破坏性和权限裁决。</td>
+                    </tr>
+                    <tr>
+                        <td>扩展与隔离</td>
+                        <td><code>src/services/mcp/client.ts</code> · <code>src/skills/loadSkillsDir.ts</code> · <code>src/plugins/pluginLoader.ts</code> · <code>src/tools/AgentTool.tsx</code></td>
+                        <td>把协议接入、提示词扩展、组件分发和子代理隔离分成不同平面。</td>
+                    </tr>
+                    <tr>
+                        <td>上下文与终端体验</td>
+                        <td><code>src/memory/memdir.ts</code> · <code>src/services/compact/compact.ts</code> · <code>src/screens/REPL.tsx</code> · <code>src/ink/renderer.ts</code></td>
+                        <td>解决记忆索引、压缩、交互总线和终端渲染技术债。</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section id="evidence" class="section agent-runtime-page">
+        <div class="container">
+            <h2 class="section-title">Source Map rebuild 版关键片段</h2>
+            <p class="section-desc">
+                下面不是源码截图，而是直接从本站当前用于阅读与实验的 <code>ccsource/CC/claude-code-rebuild</code> 里摘出的短片段。每块都只保留最能证明判断的几行，方便你把“运行时结论”重新对回真实代码位置。
+            </p>
+            <div class="agent-runtime-evidence-grid">
+                <article class="agent-runtime-evidence-card">
+                    <div class="agent-runtime-evidence-card__head">
+                        <span class="agent-runtime-evidence-card__step">01</span>
+                        <div>
+                            <h3>启动不是顺序脚本</h3>
+                            <p><code>src/main.tsx</code> + <code>src/entrypoints/init.ts</code></p>
+                        </div>
+                    </div>
+                    <p class="agent-runtime-evidence-card__note">关键判断：启动阶段一开始就在做“哪些事可以先并行，哪些事必须等 trust 之后再继续”。</p>
+                    <div class="code-block"><pre><code class="language-typescript">// src/main.tsx
+// These side-effects must run before all other imports:
+profileCheckpoint('main_tsx_entry')
+startMdmRawRead()
+startKeychainPrefetch()
+
+// src/entrypoints/init.ts
+// Apply only safe environment variables before trust dialog
+// Full environment variables are applied after trust is established
+applySafeConfigEnvironmentVariables()</code></pre></div>
+                </article>
+
+                <article class="agent-runtime-evidence-card">
+                    <div class="agent-runtime-evidence-card__head">
+                        <span class="agent-runtime-evidence-card__step">02</span>
+                        <div>
+                            <h3>QueryEngine 就是会话内核</h3>
+                            <p><code>src/QueryEngine.ts</code></p>
+                        </div>
+                    </div>
+                    <p class="agent-runtime-evidence-card__note">关键判断：这里维护的已经不是页面 state，而是一个完整 conversation 的持续状态。</p>
+                    <div class="code-block"><pre><code class="language-typescript">/**
+ * One QueryEngine per conversation.
+ * State (messages, file cache, usage, etc.) persists across turns.
+ */
+export class QueryEngine {
+  private mutableMessages: Message[]
+  private permissionDenials: SDKPermissionDenial[]
+  private totalUsage: NonNullableUsage
+  private loadedNestedMemoryPaths = new Set&lt;string&gt;()
+}</code></pre></div>
+                </article>
+
+                <article class="agent-runtime-evidence-card">
+                    <div class="agent-runtime-evidence-card__head">
+                        <span class="agent-runtime-evidence-card__step">03</span>
+                        <div>
+                            <h3>主循环在隐藏并行</h3>
+                            <p><code>src/query.ts</code></p>
+                        </div>
+                    </div>
+                    <p class="agent-runtime-evidence-card__note">关键判断：prefetch 被埋进模型流式与工具执行期间，目标不是“多写一步”，而是把等待隐藏到主链下面。</p>
+                    <div class="code-block"><pre><code class="language-typescript">// Skill discovery prefetch — per-iteration ...
+// Discovery runs while the model streams and tools execute
+const pendingSkillPrefetch = skillPrefetch?.startSkillDiscoveryPrefetch(
+  null,
+  messages,
+  toolUseContext,
+)
+
+yield { type: 'stream_request_start' }</code></pre></div>
+                </article>
+
+                <article class="agent-runtime-evidence-card">
+                    <div class="agent-runtime-evidence-card__head">
+                        <span class="agent-runtime-evidence-card__step">04</span>
+                        <div>
+                            <h3>工具先是协议，再是函数</h3>
+                            <p><code>src/Tool.ts</code></p>
+                        </div>
+                    </div>
+                    <p class="agent-runtime-evidence-card__note">关键判断：并发安全、只读/破坏性、中断行为、UI 展示都被做进了 Tool 协议，默认值还刻意走 fail-closed。</p>
+                    <div class="code-block"><pre><code class="language-typescript">isConcurrencySafe(input): boolean
+isReadOnly(input): boolean
+interruptBehavior?(): 'cancel' | 'block'
+renderToolUseMessage(...)
+
+// Defaults (fail-closed where it matters):
+// - isConcurrencySafe → false
+// - isReadOnly → false</code></pre></div>
+                </article>
+
+                <article class="agent-runtime-evidence-card">
+                    <div class="agent-runtime-evidence-card__head">
+                        <span class="agent-runtime-evidence-card__step">05</span>
+                        <div>
+                            <h3>MCP 是一等扩展平面</h3>
+                            <p><code>src/services/mcp/client.ts</code></p>
+                        </div>
+                    </div>
+                    <p class="agent-runtime-evidence-card__note">关键判断：这里不是“发个 HTTP 请求”，而是在认真维护 SSE / HTTP / stdio / auth provider / OAuth token / timeout 的 transport 体系。</p>
+                    <div class="code-block"><pre><code class="language-typescript">if (serverRef.type === 'sse') {
+  const authProvider = new ClaudeAuthProvider(name, serverRef)
+  const transportOptions = { authProvider, fetch: wrapFetchWithTimeout(...) }
+  transport = new SSEClientTransport(new URL(serverRef.url), transportOptions)
+} else if (serverRef.type === 'http') {
+  const authProvider = new ClaudeAuthProvider(name, serverRef)
+  const transportOptions = { authProvider, fetch: wrapFetchWithTimeout(...) }
+  transport = new StreamableHTTPClientTransport(new URL(serverRef.url), transportOptions)
+}</code></pre></div>
+                </article>
+
+                <article class="agent-runtime-evidence-card">
+                    <div class="agent-runtime-evidence-card__head">
+                        <span class="agent-runtime-evidence-card__step">06</span>
+                        <div>
+                            <h3>上下文治理是系统级能力</h3>
+                            <p><code>src/memdir/memdir.ts</code> + <code>src/interactiveHelpers.tsx</code></p>
+                        </div>
+                    </div>
+                    <p class="agent-runtime-evidence-card__note">关键判断：`MEMORY.md` 被严格压成索引，trust dialog 也被定义成 workspace trust boundary，这两件事都说明系统很在意长期会话的边界感。</p>
+                    <div class="code-block"><pre><code class="language-typescript">// src/memdir/memdir.ts
+`${ENTRYPOINT_NAME}` is an index, not a memory
+lines after ${MAX_ENTRYPOINT_LINES} will be truncated
+
+// src/interactiveHelpers.tsx
+// The trust dialog is the workspace trust boundary
+// ... bypassPermissions mode only affects tool execution permissions</code></pre></div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="compare" class="section">
+        <div class="container">
+            <h2 class="section-title">和普通 CLI 的分水岭</h2>
+            <div class="quickstart-grid">
+                <div class="quickstart-card">
+                    <h3>命令壳</h3>
+                    <p>一条输入对应一次动作，失败就报错，结束后状态基本散掉。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>终端 Agent Runtime</h3>
+                    <p>会话必须跨 turn 维持，工具与权限有协议，失败要可恢复，MCP 与子代理要能接进来。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>为什么这个差异重要</h3>
+                    <p>它解释了为什么很多 AI CLI 只能“调模型 + 调工具”，而 Claude Code 更像在系统化处理本地 agent 的长期运行问题。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="anchors" class="section agent-runtime-page">
+        <div class="container">
+            <h2 class="section-title">最值得先读的源码锚点</h2>
+            <ul class="source-map-event-list">
+                <li><strong><code>src/main.tsx</code></strong>：看启动阶段哪些 side effect 被提前发出去，理解“关键路径管理”不是性能花活，而是运行时底盘。</li>
+                <li><strong><code>src/query/QueryEngine.ts</code> + <code>src/query/query.ts</code></strong>：这是“一个会话对象 + 一台状态机”的直观证据。</li>
+                <li><strong><code>src/tools/Tool.ts</code></strong>：先看 Tool 协议有多厚，再回头理解为什么工具调度和权限能接住复杂度。</li>
+                <li><strong><code>src/services/mcp/client.ts</code></strong>：看 MCP 为何是一等扩展平面，而不是“外部调用补丁”。</li>
+                <li><strong><code>src/tools/AgentTool.tsx</code> + <code>src/bridge/bridgeMain.ts</code></strong>：用来区分“子代理隔离”和“远程控制面”不是同一件事。</li>
+                <li><strong><code>src/memory/memdir.ts</code> + <code>src/services/compact/compact.ts</code></strong>：看上下文治理为什么在这里是系统级能力，而不是一个斜杠命令。</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="learn" class="section source-derived-section source-derived-section--bottom">
+        <div class="container">
+            <h2 class="section-title">这页和站内其他专题怎么配合</h2>
+            <p class="section-desc">
+                最稳的阅读顺序是：先看 <a href="topic-sourcemap.html">Source Map 源码专题</a> 建立入口，再读 <a href="topic-source-derived.html">源码反推思想</a> 训练“从实现抽设计”的方法，最后进这页理解为什么这些点会汇成一个终端 Agent Runtime。若你想继续往产品图层走，可以接 <a href="topic-cc-unpacked-zh.html">Claude Code 解构</a>；若想看跨 harness 样本，再接 <a href="topic-everything-claude-code-unpacked.html">Everything Claude Code 解构</a>。
+            </p>
+            <p class="source-derived-actions">
+                <a href="topic-sourcemap.html" class="btn btn-primary">回 Source Map 专题</a>
+                <a href="topic-source-derived.html" class="btn btn-secondary">回源码反推思想</a>
+            </p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-agent-runtime.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>© 2026 Everything in Claude-Code. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js" crossorigin="anonymous"></script>
+    <script src="js/app.js"></script>
+    <script src="js/agent-runtime-stage.js"></script>
+</body>
+</html>

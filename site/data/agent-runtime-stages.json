@@ -1,0 +1,84 @@
+{
+  "meta": {
+    "title": "终端 Agent Runtime 分层视图",
+    "autoplay_base_ms": 3200,
+    "loop_autoplay": false
+  },
+  "stages": [
+    {
+      "label": "01 启动",
+      "title": "启动与 Trust 边界",
+      "summary": "真正重的不是“把模型调起来”，而是先把 profiler、safe env、proxy、preconnect、trust dialog 这些前置边界排好顺序。",
+      "why": "这决定了一个本地 Agent 会话是不是从第一秒起就处在可控、可解释的状态里。",
+      "files": [
+        "src/main.tsx",
+        "src/entrypoints/init.ts",
+        "src/components/interactiveHelpers.tsx"
+      ],
+      "question": "哪些初始化可以并行先发，哪些必须等目录被信任后再继续？"
+    },
+    {
+      "label": "02 状态",
+      "title": "会话状态内核",
+      "summary": "AppStateStore 和 QueryEngine 不是普通页面状态，而是整个会话的中枢：工具权限、MCP 客户端、remote 状态、notifications、usage、memory 都要在这里汇合。",
+      "why": "终端 Agent 要能跑很久、可中断、可恢复，必须先有一个稳定的会话状态核。",
+      "files": [
+        "src/services/AppStateStore.ts",
+        "src/utils/createStore.ts",
+        "src/query/QueryEngine.ts"
+      ],
+      "question": "为什么这里更像“会话内核对象”，而不是一个 React store？"
+    },
+    {
+      "label": "03 主循环",
+      "title": "Query Loop 是真正的运行时主链",
+      "summary": "用户消息不是一次请求就结束。queryLoop 会拉起 memory prefetch、skill prefetch、Claude streaming、tool execution、compact、continuation 和 transcript persistence。",
+      "why": "这一步把 CLI 从“命令壳”推进成“长期会话状态机”。",
+      "files": [
+        "src/query/query.ts",
+        "src/query/QueryEngine.ts"
+      ],
+      "question": "终止条件为什么不只有 token budget，还有 max turns、hook stop、API error 和媒体失败？"
+    },
+    {
+      "label": "04 控制面",
+      "title": "Tool / Command / Permission 控制平面",
+      "summary": "Command 面向用户显式意图，Tool 面向模型能力调用；并发安全、只读/破坏性、中断行为、权限解释都被做进了协议，而不是事后补丁。",
+      "why": "本地 Agent 真正难的是“谁能做什么、怎么并发、谁来裁决”，不是“再接一个工具”。",
+      "files": [
+        "src/tools/Tool.ts",
+        "src/commands/commands.ts",
+        "src/tools/toolOrchestration.ts",
+        "src/utils/permissions/permissionExplainer.ts"
+      ],
+      "question": "为什么 buildTool 在不确定时默认保守，而不是默认宽松？"
+    },
+    {
+      "label": "05 扩展",
+      "title": "MCP / Skills / Plugins / Subagent 扩展与隔离平面",
+      "summary": "MCP 是协议平面，Skills 是提示词扩展，Plugins 是分发与组件平面，Subagent / Worktree / Remote 则是隔离平面。它们被分开，是因为对象本来就不是同一种东西。",
+      "why": "扩展系统如果不分层，最后会把权限、发布、运行时和 UI 全缠在一起。",
+      "files": [
+        "src/services/mcp/client.ts",
+        "src/skills/loadSkillsDir.ts",
+        "src/plugins/pluginLoader.ts",
+        "src/tools/AgentTool.tsx",
+        "src/bridge/bridgeMain.ts"
+      ],
+      "question": "子代理为什么不能理解成“再开一个聊天窗口”？"
+    },
+    {
+      "label": "06 治理",
+      "title": "上下文治理与终端体验",
+      "summary": "MEMORY.md 被压成索引，compact 有 hook、边界消息和熔断器，REPL 是系统总线，自定义 renderer 处理 alt-screen、overlay 和 charCache。",
+      "why": "长期 Agent 会话真正掉链子的地方，往往是上下文失控和终端体验崩坏，而不是模型不会答题。",
+      "files": [
+        "src/memory/memdir.ts",
+        "src/services/compact/compact.ts",
+        "src/screens/REPL.tsx",
+        "src/ink/renderer.ts"
+      ],
+      "question": "如果没有 compact、memory 和 renderer 这些重活，一个本地 coding agent 会先死在哪一步？"
+    }
+  ]
+}

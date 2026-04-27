@@ -1,4 +1,4 @@
-# 项目开发日志 - Claude Code Course
+# 项目开发日志 - Everything in Claude-Code
 
 > **在线页面**: https://harzva.github.io/learn-likecc/devlog.html  
 > **本文件**: `site/md/devlog.md`  

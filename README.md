@@ -10,6 +10,96 @@
 
 ![Like Code TUI：启动头与 /model 自定义路由（如 z-ai/glm-5）](docs/readme-assets/likecode-model-routing-preview.png)
 
+## Codex / Codex Loop 使用教程（快速版）
+
+### 1) 仓库位置在哪里
+
+- 你当前这个仓库路径：`/home/clashuser/hzh/item_bo/learn-likecc`
+- 这个仓库里 `codex-loop` 技能导出目录：`exports/codex-loop-skill/`
+- 对外独立仓库（用于 skill install）：`https://github.com/Harzva/codex-loop-skill`
+
+### 2) 先在 Codex 中使用一次（手动模式）
+
+示例提示词：
+
+```text
+Use codex-loop to continue the active plan at .claude/plans/active-example-plan.md.
+Read the latest evolution note, complete one bounded iteration, write the next evolution note, and prepare the next handoff.
+```
+
+这一步不依赖后台守护进程，本质是“你手动触发一轮 loop”。
+
+### 3) 开启后台循环（自动模式）
+
+先准备工作区提示文件（可长期复用）：
+
+```text
+.codex-loop/prompt.md
+```
+
+然后执行：
+
+```bash
+bash ~/.codex/skills/codex-loop/scripts/start_codex_loop.sh
+bash ~/.codex/skills/codex-loop/scripts/status_codex_loop.sh
+bash ~/.codex/skills/codex-loop/scripts/monitor_codex_loop.sh --watch
+bash ~/.codex/skills/codex-loop/scripts/stop_codex_loop.sh
+```
+
+可选环境变量（常用）：
+
+- `CODEX_LOOP_WORKSPACE`：指定目标工作区
+- `CODEX_LOOP_INTERVAL_MINUTES`：tick 间隔（默认 20 分钟）
+- `CODEX_LOOP_PROMPT_FILE`：提示文件路径（默认 `<workspace>/.codex-loop/prompt.md`）
+- `CODEX_LOOP_REUSE_CURRENT_THREAD=1`：显式复用当前交互线程
+
+### 4) 触发条件到底是什么（重点）
+
+不是“每次都要重新给一个 md”。
+
+要分成两层看：
+
+1. 技能层触发（什么时候会用 Codex Loop）
+- 用户明确点名 `codex-loop`，或需求语义明显是“持续迭代 / 循环推进同一计划”时触发。
+- 一次性任务不会强制触发该技能。
+
+2. 后台守护触发（什么时候真的开始自动跑）
+- 必须先执行 `start_codex_loop.sh`，否则不会后台循环。
+- 每个 tick 都会硬检查 prompt 文件存在且非空（`ensure_prompt()`）。
+- 守护进程按 interval 定时运行，并用 `tick.lock` 防止重入。
+
+结论：
+
+- 不是每轮都要新建 md，但必须有一个可读且非空的 prompt 文件（可持续复用、随时编辑）。
+- 仅“说了要自动循环”不会自己开始，必须实际启动守护脚本。
+
+## 最新验证：Like Code 跑通了 SiliconFlow MiniMax
+
+这轮验证已经拿到一个非常明确的结果：
+
+- `like code` 现在已经可以通过 SiliconFlow 正常跑通 `Pro/MiniMaxAI/MiniMax-M2.5[1m]`
+- 同一条路由在原生 `claude code` 上，之前会直接报 `400 thinking type should be enabled or disabled`
+- 这说明我们这次针对 SiliconFlow API 格式的兼容修复，确实已经把原生链路里那类失败场景补上了
+
+下面这组图就是这次记录下来的对比快照：
+
+![Like Code 跑通 SiliconFlow MiniMax-M2.5](docs/readme-assets/likecode-siliconflow-minimax-success.svg)
+
+![原生 Claude Code 在同一路由上的 thinking 报错](docs/readme-assets/claudecode-siliconflow-minimax-thinking-error.svg)
+
+这次差异背后的关键修复点是：
+
+- `Like Code` 不再把 SiliconFlow 这条路由默认当成 Anthropic 官方 API 语义来处理
+- 针对 SiliconFlow 的 API 格式，未知模型会回退到更稳定的 `enabled / disabled` thinking 兼容路径
+- 这让 SiliconFlow 的兼容接口不再因为 `thinking.type=adaptive` 而直接 400
+
+这轮验证里还有一个很关键的配置细节，也必须单独记住：
+
+- `ANTHROPIC_BASE_URL` / `modelRoutes.*.baseURL` 在 SiliconFlow 场景下应该写成 `https://api.siliconflow.cn`
+- 不应该写成 `https://api.siliconflow.cn/v1/messages`
+- 原因是当前这条链路使用的 Anthropic SDK 会自己再拼接 `POST /v1/messages`
+- 如果把 `baseURL` 直接写到 `/v1/messages`，最终请求就会很容易变成重复路径，导致额外的 404 / 路由异常 / 兼容问题
+
 ## 顶部重点：我们现在最重要的事
 
 这不是单纯“把 Claude Code 跑起来”的仓库了。  
@@ -449,6 +539,8 @@ Claude Code 很强，但真实使用里一直有一个明显痛点：
 - [ ] 项目级规则决定“这个仓库优先稳定模型，那个仓库优先低成本模型”
 - [ ] 一个命令完成“继续当前 session，但换模型再试一次”
 - [ ] 失败重试时优先保住现有上下文、待办列表、工具执行轨迹，而不是重新问一遍
+- [ ] 把 `SkillsMP` 的技能发现流程收进真正可执行的检索安装 skill：先在市场里找，再回 GitHub 校验后落到 `~/.claude/skills/` 或 `~/.codex/skills/`
+- [x] 起好第一版 `SkillsMP` 检索安装链：新增 `skillsmp-find-install` skill 与 `tools/install_skill_from_github.py`，先把“市场发现 + GitHub 安装”链路跑通
 - [ ] 给重度用户做真正的“私人定制工作台”：模型偏好、预算上限、危险操作策略、项目级记忆
 - [ ] 引入 subagent 后，按不同仓库 / 不同窗口看各个 subagent 的忙碌状态
 

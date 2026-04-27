@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loop 机制对照：Claude Hook、Codex Daemon 与 LikeCode /loop - Everything in Claude-Code</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>↻</text></svg>">
+    <meta name="description" content="对照 Claude Stop hook/Ralph Loop、Codex 外部 daemon loop、LikeCode /loop 应用内 cron scheduler 的实现逻辑。">
+    <meta name="page:updated" content="2026-04-22">
+</head>
+<body class="loop-mech-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">↻</span>
+                <span class="logo-text">Loop 机制</span>
+            </a>
+            <div class="nav-links">
+                <a href="#compare" class="nav-link">三种循环</a>
+                <a href="#flow" class="nav-link">执行流</a>
+                <a href="#cron" class="nav-link">/loop Cron</a>
+                <a href="#matrix" class="nav-link">对照表</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-hook-runtime.html" class="btn-github">Hook Runtime</a>
+                <a href="index.html" class="btn-github">首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero loop-mech-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>Claude Stop hook</span>
+                <span>Codex daemon</span>
+                <span>LikeCode /loop</span>
+            </div>
+            <h1 class="hero-title">
+                三种 Loop 机制<br>
+                <span class="gradient-text">Hook、外部 daemon、应用内 cron</span>
+            </h1>
+            <p class="hero-subtitle">
+                同样叫 loop，底层其实是三种不同工程：Claude/Ralph 用 runtime 的 Stop hook 卡住结束点；
+                Codex 用外部脚本定时恢复同一 thread；LikeCode <code>/loop</code> 把自然语言间隔解析成 cron task，再由应用内 scheduler 定时塞回 prompt。
+            </p>
+        </div>
+    </section>
+
+    <main class="course-main">
+        <div class="container">
+            <article class="course-content loop-mech-content">
+                <section id="compare" class="section-block">
+                    <h2 class="loop-mech-title">一句话拆开</h2>
+                    <div class="loop-mech-triptych">
+                        <div class="loop-mech-card loop-mech-card--claude">
+                            <span class="loop-mech-kicker">Claude / Ralph Loop</span>
+                            <h3>在“停止点”反向续命</h3>
+                            <p>runtime 触发 <code>Stop</code> hook。Ralph 检查任务未完成时返回 <code>decision:"block"</code> 和 <code>reason</code>，Claude Code 不结束，并把 reason 重新喂给模型。</p>
+                        </div>
+                        <div class="loop-mech-card loop-mech-card--codex">
+                            <span class="loop-mech-kicker">Codex loop</span>
+                            <h3>在“外部时间”重新唤醒</h3>
+                            <p>不是靠 native hook，而是一个 shell/Python daemon 周期性执行 <code>codex exec resume ...</code>，复用 thread id，把同一份 prompt 再交给 Codex 推进。</p>
+                        </div>
+                        <div class="loop-mech-card loop-mech-card--cron">
+                            <span class="loop-mech-kicker">LikeCode /loop</span>
+                            <h3>在“应用内部”排定任务</h3>
+                            <p><code>/loop</code> 是 bundled skill。它提示 Claude 调 <code>CronCreate</code>，生成 cron task；scheduler 每秒检查到期任务，并把 prompt 作为 meta notification 入队。</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="flow" class="section-block">
+                    <h2 class="loop-mech-title">三条执行流</h2>
+                    <div class="loop-mech-flow-grid">
+                        <div class="loop-mech-flow">
+                            <h3>Claude Hook / Ralph Loop</h3>
+                            <ol>
+                                <li>用户启动 Ralph Loop，写入本地 state。</li>
+                                <li>Claude 正常执行任务。</li>
+                                <li>Claude 准备停止，runtime 触发 <code>Stop</code> hook。</li>
+                                <li>hook 读 transcript 与 state，判断 completion promise 是否满足。</li>
+                                <li>未完成则返回 <code>decision:block</code> 和 <code>reason</code>。</li>
+                                <li>runtime 阻止结束，reason 进入下一轮模型上下文。</li>
+                            </ol>
+                        </div>
+                        <div class="loop-mech-flow">
+                            <h3>Codex 外部 Daemon Loop</h3>
+                            <ol>
+                                <li>脚本启动 daemon，保存 workspace、prompt、state dir、thread id。</li>
+                                <li>daemon 进入 <code>while</code> / sleep 循环。</li>
+                                <li>每个 tick 调用 <code>codex exec</code> 或 <code>codex exec resume</code>。</li>
+                                <li>prompt 通过 stdin 送入 Codex。</li>
+                                <li>Codex 推进一个 bounded slice，输出 JSON/log。</li>
+                                <li>daemon 写 heartbeat、last message、thread id，等待下一次 tick。</li>
+                            </ol>
+                        </div>
+                        <div class="loop-mech-flow">
+                            <h3>LikeCode /loop Cron</h3>
+                            <ol>
+                                <li>用户输入 <code>/loop 5m check tests</code> 之类命令。</li>
+                                <li>bundled skill <code>loop.ts</code> 生成指令，让 Claude 解析 interval 和 prompt。</li>
+                                <li>Claude 调用 <code>CronCreate</code> 创建 cron task。</li>
+                                <li><code>cronScheduler</code> 用 <code>setInterval</code> 每秒检查到期任务。</li>
+                                <li>到期后 <code>useScheduledTasks</code> 把 prompt 入队。</li>
+                                <li>任务执行后重新计算下一次 fire time，继续循环。</li>
+                            </ol>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="cron" class="section-block">
+                    <h2 class="loop-mech-title">LikeCode /loop：像 cron，但不是 Linux crontab</h2>
+                    <div class="loop-mech-cron-panel">
+                        <div class="loop-mech-cron-stack">
+                            <div><strong>/loop bundled skill</strong><span>入口：<code>src/skills/bundled/loop.ts</code></span></div>
+                            <div><strong>CronCreate tool</strong><span>把自然语言间隔转成 cron task</span></div>
+                            <div><strong>useScheduledTasks</strong><span>把到期 prompt 送进应用队列</span></div>
+                            <div><strong>cronScheduler</strong><span><code>setInterval(1000ms)</code> 检查并 reschedule</span></div>
+                        </div>
+                        <div class="loop-mech-cron-note">
+                            <h3>它和 Linux cron 的关系</h3>
+                            <p>LikeCode <code>/loop</code> 借用了 cron 表达式和定时任务模型，但没有写入系统级 <code>crontab</code>。真正循环发生在应用进程里：scheduler 持有 task，周期性检查当前时间，命中后把 prompt 重新排进 Claude Code/LikeCode 的任务队列。</p>
+                            <p>所以它是 <strong>application-level cron scheduler</strong>，不是 OS-level cron daemon。</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2 class="loop-mech-title">可视化：三个 loop 的触发边界</h2>
+                    <div class="loop-mech-boundary">
+                        <div class="loop-mech-boundary-row">
+                            <span class="loop-mech-boundary-label">Claude/Ralph</span>
+                            <span class="loop-mech-boundary-node">模型执行</span>
+                            <span class="loop-mech-boundary-arrow">→</span>
+                            <span class="loop-mech-boundary-node loop-mech-boundary-node--hot">Stop hook</span>
+                            <span class="loop-mech-boundary-arrow">→</span>
+                            <span class="loop-mech-boundary-node">block + reason</span>
+                        </div>
+                        <div class="loop-mech-boundary-row">
+                            <span class="loop-mech-boundary-label">Codex</span>
+                            <span class="loop-mech-boundary-node">外部 daemon</span>
+                            <span class="loop-mech-boundary-arrow">→</span>
+                            <span class="loop-mech-boundary-node loop-mech-boundary-node--cool">codex exec resume</span>
+                            <span class="loop-mech-boundary-arrow">→</span>
+                            <span class="loop-mech-boundary-node">thread 继续推进</span>
+                        </div>
+                        <div class="loop-mech-boundary-row">
+                            <span class="loop-mech-boundary-label">LikeCode /loop</span>
+                            <span class="loop-mech-boundary-node">CronCreate</span>
+                            <span class="loop-mech-boundary-arrow">→</span>
+                            <span class="loop-mech-boundary-node loop-mech-boundary-node--green">scheduler tick</span>
+                            <span class="loop-mech-boundary-arrow">→</span>
+                            <span class="loop-mech-boundary-node">prompt 入队</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="matrix" class="section-block">
+                    <h2 class="loop-mech-title">对照表</h2>
+                    <div class="hook-table-wrap">
+                        <table class="hook-event-table loop-mech-table">
+                            <thead>
+                                <tr>
+                                    <th>维度</th>
+                                    <th>Claude Hook / Ralph</th>
+                                    <th>Codex 外部 Daemon</th>
+                                    <th>LikeCode /loop Cron</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>触发来源</td><td>runtime 生命周期事件</td><td>外部进程的时间循环</td><td>应用内 scheduler 时间循环</td></tr>
+                                <tr><td>关键入口</td><td><code>Stop</code> hook</td><td><code>start_codex_loop.sh</code> / Python daemon</td><td><code>/loop</code> bundled skill</td></tr>
+                                <tr><td>续跑方式</td><td>阻止停止，回灌 <code>reason</code></td><td>恢复同一 Codex thread</td><td>到期 prompt 入队</td></tr>
+                                <tr><td>状态存储</td><td>plugin/local state + transcript</td><td><code>.codex-loop</code> state/log/thread id</td><td>cron task registry / app state</td></tr>
+                                <tr><td>像 Linux cron 吗</td><td>不像，是 lifecycle hook</td><td>像 shell while + sleep</td><td>像 cron 表达式，但跑在应用内</td></tr>
+                                <tr><td>最大特点</td><td>能拦住“结束”这个瞬间</td><td>不依赖 native hook，工程可移植</td><td>用户体验像内置命令，定时任务可管理</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2 class="loop-mech-title">怎么选</h2>
+                    <div class="loop-mech-choice-grid">
+                        <div><strong>想在 Claude Code 内部拦截生命周期</strong><span>用 hook，尤其是 Stop / PreToolUse / PostToolUse。</span></div>
+                        <div><strong>想让 Codex 周期性推进同一个任务</strong><span>用外部 daemon，保存 thread id、prompt、log 和 heartbeat。</span></div>
+                        <div><strong>想让用户输入一个 /loop 就定时执行</strong><span>用应用内 cron scheduler，提供 create/list/delete 任务能力。</span></div>
+                    </div>
+                </section>
+
+                <div class="chapter-navigation">
+                    <a href="topic-hook-runtime.html" class="btn btn-secondary">← Hook Runtime</a>
+                    <a href="topic-codex-loop-console.html" class="btn btn-primary">Codex Loop Console →</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-loop-mechanisms.md" target="_blank" rel="noopener noreferrer">本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>© 2026 Everything in Claude-Code. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

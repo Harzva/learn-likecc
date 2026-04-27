@@ -1,4 +1,4 @@
-# VibePaper 专题：Autoresearch / ARIS / DeepScientist / AI Scientist-v2 - Claude Code Course
+# VibePaper 专题：Autoresearch / ARIS / DeepScientist / AI Scientist-v2 - Everything in Claude-Code
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-vibepaper.html  
 > **本文件**: `site/md/topic-vibepaper.md`  
@@ -7,6 +7,10 @@
 ## 概要
 
 VibePaper 专题目前先收 **Autoresearch / ARIS**、**DeepScientist** 与 **AI Scientist-v2** 三条主样本线，并保留 **AIDE ML** 作为候选底座 lane。关注的不是“论文工具很多”，而是：一个系统如何把论文阅读、baseline 复现、实验迭代、图表整理、成稿输出和长期记忆串成持续运行的研究工作流。
+
+现在 `AI-Scientist` 这条家族线也有了单独入口：
+
+- `topic-ai-scientist.html`
 
 ## 目录（对照 HTML）
 
@@ -42,7 +46,7 @@ VibePaper 专题目前先收 **Autoresearch / ARIS**、**DeepScientist** 与 **A
 当前站内状态可以先这样理解：
 
 - `Autoresearch / ARIS` 和 `DeepScientist` 已经各自展开成独立解构页
-- `AI Scientist-v2` 先留在 hub 里承担第三条主样本线
+- `AI-Scientist` 这一支现在由 `topic-ai-scientist.html` 承接 family hub
 - `AIDE ML` 继续留在候选底座 lane，用来解释 AI Scientist-v2 背后的上游实验搜索结构
 
 这里先不把 `ARIS` 单独抬成第四种壳，原因也很明确：它在本地 README 里把自己写成 **methodology, not a platform**，而且强调整套系统仍然是 plain Markdown skills 组合出来的研究工作流。这更像是在 `Autoresearch` 这条协议壳样本线上继续加厚，而不是长出一个新的独立控制面。

@@ -1,4 +1,4 @@
-# Learn LikeCode - 自由换模型的 Agent CLI 学习与实验场
+# Everything in Claude-Code - 使用、拆解与开发的总入口
 
 > **在线页面**: <https://harzva.github.io/learn-likecc/index.html>  
 > **本文件**: `site/md/index.md`  
@@ -6,7 +6,7 @@
 
 ## 概要
 
-本站主入口：从 **Source Map 事件** 切入，连接 **源码学习、可运行复刻、自由换模型** 三条主线；聚合教程/手册/专题入口，列出 24 讲源码课与面试题库，并展示精选热点标题表。适合作为 **Learn LikeCode** 的整站地图，帮助读者快速定位到具体讲义、专题或产品化方向。
+本站主入口：从 **Source Map 事件** 切入，连接 **使用教学、源码拆解、可运行复刻、自由换模型** 四条主线；聚合教程/手册/专题入口，列出 24 讲源码课与面试题库，并展示精选热点标题表。首页口径现在统一成 **Everything in Claude-Code**：把教程、源码拆解、复刻实验、工作台和发布链路收到同一个开发者门户里。Hero 区域也已经改成开发者门户式入口，把内容收成 `Read / Rebuild / Operate / Publish` 四条工作流，并直接前置 `任务驾驶舱 / Workspace App / AI Terminal` 这些真正的工作台入口。
 
 ## 目录（对照 HTML）
 
@@ -55,7 +55,7 @@
 
 ### 🧭 LikeCode 路线
 
-首页前排新增的产品路线图区块，用更强的视觉方式说明：这个仓库不只是在“讲 Claude Code”，而是在尝试把 Agent CLI 推向 **同 session 切模型、多 provider 兼容、私人订制工作台** 的更自由方向。
+首页前排新增的产品路线图区块，用更强的视觉方式说明：这个仓库在尝试把 Agent CLI 推向 **同 session 切模型、多 provider 兼容、私人订制工作台** 的更自由方向。
 
 ### ✅ 绿钩进度 + 🪄 私人订制 Todo
 

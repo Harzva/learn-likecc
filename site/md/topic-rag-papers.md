@@ -1,4 +1,4 @@
-# RAG · 论文分析 - Claude Code Course
+# RAG · 论文分析 - Everything in Claude-Code
 > **更新时间**: 2026-04-12
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-rag-papers.html  

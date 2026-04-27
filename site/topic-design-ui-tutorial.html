@@ -21,6 +21,8 @@
                 <a href="#liveppt" class="nav-link">LivePPT</a>
                 <a href="#slidev" class="nav-link">Slidev</a>
                 <a href="#remotion" class="nav-link">Remotion</a>
+                <a href="#sample" class="nav-link">样例转译</a>
+                <a href="#plugin-rule" class="nav-link">插件线规则</a>
                 <a href="#workflow" class="nav-link">推荐工作流</a>
             </div>
             <div class="nav-actions">
@@ -78,13 +80,53 @@
                     <p>这特别适合后面把站内的系统解构页，升级成短视频、讲解片段或视觉解释素材。</p>
                 </section>
 
+                <section id="sample" class="section-block">
+                    <h2>第一批样例转译：拿 Claude Code 解构页做一轮</h2>
+                    <p>如果只讲工具，很容易停在“知道了三个仓库”。真正能带来生产力的，是挑一个成熟专题，分别试一遍 <code>deck / slides / video</code> 三种路线。第一批最适合的样本是 <a href="topic-cc-unpacked-zh.html"><code>topic-cc-unpacked-zh.html</code></a>。</p>
+                    <table class="options-table">
+                        <tr><th>目标形态</th><th>建议工具</th><th>为什么适合 Claude Code 解构页</th></tr>
+                        <tr><td>快速分享版 deck</td><td><code>LivePPT</code></td><td>现成章节多、结构清晰，最适合先把长文专题直接转成翻页式 HTML 演示版。</td></tr>
+                        <tr><td>公开讲解 slides</td><td><code>Slidev</code></td><td>Claude Code 解构里有大量系统分层、工具调用、loop 机制，适合做一页一概念的开发者讲义。</td></tr>
+                        <tr><td>解释型短视频 / 动画片段</td><td><code>Remotion</code></td><td>可以把“大脑 / 工具 / loop / context”这些结构拆成镜头节奏，做成更适合传播的动态讲解。</td></tr>
+                    </table>
+                    <div class="course-quote">
+                        <p><strong>建议顺序</strong></p>
+                        <p><strong>第 1 步</strong>：先把整篇专题压成 8~12 页 <code>LivePPT</code> deck，验证“文章能否快速变成演示页”。</p>
+                        <p><strong>第 2 步</strong>：再把同一主题提炼成 12~18 页 <code>Slidev</code> 讲义，按“入口 / runtime / tools / memory / loop / UI”排章节。</p>
+                        <p><strong>第 3 步</strong>：最后只挑其中一个最有画面感的结构，比如 Agent loop 或 runtime 分层，做成 30~60 秒的 <code>Remotion</code> 片段。</p>
+                    </div>
+                </section>
+
+                <section id="plugin-rule" class="section-block">
+                    <h2>第一版插件线判断规则</h2>
+                    <p>这条线现在不只是在 `LivePPT / Slidev / Remotion` 之间选，还要先判断：当前内容到底更适合先画图、先截图，还是已经到了该变成演示页的阶段。</p>
+                    <table class="options-table">
+                        <tr><th>内容类型</th><th>第一选择</th><th>说明</th></tr>
+                        <tr><td>结构关系、层级、流程</td><td><code>Mermaid</code></td><td>当重点是“讲清结构”而不是还原真实界面时，优先 Mermaid。</td></tr>
+                        <tr><td>复杂结构但需要更强版式感</td><td><code>html-card-to-png</code></td><td>当 Mermaid 不够美观或布局受限时，用 HTML 卡片图补上视觉表达。</td></tr>
+                        <tr><td>真实页面、真实模块、真实交互状态</td><td><code>webpage-screenshot-md</code></td><td>当证据必须来自真实页面时，优先截图而不是重画。</td></tr>
+                        <tr><td>成熟专题想快速变成演示页</td><td><code>LivePPT</code></td><td>先做 deck，验证文章能否低成本进入演示形态。</td></tr>
+                        <tr><td>需要讲义化、现场演讲、代码示例</td><td><code>Slidev</code></td><td>更适合开发者分享、章节化讲解和导出。</td></tr>
+                        <tr><td>需要镜头感、节奏、动画传播</td><td><code>Remotion</code></td><td>只取最有画面感的一条主线，不要直接把长文全文视频化。</td></tr>
+                    </table>
+                    <div class="course-quote">
+                        <p><strong>一句话规则</strong></p>
+                        <p>先问“我是在解释结构，还是在保留证据，还是在做传播形态升级？”</p>
+                        <p>解释结构 → <code>Mermaid / html-card-to-png</code></p>
+                        <p>保留真实证据 → <code>webpage-screenshot-md</code></p>
+                        <p>升级传播形态 → <code>LivePPT / Slidev / Remotion</code></p>
+                    </div>
+                </section>
+
                 <section id="workflow" class="section-block">
                     <h2>推荐工作流：站内内容如何升级成更强表达</h2>
                     <div class="course-quote">
-                        <p><strong>第一步</strong>：先写出成熟专题页</p>
-                        <p><strong>第二步</strong>：如果只是要快速演示，走 <code>LivePPT</code></p>
-                        <p><strong>第三步</strong>：如果要做讲义或公开分享，走 <code>Slidev</code></p>
-                        <p><strong>第四步</strong>：如果要做动态叙事或视频，走 <code>Remotion</code></p>
+                        <p><strong>第一步</strong>：先判断当前最缺的是图、截图，还是传播形态升级</p>
+                        <p><strong>第二步</strong>：如果只是要解释结构，先走 <code>Mermaid</code> 或 <code>html-card-to-png</code></p>
+                        <p><strong>第三步</strong>：如果要保留真实界面证据，走 <code>webpage-screenshot-md</code></p>
+                        <p><strong>第四步</strong>：如果只是要快速演示，走 <code>LivePPT</code></p>
+                        <p><strong>第五步</strong>：如果要做讲义或公开分享，走 <code>Slidev</code></p>
+                        <p><strong>第六步</strong>：如果要做动态叙事或视频，走 <code>Remotion</code></p>
                     </div>
                 </section>
             </article>

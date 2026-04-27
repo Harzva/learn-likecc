@@ -1,0 +1,21 @@
+<svg width="1280" height="420" viewBox="0 0 1280 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="420" rx="24" fill="#111418"/>
+  <rect x="16" y="16" width="1248" height="388" rx="16" fill="#171B20" stroke="#F85149" stroke-width="2"/>
+  <rect x="16" y="16" width="1248" height="48" rx="16" fill="#14181D"/>
+  <circle cx="42" cy="40" r="8" fill="#FF5F57"/>
+  <circle cx="68" cy="40" r="8" fill="#FEBC2E"/>
+  <circle cx="94" cy="40" r="8" fill="#28C840"/>
+  <text x="120" y="46" fill="#8B949E" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="22">~/hzh/item_bo/learn-likecc/ccsource/claude-code-main</text>
+
+  <text x="28" y="102" fill="#E6EDF3" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="30">&gt; /model</text>
+  <text x="62" y="142" fill="#C9D1D9" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="26">└ Set model to </text>
+  <text x="320" y="142" fill="#F0F6FC" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="26" font-weight="700">Pro/MiniMaxAI/MiniMax-M2.5[1m]</text>
+
+  <text x="28" y="212" fill="#E6EDF3" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="30">&gt; nihao</text>
+  <text x="62" y="254" fill="#FF7B72" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="26">└ API Error: 400 thinking type should be enabled or disabled</text>
+
+  <line x1="20" y1="320" x2="1260" y2="320" stroke="#30363D" stroke-width="2"/>
+  <text x="28" y="372" fill="#FF7B72" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="22">▶▶</text>
+  <text x="76" y="372" fill="#FF7B72" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="22">bypass permissions on</text>
+  <text x="28" y="396" fill="#F85149" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="18">Vanilla Claude Code against the same SiliconFlow MiniMax route: failed before the Like Code compatibility patch</text>
+</svg>

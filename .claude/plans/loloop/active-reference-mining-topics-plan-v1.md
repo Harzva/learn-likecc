@@ -5,7 +5,16 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 
 ## Current focus
 
+- [ ] Create and maintain `reference/REFERENCE-STRUCTURE.md` as the canonical reference index:
+  - structure
+  - current site-linking status
+  - next planned site-facing outputs
+- [ ] On each Task 8 pass, compare the live `reference/` tree against `reference/REFERENCE-STRUCTURE.md`
+- [ ] Prioritize newly added repos, or repos still missing a site-facing destination, before opening lower-value parallel branches
+- [ ] Classify the newly added `reference/reference_meta(Manage)agent/gstack/` repo and decide its first site-facing landing point
+- [ ] Classify the `reference/reference_cli_platform/` shelf as a `connector-platform workflow` line and decide its first site-facing landing point
 - [ ] Review the newly added reference repos and identify the strongest web UI / agent-control ideas that can help LikeCode
+- [x] Classify `reference/reference_sourcemap/everything-claude-code/` as a source-map-adjacent control-plane sample and open its first site-facing unpacked page
 - [ ] Choose the first site-facing output:
   - a new subtopic article
   - an update to an existing topic page
@@ -45,6 +54,13 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 
 ## Newly added references
 
+- [x] `reference/reference_meta(Manage)agent/gstack/`
+- [x] `reference/reference_cli_platform/twitter-cli/`
+- [x] `reference/reference_cli_platform/xiaohongshu-cli/`
+- [x] `reference/reference_cli_platform/bilibili-cli/`
+- [x] `reference/reference_cli_platform/discord-cli/`
+- [x] `reference/reference_cli_platform/tg-cli/`
+- [x] `reference/reference_sourcemap/everything-claude-code/`
 - [x] `reference/reference_agent/feynman/`
 - [x] `reference/reference_agent/ChatDev/`
 - [x] `reference/reference_agent/multica/`
@@ -66,6 +82,10 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
   - `baoyu-skills` is a strong skill-bundle / marketplace-packaging reference
   - `codex-plugin-cc` is a strong plugin-bundle / command-surface reference
 - [ ] Which repos deserve their own article versus only a comparison mention?
+- [ ] Should the `reference_cli_platform/` shelf first land on:
+  - `connector shell / wechat bind`
+  - `CLI Agent`
+  - or a new `platform workflow` page?
 
 ## Likely article directions
 
@@ -127,6 +147,7 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 - [x] bounded extraction on the operator-surface line:
   - distinguish session browser, multi-session workbench, and operator HUD before deciding what the local `Session Stack` should become
 - [ ] terminal and pane layout patterns
+- [ ] connector-platform workflow patterns
 - [ ] multi-agent control and delegation surfaces
 - [x] bounded extraction on the artifact-control line:
   - distinguish document / artifact control CLIs from generic coding shells before treating all “agent CLI” references as the same surface
@@ -154,6 +175,11 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 
 ## Validation
 
+- [ ] Refresh `reference/REFERENCE-STRUCTURE.md` whenever the `reference/` tree changes
+- [ ] Explicitly mark which repos are:
+  - already reflected on the site
+  - partially reflected
+  - not yet reflected
 - [ ] Keep `python3 tools/check_site_md_parity.py` passing after each site-writing pass
 - [ ] Use primary repo evidence instead of vague summary
 - [ ] Leave clear local repo paths in the final article or topic notes
@@ -161,6 +187,7 @@ Scope: mine `reference/` for strong ideas around agent control, CLI orchestratio
 ## Notes
 
 - This plan is the canonical checklist for turning `reference/` discoveries into site content
+- `reference/REFERENCE-STRUCTURE.md` is the canonical structural mirror for the local `reference/` tree; Task 8 should refresh it before deciding what to mine next
 - Favor bounded passes: inspect one pattern family, choose one site destination, produce one concrete improvement
 - Current broader local state: the recent Task 8 wave is locally deferred until a stronger new reference family, repo cluster, or clearer destination appears; do not keep forcing fresh pages out of the same exhausted sample set
 - First bounded Task 8 output landed in the Skill 市场专题 rather than opening a new topic, because the new `baoyu-skills` / `codex-plugin-cc` references directly strengthen the existing trust-chain explanation

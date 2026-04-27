@@ -1,4 +1,4 @@
-# Claude Code Course - 深入理解 AI 编程助手
+# Everything in Claude-Code - 深入理解 AI 编程助手
 
 > **在线页面**: https://harzva.github.io/learn-likecc/index-old.html  
 > **本文件**: `site/md/index-old.md`  

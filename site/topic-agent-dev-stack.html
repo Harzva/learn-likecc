@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开源 Agent Dev 栈专题 - Everything in Claude-Code</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧱</text></svg>">
+    <meta name="description" content="把 ToolBench、OpenDevin、MetaGPT、OpenInterpreter、Dify、Langflow 等项目按开发栈分层拆解。">
+    <meta name="page:updated" content="2026-04-17">
+</head>
+<body class="agent-topic-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="topic-agent.html" class="nav-logo">
+                <span class="logo-icon">🧱</span>
+                <span class="logo-text">Agent Dev 栈</span>
+            </a>
+            <div class="nav-links">
+                <a href="#map" class="nav-link">地图</a>
+                <a href="#repos" class="nav-link">项目</a>
+                <a href="#reading" class="nav-link">怎么读</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-agent.html" class="btn-github">← 返回 Agent 专题</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>📚 大专题</span>
+                <span>Open Agent Dev</span>
+            </div>
+            <h1 class="hero-title">
+                开源 Agent Dev 栈<br>
+                <span class="gradient-text">不是一堆仓库，而是四层地图</span>
+            </h1>
+            <p class="hero-subtitle">
+                这一页把 <strong>ToolBench</strong>、<strong>OpenAgents</strong>、<strong>OpenDevin</strong>、<strong>MetaGPT</strong>、<strong>OpenInterpreter</strong>、<strong>Dify</strong>、<strong>Langflow</strong> 等项目按“开发栈”重新摆放。<br>
+                重点不是做链接收藏，而是回答三个问题：<strong>它在解决哪一层问题</strong>、<strong>产品壳厚不厚</strong>、<strong>我们该借鉴它的哪一层</strong>。<br>
+                本地证据目录：<code>reference/reference_agent_dev/</code>。
+            </p>
+        </div>
+    </section>
+
+    <section id="map" class="section section--soft">
+        <div class="container">
+            <h2 class="section-title">四层地图</h2>
+            <p class="section-desc agent-topic-copy agent-topic-copy--lead">
+                同样都叫 “Agent”，但有的在做 <code>tool-use 数据与评测</code>，有的在做 <code>autonomous software engineer</code>，有的在做 <code>本地代码执行器</code>，还有的在做 <code>工作流产品壳</code>。先分层，再比较，信息密度会高很多。
+            </p>
+            <div class="quickstart-grid agent-topic-grid">
+                <div class="quickstart-card">
+                    <h3>🧪 Tool / Data / Eval</h3>
+                    <p><strong>ToolBench</strong>、<strong>OpenAgents</strong></p>
+                    <p>看 tool-use 数据、Agent 评测、插件/数据/网页代理的研究原型。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>🔥 自主软件 Agent</h3>
+                    <p><strong>OpenDevin</strong>、<strong>MetaGPT</strong>、<strong>AgentGPT</strong>、<strong>SuperAGI</strong>、<strong>Devika</strong></p>
+                    <p>看任务拆解、角色分工、agent runtime、前后端与部署壳层。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>🛠️ Code / Tool Agent</h3>
+                    <p><strong>open-interpreter</strong>、<strong>developer</strong></p>
+                    <p>看代码执行、审批边界、人机协作与轻量脚手架代理。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>🏗️ 工作流 / 产品化平台</h3>
+                    <p><strong>Flowise</strong>、<strong>Dify</strong>、<strong>Langflow</strong></p>
+                    <p>看可视化编排、API/Web 分层、部署与 MCP / workflow export。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="repos" class="section">
+        <div class="container">
+            <h2 class="section-title">项目卡片</h2>
+            <div class="quickstart-grid agent-topic-grid">
+                <div class="quickstart-card">
+                    <h3>ToolBench</h3>
+                    <p><strong>定位</strong>：tool-use 数据、训练与评测底座。</p>
+                    <p><strong>先看</strong>：<code>toolbench/</code>、<code>preprocess/</code>、<code>scripts/</code>。</p>
+                    <p><strong>借鉴点</strong>：如果想做“工具会不会用”的 benchmark，这个是起点。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>OpenAgents</h3>
+                    <p><strong>定位</strong>：Open platform for language agents in the wild。</p>
+                    <p><strong>先看</strong>：<code>real_agents/</code>、<code>backend/</code>、<code>frontend/</code>。</p>
+                    <p><strong>借鉴点</strong>：把 data agent、plugin agent、web agent 放进同一张图里看。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>OpenDevin / OpenHands</h3>
+                    <p><strong>定位</strong>：开发型 agent 的完整工程壳层。</p>
+                    <p><strong>先看</strong>：<code>openhands/</code>、<code>frontend/</code>、<code>skills/</code>、<code>containers/</code>。</p>
+                    <p><strong>借鉴点</strong>：runtime、workspace、UI、skills、容器执行边界怎么拼起来。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>MetaGPT</h3>
+                    <p><strong>定位</strong>：多角色协作的软件公司式 agent framework。</p>
+                    <p><strong>先看</strong>：<code>metagpt/</code>、<code>examples/</code>、<code>config/</code>。</p>
+                    <p><strong>借鉴点</strong>：角色分工与多 agent orchestration 的经典样本。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>AgentGPT</h3>
+                    <p><strong>定位</strong>：浏览器中配置并运行 autonomous agent 的代表作。</p>
+                    <p><strong>先看</strong>：<code>next/</code>、<code>platform/</code>、<code>cli/</code>。</p>
+                    <p><strong>借鉴点</strong>：Web 产品壳如何包裹 autonomous task loop。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>SuperAGI</h3>
+                    <p><strong>定位</strong>：带 marketplace、memory、telemetry 的 agent platform。</p>
+                    <p><strong>先看</strong>：<code>superagi/</code>、<code>gui/</code>、<code>docker-compose.yaml</code>。</p>
+                    <p><strong>借鉴点</strong>：一个老牌“全家桶式 agent 平台”长什么样。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>Devika</h3>
+                    <p><strong>定位</strong>：开源 Devin 叙事下的软件工程 agent 原型。</p>
+                    <p><strong>先看</strong>：<code>src/</code>、<code>ui/</code>、<code>benchmarks/</code>。</p>
+                    <p><strong>借鉴点</strong>：规划、研究、编码三件事如何串成同一条链。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>open-interpreter</h3>
+                    <p><strong>定位</strong>：本地运行代码的 terminal agent。</p>
+                    <p><strong>先看</strong>：<code>interpreter/</code>、<code>docs/</code>、<code>examples/</code>。</p>
+                    <p><strong>借鉴点</strong>：本地执行、自然语言交互与 approval gate 的设计。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>smol developer</h3>
+                    <p><strong>定位</strong>：很轻量的人在环脚手架 agent。</p>
+                    <p><strong>先看</strong>：<code>smol_dev/</code>、<code>examples/</code>、<code>readme.md</code>。</p>
+                    <p><strong>借鉴点</strong>：用最薄的 agent 层做 whole-program synthesis 原型。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>Flowise</h3>
+                    <p><strong>定位</strong>：Node 生态里的可视化 agentflow 平台。</p>
+                    <p><strong>先看</strong>：<code>packages/</code>、<code>docker/</code>。</p>
+                    <p><strong>借鉴点</strong>：可拖拽工作流怎样落成可部署产品。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>Dify</h3>
+                    <p><strong>定位</strong>：产品化最厚的一条 agent app 平台线。</p>
+                    <p><strong>先看</strong>：<code>api/</code>、<code>web/</code>、<code>docker/</code>、<code>sdks/</code>。</p>
+                    <p><strong>借鉴点</strong>：API、Web、Docker、运营层如何一起长成完整产品。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>Langflow</h3>
+                    <p><strong>定位</strong>：Python 主导的 workflow / agent 平台。</p>
+                    <p><strong>先看</strong>：<code>src/</code>、<code>docs/</code>、<code>deploy/</code>。</p>
+                    <p><strong>借鉴点</strong>：flow 不只是画布，还能导出成 API 或 MCP server。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reading" class="section section--soft">
+        <div class="container">
+            <h2 class="section-title">怎么看这批仓库更有效</h2>
+            <div class="course-quote">
+                <p>不要只问“它是不是 Agent”。更有用的问法是：</p>
+                <ul>
+                    <li>它的核心对象是 <code>tool</code>、<code>task</code>、<code>issue</code>、<code>workflow</code> 还是 <code>deployment</code>？</li>
+                    <li>它重点卖的是 <code>autonomy</code>、<code>multi-agent collaboration</code>、<code>local execution</code> 还是 <code>product shell</code>？</li>
+                    <li>它有没有前端、容器、权限、marketplace、telemetry、SDK 这些“厚壳层”？</li>
+                    <li>它适合借鉴 runtime、UI、benchmark、workflow builder 还是 operator UX？</li>
+                </ul>
+            </div>
+            <p class="section-desc agent-topic-copy">
+                一个够用的阅读顺序是：先看 <code>ToolBench</code> 理解工具调用数据与评测，再看 <code>OpenDevin</code> / <code>MetaGPT</code> 理解开发型 agent runtime，然后看 <code>open-interpreter</code> 理解“本地执行 + 审批边界”，最后再回到 <code>Flowise</code> / <code>Dify</code> / <code>Langflow</code> 看产品化壳层。
+            </p>
+            <p class="section-desc agent-topic-copy">
+                如果你要继续从本地仓库往下钻，可以直接读 <a href="https://github.com/Harzva/learn-likecc/blob/main/reference/reference_agent_dev/README.md" target="_blank" rel="noopener noreferrer"><code>reference/reference_agent_dev/README.md</code></a>。
+            </p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-agent-dev-stack.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>© 2026 Everything in Claude-Code. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

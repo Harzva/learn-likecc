@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code vs Codex：编排型 vs 执行型 - Everything in Claude-Code</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧭</text></svg>">
+    <meta name="description" content="把 Claude Code 与 Codex 放在同一张对照台：编排型 vs 执行型，Session vs Thread，Hook/cron 与 Daemon loop。">
+    <meta name="page:updated" content="2026-04-17">
+</head>
+<body class="cc-codex-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🧭</span>
+                <span class="logo-text">Claude vs Codex</span>
+            </a>
+            <div class="nav-links">
+                <a href="#takeaway" class="nav-link">结论</a>
+                <a href="#compare" class="nav-link">编排与执行</a>
+                <a href="#visuals" class="nav-link">四张图</a>
+                <a href="#session-thread" class="nav-link">Session / Thread</a>
+                <a href="#loops" class="nav-link">Loop 方式</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-claude-codex-bridge.html" class="btn-github">桥接专题</a>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero cc-codex-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>Claude Code</span>
+                <span>Codex</span>
+                <span>对照导读</span>
+            </div>
+            <h1 class="hero-title">
+                Claude Code 与 Codex<br>
+                <span class="gradient-text">编排型 vs 执行型</span>
+            </h1>
+            <p class="hero-subtitle">
+                Claude Code 更像一套“编排与运行时平台”，Codex 更像“拿到活就改、跑、交付”的执行回路。
+                这页不是比谁更强，而是帮你判断今天缺的是编排，还是执行。
+            </p>
+            <div class="cc-codex-keyline">
+                <span class="cc-codex-chip">Coordinator / Tools / Workers</span>
+                <span class="cc-codex-chip">Session vs Thread</span>
+                <span class="cc-codex-chip cc-codex-chip--warm">Hook + Cron vs Daemon</span>
+            </div>
+        </div>
+    </section>
+
+    <main class="course-main">
+        <div class="container">
+            <article class="course-content">
+                <section id="takeaway" class="section-block">
+                    <h2 class="cc-codex-section-title">一句话结论</h2>
+                    <div class="course-quote">
+                        <p><strong>Claude Code 是编排型平台，Codex 是执行型回路。</strong>一个负责“把任务与工具组织起来”，一个负责“把任务改完并交付”。</p>
+                    </div>
+                </section>
+
+                <section id="compare" class="section-block">
+                    <h2 class="cc-codex-section-title">编排型 vs 执行型</h2>
+                    <div class="cc-codex-split">
+                        <div class="cc-codex-panel cc-codex-panel--claude">
+                            <h3>Claude Code：编排型平台</h3>
+                            <p>命令、工具、worker、权限、扩展面叠厚，像一个总包+调度台。</p>
+                            <ul>
+                                <li>强调控制面：commands / tools / coordinator / worker</li>
+                                <li>扩展面丰富：MCP / Skills / Plugins / Hooks</li>
+                                <li>Session 贯穿：上下文、权限、审阅与运行时状态</li>
+                            </ul>
+                        </div>
+                        <div class="cc-codex-panel cc-codex-panel--codex">
+                            <h3>Codex：执行型回路</h3>
+                            <p>更像一支施工队，接活就改、跑命令、验收并交结果。</p>
+                            <ul>
+                                <li>读代码 → 改文件 → 跑命令 → 验证结果</li>
+                                <li>更聚焦“交付闭环”，而不是控制面层</li>
+                                <li>Thread 驱动：每个任务是一个清晰的执行回路</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="visuals" class="section-block">
+                    <h2 class="cc-codex-section-title">四张图：把差异画出来</h2>
+                    <div class="cc-codex-diagram-grid">
+                        <div class="cc-codex-diagram">
+                            <p class="cc-codex-diagram__title">Claude Code · Codex</p>
+                            <p class="cc-codex-diagram__subtitle">两种职责，不是两个“命令行壳”</p>
+                            <div class="cc-codex-twin">
+                                <div class="cc-codex-twin__card cc-codex-twin__card--claude">
+                                    <strong>Claude Code</strong>
+                                    <div class="cc-codex-stack" style="margin-top: 10px;">
+                                        <div class="cc-codex-stack__item cc-codex-stack__item--claude">命令层</div>
+                                        <div class="cc-codex-stack__item cc-codex-stack__item--claude alt">Tools 运行时装配</div>
+                                        <div class="cc-codex-stack__item cc-codex-stack__item--claude">Coordinator / Worker</div>
+                                        <div class="cc-codex-stack__item cc-codex-stack__item--claude alt">MCP · Skills · Plugins · Hooks</div>
+                                    </div>
+                                </div>
+                                <div class="cc-codex-twin__card cc-codex-twin__card--codex">
+                                    <strong>Codex</strong>
+                                    <div class="cc-codex-stack" style="margin-top: 10px;">
+                                        <div class="cc-codex-stack__item cc-codex-stack__item--codex">看任务 · 看代码</div>
+                                        <div class="cc-codex-stack__item cc-codex-stack__item--codex alt">改文件 · 跑命令</div>
+                                        <div class="cc-codex-stack__item cc-codex-stack__item--codex">验证结果</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cc-codex-note">Claude Code ≈ 总包 + 调度台 ｜ Codex ≈ 主力施工队</div>
+                        </div>
+
+                        <div class="cc-codex-diagram">
+                            <p class="cc-codex-diagram__title">Claude Code：编排系统</p>
+                            <p class="cc-codex-diagram__subtitle">命令、工具、worker、扩展同一套运行时</p>
+                            <div class="cc-codex-stack">
+                                <div class="cc-codex-stack__item cc-codex-stack__item--claude">Coordinator</div>
+                            </div>
+                            <div class="cc-codex-twin" style="margin-top: 16px;">
+                                <div class="cc-codex-stack">
+                                    <div class="cc-codex-stack__item cc-codex-stack__item--claude alt">Commands</div>
+                                    <div class="cc-codex-stack__item cc-codex-stack__item--claude alt">Workers</div>
+                                </div>
+                                <div class="cc-codex-stack">
+                                    <div class="cc-codex-stack__item cc-codex-stack__item--claude alt">Tools</div>
+                                    <div class="cc-codex-stack__item cc-codex-stack__item--claude alt">Extensions</div>
+                                </div>
+                            </div>
+                            <div class="cc-codex-note">平台感来自“先组织系统，再让模型干活”</div>
+                        </div>
+
+                        <div class="cc-codex-diagram">
+                            <p class="cc-codex-diagram__title">Codex：执行型助手</p>
+                            <p class="cc-codex-diagram__subtitle">尽快进入读、改、跑、验闭环</p>
+                            <div class="cc-codex-flow">
+                                <div class="cc-codex-flow__step">任务</div>
+                                <div class="cc-codex-flow__step cc-codex-flow__step--mid">读代码 · 建上下文</div>
+                                <div class="cc-codex-flow__step">改文件</div>
+                                <div class="cc-codex-flow__step cc-codex-flow__step--accent">跑命令 · 调试验证</div>
+                                <div class="cc-codex-flow__step cc-codex-flow__step--finish">交结果</div>
+                            </div>
+                            <div class="cc-codex-note">更像主力程序员，而不是大型工作台</div>
+                        </div>
+
+                        <div class="cc-codex-diagram">
+                            <p class="cc-codex-diagram__title">两条工作流 · 两类问题</p>
+                            <p class="cc-codex-diagram__subtitle">一个先搭系统，一个先开工</p>
+                            <div class="cc-codex-twin">
+                                <div class="cc-codex-twin__card cc-codex-twin__card--claude">
+                                    <strong>Claude Code</strong>
+                                    <ul>
+                                        <li>模式 / 权限 / 扩展 / 角色</li>
+                                        <li>command / tool / worker</li>
+                                        <li>coordinator 汇总回流</li>
+                                        <li>复杂流、多能力协同</li>
+                                    </ul>
+                                </div>
+                                <div class="cc-codex-twin__card cc-codex-twin__card--codex">
+                                    <strong>Codex</strong>
+                                    <ul>
+                                        <li>任务进来先读目录代码</li>
+                                        <li>改文件 · 跑命令 · 验证</li>
+                                        <li>层次少、闭环短</li>
+                                        <li>快落地、修问题</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="cc-codex-note">不是抢同一位置，是一条链路的不同环节</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="session-thread" class="section-block">
+                    <h2 class="cc-codex-section-title">Session vs Thread：你到底在续什么</h2>
+                    <table class="cc-codex-table">
+                        <tr><th>维度</th><th>Claude Code · Session</th><th>Codex · Thread</th></tr>
+                        <tr><td>定位</td><td>会话级运行时，承载权限、上下文与控制面</td><td>执行级任务链，承载每次工作闭环</td></tr>
+                        <tr><td>重点</td><td>“把环境组织起来”</td><td>“把任务改完并验收”</td></tr>
+                        <tr><td>适合</td><td>长任务、多人协作、需要可视化与审阅</td><td>单任务推进、快速验证、交付导向</td></tr>
+                        <tr><td>延续方式</td><td>更常见的做法是复用同一 Session 作为持续工作台</td><td>更常见的做法是延续同一 Thread 完成同一任务链</td></tr>
+                    </table>
+                </section>
+
+                <section id="loops" class="section-block">
+                    <h2 class="cc-codex-section-title">Loop 的差异：Hook + Cron vs 外部 Daemon</h2>
+                    <table class="cc-codex-table">
+                        <tr><th>问题</th><th>Claude Code 侧</th><th>Codex 侧</th></tr>
+                        <tr><td>循环触发</td><td>常见是用 <strong>hooks</strong> + <strong>cron/schedule</strong> 触发下一次任务</td><td>常见是用外部 <strong>daemon</strong> 或脚本定时触发 <code>codex exec</code></td></tr>
+                        <tr><td>状态存放</td><td>Session 维持控制面与上下文</td><td>Thread 维持执行上下文与日志</td></tr>
+                        <tr><td>系统取舍</td><td>强调编排与权限边界</td><td>强调执行闭环与结果落地</td></tr>
+                    </table>
+                </section>
+
+                <section class="section-block">
+                    <h2 class="cc-codex-section-title">怎么选：先问你缺什么</h2>
+                    <table class="cc-codex-table">
+                        <tr><th>你现在缺什么</th><th>更适合的主角</th><th>原因</th></tr>
+                        <tr><td>需要控制面、权限、扩展、协作</td><td>Claude Code</td><td>平台级编排能力更强</td></tr>
+                        <tr><td>需要快速执行闭环</td><td>Codex</td><td>读改跑验更直接</td></tr>
+                        <tr><td>需要两者协作</td><td>Claude 调 Codex</td><td>Claude 编排，Codex 执行</td></tr>
+                    </table>
+                </section>
+
+                <div class="chapter-navigation">
+                    <a href="topic-claude-codex-bridge.html" class="btn btn-secondary">← Claude 调 Codex 桥接</a>
+                    <a href="topic-agent-runtime.html" class="btn btn-primary">终端 Agent Runtime →</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-claude-codex-compare.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>© 2026 Everything in Claude-Code. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

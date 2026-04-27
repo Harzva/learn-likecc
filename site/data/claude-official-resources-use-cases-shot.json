@@ -1,0 +1,18 @@
+{
+  "viewport": {
+    "width": 1440,
+    "height": 1200,
+    "deviceScaleFactor": 1.5
+  },
+  "waitMs": 1800,
+  "shots": [
+    {
+      "type": "selector",
+      "selector": ".page_wrap",
+      "file": "use-cases-overview.png",
+      "alt": "Claude 官方 Use Cases 页面截图",
+      "block": "start",
+      "waitMs": 1200
+    }
+  ]
+}

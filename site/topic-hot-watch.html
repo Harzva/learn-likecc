@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>热门话题专项 - Learn LikeCode</title>
+    <title>热门话题专项 - Everything in Claude-Code</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛰️</text></svg>">
     <meta name="description" content="聚合 AIbase Daily、RSS 与公开热点入口的站内热门话题专项；负责 intake、路由与后续专题沉淀。">
@@ -40,18 +40,18 @@
                 <span class="gradient-text">先聚合，再路由，再沉淀成专题</span>
             </h1>
             <p class="hero-subtitle">
-                这页不是另一个新闻站，而是 Learn LikeCode 的<strong>热点 intake 面</strong>：先汇总外部热点源，再把值得讲的内容分流到 Agent、RAG、AI 杂货铺、工具链或大模型专题里。当前第一批受控来源以 <strong>AIbase AI日报</strong>、<strong>RSS 友好英文博客</strong> 和 <strong>官方产品 / 生态博客 RSS</strong> 为起点。
+                这页不是另一个新闻站，而是 Everything in Claude-Code 的<strong>热点 intake 面</strong>：先汇总外部热点源，再把值得讲的内容分流到 Agent、RAG、AI 杂货铺、工具链或大模型专题里。当前第一批受控来源以 <strong>AIbase AI日报</strong>、<strong>RSS 友好英文博客</strong> 和 <strong>官方产品 / 生态博客 RSS</strong> 为起点。
             </p>
             <div class="hero-actions">
                 <a href="#board" class="btn btn-primary">看当前摘要</a>
-                <a href="#maintenance" class="btn btn-secondary">看维护规则</a>
+                <a href="#routes" class="btn btn-secondary">看落点规则</a>
             </div>
         </div>
     </section>
 
-    <main class="course-main devlog-main">
+    <main class="course-main">
         <div class="container">
-            <article class="course-content devlog-content">
+            <article class="course-content">
                 <section id="overview" class="section-block">
                     <h2>这条专项解决什么问题</h2>
                     <div class="course-quote">
@@ -112,16 +112,6 @@
                     </div>
                 </section>
 
-                <section id="maintenance" class="section-block">
-                    <h2>维护规则</h2>
-                    <ol>
-                        <li>先改 <code>site/data/hot-topic-sources.json</code>，不要把新源只写进文案里。</li>
-                        <li>运行 <code>python3 tools/fetch_hot_topic_sources.py --write</code> 刷新本地快照。</li>
-                        <li>新增源后，先判断它属于 discovery digest、independent RSS 还是 official blog RSS，再决定默认 route hints，不要把所有 RSS 当成同一类。</li>
-                        <li>如果来源池或路由逻辑有明显变化，同步更新这页和对应热点页。</li>
-                        <li>如果某条热点足够重要，再交给 <code>keyword-site-topic</code> 做深一层的站内稿件。</li>
-                    </ol>
-                </section>
             </article>
         </div>
     </main>
@@ -129,7 +119,7 @@
     <footer class="footer">
         <div class="container">
             <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-hot-watch.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
-            <p>© 2026 Learn LikeCode. 仅供学习研究使用。</p>
+            <p>© 2026 Everything in Claude-Code. 仅供学习研究使用。</p>
         </div>
     </footer>
 

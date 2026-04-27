@@ -1,7 +1,7 @@
 {
   "meta": {
-    "updated": "2026-04-13",
-    "count": 54,
+    "updated": "2026-04-17",
+    "count": 62,
     "source": "git history + site/topic-*.html"
   },
   "groups": [
@@ -142,6 +142,14 @@
           "md_path": "site/md/topic-claude-codex-bridge.md"
         },
         {
+          "slug": "topic-claude-codex-compare",
+          "title": "Claude Code vs Codex：编排型 vs 执行型 - Everything in Claude-Code",
+          "updated": "2026-04-17",
+          "group": "Claude Code / LikeCode 深挖",
+          "href": "topic-claude-codex-compare.html",
+          "md_path": "site/md/topic-claude-codex-compare.md"
+        },
+        {
           "slug": "topic-codex-loop-console",
           "title": "codex-loop AI Terminal（本地）- Claude Code Course",
           "updated": "2026-04-12",
@@ -150,12 +158,28 @@
           "md_path": "site/md/topic-codex-loop-console.md"
         },
         {
+          "slug": "topic-hook-runtime",
+          "title": "Hook Runtime 专题：Claude Code 钩子全景 - Everything in Claude-Code",
+          "updated": "2026-04-22",
+          "group": "Claude Code / LikeCode 深挖",
+          "href": "topic-hook-runtime.html",
+          "md_path": "site/md/topic-hook-runtime.md"
+        },
+        {
           "slug": "topic-loop-task-board",
           "title": "Loop 任务驾驶舱 - Everything in Claude-Code",
           "updated": "2026-04-12",
           "group": "Claude Code / LikeCode 深挖",
           "href": "topic-loop-task-board.html",
           "md_path": "site/md/topic-loop-task-board.md"
+        },
+        {
+          "slug": "topic-loop-mechanisms",
+          "title": "Loop 机制对照：Claude Hook、Codex Daemon 与 LikeCode /loop - Everything in Claude-Code",
+          "updated": "2026-04-22",
+          "group": "Claude Code / LikeCode 深挖",
+          "href": "topic-loop-mechanisms.html",
+          "md_path": "site/md/topic-loop-mechanisms.md"
         },
         {
           "slug": "topic-memory-harness",
@@ -221,7 +245,7 @@
         {
           "slug": "topic-agent-dev-stack",
           "title": "开源 Agent Dev 栈专题 - Everything in Claude-Code",
-          "updated": "2026-04-13",
+          "updated": "2026-04-17",
           "group": "Agent / CLI / 杂货铺子专题",
           "href": "topic-agent-dev-stack.html",
           "md_path": "site/md/topic-agent-dev-stack.md"
@@ -237,7 +261,7 @@
         {
           "slug": "topic-agent-papers",
           "title": "论文解读专题 · Agent Skills - Everything in Claude-Code",
-          "updated": "2026-04-12",
+          "updated": "2026-04-13",
           "group": "Agent / CLI / 杂货铺子专题",
           "href": "topic-agent-papers.html",
           "md_path": "site/md/topic-agent-papers.md"
@@ -357,6 +381,14 @@
       "name": "其他专题",
       "items": [
         {
+          "slug": "topic-agent-runtime",
+          "title": "终端 Agent Runtime 解构 - Everything in Claude-Code",
+          "updated": "2026-04-17",
+          "group": "其他专题",
+          "href": "topic-agent-runtime.html",
+          "md_path": "site/md/topic-agent-runtime.md"
+        },
+        {
           "slug": "topic-ai-scientist",
           "title": "AI-Scientist 专题 - Everything in Claude-Code",
           "updated": "2026-04-12",
@@ -373,6 +405,14 @@
           "md_path": "site/md/topic-cabinet-unpacked.md"
         },
         {
+          "slug": "topic-claude-official-resources",
+          "title": "Claude 官方资源翻译 - Everything in Claude-Code",
+          "updated": "2026-04-17",
+          "group": "其他专题",
+          "href": "topic-claude-official-resources.html",
+          "md_path": "site/md/topic-claude-official-resources.md"
+        },
+        {
           "slug": "topic-codex-loop-in-sleep",
           "title": "Codex-Loop In Sleep - AI-Scientist 专题",
           "updated": "2026-04-12",
@@ -383,7 +423,7 @@
         {
           "slug": "topic-connector-runtime-daemon",
           "title": "Connector / Runtime / Daemon - CodeXLoop 架构专题",
-          "updated": "2026-04-13",
+          "updated": "2026-04-17",
           "group": "其他专题",
           "href": "topic-connector-runtime-daemon.html",
           "md_path": "site/md/topic-connector-runtime-daemon.md"
@@ -411,6 +451,22 @@
           "group": "其他专题",
           "href": "topic-design-ui.html",
           "md_path": "site/md/topic-design-ui.md"
+        },
+        {
+          "slug": "topic-everything-claude-code-unpacked",
+          "title": "Everything Claude Code 解构 - Everything in Claude-Code",
+          "updated": "2026-04-17",
+          "group": "其他专题",
+          "href": "topic-everything-claude-code-unpacked.html",
+          "md_path": "site/md/topic-everything-claude-code-unpacked.md"
+        },
+        {
+          "slug": "topic-github-achievements",
+          "title": "GitHub 成就 / 图标专题 - Everything in Claude-Code",
+          "updated": "2026-04-17",
+          "group": "其他专题",
+          "href": "topic-github-achievements.html",
+          "md_path": "site/md/topic-github-achievements.md"
         },
         {
           "slug": "topic-multica-unpacked",
@@ -451,6 +507,14 @@
           "group": "其他专题",
           "href": "topic-paper-sage-skill-library.html",
           "md_path": "site/md/topic-paper-sage-skill-library.md"
+        },
+        {
+          "slug": "topic-runoob-codex-tutorial",
+          "title": "菜鸟 Codex 教程怎么读 - Everything in Claude-Code",
+          "updated": "2026-04-17",
+          "group": "其他专题",
+          "href": "topic-runoob-codex-tutorial.html",
+          "md_path": "site/md/topic-runoob-codex-tutorial.md"
         },
         {
           "slug": "topic-superset-unpacked",

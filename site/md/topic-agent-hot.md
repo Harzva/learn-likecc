@@ -1,4 +1,4 @@
-# Agent · 技术热点 - Claude Code Course
+# Agent · 技术热点 - Everything in Claude-Code
 > **更新时间**: 2026-04-12
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-agent-hot.html  

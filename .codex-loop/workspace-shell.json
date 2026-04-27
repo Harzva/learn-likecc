@@ -1,0 +1,12 @@
+{
+  "workspace_name": "LikeCode",
+  "shell_title": "LikeCode Workspace Shell",
+  "shell_eyebrow": "Cross-project Codex Loop Workspace",
+  "shell_summary": "任务池、计划编辑、runtime 状态与日志同屏的本地 workspace shell。默认靠 relay 自动识别当前工程，必要时再用这个文件覆盖 branding 和站点基址。",
+  "site_base_url": "https://harzva.github.io/learn-likecc",
+  "links": {
+    "task_board": "topic-loop-task-board.html",
+    "monitor": "topic-codex-loop-console.html",
+    "home": "index.html"
+  }
+}

@@ -1,4 +1,4 @@
-# AI-Scientist 专题 - Claude Code Course
+# AI-Scientist 专题 - Everything in Claude-Code
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-ai-scientist.html  
 > **本文件**: `site/md/topic-ai-scientist.md`  

@@ -32,6 +32,7 @@ Loop rule:
 - in each iteration, choose exactly one task that is currently the best next move
 - if the previous loop task is not finished and not explicitly blocked, continue that same task first
 - only pick a different task when the current one is completed, clearly blocked, downgraded by the user, or intentionally deferred with a written reason
+- do not select tasks that are already marked `done`; treat them as closed unless the user explicitly reopens them
 - prefer the task that is highest-value, lowest-risk, and easiest to verify locally
 - keep each iteration bounded and finishable in one pass
 - after the iteration, update the evolution note trail, prepare the next handoff, and after each successful iteration update GitHub
@@ -47,6 +48,7 @@ Task state rule:
 - when a task becomes the current focus, mark it in the plan / evolution trail as the active task for the next tick
 - do not abandon an active task just because a new task was added to the pool
 - after an active task is marked `done`, the next tick may choose a new best-next task from the remaining pool
+- `done` tasks are excluded from normal future selection; they should only re-enter the pool if the user explicitly reopens them or a new plan version replaces them
 - if multiple remaining tasks are equally good after the active one is done, choose the most valuable one rather than random switching
 
 Selection priority:
@@ -60,6 +62,18 @@ Publishing rule:
 - if the current local time is outside that window, prepare everything needed for publishing, but defer the actual publish step until the allowed time window
 - when the current local time is inside that window, give ready-to-publish Zhihu tasks a higher selection priority than usual so the loop has a better chance to finish the publish step in time
 - when a new site topic, subtopic, or major page becomes mature enough to promote, remember to consider a matching Zhihu article or adaptation pass instead of leaving the result only on the site
+- for site-derived Zhihu articles, prefer mature, older, visually rich, and already-polished topics; do not rush shallow or newly created topics into Zhihu just to fill the queue
+- do not force every Zhihu article into one identical house style; choose or rotate a suitable style variant based on the topic, such as unpacked deep-dive, tool notebook, workflow recipe, field report, or hot-take summary
+- avoid publishing multiple consecutive Zhihu articles with nearly the same opening cadence, section rhythm, and closing template unless the user explicitly wants strict template consistency
+- recommendation-style articles are allowed, but Zhihu output must stay content-first: keep real technical substance, mechanism, method, code path, workflow, or principle in the body instead of writing pure praise / guide copy
+- pure technical Zhihu articles are explicitly allowed and encouraged when the topic is better taught by principle, architecture, runtime, protocol, debugging path, or implementation logic than by recommending a page
+- when an article cites repo code as evidence, do not stop at file paths alone; include short, relevant code excerpts in Markdown fenced blocks so the reader can see the mechanism directly
+- use path references as provenance, but pair them with the actual snippet when the argument depends on implementation detail
+- before any Zhihu publish, run one final copy audit with at least these four checks:
+  - remove obvious AI-flavored template phrasing
+  - make the article sound more professionally technical
+  - keep the prose natural and human-readable instead of over-explained
+  - keep claims evidence-backed and non-exaggerated
 
 Examples:
 - temporary task example:
@@ -91,7 +105,15 @@ Requirements:
    - identify the failure stage clearly (cookie / selector / human verification / image upload)
    - keep debug evidence
    - give the safest fallback next step
-5. If publishing succeeds:
+5. Before publishing, run one final copy diagnosis:
+   - remove AI-flavored template phrasing
+   - tighten toward a more professional technical tone
+   - improve readability and reduce over-explanation
+   - verify that claims stay evidence-backed and not exaggerated
+   - if the article reads mostly like a recommendation or praise post, rewrite it to add real technical substance before publishing
+   - if the article relies on code evidence, make sure key code points are shown as short Markdown code excerpts rather than path-only references
+   - use the dedicated `zhihu-copy-diagnose` skill or its local script; if it returns `BLOCK`, do not publish yet
+6. If publishing succeeds:
    - return the Zhihu article URL or article ID
    - say which pipeline was used
    - update any relevant publish-record docs if needed
@@ -103,6 +125,7 @@ Requirements:
 1. Do topic selection first instead of writing immediately:
    - choose from `site/topic-*.html`
    - prefer topics that are structurally clear, visual, mature, and worth spreading
+   - prioritize older, well-established topics with rich visuals; avoid newly created or shallow topics that are not yet deep or polished
 2. Use repo evidence for topic selection:
    - topic source pages: `site/topic-*.html`
    - existing Zhihu articles: `wemedia/zhihu/articles/*.md`
@@ -116,12 +139,18 @@ Requirements:
    - which visual sections or diagrams are worth capturing
 4. After choosing a topic:
    - generate a new Zhihu Markdown draft under `wemedia/zhihu/articles/`
-   - follow the repo's existing Zhihu house style
+   - use a suitable Zhihu style variant instead of blindly repeating one fixed house style
    - prefer screenshots for strong visual modules instead of text-only description
 5. If screenshots are needed:
    - use a local or published page for section-level capture
    - produce Markdown-ready image paths
-6. If publication is approved:
+6. Before publication, run one final copy diagnosis:
+   - remove AI-flavored template phrasing
+   - tighten toward a more professional technical tone
+   - improve readability and reduce over-explanation
+   - verify that claims stay evidence-backed and not exaggerated
+   - use the dedicated `zhihu-copy-diagnose` skill or its local script; if it returns `BLOCK`, do not publish yet
+7. If publication is approved:
    - continue with `zhihu-publish`
    - choose the safest viable publishing path
 
@@ -143,12 +172,21 @@ Requirements:
    - generating or capturing visuals when needed
    - publishing or editing on Zhihu
    - using `codex-loop` to keep refining the pipeline
+   - make the article technique-first and workflow-first, not a generic recommendation for the site
+   - if a recommendation angle is present, keep it secondary to concrete implementation detail, failure handling, and publishable operating steps
+   - when referencing scripts or skill internals, include compact code excerpts in Markdown so the article shows the mechanism instead of only naming files
 5. The article must include repo evidence and links where appropriate:
    - the `codex-loop` repository
    - the exported Zhihu-related skill repositories
    - the local workflow files or scripts that prove the pipeline
 6. Before publishing, verify that the article includes the final GitHub links rather than placeholder text.
-7. If publication is approved:
+7. Run one final copy diagnosis:
+   - remove AI-flavored template phrasing
+   - tighten toward a more professional technical tone
+   - improve readability and reduce over-explanation
+   - verify that claims stay evidence-backed and not exaggerated
+   - use the dedicated `zhihu-copy-diagnose` skill or its local script; if it returns `BLOCK`, do not publish yet
+8. If publication is approved:
    - publish with `zhihu-publish`
    - return the Zhihu link or article ID
 
@@ -216,15 +254,21 @@ Execution rule:
 Task 8:
 Loop task: keep mining `reference/` for interesting agent / CLI / UI ideas and turn them into new site subtopics or even new hub topics by following the dedicated plan file:
 - `.claude/plans/loloop/active-reference-mining-topics-plan-v1.md`
+- `reference/REFERENCE-STRUCTURE.md`
 
 Execution rule:
 1. Read that plan first.
-2. Continue the current unchecked / active item instead of randomly switching.
-3. After each bounded pass:
+2. Refresh `reference/REFERENCE-STRUCTURE.md` before a bounded pass:
+   - compare the current `reference/` tree with the structure file
+   - record any newly added repo
+   - mark any repo that still has no clear site destination
+3. Continue the current unchecked / active item instead of randomly switching.
+4. If a new repo appears, or an existing repo still has no site-facing landing point, prioritize that gap over opening a lower-value parallel branch.
+5. After each bounded pass:
    - mark progress in the plan file
    - check off any completed item
    - record the result in the evolution trail
-4. Prefer turning strong reference findings into:
+6. Prefer turning strong reference findings into:
    - a new subtopic article
    - a refreshed existing topic page
    - or a justified new major topic when the pattern is large enough
@@ -387,3 +431,111 @@ Execution rule:
    - `site/images/paper-reading/`
    - `reference/reference_paper/`
    - future paper-topic hubs and their analysis pages
+
+Task 18:
+Loop task: keep growing the GitHub achievements / badge line by following the dedicated plan file:
+- `.claude/plans/loloop/active-github-achievements-topic-plan-v1.md`
+
+Execution rule:
+1. Read that plan first.
+2. Continue the current unchecked / active item instead of randomly switching.
+3. After each bounded pass:
+   - mark progress in the plan file
+   - check off any completed item
+   - record the result in the evolution trail
+4. Prefer changes that keep these aligned:
+   - `site/topic-github-achievements.html`
+   - `site/md/topic-github-achievements.md`
+   - `site/topic-toolchain.html`
+   - `site/js/app.js`
+   - future badge / icon references and usage guidance
+
+Task 19:
+Loop task: keep running the site-wide 文案体检 by following the dedicated plan file:
+- `.claude/plans/loloop/active-site-copy-tone-plan-v1.md`
+
+Execution rule:
+1. Read that plan first.
+2. Continue the current unchecked / active item instead of randomly switching.
+3. After each bounded pass:
+   - mark progress in the plan file
+   - check off any completed item
+   - record the result in the evolution trail
+4. Prefer changes that keep these aligned:
+   - `site/index.html`
+   - `site/topic-*.html`
+   - `site/md/*.md`
+   - developer-facing hub copy, hero copy, and navigation-adjacent explanations
+
+Task 20:
+Loop task: keep growing the Claude official resources translation line by following the dedicated plan file:
+- `.claude/plans/loloop/active-claude-official-resources-plan-v1.md`
+
+Execution rule:
+1. Read that plan first.
+2. Continue the current unchecked / active item instead of randomly switching.
+3. After each bounded pass:
+   - mark progress in the plan file
+   - check off any completed item
+   - record the result in the evolution trail
+4. Prefer changes that keep these aligned:
+   - `site/topic-claude-official-resources.html`
+   - `site/md/topic-claude-official-resources.md`
+   - `docs/topic-claude-official-resources-rule.md`
+   - `site/images/claude-official-resources/`
+   - `tutorial.html`
+5. Prefer this route order:
+   - `Anthropic Engineering` for deep article translations
+   - `Tutorials` for product-facing supplements
+   - `Use Cases` for selective scenario writeups, not whole-shelf bulk translation
+
+Task 21:
+Loop task: keep promoting the diary line from `reference/diary.txt` into the site (keep the original voice) by following the dedicated plan file:
+- `.claude/plans/loloop/active-diary-showcase-plan-v1.md`
+
+Execution rule:
+1. Read that plan first.
+2. Continue the current unchecked / active item instead of randomly switching.
+3. After each bounded pass:
+   - mark progress in the plan file
+   - check off any completed item
+   - record the result in the evolution trail
+4. Prefer changes that keep these aligned:
+   - `reference/diary.txt`
+   - site diary / personal record pages or hubs
+   - `site/md/`
+   - `site/topic-*.html`
+
+Task 22:
+Loop task: keep auditing topic creation time and readability / quality uplift for new or weak topics by following the dedicated plan file:
+- `.claude/plans/loloop/active-topic-quality-audit-plan-v1.md`
+
+Execution rule:
+1. Read that plan first.
+2. Continue the current unchecked / active item instead of randomly switching.
+3. After each bounded pass:
+   - mark progress in the plan file
+   - check off any completed item
+   - record the result in the evolution trail
+4. Prefer changes that keep these aligned:
+   - `site/topic-*.html`
+   - `site/md/*.md`
+   - `site/data/site-topic-index.json`
+   - any topic metadata that records creation/update time
+
+Task 23:
+Loop task: keep building the `Claude Code Simulator` LivePPT demo line by following the dedicated plan file:
+- `.claude/plans/loloop/active-claude-code-simulator-liveppt-plan-v1.md`
+
+Execution rule:
+1. Read that plan first.
+2. Continue the current unchecked / active item instead of randomly switching.
+3. After each bounded pass:
+   - mark progress in the plan file
+   - check off any completed item
+   - record the result in the evolution trail
+4. Prefer changes that keep these aligned:
+   - `reference/reference_design_ui/LivePPT/`
+   - `site/topic-design-ui.html`
+   - `site/topic-design-ui-tutorial.html`
+   - simulator demo outputs, prompts, and related showcase pages in the repo

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude 官方资源翻译 - Everything in Claude-Code</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧭</text></svg>">
+    <meta name="description" content="把 Claude 官方 Tutorials、Use Cases 和 Anthropic Engineering 收成一条教程子专题，用于逐篇翻译、保留图片和沉淀站内中文入口。">
+    <meta name="page:updated" content="2026-04-17">
+</head>
+<body class="meta-topic-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="tutorial.html" class="nav-logo">
+                <span class="logo-icon">🧭</span>
+                <span class="logo-text">官方资源翻译</span>
+            </a>
+            <div class="nav-links">
+                <a href="#why" class="nav-link">为什么单列</a>
+                <a href="#lanes" class="nav-link">三条来源</a>
+                <a href="#queue" class="nav-link">翻译队列</a>
+                <a href="#image-policy" class="nav-link">图片策略</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="tutorial.html" class="btn-github">教程页</a>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>🧭 Claude 官方资源</span>
+                <span>Tutorials · Use Cases · Engineering</span>
+            </div>
+            <h1 class="hero-title">
+                Claude 官方资源翻译<br>
+                <span class="gradient-text">把教程、场景页和工程博客收成一条教程子专题</span>
+            </h1>
+            <p class="hero-subtitle">
+                这条线专门承接 <a href="https://claude.com/resources/tutorials" target="_blank" rel="noopener noreferrer">Tutorials</a>、
+                <a href="https://claude.com/resources/use-cases" target="_blank" rel="noopener noreferrer">Use Cases</a> 和
+                <a href="https://www.anthropic.com/engineering" target="_blank" rel="noopener noreferrer">Anthropic Engineering</a>。
+                目标不是简单贴外链，而是逐篇翻译、保住关键图和界面截图，再回写成站内可持续阅读的中文入口。
+            </p>
+        </div>
+    </section>
+
+    <section id="why" class="section section--soft">
+        <div class="container">
+            <h2 class="section-title">为什么要单独立一个官方资源翻译子专题</h2>
+            <div class="quickstart-grid meta-topic-grid meta-topic-grid--concept">
+                <div class="quickstart-card">
+                    <h3>教程和工程博客不是一回事</h3>
+                    <p>`Tutorials` 偏上手，`Use Cases` 偏场景，`Engineering` 偏系统设计。三者混在一页里，读者很容易失焦。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>工程博客最值得长期翻</h3>
+                    <p>Anthropic 工程博客里有大量和 Claude Code、Managed Agents、Harness、Context Engineering 直接相关的文章，适合做成站内长期翻译线。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>图片不能丢</h3>
+                    <p>这条线默认保留封面、关键图、界面截图或结构图，避免翻译之后只剩文字摘要。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="lanes" class="section">
+        <div class="container">
+            <h2 class="section-title">三条官方来源</h2>
+            <div class="quickstart-grid meta-topic-grid meta-topic-grid--entry">
+                <article class="quickstart-card">
+                    <h3>📘 Tutorials</h3>
+                    <p>偏上手、功能说明和产品导览。当前看到的代表条目包括 <code>What is Claude Managed Agents?</code>、<code>Using Claude Code Remote Control</code>、<code>Navigating the Claude desktop app</code>。</p>
+                    <p><a href="https://claude.com/resources/tutorials" target="_blank" rel="noopener noreferrer">打开官方页 ↗</a></p>
+                    <div class="resource-preview-frame">
+                        <img src="images/claude-official-resources/tutorials-overview.png" alt="Claude 官方 Tutorials 页面截图" loading="lazy">
+                    </div>
+                </article>
+                <article class="quickstart-card">
+                    <h3>🧪 Use Cases</h3>
+                    <p>偏场景样例和工作方式。更适合被转成“专题补充案例”或“功能落地短文”，而不是照着整页直译。</p>
+                    <p><a href="https://claude.com/resources/use-cases" target="_blank" rel="noopener noreferrer">打开官方页 ↗</a></p>
+                    <div class="resource-preview-frame">
+                        <img src="images/claude-official-resources/use-cases-overview.png" alt="Claude 官方 Use Cases 页面截图" loading="lazy">
+                    </div>
+                </article>
+                <article class="quickstart-card">
+                    <h3>🏗️ Anthropic Engineering</h3>
+                    <p>偏工程方法、系统设计和产品背后的实现思想。这是最值得逐篇翻译的主干来源。</p>
+                    <p><a href="https://www.anthropic.com/engineering" target="_blank" rel="noopener noreferrer">打开官方页 ↗</a></p>
+                    <div class="resource-preview-frame">
+                        <img src="images/claude-official-resources/engineering-overview.jpg" alt="Anthropic Engineering 总览封面图" loading="lazy">
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="queue" class="section section--soft">
+        <div class="container">
+            <h2 class="section-title">第一批翻译队列</h2>
+            <table class="compare-table">
+                <tr>
+                    <th>来源</th>
+                    <th>优先级</th>
+                    <th>建议落点</th>
+                    <th>为什么先做</th>
+                </tr>
+                <tr>
+                    <td><code>Scaling Managed Agents: Decoupling the brain from the hands</code></td>
+                    <td>高</td>
+                    <td>`Meta-Agent` / `(Managed) Meta-Agent`</td>
+                    <td>和站内 `Managed Agents / Cabinet / Multica / Superset` 线直接相连。</td>
+                </tr>
+                <tr>
+                    <td><code>Claude Code auto mode: a safer way to skip permissions</code></td>
+                    <td>高</td>
+                    <td>`Claude Code 教程` / `发版监督`</td>
+                    <td>直接影响 Claude Code 使用方式，也能回连权限边界和 yolo 风险。</td>
+                </tr>
+                <tr>
+                    <td><code>Harness design for long-running application development</code></td>
+                    <td>高</td>
+                    <td>`codex-loop` / `Connector Runtime Design`</td>
+                    <td>和我们当前的 daemon、harness、workspace、长循环任务线高度相关。</td>
+                </tr>
+                <tr>
+                    <td><code>Using Claude Code Remote Control</code></td>
+                    <td>中高</td>
+                    <td>`Claude Code 教程` 子页</td>
+                    <td>可以和站内 remote / terminal / connector 线互相补充。</td>
+                </tr>
+                <tr>
+                    <td><code>What is Claude Managed Agents?</code></td>
+                    <td>中高</td>
+                    <td>`Meta-Agent` 入门页</td>
+                    <td>适合做面向新读者的轻量入口。</td>
+                </tr>
+                <tr>
+                    <td><code>Use Cases</code> 里的教育 / 财务 / agents 场景页</td>
+                    <td>中</td>
+                    <td>`教程案例补充` / `热点跟进`</td>
+                    <td>更像案例库，适合择优转成短篇，不建议整页平推。</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <section id="image-policy" class="section">
+        <div class="container">
+            <h2 class="section-title">图片保留策略</h2>
+            <div class="quickstart-grid meta-topic-grid meta-topic-grid--stack">
+                <div class="quickstart-card">
+                    <h3>总览页保留入口截图</h3>
+                    <p>像当前这页一样，先保住 Tutorials、Use Cases、Engineering 三个源页的总览图，帮助读者知道原始入口长什么样。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>单篇翻译保留关键图</h3>
+                    <p>逐篇翻译时优先保留封面、系统结构图、界面操作图和关键对照图，避免文章只剩纯文字摘录。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>截图资产统一本地化</h3>
+                    <p>后续默认把截图资产收进 <code>site/images/claude-official-resources/</code>，并保留原文链接，避免图链散在外部页面里。</p>
+                </div>
+            </div>
+            <p class="section-desc meta-topic-copy meta-topic-copy--tail">
+                维护细则单独放在 <code>docs/topic-claude-official-resources-rule.md</code>，站点正文只保留对读者有用的入口、队列和判断。
+            </p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-claude-official-resources.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>维护规则：<code>docs/topic-claude-official-resources-rule.md</code></p>
+            <p>© 2026 Everything in Claude-Code. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

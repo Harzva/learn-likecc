@@ -1,4 +1,4 @@
-# 热门话题专项 - Learn LikeCode
+# 热门话题专项 - Everything in Claude-Code
 > **更新时间**: 2026-04-12
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-hot-watch.html  
@@ -50,10 +50,3 @@ python3 tools/fetch_hot_topic_sources.py --write
 - 模型 / API / provider / infra → `topic-toolchain` 或 `topic-llm`
 
 如果某条内容值得单独写成长稿，再交给 `keyword-site-topic`。
-
-## 维护规则
-
-- 新增源时，先改 `site/data/hot-topic-sources.json`
-- 刷新时，运行 `python3 tools/fetch_hot_topic_sources.py --write`
-- 新增源后，先判断它属于 discovery digest、independent RSS 还是 official blog RSS，再决定默认 route hints，不要把所有 RSS 当成同一类
-- 如果来源池或路由逻辑变了，也要同步更新这页和相关热点页

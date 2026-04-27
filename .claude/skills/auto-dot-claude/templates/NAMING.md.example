@@ -1,0 +1,21 @@
+# .claude Naming Guide
+
+Core principle:
+
+- path decides scope
+- file name decides topic
+- prefix decides status
+
+Recommended examples:
+
+- `.claude/skills/loloop/`
+- `.claude/plans/loloop/active-site-loop-plan-v1.md`
+- `.claude/plans/loloop/evolution-2026-04-10-bootstrap.md`
+- `.claude/logs/loloop/2026-04-10-run-01.log`
+
+Avoid:
+
+- `myplan.md`
+- `local-loop.md`
+- deeply nesting project runtime data inside skill folders
+

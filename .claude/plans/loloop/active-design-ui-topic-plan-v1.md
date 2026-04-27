@@ -9,15 +9,15 @@ Scope: build `Design/UI` into a stable long-running line that covers deck genera
 - [x] Split the line into one tutorial page and one unpacked page
 - [x] Clone `LivePPT`, `Remotion`, and `Slidev` into `reference/reference_design_ui/`
 - [x] Connect the topic into top navigation and the left sidebar
-- [ ] Add a first follow-up pass that turns one mature site topic into a concrete `deck / slides / video` workflow comparison
-- [ ] Add a first plugin-facing pass that maps existing drawing capabilities (`Mermaid / html-card-to-png / screenshot`) onto this Design/UI line
+- [x] Add a first follow-up pass that turns one mature site topic into a concrete `deck / slides / video` workflow comparison
+- [x] Add a first plugin-facing pass that maps existing drawing capabilities (`Mermaid / html-card-to-png / screenshot`) onto this Design/UI line
 
 ## Main product areas
 
 - [ ] design/ui topic hub
 - [ ] tutorial path for creators
 - [ ] unpacked comparison path
-- [ ] drawing and demo plugin line
+- [x] drawing and demo plugin line
 - [ ] reference-backed workflow recipes
 - [ ] future site-to-deck / site-to-slides / site-to-video experiments
 
@@ -31,11 +31,11 @@ Scope: build `Design/UI` into a stable long-running line that covers deck genera
   - `site/topic-design-ui-unpacked.html`
 - [x] one reference shelf:
   - `reference/reference_design_ui/`
-- [ ] one follow-up bounded pass that demonstrates how an existing site topic could be transformed into:
+- [x] one follow-up bounded pass that demonstrates how an existing site topic could be transformed into:
   - a deck
   - a slide workflow
   - or a programmatic video prototype
-- [ ] one follow-up bounded pass that defines the drawing/demo plugin lane for future automation
+- [x] one follow-up bounded pass that defines the drawing/demo plugin lane for future automation
 
 ## Validation
 
@@ -57,3 +57,5 @@ Scope: build `Design/UI` into a stable long-running line that covers deck genera
   - slide generation
   - video snippets
   - and drawing/demo plugins used by the broader content pipeline
+- 2026-04-13: first bounded follow-up pass selected `topic-cc-unpacked-zh.html` as the initial transformation sample and mapped it into three media shapes: `LivePPT deck`, `Slidev developer slides`, and `Remotion explanation clip`
+- 2026-04-13: second bounded follow-up pass fixed the first plugin-line rule set: `Mermaid` for structure, `html-card-to-png` for stronger designed diagrams, `webpage-screenshot-md` for evidence-preserving UI capture, and only then `LivePPT / Slidev / Remotion` for media-shape upgrades

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connector / Runtime / Daemon - CodeXLoop 架构专题</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛰️</text></svg>">
+    <meta name="description" content="CodeXLoop 架构专题：把 Connector、Runtime、Daemon 三层角色拆清楚，解释为什么扫码绑定微信并不等于直接接 thread，以及为什么 Runtime 负责对外入口、Daemon 负责持续执行、Connector 负责平台协议适配。">
+    <meta name="page:updated" content="2026-04-17">
+</head>
+<body class="meta-topic-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🛰️</span>
+                <span class="logo-text">Connector / Runtime / Daemon</span>
+            </a>
+            <div class="nav-links">
+                <a href="#why" class="nav-link">为什么单列</a>
+                <a href="#three-layers" class="nav-link">三层角色</a>
+                <a href="#flow" class="nav-link">消息流</a>
+                <a href="#wechat" class="nav-link">微信扫码</a>
+                <a href="#codexloop" class="nav-link">对 CodeXLoop 的要求</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="app-likecode-workspace.html" class="btn-github">Workspace App</a>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>CodeXLoop · 架构专题</span>
+                <span>Connector / Runtime / Daemon</span>
+            </div>
+            <h1 class="hero-title">
+                Connector / Runtime / Daemon<br>
+                <span class="gradient-text">把扫码、接线、执行三层拆开看</span>
+            </h1>
+            <p class="hero-subtitle">
+                当我们说 “CodeXLoop 最终也要做到扫码绑定微信”，真正要补的不是一个按钮，而是三层协作：
+                <strong>Connector</strong> 负责平台协议和扫码登录，
+                <strong>Runtime</strong> 负责对外 API 与状态调度，
+                <strong>Daemon</strong> 负责长期循环与核心任务推进。
+            </p>
+        </div>
+    </section>
+
+    <section id="why" class="section section--soft meta-topic-section meta-topic-section--entry">
+        <div class="container">
+            <h2 class="section-title">为什么要把这三层单独讲清楚</h2>
+            <p class="section-desc meta-topic-copy meta-topic-copy--lead">
+                因为很多系统在做 “聊天平台接入” 时，最容易混淆的一件事就是：
+            </p>
+            <div class="quickstart-grid meta-topic-grid meta-topic-grid--concept">
+                <div class="quickstart-card">
+                    <h3>扫码登录</h3>
+                    <p>这只是 connector 的认证动作，不等于 loop 已经会处理消息。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>API 服务</h3>
+                    <p>Runtime 负责接收 webhook、暴露状态、转发工单，但不应该吞掉核心业务逻辑。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>后台循环</h3>
+                    <p>Daemon 负责长期推进 plan / evolution / task，不应该直接变成所有平台协议的堆放层。</p>
+                </div>
+            </div>
+            <p class="section-desc meta-topic-copy meta-topic-copy--tail">
+                所以这页的目标很简单：<strong>把“扫码”“接线”“执行”拆成三层，避免以后把 thread、connector、daemon 混成一个大黑箱。</strong>
+            </p>
+        </div>
+    </section>
+
+    <section id="three-layers" class="section">
+        <div class="container">
+            <h2 class="section-title">三层角色：谁负责什么</h2>
+            <table class="compare-table">
+                <tr>
+                    <th>层</th>
+                    <th>更像什么</th>
+                    <th>职责</th>
+                    <th>不该承担什么</th>
+                </tr>
+                <tr>
+                    <td><code>Connector</code></td>
+                    <td>电话线路 / 渠道网关</td>
+                    <td>扫码登录、平台协议适配、收发消息、会话身份管理</td>
+                    <td>不应该直接推进长期任务或自己维护完整 loop</td>
+                </tr>
+                <tr>
+                    <td><code>Runtime</code></td>
+                    <td>前台 / API 调度台</td>
+                    <td>对外提供 API、接 webhook、做状态查询、路由到 thread / task / workspace</td>
+                    <td>不应该承载所有平台协议细节，也不应该自己变成循环引擎</td>
+                </tr>
+                <tr>
+                    <td><code>Daemon</code></td>
+                    <td>后台执行引擎</td>
+                    <td>定时唤醒、读 plan、推任务、写 evolution、维持 loop 节奏</td>
+                    <td>不应该直接承担扫码认证交互，也不应该直接等同于 connector runtime</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <section id="flow" class="section section--soft">
+        <div class="container">
+            <h2 class="section-title">从消息进来到任务推进，中间到底经过了什么</h2>
+            <div class="quickstart-grid meta-topic-grid meta-topic-grid--stack">
+                <div class="quickstart-card">
+                    <h3>1. Connector 收到外部事件</h3>
+                    <p>例如微信、飞书、Telegram 的入站消息，或者扫码确认后的登录状态变更。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>2. Runtime 接住并归一化</h3>
+                    <p>把平台侧会话转成内部会话身份，再决定是查状态、投递工单，还是绑定到某个 thread / workspace。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>3. Daemon 继续长期任务</h3>
+                    <p>真正的计划推进、任务续跑、演化记录、GitHub / Pages / 发布闭环仍由 daemon 驱动。</p>
+                </div>
+            </div>
+            <div class="course-quote">
+                <p><strong>[插图提示词]</strong></p>
+                <p>用途：画 CodeXLoop 的 Connector / Runtime / Daemon 三层协作图。</p>
+                <p>形式：三层消息流图；Mermaid 很合适。</p>
+                <p>提示词：左侧放外部平台（WeChat, Feishu, Telegram），第一层是 Connector（QR auth, session identity, inbound/outbound adapter），第二层是 Runtime（API router, webhook intake, task/thread/workspace router），第三层是 Daemon（loop scheduler, plan reader, evolution writer, publish actions），箭头从左到右贯穿，并在底部补一条 workspace shell UI 控制面。</p>
+                <p>Mermaid 更适合：是。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="wechat" class="section">
+        <div class="container">
+            <h2 class="section-title">微信扫码接入到底属于哪一层</h2>
+            <p class="section-desc meta-topic-copy meta-topic-copy--lead">
+                微信扫码绑定不是 daemon 在“直接接微信”，而是 connector 在完成一个认证与会话建立流程。
+            </p>
+            <div class="quickstart-grid meta-topic-grid meta-topic-grid--concept">
+                <div class="quickstart-card">
+                    <h3>Connector 侧</h3>
+                    <p>负责 <code>start qr</code>、<code>wait qr</code>、<code>persist token/account id</code>、长轮询更新。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>Runtime 侧</h3>
+                    <p>负责暴露二维码登录 API、把登录结果写入本地状态，并让 UI 能展示绑定状态。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>Daemon 侧</h3>
+                    <p>仍然专注在长期任务推进；它最多消费“这个 connector 现在绑定到了哪个 thread / task”。</p>
+                </div>
+            </div>
+            <p class="section-desc meta-topic-copy meta-topic-copy--tail">
+                所以对 <code>CodeXLoop</code> 来说，真正要做的不是“把微信绑到 daemon”，而是：<strong>先建 connector shell，再做 QR auth contract，再定义会话与 thread 的桥接关系。</strong>
+            </p>
+        </div>
+    </section>
+
+    <section id="codexloop" class="section section--soft">
+        <div class="container">
+            <h2 class="section-title">对 CodeXLoop 的直接要求</h2>
+            <div class="quickstart-grid meta-topic-grid meta-topic-grid--stack">
+                <div class="quickstart-card">
+                    <h3>第一步：先把 connector shell 做稳</h3>
+                    <p>Workspace 里先有状态、绑定、目标会话和 mock QR contract，再谈真实微信 runtime。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>第二步：再做 QR auth flow</h3>
+                    <p>把 <code>start qr / wait qr</code> 收成 relay API，而不是直接在前端里写死一条微信逻辑。</p>
+                </div>
+                <div class="quickstart-card">
+                    <h3>第三步：最后才做 conversation bridge</h3>
+                    <p>真正决定一条微信会话如何映射到 thread / task / workspace，并处理和 daemon 的互斥。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-connector-runtime-daemon.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>设计说明：<code>docs/connector-runtime-daemon-design.md</code></p>
+            <p>© 2026 Everything in Claude-Code. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

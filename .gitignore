@@ -9,37 +9,43 @@
 *.7z
 
 # Reference projects (external repos) — 仅跟踪 README + 下列 submodule 指针，见 reference/README.md
-reference/*
-!reference/README.md
-!reference/reference_sourcemap/
-reference/reference_sourcemap/*
-!reference/reference_sourcemap/claude-code
-!reference/reference_sourcemap/claude-code2
-!reference/reference_sourcemap/leaked-claude-code
-!reference/reference_sourcemap/open-claude-code
+# reference
+# !reference/README.md
+# !reference/reference_sourcemap/
+# reference/reference_sourcemap/*
+# !reference/reference_sourcemap/claude-code
+# !reference/reference_sourcemap/claude-code2
+# !reference/reference_sourcemap/leaked-claude-code
+# !reference/reference_sourcemap/open-claude-code
 
-# Agent 插件对照文用到的浅克隆（obra / uditgoenka），见 reference/reference_agent/README.md
-!reference/reference_agent/
-reference/reference_agent/*
-!reference/reference_agent/README.md
-!reference/reference_agent/superpowers-marketplace/
-!reference/reference_agent/superpowers-marketplace/**
-reference/reference_agent/superpowers-marketplace/.claude/settings.local.json
-!reference/reference_agent/autoresearch/
-!reference/reference_agent/autoresearch/**
+# # Agent 插件对照文用到的浅克隆（obra / uditgoenka），见 reference/reference_agent/README.md
+# !reference/reference_agent/
+# reference/reference_agent/*
+# !reference/reference_agent/README.md
+# !reference/reference_agent/superpowers-marketplace/
+# !reference/reference_agent/superpowers-marketplace/**
+# reference/reference_agent/superpowers-marketplace/.claude/settings.local.json
+# !reference/reference_agent/autoresearch/
+# !reference/reference_agent/autoresearch/**
 
-# OpenHarness（专题 topic-openharness）；目录名 rererence 为历史拼写
-!reference/rererence_harness/
-reference/rererence_harness/*
-!reference/rererence_harness/README.md
-!reference/rererence_harness/OpenHarness/
-!reference/rererence_harness/OpenHarness/**
+# # OpenHarness（专题 topic-openharness）；目录名 rererence 为历史拼写
+# !reference/rererence_harness/
+# reference/rererence_harness/*
+# !reference/rererence_harness/README.md
+# !reference/rererence_harness/OpenHarness/
+# !reference/rererence_harness/OpenHarness/**
 
 # Dependencies
 node_modules/
 
 # Build output
 dist/
+__pycache__/
+*.py[cod]
+
+# Local generated data / scratch exports
+tmp/
+exports/
 
 # IDE
 .idea/
@@ -56,6 +62,12 @@ Thumbs.db
 
 # Claude Code state
 .claude/state/
+.claude/logs/
+.claude/scheduled_tasks.lock
+.codex-loop/state/
+**/.claude/state/
+**/.claude/logs/
+**/.codex-loop/state/
 ccsource/claude-code-main/.claude/settings.local.json
 
 # Independent local publishing / side-project repos
@@ -63,3 +75,8 @@ ccsource/claude-code-main/.claude/settings.local.json
 /projects
 /reference
 /game
+!/reference/
+!/reference/reference_agent/
+!/reference/reference_agent/reference_ai_scientist/
+!/reference/reference_agent/reference_ai_scientist/README.md
+zip/*

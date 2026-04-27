@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>站点导览 / 思维导图 - Learn LikeCode</title>
+    <title>站点导览 / 思维导图 - Everything in Claude-Code</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
-    <meta name="description" content="用思维导图和专题索引快速理解 Learn LikeCode 站点结构，并查看每个专题页的最后更新时间。">
+    <meta name="description" content="用思维导图和专题索引快速理解 Everything in Claude-Code 站点结构，并查看每个专题页的最后更新时间。">
     <meta name="page:updated" content="2026-04-12">
 </head>
 <body>
@@ -19,6 +19,7 @@
             <div class="nav-links">
                 <a href="#overview" class="nav-link">总览</a>
                 <a href="#mindmap" class="nav-link">思维导图</a>
+                <a href="#zoom" class="nav-link">局部放大图</a>
                 <a href="#directory" class="nav-link">专题索引</a>
                 <a href="#maintenance" class="nav-link">维护规则</a>
             </div>
@@ -36,7 +37,7 @@
                 <span>思维导图 / 更新时间索引</span>
             </div>
             <h1 class="hero-title">
-                Learn LikeCode<br>
+                Everything in Claude-Code<br>
                 <span class="gradient-text">站点思维导图与专题更新时间</span>
             </h1>
             <p class="hero-subtitle">
@@ -61,9 +62,9 @@
 
                 <section id="mindmap" class="section-block">
                     <h2>站点思维导图</h2>
-                    <figure class="mermaid-figure mermaid-figure--main" aria-label="Learn LikeCode 站点思维导图">
+                    <figure class="mermaid-figure mermaid-figure--main" aria-label="Everything in Claude-Code 站点思维导图">
                         <figcaption class="mermaid-caption">
-                            <strong>一张图看站点结构</strong>：从首页出发，先分核心入口，再把 AI 杂货铺、热门话题专项、Agent、VibePaper 等专题线连起来，并把 `CLI Agent → everything-agent-cli`、`热门话题专项 → Agent / RAG 热点页`、`本地工作台 → LikeCode Workspace App / Connector Runtime Design`、`AI Scientist-v2 → codex-loop in sleep` 这四条关键子链显式挂出来。
+                            <strong>一张横向图看站点结构</strong>：从首页出发，先把主入口分成 `核心入口 / 站点专题与热点 / 工作台与科研线` 三条横向主干，再把 `CLI Agent → everything-agent-cli`、`热门话题专项 → Agent / RAG 热点页`、`本地工作台 → LikeCode Workspace App / Connector Runtime Design`、`AI Scientist-v2 → codex-loop in sleep` 这四条关键子链显式挂出来。
                         </figcaption>
                         <div class="mermaid-diagram-scroll mermaid-diagram-scroll--xl" data-mermaid-diagram="site-topic-map"></div>
                     </figure>
@@ -72,6 +73,32 @@
                     <p>这次还把 `本地工作台 / Loop Lab → codex-loop AI Terminal / LikeCode Workspace App` 挂进了主图。这样 `app-likecode-workspace.html` 就不再只存在于局部实验页语境里，而是被教成站内一条独立的本地操作面。</p>
                     <p>同一条本地工作台支线里，这轮再把 `Connector Runtime / Daemon Design` 接了回来。这样 connector shell / WeChat bind 这条设计线也不再只是隐藏在 workspace app 和设计说明里，而是回到了站点主导览。</p>
                     <p>这轮再把 `VibePaper → AI Scientist-v2 → codex-loop in sleep` 接成显式子链。这样睡眠态自动研究 / 自动推进这条线不再只藏在单页里，而是明确回到 AI-Scientist 语境下，告诉读者它是在解释“研究系统如何长出 sleep 层”。</p>
+                </section>
+
+                <section id="zoom" class="section-block">
+                    <h2>二级局部放大图</h2>
+                    <p>总图负责告诉你“站点有哪些主干”，局部图负责告诉你“某条支线到底怎么读”。现在先把最容易继续长内容的三条支线单独放大：`AI-Scientist`、`Loop Lab`、`Design/UI`。</p>
+
+                    <figure class="mermaid-figure" aria-label="AI-Scientist 支线放大图">
+                        <figcaption class="mermaid-caption">
+                            <strong>AI-Scientist 支线</strong>：这条线不只是论文系统名词堆，而是从 `VibePaper` 总页往下分出 `Autoresearch / DeepScientist / AI Scientist-v2`，再把 `codex-loop in sleep` 作为 sleep 层解释页单独挂出来。
+                        </figcaption>
+                        <div class="mermaid-diagram-scroll" data-mermaid-diagram="codex-loop-in-sleep-ladder"></div>
+                    </figure>
+
+                    <figure class="mermaid-figure" aria-label="Loop Lab 支线放大图">
+                        <figcaption class="mermaid-caption">
+                            <strong>Loop Lab / 本地工作台支线</strong>：这条线要分清三个面：`AI Terminal` 更偏观察与控制，`Workspace App` 更偏计划编辑与工作台，`Connector Runtime / Daemon Design` 则在补外部接入和运行时分层。
+                        </figcaption>
+                        <div class="mermaid-diagram-scroll" data-mermaid-diagram="loop-lab-branches"></div>
+                    </figure>
+
+                    <figure class="mermaid-figure" aria-label="Design/UI 支线放大图">
+                        <figcaption class="mermaid-caption">
+                            <strong>Design/UI 支线</strong>：这条线讨论的不是单个前端库，而是内容如何转成 `图 / 截图 / deck / slides / video`。`LivePPT / Slidev / Remotion` 是三个表达层，而不是同类替代品。
+                        </figcaption>
+                        <div class="mermaid-diagram-scroll" data-mermaid-diagram="design-ui-landscape"></div>
+                    </figure>
                 </section>
 
                 <section id="directory" class="section-block">
@@ -95,7 +122,7 @@
     <footer class="footer">
         <div class="container">
             <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-site-map.md" target="_blank" rel="noopener noreferrer">📝 本站页的 Markdown 源文件（GitHub）</a></p>
-            <p>© 2026 Learn LikeCode. 仅供学习研究使用。</p>
+            <p>© 2026 Everything in Claude-Code. 仅供学习研究使用。</p>
         </div>
     </footer>
 

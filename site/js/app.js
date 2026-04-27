@@ -1,6 +1,26 @@
 // 应用脚本
 // Mermaid 流程图定义（key 对应 data-mermaid-diagram）
 const MERMAID_DIAGRAMS = {
+    'agent-runtime-landscape': `graph LR
+    classDef warm fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#fcd34d;
+    classDef blue fill:#172130,stroke:#60a5fa,stroke-width:2px,color:#93c5fd;
+    classDef green fill:#14251f,stroke:#34d399,stroke-width:2px,color:#6ee7b7;
+    classDef purple fill:#241c2f,stroke:#c084fc,stroke-width:2px,color:#e9d5ff;
+    classDef gray fill:#1f2430,stroke:#94a3b8,stroke-width:2px,color:#cbd5e1;
+
+    A["启动 / Trust 边界<br/>main.tsx · entrypoints/init.ts · interactiveHelpers.tsx"]:::warm
+    B["会话状态核<br/>AppStateStore · QueryEngine"]:::blue
+    C["queryLoop 主循环<br/>prefetch · streaming · tools · compact"]:::green
+    D["Tool / Command / Permission<br/>Tool.ts · commands.ts · orchestration"]:::purple
+    E["扩展与隔离平面<br/>MCP · Skills · Plugins · AgentTool · bridge"]:::gray
+    F["上下文治理与终端体验<br/>memdir · compact · REPL · renderer"]:::warm
+
+    A --> B --> C --> D --> E --> F
+    B --> D
+    C --> F
+    D --> F
+    E --> C
+    E --> F`,
     'hermes-six-layer-stack': `graph TB
     classDef yellowBox fill:#2d2a1e,stroke:#e2b953,stroke-width:2px,color:#e2b953;
     classDef blueBox fill:#1e2838,stroke:#3b82f6,stroke-width:2px,color:#93c5fd;
@@ -91,6 +111,32 @@ const MERMAID_DIAGRAMS = {
 
     CAND --> X["AIDE ML<br/>benchmark-first optimization lab"]:::grayBox
     X -. 承接关系 .-> V`,
+
+    'deepscientist-six-layer': `graph TB
+    classDef blueBox fill:#1f2f45,stroke:#6aa6ff,stroke-width:2px,color:#d6e6ff;
+    classDef warmBox fill:#3a2515,stroke:#f0b36a,stroke-width:2px,color:#ffd9a3;
+    classDef greenBox fill:#1f3a2f,stroke:#34d399,stroke-width:2px,color:#c8f4df;
+    classDef grayBox fill:#2b2b2b,stroke:#cbd5e1,stroke-width:2px,color:#e5e7eb;
+
+    A["Paper / Repo / Natural-language Quest"]:::blueBox --> B["Quest Repo Layer<br/>one repo per quest"]:::warmBox
+    B --> C["Research Control Plane<br/>baseline · experiment · write"]:::blueBox
+    C --> D["Durable State<br/>findings memory · artifacts"]:::greenBox
+    C --> E["Visible Workspace<br/>web workspace · canvas · studio"]:::greenBox
+    D --> F["Connectors & Collaboration<br/>Weixin · QQ · Telegram · Feishu"]:::grayBox
+    E --> F`,
+
+    'deepscientist-research-loop': `graph LR
+    classDef blueBox fill:#1f2f45,stroke:#6aa6ff,stroke-width:2px,color:#d6e6ff;
+    classDef warmBox fill:#4a2b1a,stroke:#f0b36a,stroke-width:2px,color:#ffd9a3;
+    classDef greenBox fill:#1f3a2f,stroke:#34d399,stroke-width:2px,color:#c8f4df;
+
+    A["Quest Input<br/>paper / repo / goal"]:::blueBox --> B["Quest Repo"]:::warmBox
+    B --> C["Baseline Reproduction"]:::blueBox
+    C --> D["Experiment Rounds"]:::blueBox
+    D --> E["Findings Memory + Artifacts"]:::greenBox
+    E --> F["Figures / Reports / Paper Draft"]:::warmBox
+    F --> G["Human Takeover / Review"]:::blueBox
+    G --> B`,
 
     'codex-loop-in-sleep-ladder': `graph LR
     classDef blueBox fill:#172130,stroke:#60a5fa,stroke-width:2px,color:#93c5fd;
@@ -671,6 +717,8 @@ function initSiteSidebar() {
         '<a class="site-sidebar__link site-sidebar__link--sub" href="index.html#courses"><span class="site-sidebar__ico">📚</span><span class="site-sidebar__txt">24 讲目录</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="index.html#source-map-event"><span class="site-sidebar__ico">🔥</span><span class="site-sidebar__txt">Source Map 事件</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-source-derived.html"><span class="site-sidebar__ico">🔍</span><span class="site-sidebar__txt">源码反推思想</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-agent-runtime.html"><span class="site-sidebar__ico">🧠</span><span class="site-sidebar__txt">终端 Agent Runtime</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-claude-codex-compare.html"><span class="site-sidebar__ico">🧭</span><span class="site-sidebar__txt">Claude vs Codex</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-cc-buddy.html"><span class="site-sidebar__ico">🐾</span><span class="site-sidebar__txt">Buddy 彩蛋</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="https://github.com/Harzva/learn-likecc/blob/main/awesome-claude-code-source.md" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">✨</span><span class="site-sidebar__txt">Awesome 源码汇总</span></a>' +
         '<details class="site-sidebar__details site-sidebar__details--nested" data-sidebar-key="source-map-chapters">' +
@@ -681,6 +729,7 @@ function initSiteSidebar() {
         '<details class="site-sidebar__details" data-sidebar-key="tutorial">' +
         '<summary class="site-sidebar__summary"><span class="site-sidebar__txt">Claude Code 教程</span></summary>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="tutorial.html"><span class="site-sidebar__ico">📘</span><span class="site-sidebar__txt">教程首页</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-claude-official-resources.html"><span class="site-sidebar__ico">🧭</span><span class="site-sidebar__txt">官方资源翻译</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="tutorial.html#skills"><span class="site-sidebar__ico">🔧</span><span class="site-sidebar__txt">Skills</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="handbook.html"><span class="site-sidebar__ico">🗂️</span><span class="site-sidebar__txt">完全手册</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-cc-release-watch.html"><span class="site-sidebar__ico">📋</span><span class="site-sidebar__txt">发版监督</span></a>' +
@@ -702,6 +751,7 @@ function initSiteSidebar() {
         '<details class="site-sidebar__details" data-sidebar-key="websites">' +
         '<summary class="site-sidebar__summary"><span class="site-sidebar__txt">站点推荐</span></summary>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-websites.html"><span class="site-sidebar__ico">📌</span><span class="site-sidebar__txt">推荐页</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-runoob-codex-tutorial.html"><span class="site-sidebar__ico">📘</span><span class="site-sidebar__txt">菜鸟 Codex 教程</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="https://karpathy.ai/" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">🔗</span><span class="site-sidebar__txt">karpathy.ai ↗</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="tutorial.html#skills"><span class="site-sidebar__ico">🔧</span><span class="site-sidebar__txt">Skills</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-memory-harness.html"><span class="site-sidebar__ico">🧠</span><span class="site-sidebar__txt">Memory 机制</span></a>' +

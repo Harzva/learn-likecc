@@ -21,6 +21,8 @@
                 <a href="#liveppt" class="nav-link">LivePPT</a>
                 <a href="#slidev" class="nav-link">Slidev</a>
                 <a href="#remotion" class="nav-link">Remotion</a>
+                <a href="#sample-map" class="nav-link">样例映射</a>
+                <a href="#plugin-ladder" class="nav-link">插件梯度</a>
                 <a href="#lessons" class="nav-link">值得学什么</a>
             </div>
             <div class="nav-actions">
@@ -82,12 +84,39 @@
                     </div>
                 </section>
 
+                <section id="sample-map" class="section-block">
+                    <h2>把同一个样本映射到三条壳层</h2>
+                    <p>为了让这条专题不是停在抽象对比，我们把 <a href="topic-cc-unpacked-zh.html"><code>Claude Code 解构页</code></a> 当作第一批样本，看看同一份内容在三种表达壳层里分别该怎么切。</p>
+                    <table class="options-table">
+                        <tr><th>样本层</th><th>Claude Code 解构页该怎么切</th><th>产出目标</th></tr>
+                        <tr><td><code>LivePPT</code></td><td>保留原有章节，压缩成“是什么 / 为什么 / 核心分层 / loop / 技能 / UI” 这类 deck 页序。</td><td>一份可分享、可快速浏览的 deck。</td></tr>
+                        <tr><td><code>Slidev</code></td><td>把大章节拆成“每页一个控制点”，加入 Mermaid、代码块和 operator 视角说明。</td><td>一份开发者讲义，适合公开分享和现场讲解。</td></tr>
+                        <tr><td><code>Remotion</code></td><td>只取最强的一条视觉主线，比如 runtime / daemon / connector 或 loop in loop，把它做成节奏化镜头。</td><td>一个解释结构的短视频或动图片段。</td></tr>
+                    </table>
+                    <p>这也是后面 `Design/UI` 线最重要的判断标准：<strong>不是“哪个工具更全”，而是“哪种表达壳层更适合当前内容的传播目标”。</strong></p>
+                </section>
+
+                <section id="plugin-ladder" class="section-block">
+                    <h2>插件梯度：图、截图、deck、slides、video 不是一层东西</h2>
+                    <table class="options-table">
+                        <tr><th>层级</th><th>代表能力</th><th>最适合的任务</th></tr>
+                        <tr><td>图形结构层</td><td><code>Mermaid</code></td><td>讲结构、讲关系、讲流程。</td></tr>
+                        <tr><td>图形加强层</td><td><code>html-card-to-png</code></td><td>当结构图需要更强版式和视觉密度时。</td></tr>
+                        <tr><td>证据保留层</td><td><code>webpage-screenshot-md</code></td><td>当必须保留真实页面、真实模块、真实界面状态时。</td></tr>
+                        <tr><td>演示页层</td><td><code>LivePPT</code></td><td>当成熟文章需要快速变成可分享的 deck。</td></tr>
+                        <tr><td>讲义层</td><td><code>Slidev</code></td><td>当主题需要开发者讲解、live coding 和页级章节控制时。</td></tr>
+                        <tr><td>视频层</td><td><code>Remotion</code></td><td>当最强主线需要镜头感、动画和短视频传播时。</td></tr>
+                    </table>
+                    <p>这套梯度的意义是：<strong>我们不再把所有表达手段混成“做个图”</strong>，而是先判断自己处在哪一层，再决定该用哪条工具链。</p>
+                </section>
+
                 <section id="lessons" class="section-block">
                     <h2>对我们最值得学什么</h2>
                     <div class="course-quote">
-                        <p><strong>第一</strong>，LivePPT 告诉我们“已有内容快速变演示页”这件事可以单独成为一层。</p>
-                        <p><strong>第二</strong>，Slidev 说明开发者讲义页和普通 PPT 不是一回事。</p>
-                        <p><strong>第三</strong>，Remotion 给了站点未来一条从图文走向视频的扩展路线。</p>
+                        <p><strong>第一</strong>，Mermaid、HTML 卡片图、截图，是“解释与证据层”，和 deck/slides/video 不是同一层。</p>
+                        <p><strong>第二</strong>，LivePPT 告诉我们“已有内容快速变演示页”这件事可以单独成为一层。</p>
+                        <p><strong>第三</strong>，Slidev 说明开发者讲义页和普通 PPT 不是一回事。</p>
+                        <p><strong>第四</strong>，Remotion 给了站点未来一条从图文走向视频的扩展路线。</p>
                     </div>
                 </section>
             </article>

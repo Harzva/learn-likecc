@@ -1,5 +1,5 @@
 # 工具链专题
-> **更新时间**: 2026-04-12
+> **更新时间**: 2026-04-13
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-toolchain.html  
 > **本文件**: `site/md/topic-toolchain.md`
@@ -40,3 +40,4 @@
 
 - [Show me your usage](../column-show-your-usage.html) 现在作为工具链专题里的一个子专题保留，更偏“用量自证 / 透明度页”。
 - [Design/UI 专题](../topic-design-ui.html) 已单独成立，负责收 `LivePPT / Slidev / Remotion` 这条讲解、演示与程序化视频表达线。
+- [GitHub 成就 / 图标专题](../topic-github-achievements.html) 也已经补上，负责承接 achievements、profile culture 和图标整理这条小线。

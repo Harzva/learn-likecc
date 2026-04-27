@@ -27,6 +27,20 @@
 | `github-repo-management` | [详情页](https://skillsmp.com/skills/fanthus-agent-skills-github-repo-management-skill-md) | [fanthus/agent-skills](https://github.com/fanthus/agent-skills) |
 | `slides` | [详情页](https://skillsmp.com/skills/bloody-badaim-svsit-site-claude-skills-slides-skill-md) | [Bloody-BadAim/svsit-site](https://github.com/Bloody-BadAim/svsit-site/tree/main/.claude/skills/slides) |
 
+## 6 个实用工具流样例
+
+> 对照来源文章：<https://juejin.cn/post/7602929352716468224>  
+> 本地快照目录：[`reference/reference_skill/practical-toolflows/`](./reference/reference_skill/practical-toolflows/README.md)
+
+| 仓库 | 主要用途 | 本地快照 |
+|------|------|------|
+| [remotion-dev/skills](https://github.com/remotion-dev/skills) | Remotion 视频生成规则库 | [`remotion-dev-skills`](./reference/reference_skill/practical-toolflows/remotion-dev-skills/) |
+| [op7418/Youtube-clipper-skill](https://github.com/op7418/Youtube-clipper-skill) | YouTube 剪辑与双语字幕流水线 | [`Youtube-clipper-skill`](./reference/reference_skill/practical-toolflows/Youtube-clipper-skill/) |
+| [GBSOSS/skill-from-masters](https://github.com/GBSOSS/skill-from-masters) | 从实践高手与反例中生产新 skill | [`skill-from-masters`](./reference/reference_skill/practical-toolflows/skill-from-masters/) |
+| [PleasePrompto/notebooklm-skill](https://github.com/PleasePrompto/notebooklm-skill) | NotebookLM 知识库问答流 | [`notebooklm-skill`](./reference/reference_skill/practical-toolflows/notebooklm-skill/) |
+| [wshuyi/x-article-publisher-skill](https://github.com/wshuyi/x-article-publisher-skill) | Markdown 一键发布到 X Articles | [`x-article-publisher-skill`](./reference/reference_skill/practical-toolflows/x-article-publisher-skill/) |
+| [anthropics/skills](https://github.com/anthropics/skills) | 官方技能样例 / 模板 / 规范底座 | [`anthropics-skills`](./reference/reference_skill/practical-toolflows/anthropics-skills/) |
+
 ## 安装落点备忘
 
 | 位置 | 说明 |
@@ -57,4 +71,4 @@
 
 ---
 
-最后更新：`2026-04-10`
+最后更新：`2026-04-12`

@@ -12,5 +12,6 @@
 | `cc_loop_demo_events.py` | 模块：演示用 `(stage, title, detail)` 列表，供下面两个脚本复用。 |
 | `cc_loop_relay_demo.py` | 向 **stdout** 打印 NDJSON 形式 demo 事件。 |
 | `cc_loop_sse_relay.py` | 本机 **SSE** 服务（默认 `127.0.0.1:8769/events`），供 `topic-cc-loop-lab.html` 联调。 |
+| `fetch_ai_bot_tab.py` | 抓取 `ai-bot.cn` 首页整类 section（如 `term-86` 的“AI智能体”）、`favorites/*` 分类专页（如 `favorites/ai-agent/`）或 AJAX 子 tab（如 `id=94` 的“降AI/AIGC率”），导出 JSON/Markdown。 |
 | `install_skill_from_github.py` | 从 GitHub 仓库浅克隆指定 skill 目录，并安装到 `~/.claude/skills/`、`.claude/skills/` 或 `~/.codex/skills/`。 |
 | `skillsmp_find_and_install.py` | 通过 `r.jina.ai` 代理读取 SkillsMP 搜索结果，自动挑选候选 skill、回 GitHub 校验，并继续调用安装脚本。 |

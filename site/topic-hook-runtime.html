@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hook Runtime 专题：Claude Code 钩子全景 - Everything in Claude-Code</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⌁</text></svg>">
+    <meta name="description" content="汇总 claude-code-rebuild 中 27 个 Claude Code runtime hook：数量、作用、关系、Ralph Loop 使用位置与可视化导览。">
+    <meta name="page:updated" content="2026-04-22">
+</head>
+<body class="hook-runtime-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">⌁</span>
+                <span class="logo-text">Hook Runtime</span>
+            </a>
+            <div class="nav-links">
+                <a href="#overview" class="nav-link">总览</a>
+                <a href="#flow" class="nav-link">关系图</a>
+                <a href="#catalog" class="nav-link">Hook 清单</a>
+                <a href="#ralph" class="nav-link">Ralph Loop</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-claude-codex-compare.html" class="btn-github">Claude vs Codex</a>
+                <a href="index.html" class="btn-github">首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero hook-runtime-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>Claude Code runtime</span>
+                <span>hooks</span>
+                <span>27 events</span>
+            </div>
+            <h1 class="hero-title">
+                Hook Runtime 专题<br>
+                <span class="gradient-text">把 Claude Code 的钩子系统画清楚</span>
+            </h1>
+            <p class="hero-subtitle">
+                Hook 不是模型本身的魔法，而是 runtime/harness 在关键事件点触发的回调系统。
+                这页把 <code>claude-code-rebuild</code> 中的 hook 事件、作用、输出控制与 Ralph Loop 的用法收束到一张图里。
+            </p>
+            <div class="hook-runtime-source">
+                <span>来源文件</span>
+                <code>src/entrypoints/sdk/coreTypes.ts</code>
+                <code>src/types/hooks.ts</code>
+                <code>src/schemas/hooks.ts</code>
+                <code>src/utils/plugins/loadPluginHooks.ts</code>
+            </div>
+        </div>
+    </section>
+
+    <main class="course-main">
+        <div class="container">
+            <article class="course-content hook-runtime-content">
+                <section id="overview" class="section-block">
+                    <h2 class="hook-section-title">一眼看懂：27 个事件，5 类职责</h2>
+                    <div class="hook-stat-grid">
+                        <div class="hook-stat-card hook-stat-card--primary">
+                            <strong>27</strong>
+                            <span>runtime hook event</span>
+                            <p>来自 <code>HOOK_EVENTS</code> 常量，是 rebuild 里能被 hook 系统识别的事件全集。</p>
+                        </div>
+                        <div class="hook-stat-card">
+                            <strong>4</strong>
+                            <span>可配置 hook 类型</span>
+                            <p><code>command</code>、<code>prompt</code>、<code>http</code>、<code>agent</code>。另有内部 callback hook。</p>
+                        </div>
+                        <div class="hook-stat-card">
+                            <strong>5</strong>
+                            <span>事件分组</span>
+                            <p>工具权限、会话生命周期、上下文工作区、子代理任务、交互询问。</p>
+                        </div>
+                        <div class="hook-stat-card hook-stat-card--accent">
+                            <strong>1</strong>
+                            <span>Ralph Loop 关键钩子</span>
+                            <p>Ralph Loop 主要加工的是 <code>Stop</code>：用 block 决策阻止结束并回灌 prompt。</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="flow" class="section-block">
+                    <h2 class="hook-section-title">关系图：hook 在一次会话里的位置</h2>
+                    <div class="hook-flow-shell" aria-label="Claude Code hook lifecycle map">
+                        <div class="hook-flow-lane hook-flow-lane--session">
+                            <h3>Session lifecycle</h3>
+                            <div class="hook-flow-row">
+                                <span class="hook-node hook-node--session">Setup</span>
+                                <span class="hook-arrow">→</span>
+                                <span class="hook-node hook-node--session">SessionStart</span>
+                                <span class="hook-arrow">→</span>
+                                <span class="hook-node hook-node--session">UserPromptSubmit</span>
+                                <span class="hook-arrow">→</span>
+                                <span class="hook-node hook-node--stop">Stop</span>
+                                <span class="hook-arrow">→</span>
+                                <span class="hook-node hook-node--session">SessionEnd</span>
+                            </div>
+                        </div>
+
+                        <div class="hook-flow-lane hook-flow-lane--tool">
+                            <h3>Tool and permission path</h3>
+                            <div class="hook-flow-row">
+                                <span class="hook-node hook-node--permission">PermissionRequest</span>
+                                <span class="hook-arrow">→</span>
+                                <span class="hook-node hook-node--permission">PreToolUse</span>
+                                <span class="hook-arrow">→</span>
+                                <span class="hook-node hook-node--tool">Tool runs</span>
+                                <span class="hook-arrow">→</span>
+                                <span class="hook-node hook-node--permission">PostToolUse</span>
+                            </div>
+                            <div class="hook-flow-branches">
+                                <span class="hook-node hook-node--warn">PermissionDenied</span>
+                                <span class="hook-node hook-node--warn">PostToolUseFailure</span>
+                                <span class="hook-node hook-node--info">Notification</span>
+                            </div>
+                        </div>
+
+                        <div class="hook-flow-lane hook-flow-lane--context">
+                            <h3>Context and workspace path</h3>
+                            <div class="hook-flow-row hook-flow-row--wrap">
+                                <span class="hook-node hook-node--context">PreCompact</span>
+                                <span class="hook-node hook-node--context">PostCompact</span>
+                                <span class="hook-node hook-node--context">InstructionsLoaded</span>
+                                <span class="hook-node hook-node--workspace">CwdChanged</span>
+                                <span class="hook-node hook-node--workspace">FileChanged</span>
+                                <span class="hook-node hook-node--workspace">WorktreeCreate</span>
+                                <span class="hook-node hook-node--workspace">WorktreeRemove</span>
+                            </div>
+                        </div>
+
+                        <div class="hook-flow-lane hook-flow-lane--agent">
+                            <h3>Agent, task and elicitation path</h3>
+                            <div class="hook-flow-row hook-flow-row--wrap">
+                                <span class="hook-node hook-node--agent">SubagentStart</span>
+                                <span class="hook-node hook-node--agent">SubagentStop</span>
+                                <span class="hook-node hook-node--task">TaskCreated</span>
+                                <span class="hook-node hook-node--task">TaskCompleted</span>
+                                <span class="hook-node hook-node--task">TeammateIdle</span>
+                                <span class="hook-node hook-node--task">ConfigChange</span>
+                                <span class="hook-node hook-node--ask">Elicitation</span>
+                                <span class="hook-node hook-node--ask">ElicitationResult</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2 class="hook-section-title">分组统计</h2>
+                    <div class="hook-group-grid">
+                        <div class="hook-group-card">
+                            <div class="hook-group-count">5</div>
+                            <h3>工具与权限</h3>
+                            <p>围绕工具调用前、调用后、失败和权限拒绝建立控制点。</p>
+                            <span>PermissionRequest · PreToolUse · PostToolUse · PostToolUseFailure · PermissionDenied</span>
+                        </div>
+                        <div class="hook-group-card">
+                            <div class="hook-group-count">7</div>
+                            <h3>会话生命周期</h3>
+                            <p>把启动、用户输入、通知、停止和退出变成可拦截事件。</p>
+                            <span>Setup · SessionStart · UserPromptSubmit · Notification · Stop · StopFailure · SessionEnd</span>
+                        </div>
+                        <div class="hook-group-card">
+                            <div class="hook-group-count">7</div>
+                            <h3>上下文与工作区</h3>
+                            <p>覆盖 compact、说明加载、目录变化、文件变化和 worktree 生命周期。</p>
+                            <span>PreCompact · PostCompact · InstructionsLoaded · CwdChanged · FileChanged · WorktreeCreate · WorktreeRemove</span>
+                        </div>
+                        <div class="hook-group-card">
+                            <div class="hook-group-count">6</div>
+                            <h3>子代理与任务</h3>
+                            <p>用于观察 subagent、task、teammate 与配置变化。</p>
+                            <span>SubagentStart · SubagentStop · TaskCreated · TaskCompleted · TeammateIdle · ConfigChange</span>
+                        </div>
+                        <div class="hook-group-card">
+                            <div class="hook-group-count">2</div>
+                            <h3>交互询问</h3>
+                            <p>处理 runtime 向外发起的询问和结果回收。</p>
+                            <span>Elicitation · ElicitationResult</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section-block">
+                    <h2 class="hook-section-title">Hook 输出能控制什么</h2>
+                    <div class="hook-control-grid">
+                        <div class="hook-control-card">
+                            <h3>展示信息</h3>
+                            <p><code>systemMessage</code> 可向用户显示 hook 给出的提示、警告或状态。</p>
+                        </div>
+                        <div class="hook-control-card">
+                            <h3>阻止继续</h3>
+                            <p><code>continue:false</code> 或部分事件里的 <code>decision:"block"</code> 可打断流程。</p>
+                        </div>
+                        <div class="hook-control-card">
+                            <h3>注入上下文</h3>
+                            <p><code>hookSpecificOutput.additionalContext</code> 可把检查结果送回模型上下文。</p>
+                        </div>
+                        <div class="hook-control-card">
+                            <h3>修改工具输入</h3>
+                            <p><code>PreToolUse</code>、<code>PermissionRequest</code> 可带 <code>updatedInput</code>。</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="catalog" class="section-block">
+                    <h2 class="hook-section-title">Hook 清单：按分组筛选</h2>
+                    <div class="hook-filter-bar" role="group" aria-label="Hook category filter">
+                        <button type="button" class="hook-filter-button is-active" data-hook-filter="all">全部 27</button>
+                        <button type="button" class="hook-filter-button" data-hook-filter="tool">工具权限 5</button>
+                        <button type="button" class="hook-filter-button" data-hook-filter="session">会话 7</button>
+                        <button type="button" class="hook-filter-button" data-hook-filter="context">上下文工作区 7</button>
+                        <button type="button" class="hook-filter-button" data-hook-filter="agent">子代理任务 6</button>
+                        <button type="button" class="hook-filter-button" data-hook-filter="ask">交互 2</button>
+                    </div>
+                    <div class="hook-table-wrap">
+                        <table class="hook-event-table">
+                            <thead>
+                                <tr>
+                                    <th>Hook</th>
+                                    <th>分组</th>
+                                    <th>触发点</th>
+                                    <th>典型用途</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-hook-group="tool"><td><code>PermissionRequest</code></td><td>工具权限</td><td>权限提示前</td><td>允许、拒绝、修改输入或更新权限。</td></tr>
+                                <tr data-hook-group="tool"><td><code>PreToolUse</code></td><td>工具权限</td><td>工具执行前</td><td>安全检查、拦截危险 Bash、改写工具输入。</td></tr>
+                                <tr data-hook-group="tool"><td><code>PostToolUse</code></td><td>工具权限</td><td>工具成功后</td><td>格式化文件、跑测试、把结果注入上下文。</td></tr>
+                                <tr data-hook-group="tool"><td><code>PostToolUseFailure</code></td><td>工具权限</td><td>工具失败后</td><td>失败诊断、记录日志、补充修复提示。</td></tr>
+                                <tr data-hook-group="tool"><td><code>PermissionDenied</code></td><td>工具权限</td><td>权限被拒绝时</td><td>解释拒绝原因、建议替代操作、触发 retry。</td></tr>
+
+                                <tr data-hook-group="session"><td><code>Setup</code></td><td>会话生命周期</td><td>runtime 准备阶段</td><td>初始化环境、预加载上下文。</td></tr>
+                                <tr data-hook-group="session"><td><code>SessionStart</code></td><td>会话生命周期</td><td>session 开始</td><td>注入初始上下文、设置文件监听路径。</td></tr>
+                                <tr data-hook-group="session"><td><code>UserPromptSubmit</code></td><td>会话生命周期</td><td>用户提交 prompt</td><td>检查输入、补充上下文、阻止不合规请求。</td></tr>
+                                <tr data-hook-group="session"><td><code>Notification</code></td><td>会话生命周期</td><td>通知事件</td><td>转发提醒、记录运行时状态。</td></tr>
+                                <tr data-hook-group="session"><td><code>Stop</code></td><td>会话生命周期</td><td>Claude 准备停止</td><td>收尾检查、阻止结束、Ralph Loop 的循环入口。</td></tr>
+                                <tr data-hook-group="session"><td><code>StopFailure</code></td><td>会话生命周期</td><td>停止流程失败</td><td>诊断 Stop hook 或收尾流程异常。</td></tr>
+                                <tr data-hook-group="session"><td><code>SessionEnd</code></td><td>会话生命周期</td><td>session 结束</td><td>归档、清理、统计。</td></tr>
+
+                                <tr data-hook-group="context"><td><code>PreCompact</code></td><td>上下文工作区</td><td>compact 前</td><td>提醒保存关键事实、检查摘要约束。</td></tr>
+                                <tr data-hook-group="context"><td><code>PostCompact</code></td><td>上下文工作区</td><td>compact 后</td><td>拿到 summary 后补上下文或写入记忆。</td></tr>
+                                <tr data-hook-group="context"><td><code>InstructionsLoaded</code></td><td>上下文工作区</td><td>指令加载后</td><td>检查项目指令、追加运行时约束。</td></tr>
+                                <tr data-hook-group="context"><td><code>CwdChanged</code></td><td>上下文工作区</td><td>工作目录变化</td><td>更新监听路径、切换项目上下文。</td></tr>
+                                <tr data-hook-group="context"><td><code>FileChanged</code></td><td>上下文工作区</td><td>被监听文件变化</td><td>刷新索引、触发检查、同步外部状态。</td></tr>
+                                <tr data-hook-group="context"><td><code>WorktreeCreate</code></td><td>上下文工作区</td><td>创建 worktree</td><td>初始化分支工作区、登记路径。</td></tr>
+                                <tr data-hook-group="context"><td><code>WorktreeRemove</code></td><td>上下文工作区</td><td>移除 worktree</td><td>清理状态、释放监听。</td></tr>
+
+                                <tr data-hook-group="agent"><td><code>SubagentStart</code></td><td>子代理任务</td><td>subagent 启动</td><td>注入任务上下文、登记 worker。</td></tr>
+                                <tr data-hook-group="agent"><td><code>SubagentStop</code></td><td>子代理任务</td><td>subagent 停止</td><td>汇总结果、收敛子任务状态。</td></tr>
+                                <tr data-hook-group="agent"><td><code>TaskCreated</code></td><td>子代理任务</td><td>任务创建</td><td>写任务台账、触发外部看板。</td></tr>
+                                <tr data-hook-group="agent"><td><code>TaskCompleted</code></td><td>子代理任务</td><td>任务完成</td><td>归档产物、更新进度、通知协作者。</td></tr>
+                                <tr data-hook-group="agent"><td><code>TeammateIdle</code></td><td>子代理任务</td><td>teammate 空闲</td><td>分配下一步、维持协作循环。</td></tr>
+                                <tr data-hook-group="agent"><td><code>ConfigChange</code></td><td>子代理任务</td><td>配置变化</td><td>热加载 hook/plugin 配置。</td></tr>
+
+                                <tr data-hook-group="ask"><td><code>Elicitation</code></td><td>交互询问</td><td>runtime 发起询问</td><td>自动接受、拒绝、取消或补内容。</td></tr>
+                                <tr data-hook-group="ask"><td><code>ElicitationResult</code></td><td>交互询问</td><td>询问结果返回</td><td>记录用户选择、驱动后续策略。</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="ralph" class="section-block">
+                    <h2 class="hook-section-title">Ralph Loop 在这张图里的位置</h2>
+                    <div class="hook-ralph-panel">
+                        <div>
+                            <h3>Ralph Loop 不是直接调用 Claude API</h3>
+                            <p>它利用 Claude Code 的 <code>Stop</code> hook：当 Claude 准备结束时，hook 脚本读取本地状态、检查完成承诺和迭代次数。如果任务未完成，就返回 <code>decision:"block"</code> 与 <code>reason</code>，runtime 因此阻止停止，并把 reason 重新送回模型。</p>
+                        </div>
+                        <div class="hook-ralph-mini">
+                            <span>Claude wants to stop</span>
+                            <strong>Stop hook</strong>
+                            <span>check promise and iteration</span>
+                            <strong>decision:block</strong>
+                            <span>reason re-enters model context</span>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="chapter-navigation">
+                    <a href="topic-claude-codex-compare.html" class="btn btn-secondary">← Claude vs Codex</a>
+                    <a href="topic-loop-mechanisms.html" class="btn btn-primary">Loop 机制对照 →</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/md/topic-hook-runtime.md" target="_blank" rel="noopener noreferrer">本站页的 Markdown 源文件（GitHub）</a></p>
+            <p>© 2026 Everything in Claude-Code. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+    <script>
+(function () {
+    var buttons = document.querySelectorAll('[data-hook-filter]')
+    var rows = document.querySelectorAll('[data-hook-group]')
+    buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            var filter = button.getAttribute('data-hook-filter')
+            buttons.forEach(function (item) { item.classList.remove('is-active') })
+            button.classList.add('is-active')
+            rows.forEach(function (row) {
+                var group = row.getAttribute('data-hook-group')
+                row.hidden = filter !== 'all' && group !== filter
+            })
+        })
+    })
+})()
+    </script>
+</body>
+</html>

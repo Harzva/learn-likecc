@@ -137,8 +137,40 @@
                     <p>Remotion 适合把静态讲解再提升到动画和视频层，后面可以做成解释性片段和短视频素材。</p>
                 </div>
             </div>
+            <table class="compare-table">
+                <tr>
+                    <th>当前表达目标</th>
+                    <th>第一优先</th>
+                    <th>什么时候升级</th>
+                </tr>
+                <tr>
+                    <td>解释结构关系</td>
+                    <td><code>Mermaid</code></td>
+                    <td>如果结构太复杂或版式要求更强，再升级到 <code>html-card-to-png</code></td>
+                </tr>
+                <tr>
+                    <td>保留真实界面或真实网页状态</td>
+                    <td><code>webpage-screenshot-md</code></td>
+                    <td>如果截图之后还需要讲解型重排，再补 Mermaid 或卡片图</td>
+                </tr>
+                <tr>
+                    <td>快速可分享的讲解页</td>
+                    <td><code>LivePPT</code></td>
+                    <td>如果要讲义化、要做开发者分享，就升级到 <code>Slidev</code></td>
+                </tr>
+                <tr>
+                    <td>公开演讲 / 开发者讲义</td>
+                    <td><code>Slidev</code></td>
+                    <td>如果需要镜头感和动态节奏，再升级到 <code>Remotion</code></td>
+                </tr>
+                <tr>
+                    <td>解释型动画 / 视频传播</td>
+                    <td><code>Remotion</code></td>
+                    <td>优先只挑最有画面感的一条主线，不要把整篇文章硬塞进视频</td>
+                </tr>
+            </table>
             <p class="section-desc meta-topic-copy meta-topic-copy--tail">
-                所以这条线最终不只是“找几个 UI 仓库”，而是：<strong>为站点建立从插图，到 slides，到程序化视频的连续表达能力。</strong>
+                所以这条线最终不只是“找几个 UI 仓库”，而是：<strong>为站点建立从图、截图、deck、slides 到程序化视频的连续表达能力。</strong>
             </p>
         </div>
     </section>

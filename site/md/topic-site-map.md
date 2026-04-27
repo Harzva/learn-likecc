@@ -1,4 +1,4 @@
-# 站点导览 / 思维导图 - Learn LikeCode
+# 站点导览 / 思维导图 - Everything in Claude-Code
 > **更新时间**: 2026-04-12
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-site-map.html  
@@ -8,10 +8,16 @@
 
 这页负责两件事：
 
-1. 用一张思维导图解释 Learn LikeCode 整站结构。
+1. 用一张横向思维导图解释 Everything in Claude-Code 整站结构。
 2. 汇总每个专题页的最后更新时间，方便站点维护。
 
 ## 思维导图关注什么
+
+- 先按横向主干分三组：
+  - 核心入口
+  - 站点专题与热点
+  - 工作台与科研线
+- 再从每组 hub 往下挂关键子链，而不是把所有节点都堆成一层树。
 
 - 首页是入口，不是内容终点。
 - 核心入口包括：
@@ -48,6 +54,19 @@
 同一条本地工作台支线里，这轮再把 `Connector Runtime / Daemon Design` 接了回来。这样 connector shell / WeChat bind 这条设计线也不再只是隐藏在 workspace app 和设计说明里，而是回到了站点主导览。
 
 这轮再把 `VibePaper → AI Scientist-v2 → codex-loop in sleep` 接成显式子链。这样睡眠态自动研究 / 自动推进这条线不再只藏在单页里，而是明确回到 AI-Scientist 语境下，告诉读者它是在解释“研究系统如何长出 sleep 层”。
+
+## 二级局部放大图
+
+总图负责看主干，局部图负责看重点支线。
+
+现在优先放大三条：
+
+- `AI-Scientist`
+  - 看 `Autoresearch / DeepScientist / AI Scientist-v2 / codex-loop in sleep`
+- `Loop Lab`
+  - 看 `AI Terminal / Workspace App / Connector Runtime`
+- `Design/UI`
+  - 看 `LivePPT / Slidev / Remotion` 以及表达层分工
 
 ## 更新时间索引怎么维护
 
