@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reflective Loop Simulator</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="../portfolio-resume/index.html">Reflective Loop Simulator</a>
+      <nav class="topic-nav" aria-label="Simulator topics">
+        <a href="#simulator">模拟器</a>
+        <a href="#agent-loop">Agent 循环</a>
+        <a href="#payload">JSON Payload</a>
+        <a href="#skills">Loop Skills</a>
+      </nav>
+      <div class="top-actions">
+        <button id="themeBtn" class="icon-btn" type="button" title="切换终端亮度" aria-label="切换终端亮度">◐</button>
+        <button id="resetBtn" class="icon-btn" type="button" title="重置模拟" aria-label="重置模拟">↺</button>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <section class="intro">
+        <p class="eyebrow">Claude Code source-style simulator</p>
+        <h1>模拟一次完整的 Reflective Agent Loop。</h1>
+        <p>
+          左侧序列图追踪每次消息流转，右侧终端完整回放交互历史。点击任意消息块，可查看 prompt、tool call 或 JSON payload。
+        </p>
+      </section>
+
+      <section class="scenario-strip" aria-label="Scenario selection">
+        <button class="scenario active" data-scenario="claude" type="button">
+          <span>Claude Code</span>
+          <small>tool_use / tool_result / prompt refeed</small>
+        </button>
+        <button class="scenario" data-scenario="codex" type="button">
+          <span>Codex Daemon</span>
+          <small>while sleep / exec resume / state files</small>
+        </button>
+        <button class="scenario" data-scenario="likecode" type="button">
+          <span>LikeCode /loop</span>
+          <small>CronCreate / scheduler / prompt queue</small>
+        </button>
+        <button class="scenario" data-scenario="moa" type="button">
+          <span>Reflective MOA</span>
+          <small>DAG workers / blackboard / merge check</small>
+        </button>
+      </section>
+
+      <section id="simulator" class="sim-grid" aria-label="Reflective loop simulator">
+        <article class="sequence-panel" aria-label="Sequence diagram">
+          <div class="lane-head">
+            <button class="lane active" data-focus="llm" type="button">
+              <span>Claude LLM</span>
+              <small>reasoning / response</small>
+            </button>
+            <button class="lane active" data-focus="code" type="button">
+              <span>Claude Code</span>
+              <small>runtime / memory</small>
+            </button>
+            <button class="lane active" data-focus="tools" type="button">
+              <span>Tools</span>
+              <small>glob / grep / read / edit</small>
+            </button>
+          </div>
+
+          <div class="sequence-stage">
+            <svg id="sequenceSvg" viewBox="0 0 900 900" role="img" aria-label="Agent loop sequence diagram"></svg>
+          </div>
+        </article>
+
+        <article class="terminal-panel" aria-label="Terminal replay">
+          <div class="terminal-chrome">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span id="terminalTitle" class="terminal-title">claude — reflective-loop-simulator</span>
+            <span id="terminalStep" class="terminal-step">1 / 12</span>
+          </div>
+
+          <div id="terminalLog" class="terminal-log" aria-live="polite"></div>
+
+          <section id="payload" class="payload-drawer" aria-label="Selected payload">
+            <div class="payload-head">
+              <div>
+                <p class="terminal-kicker">Selected Message</p>
+                <h2 id="payloadTitle">User request</h2>
+              </div>
+              <span id="payloadKind">REQUEST</span>
+            </div>
+            <pre id="payloadBody"></pre>
+            <div class="source-locator">
+              <span>Source module</span>
+              <code id="sourceModule">src/runtime/prompt/buildPrompt.ts</code>
+            </div>
+            <p id="teachingNote" class="teaching-note"></p>
+          </section>
+
+          <footer class="terminal-controls">
+            <span id="stepLabel">STEP 01</span>
+            <div id="stepDots" class="step-dots" aria-label="Step navigation"></div>
+            <button id="prevBtn" class="control" type="button">上一步</button>
+            <button id="replayBtn" class="control" type="button">重播</button>
+            <button id="autoExplainBtn" class="control" type="button">讲解</button>
+            <button id="nextBtn" class="control primary" type="button">下一步</button>
+          </footer>
+        </article>
+      </section>
+
+      <section id="agent-loop" class="chapter-grid">
+        <article>
+          <span>01</span>
+          <h2>Agent 循环</h2>
+          <p>从用户输入到工具调用，再到 tool result 回灌，整个 loop 会不断把历史、系统 prompt、roadmap 和 active task 重新压入下一轮推理。</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h2>Reflective update</h2>
+          <p>Check 阶段不是说明文字，而是 loss signal。失败会进入 failure bank，下一轮 prompt 会带着这份错误记忆继续优化。</p>
+        </article>
+        <article id="skills">
+          <span>03</span>
+          <h2>Loop Skills</h2>
+          <p>Codex、Gemini、Claude、Qwen、Kimi、MiniMax、Cursor 共享同一个抽象：roadmap 是慢状态，active task 是快适配器。</p>
+        </article>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
