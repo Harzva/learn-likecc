@@ -308,7 +308,7 @@ body {
 }
 
 .animate-fade-in {
-    animation: fadeInUp 0.6s ease-out forwards;
+    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* 渐变动画背景 */
@@ -5001,7 +5001,7 @@ body {
 .home-page .hero-main {
     min-height: auto;
     padding-top: 120px;
-    padding-bottom: 72px;
+    padding-bottom: 64px;
 }
 
 .container-home {
@@ -5109,7 +5109,7 @@ a.hero-badge--jump {
     justify-content: center;
     text-decoration: none;
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 a.hero-badge--jump:hover {
@@ -5309,7 +5309,7 @@ a.hero-badge--jump:focus-visible {
     font-weight: 600;
     font-size: 0.95rem;
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-hero.btn-primary {
@@ -5362,7 +5362,7 @@ a.hero-badge--jump:focus-visible {
 }
 
 .hero-visual-head {
-    margin-bottom: 20px;
+    margin-bottom: 24px;
 }
 
 .hero-visual-kicker {
