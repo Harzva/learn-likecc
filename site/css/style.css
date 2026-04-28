@@ -303,8 +303,8 @@ body {
 }
 
 @keyframes glow {
-    0%, 100% { box-shadow: 0 0 20px rgba(var(--primary), 0.3); }
-    50% { box-shadow: 0 0 40px rgba(var(--primary), 0.5); }
+    0%, 100% { box-shadow: 0 0 20px color-mix(in srgb, var(--primary) 30%, transparent); }
+    50% { box-shadow: 0 0 40px color-mix(in srgb, var(--primary) 50%, transparent); }
 }
 
 .animate-fade-in {
@@ -603,7 +603,7 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(var(--primary), 0.1);
+    background: color-mix(in srgb, var(--primary) 10%, transparent);
     border: 1px solid var(--primary);
     padding: 8px 16px;
     border-radius: 25px;
@@ -1512,7 +1512,7 @@ body {
 
 .flow-node.active {
     border-color: var(--primary);
-    background: linear-gradient(135deg, var(--bg-card) 0%, rgba(var(--primary), 0.1) 100%);
+    background: linear-gradient(135deg, var(--bg-card) 0%, color-mix(in srgb, var(--primary) 10%, transparent) 100%);
 }
 
 .flow-node .node-icon {
@@ -1660,7 +1660,7 @@ body {
 
 .quiz-option.selected {
     border-color: var(--primary);
-    background: rgba(var(--primary), 0.1);
+    background: color-mix(in srgb, var(--primary) 10%, transparent);
 }
 
 .quiz-option.correct {
@@ -4785,8 +4785,13 @@ body {
 
 .home-page .main-nav-links {
     flex-wrap: nowrap;
-    overflow: hidden;
+    overflow-x: auto;
     gap: 0.35rem;
+    scrollbar-width: none;
+}
+
+.home-page .main-nav-links::-webkit-scrollbar {
+    display: none;
 }
 
 .main-nav-links a {
@@ -5232,44 +5237,6 @@ a.hero-badge--jump:focus-visible {
     font-size: clamp(1.18rem, 2vw, 1.55rem);
 }
 
-.hero-lane-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
-    margin: 0 0 20px;
-}
-
-.hero-lane-card {
-    display: grid;
-    gap: 8px;
-    padding: 16px;
-    border-radius: 16px;
-    background:
-        linear-gradient(180deg, color-mix(in srgb, var(--bg-card) 92%, white 8%), color-mix(in srgb, var(--bg-secondary) 88%, white 12%));
-    border: 1px solid color-mix(in srgb, var(--border) 88%, white 12%);
-    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
-}
-
-.hero-lane-card__eyebrow {
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #0f766e;
-}
-
-.hero-lane-card strong {
-    color: var(--text-primary);
-    font-size: 1rem;
-}
-
-.hero-lane-card p {
-    margin: 0;
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    line-height: 1.55;
-}
-
 .hero-proofline {
     margin: 0 0 34px;
     padding-left: 16px;
@@ -5527,12 +5494,6 @@ a.hero-badge--jump:focus-visible {
 .hero-provider-card:nth-child(5),
 .hero-provider-card:nth-child(6) {
     border-color: color-mix(in srgb, #0f766e 22%, rgba(148, 163, 184, 0.18) 78%);
-}
-
-@media (max-width: 900px) {
-    .hero-lane-grid {
-        grid-template-columns: 1fr;
-    }
 }
 
 .home-map-section {
