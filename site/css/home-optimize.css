@@ -1,0 +1,191 @@
+/* ========== 首页特定优化 ========== */
+
+/* Hero 区域简化 */
+.hero-content--home {
+  max-width: 700px;
+}
+
+.hero-title--home {
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  letter-spacing: -0.02em;
+}
+
+.hero-subtitle--home {
+  font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+  max-width: 560px;
+  opacity: 0.85;
+}
+
+/* Hero badge 更紧凑 */
+.hero-badge--jump {
+  padding: 0.35rem 0.8rem;
+  font-size: 0.82rem;
+  gap: 0.4rem;
+}
+
+.hero-badge-hint {
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+/* Visual card 精简 */
+.hero-visual-card--home {
+  padding: 1.5rem;
+  gap: 1rem;
+}
+
+.hero-visual-head h2 {
+  font-size: 1.15rem;
+}
+
+.hero-visual-head p {
+  font-size: 0.82rem;
+  opacity: 0.75;
+}
+
+/* Provider grid 更紧凑 */
+.hero-provider-grid {
+  gap: 0.6rem;
+}
+
+.hero-provider-card {
+  padding: 0.7rem 0.9rem;
+  gap: 0.15rem;
+}
+
+.hero-provider-name {
+  font-size: 0.82rem;
+}
+
+.hero-provider-meta {
+  font-size: 0.72rem;
+}
+
+/* Source Map 事件区域紧凑化 */
+.source-map-event-section {
+  padding: 2rem 0;
+}
+
+.source-map-event-title {
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  margin-bottom: 1rem;
+}
+
+.source-map-event-body > p:first-child {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  margin-bottom: 0.8rem;
+}
+
+.source-map-event-list {
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.source-map-event-list li {
+  padding: 0.5rem 0.7rem;
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
+.source-map-event-more {
+  font-size: 0.82rem;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* 功能卡片网格优化间距 */
+.features-grid-main {
+  gap: 1rem;
+}
+
+.feature-card-main {
+  padding: 1.25rem;
+}
+
+.feature-title-main {
+  font-size: 1.05rem;
+}
+
+.feature-desc-main {
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.feature-tags {
+  gap: 0.35rem;
+}
+
+.tag {
+  padding: 0.2rem 0.5rem;
+  font-size: 0.72rem;
+}
+
+/* 统计面板紧凑化 */
+.stat-panel {
+  padding: 1rem;
+}
+
+.stat-number {
+  font-size: 1.6rem;
+}
+
+.stat-label {
+  font-size: 0.72rem;
+}
+
+/* 首页内容区通用间距收紧 */
+.home-page .section-title {
+  font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+}
+
+.home-page .section-subtitle {
+  font-size: 0.88rem;
+  max-width: 640px;
+}
+
+/* 站点地图节点更紧凑 */
+.home-map-node {
+  padding: 0.9rem;
+}
+
+.home-map-node strong {
+  font-size: 0.88rem;
+}
+
+.home-map-node p {
+  font-size: 0.78rem;
+}
+
+/* 响应式：移动端进一步收紧 */
+@media (max-width: 768px) {
+  .hero-content--home {
+    max-width: 100%;
+  }
+
+  .hero-actions--home {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .btn-hero {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-visual-card--home {
+    padding: 1rem;
+  }
+
+  .source-map-event-section {
+    padding: 1.5rem 0;
+  }
+
+  .features-grid-main {
+    gap: 0.8rem;
+  }
+
+  .feature-card-main {
+    padding: 1rem;
+  }
+}
