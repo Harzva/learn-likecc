@@ -441,19 +441,19 @@ body {
 .theme-toggle {
     background: linear-gradient(135deg, color-mix(in srgb, var(--bg-card) 82%, white 18%), color-mix(in srgb, var(--bg-hover) 72%, white 28%));
     border: 1px solid color-mix(in srgb, var(--border) 88%, white 12%);
-    border-radius: 14px;
-    min-height: 46px;
-    min-width: 104px;
-    padding: 0.6rem 0.95rem;
+    border-radius: 12px;
+    min-height: 36px;
+    min-width: auto;
+    padding: 0.4rem 0.7rem;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     white-space: nowrap;
     font-weight: 700;
-    font-size: 0.88rem;
+    font-size: 0.82rem;
     color: var(--text-primary);
-    box-shadow: 0 6px 14px rgba(30, 41, 59, 0.05);
+    box-shadow: 0 4px 10px rgba(30, 41, 59, 0.05);
     transition: all 0.3s ease;
 }
 
@@ -5235,15 +5235,15 @@ a.hero-badge--jump:focus-visible {
 .hero-lane-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
-    margin: 0 0 20px;
+    gap: 16px;
+    margin: 0 0 24px;
 }
 
 .hero-lane-card {
     display: grid;
-    gap: 6px;
-    padding: 18px;
-    border-radius: 18px;
+    gap: 8px;
+    padding: 16px;
+    border-radius: 16px;
     background:
         linear-gradient(180deg, color-mix(in srgb, var(--bg-card) 92%, white 8%), color-mix(in srgb, var(--bg-secondary) 88%, white 12%));
     border: 1px solid color-mix(in srgb, var(--border) 88%, white 12%);
@@ -5330,17 +5330,17 @@ a.hero-badge--jump:focus-visible {
 }
 
 .hero-actions--home {
-    gap: 18px;
+    gap: 16px;
 }
 
 .btn-hero {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 1rem 2rem;
+    padding: 0.875rem 1.75rem;
     border-radius: 8px;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.95rem;
     text-decoration: none;
     transition: all 0.3s ease;
 }
@@ -5357,18 +5357,20 @@ a.hero-badge--jump:focus-visible {
 
 .btn-hero.btn-secondary {
     background: transparent;
-    color: var(--text-primary);
-    border: 2px solid var(--border);
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    padding: calc(0.875rem + 1px) calc(1.75rem + 1px);
 }
 
 .btn-hero.btn-secondary:hover {
     border-color: var(--primary);
     color: var(--primary);
+    background: color-mix(in srgb, var(--primary) 6%, transparent);
 }
 
 .hero-visual-card {
     position: relative;
-    padding: 26px;
+    padding: 24px;
     border-radius: 24px;
     background:
         radial-gradient(circle at top right, rgba(59, 130, 246, 0.16), transparent 30%),
@@ -5393,7 +5395,7 @@ a.hero-badge--jump:focus-visible {
 }
 
 .hero-visual-head {
-    margin-bottom: 22px;
+    margin-bottom: 20px;
 }
 
 .hero-visual-kicker {
@@ -5473,18 +5475,18 @@ a.hero-badge--jump:focus-visible {
 .hero-policy-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
+    gap: 16px;
 }
 
 .hero-provider-grid {
-    margin-bottom: 14px;
+    margin-bottom: 0;
 }
 
 .hero-provider-card,
 .hero-policy-item {
     display: grid;
     gap: 4px;
-    padding: 14px 14px 14px;
+    padding: 12px 16px;
     border-radius: 16px;
     border: 1px solid rgba(148, 163, 184, 0.18);
     background: rgba(255, 255, 255, 0.58);
