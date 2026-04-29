@@ -33,7 +33,7 @@
 - [ ] Task H5: Add visual console or chip row below hero-actions for key concepts (optional, reference page does not have this)
 
 ### P2: topic-design-ui-unpacked.html
-- [ ] Task UI1: Add hero-stats row (currently completely missing)
+- [x] Task UI1: Add hero-stats row (currently completely missing)
 - [ ] Task UI2: Add hero-badge with topic label
 - [ ] Task UI3: Expand hero-subtitle with stronger value proposition
 - [ ] Task UI4: Add interactive comparison module (three-column visual with hover states)
@@ -63,7 +63,7 @@
 | 3 | 2026-04-30 | D3 | Verified hero-stats gradient-text via global CSS rule under .cc-unpacked-hero-stats .stat-value; applies to all unpacked pages automatically | Committed: 905fc3f |
 | 4 | 2026-04-30 | D2 | Added interactive research cycle player to topic-deepscientist-unpacked.html #loop section: created data/ds-research-loop.json (5 steps), js/ds-research-loop-player.js (adapted from hermes-loop-player.js), updated HTML mount point and script tag; section retitled to emphasize loop nature | Committed: 0b3d172 |
 | 5 | 2026-04-30 | D4 | Checked knowledge-map section in topic-deepscientist-unpacked.html: verified treemap + knowledge-graph interactive modules present; fixed missing ds-arch-knowledge CSS by adding shared rules paired with cc-arch-knowledge selectors in style.css | Committed: 79fa1d9 |
-| 6 | 2026-04-30 | H4 | Fixed section numbering in topic-hermes-unpacked.html: changed 02C → 02B for knowledge-map section; updated nav link from "02 图谱" → "02B 图谱" to match reference pattern | Committed: 79fa1d9 |
+| 7 | 2026-04-30 | UI1 | Added hero-stats row to topic-design-ui-unpacked.html: 4 stats (3 shells / 6 ladder levels / 4 lessons / 1 criterion), hero-actions with CTAs, subtitle-note; visual density now matches reference | Committed: 2b7e461 |
 
 ---
 
