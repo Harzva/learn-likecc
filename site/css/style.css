@@ -10849,7 +10849,8 @@ body.site-shell-overlay-open {
     }
 }
 
-.cc-arch-knowledge {
+.cc-arch-knowledge,
+.ds-arch-knowledge {
     position: relative;
     overflow: hidden;
     margin: 1.35rem 0 1.5rem;
@@ -10864,7 +10865,8 @@ body.site-shell-overlay-open {
         inset 0 1px 0 rgba(255, 255, 255, 0.58);
 }
 
-.cc-arch-knowledge__toolbar {
+.cc-arch-knowledge__toolbar,
+.ds-arch-knowledge__toolbar {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -10873,27 +10875,31 @@ body.site-shell-overlay-open {
     padding: 1rem 1.1rem 0.8rem;
 }
 
-.cc-arch-knowledge__title {
+.cc-arch-knowledge__title,
+.ds-arch-knowledge__title {
     margin: 0;
     font-size: 1.5rem;
     font-family: Georgia, 'Times New Roman', serif;
     color: #1f2a3d;
 }
 
-.cc-arch-knowledge__subtitle {
+.cc-arch-knowledge__subtitle,
+.ds-arch-knowledge__subtitle {
     margin: 0.25rem 0 0;
     color: #5f6679;
     font-size: 1.08rem;
     line-height: 1.6;
 }
 
-.cc-arch-knowledge__controls {
+.cc-arch-knowledge__controls,
+.ds-arch-knowledge__controls {
     display: flex;
     flex-wrap: wrap;
     gap: 0.55rem;
 }
 
-.cc-arch-knowledge__btn {
+.cc-arch-knowledge__btn,
+.ds-arch-knowledge__btn {
     border: 1px solid rgba(83, 95, 122, 0.18);
     border-radius: 9999px;
     background: rgba(255, 255, 255, 0.74);
@@ -10906,32 +10912,37 @@ body.site-shell-overlay-open {
     transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease, border-color 0.16s ease;
 }
 
-.cc-arch-knowledge__btn:hover {
+.cc-arch-knowledge__btn:hover,
+.ds-arch-knowledge__btn:hover {
     transform: translateY(-1px);
     border-color: rgba(68, 86, 136, 0.24);
     box-shadow: 0 10px 22px -18px rgba(33, 45, 75, 0.45);
 }
 
-.cc-arch-knowledge__btn.is-active {
+.cc-arch-knowledge__btn.is-active,
+.ds-arch-knowledge__btn.is-active {
     color: #fff9f0;
     background: linear-gradient(135deg, #24324a, #38537f);
     border-color: transparent;
 }
 
-.cc-arch-knowledge__layout {
+.cc-arch-knowledge__layout,
+.ds-arch-knowledge__layout {
     display: grid;
     grid-template-columns: minmax(0, 1.4fr) minmax(260px, 0.62fr);
     gap: 0;
     min-height: 760px;
 }
 
-.cc-arch-knowledge__canvas {
+.cc-arch-knowledge__canvas,
+.ds-arch-knowledge__canvas {
     position: relative;
     min-height: 760px;
     padding: 0.6rem 0.8rem 1rem 1rem;
 }
 
-.cc-arch-knowledge__svg {
+.cc-arch-knowledge__svg,
+.ds-arch-knowledge__svg {
     display: block;
     width: 100%;
     height: 760px;
@@ -10944,20 +10955,23 @@ body.site-shell-overlay-open {
         inset 0 -32px 42px -26px rgba(0, 0, 0, 0.55);
 }
 
-.cc-arch-knowledge__panel {
+.cc-arch-knowledge__panel,
+.ds-arch-knowledge__panel {
     border-left: 1px solid rgba(59, 74, 104, 0.12);
     padding: 1rem 1rem 1.05rem 0.9rem;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.08));
 }
 
-.cc-arch-knowledge__legend {
+.cc-arch-knowledge__legend,
+.ds-arch-knowledge__legend {
     display: flex;
     flex-wrap: wrap;
     gap: 0.55rem 0.75rem;
     margin-bottom: 1rem;
 }
 
-.cc-arch-knowledge__legend-item {
+.cc-arch-knowledge__legend-item,
+.ds-arch-knowledge__legend-item {
     display: inline-flex;
     align-items: center;
     gap: 0.42rem;
@@ -10968,14 +10982,16 @@ body.site-shell-overlay-open {
     font-size: 0.96rem;
 }
 
-.cc-arch-knowledge__legend-dot {
+.cc-arch-knowledge__legend-dot,
+.ds-arch-knowledge__legend-dot {
     width: 0.7rem;
     height: 0.7rem;
     border-radius: 0.25rem;
     flex-shrink: 0;
 }
 
-.cc-arch-knowledge__detail {
+.cc-arch-knowledge__detail,
+.ds-arch-knowledge__detail {
     padding: 1rem;
     border-radius: 18px;
     background: rgba(255, 255, 255, 0.7);
@@ -10983,7 +10999,8 @@ body.site-shell-overlay-open {
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
-.cc-arch-knowledge__eyebrow {
+.cc-arch-knowledge__eyebrow,
+.ds-arch-knowledge__eyebrow {
     margin: 0 0 0.35rem;
     font-size: 0.88rem;
     letter-spacing: 0.08em;
@@ -10991,7 +11008,8 @@ body.site-shell-overlay-open {
     color: #8b6a2f;
 }
 
-.cc-arch-knowledge__name {
+.cc-arch-knowledge__name,
+.ds-arch-knowledge__name {
     margin: 0 0 0.45rem;
     font-size: 1.7rem;
     color: #1d2a41;
@@ -10999,20 +11017,23 @@ body.site-shell-overlay-open {
 
 .cc-arch-knowledge__meta,
 .cc-arch-knowledge__desc,
-.cc-arch-knowledge__related {
+.cc-arch-knowledge__related,
+.ds-arch-knowledge__related {
     margin: 0 0 0.75rem;
     color: #516077;
     line-height: 1.7;
     font-size: 1.06rem;
 }
 
-.cc-arch-knowledge__related-list {
+.cc-arch-knowledge__related-list,
+.ds-arch-knowledge__related-list {
     display: flex;
     flex-wrap: wrap;
     gap: 0.45rem;
 }
 
-.cc-arch-knowledge__chip {
+.cc-arch-knowledge__chip,
+.ds-arch-knowledge__chip {
     display: inline-flex;
     align-items: center;
     gap: 0.38rem;
@@ -11024,13 +11045,15 @@ body.site-shell-overlay-open {
     font-size: 0.94rem;
 }
 
-.cc-arch-knowledge__why-block {
+.cc-arch-knowledge__why-block,
+.ds-arch-knowledge__why-block {
     margin-top: 0.9rem;
     padding-top: 0.9rem;
     border-top: 1px solid rgba(87, 104, 138, 0.12);
 }
 
-.cc-arch-knowledge__why-title {
+.cc-arch-knowledge__why-title,
+.ds-arch-knowledge__why-title {
     margin: 0 0 0.45rem;
     color: #87621f;
     font-size: 0.92rem;
@@ -11038,23 +11061,27 @@ body.site-shell-overlay-open {
     text-transform: uppercase;
 }
 
-.cc-arch-knowledge__bullet-list {
+.cc-arch-knowledge__bullet-list,
+.ds-arch-knowledge__bullet-list {
     margin: 0;
     padding-left: 1.1rem;
     color: #49586f;
 }
 
-.cc-arch-knowledge__bullet-item {
+.cc-arch-knowledge__bullet-item,
+.ds-arch-knowledge__bullet-item {
     margin: 0 0 0.5rem;
     line-height: 1.7;
     font-size: 1.03rem;
 }
 
-.cc-arch-knowledge__bullet-item strong {
+.cc-arch-knowledge__bullet-item strong,
+.ds-arch-knowledge__bullet-item strong {
     color: #24344f;
 }
 
-.cc-arch-knowledge__note {
+.cc-arch-knowledge__note,
+.ds-arch-knowledge__note {
     margin-top: 1rem;
     padding: 0.9rem 1rem 0;
     border-top: 1px solid rgba(71, 85, 116, 0.12);
@@ -11063,42 +11090,51 @@ body.site-shell-overlay-open {
     line-height: 1.7;
 }
 
-.cc-arch-knowledge__empty {
+.cc-arch-knowledge__empty,
+.ds-arch-knowledge__empty {
     font-size: 1rem;
     color: #657188;
 }
 
-.cc-arch-knowledge__link {
+.cc-arch-knowledge__link,
+.ds-arch-knowledge__link {
     stroke-linecap: round;
 }
 
-.cc-arch-knowledge__link--contains {
+.cc-arch-knowledge__link--contains,
+.ds-arch-knowledge__link--contains {
     stroke: rgba(255, 255, 255, 0.18);
 }
 
-.cc-arch-knowledge__link--cross {
+.cc-arch-knowledge__link--cross,
+.ds-arch-knowledge__link--cross {
     stroke: rgba(244, 191, 117, 0.62);
 }
 
-.cc-arch-knowledge__link--loop {
+.cc-arch-knowledge__link--loop,
+.ds-arch-knowledge__link--loop {
     stroke: rgba(255, 231, 188, 0.98);
 }
 
-.cc-arch-knowledge__link--loop_map {
+.cc-arch-knowledge__link--loop_map,
+.ds-arch-knowledge__link--loop_map {
     stroke: rgba(249, 191, 104, 0.72);
     stroke-dasharray: 7 6;
 }
 
-.cc-arch-knowledge__link--loop_category {
+.cc-arch-knowledge__link--loop_category,
+.ds-arch-knowledge__link--loop_category {
     stroke: rgba(245, 204, 132, 0.5);
     stroke-dasharray: 2 10;
 }
 
-.cc-arch-knowledge__node circle {
+.cc-arch-knowledge__node circle,
+.ds-arch-knowledge__node circle {
     transition: transform 0.16s ease, filter 0.16s ease, opacity 0.16s ease;
 }
 
-.cc-arch-knowledge__node text {
+.cc-arch-knowledge__node text,
+.ds-arch-knowledge__node text {
     fill: rgba(246, 244, 238, 0.96);
     font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     pointer-events: none;
@@ -11106,15 +11142,18 @@ body.site-shell-overlay-open {
 
 .cc-arch-knowledge__node.is-dim circle,
 .cc-arch-knowledge__node.is-dim text,
-.cc-arch-knowledge__link.is-dim {
+.cc-arch-knowledge__link.is-dim,
+.ds-arch-knowledge__link.is-dim {
     opacity: 0.2;
 }
 
-.cc-arch-knowledge__node.is-active circle {
+.cc-arch-knowledge__node.is-active circle,
+.ds-arch-knowledge__node.is-active circle {
     filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.22));
 }
 
-.cc-arch-knowledge__node text {
+.cc-arch-knowledge__node text,
+.ds-arch-knowledge__node text {
     paint-order: stroke;
     stroke: rgba(9, 12, 20, 0.25);
     stroke-width: 2px;

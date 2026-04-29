@@ -20,7 +20,7 @@
                 <a href="#attribution" class="nav-link">说明</a>
                 <a href="#why" class="nav-link">01 为什么重要</a>
                 <a href="#layers" class="nav-link">02 分层</a>
-                <a href="#knowledge-map" class="nav-link">02 图谱</a>
+                <a href="#knowledge-map" class="nav-link">02B 图谱</a>
                 <a href="#control-plane" class="nav-link">03 控制面</a>
                 <a href="#tools" class="nav-link">03B 工具</a>
                 <a href="#memory-skills" class="nav-link">04 记忆与技能</a>
@@ -248,7 +248,7 @@
                 </section>
 
                 <section id="knowledge-map" class="section-block">
-                    <h2>02C · 架构关系图谱</h2>
+                    <h2>02B · 架构关系图谱</h2>
                     <p>Treemap 适合看<strong>各层规模与归属</strong>，知识图谱更适合看<strong>谁驱动谁、谁依赖谁</strong>。这里把六层架构的关键组件串成一张关系网：块内结构看每个架构层下挂了哪些核心模块；块间交互看 gateway 如何创建 AIAgent、AIAgent 如何调用工具与记忆、Cron 如何定时触发、执行最终落在哪个后端。</p>
                     <div id="hermes-arch-knowledge-mount" class="cc-arch-knowledge" data-json="data/hermes-arch-knowledge.json" role="region" aria-label="Hermes 架构知识图谱"></div>
                     <p class="section-desc cc-unpacked-section-desc cc-unpacked-section-desc--knowledge">图谱里<strong>块内结构</strong>来自六层架构拆分；<strong>块间交互</strong>是教学向归纳，不是严格的静态 import 图。它的作用是帮你判断“先看哪里、再看哪里、哪些模块要连在一起读”。</p>

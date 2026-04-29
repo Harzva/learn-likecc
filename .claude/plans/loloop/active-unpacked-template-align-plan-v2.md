@@ -22,15 +22,15 @@
 - [x] Task D1: Ensure attribution block follows reference pattern (course-quote inside section-block)
 - [x] Task D2: Add interactive module placeholder zone (like cc-loop-player) for research cycle visualization
 - [x] Task D3: Verify hero-stats use gradient-text class consistently
-- [ ] Task D4: Check knowledge-map section has treemap-like visual structure or equivalent density
+- [x] Task D4: Check knowledge-map section has treemap-like visual structure or equivalent density (verified: has both ds-arch-treemap + ds-arch-knowledge interactive modules; fixed missing ds-arch-knowledge CSS styles by adding shared rules in style.css)
 - [x] Task D5: Ensure section numbering follows 01/02/02B pattern consistently (currently 01/02/02B/03/04/04B/05/05B/06/08/07 — inconsistent order)
 
 ### P1: topic-hermes-unpacked.html
-- [ ] Task H1: Add hero-badge to hero section (currently missing)
-- [ ] Task H2: Add hero-stats row with gradient-text values (currently missing)
-- [ ] Task H3: Add interactive module placeholder for agent loop visualization or API surface explorer
-- [ ] Task H4: Verify section numbering follows consistent 01/02/02B/03 pattern
-- [ ] Task H5: Add visual console or chip row below hero-actions for key concepts
+- [x] Task H1: Add hero-badge to hero section (already present ✓)
+- [x] Task H2: Add hero-stats row with gradient-text values (already present ✓)
+- [x] Task H3: Add interactive module placeholder for agent loop visualization (already present: hermes-loop-player + hermes-arch-treemap + hermes-arch-knowledge ✓)
+- [x] Task H4: Verify section numbering follows consistent 01/02/02B/03 pattern (fixed: 02C → 02B, nav link "02 图谱" → "02B 图谱")
+- [ ] Task H5: Add visual console or chip row below hero-actions for key concepts (optional, reference page does not have this)
 
 ### P2: topic-design-ui-unpacked.html
 - [ ] Task UI1: Add hero-stats row (currently completely missing)
@@ -49,8 +49,8 @@
 
 ### Shared: site/css/style.css
 - [x] Task C1: Ensure .cc-unpacked-hero-stats gradient-text rule applies globally
-- [ ] Task C2: Add .hero-badge visibility rule for all cc-unpacked-page heroes
-- [ ] Task C3: Verify interactive module mount points have consistent min-height
+- [ ] Task C2: Add .hero-badge visibility rule for all cc-unpacked-page heroes — already visible globally, no extra rule needed
+- [x] Task C3: Verify interactive module mount points have consistent min-height (cc-arch-knowledge and ds-arch-knowledge both have min-height via __layout; cc-loop-player has min-height from its own CSS)
 
 ---
 
@@ -61,7 +61,9 @@
 | 1 | 2026-04-30 | D5 | Fixed section numbering in topic-deepscientist-unpacked.html: reordered nav and body so 07 precedes 08; added missing 03B nav link for quest-walkthrough section | Committed: 80a82f9 |
 | 2 | 2026-04-30 | D1 | Replaced ds-two-col + ds-panel attribution layout with course-quote wrapper inside section-block; kept all content and strong-label pattern aligned to reference | Committed: fe0fe0e |
 | 3 | 2026-04-30 | D3 | Verified hero-stats gradient-text via global CSS rule under .cc-unpacked-hero-stats .stat-value; applies to all unpacked pages automatically | Committed: 905fc3f |
-| 4 | 2026-04-30 | D2 | Added interactive research cycle player to topic-deepscientist-unpacked.html #loop section: created data/ds-research-loop.json (5 steps), js/ds-research-loop-player.js (adapted from hermes-loop-player.js), updated HTML mount point and script tag; section retitled to emphasize loop nature | Committed: pending |
+| 4 | 2026-04-30 | D2 | Added interactive research cycle player to topic-deepscientist-unpacked.html #loop section: created data/ds-research-loop.json (5 steps), js/ds-research-loop-player.js (adapted from hermes-loop-player.js), updated HTML mount point and script tag; section retitled to emphasize loop nature | Committed: 0b3d172 |
+| 5 | 2026-04-30 | D4 | Checked knowledge-map section in topic-deepscientist-unpacked.html: verified treemap + knowledge-graph interactive modules present; fixed missing ds-arch-knowledge CSS by adding shared rules paired with cc-arch-knowledge selectors in style.css | No commit yet |
+| 6 | 2026-04-30 | H4 | Fixed section numbering in topic-hermes-unpacked.html: changed 02C → 02B for knowledge-map section; updated nav link from "02 图谱" → "02B 图谱" to match reference pattern | No commit yet |
 
 ---
 
