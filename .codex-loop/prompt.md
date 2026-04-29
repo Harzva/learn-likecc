@@ -539,3 +539,22 @@ Execution rule:
    - `site/topic-design-ui.html`
    - `site/topic-design-ui-tutorial.html`
    - simulator demo outputs, prompts, and related showcase pages in the repo
+
+Task 24:
+Loop task: keep aligning `*-unpacked` topic pages to the `topic-cc-unpacked-zh.html` quality bar (interactive modules, visual density, structure clarity) by following the dedicated plan file:
+- `.claude/plans/loloop/active-unpacked-template-align-plan-v2.md`
+
+Execution rule:
+1. Read that plan first.
+2. Pick exactly one unchecked item from the Task Pool per iteration; if unsure what to optimize, use the pool as the default selector.
+3. After each bounded pass:
+   - mark progress in the plan file
+   - check off any completed item
+   - record the result in the evolution trail
+4. Prefer changes that keep these aligned:
+   - `site/topic-deepscientist-unpacked.html` (current P0 target)
+   - `site/topic-hermes-unpacked.html` (P1)
+   - `site/topic-design-ui-unpacked.html` (P2)
+   - `site/topic-everything-claude-code-unpacked.html` (P2)
+   - shared style surface in `site/css/style.css`
+5. Do not touch `topic-autoresearch-unpacked.html` unless explicitly reopened; it keeps its independent protocol visual system.
