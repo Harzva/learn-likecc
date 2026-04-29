@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "updated": "2026-04-30",
+    "note_zh": "Design/UI 表达壳层特性卡片：LivePPT、Slidev、Remotion 三条路线的核心差异与使用场景"
+  },
+  "feature_cards": {
+    "note_zh": "点击卡片查看各表达壳层的详细定位与适用场景；按 Esc 关闭详情。",
+    "cards": [
+      {
+        "id": "liveppt",
+        "title": "LivePPT",
+        "blurb": "把已有内容快速变成可演示的 HTML deck",
+        "body": "LivePPT 的核心定位是「内容先行」的演示页生成器。\n\n它最吸引人的不是功能大全，而是直接把 Markdown / README 这类已有内容，快速转换为可分享、可浏览的 HTML deck。不需要重新排版，不需要设计技能——你的文档结构本身就是页序。\n\n适合给站内成熟专题做演示版：一篇文章写完后，一键变成可以投屏或发送的 deck。",
+        "links": [
+          { "href": "#liveppt", "text": "02 LivePPT 详解" },
+          { "href": "#sample-map", "text": "样例映射" }
+        ]
+      },
+      {
+        "id": "slidev",
+        "title": "Slidev",
+        "blurb": "开发者讲义系统：Markdown slides + live coding + export",
+        "body": "Slidev 在 Markdown slides、绘图、Presenter Mode、Mermaid、代码高亮和 export 之间达成了比较完整的开发者讲义形态。\n\n它不是普通 PPT 的替代品，而是「需要现场写代码、现场画图、现场切换章节」的技术分享场景的最优解。\n\n如果你要讲 Claude Code 的 loop 机制，Slidev 可以让你在 slide 之间直接嵌入代码块、运行结果和 Mermaid 图——这是传统 PPT 做不到的。",
+        "links": [
+          { "href": "#slidev", "text": "03 Slidev 详解" },
+          { "href": "#sample-map", "text": "样例映射" }
+        ]
+      },
+      {
+        "id": "remotion",
+        "title": "Remotion",
+        "blurb": "用 React 直接做可编排的视频和动画表达",
+        "body": "Remotion 的定位是「程序化视频引擎」——不是剪辑工具，而是用代码驱动镜头、动画和节奏。\n\n一旦你不满足于静态页和 slides，想把解释升级成动画片段和节奏化叙事，Remotion 就会显出它的层级差异。\n\n适合最强主线的视觉化：把 Claude Code 的 loop 机制做成一个 90 秒的动画，比 20 页 slide 更能在社交媒体上传播。",
+        "links": [
+          { "href": "#remotion", "text": "04 Remotion 详解" },
+          { "href": "#sample-map", "text": "样例映射" }
+        ]
+      },
+      {
+        "id": "plugin-ladder",
+        "title": "插件梯度",
+        "blurb": "图、截图、deck、slides、video 不是一层东西",
+        "body": "六层表达梯度从低到高：\n\n1. 图形结构层（Mermaid）——讲结构、讲关系、讲流程\n2. 图形加强层（html-card-to-png）——结构图需要更强版式时\n3. 证据保留层（webpage-screenshot-md）——必须保留真实页面状态时\n4. 演示页层（LivePPT）——成熟文章快速变 deck\n5. 讲义层（Slidev）——需要开发者讲解和 live coding\n6. 视频层（Remotion）——最强主线需要镜头感和短视频传播\n\n判断标准：不是「哪个工具更全」，而是「哪种表达壳层更适合当前内容的传播目标」。",
+        "links": [
+          { "href": "#plugin-ladder", "text": "06 插件梯度" },
+          { "href": "#lessons", "text": "07 值得学什么" }
+        ]
+      }
+    ]
+  }
+}
