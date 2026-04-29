@@ -46,8 +46,18 @@
                 <span class="gradient-text">解构</span>
             </h1>
             <p class="hero-subtitle">
-                如果说 <code>Superset</code> 让我们看见的是“外层工作台如何调 inner agent”，<br>
+                如果说 <code>Superset</code> 让我们看见的是"外层工作台如何调 inner agent"，<br>
                 那么 <code>Hermes Agent</code> 更像另一条路：把 <strong>agent loop、工具注册、记忆/技能、gateway、cron、环境后端</strong> 拼成一个长期在线的 agent 操作层。
+            </p>
+            <div class="hero-stats cc-unpacked-hero-stats">
+                <div class="stat-item"><span class="stat-value">6</span><span class="stat-label">架构层次</span></div>
+                <div class="stat-item"><span class="stat-value">10+</span><span class="stat-label">核心 API 面</span></div>
+                <div class="stat-item"><span class="stat-value">5</span><span class="stat-label">消息协议</span></div>
+                <div class="stat-item"><span class="stat-value">6</span><span class="stat-label">执行后端</span></div>
+            </div>
+            <p class="hero-subtitle cc-unpacked-hero-subtitle-note">
+                覆盖 <strong>CLI / Gateway / Cron</strong> 三条入口链路；
+                长期在线不是无限上下文，而是受策略约束的连续会话。
             </p>
             <div class="hero-actions">
                 <a href="#why" class="btn btn-primary">先看 01 为什么重要</a>
@@ -71,8 +81,8 @@
 
                 <section id="why" class="section-block">
                     <h2>01 · 为什么 Hermes 值得放进庖丁解牛专题</h2>
-                    <p>它不是普通的“另一个终端 agent”。从 README 和官方架构页看，Hermes 同时把 <strong>CLI、消息平台 gateway、记忆、技能、计划/待办、定时任务、环境后端</strong> 放进一个统一运行体里。也就是说，它讨论的已经不是“这一轮怎么回答”，而是“一个 agent 如何长期在线、跨会话工作、跨平台送达、再把经验写回自己体内”。</p>
-                    <p>这和我们在 <a href="topic-paoding-jieniu.html">庖丁解牛专题</a>想抓的主线正好对上：不是看市场文案，而是看<strong>控制点到底落在哪些层</strong>。Hermes 的价值在于它把控制点拆得很实：<code>run_agent.py</code> 里的 <code>AIAgent</code> 是主循环，<code>tools/registry.py</code> 是执行面入口，<code>gateway/</code> 是平台入口，<code>cron/</code> 是调度时间轴，<code>tools/memory_tool.py</code> 与技能工具则把“会不会长记性”和“会不会把经验固化”拉进了同一套系统里。</p>
+                    <p>它不是普通的"另一个终端 agent"。从 README 和官方架构页看，Hermes 同时把 <strong>CLI、消息平台 gateway、记忆、技能、计划/待办、定时任务、环境后端</strong> 放进一个统一运行体里。也就是说，它讨论的已经不是"这一轮怎么回答"，而是"一个 agent 如何长期在线、跨会话工作、跨平台送达、再把经验写回自己体内"。</p>
+                    <p>这和我们在 <a href="topic-paoding-jieniu.html">庖丁解牛专题</a>想抓的主线正好对上：不是看市场文案，而是看<strong>控制点到底落在哪些层</strong>。Hermes 的价值在于它把控制点拆得很实：<code>run_agent.py</code> 里的 <code>AIAgent</code> 是主循环，<code>tools/registry.py</code> 是执行面入口，<code>gateway/</code> 是平台入口，<code>cron/</code> 是调度时间轴，<code>tools/memory_tool.py</code> 与技能工具则把"会不会长记性"和"会不会把经验固化"拉进了同一套系统里。</p>
                 </section>
 
                 <section id="layers" class="section-block">
@@ -86,7 +96,7 @@
                         <tr><td>技能层</td><td><code>tools/skills_tool.py</code>、<code>tools/skill_manager_tool.py</code>、README 的 learning loop</td><td>把经验沉淀为可复用 skill，而不是只留在聊天记录里</td></tr>
                         <tr><td>平台与时间轴</td><td><code>gateway/</code>、<code>cron/scheduler.py</code>、<code>environments/</code></td><td>消息从哪里进来、任务何时触发、执行落在哪个环境</td></tr>
                     </table>
-                    <p class="section-desc section-desc--tight">所以 Hermes 不只是“Agent 本体”，它更接近一个长期运行的 <strong>agent OS / agent operations layer</strong>。</p>
+                    <p class="section-desc section-desc--tight">所以 Hermes 不只是"Agent 本体"，它更接近一个长期运行的 <strong>agent OS / agent operations layer</strong>。</p>
                     <figure class="mermaid-figure mermaid-figure--main" aria-label="Hermes 六层结构图">
                         <figcaption class="mermaid-caption">
                             <strong>主图</strong>：把 Hermes 从入口壳、控制面、工具面、记忆技能、平台时间轴到执行后端压成一张六层结构图，便于后面逐层往下拆。
@@ -95,7 +105,7 @@
                     </figure>
                     <div class="course-quote">
                         <p><strong>[插图提示词]</strong></p>
-                        <p>用途：画出 Hermes 的六层总图，帮助读者先建立“入口壳 → 控制面 → 工具面 → 记忆/技能 → gateway/cron → 环境后端”的分层心智。</p>
+                        <p>用途：画出 Hermes 的六层总图，帮助读者先建立"入口壳 → 控制面 → 工具面 → 记忆/技能 → gateway/cron → 环境后端"的分层心智。</p>
                         <p>形式：分层结构图；优先 Mermaid。</p>
                         <p>提示词：画一个 Hermes Agent 六层架构图，顶部是 CLI 与 Messaging Gateway 双入口，中间是 AIAgent 控制面与 Tool Registry，左侧是 Memory / User Profile，右侧是 Skills / Skill Manager，底部是 Gateway adapters、Cron scheduler、Environment backends，箭头标出消息进入、工具调用、记忆写回、定时触发、平台回送。</p>
                         <p>Mermaid 更适合：是。</p>
@@ -104,15 +114,15 @@
 
                 <section id="control-plane" class="section-block">
                     <h2>03 · 控制面到底在哪：不是 gateway，而是 AIAgent</h2>
-                    <p>最容易误判的一点，是把 Hermes 的“平台能力”当成主脑。实际上从 <code>run_agent.py</code> 看，真正像控制面的还是 <code>AIAgent</code>。它负责 provider 选择、系统提示词组装、工具循环、压缩、会话保存、background review，以及对 memory / skill nudges 的时机控制。官方 Architecture 页也把它定义成同步 orchestration engine。</p>
+                    <p>最容易误判的一点，是把 Hermes 的"平台能力"当成主脑。实际上从 <code>run_agent.py</code> 看，真正像控制面的还是 <code>AIAgent</code>。它负责 provider 选择、系统提示词组装、工具循环、压缩、会话保存、background review，以及对 memory / skill nudges 的时机控制。官方 Architecture 页也把它定义成同步 orchestration engine。</p>
                     <p>这意味着 <code>gateway/</code> 更像 ingress layer：把 Telegram、Discord、Slack、WhatsApp、Signal 等消息转成统一事件，再为每条消息创建带 session history 的 <code>AIAgent</code>。控制面不在平台壳，而在这个 agent loop 本身。对我们来说，这一点和 Claude Code / Like Code 的讨论很接近：<strong>不要把壳误认成脑，真正的脑在那条循环与状态机里。</strong></p>
-                    <p>进一步看，<code>tools/registry.py</code> 把工具声明、schema、handler、toolset 关系集中到一个注册中心；<code>model_tools.py</code> 再决定哪些工具真正进入本轮可用面。这说明 Hermes 的控制面不是“所有功能散落在命令里”，而是通过一层显式注册表去管理执行面。</p>
+                    <p>进一步看，<code>tools/registry.py</code> 把工具声明、schema、handler、toolset 关系集中到一个注册中心；<code>model_tools.py</code> 再决定哪些工具真正进入本轮可用面。这说明 Hermes 的控制面不是"所有功能散落在命令里"，而是通过一层显式注册表去管理执行面。</p>
                 </section>
 
                 <section id="memory-skills" class="section-block">
                     <h2>04 · Hermes 的关键差异：它把记忆和技能放进了主循环</h2>
                     <p>README 最强调的卖点是 built-in learning loop。这不是一句 marketing phrase，因为本地代码里确实能找到对应锚点：<code>AIAgent</code> 在初始化阶段会装 memory store、memory provider、skills config，并维护 <code>_turns_since_memory</code>、<code>_iters_since_skill</code> 这样的节流计数；后面还有 background review 线程专门审查当前对话是否值得写入 memory 或 skill。</p>
-                    <p>这和很多“带记忆”的 agent 不太一样。很多系统把记忆当外挂检索层，技能当外部提示词包；Hermes 则更进一步，把“什么时候提醒自己保存记忆”和“什么时候把经验固化成 skill”拉进了主循环内部。对我们自己栈的启发很直接：如果真想做长期运行 agent，记忆和技能不能只是静态文件夹，而要变成 loop 内的一等公民。</p>
+                    <p>这和很多"带记忆"的 agent 不太一样。很多系统把记忆当外挂检索层，技能当外部提示词包；Hermes 则更进一步，把"什么时候提醒自己保存记忆"和"什么时候把经验固化成 skill"拉进了主循环内部。对我们自己栈的启发很直接：如果真想做长期运行 agent，记忆和技能不能只是静态文件夹，而要变成 loop 内的一等公民。</p>
                     <table class="options-table">
                         <tr><th>层</th><th>关键锚点</th><th>边界到底在哪</th></tr>
                         <tr><td>Memory Store</td><td><code>tools/memory_tool.py</code> 的 <code>MemoryStore</code></td><td>把 <code>MEMORY.md</code> / <code>USER.md</code> 做成文件落盘 + 冻结快照；当前会话写入磁盘，但 system prompt 要到下一会话才刷新。</td></tr>
@@ -136,14 +146,14 @@
                 </section>
 
                 <section id="gateway-cron" class="section-block">
-                    <h2>05 · Gateway、Cron、Environment：它怎么从“会聊天”走到“长期在线”</h2>
-                    <p>Hermes 另一条值得拆的线，是它把“入口平台”和“时间触发”做成了正式层。官方架构页的数据流很明确：Gateway message 会先经过 adapter 和 session 解析，再生成新的 <code>AIAgent</code>；Cron job 则由 scheduler tick 拉起 fresh agent、注入技能上下文、跑 prompt、再把结果送回目标平台。</p>
-                    <p>这让 Hermes 不只是一个 REPL，而是一个可以挂在时间轴上、也可以挂在消息总线上运行的系统。与此同时，README 还列出本地、Docker、SSH、Daytona、Singularity、Modal 等环境后端，说明它把“跑在哪”也当成正式抽象层，而不是默认永远跑在开发者当前 shell 里。</p>
-                    <p>对我们来说，这一层最值得学的不是“支持的平台越多越好”，而是：<strong>当一个 agent 不再只存在于当前终端，它的 session key、delivery path、environment backend、job scheduler 就必须进入系统设计主线。</strong></p>
-                    <p>如果再往下拆，<code>gateway/session.py</code> 其实定义了一个很关键的边界：<strong>平台消息如何被折叠成“同一条会话”，以及哪些上下文进入 system prompt、哪些只做本轮临时注入</strong>。这决定了 Hermes 的 gateway 不是第二个大脑，而是把平台噪声收束成稳定会话语义的一层。</p>
+                    <h2>05 · Gateway、Cron、Environment：它怎么从"会聊天"走到"长期在线"</h2>
+                    <p>Hermes 另一条值得拆的线，是它把"入口平台"和"时间触发"做成了正式层。官方架构页的数据流很明确：Gateway message 会先经过 adapter 和 session 解析，再生成新的 <code>AIAgent</code>；Cron job 则由 scheduler tick 拉起 fresh agent、注入技能上下文、跑 prompt、再把结果送回目标平台。</p>
+                    <p>这让 Hermes 不只是一个 REPL，而是一个可以挂在时间轴上、也可以挂在消息总线上运行的系统。与此同时，README 还列出本地、Docker、SSH、Daytona、Singularity、Modal 等环境后端，说明它把"跑在哪"也当成正式抽象层，而不是默认永远跑在开发者当前 shell 里。</p>
+                    <p>对我们来说，这一层最值得学的不是"支持的平台越多越好"，而是：<strong>当一个 agent 不再只存在于当前终端，它的 session key、delivery path、environment backend、job scheduler 就必须进入系统设计主线。</strong></p>
+                    <p>如果再往下拆，<code>gateway/session.py</code> 其实定义了一个很关键的边界：<strong>平台消息如何被折叠成"同一条会话"，以及哪些上下文进入 system prompt、哪些只做本轮临时注入</strong>。这决定了 Hermes 的 gateway 不是第二个大脑，而是把平台噪声收束成稳定会话语义的一层。</p>
                     <table class="options-table">
                         <tr><th>边界层</th><th>关键锚点</th><th>真正负责什么</th></tr>
-                        <tr><td>Session Identity</td><td><code>gateway/session.py</code> 的 <code>build_session_key()</code></td><td>把 DM、group、thread、per-user isolation 编码成稳定 key；也就是说，Hermes 先决定“谁和谁共享同一条脑内上下文”，再谈 agent 运行。</td></tr>
+                        <tr><td>Session Identity</td><td><code>gateway/session.py</code> 的 <code>build_session_key()</code></td><td>把 DM、group、thread、per-user isolation 编码成稳定 key；也就是说，Hermes 先决定"谁和谁共享同一条脑内上下文"，再谈 agent 运行。</td></tr>
                         <tr><td>Session Lifetime</td><td><code>SessionStore.get_or_create_session()</code>、<code>_should_reset()</code></td><td>按 idle / daily reset policy 切 session，并把旧 session 结束、新 session 建档；长期在线不是无限同一上下文，而是受策略约束的连续会话。</td></tr>
                         <tr><td>Prompt Boundary</td><td><code>build_session_context_prompt()</code>、<code>run_agent.py</code> 的 ephemeral user context 注释</td><td>平台来源、home channel、delivery options 进入系统提示；而插件临时上下文只挂在当前 user message，不持久写回 session DB。</td></tr>
                         <tr><td>Kernel Reuse</td><td><code>gateway/run.py</code> 的 <code>_agent_cache</code> / <code>session_key</code></td><td>gateway 以 <code>session_key</code> 复用缓存的 <code>AIAgent</code>，保持 frozen prompt 和 tool schema 的缓存收益；说明平台层服务的是 kernel 复用，而不是自带另一套推理脑。</td></tr>
@@ -155,12 +165,12 @@
                     </figure>
                     <div class="course-quote">
                         <p><strong>[插图提示词]</strong></p>
-                        <p>用途：把 Hermes 的 gateway / session seam 画清楚，说明“平台消息 → session key → session context / reset policy → cached AIAgent → transcript / delivery”的边界。</p>
+                        <p>用途：把 Hermes 的 gateway / session seam 画清楚，说明"平台消息 → session key → session context / reset policy → cached AIAgent → transcript / delivery"的边界。</p>
                         <p>形式：结构流图；优先 Mermaid。</p>
                         <p>提示词：画一个 Hermes gateway session boundary 图。左侧是 Telegram / Discord / Slack adapter 输入消息，中间是 build_session_key 与 SessionStore，标出 reset policy、session context prompt、history load/save，右侧是 cached AIAgent kernel，底部是 transcript persistence 与 delivery router。强调 gateway 负责 ingress、session identity、history、delivery，而不是替代 AIAgent 控制面。</p>
                         <p>Mermaid 更适合：是。</p>
                     </div>
-                    <p>再往下一层，<code>tools/terminal_tool.py</code> 和 <code>environments/README.md</code> 说明 Hermes 其实把“执行边界”也做成了正式抽象，而不是把 shell 默认绑死在当前机器。这里最值得注意的不是支持 Local / Docker / SSH / Daytona / Singularity / Modal 六种 backend，而是 <strong>同一个 agent loop 可以把 terminal 工具路由到不同执行面，同时用同一套 task / session 语义维持状态</strong>。</p>
+                    <p>再往下一层，<code>tools/terminal_tool.py</code> 和 <code>environments/README.md</code> 说明 Hermes 其实把"执行边界"也做成了正式抽象，而不是把 shell 默认绑死在当前机器。这里最值得注意的不是支持 Local / Docker / SSH / Daytona / Singularity / Modal 六种 backend，而是 <strong>同一个 agent loop 可以把 terminal 工具路由到不同执行面，同时用同一套 task / session 语义维持状态</strong>。</p>
                     <table class="options-table">
                         <tr><th>执行边界</th><th>关键锚点</th><th>真正说明了什么</th></tr>
                         <tr><td>Backend Selection</td><td><code>tools/terminal_tool.py</code> 的 <code>TERMINAL_ENV</code> / <code>create_environment()</code></td><td>模型看到的是统一 terminal tool，但真实执行可以落到 local、docker、ssh、daytona、singularity、modal；这说明 backend 是控制面参数，不是工具接口分叉。</td></tr>
@@ -176,7 +186,7 @@
                         <p><strong>[插图提示词]</strong></p>
                         <p>用途：解释 Hermes 的执行边界，说明 agent kernel、terminal tool、backend selector、persistent filesystem、idle reaper 之间的关系。</p>
                         <p>形式：执行路径图；优先 Mermaid。</p>
-                        <p>提示词：画一个 Hermes execution boundary 图。顶部是 AIAgent 与 terminal tool，中间是 TERMINAL_ENV backend selector，下面分成 local、docker、ssh、daytona、singularity、modal 六个执行后端。旁边标出 task_id 复用、persistent filesystem、idle reaper、lifetime_seconds、ToolContext verifier，强调“统一工具接口，多种执行面，状态按 task/session 管理”。</p>
+                        <p>提示词：画一个 Hermes execution boundary 图。顶部是 AIAgent 与 terminal tool，中间是 TERMINAL_ENV backend selector，下面分成 local、docker、ssh、daytona、singularity、modal 六个执行后端。旁边标出 task_id 复用、persistent filesystem、idle reaper、lifetime_seconds、ToolContext verifier，强调"统一工具接口，多种执行面，状态按 task/session 管理"。</p>
                         <p>Mermaid 更适合：是。</p>
                     </div>
                 </section>
@@ -188,17 +198,17 @@
                         <tr><th>入口链路</th><th>关键代码路径</th><th>真正说明了什么</th></tr>
                         <tr><td>CLI Session</td><td><code>hermes_cli/main.py</code> → <code>AIAgent.run_conversation()</code> → <code>prompt_builder</code> → <code>runtime_provider</code> → <code>model_tools.handle_function_call()</code></td><td>终端只是入口，真正的循环仍然在同一个 agent 内核里。</td></tr>
                         <tr><td>Gateway Message</td><td><code>gateway/run.py</code> → adapter <code>on_message()</code> → session key → fresh <code>AIAgent</code> + history → adapter delivery</td><td>多平台不是多个脑，而是多个 ingress + 一个共享控制面。</td></tr>
-                        <tr><td>Cron Job</td><td><code>cron/scheduler.py</code> tick → jobs.json → fresh <code>AIAgent</code> → skills context → target delivery</td><td>定时任务不是旁路脚本，而是同一套 agent 内核的“时间触发模式”。</td></tr>
+                        <tr><td>Cron Job</td><td><code>cron/scheduler.py</code> tick → jobs.json → fresh <code>AIAgent</code> → skills context → target delivery</td><td>定时任务不是旁路脚本，而是同一套 agent 内核的"时间触发模式"。</td></tr>
                     </table>
-                    <p>这三条链路共同说明：Hermes 真正珍贵的，不是“支持很多入口”，而是<strong>把不同入口统一收敛到同一套 agent kernel，再把 session、delivery、skills、memory 和 tool loop 一起接进去</strong>。这也是它和单纯聊天机器人或普通终端助手拉开差距的地方。</p>
+                    <p>这三条链路共同说明：Hermes 真正珍贵的，不是"支持很多入口"，而是<strong>把不同入口统一收敛到同一套 agent kernel，再把 session、delivery、skills、memory 和 tool loop 一起接进去</strong>。这也是它和单纯聊天机器人或普通终端助手拉开差距的地方。</p>
                 </section>
 
                 <section id="lessons" class="section-block">
                     <h2>07 · 对 Claude Code / Like Code / codex-loop 值得学什么</h2>
                     <div class="course-quote">
-                        <p><strong>第一</strong>，要把控制面和入口壳分开。Hermes 的真正主脑在 <code>AIAgent</code>，不是在 CLI 或 gateway adapter；我们自己的栈也该继续坚持“线程 / UI 只是入口，主脑仍在 loop”。</p>
+                        <p><strong>第一</strong>，要把控制面和入口壳分开。Hermes 的真正主脑在 <code>AIAgent</code>，不是在 CLI 或 gateway adapter；我们自己的栈也该继续坚持"线程 / UI 只是入口，主脑仍在 loop"。</p>
                         <p><strong>第二</strong>，要把记忆和技能放进正式运行结构，而不是只靠散落资料夹。Hermes 用 review + writeback 做内建沉淀；我们即使继续采用 repo 外置记忆，也该保证 plans、skills、handoff 和长期知识之间有稳定回写路径。</p>
-                        <p><strong>第三</strong>，要把时间轴、delivery 和 session seam 当成控制面的一部分。<code>codex-loop</code> 现在已经有推进链路，但 Hermes 提醒我们：真正的长期在线 agent 还要显式回答“谁在接消息、哪条 session 复用上下文、结果回送到哪里”。</p>
+                        <p><strong>第三</strong>，要把时间轴、delivery 和 session seam 当成控制面的一部分。<code>codex-loop</code> 现在已经有推进链路，但 Hermes 提醒我们：真正的长期在线 agent 还要显式回答"谁在接消息、哪条 session 复用上下文、结果回送到哪里"。</p>
                         <p><strong>第四</strong>，要把执行后端视为正式运行层，而不是工具附属物。Hermes 把 backend selector、task-scoped state、idle reaper 全部写进系统设计；这意味着我们后续如果做 Like Code / agent stack，也要尽量把 environment contract 说清，而不是隐含在 shell 默认值里。</p>
                     </div>
                     <p>一句话收尾：<strong>Superset 教我们外层工作台如何编排多个 worker；Hermes 则进一步提醒我们，长期在线 agent 还必须把 session、memory、skills、delivery 和 execution contract 一起纳入控制面。</strong></p>
@@ -206,30 +216,30 @@
 
                 <section id="compare-stack" class="section-block">
                     <h2>08 · 放回我们自己的栈：Hermes 和 Claude Code / Like Code / codex-loop 到底哪里相像，哪里不同</h2>
-                    <p>如果把 Hermes 完全当成“另一个竞品 agent”来读，其实价值会被低估。对我们更有用的读法，是把它当作一份长期运行控制层样本，然后拿它反照自己当前的栈：Claude Code / Like Code 负责高质量交互式主脑，<code>codex-loop</code> 负责定时推进和任务持续性，站点与专题页负责把这些经验沉淀成可教学的结构化内容。</p>
+                    <p>如果把 Hermes 完全当成"另一个竞品 agent"来读，其实价值会被低估。对我们更有用的读法，是把它当作一份长期运行控制层样本，然后拿它反照自己当前的栈：Claude Code / Like Code 负责高质量交互式主脑，<code>codex-loop</code> 负责定时推进和任务持续性，站点与专题页负责把这些经验沉淀成可教学的结构化内容。</p>
                     <table class="options-table">
                         <tr><th>层次</th><th>Hermes</th><th>我们当前的栈</th><th>真正差别</th></tr>
-                        <tr><td>主脑 / Control Plane</td><td><code>AIAgent</code> 把 provider、prompt、tool loop、memory/skills nudges 拉进一个内核</td><td>Claude Code / Like Code 的会话主脑 + repo 内显式计划与执行节奏</td><td>Hermes 更强调“长期在线一体化内核”；我们更强调“强主脑 + 外置流程纪律”。</td></tr>
+                        <tr><td>主脑 / Control Plane</td><td><code>AIAgent</code> 把 provider、prompt、tool loop、memory/skills nudges 拉进一个内核</td><td>Claude Code / Like Code 的会话主脑 + repo 内显式计划与执行节奏</td><td>Hermes 更强调"长期在线一体化内核"；我们更强调"强主脑 + 外置流程纪律"。</td></tr>
                         <tr><td>入口层</td><td>CLI + gateway adapters</td><td>CLI / Codex thread / 站点内容入口</td><td>Hermes 统一消息平台入口；我们当前更偏工程工作台和内容工作台。</td></tr>
                         <tr><td>持续推进</td><td>Cron scheduler 直接触发 fresh <code>AIAgent</code></td><td><code>codex-loop</code> 通过 plan + evolution note 驱动下一轮</td><td>Hermes 是产品内建调度；我们是显式 plan-driven orchestration，审计性更强。</td></tr>
                         <tr><td>记忆 / 技能</td><td>内建 memory、skills、review loop</td><td>更多依赖 repo 文档、skills、plans、handoff prompt</td><td>Hermes 把沉淀放进内核；我们把沉淀放进 repo 与技能系统，便于版本化和复查。</td></tr>
-                        <tr><td>执行面</td><td>统一 terminal tool + 多 backend</td><td>Claude Code / Codex 工具链 + repo 自动化脚本</td><td>Hermes 把 backend abstraction 做成正式运行层；我们目前更偏“本地工程环境 + 针对性自动化”。</td></tr>
+                        <tr><td>执行面</td><td>统一 terminal tool + 多 backend</td><td>Claude Code / Codex 工具链 + repo 自动化脚本</td><td>Hermes 把 backend abstraction 做成正式运行层；我们目前更偏"本地工程环境 + 针对性自动化"。</td></tr>
                     </table>
-                    <p>如果把“哪里已经有对应物、哪里还只是隐含约定”再压得更具体一点，可以得到一张更实用的映射表：</p>
+                    <p>如果把"哪里已经有对应物、哪里还只是隐含约定"再压得更具体一点，可以得到一张更实用的映射表：</p>
                     <table class="options-table">
                         <tr><th>Hermes 概念</th><th>Hermes 的正式落点</th><th>我们当前最近的承接层</th><th>还缺什么</th></tr>
                         <tr><td>session seam</td><td><code>gateway/session.py</code>、<code>SessionStore</code>、<code>session_key</code></td><td><code>codex-loop</code> thread + plan / handoff + 人工切换的工作区语义</td><td>还缺一个正式写下来的 session identity / reset policy，而不是靠操作习惯默认成立。</td></tr>
                         <tr><td>delivery path</td><td>gateway adapters + home channel / callback route</td><td>站点、仓库、终端、知乎这几条分散出口</td><td>还缺统一 delivery contract，说明一次结果应该回送到哪个面、以什么形态落地。</td></tr>
-                        <tr><td>memory / skills writeback</td><td>built-in review + memory / skill manager</td><td>repo 内 <code>skills / plans / docs / handoff</code> 的外置沉淀链</td><td>我们已经有可版本化优势，但还缺更明确的“何时升级成 skill、何时只写进 plan”规则。</td></tr>
-                        <tr><td>execution contract</td><td><code>TERMINAL_ENV</code> + backend lifecycle + verifier</td><td>本地工程环境 + 定向自动化脚本</td><td>还缺更显式的 environment contract，让“哪些状态可复用、哪些只是本轮临时上下文”不再只靠经验判断。</td></tr>
+                        <tr><td>memory / skills writeback</td><td>built-in review + memory / skill manager</td><td>repo 内 <code>skills / plans / docs / handoff</code> 的外置沉淀链</td><td>我们已经有可版本化优势，但还缺更明确的"何时升级成 skill、何时只写进 plan"规则。</td></tr>
+                        <tr><td>execution contract</td><td><code>TERMINAL_ENV</code> + backend lifecycle + verifier</td><td>本地工程环境 + 定向自动化脚本</td><td>还缺更显式的 environment contract，让"哪些状态可复用、哪些只是本轮临时上下文"不再只靠经验判断。</td></tr>
                     </table>
-                    <p>所以最值得学的不是“把 Hermes 整套产品形态搬过来”，而是它提醒我们：<strong>长期运行 agent 需要一条清楚的控制面主线</strong>。我们完全可以继续保留 Claude Code / Like Code 作为高质量交互主脑，把 <code>codex-loop</code> 当调度层，把 repo 内 skills / plans / docs 当外置长期记忆层；但与此同时，session seam、delivery path、environment contract 这些边界就该被写得更显式。</p>
-                    <p>换句话说，Hermes 更像“把一切都内置进产品”；我们当前路线更像“把主脑、调度、知识沉淀拆开，但用明确接口把它们重新编排起来”。这两条路并不矛盾。真正的结论是：<strong>我们的下一代 stack 不必复制 Hermes 的产品壳，但应该吸收它在控制面、会话边界和执行边界上的工程纪律。</strong></p>
+                    <p>所以最值得学的不是"把 Hermes 整套产品形态搬过来"，而是它提醒我们：<strong>长期运行 agent 需要一条清楚的控制面主线</strong>。我们完全可以继续保留 Claude Code / Like Code 作为高质量交互主脑，把 <code>codex-loop</code> 当调度层，把 repo 内 skills / plans / docs 当外置长期记忆层；但与此同时，session seam、delivery path、environment contract 这些边界就该被写得更显式。</p>
+                    <p>换句话说，Hermes 更像"把一切都内置进产品"；我们当前路线更像"把主脑、调度、知识沉淀拆开，但用明确接口把它们重新编排起来"。这两条路并不矛盾。真正的结论是：<strong>我们的下一代 stack 不必复制 Hermes 的产品壳，但应该吸收它在控制面、会话边界和执行边界上的工程纪律。</strong></p>
                 </section>
 
                 <section class="section-block">
                     <p><strong>[插图提示词]</strong></p>
-                    <p>用途：把 Hermes 与我们当前 stack 的对照压成一张“同层对照，不同落点”的教学图，方便后续做知乎或站内导读改编。</p>
+                    <p>用途：把 Hermes 与我们当前 stack 的对照压成一张"同层对照，不同落点"的教学图，方便后续做知乎或站内导读改编。</p>
                     <p>形式：左右对照结构图。</p>
                     <p>提示词：画一张左右对照的信息图。左侧是 Hermes Agent：AIAgent control plane、gateway/session seam、built-in memory/skills writeback、cron scheduler、TERMINAL_ENV execution backends。右侧是我们的当前 stack：Claude Code / Like Code 交互主脑、codex-loop plan/evolution 调度、repo 内 skills/plans/docs 外置长期记忆、site/repo/terminal/知乎 多出口 delivery path、本地工程环境与定向自动化脚本。中间用四条对照箭头强调 session seam、delivery path、memory/skills writeback、execution contract 分别在哪一侧是正式内建、在哪一侧还是外置 contract。</p>
                     <p>Mermaid 更适合：否。</p>
