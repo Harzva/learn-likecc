@@ -64,7 +64,11 @@ When a loop iteration has no better task, scan this pool and choose the highest-
   - ✅ Done: Added `site/data/hermes-component-catalog.json` + `site/js/hermes-component-wall.js` + `#gateway-catalog` section in `topic-hermes-unpacked.html`
   - 3 categories: Gateway adapters (6 pills, blue), Environment backends (6 pills, green), Core entry links (4 pills, amber)
   - Reuses `.cc-pill-wall` CSS contract; mounted after `#gateway-cron` as section `05B`
-- [ ] **H6. Hermes data table** — API surface / protocol / backend comparison table
+- [x] **H6. Hermes data table** — API surface / protocol / backend comparison table
+  - ✅ Done: Added `05C · API 面 / 协议 / 后端 对照表` section to `topic-hermes-unpacked.html`
+  - 8-row comparison table mapping core components to protocol/platform coverage and execution backends
+  - Key insight: gateway layer is ingress-only (no backend binding); AIAgent kernel + tool layer are where backend execution actually happens
+  - Added nav link `05C API 对照`; verified in local HTTP preview
 
 ### DeepScientist (P1 — audit 94%, minor polish)
 

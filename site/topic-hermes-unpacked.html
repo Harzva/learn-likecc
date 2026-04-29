@@ -25,6 +25,7 @@
                 <a href="#memory-skills" class="nav-link">04 记忆与技能</a>
                 <a href="#gateway-cron" class="nav-link">05 Gateway / Cron</a>
                 <a href="#gateway-catalog" class="nav-link">05B 适配器目录</a>
+                <a href="#api-comparison" class="nav-link">05C API 对照</a>
                 <a href="#flows" class="nav-link">06 运行链路</a>
                 <a href="#lessons" class="nav-link">07 值得学什么</a>
                 <a href="#compare-stack" class="nav-link">08 对照我们的栈</a>
@@ -336,6 +337,23 @@
                     <p>Hermes 把"支持哪些平台入口"和"能落到哪些执行面"做成了正式的系统设计。这里把 gateway 适配器和 environment backend 压成一张可视目录，方便快速判断平台覆盖面和部署选项。</p>
                     <div id="hermes-component-wall-mount" class="cc-pill-wall" data-json="data/hermes-component-catalog.json" aria-label="Hermes Gateway 适配器与执行后端目录"></div>
                     <p class="section-desc cc-unpacked-section-desc">目录为<strong>教学向归纳</strong>：左列是消息平台适配器（6 个），右列是执行后端（6 个），底部是核心入口链路。数据来源 <code>site/data/hermes-component-catalog.json</code>，样式复用 <code>.cc-pill-wall</code> 组件合约。</p>
+                </section>
+
+                <section id="api-comparison" class="section-block">
+                    <h2>05C · API 面 / 协议 / 后端 对照表</h2>
+                    <p>Hermes 的 API 面、协议支持与执行后端不是"全连接"的，而是按组件职责分层收敛。下表把核心组件与它们实际触及的协议/平台、执行后端压成一张映射，方便判断"某个功能到底依赖哪些基础设施"。</p>
+                    <table class="options-table">
+                        <tr><th>组件 / API 面</th><th>协议 / 平台覆盖</th><th>执行后端</th><th>核心职责</th></tr>
+                        <tr><td><code>AIAgent</code> 内核<br><code>run_agent.py</code></td><td>—（与入口解耦）</td><td>All 6<br><small>Local / Docker / SSH / Daytona / Singularity / Modal</small></td><td>主循环、推理、工具调度、会话状态</td></tr>
+                        <tr><td><code>gateway/run.py</code><br><code>gateway/session.py</code></td><td>Telegram / Discord / Slack / WhatsApp / Signal / QQ</td><td>—（纯 ingress 层）</td><td>消息入口、session key、历史回送、delivery router</td></tr>
+                        <tr><td><code>cron/scheduler.py</code></td><td>—（时间触发）</td><td>All 6</td><td>定时 tick、jobs.json 解析、触发 fresh AIAgent</td></tr>
+                        <tr><td><code>tools/terminal_tool.py</code></td><td>—</td><td>All 6<br><small>TERMINAL_ENV 路由</small></td><td>统一终端接口、backend selector、task-scoped state</td></tr>
+                        <tr><td><code>tools/memory_tool.py</code></td><td>—</td><td>SQLite + JSONL</td><td>跨会话持久化、FTS5 检索、user profile</td></tr>
+                        <tr><td><code>tools/skills_tool.py</code></td><td>—</td><td>—（纯控制面）</td><td>技能创建、自改进、agentskills.io 兼容</td></tr>
+                        <tr><td><code>tools/delegate_tool.py</code></td><td>—</td><td>All 6</td><td>子代理委托、并行工作流、RPC  collapsing</td></tr>
+                        <tr><td><code>tools/registry.py</code></td><td>—</td><td>All 6</td><td>工具发现、调用分发、toolset 管理</td></tr>
+                    </table>
+                    <p class="section-desc cc-unpacked-section-desc" style="margin-top:0.6rem;font-size:0.92rem;opacity:0.9">表格为<strong>教学向归纳</strong>："All 6" 指 Local / Docker / SSH / Daytona / Singularity / Modal；gateway 层不直接绑定后端，只负责 ingress 与 delivery；AIAgent 内核与工具层才是真正使用后端执行面的地方。</p>
                 </section>
 
                 <section id="flows" class="section-block">
