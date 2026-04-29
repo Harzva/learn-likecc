@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>abtop - AI Coding Agent 监控仪表盘</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+    <meta name="description" content="abtop：AI Coding Agent 会话状态监控工具。一屏查看 Claude Code / Codex CLI 的 token 用量、上下文占比、rate limit、Git 状态、子进程与开放端口。">
+    <meta name="page:updated" content="2026-04-29">
+</head>
+<body class="cc-unpacked-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">📊</span>
+                <span class="logo-text">abtop</span>
+            </a>
+            <div class="nav-links">
+                <a href="#overview" class="nav-link">概览</a>
+                <a href="#pain" class="nav-link">痛点</a>
+                <a href="#features" class="nav-link">功能</a>
+                <a href="#install" class="nav-link">安装</a>
+                <a href="#privacy" class="nav-link">隐私</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-toolchain.html" class="btn-github">← 工具链专题</a>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>工具链专题</span>
+                <span>AI Coding Agent 监控</span>
+            </div>
+            <h1 class="hero-title">
+                abtop
+                <span class="gradient-text">AI Agent 仪表盘</span>
+            </h1>
+            <p class="hero-subtitle">
+                不是又一个终端工具。是你在同时指挥多个 AI 助手时，<br>
+                终于能一眼看清<strong>谁在跑、谁快爆了、谁还占着端口</strong>的监控面板。
+            </p>
+            <div class="hero-stats cc-unpacked-hero-stats">
+                <div class="stat-item"><span class="stat-value">≈1k</span><span class="stat-label">GitHub Stars</span></div>
+                <div class="stat-item"><span class="stat-value">Rust</span><span class="stat-label">语言</span></div>
+                <div class="stat-item"><span class="stat-value">TUI</span><span class="stat-label">界面类型</span></div>
+                <div class="stat-item"><span class="stat-value">0</span><span class="stat-label">API Key 需要</span></div>
+            </div>
+            <p class="hero-subtitle cc-unpacked-hero-subtitle-note">
+                核心能力：会话状态、上下文占比、rate limit、Git 状态、子进程、开放端口 —— 一屏尽收。
+            </p>
+            <div class="hero-actions">
+                <a href="https://github.com/graykode/abtop" target="_blank" rel="noopener noreferrer" class="btn btn-primary">GitHub →</a>
+                <a href="#features" class="btn btn-secondary">先看功能</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="course-main devlog-main">
+        <div class="container container--layout-wide">
+            <article class="course-content devlog-content">
+
+                <section id="overview" class="section-block">
+                    <h2>abtop 是什么</h2>
+                    <p>一个用 Rust 写的 TUI 仪表盘，把多个 AI coding agent 的<strong>实时运行状态</strong>塞进同一个面板里监控。</p>
+                    <p>支持 Claude Code、Codex CLI 等终端 agent。在一屏内展示：</p>
+                    <ul class="section-list">
+                        <li>每个会话的 <strong>token 用量</strong>与<strong>上下文窗口占比</strong></li>
+                        <li><strong>Rate limit</strong> 配额状态与倒计时</li>
+                        <li>当前执行<strong>任务描述</strong></li>
+                        <li><strong>Git 状态</strong>：分支、变更数</li>
+                        <li><strong>子进程</strong>与<strong>开放端口</strong></li>
+                        <li><strong>tmux 集成</strong>：选中会话按 Enter 直接跳转到对应 pane</li>
+                    </ul>
+                    <p class="section-desc">它不是 IDE，不是编辑器，不是模型本身。它是你同时开多个 agent 时，<strong>防止失控</strong>的那块仪表盘。</p>
+                </section>
+
+                <section id="pain" class="section-block">
+                    <h2>它解决了什么真实痛点</h2>
+                    
+                    <div class="section-group">
+                        <h3>上下文吃满而不自知</h3>
+                        <p>Claude Code 用着用着变慢、变飘、开始忘前文。很多时候不是模型"变笨"，而是上下文快塞爆了。abtop 直接把每个 session 的占比用进度条摆出来，快满的时候一眼看见。</p>
+                    </div>
+                    
+                    <div class="section-group">
+                        <h3>Rate limit 突然打断</h3>
+                        <p>不用等命令行突然弹一句限制提示。abtop 提前显示配额状态，让你知道什么时候该停、什么时候可以继续。</p>
+                    </div>
+                    
+                    <div class="section-group">
+                        <h3>窗口太多，不知道谁在跑</h3>
+                        <p>一个项目跑前端，一个改后端，旁边再挂个重构任务。终端窗口越开越多，abtop 把它们的状态汇总到一屏。</p>
+                    </div>
+                    
+                    <div class="section-group">
+                        <h3>服务端口被遗忘</h3>
+                        <p>哪个 agent 偷偷拉起了服务端口忘了关？abtop 列出开放端口，避免"僵尸服务"堆积。</p>
+                    </div>
+                </section>
+
+                <section id="features" class="section-block">
+                    <h2>核心功能拆解</h2>
+                    
+                    <div class="features-grid tool-features-grid">
+                        <div class="feature-card tool-card">
+                            <div class="feature-icon">📈</div>
+                            <h3 class="feature-title">Token 用量监控</h3>
+                            <p class="feature-desc">实时显示每个会话的 token 消耗与上下文窗口占比，进度条直观展示剩余空间。</p>
+                        </div>
+                        <div class="feature-card tool-card">
+                            <div class="feature-icon">⏱️</div>
+                            <h3 class="feature-title">Rate Limit 状态</h3>
+                            <p class="feature-desc">提前显示配额剩余与重置倒计时，避免命令执行到一半被打断。</p>
+                        </div>
+                        <div class="feature-card tool-card">
+                            <div class="feature-icon">🖥️</div>
+                            <h3 class="feature-title">tmux 深度集成</h3>
+                            <p class="feature-desc">在 tmux 中运行 abtop，选中会话按 Enter 直接跳转到对应 pane。不另起工作流，顺着原有习惯。</p>
+                        </div>
+                        <div class="feature-card tool-card">
+                            <div class="feature-icon">🔌</div>
+                            <h3 class="feature-title">进程与端口</h3>
+                            <p class="feature-desc">列出每个 agent 启动的子进程与占用的开放端口，防止"僵尸服务"和资源泄漏。</p>
+                        </div>
+                        <div class="feature-card tool-card">
+                            <div class="feature-icon">🔒</div>
+                            <h3 class="feature-title">隐私克制</h3>
+                            <p class="feature-desc">只读取本地文件、本地进程和 open-file metadata。不展示文件内容和 prompt 文本，不需要 API Key。</p>
+                        </div>
+                        <div class="feature-card tool-card">
+                            <div class="feature-icon">⚡</div>
+                            <h3 class="feature-title">轻量快速</h3>
+                            <p class="feature-desc">Rust 编写，资源占用极低。不是"大而全的 IDE"，而是给重度 AI Coding 用户补的一块仪表盘。</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="install" class="section-block">
+                    <h2>安装方式</h2>
+                    
+                    <div class="install-methods">
+                        <div class="install-card">
+                            <div class="install-label">Cargo（推荐）</div>
+                            <code class="install-command">cargo install abtop</code>
+                        </div>
+                        <div class="install-card">
+                            <div class="install-label">脚本安装（macOS / Linux）</div>
+                            <code class="install-command">curl -sSL https://raw.githubusercontent.com/graykode/abtop/main/install.sh | bash</code>
+                        </div>
+                    </div>
+                    
+                    <p class="section-desc section-desc--tight">Windows 原生暂不支持，需要走 WSL（依赖 ps、lsof 等 Unix 工具）。</p>
+                </section>
+
+                <section id="privacy" class="section-block">
+                    <h2>隐私设计</h2>
+                    <p>abtop 的隐私策略比较克制，这也是它区别于其他监控工具的一点：</p>
+                    <ul class="section-list">
+                        <li><strong>无需 API Key</strong>：不调用任何云端接口</li>
+                        <li><strong>无需登录认证</strong>：纯本地工具</li>
+                        <li><strong>只读本地元数据</strong>：进程信息、文件句柄、端口占用</li>
+                        <li><strong>不展示文件内容</strong>：UI 只显示工具名和文件路径</li>
+                        <li><strong>不展示 prompt 文本</strong>：避免敏感信息泄露</li>
+                    </ul>
+                </section>
+
+                <section id="compare" class="section-block">
+                    <h2>与同类工具的对比</h2>
+                    <table class="options-table comparison-table">
+                        <tr><th>维度</th><th>abtop</th><th>htop</th><th>Claude Code 内置</th></tr>
+                        <tr><td>监控对象</td><td>AI Agent 会话</td><td>系统进程</td><td>单会话</td></tr>
+                        <tr><td>上下文占比</td><td>✅ 有</td><td>❌ 无</td><td>❌ 无</td></tr>
+                        <tr><td>Rate limit</td><td>✅ 有</td><td>❌ 无</td><td>❌ 无</td></tr>
+                        <tr><td>多会话汇总</td><td>✅ 一屏多会话</td><td>❌ 无</td><td>❌ 单会话</td></tr>
+                        <tr><td>Git 状态</td><td>✅ 有</td><td>❌ 无</td><td>⚠️ 部分</td></tr>
+                        <tr><td>开放端口</td><td>✅ 有</td><td>⚠️ 需配合 lsof</td><td>❌ 无</td></tr>
+                        <tr><td>tmux 集成</td><td>✅ 跳转 pane</td><td>❌ 无</td><td>❌ 无</td></tr>
+                    </table>
+                </section>
+
+                <nav class="chapter-navigation">
+                    <a href="topic-toolchain.html" class="chapter-nav-prev">
+                        <span class="chapter-nav-label">← 工具链专题</span>
+                        <span class="chapter-nav-title">AI Coding Agent 工具链总览</span>
+                    </a>
+                    <a href="topic-cc-tooling-guide.html" class="chapter-nav-next">
+                        <span class="chapter-nav-label">Claude Code 工具链配置 →</span>
+                        <span class="chapter-nav-title">必装工具、推荐套件与 Token 经济学</span>
+                    </a>
+                </nav>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html">首页</a>
+                <a href="topic-toolchain.html">工具链专题</a>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" class="back-to-top" aria-label="回到顶部">↑</button>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

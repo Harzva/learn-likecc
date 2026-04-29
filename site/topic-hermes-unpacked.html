@@ -87,6 +87,8 @@
 
                 <section id="layers" class="section-block">
                     <h2>02 · 先拆成六层：Hermes 到底在拼什么</h2>
+                    <div id="hermes-arch-treemap-mount" class="cc-arch-treemap" data-json="data/hermes-arch-treemap.json" role="region" aria-label="Hermes 六层架构 Treemap"></div>
+                    <p class="section-desc cc-unpacked-section-desc cc-unpacked-section-desc--meta">Treemap 为<strong>双层</strong>：先按六层架构聚块，再细分各子组件；可<strong>单击层块下钻</strong>、用顶部<strong>面包屑</strong>返回。数据由循环守护生成并写入 <code>site/data/hermes-arch-treemap.json</code>。</p>
                     <div class="features-accordion hermes-layer-explorer">
                         <div class="accordion-item">
                             <div class="accordion-header">
@@ -404,6 +406,7 @@
     </footer>
     <script src="js/app.js"></script>
     <script src="js/hermes-loop-player.js"></script>
+    <script src="js/hermes-arch-treemap.js"></script>
     <script>
         // Hermes interactive layer explorer accordion
         document.addEventListener('DOMContentLoaded', () => {

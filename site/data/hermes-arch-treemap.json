@@ -1,0 +1,237 @@
+{
+  "meta": {
+    "updated": "2026-04-29",
+    "source": "reference/reference_agent/hermes-agent/README.md + run_agent.py + tools/ + gateway/ + cron/",
+    "metric": "教学权重 / 子模块数（非真实文件计数）",
+    "note_zh": "由 unpacked-template-align-loop 自动生成；用于展示 Hermes 六层架构的相对规模。",
+    "layout_zh": "双层：先按六层架构聚块，再在块内按子组件细分。"
+  },
+  "legend": [
+    {
+      "key": "entry_shell",
+      "label": "入口壳",
+      "hint": "CLI / Gateway 双入口"
+    },
+    {
+      "key": "control_plane",
+      "label": "控制面",
+      "hint": "AIAgent 主循环"
+    },
+    {
+      "key": "tool_surface",
+      "label": "工具面",
+      "hint": "工具注册与分派"
+    },
+    {
+      "key": "memory_skills",
+      "label": "记忆/技能",
+      "hint": "长期记忆与技能系统"
+    },
+    {
+      "key": "platform_timeline",
+      "label": "平台/时间轴",
+      "hint": "Gateway 会话 / Cron 调度"
+    },
+    {
+      "key": "env_backend",
+      "label": "环境后端",
+      "hint": "Local / Docker / SSH / Daytona / Singularity / Modal"
+    }
+  ],
+  "root": {
+    "name": "Hermes Agent",
+    "children": [
+      {
+        "name": "入口壳",
+        "cat": "entry_shell",
+        "children": [
+          {
+            "name": "CLI 入口",
+            "value": 15,
+            "cat": "entry_shell"
+          },
+          {
+            "name": "gateway/run.py",
+            "value": 10,
+            "cat": "entry_shell"
+          },
+          {
+            "name": "Telegram 适配器",
+            "value": 5,
+            "cat": "entry_shell"
+          },
+          {
+            "name": "Discord 适配器",
+            "value": 5,
+            "cat": "entry_shell"
+          },
+          {
+            "name": "Slack 适配器",
+            "value": 5,
+            "cat": "entry_shell"
+          },
+          {
+            "name": "WhatsApp 适配器",
+            "value": 5,
+            "cat": "entry_shell"
+          },
+          {
+            "name": "Signal 适配器",
+            "value": 5,
+            "cat": "entry_shell"
+          },
+          {
+            "name": "QQ 适配器",
+            "value": 5,
+            "cat": "entry_shell"
+          }
+        ]
+      },
+      {
+        "name": "控制面",
+        "cat": "control_plane",
+        "children": [
+          {
+            "name": "run_agent.py (AIAgent)",
+            "value": 15,
+            "cat": "control_plane"
+          },
+          {
+            "name": "prompt_builder",
+            "value": 8,
+            "cat": "control_plane"
+          },
+          {
+            "name": "runtime_provider",
+            "value": 8,
+            "cat": "control_plane"
+          },
+          {
+            "name": "model_tools 处理",
+            "value": 12,
+            "cat": "control_plane"
+          },
+          {
+            "name": "compression / retry / persistence",
+            "value": 12,
+            "cat": "control_plane"
+          }
+        ]
+      },
+      {
+        "name": "工具面",
+        "cat": "tool_surface",
+        "children": [
+          {
+            "name": "tools/registry.py",
+            "value": 10,
+            "cat": "tool_surface"
+          },
+          {
+            "name": "model_tools.py (筛选)",
+            "value": 8,
+            "cat": "tool_surface"
+          },
+          {
+            "name": "terminal_tool.py",
+            "value": 6,
+            "cat": "tool_surface"
+          },
+          {
+            "name": "delegate_tool.py",
+            "value": 6,
+            "cat": "tool_surface"
+          }
+        ]
+      },
+      {
+        "name": "记忆/技能",
+        "cat": "memory_skills",
+        "children": [
+          {
+            "name": "memory_tool.py",
+            "value": 8,
+            "cat": "memory_skills"
+          },
+          {
+            "name": "skills_tool.py",
+            "value": 8,
+            "cat": "memory_skills"
+          },
+          {
+            "name": "knowledge_graph",
+            "value": 5,
+            "cat": "memory_skills"
+          },
+          {
+            "name": "memory_store",
+            "value": 5,
+            "cat": "memory_skills"
+          }
+        ]
+      },
+      {
+        "name": "平台/时间轴",
+        "cat": "platform_timeline",
+        "children": [
+          {
+            "name": "cron/scheduler.py",
+            "value": 8,
+            "cat": "platform_timeline"
+          },
+          {
+            "name": "gateway/session.py",
+            "value": 7,
+            "cat": "platform_timeline"
+          },
+          {
+            "name": "定时任务管理",
+            "value": 5,
+            "cat": "platform_timeline"
+          },
+          {
+            "name": "消息时间轴",
+            "value": 5,
+            "cat": "platform_timeline"
+          }
+        ]
+      },
+      {
+        "name": "环境后端",
+        "cat": "env_backend",
+        "children": [
+          {
+            "name": "Local",
+            "value": 8,
+            "cat": "env_backend"
+          },
+          {
+            "name": "Docker",
+            "value": 8,
+            "cat": "env_backend"
+          },
+          {
+            "name": "SSH",
+            "value": 7,
+            "cat": "env_backend"
+          },
+          {
+            "name": "Daytona",
+            "value": 7,
+            "cat": "env_backend"
+          },
+          {
+            "name": "Singularity",
+            "value": 6,
+            "cat": "env_backend"
+          },
+          {
+            "name": "Modal",
+            "value": 6,
+            "cat": "env_backend"
+          }
+        ]
+      }
+    ]
+  }
+}
