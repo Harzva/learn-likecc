@@ -217,6 +217,58 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="ds-stage-walkthrough" id="ds-stage-walkthrough" role="tablist" aria-label="Quest Stage 步进">
+                        <div class="ds-stage-tabs" role="tablist">
+                            <button class="ds-stage-tab" role="tab" aria-selected="true" aria-controls="ds-stage-1" id="ds-tab-1">1 · Quest 初始化</button>
+                            <button class="ds-stage-tab" role="tab" aria-selected="false" aria-controls="ds-stage-2" id="ds-tab-2">2 · Baseline</button>
+                            <button class="ds-stage-tab" role="tab" aria-selected="false" aria-controls="ds-stage-3" id="ds-tab-3">3 · Experiment</button>
+                            <button class="ds-stage-tab" role="tab" aria-selected="false" aria-controls="ds-stage-4" id="ds-tab-4">4 · Analysis / Write</button>
+                        </div>
+                        <div class="ds-stage-panels">
+                            <div class="ds-stage-panel is-active" role="tabpanel" id="ds-stage-1" aria-labelledby="ds-tab-1">
+                                <h4>Quest 初始化</h4>
+                                <p>输入可以是 paper、repo URL 或自然语言描述。系统将其转为一个<strong>独立 quest 仓库</strong>，包含初始目录结构、依赖配置和阶段标记。</p>
+                                <ul class="ds-stage-list">
+                                    <li><strong>输入类型</strong>：arXiv URL / GitHub repo / 自然语言 goal</li>
+                                    <li><strong>输出产物</strong>：<code>quest/</code> 目录、<code>README.quest.md</code>、初始状态文件</li>
+                                    <li><strong>关键控制点</strong>：one repo per quest，确保隔离与版本化</li>
+                                </ul>
+                            </div>
+                            <div class="ds-stage-panel" role="tabpanel" id="ds-stage-2" aria-labelledby="ds-tab-2" hidden>
+                                <h4>Baseline 复现</h4>
+                                <p>复现基准结果，建立可比较的实验起点。失败 here 比失败 later 成本低得多。</p>
+                                <ul class="ds-stage-list">
+                                    <li><strong>核心动作</strong>：运行 baseline 代码、记录指标、确认可复现</li>
+                                    <li><strong>输出产物</strong>：<code>baseline/</code> 目录、指标日志、依赖锁定</li>
+                                    <li><strong>关键控制点</strong>：baseline 必须可复现，否则后续实验无意义</li>
+                                </ul>
+                            </div>
+                            <div class="ds-stage-panel" role="tabpanel" id="ds-stage-3" aria-labelledby="ds-tab-3" hidden>
+                                <h4>Experiment 轮次</h4>
+                                <p>在 baseline 基础上做可控改动，每轮只改一处，记录 delta 与观察。</p>
+                                <ul class="ds-stage-list">
+                                    <li><strong>核心动作</strong>：设计变量、执行实验、收集结果、对比 baseline</li>
+                                    <li><strong>输出产物</strong>：<code>experiments/</code> 目录、每轮参数与结果、失败记录</li>
+                                    <li><strong>关键控制点</strong>：Findings Memory 自动沉淀，失败也写回去</li>
+                                </ul>
+                            </div>
+                            <div class="ds-stage-panel" role="tabpanel" id="ds-stage-4" aria-labelledby="ds-tab-4" hidden>
+                                <h4>Analysis / Write</h4>
+                                <p>从实验结论中提取可发表的论证链，生成图表、报告与 paper draft。</p>
+                                <ul class="ds-stage-list">
+                                    <li><strong>核心动作</strong>：分析实验数据、生成可视化、撰写章节</li>
+                                    <li><strong>输出产物</strong>：<code>figures/</code>、<code>reports/</code>、<code>paper_draft.md</code></li>
+                                    <li><strong>关键控制点</strong>：human takeover anytime，人类随时可介入修改</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="ds-stage-nav">
+                            <button type="button" class="ds-stage-nav-btn" data-dir="prev">← 上一步</button>
+                            <span class="ds-stage-counter">1 / 4</span>
+                            <button type="button" class="ds-stage-nav-btn" data-dir="next">下一步 →</button>
+                        </div>
+                    </div>
                 </section>
 
                 <section id="quest-state" class="section-block">
@@ -332,7 +384,191 @@
             <p>© 2026 Everything in Claude-Code. 仅供学习研究使用。</p>
         </div>
     </footer>
+    <style>
+    .ds-stage-walkthrough {
+        margin-top: 28px;
+        border: 1px solid rgba(148,163,184,0.15);
+        border-radius: 12px;
+        background: rgba(15,23,42,0.4);
+        overflow: hidden;
+    }
+    .ds-stage-tabs {
+        display: flex;
+        gap: 0;
+        border-bottom: 1px solid rgba(148,163,184,0.15);
+        background: rgba(15,23,42,0.5);
+        overflow-x: auto;
+    }
+    .ds-stage-tab {
+        flex: 1;
+        min-width: 120px;
+        padding: 12px 16px;
+        border: none;
+        background: transparent;
+        color: #94a3b8;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all .2s ease;
+        border-bottom: 2px solid transparent;
+        white-space: nowrap;
+    }
+    .ds-stage-tab:hover {
+        color: #e2e8f0;
+        background: rgba(148,163,184,0.06);
+    }
+    .ds-stage-tab[aria-selected="true"] {
+        color: #fbbf24;
+        border-bottom-color: #fbbf24;
+        background: rgba(251,191,36,0.06);
+    }
+    .ds-stage-panels {
+        padding: 24px;
+        min-height: 220px;
+    }
+    .ds-stage-panel {
+        display: none;
+    }
+    .ds-stage-panel.is-active {
+        display: block;
+        animation: dsFadeIn .25s ease;
+    }
+    @keyframes dsFadeIn {
+        from { opacity: 0; transform: translateY(6px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .ds-stage-panel h4 {
+        margin: 0 0 12px;
+        font-size: 18px;
+        color: #fbbf24;
+    }
+    .ds-stage-panel p {
+        margin: 0 0 16px;
+        line-height: 1.7;
+        color: #cbd5e1;
+    }
+    .ds-stage-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .ds-stage-list li {
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(148,163,184,0.08);
+        color: #e2e8f0;
+        font-size: 14px;
+    }
+    .ds-stage-list li:last-child { border-bottom: none; }
+    .ds-stage-list li strong {
+        color: #60a5fa;
+        font-weight: 600;
+    }
+    .ds-stage-list li code {
+        background: rgba(96,165,250,0.1);
+        color: #93c5fd;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 13px;
+    }
+    .ds-stage-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        padding: 12px 24px;
+        border-top: 1px solid rgba(148,163,184,0.1);
+        background: rgba(15,23,42,0.3);
+    }
+    .ds-stage-nav-btn {
+        padding: 8px 18px;
+        border: 1px solid rgba(148,163,184,0.2);
+        border-radius: 8px;
+        background: rgba(15,23,42,0.5);
+        color: #cbd5e1;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all .2s ease;
+    }
+    .ds-stage-nav-btn:hover {
+        border-color: #fbbf24;
+        color: #fbbf24;
+    }
+    .ds-stage-nav-btn:disabled {
+        opacity: .4;
+        cursor: not-allowed;
+        border-color: rgba(148,163,184,0.1);
+    }
+    .ds-stage-counter {
+        font-size: 13px;
+        color: #64748b;
+        font-variant-numeric: tabular-nums;
+    }
+    @media (max-width: 640px) {
+        .ds-stage-tabs { font-size: 13px; }
+        .ds-stage-tab { min-width: 100px; padding: 10px 12px; }
+        .ds-stage-panels { padding: 16px; }
+    }
+    </style>
     <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js" crossorigin="anonymous"></script>
     <script src="js/app.js"></script>
+    <script>
+    (function() {
+        var tabs = document.querySelectorAll('.ds-stage-tab');
+        var panels = document.querySelectorAll('.ds-stage-panel');
+        var prevBtn = document.querySelector('[data-dir="prev"]');
+        var nextBtn = document.querySelector('[data-dir="next"]');
+        var counter = document.querySelector('.ds-stage-counter');
+        var current = 0;
+        var total = tabs.length;
+
+        function update() {
+            tabs.forEach(function(t, i) {
+                t.setAttribute('aria-selected', i === current ? 'true' : 'false');
+            });
+            panels.forEach(function(p, i) {
+                p.classList.toggle('is-active', i === current);
+                p.hidden = i !== current;
+            });
+            if (counter) counter.textContent = (current + 1) + ' / ' + total;
+            if (prevBtn) prevBtn.disabled = current === 0;
+            if (nextBtn) nextBtn.disabled = current === total - 1;
+        }
+
+        tabs.forEach(function(tab, i) {
+            tab.addEventListener('click', function() {
+                current = i;
+                update();
+            });
+        });
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', function() {
+                if (current > 0) { current--; update(); }
+            });
+        }
+        if (nextBtn) {
+            nextBtn.addEventListener('click', function() {
+                if (current < total - 1) { current++; update(); }
+            });
+        }
+
+        document.addEventListener('keydown', function(ev) {
+            var active = document.querySelector('.ds-stage-panel.is-active');
+            if (!active || !active.matches(':focus-within, :hover')) return;
+            if (ev.key === 'ArrowRight') {
+                ev.preventDefault();
+                if (current < total - 1) { current++; update(); }
+            } else if (ev.key === 'ArrowLeft') {
+                ev.preventDefault();
+                if (current > 0) { current--; update(); }
+            }
+        });
+
+        // Focus container to enable keyboard nav
+        var walkthrough = document.getElementById('ds-stage-walkthrough');
+        if (walkthrough) walkthrough.setAttribute('tabindex', '-1');
+
+        update();
+    })();
+    </script>
 </body>
 </html>
