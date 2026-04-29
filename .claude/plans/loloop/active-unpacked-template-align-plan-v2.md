@@ -27,30 +27,37 @@ A full-quality unpacked page contains:
 
 Not every topic needs all 10. The rule is: pick the subset that best explains *this* system's structure.
 
-## Target Pages & Current Gap Analysis
+## Target Pages & Current Gap Analysis (Audit Results 2026-04-29)
 
-| Page | Current State | Missing Modules | Priority |
+| Page | Audit Score | Status | Missing Items |
 |---|---|---|---|
-| `topic-deepscientist-unpacked.html` | Text + static diagrams + image gallery | Interactive quest-stage walkthrough, architecture treemap, tool/connector catalog, stats strip | **P0** — user explicitly requested |
-| `topic-hermes-unpacked.html` | Text + mermaid diagrams | Interactive layer explorer, stats strip, command/API catalog | **P1** — active in other plans |
-| `topic-design-ui-unpacked.html` | Basic layout | Nearly everything; lowest maturity | **P2** |
-| `topic-everything-claude-code-unpacked.html` | Basic layout | Nearly everything | **P2** |
-| `topic-autoresearch-unpacked.html` | Has independent protocol visual system | Keep its own style; do not force template | **Defer** — do not touch unless user asks |
+| `topic-deepscientist-unpacked.html` | **94%** | ✅ PASS | Experimental section only |
+| `topic-hermes-unpacked.html` | **25%** | ❌ FAIL | Hero stats, interactive step, treemap, knowledge graph, component catalog, experimental |
+| `topic-design-ui-unpacked.html` | — | Not audited | Nearly everything |
+| `topic-everything-claude-code-unpacked.html` | — | Not audited | Nearly everything |
+| `topic-autoresearch-unpacked.html` | — | Defer | Independent style, do not touch |
 
 ## Task Pool (pick one per loop tick when direction is unclear)
 
 When a loop iteration has no better task, scan this pool and choose the highest-priority unchecked item. Mark `[ ]` → `[x]` when done.
 
-- [ ] **T1. DeepScientist hero stats strip** — add quest count, connector types, stage count, repo metrics
-- [x] **T2. DeepScientist interactive quest-stage walkthrough** — tabbed or step-through baseline → experiment → analysis → write
-- [ ] **T3. DeepScientist architecture treemap** — layered view of the 6-layer stack (Quest Repo, Control Plane, Durable State, Workspace, Connectors)
-- [ ] **T4. DeepScientist connector/tool catalog** — pill wall or brick wall for Weixin/QQ/Telegram/Feishu connectors + internal tools
-- [ ] **T5. DeepScientist knowledge graph** — network diagram showing how layers connect
-- [ ] **T6. DeepScientist data table** — stage-to-asset mapping table with links to reference docs
-- [ ] **T7. Hermes stats strip & hero alignment** — add layer count, API surface count, protocol count
-- [ ] **T8. Hermes interactive layer explorer** — expandable layer cards with sub-component breakdown
-- [ ] **T9. Cross-page reading-path component** — reusable "← back to hub / → next topic" strip for all unpacked pages
-- [ ] **T10. Template compliance audit script** — a one-page checklist or script that scores any unpacked page against the 10-item benchmark
+### Hermes (P0 — audit 25%, highest gap)
+
+- [ ] **H1. Hermes hero stats strip** — add layer count, API surface count, protocol count, backend count
+- [ ] **H2. Hermes interactive step-through** — agent loop walkthrough: message in → session build → AIAgent run → tool call → memory review → response out
+- [ ] **H3. Hermes architecture treemap** — 6-layer stack treemap: 入口壳 → 控制面 → 工具面 → 记忆/技能 → 平台/时间轴 → 环境后端
+- [ ] **H4. Hermes knowledge graph** — relationship map: gateway adapters, cron scheduler, memory store, skill manager, environment backends
+- [ ] **H5. Hermes component catalog** — pill wall for gateway adapters (Telegram/Discord/Slack/WhatsApp/Signal) + backends (Local/Docker/SSH/Daytona/Modal)
+- [ ] **H6. Hermes data table** — API surface / protocol / backend comparison table
+
+### DeepScientist (P1 — audit 94%, minor polish)
+
+- [ ] **D1. Experimental section** — feature flags, gated capabilities, preview cards (only missing item from audit)
+
+### Shared Infrastructure
+
+- [x] **S1. Template compliance audit script** — `tools/unpacked-audit.js` scores any page against 10-item benchmark
+- [ ] **S2. Cross-page reading-path component** — reusable "← back to hub / → next topic" strip for all unpacked pages
 
 ## Done Rules
 
@@ -60,4 +67,6 @@ When a loop iteration has no better task, scan this pool and choose the highest-
 
 ## Next Handoff
 
-Current active: **T10** (Template compliance audit script) — a one-page checklist or script that scores any unpacked page against the 10-item benchmark.
+Current active: **H1** (Hermes hero stats strip) — Hermes scores 25% on audit, biggest gap, highest ROI.
+
+DeepScientist is 94% complete (only missing experimental section). Shift focus to Hermes.
