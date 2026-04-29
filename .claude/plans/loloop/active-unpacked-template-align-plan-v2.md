@@ -41,7 +41,7 @@ Not every topic needs all 10. The rule is: pick the subset that best explains *t
 
 When a loop iteration has no better task, scan this pool and choose the highest-priority unchecked item. Mark `[ ]` → `[x]` when done.
 
-- [ ] **T1. DeepScientist hero stats strip** — add quest count, connector types, stage count, repo metrics
+- [x] **T1. DeepScientist hero stats strip** — add quest count, connector types, stage count, repo metrics
 - [ ] **T2. DeepScientist interactive quest-stage walkthrough** — tabbed or step-through baseline → experiment → analysis → write
 - [ ] **T3. DeepScientist architecture treemap** — layered view of the 6-layer stack (Quest Repo, Control Plane, Durable State, Workspace, Connectors)
 - [ ] **T4. DeepScientist connector/tool catalog** — pill wall or brick wall for Weixin/QQ/Telegram/Feishu connectors + internal tools
