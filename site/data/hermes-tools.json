@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "updated": "2026-04-30",
+    "note_zh": "Hermes Agent 核心工具目录；按职能分组，便于对照源码阅读。"
+  },
+  "tool_tiles": {
+    "note_zh": "工具注册名与 schema 随官方版本变化；以下为读源码时常用的代表项。",
+    "categories": [
+      {
+        "id": "registry",
+        "title": "工具注册中心",
+        "accent": "violet",
+        "tools": [
+          { "name": "registry", "href": "#control-plane" },
+          { "name": "model_tools", "href": "#control-plane" },
+          { "name": "toolset", "href": "#control-plane" }
+        ]
+      },
+      {
+        "id": "terminal",
+        "title": "终端执行",
+        "accent": "rose",
+        "tools": [
+          { "name": "terminal_tool", "href": "#gateway-cron" },
+          { "name": "TERMINAL_ENV", "href": "#gateway-cron" },
+          { "name": "create_environment", "href": "#gateway-cron" }
+        ]
+      },
+      {
+        "id": "memory",
+        "title": "记忆与持久化",
+        "accent": "blue",
+        "tools": [
+          { "name": "memory_tool", "href": "#memory-skills" },
+          { "name": "MemoryStore", "href": "#memory-skills" },
+          { "name": "memory_manager", "href": "#memory-skills" }
+        ]
+      },
+      {
+        "id": "skills",
+        "title": "技能管理",
+        "accent": "amber",
+        "tools": [
+          { "name": "skills_tool", "href": "#memory-skills" },
+          { "name": "skill_manager", "href": "#memory-skills" },
+          { "name": "skill_view", "href": "#memory-skills" }
+        ]
+      },
+      {
+        "id": "delegate",
+        "title": "子代理委派",
+        "accent": "green",
+        "tools": [
+          { "name": "delegate_tool", "href": "#gateway-cron" },
+          { "name": "RPC", "href": "#gateway-cron" },
+          { "name": "parallel", "href": "#gateway-cron" }
+        ]
+      }
+    ]
+  }
+}

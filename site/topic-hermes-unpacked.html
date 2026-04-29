@@ -22,6 +22,7 @@
                 <a href="#layers" class="nav-link">02 分层</a>
                 <a href="#knowledge-map" class="nav-link">02 图谱</a>
                 <a href="#control-plane" class="nav-link">03 控制面</a>
+                <a href="#tools" class="nav-link">03B 工具</a>
                 <a href="#memory-skills" class="nav-link">04 记忆与技能</a>
                 <a href="#gateway-cron" class="nav-link">05 Gateway / Cron</a>
                 <a href="#gateway-catalog" class="nav-link">05B 适配器目录</a>
@@ -260,6 +261,13 @@
                     <p>进一步看，<code>tools/registry.py</code> 把工具声明、schema、handler、toolset 关系集中到一个注册中心；<code>model_tools.py</code> 再决定哪些工具真正进入本轮可用面。这说明 Hermes 的控制面不是"所有功能散落在命令里"，而是通过一层显式注册表去管理执行面。</p>
                 </section>
 
+                <section id="tools" class="section-block cc-tools-section">
+                    <h2>03B · 工具系统目录</h2>
+                    <p>从 <code>tools/registry.py</code> 看，Hermes 把工具声明、schema、handler、toolset 关系集中到一个注册中心；<code>model_tools.py</code> 再决定哪些工具真正进入本轮可用面。下面是按职能分组的工具地图。</p>
+                    <div id="cc-tool-tiles-mount" class="cc-tool-tiles" data-json="data/hermes-tools.json" role="region" aria-label="Hermes 工具砖墙"></div>
+                    <p class="section-desc cc-unpacked-section-desc" style="margin-top:0.5rem;font-size:0.9rem;opacity:0.9">工具注册名与 schema 随官方版本变化；上方为读源码时常用的代表项。数据来自 <code>site/data/hermes-tools.json</code>；样式复用 <code>.cc-tool-tiles</code> 组件合约。</p>
+                </section>
+
                 <section id="memory-skills" class="section-block">
                     <h2>04 · Hermes 的关键差异：它把记忆和技能放进了主循环</h2>
                     <p>README 最强调的卖点是 built-in learning loop。这不是一句 marketing phrase，因为本地代码里确实能找到对应锚点：<code>AIAgent</code> 在初始化阶段会装 memory store、memory provider、skills config，并维护 <code>_turns_since_memory</code>、<code>_iters_since_skill</code> 这样的节流计数；后面还有 background review 线程专门审查当前对话是否值得写入 memory 或 skill。</p>
@@ -440,6 +448,7 @@
     <script src="js/hermes-arch-treemap.js"></script>
     <script src="js/hermes-arch-knowledge.js"></script>
     <script src="js/hermes-component-wall.js"></script>
+    <script src="js/cc-tool-tiles.js"></script>
     <script>
         // Hermes interactive layer explorer accordion
         document.addEventListener('DOMContentLoaded', () => {

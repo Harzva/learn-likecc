@@ -22,14 +22,15 @@
                 <a href="#layers" class="nav-link">02 分层</a>
                 <a href="#knowledge-map" class="nav-link">02B 图谱</a>
                 <a href="#control-plane" class="nav-link">03 控制面</a>
+                <a href="#quest-walkthrough" class="nav-link">03B 阶段步进</a>
                 <a href="#quest-state" class="nav-link">04 Quest 状态</a>
                 <a href="#stage-assets" class="nav-link">04B 资产映射</a>
                 <a href="#surfaces" class="nav-link">05 界面与连接器</a>
                 <a href="#connectors" class="nav-link">05B 连接器目录</a>
                 <a href="#gallery" class="nav-link">图集</a>
                 <a href="#loop" class="nav-link">06 研究循环</a>
-                <a href="#experimental" class="nav-link">08 实验</a>
                 <a href="#lessons" class="nav-link">07 值得学什么</a>
+                <a href="#experimental" class="nav-link">08 实验</a>
             </div>
             <div class="nav-actions">
                 <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
@@ -386,16 +387,6 @@
                     <p>所以 VibePaper 这条线不能只写一个总评。Autoresearch 和 DeepScientist 看的是同一个问题，但把问题切开的方式完全不同：一个更像“研究循环协议”，一个更像“研究工作台操作层”。</p>
                 </section>
 
-                <section id="experimental" class="section-block">
-                    <h2 class="ds-section-title">08 · 实验与代码中存在的未来能力</h2>
-                    <p class="section-desc">DeepScientist 仓库内存在<strong>特性开关、扩展接口或未默认开启</strong>的能力。下列卡片按「代码中已有痕迹 / 架构已预留」的标准筛选。<strong>是否在你使用的版本中可用，请以官方发布说明为准</strong>；此处仅帮助读源码时「知道该搜什么关键词」。</p>
-                    <div id="cc-feature-cards-mount" class="cc-feature-cards" data-json="data/ds-feature-cards.json" role="region" aria-label="DeepScientist 实验特性卡片"></div>
-                    <ul style="margin-top:16px;">
-                        <li>阅读时配合 <a href="https://github.com/ResearAI/DeepScientist/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">官方 CHANGELOG</a>，避免把实验实现当成稳定契约。</li>
-                        <li>连接器扩展见 <a href="https://github.com/ResearAI/DeepScientist/tree/main/tests" target="_blank" rel="noopener noreferrer">tests/</a> 与 connector 相关测试文件。</li>
-                    </ul>
-                </section>
-
                 <section id="lessons" class="section-block">
                     <h2 class="ds-section-title">07 · 对我们自己的站点和值得学什么</h2>
                     <div class="ds-panel">
@@ -404,6 +395,16 @@
                         <p><strong>第三</strong>，VibePaper 后续可以沿两条线继续长：一条是像 Autoresearch 这样的 research loop 协议；另一条是像 DeepScientist 这样的 research studio。</p>
                         <p><strong>第四</strong>，对我们自己的 <code>codex-loop</code> 来说，最值得学的不是整套产品壳，而是“如何把 loop 的结果沉淀回 durable research assets，而不是只停在 chat transcript 里”。</p>
                     </div>
+                </section>
+
+                <section id="experimental" class="section-block">
+                    <h2 class="ds-section-title">08 · 实验与代码中存在的未来能力</h2>
+                    <p class="section-desc">DeepScientist 仓库内存在<strong>特性开关、扩展接口或未默认开启</strong>的能力。下列卡片按「代码中已有痕迹 / 架构已预留」的标准筛选。<strong>是否在你使用的版本中可用，请以官方发布说明为准</strong>；此处仅帮助读源码时「知道该搜什么关键词」。</p>
+                    <div id="cc-feature-cards-mount" class="cc-feature-cards" data-json="data/ds-feature-cards.json" role="region" aria-label="DeepScientist 实验特性卡片"></div>
+                    <ul style="margin-top:16px;">
+                        <li>阅读时配合 <a href="https://github.com/ResearAI/DeepScientist/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">官方 CHANGELOG</a>，避免把实验实现当成稳定契约。</li>
+                        <li>连接器扩展见 <a href="https://github.com/ResearAI/DeepScientist/tree/main/tests" target="_blank" rel="noopener noreferrer">tests/</a> 与 connector 相关测试文件。</li>
+                    </ul>
                 </section>
 
                 <section class="section-block">

@@ -1,56 +1,66 @@
-# active-unpacked-template-align-plan-v2.md
-# Unpacked Template Alignment Plan v2
-# Target quality bar: site/topic-cc-unpacked-zh.html
-# Align: interactive modules, visual density, structure clarity
+# Active Unpacked Template Align Plan v2
+## Align all *-unpacked topic pages to topic-cc-unpacked-zh.html quality bar
 
-## Alignment Targets
+**Reference (Gold Standard):** `site/topic-cc-unpacked-zh.html`
+**Quality Dimensions:**
+1. Interactive modules (data-driven components, player/treemap)
+2. Visual density (hero-stats, hero-badge, gradient-text, chips, console visual)
+3. Structure clarity (consistent nav depth, section numbering, attribution block)
 
-- P0: site/topic-deepscientist-unpacked.html
-- P1: site/topic-hermes-unpacked.html
-- P2: site/topic-design-ui-unpacked.html
-- P2: site/topic-everything-claude-code-unpacked.html
-- Shared: site/css/style.css
+**Targets (priority order):**
+- P0: `site/topic-deepscientist-unpacked.html` — closest to bar, some custom visual elements
+- P1: `site/topic-hermes-unpacked.html` — missing interactive modules, standard hero
+- P2: `site/topic-design-ui-unpacked.html` — minimal page, needs most visual density
+- P2: `site/topic-everything-claude-code-unpacked.html` — wrong body class, different structure
+- Shared: `site/css/style.css` — ensure all new patterns have shared styles
+
+---
 
 ## Task Pool
 
-### topic-deepscientist-unpacked.html (P0)
+### P0: topic-deepscientist-unpacked.html
+- [ ] Task D1: Ensure attribution block follows reference pattern (course-quote inside section-block)
+- [ ] Task D2: Add interactive module placeholder zone (like cc-loop-player) for research cycle visualization
+- [ ] Task D3: Verify hero-stats use gradient-text class consistently
+- [ ] Task D4: Check knowledge-map section has treemap-like visual structure or equivalent density
+- [x] Task D5: Ensure section numbering follows 01/02/02B pattern consistently (currently 01/02/02B/03/04/04B/05/05B/06/08/07 — inconsistent order)
 
-- [x] **DS-01**: Switch body class from `deepscientist-page vibe-unpacked-page vibe-unpacked-page--studio` to `cc-unpacked-page` (add `deepscientist-page` as secondary if needed for custom overrides)
-- [x] **DS-02**: Replace inline `style="margin-top:18px;margin-bottom:18px;justify-content:center;gap:36px;"` on hero-stats with standard `cc-unpacked-hero-stats` class
-- [x] **DS-03**: Add `cc-unpacked-hero-subtitle-note` class to the hero subtitle note paragraph (replace inline style)
-- [ ] **DS-04**: Ensure chapter-navigation has proper placement and `data-auto-path` is wired correctly
-- [ ] **DS-05**: Audit all `ds-*` custom CSS classes against shared `cc-unpacked-*` equivalents; consolidate where possible
-- [ ] **DS-06**: Add missing interactive module slots if content supports them (e.g., tool tiles, command pills if applicable)
+### P1: topic-hermes-unpacked.html
+- [ ] Task H1: Add hero-badge to hero section (currently missing)
+- [ ] Task H2: Add hero-stats row with gradient-text values (currently missing)
+- [ ] Task H3: Add interactive module placeholder for agent loop visualization or API surface explorer
+- [ ] Task H4: Verify section numbering follows consistent 01/02/02B/03 pattern
+- [ ] Task H5: Add visual console or chip row below hero-actions for key concepts
 
-### topic-hermes-unpacked.html (P1)
+### P2: topic-design-ui-unpacked.html
+- [ ] Task UI1: Add hero-stats row (currently completely missing)
+- [ ] Task UI2: Add hero-badge with topic label
+- [ ] Task UI3: Expand hero-subtitle with stronger value proposition
+- [ ] Task UI4: Add interactive comparison module (three-column visual with hover states)
+- [ ] Task UI5: Add section numbering to all sections
+- [ ] Task UI6: Add knowledge-map or reference-links section at bottom
 
-- [ ] **HM-01**: Verify all interactive modules are loading correct data files and rendering
-- [ ] **HM-02**: Add `cc-tool-tiles` or equivalent if Hermes has component/tool taxonomy
-- [ ] **HM-03**: Add `cc-command-pills` or equivalent if Hermes has CLI/command taxonomy
-- [ ] **HM-04**: Ensure hero structure fully matches quality bar (subtitle note placement, actions spacing)
+### P2: topic-everything-claude-code-unpacked.html
+- [ ] Task E1: Change body class from meta-topic-page to cc-unpacked-page
+- [ ] Task E2: Add hero-stats row (currently missing)
+- [ ] Task E3: Add section numbering to main sections
+- [ ] Task E4: Add interactive module placeholder for cross-harness comparison
+- [ ] Task E5: Add attribution block
 
-### topic-design-ui-unpacked.html (P2)
+### Shared: site/css/style.css
+- [ ] Task C1: Ensure .cc-unpacked-hero-stats gradient-text rule applies globally
+- [ ] Task C2: Add .hero-badge visibility rule for all cc-unpacked-page heroes
+- [ ] Task C3: Verify interactive module mount points have consistent min-height
 
-- [ ] **DU-01**: Add hero-stats block to hero section for visual density parity
-- [ ] **DU-02**: Add at least one interactive module (e.g., feature cards or simple treemap for the three tools)
-- [ ] **DU-03**: Restructure body to use `cc-unpacked-page` class
-- [ ] **DU-04**: Ensure chapter-navigation is inside `devlog-content` article, not floating after main
+---
 
-### topic-everything-claude-code-unpacked.html (P2)
+## Execution Log
 
-- [ ] **ECC-01**: Switch body class from `meta-topic-page` to `cc-unpacked-page`
-- [ ] **ECC-02**: Restructure hero to use `handbook-hero` with stats and subtitle note
-- [ ] **ECC-03**: Move `section--soft` / `quickstart-grid` content into `devlog-main`/`devlog-content` structure
-- [ ] **ECC-04**: Add interactive module slots if content supports them
-- [ ] **ECC-05**: Fix chapter-navigation placement (currently outside main, should be inside devlog-content)
+| Iteration | Date | Task | Result |
+|---|---|---|---|
+| 1 | 2026-04-30 | D5 | Fixed section numbering in topic-deepscientist-unpacked.html: reordered nav and body so 07 precedes 08; added missing 03B nav link for quest-walkthrough section |
 
-### Shared style surface (site/css/style.css)
+---
 
-- [ ] **CSS-01**: Add any missing `.cc-unpacked-page` utility classes needed by the alignment
-- [ ] **CSS-02**: Ensure `.deepscientist-page` custom styles don't conflict when `cc-unpacked-page` is primary
-- [ ] **CSS-03**: Document the unpacked page template contract in a CSS comment block
-
-## Version
-
-- v2.0 - Created 2026-04-30
-- Prior loop: none (first iteration)
+## Evolution Trail
+Files in `.claude/evolution/` directory.
