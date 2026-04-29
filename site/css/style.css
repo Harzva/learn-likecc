@@ -3087,6 +3087,16 @@ body {
     z-index: 0;
 }
 
+.chapter-navigation::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: var(--primary);
+}
+
 .course-main pre ::selection,
 .course-main pre *::selection,
 .course-main code::selection,
