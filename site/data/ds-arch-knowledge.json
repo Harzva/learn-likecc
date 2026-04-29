@@ -1,0 +1,380 @@
+{
+  "meta": {
+    "updated": "2026-04-29",
+    "source": "reference/reference_agent/DeepScientist/README.md + docs",
+    "note_zh": "块内结构来自文档拆解；跨块联系为教学向依赖归纳，帮助判断‘哪些层要一起读’。"
+  },
+  "legend": [
+    {
+      "key": "input",
+      "label": "课题入口层",
+      "hint": "paper / repo / natural-language quest"
+    },
+    {
+      "key": "repo",
+      "label": "Quest 仓库层",
+      "hint": "one repo per quest · init · git"
+    },
+    {
+      "key": "control",
+      "label": "研究控制面",
+      "hint": "baseline · experiment · analysis · write"
+    },
+    {
+      "key": "state",
+      "label": "持久状态层",
+      "hint": "Findings Memory · artifacts · paper outputs"
+    },
+    {
+      "key": "workspace",
+      "label": "可见工作区层",
+      "hint": "Web · Canvas · Studio + Details"
+    },
+    {
+      "key": "connectors",
+      "label": "协作与 Connector 层",
+      "hint": "Weixin · QQ · Telegram · Feishu"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "cat:input",
+      "key": "input",
+      "label": "课题入口层",
+      "kind": "category",
+      "cat": "input",
+      "size": 15,
+      "hint": "paper / repo / natural-language quest",
+      "description": "定义输入如何变成可执行 quest：arXiv URL、GitHub repo 或自然语言描述。",
+      "analysis": "入口层决定‘问题如何被正式化’。不是简单接收文本，而是把外部输入转成有结构的 quest 定义。",
+      "read_hint": "先看 README 的 Quick Start 和 02_START_RESEARCH_GUIDE，理解三种输入如何触发 quest 初始化。"
+    },
+    {
+      "id": "node:paper-input",
+      "key": "paper-input",
+      "label": "paper input",
+      "kind": "folder",
+      "cat": "input",
+      "size": 6,
+      "parent": "cat:input",
+      "description": "arXiv 或其他 paper URL 作为研究起点。",
+      "analysis": "论文输入是最常见的启动方式，系统自动解析论文摘要、方法和实验设置。"
+    },
+    {
+      "id": "node:repo-input",
+      "key": "repo-input",
+      "label": "repo URL",
+      "kind": "folder",
+      "cat": "input",
+      "size": 5,
+      "parent": "cat:input",
+      "description": "GitHub repo 作为 baseline 或实验来源。",
+      "analysis": "代码仓库输入让系统可以直接复现 baseline，减少环境搭建成本。"
+    },
+    {
+      "id": "node:nl-input",
+      "key": "nl-input",
+      "label": "natural-language goal",
+      "kind": "folder",
+      "cat": "input",
+      "size": 4,
+      "parent": "cat:input",
+      "description": "纯自然语言描述的研究目标。",
+      "analysis": "最灵活的输入方式，但需要更强的意图理解和目标拆解能力。"
+    },
+    {
+      "id": "cat:repo",
+      "key": "repo",
+      "label": "Quest 仓库层",
+      "kind": "category",
+      "cat": "repo",
+      "size": 25,
+      "hint": "one repo per quest · init · git",
+      "description": "one repo per quest；相关 init / git 测试，把研究过程沉淀成真实仓库。",
+      "analysis": "仓库层是整个系统的地基。它用真实 git 仓库承载研究历史，而不是抽象数据库。这让研究过程可回溯、可分支、可协作。",
+      "read_hint": "先看 tests/test_init_and_quest.py 和 README 的 quest 初始化章节，理解‘为什么必须是真实仓库’。"
+    },
+    {
+      "id": "node:one-repo",
+      "key": "one-repo",
+      "label": "one repo per quest",
+      "kind": "folder",
+      "cat": "repo",
+      "size": 10,
+      "parent": "cat:repo",
+      "description": "每个 quest 对应一个独立仓库。",
+      "analysis": "核心设计决策。隔离不同研究课题，避免状态污染，支持并行研究。"
+    },
+    {
+      "id": "node:init-git",
+      "key": "init-git",
+      "label": "init / git",
+      "kind": "folder",
+      "cat": "repo",
+      "size": 8,
+      "parent": "cat:repo",
+      "description": "quest 仓库的初始化和版本控制。",
+      "analysis": "git 不是可选项，而是核心设计。所有实验状态、baseline、论文草稿都在版本控制下。"
+    },
+    {
+      "id": "node:quest-dir",
+      "key": "quest-dir",
+      "label": "quest/ directory",
+      "kind": "folder",
+      "cat": "repo",
+      "size": 4,
+      "parent": "cat:repo",
+      "description": "quest 专属目录结构。",
+      "analysis": "标准化目录让不同 quest 有统一的文件组织方式，便于工具链处理。"
+    },
+    {
+      "id": "node:readme-quest",
+      "key": "readme-quest",
+      "label": "README.quest.md",
+      "kind": "folder",
+      "cat": "repo",
+      "size": 3,
+      "parent": "cat:repo",
+      "description": "quest 的元数据与目标文档。",
+      "analysis": "人类和系统都可以通过 README.quest.md 快速理解这个 quest 的目标和当前状态。"
+    },
+    {
+      "id": "cat:control",
+      "key": "control",
+      "label": "研究控制面",
+      "kind": "category",
+      "cat": "control",
+      "size": 30,
+      "hint": "baseline · experiment · analysis · write",
+      "description": "src/ 主流程、guided workflow tour、baseline / experiment / write 阶段文档。",
+      "analysis": "控制面不是聊天 UI，而是 quest 驱动的阶段流程。问题被转成 quest，quest 绑定真实仓库，然后沿 baseline → experiment → analysis → write 推进。",
+      "read_hint": "先看 docs/en/12_GUIDED_WORKFLOW_TOUR.md 和 src/ 的主流程文件，再对照 tests 理解阶段转换逻辑。"
+    },
+    {
+      "id": "node:baseline",
+      "key": "baseline",
+      "label": "baseline reproduction",
+      "kind": "folder",
+      "cat": "control",
+      "size": 10,
+      "parent": "cat:control",
+      "description": "复现基准结果，建立可比较的实验起点。",
+      "analysis": "baseline 必须可复现，否则后续实验无意义。这是研究质量的守门员。"
+    },
+    {
+      "id": "node:experiment",
+      "key": "experiment",
+      "label": "experiment rounds",
+      "kind": "folder",
+      "cat": "control",
+      "size": 10,
+      "parent": "cat:control",
+      "description": "在 baseline 基础上做可控改动，每轮只改一处。",
+      "analysis": "实验设计的核心原则：控制变量。系统帮助记录每轮的参数、结果和失败原因。"
+    },
+    {
+      "id": "node:analysis-write",
+      "key": "analysis-write",
+      "label": "analysis / write",
+      "kind": "folder",
+      "cat": "control",
+      "size": 7,
+      "parent": "cat:control",
+      "description": "从实验结论中提取可发表的论证链。",
+      "analysis": "分析阶段把实验数据变成论证；写作阶段把论证变成可读论文。"
+    },
+    {
+      "id": "node:stage-workflow",
+      "key": "stage-workflow",
+      "label": "stage workflow",
+      "kind": "folder",
+      "cat": "control",
+      "size": 3,
+      "parent": "cat:control",
+      "description": "阶段间的流转规则与状态机。",
+      "analysis": "定义何时可以从 baseline 进入 experiment，何时可以进入 write，以及回退规则。"
+    },
+    {
+      "id": "cat:state",
+      "key": "state",
+      "label": "持久状态层",
+      "kind": "category",
+      "cat": "state",
+      "size": 20,
+      "hint": "Findings Memory · artifacts · paper outputs",
+      "description": "Findings Memory 与 artifact 相关测试，把实验结论变成 durable state。",
+      "analysis": "很多系统只负责前半段（读论文、提 idea），DeepScientist 试图把失败、结论、可复用资产都沉淀下来。持久状态层让研究有连续性，不是每次从零开始。",
+      "read_hint": "先看 tests/test_memory_and_artifact.py 和 README 的 Findings Memory 章节。"
+    },
+    {
+      "id": "node:findings",
+      "key": "findings",
+      "label": "Findings Memory",
+      "kind": "folder",
+      "cat": "state",
+      "size": 10,
+      "parent": "cat:state",
+      "description": "自动沉淀实验结论，包括失败记录。",
+      "analysis": "最核心的差异化设计。失败不是被丢弃，而是被记录为‘已验证不可行’，避免下一轮重复踩坑。"
+    },
+    {
+      "id": "node:artifacts",
+      "key": "artifacts",
+      "label": "artifacts",
+      "kind": "folder",
+      "cat": "state",
+      "size": 6,
+      "parent": "cat:state",
+      "description": "实验产物：图表、数据、模型检查点等。",
+      "analysis": "artifacts 是研究过程的物证，支持复现和审计。"
+    },
+    {
+      "id": "node:paper-outputs",
+      "key": "paper-outputs",
+      "label": "paper-facing outputs",
+      "kind": "folder",
+      "cat": "state",
+      "size": 4,
+      "parent": "cat:state",
+      "description": "可直接用于论文的成品：图表、报告、draft。",
+      "analysis": "把研究资产对齐到论文格式，减少‘从实验到投稿’的转换成本。"
+    },
+    {
+      "id": "cat:workspace",
+      "key": "workspace",
+      "label": "可见工作区层",
+      "kind": "category",
+      "cat": "workspace",
+      "size": 18,
+      "hint": "Web · Canvas · Studio + Details",
+      "description": "Web workspace、Canvas、Studio + Details，确保过程可见。",
+      "analysis": "最大的心理阻力是‘我不知道它在干嘛’。可见工作区把研究进度、实验状态、资产目录都展示出来，human takeover anytime。",
+      "read_hint": "看 README 和官网截图：Canvas、Studio Details、progress reporting。"
+    },
+    {
+      "id": "node:web-ws",
+      "key": "web-ws",
+      "label": "Web workspace",
+      "kind": "folder",
+      "cat": "workspace",
+      "size": 7,
+      "parent": "cat:workspace",
+      "description": "浏览器中的研究工作台界面。",
+      "analysis": "Web 界面让非技术用户也能参与研究过程，降低使用门槛。"
+    },
+    {
+      "id": "node:canvas",
+      "key": "canvas",
+      "label": "Canvas",
+      "kind": "folder",
+      "cat": "workspace",
+      "size": 6,
+      "parent": "cat:workspace",
+      "description": "研究过程的可视化画布。",
+      "analysis": "把抽象的实验流程变成可视节点图，一眼看到研究进展和分支。"
+    },
+    {
+      "id": "node:studio",
+      "key": "studio",
+      "label": "Studio + Details",
+      "kind": "folder",
+      "cat": "workspace",
+      "size": 5,
+      "parent": "cat:workspace",
+      "description": "阶段视图 + 资产详情面板。",
+      "analysis": "强调‘阶段与资产’而非单次对话。适合需要精确控制研究进度的人类。"
+    },
+    {
+      "id": "cat:connectors",
+      "key": "connectors",
+      "label": "协作与 Connector 层",
+      "kind": "category",
+      "cat": "connectors",
+      "size": 12,
+      "hint": "Weixin · QQ · Telegram · Feishu",
+      "description": "Weixin / QQ / Telegram / Feishu 等 connector 文档与测试。",
+      "analysis": "不是只考虑单机 UI，而是在设计‘研究工作如何被外部协作面持续看到’。连接器让研究进度可以推送到人类日常使用的沟通工具中。",
+      "read_hint": "看 tests/test_connector_bridges.py 和 connector 相关文档。"
+    },
+    {
+      "id": "node:weixin",
+      "key": "weixin",
+      "label": "Weixin",
+      "kind": "folder",
+      "cat": "connectors",
+      "size": 4,
+      "parent": "cat:connectors",
+      "description": "微信连接器，推送研究进度到群聊或个人号。"
+    },
+    {
+      "id": "node:qq",
+      "key": "qq",
+      "label": "QQ",
+      "kind": "folder",
+      "cat": "connectors",
+      "size": 3,
+      "parent": "cat:connectors",
+      "description": "QQ 连接器。"
+    },
+    {
+      "id": "node:telegram",
+      "key": "telegram",
+      "label": "Telegram",
+      "kind": "folder",
+      "cat": "connectors",
+      "size": 3,
+      "parent": "cat:connectors",
+      "description": "Telegram Bot 连接器。"
+    },
+    {
+      "id": "node:feishu",
+      "key": "feishu",
+      "label": "Feishu",
+      "kind": "folder",
+      "cat": "connectors",
+      "size": 2,
+      "parent": "cat:connectors",
+      "description": "飞书连接器。"
+    }
+  ],
+  "contains_links": [
+    { "source": "cat:input", "target": "node:paper-input", "kind": "contains", "weight": 6, "note": "论文是最常见的研究起点" },
+    { "source": "cat:input", "target": "node:repo-input", "kind": "contains", "weight": 5, "note": "代码仓库可直接复现 baseline" },
+    { "source": "cat:input", "target": "node:nl-input", "kind": "contains", "weight": 4, "note": "自然语言目标最灵活" },
+    { "source": "cat:repo", "target": "node:one-repo", "kind": "contains", "weight": 10, "note": "核心设计：隔离与版本化" },
+    { "source": "cat:repo", "target": "node:init-git", "kind": "contains", "weight": 8, "note": "git 是状态主线" },
+    { "source": "cat:repo", "target": "node:quest-dir", "kind": "contains", "weight": 4, "note": "标准化目录结构" },
+    { "source": "cat:repo", "target": "node:readme-quest", "kind": "contains", "weight": 3, "note": "quest 元数据" },
+    { "source": "cat:control", "target": "node:baseline", "kind": "contains", "weight": 10, "note": "实验起点必须可复现" },
+    { "source": "cat:control", "target": "node:experiment", "kind": "contains", "weight": 10, "note": "控制变量迭代" },
+    { "source": "cat:control", "target": "node:analysis-write", "kind": "contains", "weight": 7, "note": "从数据到论文" },
+    { "source": "cat:control", "target": "node:stage-workflow", "kind": "contains", "weight": 3, "note": "阶段流转规则" },
+    { "source": "cat:state", "target": "node:findings", "kind": "contains", "weight": 10, "note": "失败也写回去" },
+    { "source": "cat:state", "target": "node:artifacts", "kind": "contains", "weight": 6, "note": "实验产物沉淀" },
+    { "source": "cat:state", "target": "node:paper-outputs", "kind": "contains", "weight": 4, "note": "论文成品" },
+    { "source": "cat:workspace", "target": "node:web-ws", "kind": "contains", "weight": 7, "note": "浏览器工作台" },
+    { "source": "cat:workspace", "target": "node:canvas", "kind": "contains", "weight": 6, "note": "可视化画布" },
+    { "source": "cat:workspace", "target": "node:studio", "kind": "contains", "weight": 5, "note": "阶段 + 资产面板" },
+    { "source": "cat:connectors", "target": "node:weixin", "kind": "contains", "weight": 4, "note": "微信推送" },
+    { "source": "cat:connectors", "target": "node:qq", "kind": "contains", "weight": 3, "note": "QQ 推送" },
+    { "source": "cat:connectors", "target": "node:telegram", "kind": "contains", "weight": 3, "note": "Telegram Bot" },
+    { "source": "cat:connectors", "target": "node:feishu", "kind": "contains", "weight": 2, "note": "飞书推送" }
+  ],
+  "cross_links": [
+    { "source": "cat:input", "target": "cat:repo", "kind": "cross", "weight": 10, "note": "输入触发 quest 初始化" },
+    { "source": "cat:repo", "target": "cat:control", "kind": "cross", "weight": 10, "note": "quest 仓库驱动研究控制面" },
+    { "source": "cat:control", "target": "cat:state", "kind": "cross", "weight": 10, "note": "研究过程沉淀到持久状态" },
+    { "source": "cat:state", "target": "cat:workspace", "kind": "cross", "weight": 8, "note": "状态驱动可见工作区" },
+    { "source": "cat:workspace", "target": "cat:connectors", "kind": "cross", "weight": 7, "note": "工作区内容通过连接器分发" },
+    { "source": "cat:control", "target": "cat:workspace", "kind": "cross", "weight": 8, "note": "研究过程直接可见" },
+    { "source": "cat:repo", "target": "cat:state", "kind": "cross", "weight": 7, "note": "仓库本身承载状态" },
+    { "source": "cat:connectors", "target": "cat:control", "kind": "cross", "weight": 5, "note": "外部反馈回到控制面" },
+    { "source": "cat:input", "target": "cat:control", "kind": "cross", "weight": 5, "note": "自然语言目标直接驱动控制面" },
+    { "source": "node:baseline", "target": "node:findings", "kind": "cross", "weight": 6, "note": "baseline 结果写入 Findings" },
+    { "source": "node:experiment", "target": "node:findings", "kind": "cross", "weight": 8, "note": "每轮实验结论自动沉淀" },
+    { "source": "node:experiment", "target": "node:artifacts", "kind": "cross", "weight": 6, "note": "实验产物归档" },
+    { "source": "node:analysis-write", "target": "node:paper-outputs", "kind": "cross", "weight": 8, "note": "分析直接产出论文" },
+    { "source": "node:canvas", "target": "node:findings", "kind": "cross", "weight": 5, "note": "可视化展示 Findings" },
+    { "source": "node:weixin", "target": "node:web-ws", "kind": "cross", "weight": 4, "note": "微信推送工作区更新" }
+  ]
+}

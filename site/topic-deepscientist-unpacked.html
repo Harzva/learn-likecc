@@ -20,6 +20,7 @@
                 <a href="#attribution" class="nav-link">说明</a>
                 <a href="#why" class="nav-link">01 为什么重要</a>
                 <a href="#layers" class="nav-link">02 分层</a>
+                <a href="#knowledge-map" class="nav-link">02B 图谱</a>
                 <a href="#control-plane" class="nav-link">03 控制面</a>
                 <a href="#quest-state" class="nav-link">04 Quest 状态</a>
                 <a href="#surfaces" class="nav-link">05 界面与连接器</a>
@@ -203,6 +204,11 @@
                     <h3 class="ds-section-subtitle" style="margin-top:32px;margin-bottom:12px;">六层架构 Treemap（可交互下钻）</h3>
                     <div id="ds-arch-treemap-mount" class="ds-arch-treemap" data-json="data/ds-arch-treemap.json" role="region" aria-label="DeepScientist 六层架构 Treemap"></div>
                     <p class="section-desc section-desc--tight" style="margin-top:8px;font-size:0.9rem;opacity:0.85">Treemap 按系统职能分层：大块 = 架构层，叶子 = 层内核心组件；可<strong>单击下钻</strong>、顶部面包屑返回。数据来自 README 与文档的结构化拆解。</p>
+
+                    <h3 id="knowledge-map" class="ds-section-subtitle" style="margin-top:32px;margin-bottom:12px;">六层架构知识图谱（层间联系）</h3>
+                    <p class="section-desc section-desc--tight" style="margin-top:0;margin-bottom:12px;font-size:0.9rem;opacity:0.85">Treemap 适合看<strong>规模</strong>，知识图谱更适合看<strong>关系</strong>。这里把六层分成两种阅读方式：<strong>块内结构</strong>看每个架构层下面挂了哪些组件；<strong>块间联系</strong>看各层之间如何互相牵动。</p>
+                    <div id="ds-arch-knowledge-mount" class="ds-arch-knowledge" data-json="data/ds-arch-knowledge.json" role="region" aria-label="DeepScientist 六层架构知识图谱"></div>
+                    <p class="section-desc section-desc--tight" style="margin-top:8px;font-size:0.9rem;opacity:0.85">图谱中<strong>块内结构</strong>来自文档拆解；<strong>块间联系</strong>是教学向归纳，不是静态 import 图。它的作用是帮助你判断“先看哪里、再看哪里、哪些层要一起读”。</p>
                 </section>
 
                 <section id="control-plane" class="section-block">
@@ -572,6 +578,7 @@
     <script src="js/app.js"></script>
     <script src="js/ds-quest-player.js"></script>
     <script src="js/ds-arch-treemap.js"></script>
+    <script src="js/ds-arch-knowledge.js"></script>
     <script src="js/ds-connector-wall.js"></script>
     <script>
     (function() {
