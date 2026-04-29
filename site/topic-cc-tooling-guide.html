@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code 工具链配置指南 - Everything in Claude-Code</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔧</text></svg>">
+    <meta name="description" content="基于源码逆向分析的 Claude Code 依赖工具配置指南：必装工具、推荐套件、语言服务器、权限预配置与 Token 经济学。">
+    <meta name="page:updated" content="2026-04-29">
+</head>
+<body class="cc-tooling-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🔧</span>
+                <span class="logo-text">CC 工具链配置</span>
+            </a>
+            <div class="nav-links">
+                <a href="#overview" class="nav-link">说明</a>
+                <a href="#required" class="nav-link">必装</a>
+                <a href="#recommended" class="nav-link">推荐</a>
+                <a href="#lsp" class="nav-link">LSP</a>
+                <a href="#config" class="nav-link">配置</a>
+                <a href="#token-econ" class="nav-link">Token</a>
+                <a href="#scripts" class="nav-link">脚本</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-toolchain.html" class="btn-github">工具链专题</a>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>工具链专题 · 子页</span>
+                <span>基于源码逆向 · 配置即投资</span>
+            </div>
+            <h1 class="hero-title">
+                Claude Code<br>
+                <span class="gradient-text">工具链配置指南</span>
+            </h1>
+            <p class="hero-subtitle">
+                一个未经配置的 Claude Code 就像一个<strong>没带工具箱的工程师</strong>。
+                基于源码逆向分析，从代码层面还原 Claude Code 真正需要什么，以及为什么配置完善能省 Token、省时间、省心智负担。
+            </p>
+            <div class="hero-stats cc-unpacked-hero-stats">
+                <div class="stat-item"><span class="stat-value">5</span><span class="stat-label">必装工具</span></div>
+                <div class="stat-item"><span class="stat-value">4</span><span class="stat-label">推荐套件</span></div>
+                <div class="stat-item"><span class="stat-value">30-70%</span><span class="stat-label">Token 节省</span></div>
+                <div class="stat-item"><span class="stat-value">50%+</span><span class="stat-label">轮次减少</span></div>
+            </div>
+            <div class="hero-actions">
+                <a href="#required" class="btn btn-primary">从必装工具开始</a>
+                <a href="#token-econ" class="btn btn-secondary">先看 Token 经济学</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="course-main devlog-main">
+        <div class="container container--layout-wide">
+            <article class="course-content devlog-content">
+
+                <section id="overview" class="section-block">
+                    <h2>参考来源</h2>
+                    <div class="course-quote">
+                        <p><strong>原文</strong>：微信公众号「安全手札」，作者 c4bbage，《基于源码逆向分析，从代码层面还原 Claude Code 真正需要什么》。</p>
+                        <p><strong>整理方式</strong>：本站按专题标准重新排版，保留核心结论与可执行步骤，补充本地适配。</p>
+                        <p><strong>适用人群</strong>：想让 Claude Code 发挥 100% 能力的开发者。</p>
+                    </div>
+                </section>
+
+                <section id="required" class="section-block">
+                    <h2>必装工具 ★★★★★</h2>
+                    <p>Claude Code 的架构本质是<strong>"大脑 + 工具"</strong>。大脑是 Claude 模型本身，工具是它在你机器上能调用的外部命令。每少装一个，Claude 的能力就少一块。</p>
+                    <div class="tool-grid">
+                        <div class="tool-card tool-card--required">
+                            <div class="tool-card-header">
+                                <span class="tool-icon">🌿</span>
+                                <span class="tool-name">git</span>
+                                <span class="tool-badge">必装</span>
+                            </div>
+                            <p class="tool-desc">版本控制基础。启动时调用 <code>getIsGit()</code>、<code>getBranch()</code>、<code>findGitRoot()</code> 等数十个函数，整个工作流建立在 git 之上。</p>
+                            <code class="tool-cmd">git --version</code>
+                        </div>
+                        <div class="tool-card tool-card--required">
+                            <div class="tool-card-header">
+                                <span class="tool-icon">🔍</span>
+                                <span class="tool-name">ripgrep (rg)</span>
+                                <span class="tool-badge">必装</span>
+                            </div>
+                            <p class="tool-desc">Grep 工具的实体。不装则 <code>Grep</code> 工具直接失效。源码中有专门的 <code>RIPGREP_READ_ONLY_COMMANDS</code> 安全白名单。</p>
+                            <code class="tool-cmd">brew install ripgrep</code>
+                        </div>
+                        <div class="tool-card tool-card--required">
+                            <div class="tool-card-header">
+                                <span class="tool-icon">🐙</span>
+                                <span class="tool-name">gh (GitHub CLI)</span>
+                                <span class="tool-badge">必装</span>
+                            </div>
+                            <p class="tool-desc">所有 GitHub 操作的入口。源码 <code>BashTool/prompt.ts</code> 明确要求用 gh 处理 PR / Issue / CI / Releases。</p>
+                            <code class="tool-cmd">brew install gh && gh auth login</code>
+                        </div>
+                        <div class="tool-card tool-card--required">
+                            <div class="tool-card-header">
+                                <span class="tool-icon">🖥️</span>
+                                <span class="tool-name">tmux</span>
+                                <span class="tool-badge">必装</span>
+                            </div>
+                            <p class="tool-desc">Swarm 多 Agent 并行模式和后台任务必须。源码错误提示直接要求 <code>brew install tmux</code>。</p>
+                            <code class="tool-cmd">brew install tmux</code>
+                        </div>
+                        <div class="tool-card tool-card--required">
+                            <div class="tool-card-header">
+                                <span class="tool-icon">📄</span>
+                                <span class="tool-name">poppler</span>
+                                <span class="tool-badge">必装</span>
+                            </div>
+                            <p class="tool-desc">PDF 文件读取支持。源码 <code>FileReadTool.ts</code> 明确要求安装 poppler-utils。</p>
+                            <code class="tool-cmd">brew install poppler</code>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="recommended" class="section-block">
+                    <h2>推荐工具 ★★★☆☆</h2>
+                    <p>这套工具解决的核心问题：<strong>让 Claude 用更少的 Token 找到更精确的信息</strong>。</p>
+                    <div class="tool-grid">
+                        <div class="tool-card tool-card--recommended">
+                            <div class="tool-card-header">
+                                <span class="tool-icon">🧬</span>
+                                <span class="tool-name">ast-grep (sg)</span>
+                                <span class="tool-badge">推荐</span>
+                            </div>
+                            <p class="tool-desc">结构化代码搜索，精度远超纯文本搜索。支持 AST 级别的精确匹配和重构规则。</p>
+                            <code class="tool-cmd">brew install ast-grep</code>
+                        </div>
+                        <div class="tool-card tool-card--recommended">
+                            <div class="tool-card-header">
+                                <span class="tool-icon">📁</span>
+                                <span class="tool-name">fd</span>
+                                <span class="tool-badge">推荐</span>
+                            </div>
+                            <p class="tool-desc">现代 find 替代品，比系统 find 快 3-5 倍，自动跳过 <code>.gitignore</code> 中的文件。</p>
+                            <code class="tool-cmd">brew install fd</code>
+                        </div>
+                        <div class="tool-card tool-card--recommended">
+                            <div class="tool-card-header">
+                                <span class="tool-icon">🔧</span>
+                                <span class="tool-name">jq</span>
+                                <span class="tool-badge">推荐</span>
+                            </div>
+                            <p class="tool-desc">JSON 命令行处理。Claude 处理 API 返回、package.json、配置文件时频繁用到。</p>
+                            <code class="tool-cmd">brew install jq</code>
+                        </div>
+                        <div class="tool-card tool-card--recommended">
+                            <div class="tool-card-header">
+                                <span class="tool-icon">🎨</span>
+                                <span class="tool-name">git-delta</span>
+                                <span class="tool-badge">体验</span>
+                            </div>
+                            <p class="tool-desc">更好的 diff 显示。Claude 查看 git diff / git show 时更清晰。</p>
+                            <code class="tool-cmd">brew install git-delta</code>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="lsp" class="section-block">
+                    <h2>语言服务器 ★★☆☆☆</h2>
+                    <p>LSP 解决的核心问题：<strong>让 Claude 不再需要"猜"类型和引用关系</strong>。没有 LSP 时 Claude 只能通过搜索文本来推断类型，有了 LSP 一次调用就能获得精确的类型信息。</p>
+                    <div class="tool-grid">
+                        <div class="tool-card tool-card--lsp">
+                            <div class="tool-card-header">
+                                <span class="tool-icon">📘</span>
+                                <span class="tool-name">TypeScript</span>
+                            </div>
+                            <code class="tool-cmd">npm install -g typescript typescript-language-server</code>
+                        </div>
+                        <div class="tool-card tool-card--lsp">
+                            <div class="tool-card-header">
+                                <span class="tool-icon">🐍</span>
+                                <span class="tool-name">Python</span>
+                            </div>
+                            <code class="tool-cmd">npm install -g pyright</code>
+                        </div>
+                        <div class="tool-card tool-card--lsp">
+                            <div class="tool-card-header">
+                                <span class="tool-icon">🚀</span>
+                                <span class="tool-name">Go</span>
+                            </div>
+                            <code class="tool-cmd">go install golang.org/x/tools/gopls@latest</code>
+                        </div>
+                        <div class="tool-card tool-card--lsp">
+                            <div class="tool-card-header">
+                                <span class="tool-icon">⚙️</span>
+                                <span class="tool-name">Rust</span>
+                            </div>
+                            <code class="tool-cmd">rustup component add rust-analyzer</code>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="config" class="section-block">
+                    <h2>配置指南</h2>
+                    <h3>1. 全局规则 ~/.claude/CLAUDE.md</h3>
+                    <pre><code class="language-markdown"># 我的全局 Claude 规则
+## 代码风格
+- 用中文写注释
+- 函数不超过 50 行，超了就拆分
+- 不用 any 类型，找合适的类型替代
+
+## Git 规范
+- commit message 用中文，格式：feat/fix/refactor: 描述
+- 每个 commit 只做一件事
+
+## 禁止事项
+- 不要在生产代码里用 console.log
+- 不要用 == 用 ===
+- 不要用 var 用 const/let
+
+## 工具偏好
+- 搜索代码先用 Grep/Glob，不要用 Bash
+- 写新文件前先 Read 同类文件参考风格
+</code></pre>
+
+                    <h3>2. 权限预配置 ~/.claude/settings.json</h3>
+                    <p>这是降低 Token 消耗最立竿见影的配置。每次权限确认弹框都意味着一次额外的 API 轮次。</p>
+                    <pre><code class="language-json">{
+  "permissions": {
+    "allow": [
+      "Bash(git status)", "Bash(git diff*)", "Bash(git log*)",
+      "Bash(git show*)", "Bash(git branch*)", "Bash(git stash*)",
+      "Bash(gh pr*)", "Bash(gh issue*)", "Bash(gh repo*)",
+      "Bash(rg *)", "Bash(fd *)", "Bash(sg *)", "Bash(jq *)",
+      "Bash(cat *)", "Bash(ls *)", "Bash(find *)",
+      "Bash(node --version)", "Bash(npm run *)", "Bash(pnpm *)", "Bash(yarn *)"
+    ]
+  }
+}
+</code></pre>
+                </section>
+
+                <section id="token-econ" class="section-block">
+                    <h2>Token 经济学</h2>
+                    <p>配置完善到底能省多少？从源码角度看，效率提升来自三个维度：</p>
+
+                    <h3>1. 减少 API 轮次（最直接）</h3>
+                    <div class="comparison-table-wrap">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr><th>场景</th><th>未配置</th><th>配置完善</th><th>节省</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>读 500 行文件</td><td>Bash cat → ~2000 token 原始输出</td><td>Read 工具 → 结构化 + 行号范围</td><td>~30-50%</td></tr>
+                                <tr><td>搜索函数</td><td>Bash grep -r → 大量冗余匹配</td><td>Grep(rg) → 精确匹配 + 上下文控制</td><td>~40-60%</td></tr>
+                                <tr><td>查看 git 状态</td><td>需确认 → 额外一轮 API 往返</td><td>白名单内 → 零确认直接执行</td><td>省一整轮</td></tr>
+                                <tr><td>处理 PR + Issue</td><td>手动拼 API URL → 多轮尝试</td><td>gh 命令 → 一步到位</td><td>省 2-5 轮</td></tr>
+                                <tr><td>长会话 50+ 轮</td><td>频繁 compact，丢失上下文</td><td>输出精简，compact 间隔更长</td><td>上下文更完整</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>2. Prompt Cache 机制</h3>
+                    <p>Claude API 的 prompt cache 让相同前缀（system prompt + 工具定义 + CLAUDE.md）走缓存读取，<strong>成本只有正常 input token 的 10%</strong>。配置改好后尽量不要频繁调整，避免打破缓存前缀导致一次完整的缓存重建（约 5000-10000 token 的 cache_creation）。</p>
+
+                    <h3>3. Auto-Compact 与 Microcompact</h3>
+                    <p>当 token 接近上下文窗口限制时触发 auto-compact，把历史对话浓缩成摘要。<strong>如果你的每次工具调用都产生大量冗余输出，compact 就会更频繁地触发</strong>，每次 compact 本身也要消耗 token。专用工具的结构化输出天然更容易被高效 compact。</p>
+                    <p>源码中还有 <strong>microcompact</strong> 机制，在发送 API 请求前自动清理旧的工具结果，只保留最近几次。那些产生了大量输出的 Bash 命令，它们的结果最终也会被清理掉——<strong>但你已经为发送它们付过一次费了</strong>。</p>
+
+                    <h3>一个真实场景的 Token 对比</h3>
+                    <p>假设在 TypeScript 项目中重构一个函数：</p>
+                    <div class="comparison-table-wrap">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr><th>维度</th><th>未配置</th><th>配置完善</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>工具结果 Token</td><td>~18,700</td><td>~4,800</td></tr>
+                                <tr><td>权限确认轮次</td><td>3 次</td><td>0 次</td></tr>
+                                <tr><td>节省比例</td><td>—</td><td><strong>~74%</strong></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="scripts" class="section-block">
+                    <h2>一键安装脚本</h2>
+                    <h3>macOS</h3>
+                    <pre><code class="language-bash">#!/bin/bash
+set -e
+echo "=== 安装 Claude Code 依赖工具 ==="
+
+if ! command -v brew &>/dev/null; then
+  echo "安装 Homebrew..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+echo "--- 必装工具 ---"
+brew install git ripgrep tmux poppler gh ast-grep fd jq git-delta
+
+echo "--- 登录 GitHub CLI ---"
+gh auth login
+
+echo "--- TypeScript LSP ---"
+npm install -g typescript typescript-language-server pyright
+
+echo "--- Playwright 浏览器 ---"
+npx playwright install chromium
+
+echo "=== 验证安装 ==="
+for cmd in git gh rg tmux sg fd jq tsc; do
+  if command -v "$cmd" &>/dev/null; then
+    echo "✓ $cmd: $(command -v $cmd)"
+  else
+    echo "✗ $cmd: 未安装"
+  fi
+done
+
+echo "✓ 全部安装完成！"
+</code></pre>
+
+                    <h3>验证脚本 check-claude-tools.sh</h3>
+                    <pre><code class="language-bash">#!/bin/bash
+check() {
+  if command -v "$1" &>/dev/null; then
+    echo "✓ $1: $(command -v $1)"
+  else
+    echo "✗ $1: 未安装"
+  fi
+}
+
+echo "=== Claude Code 工具检查 ==="
+echo "--- 必须 ---"; check git; check rg; check gh; check tmux
+echo "--- 推荐 ---"; check poppler; check sg; check fd; check jq
+echo "--- LSP ---"; check typescript-language-server; check tsc; check pyright
+echo "--- 体验 ---"; check delta; check lazygit
+
+if command -v gh &>/dev/null; then
+  if gh auth token &>/dev/null 2>&1; then
+    echo "✓ gh: 已认证登录"
+  else
+    echo "⚠ gh: 已安装但未登录，运行 gh auth login"
+  fi
+fi
+</code></pre>
+                </section>
+
+                <section class="section-block">
+                    <h2>工具重要度总览</h2>
+                    <div class="importance-rack">
+                        <div class="rack-row rack-row--must">
+                            <span class="rack-stars">★★★★★</span>
+                            <span class="rack-label">必须安装</span>
+                            <span class="rack-tools">git · ripgrep · gh · tmux · poppler</span>
+                        </div>
+                        <div class="rack-row rack-row--strong">
+                            <span class="rack-stars">★★★★☆</span>
+                            <span class="rack-label">强烈推荐</span>
+                            <span class="rack-tools">ast-grep · fd · jq · git-delta</span>
+                        </div>
+                        <div class="rack-row rack-row--lsp">
+                            <span class="rack-stars">★★☆☆☆</span>
+                            <span class="rack-label">语言服务器（按需）</span>
+                            <span class="rack-tools">typescript-language-server · pyright · gopls · rust-analyzer</span>
+                        </div>
+                        <div class="rack-row rack-row--nice">
+                            <span class="rack-stars">★★☆☆☆</span>
+                            <span class="rack-label">体验增强</span>
+                            <span class="rack-tools">git-delta · lazygit</span>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="chapter-navigation">
+                    <a href="topic-toolchain.html" class="btn btn-secondary">← 工具链专题</a>
+                    <a href="topic-cc-unpacked-zh.html" class="btn btn-primary">Claude Code 解构 →</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/topic-cc-tooling-guide.html" target="_blank" rel="noopener noreferrer">本站页的源文件（GitHub）</a></p>
+            <p>© 2026 Everything in Claude-Code. 仅供学习研究使用。</p>
+            <p class="text-muted">原文来源：微信公众号「安全手札」c4bbage · 本站整理日期 2026-04-29</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

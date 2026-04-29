@@ -16820,3 +16820,147 @@ body.site-shell-overlay-open {
         max-height: 320px;
     }
 }
+
+/* === CC Tooling Guide: tool cards === */
+.cc-tooling-page .tool-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.cc-tooling-page .tool-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  transition: transform .2s, box-shadow .2s;
+}
+.cc-tooling-page .tool-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+.cc-tooling-page .tool-card-header {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin-bottom: .75rem;
+}
+.cc-tooling-page .tool-icon { font-size: 1.5rem; }
+.cc-tooling-page .tool-name {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--text-primary);
+}
+.cc-tooling-page .tool-badge {
+  margin-left: auto;
+  font-size: .7rem;
+  font-weight: 600;
+  padding: .15rem .5rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+}
+.cc-tooling-page .tool-card--required .tool-badge {
+  background: var(--primary);
+  color: #fff;
+}
+.cc-tooling-page .tool-card--recommended .tool-badge {
+  background: var(--secondary);
+  color: #fff;
+}
+.cc-tooling-page .tool-card--lsp .tool-badge {
+  background: var(--bg-hover);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+.cc-tooling-page .tool-desc {
+  font-size: .9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: .75rem;
+}
+.cc-tooling-page .tool-cmd {
+  display: block;
+  background: var(--bg-dark);
+  border: 1px dashed var(--border);
+  border-radius: 6px;
+  padding: .5rem .75rem;
+  font-size: .82rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  color: var(--primary-dark);
+  word-break: break-all;
+}
+
+/* === CC Tooling Guide: importance rack === */
+.cc-tooling-page .importance-rack {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  margin-top: 1rem;
+}
+.cc-tooling-page .rack-row {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .75rem 1rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+}
+.cc-tooling-page .rack-stars {
+  font-size: .9rem;
+  letter-spacing: .05em;
+  white-space: nowrap;
+}
+.cc-tooling-page .rack-label {
+  font-weight: 600;
+  font-size: .9rem;
+  color: var(--text-primary);
+  white-space: nowrap;
+  min-width: 8rem;
+}
+.cc-tooling-page .rack-tools {
+  font-size: .85rem;
+  color: var(--text-secondary);
+  word-break: break-word;
+}
+.cc-tooling-page .rack-row--must { border-left: 4px solid var(--primary); }
+.cc-tooling-page .rack-row--strong { border-left: 4px solid var(--secondary); }
+.cc-tooling-page .rack-row--lsp { border-left: 4px solid var(--text-muted); }
+.cc-tooling-page .rack-row--nice { border-left: 4px solid var(--border); }
+
+/* === CC Tooling Guide: comparison table === */
+.cc-tooling-page .comparison-table-wrap {
+  overflow-x: auto;
+  margin: 1rem 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.cc-tooling-page .comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .9rem;
+}
+.cc-tooling-page .comparison-table thead {
+  background: var(--bg-hover);
+}
+.cc-tooling-page .comparison-table th,
+.cc-tooling-page .comparison-table td {
+  padding: .75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.cc-tooling-page .comparison-table th {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: .85rem;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+}
+.cc-tooling-page .comparison-table tbody tr:hover {
+  background: var(--bg-hover);
+}
+.cc-tooling-page .comparison-table td {
+  color: var(--text-secondary);
+  line-height: 1.5;
+}

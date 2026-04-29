@@ -1,0 +1,141 @@
+# WeChat Article to Site Page
+
+将微信公众号文章转化为 learn-likecc 专题页面的标准化流程。
+
+## 触发条件
+
+用户发送微信公众号文章链接（mp.weixin.qq.com），要求：
+- 分析文章核心内容
+- 整合到 learn-likecc 站点某个专题下
+- 完成后 commit + 部署
+
+## 执行流程
+
+### 1. 文章获取与分析
+
+使用 `kimi_fetch` 抓取文章内容。
+
+分析维度：
+- 主题归类：判断文章最适合放入哪个现有专题（庖丁解牛 / 工具链 / Agent / AI-Scientist / Design-UI 等）
+- 内容密度：是否适合作为独立子页面，还是融入现有页面
+- 核心价值：提取可执行步骤、数据对比、配置模板等
+
+### 2. 页面规划
+
+决策树：
+```
+文章主题与现有专题匹配度高？
+  YES → 融入现有页面（新增 section）
+  NO  → 创建新页面（独立子专题）
+```
+
+页面命名规范：
+- 融入现有：`site/topic-{专题名}.html` 内新增 `<section id="...">`
+- 独立页面：`site/topic-{主题}-guide.html` 或 `site/topic-{主题}-notes.html`
+
+### 3. 页面构建
+
+必须遵循的模板结构（参考 `topic-cc-unpacked-zh.html`）：
+
+```html
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{标题} - Everything in Claude-Code</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,...">
+    <meta name="description" content="{描述}">
+    <meta name="page:updated" content="{YYYY-MM-DD}">
+</head>
+<body class="{page-class}">
+    <nav class="navbar">...</nav>
+    <section class="hero handbook-hero">
+        <!-- Hero badge + title + subtitle + stats strip + actions -->
+    </section>
+    <main class="course-main devlog-main">
+        <div class="container container--layout-wide">
+            <article class="course-content devlog-content">
+                <!-- 核心内容 section -->
+                <!-- 来源标注 section -->
+                <div class="chapter-navigation">...</div>
+            </article>
+        </div>
+    </main>
+    <footer class="footer">...</footer>
+    <script src="js/app.js"></script>
+</body>
+</html>
+```
+
+排版规范：
+- Hero 区域必须包含：badge、title、subtitle、stats strip（4 个关键数字）
+- 正文用 `<section class="section-block">` 包裹
+- 代码块用 `<pre><code class="language-{lang}">`
+- 表格用 `<table class="comparison-table">`（带 thead/tbody）
+- 工具/组件展示用卡片网格（`tool-grid` + `tool-card`）
+- 末尾必须有 `chapter-navigation` 和 `footer` with provenance
+- 来源必须标注：原文出处、作者、本站整理日期
+
+### 4. 导航更新
+
+创建或更新页面后，必须同步更新：
+- 父专题页面内的导航链接（`<div class="nav-links">`）
+- 首页 `index.html` 中相关专题的引用
+- `site/data/site-topic-index.json`（如果存在）
+
+### 5. 样式补充
+
+如果新页面需要专属样式：
+1. 优先复用现有 CSS 类（`.section-block`, `.tool-grid`, `.comparison-table` 等）
+2. 确需新增时，追加到 `site/css/style.css` 末尾，使用页面级命名空间：
+   ```css
+   .{page-class} .new-component { ... }
+   ```
+
+### 6. 验证与提交
+
+验证清单：
+- [ ] 文件路径正确（在 `site/` 目录下）
+- [ ] HTML 结构完整（DOCTYPE → html → head → body → nav → hero → main → footer → script）
+- [ ] CSS 变量兼容（使用 `var(--primary)` 等，不硬编码颜色）
+- [ ] 响应式（viewport meta 已设置，布局用 flex/grid）
+- [ ] 导航链接可点击（相对路径正确）
+- [ ] 来源标注完整
+
+提交规范：
+```bash
+cd ~/learn-likecc
+git add -A
+git commit -m "feat(site): add {主题} guide from WeChat article
+
+- 来源：微信公众号「{公众号}」{作者}
+- 页面：site/{文件名}.html
+- 归属：{专题名}专题
+- 核心内容：{一句话 summary}"
+git push origin main
+```
+
+### 7. 部署确认
+
+GitHub Actions 会自动部署（`deploy.yml` 监听 `site/**` 变更）。
+
+用户可以通过以下 URL 验证：
+```
+https://harzva.github.io/learn-likecc/{文件名}.html
+```
+
+## 已落地示例
+
+| 文章 | 页面 | 专题归属 |
+|------|------|----------|
+| 微信公众号「安全手札」c4bbage：《基于源码逆向分析，从代码层面还原 Claude Code 真正需要什么》 | `site/topic-cc-tooling-guide.html` | 工具链专题 |
+
+## 注意事项
+
+- 微信公众号文章可能包含格式混乱的代码块，需要人工清洗
+- 优先保留原文的核心结论和可执行步骤，去除营销话术
+- Token 经济学类内容需要保留量化数据对比
+- 配置类内容需要给出 macOS / Ubuntu 双平台方案
+- 图片资源：微信文章图片外链通常无法直接引用，需截图或替换为文字描述
