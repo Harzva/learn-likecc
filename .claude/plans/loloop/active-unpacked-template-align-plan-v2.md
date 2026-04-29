@@ -43,7 +43,9 @@ When a loop iteration has no better task, scan this pool and choose the highest-
 
 ### Hermes (P0 — audit 25%, highest gap)
 
-- [ ] **H1. Hermes hero stats strip** — add layer count, API surface count, protocol count, backend count
+- [x] **H1. Hermes hero stats strip** — add layer count, API surface count, protocol count, backend count
+  - ✅ Done: 6 layers / 10+ API surfaces / 6 protocols (Telegram/Discord/Slack/WhatsApp/Signal/QQ) / 6 backends (Local/Docker/SSH/Daytona/Singularity/Modal)
+  - Minor fix: protocol count corrected from 5 → 6 after discovering QQ platform adapter
 - [ ] **H2. Hermes interactive step-through** — agent loop walkthrough: message in → session build → AIAgent run → tool call → memory review → response out
 - [ ] **H3. Hermes architecture treemap** — 6-layer stack treemap: 入口壳 → 控制面 → 工具面 → 记忆/技能 → 平台/时间轴 → 环境后端
 - [ ] **H4. Hermes knowledge graph** — relationship map: gateway adapters, cron scheduler, memory store, skill manager, environment backends
