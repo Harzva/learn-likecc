@@ -7911,6 +7911,13 @@ body.site-shell-overlay-open {
     margin-top: 1.25rem;
 }
 
+.cc-unpacked-page .cc-unpacked-hero-stats .stat-value {
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
 .cc-unpacked-page .cc-unpacked-hero-subtitle-note {
     margin-top: 1rem;
     font-size: 0.95rem;
