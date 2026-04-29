@@ -40,6 +40,7 @@
 | [PleasePrompto/notebooklm-skill](https://github.com/PleasePrompto/notebooklm-skill) | NotebookLM 知识库问答流 | [`notebooklm-skill`](./reference/reference_skill/practical-toolflows/notebooklm-skill/) |
 | [wshuyi/x-article-publisher-skill](https://github.com/wshuyi/x-article-publisher-skill) | Markdown 一键发布到 X Articles | [`x-article-publisher-skill`](./reference/reference_skill/practical-toolflows/x-article-publisher-skill/) |
 | [anthropics/skills](https://github.com/anthropics/skills) | 官方技能样例 / 模板 / 规范底座 | [`anthropics-skills`](./reference/reference_skill/practical-toolflows/anthropics-skills/) |
+| [OthmanAdi/planning-with-files](https://github.com/OthmanAdi/planning-with-files) | 文件化规划：用 `task_plan.md` / `findings.md` / `progress.md` + hooks 解决 Agent 上下文失忆 | — |
 
 ## 安装落点备忘
 
@@ -71,4 +72,4 @@
 
 ---
 
-最后更新：`2026-04-12`
+最后更新：`2026-04-30`

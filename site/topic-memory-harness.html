@@ -142,6 +142,14 @@ type: feedback
                     </ul>
                 </section>
 
+                <section id="external" class="section-block">
+                    <h2>7. 外部参考：社区文件化规划方案</h2>
+                    <p>上述机制是 Claude Code 内部<strong>Harness 层</strong>的设计。社区中也有<strong>纯 Skill 层</strong>的实现，用类似思路在 Agent 外部解决同一类问题：</p>
+                    <ul>
+                        <li><a href="https://github.com/OthmanAdi/planning-with-files" target="_blank" rel="noopener noreferrer"><strong>OthmanAdi / planning-with-files</strong></a> — 通过 <code>task_plan.md</code>（阶段与状态）、<code>findings.md</code>（研究发现与关键决策）、<code>progress.md</code>（会话日志与操作记录）三文件 + hooks（PreToolUse / PostToolUse / Stop）实现文件化工作记忆。核心规则：<strong>2-Action Rule</strong>（每两次查看/搜索后必须写入 findings），对抗"看过就忘"。对照阅读可帮助理解"Harness 内部记忆"与"Skill 层外部记忆"的互补边界。</li>
+                    </ul>
+                </section>
+
                 <div class="chapter-navigation">
                     <a href="topic-agent.html" class="btn btn-secondary">← Agent 专题</a>
                     <a href="s05.html" class="btn btn-primary">相关：S05 上下文压缩 →</a>
