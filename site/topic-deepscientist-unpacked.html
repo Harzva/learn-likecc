@@ -371,7 +371,15 @@
                 </section>
 
                 <section id="loop" class="section-block">
-                    <h2 class="ds-section-title">06 · 它和 Autoresearch 的根本差异：工作台厚度不同</h2>
+                    <h2 class="ds-section-title">06 · 研究循环：从 Quest 到 Paper 再到新 Quest</h2>
+                    <p>DeepScientist 的核心不是一次性跑完实验出图，而是把 <strong>quest → baseline → experiment → write → feedback</strong> 做成可持续循环。下面为<strong>讲解型</strong>步进演示，可点步骤标签、播放/暂停、倍速与键盘 <kbd>←</kbd> <kbd>→</kbd>、<kbd>Space</kbd>。</p>
+                    <p class="section-desc cc-unpacked-section-desc cc-unpacked-section-desc--loop-primary">末步点播放会先回到第 1 步再自动翻页。<code>meta.loop_autoplay</code> 为 <code>true</code> 时会在末步后接回第 1 步。系统开启<strong>减少动态效果</strong>时会拉长间隔并弱化动效。<strong>非</strong>真实运行时遥测。</p>
+                    <div id="ds-research-loop-player" class="cc-loop-player" data-json="data/ds-research-loop.json" aria-label="DeepScientist 研究循环步进讲解"></div>
+                    <noscript>
+                        <p class="section-desc">启用 JavaScript 后可播放步进演示。</p>
+                    </noscript>
+
+                    <h3 class="ds-section-subtitle" style="margin-top:32px;margin-bottom:12px;">它和 Autoresearch 的根本差异</h3>
                     <table class="ds-compare-table">
                         <tr><th>维度</th><th>Autoresearch</th><th>DeepScientist</th></tr>
                         <tr><td>主隐喻</td><td>plugin / command surface / verify loop</td><td>local-first research studio / quest repo</td></tr>
@@ -597,6 +605,7 @@
     <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js" crossorigin="anonymous"></script>
     <script src="js/app.js"></script>
     <script src="js/ds-quest-player.js"></script>
+    <script src="js/ds-research-loop-player.js"></script>
     <script src="js/ds-arch-treemap.js"></script>
     <script src="js/ds-arch-knowledge.js"></script>
     <script src="js/ds-connector-wall.js"></script>

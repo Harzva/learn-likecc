@@ -20,7 +20,7 @@
 
 ### P0: topic-deepscientist-unpacked.html
 - [x] Task D1: Ensure attribution block follows reference pattern (course-quote inside section-block)
-- [ ] Task D2: Add interactive module placeholder zone (like cc-loop-player) for research cycle visualization
+- [x] Task D2: Add interactive module placeholder zone (like cc-loop-player) for research cycle visualization
 - [x] Task D3: Verify hero-stats use gradient-text class consistently
 - [ ] Task D4: Check knowledge-map section has treemap-like visual structure or equivalent density
 - [x] Task D5: Ensure section numbering follows 01/02/02B pattern consistently (currently 01/02/02B/03/04/04B/05/05B/06/08/07 — inconsistent order)
@@ -61,6 +61,7 @@
 | 1 | 2026-04-30 | D5 | Fixed section numbering in topic-deepscientist-unpacked.html: reordered nav and body so 07 precedes 08; added missing 03B nav link for quest-walkthrough section | Committed: 80a82f9 |
 | 2 | 2026-04-30 | D1 | Replaced ds-two-col + ds-panel attribution layout with course-quote wrapper inside section-block; kept all content and strong-label pattern aligned to reference | Committed: fe0fe0e |
 | 3 | 2026-04-30 | D3 | Verified hero-stats gradient-text via global CSS rule under .cc-unpacked-hero-stats .stat-value; applies to all unpacked pages automatically | Committed: 905fc3f |
+| 4 | 2026-04-30 | D2 | Added interactive research cycle player to topic-deepscientist-unpacked.html #loop section: created data/ds-research-loop.json (5 steps), js/ds-research-loop-player.js (adapted from hermes-loop-player.js), updated HTML mount point and script tag; section retitled to emphasize loop nature | Committed: pending |
 
 ---
 

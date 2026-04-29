@@ -1,0 +1,90 @@
+{
+  "meta": {
+    "updated": "2026-04-30",
+    "autoplay_base_ms": 2800,
+    "loop_autoplay": true,
+    "note_zh": "讲解型步进：DeepScientist 研究循环。loop_autoplay=true 时末步后自动回到第 1 步。"
+  },
+  "steps": [
+    {
+      "id": "quest-init",
+      "label": "Quest",
+      "title": "Quest 初始化",
+      "body": "输入可以是 paper、repo URL 或自然语言描述。系统将其转为一个独立 quest 仓库，包含初始目录结构与阶段标记。",
+      "analysis": "one repo per quest 是 DeepScientist 的核心设计决策。它把研究过程从抽象数据库拉回真实文件系统，使 git、分支、worktree 都能直接参与研究管理。",
+      "pitfall": "不要把 quest 当成普通项目目录；它是研究状态的物理锚点，所有后续资产都落在这个仓库里。",
+      "read_hint": "先看 `docs/en/02_START_RESEARCH_GUIDE.md` 与 `tests/test_init_and_quest.py`。",
+      "terminal": [
+        "$ deepscientist init",
+        "input: arxiv:2501.xxxxx",
+        "-> quest_repo/ created",
+        "-> README.quest.md written",
+        "▌"
+      ]
+    },
+    {
+      "id": "baseline",
+      "label": "Baseline",
+      "title": "Baseline 复现",
+      "body": "复现基准结果，建立可比较的实验起点。失败 here 比失败 later 成本低得多。",
+      "analysis": "Baseline 是后续所有实验的参照系。如果 baseline 无法复现，后续实验的 delta 将失去意义。DeepScientist 把 baseline 当作正式阶段，而不是默认假设。",
+      "pitfall": "跳过 baseline 直接改代码是很多研究项目的隐性债务；DeepScientist 用阶段结构强制 baseline 必须先过。",
+      "read_hint": "联读 `docs/en/12_GUIDED_WORKFLOW_TOUR.md` 与 `tests/test_memory_and_artifact.py`。",
+      "terminal": [
+        "stage: baseline",
+        "run: reproduce_paper_results()",
+        "-> baseline/ metrics.log",
+        "-> requirements.lock",
+        "▌"
+      ]
+    },
+    {
+      "id": "experiment",
+      "label": "Experiment",
+      "title": "Experiment 轮次",
+      "body": "在 baseline 基础上做可控改动，每轮只改一处，记录 delta 与观察。失败也写回 Findings Memory。",
+      "analysis": "实验轮次的核心约束是可控性：单变量、可回滚、有记录。Findings Memory 自动沉淀结论，使下一轮研究能从上一轮的失败直接继承，而不是从零重建上下文。",
+      "pitfall": "不要在同一轮改多个变量；DeepScientist 的设计假设是每次实验只产生一个可归属的因果推断。",
+      "read_hint": "重点看 `docs/en/07_MEMORY_AND_MCP.md` 与 `src/` 里的实验调度逻辑。",
+      "terminal": [
+        "stage: experiment",
+        "run: exp_round_3()",
+        "-> experiments/round_3/",
+        "-> findings_memory.append(...)",
+        "▌"
+      ]
+    },
+    {
+      "id": "analysis-write",
+      "label": "Write",
+      "title": "Analysis / Write",
+      "body": "从实验结论中提取可发表的论证链，生成图表、报告与 paper draft。人类随时可 takeover。",
+      "analysis": "写作阶段不是简单扩写摘要，而是把实验证据重新组织成论证结构。DeepScientist 把图表生成、引用管理和文稿撰写都收进同一条阶段流，减少工具切换成本。",
+      "pitfall": "不要让模型独自决定哪些实验结果值得放进正文；human takeover 是设计特性，不是备用方案。",
+      "read_hint": "参考 `docs/en/08_FIGURE_STYLE_GUIDE.md` 与 `docs/en/26_CITATION_AND_ATTRIBUTION.md`。",
+      "terminal": [
+        "stage: analysis_write",
+        "generate: figures/ + reports/",
+        "-> paper_draft.md",
+        "-> human_takeover: enabled",
+        "▌"
+      ]
+    },
+    {
+      "id": "output-feedback",
+      "label": "Feedback",
+      "title": "Output → 新 Quest",
+      "body": "Paper outputs、Findings Memory 和 artifact 成为下一轮研究的输入资产。研究循环闭合，而非终止。",
+      "analysis": "这是 DeepScientist 与一次性脚本的根本差异：它不把论文当终点，而把可复用资产当循环燃料。一个 quest 的结论可以直接 spawn 下一个 quest，形成持续的研究飞轮。",
+      "pitfall": "不要把 DeepScientist 当成交互式聊天窗口；它的真正边界是 quest repo 和阶段状态，聊天只是入口之一。",
+      "read_hint": "回到 `docs/en/00_QUICK_START.md` 与 `README.md` 的整体叙事。",
+      "terminal": [
+        "output: paper_draft.md",
+        "findings: durable_state.json",
+        "-> spawn_next_quest()",
+        "-> loop closes",
+        "▌"
+      ]
+    }
+  ]
+}
