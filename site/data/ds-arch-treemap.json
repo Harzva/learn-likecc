@@ -1,0 +1,186 @@
+{
+  "meta": {
+    "updated": "2026-04-29",
+    "source": "reference/reference_agent/DeepScientist/README.md + docs",
+    "note_zh": "DeepScientist 六层架构 Treemap；为教学向结构图，按系统职能分层而非文件统计。",
+    "layout_zh": "双层：先按六层架构聚块，再在各层内展示核心子组件。"
+  },
+  "legend": [
+    {
+      "key": "input",
+      "label": "课题入口层",
+      "hint": "paper / repo / natural-language quest"
+    },
+    {
+      "key": "repo",
+      "label": "Quest 仓库层",
+      "hint": "one repo per quest · init · git"
+    },
+    {
+      "key": "control",
+      "label": "研究控制面",
+      "hint": "baseline · experiment · analysis · write"
+    },
+    {
+      "key": "state",
+      "label": "持久状态层",
+      "hint": "Findings Memory · artifacts · paper outputs"
+    },
+    {
+      "key": "workspace",
+      "label": "可见工作区层",
+      "hint": "Web · Canvas · Studio + Details"
+    },
+    {
+      "key": "connectors",
+      "label": "协作与 Connector 层",
+      "hint": "Weixin · QQ · Telegram · Feishu"
+    }
+  ],
+  "root": {
+    "name": "DeepScientist",
+    "children": [
+      {
+        "name": "课题入口层",
+        "cat": "input",
+        "children": [
+          {
+            "name": "paper input",
+            "value": 6,
+            "cat": "input"
+          },
+          {
+            "name": "repo URL",
+            "value": 5,
+            "cat": "input"
+          },
+          {
+            "name": "natural-language goal",
+            "value": 4,
+            "cat": "input"
+          }
+        ]
+      },
+      {
+        "name": "Quest 仓库层",
+        "cat": "repo",
+        "children": [
+          {
+            "name": "one repo per quest",
+            "value": 10,
+            "cat": "repo"
+          },
+          {
+            "name": "init / git",
+            "value": 8,
+            "cat": "repo"
+          },
+          {
+            "name": "quest/ directory",
+            "value": 4,
+            "cat": "repo"
+          },
+          {
+            "name": "README.quest.md",
+            "value": 3,
+            "cat": "repo"
+          }
+        ]
+      },
+      {
+        "name": "研究控制面",
+        "cat": "control",
+        "children": [
+          {
+            "name": "baseline reproduction",
+            "value": 10,
+            "cat": "control"
+          },
+          {
+            "name": "experiment rounds",
+            "value": 10,
+            "cat": "control"
+          },
+          {
+            "name": "analysis / write",
+            "value": 7,
+            "cat": "control"
+          },
+          {
+            "name": "stage workflow",
+            "value": 3,
+            "cat": "control"
+          }
+        ]
+      },
+      {
+        "name": "持久状态层",
+        "cat": "state",
+        "children": [
+          {
+            "name": "Findings Memory",
+            "value": 10,
+            "cat": "state"
+          },
+          {
+            "name": "artifacts",
+            "value": 6,
+            "cat": "state"
+          },
+          {
+            "name": "paper-facing outputs",
+            "value": 4,
+            "cat": "state"
+          }
+        ]
+      },
+      {
+        "name": "可见工作区层",
+        "cat": "workspace",
+        "children": [
+          {
+            "name": "Web workspace",
+            "value": 7,
+            "cat": "workspace"
+          },
+          {
+            "name": "Canvas",
+            "value": 6,
+            "cat": "workspace"
+          },
+          {
+            "name": "Studio + Details",
+            "value": 5,
+            "cat": "workspace"
+          }
+        ]
+      },
+      {
+        "name": "协作与 Connector 层",
+        "cat": "connectors",
+        "children": [
+          {
+            "name": "Weixin",
+            "value": 4,
+            "cat": "connectors"
+          },
+          {
+            "name": "QQ",
+            "value": 3,
+            "cat": "connectors"
+          },
+          {
+            "name": "Telegram",
+            "value": 3,
+            "cat": "connectors"
+          },
+          {
+            "name": "Feishu",
+            "value": 2,
+            "cat": "connectors"
+          }
+        ]
+      }
+    ]
+  }
+}

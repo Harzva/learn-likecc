@@ -198,6 +198,10 @@
                             <div class="mermaid-diagram-scroll" data-mermaid-diagram="deepscientist-research-loop"></div>
                         </div>
                     </div>
+
+                    <h3 class="ds-section-subtitle" style="margin-top:32px;margin-bottom:12px;">六层架构 Treemap（可交互下钻）</h3>
+                    <div id="ds-arch-treemap-mount" class="ds-arch-treemap" data-json="data/ds-arch-treemap.json" role="region" aria-label="DeepScientist 六层架构 Treemap"></div>
+                    <p class="section-desc section-desc--tight" style="margin-top:8px;font-size:0.9rem;opacity:0.85">Treemap 按系统职能分层：大块 = 架构层，叶子 = 层内核心组件；可<strong>单击下钻</strong>、顶部面包屑返回。数据来自 README 与文档的结构化拆解。</p>
                 </section>
 
                 <section id="control-plane" class="section-block">
@@ -516,10 +520,28 @@
         .ds-stage-tab { min-width: 100px; padding: 10px 12px; }
         .ds-stage-panels { padding: 16px; }
     }
+    /* ds-arch-treemap styles */
+    .ds-arch-treemap { margin: 20px 0; }
+    .ds-arch-treemap__head { margin-bottom: 12px; }
+    .ds-arch-treemap__title { font-size: 16px; font-weight: 600; margin: 0 0 6px; color: #e2e8f0; }
+    .ds-arch-treemap__sub { font-size: 13px; color: #94a3b8; margin: 0; line-height: 1.5; }
+    .ds-arch-treemap__crumb { margin-bottom: 12px; font-size: 13px; }
+    .ds-arch-treemap__crumb-sep { color: #64748b; margin: 0 6px; }
+    .ds-arch-treemap__crumb-btn { background: none; border: none; color: #60a5fa; cursor: pointer; padding: 0; font-size: 13px; text-decoration: underline; }
+    .ds-arch-treemap__crumb-current { color: #cbd5e1; font-weight: 500; }
+    .ds-arch-treemap__legend { display: flex; flex-wrap: wrap; gap: 10px 18px; margin-bottom: 12px; font-size: 12.5px; }
+    .ds-arch-treemap__legend-item { display: inline-flex; align-items: center; gap: 6px; color: #94a3b8; }
+    .ds-arch-treemap__legend-swatch { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+    .ds-arch-treemap__legend-text strong { color: #e2e8f0; font-weight: 500; }
+    .ds-arch-treemap__svg-wrap { background: rgba(15,23,42,0.3); border-radius: 10px; border: 1px solid rgba(148,163,184,0.12); overflow: hidden; }
+    .ds-arch-treemap__svg { display: block; width: 100%; }
+    .ds-arch-treemap__toast { text-align: center; font-size: 13px; color: #fbbf24; margin-top: 8px; }
+    .ds-arch-treemap__err { color: #f87171; font-size: 14px; padding: 16px; }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js" crossorigin="anonymous"></script>
     <script src="js/app.js"></script>
     <script src="js/ds-quest-player.js"></script>
+    <script src="js/ds-arch-treemap.js"></script>
     <script>
     (function() {
         var tabs = document.querySelectorAll('.ds-stage-tab');
