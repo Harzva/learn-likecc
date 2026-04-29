@@ -62,8 +62,8 @@
 | 2 | 2026-04-30 | D1 | Replaced ds-two-col + ds-panel attribution layout with course-quote wrapper inside section-block; kept all content and strong-label pattern aligned to reference | Committed: fe0fe0e |
 | 3 | 2026-04-30 | D3 | Verified hero-stats gradient-text via global CSS rule under .cc-unpacked-hero-stats .stat-value; applies to all unpacked pages automatically | Committed: 905fc3f |
 | 4 | 2026-04-30 | D2 | Added interactive research cycle player to topic-deepscientist-unpacked.html #loop section: created data/ds-research-loop.json (5 steps), js/ds-research-loop-player.js (adapted from hermes-loop-player.js), updated HTML mount point and script tag; section retitled to emphasize loop nature | Committed: 0b3d172 |
-| 5 | 2026-04-30 | D4 | Checked knowledge-map section in topic-deepscientist-unpacked.html: verified treemap + knowledge-graph interactive modules present; fixed missing ds-arch-knowledge CSS by adding shared rules paired with cc-arch-knowledge selectors in style.css | No commit yet |
-| 6 | 2026-04-30 | H4 | Fixed section numbering in topic-hermes-unpacked.html: changed 02C → 02B for knowledge-map section; updated nav link from "02 图谱" → "02B 图谱" to match reference pattern | No commit yet |
+| 5 | 2026-04-30 | D4 | Checked knowledge-map section in topic-deepscientist-unpacked.html: verified treemap + knowledge-graph interactive modules present; fixed missing ds-arch-knowledge CSS by adding shared rules paired with cc-arch-knowledge selectors in style.css | Committed: 79fa1d9 |
+| 6 | 2026-04-30 | H4 | Fixed section numbering in topic-hermes-unpacked.html: changed 02C → 02B for knowledge-map section; updated nav link from "02 图谱" → "02B 图谱" to match reference pattern | Committed: 79fa1d9 |
 
 ---
 
