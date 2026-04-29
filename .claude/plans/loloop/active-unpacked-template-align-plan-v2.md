@@ -37,7 +37,7 @@
 - [x] Task UI2: Add hero-badge with topic label
 - [x] Task UI3: Expand hero-subtitle with stronger value proposition
 - [ ] Task UI4: Add interactive comparison module (three-column visual with hover states)
-- [ ] Task UI5: Add section numbering to all sections
+- [x] Task UI5: Add section numbering to all sections
 - [ ] Task UI6: Add knowledge-map or reference-links section at bottom
 
 ### P2: topic-everything-claude-code-unpacked.html
@@ -64,6 +64,7 @@
 | 4 | 2026-04-30 | D2 | Added interactive research cycle player to topic-deepscientist-unpacked.html #loop section: created data/ds-research-loop.json (5 steps), js/ds-research-loop-player.js (adapted from hermes-loop-player.js), updated HTML mount point and script tag; section retitled to emphasize loop nature | Committed: 0b3d172 |
 | 5 | 2026-04-30 | D4 | Checked knowledge-map section in topic-deepscientist-unpacked.html: verified treemap + knowledge-graph interactive modules present; fixed missing ds-arch-knowledge CSS by adding shared rules paired with cc-arch-knowledge selectors in style.css | Committed: 79fa1d9 |
 | 7 | 2026-04-30 | UI1 | Added hero-stats row to topic-design-ui-unpacked.html: 4 stats (3 shells / 6 ladder levels / 4 lessons / 1 criterion), hero-actions with CTAs, subtitle-note; visual density now matches reference | Committed: 2b7e461 |
+| 8 | 2026-04-30 | UI5 | Added 01-07 section numbering to topic-design-ui-unpacked.html: updated nav links (01 角色 / 02 LivePPT / 03 Slidev / 04 Remotion / 05 样例映射 / 06 插件梯度 / 07 值得学什么) and all h2 titles to match reference pattern | Committed: pending |
 
 ---
 
