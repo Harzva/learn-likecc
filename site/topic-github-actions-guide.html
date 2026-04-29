@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Actions 完全指南 - Everything in Claude-Code</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔄</text></svg>">
+    <meta name="description" content="GitHub Actions 从入门到进阶：30秒创建工作流、免费资源额度、Docker 自动构建、工作流结构拆解、性能优化与 CI Vitals 监控指标（WET/NFR/POT）。">
+    <meta name="page:updated" content="2026-04-29">
+</head>
+<body class="cc-unpacked-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">🔄</span>
+                <span class="logo-text">GitHub Actions 指南</span>
+            </a>
+            <div class="nav-links">
+                <a href="#quickstart" class="nav-link">30秒上手</a>
+                <a href="#structure" class="nav-link">工作流结构</a>
+                <a href="#optimize" class="nav-link">性能优化</a>
+                <a href="#vitals" class="nav-link">CI Vitals</a>
+                <a href="#docker" class="nav-link">Docker 实战</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-toolchain.html" class="btn-github">← 工具链专题</a>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>工具链专题</span>
+                <span>CI/CD 自动化</span>
+            </div>
+            <h1 class="hero-title">
+                GitHub Actions<br>
+                <span class="gradient-text">完全指南</span>
+            </h1>
+            <p class="hero-subtitle">
+                从 30 秒创建工作流到 CI Vitals 性能监控。<br>
+                覆盖<strong>入门配置、工作流结构、性能优化、Docker 自动构建</strong>的完整路径。
+            </p>
+            <div class="hero-stats cc-unpacked-hero-stats">
+                <div class="stat-item"><span class="stat-value">免费</span><span class="stat-label">公共仓库无限制</span></div>
+                <div class="stat-item"><span class="stat-value">2k</span><span class="stat-label">分钟/月 免费额度</span></div>
+                <div class="stat-item"><span class="stat-value">3</span><span class="stat-label">核心指标 WET/NFR/POT</span></div>
+                <div class="stat-item"><span class="stat-value">6h</span><span class="stat-label">单次运行上限</span></div>
+            </div>
+            <p class="hero-subtitle cc-unpacked-hero-subtitle-note">
+                免费 tier：2 核 CPU + 7GB 内存 + 14GB SSD。支持 Ubuntu / macOS / Windows。
+            </p>
+            <div class="hero-actions">
+                <a href="#quickstart" class="btn btn-primary">30 秒创建</a>
+                <a href="#structure" class="btn btn-secondary">先看结构</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="course-main devlog-main">
+        <div class="container container--layout-wide">
+            <article class="course-content devlog-content">
+
+                <section id="quickstart" class="section-block">
+                    <h2>30 秒创建一个工作流</h2>
+                    <p>在项目根目录创建 <code>.github/workflows/your-workflow.yml</code>：</p>
+                    <div class="code-block">
+<pre><code>name: CI
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Run a script
+      run: echo "Hello, GitHub Actions!"</code></pre>
+                    </div>
+                    <p class="section-desc">推送代码后自动触发。无需服务器，无需配置。</p>
+                </section>
+
+                <section id="resources" class="section-block">
+                    <h2>免费资源额度</h2>
+                    <div class="features-grid tool-features-grid">
+                        <div class="feature-card tool-card">
+                            <div class="feature-icon">🖥️</div>
+                            <h3 class="feature-title">2 核 CPU</h3>
+                            <p class="feature-desc">GitHub 托管运行器默认配置，公共仓库无并发限制。</p>
+                        </div>
+                        <div class="feature-card tool-card">
+                            <div class="feature-icon">💾</div>
+                            <h3 class="feature-title">7GB 内存</h3>
+                            <p class="feature-desc">足够运行大多数构建、测试和打包任务。</p>
+                        </div>
+                        <div class="feature-card tool-card">
+                            <div class="feature-icon">💽</div>
+                            <h3 class="feature-title">14GB SSD</h3>
+                            <p class="feature-desc">存储代码、依赖和构建产物。</p>
+                        </div>
+                        <div class="feature-card tool-card">
+                            <div class="feature-icon">⏱️</div>
+                            <h3 class="feature-title">2000 分钟/月</h3>
+                            <p class="feature-desc">免费账户每月可用时间，公共仓库 Actions 无限制。</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="structure" class="section-block">
+                    <h2>工作流核心结构</h2>
+                    <p>一个工作流由 4 层组成：Workflow → Job → Step → Action。</p>
+                    <table class="options-table">
+                        <tr><th>层级</th><th>说明</th><th>关键属性</th></tr>
+                        <tr><td>Workflow</td><td>顶层自动化流程</td><td><code>on</code> 触发条件、<code>jobs</code> 任务列表</td></tr>
+                        <tr><td>Job</td><td>同一运行器内的一组步骤</td><td><code>runs-on</code>、<code>needs</code> 依赖、<code>if</code> 条件</td></tr>
+                        <tr><td>Step</td><td>单个命令或 Action 调用</td><td><code>run</code> 命令、<code>uses</code> 引用、<code>id</code> 输出</td></tr>
+                        <tr><td>Action</td><td>可复用代码模块</td><td>GitHub Marketplace、本地 <code>./</code>、远程仓库</td></tr>
+                        <tr><td>Runner</td><td>执行作业的虚拟机/容器</td><td>ubuntu-latest、macos-latest、windows-latest</td></tr>
+                    </table>
+                </section>
+
+                <section id="lifecycle" class="section-block">
+                    <h2>工作流生命周期</h2>
+                    <div class="section-group">
+                        <h3>1. 初始化</h3>
+                        <p>读取 YAML 文件，创建工作流运行实例，解析触发事件与变量。</p>
+                    </div>
+                    <div class="section-group">
+                        <h3>2. DAG 执行</h3>
+                        <p>根据 <code>needs</code> 构建有向无环图。无依赖的 Job 并行执行，有依赖的按拓扑顺序运行。</p>
+                    </div>
+                    <div class="section-group">
+                        <h3>3. 步骤顺序执行</h3>
+                        <p>每个 Job 内的 Step 严格串行。失败即停止（可用 <code>continue-on-error: true</code> 覆盖）。</p>
+                    </div>
+                    <div class="section-group">
+                        <h3>4. 产物与缓存</h3>
+                        <p>用 <code>actions/upload-artifact</code> 和 <code>actions/download-artifact</code> 跨 Job 共享文件；用 <code>actions/cache</code> 加速依赖安装。</p>
+                    </div>
+                    <div class="section-group">
+                        <h3>5. 完成通知</h3>
+                        <p>最终状态：Success / Failure / Cancelled。可配置 Slack、邮件等通知。</p>
+                    </div>
+                </section>
+
+                <section id="optimize" class="section-block">
+                    <h2>性能优化策略</h2>
+                    <div class="section-group">
+                        <h3>并行化</h3>
+                        <p>删除不必要的 <code>needs</code> 依赖。把代码检查、单元测试等快速步骤放在前面，构建和集成测试放在后面。</p>
+                    </div>
+                    <div class="section-group">
+                        <h3>缓存依赖</h3>
+                        <pre class="code-block"><code>- uses: actions/cache@v4
+  with:
+    path: ~/.npm
+    key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}</code></pre>
+                    </div>
+                    <div class="section-group">
+                        <h3>构建产物复用</h3>
+                        <p>构建一次，通过 artifacts 在多个 Job 间共享，避免重复编译。</p>
+                    </div>
+                    <div class="section-group">
+                        <h3>矩阵策略</h3>
+                        <p>用 <code>strategy.matrix</code> 在多个 OS / 语言版本下并行测试，用 <code>max-parallel</code> 控制并发数。</p>
+                    </div>
+                    <div class="section-group">
+                        <h3>并发控制</h3>
+                        <pre class="code-block"><code>concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true</code></pre>
+                        <p>避免同一分支多次推送导致的工作流堆积。</p>
+                    </div>
+                </section>
+
+                <section id="vitals" class="section-block">
+                    <h2>CI Vitals：三个核心监控指标</h2>
+                    <div class="features-grid tool-features-grid">
+                        <div class="feature-card tool-card">
+                            <div class="feature-icon">🏎️</div>
+                            <h3 class="feature-title">WET</h3>
+                            <p class="feature-desc"><strong>Workflow Execution Time</strong>。工作流执行总时间。追踪 p75 和 p90 分布，识别变慢趋势。</p>
+                        </div>
+                        <div class="feature-card tool-card">
+                            <div class="feature-icon">🎯</div>
+                            <h3 class="feature-title">NFR</h3>
+                            <p class="feature-desc"><strong>Noise-to-Fix Ratio</strong>。基础设施失败 vs 真实 Bug 的比例。高 NFR 意味着团队对流水线失去信任。</p>
+                        </div>
+                        <div class="feature-card tool-card">
+                            <div class="feature-icon">🗑️</div>
+                            <h3 class="feature-title">POT</h3>
+                            <p class="feature-desc"><strong>Pipeline Overhead Time</strong>。排队、重试、缓存未命中导致的额外耗时。优化缓存键和并发策略可降低。</p>
+                        </div>
+                    </div>
+                    <h3>诊断速查</h3>
+                    <table class="options-table">
+                        <tr><th>指标下降</th><th>排查重点</th><th>快速修复</th></tr>
+                        <tr><td>WET 高</td><td>依赖链过长、缓存未命中、重复构建</td><td>删除多余 needs、加缓存、artifact 复用</td></tr>
+                        <tr><td>NFR 高</td><td>网络超时、外部服务不稳定、 flaky tests</td><td>加重试、设置超时、隔离外部依赖</td></tr>
+                        <tr><td>POT 高</td><td>排队时间、重试频率、缓存命中率低</td><td>优化缓存键、合并步骤、智能并发</td></tr>
+                    </table>
+                </section>
+
+                <section id="docker" class="section-block">
+                    <h2>实战：自动构建 Docker 镜像</h2>
+                    <div class="code-block">
+<pre><code>name: Docker CI
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Build and push
+      env:
+        REPO: ${{ secrets.DOCKER_REPOSITORY }}
+        USER: ${{ secrets.DOCKER_USERNAME }}
+        PASS: ${{ secrets.DOCKER_PASSWORD }}
+      run: |
+        docker login -u $USER -p $PASS
+        docker build -t $REPO:${{ github.sha }} .
+        docker push $REPO:${{ github.sha }}
+
+    - name: Deploy
+      run: echo "Deploy success!"</code></pre>
+                    </div>
+                    <p class="section-desc">每次推送到 main 分支，自动构建并推送带 commit hash 标签的 Docker 镜像。</p>
+                </section>
+
+                <section id="advanced" class="section-block">
+                    <h2>进阶技巧</h2>
+                    <div class="section-group">
+                        <h3>密钥管理</h3>
+                        <p>敏感信息绝不硬编码。使用 GitHub Secrets + <code>${{ secrets.NAME }}</code> 注入。</p>
+                    </div>
+                    <div class="section-group">
+                        <h3>工作流复用</h3>
+                        <pre class="code-block"><code># .github/workflows/reusable.yml
+on:
+  workflow_call:
+
+jobs:
+  reusable_job:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "I'm reusable!"
+
+# 调用方
+jobs:
+  call:
+    uses: ./.github/workflows/reusable.yml</code></pre>
+                    </div>
+                    <div class="section-group">
+                        <h3>定时触发</h3>
+                        <pre class="code-block"><code>on:
+  schedule:
+    - cron: '0 0 * * *'  # 每天零点</code></pre>
+                    </div>
+                    <div class="section-group">
+                        <h3>条件执行</h3>
+                        <pre class="code-block"><code>if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+# 或基于前序结果
+if: always()  # 即使失败也执行
+if: failure()  # 仅失败时执行</code></pre>
+                    </div>
+                </section>
+
+                <nav class="chapter-navigation">
+                    <a href="topic-toolchain.html" class="chapter-nav-prev">
+                        <span class="chapter-nav-label">← 工具链专题</span>
+                        <span class="chapter-nav-title">AI Coding Agent 工具链总览</span>
+                    </a>
+                    <a href="topic-abtop-guide.html" class="chapter-nav-next">
+                        <span class="chapter-nav-label">abtop — AI Agent 监控仪表盘 →</span>
+                        <span class="chapter-nav-title">一屏查看多会话状态、Token 用量与 Rate Limit</span>
+                    </a>
+                </nav>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html">首页</a>
+                <a href="topic-toolchain.html">工具链专题</a>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" class="back-to-top" aria-label="回到顶部">↑</button>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
