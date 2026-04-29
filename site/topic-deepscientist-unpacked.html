@@ -23,6 +23,7 @@
                 <a href="#control-plane" class="nav-link">03 控制面</a>
                 <a href="#quest-state" class="nav-link">04 Quest 状态</a>
                 <a href="#surfaces" class="nav-link">05 界面与连接器</a>
+                <a href="#connectors" class="nav-link">05B 连接器目录</a>
                 <a href="#gallery" class="nav-link">图集</a>
                 <a href="#loop" class="nav-link">06 研究循环</a>
                 <a href="#lessons" class="nav-link">07 值得学什么</a>
@@ -317,6 +318,12 @@
                     </div>
                 </section>
 
+                <section id="connectors" class="section-block">
+                    <h2 class="ds-section-title">05B · Connector 与 Tool Catalog</h2>
+                    <p class="section-desc">DeepScientist 不是单一入口的黑盒，而是多面协作系统。下图按<strong>外部连接器</strong>、<strong>界面层</strong>、<strong>核心系统</strong>、<strong>研究阶段</strong>四类整理其组件目录。颜色区分职能，悬停可查看职责标签。</p>
+                    <div id="ds-connector-wall-mount" class="ds-connector-wall" data-json="data/ds-connectors.json" role="region" aria-label="DeepScientist 连接器与工具目录"></div>
+                </section>
+
                 <section id="gallery" class="section-block">
                     <h2 class="ds-section-title">图集 · 研究产品的可视证据</h2>
                     <p class="section-desc">下面这些截图来自 DeepScientist 官方素材与 README 资源，用来直观看到“可见工作区”与“研究过程可视化”到底长什么样。</p>
@@ -537,11 +544,35 @@
     .ds-arch-treemap__svg { display: block; width: 100%; }
     .ds-arch-treemap__toast { text-align: center; font-size: 13px; color: #fbbf24; margin-top: 8px; }
     .ds-arch-treemap__err { color: #f87171; font-size: 14px; padding: 16px; }
+    /* ds-connector-wall styles */
+    .ds-connector-wall { margin: 20px 0; }
+    .ds-wall__head { margin-bottom: 16px; }
+    .ds-wall__title { font-size: 18px; font-weight: 600; margin: 0 0 6px; color: #e2e8f0; }
+    .ds-wall__sub { font-size: 14px; color: #94a3b8; margin: 0; }
+    .ds-wall__grid { display: grid; gap: 16px; }
+    .ds-wall-cat { border: 1px solid rgba(148,163,184,0.12); border-radius: 10px; padding: 16px; background: rgba(15,23,42,0.3); }
+    .ds-wall-cat__title { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; margin: 0 0 12px; color: #e2e8f0; }
+    .ds-wall-cat__bar { width: 4px; height: 16px; border-radius: 2px; background: #60a5fa; }
+    .ds-wall-cat--green .ds-wall-cat__bar { background: #4ade80; }
+    .ds-wall-cat--blue .ds-wall-cat__bar { background: #60a5fa; }
+    .ds-wall-cat--amber .ds-wall-cat__bar { background: #fbbf24; }
+    .ds-wall-cat--violet .ds-wall-cat__bar { background: #a78bfa; }
+    .ds-wall-cat__count { margin-left: auto; font-size: 12px; color: #64748b; background: rgba(148,163,184,0.1); padding: 2px 8px; border-radius: 12px; }
+    .ds-wall-cat__row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .ds-wall-pill { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 20px; border: 1px solid rgba(148,163,184,0.15); background: rgba(15,23,42,0.5); color: #e2e8f0; font-size: 13.5px; cursor: default; transition: all .15s ease; }
+    .ds-wall-pill:hover { border-color: rgba(148,163,184,0.35); transform: translateY(-1px); background: rgba(15,23,42,0.7); }
+    .ds-wall-pill strong { font-weight: 500; }
+    .ds-wall-pill__tag { font-size: 11.5px; color: #94a3b8; padding-left: 6px; border-left: 1px solid rgba(148,163,184,0.15); }
+    .ds-wall__err { color: #f87171; font-size: 14px; padding: 16px; }
+    @media (min-width: 768px) {
+      .ds-wall__grid { grid-template-columns: repeat(2, 1fr); }
+    }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js" crossorigin="anonymous"></script>
     <script src="js/app.js"></script>
     <script src="js/ds-quest-player.js"></script>
     <script src="js/ds-arch-treemap.js"></script>
+    <script src="js/ds-connector-wall.js"></script>
     <script>
     (function() {
         var tabs = document.querySelectorAll('.ds-stage-tab');

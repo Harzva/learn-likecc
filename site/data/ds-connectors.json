@@ -1,0 +1,59 @@
+{
+  "meta": {
+    "updated": "2026-04-29",
+    "note_zh": "DeepScientist connector 与工具目录：外部协作面 + 内部核心组件"
+  },
+  "connector_wall": {
+    "title": "Connector & Tool Catalog",
+    "subtitle": "外部协作面与内部核心组件",
+    "categories": [
+      {
+        "id": "connectors",
+        "title": "外部连接器",
+        "accent": "green",
+        "pills": [
+          { "name": "Weixin", "tag": "微信", "type": "connector" },
+          { "name": "QQ", "tag": "腾讯", "type": "connector" },
+          { "name": "Telegram", "tag": "海外", "type": "connector" },
+          { "name": "Feishu", "tag": "飞书", "type": "connector" }
+        ]
+      },
+      {
+        "id": "surfaces",
+        "title": "界面层",
+        "accent": "blue",
+        "pills": [
+          { "name": "Web Workspace", "tag": "主工作区", "type": "surface" },
+          { "name": "Canvas", "tag": "可视化画布", "type": "surface" },
+          { "name": "Studio", "tag": "阶段视图", "type": "surface" },
+          { "name": "Details", "tag": "详情面板", "type": "surface" },
+          { "name": "TUI", "tag": "终端界面", "type": "surface" }
+        ]
+      },
+      {
+        "id": "core",
+        "title": "核心系统",
+        "accent": "amber",
+        "pills": [
+          { "name": "Quest OS", "tag": "one repo per quest", "type": "core" },
+          { "name": "Findings Memory", "tag": "持久状态", "type": "core" },
+          { "name": "Stage Workflow", "tag": "阶段推进", "type": "core" },
+          { "name": "Artifact Manager", "tag": "产物管理", "type": "core" },
+          { "name": "Human Takeover", "tag": "人工接管", "type": "core" }
+        ]
+      },
+      {
+        "id": "stages",
+        "title": "研究阶段",
+        "accent": "violet",
+        "pills": [
+          { "name": "Quest Init", "tag": "课题初始化", "type": "stage" },
+          { "name": "Baseline", "tag": "基准复现", "type": "stage" },
+          { "name": "Experiment", "tag": "实验轮次", "type": "stage" },
+          { "name": "Analysis", "tag": "分析归纳", "type": "stage" },
+          { "name": "Write", "tag": "撰写输出", "type": "stage" }
+        ]
+      }
+    ]
+  }
+}
