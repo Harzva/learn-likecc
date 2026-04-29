@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☤</text></svg>">
     <meta name="description" content="庖丁解牛专题子页：拆解 Hermes Agent 如何把 agent loop、工具注册、记忆/技能、gateway、cron 与环境后端拼成一个长期运行的 agent 操作层。">
-    <meta name="page:updated" content="2026-04-12">
+    <meta name="page:updated" content="2026-04-29">
 </head>
 <body class="cc-unpacked-page">
     <nav class="navbar">
@@ -87,15 +87,134 @@
 
                 <section id="layers" class="section-block">
                     <h2>02 · 先拆成六层：Hermes 到底在拼什么</h2>
-                    <table class="options-table">
-                        <tr><th>层次</th><th>关键锚点</th><th>解决的问题</th></tr>
-                        <tr><td>入口壳</td><td><code>hermes_cli/</code>、README 的 CLI / Gateway 双入口</td><td>用户是从终端进入，还是从 Telegram / Discord / Slack 进入</td></tr>
-                        <tr><td>控制面</td><td><code>run_agent.py</code> 的 <code>AIAgent</code></td><td>模型调用、提示词拼装、工具回环、压缩、重试、持久化</td></tr>
-                        <tr><td>工具执行面</td><td><code>model_tools.py</code>、<code>tools/registry.py</code></td><td>工具如何被注册、筛选、分派到不同 toolset</td></tr>
-                        <tr><td>长期记忆层</td><td><code>tools/memory_tool.py</code>、<code>agent/memory_manager.py</code></td><td>会话之外还能记住什么，何时刷回 memory / user profile</td></tr>
-                        <tr><td>技能层</td><td><code>tools/skills_tool.py</code>、<code>tools/skill_manager_tool.py</code>、README 的 learning loop</td><td>把经验沉淀为可复用 skill，而不是只留在聊天记录里</td></tr>
-                        <tr><td>平台与时间轴</td><td><code>gateway/</code>、<code>cron/scheduler.py</code>、<code>environments/</code></td><td>消息从哪里进来、任务何时触发、执行落在哪个环境</td></tr>
-                    </table>
+                    <div class="features-accordion hermes-layer-explorer">
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span class="accordion-icon">🚪</span>
+                                <h3>入口壳</h3>
+                                <span class="accordion-desc">CLI / Gateway 双入口</span>
+                                <span class="accordion-toggle">+</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="feature-detail">
+                                    <p><strong>关键锚点</strong>：<code>hermes_cli/</code>、README 的 CLI / Gateway 双入口</p>
+                                    <p><strong>子组件</strong>：</p>
+                                    <ul>
+                                        <li><code>hermes_cli/main.py</code> — 终端入口与 REPL 循环</li>
+                                        <li><code>gateway/run.py</code> — 消息网关主服务</li>
+                                        <li><code>gateway/adapters/</code> — Telegram / Discord / Slack / WhatsApp / Signal 平台适配器</li>
+                                    </ul>
+                                    <p class="section-desc section-desc--tight">解决的问题：用户是从终端进入，还是从消息平台进入。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span class="accordion-icon">🧠</span>
+                                <h3>控制面</h3>
+                                <span class="accordion-desc">AIAgent 主循环</span>
+                                <span class="accordion-toggle">+</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="feature-detail">
+                                    <p><strong>关键锚点</strong>：<code>run_agent.py</code> 的 <code>AIAgent</code></p>
+                                    <p><strong>子组件</strong>：</p>
+                                    <ul>
+                                        <li><code>AIAgent.run_conversation()</code> — 主对话循环</li>
+                                        <li><code>prompt_builder</code> — 系统提示词组装</li>
+                                        <li><code>runtime_provider</code> — 模型 provider 选择</li>
+                                        <li><code>model_tools.handle_function_call()</code> — 工具调用处理</li>
+                                        <li>压缩、重试、持久化、background review</li>
+                                    </ul>
+                                    <p class="section-desc section-desc--tight">解决的问题：模型调用、提示词拼装、工具回环、压缩、重试、持久化。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span class="accordion-icon">🧰</span>
+                                <h3>工具执行面</h3>
+                                <span class="accordion-desc">工具注册与分派</span>
+                                <span class="accordion-toggle">+</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="feature-detail">
+                                    <p><strong>关键锚点</strong>：<code>model_tools.py</code>、<code>tools/registry.py</code></p>
+                                    <p><strong>子组件</strong>：</p>
+                                    <ul>
+                                        <li><code>tools/registry.py</code> — 工具注册中心（schema、handler、toolset 关系）</li>
+                                        <li><code>model_tools.py</code> — 本轮可用工具筛选</li>
+                                        <li><code>tools/terminal_tool.py</code> — 终端执行抽象</li>
+                                        <li><code>tools/delegate_tool.py</code> — 子代理委派</li>
+                                    </ul>
+                                    <p class="section-desc section-desc--tight">解决的问题：工具如何被注册、筛选、分派到不同 toolset。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span class="accordion-icon">💾</span>
+                                <h3>长期记忆层</h3>
+                                <span class="accordion-desc">Memory / User Profile</span>
+                                <span class="accordion-toggle">+</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="feature-detail">
+                                    <p><strong>关键锚点</strong>：<code>tools/memory_tool.py</code>、<code>agent/memory_manager.py</code></p>
+                                    <p><strong>子组件</strong>：</p>
+                                    <ul>
+                                        <li><code>MemoryStore</code> — 文件落盘 + 冻结快照</li>
+                                        <li><code>agent/memory_manager.py</code> — provider orchestration 层</li>
+                                        <li><code>_turns_since_memory</code> — 记忆写入节流计数</li>
+                                        <li>background review 线程 — 判断是否值得写入 memory</li>
+                                    </ul>
+                                    <p class="section-desc section-desc--tight">解决的问题：会话之外还能记住什么，何时刷回 memory / user profile。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span class="accordion-icon">🎓</span>
+                                <h3>技能层</h3>
+                                <span class="accordion-desc">Skills / Skill Manager</span>
+                                <span class="accordion-toggle">+</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="feature-detail">
+                                    <p><strong>关键锚点</strong>：<code>tools/skills_tool.py</code>、<code>tools/skill_manager_tool.py</code></p>
+                                    <p><strong>子组件</strong>：</p>
+                                    <ul>
+                                        <li><code>skills_list</code> / <code>skill_view</code> — 渐进披露</li>
+                                        <li><code>skill_manage</code> — 创建和改写 skill</li>
+                                        <li><code>_iters_since_skill</code> — 技能写入节流计数</li>
+                                        <li>learning loop — 经验沉淀为可复用 skill</li>
+                                    </ul>
+                                    <p class="section-desc section-desc--tight">解决的问题：把经验沉淀为可复用 skill，而不是只留在聊天记录里。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span class="accordion-icon">🌐</span>
+                                <h3>平台与时间轴</h3>
+                                <span class="accordion-desc">Gateway / Cron / Environment</span>
+                                <span class="accordion-toggle">+</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="feature-detail">
+                                    <p><strong>关键锚点</strong>：<code>gateway/</code>、<code>cron/scheduler.py</code>、<code>environments/</code></p>
+                                    <p><strong>子组件</strong>：</p>
+                                    <ul>
+                                        <li><code>gateway/session.py</code> — session key、identity、reset policy</li>
+                                        <li><code>cron/scheduler.py</code> — 定时任务调度</li>
+                                        <li><code>environments/</code> — Local / Docker / SSH / Daytona / Singularity / Modal 后端</li>
+                                        <li><code>SessionStore</code> — SQLite + JSONL 双轨历史</li>
+                                    </ul>
+                                    <p class="section-desc section-desc--tight">解决的问题：消息从哪里进来、任务何时触发、执行落在哪个环境。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <p class="section-desc section-desc--tight">所以 Hermes 不只是"Agent 本体"，它更接近一个长期运行的 <strong>agent OS / agent operations layer</strong>。</p>
                     <figure class="mermaid-figure mermaid-figure--main" aria-label="Hermes 六层结构图">
                         <figcaption class="mermaid-caption">
@@ -274,5 +393,35 @@
         </div>
     </footer>
     <script src="js/app.js"></script>
+    <script>
+        // Hermes interactive layer explorer accordion
+        document.addEventListener('DOMContentLoaded', () => {
+            const accordionHeaders = document.querySelectorAll('.hermes-layer-explorer .accordion-header')
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const item = header.parentElement
+                    const content = item.querySelector('.accordion-content')
+                    const toggle = header.querySelector('.accordion-toggle')
+
+                    if (item.classList.contains('active')) {
+                        item.classList.remove('active')
+                        content.style.maxHeight = '0'
+                        toggle.textContent = '+'
+                    } else {
+                        // Close other items
+                        document.querySelectorAll('.hermes-layer-explorer .accordion-item.active').forEach(activeItem => {
+                            activeItem.classList.remove('active')
+                            activeItem.querySelector('.accordion-content').style.maxHeight = '0'
+                            activeItem.querySelector('.accordion-toggle').textContent = '+'
+                        })
+                        // Open current
+                        item.classList.add('active')
+                        content.style.maxHeight = content.scrollHeight + 'px'
+                        toggle.textContent = '-'
+                    }
+                })
+            })
+        })
+    </script>
 </body>
 </html>

@@ -48,7 +48,7 @@ When a loop iteration has no better task, scan this pool and choose the highest-
 - [x] **T5. DeepScientist knowledge graph** — network diagram showing how layers connect
 - [x] **T6. DeepScientist data table** — stage-to-asset mapping table with links to reference docs
 - [x] **T7. Hermes stats strip & hero alignment** — add layer count, API surface count, protocol count
-- [ ] **T8. Hermes interactive layer explorer** — expandable layer cards with sub-component breakdown
+- [x] **T8. Hermes interactive layer explorer** — expandable layer cards with sub-component breakdown
 - [ ] **T9. Cross-page reading-path component** — reusable "← back to hub / → next topic" strip for all unpacked pages
 - [ ] **T10. Template compliance audit script** — a one-page checklist or script that scores any unpacked page against the 10-item benchmark
 
@@ -60,4 +60,4 @@ When a loop iteration has no better task, scan this pool and choose the highest-
 
 ## Next Handoff
 
-Current active: **T7** (Hermes stats strip & hero alignment) — add layer count, API surface count, protocol count.
+Current active: **T9** (Cross-page reading-path component) — reusable "← back to hub / → next topic" strip for all unpacked pages.
