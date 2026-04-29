@@ -1,0 +1,61 @@
+{
+  "feature_cards": {
+    "note_zh": "以下特性在 DeepScientist 代码库中已有痕迹或文档提及，但可能受特性开关、环境变量或未默认开启的门槛控制。是否在你使用的版本中可用，请以官方发布说明为准。此处仅帮助读源码时「知道该搜什么关键词」。",
+    "cards": [
+      {
+        "id": "multi-quest",
+        "title": "Multi-Quest Orchestration",
+        "blurb": "多 quest 并行编排",
+        "body": "DeepScientist 的架构天然支持 one repo per quest，但代码中存在多 quest 同时运行与协调的扩展点。\n\n这意味着未来可能支持：并行探索多个研究假设、跨 quest 的结果对比、以及统一的仪表盘监控多个研究进度。\n\n搜索关键词：quest orchestrator、multi-quest、workspace manager。",
+        "links": [
+          {"href": "https://github.com/ResearAI/DeepScientist/blob/main/docs/en/13_CORE_ARCHITECTURE_GUIDE.md", "text": "13_CORE_ARCHITECTURE_GUIDE"}
+        ]
+      },
+      {
+        "id": "advanced-connectors",
+        "title": "Advanced Connectors",
+        "blurb": "高级连接器协议",
+        "body": "当前已有 Weixin / QQ / Telegram / Feishu 等连接器，但代码中存在更通用的 webhook 与自定义 connector 接口。\n\n这意味着可以接入：Slack App、Discord Bot、企业微信自建应用、飞书多维表格、甚至私有消息总线。\n\n搜索关键词：connector base class、webhook adapter、platform registry。",
+        "links": [
+          {"href": "https://github.com/ResearAI/DeepScientist/blob/main/tests/test_connector_bridges.py", "text": "test_connector_bridges.py"}
+        ]
+      },
+      {
+        "id": "hypothesis-gen",
+        "title": "AI Hypothesis Generator",
+        "blurb": "AI 辅助假设生成",
+        "body": "在 quest 初始化阶段，代码中存在基于文献输入自动生成研究假设的扩展点。\n\n这不是简单的「帮我读 paper」，而是：从文献中提取 gap、生成可验证假设、自动设计 baseline 与实验变量。\n\n搜索关键词：hypothesis generation、literature gap、experiment design。",
+        "links": [
+          {"href": "https://github.com/ResearAI/DeepScientist/blob/main/docs/en/02_START_RESEARCH_GUIDE.md", "text": "02_START_RESEARCH_GUIDE"}
+        ]
+      },
+      {
+        "id": "collab-mode",
+        "title": "Collaborative Research Mode",
+        "blurb": "协作研究模式",
+        "body": "DeepScientist 的 connector 层设计暗示了多人协作的可能性：多个研究者通过不同入口查看同一 quest 的进度、各自接管不同阶段、结果实时同步。\n\n这与传统的单用户 research bot 不同，更接近「研究项目管理」的协作面。\n\n搜索关键词：multi-user、collaboration、shared workspace、role-based access。",
+        "links": [
+          {"href": "https://github.com/ResearAI/DeepScientist/blob/main/docs/en/06_RUNTIME_AND_CANVAS.md", "text": "06_RUNTIME_AND_CANVAS"}
+        ]
+      },
+      {
+        "id": "peer-review",
+        "title": "Automated Peer Review",
+        "blurb": "自动同行评审",
+        "body": "在 write 阶段，代码中存在对 paper output 进行自动质量检查的扩展点：格式校验、引用完整性、图表清晰度、论证链一致性。\n\n未来可能扩展为：基于领域知识库的对标评审、自动发现与已发表工作的冲突、甚至模拟 reviewer 反馈。\n\n搜索关键词：review pipeline、quality gate、citation check、argument validation。",
+        "links": [
+          {"href": "https://github.com/ResearAI/DeepScientist/blob/main/docs/en/26_CITATION_AND_ATTRIBUTION.md", "text": "26_CITATION_AND_ATTRIBUTION"}
+        ]
+      },
+      {
+        "id": "cross-quest-memory",
+        "title": "Cross-Quest Memory Bridge",
+        "blurb": "跨 quest 记忆桥接",
+        "body": "Findings Memory 当前是按 quest 隔离的，但架构中存在跨 quest 知识复用的接口痕迹。\n\n这意味着：一个 quest 的失败经验可以自动成为另一个 quest 的「已知陷阱」；通用方法论可以从已完成的 quest 中提取并注入新 quest。\n\n搜索关键词：cross-quest memory、knowledge transfer、findings library、pattern reuse。",
+        "links": [
+          {"href": "https://github.com/ResearAI/DeepScientist/blob/main/docs/en/07_MEMORY_AND_MCP.md", "text": "07_MEMORY_AND_MCP"}
+        ]
+      }
+    ]
+  }
+}

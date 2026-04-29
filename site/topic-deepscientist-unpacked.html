@@ -28,6 +28,7 @@
                 <a href="#connectors" class="nav-link">05B 连接器目录</a>
                 <a href="#gallery" class="nav-link">图集</a>
                 <a href="#loop" class="nav-link">06 研究循环</a>
+                <a href="#experimental" class="nav-link">08 实验</a>
                 <a href="#lessons" class="nav-link">07 值得学什么</a>
             </div>
             <div class="nav-actions">
@@ -385,6 +386,16 @@
                     <p>所以 VibePaper 这条线不能只写一个总评。Autoresearch 和 DeepScientist 看的是同一个问题，但把问题切开的方式完全不同：一个更像“研究循环协议”，一个更像“研究工作台操作层”。</p>
                 </section>
 
+                <section id="experimental" class="section-block">
+                    <h2 class="ds-section-title">08 · 实验与代码中存在的未来能力</h2>
+                    <p class="section-desc">DeepScientist 仓库内存在<strong>特性开关、扩展接口或未默认开启</strong>的能力。下列卡片按「代码中已有痕迹 / 架构已预留」的标准筛选。<strong>是否在你使用的版本中可用，请以官方发布说明为准</strong>；此处仅帮助读源码时「知道该搜什么关键词」。</p>
+                    <div id="cc-feature-cards-mount" class="cc-feature-cards" data-json="data/ds-feature-cards.json" role="region" aria-label="DeepScientist 实验特性卡片"></div>
+                    <ul style="margin-top:16px;">
+                        <li>阅读时配合 <a href="https://github.com/ResearAI/DeepScientist/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">官方 CHANGELOG</a>，避免把实验实现当成稳定契约。</li>
+                        <li>连接器扩展见 <a href="https://github.com/ResearAI/DeepScientist/tree/main/tests" target="_blank" rel="noopener noreferrer">tests/</a> 与 connector 相关测试文件。</li>
+                    </ul>
+                </section>
+
                 <section id="lessons" class="section-block">
                     <h2 class="ds-section-title">07 · 对我们自己的站点和值得学什么</h2>
                     <div class="ds-panel">
@@ -596,6 +607,7 @@
     <script src="js/ds-arch-treemap.js"></script>
     <script src="js/ds-arch-knowledge.js"></script>
     <script src="js/ds-connector-wall.js"></script>
+    <script src="js/cc-feature-cards.js"></script>
     <script>
     (function() {
         var tabs = document.querySelectorAll('.ds-stage-tab');

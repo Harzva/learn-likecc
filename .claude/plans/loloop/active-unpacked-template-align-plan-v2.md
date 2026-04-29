@@ -72,7 +72,10 @@ When a loop iteration has no better task, scan this pool and choose the highest-
 
 ### DeepScientist (P1 — audit 94%, minor polish)
 
-- [ ] **D1. Experimental section** — feature flags, gated capabilities, preview cards (only missing item from audit)
+- [x] **D1. Experimental section** — feature flags, gated capabilities, preview cards (only missing item from audit)
+  - ✅ Done: Added `site/data/ds-feature-cards.json` + 08 实验 section to `topic-deepscientist-unpacked.html`
+  - 6 feature cards: Multi-Quest Orchestration, Advanced Connectors, AI Hypothesis Generator, Collaborative Research Mode, Automated Peer Review, Cross-Quest Memory Bridge
+  - Reuses `cc-feature-cards.js` CSS/JS contract with `data/ds-feature-cards.json`; verified in local HTTP preview
 
 ### Shared Infrastructure
 
