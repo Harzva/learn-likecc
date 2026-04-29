@@ -36,8 +36,7 @@
 
 | 资源 | 描述 |
 |------|------|
-| [microsoft/graphrag](https://github.com/microsoft/graphrag) | 微软 GraphRAG 参考实现 |
-| [neo4j/neo4j](https://github.com/neo4j/neo4j) | 图数据库，常与 KG-RAG 联用 |
+| [FalkorDB/GraphRAG-SDK](https://github.com/FalkorDB/GraphRAG-SDK) | FalkorDB 图数据库的 GraphRAG SDK，支持知识图谱构建与 Cypher 查询增强检索 | Python |
 
 ## 评测与数据
 
@@ -63,4 +62,4 @@
 
 ---
 
-*最后更新: 2026-04-04*
+*最后更新: 2026-04-30*
