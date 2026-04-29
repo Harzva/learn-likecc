@@ -1,0 +1,502 @@
+{
+  "meta": {
+    "updated": "2026-04-30",
+    "source": "site/topic-design-ui-unpacked.html",
+    "note_zh": "节点为 Design/UI 三条表达壳层与插件梯度层级；边为教学向层级关系归纳，帮助判断‘当前内容该用哪条工具链’。"
+  },
+  "legend": [
+    {
+      "key": "liveppt",
+      "label": "LivePPT",
+      "hint": "内容 → Deck"
+    },
+    {
+      "key": "slidev",
+      "label": "Slidev",
+      "hint": "开发者讲义系统"
+    },
+    {
+      "key": "remotion",
+      "label": "Remotion",
+      "hint": "程序化视频引擎"
+    },
+    {
+      "key": "plugin",
+      "label": "插件梯度",
+      "hint": "图 → 截图 → Deck → Slides → Video"
+    },
+    {
+      "key": "concept",
+      "label": "核心概念",
+      "hint": "角色 / 层级 / 判断标准"
+    },
+    {
+      "key": "infra",
+      "label": "共享基础设施",
+      "hint": "Markdown / React / 导出"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "cat:liveppt",
+      "key": "liveppt",
+      "label": "LivePPT",
+      "kind": "category",
+      "cat": "liveppt",
+      "size": 20,
+      "hint": "演示页生成器",
+      "description": "把已有 Markdown / README 快速变成 HTML deck。",
+      "analysis": "LivePPT 的定位是‘内容先行’：不重新组织信息，而是把现有内容快速套进可演示的壳。适合成熟专题的二次包装。",
+      "read_hint": "先看 topic-design-ui-unpacked.html #liveppt 和 #sample-map，理解‘同一份内容如何被压缩成 deck 页序’。"
+    },
+    {
+      "id": "cat:slidev",
+      "key": "slidev",
+      "label": "Slidev",
+      "kind": "category",
+      "cat": "slidev",
+      "size": 22,
+      "hint": "开发者讲义系统",
+      "description": "Markdown slides + live coding + drawing + export。",
+      "analysis": "Slidev 的核心不在‘做幻灯片’，而在‘开发者怎么讲清楚一件事’。它把代码、图表、演示和导出整合成一条工作流。",
+      "read_hint": "先看 topic-design-ui-unpacked.html #slidev，理解开发者讲义和普通 PPT 的差异。"
+    },
+    {
+      "id": "cat:remotion",
+      "key": "remotion",
+      "label": "Remotion",
+      "kind": "category",
+      "cat": "remotion",
+      "size": 18,
+      "hint": "程序化视频引擎",
+      "description": "用 React 直接做可编排的视频和动画表达。",
+      "analysis": "Remotion 代表表达层级的最上层：从图文走向镜头感、动画和短视频传播。它不是替代 deck/slides，而是升级最强主线。",
+      "read_hint": "先看 topic-design-ui-unpacked.html #remotion，理解‘节奏化镜头’和‘静态页的根本差异’。"
+    },
+    {
+      "id": "cat:plugin",
+      "key": "plugin",
+      "label": "插件梯度",
+      "kind": "category",
+      "cat": "plugin",
+      "size": 24,
+      "hint": "图 / 截图 / Deck / Slides / Video",
+      "description": "从 Mermaid 结构图到 Remotion 视频的五层表达梯度。",
+      "analysis": "插件梯度的意义是‘不再把所有表达手段混成做个图’，而是先判断自己处在哪一层，再决定该用哪条工具链。",
+      "read_hint": "先看 topic-design-ui-unpacked.html #plugin-ladder，建立‘层级意识’后再回看图谱。"
+    },
+    {
+      "id": "cat:concept",
+      "key": "concept",
+      "label": "核心概念",
+      "kind": "category",
+      "cat": "concept",
+      "size": 14,
+      "hint": "角色 / 层级 / 判断标准",
+      "description": "Design/UI 线的核心判断框架。",
+      "analysis": "概念层不绑定任何具体工具，回答的是‘我怎么判断当前内容该用哪条工具链’。"
+    },
+    {
+      "id": "node:markdown-to-deck",
+      "key": "markdown-to-deck",
+      "label": "Markdown → Deck",
+      "kind": "folder",
+      "cat": "liveppt",
+      "size": 8,
+      "parent": "cat:liveppt",
+      "description": "LivePPT 的核心转换路径。",
+      "analysis": "不是‘写 slide’，而是‘已有内容快速套壳’。速度优先，不重新组织结构。"
+    },
+    {
+      "id": "node:html-deck",
+      "key": "html-deck",
+      "label": "HTML Deck 输出",
+      "kind": "folder",
+      "cat": "liveppt",
+      "size": 6,
+      "parent": "cat:liveppt",
+      "description": "输出为可分享的 HTML 页面。",
+      "analysis": "浏览器即可打开，无需安装，适合快速分享和传播。"
+    },
+    {
+      "id": "node:md-slides",
+      "key": "md-slides",
+      "label": "Markdown Slides",
+      "kind": "folder",
+      "cat": "slidev",
+      "size": 8,
+      "parent": "cat:slidev",
+      "description": "用 Markdown 写 slides 的结构。",
+      "analysis": "开发者最自然的写作方式，不切换工具即可完成内容+结构。"
+    },
+    {
+      "id": "node:live-coding",
+      "key": "live-coding",
+      "label": "Live Coding",
+      "kind": "folder",
+      "cat": "slidev",
+      "size": 7,
+      "parent": "cat:slidev",
+      "description": "在 slide 中直接演示代码。",
+      "analysis": "这是 Slidev 区别于普通 PPT 的关键能力：代码不是截图，是活的。"
+    },
+    {
+      "id": "node:drawing",
+      "key": "drawing",
+      "label": "Drawing / 标注",
+      "kind": "folder",
+      "cat": "slidev",
+      "size": 6,
+      "parent": "cat:slidev",
+      "description": "在演示时实时标注和绘图。",
+      "analysis": "Presenter Mode 的辅助工具，让讲解更灵活。"
+    },
+    {
+      "id": "node:export",
+      "key": "export",
+      "label": "Export (PDF/PPTX)",
+      "kind": "folder",
+      "cat": "slidev",
+      "size": 6,
+      "parent": "cat:slidev",
+      "description": "导出为静态格式分发。",
+      "analysis": "讲义需要二次分发时，导出保证兼容性。"
+    },
+    {
+      "id": "node:react-video",
+      "key": "react-video",
+      "label": "React → Video",
+      "kind": "folder",
+      "cat": "remotion",
+      "size": 9,
+      "parent": "cat:remotion",
+      "description": "用 React 组件定义视频帧。",
+      "analysis": "把视频制作变成代码问题：可版本控制、可复用、可自动化。"
+    },
+    {
+      "id": "node:animation",
+      "key": "animation",
+      "label": "Animation / 动画",
+      "kind": "folder",
+      "cat": "remotion",
+      "size": 7,
+      "parent": "cat:remotion",
+      "description": "帧级别的动画控制。",
+      "analysis": "不是‘加几个过渡效果’，而是‘每一帧都精确可控’。"
+    },
+    {
+      "id": "node:storytelling",
+      "key": "storytelling",
+      "label": "节奏化叙事",
+      "kind": "folder",
+      "cat": "remotion",
+      "size": 6,
+      "parent": "cat:remotion",
+      "description": "把信息变成有节奏的镜头序列。",
+      "analysis": "Remotion 的最高层级：不只是动，而是‘会讲故事’。"
+    },
+    {
+      "id": "node:mermaid",
+      "key": "mermaid",
+      "label": "Mermaid 结构图",
+      "kind": "folder",
+      "cat": "plugin",
+      "size": 8,
+      "parent": "cat:plugin",
+      "description": "讲结构、讲关系、讲流程。",
+      "analysis": "最轻量的表达层：文本即图表，版本控制友好。"
+    },
+    {
+      "id": "node:html-card",
+      "key": "html-card",
+      "label": "HTML Card → PNG",
+      "kind": "folder",
+      "cat": "plugin",
+      "size": 7,
+      "parent": "cat:plugin",
+      "description": "结构图需要更强版式时。",
+      "analysis": "当 Mermaid 不够‘好看’，用 HTML+CSS 做更精致的静态图。"
+    },
+    {
+      "id": "node:screenshot",
+      "key": "screenshot",
+      "label": "Webpage Screenshot",
+      "kind": "folder",
+      "cat": "plugin",
+      "size": 7,
+      "parent": "cat:plugin",
+      "description": "保留真实页面状态。",
+      "analysis": "证据层：不是‘画一个示意’，是‘截取真实界面’。"
+    },
+    {
+      "id": "node:deck-layer",
+      "key": "deck-layer",
+      "label": "Deck 层 (LivePPT)",
+      "kind": "folder",
+      "cat": "plugin",
+      "size": 8,
+      "parent": "cat:plugin",
+      "description": "成熟文章快速变演示页。",
+      "analysis": "内容已经成熟，只需要‘壳’的时候选这层。"
+    },
+    {
+      "id": "node:slides-layer",
+      "key": "slides-layer",
+      "label": "Slides 层 (Slidev)",
+      "kind": "folder",
+      "cat": "plugin",
+      "size": 8,
+      "parent": "cat:plugin",
+      "description": "开发者讲义和讲解。",
+      "analysis": "需要‘讲’而不仅仅是‘展示’的时候选这层。"
+    },
+    {
+      "id": "node:video-layer",
+      "key": "video-layer",
+      "label": "Video 层 (Remotion)",
+      "kind": "folder",
+      "cat": "plugin",
+      "size": 8,
+      "parent": "cat:plugin",
+      "description": "镜头感和短视频传播。",
+      "analysis": "最强主线需要‘动’起来，或要进短视频平台的时候选这层。"
+    },
+    {
+      "id": "node:role-deck",
+      "key": "role-deck",
+      "label": "演示页生成器",
+      "kind": "folder",
+      "cat": "concept",
+      "size": 7,
+      "parent": "cat:concept",
+      "description": "LivePPT 的角色定位。",
+      "analysis": "不是‘做 PPT’，是‘内容变演示页’。"
+    },
+    {
+      "id": "node:role-slides",
+      "key": "role-slides",
+      "label": "开发者讲义系统",
+      "kind": "folder",
+      "cat": "concept",
+      "size": 7,
+      "parent": "cat:concept",
+      "description": "Slidev 的角色定位。",
+      "analysis": "不是‘幻灯片工具’，是‘开发者怎么讲清楚’。"
+    },
+    {
+      "id": "node:role-video",
+      "key": "role-video",
+      "label": "程序化视频引擎",
+      "kind": "folder",
+      "cat": "concept",
+      "size": 7,
+      "parent": "cat:concept",
+      "description": "Remotion 的角色定位。",
+      "analysis": "不是‘视频编辑器’，是‘用代码做视频’。"
+    },
+    {
+      "id": "node:judgement",
+      "key": "judgement",
+      "label": "判断标准",
+      "kind": "folder",
+      "cat": "concept",
+      "size": 6,
+      "parent": "cat:concept",
+      "description": "哪种表达壳层更适合当前目标。",
+      "analysis": "核心问题不是‘哪个工具更全’，而是‘哪种更适合当前内容的传播目标’。"
+    },
+    {
+      "id": "node:shared-md",
+      "key": "shared-md",
+      "label": "Markdown 基础",
+      "kind": "folder",
+      "cat": "infra",
+      "size": 6,
+      "parent": "cat:liveppt",
+      "description": "三条路线共享的内容格式。",
+      "analysis": "LivePPT 和 Slidev 都直接消费 Markdown；Remotion 也可以从 MD 解析内容。"
+    },
+    {
+      "id": "node:shared-react",
+      "key": "shared-react",
+      "label": "React 生态",
+      "kind": "folder",
+      "cat": "infra",
+      "size": 6,
+      "parent": "cat:remotion",
+      "description": "Remotion 和 Slidev 的共享基础。",
+      "analysis": "Slidev 基于 Vite+React；Remotion 就是 React。两者共享组件化思维。"
+    }
+  ],
+  "edges": [
+    {
+      "source": "cat:liveppt",
+      "target": "cat:slidev",
+      "kind": "cross",
+      "label": "共享 Markdown 基础"
+    },
+    {
+      "source": "cat:slidev",
+      "target": "cat:remotion",
+      "kind": "cross",
+      "label": "共享 React 生态"
+    },
+    {
+      "source": "cat:plugin",
+      "target": "cat:liveppt",
+      "kind": "cross",
+      "label": "Deck 层"
+    },
+    {
+      "source": "cat:plugin",
+      "target": "cat:slidev",
+      "kind": "cross",
+      "label": "Slides 层"
+    },
+    {
+      "source": "cat:plugin",
+      "target": "cat:remotion",
+      "kind": "cross",
+      "label": "Video 层"
+    },
+    {
+      "source": "cat:concept",
+      "target": "cat:liveppt",
+      "kind": "cross",
+      "label": "角色定义"
+    },
+    {
+      "source": "cat:concept",
+      "target": "cat:slidev",
+      "kind": "cross",
+      "label": "角色定义"
+    },
+    {
+      "source": "cat:concept",
+      "target": "cat:remotion",
+      "kind": "cross",
+      "label": "角色定义"
+    },
+    {
+      "source": "cat:plugin",
+      "target": "cat:concept",
+      "kind": "cross",
+      "label": "层级判断框架"
+    },
+    {
+      "source": "cat:liveppt",
+      "target": "node:markdown-to-deck",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:liveppt",
+      "target": "node:html-deck",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:slidev",
+      "target": "node:md-slides",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:slidev",
+      "target": "node:live-coding",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:slidev",
+      "target": "node:drawing",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:slidev",
+      "target": "node:export",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:remotion",
+      "target": "node:react-video",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:remotion",
+      "target": "node:animation",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:remotion",
+      "target": "node:storytelling",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:plugin",
+      "target": "node:mermaid",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:plugin",
+      "target": "node:html-card",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:plugin",
+      "target": "node:screenshot",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:plugin",
+      "target": "node:deck-layer",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:plugin",
+      "target": "node:slides-layer",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:plugin",
+      "target": "node:video-layer",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:concept",
+      "target": "node:role-deck",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:concept",
+      "target": "node:role-slides",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:concept",
+      "target": "node:role-video",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:concept",
+      "target": "node:judgement",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:liveppt",
+      "target": "node:shared-md",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:slidev",
+      "target": "node:shared-md",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:slidev",
+      "target": "node:shared-react",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:remotion",
+      "target": "node:shared-react",
+      "kind": "contains"
+    }
+  ]
+}

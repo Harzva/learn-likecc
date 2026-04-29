@@ -20,12 +20,13 @@
                 <a href="#attribution" class="nav-link">说明</a>
                 <a href="#roles" class="nav-link">01 角色</a>
                 <a href="#shells" class="nav-link">01B 壳层</a>
-                <a href="#liveppt" class="nav-link">02 LivePPT</a>
-                <a href="#slidev" class="nav-link">03 Slidev</a>
-                <a href="#remotion" class="nav-link">04 Remotion</a>
-                <a href="#sample-map" class="nav-link">05 样例映射</a>
-                <a href="#plugin-ladder" class="nav-link">06 插件梯度</a>
-                <a href="#lessons" class="nav-link">07 值得学什么</a>
+                <a href="#knowledge-map" class="nav-link">02 图谱</a>
+                <a href="#liveppt" class="nav-link">03 LivePPT</a>
+                <a href="#slidev" class="nav-link">04 Slidev</a>
+                <a href="#remotion" class="nav-link">05 Remotion</a>
+                <a href="#sample-map" class="nav-link">06 样例映射</a>
+                <a href="#plugin-ladder" class="nav-link">07 插件梯度</a>
+                <a href="#lessons" class="nav-link">08 值得学什么</a>
             </div>
             <div class="nav-actions">
                 <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
@@ -92,18 +93,25 @@
                     <div id="cc-feature-cards-mount" class="cc-feature-cards" data-json="data/design-ui-overview.json" role="region" aria-label="Design/UI 表达壳层特性卡片"></div>
                 </section>
 
+                <section id="knowledge-map" class="section-block">
+                    <h2>02 · Design/UI 知识图谱</h2>
+                    <p>下方为<strong>交互式网络图</strong>：节点是三条表达壳层与插件梯度层级，边表示它们之间的层级关系与共享基础。点击节点查看详细分析；拖拽可调整布局。帮助你建立“当前内容该用哪条工具链”的判断框架。</p>
+                    <div id="design-ui-knowledge-mount" class="ds-arch-knowledge" data-json="data/design-ui-knowledge.json" role="region" aria-label="Design/UI 知识图谱"></div>
+                    <p class="section-desc cc-unpacked-section-desc cc-unpacked-section-desc--knowledge">图谱中<strong>块内结构</strong>来自专题页内容拆解；<strong>块间联系</strong>是教学向层级归纳，不是工具之间的技术依赖图。它的作用是帮助你判断“先看哪里、再看哪里、哪些层级要一起考虑”。</p>
+                </section>
+
                 <section id="liveppt" class="section-block">
-                    <h2>02 · LivePPT：最像内容变演示页的壳</h2>
+                    <h2>03 · LivePPT：最像内容变演示页的壳</h2>
                     <p>它最吸引人的点，不是功能大全，而是非常直接：把现有内容快速变成可演示的结果。这种"内容先行"的姿势，很适合给站内成熟专题做演示版。</p>
                 </section>
 
                 <section id="slidev" class="section-block">
-                    <h2>03 · Slidev：最像开发者讲解工作台</h2>
+                    <h2>04 · Slidev：最像开发者讲解工作台</h2>
                     <p>它在 Markdown slides、绘图、Presenter Mode、Mermaid、代码高亮和 export 之间达成了比较完整的开发者讲义形态。</p>
                 </section>
 
                 <section id="remotion" class="section-block">
-                    <h2>04 · Remotion：最像代码驱动的视频表达层</h2>
+                    <h2>05 · Remotion：最像代码驱动的视频表达层</h2>
                     <p>一旦你不满足于静态页和 slides，而想把解释升级成动画、片段和节奏化叙事，Remotion 就会显出它的层级差异。</p>
                     <div class="course-quote">
                         <p><strong>[插图提示词]</strong></p>
@@ -141,7 +149,7 @@
                 </section>
 
                 <section id="lessons" class="section-block">
-                    <h2>07 · 对我们最值得学什么</h2>
+                    <h2>08 · 对我们最值得学什么</h2>
                     <div class="course-quote">
                         <p><strong>第一</strong>，Mermaid、HTML 卡片图、截图，是"解释与证据层"，和 deck/slides/video 不是同一层。</p>
                         <p><strong>第二</strong>，LivePPT 告诉我们"已有内容快速变演示页"这件事可以单独成为一层。</p>
@@ -163,6 +171,7 @@
     </footer>
     <script src="js/app.js"></script>
     <script src="js/cc-feature-cards.js"></script>
+    <script src="js/design-ui-knowledge.js"></script>
     <script src="js/unpacked-reading-path.js"></script>
 </body>
 </html>
