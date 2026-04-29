@@ -1,0 +1,49 @@
+{
+  "meta": {
+    "updated": "2026-04-29",
+    "note_zh": "Hermes Agent 平台适配器与执行后端目录：gateway adapters + environment backends"
+  },
+  "component_wall": {
+    "title": "Gateway 适配器 & 执行后端目录",
+    "subtitle": "平台入口面与执行后端面一览",
+    "categories": [
+      {
+        "id": "adapters",
+        "title": "Gateway 平台适配器",
+        "accent": "blue",
+        "pills": [
+          { "name": "Telegram", "tag": "即时通讯" },
+          { "name": "Discord", "tag": "社区/开发者" },
+          { "name": "Slack", "tag": "企业协作" },
+          { "name": "WhatsApp", "tag": "移动消息" },
+          { "name": "Signal", "tag": "隐私优先" },
+          { "name": "QQ", "tag": "国内生态" }
+        ]
+      },
+      {
+        "id": "backends",
+        "title": "Environment 执行后端",
+        "accent": "green",
+        "pills": [
+          { "name": "Local", "tag": "本地 shell" },
+          { "name": "Docker", "tag": "容器隔离" },
+          { "name": "SSH", "tag": "远程主机" },
+          { "name": "Daytona", "tag": "云端 devbox" },
+          { "name": "Singularity", "tag": "HPC 容器" },
+          { "name": "Modal", "tag": "serverless GPU" }
+        ]
+      },
+      {
+        "id": "core",
+        "title": "核心入口链路",
+        "accent": "amber",
+        "pills": [
+          { "name": "CLI", "tag": "终端 REPL" },
+          { "name": "Gateway", "tag": "消息总线" },
+          { "name": "Cron", "tag": "定时触发" },
+          { "name": "SessionStore", "tag": "SQLite + JSONL" }
+        ]
+      }
+    ]
+  }
+}

@@ -55,8 +55,15 @@ When a loop iteration has no better task, scan this pool and choose the highest-
   - Data: `site/data/hermes-arch-treemap.json` with 6-layer nested weights
   - Script: `site/js/hermes-arch-treemap.js` cloned from cc-arch-treemap with Hermes colors & mount point
   - Verified: local HTTP preview shows treemap rendering correctly above accordion
-- [ ] **H4. Hermes knowledge graph** — relationship map: gateway adapters, cron scheduler, memory store, skill manager, environment backends
-- [ ] **H5. Hermes component catalog** — pill wall for gateway adapters (Telegram/Discord/Slack/WhatsApp/Signal) + backends (Local/Docker/SSH/Daytona/Modal)
+- [x] **H4. Hermes knowledge graph** — relationship map: gateway adapters, cron scheduler, memory store, skill manager, environment backends
+  - ✅ Done: Added `<div id="hermes-arch-knowledge-mount">` as 02C section in `topic-hermes-unpacked.html`
+  - Data: `site/data/hermes-arch-knowledge.json` with 6 category nodes + 13 component nodes + 15 contains links + 19 cross links
+  - Script: `site/js/hermes-arch-knowledge.js` cloned from cc-arch-knowledge with Hermes colors, 3-view mode (hybrid/contains/cross), drag + click selection
+  - Nav: added "02 图谱" link; script tag appended in footer
+- [x] **H5. Hermes component catalog** — pill wall for gateway adapters (Telegram/Discord/Slack/WhatsApp/Signal/QQ) + backends (Local/Docker/SSH/Daytona/Singularity/Modal)
+  - ✅ Done: Added `site/data/hermes-component-catalog.json` + `site/js/hermes-component-wall.js` + `#gateway-catalog` section in `topic-hermes-unpacked.html`
+  - 3 categories: Gateway adapters (6 pills, blue), Environment backends (6 pills, green), Core entry links (4 pills, amber)
+  - Reuses `.cc-pill-wall` CSS contract; mounted after `#gateway-cron` as section `05B`
 - [ ] **H6. Hermes data table** — API surface / protocol / backend comparison table
 
 ### DeepScientist (P1 — audit 94%, minor polish)
