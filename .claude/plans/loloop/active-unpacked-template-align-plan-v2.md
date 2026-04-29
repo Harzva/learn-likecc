@@ -34,8 +34,8 @@
 
 ### P2: topic-design-ui-unpacked.html
 - [x] Task UI1: Add hero-stats row (currently completely missing)
-- [ ] Task UI2: Add hero-badge with topic label
-- [ ] Task UI3: Expand hero-subtitle with stronger value proposition
+- [x] Task UI2: Add hero-badge with topic label
+- [x] Task UI3: Expand hero-subtitle with stronger value proposition
 - [ ] Task UI4: Add interactive comparison module (three-column visual with hover states)
 - [ ] Task UI5: Add section numbering to all sections
 - [ ] Task UI6: Add knowledge-map or reference-links section at bottom

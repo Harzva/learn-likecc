@@ -44,7 +44,7 @@
                 <span class="gradient-text">把三种表达壳层拆开看</span>
             </h1>
             <p class="hero-subtitle">
-                `LivePPT`、`Slidev`、`Remotion` 都在解决“怎样讲清楚一件事”，但它们不是同一层工具。最值得做的不是列功能，而是先拆角色。
+                <code>LivePPT</code>、<code>Slidev</code>、<code>Remotion</code> 都在解决"怎样讲清楚一件事"，但它们处于<strong>不同表达层级</strong>：从<strong>内容变 deck</strong>到<strong>开发者讲义系统</strong>再到<strong>程序化视频引擎</strong>——先拆清角色，再决定场景该用哪条工具链。
             </p>
             <div class="hero-stats cc-unpacked-hero-stats">
                 <div class="stat-item"><span class="stat-value">3</span><span class="stat-label">表达壳层</span></div>
@@ -53,7 +53,7 @@
                 <div class="stat-item"><span class="stat-value">1</span><span class="stat-label">判断标准：哪种更适合</span></div>
             </div>
             <p class="hero-subtitle cc-unpacked-hero-subtitle-note">
-                不是所有表达手段都混成“做个图”——先判断自己处在哪一层，再决定该用哪条工具链。
+                不是所有表达手段都混成"做个图"--先判断自己处在哪一层，再决定该用哪条工具链。
             </p>
             <div class="hero-actions">
                 <a href="#roles" class="btn btn-primary">从角色拆分开始</a>
@@ -77,7 +77,7 @@
 
                 <section id="liveppt" class="section-block">
                     <h2>LivePPT：最像内容变演示页的壳</h2>
-                    <p>它最吸引人的点，不是功能大全，而是非常直接：把现有内容快速变成可演示的结果。这种“内容先行”的姿势，很适合给站内成熟专题做演示版。</p>
+                    <p>它最吸引人的点，不是功能大全，而是非常直接：把现有内容快速变成可演示的结果。这种"内容先行"的姿势，很适合给站内成熟专题做演示版。</p>
                 </section>
 
                 <section id="slidev" class="section-block">
@@ -102,11 +102,11 @@
                     <p>为了让这条专题不是停在抽象对比，我们把 <a href="topic-cc-unpacked-zh.html"><code>Claude Code 解构页</code></a> 当作第一批样本，看看同一份内容在三种表达壳层里分别该怎么切。</p>
                     <table class="options-table">
                         <tr><th>样本层</th><th>Claude Code 解构页该怎么切</th><th>产出目标</th></tr>
-                        <tr><td><code>LivePPT</code></td><td>保留原有章节，压缩成“是什么 / 为什么 / 核心分层 / loop / 技能 / UI” 这类 deck 页序。</td><td>一份可分享、可快速浏览的 deck。</td></tr>
-                        <tr><td><code>Slidev</code></td><td>把大章节拆成“每页一个控制点”，加入 Mermaid、代码块和 operator 视角说明。</td><td>一份开发者讲义，适合公开分享和现场讲解。</td></tr>
+                        <tr><td><code>LivePPT</code></td><td>保留原有章节，压缩成"是什么 / 为什么 / 核心分层 / loop / 技能 / UI" 这类 deck 页序。</td><td>一份可分享、可快速浏览的 deck。</td></tr>
+                        <tr><td><code>Slidev</code></td><td>把大章节拆成"每页一个控制点"，加入 Mermaid、代码块和 operator 视角说明。</td><td>一份开发者讲义，适合公开分享和现场讲解。</td></tr>
                         <tr><td><code>Remotion</code></td><td>只取最强的一条视觉主线，比如 runtime / daemon / connector 或 loop in loop，把它做成节奏化镜头。</td><td>一个解释结构的短视频或动图片段。</td></tr>
                     </table>
-                    <p>这也是后面 `Design/UI` 线最重要的判断标准：<strong>不是“哪个工具更全”，而是“哪种表达壳层更适合当前内容的传播目标”。</strong></p>
+                    <p>这也是后面 `Design/UI` 线最重要的判断标准：<strong>不是"哪个工具更全"，而是"哪种表达壳层更适合当前内容的传播目标"。</strong></p>
                 </section>
 
                 <section id="plugin-ladder" class="section-block">
@@ -120,14 +120,14 @@
                         <tr><td>讲义层</td><td><code>Slidev</code></td><td>当主题需要开发者讲解、live coding 和页级章节控制时。</td></tr>
                         <tr><td>视频层</td><td><code>Remotion</code></td><td>当最强主线需要镜头感、动画和短视频传播时。</td></tr>
                     </table>
-                    <p>这套梯度的意义是：<strong>我们不再把所有表达手段混成“做个图”</strong>，而是先判断自己处在哪一层，再决定该用哪条工具链。</p>
+                    <p>这套梯度的意义是：<strong>我们不再把所有表达手段混成"做个图"</strong>，而是先判断自己处在哪一层，再决定该用哪条工具链。</p>
                 </section>
 
                 <section id="lessons" class="section-block">
                     <h2>对我们最值得学什么</h2>
                     <div class="course-quote">
-                        <p><strong>第一</strong>，Mermaid、HTML 卡片图、截图，是“解释与证据层”，和 deck/slides/video 不是同一层。</p>
-                        <p><strong>第二</strong>，LivePPT 告诉我们“已有内容快速变演示页”这件事可以单独成为一层。</p>
+                        <p><strong>第一</strong>，Mermaid、HTML 卡片图、截图，是"解释与证据层"，和 deck/slides/video 不是同一层。</p>
+                        <p><strong>第二</strong>，LivePPT 告诉我们"已有内容快速变演示页"这件事可以单独成为一层。</p>
                         <p><strong>第三</strong>，Slidev 说明开发者讲义页和普通 PPT 不是一回事。</p>
                         <p><strong>第四</strong>，Remotion 给了站点未来一条从图文走向视频的扩展路线。</p>
                     </div>
