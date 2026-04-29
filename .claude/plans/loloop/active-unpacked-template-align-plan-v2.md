@@ -46,7 +46,10 @@ When a loop iteration has no better task, scan this pool and choose the highest-
 - [x] **H1. Hermes hero stats strip** — add layer count, API surface count, protocol count, backend count
   - ✅ Done: 6 layers / 10+ API surfaces / 6 protocols (Telegram/Discord/Slack/WhatsApp/Signal/QQ) / 6 backends (Local/Docker/SSH/Daytona/Singularity/Modal)
   - Minor fix: protocol count corrected from 5 → 6 after discovering QQ platform adapter
-- [ ] **H2. Hermes interactive step-through** — agent loop walkthrough: message in → session build → AIAgent run → tool call → memory review → response out
+- [x] **H2. Hermes interactive step-through** — agent loop walkthrough: message in → session build → AIAgent run → tool call → memory review → response out
+  - ✅ Done: 6-step interactive loop player added to `topic-hermes-unpacked.html`
+  - Steps: 消息进入 → 会话构建 → AIAgent 运行 → 工具调用 → 记忆审查 → 响应送出
+  - Reuses cc-loop-player UI/UX contract; data in `site/data/hermes-loop-steps.json`, player in `site/js/hermes-loop-player.js`
 - [ ] **H3. Hermes architecture treemap** — 6-layer stack treemap: 入口壳 → 控制面 → 工具面 → 记忆/技能 → 平台/时间轴 → 环境后端
 - [ ] **H4. Hermes knowledge graph** — relationship map: gateway adapters, cron scheduler, memory store, skill manager, environment backends
 - [ ] **H5. Hermes component catalog** — pill wall for gateway adapters (Telegram/Discord/Slack/WhatsApp/Signal) + backends (Local/Docker/SSH/Daytona/Modal)

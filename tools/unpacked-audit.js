@@ -17,7 +17,7 @@ const BENCHMARK = [
     name: 'Hero with stats strip',
     weight: 1,
     check: (html) => {
-      const hasHero = html.includes('class="hero-stats"') || html.includes("class='hero-stats'");
+      const hasHero = /class=["']hero-stats/.test(html);
       const hasStatItems = (html.match(/class="stat-item"/g) || []).length >= 3;
       return hasHero && hasStatItems;
     }

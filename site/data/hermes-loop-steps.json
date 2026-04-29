@@ -1,0 +1,70 @@
+{
+  "meta": {
+    "updated": "2026-04-29",
+    "autoplay_base_ms": 2600,
+    "loop_autoplay": true,
+    "note_zh": "讲解型步进：Hermes Agent 主循环。数据来自架构文档与源码锚点。"
+  },
+  "steps": [
+    {
+      "id": "message_in",
+      "label": "消息进入",
+      "title": "消息进入",
+      "body": "用户输入从 CLI 终端或 Gateway 适配器（Telegram / Discord / Slack / WhatsApp / Signal / QQ）进入系统。",
+      "analysis": "Hermes 支持双入口：CLI 是本地 REPL 循环，Gateway 是多平台消息总线。关键判断是消息来源的平台语义（DM / group / thread）会直接影响 session_key 的生成规则。",
+      "pitfall": "不要把 gateway 当成第二个大脑；gateway 只是 ingress layer，真正的控制面在 AIAgent 内核。",
+      "read_hint": "先看 `gateway/run.py` 的 `on_message()` 与 `gateway/adapters/` 各平台适配器，再联读 `hermes_cli/main.py` 的 REPL 入口。",
+      "terminal": ["[Telegram] user_msg -> adapter", "gateway.on_message()", "▌"]
+    },
+    {
+      "id": "session_build",
+      "label": "会话构建",
+      "title": "会话构建",
+      "body": "根据平台来源、用户身份、对话上下文生成稳定的 session_key，并从 SessionStore 加载或创建会话历史。",
+      "analysis": "`build_session_key()` 把 DM、group、thread、per-user isolation 编码成稳定标识；`SessionStore` 负责 SQLite + JSONL 双轨历史。长期在线不是无限同一上下文，而是受策略约束的连续会话。",
+      "pitfall": "不要把 session 理解成无限累积；idle / daily reset policy 会主动切断旧 session，避免上下文爆炸。",
+      "read_hint": "优先读 `gateway/session.py` 的 `build_session_key()`、`get_or_create_session()`、`_should_reset()`，再看 `SessionStore` 的持久化契约。",
+      "terminal": ["build_session_key()", "SessionStore.get_or_create()", "load_transcript()", "▌"]
+    },
+    {
+      "id": "aiagent_run",
+      "label": "AIAgent 运行",
+      "title": "AIAgent 运行",
+      "body": "以 session 历史为上下文，初始化 AIAgent：组装 system prompt、选择 runtime provider、暴露可用工具面，进入主对话循环。",
+      "analysis": "AIAgent 是 Hermes 的真正控制面，不是 gateway。它负责 provider 选择、提示词组装、工具循环、压缩、会话保存、background review，以及对 memory / skill nudges 的时机控制。",
+      "pitfall": "不要把 provider 选择或 prompt 组装看成静态配置；它们是和当前 session 状态、工具面、权限门联动的动态决策。",
+      "read_hint": "核心路径：`run_agent.py` 的 `AIAgent` → `run_conversation()` → `prompt_builder` → `runtime_provider`。",
+      "terminal": ["AIAgent(session_key)", "prompt_builder.assemble()", "runtime_provider.select()", "▌"]
+    },
+    {
+      "id": "tool_call",
+      "label": "工具调用",
+      "title": "工具调用",
+      "body": "模型若发起 tool_use，宿主通过 tools/registry.py 查找 schema 与 handler，经 model_tools 分派执行，再把结果标准化。",
+      "analysis": "`tools/registry.py` 把工具声明、schema、handler、toolset 关系集中到注册中心；`model_tools.py` 决定哪些工具真正进入本轮可用面。执行面统一抽象后，再按 TERMINAL_ENV 路由到不同后端。",
+      "pitfall": "最危险的不是工具失败，而是假成功。把失败包装成成功会污染后续上下文，让模型在错误事实之上继续推理。",
+      "read_hint": "联读 `tools/registry.py` 的注册中心、`model_tools.py` 的分派逻辑、`tools/terminal_tool.py` 的后端路由。",
+      "terminal": ["tool_use -> registry.lookup()", "model_tools.handle_function_call()", "execute(backend)", "▌"]
+    },
+    {
+      "id": "memory_review",
+      "label": "记忆审查",
+      "title": "记忆审查",
+      "body": "本轮结束后，background review 线程判断是否值得写入 memory、user profile 或 skill；同时更新节流计数器。",
+      "analysis": "Hermes 把记忆和技能做成了主循环一等公民，而不是外挂检索层。`_turns_since_memory` 和 `_iters_since_skill` 控制写入频率，避免每轮都刷盘。真正被沉淀的内容会进入下一轮 system prompt。",
+      "pitfall": "不要误以为 memory 是即时生效的；当前会话写入磁盘，但 system prompt 要到下一会话才刷新。",
+      "read_hint": "先看 `tools/memory_tool.py` 的 `MemoryStore`、`agent/memory_manager.py`，再读 `tools/skills_tool.py` 和 `run_agent.py` 中的 background review 线程。",
+      "terminal": ["background_review.run()", "_turns_since_memory++", "memory.write()? skill.write()?", "▌"]
+    },
+    {
+      "id": "response_out",
+      "label": "响应送出",
+      "title": "响应送出",
+      "body": "模型最终输出或工具结果通过 gateway adapter 回送到原平台；同时 transcript 被追加到 SessionStore 持久化。",
+      "analysis": "gateway 负责 delivery router，把响应送回 Telegram / Discord / Slack 等平台；SessionStore 负责历史持久化。这两件事合在一起，才让 Hermes 能长期在线并记得之前说过什么。",
+      "pitfall": "不要把 delivery 理解成简单的 echo；平台适配器需要处理格式转换、长度限制、线程关系和多平台同步策略。",
+      "read_hint": "回读 `gateway/run.py` 的 delivery 路径、`gateway/session.py` 的 `append_to_transcript()`，以及各 adapter 的回送实现。",
+      "terminal": ["adapter.send_response()", "SessionStore.append_to_transcript()", "await next message", "▌"]
+    }
+  ]
+}
