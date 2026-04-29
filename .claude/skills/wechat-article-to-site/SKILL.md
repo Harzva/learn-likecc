@@ -97,7 +97,23 @@
 
 ### 6. 验证与提交
 
-验证清单：
+**必须执行的本地检查（防止 CI 失败）**：
+
+```bash
+cd ~/learn-likecc
+# 1. 检查 git tracking
+python3 tools/check_site_git_tracking.py
+# 2. 检查 md 源文件和 blob URL
+python3 tools/check_site_md_parity.py
+# 3. 检查 cc-overview 一致性（如果改了 topic-cc-unpacked-zh.html）
+python3 tools/gen_cc_overview.py --check
+# 4. 检查 treemap 一致性
+python3 tools/gen_cc_arch_treemap.py --verify-in-sync
+# 5. 检查 loop steps schema
+python3 tools/check_cc_loop_steps.py
+```
+
+**验证清单**：
 - [ ] 文件路径正确（在 `site/` 目录下）
 - [ ] HTML 结构完整（DOCTYPE → html → head → body → nav → hero → main → footer → script）
 - [ ] CSS 变量兼容（使用 `var(--primary)` 等，不硬编码颜色）
@@ -105,8 +121,10 @@
 - [ ] 导航链接可点击（相对路径正确）
 - [ ] **没有"参考来源"section**
 - [ ] 卡片布局整齐、高度一致、gap 适当
+- [ ] **✅ 创建了对应的 `site/md/{文件名}.md` 源文件**
+- [ ] **✅ HTML footer 中包含 GitHub blob URL：`https://github.com/Harzva/learn-likecc/blob/main/site/md/{文件名}.md`**
 
-提交规范：
+**提交规范**：
 ```bash
 cd ~/learn-likecc
 git add -A
@@ -142,3 +160,4 @@ https://harzva.github.io/learn-likecc/{文件名}.html
 - 配置类内容需要给出 macOS / Ubuntu 双平台方案
 - 图片资源：微信文章图片外链通常无法直接引用，需截图或替换为文字描述
 - **排版优先**：卡片统一高度、适当留白、不要挤在一起
+- **⚠️ 关键教训（2026-04-29）**：创建新页面后必须同步创建 `site/md/{文件名}.md` 源文件，并在 HTML footer 中添加 GitHub blob URL，否则 `check_site_md_parity.py` 会导致 CI 失败。这是已验证的教训，不要重复犯。
