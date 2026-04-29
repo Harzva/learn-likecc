@@ -16824,20 +16824,23 @@ body.site-shell-overlay-open {
 /* === CC Tooling Guide: tool cards === */
 .cc-tooling-page .tool-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
   margin-top: 1rem;
 }
 .cc-tooling-page .tool-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 1.25rem;
+  padding: 1.5rem;
   transition: transform .2s, box-shadow .2s;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
 }
 .cc-tooling-page .tool-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-xl);
 }
 .cc-tooling-page .tool-card-header {
   display: flex;
@@ -16878,6 +16881,11 @@ body.site-shell-overlay-open {
   color: var(--text-secondary);
   line-height: 1.5;
   margin-bottom: .75rem;
+  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .cc-tooling-page .tool-cmd {
   display: block;

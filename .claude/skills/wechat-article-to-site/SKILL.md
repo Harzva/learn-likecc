@@ -58,7 +58,6 @@
         <div class="container container--layout-wide">
             <article class="course-content devlog-content">
                 <!-- 核心内容 section -->
-                <!-- 来源标注 section -->
                 <div class="chapter-navigation">...</div>
             </article>
         </div>
@@ -70,13 +69,14 @@
 ```
 
 排版规范：
+- **不写"参考来源"section，不写"原文来自哪个公众号"**。页面即内容，来源只在 commit message 中记录。
 - Hero 区域必须包含：badge、title、subtitle、stats strip（4 个关键数字）
 - 正文用 `<section class="section-block">` 包裹
 - 代码块用 `<pre><code class="language-{lang}">`
 - 表格用 `<table class="comparison-table">`（带 thead/tbody）
-- 工具/组件展示用卡片网格（`tool-grid` + `tool-card`）
-- 末尾必须有 `chapter-navigation` 和 `footer` with provenance
-- 来源必须标注：原文出处、作者、本站整理日期
+- 工具/组件展示用卡片网格（`tool-grid` + `tool-card`），卡片要统一高度、限制描述行数
+- 末尾必须有 `chapter-navigation` 和 `footer`
+- CSS 变量兼容：使用 `var(--primary)` 等，不硬编码颜色
 
 ### 4. 导航更新
 
@@ -93,6 +93,7 @@
    ```css
    .{page-class} .new-component { ... }
    ```
+3. **卡片布局必须**：统一高度、适当 gap（1.5rem）、最小宽度 320px、描述文字限制 3 行
 
 ### 6. 验证与提交
 
@@ -102,7 +103,8 @@
 - [ ] CSS 变量兼容（使用 `var(--primary)` 等，不硬编码颜色）
 - [ ] 响应式（viewport meta 已设置，布局用 flex/grid）
 - [ ] 导航链接可点击（相对路径正确）
-- [ ] 来源标注完整
+- [ ] **没有"参考来源"section**
+- [ ] 卡片布局整齐、高度一致、gap 适当
 
 提交规范：
 ```bash
@@ -139,3 +141,4 @@ https://harzva.github.io/learn-likecc/{文件名}.html
 - Token 经济学类内容需要保留量化数据对比
 - 配置类内容需要给出 macOS / Ubuntu 双平台方案
 - 图片资源：微信文章图片外链通常无法直接引用，需截图或替换为文字描述
+- **排版优先**：卡片统一高度、适当留白、不要挤在一起
