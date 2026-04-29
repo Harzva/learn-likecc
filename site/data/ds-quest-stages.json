@@ -1,0 +1,123 @@
+{
+  "stages": [
+    {
+      "id": "quest-init",
+      "title": "1 · Quest 初始化",
+      "subtitle": "从问题到可执行仓库",
+      "duration": 4000,
+      "steps": [
+        {
+          "label": "输入",
+          "desc": "接收 paper URL / repo 链接 / 自然语言描述",
+          "highlight": "arXiv URL、GitHub repo、自然语言 goal"
+        },
+        {
+          "label": "解析",
+          "desc": "系统分析输入，提取研究目标与约束条件",
+          "highlight": "goal 提取、约束识别"
+        },
+        {
+          "label": "创建",
+          "desc": "初始化 quest 仓库，建立目录结构与状态文件",
+          "highlight": "one repo per quest"
+        },
+        {
+          "label": "输出",
+          "desc": "生成 README.quest.md 与初始配置",
+          "highlight": "quest/ 目录、状态文件"
+        }
+      ]
+    },
+    {
+      "id": "baseline",
+      "title": "2 · Baseline 复现",
+      "subtitle": "建立可比较的实验起点",
+      "duration": 5000,
+      "steps": [
+        {
+          "label": "获取",
+          "desc": "拉取 baseline 代码与数据集",
+          "highlight": "代码、数据、依赖"
+        },
+        {
+          "label": "配置",
+          "desc": "安装依赖，锁定环境版本",
+          "highlight": "requirements.txt、Docker"
+        },
+        {
+          "label": "运行",
+          "desc": "执行 baseline 实验，记录原始指标",
+          "highlight": "原始准确率、loss、时间"
+        },
+        {
+          "label": "验证",
+          "desc": "确认结果可复现，存入 baseline/ 目录",
+          "highlight": "baseline/ 目录、指标日志"
+        }
+      ]
+    },
+    {
+      "id": "experiment",
+      "title": "3 · Experiment 轮次",
+      "subtitle": "可控改动，每轮只改一处",
+      "duration": 6000,
+      "steps": [
+        {
+          "label": "设计",
+          "desc": "基于 baseline 设计实验变量",
+          "highlight": "假设、变量、对照组"
+        },
+        {
+          "label": "执行",
+          "desc": "运行实验，收集结果与中间产物",
+          "highlight": "实验脚本、日志"
+        },
+        {
+          "label": "对比",
+          "desc": "与 baseline 对比，记录 delta",
+          "highlight": "delta 指标、显著性"
+        },
+        {
+          "label": "沉淀",
+          "desc": "结论写入 Findings Memory，失败也记录",
+          "highlight": "experiments/ 目录、Findings Memory"
+        }
+      ]
+    },
+    {
+      "id": "analysis-write",
+      "title": "4 · Analysis / Write",
+      "subtitle": "从实验结论到可发表论证",
+      "duration": 5000,
+      "steps": [
+        {
+          "label": "分析",
+          "desc": "提取实验数据中的关键发现",
+          "highlight": "统计检验、可视化"
+        },
+        {
+          "label": "制图",
+          "desc": "生成论文级图表与可视化",
+          "highlight": "figures/ 目录、样式规范"
+        },
+        {
+          "label": "撰写",
+          "desc": "组织论证链，撰写 paper draft",
+          "highlight": "paper_draft.md、章节结构"
+        },
+        {
+          "label": "审校",
+          "desc": "human takeover，人工审校与迭代",
+          "highlight": "人工接管、迭代修改"
+        }
+      ]
+    }
+  ],
+  "keyboard": {
+    "left": "上一阶段",
+    "right": "下一阶段",
+    "space": "播放 / 暂停",
+    "home": "回到第一阶段",
+    "end": "跳到最后一阶段"
+  }
+}

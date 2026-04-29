@@ -41,16 +41,16 @@ Not every topic needs all 10. The rule is: pick the subset that best explains *t
 
 When a loop iteration has no better task, scan this pool and choose the highest-priority unchecked item. Mark `[ ]` → `[x]` when done.
 
-- [x] **T1. DeepScientist hero stats strip** — add quest count, connector types, stage count, repo metrics
+- [ ] **T1. DeepScientist hero stats strip** — add quest count, connector types, stage count, repo metrics
 - [x] **T2. DeepScientist interactive quest-stage walkthrough** — tabbed or step-through baseline → experiment → analysis → write
-- [x] **T3. DeepScientist architecture treemap** — layered view of the 6-layer stack (Quest Repo, Control Plane, Durable State, Workspace, Connectors)
-- [x] **T4. DeepScientist connector/tool catalog** — pill wall or brick wall for Weixin/QQ/Telegram/Feishu connectors + internal tools
-- [x] **T5. DeepScientist knowledge graph** — network diagram showing how layers connect
-- [x] **T6. DeepScientist data table** — stage-to-asset mapping table with links to reference docs
-- [x] **T7. Hermes stats strip & hero alignment** — add layer count, API surface count, protocol count
-- [x] **T8. Hermes interactive layer explorer** — expandable layer cards with sub-component breakdown
-- [x] **T9. Cross-page reading-path component** — reusable "← back to hub / → next topic" strip for all unpacked pages
-- [x] **T10. Template compliance audit script** — a one-page checklist or script that scores any unpacked page against the 10-item benchmark
+- [ ] **T3. DeepScientist architecture treemap** — layered view of the 6-layer stack (Quest Repo, Control Plane, Durable State, Workspace, Connectors)
+- [ ] **T4. DeepScientist connector/tool catalog** — pill wall or brick wall for Weixin/QQ/Telegram/Feishu connectors + internal tools
+- [ ] **T5. DeepScientist knowledge graph** — network diagram showing how layers connect
+- [ ] **T6. DeepScientist data table** — stage-to-asset mapping table with links to reference docs
+- [ ] **T7. Hermes stats strip & hero alignment** — add layer count, API surface count, protocol count
+- [ ] **T8. Hermes interactive layer explorer** — expandable layer cards with sub-component breakdown
+- [ ] **T9. Cross-page reading-path component** — reusable "← back to hub / → next topic" strip for all unpacked pages
+- [ ] **T10. Template compliance audit script** — a one-page checklist or script that scores any unpacked page against the 10-item benchmark
 
 ## Done Rules
 
