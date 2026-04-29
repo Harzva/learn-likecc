@@ -51,7 +51,7 @@
                 <span class="gradient-text">解构</span>
             </h1>
             <p class="hero-subtitle">
-                不是“会读 paper 的聊天机器人”，而是一套把 <strong>quest repo、baseline、experiment、paper output、connector、Web/TUI 工作区</strong>
+                不是"会读 paper 的聊天机器人"，而是一套把 <strong>quest repo、baseline、experiment、paper output、connector、Web/TUI 工作区</strong>
                 拼成可持续研究工作台的本地优先系统。
             </p>
             <div class="ds-hero-meta">
@@ -102,7 +102,7 @@
             <div class="ds-band-grid">
                 <div class="ds-band-card">
                     <h3>核心判断</h3>
-                    <p>DeepScientist 是 “research studio + quest OS”，不是一次性脚本。</p>
+                    <p>DeepScientist 是 "research studio + quest OS"，不是一次性脚本。</p>
                 </div>
                 <div class="ds-band-card">
                     <h3>关键资产</h3>
@@ -122,16 +122,11 @@
 
                 <section id="attribution" class="section-block">
                     <h2 class="ds-section-title">参考来源与版本锚定</h2>
-                    <div class="ds-two-col">
-                        <div>
-                            <p><strong>本页目标</strong>不是做产品安利，而是拆清 DeepScientist 的研究控制面：它把哪些科研控制点做成了正式层。</p>
-                            <p><strong>官方来源</strong>：<a href="https://github.com/ResearAI/DeepScientist" target="_blank" rel="noopener noreferrer">ResearAI/DeepScientist</a>、<a href="https://deepscientist.cc/" target="_blank" rel="noopener noreferrer">deepscientist.cc</a>、<a href="https://openreview.net/forum?id=cZFgsLq8Gs" target="_blank" rel="noopener noreferrer">OpenReview paper</a>、中英文 README 与 docs。</p>
-                            <p><strong>本地锚点</strong>：<code>reference/reference_agent/DeepScientist/README.md</code>、<code>README_ZH.md</code>、<code>docs/en/12_GUIDED_WORKFLOW_TOUR.md</code>、<code>docs/en/02_START_RESEARCH_GUIDE.md</code>、<code>src/</code>、<code>tests/test_init_and_quest.py</code>、<code>tests/test_memory_and_artifact.py</code>、<code>tests/test_connector_bridges.py</code>。</p>
-                        </div>
-                        <div class="ds-panel">
-                            <h3>读法提醒</h3>
-                            <p>先抓 “quest repo + stage workflow”，再看 connectors 和 UI。不要把它当纯聊天式 research bot。</p>
-                        </div>
+                    <div class="course-quote">
+                        <p><strong>本页目标</strong>不是做产品安利，而是拆清 DeepScientist 的研究控制面：它把哪些科研控制点做成了正式层。</p>
+                        <p><strong>官方来源</strong>：<a href="https://github.com/ResearAI/DeepScientist" target="_blank" rel="noopener noreferrer">ResearAI/DeepScientist</a>、<a href="https://deepscientist.cc/" target="_blank" rel="noopener noreferrer">deepscientist.cc</a>、<a href="https://openreview.net/forum?id=cZFgsLq8Gs" target="_blank" rel="noopener noreferrer">OpenReview paper</a>、中英文 README 与 docs。</p>
+                        <p><strong>本地锚点</strong>：<code>reference/reference_agent/DeepScientist/README.md</code>、<code>README_ZH.md</code>、<code>docs/en/12_GUIDED_WORKFLOW_TOUR.md</code>、<code>docs/en/02_START_RESEARCH_GUIDE.md</code>、<code>src/</code>、<code>tests/test_init_and_quest.py</code>、<code>tests/test_memory_and_artifact.py</code>、<code>tests/test_connector_bridges.py</code>。</p>
+                        <p><strong>读法提醒</strong>先抓 "quest repo + stage workflow"，再看 connectors 和 UI。不要把它当纯聊天式 research bot。</p>
                     </div>
                 </section>
 
@@ -139,12 +134,12 @@
                     <h2 class="ds-section-title">01 · 为什么 DeepScientist 值得单独拆</h2>
                     <div class="ds-two-col">
                         <div>
-                            <p>它不是“会读 paper 的聊天机器人”，也不只是“自动跑实验的脚本集合”。从 README 和文档看，DeepScientist 真正想做的是一个<strong>本地优先的自动科研工作台</strong>：每个 quest 都是真实仓库，baseline/experiment/paper output 都落在同一套工程状态里，而且人类可以随时 takeover。</p>
+                            <p>它不是"会读 paper 的聊天机器人"，也不只是"自动跑实验的脚本集合"。从 README 和文档看，DeepScientist 真正想做的是一个<strong>本地优先的自动科研工作台</strong>：每个 quest 都是真实仓库，baseline/experiment/paper output 都落在同一套工程状态里，而且人类可以随时 takeover。</p>
                             <p>这使它和一般的 research agent 拉开差距。很多系统只负责前半段，例如读论文、提 idea、给 checklist；DeepScientist 则试图把 <strong>启动课题、修 baseline、持续试验、整理结果、出图出稿、跨界面跟进</strong> 一起做进同一条主流程里。</p>
                         </div>
                         <div class="ds-panel">
                             <h3>一句话结论</h3>
-                            <p>DeepScientist 是 “研究工作台 + Quest OS”，不是 prompt 框。</p>
+                            <p>DeepScientist 是 "研究工作台 + Quest OS"，不是 prompt 框。</p>
                         </div>
                     </div>
                 </section>
@@ -214,15 +209,15 @@
                     <h3 id="knowledge-map" class="ds-section-subtitle" style="margin-top:32px;margin-bottom:12px;">六层架构知识图谱（层间联系）</h3>
                     <p class="section-desc section-desc--tight" style="margin-top:0;margin-bottom:12px;font-size:0.9rem;opacity:0.85">Treemap 适合看<strong>规模</strong>，知识图谱更适合看<strong>关系</strong>。这里把六层分成两种阅读方式：<strong>块内结构</strong>看每个架构层下面挂了哪些组件；<strong>块间联系</strong>看各层之间如何互相牵动。</p>
                     <div id="ds-arch-knowledge-mount" class="ds-arch-knowledge" data-json="data/ds-arch-knowledge.json" role="region" aria-label="DeepScientist 六层架构知识图谱"></div>
-                    <p class="section-desc section-desc--tight" style="margin-top:8px;font-size:0.9rem;opacity:0.85">图谱中<strong>块内结构</strong>来自文档拆解；<strong>块间联系</strong>是教学向归纳，不是静态 import 图。它的作用是帮助你判断“先看哪里、再看哪里、哪些层要一起读”。</p>
+                    <p class="section-desc section-desc--tight" style="margin-top:8px;font-size:0.9rem;opacity:0.85">图谱中<strong>块内结构</strong>来自文档拆解；<strong>块间联系</strong>是教学向归纳，不是静态 import 图。它的作用是帮助你判断"先看哪里、再看哪里、哪些层要一起读"。</p>
                 </section>
 
                 <section id="control-plane" class="section-block">
                     <h2 class="ds-section-title">03 · 控制面在哪：不是聊天框，而是 quest + stage workflow</h2>
                     <div class="ds-two-col">
                         <div>
-                            <p>DeepScientist 最关键的判断，是不要把它理解成“一个长上下文聊天窗口”。从 README、Quick Start 和 Guided Workflow Tour 来看，真正的控制面更像是<strong>quest 驱动的阶段流程</strong>：问题被转成 quest，quest 绑定真实仓库，然后再沿 baseline、experiment、analysis、write 这些阶段往前推进。</p>
-                            <p>也就是说，它的主脑不在某个聊天 UI，而在“研究阶段 + 仓库状态 + 记忆沉淀”这三者的组合里。聊天只是入口之一，真正的系统边界落在 quest repo 和 stage workflow 上。</p>
+                            <p>DeepScientist 最关键的判断，是不要把它理解成"一个长上下文聊天窗口"。从 README、Quick Start 和 Guided Workflow Tour 来看，真正的控制面更像是<strong>quest 驱动的阶段流程</strong>：问题被转成 quest，quest 绑定真实仓库，然后再沿 baseline、experiment、analysis、write 这些阶段往前推进。</p>
+                            <p>也就是说，它的主脑不在某个聊天 UI，而在"研究阶段 + 仓库状态 + 记忆沉淀"这三者的组合里。聊天只是入口之一，真正的系统边界落在 quest repo 和 stage workflow 上。</p>
                         </div>
                         <div class="ds-panel">
                             <h3>Stage Flow 速览</h3>
@@ -301,7 +296,7 @@
                     <h2 class="ds-section-title">04 · 核心资产：Quest repo + Findings Memory + Paper outputs</h2>
                     <div class="ds-two-col">
                         <div>
-                            <p>README 里最值得抓的一句是 <strong>one repo per quest</strong>。这意味着它没有把研究过程存在抽象数据库里，而是尽量让分支、worktree、文件、artifact 自己表达研究结构。再叠加 Findings Memory 和 artifact 相关测试，可以看出它在努力做一件很重要的事：把“失败了什么、修好了什么、哪个实验值得保留、哪段论证已经成型”都变成下一轮可复用输入。</p>
+                            <p>README 里最值得抓的一句是 <strong>one repo per quest</strong>。这意味着它没有把研究过程存在抽象数据库里，而是尽量让分支、worktree、文件、artifact 自己表达研究结构。再叠加 Findings Memory 和 artifact 相关测试，可以看出它在努力做一件很重要的事：把"失败了什么、修好了什么、哪个实验值得保留、哪段论证已经成型"都变成下一轮可复用输入。</p>
                             <p>真正难的不是把摘要扩成 introduction，而是让 baseline、实验、分析、图表和文稿共享同一份上下文主线。DeepScientist 的价值，就在于它试图把这些资产收拢回 quest repo 内部。</p>
                         </div>
                         <div class="ds-panel">
@@ -327,8 +322,8 @@
                     <h2 class="ds-section-title">05 · Web、Canvas、TUI、Connectors：它为什么不像黑盒</h2>
                     <div class="ds-two-col">
                         <div>
-                            <p>很多自动科研系统一旦跑起来，最大的心理阻力就是“我不知道它在干嘛”。DeepScientist 在产品叙事上刻意回避这一点：README 反复强调 visible research progress、web workspace、canvas、studio details、human takeover anytime，说明它把“过程可见”本身当成产品基线。</p>
-                            <p>再加上 Weixin、QQ、Telegram、Feishu 等 connector 文档与测试，可以看出它不是只考虑单机 UI，而是在设计“研究工作如何被外部协作面持续看到”。</p>
+                            <p>很多自动科研系统一旦跑起来，最大的心理阻力就是"我不知道它在干嘛"。DeepScientist 在产品叙事上刻意回避这一点：README 反复强调 visible research progress、web workspace、canvas、studio details、human takeover anytime，说明它把"过程可见"本身当成产品基线。</p>
+                            <p>再加上 Weixin、QQ、Telegram、Feishu 等 connector 文档与测试，可以看出它不是只考虑单机 UI，而是在设计"研究工作如何被外部协作面持续看到"。</p>
                         </div>
                         <div class="ds-panel">
                             <h3>可见工作区清单</h3>
@@ -350,7 +345,7 @@
 
                 <section id="gallery" class="section-block">
                     <h2 class="ds-section-title">图集 · 研究产品的可视证据</h2>
-                    <p class="section-desc">下面这些截图来自 DeepScientist 官方素材与 README 资源，用来直观看到“可见工作区”与“研究过程可视化”到底长什么样。</p>
+                    <p class="section-desc">下面这些截图来自 DeepScientist 官方素材与 README 资源，用来直观看到"可见工作区"与"研究过程可视化"到底长什么样。</p>
                     <div class="ds-gallery">
                         <figure>
                             <img src="images/deepscientist/00-home.png" alt="DeepScientist 主页与工作区入口">
@@ -366,7 +361,7 @@
                         </figure>
                         <figure>
                             <img src="images/deepscientist/studio-details-promo.png" alt="Studio Details 视图">
-                            <figcaption>Studio + Details 强调“阶段与资产”而非单次对话。</figcaption>
+                            <figcaption>Studio + Details 强调"阶段与资产"而非单次对话。</figcaption>
                         </figure>
                         <figure>
                             <img src="images/deepscientist/progress-reporting-promo.png" alt="研究进度与报告">
@@ -384,16 +379,16 @@
                         <tr><td>持久状态</td><td>更偏 checklist、log、improvement protocol</td><td>更偏 repo、memory、artifact、paper-facing outputs</td></tr>
                         <tr><td>适合学什么</td><td>怎么把研究动作拆成可验证循环</td><td>怎么把整条研究链做成可长期运行的工作台</td></tr>
                     </table>
-                    <p>所以 VibePaper 这条线不能只写一个总评。Autoresearch 和 DeepScientist 看的是同一个问题，但把问题切开的方式完全不同：一个更像“研究循环协议”，一个更像“研究工作台操作层”。</p>
+                    <p>所以 VibePaper 这条线不能只写一个总评。Autoresearch 和 DeepScientist 看的是同一个问题，但把问题切开的方式完全不同：一个更像"研究循环协议"，一个更像"研究工作台操作层"。</p>
                 </section>
 
                 <section id="lessons" class="section-block">
                     <h2 class="ds-section-title">07 · 对我们自己的站点和值得学什么</h2>
                     <div class="ds-panel">
                         <p><strong>第一</strong>，如果要讲自动科研，不能只讲模型和 prompt，要讲 quest repo、artifact、memory 和人类 takeover 这些 durable state。</p>
-                        <p><strong>第二</strong>，专题页不能只做项目清单，更应该拆“控制面在哪里、持久状态是什么、哪些值得变成教程”。</p>
+                        <p><strong>第二</strong>，专题页不能只做项目清单，更应该拆"控制面在哪里、持久状态是什么、哪些值得变成教程"。</p>
                         <p><strong>第三</strong>，VibePaper 后续可以沿两条线继续长：一条是像 Autoresearch 这样的 research loop 协议；另一条是像 DeepScientist 这样的 research studio。</p>
-                        <p><strong>第四</strong>，对我们自己的 <code>codex-loop</code> 来说，最值得学的不是整套产品壳，而是“如何把 loop 的结果沉淀回 durable research assets，而不是只停在 chat transcript 里”。</p>
+                        <p><strong>第四</strong>，对我们自己的 <code>codex-loop</code> 来说，最值得学的不是整套产品壳，而是"如何把 loop 的结果沉淀回 durable research assets，而不是只停在 chat transcript 里"。</p>
                     </div>
                 </section>
 
@@ -421,7 +416,7 @@
                         <li><code>reference/reference_agent/DeepScientist/tests/test_init_and_quest.py</code></li>
                         <li><code>reference/reference_agent/DeepScientist/tests/test_memory_and_artifact.py</code></li>
                     </ul>
-                    <div class="ds-cta">下一步建议：把六层架构图补齐，让“研究工作台”结构一眼可见。</div>
+                    <div class="ds-cta">下一步建议：把六层架构图补齐，让"研究工作台"结构一眼可见。</div>
                 </section>
 
                 <div class="chapter-navigation" data-auto-path></div>
