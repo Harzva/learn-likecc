@@ -1,0 +1,523 @@
+{
+  "claude": {
+    "title": "claude - tool-use loop",
+    "intro": "Claude Code 把用户请求、系统约束、工具结果和下一轮模型调用串成一个可回放的消息循环。",
+    "steps": [
+      {
+        "lane": "code",
+        "from": "code",
+        "to": "llm",
+        "kind": "request",
+        "title": "用户输入提示词",
+        "label": "Claude Code 向模型发起 API 请求",
+        "status": "READY",
+        "body": "── Reflective Loop Skills ──\nworkspace: Oh-Reflective-loop-skills\n\n> 用 loopskill 推进作品集，并检查失败记忆",
+        "source": "src/runtime/prompt/buildPrompt.ts",
+        "payload": {
+          "role": "user",
+          "content": "Use reflective loop skills to advance the portfolio project.",
+          "injected_context": ["system prompt", "roadmap summary", "active_task.json"],
+          "expected_stop": "bounded patch plus verification"
+        },
+        "teaching": "源码视角：这一步对应把用户输入、system prompt、历史消息和工具权限组合成下一次模型请求。"
+      },
+      {
+        "lane": "llm",
+        "from": "llm",
+        "to": "code",
+        "kind": "assistant",
+        "title": "模型返回首轮响应",
+        "label": "规划读取 roadmap 与 active task",
+        "status": "STREAMING",
+        "body": "I will inspect persistent state before touching files.",
+        "source": "src/runtime/stream/assistantMessage.ts",
+        "payload": {
+          "type": "assistant_message",
+          "content": [{ "type": "text", "text": "I will inspect state first." }],
+          "next_intent": ["Glob", "Read"]
+        },
+        "teaching": "模型不是直接乱改，而是先生成下一步工具意图。"
+      },
+      {
+        "lane": "tools",
+        "from": "code",
+        "to": "tools",
+        "kind": "tool",
+        "title": "Glob",
+        "label": "查找 roadmap / state 文件",
+        "status": "COMPLETED",
+        "body": "Glob(pattern: \"**/{roadmap,active_task,failure_bank}*\")\n\nreferences/roadmap.md\n.reflective-loop/active_task.json\n.reflective-loop/failure_bank.json",
+        "source": "src/tools/filesystem/glob.ts",
+        "payload": {
+          "type": "tool_use",
+          "name": "Glob",
+          "input": { "pattern": "**/{roadmap,active_task,failure_bank}*", "cwd": "repo root" },
+          "tool_use_id": "toolu_glob_001"
+        },
+        "teaching": "tool_use 会被 runtime 执行，模型看到的是后续包装过的 tool_result。"
+      },
+      {
+        "lane": "tools",
+        "from": "tools",
+        "to": "code",
+        "kind": "result",
+        "title": "Tool result",
+        "label": "工具结果写回历史",
+        "status": "RECORDED",
+        "body": "Tool result appended to the conversation history.",
+        "source": "src/runtime/toolUse/toolResult.ts",
+        "payload": {
+          "type": "tool_result",
+          "tool_use_id": "toolu_glob_001",
+          "content": ["references/roadmap.md", ".reflective-loop/active_task.json", ".reflective-loop/failure_bank.json"]
+        },
+        "teaching": "关键点：工具结果不是旁路状态，而是下一轮 prompt 的显式证据。"
+      },
+      {
+        "lane": "code",
+        "from": "code",
+        "to": "llm",
+        "kind": "loop",
+        "title": "Loop back to API",
+        "label": "第二轮 API 请求携带工具结果",
+        "status": "RUNNING",
+        "body": "history += tool_result\nsystem += roadmap-as-weights\nactive_task += portfolio slice",
+        "source": "src/runtime/messages/appendToolResult.ts",
+        "payload": {
+          "loop_iteration": 2,
+          "messages_include": ["user", "assistant", "tool_use", "tool_result"],
+          "reflective_state": { "roadmap": "slow state", "active_task": "fast adapter" }
+        },
+        "teaching": "每个 tool_result 都会改变下一次 API 调用的上下文。"
+      },
+      {
+        "lane": "llm",
+        "from": "llm",
+        "to": "code",
+        "kind": "assistant",
+        "title": "模型选择实现动作",
+        "label": "生成 bounded patch 计划",
+        "status": "STREAMING",
+        "body": "Patch portfolio metadata, then verify with screenshots.",
+        "source": "src/runtime/planning/boundedSlice.ts",
+        "payload": {
+          "type": "assistant_message",
+          "content": "Apply a narrow patch and run visual checks.",
+          "stop_condition": "desktop and mobile screenshots are readable"
+        },
+        "teaching": "Reflective loop 把 long task 切成局部可检查的训练样本。"
+      },
+      {
+        "lane": "tools",
+        "from": "code",
+        "to": "tools",
+        "kind": "tool",
+        "title": "Patch",
+        "label": "应用局部修改",
+        "status": "COMPLETED",
+        "body": "apply_patch: add simulator project metadata",
+        "source": "src/tools/edit/applyPatch.ts",
+        "payload": {
+          "type": "tool_use",
+          "name": "apply_patch",
+          "input": { "files": ["2practice-projects/portfolio-resume/app.js"], "scope": "metadata only" }
+        },
+        "teaching": "局部 patch 类似一次非参数更新：不更新神经网络权重，只更新工程状态。"
+      },
+      {
+        "lane": "code",
+        "from": "code",
+        "to": "tools",
+        "kind": "tool",
+        "title": "Check",
+        "label": "运行检查与截图",
+        "status": "RUNNING",
+        "body": "node --check app.js\nplaywright screenshot desktop/mobile",
+        "source": "src/runtime/checks/visualCheck.ts",
+        "payload": {
+          "type": "verification",
+          "commands": ["node --check", "playwright screenshot"],
+          "loss_signal": "syntax errors or visible layout regression"
+        },
+        "teaching": "Check 阶段提供 loss signal，这使循环不只是重复执行。"
+      },
+      {
+        "lane": "tools",
+        "from": "tools",
+        "to": "code",
+        "kind": "result",
+        "title": "Failure signal",
+        "label": "发现视觉退化",
+        "status": "NEEDS_PATCH",
+        "body": "Screenshot found hidden section opacity issue.",
+        "source": "src/runtime/memory/failureBank.ts",
+        "payload": {
+          "type": "failure_bank_entry",
+          "symptom": "section appears blank",
+          "cause": "default opacity 0 before observer",
+          "patch_hint": "make reveal visible by default"
+        },
+        "teaching": "失败被结构化保存，下一轮 prompt 可以带着这份反例继续优化。"
+      },
+      {
+        "lane": "code",
+        "from": "code",
+        "to": "llm",
+        "kind": "loop",
+        "title": "下一轮 epoch",
+        "label": "roadmap 与 failure memory 进入下一轮",
+        "status": "DONE",
+        "body": "failure_bank += reveal-regression\nactive_task = next portfolio slice\n\nThe next loop starts less blank.",
+        "source": "src/runtime/epoch/nextEpoch.ts",
+        "payload": {
+          "epoch": "complete",
+          "persistent_update": ["failure_bank.json", "active_task.json"],
+          "analogy": "loss signal -> local patch -> memory"
+        },
+        "teaching": "roadmap 像慢权重，failure bank 像错误记忆。"
+      }
+    ]
+  },
+  "codex": {
+    "title": "codex - external daemon loop",
+    "intro": "Codex 没有 native Stop hook 时，外部 daemon 用 while/sleep 和 thread resume 继续推进同一个长任务。",
+    "steps": [
+      {
+        "lane": "code",
+        "from": "code",
+        "to": "tools",
+        "kind": "request",
+        "title": "Daemon boot",
+        "label": "启动外部循环守护进程",
+        "status": "READY",
+        "body": "start_codex_loop.sh --workspace repo --interval 120",
+        "source": "codex-loop/scripts/start_codex_loop.sh",
+        "payload": { "process": "external daemon", "state_dir": ".codex-loop", "interval_seconds": 120 },
+        "teaching": "和 Claude Stop hook 不同，这里循环边界在外部进程。"
+      },
+      {
+        "lane": "tools",
+        "from": "tools",
+        "to": "code",
+        "kind": "result",
+        "title": "Load state",
+        "label": "读取 thread id 与 heartbeat",
+        "status": "RECORDED",
+        "body": "state/thread_id: present\nheartbeat: stale\nactive_task: portfolio simulator",
+        "source": "codex-loop/scripts/codex_loop_daemon.py",
+        "payload": {
+          "files": [".codex-loop/thread_id", ".codex-loop/heartbeat.json", ".codex-loop/active_task.json"],
+          "resume_available": true
+        },
+        "teaching": "daemon 的 persistent files 是纵向记忆层。"
+      },
+      {
+        "lane": "code",
+        "from": "code",
+        "to": "llm",
+        "kind": "tool",
+        "title": "codex exec resume",
+        "label": "恢复同一 thread",
+        "status": "RUNNING",
+        "body": "codex exec resume $THREAD_ID < prompt.md",
+        "source": "codex-loop/scripts/resume_thread.cjs",
+        "payload": {
+          "command": "codex exec resume",
+          "stdin": "bounded prompt with roadmap and active task",
+          "thread_policy": "continue, do not restart"
+        },
+        "teaching": "关键是 resume 同一个 thread，不是每次新开一个孤立任务。"
+      },
+      {
+        "lane": "llm",
+        "from": "llm",
+        "to": "code",
+        "kind": "assistant",
+        "title": "Bounded slice",
+        "label": "Codex 推进一个小步",
+        "status": "STREAMING",
+        "body": "Implement scenario tabs and verify the simulator view.",
+        "source": "codex-loop/templates/bounded_prompt.md",
+        "payload": { "slice_budget": "one patch plus one check", "guardrail": "do not revert user changes" },
+        "teaching": "daemon loop 需要 bounded slice，否则每次 tick 都可能扩散。"
+      },
+      {
+        "lane": "code",
+        "from": "code",
+        "to": "tools",
+        "kind": "tool",
+        "title": "Write logs",
+        "label": "写入本轮输出",
+        "status": "COMPLETED",
+        "body": "last_message.json\nrun.log\nheartbeat.json",
+        "source": "codex-loop/scripts/state_writer.py",
+        "payload": { "outputs": ["last_message.json", "run.log", "heartbeat.json"], "status": "slice_completed" },
+        "teaching": "这些文件是外部 loop 的可观测接口。"
+      },
+      {
+        "lane": "tools",
+        "from": "tools",
+        "to": "code",
+        "kind": "result",
+        "title": "Check agent",
+        "label": "检查是否继续",
+        "status": "NEEDS_PATCH",
+        "body": "check_result: screenshots need better first viewport density",
+        "source": "codex-loop/scripts/check_epoch.py",
+        "payload": { "check_result": "partial", "next_prompt_hint": "compress intro and expose simulator earlier" },
+        "teaching": "check agent 扮演 loss function，决定下一次 resume 的提示方向。"
+      },
+      {
+        "lane": "code",
+        "from": "code",
+        "to": "tools",
+        "kind": "loop",
+        "title": "Sleep",
+        "label": "等待下一次 tick",
+        "status": "WAITING",
+        "body": "sleep 120\nnext: codex exec resume",
+        "source": "codex-loop/scripts/loop_scheduler.sh",
+        "payload": {
+          "loop_control": "while true",
+          "next_epoch": "resume same thread",
+          "memory": ["roadmap", "active_task", "failure_bank"]
+        },
+        "teaching": "Codex 外部 daemon 的本质：时间循环在 shell/daemon，认知循环在 thread。"
+      }
+    ]
+  },
+  "likecode": {
+    "title": "likecode - application cron loop",
+    "intro": "LikeCode /loop 像 cron，但不是 Linux crontab；它在应用进程内创建 scheduled task，并把 prompt 重新入队。",
+    "steps": [
+      {
+        "lane": "code",
+        "from": "code",
+        "to": "llm",
+        "kind": "request",
+        "title": "/loop command",
+        "label": "用户创建应用内循环任务",
+        "status": "READY",
+        "body": "/loop every 5m check portfolio screenshots",
+        "source": "src/skills/bundled/loop.ts",
+        "payload": { "command": "/loop", "natural_interval": "every 5m", "prompt": "check portfolio screenshots" },
+        "teaching": "入口是 bundled skill，不是操作系统 crontab。"
+      },
+      {
+        "lane": "llm",
+        "from": "llm",
+        "to": "code",
+        "kind": "assistant",
+        "title": "Parse interval",
+        "label": "模型解析时间与任务",
+        "status": "STREAMING",
+        "body": "Create a scheduled task with a five-minute cadence.",
+        "source": "src/skills/bundled/loop.ts",
+        "payload": { "role": "assistant", "tool_intent": "CronCreate", "parsed_interval": "*/5 * * * *" },
+        "teaching": "模型负责把自然语言变成可执行的 scheduler 参数。"
+      },
+      {
+        "lane": "code",
+        "from": "code",
+        "to": "tools",
+        "kind": "tool",
+        "title": "CronCreate",
+        "label": "创建 cron task",
+        "status": "COMPLETED",
+        "body": "CronCreate({ cron: \"*/5 * * * *\", prompt })",
+        "source": "src/tools/cron/CronCreate.ts",
+        "payload": {
+          "type": "tool_use",
+          "name": "CronCreate",
+          "input": { "cron": "*/5 * * * *", "prompt": "check portfolio screenshots", "enabled": true }
+        },
+        "teaching": "CronCreate 写的是应用任务注册表，而不是系统级 crontab。"
+      },
+      {
+        "lane": "tools",
+        "from": "tools",
+        "to": "code",
+        "kind": "result",
+        "title": "Task registry",
+        "label": "任务进入应用状态",
+        "status": "RECORDED",
+        "body": "task_id: loop_042\nnext_fire_at: 2026-04-23T10:05:00+08:00",
+        "source": "src/state/scheduledTasks.ts",
+        "payload": {
+          "task_id": "loop_042",
+          "storage": "app task registry",
+          "next_fire_at": "2026-04-23T10:05:00+08:00"
+        },
+        "teaching": "这一步体现应用内 scheduler 和 OS cron 的边界。"
+      },
+      {
+        "lane": "tools",
+        "from": "tools",
+        "to": "code",
+        "kind": "loop",
+        "title": "Scheduler tick",
+        "label": "setInterval 检查到期任务",
+        "status": "RUNNING",
+        "body": "cronScheduler tick: due task loop_042",
+        "source": "src/scheduler/cronScheduler.ts",
+        "payload": { "scheduler": "setInterval", "cadence_ms": 1000, "due_tasks": ["loop_042"] },
+        "teaching": "LikeCode /loop 的 tick 在应用进程里发生。"
+      },
+      {
+        "lane": "code",
+        "from": "code",
+        "to": "llm",
+        "kind": "request",
+        "title": "Prompt enqueue",
+        "label": "把 prompt 作为通知入队",
+        "status": "STREAMING",
+        "body": "meta notification: check portfolio screenshots",
+        "source": "src/runtime/promptQueue.ts",
+        "payload": {
+          "queue_event": "scheduled_prompt",
+          "task_id": "loop_042",
+          "prompt_injected_as": "meta notification"
+        },
+        "teaching": "到期后不是执行 shell 命令，而是把 prompt 重新送进 agent 队列。"
+      },
+      {
+        "lane": "code",
+        "from": "code",
+        "to": "tools",
+        "kind": "result",
+        "title": "Reschedule",
+        "label": "计算下一次触发",
+        "status": "DONE",
+        "body": "next_fire_at += 5 minutes",
+        "source": "src/scheduler/reschedule.ts",
+        "payload": { "task_id": "loop_042", "rescheduled": true, "next_fire_at_delta": "5m" },
+        "teaching": "循环持续的原因是每次完成后重新计算下一次 fire time。"
+      }
+    ]
+  },
+  "moa": {
+    "title": "moa - reflective multi-agent graph",
+    "intro": "MOA 把单线 agent loop 扩展成横向 DAG：多个 loop skill 并行工作，通过 shared blackboard 合并。",
+    "steps": [
+      {
+        "lane": "code",
+        "from": "code",
+        "to": "llm",
+        "kind": "request",
+        "title": "Planner prompt",
+        "label": "把长任务拆成 DAG",
+        "status": "READY",
+        "body": "Split portfolio practice into independent workers.",
+        "source": "moa-loop/src/planner/dagPlanner.ts",
+        "payload": { "planner_input": "portfolio + simulator + icon animation", "objective": "parallel bounded implementation" },
+        "teaching": "MOA 的第一步不是执行，而是把任务图显式化。"
+      },
+      {
+        "lane": "llm",
+        "from": "llm",
+        "to": "code",
+        "kind": "assistant",
+        "title": "DAG plan",
+        "label": "生成 worker 分工",
+        "status": "STREAMING",
+        "body": "A: HTML-PPT deck\nB: simulator\nC: SVG icon CLI\nMerge: portfolio index",
+        "source": "moa-loop/src/planner/ownership.ts",
+        "payload": {
+          "dag": [
+            { "id": "A", "owns": "live-loop-cinema" },
+            { "id": "B", "owns": "reflective-loop-simulator" },
+            { "id": "C", "owns": "oh-my-icon" },
+            { "id": "M", "depends_on": ["A", "B", "C"] }
+          ]
+        },
+        "teaching": "横向并行的前提是明确 ownership，减少冲突。"
+      },
+      {
+        "lane": "code",
+        "from": "code",
+        "to": "tools",
+        "kind": "tool",
+        "title": "Spawn workers",
+        "label": "并行启动 loop skills",
+        "status": "RUNNING",
+        "body": "worker A: LivePPT\nworker B: Simulator\nworker C: Icon CLI",
+        "source": "moa-loop/src/runtime/spawnWorkers.ts",
+        "payload": {
+          "workers": ["liveppt-worker", "simulator-worker", "icon-worker"],
+          "shared_contract": "do not overwrite other workers"
+        },
+        "teaching": "每个 worker 都是一个小 loop，但写入同一 blackboard。"
+      },
+      {
+        "lane": "tools",
+        "from": "tools",
+        "to": "code",
+        "kind": "result",
+        "title": "Blackboard writes",
+        "label": "共享进度与证据",
+        "status": "RECORDED",
+        "body": "A: screenshot ok\nB: payload inspector added\nC: CLI generated preview",
+        "source": "moa-loop/src/blackboard/writeArtifact.ts",
+        "payload": {
+          "blackboard": {
+            "A": { "status": "ok", "artifact": "live-loop-cinema/index.html" },
+            "B": { "status": "ok", "artifact": "reflective-loop-simulator/index.html" },
+            "C": { "status": "ok", "artifact": "oh-my-icon/examples/loop.draw.html" }
+          }
+        },
+        "teaching": "shared blackboard 是横向通信层，JSON/文件是纵向记忆层。"
+      },
+      {
+        "lane": "code",
+        "from": "code",
+        "to": "tools",
+        "kind": "tool",
+        "title": "Merge check",
+        "label": "检查冲突与风格一致性",
+        "status": "RUNNING",
+        "body": "scan links, project names, README index, screenshots",
+        "source": "moa-loop/src/merge/mergeCheck.ts",
+        "payload": {
+          "checks": ["link integrity", "visual consistency", "README index", "mobile layout"],
+          "conflict_policy": "merge only disjoint files"
+        },
+        "teaching": "MOA 的风险在 merge，所以需要独立的合并检查。"
+      },
+      {
+        "lane": "tools",
+        "from": "tools",
+        "to": "code",
+        "kind": "result",
+        "title": "Failure memory",
+        "label": "记录跨 worker 问题",
+        "status": "NEEDS_PATCH",
+        "body": "issue: naming mismatch practice-projects vs 2practice-projects",
+        "source": "moa-loop/src/memory/failureBank.ts",
+        "payload": {
+          "failure_bank_entry": {
+            "symptom": "folder naming mismatch",
+            "impact": "docs and links drift",
+            "fix": "normalize references in final index"
+          }
+        },
+        "teaching": "并行系统的 failure bank 不只记代码 bug，也记协调失败。"
+      },
+      {
+        "lane": "code",
+        "from": "code",
+        "to": "llm",
+        "kind": "loop",
+        "title": "Next graph epoch",
+        "label": "把失败反馈进下一轮 DAG",
+        "status": "DONE",
+        "body": "planner receives failure memory and updates merge contract.",
+        "source": "moa-loop/src/planner/nextGraphEpoch.ts",
+        "payload": {
+          "next_epoch_prompt": "normalize folder naming and rebuild index links",
+          "graph_update": "add pre-merge naming check"
+        },
+        "teaching": "MOA 是横向扩展 reflective loop 的自然形态。"
+      }
+    ]
+  }
+}

@@ -21,6 +21,7 @@
                 <a href="#flow" class="nav-link">执行流</a>
                 <a href="#cron" class="nav-link">/loop Cron</a>
                 <a href="#matrix" class="nav-link">对照表</a>
+                <a href="#simulator" class="nav-link">模拟器</a>
             </div>
             <div class="nav-actions">
                 <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
@@ -188,6 +189,17 @@
                         <div><strong>想在 Claude Code 内部拦截生命周期</strong><span>用 hook，尤其是 Stop / PreToolUse / PostToolUse。</span></div>
                         <div><strong>想让 Codex 周期性推进同一个任务</strong><span>用外部 daemon，保存 thread id、prompt、log 和 heartbeat。</span></div>
                         <div><strong>想让用户输入一个 /loop 就定时执行</strong><span>用应用内 cron scheduler，提供 create/list/delete 任务能力。</span></div>
+                    </div>
+                </section>
+
+                <section class="section-block" id="simulator">
+                    <h2 class="loop-mech-title">动手模拟：Reflective Loop Simulator</h2>
+                    <p>下方是交互式仿真器，可切换四种场景逐步推演一次完整的 agent loop。点击消息块查看 payload、源码定位与教学注释。</p>
+                    <div class="simulator-embed-wrap">
+                        <iframe src="reflective-loop-simulator/index.html" title="Reflective Loop Simulator" loading="lazy" width="100%" height="900" style="border:1px solid var(--border);border-radius:12px;"></iframe>
+                    </div>
+                    <div class="chapter-navigation" style="margin-top:1.5rem;">
+                        <a href="reflective-loop-simulator/index.html" class="btn btn-primary" target="_blank">在新标签页打开仿真器 ↗</a>
                     </div>
                 </section>
 
