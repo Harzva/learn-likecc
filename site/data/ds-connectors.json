@@ -1,7 +1,66 @@
 {
   "meta": {
-    "updated": "2026-04-29",
+    "updated": "2026-04-30",
     "note_zh": "DeepScientist connector 与工具目录：外部协作面 + 内部核心组件"
+  },
+  "tool_tiles": {
+    "title": "核心系统组件",
+    "subtitle": "按职能分组；🔒 表示可能受特性开关或未默认开启的门槛控制。",
+    "note_zh": "组件名称与实现随官方版本变化；以下为读源码与文档时常用的代表项。",
+    "categories": [
+      {
+        "id": "quest",
+        "title": "Quest 管理层",
+        "accent": "violet",
+        "tools": [
+          { "name": "Quest OS", "href": "#quest-state" },
+          { "name": "one repo per quest", "href": "#quest-state" },
+          { "name": "Stage Workflow", "href": "#control-plane" }
+        ]
+      },
+      {
+        "id": "memory",
+        "title": "持久状态层",
+        "accent": "blue",
+        "tools": [
+          { "name": "Findings Memory", "href": "#quest-state" },
+          { "name": "Artifact Manager", "href": "#quest-state" },
+          { "name": "Cross-Quest Memory", "href": "#experimental", "locked": true }
+        ]
+      },
+      {
+        "id": "workspace",
+        "title": "可见工作区",
+        "accent": "amber",
+        "tools": [
+          { "name": "Web Workspace", "href": "#surfaces" },
+          { "name": "Canvas", "href": "#surfaces" },
+          { "name": "Studio", "href": "#surfaces" },
+          { "name": "Details", "href": "#surfaces" }
+        ]
+      },
+      {
+        "id": "connectors",
+        "title": "连接器",
+        "accent": "green",
+        "tools": [
+          { "name": "Weixin", "href": "#connectors" },
+          { "name": "QQ", "href": "#connectors" },
+          { "name": "Telegram", "href": "#connectors" },
+          { "name": "Feishu", "href": "#connectors" }
+        ]
+      },
+      {
+        "id": "output",
+        "title": "输出与交付",
+        "accent": "rose",
+        "tools": [
+          { "name": "Paper Draft", "href": "#stage-assets" },
+          { "name": "Figures", "href": "#stage-assets" },
+          { "name": "Reports", "href": "#stage-assets" }
+        ]
+      }
+    ]
   },
   "connector_wall": {
     "title": "Connector & Tool Catalog",

@@ -28,10 +28,12 @@
                 return
             }
 
+            var title = esc(block.title || 'Tool System（可点进讲义）')
+            var subtitle = esc(block.subtitle || '按职能分组；🔒 表示可能受限或随版本更名。')
             var html =
                 '<div class="cc-tool-tiles__head">' +
-                '<h3 class="cc-tool-tiles__title">Tool System（可点进讲义）</h3>' +
-                '<p class="cc-tool-tiles__sub">按职能分组；<span class="cc-tool-tiles__lock" aria-hidden="true">🔒</span> 表示可能受限或随版本更名。</p>' +
+                '<h3 class="cc-tool-tiles__title">' + title + '</h3>' +
+                '<p class="cc-tool-tiles__sub">' + subtitle.replace(/🔒/g, '<span class="cc-tool-tiles__lock" aria-hidden="true">🔒</span>') + '</p>' +
                 '</div>'
             if (block.note_zh) {
                 html += '<p class="cc-tool-tiles__note">' + esc(block.note_zh) + '</p>'
