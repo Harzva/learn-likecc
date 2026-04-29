@@ -1,0 +1,40 @@
+{
+  "paths": {
+    "topic-cc-unpacked-zh.html": {
+      "prev": { "href": "topic-sourcemap.html", "label": "Source Map 专题" },
+      "next": { "href": "s01.html", "label": "进入 S01 主线" }
+    },
+    "topic-hermes-unpacked.html": {
+      "prev": { "href": "topic-paoding-jieniu.html", "label": "庖丁解牛专题" },
+      "next": { "href": "topic-superset-unpacked.html", "label": "对照 Superset 解构" }
+    },
+    "topic-deepscientist-unpacked.html": {
+      "prev": { "href": "topic-vibepaper.html", "label": "VibePaper 专题" },
+      "next": { "href": "topic-superpowers-autoresearch.html", "label": "对照 Autoresearch" }
+    },
+    "topic-design-ui-unpacked.html": {
+      "prev": { "href": "topic-design-ui.html", "label": "Design/UI 专题" },
+      "next": { "href": "topic-design-ui-tutorial.html", "label": "设计教程" }
+    },
+    "topic-everything-claude-code-unpacked.html": {
+      "prev": { "href": "topic-sourcemap.html", "label": "Source Map 专题" },
+      "next": { "href": "topic-cc-unpacked-zh.html", "label": "Claude Code 解构" }
+    },
+    "topic-multica-unpacked.html": {
+      "prev": { "href": "topic-cabinet-unpacked.html", "label": "Cabinet 解构" },
+      "next": { "href": "topic-meta-agent.html", "label": "回到 Meta-Agent 总专题" }
+    },
+    "topic-superset-unpacked.html": {
+      "prev": { "href": "topic-paoding-jieniu.html", "label": "庖丁解牛专题" },
+      "next": { "href": "topic-agent.html", "label": "去 Agent 大专题" }
+    },
+    "topic-cabinet-unpacked.html": {
+      "prev": { "href": "topic-meta-agent.html", "label": "Meta-Agent 总专题" },
+      "next": { "href": "topic-multica-unpacked.html", "label": "继续看 Multica" }
+    },
+    "topic-autoresearch-unpacked.html": {
+      "prev": { "href": "topic-vibepaper.html", "label": "VibePaper 专题" },
+      "next": { "href": "topic-deepscientist-unpacked.html", "label": "对照 DeepScientist" }
+    }
+  }
+}

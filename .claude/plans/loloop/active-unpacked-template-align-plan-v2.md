@@ -80,7 +80,11 @@ When a loop iteration has no better task, scan this pool and choose the highest-
 ### Shared Infrastructure
 
 - [x] **S1. Template compliance audit script** — `tools/unpacked-audit.js` scores any page against 10-item benchmark
-- [ ] **S2. Cross-page reading-path component** — reusable "← back to hub / → next topic" strip for all unpacked pages
+- [x] **S2. Cross-page reading-path component** — reusable "← back to hub / → next topic" strip for all unpacked pages
+  - ✅ Done: Created `site/data/unpacked-reading-paths.json` + `site/js/unpacked-reading-path.js`
+  - 9 unpacked pages converted from hardcoded links to `data-auto-path` mount points
+  - Data-driven: each page's prev/next links defined in JSON, injected by JS on load
+  - Pages updated: topic-cc-unpacked-zh, topic-hermes-unpacked, topic-deepscientist-unpacked, topic-design-ui-unpacked, topic-everything-claude-code-unpacked, topic-multica-unpacked, topic-superset-unpacked, topic-cabinet-unpacked, topic-autoresearch-unpacked
 
 ## Done Rules
 
