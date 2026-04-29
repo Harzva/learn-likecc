@@ -23,6 +23,7 @@
                 <a href="#knowledge-map" class="nav-link">02B 图谱</a>
                 <a href="#control-plane" class="nav-link">03 控制面</a>
                 <a href="#quest-state" class="nav-link">04 Quest 状态</a>
+                <a href="#stage-assets" class="nav-link">04B 资产映射</a>
                 <a href="#surfaces" class="nav-link">05 界面与连接器</a>
                 <a href="#connectors" class="nav-link">05B 连接器目录</a>
                 <a href="#gallery" class="nav-link">图集</a>
@@ -303,6 +304,18 @@
                             <p>Quest repo 是载体，Findings Memory 与 Paper outputs 是可复用资产。</p>
                         </div>
                     </div>
+                </section>
+
+                <section id="stage-assets" class="section-block">
+                    <h2 class="ds-section-title">04B · Stage 与资产映射表</h2>
+                    <p class="section-desc">每个研究阶段对应的核心资产与参考文档。点击文档链接可查看 DeepScientist 官方指南。</p>
+                    <table class="ds-compare-table">
+                        <tr><th>阶段</th><th>核心资产</th><th>参考文档</th><th>关键控制点</th></tr>
+                        <tr><td>Quest 初始化</td><td><code>quest/</code>、<code>README.quest.md</code>、初始状态文件</td><td><a href="https://github.com/ResearAI/DeepScientist/blob/main/docs/en/02_START_RESEARCH_GUIDE.md" target="_blank" rel="noopener noreferrer">02_START_RESEARCH_GUIDE</a>、<a href="https://github.com/ResearAI/DeepScientist/blob/main/docs/en/00_QUICK_START.md" target="_blank" rel="noopener noreferrer">00_QUICK_START</a></td><td>one repo per quest，确保隔离与版本化</td></tr>
+                        <tr><td>Baseline 复现</td><td><code>baseline/</code>、指标日志、依赖锁定</td><td><a href="https://github.com/ResearAI/DeepScientist/blob/main/docs/en/12_GUIDED_WORKFLOW_TOUR.md" target="_blank" rel="noopener noreferrer">12_GUIDED_WORKFLOW_TOUR</a>、<a href="https://github.com/ResearAI/DeepScientist/blob/main/docs/en/13_CORE_ARCHITECTURE_GUIDE.md" target="_blank" rel="noopener noreferrer">13_CORE_ARCHITECTURE</a></td><td>baseline 必须可复现，否则后续实验无意义</td></tr>
+                        <tr><td>Experiment 轮次</td><td><code>experiments/</code>、每轮参数与结果、失败记录</td><td><a href="https://github.com/ResearAI/DeepScientist/blob/main/docs/en/12_GUIDED_WORKFLOW_TOUR.md" target="_blank" rel="noopener noreferrer">12_GUIDED_WORKFLOW_TOUR</a>、<a href="https://github.com/ResearAI/DeepScientist/blob/main/docs/en/06_RUNTIME_AND_CANVAS.md" target="_blank" rel="noopener noreferrer">06_RUNTIME_AND_CANVAS</a>、<a href="https://github.com/ResearAI/DeepScientist/blob/main/docs/en/07_MEMORY_AND_MCP.md" target="_blank" rel="noopener noreferrer">07_MEMORY_AND_MCP</a></td><td>Findings Memory 自动沉淀，失败也写回去</td></tr>
+                        <tr><td>Analysis / Write</td><td><code>figures/</code>、<code>reports/</code>、<code>paper_draft.md</code></td><td><a href="https://github.com/ResearAI/DeepScientist/blob/main/docs/en/12_GUIDED_WORKFLOW_TOUR.md" target="_blank" rel="noopener noreferrer">12_GUIDED_WORKFLOW_TOUR</a>、<a href="https://github.com/ResearAI/DeepScientist/blob/main/docs/en/08_FIGURE_STYLE_GUIDE.md" target="_blank" rel="noopener noreferrer">08_FIGURE_STYLE_GUIDE</a>、<a href="https://github.com/ResearAI/DeepScientist/blob/main/docs/en/26_CITATION_AND_ATTRIBUTION.md" target="_blank" rel="noopener noreferrer">26_CITATION</a></td><td>human takeover anytime，人类随时可介入修改</td></tr>
+                    </table>
                 </section>
 
                 <section id="surfaces" class="section-block">
