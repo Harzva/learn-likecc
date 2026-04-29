@@ -41,6 +41,7 @@
 | [wshuyi/x-article-publisher-skill](https://github.com/wshuyi/x-article-publisher-skill) | Markdown 一键发布到 X Articles | [`x-article-publisher-skill`](./reference/reference_skill/practical-toolflows/x-article-publisher-skill/) |
 | [anthropics/skills](https://github.com/anthropics/skills) | 官方技能样例 / 模板 / 规范底座 | [`anthropics-skills`](./reference/reference_skill/practical-toolflows/anthropics-skills/) |
 | [OthmanAdi/planning-with-files](https://github.com/OthmanAdi/planning-with-files) | 文件化规划：用 `task_plan.md` / `findings.md` / `progress.md` + hooks 解决 Agent 上下文失忆 | — |
+| [baoyu-skills](https://github.com/wpzheng/baoyu-skills) | 配图与排版 Skill：CLI 参数（`--style notion` / `--layout timeline`）替代复杂 Prompt 工程，面向技术博主与内容创作者 | — |
 
 ## 安装落点备忘
 
