@@ -41,11 +41,11 @@
 - [ ] Task UI6: Add knowledge-map or reference-links section at bottom
 
 ### P2: topic-everything-claude-code-unpacked.html
-- [ ] Task E1: Change body class from meta-topic-page to cc-unpacked-page
-- [ ] Task E2: Add hero-stats row (currently missing)
-- [ ] Task E3: Add section numbering to main sections
+- [x] Task E1: Change body class from meta-topic-page to cc-unpacked-page
+- [x] Task E2: Add hero-stats row (currently missing)
+- [x] Task E3: Add section numbering to main sections
 - [ ] Task E4: Add interactive module placeholder for cross-harness comparison
-- [ ] Task E5: Add attribution block
+- [x] Task E5: Add attribution block
 
 ### Shared: site/css/style.css
 - [x] Task C1: Ensure .cc-unpacked-hero-stats gradient-text rule applies globally
