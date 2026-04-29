@@ -60,7 +60,7 @@
 |---|---|---|---|
 | 1 | 2026-04-30 | D5 | Fixed section numbering in topic-deepscientist-unpacked.html: reordered nav and body so 07 precedes 08; added missing 03B nav link for quest-walkthrough section | Committed: 80a82f9 |
 | 2 | 2026-04-30 | D1 | Replaced ds-two-col + ds-panel attribution layout with course-quote wrapper inside section-block; kept all content and strong-label pattern aligned to reference | Committed: fe0fe0e |
-| 3 | 2026-04-30 | D3 | Verified hero-stats gradient-text via global CSS rule under .cc-unpacked-hero-stats .stat-value; applies to all unpacked pages automatically | Committed: [hash TBD] |
+| 3 | 2026-04-30 | D3 | Verified hero-stats gradient-text via global CSS rule under .cc-unpacked-hero-stats .stat-value; applies to all unpacked pages automatically | Committed: 905fc3f |
 
 ---
 
