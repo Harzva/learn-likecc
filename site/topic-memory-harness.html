@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
     <meta name="description" content="Claude Code 类 Agent 长期记忆机制梳理：Markdown 索引、分阶段写入与整合、Sonnet 过滤检索、安全沙箱；附 Mermaid 流程图。">
-    <meta name="page:updated" content="2026-04-12">
+    <meta name="page:updated" content="2026-04-30">
 </head>
 <body>
     <nav class="navbar">
@@ -148,6 +148,20 @@ type: feedback
                     <ul>
                         <li><a href="https://github.com/OthmanAdi/planning-with-files" target="_blank" rel="noopener noreferrer"><strong>OthmanAdi / planning-with-files</strong></a> — 通过 <code>task_plan.md</code>（阶段与状态）、<code>findings.md</code>（研究发现与关键决策）、<code>progress.md</code>（会话日志与操作记录）三文件 + hooks（PreToolUse / PostToolUse / Stop）实现文件化工作记忆。核心规则：<strong>2-Action Rule</strong>（每两次查看/搜索后必须写入 findings），对抗"看过就忘"。对照阅读可帮助理解"Harness 内部记忆"与"Skill 层外部记忆"的互补边界。</li>
                     </ul>
+                </section>
+
+                <section id="further-reading" class="section-block">
+                    <h2>8. 延伸阅读：Agent Memory 的理论框架</h2>
+                    <p>当记忆系统从"附加功能"变成 Agent 架构的<strong>核心子系统</strong>，需要更系统的理论框架来指导工程实现。以下是社区中关于 Memory 的深度分析文章：</p>
+                    <ul>
+                        <li><a href="https://mp.weixin.qq.com/s/aBWunszbTVjI4bdguLIOvg" target="_blank" rel="noopener noreferrer"><strong>lencx：Agent Memory — 记忆不是蒸馏</strong></a> — 系统论述 Memory 的四个建模对象（用户模型、任务模型、世界模型、自我模型）、六维基本记忆单元（内容/类型/置信度/来源/作用域/时间衰减）、以及 write–manage–read 三条链路。核心判断：<strong>Memory 的难点从来不在容量，在治理</strong>。与 Harness 内部的分阶段写入、独立模型筛选、沙箱安全等机制形成互补视角。</li>
+                        <li>相关文章链：
+                            <a href="https://mp.weixin.qq.com/s/1tCU_JdWjGl40MBgwTrjFQ" target="_blank" rel="noopener noreferrer">浅谈 Agent Memory</a>、
+                            <a href="https://mp.weixin.qq.com/s/1tCU_JdWjGl40MBgwTrjFQ" target="_blank" rel="noopener noreferrer">深度解析：Claude Code 源码</a>、
+                            <a href="https://mp.weixin.qq.com/s/1tCU_JdWjGl40MBgwTrjFQ" target="_blank" rel="noopener noreferrer">Harness Engineering</a>（lencx 系列，与本站多个专题同源）
+                        </li>
+                    </ul>
+                    <p class="section-desc" style="font-size:0.9rem">理论价值：lencx 的框架把 Memory 从"存什么"推进到"<strong>谁被允许持续影响未来</strong>"的治理层面，这与 Harness 的"模型不裸奔"原则方向一致，只是前者从系统架构视角出发，后者从 CLI 工程约束出发。</p>
                 </section>
 
                 <div class="chapter-navigation">
