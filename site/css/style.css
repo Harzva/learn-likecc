@@ -17649,6 +17649,42 @@ body.site-shell-overlay-open {
         grid-template-columns: 1fr;
     }
 }
+/* Design/UI unpacked — reference links section at bottom */
+.du-ref-links {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin: 1.5rem 0;
+}
+
+.du-ref-col h3 {
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+  opacity: 0.85;
+}
+
+.du-ref-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.du-ref-col li {
+  padding: 0.35rem 0;
+  font-size: 0.9rem;
+}
+
+.du-ref-col li a {
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .du-ref-links {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
 .du-compare__err {
     color: var(--text-muted);
     font-size: 0.9rem;
