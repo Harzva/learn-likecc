@@ -8,6 +8,7 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
     <meta name="description" content="庖丁解牛专题子页：Warp 现代 AI 终端结构导览，覆盖技术架构、Agentic 演进、开源策略与第三方代理集成；基于仓库分析与公开报道整理。">
     <meta name="page:updated" content="2026-04-30">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js" crossorigin="anonymous"></script>
 </head>
 <body class="warp-unpacked-page">
     <nav class="navbar">
@@ -115,6 +116,29 @@
                     <h2>01 · 演进史：从协作终端到 Agent 工作台</h2>
                     <p>Warp 的演进是近几年开发者工具范式转移的一个缩影。关键节点不是功能叠加，而是<strong>产品定义的重写</strong>。</p>
 
+                    <!-- Mermaid 演进图 -->
+                    <figure class="mermaid-figure mermaid-figure--main" aria-label="Warp 演进时间线">
+                        <figcaption class="mermaid-caption"><strong>Warp 演进关键节点</strong>（示意）</figcaption>
+                        <div class="mermaid-diagram-scroll" data-mermaid-diagram="warp-evolution">
+<pre class="mermaid">timeline
+    title Warp 演进史
+    2020 : 项目启动
+         : Zach Lloyd 用 Rust 重写终端
+    2021 : 一年打磨
+         : GPU 加速 + 基于块输出
+    2022 : 方向转型
+         : ChatGPT 出现，转向 AI 代理
+         : HN 走红，种子轮 + A 轮
+    2023 : AI 功能上线
+         : 集成 OpenAI，定位重写
+         : B 轮 5000 万美元
+    2025 : Warp 2.0 + 开源
+         : Agentic 环境 + AGPL-3.0
+         : OpenAI 创始赞助
+</pre>
+                        </div>
+                    </figure>
+
                     <div class="timeline">
                         <div class="timeline-item">
                             <div class="timeline-time">2020.06</div>
@@ -160,15 +184,67 @@
                         </div>
                     </div>
 
-                    <h3>早期教训：协作功能的需求错位</h3>
-                    <div class="course-quote">
-                        <p>团队曾投入大量资源将 Google Docs 式协作体验移植到 Warp 中。结果证明<strong>大多数开发者并不关心在终端中协作</strong>——这是 Warp 早期最典型的"技术判断与市场需求错位"。</p>
-                        <p>这一经历促使团队后续<strong>显著提升决策与迭代速度</strong>，更强调快速验证而非完备设计。 Lloyd 的总结："不要固守最初的想法。"</p>
+                    <!-- 可折叠详情 -->
+                    <div class="collapsible-section" style="margin-top: 2rem;">
+                        <button class="collapsible-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'); this.nextElementSibling.classList.toggle('open');">
+                            <span>📉 早期教训：协作功能的需求错位（点击展开）</span>
+                            <span class="toggle-icon">▶</span>
+                        </button>
+                        <div class="collapsible-content">
+                            <div class="course-quote">
+                                <p>团队曾投入大量资源将 Google Docs 式协作体验移植到 Warp 中。结果证明<strong>大多数开发者并不关心在终端中协作</strong>——这是 Warp 早期最典型的"技术判断与市场需求错位"。</p>
+                                <p>这一经历促使团队后续<strong>显著提升决策与迭代速度</strong>，更强调快速验证而非完备设计。 Lloyd 的总结："不要固守最初的想法。"</p>
+                            </div>
+                            <div class="tool-recommend" style="margin-top: 1rem;">
+                                <div class="feature-card">
+                                    <span class="feature-icon">❌</span>
+                                    <div class="feature-info">
+                                        <h5>错误路径</h5>
+                                        <p>Google Docs 式协作移植到终端；投入大、使用者寥寥。</p>
+                                    </div>
+                                </div>
+                                <div class="feature-card">
+                                    <span class="feature-icon">✅</span>
+                                    <div class="feature-info">
+                                        <h5>正确转向</h5>
+                                        <p>AI 代理接管终端操作；自然语言驱动开发闭环。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
                 <section id="architecture" class="section-block">
                     <h2>02 · 技术架构</h2>
+
+                    <!-- Mermaid 架构图 -->
+                    <figure class="mermaid-figure mermaid-figure--main" aria-label="Warp 技术架构">
+                        <figcaption class="mermaid-caption"><strong>Warp 技术栈与依赖关系</strong>（示意）</figcaption>
+                        <div class="mermaid-diagram-scroll" data-mermaid-diagram="warp-arch">
+<pre class="mermaid">graph TD
+    A[Warp Terminal<br/>Rust 98%] --> B[GPU 渲染引擎]
+    A --> C[终端模拟器层]
+    C --> D[Alacritty 参考实现]
+    A --> E[异步运行时]
+    E --> F[Tokio]
+    A --> G[Shell 集成]
+    G --> H[NuShell 体验参考]
+    G --> I[Fig 补全规范]
+    A --> J[HTTP 层]
+    J --> K[Hyper]
+    A --> L[LLM 抽象]
+    L --> M[OpenAI GPT]
+    L --> N[Kimi]
+    L --> O[Qwen]
+    L --> P[MiniMax]
+    
+    style A fill:#ea580c,stroke:#fff,color:#fff
+    style F fill:#6366f1,stroke:#fff,color:#fff
+    style M fill:#10b981,stroke:#fff,color:#fff
+</pre>
+                        </div>
+                    </figure>
 
                     <h3>语言与许可证策略</h3>
                     <div class="tool-recommend" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
@@ -219,23 +295,57 @@
                     </div>
                     <p class="section-desc" style="font-size:0.9rem;opacity:0.9">注：以上为基于公开信息的教学归纳；实际目录请以 <code>git clone</code> 后 tree 为准。</p>
 
-                    <h3>本地构建与贡献</h3>
-                    <div class="code-block">
-                        <pre><code class="language-bash">./script/bootstrap  # 平台相关设置
+                    <div class="collapsible-section">
+                        <button class="collapsible-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'); this.nextElementSibling.classList.toggle('open');">
+                            <span>🔧 本地构建与贡献指南（点击展开）</span>
+                            <span class="toggle-icon">▶</span>
+                        </button>
+                        <div class="collapsible-content">
+                            <div class="code-block">
+                                <pre><code class="language-bash">./script/bootstrap  # 平台相关设置
 ./script/run        # 构建并运行</code></pre>
-                    </div>
+                            </div>
 
-                    <h3>贡献流程标签体系</h3>
-                    <table class="options-table">
-                        <tr><th>标签</th><th>状态</th><th>行动</th></tr>
-                        <tr><td><code>ready-to-spec</code></td><td>设计阶段开放</td><td>贡献者可完善规格文档</td></tr>
-                        <tr><td><code>ready-to-implement</code></td><td>设计已定稿</td><td>欢迎代码提交；认领时 @oss-maintainers</td></tr>
-                    </table>
+                            <h4>贡献流程标签体系</h4>
+                            <table class="options-table">
+                                <tr><th>标签</th><th>状态</th><th>行动</th></tr>
+                                <tr><td><code>ready-to-spec</code></td><td>设计阶段开放</td><td>贡献者可完善规格文档</td></tr>
+                                <tr><td><code>ready-to-implement</code></td><td>设计已定稿</td><td>欢迎代码提交；认领时 @oss-maintainers</td></tr>
+                            </table>
+                        </div>
+                    </div>
                 </section>
 
                 <section id="agentic" class="section-block">
                     <h2>03 · Agentic 开发环境：四大模块</h2>
                     <p>Warp 2.0 的核心转型是从"终端"到"<strong>诞生于终端的代理式开发环境</strong>"（Agentic Development Environment）。四大模块构成闭环：</p>
+
+                    <!-- Mermaid Agentic 架构图 -->
+                    <figure class="mermaid-figure mermaid-figure--main" aria-label="Warp Agentic 架构">
+                        <figcaption class="mermaid-caption"><strong>Warp Agentic 四大模块关系</strong>（示意）</figcaption>
+                        <div class="mermaid-diagram-scroll" data-mermaid-diagram="warp-agentic">
+<pre class="mermaid">graph LR
+    subgraph Warp2["Warp 2.0 Agentic DE"]
+        T[Terminal<br/>传统命令行底座]
+        C[Code<br/>编辑 + Diff + 文件树]
+        A[Agents<br/>编码代理 + 第三方接入]
+        D[Drive<br/>云端同步 + 配置即代码]
+    end
+    
+    U[用户] -->|自然语言| A
+    U -->|CLI 命令| T
+    A -->|调用| T
+    A -->|读写| C
+    C -->|持久化| D
+    T -->|日志反馈| A
+    
+    style T fill:#ea580c,color:#fff
+    style C fill:#6366f1,color:#fff
+    style A fill:#10b981,color:#fff
+    style D fill:#a855f7,color:#fff
+</pre>
+                        </div>
+                    </figure>
 
                     <div class="tool-recommend">
                         <div class="tool-card">
@@ -319,6 +429,23 @@
                         <p>社区普遍观察：<strong>终端开源建立信任与用户群体，Oz 和企业基础设施层作为闭源收入来源</strong>。</p>
                         <p>一种被 X 用户提出的解读："先把终端开源，建立信任和用户群体，然后把 Oz 和企业基础设施层作为闭源收入来源。"</p>
                     </div>
+
+                    <!-- Mermaid 开源策略图 -->
+                    <figure class="mermaid-figure" aria-label="Warp 开源策略">
+                        <figcaption class="mermaid-caption"><strong>开源策略示意</strong></figcaption>
+                        <div class="mermaid-diagram-scroll" data-mermaid-diagram="warp-opensource">
+<pre class="mermaid">graph TD
+    A[Warp Terminal<br/>AGPL-3.0 开源] -->|建立信任 + 用户群| B[社区贡献]
+    A -->|引流| C[Oz 代理平台<br/>闭源云服务]
+    C -->|企业付费| D[企业基础设施层<br/>闭源收入来源]
+    B -->|反馈迭代| A
+    
+    style A fill:#22c55e,stroke:#fff,color:#fff
+    style C fill:#ea580c,stroke:#fff,color:#fff
+    style D fill:#a855f7,stroke:#fff,color:#fff
+</pre>
+                        </div>
+                    </figure>
 
                     <h3>开源后新增能力</h3>
                     <table class="options-table">
@@ -424,5 +551,73 @@
     </footer>
     <script src="js/app.js"></script>
     <script src="js/unpacked-reading-path.js"></script>
+    <script>
+        // Mermaid 初始化
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            themeVariables: {
+                primaryColor: '#ea580c',
+                primaryTextColor: '#fff',
+                primaryBorderColor: '#c2410c',
+                lineColor: '#6366f1',
+                secondaryColor: '#6366f1',
+                tertiaryColor: '#f0f9ff'
+            },
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            },
+            timeline: {
+                useMaxWidth: true
+            }
+        });
+
+        // 可折叠区域样式注入
+        const style = document.createElement('style');
+        style.textContent = `
+            .collapsible-section {
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                overflow: hidden;
+            }
+            .collapsible-toggle {
+                width: 100%;
+                padding: 1rem 1.25rem;
+                background: var(--bg-hover);
+                border: none;
+                cursor: pointer;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 1rem;
+                font-weight: 600;
+                color: var(--text-primary);
+                transition: background 0.2s;
+            }
+            .collapsible-toggle:hover {
+                background: var(--bg-card);
+            }
+            .toggle-icon {
+                transition: transform 0.3s;
+                font-size: 0.8rem;
+            }
+            .collapsible-toggle[aria-expanded="true"] .toggle-icon {
+                transform: rotate(90deg);
+            }
+            .collapsible-content {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease, padding 0.3s ease;
+                padding: 0 1.25rem;
+            }
+            .collapsible-content.open {
+                max-height: 2000px;
+                padding: 1.25rem;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
 </html>
