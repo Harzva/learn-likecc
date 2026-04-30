@@ -15810,6 +15810,11 @@ body.site-shell-overlay-open {
     font-size: 1.7rem;
 }
 
+.ds-section-subtitle {
+    margin-top: 32px;
+    margin-bottom: 12px;
+}
+
 .ds-two-col {
     display: grid;
     grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
@@ -17496,7 +17501,7 @@ body.site-shell-overlay-open {
 .ds-arch-treemap__err { color: #f87171; font-size: 14px; padding: 16px; }
 
 /* ds-connector-wall */
-.ds-connector-wall { margin: 20px 0; }
+.ds-connector-wall { margin: 1.25rem 0; }
 .ds-wall__head { margin-bottom: 16px; }
 .ds-wall__title { font-size: 18px; font-weight: 600; margin: 0 0 6px; color: #e2e8f0; }
 .ds-wall__sub { font-size: 14px; color: #94a3b8; margin: 0; }
