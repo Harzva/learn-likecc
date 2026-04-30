@@ -58,6 +58,42 @@
         </div>
     </section>
 
+    <!-- Feature Cards -->
+    <section class="section section--soft">
+        <div class="container container--layout-wide">
+            <div class="tool-recommend">
+                <div class="tool-card">
+                    <span class="tool-icon">🦀</span>
+                    <div class="tool-info">
+                        <h5>Rust 全栈构建</h5>
+                        <p>98% Rust 代码占比，GPU 加速渲染，基于块的现代终端输出。</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <span class="tool-icon">🤖</span>
+                    <div class="tool-info">
+                        <h5>Agentic 开发环境</h5>
+                        <p>Terminal + Code + Agents + Drive 四大模块，自然语言驱动开发闭环。</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <span class="tool-icon">🔓</span>
+                    <div class="tool-info">
+                        <h5>混合开源策略</h5>
+                        <p>UI 框架 MIT + 主体 AGPL-3.0；终端开源建立信任，Oz 云服务闭源变现。</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <span class="tool-icon">🔌</span>
+                    <div class="tool-info">
+                        <h5>第三方代理集成</h5>
+                        <p>原生支持 Claude Code、Codex、Gemini CLI 等，不做替代做容器。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <main class="course-main devlog-main">
         <div class="container container--layout-wide">
             <article class="course-content devlog-content">
@@ -79,152 +115,218 @@
                     <h2>01 · 演进史：从协作终端到 Agent 工作台</h2>
                     <p>Warp 的演进是近几年开发者工具范式转移的一个缩影。关键节点不是功能叠加，而是<strong>产品定义的重写</strong>。</p>
 
-                    <table class="options-table">
-                        <tr><th>时间</th><th>事件</th><th>意义</th></tr>
-                        <tr>
-                            <td>2020.06</td>
-                            <td>Zach Lloyd（前 Google Docs/Sheets 核心技术负责人）启动 Warp，用 Rust 重写终端</td>
-                            <td>核心赌注：终端40年未变，但开发者每天花大量时间在里面</td>
-                        </tr>
-                        <tr>
-                            <td>2021</td>
-                            <td>花整整一年打磨技术才推向市场</td>
-                            <td>长反馈周期的代价是防御性壁垒；竞争少但现金流压力大</td>
-                        </tr>
-                        <tr>
-                            <td>2022</td>
-                            <td>ChatGPT 出现后，意识到交互范式从"人操作工具"转向"自然语言驱动计算机"</td>
-                            <td><strong>第一次方向性转型</strong>：从协作终端转向 AI 代理开发环境</td>
-                        </tr>
-                        <tr>
-                            <td>2022</td>
-                            <td>Hacker News 走红，完成种子轮 + A 轮融资</td>
-                            <td>约七成新用户来自口碑传播，非资本密集型投放</td>
-                        </tr>
-                        <tr>
-                            <td>2023.04</td>
-                            <td>推出 AI 功能，率先将 OpenAI 大模型集成到终端</td>
-                            <td>放弃"终端工具"定位，强调"代理式开发环境"</td>
-                        </tr>
-                        <tr>
-                            <td>2023.06</td>
-                            <td>5000万美元 B 轮融资，累计 7300 万美元；Sam Altman、Salesforce/LinkedIn/Figma CEO 入局</td>
-                            <td>资本验证方向</td>
-                        </tr>
-                        <tr>
-                            <td>2025.06</td>
-                            <td>Warp 2.0 发布，正式向 Agentic 开发环境转型</td>
-                            <td>集成 Code + Agents + Terminal + Drive 四大模块</td>
-                        </tr>
-                        <tr>
-                            <td>2025.06</td>
-                            <td>客户端代码全面开源（AGPL-3.0），OpenAI 成为创始赞助商</td>
-                            <td>开源不到24小时斩获 3.5 万 star</td>
-                        </tr>
-                    </table>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-time">2020.06</div>
+                            <div class="timeline-content">
+                                <h4>项目启动</h4>
+                                <p>Zach Lloyd（前 Google Docs/Sheets 核心技术负责人）启动 Warp，用 <strong>Rust</strong> 重写终端。核心赌注：终端40年未变，但开发者每天花大量时间在里面。</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">2021</div>
+                            <div class="timeline-content">
+                                <h4>一年打磨</h4>
+                                <p>花整整一年才推向市场。长反馈周期的代价是现金流压力，但回报是<strong>技术壁垒</strong>——"如今我们已投入6年，很难复现"。</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">2022</div>
+                            <div class="timeline-content">
+                                <h4>第一次方向性转型</h4>
+                                <p>ChatGPT 出现后，意识到交互范式从"人操作工具"转向"自然语言驱动计算机"。<strong>从协作终端转向 AI 代理开发环境</strong>。Hacker News 走红，完成种子轮 + A 轮。</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">2023.04</div>
+                            <div class="timeline-content">
+                                <h4>AI 功能上线 + 定位重写</h4>
+                                <p>率先将 OpenAI 大模型集成到终端。放弃"终端工具"定位，强调<strong>"代理式开发环境"</strong>。Lloyd："如何描述产品的变化，对增长的推动甚至超过功能迭代本身。"</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">2023.06</div>
+                            <div class="timeline-content">
+                                <h4>B 轮融资</h4>
+                                <p>5000万美元 B 轮，累计 7300 万美元。<strong>Sam Altman</strong>、Salesforce/LinkedIn/Figma CEO 入局。</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">2025.06</div>
+                            <div class="timeline-content">
+                                <h4>Warp 2.0 + 全面开源</h4>
+                                <p>正式向 Agentic 开发环境转型，集成 Code + Agents + Terminal + Drive 四大模块。客户端代码<strong>全面开源（AGPL-3.0）</strong>，OpenAI 成为创始赞助商。不到24小时斩获 3.5 万 star。</p>
+                            </div>
+                        </div>
+                    </div>
 
                     <h3>早期教训：协作功能的需求错位</h3>
-                    <p>团队曾投入大量资源将 Google Docs 式协作体验移植到 Warp 中。结果证明<strong>大多数开发者并不关心在终端中协作</strong>——这是 Warp 早期最典型的"技术判断与市场需求错位"。</p>
-                    <p>这一经历促使团队后续<strong>显著提升决策与迭代速度</strong>，更强调快速验证而非完备设计。</p>
+                    <div class="course-quote">
+                        <p>团队曾投入大量资源将 Google Docs 式协作体验移植到 Warp 中。结果证明<strong>大多数开发者并不关心在终端中协作</strong>——这是 Warp 早期最典型的"技术判断与市场需求错位"。</p>
+                        <p>这一经历促使团队后续<strong>显著提升决策与迭代速度</strong>，更强调快速验证而非完备设计。 Lloyd 的总结："不要固守最初的想法。"</p>
+                    </div>
                 </section>
 
                 <section id="architecture" class="section-block">
                     <h2>02 · 技术架构</h2>
 
-                    <h3>语言与许可证</h3>
+                    <h3>语言与许可证策略</h3>
+                    <div class="tool-recommend" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                        <div class="feature-card">
+                            <span class="feature-icon">🦀</span>
+                            <div class="feature-info">
+                                <h5>Rust 98%</h5>
+                                <p>性能与可靠性极致追求；GPU 加速、基于块的现代终端输出。</p>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <span class="feature-icon">📄</span>
+                            <div class="feature-info">
+                                <h5>MIT 许可证</h5>
+                                <p>warpui_core + warpui crates，保证 UI 框架广泛可用。</p>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <span class="feature-icon">🛡️</span>
+                            <div class="feature-info">
+                                <h5>AGPL-3.0</h5>
+                                <p>主体代码开源属性；对抗闭源垄断的策略选择。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>关键依赖栈</h3>
                     <table class="options-table">
-                        <tr><th>维度</th><th>选择</th><th>说明</th></tr>
-                        <tr><td>主语言</td><td>Rust（98% 代码占比）</td><td>性能与可靠性极致追求；GPU 加速、基于块的输出等现代功能</td></tr>
-                        <tr><td>UI 框架</td><td>MIT 许可证</td><td><code>warpui_core</code> 与 <code>warpui</code> crates，保证核心框架广泛可用</td></tr>
-                        <tr><td>主体代码</td><td>AGPL-3.0</td><td>确保开源属性；对抗闭源垄断的策略选择</td></tr>
+                        <tr><th>组件</th><th>用途</th><th>性质</th></tr>
+                        <tr><td><strong>Tokio</strong></td><td>异步运行时</td><td>Rust 生态基础设施</td></tr>
+                        <tr><td><strong>NuShell</strong></td><td>现代 shell 体验参考</td><td>微软开源</td></tr>
+                        <tr><td><strong>Fig</strong></td><td>命令补全与智能提示规范</td><td>被 Amazon 收购</td></tr>
+                        <tr><td><strong>Alacritty</strong></td><td>终端模拟器参考实现</td><td>OpenGL/Vulkan 渲染</td></tr>
+                        <tr><td><strong>Hyper</strong></td><td>HTTP 库</td><td>Rust 网络基础</td></tr>
                     </table>
 
-                    <h3>关键依赖</h3>
-                    <table class="options-table">
-                        <tr><th>组件</th><th>用途</th></tr>
-                        <tr><td>Tokio</td><td>异步运行时</td></tr>
-                        <tr><td>NuShell</td><td>现代 shell 体验参考</td></tr>
-                        <tr><td>Fig 补全规范</td><td>命令补全与智能提示</td></tr>
-                        <tr><td>Alacritty</td><td>终端模拟器参考实现</td></tr>
-                        <tr><td>Hyper</td><td>HTTP 库</td></tr>
-                    </table>
+                    <h3>目录结构示意</h3>
+                    <div class="code-block">
+                        <pre><code class="language-bash">warp/
+├── warpui/              # UI 框架（MIT）
+├── warpui_core/         # UI 核心库
+├── zed_llm/             # LLM 抽象层（多模型支持）
+├── telemetry/           # 遥测与埋点
+├── scripts/
+│   ├── bootstrap        # 平台初始化
+│   └── run              # 构建并运行
+└── ...</code></pre>
+                    </div>
+                    <p class="section-desc" style="font-size:0.9rem;opacity:0.9">注：以上为基于公开信息的教学归纳；实际目录请以 <code>git clone</code> 后 tree 为准。</p>
 
-                    <h3>本地构建</h3>
+                    <h3>本地构建与贡献</h3>
                     <div class="code-block">
                         <pre><code class="language-bash">./script/bootstrap  # 平台相关设置
 ./script/run        # 构建并运行</code></pre>
                     </div>
 
-                    <h3>贡献流程</h3>
-                    <p>Warp 维护团队使用 <code>readiness</code> 标签管理社区贡献：</p>
-                    <ul>
-                        <li><strong>ready-to-spec</strong>：设计阶段开放给贡献者完善规格</li>
-                        <li><strong>ready-to-implement</strong>：设计已定稿，欢迎代码提交</li>
-                    </ul>
-                    <p>认领时只需在 Issue 中提及 <code>@oss-maintainers</code>。</p>
+                    <h3>贡献流程标签体系</h3>
+                    <table class="options-table">
+                        <tr><th>标签</th><th>状态</th><th>行动</th></tr>
+                        <tr><td><code>ready-to-spec</code></td><td>设计阶段开放</td><td>贡献者可完善规格文档</td></tr>
+                        <tr><td><code>ready-to-implement</code></td><td>设计已定稿</td><td>欢迎代码提交；认领时 @oss-maintainers</td></tr>
+                    </table>
                 </section>
 
                 <section id="agentic" class="section-block">
                     <h2>03 · Agentic 开发环境：四大模块</h2>
                     <p>Warp 2.0 的核心转型是从"终端"到"<strong>诞生于终端的代理式开发环境</strong>"（Agentic Development Environment）。四大模块构成闭环：</p>
 
-                    <table class="options-table">
-                        <tr><th>模块</th><th>功能</th><th>与传统终端的差异</th></tr>
-                        <tr>
-                            <td><strong>Terminal</strong></td>
-                            <td>保留传统命令行能力边界</td>
-                            <td>不是替代，是底座</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Code</strong></td>
-                            <td>代码编辑、差异视图、文件树</td>
-                            <td>从纯执行到轻量 IDE 能力</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Agents</strong></td>
-                            <td>内置编码代理 + 第三方 CLI 代理接入</td>
-                            <td>核心差异化：AI 代理可接管完整开发流程</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Drive</strong></td>
-                            <td>云端驱动、跨设备配置同步</td>
-                            <td>配置即代码，Settings file 可编程控制环境</td>
-                        </tr>
-                    </table>
+                    <div class="tool-recommend">
+                        <div class="tool-card">
+                            <span class="tool-icon">💻</span>
+                            <div class="tool-info">
+                                <h5>Terminal</h5>
+                                <p>保留传统命令行能力边界。不是替代，是底座。开发者仍可用熟悉的 CLI 工作流。</p>
+                            </div>
+                        </div>
+                        <div class="tool-card">
+                            <span class="tool-icon">📝</span>
+                            <div class="tool-info">
+                                <h5>Code</h5>
+                                <p>代码编辑、差异视图（diff view）、文件树。从纯执行到轻量 IDE 能力。</p>
+                            </div>
+                        </div>
+                        <div class="tool-card">
+                            <span class="tool-icon">🤖</span>
+                            <div class="tool-info">
+                                <h5>Agents</h5>
+                                <p>内置编码代理 + 第三方 CLI 代理接入。核心差异化：AI 代理可接管完整开发流程。</p>
+                            </div>
+                        </div>
+                        <div class="tool-card">
+                            <span class="tool-icon">☁️</span>
+                            <div class="tool-info">
+                                <h5>Drive</h5>
+                                <p>云端驱动、跨设备配置同步。Settings file 可编程控制环境。</p>
+                            </div>
+                        </div>
+                    </div>
 
-                    <h3>"双通道交互"</h3>
-                    <p>开发者既可以使用传统终端命令，也可以直接用自然语言描述需求，由 AI 代理完成执行。这种设计降低了操作门槛——产品经理和设计师也能通过"提示词"方式参与开发流程。</p>
+                    <h3>"双通道交互"模式</h3>
+                    <div class="course-quote">
+                        <p>开发者既可以使用<strong>传统终端命令</strong>，也可以直接用<strong>自然语言</strong>描述需求，由 AI 代理完成执行。这种设计降低了操作门槛——产品经理和设计师也能通过"提示词"方式参与开发流程。</p>
+                    </div>
 
                     <h3>Oz 代理平台</h3>
-                    <p>Warp 推出的<strong>云代理平台 Oz</strong> 管理"代理优先"（Agent-first）协作流：</p>
-                    <ul>
-                        <li>人类开发者转型为"<strong>代理管理者</strong>"：负责塑造产品方向、确保构建正确性</li>
-                        <li>AI 代理在结构化流程中完成<strong>规划、编码与测试</strong></li>
-                        <li>OpenAI GPT 系列模型提供核心驱动力</li>
-                    </ul>
-                    <p><strong>关键判断</strong>：开发工具的竞争不再只是编辑器或终端之间的差异，而是围绕"<strong>谁能更好地承载 AI 代理</strong>"展开。</p>
+                    <table class="options-table">
+                        <tr><th>角色</th><th>职责</th><th>输出</th></tr>
+                        <tr><td><strong>人类开发者</strong></td><td>代理管理者</td><td>塑造产品方向、确保构建正确性</td></tr>
+                        <tr><td><strong>AI 代理</strong></td><td>结构化流程执行</td><td>规划、编码、测试</td></tr>
+                        <tr><td><strong>OpenAI GPT</strong></td><td>核心驱动力</td><td>自然语言理解、代码生成</td></tr>
+                    </table>
+
+                    <div class="course-quote" style="margin-top: 1rem;">
+                        <p><strong>关键判断</strong>：开发工具的竞争不再只是编辑器或终端之间的差异，而是围绕"<strong>谁能更好地承载 AI 代理</strong>"展开。—— Zach Lloyd</p>
+                    </div>
                 </section>
 
                 <section id="opensource" class="section-block">
                     <h2>04 · 开源策略：为什么现在开源</h2>
 
                     <h3>直接动机</h3>
-                    <ul>
-                        <li>传统软件开发模式遭遇瓶颈：阻碍速度的不再是写代码，而是<strong>产品规范制定、行为验证</strong>等人为干预</li>
-                        <li>内部团队能力和速度有限；开源汇集全球贡献者创意</li>
-                        <li>无法在价格战或大规模补贴上胜过闭源竞争对手</li>
-                    </ul>
+                    <div class="tool-recommend" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+                        <div class="feature-card">
+                            <span class="feature-icon">🛑</span>
+                            <div class="feature-info">
+                                <h5>开发瓶颈</h5>
+                                <p>阻碍速度的不再是写代码，而是产品规范制定、行为验证等人为干预。</p>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <span class="feature-icon">🌍</span>
+                            <div class="feature-info">
+                                <h5>能力边界</h5>
+                                <p>"内部团队的能力和速度是有限的"——开源汇集全球贡献者创意。</p>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <span class="feature-icon">💰</span>
+                            <div class="feature-info">
+                                <h5>竞争策略</h5>
+                                <p>无法在价格战或补贴上胜过闭源对手；开源是差异化路径。</p>
+                            </div>
+                        </div>
+                    </div>
 
                     <h3>商业模型推测</h3>
-                    <p>社区普遍观察：终端开源建立信任与用户群体，<strong>Oz 和企业基础设施层作为闭源收入来源</strong>——开源代码 + 闭源云服务。</p>
+                    <div class="course-quote">
+                        <p>社区普遍观察：<strong>终端开源建立信任与用户群体，Oz 和企业基础设施层作为闭源收入来源</strong>。</p>
+                        <p>一种被 X 用户提出的解读："先把终端开源，建立信任和用户群体，然后把 Oz 和企业基础设施层作为闭源收入来源。"</p>
+                    </div>
 
-                    <h3>新增能力</h3>
+                    <h3>开源后新增能力</h3>
                     <table class="options-table">
-                        <tr><th>能力</th><th>说明</th></tr>
-                        <tr><td>多模型支持</td><td>新增 Kimi、MiniMax、Qwen（通义千问）等开源模型</td></tr>
-                        <tr><td>自动模型路由</td><td>根据任务目标自动匹配最佳开源模型</td></tr>
-                        <tr><td>可定制 ADE</td><td>从纯粹终端 → 轻量智能体环境 → 全功能 ADE 三级可调</td></tr>
-                        <tr><td>Settings file</td><td>用户和 AI 代理可编程控制环境配置，跨设备无缝迁移</td></tr>
+                        <tr><th>能力</th><th>说明</th><th>意义</th></tr>
+                        <tr><td><strong>多模型支持</strong></td><td>新增 Kimi、MiniMax、Qwen（通义千问）</td><td>摆脱单一供应商绑定</td></tr>
+                        <tr><td><strong>自动模型路由</strong></td><td>根据任务目标自动匹配最佳开源模型</td><td>降低用户选择成本</td></tr>
+                        <tr><td><strong>可定制 ADE</strong></td><td>纯粹终端 → 轻量智能体环境 → 全功能 ADE 三级可调</td><td>不同场景按需取用</td></tr>
+                        <tr><td><strong>Settings file</strong></td><td>用户和 AI 代理可编程控制环境配置</td><td>配置即代码，跨设备无缝迁移</td></tr>
                     </table>
                 </section>
 
@@ -232,30 +334,68 @@
                     <h2>05 · 生态定位：与谁互补、与谁竞争</h2>
 
                     <h3>第三方 CLI 代理集成</h3>
-                    <p>Warp 支持接入第三方 CLI 代理工具，提供极大灵活性：</p>
+                    <p>Warp 支持接入第三方 CLI 代理工具，定位是<strong>成为它们的运行容器和统一入口</strong>，而非替代：</p>
                     <table class="options-table">
-                        <tr><th>代理工具</th><th>关系</th></tr>
-                        <tr><td>Claude Code</td><td>Anthropic 官方终端代理</td></tr>
-                        <tr><td>Codex</td><td>OpenAI 官方编码代理</td></tr>
-                        <tr><td>Gemini CLI</td><td>Google 编码代理</td></tr>
+                        <tr><th>代理工具</th><th>厂商</th><th>关系</th></tr>
+                        <tr><td><strong>Claude Code</strong></td><td>Anthropic</td><td>官方终端代理；Warp 作为运行容器</td></tr>
+                        <tr><td><strong>Codex</strong></td><td>OpenAI</td><td>官方编码代理；OpenAI 同时赞助 Warp</td></tr>
+                        <tr><td><strong>Gemini CLI</strong></td><td>Google</td><td>Google 编码代理；多模型策略体现</td></tr>
                     </table>
-                    <p>Warp 的定位不是替代这些代理，而是<strong>成为它们的运行容器和统一入口</strong>。</p>
 
-                    <h3>与传统 IDE 的分野</h3>
+                    <h3>与传统 IDE 的范式分野</h3>
                     <table class="options-table">
-                        <tr><th>维度</th><th>传统 IDE（VS Code / IntelliJ）</th><th>Warp</th></tr>
-                        <tr><td>范式</td><td>以代码为中心的编辑体系</td><td>以执行环境为入口的操作层</td></tr>
-                        <tr><td>交互</td><td>手动编写、调试、运行</td><td>自然语言驱动 + AI 代理闭环</td></tr>
-                        <tr><td>流程</td><td>文件 → 函数 → 工程结构</td><td>编写 → 运行 → 读日志 → 修复 → 再执行</td></tr>
-                        <tr><td>角色</td><td>编辑器</td><td>可被 AI 操控的操作层</td></tr>
+                        <tr><th>维度</th><th>传统 IDE<br><span style="font-size:0.85rem;color:var(--text-muted)">VS Code / IntelliJ</span></th><th>Warp<br><span style="font-size:0.85rem;color:var(--text-muted)">Agentic 终端</span></th></tr>
+                        <tr>
+                            <td><strong>核心范式</strong></td>
+                            <td>以代码为中心的编辑体系</td>
+                            <td>以执行环境为入口的操作层</td>
+                        </tr>
+                        <tr>
+                            <td><strong>交互模式</strong></td>
+                            <td>手动编写 → 调试 → 运行</td>
+                            <td>自然语言驱动 + AI 代理闭环</td>
+                        </tr>
+                        <tr>
+                            <td><strong>工作单元</strong></td>
+                            <td>文件、函数、工程结构</td>
+                            <td>编写 → 运行 → 读日志 → 修复 → 再执行</td>
+                        </tr>
+                        <tr>
+                            <td><strong>角色定位</strong></td>
+                            <td>编辑器：人操作代码</td>
+                            <td>可被 AI 操控的操作层</td>
+                        </tr>
+                        <tr>
+                            <td><strong>适用人群</strong></td>
+                            <td>专业开发者</td>
+                            <td>开发者 + 产品经理 + 设计师（通过提示词）</td>
+                        </tr>
                     </table>
 
                     <h3>开源社区反响</h3>
-                    <ul>
-                        <li>GitHub：开源不到24小时斩获 3.5 万 star</li>
-                        <li>X/Twitter：欢呼与质疑并存；质疑集中在"是否为 Warp + OpenAI 联手的技术变现牌"</li>
-                        <li>Reddit：关于终端颠覆性创新的深度讨论</li>
-                    </ul>
+                    <div class="tool-recommend" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+                        <div class="feature-card">
+                            <span class="feature-icon">⭐</span>
+                            <div class="feature-info">
+                                <h5>GitHub</h5>
+                                <p>开源不到24小时斩获 <strong>3.5 万 star</strong>，43K+ 当前总量。</p>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <span class="feature-icon">🐦</span>
+                            <div class="feature-info">
+                                <h5>X / Twitter</h5>
+                                <p>欢呼与质疑并存；质疑集中在"是否为 Warp + OpenAI 联手的技术变现牌"。</p>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <span class="feature-icon">💬</span>
+                            <div class="feature-info">
+                                <h5>Reddit</h5>
+                                <p>关于终端颠覆性创新的深度讨论；IDE vs Agentic 终端的范式之争。</p>
+                            </div>
+                        </div>
+                    </div>
                 </section>
 
                 <section class="section-block">
@@ -266,6 +406,8 @@
                         <a href="https://github.com/warpdotdev/warp" target="_blank" rel="noopener noreferrer">GitHub 仓库</a>
                         &nbsp;·&nbsp;
                         <a href="https://www.warp.dev/" target="_blank" rel="noopener noreferrer">官网</a>
+                        &nbsp;·&nbsp;
+                        <a href="topic-ai-cli-agent.html" target="_blank" rel="noopener noreferrer">本站：AI CLI Agent 专题</a>
                     </p>
                 </section>
 
