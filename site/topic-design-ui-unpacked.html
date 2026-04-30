@@ -103,27 +103,42 @@
                 <section id="liveppt" class="section-block">
                     <h2>03 · LivePPT：最像内容变演示页的壳</h2>
                     <p>它最吸引人的点，不是功能大全，而是非常直接：把现有内容快速变成可演示的结果。这种"内容先行"的姿势，很适合给站内成熟专题做演示版。</p>
+                    <table class="options-table">
+                        <tr><th>核心能力</th><th>说明</th><th>判断标准</th></tr>
+                        <tr><td><code>Markdown → Deck</code></td><td>把已有文章、README、结构化笔记直接转换成可翻页的演示</td><td>当你已有文字内容，只需要"包一层壳"就能分享时</td></tr>
+                        <tr><td><code>主题系统</code></td><td>内置多套 CSS 主题，可覆盖品牌色与排版风格</td><td>需要快速统一视觉风格，不追求完全自定义</td></tr>
+                        <tr><td><code>HTML 导出</code></td><td>生成单页可离线浏览的 HTML，部署到任意静态托管</td><td>分享场景是"发一个链接"而不是"现场演讲"</td></tr>
+                    </table>
+                    <p class="section-desc">对我们最有价值的参考：<strong>它证明了"内容变演示页"这件事可以单独成为一层</strong>，不需要先把内容写成 PPT 再排版。我们的站点专题（如 Claude Code 解构、Hermes Agent 解构）在成熟后，很适合用 LivePPT 的思路生成一份可快速浏览的 deck 版。</p>
                 </section>
 
                 <section id="slidev" class="section-block">
                     <h2>04 · Slidev：最像开发者讲解工作台</h2>
                     <p>它在 Markdown slides、绘图、Presenter Mode、Mermaid、代码高亮和 export 之间达成了比较完整的开发者讲义形态。</p>
+                    <table class="options-table">
+                        <tr><th>核心能力</th><th>说明</th><th>判断标准</th></tr>
+                        <tr><td><code>Markdown Slides</code></td><td>用纯 Markdown 写幻灯片，支持 frontmatter 配置每页样式</td><td>你习惯用 Markdown 写作，不想切到 PPT 或 Keynote</td></tr>
+                        <tr><td><code>Live Coding</code></td><td>在幻灯片里直接嵌入可执行的代码块，支持 Monaco 编辑器</td><td>演示场景需要现场改代码、跑结果</td></tr>
+                        <tr><td><code>Presenter Mode</code></td><td>演讲者视图带计时器、备注和下一张预览</td><td>有公开演讲或团队内部分享需求</td></tr>
+                        <tr><td><code>Mermaid + Export</code></td><td>内置 Mermaid 图表，支持导出 PDF/PNG/可托管 SPA</td><td>需要结构图 + 多种分发格式</td></tr>
+                    </table>
+                    <p class="section-desc">对我们最有价值的参考：Slidev 说明<strong>开发者讲义页和普通 PPT 不是一回事</strong>。当我们需要讲解源码结构、CLI 使用或代码审查流程时，Slidev 的 live coding 和 Markdown-native 工作流是更适合的壳层。</p>
                 </section>
 
                 <section id="remotion" class="section-block">
                     <h2>05 · Remotion：最像代码驱动的视频表达层</h2>
                     <p>一旦你不满足于静态页和 slides，而想把解释升级成动画、片段和节奏化叙事，Remotion 就会显出它的层级差异。</p>
-                    <div class="course-quote">
-                        <p><strong>[插图提示词]</strong></p>
-                        <p>用途：画 Design/UI 三条路线对照图。</p>
-                        <p>形式：分层结构图；Mermaid 很合适。</p>
-                        <p>提示词：顶部是 Design/UI hub，左边 LivePPT 标注 markdown/readme to html deck，中间 Slidev 标注 developer slides / drawing / export，右边 Remotion 标注 react programmatic video / animation / storytelling，底部画出从文章到演示页到视频的升级路径。</p>
-                        <p>Mermaid 更适合：是。</p>
-                    </div>
+                    <table class="options-table">
+                        <tr><th>核心能力</th><th>说明</th><th>判断标准</th></tr>
+                        <tr><td><code>React → Video</code></td><td>用 React 组件直接定义视频帧、动画和转场，像写页面一样写视频</td><td>你需要动画、节奏、镜头感，而不是静态图文</td></tr>
+                        <tr><td><code>程序化编排</code></td><td>时间轴、关键帧、插值、音频同步全部用代码控制，可复用可版本化</td><td>同一套视觉风格需要批量生成或频繁迭代</td></tr>
+                        <tr><td><code>可部署流水线</code></td><td>可在 CI/CD 里渲染视频，配合 Lambda / Docker 做规模化出片</td><td>需要将视频生成纳入自动化流程</td></tr>
+                    </table>
+                    <p class="section-desc">对我们最有价值的参考：Remotion 给了站点未来一条<strong>从图文走向视频的扩展路线</strong>。当我们需要把复杂的系统结构（如 Claude Code 主循环、Hermes 六层架构）做成"一眼看懂"的动效解释时，Remotion 的层级远高于静态图或 slides。</p>
                 </section>
 
                 <section id="sample-map" class="section-block">
-                    <h2>把同一个样本映射到三条壳层</h2>
+                    <h2>06 · 把同一个样本映射到三条壳层</h2>
                     <p>为了让这条专题不是停在抽象对比，我们把 <a href="topic-cc-unpacked-zh.html"><code>Claude Code 解构页</code></a> 当作第一批样本，看看同一份内容在三种表达壳层里分别该怎么切。</p>
                     <table class="options-table">
                         <tr><th>样本层</th><th>Claude Code 解构页该怎么切</th><th>产出目标</th></tr>
