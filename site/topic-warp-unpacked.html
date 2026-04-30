@@ -996,6 +996,29 @@
                 background: #22c55e;
                 border-color: #22c55e;
             }
+            
+            /* Round 6: 滚动动画 */
+            .scroll-animate {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: opacity 0.6s ease, transform 0.6s ease;
+            }
+            .scroll-animate.scroll-visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            .timeline-item.scroll-animate {
+                transform: translateX(-20px);
+            }
+            .timeline-item.scroll-visible {
+                transform: translateX(0);
+            }
+            .tool-card.scroll-animate {
+                transform: translateY(20px) scale(0.95);
+            }
+            .tool-card.scroll-visible {
+                transform: translateY(0) scale(1);
+            }
         `;
         document.head.appendChild(style);
         
@@ -1031,6 +1054,71 @@
             };
             block.appendChild(btn);
         });
+        
+        // Round 6: 滚动动画与微交互 — Intersection Observer 渐入
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -50px 0px',
+            threshold: 0.1
+        };
+        
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    // 添加 stagger 延迟
+                    const delay = index * 0.08;
+                    entry.target.style.transitionDelay = `${delay}s`;
+                    entry.target.classList.add('scroll-visible');
+                    scrollObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        // 为需要动画的元素添加观察
+        document.querySelectorAll('.timeline-item, .tool-card, .feature-card, .section-block, .mermaid-figure, .chart-container').forEach(el => {
+            el.classList.add('scroll-animate');
+            scrollObserver.observe(el);
+        });
+        
+        // Hero 统计数字计数动画
+        const statObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statValues = entry.target.querySelectorAll('.stat-value');
+                    statValues.forEach(stat => {
+                        const finalText = stat.textContent;
+                        const isPercent = finalText.includes('%');
+                        const hasK = finalText.includes('K');
+                        const hasM = finalText.includes('万');
+                        let targetNum = parseInt(finalText.replace(/[^0-9]/g, ''));
+                        if (hasK) targetNum *= 1000;
+                        if (hasM) targetNum *= 10000;
+                        
+                        let current = 0;
+                        const duration = 1500;
+                        const step = targetNum / (duration / 16);
+                        
+                        const counter = setInterval(() => {
+                            current += step;
+                            if (current >= targetNum) {
+                                stat.textContent = finalText;
+                                clearInterval(counter);
+                            } else {
+                                let display = Math.floor(current);
+                                if (hasK) display = Math.floor(current / 1000) + 'K+';
+                                else if (hasM) display = Math.floor(current / 10000) + '万+';
+                                else if (isPercent) display = Math.floor(current) + '%';
+                                stat.textContent = display;
+                            }
+                        }, 16);
+                    });
+                    statObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        const heroStats = document.querySelector('.hero-stats');
+        if (heroStats) statObserver.observe(heroStats);
     </script>
 </body>
 </html>
