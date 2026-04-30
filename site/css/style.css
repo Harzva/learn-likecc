@@ -17530,3 +17530,128 @@ body.site-shell-overlay-open {
     .ds-stage-panels { padding: 16px; }
 }
 
+/* Design/UI 三列交互对照模块 */
+.du-compare__title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.3rem;
+}
+.du-compare__subtitle {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin: 0 0 1rem;
+}
+.du-compare__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+.du-compare__col {
+    position: relative;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--bg-card);
+    padding: 1rem 1.1rem 1.1rem;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+.du-compare__col:hover {
+    border-color: color-mix(in srgb, var(--col-accent, var(--primary)) 50%, var(--border));
+    box-shadow: 0 10px 24px -8px color-mix(in srgb, var(--col-accent, var(--primary)) 20%, transparent);
+    transform: translateY(-3px);
+}
+.du-compare__accent-bar {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--col-accent, var(--primary));
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+.du-compare__header {
+    position: relative;
+    margin: -1rem -1.1rem 0.9rem;
+    padding: 1rem 1.1rem 0.7rem;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--bg-secondary) 90%, var(--col-accent, var(--primary))) 0%, var(--bg-secondary) 100%);
+    border-bottom: 1px solid var(--border);
+}
+.du-compare__col-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+}
+.du-compare__tagline {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.du-compare__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-bottom: 0.85rem;
+}
+.du-compare__chip {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.2rem 0.5rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--col-accent, var(--primary)) 12%, var(--bg-hover));
+    color: var(--text-secondary);
+    border: 1px solid color-mix(in srgb, var(--col-accent, var(--primary)) 25%, var(--border));
+}
+.du-compare__dl {
+    margin: 0;
+}
+.du-compare__row {
+    padding: 0.55rem 0;
+    border-bottom: 1px dashed var(--border);
+    transition: background 0.2s ease, padding-left 0.2s ease;
+    border-radius: 0 var(--radius) var(--radius) 0;
+}
+.du-compare__row:last-child {
+    border-bottom: none;
+}
+.du-compare__row--active {
+    background: color-mix(in srgb, var(--col-accent, var(--primary)) 8%, var(--bg-hover));
+    padding-left: 0.5rem;
+}
+.du-compare__dt {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.15rem;
+}
+.du-compare__dt-icon {
+    font-size: 0.85rem;
+    line-height: 1;
+}
+.du-compare__dd {
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    margin: 0;
+}
+@media (max-width: 768px) {
+    .du-compare__grid {
+        grid-template-columns: 1fr;
+    }
+}
+.du-compare__err {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    padding: 1rem;
+}
+

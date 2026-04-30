@@ -20,6 +20,7 @@
                 <a href="#attribution" class="nav-link">说明</a>
                 <a href="#roles" class="nav-link">01 角色</a>
                 <a href="#shells" class="nav-link">01B 壳层</a>
+                <a href="#compare" class="nav-link">01C 对照</a>
                 <a href="#knowledge-map" class="nav-link">02 图谱</a>
                 <a href="#liveppt" class="nav-link">03 LivePPT</a>
                 <a href="#slidev" class="nav-link">04 Slidev</a>
@@ -91,6 +92,12 @@
                     <h2>01B · 三种表达壳层对照（点击展开）</h2>
                     <p>下面把三条路线的<strong>核心定位、最佳场景和层级差异</strong>做成可交互卡片。点击任意卡片查看详细说明；帮助你快速判断「当前内容该用哪条工具链」。</p>
                     <div id="cc-feature-cards-mount" class="cc-feature-cards" data-json="data/design-ui-overview.json" role="region" aria-label="Design/UI 表达壳层特性卡片"></div>
+                </section>
+
+                <section id="compare" class="section-block">
+                    <h2>01C · 三列能力对照（悬停高亮）</h2>
+                    <p>把 <code>LivePPT</code>、<code>Slidev</code>、<code>Remotion</code> 放在同一维度下横向比较。悬停任意维度，三列中对应行会同时高亮，帮助你一眼看出差异。</p>
+                    <div id="design-ui-compare-mount" class="du-compare" data-json="data/design-ui-compare.json" role="region" aria-label="Design/UI 表达壳层三列对照"></div>
                 </section>
 
                 <section id="knowledge-map" class="section-block">
@@ -186,6 +193,7 @@
     </footer>
     <script src="js/app.js"></script>
     <script src="js/cc-feature-cards.js"></script>
+    <script src="js/design-ui-compare.js"></script>
     <script src="js/design-ui-knowledge.js"></script>
     <script src="js/unpacked-reading-path.js"></script>
 </body>

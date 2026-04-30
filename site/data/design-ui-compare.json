@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "updated": "2026-04-30",
+    "note_zh": "Design/UI 表达壳层三列对照数据：LivePPT、Slidev、Remotion 核心维度横向比较"
+  },
+  "compare": {
+    "title": "三种表达壳层对照",
+    "subtitle": "悬停查看各维度详细对比；维度顺序即判断优先级",
+    "dimensions": [
+      { "key": "input", "label": "输入格式", "icon": "📝" },
+      { "key": "output", "label": "输出形态", "icon": "📤" },
+      { "key": "best_for", "label": "最适合场景", "icon": "🎯" },
+      { "key": "learning", "label": "学习成本", "icon": "📈" },
+      { "key": "depth", "label": "定制深度", "icon": "🔧" }
+    ],
+    "items": [
+      {
+        "id": "liveppt",
+        "title": "LivePPT",
+        "tagline": "内容先行 → 演示页",
+        "accent": "#eab308",
+        "values": {
+          "input": "Markdown / README / 结构化笔记",
+          "output": "单页 HTML deck（可离线浏览）",
+          "best_for": "已有成熟内容，需要快速变成可分享的演示页",
+          "learning": "低：不需要设计技能，文档结构即页序",
+          "depth": "中低：主题系统覆盖品牌色与排版，不追求完全自定义"
+        },
+        "score_labels": [ "上手快", "部署轻", "定制有限" ]
+      },
+      {
+        "id": "slidev",
+        "title": "Slidev",
+        "tagline": "开发者讲义工作台",
+        "accent": "#6366f1",
+        "values": {
+          "input": "Markdown slides + frontmatter + 代码块 + Mermaid",
+          "output": "SPA / PDF / PNG / 可托管讲义",
+          "best_for": "技术分享、源码讲解、需要现场 live coding 的场景",
+          "learning": "中：需要理解 Markdown-native 工作流和 presenter 模式",
+          "depth": "中高：可嵌入 Monaco、绘图、自定义主题和导出管道"
+        },
+        "score_labels": [ "功能全", "开发者友好", "导出灵活" ]
+      },
+      {
+        "id": "remotion",
+        "title": "Remotion",
+        "tagline": "程序化视频引擎",
+        "accent": "#ec4899",
+        "values": {
+          "input": "React 组件 + 时间轴编排 + 关键帧定义",
+          "output": "MP4 / GIF / 可程序化渲染的视频片段",
+          "best_for": "最强主线的镜头感表达、社交媒体传播的动效解释",
+          "learning": "高：需要 React + 动画 + 视频编排的复合技能",
+          "depth": "极高：每一帧、每一个转场、每一条音频都可用代码控制"
+        },
+        "score_labels": [ "上限高", "可自动化", "视频级输出" ]
+      }
+    ]
+  }
+}
