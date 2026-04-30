@@ -30,13 +30,13 @@
 - [x] Task H2: Add hero-stats row with gradient-text values (already present ✓)
 - [x] Task H3: Add interactive module placeholder for agent loop visualization (already present: hermes-loop-player + hermes-arch-treemap + hermes-arch-knowledge ✓)
 - [x] Task H4: Verify section numbering follows consistent 01/02/02B/03 pattern (fixed: 02C → 02B, nav link "02 图谱" → "02B 图谱")
-- [ ] Task H5: Add visual console or chip row below hero-actions for key concepts (optional, reference page does not have this)
+- [x] Task H5: Add visual console or chip row below hero-actions for key concepts (optional, added 6 chips: Agent Loop / Gateway / Memory / Skills / Cron / Environment; styled in shared CSS)
 
 ### P2: topic-design-ui-unpacked.html
 - [x] Task UI1: Add hero-stats row (currently completely missing)
 - [x] Task UI2: Add hero-badge with topic label
 - [x] Task UI3: Expand hero-subtitle with stronger value proposition
-- [ ] Task UI4: Add interactive comparison module (three-column visual with hover states)
+- [x] Task UI4: Add interactive comparison module (three-column visual with hover states) (added: design-ui-compare.json + design-ui-compare.js + du-compare CSS + 01C section with nav link)
 - [x] Task UI5: Add section numbering to all sections
 - [x] Task UI6: Add knowledge-map or reference-links section at bottom
 
@@ -44,12 +44,12 @@
 - [x] Task E1: Change body class from meta-topic-page to cc-unpacked-page
 - [x] Task E2: Add hero-stats row (currently missing)
 - [x] Task E3: Add section numbering to main sections
-- [ ] Task E4: Add interactive module placeholder for cross-harness comparison
+- [x] Task E4: Add interactive module placeholder for cross-harness comparison (added #harness-compare section with ecc-harness-compare module; data + JS already existed; reused du-compare CSS)
 - [x] Task E5: Add attribution block
 
 ### Shared: site/css/style.css
 - [x] Task C1: Ensure .cc-unpacked-hero-stats gradient-text rule applies globally
-- [ ] Task C2: Add .hero-badge visibility rule for all cc-unpacked-page heroes — already visible globally, no extra rule needed
+- [x] Task C2: Add .hero-badge visibility rule for all cc-unpacked-page heroes — already visible globally, no extra rule needed (verified: .hero-badge renders correctly on all unpacked pages without additional CSS)
 - [x] Task C3: Verify interactive module mount points have consistent min-height (cc-arch-knowledge and ds-arch-knowledge both have min-height via __layout; cc-loop-player has min-height from its own CSS)
 
 ---
@@ -66,6 +66,7 @@
 | 7 | 2026-04-30 | UI1 | Added hero-stats row to topic-design-ui-unpacked.html: 4 stats (3 shells / 6 ladder levels / 4 lessons / 1 criterion), hero-actions with CTAs, subtitle-note; visual density now matches reference | Committed: 2b7e461 |
 | 8 | 2026-04-30 | UI5 | Added 01-07 section numbering to topic-design-ui-unpacked.html: updated nav links (01 角色 / 02 LivePPT / 03 Slidev / 04 Remotion / 05 样例映射 / 06 插件梯度 / 07 值得学什么) and all h2 titles to match reference pattern | Committed: cae289d |
 | 9 | 2026-04-30 | UI6 | Added reference-links section at bottom of topic-design-ui-unpacked.html: links to LivePPT/Slidev/Remotion official docs + Design/UI专题总页, plus ds-cta next-step hint; aligns with reference page bottom pattern | Committed: b31bf21 |
+| 11 | 2026-04-30 | H5 | Added hero-chip-row with 6 chips (Agent Loop / Gateway / Memory / Skills / Cron / Environment) below hero-actions in topic-hermes-unpacked.html; added shared .hero-chip-row + .hero-chip styles to style.css under .cc-unpacked-page namespace | Committed: (pending) |
 
 ---
 
