@@ -1,0 +1,61 @@
+{
+  "feature_cards": {
+    "note_zh": "点击卡片查看各组件的职责边界与对我们的参考价值。",
+    "cards": [
+      {
+        "id": "agents",
+        "title": "agents / 智能体工作流",
+        "blurb": "跨 harness 的代理配置与任务编排模板。",
+        "body": "everything-claude-code 的 agents/ 目录包含可直接复用的代理模板与系统提示词，不是只教 Claude Code 怎么用。\n\n核心看点：同一套 agent 配置如何通过 manifest 打到多个 harness 上，而不是每个平台重写。",
+        "links": [
+          { "href": "topic-codex-loop.html", "text": "codex-loop 专题" }
+        ]
+      },
+      {
+        "id": "skills",
+        "title": "skills / 技能包",
+        "blurb": "可复用的命令、规则与提示词组合。",
+        "body": "skills/ 目录把常用工作流打包成可插拔单元：命令定义、规则约束、上下文模板一次写完，多 harness 共用。\n\n和我们正在做的 skill 仓库直接相邻。",
+        "links": [
+          { "href": "topic-sourcemap.html", "text": "Source Map 源码课" }
+        ]
+      },
+      {
+        "id": "commands",
+        "title": "commands / 命令目录",
+        "blurb": "结构化命令与斜杠命令的统一注册面。",
+        "body": "commands/ 提供命令的 schema 与执行体，和 /斜杠命令 不是一回事，但覆盖同一批工作流。\n\n读这里可以判断：哪些操作被设计成‘可编程接口’，哪些只是‘交互快捷方式’。",
+        "links": [
+          { "href": "topic-cc-unpacked-zh.html", "text": "Claude Code 解构" }
+        ]
+      },
+      {
+        "id": "rules",
+        "title": "rules / 约束与规范",
+        "blurb": "跨会话保持一致的编码规范与行为边界。",
+        "body": "rules/ 定义了 agent 在不同 harness 中应遵守的约束：代码风格、安全边界、输出格式等。\n\n这是‘系统外壳’的一部分——不是临时提示词，而是持久规则层。",
+        "links": [
+          { "href": "topic-sourcemap.html", "text": "源码专题" }
+        ]
+      },
+      {
+        "id": "plugins",
+        "title": "plugin manifest / 多 harness 分发",
+        "blurb": ".claude-plugin / .codex-plugin / .opencode 等插件壳。",
+        "body": "分发层最核心的文件。同一套 agents/skills/commands/rules 通过不同的 manifest 格式打到 Claude Code、Codex、OpenCode、Gemini 上。\n\n这是‘跨 harness 外壳系统’最直接的实现证据。",
+        "links": [
+          { "href": "topic-codex-loop.html", "text": "codex-loop 专题" }
+        ]
+      },
+      {
+        "id": "control-plane",
+        "title": "ECC 2.0 / 控制面原型",
+        "blurb": "dashboard、runtime、alpha control plane。",
+        "body": "README 明确提到的 ECC 2.0 alpha 和 dashboard，说明这个仓库已经从‘指南 + 插件’长到 runtime / control plane。\n\n这条演化路径很适合对照我们的 workspace shell 和 codex-managed-agent 线。",
+        "links": [
+          { "href": "topic-sourcemap.html", "text": "源码专题" }
+        ]
+      }
+    ]
+  }
+}
