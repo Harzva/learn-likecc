@@ -194,6 +194,8 @@
 
                 <section id="loop" class="section-block">
                     <h2>05 · 它和 DeepScientist 的根本差异：研究协议 vs 研究工作台</h2>
+                    <p class="section-desc">下方为<strong>讲解型</strong>步进演示（数据来自 <code>site/data/aris-loop-steps.json</code>）：可点步骤标签、播放/暂停、倍速与键盘 <kbd>←</kbd> <kbd>→</kbd>、<kbd>Space</kbd>。步骤条下方<strong>彩色细条</strong>为下一帧<strong>倒计时</strong>；末步点播放会先回到第 1 步再自动翻页。<strong>非</strong>真实运行时遥测。</p>
+                    <div id="aris-loop-player" class="cc-loop-player" data-json="data/aris-loop-steps.json" aria-label="ARIS 研究循环协议步进讲解"></div>
                     <table class="options-table">
                         <tr><th>维度</th><th>Autoresearch / ARIS</th><th>DeepScientist</th></tr>
                         <tr><td>主隐喻</td><td>plugin / command surface / loop contract</td><td>quest repo / local-first research studio</td></tr>
@@ -243,6 +245,7 @@
         </div>
     </footer>
     <script src="js/app.js"></script>
+    <script src="js/aris-loop-player.js"></script>
     <script src="js/unpacked-reading-path.js"></script>
 </body>
 </html>

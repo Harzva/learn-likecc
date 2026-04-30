@@ -1,0 +1,94 @@
+{
+  "meta": {
+    "updated": "2026-04-30",
+    "autoplay_base_ms": 2800,
+    "loop_autoplay": true,
+    "note_zh": "讲解型步进：Autoresearch / ARIS 研究循环协议。数据来自 README、guide 与源码锚点。"
+  },
+  "steps": [
+    {
+      "id": "contract",
+      "label": "Contract",
+      "title": "Loop Contract：定义可验证契约",
+      "body": "在启动任何改动之前，先明确 goal、metric、scope、verify 与 rollback 五要素。这是 ARIS 把‘改进愿望’转成可机械执行循环的第一道门。",
+      "analysis": "Contract 不是文档，而是过滤条件。没有 metric 的 goal 是幻觉；没有 rollback 策略的 verify 是赌博。ARIS 用这五个显式声明把‘研究冲动’约束成可迭代任务。",
+      "pitfall": "不要把 contract 当成一次性配置。每轮迭代后 goal 和 scope 都可能漂移；contract 应该在每次 loop 重新校验，而不是只写一次。",
+      "read_hint": "先看 `README.md` 的 goal/metric/scope/verify/rollback 定义，再对照 `guide/autoresearch.md` 的 loop 说明。",
+      "terminal": [
+        "goal: improve_reproduce_rate",
+        "metric: pass_rate > 0.85",
+        "scope: src/experiments/",
+        "verify: pytest tests/reproduce/",
+        "rollback: git checkout -- .",
+        "▌"
+      ]
+    },
+    {
+      "id": "plan",
+      "label": "Plan",
+      "title": "Plan：把目标转成可验证配置",
+      "body": "`/autoresearch plan` 不是写 TODO，而是把 contract 编译成本轮的可执行计划：改哪里、用什么验证、失败边界是什么。",
+      "analysis": "Plan 命令是 ARIS 的‘配置向导面’。它检查当前 git 状态、确认 scope 边界、建议验证命令，并生成本轮的 plan 记录。这一步的产出是下一轮 change 的输入契约。",
+      "pitfall": "不要把 plan 当成静态蓝图。ARIS 的 plan 是每轮重新生成的，因为上一轮 verify 的结果会直接影响本轮 scope。",
+      "read_hint": "重点看 `claude-plugin/commands/autoresearch/plan.py` 与 `guide/plan.md`。",
+      "terminal": [
+        "/autoresearch plan",
+        "-> check git status: clean",
+        "-> suggest scope: src/experiments/round_4",
+        "-> verify command: pytest tests/reproduce/",
+        "-> plan.md written",
+        "▌"
+      ]
+    },
+    {
+      "id": "change",
+      "label": "Change",
+      "title": "One Change：只做一处改动",
+      "body": "每轮只执行一个最小改动：debug、ship、learn、reason 或其他子命令。ARIS 的核心约束是‘单变量’——同一轮不混多个修改方向。",
+      "analysis": "Change 是循环的执行面。子命令（debug / ship / learn / reason / security / scenario / predict）不是功能菜单，而是同一套 loop contract 在不同任务语境下的分叉。",
+      "pitfall": "最危险的做法是在同一轮既改代码又改配置又改测试。ARIS 假设每次 change 只产生一个可归属的因果推断，否则 rollback 将失去意义。",
+      "read_hint": "联读 `claude-plugin/commands/autoresearch/` 下各子命令实现，对比它们的入口逻辑如何复用同一套 contract。",
+      "terminal": [
+        "/autoresearch debug",
+        "-> run: fix_attempt_1()",
+        "-> scope: src/experiments/round_4/fix.py",
+        "-> git diff: +12 -3 lines",
+        "▌"
+      ]
+    },
+    {
+      "id": "verify",
+      "label": "Verify",
+      "title": "Verify / Rollback：验证并决定保留或回滚",
+      "body": "用 contract 中定义的 metric 和 verify 命令对改动做机械验证。通过则 `git commit` 沉淀；失败则 `git checkout -- .` 回滚，不留下污染。",
+      "analysis": "Verify 是 ARIS 与‘交互式聊天’的根本分界线。它把验证从‘人眼看对不对’变成‘命令跑不跑得通’，从而保证 loop 的每一步都有客观的继续/停止条件。",
+      "pitfall": "不要让 verify 变成‘形式跑一下’。如果 verify 命令本身覆盖不足，通过的结果也可能是假阳性。contract 里的 metric 必须能真实反映目标。",
+      "read_hint": "看 `README.md` 的 verify 与 rollback 节，以及 `claude-plugin/skills/autoresearch/SKILL.md` 的 guard 设计。",
+      "terminal": [
+        "verify: pytest tests/reproduce/",
+        "-> pass_rate: 0.91 (target: 0.85)",
+        "-> result: PASS",
+        "-> git commit -m 'exp: round_4 fix'",
+        "▌"
+      ]
+    },
+    {
+      "id": "memory",
+      "label": "Memory",
+      "title": "Git Memory：沉淀与循环闭合",
+      "body": "验证通过的改动以 git commit 形式沉淀，findings 和 logs 写入持久状态。本轮输出成为下一轮输入，研究循环闭合而非终止。",
+      "analysis": "Git Memory 是 ARIS 的‘状态锚点’。它用 git history 替代传统数据库，使研究过程天然具备可追溯、可回滚、可分支的特性。Findings Memory 则补充了语义层面的沉淀。",
+      "pitfall": "不要把 git memory 当成‘自动提交一切’。ARIS 只在 verify 通过后 commit，失败直接回滚。这种严格的过滤机制避免了历史污染。",
+      "read_hint": "对照 `docs/` 或 `guide/` 中关于 git memory 与 findings memory 的说明，再看 `claude-plugin/.claude-plugin/plugin.json` 的 hooks 配置。",
+      "terminal": [
+        "git log --oneline -3",
+        "-> a1b2c3d exp: round_4 fix",
+        "-> e4f5g6h exp: round_3 baseline",
+        "-> i7j8k9l exp: round_2 rollback",
+        "-> findings.md appended",
+        "-> loop closes → next quest",
+        "▌"
+      ]
+    }
+  ]
+}
