@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📦</text></svg>">
     <meta name="description" content="庖丁解牛专题子页：Claude Code 中文结构导览，覆盖主循环、目录架构、工具与斜杠命令地图、实验特性；链回本站 S/D 讲义与源码专题。">
-    <meta name="page:updated" content="2026-04-12">
+    <meta name="page:updated" content="2026-04-30">
 </head>
 <body class="cc-unpacked-page">
     <nav class="navbar">
@@ -164,6 +164,50 @@
                         <li>阅读时配合 <a href="topic-cc-release-watch.html">发版监督</a> 与官方 <code>CHANGELOG</code>，避免把实验实现当成稳定契约。</li>
                         <li>权限与安全边界见 <a href="s03.html">S03</a>、<a href="d03.html">D03</a>；Hooks 见 <a href="s10.html">S10</a>、<a href="d10.html">D10</a>。</li>
                     </ul>
+                </section>
+
+                <section id="multi-agent" class="section-block">
+                    <h2>06 · 多 Agent 并行工作流</h2>
+                    <p>当单个 Claude 实例处理不过来时，Claude Code 提供了<strong>四套并行机制</strong>，从同项目角色分工到真正的多窗口并行，再到分支级硬隔离和定时自动调度。以下要点来自社区实操文章，帮助你判断什么场景用哪个。</p>
+
+                    <table class="options-table">
+                        <tr><th>方案</th><th>核心作用</th><th>适用场景</th><th>上手难度</th></tr>
+                        <tr><td><strong>Subagents</strong></td><td>同项目多角色分工</td><td>一个人管多个工种（写代码+review+测试）</td><td>★</td></tr>
+                        <tr><td><strong>Agent Teams</strong></td><td>多 Agent 同时并行</td><td>需要真正"多头脑"同时工作</td><td>★★★</td></tr>
+                        <tr><td><strong>Git Worktree</strong></td><td>隔离分支并行</td><td>长时重构、多人协作场景</td><td>★★</td></tr>
+                        <tr><td><strong>工作流编排</strong></td><td>串联+控制各单元</td><td>全局协调、任务调度</td><td>★★</td></tr>
+                    </table>
+
+                    <h3>Subagents：用 Markdown 定义"团队成员"</h3>
+                    <p>Subagent 是一组放在 <code>~/.claude/agents/</code>（全局）或 <code>项目/.claude/agents/</code>（项目级）的 Markdown 文件，定义角色的指令、工具和职责。在会话中用 <code>@角色名</code> 直接呼叫。</p>
+                    <ul>
+                        <li>本质上是<strong>同一个 Claude 实例切换指令集</strong>，不解决并行，只解决角色分工。</li>
+                        <li>项目级配置提交到 Git 后，新成员 clone 即可拥有同一套 AI 工种定义。</li>
+                    </ul>
+
+                    <h3>Agent Teams：多窗口并行的正确打开方式</h3>
+                    <p>通过 <code>CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1</code> + <code>teammateMode: "tmux"</code> 启用，Claude Code 会为每个队友自动创建独立的 tmux 窗口，实现真正的并行执行。</p>
+                    <ul>
+                        <li>队友间通过<strong>共享上下文</strong>通信，主会话持有全局上下文。</li>
+                        <li>用 <code>Shift+↑</code> / <code>Shift+↓</code> 切换窗口；iTerm2 用户可用 <code>tmux -CC</code> 获得原生分屏。</li>
+                        <li>团队成员配置在 <code>~/.claude/teams/{team}/config.json</code>，用 <code>claude --team dev</code> 启动。</li>
+                    </ul>
+
+                    <h3>Git Worktree：分支级别的硬隔离</h3>
+                    <p>当改动会相互冲突、需要硬隔离时，Git Worktree 比 Agent Teams 更底层。同一仓库多个工作目录，各对应独立分支，共享 <code>.git</code> 对象库但文件系统隔离。</p>
+                    <pre><code>git worktree add ../feature-auth -b feature/auth
+cd ../feature-auth && claude  # 新会话专门做重构，不影响主分支</code></pre>
+
+                    <h3>Routines：定时自动跑任务（2026-04 新功能）</h3>
+                    <p>把"prompt + 仓库 + 触发条件"打包成云端配置，支持 cron 定时触发、API 触发、GitHub 事件触发。与 Agent Teams 配合可形成<strong>"无人值守流水线"</strong>。</p>
+                    <ul>
+                        <li>当前处于研究预览阶段，仅支持 Claude 官方模型，不支持第三方 API 路由。</li>
+                        <li>典型场景：每天早上 8 点自动跑代码审查，审查结果自动发 PR comment。</li>
+                    </ul>
+
+                    <p class="section-desc" style="font-size:0.9rem">详细实操指南、配置命令和常见坑见社区文章：
+                        <a href="https://mp.weixin.qq.com/s/g8wc2ULicc0djeOkRN5WvA" target="_blank" rel="noopener noreferrer">Claude Code 多 Agent 并行方案深度解析 ↗</a>
+                    </p>
                 </section>
 
                 <section class="section-block">

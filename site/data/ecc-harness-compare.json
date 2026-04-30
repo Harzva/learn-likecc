@@ -1,0 +1,80 @@
+{
+  "meta": {
+    "updated": "2026-04-30",
+    "note_zh": "跨 harness 壳层对照数据：Claude Code、Codex、OpenCode、Gemini CLI 核心维度横向比较"
+  },
+  "compare": {
+    "title": "四种 harness 对照",
+    "subtitle": "悬停查看各维度详细对比；同一套壳层系统如何落到不同平台",
+    "dimensions": [
+      { "key": "plugin", "label": "插件格式", "icon": "📦" },
+      { "key": "loop", "label": "Agent Loop", "icon": "🔄" },
+      { "key": "skills", "label": "Skills 系统", "icon": "🧩" },
+      { "key": "commands", "label": "命令层", "icon": "⌨️" },
+      { "key": "control", "label": "控制面", "icon": "🎛️" },
+      { "key": "openness", "label": "开源程度", "icon": "🔓" }
+    ],
+    "items": [
+      {
+        "id": "claude-code",
+        "title": "Claude Code",
+        "tagline": "Anthropic 官方 CLI",
+        "accent": "#ea580c",
+        "values": {
+          "plugin": ".claude-plugin / settings.json",
+          "loop": "原生 queryLoop + tool_use 回流",
+          "skills": "Skills + Commands + Rules 三层",
+          "commands": "斜杠命令 + 自然语言混合",
+          "control": "Session / Compact / Memory 内置",
+          "openness": "闭源（客户端闭源，协议部分开放）"
+        },
+        "score_labels": [ "生态最完整", "文档最厚", "闭源" ]
+      },
+      {
+        "id": "codex",
+        "title": "Codex",
+        "tagline": "OpenAI 官方编码 agent",
+        "accent": "#10a37f",
+        "values": {
+          "plugin": ".codex-plugin / codex.json",
+          "loop": "Agent 推理 + 沙箱执行",
+          "skills": "Instructions + 工具注册",
+          "commands": "自然语言为主，命令较少",
+          "control": "Approval + Sandbox 策略面",
+          "openness": "客户端闭源，API 开放"
+        },
+        "score_labels": [ "沙箱安全", "OpenAI 生态", "推理强" ]
+      },
+      {
+        "id": "opencode",
+        "title": "OpenCode",
+        "tagline": "开源社区 harness",
+        "accent": "#6366f1",
+        "values": {
+          "plugin": ".opencode / 社区 manifest",
+          "loop": "社区实现，多后端支持",
+          "skills": "插件化 skills，生态在生长",
+          "commands": "可扩展命令注册",
+          "control": "社区驱动，暂无统一控制面",
+          "openness": "完全开源"
+        },
+        "score_labels": [ "完全开源", "可定制", "生态初期" ]
+      },
+      {
+        "id": "gemini",
+        "title": "Gemini CLI",
+        "tagline": "Google 官方编码助手",
+        "accent": "#8b5cf6",
+        "values": {
+          "plugin": ".gemini / 配置目录",
+          "loop": "Gemini 模型原生推理",
+          "skills": "指令模板 + 工具调用",
+          "commands": "自然语言 + 少量内置命令",
+          "control": "Google 账户与项目级策略",
+          "openness": "客户端闭源，API 开放"
+        },
+        "score_labels": [ "Google 生态", "多模态", "闭源" ]
+      }
+    ]
+  }
+}

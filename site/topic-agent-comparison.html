@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
     <meta name="description" content="Superpowers 与 GStack 技能包对比；Claude Subagents 与 Agent Teams 协调范式梳理；附知乎与英文原文链接。">
-    <meta name="page:updated" content="2026-04-12">
+    <meta name="page:updated" content="2026-04-30">
 </head>
 <body>
     <nav class="navbar">
@@ -228,7 +228,7 @@
                     <li><strong><code>ChatDev 2.0</code></strong> 更像 <strong>workflow-orchestration shell</strong>：用零代码配置 agent / workflow / task，再配 Web Console 承接更长的多代理编排。</li>
                     <li><strong><code>Multica</code></strong> 更像 <strong>managed-agent platform shell</strong>：围绕 board、workspace、runtime、daemon、agent profile 和 issue assignment 管完整生命周期。</li>
                 </ul>
-                <p>这三者对读者有个直接帮助：看到 “Agent Teams” 时，不要只想成一个概念词，而要继续追问它到底更偏哪种壳层。</p>
+                <p>这三者对读者有个直接帮助：看到 "Agent Teams" 时，不要只想成一个概念词，而要继续追问它到底更偏哪种壳层。</p>
 
                 <div class="agent-comparison-table-wrap">
                     <table class="compare-table">
@@ -245,13 +245,13 @@
                                 <td>research-agent CLI shell</td>
                                 <td><code>feynman</code></td>
                                 <td>用单入口 CLI 把 research、review、draft、audit 这些多代理研究动作压成一套可直接调用的研究终端。</td>
-                                <td>它说明多代理不一定先长成“团队平台”，也可以先长成强工作流的研究壳。</td>
+                                <td>它说明多代理不一定先长成"团队平台"，也可以先长成强工作流的研究壳。</td>
                             </tr>
                             <tr>
                                 <td>workflow-orchestration shell</td>
                                 <td><code>ChatDev 2.0</code></td>
                                 <td>用零代码配置 agent、workflow、task，让用户搭配不同多代理流程并在 Web Console 里执行。</td>
-                                <td>它说明 Agent Teams 还可以进一步抽象成“编排平台”，不再只是固定角色聊天。</td>
+                                <td>它说明 Agent Teams 还可以进一步抽象成"编排平台"，不再只是固定角色聊天。</td>
                             </tr>
                             <tr>
                                 <td>managed-agent platform shell</td>
@@ -269,8 +269,9 @@
                     <li><strong><code>ChatDev 2.0</code></strong> 更像 <strong>把代理之间的协作关系写成 workflow</strong>，重点是可配置编排，而不是长期 team board。</li>
                     <li><strong><code>Multica</code></strong> 更像 <strong>把代理当长期成员持续接任务</strong>，重点是 runtime、issue、comment、status 和 daemon 组成的队友生命周期。</li>
                 </ul>
-                <p class="agent-comparison-note"><strong>还要防一个常见误读：</strong><code>ChatDev 2.0</code> 已经不是早期那种“CEO / CTO / Programmer”角色扮演式虚拟软件公司主叙事了。按本地 `reference/reference_agent/ChatDev/README.md`，它在 <code>2026-01-07</code> 明确转向了 <strong>Zero-Code Multi-Agent Platform</strong>，重点变成用户自己配置 agent / workflow / task。换句话说，今天再拿 ChatDev 举例，教学重点应该放在<strong>编排壳</strong>，而不是只记住那套经典角色剧本。</p>
-                <p>这会帮助读者把 “Agent Teams” 这件事再拆细一点：有的系统主要在优化单入口多角色工作流，有的在优化可配置编排，有的已经开始优化长期的人机协作组织面。</p>
+                <p class="agent-comparison-note"><strong>还要防一个常见误读：</strong><code>ChatDev 2.0</code> 已经不是早期那种"CEO / CTO / Programmer"角色扮演式虚拟软件公司主叙事了。按本地 `reference/reference_agent/ChatDev/README.md`，它在 <code>2026-01-07</code> 明确转向了 <strong>Zero-Code Multi-Agent Platform</strong>，重点变成用户自己配置 agent / workflow / task。换句话说，今天再拿 ChatDev 举例，教学重点应该放在<strong>编排壳</strong>，而不是只记住那套经典角色剧本。</p>
+                <p>这会帮助读者把 "Agent Teams" 这件事再拆细一点：有的系统主要在优化单入口多角色工作流，有的在优化可配置编排，有的已经开始优化长期的人机协作组织面。</p>
+                <p class="agent-comparison-note"><strong>实操补充：</strong>如果你正在使用 Claude Code 并需要具体配置 Subagents、启用 Agent Teams（tmux 模式）、结合 Git Worktree 做分支隔离，或配置 Routines 定时任务，可参考社区实操指南：<a href="https://mp.weixin.qq.com/s/g8wc2ULicc0djeOkRN5WvA" target="_blank" rel="noopener noreferrer">Claude Code 多 Agent 并行方案深度解析 ↗</a>。</p>
             </div>
         </div>
     </section>
