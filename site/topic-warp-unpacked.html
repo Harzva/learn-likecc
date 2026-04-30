@@ -457,6 +457,287 @@
                     </table>
                 </section>
 
+                <!-- 数据可视化面板 -->
+                <section class="section-block">
+                    <h2>关键数据可视化</h2>
+                    
+                    <h3>GitHub Stars 增长趋势</h3>
+                    <div class="chart-container" style="background: var(--bg-card); padding: 2rem; border-radius: var(--radius); margin: 1rem 0;">
+                        <svg viewBox="0 0 800 300" style="width: 100%; height: auto;">
+                            <!-- 背景网格 -->
+                            <defs>
+                                <linearGradient id="starsGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#ea580c;stop-opacity:0.3" />
+                                    <stop offset="100%" style="stop-color:#ea580c;stop-opacity:0.05" />
+                                </linearGradient>
+                            </defs>
+                            
+                            <!-- 网格线 -->
+                            <g stroke="var(--border)" stroke-width="1" opacity="0.5">
+                                <line x1="60" y1="250" x2="780" y2="250" />
+                                <line x1="60" y1="190" x2="780" y2="190" />
+                                <line x1="60" y1="130" x2="780" y2="130" />
+                                <line x1="60" y1="70" x2="780" y2="70" />
+                            </g>
+                            
+                            <!-- Y轴标签 -->
+                            <g fill="var(--text-muted)" font-size="12" text-anchor="end">
+                                <text x="55" y="255">0</text>
+                                <text x="55" y="195">10K</text>
+                                <text x="55" y="135">20K</text>
+                                <text x="55" y="75">30K</text>
+                                <text x="55" y="20">40K+</text>
+                            </g>
+                            
+                            <!-- 面积图 -->
+                            <path d="M 60,250 L 120,245 L 180,235 L 240,210 L 300,180 L 360,140 L 420,100 L 480,70 L 540,50 L 600,40 L 660,35 L 720,32 L 780,28 L 780,250 Z" 
+                                  fill="url(#starsGradient)" stroke="#ea580c" stroke-width="2" />
+                            
+                            <!-- 数据点 -->
+                            <g fill="#ea580c">
+                                <circle cx="60" cy="250" r="4" />
+                                <circle cx="180" cy="235" r="4" />
+                                <circle cx="300" cy="180" r="4" />
+                                <circle cx="420" cy="100" r="4" />
+                                <circle cx="540" cy="50" r="4" />
+                                <circle cx="660" cy="35" r="6" fill="#c2410c" stroke="#fff" stroke-width="2" />
+                                <circle cx="780" cy="28" r="6" fill="#c2410c" stroke="#fff" stroke-width="2" />
+                            </g>
+                            
+                            <!-- X轴标签 -->
+                            <g fill="var(--text-muted)" font-size="11" text-anchor="middle">
+                                <text x="60" y="275">2020</text>
+                                <text x="180" y="275">2021</text>
+                                <text x="300" y="275">2022</text>
+                                <text x="420" y="275">2023</text>
+                                <text x="540" y="275">2024</text>
+                                <text x="660" y="275">2025Q1</text>
+                                <text x="780" y="275">开源日</text>
+                            </g>
+                            
+                            <!-- 标注 -->
+                            <g fill="var(--text-primary)" font-size="12" font-weight="600">
+                                <text x="660" y="20" text-anchor="middle">35K (开源前)</text>
+                                <text x="780" y="20" text-anchor="middle">43K+ (当前)</text>
+                            </g>
+                        </svg>
+                        <p style="text-align: center; font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">
+                            数据来源：GitHub API + 公开报道整理；2025年6月开源日为关键拐点
+                        </p>
+                    </div>
+
+                    <h3>融资与估值时间线</h3>
+                    <div class="chart-container" style="background: var(--bg-card); padding: 2rem; border-radius: var(--radius); margin: 1rem 0;">
+                        <svg viewBox="0 0 800 200" style="width: 100%; height: auto;">
+                            <!-- 时间线主轴 -->
+                            <line x1="60" y1="100" x2="740" y2="100" stroke="var(--border)" stroke-width="3" />
+                            
+                            <!-- 节点 -->
+                            <g>
+                                <!-- 种子轮 -->
+                                <circle cx="150" cy="100" r="8" fill="#6366f1" />
+                                <text x="150" y="75" text-anchor="middle" fill="var(--text-primary)" font-size="12" font-weight="600">种子轮</text>
+                                <text x="150" y="135" text-anchor="middle" fill="var(--text-muted)" font-size="11">2022</text>
+                                
+                                <!-- A轮 -->
+                                <circle cx="300" cy="100" r="8" fill="#6366f1" />
+                                <text x="300" y="75" text-anchor="middle" fill="var(--text-primary)" font-size="12" font-weight="600">A轮</text>
+                                <text x="300" y="135" text-anchor="middle" fill="var(--text-muted)" font-size="11">2022</text>
+                                
+                                <!-- B轮 5000万 -->
+                                <circle cx="500" cy="100" r="12" fill="#ea580c" stroke="#fff" stroke-width="2" />
+                                <text x="500" y="60" text-anchor="middle" fill="var(--text-primary)" font-size="13" font-weight="700">B轮 $50M</text>
+                                <text x="500" y="145" text-anchor="middle" fill="var(--text-muted)" font-size="11">2023.06</text>
+                                <text x="500" y="160" text-anchor="middle" fill="var(--text-muted)" font-size="10">累计 $73M</text>
+                                
+                                <!-- 开源 -->
+                                <circle cx="680" cy="100" r="10" fill="#22c55e" stroke="#fff" stroke-width="2" />
+                                <text x="680" y="70" text-anchor="middle" fill="var(--text-primary)" font-size="12" font-weight="600">全面开源</text>
+                                <text x="680" y="135" text-anchor="middle" fill="var(--text-muted)" font-size="11">2025.06</text>
+                            </g>
+                            
+                            <!-- 投资人标注 -->
+                            <text x="500" y="185" text-anchor="middle" fill="var(--text-muted)" font-size="11">
+                                Sam Altman · Salesforce CEO · LinkedIn CEO · Figma CEO
+                            </text>
+                        </svg>
+                    </div>
+
+                    <h3>多模型支持矩阵</h3>
+                    <table class="options-table">
+                        <tr>
+                            <th>模型</th>
+                            <th>厂商</th>
+                            <th>类型</th>
+                            <th>路由策略</th>
+                            <th>接入方式</th>
+                        </tr>
+                        <tr>
+                            <td><strong>GPT 系列</strong></td>
+                            <td>OpenAI</td>
+                            <td>闭源</td>
+                            <td>默认 / 复杂任务</td>
+                            <td>原生内置</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kimi</strong></td>
+                            <td>Moonshot</td>
+                            <td>开源</td>
+                            <td>长上下文任务</td>
+                            <td>API 接入</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Qwen (通义千问)</strong></td>
+                            <td>阿里</td>
+                            <td>开源</td>
+                            <td>中文场景优化</td>
+                            <td>API 接入</td>
+                        </tr>
+                        <tr>
+                            <td><strong>MiniMax</strong></td>
+                            <td>MiniMax</td>
+                            <td>开源</td>
+                            <td>特定任务匹配</td>
+                            <td>API 接入</td>
+                        </tr>
+                        <tr>
+                            <td><strong>其他</strong></td>
+                            <td>-</td>
+                            <td>开源/闭源</td>
+                            <td>自动模型路由</td>
+                            <td>可扩展</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section class="section-block">
+                    <h2>竞争格局深度分析</h2>
+
+                    <h3>终端工具竞品矩阵</h3>
+                    <table class="options-table">
+                        <tr>
+                            <th>产品</th>
+                            <th>技术栈</th>
+                            <th>AI 集成</th>
+                            <th>开源</th>
+                            <th>定位</th>
+                            <th>Warp 差异化</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Warp</strong></td>
+                            <td>Rust</td>
+                            <td>内置 + 第三方代理</td>
+                            <td>AGPL-3.0 / MIT</td>
+                            <td>Agentic DE</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fig</strong></td>
+                            <td>Rust / TS</td>
+                            <td>自动补全</td>
+                            <td>否（被 Amazon 收购）</td>
+                            <td>终端补全</td>
+                            <td>Warp 整合其规范</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Alacritty</strong></td>
+                            <td>Rust</td>
+                            <td>无</td>
+                            <td>Apache-2.0</td>
+                            <td>高性能模拟器</td>
+                            <td>Warp 参考其实现</td>
+                        </tr>
+                        <tr>
+                            <td><strong>iTerm2</strong></td>
+                            <td>Objective-C</td>
+                            <td>无</td>
+                            <td>GPL-2.0</td>
+                            <td>macOS 终端</td>
+                            <td>Warp 跨平台 + AI</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Windows Terminal</strong></td>
+                            <td>C++</td>
+                            <td>Copilot（有限）</td>
+                            <td>MIT</td>
+                            <td>系统级终端</td>
+                            <td>Warp 第三方代理更开放</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tabby</strong></td>
+                            <td>TS / Rust</td>
+                            <td>有限</td>
+                            <td>AGPL-3.0</td>
+                            <td>自托管终端</td>
+                            <td>Warp 云端 + 本地混合</td>
+                        </tr>
+                    </table>
+
+                    <h3>商业模式画布（推测）</h3>
+                    <div class="tool-recommend" style="grid-template-columns: repeat(3, 1fr);">
+                        <div class="feature-card">
+                            <span class="feature-icon">🎯</span>
+                            <div class="feature-info">
+                                <h5>价值主张</h5>
+                                <p>AI 代理驱动的开发环境；自然语言操作终端；降低非开发者参与门槛。</p>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <span class="feature-icon">👥</span>
+                            <div class="feature-info">
+                                <h5>客户细分</h5>
+                                <p>开发者（核心）；产品经理、设计师（扩展）；企业团队（付费）。</p>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <span class="feature-icon">🔄</span>
+                            <div class="feature-info">
+                                <h5>渠道通路</th>
+                                <p>GitHub（开源获客）；Hacker News（早期）；口碑传播（70%）；云服务销售。</p>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <span class="feature-icon">💱</span>
+                            <div class="feature-info">
+                                <h5>收入来源</h5>
+                                <p>闭源：Oz 云服务订阅；企业基础设施许可；高级模型 API 代理费。</p>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <span class="feature-icon">⚙️</span>
+                            <div class="feature-info">
+                                <h5>核心资源</h5>
+                                <p>Rust 终端引擎；LLM 抽象层；开源社区；OpenAI 战略合作。</p>
+                            </div>
+                        </div>
+                        <div class="feature-card">
+                            <span class="feature-icon">🤝</span>
+                            <div class="feature-info">
+                                <h5>关键合作</h5>
+                                <p>OpenAI（GPT 驱动）；第三方代理（Claude Code/Codex/Gemini）。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>技术债务与风险</h3>
+                    <div class="collapsible-section">
+                        <button class="collapsible-toggle" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'); this.nextElementSibling.classList.toggle('open');">
+                            <span>⚠️ 潜在风险分析（点击展开）</span>
+                            <span class="toggle-icon">▶</span>
+                        </button>
+                        <div class="collapsible-content">
+                            <table class="options-table">
+                                <tr><th>风险类别</th><th>具体表现</th><th>影响程度</th></tr>
+                                <tr><td><strong>供应商锁定</strong></td><td>OpenAI 既是赞助商又是技术依赖；GPT 为默认模型</td><td><span style="color:#ea580c">中高</span></td></tr>
+                                <tr><td><strong>开源治理</strong></td><td>AGPL-3.0 对企业采用有顾虑；需平衡社区与商业</td><td><span style="color:#ea580c">中</span></td></tr>
+                                <tr><td><strong>竞争加剧</strong></td><td>GitHub Copilot CLI、Amazon CodeWhisperer 等入场</td><td><span style="color:#f59e0b">中</span></td></tr>
+                                <tr><td><strong>用户习惯</strong></td><td>终端用户保守；40年习惯难以改变；学习成本</td><td><span style="color:#f59e0b">中</span></td></tr>
+                                <tr><td><strong>商业模式验证</strong></td><td>Oz 平台尚未大规模商业化；开源→付费转化率未知</td><td><span style="color:#22c55e">待观察</span></td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
                 <section id="ecosystem" class="section-block">
                     <h2>05 · 生态定位：与谁互补、与谁竞争</h2>
 
@@ -543,6 +824,11 @@
         </div>
     </main>
 
+    <!-- 回到顶部按钮 -->
+    <button id="back-to-top" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});" aria-label="回到顶部">
+        ↑
+    </button>
+
     <footer class="footer">
         <div class="container container--layout-wide">
             <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/topic-warp-unpacked.html" target="_blank" rel="noopener noreferrer">📝 本站页的 HTML 源文件（GitHub）</a></p>
@@ -551,7 +837,21 @@
     </footer>
     <script src="js/app.js"></script>
     <script src="js/unpacked-reading-path.js"></script>
+    <!-- 阅读进度条 -->
+    <div id="reading-progress" class="reading-progress" aria-hidden="true"></div>
+
     <script>
+        // 阅读进度条
+        const progressBar = document.getElementById('reading-progress');
+        if (progressBar) {
+            window.addEventListener('scroll', () => {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                progressBar.style.width = scrolled + '%';
+            });
+        }
+
         // Mermaid 初始化
         mermaid.initialize({
             startOnLoad: true,
@@ -616,8 +916,110 @@
                 max-height: 2000px;
                 padding: 1.25rem;
             }
+            
+            /* 回到顶部按钮 */
+            .back-to-top {
+                position: fixed;
+                bottom: 2rem;
+                right: 2rem;
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                background: var(--primary);
+                color: white;
+                border: none;
+                cursor: pointer;
+                font-size: 1.5rem;
+                box-shadow: var(--shadow-lg);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                z-index: 999;
+            }
+            .back-to-top.visible {
+                opacity: 1;
+                visibility: visible;
+            }
+            .back-to-top:hover {
+                transform: translateY(-4px);
+                box-shadow: var(--shadow-xl);
+            }
+            
+            /* 阅读进度条 */
+            .reading-progress {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 0%;
+                height: 3px;
+                background: var(--gradient-1);
+                z-index: 1000;
+                transition: width 0.1s ease;
+            }
+            
+            /* 代码块复制按钮 */
+            .code-block {
+                position: relative;
+            }
+            .code-copy-btn {
+                position: absolute;
+                top: 8px;
+                right: 8px;
+                padding: 4px 12px;
+                background: rgba(255,255,255,0.1);
+                border: 1px solid rgba(255,255,255,0.2);
+                border-radius: 4px;
+                color: #e2e8f0;
+                font-size: 0.8rem;
+                cursor: pointer;
+                opacity: 0;
+                transition: opacity 0.2s;
+            }
+            .code-block:hover .code-copy-btn {
+                opacity: 1;
+            }
+            .code-copy-btn:hover {
+                background: rgba(255,255,255,0.2);
+            }
+            .code-copy-btn.copied {
+                background: #22c55e;
+                border-color: #22c55e;
+            }
         `;
         document.head.appendChild(style);
+        
+        // 回到顶部按钮控制
+        const backToTop = document.getElementById('back-to-top');
+        if (backToTop) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 500) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
+        }
+        
+        // 一键复制代码功能
+        document.querySelectorAll('.code-block').forEach(block => {
+            const btn = document.createElement('button');
+            btn.className = 'code-copy-btn';
+            btn.textContent = '复制';
+            btn.onclick = () => {
+                const code = block.querySelector('code');
+                if (code) {
+                    navigator.clipboard.writeText(code.textContent).then(() => {
+                        btn.textContent = '已复制';
+                        btn.classList.add('copied');
+                        setTimeout(() => {
+                            btn.textContent = '复制';
+                            btn.classList.remove('copied');
+                        }, 2000);
+                    });
+                }
+            };
+            block.appendChild(btn);
+        });
     </script>
 </body>
 </html>
