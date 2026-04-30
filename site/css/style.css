@@ -7924,6 +7924,30 @@ body.site-shell-overlay-open {
     opacity: 0.9;
 }
 
+.cc-unpacked-page .hero-chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+    justify-content: center;
+}
+
+.cc-unpacked-page .hero-chip {
+    padding: 6px 14px;
+    border-radius: 9999px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    background: rgba(34, 60, 90, 0.08);
+    color: #24364c;
+    border: 1px solid rgba(34, 60, 90, 0.12);
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.cc-unpacked-page .hero-chip:hover {
+    background: rgba(34, 60, 90, 0.16);
+    border-color: rgba(34, 60, 90, 0.22);
+}
+
 .cc-unpacked-page .stat-item--superset {
     min-width: 148px;
     padding: 1rem 1.05rem 0.95rem;
