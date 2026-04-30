@@ -43,6 +43,7 @@
 | [OthmanAdi/planning-with-files](https://github.com/OthmanAdi/planning-with-files) | 文件化规划：用 `task_plan.md` / `findings.md` / `progress.md` + hooks 解决 Agent 上下文失忆 | — |
 | [baoyu-skills](https://github.com/wpzheng/baoyu-skills) | 配图与排版 Skill：CLI 参数（`--style notion` / `--layout timeline`）替代复杂 Prompt 工程，面向技术博主与内容创作者 | — |
 | [CC Switch](https://github.com/farion1231/cc-switch) | AI CLI Agent 配置统一管理器：跨平台桌面应用，一键切换 Claude Code / Codex / Gemini CLI / OpenCode / OpenClaw / Hermes Agent 的供应商配置，含 Token 监控、MCP 管理、提示词同步、故障转移 | — |
+| [flowith-ai/canvas-cowork](https://github.com/flowith-ai/canvas-cowork) | Flowith 画布协作 Skill：让 Claude Code / Codex / OpenClaw 等 Agent 直接在 Flowith 画布上生成图片、文本、视频，调用 Neo Agent 批量任务，实现多模态创作流水线 | — |
 
 ## 安装落点备忘
 

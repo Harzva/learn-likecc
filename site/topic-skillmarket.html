@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧩</text></svg>">
     <meta name="description" content="基于 SkillsMP 整理 SKILL.md 生态的发现入口、仓库校验路径与后续自动安装 skill 的设计思路。">
-    <meta name="page:updated" content="2026-04-12">
+    <meta name="page:updated" content="2026-04-30">
 </head>
 <body class="skillmarket-page">
     <nav class="navbar">
@@ -317,6 +317,29 @@
                     </div>
 
                     <p class="skillmarket-inline-note">所以这 6 个样本放到站内，最合适的读法不是“又发现了几个 skill”，而是“我们已经看到六条可复用的工具流原型”：视频生成、视频剪辑、skill 生产、知识库问答、内容发布、官方生态底座。</p>
+                </section>
+
+                <section id="product-skill" class="section-block">
+                    <h2>5B. 产品 Skill 化：当画布能力变成 Agent 可调用的接口</h2>
+                    <p>除了个人开发者发布的 skill，还有一类值得关注的信号：<strong>产品把自己的核心能力封装成 Skill，挂到 Agent 的工具链上</strong>。这代表一种新的产品生存策略——当 Agent 成为工作入口，产品如果还停在"用户自己打开网页、自己点击按钮"的流程里，就会在 Agent 的工作链路中隐形。</p>
+
+                    <div class="table-wrap skillmarket-table-wrap skillmarket-table-wrap--wide">
+                        <table class="data-table">
+                            <thead>
+                                <tr><th>产品</th><th>Skill 仓库</th><th>封装了什么能力</th><th>Agent 如何调用</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Flowith</strong></td>
+                                    <td><a href="https://github.com/flowith-ai/canvas-cowork" target="_blank" rel="noopener noreferrer"><code>flowith-ai/canvas-cowork</code></a></td>
+                                    <td>画布创作（图/文/视频）、Neo Agent 批量任务、多模态编辑器、节点引用与追问路径</td>
+                                    <td><code>npx skills add flowith-ai/canvas-cowork</code>，安装后 Claude Code / Codex / OpenClaw 可直接在 Flowith 画布上生成内容和调度子 Agent</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p class="skillmarket-inline-note">这类 Skill 的核心价值不在于"又多了一个工具"，而在于<strong>产品能力被 Agent 原生理解</strong>。Agent 可以在自己的工作流中直接调用 Flowith 画布做批量多模态创作，而不需要用户手动切换上下文。</p>
                 </section>
 
                 <section id="awesome" class="section-block">
