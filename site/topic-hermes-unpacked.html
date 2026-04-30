@@ -20,6 +20,7 @@
                 <a href="#attribution" class="nav-link">说明</a>
                 <a href="#why" class="nav-link">01 为什么重要</a>
                 <a href="#layers" class="nav-link">02 分层</a>
+                <a href="#components" class="nav-link">02B 组件</a>
                 <a href="#control-plane" class="nav-link">03 控制面</a>
                 <a href="#memory-skills" class="nav-link">04 记忆与技能</a>
                 <a href="#gateway-cron" class="nav-link">05 Gateway / Cron</a>
@@ -249,6 +250,13 @@
                     <p class="section-desc cc-unpacked-section-desc cc-unpacked-section-desc--knowledge">图谱里<strong>块内结构</strong>来自六层架构拆分；<strong>块间交互</strong>是教学向归纳，不是严格的静态 import 图。它的作用是帮你判断“先看哪里、再看哪里、哪些模块要连在一起读”。</p>
                 </section>
 
+                <section id="components" class="section-block">
+                    <h2>02C · 核心组件速览</h2>
+                    <p>下面是 Hermes Agent 的六个核心组件卡片。点击卡片可展开查看每个组件的职责边界、关键源码锚点，以及对我们当前栈的参考价值。</p>
+                    <div id="cc-feature-cards-mount" class="cc-feature-cards" data-json="data/hermes-feature-cards.json" role="region" aria-label="Hermes 核心组件卡片"></div>
+                    <p class="section-desc cc-unpacked-section-desc" style="margin-top:0.5rem;font-size:0.9rem;opacity:0.9">卡片数据来自 <code>site/data/hermes-feature-cards.json</code>；样式复用 <code>.cc-feature-cards</code> 组件合约。</p>
+                </section>
+
                 <section id="control-plane" class="section-block">
                     <h2>03 · 控制面到底在哪：不是 gateway，而是 AIAgent</h2>
                     <p>最容易误判的一点，是把 Hermes 的"平台能力"当成主脑。实际上从 <code>run_agent.py</code> 看，真正像控制面的还是 <code>AIAgent</code>。它负责 provider 选择、系统提示词组装、工具循环、压缩、会话保存、background review，以及对 memory / skill nudges 的时机控制。官方 Architecture 页也把它定义成同步 orchestration engine。</p>
@@ -444,6 +452,7 @@
     <script src="js/hermes-arch-knowledge.js"></script>
     <script src="js/hermes-component-wall.js"></script>
     <script src="js/cc-tool-tiles.js"></script>
+    <script src="js/cc-feature-cards.js"></script>
     <script>
         // Hermes interactive layer explorer accordion
         document.addEventListener('DOMContentLoaded', () => {

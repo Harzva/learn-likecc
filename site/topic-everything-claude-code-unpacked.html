@@ -22,7 +22,8 @@
                 <a href="#shape" class="nav-link">02 它到底是什么</a>
                 <a href="#layers" class="nav-link">03 五层结构</a>
                 <a href="#components" class="nav-link">04 组件</a>
-                <a href="#lessons" class="nav-link">05 我们该学什么</a>
+                <a href="#knowledge-map" class="nav-link">05 图谱</a>
+                <a href="#lessons" class="nav-link">06 我们该学什么</a>
             </div>
             <div class="nav-actions">
                 <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
@@ -136,13 +137,19 @@
                 </section>
 
                 <section id="components" class="section-block">
-                    <h2>05 · 仓库核心组件（交互卡片）</h2>
+                    <h2>04 · 仓库核心组件（交互卡片）</h2>
                     <p>everything-claude-code 不是普通教程仓库；它的价值在于把工作流、插件、控制面打成一个可跨 harness 复用的壳层系统。点击卡片看各组件的职责边界。</p>
                     <div id="cc-feature-cards-mount" class="cc-feature-cards" data-json="data/ecc-components.json" role="region" aria-label="核心组件卡片"></div>
                 </section>
 
+                <section id="knowledge-map" class="section-block">
+                    <h2>05 · 组件关系与结构图谱（交互）</h2>
+                    <p>下方图谱展示 everything-claude-code 的<strong>五层结构</strong>、<strong>核心组件</strong>与<strong>跨 harness 分发面</strong>之间的关系。切换“混合总览 / 块内结构 / 块间联系”三种模式，点击节点查看详细分析。</p>
+                    <div id="ecc-knowledge-mount" class="ecc-knowledge" data-json="data/ecc-knowledge.json" role="region" aria-label="Everything Claude Code 知识图谱"></div>
+                </section>
+
                 <section id="lessons" class="section-block">
-                    <h2>05 · 我们该重点学什么</h2>
+                    <h2>06 · 我们该重点学什么</h2>
                     <div class="quickstart-grid meta-topic-grid meta-topic-grid--entry">
                         <div class="quickstart-card">
                             <h3>跨 harness 分发面</h3>
@@ -176,6 +183,7 @@
     </footer>
     <script src="js/app.js"></script>
     <script src="js/cc-feature-cards.js"></script>
+    <script src="js/ecc-knowledge.js"></script>
     <script src="js/unpacked-reading-path.js"></script>
 </body>
 </html>

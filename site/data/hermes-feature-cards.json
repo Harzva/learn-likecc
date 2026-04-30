@@ -1,0 +1,61 @@
+{
+  "feature_cards": {
+    "note_zh": "点击卡片查看各组件的职责边界与对我们的参考价值。",
+    "cards": [
+      {
+        "id": "agent-loop",
+        "title": "Agent Loop / 核心调度",
+        "blurb": "把 query → plan → execute → observe → respond 做成可持续循环。",
+        "body": "Hermes 的 agent loop 不是单次对话，而是带状态机的长期运行结构：planning 阶段决定下一步，execution 阶段调用工具，observation 阶段把结果写回上下文，然后回到 planning。\n\n对我们最大的启示：loop 的边界要显式化——哪些状态跨轮次保留、哪些只是本轮临时上下文。",
+        "links": [
+          { "href": "topic-codex-loop.html", "text": "codex-loop 专题" }
+        ]
+      },
+      {
+        "id": "tool-registry",
+        "title": "Tool Registry / 工具注册",
+        "blurb": "动态注册、schema 校验、权限控制的插件化工具面。",
+        "body": "tools/registry.py 提供了一套工具注册与发现机制：每个工具声明 name、description、schema，运行时动态加载。\n\n这比硬编码工具列表更灵活，但也更需要在 registry 层做版本管理和兼容性校验。",
+        "links": [
+          { "href": "topic-cc-unpacked-zh.html", "text": "Claude Code 解构" }
+        ]
+      },
+      {
+        "id": "memory-skills",
+        "title": "Memory / Skills / 持久化",
+        "blurb": "跨会话的记忆沉淀与技能升级机制。",
+        "body": "tools/memory_tool.py 和 tools/skills_tool.py 负责把运行时的发现写回长期存储。不是简单的日志，而是结构化的 memory 对象和可复用的 skill 模板。\n\n这与我们 repo 内 skills/plans/docs 的外置沉淀链思路一致，但 Hermes 把它内建成产品能力。",
+        "links": [
+          { "href": "topic-sourcemap.html", "text": "源码专题" }
+        ]
+      },
+      {
+        "id": "gateway",
+        "title": "Gateway / 多面接入",
+        "blurb": "统一的消息网关，把 Discord、Telegram、Slack、Email 等多平台消息转成内部事件。",
+        "body": "gateway/run.py 和 gateway/session.py 提供了多平台适配器抽象。每个平台实现相同的 session 接口，上层 loop 不用关心消息从哪来。\n\n这和我们需要统一 delivery path 的问题直接对应：一次结果应该回送到哪个面、以什么形态落地。",
+        "links": [
+          { "href": "topic-paoding-jieniu.html", "text": "庖丁解牛专题" }
+        ]
+      },
+      {
+        "id": "cron",
+        "title": "Cron Scheduler / 定时调度",
+        "blurb": "把 agent 任务从被动响应扩展到定时触发。",
+        "body": "cron/scheduler.py 提供了 cron-like 的定时触发机制，让 agent 可以在没有外部消息的情况下主动执行周期性任务。\n\n这与我们目前依赖用户输入或文件变更触发的模式形成互补：定时巡检、健康检查、报告生成等场景特别适合。",
+        "links": [
+          { "href": "topic-codex-loop.html", "text": "codex-loop 专题" }
+        ]
+      },
+      {
+        "id": "execution",
+        "title": "Execution Backends / 执行后端",
+        "blurb": "TERMINAL_ENV 驱动的多后端执行环境。",
+        "body": "Hermes 不把执行绑死在单一环境里，而是通过 TERMINAL_ENV 切换后端：本地 shell、远程 SSH、容器、甚至云函数。\n\n这提醒我们：agent 的 execution contract 要显式——哪些状态可复用、哪些是本轮临时上下文，不能只靠经验判断。",
+        "links": [
+          { "href": "topic-sourcemap.html", "text": "源码专题" }
+        ]
+      }
+    ]
+  }
+}

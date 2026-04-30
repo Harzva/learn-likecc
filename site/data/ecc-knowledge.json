@@ -1,0 +1,540 @@
+{
+  "meta": {
+    "updated": "2026-04-30",
+    "source": "site/topic-everything-claude-code-unpacked.html",
+    "note_zh": "节点为 everything-claude-code 的五层结构、核心组件与跨 harness 分发面；边为层级包含关系和跨平台关联。"
+  },
+  "legend": [
+    {
+      "key": "harness",
+      "label": "目标 Harness",
+      "hint": "Claude Code / Codex / Cursor / OpenCode / Gemini"
+    },
+    {
+      "key": "agents",
+      "label": "Agents",
+      "hint": "自主工作流代理"
+    },
+    {
+      "key": "skills",
+      "label": "Skills",
+      "hint": "可复用技能包"
+    },
+    {
+      "key": "commands",
+      "label": "Commands",
+      "hint": "结构化命令集"
+    },
+    {
+      "key": "rules",
+      "label": "Rules",
+      "hint": "约束与规范"
+    },
+    {
+      "key": "control",
+      "label": "Control Plane",
+      "hint": "控制面与 Dashboard"
+    },
+    {
+      "key": "concept",
+      "label": "结构概念",
+      "hint": "分层与分发逻辑"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "cat:harness",
+      "key": "harness",
+      "label": "目标 Harness",
+      "kind": "category",
+      "cat": "harness",
+      "size": 22,
+      "hint": "5+ 目标平台",
+      "description": "Claude Code、Codex、Cursor、OpenCode、Gemini 等多平台支持。",
+      "analysis": "核心差异化：不是只教 Claude Code，而是把同一套壳打到多个 harness 上。",
+      "read_hint": "看 #layers 分发层，理解‘同一套工作流如何跨平台复用’。"
+    },
+    {
+      "id": "cat:agents",
+      "key": "agents",
+      "label": "Agents",
+      "kind": "category",
+      "cat": "agents",
+      "size": 20,
+      "hint": "自主工作流代理",
+      "description": "预定义的自主工作流，能独立完成特定任务。",
+      "analysis": "agents 是‘会自己跑’的工作流，不是被动等待命令的工具集。",
+      "read_hint": "看 #components agents 卡片，理解 agents 和 skills 的职责分界。"
+    },
+    {
+      "id": "cat:skills",
+      "key": "skills",
+      "label": "Skills",
+      "kind": "category",
+      "cat": "skills",
+      "size": 20,
+      "hint": "可复用技能包",
+      "description": "可插拔、可复用的技能单元，类似插件化的能力模块。",
+      "analysis": "skills 的定位是‘可移植的能力’：写一个 skill，多个 harness 都能加载。",
+      "read_hint": "看 #components skills 卡片，理解 skill 的打包和分发机制。"
+    },
+    {
+      "id": "cat:commands",
+      "key": "commands",
+      "label": "Commands",
+      "kind": "category",
+      "cat": "commands",
+      "size": 18,
+      "hint": "结构化命令集",
+      "description": "用户可直接调用的结构化命令，类似 CLI 的顶层接口。",
+      "analysis": "commands 是‘用户直接说’的入口；agents 是‘让它自己跑’的后台。",
+      "read_hint": "看 #components commands 卡片，理解命令层和 agent 层的调用关系。"
+    },
+    {
+      "id": "cat:rules",
+      "key": "rules",
+      "label": "Rules",
+      "kind": "category",
+      "cat": "rules",
+      "size": 16,
+      "hint": "约束与规范",
+      "description": "系统级约束、编码规范和行为规则。",
+      "analysis": "rules 不是‘建议’，是‘强制边界’：定义什么能做、什么不能做。",
+      "read_hint": "看 #components rules 卡片，理解规则如何影响 agent 和 skill 的行为。"
+    },
+    {
+      "id": "cat:control",
+      "key": "control",
+      "label": "Control Plane",
+      "kind": "category",
+      "cat": "control",
+      "size": 22,
+      "hint": "ECC 2.0 Dashboard",
+      "description": "控制面原型、Dashboard 和运行时管理层。",
+      "analysis": "从‘内容系统’长成‘控制面’的关键标志：不再只是文档，而是 runtime。",
+      "read_hint": "看 #layers 控制面原型层，理解 ECC 2.0 的演化方向。"
+    },
+    {
+      "id": "cat:concept",
+      "key": "concept",
+      "label": "结构概念",
+      "kind": "category",
+      "cat": "concept",
+      "size": 14,
+      "hint": "分层与分发逻辑",
+      "description": "everything-claude-code 的核心结构判断框架。",
+      "analysis": "概念层回答‘为什么这样分层’，不是‘每个目录里有什么’。",
+      "read_hint": "看 #shape 和 #layers，先建立结构意识再回看图谱。"
+    },
+    {
+      "id": "node:claude-code",
+      "key": "claude-code",
+      "label": "Claude Code",
+      "kind": "folder",
+      "cat": "harness",
+      "size": 8,
+      "parent": "cat:harness",
+      "description": "Anthropic 官方 CLI 工具。",
+      "analysis": "最原生的支持目标，很多特性先在 Claude Code 验证再分发。"
+    },
+    {
+      "id": "node:codex",
+      "key": "codex",
+      "label": "Codex",
+      "kind": "folder",
+      "cat": "harness",
+      "size": 8,
+      "parent": "cat:harness",
+      "description": "OpenAI 的编程 agent。",
+      "analysis": "Codex 和 Claude Code 的竞争推动了跨 harness 抽象的必要性。"
+    },
+    {
+      "id": "node:cursor",
+      "key": "cursor",
+      "label": "Cursor",
+      "kind": "folder",
+      "cat": "harness",
+      "size": 7,
+      "parent": "cat:harness",
+      "description": "AI-first 的代码编辑器。",
+      "analysis": "Cursor 代表 IDE 内嵌 harness 的路线，和 CLI 工具互补。"
+    },
+    {
+      "id": "node:opencode",
+      "key": "opencode",
+      "label": "OpenCode",
+      "kind": "folder",
+      "cat": "harness",
+      "size": 7,
+      "parent": "cat:harness",
+      "description": "开源 Claude Code 替代方案。",
+      "analysis": "OpenCode 证明了 Claude Code 的模式可以被社区复现和扩展。"
+    },
+    {
+      "id": "node:gemini",
+      "key": "gemini",
+      "label": "Gemini",
+      "kind": "folder",
+      "cat": "harness",
+      "size": 7,
+      "parent": "cat:harness",
+      "description": "Google 的 AI 编程助手。",
+      "analysis": "Gemini 的加入说明‘跨 harness’不是两三家的事，是行业趋势。"
+    },
+    {
+      "id": "node:agent-workflow",
+      "key": "agent-workflow",
+      "label": "Workflow Agents",
+      "kind": "folder",
+      "cat": "agents",
+      "size": 8,
+      "parent": "cat:agents",
+      "description": "预定义的完整工作流代理。",
+      "analysis": "不是单个工具，是‘从需求到交付’的完整 pipeline。"
+    },
+    {
+      "id": "node:agent-custom",
+      "key": "agent-custom",
+      "label": "Custom Agents",
+      "kind": "folder",
+      "cat": "agents",
+      "size": 7,
+      "parent": "cat:agents",
+      "description": "用户可自定义的 agent 模板。",
+      "analysis": "可扩展性：从‘用现成的’到‘写自己的’。"
+    },
+    {
+      "id": "node:skill-pack",
+      "key": "skill-pack",
+      "label": "Skill Packs",
+      "kind": "folder",
+      "cat": "skills",
+      "size": 8,
+      "parent": "cat:skills",
+      "description": "打包好的技能集合。",
+      "analysis": "skills 以‘包’为单位分发，不是单个文件。"
+    },
+    {
+      "id": "node:skill-manifest",
+      "key": "skill-manifest",
+      "label": "Skill Manifest",
+      "kind": "folder",
+      "cat": "skills",
+      "size": 7,
+      "parent": "cat:skills",
+      "description": "技能清单和元数据。",
+      "analysis": "manifest 让 harness 能自动发现和加载技能。"
+    },
+    {
+      "id": "node:cmd-cli",
+      "key": "cmd-cli",
+      "label": "CLI Commands",
+      "kind": "folder",
+      "cat": "commands",
+      "size": 8,
+      "parent": "cat:commands",
+      "description": "顶层 CLI 命令接口。",
+      "analysis": "commands 是用户的‘说’，agents 是系统的‘做’。"
+    },
+    {
+      "id": "node:cmd-structured",
+      "key": "cmd-structured",
+      "label": "Structured I/O",
+      "kind": "folder",
+      "cat": "commands",
+      "size": 7,
+      "parent": "cat:commands",
+      "description": "结构化的输入输出格式。",
+      "analysis": "结构化让命令可以被其他系统解析和调用。"
+    },
+    {
+      "id": "node:rule-code",
+      "key": "rule-code",
+      "label": "Code Rules",
+      "kind": "folder",
+      "cat": "rules",
+      "size": 7,
+      "parent": "cat:rules",
+      "description": "编码规范和风格约束。",
+      "analysis": "规则层保证多 agent 协作时输出一致。"
+    },
+    {
+      "id": "node:rule-behavior",
+      "key": "rule-behavior",
+      "label": "Behavior Rules",
+      "kind": "folder",
+      "cat": "rules",
+      "size": 7,
+      "parent": "cat:rules",
+      "description": "行为边界和交互规范。",
+      "analysis": "不只是代码规则，还有‘怎么和用户交互’的规则。"
+    },
+    {
+      "id": "node:dashboard",
+      "key": "dashboard",
+      "label": "Dashboard",
+      "kind": "folder",
+      "cat": "control",
+      "size": 9,
+      "parent": "cat:control",
+      "description": "可视化控制面板。",
+      "analysis": "Dashboard 是控制面的‘脸’：让用户看见系统状态。"
+    },
+    {
+      "id": "node:runtime",
+      "key": "runtime",
+      "label": "Runtime",
+      "kind": "folder",
+      "cat": "control",
+      "size": 8,
+      "parent": "cat:control",
+      "description": "运行时管理和状态控制。",
+      "analysis": "runtime 是控制面的‘手’：实际调度和执行。"
+    },
+    {
+      "id": "node:ecc2",
+      "key": "ecc2",
+      "label": "ECC 2.0 Alpha",
+      "kind": "folder",
+      "cat": "control",
+      "size": 8,
+      "parent": "cat:control",
+      "description": "下一代控制面原型。",
+      "analysis": "ECC 2.0 代表从‘资料汇总’到‘runtime system’的跃迁。"
+    },
+    {
+      "id": "node:layer-learning",
+      "key": "layer-learning",
+      "label": "学习层",
+      "kind": "folder",
+      "cat": "concept",
+      "size": 7,
+      "parent": "cat:concept",
+      "description": "README、文档和 guides。",
+      "analysis": "包装成可读入口，降低上手门槛。"
+    },
+    {
+      "id": "node:layer-workflow",
+      "key": "layer-workflow",
+      "label": "工作流层",
+      "kind": "folder",
+      "cat": "concept",
+      "size": 8,
+      "parent": "cat:concept",
+      "description": "agents / commands / skills / rules。",
+      "analysis": "最核心：表达‘这套系统能做什么’。"
+    },
+    {
+      "id": "node:layer-distribution",
+      "key": "layer-distribution",
+      "label": "分发层",
+      "kind": "folder",
+      "cat": "concept",
+      "size": 8,
+      "parent": "cat:concept",
+      "description": "跨 harness 插件和适配器。",
+      "analysis": "同一套壳打到多个平台上的技术。"
+    },
+    {
+      "id": "node:layer-evaluation",
+      "key": "layer-evaluation",
+      "label": "评估层",
+      "kind": "folder",
+      "cat": "concept",
+      "size": 7,
+      "parent": "cat:concept",
+      "description": "EVALUATION.md、session/state 基础设施。",
+      "analysis": "持续运行和验证，不是静态配置。"
+    },
+    {
+      "id": "node:layer-control",
+      "key": "layer-control",
+      "label": "控制面原型层",
+      "kind": "folder",
+      "cat": "concept",
+      "size": 7,
+      "parent": "cat:concept",
+      "description": "ECC 2.0 alpha 和 dashboard。",
+      "analysis": "往真正的 runtime / control plane 方向演化。"
+    }
+  ],
+  "edges": [
+    {
+      "source": "cat:harness",
+      "target": "cat:agents",
+      "kind": "cross",
+      "label": "agents 跨平台分发"
+    },
+    {
+      "source": "cat:harness",
+      "target": "cat:skills",
+      "kind": "cross",
+      "label": "skills 跨平台复用"
+    },
+    {
+      "source": "cat:harness",
+      "target": "cat:commands",
+      "kind": "cross",
+      "label": "命令跨平台映射"
+    },
+    {
+      "source": "cat:harness",
+      "target": "cat:control",
+      "kind": "cross",
+      "label": "统一控制面"
+    },
+    {
+      "source": "cat:agents",
+      "target": "cat:skills",
+      "kind": "cross",
+      "label": "agents 调用 skills"
+    },
+    {
+      "source": "cat:agents",
+      "target": "cat:commands",
+      "kind": "cross",
+      "label": "agents 触发 commands"
+    },
+    {
+      "source": "cat:skills",
+      "target": "cat:rules",
+      "kind": "cross",
+      "label": "skills 遵守 rules"
+    },
+    {
+      "source": "cat:commands",
+      "target": "cat:rules",
+      "kind": "cross",
+      "label": "commands 遵守 rules"
+    },
+    {
+      "source": "cat:control",
+      "target": "cat:agents",
+      "kind": "cross",
+      "label": "控制面调度 agents"
+    },
+    {
+      "source": "cat:control",
+      "target": "cat:skills",
+      "kind": "cross",
+      "label": "控制面管理 skills"
+    },
+    {
+      "source": "cat:concept",
+      "target": "cat:harness",
+      "kind": "cross",
+      "label": "分层包含 harness"
+    },
+    {
+      "source": "cat:concept",
+      "target": "cat:control",
+      "kind": "cross",
+      "label": "分层包含控制面"
+    },
+    {
+      "source": "cat:harness",
+      "target": "node:claude-code",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:harness",
+      "target": "node:codex",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:harness",
+      "target": "node:cursor",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:harness",
+      "target": "node:opencode",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:harness",
+      "target": "node:gemini",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:agents",
+      "target": "node:agent-workflow",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:agents",
+      "target": "node:agent-custom",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:skills",
+      "target": "node:skill-pack",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:skills",
+      "target": "node:skill-manifest",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:commands",
+      "target": "node:cmd-cli",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:commands",
+      "target": "node:cmd-structured",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:rules",
+      "target": "node:rule-code",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:rules",
+      "target": "node:rule-behavior",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:control",
+      "target": "node:dashboard",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:control",
+      "target": "node:runtime",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:control",
+      "target": "node:ecc2",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:concept",
+      "target": "node:layer-learning",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:concept",
+      "target": "node:layer-workflow",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:concept",
+      "target": "node:layer-distribution",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:concept",
+      "target": "node:layer-evaluation",
+      "kind": "contains"
+    },
+    {
+      "source": "cat:concept",
+      "target": "node:layer-control",
+      "kind": "contains"
+    }
+  ]
+}
