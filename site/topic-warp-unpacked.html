@@ -11,6 +11,32 @@
     <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js" crossorigin="anonymous"></script>
 </head>
 <body class="warp-unpacked-page">
+    <!-- Round 8: 页面内搜索 -->
+    <div id="page-search" class="page-search">
+        <input type="text" id="search-input" placeholder="搜索页面内容..." autocomplete="off">
+        <span id="search-count" style="font-size:0.8rem;color:var(--text-muted);"></span>
+        <div class="search-nav">
+            <button onclick="searchPrev()" title="上一个">↑</button>
+            <button onclick="searchNext()" title="下一个">↓</button>
+            <button onclick="closeSearch()" title="关闭">✕</button>
+        </div>
+    </div>
+
+    <!-- Round 10: 快捷键帮助面板 -->
+    <div id="kbd-help-overlay" class="kbd-help-overlay" onclick="toggleKbdHelp()"></div>
+    <div id="kbd-help" class="kbd-help">
+        <h3>键盘快捷键</h3>
+        <dl>
+            <dt>/</dt><dd>打开页面搜索</dd>
+            <dt>Esc</dt><dd>关闭搜索 / 关闭帮助</dd>
+            <dt>?</dt><dd>显示快捷键帮助</dd>
+            <dt>1-5</dt><dd>跳转到对应章节</dd>
+            <dt>t</dt><dd>切换主题（暖光/暗黑）</dd>
+            <dt>↑</dt><dd>搜索上一个匹配</dd>
+            <dt>↓</dt><dd>搜索下一个匹配</dd>
+        </dl>
+    </div>
+
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
@@ -1019,6 +1045,208 @@
             .tool-card.scroll-visible {
                 transform: translateY(0) scale(1);
             }
+            
+            /* Round 7: 响应式移动端 */
+            @media (max-width: 768px) {
+                .hero-title {
+                    font-size: 2rem !important;
+                }
+                .hero-stats {
+                    grid-template-columns: repeat(2, 1fr) !important;
+                    gap: 1rem !important;
+                }
+                .tool-recommend {
+                    grid-template-columns: 1fr !important;
+                }
+                .nav-links {
+                    display: none !important;
+                }
+                .nav-actions {
+                    gap: 0.5rem !important;
+                }
+                .btn-github {
+                    padding: 6px 12px !important;
+                    font-size: 0.8rem !important;
+                }
+                .options-table {
+                    display: block;
+                    overflow-x: auto;
+                    white-space: nowrap;
+                }
+                .timeline {
+                    padding-left: 20px !important;
+                }
+                .timeline-item {
+                    padding-left: 15px !important;
+                }
+                .mermaid-diagram-scroll {
+                    overflow-x: auto;
+                }
+                .chart-container svg {
+                    min-width: 600px;
+                }
+            }
+            
+            /* Round 8: 页面内搜索 */
+            .page-search {
+                position: fixed;
+                top: 60px;
+                right: 20px;
+                z-index: 998;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                background: var(--bg-card);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                padding: 8px 12px;
+                box-shadow: var(--shadow);
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-10px);
+                transition: all 0.3s ease;
+            }
+            .page-search.active {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+            .page-search input {
+                background: transparent;
+                border: none;
+                color: var(--text-primary);
+                font-size: 0.9rem;
+                outline: none;
+                width: 200px;
+            }
+            .page-search input::placeholder {
+                color: var(--text-muted);
+            }
+            .search-highlight {
+                background: #fef08a;
+                color: #1e293b;
+                border-radius: 2px;
+                padding: 0 2px;
+            }
+            .search-nav {
+                display: flex;
+                gap: 4px;
+            }
+            .search-nav button {
+                background: var(--bg-hover);
+                border: 1px solid var(--border);
+                border-radius: 4px;
+                color: var(--text-primary);
+                cursor: pointer;
+                font-size: 0.8rem;
+                padding: 2px 8px;
+            }
+            .search-nav button:hover {
+                background: var(--primary);
+                color: white;
+            }
+            
+            /* Round 9: 主题增强 */
+            [data-theme="dark"] {
+                --primary: #f97316;
+                --primary-dark: #ea580c;
+                --primary-light: #fb923c;
+                --secondary: #818cf8;
+                --secondary-light: #a5b4fc;
+                --bg-dark: #0f172a;
+                --bg-secondary: #1e293b;
+                --bg-card: #1e293b;
+                --bg-hover: #334155;
+                --text-primary: #f1f5f9;
+                --text-secondary: #cbd5e1;
+                --text-muted: #94a3b8;
+                --border: #334155;
+                --gradient-1: linear-gradient(135deg, #f97316, #fb923c);
+                --gradient-2: linear-gradient(135deg, #818cf8, #a78bfa);
+                --gradient-hero: linear-gradient(135deg, #1e293b 0%, #0f172a 50%, #1e293b 100%);
+                --shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
+                --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.4);
+                --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.5);
+            }
+            [data-theme="dark"] .code-block {
+                background: #0f172a;
+                border-color: #334155;
+            }
+            [data-theme="dark"] .code-copy-btn {
+                background: rgba(255,255,255,0.15);
+                color: #cbd5e1;
+            }
+            [data-theme="dark"] .search-highlight {
+                background: #fbbf24;
+                color: #0f172a;
+            }
+            
+            /* Round 10: 快捷键帮助面板 */
+            .kbd-help {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(0.95);
+                background: var(--bg-card);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                padding: 2rem;
+                z-index: 1001;
+                box-shadow: var(--shadow-xl);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                min-width: 320px;
+            }
+            .kbd-help.active {
+                opacity: 1;
+                visibility: visible;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            .kbd-help-overlay {
+                position: fixed;
+                inset: 0;
+                background: rgba(0,0,0,0.5);
+                z-index: 1000;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+            .kbd-help-overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
+            .kbd-help h3 {
+                margin-bottom: 1rem;
+                color: var(--text-primary);
+            }
+            .kbd-help dl {
+                display: grid;
+                grid-template-columns: auto 1fr;
+                gap: 8px 16px;
+                font-size: 0.9rem;
+            }
+            .kbd-help dt {
+                font-family: monospace;
+                background: var(--bg-hover);
+                padding: 2px 8px;
+                border-radius: 4px;
+                color: var(--primary);
+                font-weight: 600;
+            }
+            .kbd-help dd {
+                color: var(--text-secondary);
+                margin: 0;
+            }
+            kbd {
+                font-family: monospace;
+                background: var(--bg-hover);
+                border: 1px solid var(--border);
+                border-radius: 4px;
+                padding: 2px 6px;
+                font-size: 0.85em;
+                color: var(--text-primary);
+            }
         `;
         document.head.appendChild(style);
         
@@ -1055,7 +1283,179 @@
             block.appendChild(btn);
         });
         
-        // Round 6: 滚动动画与微交互 — Intersection Observer 渐入
+        // Round 9: 主题系统增强
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        // 从 localStorage 读取保存的主题
+        const savedTheme = localStorage.getItem('warp-theme');
+        if (savedTheme) {
+            html.setAttribute('data-theme', savedTheme);
+            themeToggle.textContent = savedTheme === 'dark' ? '🌙 暗黑' : '☀️ 暖光';
+        } else {
+            // 检测系统偏好
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (prefersDark) {
+                html.setAttribute('data-theme', 'dark');
+                themeToggle.textContent = '🌙 暗黑';
+            }
+        }
+        
+        // 主题切换
+        themeToggle.addEventListener('click', () => {
+            const current = html.getAttribute('data-theme') || 'warm';
+            const next = current === 'dark' ? 'warm' : 'dark';
+            html.setAttribute('data-theme', next);
+            themeToggle.textContent = next === 'dark' ? '🌙 暗黑' : '☀️ 暖光';
+            localStorage.setItem('warp-theme', next);
+        });
+        
+        // 监听系统主题变化
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('warp-theme')) {
+                const next = e.matches ? 'dark' : 'warm';
+                html.setAttribute('data-theme', next);
+                themeToggle.textContent = next === 'dark' ? '🌙 暗黑' : '☀️ 暖光';
+            }
+        });
+        
+        // Round 8: 页面内搜索
+        let searchMatches = [];
+        let currentMatchIndex = -1;
+        const searchEl = document.getElementById('page-search');
+        const searchInput = document.getElementById('search-input');
+        const searchCount = document.getElementById('search-count');
+        
+        function openSearch() {
+            searchEl.classList.add('active');
+            searchInput.focus();
+        }
+        function closeSearch() {
+            searchEl.classList.remove('active');
+            clearHighlights();
+            searchInput.value = '';
+        }
+        
+        function clearHighlights() {
+            document.querySelectorAll('.search-highlight').forEach(el => {
+                const parent = el.parentNode;
+                parent.replaceChild(document.createTextNode(el.textContent), el);
+                parent.normalize();
+            });
+            searchMatches = [];
+            currentMatchIndex = -1;
+            searchCount.textContent = '';
+        }
+        
+        function performSearch(query) {
+            clearHighlights();
+            if (!query || query.length < 2) return;
+            
+            const walker = document.createTreeWalker(
+                document.querySelector('.course-content'),
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+            );
+            const textNodes = [];
+            let node;
+            while (node = walker.nextNode()) {
+                if (node.parentNode.tagName !== 'SCRIPT' && node.parentNode.tagName !== 'STYLE') {
+                    textNodes.push(node);
+                }
+            }
+            
+            textNodes.forEach(node => {
+                const text = node.textContent;
+                const regex = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+                if (regex.test(text)) {
+                    const span = document.createElement('span');
+                    span.innerHTML = text.replace(regex, '<mark class="search-highlight">$1</mark>');
+                    const frag = document.createDocumentFragment();
+                    while (span.firstChild) frag.appendChild(span.firstChild);
+                    node.parentNode.replaceChild(frag, node);
+                }
+            });
+            
+            searchMatches = Array.from(document.querySelectorAll('.search-highlight'));
+            if (searchMatches.length > 0) {
+                currentMatchIndex = 0;
+                scrollToMatch(0);
+            }
+            searchCount.textContent = searchMatches.length > 0 ? `${currentMatchIndex + 1}/${searchMatches.length}` : '无结果';
+        }
+        
+        function scrollToMatch(index) {
+            if (index < 0 || index >= searchMatches.length) return;
+            searchMatches.forEach((el, i) => {
+                el.style.background = i === index ? '#fbbf24' : '#fef08a';
+                el.style.color = i === index ? '#0f172a' : '#1e293b';
+            });
+            searchMatches[index].scrollIntoView({ behavior: 'smooth', block: 'center' });
+            searchCount.textContent = `${index + 1}/${searchMatches.length}`;
+        }
+        
+        function searchNext() {
+            if (searchMatches.length === 0) return;
+            currentMatchIndex = (currentMatchIndex + 1) % searchMatches.length;
+            scrollToMatch(currentMatchIndex);
+        }
+        function searchPrev() {
+            if (searchMatches.length === 0) return;
+            currentMatchIndex = (currentMatchIndex - 1 + searchMatches.length) % searchMatches.length;
+            scrollToMatch(currentMatchIndex);
+        }
+        
+        searchInput.addEventListener('input', (e) => performSearch(e.target.value));
+        
+        // Round 10: 键盘快捷键
+        function toggleKbdHelp() {
+            document.getElementById('kbd-help').classList.toggle('active');
+            document.getElementById('kbd-help-overlay').classList.toggle('active');
+        }
+        
+        document.addEventListener('keydown', (e) => {
+            // / 打开搜索
+            if (e.key === '/' && document.activeElement.tagName !== 'INPUT') {
+                e.preventDefault();
+                openSearch();
+            }
+            // Esc 关闭
+            else if (e.key === 'Escape') {
+                closeSearch();
+                document.getElementById('kbd-help').classList.remove('active');
+                document.getElementById('kbd-help-overlay').classList.remove('active');
+            }
+            // ? 显示帮助
+            else if (e.key === '?' && document.activeElement.tagName !== 'INPUT') {
+                e.preventDefault();
+                toggleKbdHelp();
+            }
+            // t 切换主题
+            else if (e.key === 't' && document.activeElement.tagName !== 'INPUT') {
+                themeToggle.click();
+            }
+            // 数字键跳转章节
+            else if (['1','2','3','4','5'].includes(e.key) && document.activeElement.tagName !== 'INPUT') {
+                const ids = ['#attribution', '#evolution', '#architecture', '#agentic', '#opensource'];
+                const idx = parseInt(e.key) - 1;
+                if (ids[idx]) {
+                    e.preventDefault();
+                    document.querySelector(ids[idx]).scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+            // 搜索导航
+            else if (e.key === 'ArrowDown' && searchEl.classList.contains('active')) {
+                e.preventDefault();
+                searchNext();
+            }
+            else if (e.key === 'ArrowUp' && searchEl.classList.contains('active')) {
+                e.preventDefault();
+                searchPrev();
+            }
+        });
+        
+        // Round 6: 滚动动画与微交互
         const observerOptions = {
             root: null,
             rootMargin: '0px 0px -50px 0px',
@@ -1065,7 +1465,6 @@
         const scrollObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
-                    // 添加 stagger 延迟
                     const delay = index * 0.08;
                     entry.target.style.transitionDelay = `${delay}s`;
                     entry.target.classList.add('scroll-visible');
@@ -1074,7 +1473,6 @@
             });
         }, observerOptions);
         
-        // 为需要动画的元素添加观察
         document.querySelectorAll('.timeline-item, .tool-card, .feature-card, .section-block, .mermaid-figure, .chart-container').forEach(el => {
             el.classList.add('scroll-animate');
             scrollObserver.observe(el);
