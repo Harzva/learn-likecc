@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⌁</text></svg>">
     <meta name="description" content="汇总 claude-code-rebuild 中 27 个 Claude Code runtime hook：数量、作用、关系、Ralph Loop 使用位置与可视化导览。">
-    <meta name="page:updated" content="2026-04-22">
+    <meta name="page:updated" content="2026-05-01">
 </head>
 <body class="hook-runtime-page">
     <nav class="navbar">
@@ -20,6 +20,7 @@
                 <a href="#overview" class="nav-link">总览</a>
                 <a href="#flow" class="nav-link">关系图</a>
                 <a href="#catalog" class="nav-link">Hook 清单</a>
+                <a href="#recipes" class="nav-link">实战配方</a>
                 <a href="#ralph" class="nav-link">Ralph Loop</a>
             </div>
             <div class="nav-actions">
@@ -261,6 +262,91 @@
                                 <tr data-hook-group="ask"><td><code>ElicitationResult</code></td><td>交互询问</td><td>询问结果返回</td><td>记录用户选择、驱动后续策略。</td></tr>
                             </tbody>
                         </table>
+                    </div>
+                </section>
+
+                <section id="recipes" class="section-block">
+                    <h2 class="hook-section-title">实战配方：社区验证过的三条护栏</h2>
+                    <div class="hook-recipes-intro">
+                        <p>Hooks 不是模型层面的魔法，是代码层面的硬拦截。prompt 里的「别删我 .env」模型今天听明天忘，但 exit 2 不会。</p>
+                        <p>以下三条配方来自社区重度用户的生产实践，覆盖「拦截危险操作」「自动化收尾」「防失忆」三类核心场景。来源：<a href="https://mp.weixin.qq.com/s/32ayDzjdStChiZkpO0xQxw" target="_blank" rel="noopener noreferrer">微信公众号「彭涛聊 Python」</a>。</p>
+                    </div>
+
+                    <div class="hook-recipe-grid">
+                        <div class="hook-recipe-card">
+                            <h3>配方一：给 rm -rf 装死闸</h3>
+                            <p><strong>事件：</strong><code>PreToolUse</code> · <strong>匹配：</strong><code>Bash(rm *)</code></p>
+                            <div class="hook-recipe-code">
+                                <pre><code>#!/bin/bash
+COMMAND=$(jq -r '.tool_input.command')
+if echo "$COMMAND" | grep -q 'rm -rf'; then
+  jq -n '{
+    hookSpecificOutput: {
+      hookEventName: "PreToolUse",
+      permissionDecision: "deny",
+      permissionDecisionReason: "Destructive command blocked by hook"
+    }
+  }'
+  exit 2
+else
+  exit 0
+fi</code></pre>
+                            </div>
+                            <p class="hook-recipe-note">要点：exit 2 是唯一的「拒绝」信号；exit 1 只会警告，不会拦截。v2.1 之后 <code>if: "Bash(rm *)"</code> 可限定子命令匹配范围，避免每次工具调用都 spawn 进程。</p>
+                        </div>
+
+                        <div class="hook-recipe-card">
+                            <h3>配方二：编辑完自动格式化</h3>
+                            <p><strong>事件：</strong><code>PostToolUse</code> · <strong>匹配：</strong><code>Edit|Write</code></p>
+                            <div class="hook-recipe-code">
+                                <pre><code>#!/bin/bash
+FILE=$(jq -r '.tool_input.file_path')
+case "$FILE" in
+  *.ts|*.tsx|*.js|*.jsx) npx prettier --write "$FILE" ;;
+  *.py) ruff format "$FILE" ;;
+  *.go) gofmt -w "$FILE" ;;
+esac</code></pre>
+                            </div>
+                            <p class="hook-recipe-note">matcher 用 <code>Edit|Write</code> 覆盖所有文件操作。v2.1.119 后 <code>PostToolUse</code> 输入带 <code>duration_ms</code>，想做性能监控可直接 log 该字段，无需自己计时。</p>
+                        </div>
+
+                        <div class="hook-recipe-card">
+                            <h3>配方三：compact 后回灌上下文</h3>
+                            <p><strong>事件：</strong><code>SessionStart</code> · <strong>匹配：</strong><code>compact</code></p>
+                            <div class="hook-recipe-code">
+                                <pre><code>#!/bin/bash
+echo "# Reminder: use pnpm, not npm. Run pnpm test before commit."
+echo ""
+echo "# Recent commits:"
+git log --oneline -10
+echo ""
+echo "# Current branch: $(git branch --show-current)"
+echo ""
+echo "# Open TODOs:"
+rg "TODO" --type py -c | head -20</code></pre>
+                            </div>
+                            <p class="hook-recipe-note">长 session 跑 6 小时以上，compact 后的 Claude 常「失忆」。hook 的 stdout 会被自动塞回上下文。静态提醒或动态 git/rg 输出均可，看项目习惯。</p>
+                        </div>
+                    </div>
+
+                    <h3 class="hook-recipe-subtitle">进阶：prompt-based 与 MCP tool 调用</h3>
+                    <div class="hook-recipe-advanced">
+                        <p>v2.1 之后 hook 类型不限于 shell 脚本，prompt-based 让另一个 LLM 做判断：</p>
+                        <div class="hook-recipe-code">
+                            <pre><code>{
+  "hooks": {
+    "PreToolUse": [{
+      "matcher": "Bash",
+      "hooks": [{
+        "type": "prompt",
+        "if": "Bash(git commit*)",
+        "prompt": "Check if the pending changes include any hardcoded secrets, API keys, or passwords. If yes, respond with 'BLOCK: <reason>'. If clean, respond with 'ALLOW'."
+      }]
+    }]
+  }
+}</code></pre>
+                        </div>
+                        <p>v2.1.118 起支持 <code>type: "mcp_tool"</code>，例如 <code>Stop</code> 触发时自动向 Linear 创建 ticket 记录 session 产出。hook 的事件点 × 触发类型组合空间很大，重度用户值得投入。</p>
                     </div>
                 </section>
 
