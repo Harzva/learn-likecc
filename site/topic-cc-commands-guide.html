@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-site-sidebar="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code 命令使用指南 - 庖丁解牛专题</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⌘</text></svg>">
+    <meta name="description" content="Claude Code 斜杠命令按场景分类详解：会话管理、模型配置、权限安全、成本优化——知道什么时候用、为什么用。">
+    <meta name="page:updated" content="2026-05-02">
+</head>
+<body class="cc-commands-guide-page">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">⌘</span>
+                <span class="logo-text">CC 命令指南</span>
+            </a>
+            <div class="nav-links">
+                <a href="#attribution" class="nav-link">说明</a>
+                <a href="#what-are-commands" class="nav-link">命令分类</a>
+                <a href="#session-mgmt" class="nav-link">会话管理</a>
+                <a href="#model-cost" class="nav-link">模型与成本</a>
+                <a href="#permission-security" class="nav-link">权限安全</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" title="切换主题">☀️ 暖光</button>
+                <a href="topic-cc-unpacked-zh.html" class="btn-github">CC 解构</a>
+                <a href="index.html" class="btn-github">← 首页</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero handbook-hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>庖丁解牛专题 · 子专题</span>
+                <span>Claude Code 命令使用指南</span>
+            </div>
+            <h1 class="hero-title">
+                Claude Code<br>
+                <span class="gradient-text">命令使用指南</span>
+            </h1>
+            <p class="hero-subtitle">
+                关键不在于知道哪些指令，而是你知道这些命令分别该在<strong>什么时候用、为什么用</strong>。
+                按实际使用场景梳理，把常用、好用但又容易被忽视的命令说清楚。
+            </p>
+            <div class="hero-stats cc-unpacked-hero-stats">
+                <div class="stat-item"><span class="stat-value">3</span><span class="stat-label">命令大类</span></div>
+                <div class="stat-item"><span class="stat-value">15+</span><span class="stat-label">核心命令详解</span></div>
+                <div class="stat-item"><span class="stat-value">4</span><span class="stat-label">场景分组</span></div>
+                <div class="stat-item"><span class="stat-value">1</span><span class="stat-label">核心原则</span></div>
+            </div>
+            <div class="hero-actions">
+                <a href="#what-are-commands" class="btn btn-primary">从命令分类开始</a>
+                <a href="topic-cc-unpacked-zh.html" class="btn btn-secondary">返回 CC 解构</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="course-main devlog-main">
+        <div class="container container--layout-wide">
+            <article class="course-content devlog-content">
+
+                <section id="attribution" class="section-block">
+                    <h2>参考来源与版本锚定</h2>
+                    <div class="course-quote">
+                        <p><strong>本页正文整理自社区文章</strong>，由本站按专题模板重新编排，用于补充 <code>topic-cc-unpacked-zh.html</code> 中「04 · 斜杠命令目录」的详细使用场景。</p>
+                        <p><strong>原文作者</strong>：叶小钗（微信公众号） · <a href="https://mp.weixin.qq.com/s/derfnFDP1ZOP6KZx55bUdA" target="_blank" rel="noopener noreferrer">原文链接 ↗</a></p>
+                        <p><strong>技术权威</strong>：以本仓库 <code>ccsource/claude-code-main</code> 与本站 <a href="topic-sourcemap.html">Source Map 源码课</a>（<a href="index.html#courses">S01–S12 / D01–D12</a>）为准；你本机安装的官方 CLI 版本可能与本镜像不一致，请结合 <a href="topic-cc-release-watch.html">发版监督</a> 核对。</p>
+                    </div>
+                </section>
+
+                <section id="what-are-commands" class="section-block">
+                    <h2>命令是什么</h2>
+                    <p>在 Claude Code 里，并不是所有 <code>/命令</code> 都是一回事。简单归类，大致可以分为 3 类：</p>
+                    <table class="options-table">
+                        <tr><th>类别</th><th>作用</th><th>典型命令</th></tr>
+                        <tr><td><strong>基础控制命令</strong></td><td>处理会话、上下文、模型、权限等基础能力</td><td><code>/clear</code>、<code>/compact</code>、<code>/model</code>、<code>/status</code></td></tr>
+                        <tr><td><strong>场景化能力命令</strong></td><td>把某类任务封装成入口，接近完整流程</td><td><code>/debug</code>、<code>/doctor</code>、<code>/review</code></td></tr>
+                        <tr><td><strong>扩展能力命令</strong></td><td>连接更大的扩展机制，把能力沉淀下来</td><td><code>/memory</code>、<code>/skills</code>、<code>/agents</code>、<code>/hooks</code>、<code>/MCP</code>、<code>/schedule</code></td></tr>
+                    </table>
+                    <p>记住：命令不是记得越多越有用，关键是先把它们各自是干什么的、适合在什么场景下用搞清楚。</p>
+                    <figure class="devlog-figure">
+                        <img src="images/cc-commands-guide-01.jpg" alt="Claude Code 命令分类思维导图：基础控制、场景化能力、扩展能力三大类">
+                        <figcaption>命令分类总览：基础控制、场景化能力、扩展能力三条线。</figcaption>
+                    </figure>
+                </section>
+
+                <section id="session-mgmt" class="section-block">
+                    <h2>第一类：会话与上下文管理命令</h2>
+                    <p><strong>会话与上下文管理是最重要的命令。</strong>很多人觉得 Claude Code 越用越慢、越用越乱，第一反应往往是模型不行了，但更多时候是因为会话没有管好。</p>
+
+                    <h3><code>/clear</code>：彻底清空，重新开始</h3>
+                    <p><strong>适用场景</strong>：当前任务已彻底结束，准备开始新话题；会话明显跑偏，继续救的价值不大；上下文混进太多无关信息。</p>
+                    <p><strong>注意</strong>：适合「重开一局」，不适合日常整理。前面已建立的任务背景、约束条件会一起清掉。</p>
+
+                    <h3><code>/compact</code>：压缩上下文</h3>
+                    <p><strong>适用场景</strong>：任务还没做完但对话已很长；中间试了很多方案，想保留结论、丢掉过程噪音；需要继续当前任务但上下文开始变重。</p>
+                    <p><strong>核心原则</strong>：大多数人 <code>/compact</code> 应该比 <code>/clear</code> 更高频。它不是「重开」，而是「保留主线，清理包袱」。</p>
+
+                    <h3><code>/context</code>：决定要不要收拾</h3>
+                    <p>以可视化方式查看当前上下文使用情况，提示哪些内容可能过重。先知道状态，再决定是继续聊、<code>/compact</code> 还是 <code>/clear</code>。</p>
+
+                    <h3><code>/resume</code>：上次没做完的</h3>
+                    <p>通过会话 ID、名称或选择器恢复之前的会话。适合「任务主线没变，只是中间暂停过」的情况。</p>
+
+                    <h3><code>/rewind</code>：不满意就往前退</h3>
+                    <p>将会话或代码状态回退到之前的节点，从更合适的位置重新继续，而不是全盘推倒重来。</p>
+
+                    <h3><code>/recap</code>：先收个口，再继续</h3>
+                    <p>按需生成当前会话的一句话摘要。适合长任务的阶段节点上，把当前进度和关键点收一下，再决定下一步。</p>
+
+                    <figure class="devlog-figure">
+                        <img src="images/cc-commands-guide-02.jpg" alt="Claude Code 上下文管理命令对比：clear、compact、context、resume、rewind、recap 的适用场景">
+                        <figcaption>会话整理工具箱：clear 重开、compact 瘦身、context 看状态、resume 续任务、rewind 回退、recap 收口。</figcaption>
+                    </figure>
+
+                    <h3>这组命令到底该怎么用</h3>
+                    <ul>
+                        <li>一觉得不顺就 <code>/clear</code> 是粗暴的，先判断是「该重开」还是「该瘦身」。</li>
+                        <li><code>/compact</code>、<code>/context</code>、<code>/recap</code> 解决的是「怎么把当前这局打得更顺」，不是「开新局」。</li>
+                        <li>如果你还是一条会话从头聊到尾，或者一乱就 <code>/clear</code>，这组命令值得尽快熟悉。</li>
+                    </ul>
+                </section>
+
+                <section id="model-cost" class="section-block">
+                    <h2>第二类：模型、推理强度与成本相关命令</h2>
+                    <p>这组命令解决的是：这件事，到底该让 Claude Code 用什么状态来做。核心原则：<strong>不是所有任务都值得高配。</strong></p>
+
+                    <h3><code>/model</code>：先判断任务类型</h3>
+                    <p>选择或切换当前使用的 AI 模型。先问自己：<strong>这个任务是执行型任务，还是判断型任务？</strong></p>
+                    <ul>
+                        <li><strong>执行型</strong>（改代码、修 bug、调样式）：优先考虑效率，不需要最强分析能力。</li>
+                        <li><strong>判断型</strong>（陌生项目排查、方案比较、链路梳理）：模型能力明显重要，值得高配。</li>
+                    </ul>
+
+                    <h3><code>/effort</code>：任务明确就收低，复杂再往上拨</h3>
+                    <p>设置模型的推理强度。很多人的直觉是默认开高一点，至少不亏——实际不是这样。</p>
+                    <ul>
+                        <li><strong>收低</strong>：目标明确，只需执行（如加表单校验、改按钮文案）。</li>
+                        <li><strong>往上拨</strong>：需求有歧义、多方案比较、链路长、问题来源不明确。</li>
+                    </ul>
+
+                    <h3><code>/status</code>：确认当前状态</h3>
+                    <p>查看版本、模型、账号、连接状态。觉得「今天表现和预期不一样」时，先 <code>/status</code>，不要全靠猜。</p>
+
+                    <h3><code>/cost</code>：建立成本意识</h3>
+                    <p>查看会话成本、计划用量和活动统计。不是用来焦虑的，是用来建立成本感的：哪些任务值得高配，哪些是在「高射炮打蚊子」。</p>
+
+                    <h3><code>/stats</code>：看结构</h3>
+                    <p>使用情况面板。重点看五个方向：</p>
+                    <ul>
+                        <li><strong>总成本</strong>：建立大概的成本感。</li>
+                        <li><strong>Token 使用情况</strong>：长上下文、会话太重会不断放大 Token。</li>
+                        <li><strong>时间维度</strong>：API 耗时 vs 真实使用时长，判断是模型慢还是被打断太多。</li>
+                        <li><strong>代码改动量</strong>：花了不少成本但改动少，说明消耗在「理解、分析、试错」上。</li>
+                        <li><strong>活动分布</strong>：是否大量时间花在简单修改上却一直沿用高 effort。</li>
+                    </ul>
+
+                    <figure class="devlog-figure">
+                        <img src="images/cc-commands-guide-03.jpg" alt="Claude Code 成本统计面板：总成本、Token、时间、代码改动量、活动分布">
+                        <figcaption>stats 面板的价值：不是看孤立数字，而是复盘使用方式。</figcaption>
+                    </figure>
+
+                    <figure class="devlog-figure">
+                        <img src="images/cc-commands-guide-04.jpg" alt="Claude Code 使用情况统计：时间分布与活动结构">
+                        <figcaption>时间维度的判断：模型调用时间 vs 等待和反复确认的占比。</figcaption>
+                    </figure>
+                </section>
+
+                <section id="permission-security" class="section-block">
+                    <h2>第三类：权限、安全与排障相关命令</h2>
+                    <p>这组命令解决的是：<strong>为什么它明明看起来该能做这件事，但就是没做成。</strong>最常见的不适感不是回答不够聪明，而是权限没配好、环境没打通、执行边界没设清楚。</p>
+
+                    <h3>权限相关能力模型</h3>
+                    <table class="options-table">
+                        <tr><th>能力</th><th>解决的问题</th><th>简单理解</th></tr>
+                        <tr><td><code>/permissions</code></td><td>哪些能做、哪些要问、哪些禁止</td><td>权限规则</td></tr>
+                        <tr><td><code>/auto mode</code></td><td>哪些调用可以自动放行</td><td>自动审批</td></tr>
+                        <tr><td><code>/sandbox</code></td><td>即使执行，也只能在边界内执行</td><td>执行隔离</td></tr>
+                        <tr><td><code>/fewer-permission-prompts</code></td><td>找出低风险高频确认，生成 allowlist</td><td>权限优化</td></tr>
+                    </table>
+
+                    <h3><code>/doctor</code> 与 <code>/debug</code></h3>
+                    <p>诊断命令。当 Claude Code 表现异常、命令或工具无法使用时，先看诊断输出，而不是直接换 prompt 或重启。</p>
+
+                    <h3><code>/security-review</code></h3>
+                    <p>安全审查入口。适合在配置了 hooks、agents、MCP 等扩展后，做一次安全边界检查。</p>
+                </section>
+
+                <section class="section-block">
+                    <h2>核心原则总结</h2>
+                    <ul>
+                        <li><strong>会话管理</strong>：优先 <code>/compact</code> 而非 <code>/clear</code>；先看 <code>/context</code> 再决定。</li>
+                        <li><strong>模型与成本</strong>：执行型任务优先效率，判断型任务再考虑高配；定期看 <code>/cost</code> 和 <code>/stats</code>。</li>
+                        <li><strong>权限安全</strong>：表现异常时先诊断，不是模型问题而是配置问题。</li>
+                        <li><strong>最终原则</strong>：命令不是记得越多越好，关键是知道什么时候用、为什么用。</li>
+                    </ul>
+                </section>
+
+                <section class="section-block">
+                    <h2>延伸阅读</h2>
+                    <p>
+                        <a href="topic-cc-unpacked-zh.html">Claude Code 解构 →</a>
+                        &nbsp;·&nbsp;
+                        <a href="s04.html">S04 · 命令与工具使用</a>
+                        &nbsp;·&nbsp;
+                        <a href="d04.html">D04 · 命令与工具深挖</a>
+                        &nbsp;·&nbsp;
+                        <a href="https://mp.weixin.qq.com/s/derfnFDP1ZOP6KZx55bUdA" target="_blank" rel="noopener noreferrer">原文：Claude Code 命令使用指南（叶小钗）↗</a>
+                    </p>
+                </section>
+
+                <div class="chapter-navigation" data-auto-path></div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container container--layout-wide">
+            <p class="md-source-link"><a href="https://github.com/Harzva/learn-likecc/blob/main/site/topic-cc-commands-guide.html" target="_blank" rel="noopener noreferrer">📝 本站页的 HTML 源文件（GitHub）</a></p>
+            <p>© 2026 Everything in Claude-Code. 仅供学习研究使用。</p>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+    <script src="js/unpacked-reading-path.js"></script>
+</body>
+</html>
