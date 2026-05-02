@@ -15491,6 +15491,19 @@ body.site-shell-overlay-open {
     max-width: 1180px;
 }
 
+.ds-hero-layout {
+    align-items: start;
+}
+
+.ds-hero-main {
+    display: grid;
+    gap: 14px;
+}
+
+.ds-hero-side {
+    align-self: center;
+}
+
 .vibe-unpacked-hero .hero-badge,
 .vibe-unpacked-hero .hero-title,
 .vibe-unpacked-hero .hero-subtitle,
@@ -15503,8 +15516,8 @@ body.site-shell-overlay-open {
     grid-column: 2;
     grid-row: 1 / span 5;
     position: relative;
-    min-height: 420px;
-    padding: 26px;
+    min-height: 390px;
+    padding: 24px;
     border-radius: 34px;
     overflow: hidden;
     background:
@@ -15547,7 +15560,7 @@ body.site-shell-overlay-open {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    margin-bottom: 42px;
+    margin-bottom: 26px;
 }
 
 .vibe-hero-console__rail span {
@@ -15567,12 +15580,12 @@ body.site-shell-overlay-open {
     position: relative;
     z-index: 1;
     display: grid;
-    gap: 14px;
+    gap: 10px;
 }
 
 .vibe-hero-console__node {
     position: relative;
-    padding: 18px 18px 17px;
+    padding: 14px 15px;
     border-radius: 22px;
     color: #f8fafc;
     background: rgba(255, 255, 255, 0.1);
@@ -15581,11 +15594,11 @@ body.site-shell-overlay-open {
 }
 
 .vibe-hero-console__node:nth-child(2) {
-    --node-shift: 28px;
+    --node-shift: 20px;
 }
 
 .vibe-hero-console__node:nth-child(3) {
-    --node-shift: 58px;
+    --node-shift: 34px;
 }
 
 .vibe-hero-console__node--hot {
@@ -15782,14 +15795,34 @@ body.site-shell-overlay-open {
 .ds-hero .hero-subtitle {
     color: #4b3d32;
     font-size: 1.05rem;
-    max-width: 680px;
+    max-width: 640px;
+    margin: 0;
 }
 
 .ds-hero-meta {
-    margin-top: 22px;
+    margin-top: 6px;
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
+}
+
+.ds-hero .cc-unpacked-hero-stats {
+    margin-top: 6px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    max-width: 680px;
+}
+
+.ds-hero .cc-unpacked-hero-stats .stat-item {
+    min-height: auto;
+    padding: 14px 12px;
+    border-radius: 14px;
+}
+
+.ds-hero .cc-unpacked-hero-subtitle-note {
+    font-size: 0.93rem;
+    margin-top: 2px;
 }
 
 .ds-hero-chip {
@@ -16039,6 +16072,10 @@ body.site-shell-overlay-open {
     .ds-two-col,
     .ds-diagram-grid,
     .ds-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .ds-hero .cc-unpacked-hero-stats {
         grid-template-columns: 1fr;
     }
 }
@@ -17801,4 +17838,3 @@ body.site-shell-overlay-open {
     font-size: 0.9rem;
     padding: 1rem;
 }
-
