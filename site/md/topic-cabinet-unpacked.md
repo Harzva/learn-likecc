@@ -2,7 +2,7 @@
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-cabinet-unpacked.html  
 > **本文件**: `site/md/topic-cabinet-unpacked.md`  
-> **更新时间**: 2026-04-13
+> **更新时间**: 2026-04-29
 
 本页归入 **(Managed) Meta-Agent 专题**，目标不是安利 Cabinet，而是拆它怎样把 `knowledge base + AI team + scheduled jobs + web terminal + Git history` 拼成一个 knowledge-first 的 managed shell。
 

@@ -70,4 +70,22 @@
   .font-mono {
     font-family: 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
   }
+
+  .agent-loop-terminal-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(148, 163, 184, 0.45) transparent;
+  }
+
+  .agent-loop-terminal-scroll::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .agent-loop-terminal-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .agent-loop-terminal-scroll::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.45);
+    border-radius: 999px;
+  }
 }

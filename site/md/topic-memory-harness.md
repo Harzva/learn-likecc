@@ -1,5 +1,5 @@
 # Memory 长期记忆：写入、整合、检索与安全
-> **更新时间**: 2026-04-12
+> **更新时间**: 2026-04-30
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-memory-harness.html  
 > **本文件**: `site/md/topic-memory-harness.md`  

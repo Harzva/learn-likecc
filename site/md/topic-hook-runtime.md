@@ -1,5 +1,5 @@
 # Hook Runtime 专题：Claude Code 钩子全景
-> **更新时间**: 2026-04-22
+> **更新时间**: 2026-05-01
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-hook-runtime.html  
 > **本文件**: `site/md/topic-hook-runtime.md`  

@@ -1,5 +1,5 @@
 # 菜鸟 Codex 教程怎么读
-> **更新时间**: 2026-04-17
+> **更新时间**: 2026-04-28
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-runoob-codex-tutorial.html  
 > **本文件**: `site/md/topic-runoob-codex-tutorial.md`

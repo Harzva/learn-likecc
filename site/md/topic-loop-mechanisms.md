@@ -1,5 +1,5 @@
 # Loop 机制对照：Claude Hook、Codex Daemon 与 LikeCode /loop
-> **更新时间**: 2026-04-22
+> **更新时间**: 2026-04-29
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-loop-mechanisms.html  
 > **本文件**: `site/md/topic-loop-mechanisms.md`  

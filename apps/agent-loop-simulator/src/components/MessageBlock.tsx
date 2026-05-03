@@ -28,7 +28,7 @@ export default function MessageBlock({ message, index, onClick }: MessageBlockPr
         backgroundColor: colors.bg,
         borderLeft: `4px solid ${colors.border}`,
         padding: '10px 14px',
-        maxWidth: 200,
+        maxWidth: 184,
         boxShadow: '0 4px 10px rgba(234, 88, 12, 0.08)',
       }}
     >

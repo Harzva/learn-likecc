@@ -1,5 +1,5 @@
 # Agent 生态对比：技能包与子代理 - Everything in Claude-Code
-> **更新时间**: 2026-04-12
+> **更新时间**: 2026-04-30
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-agent-comparison.html  
 > **本文件**: `site/md/topic-agent-comparison.md`  

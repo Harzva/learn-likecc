@@ -22,7 +22,7 @@ export default function TerminalEmulator({ currentStep }: TerminalEmulatorProps)
 
   return (
     <div
-      className="rounded-xl overflow-hidden flex flex-col shadow-xl"
+      className="flex min-w-0 flex-col overflow-hidden rounded-xl shadow-xl"
       style={{
         backgroundColor: '#0f172a',
         border: '1px solid rgba(15, 23, 42, 0.92)',
@@ -51,7 +51,7 @@ export default function TerminalEmulator({ currentStep }: TerminalEmulatorProps)
       {/* Terminal content */}
       <div
         ref={scrollRef}
-        className="flex-1 overflow-y-auto p-4 font-mono text-[13px] leading-relaxed"
+        className="agent-loop-terminal-scroll flex-1 overflow-y-auto p-4 font-mono text-[13px] leading-relaxed"
         style={{ color: '#e6e6e6', maxHeight: 584 }}
       >
         {/* Welcome screen */}

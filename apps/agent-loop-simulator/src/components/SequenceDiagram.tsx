@@ -20,7 +20,7 @@ export default function SequenceDiagram({ currentStep, onMessageClick }: Sequenc
 
   return (
     <div
-      className="rounded-xl p-4 sm:p-6 relative overflow-x-auto overflow-y-hidden"
+      className="relative overflow-x-auto overflow-y-hidden rounded-xl p-4 sm:p-5 xl:overflow-x-hidden"
       style={{
         backgroundColor: 'var(--bg-card)',
         border: '1px solid var(--border)',
@@ -28,7 +28,7 @@ export default function SequenceDiagram({ currentStep, onMessageClick }: Sequenc
         minHeight: 640,
       }}
     >
-      <div className="min-w-[720px]">
+      <div className="min-w-[560px] xl:min-w-0">
       {/* Participants header */}
       <div className="grid grid-cols-3 relative z-10 mb-4">
         {participants.map((p) => (

@@ -27,13 +27,13 @@ export default function SimulatorSection({ currentStep, onStepChange }: Simulato
       transition={{ duration: 0.5, delay: 0.3 }}
       className="px-6 pb-20"
     >
-      <div className="max-w-[1200px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6" key={replayKey}>
+      <div className="mx-auto w-full max-w-[1560px]">
+        <div className="grid min-w-0 grid-cols-1 gap-6 xl:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)]" key={replayKey}>
           <SequenceDiagram
             currentStep={currentStep}
             onMessageClick={setSelectedMessage}
           />
-          <div>
+          <div className="min-w-0">
             <TerminalEmulator currentStep={currentStep} />
             <ControlBar
               currentStep={currentStep}

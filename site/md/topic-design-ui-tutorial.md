@@ -2,7 +2,7 @@
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-design-ui-tutorial.html  
 > **本文件**: `site/md/topic-design-ui-tutorial.md`  
-> **更新时间**: 2026-04-13
+> **更新时间**: 2026-04-28
 
 ## 概要
 

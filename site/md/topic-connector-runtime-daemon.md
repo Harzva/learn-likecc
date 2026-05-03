@@ -2,7 +2,7 @@
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-connector-runtime-daemon.html  
 > **本文件**: `site/md/topic-connector-runtime-daemon.md`  
-> **更新时间**: 2026-04-17
+> **更新时间**: 2026-04-28
 
 ## 概要
 

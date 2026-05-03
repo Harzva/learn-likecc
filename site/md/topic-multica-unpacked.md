@@ -2,7 +2,7 @@
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-multica-unpacked.html  
 > **本文件**: `site/md/topic-multica-unpacked.md`  
-> **更新时间**: 2026-04-13
+> **更新时间**: 2026-04-29
 
 本页归入 **(Managed) Meta-Agent 专题**，目标不是介绍 Multica 有多少 feature，而是拆它怎样把 `board + workspace + daemon + runtime + skill compounding` 组织成更接近 managed agents 的开源平台。
 

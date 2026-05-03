@@ -1,5 +1,5 @@
 # Claude Code vs Codex：编排型 vs 执行型
-> **更新时间**: 2026-04-17
+> **更新时间**: 2026-04-28
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-claude-codex-compare.html  
 > **本文件**: `site/md/topic-claude-codex-compare.md`  
