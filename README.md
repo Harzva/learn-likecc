@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/harzva-learn-likecc-badge.png)](https://mseep.ai/app/harzva-learn-likecc)
+
 # Learn LikeCode
 
 > 从 Claude Code 学起，但不止于 Claude Code。一个面向「源码学习 + 可运行复刻 + 自由换模型」的 likecode 工程。
