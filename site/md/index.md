@@ -16,6 +16,7 @@
 - **📚 学习入口**
   - 站点导览（`topic-site-map`）
   - Source Map 源码专题
+  - Agent Loop 动态模拟器（`agent-loop-simulator/`）
   - 大模型专题
   - 个人知识库（`topic-personal-knowledge`）
   - 站点推荐（`topic-websites`）
