@@ -1,0 +1,147 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  darkMode: ["class"],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  theme: {
+    extend: {
+      colors: {
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive) / <alpha-value>)",
+          foreground: "hsl(var(--destructive-foreground) / <alpha-value>)",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+        sidebar: {
+          DEFAULT: "hsl(var(--sidebar-background))",
+          foreground: "hsl(var(--sidebar-foreground))",
+          primary: "hsl(var(--sidebar-primary))",
+          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
+          accent: "hsl(var(--sidebar-accent))",
+          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
+          border: "hsl(var(--sidebar-border))",
+          ring: "hsl(var(--sidebar-ring))",
+        },
+        // Custom design tokens
+        cream: {
+          DEFAULT: '#faf8f5',
+          dark: '#f5f0ea',
+        },
+        'nav-bg': '#f0ece6',
+        'accent-amber': {
+          DEFAULT: '#b45309',
+          hover: '#92400e',
+          light: '#fef3c7',
+        },
+        'terminal-bg': '#1e1e1e',
+        'code-bg': '#282c34',
+        'text-primary': '#1a1a1a',
+        'text-secondary': '#6b7280',
+        'text-tertiary': '#9ca3af',
+        'border-light': '#e5e7eb',
+        'border-dark': '#d1d5db',
+        'term-red': '#ff5f56',
+        'term-yellow': '#ffbd2e',
+        'term-green': '#27c93f',
+        'term-text': '#f0f0f0',
+        'term-prompt': '#60a5fa',
+        'term-command': '#fbbf24',
+        'term-success': '#4ade80',
+        'term-error': '#f87171',
+        'term-info': '#93c5fd',
+        'diff-beginner-bg': '#dcfce7',
+        'diff-beginner-text': '#166534',
+        'diff-intermediate-bg': '#fef9c3',
+        'diff-intermediate-text': '#a16207',
+        'diff-advanced-bg': '#fee2e2',
+        'diff-advanced-text': '#dc2626',
+        'quiz-correct-bg': '#f0fdf4',
+        'quiz-correct-border': '#86efac',
+        'quiz-correct-text': '#166534',
+        'quiz-incorrect-bg': '#fef2f2',
+        'quiz-incorrect-border': '#fca5a5',
+        'quiz-incorrect-text': '#dc2626',
+      },
+      fontFamily: {
+        playfair: ['"Playfair Display"', 'Georgia', 'serif'],
+        inter: ['Inter', 'system-ui', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'monospace'],
+      },
+      borderRadius: {
+        xl: "calc(var(--radius) + 4px)",
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+        xs: "calc(var(--radius) - 6px)",
+      },
+      boxShadow: {
+        xs: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+        'card': '0 4px 16px rgba(180,83,9,0.08)',
+        'card-hover': '0 8px 24px rgba(0,0,0,0.08)',
+        'tool': '0 6px 20px rgba(0,0,0,0.06)',
+        'terminal': '0 12px 40px rgba(0,0,0,0.15)',
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        "caret-blink": {
+          "0%,70%,100%": { opacity: "1" },
+          "20%,50%": { opacity: "0" },
+        },
+        "blink": {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0" },
+        },
+        "fade-in-up": {
+          "0%": { opacity: "0", transform: "translateY(30px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "terminal-scale-in": {
+          "0%": { opacity: "0", transform: "scale(0.95)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+        "caret-blink": "caret-blink 1.25s ease-out infinite",
+        "blink": "blink 1.06s step-end infinite",
+        "fade-in-up": "fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "terminal-scale-in": "terminal-scale-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+      },
+    },
+  },
+  plugins: [require("tailwindcss-animate")],
+}
