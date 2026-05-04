@@ -1,4 +1,4 @@
-import { useEffect, useId, useMemo, useState, type ReactNode } from 'react';
+import { useCallback, useEffect, useId, useMemo, useState, type ReactNode } from 'react';
 import {
   Activity,
   ArrowLeft,
@@ -306,6 +306,7 @@ export default function TracePromptSimulator() {
   const [selectedToolName, setSelectedToolName] = useState<string | null>(null);
   const [showRawPretty, setShowRawPretty] = useState(true);
   const [activeView, setActiveView] = useState<ViewId>('map');
+  const [isPlayingSteps, setIsPlayingSteps] = useState(false);
 
   const trace = useMemo(() => traces.find((t) => t.id === traceId) ?? traces[0], [traceId, traces]);
   const prompt = useMemo(() => buildPromptSteps(trace), [trace]);
@@ -325,6 +326,13 @@ export default function TracePromptSimulator() {
   const currentStepAddedChars = currentStep?.added.reduce((sum, part) => sum + part.text.length, 0) ?? 0;
   const systemChars = finalGroups.find((group) => group.kind === 'system')?.chars ?? 0;
   const toolsChars = finalGroups.find((group) => group.kind === 'tools')?.chars ?? 0;
+  const dominantGroup = finalGroups.reduce((best, group) => (group.chars > best.chars ? group : best), finalGroups[0]);
+  const largestDeltaStep = steps.reduce((best, step) => {
+    const stepDelta = step.added.reduce((sum, part) => sum + part.text.length, 0);
+    const bestDelta = best.added.reduce((sum, part) => sum + part.text.length, 0);
+    return stepDelta > bestDelta ? step : best;
+  }, steps[0]);
+  const largestDeltaChars = largestDeltaStep?.added.reduce((sum, part) => sum + part.text.length, 0) ?? 0;
   const traceRoleCards = [
     {
       title: '驱动动态模拟器',
@@ -383,6 +391,8 @@ export default function TracePromptSimulator() {
     trace.tools.find((tool) => tool.name === selectedToolName) ??
     filteredTools[0] ??
     trace.tools[0];
+  const selectedToolCategory = selectedTool ? classifyTool(selectedTool) : 'all';
+  const dominantToolCategory = toolCategoryOrder.reduce((best, category) => (toolCounts[category] > toolCounts[best] ? category : best), toolCategoryOrder[0]);
   const activeViewGuide = viewGuides[activeView];
   const previousView = previousViewId(activeView);
   const nextView = nextViewId(activeView);
@@ -397,10 +407,41 @@ export default function TracePromptSimulator() {
           ? { label: 'Evidence', value: 'Model response', color: 'var(--primary)' }
           : { label: 'Inspector', value: selectedPart?.title ?? currentStep?.title ?? trace.label, color: activeLayerStyle.color };
 
-  const selectStep = (id: string) => {
+  const selectStep = useCallback((id: string) => {
     setStepId(id);
     setSelectedPartId(null);
-  };
+  }, []);
+
+  const selectRelativeStep = useCallback((offset: number) => {
+    if (!steps.length) return;
+    const nextIndex = Math.min(Math.max(currentStepIdx + offset, 0), steps.length - 1);
+    selectStep(steps[nextIndex].id);
+  }, [currentStepIdx, selectStep, steps]);
+
+  useEffect(() => {
+    if (!isPlayingSteps || activeView !== 'step' || steps.length < 2) return undefined;
+
+    const timer = window.setInterval(() => {
+      setStepId((currentId) => {
+        const index = Math.max(0, steps.findIndex((step) => step.id === currentId));
+        if (index >= steps.length - 1) {
+          setIsPlayingSteps(false);
+          return currentId;
+        }
+        return steps[index + 1].id;
+      });
+      setSelectedPartId(null);
+    }, 1400);
+
+    return () => window.clearInterval(timer);
+  }, [activeView, isPlayingSteps, steps]);
+
+  const changeView = useCallback((view: ViewId) => {
+    setActiveView(view);
+    if (view !== 'step') {
+      setIsPlayingSteps(false);
+    }
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -410,19 +451,37 @@ export default function TracePromptSimulator() {
 
       if (event.key === '[') {
         event.preventDefault();
-        setActiveView(previousView);
+        changeView(previousView);
         return;
       }
 
       if (event.key === ']') {
         event.preventDefault();
-        setActiveView(nextView);
+        changeView(nextView);
+        return;
+      }
+
+      if (activeView === 'step' && event.key === 'ArrowLeft') {
+        event.preventDefault();
+        selectRelativeStep(-1);
+        return;
+      }
+
+      if (activeView === 'step' && event.key === 'ArrowRight') {
+        event.preventDefault();
+        selectRelativeStep(1);
+        return;
+      }
+
+      if (activeView === 'step' && event.key === ' ') {
+        event.preventDefault();
+        setIsPlayingSteps((value) => !value);
         return;
       }
 
       if (event.key === '/') {
         event.preventDefault();
-        setActiveView('tools');
+        changeView('tools');
         window.setTimeout(() => document.getElementById('trace-tool-search')?.focus(), 0);
         return;
       }
@@ -436,7 +495,7 @@ export default function TracePromptSimulator() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [nextView, previousView]);
+  }, [activeView, changeView, nextView, previousView, selectRelativeStep]);
 
   return (
     <div className="min-h-[100dvh] overflow-x-hidden" style={{ backgroundColor: 'var(--bg-page)' }}>
@@ -486,7 +545,7 @@ export default function TracePromptSimulator() {
                   key={group.kind}
                   className="flex items-center justify-between gap-2 rounded-md border bg-white/70 px-2 py-1.5 text-left text-[11px]"
                   onClick={() => {
-                    setActiveView('map');
+                    changeView('map');
                     setActiveAnatomyKind(group.kind);
                     setSelectedPartId(group.items[0]?.id ?? null);
                   }}
@@ -537,7 +596,7 @@ export default function TracePromptSimulator() {
                 setToolCategory('all');
                 setToolQuery('');
                 setSelectedToolName(null);
-                setActiveView('map');
+                  changeView('map');
               }}
             />
           </div>
@@ -623,8 +682,17 @@ export default function TracePromptSimulator() {
 
         <section className="min-w-0 overflow-hidden rounded-lg border p-4" style={{ backgroundColor: 'rgba(255,251,245,0.88)', borderColor: 'var(--border)', boxShadow: 'var(--shadow)' }}>
           <TraceStatusStrip trace={trace} tokens={prompt.tokens} steps={steps.length} tone={traceTone} />
+          <TraceInsightPanel
+            dominantGroup={dominantGroup}
+            totalChars={finalTotalChars}
+            largestStep={largestDeltaStep}
+            largestDeltaChars={largestDeltaChars}
+            dominantToolCategory={dominantToolCategory}
+            toolCounts={toolCounts}
+            onChangeView={changeView}
+          />
 
-          <Tabs value={activeView} onValueChange={(value) => setActiveView(value as ViewId)} className="w-full min-w-0">
+          <Tabs value={activeView} onValueChange={(value) => changeView(value as ViewId)} className="w-full min-w-0">
             <TabsList className="trace-sticky-tabs agent-loop-terminal-scroll sticky top-[62px] z-40 flex h-auto w-full gap-2 overflow-x-auto rounded-lg border bg-white/90 p-2 backdrop-blur md:grid md:grid-cols-5 md:overflow-visible" style={{ borderColor: 'var(--border)' }}>
               {viewMeta.map((view) => (
                 <TabsTrigger
@@ -663,7 +731,7 @@ export default function TracePromptSimulator() {
               detailColor={guideDetail.color}
               previousView={viewMeta.find((view) => view.id === previousView)}
               nextView={viewMeta.find((view) => view.id === nextView)}
-              onChangeView={setActiveView}
+            onChangeView={changeView}
             />
 
             <TabsContent value="map" className="mt-4">
@@ -737,6 +805,19 @@ export default function TracePromptSimulator() {
                     <Metric icon={<Eye size={15} />} label="Visible blocks" value={String(currentStep?.parts.length ?? 0)} />
                   </div>
 
+                  <StepPlaybackBar
+                    currentIndex={currentStepIdx}
+                    total={steps.length}
+                    isPlaying={isPlayingSteps}
+                    onPrevious={() => selectRelativeStep(-1)}
+                    onNext={() => selectRelativeStep(1)}
+                    onTogglePlay={() => {
+                      if (currentStepIdx >= steps.length - 1) selectStep(steps[0]?.id ?? stepId);
+                      changeView('step');
+                      setIsPlayingSteps((value) => !value);
+                    }}
+                  />
+
                   <StepRail steps={steps} activeStepId={currentStep?.id} totalChars={prompt.assembled.length} onSelectStep={selectStep} />
 
                   <div className="mb-4 rounded-lg border p-4" style={{ borderColor: 'var(--border)', backgroundColor: '#ffffff' }}>
@@ -806,6 +887,14 @@ export default function TracePromptSimulator() {
                     <Metric icon={<Layers3 size={15} />} label="Categories" value={String(toolCategoryOrder.filter((category) => toolCounts[category] > 0).length)} />
                     <Metric icon={<Braces size={15} />} label="With schema" value={String(trace.tools.filter((tool) => schemaProperties(tool).length > 0).length)} />
                   </div>
+
+                  <ToolWorkbenchSummary
+                    selectedTool={selectedTool}
+                    selectedCategory={selectedToolCategory}
+                    filteredCount={filteredTools.length}
+                    totalCount={trace.tools.length}
+                    toolCounts={toolCounts}
+                  />
 
                   <div className="mb-4 rounded-lg border bg-white p-3" style={{ borderColor: 'var(--border)' }}>
                     <div className="mb-3 flex flex-col gap-2 xl:flex-row xl:items-center xl:justify-between">
@@ -1093,6 +1182,103 @@ function TraceStatusStrip({
   );
 }
 
+function TraceInsightPanel({
+  dominantGroup,
+  totalChars,
+  largestStep,
+  largestDeltaChars,
+  dominantToolCategory,
+  toolCounts,
+  onChangeView,
+}: {
+  dominantGroup?: ReturnType<typeof groupedParts>[number];
+  totalChars: number;
+  largestStep?: PromptStep;
+  largestDeltaChars: number;
+  dominantToolCategory: Exclude<ToolCategory, 'all'>;
+  toolCounts: Record<ToolCategory, number>;
+  onChangeView: (view: ViewId) => void;
+}) {
+  const dominantStyle = dominantGroup ? kindStyles[dominantGroup.kind] : kindStyles.system;
+  const toolMeta = toolCategoryMeta[dominantToolCategory];
+  const insights = [
+    {
+      title: '最大 prompt 层',
+      value: dominantStyle.label,
+      caption: `${percentage(dominantGroup?.chars ?? 0, totalChars)}% / ${formatNumber(dominantGroup?.chars ?? 0)} chars`,
+      icon: <Layers3 size={15} />,
+      color: dominantStyle.color,
+      action: '看 Map',
+      view: 'map' as ViewId,
+    },
+    {
+      title: '最大增长阶段',
+      value: largestStep?.title ?? '-',
+      caption: `+${formatNumber(largestDeltaChars)} chars appended`,
+      icon: <Zap size={15} />,
+      color: 'var(--primary)',
+      action: '看 Step',
+      view: 'step' as ViewId,
+    },
+    {
+      title: '主要工具能力',
+      value: toolMeta.label,
+      caption: `${toolCounts[dominantToolCategory]} / ${toolCounts.all} tools`,
+      icon: <Wrench size={15} />,
+      color: toolMeta.color,
+      action: '看 Tools',
+      view: 'tools' as ViewId,
+    },
+  ];
+
+  return (
+    <section className="mb-4 rounded-lg border bg-white p-3" style={{ borderColor: 'rgba(234,88,12,0.22)' }}>
+      <div className="mb-3 flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
+        <div className="min-w-0">
+          <div className="flex items-center gap-2 text-[13px] font-semibold" style={{ color: 'var(--text-primary)' }}>
+            <Sparkles size={15} style={{ color: 'var(--primary)' }} />
+            Trace insights
+          </div>
+          <div className="mt-1 text-[12px]" style={{ color: 'var(--text-muted)' }}>
+            先给出这份 request 的三个入口：哪里占比最大、哪一步增长最大、工具能力主要集中在哪里。
+          </div>
+        </div>
+        <div className="rounded-md px-2 py-1 text-[11px]" style={{ backgroundColor: '#fff7ed', color: 'var(--text-muted)' }}>
+          click insight to jump
+        </div>
+      </div>
+      <div className="grid gap-2 lg:grid-cols-3">
+        {insights.map((item) => (
+          <button
+            key={item.title}
+            className="group min-w-0 rounded-lg border px-3 py-3 text-left transition-transform hover:-translate-y-0.5"
+            onClick={() => onChangeView(item.view)}
+            style={{ borderColor: 'var(--border)', backgroundColor: '#fffaf3' }}
+          >
+            <div className="flex min-w-0 items-start justify-between gap-3">
+              <div className="min-w-0">
+                <div className="flex items-center gap-2 text-[11px] font-semibold" style={{ color: item.color }}>
+                  {item.icon}
+                  <span>{item.title}</span>
+                </div>
+                <div className="mt-2 truncate text-[14px] font-semibold" title={item.value} style={{ color: 'var(--text-primary)' }}>
+                  {item.value}
+                </div>
+                <div className="mt-1 text-[11px]" style={{ color: 'var(--text-muted)' }}>
+                  {item.caption}
+                </div>
+              </div>
+              <span className="shrink-0 rounded-md bg-white px-2 py-1 text-[11px] transition-colors group-hover:bg-orange-50" style={{ color: 'var(--primary)' }}>
+                {item.action}
+              </span>
+            </div>
+          </button>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function TraceFocusCard({
   trace,
   currentStep,
@@ -1116,6 +1302,112 @@ function TraceFocusCard({
         <DarkKeyValue label="source" value={trace.model ? `${trace.model} · ${hostFromUrl(trace.targetUrl)}` : hostFromUrl(trace.targetUrl)} />
       </div>
     </div>
+  );
+}
+
+function StepPlaybackBar({
+  currentIndex,
+  total,
+  isPlaying,
+  onPrevious,
+  onNext,
+  onTogglePlay,
+}: {
+  currentIndex: number;
+  total: number;
+  isPlaying: boolean;
+  onPrevious: () => void;
+  onNext: () => void;
+  onTogglePlay: () => void;
+}) {
+  const progress = total ? Math.round(((currentIndex + 1) / total) * 100) : 0;
+  return (
+    <section className="mb-4 overflow-hidden rounded-lg border bg-white" style={{ borderColor: 'var(--border)' }}>
+      <div className="grid gap-0 xl:grid-cols-[minmax(0,1fr)_280px]">
+        <div className="min-w-0 p-3">
+          <div className="mb-2 flex items-center justify-between gap-3">
+            <div className="flex items-center gap-2 text-[13px] font-semibold" style={{ color: 'var(--text-primary)' }}>
+              <PlayCircle size={15} style={{ color: 'var(--primary)' }} />
+              Step replay controls
+            </div>
+            <div className="text-[11px]" style={{ color: 'var(--text-muted)' }}>
+              Arrow keys / Space
+            </div>
+          </div>
+          <div className="h-2 overflow-hidden rounded-full" style={{ backgroundColor: 'rgba(234,88,12,0.12)' }}>
+            <span className="block h-full rounded-full transition-all" style={{ width: `${progress}%`, backgroundColor: 'var(--primary)' }} />
+          </div>
+          <div className="mt-2 text-[12px]" style={{ color: 'var(--text-muted)' }}>
+            当前第 {currentIndex + 1} / {total} 步。播放会逐步推进 prompt 增长过程。
+          </div>
+        </div>
+        <div className="grid grid-cols-3 gap-2 border-t p-3 xl:border-l xl:border-t-0" style={{ borderColor: 'rgba(234,88,12,0.18)', backgroundColor: '#fff7ed' }}>
+          <Button variant="secondary" className="h-9 px-2 text-[12px]" onClick={onPrevious} disabled={currentIndex <= 0}>
+            上一步
+          </Button>
+          <Button className="h-9 px-2 text-[12px]" onClick={onTogglePlay}>
+            {isPlaying ? '暂停' : currentIndex >= total - 1 ? '重播' : '播放'}
+          </Button>
+          <Button variant="secondary" className="h-9 px-2 text-[12px]" onClick={onNext} disabled={currentIndex >= total - 1}>
+            下一步
+          </Button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ToolWorkbenchSummary({
+  selectedTool,
+  selectedCategory,
+  filteredCount,
+  totalCount,
+  toolCounts,
+}: {
+  selectedTool?: TraceTool;
+  selectedCategory: ToolCategory;
+  filteredCount: number;
+  totalCount: number;
+  toolCounts: Record<ToolCategory, number>;
+}) {
+  const selectedMeta = toolCategoryMeta[selectedCategory];
+  const schemaCount = selectedTool ? schemaProperties(selectedTool).length : 0;
+  const rows = [
+    { label: 'visible', value: `${filteredCount}/${totalCount}` },
+    { label: 'selected', value: selectedTool?.name ?? '-' },
+    { label: 'category', value: selectedMeta.label },
+    { label: 'fields', value: String(schemaCount) },
+  ];
+
+  return (
+    <section className="mb-4 rounded-lg border bg-white p-3" style={{ borderColor: selectedMeta.border }}>
+      <div className="mb-3 flex flex-col gap-2 xl:flex-row xl:items-center xl:justify-between">
+        <div className="min-w-0">
+          <div className="flex items-center gap-2 text-[13px] font-semibold" style={{ color: 'var(--text-primary)' }}>
+            <ShieldCheck size={15} style={{ color: selectedMeta.color }} />
+            Tool workbench
+          </div>
+          <div className="mt-1 text-[12px]" style={{ color: 'var(--text-muted)' }}>
+            当前选择会同步到右侧 schema inspector；过滤不会丢失原始工具目录。
+          </div>
+        </div>
+        <div className="h-2 w-full overflow-hidden rounded-full xl:w-[260px]" style={{ backgroundColor: 'rgba(15,23,42,0.06)' }}>
+          <span className="block h-full rounded-full" style={{ width: `${percentage(toolCounts[selectedCategory] ?? 0, totalCount)}%`, backgroundColor: selectedMeta.color }} />
+        </div>
+      </div>
+      <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-4">
+        {rows.map((row) => (
+          <div key={row.label} className="min-w-0 rounded-md border px-3 py-2" style={{ borderColor: selectedMeta.border, backgroundColor: selectedMeta.bg }}>
+            <div className="text-[11px]" style={{ color: 'var(--text-muted)' }}>
+              {row.label}
+            </div>
+            <div className="mt-1 truncate text-[12px] font-semibold" title={row.value} style={{ color: row.label === 'category' ? selectedMeta.color : 'var(--text-primary)' }}>
+              {row.value}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }
 
