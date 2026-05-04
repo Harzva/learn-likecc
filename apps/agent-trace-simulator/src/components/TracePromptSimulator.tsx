@@ -39,7 +39,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import traceSamples from '@/data/traceSamples.json';
 import { normalizeTrace } from '@/trace/normalize';
 import { buildPromptSteps } from '@/trace/promptSteps';
 import type { NormalizedTrace, PromptPart, PromptStep, TraceTool } from '@/trace/types';
@@ -59,6 +58,7 @@ type PartDisplayGroup =
 
 type ToolCategory = 'all' | 'files' | 'runtime' | 'workflow' | 'automation' | 'web' | 'mcp' | 'interaction';
 type ViewId = 'map' | 'step' | 'tools' | 'raw' | 'response';
+type RawTraceSample = { id: string; label: string } & Record<string, unknown>;
 
 const toolCategoryOrder: Exclude<ToolCategory, 'all'>[] = ['files', 'runtime', 'workflow', 'automation', 'web', 'mcp', 'interaction'];
 const focusCycle: ViewId[] = ['map', 'step', 'tools', 'raw', 'response'];
@@ -115,6 +115,15 @@ const traceAccents: Record<string, { accent: string; glow: string; tag: string }
     glow: 'rgba(167,139,250,0.18)',
     tag: 'Demo trace / teaching sample',
   },
+};
+
+const emptyTrace: NormalizedTrace = {
+  id: 'loading',
+  label: 'Loading trace',
+  requestBody: null,
+  systemBlocks: [],
+  injectedBlocks: [],
+  tools: [],
 };
 
 function activeTraceTone(traceId: string) {
@@ -230,6 +239,16 @@ function groupedParts(parts: PromptPart[]) {
   });
 }
 
+function layerBreakdown(parts: PromptPart[]) {
+  const total = parts.reduce((sum, part) => sum + part.text.length, 0);
+  return groupedParts(parts).map((group) => ({
+    ...group,
+    pct: percentage(group.chars, total),
+  }));
+}
+
+type LayerBreakdownItem = ReturnType<typeof layerBreakdown>[number];
+
 function partGroups(parts: PromptPart[]) {
   const groups: PartDisplayGroup[] = [];
 
@@ -293,12 +312,33 @@ function mermaidFlowSource(groups: ReturnType<typeof groupedParts>, displayGroup
 }
 
 export default function TracePromptSimulator() {
-  const traces = useMemo(() => {
-    return traceSamples.map((sample) => normalizeTrace(sample.id, sample.label, sample));
+  const [traces, setTraces] = useState<NormalizedTrace[]>([]);
+  const [traceLoadError, setTraceLoadError] = useState('');
+
+  useEffect(() => {
+    let cancelled = false;
+    import('@/data/traceSamples.json')
+      .then((module) => {
+        const samples = module.default as RawTraceSample[];
+        const normalized = samples.map((sample) => normalizeTrace(sample.id, sample.label, sample));
+        if (!cancelled) {
+          setTraces(normalized);
+          setTraceLoadError('');
+        }
+      })
+      .catch((error: unknown) => {
+        if (!cancelled) {
+          setTraceLoadError(error instanceof Error ? error.message : 'Failed to load trace samples.');
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
-  const [traceId, setTraceId] = useState(traces[0]?.id ?? 'kimi-1');
-  const [stepId, setStepId] = useState('user');
+  const [traceId, setTraceId] = useState('kimi-1');
+  const [stepId, setStepId] = useState('system');
   const [selectedPartId, setSelectedPartId] = useState<string | null>(null);
   const [activeAnatomyKind, setActiveAnatomyKind] = useState<PromptPart['kind']>('system');
   const [toolQuery, setToolQuery] = useState('');
@@ -308,7 +348,8 @@ export default function TracePromptSimulator() {
   const [activeView, setActiveView] = useState<ViewId>('map');
   const [isPlayingSteps, setIsPlayingSteps] = useState(false);
 
-  const trace = useMemo(() => traces.find((t) => t.id === traceId) ?? traces[0], [traceId, traces]);
+  const trace = useMemo(() => traces.find((t) => t.id === traceId) ?? traces[0] ?? emptyTrace, [traceId, traces]);
+  const isTraceLoading = traces.length === 0;
   const prompt = useMemo(() => buildPromptSteps(trace), [trace]);
   const traceTone = activeTraceTone(trace.id);
   const steps = prompt.steps;
@@ -398,6 +439,13 @@ export default function TracePromptSimulator() {
   const nextView = nextViewId(activeView);
   const activeStepProgress = steps.length ? Math.round(((currentStepIdx + 1) / steps.length) * 100) : 0;
   const activeLayerStyle = kindStyles[activeAnatomyGroup.kind];
+  const currentStepLayerBreakdown = useMemo(() => layerBreakdown(currentStep?.parts ?? []), [currentStep]);
+  const currentStepAddedBreakdown = useMemo(() => layerBreakdown(currentStep?.added ?? []), [currentStep]);
+  const currentStepDominantAdded = currentStepAddedBreakdown.reduce(
+    (best, group) => (group.chars > best.chars ? group : best),
+    currentStepAddedBreakdown[0] ?? { kind: 'system' as PromptPart['kind'], items: [], chars: 0, pct: 0 }
+  );
+  const selectedToolFieldCount = selectedTool ? schemaProperties(selectedTool).length : 0;
   const guideDetail =
     activeView === 'tools'
       ? { label: 'Tool focus', value: selectedTool?.name ?? 'Select a tool', color: toolCategoryMeta[selectedTool ? classifyTool(selectedTool) : 'all'].color }
@@ -499,6 +547,7 @@ export default function TracePromptSimulator() {
 
   return (
     <div className="min-h-[100dvh] overflow-x-hidden" style={{ backgroundColor: 'var(--bg-page)' }}>
+      {isTraceLoading ? <TraceLoadingOverlay error={traceLoadError} /> : null}
       <aside className="fixed inset-y-0 left-0 z-[60] hidden w-[264px] flex-col border-r p-3 lg:flex" style={{ backgroundColor: 'rgba(255,251,245,0.96)', borderColor: 'var(--border)' }}>
         <a href="../topic-cc-loop-lab.html" className="mb-4 rounded-lg border p-3 transition-transform hover:-translate-y-0.5" style={{ borderColor: 'var(--border)', backgroundColor: '#ffffff' }}>
           <div className="flex items-center gap-2">
@@ -590,7 +639,7 @@ export default function TracePromptSimulator() {
               tone={traceTone}
               onSelectTrace={(id) => {
                 setTraceId(id);
-                setStepId('user');
+                setStepId('system');
                 setSelectedPartId(null);
                 setActiveAnatomyKind('system');
                 setToolCategory('all');
@@ -678,6 +727,15 @@ export default function TracePromptSimulator() {
               </div>
             </div>
           </div>
+          <LearningPathPanel
+            activeView={activeView}
+            onChangeView={changeView}
+            currentStepIndex={currentStepIdx}
+            totalSteps={steps.length}
+            selectedToolName={selectedTool?.name}
+            selectedToolFieldCount={selectedToolFieldCount}
+            dominantLayer={dominantGroup?.kind ?? 'system'}
+          />
         </section>
 
         <section className="min-w-0 overflow-hidden rounded-lg border p-4" style={{ backgroundColor: 'rgba(255,251,245,0.88)', borderColor: 'var(--border)', boxShadow: 'var(--shadow)' }}>
@@ -818,6 +876,21 @@ export default function TracePromptSimulator() {
                     }}
                   />
 
+                  <StepDeltaExplainer
+                    step={currentStep}
+                    stepIndex={currentStepIdx}
+                    totalSteps={steps.length}
+                    addedChars={currentStepAddedChars}
+                    cumulativeChars={currentStep?.cumulativeChars ?? 0}
+                    finalChars={prompt.assembled.length}
+                    layerBreakdown={currentStepLayerBreakdown}
+                    addedBreakdown={currentStepAddedBreakdown}
+                    dominantAddedKind={currentStepDominantAdded.kind}
+                    onSelectStep={selectStep}
+                    previousStep={steps[currentStepIdx - 1]}
+                    nextStep={steps[currentStepIdx + 1]}
+                  />
+
                   <StepRail steps={steps} activeStepId={currentStep?.id} totalChars={prompt.assembled.length} onSelectStep={selectStep} />
 
                   <div className="mb-4 rounded-lg border p-4" style={{ borderColor: 'var(--border)', backgroundColor: '#ffffff' }}>
@@ -894,6 +967,13 @@ export default function TracePromptSimulator() {
                     filteredCount={filteredTools.length}
                     totalCount={trace.tools.length}
                     toolCounts={toolCounts}
+                  />
+
+                  <ToolProtocolExplainer
+                    toolCounts={toolCounts}
+                    selectedCategory={selectedToolCategory}
+                    selectedTool={selectedTool}
+                    onSelectCategory={(category) => setToolCategory(category)}
                   />
 
                   <div className="mb-4 rounded-lg border bg-white p-3" style={{ borderColor: 'var(--border)' }}>
@@ -1119,6 +1199,126 @@ function TraceSwitcher({
           </button>
         );
       })}
+    </div>
+  );
+}
+
+function TraceLoadingOverlay({ error }: { error: string }) {
+  return (
+    <div className="fixed inset-x-0 top-0 z-[80] flex justify-center px-4 py-3 pointer-events-none">
+      <div
+        className="pointer-events-auto rounded-lg border px-4 py-3 text-[13px] shadow-lg"
+        style={{
+          borderColor: error ? '#fca5a5' : 'var(--border)',
+          backgroundColor: '#ffffff',
+          color: error ? '#b91c1c' : 'var(--text-secondary)',
+        }}
+      >
+        {error ? `Trace samples 加载失败：${error}` : '正在加载真实 trace 样本...'}
+      </div>
+    </div>
+  );
+}
+
+function LearningPathPanel({
+  activeView,
+  onChangeView,
+  currentStepIndex,
+  totalSteps,
+  selectedToolName,
+  selectedToolFieldCount,
+  dominantLayer,
+}: {
+  activeView: ViewId;
+  onChangeView: (view: ViewId) => void;
+  currentStepIndex: number;
+  totalSteps: number;
+  selectedToolName?: string;
+  selectedToolFieldCount: number;
+  dominantLayer: PromptPart['kind'];
+}) {
+  const dominantStyle = kindStyles[dominantLayer];
+  const path = [
+    {
+      id: 'map' as ViewId,
+      title: '1. Map',
+      text: `先看四层 request 外壳；当前最大层是 ${dominantStyle.label}。`,
+      icon: <ListTree size={15} />,
+      color: dominantStyle.color,
+    },
+    {
+      id: 'step' as ViewId,
+      title: '2. Step',
+      text: `再回放增长过程；当前在第 ${currentStepIndex + 1}/${totalSteps} 步。`,
+      icon: <Layers3 size={15} />,
+      color: 'var(--primary)',
+    },
+    {
+      id: 'tools' as ViewId,
+      title: '3. Tools',
+      text: selectedToolName
+        ? `检查 ${selectedToolName} 的 ${selectedToolFieldCount} 个输入字段。`
+        : '把工具目录读成 Claude Code 的可调用能力边界。',
+      icon: <Wrench size={15} />,
+      color: '#7c3aed',
+    },
+    {
+      id: 'raw' as ViewId,
+      title: '4. Raw',
+      text: '回到原始 JSON 证据，验证可视化没有凭空补结构。',
+      icon: <FileJson2 size={15} />,
+      color: '#0f172a',
+    },
+    {
+      id: 'response' as ViewId,
+      title: '5. Response',
+      text: '最后把模型回答放回 request 约束里解释。',
+      icon: <Braces size={15} />,
+      color: '#16a34a',
+    },
+  ];
+
+  return (
+    <div className="border-t px-4 py-3 xl:px-5" style={{ borderColor: 'rgba(148,163,184,0.18)', backgroundColor: 'rgba(255,255,255,0.04)' }}>
+      <div className="mb-3 flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
+        <div className="min-w-0">
+          <div className="flex items-center gap-2 text-[13px] font-semibold" style={{ color: '#f8fafc' }}>
+            <BookOpen size={15} style={{ color: 'var(--primary-light)' }} />
+            推荐阅读路径
+          </div>
+          <div className="trace-safe-text mt-1 text-[12px] leading-relaxed" style={{ color: '#cbd5e1' }}>
+            这个仿真器不是线性文章，而是五个互相校验的视角：先建立结构，再看增长，再读工具协议，最后回到证据和响应。
+          </div>
+        </div>
+        <div className="shrink-0 rounded-md border px-2 py-1 text-[11px]" style={{ borderColor: 'rgba(148,163,184,0.22)', color: '#cbd5e1' }}>
+          点击卡片切换视角
+        </div>
+      </div>
+      <div className="grid gap-2 lg:grid-cols-5">
+        {path.map((item) => {
+          const active = item.id === activeView;
+          return (
+            <button
+              key={item.id}
+              className="min-w-0 rounded-lg border p-3 text-left transition-transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-orange-300"
+              onClick={() => onChangeView(item.id)}
+              style={{
+                borderColor: active ? item.color : 'rgba(148,163,184,0.22)',
+                backgroundColor: active ? 'rgba(255,255,255,0.12)' : 'rgba(255,255,255,0.055)',
+                boxShadow: active ? `inset 3px 0 0 ${item.color}` : undefined,
+              }}
+            >
+              <div className="flex min-w-0 items-center gap-2 text-[12px] font-semibold" style={{ color: active ? item.color : '#f8fafc' }}>
+                <span className="shrink-0">{item.icon}</span>
+                <span className="truncate">{item.title}</span>
+              </div>
+              <div className="trace-safe-text mt-2 line-clamp-3 text-[11px] leading-relaxed" style={{ color: '#cbd5e1' }}>
+                {item.text}
+              </div>
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
@@ -1357,6 +1557,149 @@ function StepPlaybackBar({
   );
 }
 
+function StepDeltaExplainer({
+  step,
+  stepIndex,
+  totalSteps,
+  addedChars,
+  cumulativeChars,
+  finalChars,
+  layerBreakdown,
+  addedBreakdown,
+  dominantAddedKind,
+  previousStep,
+  nextStep,
+  onSelectStep,
+}: {
+  step?: PromptStep;
+  stepIndex: number;
+  totalSteps: number;
+  addedChars: number;
+  cumulativeChars: number;
+  finalChars: number;
+  layerBreakdown: LayerBreakdownItem[];
+  addedBreakdown: LayerBreakdownItem[];
+  dominantAddedKind: PromptPart['kind'];
+  previousStep?: PromptStep;
+  nextStep?: PromptStep;
+  onSelectStep: (id: string) => void;
+}) {
+  const dominantStyle = kindStyles[dominantAddedKind];
+  const finalProgress = percentage(cumulativeChars, finalChars);
+  const hasAdded = addedChars > 0;
+  const addedKinds = addedBreakdown.filter((group) => group.chars > 0);
+
+  return (
+    <section className="mb-4 overflow-hidden rounded-lg border bg-white" style={{ borderColor: 'rgba(234,88,12,0.22)' }}>
+      <div className="grid gap-0 xl:grid-cols-[minmax(0,1fr)_340px]">
+        <div className="min-w-0 p-4">
+          <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+            <div className="min-w-0">
+              <div className="flex items-center gap-2 text-[13px] font-semibold" style={{ color: 'var(--text-primary)' }}>
+                <Zap size={15} style={{ color: dominantStyle.color }} />
+                本步增量解释器
+              </div>
+              <div className="trace-safe-text mt-1 text-[12px] leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+                第 {stepIndex + 1}/{totalSteps} 步不是单独存在的内容块，而是把新的 prompt 片段追加到前一阶段之后，形成新的累计 request。
+              </div>
+            </div>
+            <span className="shrink-0 rounded-md px-2 py-1 text-[11px] font-semibold" style={{ backgroundColor: dominantStyle.bg, color: dominantStyle.color }}>
+              {hasAdded ? `主增量：${dominantStyle.label}` : '无新增文本块'}
+            </span>
+          </div>
+
+          <div className="grid gap-3 md:grid-cols-3">
+            <div className="rounded-lg border px-3 py-2" style={{ borderColor: 'var(--border)', backgroundColor: '#fffaf3' }}>
+              <div className="text-[11px]" style={{ color: 'var(--text-muted)' }}>Before</div>
+              <div className="mt-1 text-[14px] font-semibold" style={{ color: 'var(--text-primary)' }}>
+                {previousStep ? previousStep.title : 'Empty request'}
+              </div>
+              <div className="mt-1 text-[11px]" style={{ color: 'var(--text-muted)' }}>
+                {formatNumber(previousStep?.cumulativeChars ?? 0)} chars
+              </div>
+            </div>
+            <div className="rounded-lg border px-3 py-2" style={{ borderColor: dominantStyle.border, backgroundColor: dominantStyle.bg }}>
+              <div className="text-[11px]" style={{ color: dominantStyle.color }}>Append</div>
+              <div className="mt-1 text-[14px] font-semibold" style={{ color: 'var(--text-primary)' }}>
+                +{formatNumber(addedChars)} chars
+              </div>
+              <div className="mt-1 text-[11px]" style={{ color: 'var(--text-muted)' }}>
+                {step?.added.length ?? 0} block(s) added
+              </div>
+            </div>
+            <div className="rounded-lg border px-3 py-2" style={{ borderColor: 'var(--border)', backgroundColor: '#fffaf3' }}>
+              <div className="text-[11px]" style={{ color: 'var(--text-muted)' }}>After</div>
+              <div className="mt-1 text-[14px] font-semibold" style={{ color: 'var(--text-primary)' }}>
+                {formatNumber(cumulativeChars)} chars
+              </div>
+              <div className="mt-1 text-[11px]" style={{ color: 'var(--text-muted)' }}>
+                {finalProgress}% of final request
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-4">
+            <div className="mb-2 flex items-center justify-between text-[11px]" style={{ color: 'var(--text-muted)' }}>
+              <span>累计 request 结构</span>
+              <span>{finalProgress}% complete</span>
+            </div>
+            <div className="grid h-3 overflow-hidden rounded-full border bg-white" style={{ borderColor: 'var(--border)', gridTemplateColumns: anatomyColumns(layerBreakdown, cumulativeChars || 1) }}>
+              {layerBreakdown.map((group) => (
+                <span
+                  key={group.kind}
+                  title={`${kindStyles[group.kind].label}: ${formatNumber(group.chars)} chars`}
+                  style={{ backgroundColor: group.chars > 0 ? kindStyles[group.kind].color : 'rgba(15,23,42,0.06)' }}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <aside className="border-t p-4 xl:border-l xl:border-t-0" style={{ borderColor: 'rgba(234,88,12,0.18)', backgroundColor: '#fff7ed' }}>
+          <div className="mb-3 text-[12px] font-semibold" style={{ color: 'var(--text-primary)' }}>
+            本步新增层
+          </div>
+          <div className="grid gap-2">
+            {hasAdded ? (
+              addedKinds.map((group) => {
+                const style = kindStyles[group.kind];
+                return (
+                  <div key={group.kind} className="rounded-md border bg-white px-3 py-2" style={{ borderColor: style.border }}>
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-[12px] font-semibold" style={{ color: style.color }}>
+                        {style.label}
+                      </span>
+                      <span className="text-[11px]" style={{ color: 'var(--text-muted)' }}>
+                        +{formatNumber(group.chars)}
+                      </span>
+                    </div>
+                    <div className="mt-2 h-1.5 overflow-hidden rounded-full" style={{ backgroundColor: 'rgba(15,23,42,0.06)' }}>
+                      <span className="block h-full rounded-full" style={{ width: `${Math.max(8, group.pct)}%`, backgroundColor: style.color }} />
+                    </div>
+                  </div>
+                );
+              })
+            ) : (
+              <div className="rounded-md border border-dashed bg-white px-3 py-2 text-[12px]" style={{ borderColor: 'var(--border)', color: 'var(--text-muted)' }}>
+                这一阶段没有追加可见 prompt 文本。
+              </div>
+            )}
+          </div>
+
+          <div className="mt-4 grid grid-cols-2 gap-2">
+            <Button variant="secondary" className="h-9 px-2 text-[12px]" disabled={!previousStep} onClick={() => previousStep && onSelectStep(previousStep.id)}>
+              对比上一步
+            </Button>
+            <Button variant="secondary" className="h-9 px-2 text-[12px]" disabled={!nextStep} onClick={() => nextStep && onSelectStep(nextStep.id)}>
+              查看下一步
+            </Button>
+          </div>
+        </aside>
+      </div>
+    </section>
+  );
+}
+
 function ToolWorkbenchSummary({
   selectedTool,
   selectedCategory,
@@ -1406,6 +1749,113 @@ function ToolWorkbenchSummary({
             </div>
           </div>
         ))}
+      </div>
+    </section>
+  );
+}
+
+function ToolProtocolExplainer({
+  toolCounts,
+  selectedCategory,
+  selectedTool,
+  onSelectCategory,
+}: {
+  toolCounts: Record<ToolCategory, number>;
+  selectedCategory: ToolCategory;
+  selectedTool?: TraceTool;
+  onSelectCategory: (category: Exclude<ToolCategory, 'all'>) => void;
+}) {
+  const selectedMeta = toolCategoryMeta[selectedCategory];
+  const selectedName = selectedTool?.name ?? 'no tool selected';
+  const protocolCards = [
+    {
+      title: '工具目录先进入 request',
+      body: 'Claude Code 把工具名称、描述、输入 schema 作为能力目录交给模型。模型不是“知道所有能力”，而是读取这份目录后再决定能调用什么。',
+      icon: <Database size={15} />,
+    },
+    {
+      title: '模型只返回调用意图',
+      body: 'assistant 响应里的 tool_use 是结构化意图：选哪个工具、带什么参数。真正执行由 runtime 完成。',
+      icon: <Braces size={15} />,
+    },
+    {
+      title: 'runtime 执行并回灌结果',
+      body: '工具结果会以 tool_result / reminder 等形式重新进入上下文，下一轮请求会继续变厚。',
+      icon: <Workflow size={15} />,
+    },
+  ];
+
+  return (
+    <section className="mb-4 overflow-hidden rounded-lg border bg-white" style={{ borderColor: 'rgba(234,88,12,0.22)' }}>
+      <div className="grid gap-0 xl:grid-cols-[minmax(0,1fr)_320px]">
+        <div className="min-w-0 p-4">
+          <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+            <div className="min-w-0">
+              <div className="flex items-center gap-2 text-[13px] font-semibold" style={{ color: 'var(--text-primary)' }}>
+                <ShieldCheck size={15} style={{ color: selectedMeta.color }} />
+                工具协议如何参与 prompt
+              </div>
+              <div className="trace-safe-text mt-1 text-[12px] leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+                Tools 视图不是普通目录页，它解释 Claude Code request 里的“可调用能力层”：目录进入 prompt，调用由模型提出，执行结果再回灌上下文。
+              </div>
+            </div>
+            <span className="shrink-0 rounded-md px-2 py-1 text-[11px] font-semibold" style={{ backgroundColor: selectedMeta.bg, color: selectedMeta.color }}>
+              当前：{selectedName}
+            </span>
+          </div>
+
+          <div className="grid gap-2 lg:grid-cols-3">
+            {protocolCards.map((card, index) => (
+              <div key={card.title} className="rounded-lg border px-3 py-3" style={{ borderColor: 'var(--border)', backgroundColor: '#fffaf3' }}>
+                <div className="mb-2 flex items-center gap-2 text-[12px] font-semibold" style={{ color: 'var(--text-primary)' }}>
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full text-[11px]" style={{ backgroundColor: 'rgba(234,88,12,0.10)', color: 'var(--primary)' }}>
+                    {index + 1}
+                  </span>
+                  <span className="shrink-0" style={{ color: 'var(--primary)' }}>{card.icon}</span>
+                  <span className="min-w-0 truncate">{card.title}</span>
+                </div>
+                <div className="trace-safe-text text-[11px] leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+                  {card.body}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <aside className="border-t p-4 xl:border-l xl:border-t-0" style={{ borderColor: 'rgba(234,88,12,0.18)', backgroundColor: '#fff7ed' }}>
+          <div className="mb-3 text-[12px] font-semibold" style={{ color: 'var(--text-primary)' }}>
+            能力分布速览
+          </div>
+          <div className="grid gap-2">
+            {toolCategoryOrder.filter((category) => toolCounts[category] > 0).map((category) => {
+              const meta = toolCategoryMeta[category];
+              const pct = percentage(toolCounts[category], toolCounts.all);
+              return (
+                <button
+                  key={category}
+                  className="rounded-md border bg-white px-3 py-2 text-left transition-transform hover:-translate-y-0.5"
+                  onClick={() => onSelectCategory(category)}
+                  style={{
+                    borderColor: selectedCategory === category ? meta.color : meta.border,
+                    boxShadow: selectedCategory === category ? `inset 3px 0 0 ${meta.color}` : undefined,
+                  }}
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-[12px] font-semibold" style={{ color: meta.color }}>
+                      {meta.label}
+                    </span>
+                    <span className="text-[11px]" style={{ color: 'var(--text-muted)' }}>
+                      {toolCounts[category]} / {pct}%
+                    </span>
+                  </div>
+                  <div className="mt-2 h-1.5 overflow-hidden rounded-full" style={{ backgroundColor: 'rgba(15,23,42,0.06)' }}>
+                    <span className="block h-full rounded-full" style={{ width: `${Math.max(8, pct)}%`, backgroundColor: meta.color }} />
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </aside>
       </div>
     </section>
   );
