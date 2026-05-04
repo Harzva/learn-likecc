@@ -104,6 +104,36 @@
     max-width: 100%;
   }
 
+  .trace-sticky-tabs {
+    top: 62px;
+  }
+
+  .trace-inspector-shell {
+    max-height: none;
+  }
+
+  @media (max-width: 1023px) {
+    .trace-sticky-tabs {
+      top: 66px;
+    }
+  }
+
+  @media (min-width: 1536px) {
+    .trace-inspector-shell {
+      max-height: calc(100dvh - 112px);
+      overflow: auto;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(148, 163, 184, 0.45) transparent;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .trace-sticky-tabs {
+      position: relative;
+      top: auto;
+    }
+  }
+
   @media (min-width: 640px) {
     .trace-mobile-shell {
       width: 100%;
