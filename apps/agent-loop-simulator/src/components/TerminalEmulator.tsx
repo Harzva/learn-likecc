@@ -28,6 +28,7 @@ export default function TerminalEmulator({ currentStep }: TerminalEmulatorProps)
         border: '1px solid rgba(15, 23, 42, 0.92)',
         boxShadow: '0 20px 25px -5px rgba(234, 88, 12, 0.1), 0 10px 15px -3px rgba(15, 23, 42, 0.18)',
         minHeight: 640,
+        maxHeight: 'min(760px, calc(100dvh - 130px))',
       }}
     >
       {/* Title bar */}
@@ -52,7 +53,7 @@ export default function TerminalEmulator({ currentStep }: TerminalEmulatorProps)
       <div
         ref={scrollRef}
         className="agent-loop-terminal-scroll flex-1 overflow-y-auto p-4 font-mono text-[13px] leading-relaxed"
-        style={{ color: '#e6e6e6', maxHeight: 584 }}
+        style={{ color: '#e6e6e6' }}
       >
         {/* Welcome screen */}
         <div

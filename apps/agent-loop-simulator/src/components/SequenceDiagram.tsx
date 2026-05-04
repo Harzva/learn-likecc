@@ -17,18 +17,21 @@ const participants = [
 
 export default function SequenceDiagram({ currentStep, onMessageClick }: SequenceDiagramProps) {
   const visibleMessages = sequenceMessages.filter((m) => m.step <= currentStep);
+  const laneHeight = 88;
+  const diagramHeight = Math.max(520, 60 + visibleMessages.length * laneHeight);
 
   return (
     <div
-      className="relative overflow-x-auto overflow-y-hidden rounded-xl p-4 sm:p-5 xl:overflow-x-hidden"
+      className="agent-loop-terminal-scroll relative overflow-auto rounded-xl p-4 sm:p-5"
       style={{
         backgroundColor: 'var(--bg-card)',
         border: '1px solid var(--border)',
         boxShadow: 'var(--shadow-lg)',
         minHeight: 640,
+        maxHeight: 'min(760px, calc(100dvh - 130px))',
       }}
     >
-      <div className="min-w-[560px] xl:min-w-0">
+      <div className="min-w-[720px]">
       {/* Participants header */}
       <div className="grid grid-cols-3 relative z-10 mb-4">
         {participants.map((p) => (
@@ -47,7 +50,7 @@ export default function SequenceDiagram({ currentStep, onMessageClick }: Sequenc
       </div>
 
       {/* Lifelines and messages area */}
-      <div className="relative" style={{ height: 520 }}>
+      <div className="relative" style={{ height: diagramHeight }}>
         {/* Lifelines */}
         <div className="absolute inset-0 grid grid-cols-3">
           {participants.map((p) => (
@@ -70,7 +73,7 @@ export default function SequenceDiagram({ currentStep, onMessageClick }: Sequenc
                   : participants.findIndex((p) => p.id === msg.source);
 
               const rowIndex = idx;
-              const topOffset = 20 + rowIndex * 90;
+              const topOffset = 18 + rowIndex * laneHeight;
 
               return (
                 <div
@@ -101,7 +104,7 @@ export default function SequenceDiagram({ currentStep, onMessageClick }: Sequenc
                   const fromIdx = participants.findIndex((p) => p.id === msg.source);
                   const toIdx = participants.findIndex((p) => p.id === msg.target);
                   const rowIdx = visibleMessages.indexOf(msg);
-                  const yPos = 55 + rowIdx * 90;
+                  const yPos = 54 + rowIdx * laneHeight;
                   const x1 = ((fromIdx + 0.5) / 3) * 100 + '%';
                   const x2 = ((toIdx + 0.5) / 3) * 100 + '%';
 

@@ -44,15 +44,17 @@ export default function App() {
     <div className="min-h-[100dvh]">
       <Navbar />
       <SidebarNav activeSection={activeSection} />
-      <HeroSection />
-      <SimulatorSection
-        currentStep={currentStep}
-        onStepChange={handleStepChange}
-      />
-      <AgentLoopSection />
-      <ToolSystemSection />
-      <CommandSection />
-      <HiddenFeaturesSection />
+      <main className="lg:pl-[176px]">
+        <HeroSection />
+        <SimulatorSection
+          currentStep={currentStep}
+          onStepChange={handleStepChange}
+        />
+        <AgentLoopSection />
+        <ToolSystemSection />
+        <CommandSection />
+        <HiddenFeaturesSection />
+      </main>
     </div>
   );
 }
