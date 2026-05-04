@@ -1,12 +1,10 @@
-import { useCallback, useEffect, useId, useMemo, useState, type ReactNode } from 'react';
+import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react';
 import {
   Activity,
   ArrowLeft,
   BookOpen,
   Braces,
-  Check,
   ChevronRight,
-  Clipboard,
   Cpu,
   Database,
   Eye,
@@ -39,6 +37,10 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { CodePanel } from '@/components/trace-simulator/CodePanel';
+import { EvidenceLocator } from '@/components/trace-simulator/EvidenceLocator';
+import { MermaidFlow } from '@/components/trace-simulator/MermaidFlow';
+import { ToolUseReplay } from '@/components/trace-simulator/ToolUseReplay';
 import { normalizeTrace } from '@/trace/normalize';
 import { buildPromptSteps } from '@/trace/promptSteps';
 import type { NormalizedTrace, PromptPart, PromptStep, TraceTool } from '@/trace/types';
@@ -491,6 +493,16 @@ export default function TracePromptSimulator() {
     }
   }, []);
 
+  const focusMapKind = useCallback((kind: PromptPart['kind']) => {
+    setActiveAnatomyKind(kind);
+    setSelectedPartId(finalGroups.find((group) => group.kind === kind)?.items[0]?.id ?? null);
+  }, [finalGroups]);
+
+  const openMapKind = useCallback((kind: PromptPart['kind']) => {
+    focusMapKind(kind);
+    changeView('map');
+  }, [changeView, focusMapKind]);
+
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       const target = event.target as HTMLElement | null;
@@ -756,6 +768,7 @@ export default function TracePromptSimulator() {
                 <TabsTrigger
                   key={view.id}
                   value={view.id}
+                  onClick={() => changeView(view.id)}
                   className="h-auto min-w-[172px] justify-start rounded-md border bg-white px-3 py-2.5 text-left data-[state=active]:shadow-none md:min-w-0"
                   style={{
                     borderColor: activeView === view.id ? 'rgba(234,88,12,0.48)' : 'var(--border)',
@@ -837,7 +850,19 @@ export default function TracePromptSimulator() {
                       })}
                     </div>
 
-                    <AnatomySummary group={activeAnatomyGroup} totalChars={finalTotalChars} onSelectPart={setSelectedPartId} />
+                    <AnatomySummary
+                      group={activeAnatomyGroup}
+                      totalChars={finalTotalChars}
+                      onSelectPart={setSelectedPartId}
+                      onOpenRaw={(kind) => {
+                        focusMapKind(kind);
+                        changeView('raw');
+                      }}
+                      onOpenResponse={(kind) => {
+                        focusMapKind(kind);
+                        changeView('response');
+                      }}
+                    />
                   </section>
 
                   <AssemblyFlow steps={steps} activeStepId={currentStep?.id} totalChars={prompt.assembled.length} onSelectStep={selectStep} />
@@ -975,6 +1000,8 @@ export default function TracePromptSimulator() {
                     selectedTool={selectedTool}
                     onSelectCategory={(category) => setToolCategory(category)}
                   />
+
+                  <ToolUseReplay tool={selectedTool} />
 
                   <div className="mb-4 rounded-lg border bg-white p-3" style={{ borderColor: 'var(--border)' }}>
                     <div className="mb-3 flex flex-col gap-2 xl:flex-row xl:items-center xl:justify-between">
@@ -1128,6 +1155,17 @@ export default function TracePromptSimulator() {
                     <RawGuideItem label="tools[]" value={`${trace.tools.length} definitions`} />
                     <RawGuideItem label="user prompt" value={`${trace.userPrompt?.length ?? 0} chars`} />
                   </div>
+                  <div className="mt-3">
+                    <EvidenceLocator
+                      groups={finalGroups}
+                      totalChars={finalTotalChars}
+                      activeKind={activeAnatomyKind}
+                      selectedPart={selectedPart}
+                      mode="raw"
+                      onFocusKind={focusMapKind}
+                      onOpenMap={openMapKind}
+                    />
+                  </div>
                 </section>
               </div>
             </TabsContent>
@@ -1138,6 +1176,21 @@ export default function TracePromptSimulator() {
                   <div className="mb-4 flex items-center gap-2 text-[14px] font-semibold" style={{ color: 'var(--text-primary)' }}>
                     <TerminalSquare size={16} style={{ color: 'var(--primary)' }} />
                     Model response
+                  </div>
+                  <div className="mb-4 rounded-lg border bg-white p-3" style={{ borderColor: activeLayerStyle.border }}>
+                    <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                      <div className="min-w-0">
+                        <div className="text-[12px] font-semibold" style={{ color: activeLayerStyle.color }}>
+                          Map context: {activeLayerStyle.label}
+                        </div>
+                        <div className="trace-safe-text mt-1 text-[11px]" style={{ color: 'var(--text-muted)' }}>
+                          {selectedPart ? selectedPart.title : 'No concrete prompt block selected. Use the locator to pin one layer before reading the response.'}
+                        </div>
+                      </div>
+                      <Button variant="secondary" className="h-8 px-3 text-[12px]" onClick={() => openMapKind(activeAnatomyKind)}>
+                        Locate in Map
+                      </Button>
+                    </div>
                   </div>
                   <CodePanel title="Response text" meta={`${formatNumber((trace.responseText ?? '').trim().length)} chars`} text={(trace.responseText ?? '').trim() || '(empty)'} />
                 </section>
@@ -1150,6 +1203,17 @@ export default function TracePromptSimulator() {
                     <RawGuideItem label="provider" value={trace.provider ?? '-'} />
                     <RawGuideItem label="status" value={String(trace.status ?? '-')} />
                     <RawGuideItem label="response chars" value={String((trace.responseText ?? '').trim().length)} />
+                  </div>
+                  <div className="mt-3">
+                    <EvidenceLocator
+                      groups={finalGroups}
+                      totalChars={finalTotalChars}
+                      activeKind={activeAnatomyKind}
+                      selectedPart={selectedPart}
+                      mode="response"
+                      onFocusKind={focusMapKind}
+                      onOpenMap={openMapKind}
+                    />
                   </div>
                 </section>
               </div>
@@ -2039,62 +2103,18 @@ function StatusPill({ label, value, color = 'var(--primary)' }: { label: string;
   );
 }
 
-function CodePanel({ title, meta, text }: { title: string; meta?: string; text: string }) {
-  const [copied, setCopied] = useState(false);
-
-  const copyText = async () => {
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 1300);
-    } catch {
-      setCopied(false);
-    }
-  };
-
-  return (
-    <div className="overflow-hidden rounded-lg border shadow-inner" style={{ borderColor: 'rgba(51,65,85,0.9)', backgroundColor: '#0f172a' }}>
-      <div className="flex min-w-0 items-center justify-between gap-3 border-b px-3 py-2" style={{ borderColor: 'rgba(148,163,184,0.18)', backgroundColor: '#111c31' }}>
-        <div className="min-w-0">
-          <div className="truncate text-[12px] font-semibold" style={{ color: '#e2e8f0' }}>
-            {title}
-          </div>
-          {meta ? (
-            <div className="mt-0.5 text-[11px]" style={{ color: '#94a3b8' }}>
-              {meta}
-            </div>
-          ) : null}
-        </div>
-        <button
-          className="inline-flex shrink-0 items-center gap-1.5 rounded-md border px-2 py-1 text-[11px] transition-colors hover:bg-white/10"
-          onClick={copyText}
-          style={{ borderColor: 'rgba(148,163,184,0.24)', color: copied ? '#22c55e' : '#cbd5e1' }}
-        >
-          {copied ? <Check size={13} /> : <Clipboard size={13} />}
-          {copied ? 'Copied' : 'Copy'}
-        </button>
-      </div>
-      <pre
-        className="agent-loop-terminal-scroll overflow-auto whitespace-pre-wrap break-words p-4 text-[12px] leading-relaxed"
-        style={{
-          maxHeight: 'min(560px, calc(100dvh - 260px))',
-          color: '#e6e6e6',
-        }}
-      >
-        {text}
-      </pre>
-    </div>
-  );
-}
-
 function AnatomySummary({
   group,
   totalChars,
   onSelectPart,
+  onOpenRaw,
+  onOpenResponse,
 }: {
   group?: ReturnType<typeof groupedParts>[number];
   totalChars: number;
   onSelectPart: (id: string) => void;
+  onOpenRaw: (kind: PromptPart['kind']) => void;
+  onOpenResponse: (kind: PromptPart['kind']) => void;
 }) {
   if (!group) return null;
 
@@ -2117,9 +2137,17 @@ function AnatomySummary({
           </div>
         </div>
         {firstPart ? (
-          <Button variant="secondary" className="h-8 px-3 text-[12px]" onClick={() => onSelectPart(firstPart.id)}>
-            Inspect first block
-          </Button>
+          <div className="flex shrink-0 flex-wrap gap-2">
+            <Button variant="secondary" className="h-8 px-3 text-[12px]" onClick={() => onSelectPart(firstPart.id)}>
+              Inspect first block
+            </Button>
+            <Button variant="secondary" className="h-8 px-3 text-[12px]" onClick={() => onOpenRaw(group.kind)}>
+              Raw evidence
+            </Button>
+            <Button variant="secondary" className="h-8 px-3 text-[12px]" onClick={() => onOpenResponse(group.kind)}>
+              Response context
+            </Button>
+          </div>
         ) : null}
       </div>
 
@@ -2143,81 +2171,6 @@ function AnatomySummary({
         </div>
       ) : null}
     </div>
-  );
-}
-
-function MermaidFlow({ chart }: { chart: string }) {
-  const id = useId().replace(/:/g, '');
-  const [svg, setSvg] = useState('');
-  const [error, setError] = useState('');
-  const [showSource, setShowSource] = useState(false);
-
-  useEffect(() => {
-    let cancelled = false;
-    import('mermaid')
-      .then(({ default: mermaid }) => {
-        mermaid.initialize({
-          startOnLoad: false,
-          securityLevel: 'strict',
-          theme: 'base',
-          themeVariables: {
-            primaryColor: '#fff7ed',
-            primaryTextColor: '#1e293b',
-            primaryBorderColor: '#fb923c',
-            lineColor: '#fb923c',
-            secondaryColor: '#eff6ff',
-            tertiaryColor: '#f5f3ff',
-            fontFamily: 'Geist, Microsoft YaHei, sans-serif',
-          },
-        });
-        return mermaid.render(`prompt-flow-${id}`, chart);
-      })
-      .then((result) => {
-        if (!cancelled) {
-          setSvg(result.svg);
-          setError('');
-        }
-      })
-      .catch((err: unknown) => {
-        if (!cancelled) {
-          setSvg('');
-          setError(err instanceof Error ? err.message : 'Failed to render Mermaid chart.');
-        }
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, [chart, id]);
-
-  return (
-    <section className="mb-4 rounded-lg border p-4" style={{ borderColor: 'var(--border)', backgroundColor: '#fffaf3' }}>
-      <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex items-center gap-2 text-[13px] font-semibold" style={{ color: 'var(--text-primary)' }}>
-          <GitBranch size={15} style={{ color: 'var(--primary)' }} />
-          Mermaid flowchart
-        </div>
-        <Button variant="secondary" className="h-8 px-3 text-[12px]" onClick={() => setShowSource((value) => !value)}>
-          {showSource ? 'Hide source' : 'Show source'}
-        </Button>
-      </div>
-      <div className="agent-loop-terminal-scroll overflow-auto rounded-lg border bg-white p-3" style={{ borderColor: 'rgba(234,88,12,0.28)' }}>
-        {error ? (
-          <pre className="whitespace-pre-wrap text-[12px]" style={{ color: 'var(--text-muted)' }}>
-            {error}
-          </pre>
-        ) : (
-          <div className="min-w-[760px]" dangerouslySetInnerHTML={{ __html: svg }} />
-        )}
-      </div>
-      {showSource ? (
-        <pre
-          className="agent-loop-terminal-scroll mt-3 max-h-[280px] overflow-auto whitespace-pre-wrap rounded-lg border p-3 text-[12px]"
-          style={{ backgroundColor: '#0f172a', color: '#e6e6e6', borderColor: 'rgba(51,65,85,0.9)' }}
-        >
-          {chart}
-        </pre>
-      ) : null}
-    </section>
   );
 }
 
