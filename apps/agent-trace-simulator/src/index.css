@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: #ea580c;
+    --primary-dark: #c2410c;
+    --primary-light: #fb923c;
+    --secondary: #6366f1;
+    --secondary-light: #818cf8;
+    --bg-dark: #fef7ed;
+    --bg-secondary: #fff7ed;
+    --bg-card: #fffbf5;
+    --bg-hover: #fef3e2;
+    --text-primary: #1e293b;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+    --border: #fed7aa;
+    --gradient-1: linear-gradient(135deg, #ea580c, #f97316);
+    --gradient-2: linear-gradient(135deg, #6366f1, #8b5cf6);
+    --gradient-hero: linear-gradient(135deg, #fef3c7 0%, #fed7aa 52%, #fecaca 100%);
+    --shadow: 0 4px 6px -1px rgba(234, 88, 12, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(234, 88, 12, 0.15);
+    --shadow-xl: 0 20px 25px -5px rgba(234, 88, 12, 0.1);
+    --bg-page: var(--bg-dark);
+    --bg-section: var(--bg-secondary);
+    --accent-nav-active: var(--primary);
+    --accent-nav-bg: var(--bg-hover);
+    --border-light: var(--border);
+    --border-medium: var(--border);
+    --term-bg: #0f172a;
+    --term-header: #1e293b;
+    --term-green: #22c55e;
+    --term-red: #ef4444;
+    --term-orange: #fb923c;
+    --term-blue: #60a5fa;
+    --term-purple: #a78bfa;
+    --term-yellow: #f59e0b;
+    --term-gray: #94a3b8;
+    --term-running: #f59e0b;
+    --term-completed: #3fb950;
+    --radius: 12px;
+    --radius-lg: 16px;
+    scroll-behavior: smooth;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', 'Segoe UI', Roboto, sans-serif;
+    background:
+      radial-gradient(circle at 20% 8%, rgba(251, 146, 60, 0.18), transparent 30%),
+      radial-gradient(circle at 82% 14%, rgba(99, 102, 241, 0.11), transparent 28%),
+      var(--bg-page);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+@layer utilities {
+  .font-mono {
+    font-family: 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+  }
+
+  .agent-loop-terminal-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(148, 163, 184, 0.45) transparent;
+  }
+
+  .agent-loop-terminal-scroll::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .agent-loop-terminal-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .agent-loop-terminal-scroll::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.45);
+    border-radius: 999px;
+  }
+}

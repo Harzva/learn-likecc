@@ -207,9 +207,13 @@ const MERMAID_DIAGRAMS = {
     classDef greenBox fill:#14251f,stroke:#34d399,stroke-width:2px,color:#6ee7b7;
     classDef purpleBox fill:#241c2f,stroke:#c084fc,stroke-width:2px,color:#e9d5ff;
 
-    HUB["Loop Lab / 本地工作台"]:::goldBox --> CONSOLE["codex-loop AI Terminal<br/>观察面 / operator desk"]:::blueBox
+    HUB["Loop Lab / 仿真大专题"]:::goldBox --> LOOP["Agent Loop Simulator<br/>12-step replay"]:::blueBox
+    HUB --> SCRIPT["Script Insight Simulator<br/>commands / config / quiz"]:::greenBox
+    HUB --> TRACE["Trace Prompt Simulator<br/>prompt growth / tools"]:::purpleBox
+    HUB --> CONSOLE["codex-loop AI Terminal<br/>观察面 / operator desk"]:::blueBox
     HUB --> WORKSPACE["LikeCode Workspace App<br/>plan editor / runtime shell"]:::purpleBox
     HUB --> CONNECTOR["Connector Runtime / Daemon Design<br/>connector / runtime / daemon"]:::greenBox
+    TRACE --> TRACEFLOW["system / runtime / tools / user"]:::purpleBox
     WORKSPACE --> TASKS["Task Board / active plan / logs"]:::purpleBox
     CONSOLE --> SHELL["thread / shell / daemon monitor"]:::blueBox
     CONNECTOR --> BRIDGE["conversation bridge / QR bind"]:::greenBox`,
@@ -242,7 +246,7 @@ const MERMAID_DIAGRAMS = {
 
     subgraph LABS["工作台与科研线"]
         direction TB
-        WORKSPACE["本地工作台 / Loop Lab"]:::hub
+        WORKSPACE["仿真大专题 / Loop Lab"]:::hub
         PAPER["VibePaper"]:::hub
     end
 
@@ -265,6 +269,9 @@ const MERMAID_DIAGRAMS = {
     HOTWIRE --> HOTRAG["RAG 技术热点"]:::topic
     AGENT --> HOT["技术热点 / 对比 / 论文"]:::topic
 
+    WORKSPACE --> LOOPSIM["Agent Loop 动态模拟器"]:::topic
+    WORKSPACE --> SCRIPTINS["脚本启示仿真器"]:::topic
+    WORKSPACE --> TRACESIM["Trace Prompt 仿真器"]:::topic
     WORKSPACE --> CONSOLE["codex-loop AI Terminal"]:::topic
     WORKSPACE --> WSAPP["LikeCode Workspace App"]:::lab
     WORKSPACE --> CONNECTOR["Connector Runtime / Daemon Design"]:::lab

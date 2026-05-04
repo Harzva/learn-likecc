@@ -1,4 +1,4 @@
-{
+﻿{
   "meta": {
     "updated": "2026-05-03",
     "count": 67,
@@ -26,8 +26,8 @@
         },
         {
           "slug": "topic-cc-loop-lab",
-          "title": "Loop 事件流实验室（本地）- Claude Code Course",
-          "updated": "2026-04-28",
+          "title": "仿真大专题 / Loop Lab",
+          "updated": "2026-05-04",
           "group": "核心入口",
           "href": "topic-cc-loop-lab.html",
           "md_path": "site/md/topic-cc-loop-lab.md"

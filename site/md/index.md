@@ -18,7 +18,8 @@
   - Source Map 源码专题
   - Agent Loop 动态模拟器（`agent-loop-simulator/`）
   - 脚本启示仿真器（`agent-script-insight/`）
-  - Loop Lab 大专题（`topic-cc-loop-lab`，两个仿真器与 Loop 控制台的父级入口）
+  - Trace Prompt 仿真器（`agent-trace-simulator/`）
+  - Loop Lab 大专题（`topic-cc-loop-lab`，三种仿真器与 Loop 控制台的父级入口）
   - VibePaper / 自动科研专题（`topic-vibepaper`）
   - Vibe Coding / Design UI 专题（`topic-design-ui`）
   - 大模型专题

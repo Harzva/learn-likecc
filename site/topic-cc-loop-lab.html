@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loop 事件流实验室（本地）- Claude Code Course</title>
+    <title>仿真大专题 / Loop Lab - Claude Code Course</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧪</text></svg>">
-    <meta name="description" content="本地 SSE 联调：订阅 demo LoopEvent；需本机运行 tools/cc_loop_sse_relay.py。">
-    <meta name="page:updated" content="2026-04-28">
+    <meta name="description" content="仿真大专题：集中进入 Agent Loop 动态模拟器、脚本启示仿真器、Trace Prompt 仿真器，以及 Loop 控制台与本地 SSE 联调。">
+    <meta name="page:updated" content="2026-05-03">
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
                 <span class="logo-icon">🧪</span>
-                <span class="logo-text">Loop 实验室</span>
+                <span class="logo-text">仿真大专题</span>
             </a>
             <div class="nav-links">
                 <a href="topic-cc-unpacked-zh.html#loop" class="nav-link">← CC 结构导览</a>
-                <a href="#pages" class="nav-link">线上子页</a>
+                <a href="#pages" class="nav-link">在线仿真器</a>
+                <a href="#companion" class="nav-link">配套机制页</a>
                 <a href="#local" class="nav-link">本地 SSE</a>
             </div>
             <div class="nav-actions">
@@ -31,13 +32,14 @@
     <main class="course-main devlog-main">
         <div class="container">
             <article class="course-content devlog-content">
-                <h1 class="course-title">Loop 事件流 <span class="subtitle">本地实验室</span></h1>
+                <h1 class="course-title">仿真大专题 <span class="subtitle">Loop Lab</span></h1>
                 <div class="course-quote">
-                    <p>这个专题现在收三类内容：可在线运行的 Agent Loop 仿真器、脚本练习实验室，以及本机 SSE 事件流联调。前两类可直接在 GitHub Pages 打开，最后一类用于本地理解 <a href="https://github.com/Harzva/learn-likecc/blob/main/projects/cc-loop-live/README.md" target="_blank" rel="noopener noreferrer">projects/cc-loop-live</a> 中的事件模型。</p>
+                    <p>这个专题是 Learn LikeCode 的仿真总入口：把 <strong>Agent Loop 动态回放</strong>、<strong>脚本启示练习</strong>、<strong>Trace Prompt 拆解</strong> 三种在线仿真方式收在一起，再用 Loop 控制台、任务板、机制页和本地 SSE 事件流解释它们背后的运行结构。</p>
                 </div>
 
                 <section id="pages" class="section-block">
-                    <h2>线上子页</h2>
+                    <h2>在线仿真器</h2>
+                    <p class="section-desc">三种仿真器回答三个层面的问题：一次 Agent 循环怎么跑、脚本与配置怎么练、Claude Code 请求里的 prompt 是如何一层层长出来的。</p>
                     <div class="quickstart-grid">
                         <a href="agent-loop-simulator/" class="quickstart-card quickstart-card-link">
                             <h3>Agent Loop 动态模拟器</h3>
@@ -49,6 +51,18 @@
                             <p>把命令脚本、终端练习、配置生成和测验放在一个交互实验室里，适合按模块练习 Claude Code 工作流。</p>
                             <p><strong>进入 →</strong></p>
                         </a>
+                        <a href="agent-trace-simulator/" class="quickstart-card quickstart-card-link">
+                            <h3>Trace Prompt 仿真器</h3>
+                            <p>结合三份 cc-route trace，逐步拆解 system、system-reminder、tools 与用户输入如何累计成 Claude Code 请求。</p>
+                            <p><strong>进入 →</strong></p>
+                        </a>
+                    </div>
+                </section>
+
+                <section id="companion" class="section-block">
+                    <h2>配套机制页</h2>
+                    <p class="section-desc">这些页面不替代仿真器，而是补足控制台、任务状态、Loop 机制和外部连接器的解释层。</p>
+                    <div class="quickstart-grid">
                         <a href="topic-codex-loop-console.html" class="quickstart-card quickstart-card-link">
                             <h3>Codex Loop Console</h3>
                             <p>观察 Codex / Claude Code loop 的事件、状态和控制台视角，和仿真器形成“可视化 + 控制台”的互补阅读。</p>
