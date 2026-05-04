@@ -1,9 +1,12 @@
-import { useEffect, useId, useMemo, useState } from 'react';
+import { useEffect, useId, useMemo, useState, type ReactNode } from 'react';
 import {
+  Activity,
+  ArrowLeft,
   Braces,
   ChevronRight,
   FileJson2,
   GitBranch,
+  Home,
   Layers3,
   ListTree,
   Network,
@@ -264,23 +267,71 @@ export default function TracePromptSimulator() {
 
   return (
     <div className="min-h-[100dvh]" style={{ backgroundColor: 'var(--bg-page)' }}>
-      <header className="sticky top-0 z-50 border-b" style={{ backgroundColor: 'rgba(255,251,245,0.92)', borderColor: 'var(--border)' }}>
-        <div className="mx-auto flex max-w-[1560px] flex-col gap-3 px-4 py-3 sm:px-6 lg:flex-row lg:items-center lg:justify-between">
+      <aside className="fixed inset-y-0 left-0 z-[60] hidden w-[256px] flex-col border-r p-3 lg:flex" style={{ backgroundColor: 'rgba(255,251,245,0.96)', borderColor: 'var(--border)' }}>
+        <a href="../topic-cc-loop-lab.html" className="mb-4 rounded-lg border p-3" style={{ borderColor: 'var(--border)', backgroundColor: '#ffffff' }}>
+          <div className="flex items-center gap-2">
+            <span className="flex h-8 w-8 items-center justify-center rounded-md" style={{ backgroundColor: 'rgba(234,88,12,0.12)' }}>
+              <Activity size={17} style={{ color: 'var(--primary)' }} />
+            </span>
+            <div className="min-w-0">
+              <div className="text-[13px] font-semibold" style={{ color: 'var(--text-primary)' }}>仿真大专题</div>
+              <div className="text-[11px]" style={{ color: 'var(--text-muted)' }}>Loop Lab</div>
+            </div>
+          </div>
+        </a>
+
+        <nav className="grid gap-1 text-[13px]" aria-label="仿真专题导航">
+          <TraceSideLink href="../topic-cc-loop-lab.html" icon={<Home size={15} />} label="专题总入口" />
+          <TraceSideLink href="../agent-loop-simulator/" icon={<GitBranch size={15} />} label="Agent Loop 动态模拟器" />
+          <TraceSideLink href="../agent-script-insight/" icon={<Braces size={15} />} label="脚本启示仿真器" />
+          <TraceSideLink href="./" icon={<Layers3 size={15} />} label="Trace Prompt 仿真器" active />
+        </nav>
+
+        <div className="my-4 h-px" style={{ backgroundColor: 'var(--border)' }} />
+
+        <div className="grid gap-2">
+          <div className="px-2 text-[11px] font-semibold uppercase tracking-[0.12em]" style={{ color: 'var(--text-muted)' }}>
+            配套机制页
+          </div>
+          <nav className="grid gap-1 text-[13px]" aria-label="配套机制页">
+            <TraceSideLink href="../topic-codex-loop-console.html" icon={<Network size={15} />} label="Codex Loop Console" />
+            <TraceSideLink href="../topic-loop-task-board.html" icon={<ListTree size={15} />} label="任务驱动舱" />
+            <TraceSideLink href="../topic-loop-mechanisms.html" icon={<Sparkles size={15} />} label="Loop 机制" />
+          </nav>
+        </div>
+
+        <div className="mt-auto rounded-lg border p-3" style={{ borderColor: 'var(--border)', backgroundColor: '#fff7ed' }}>
+          <div className="text-[12px] font-semibold" style={{ color: 'var(--primary)' }}>当前实验</div>
+          <div className="mt-1 text-[12px] leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+            拆解 Claude Code 请求如何由 system、runtime、tools、user 四层组装出来。
+          </div>
+        </div>
+      </aside>
+
+      <div className="lg:pl-[256px]">
+      <header className="sticky top-0 z-50 border-b backdrop-blur" style={{ backgroundColor: 'rgba(255,251,245,0.92)', borderColor: 'var(--border)' }}>
+        <div className="mx-auto flex max-w-[1560px] flex-col gap-3 px-4 py-3 sm:px-6 xl:flex-row xl:items-center xl:justify-between">
           <div className="flex min-w-0 items-center gap-3">
-            <div className="flex h-8 w-8 items-center justify-center rounded-md" style={{ backgroundColor: 'rgba(234,88,12,0.12)' }}>
+            <a href="../topic-cc-loop-lab.html" className="flex h-8 w-8 items-center justify-center rounded-md lg:hidden" aria-label="返回仿真大专题" style={{ backgroundColor: 'rgba(234,88,12,0.12)' }}>
+              <ArrowLeft size={17} style={{ color: 'var(--primary)' }} />
+            </a>
+            <div className="hidden h-8 w-8 items-center justify-center rounded-md lg:flex" style={{ backgroundColor: 'rgba(234,88,12,0.12)' }}>
               <Layers3 size={18} style={{ color: 'var(--primary)' }} />
             </div>
             <div className="min-w-0">
               <div className="truncate text-[14px] font-semibold" style={{ color: 'var(--text-primary)' }}>
-                Trace Prompt Simulator
+                Trace Prompt 仿真器
               </div>
               <div className="truncate text-[12px]" style={{ color: 'var(--text-muted)' }}>
-                Deconstruct one Claude Code request into system, runtime, tool, and user layers.
+                仿真大专题 / Loop Lab 的第三条路径：解构 Claude Code 请求如何一层层变厚。
               </div>
             </div>
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
+            <a href="../topic-cc-loop-lab.html" className="rounded-md border px-3 py-2 text-[13px] font-semibold" style={{ borderColor: 'var(--border)', backgroundColor: '#ffffff', color: 'var(--text-primary)' }}>
+              专题总入口
+            </a>
             {traces.map((item) => (
               <Button
                 key={item.id}
@@ -304,6 +355,27 @@ export default function TracePromptSimulator() {
       </header>
 
       <main className="mx-auto max-w-[1560px] px-4 py-5 sm:px-6">
+        <section className="mb-4 overflow-hidden rounded-lg border" style={{ backgroundColor: '#0f172a', borderColor: '#1e293b', boxShadow: '0 18px 42px rgba(15,23,42,0.18)' }}>
+          <div className="flex flex-col gap-4 p-5 md:flex-row md:items-end md:justify-between">
+            <div className="min-w-0">
+              <div className="mb-3 inline-flex rounded-md px-2 py-1 text-[12px] font-semibold" style={{ backgroundColor: 'rgba(251,146,60,0.14)', color: '#fdba74' }}>
+                Prompt trace lab
+              </div>
+              <h1 className="m-0 text-[28px] font-bold leading-tight md:text-[40px]" style={{ color: '#f8fafc' }}>
+                看见 Claude Code 请求如何长出来
+              </h1>
+              <p className="mt-3 max-w-[860px] text-[14px] leading-relaxed md:text-[15px]" style={{ color: '#cbd5e1' }}>
+                从系统脚手架、运行时 reminder、工具目录到用户输入，逐步复原一次请求的 prompt 组装路径。左侧导航把它放回仿真大专题，避免这个工具变成孤立页面。
+              </p>
+            </div>
+            <div className="grid grid-cols-3 gap-2 md:min-w-[360px]">
+              <DarkMetric label="Blocks" value={String(finalParts.length)} />
+              <DarkMetric label="Tools" value={String(trace.tools.length)} />
+              <DarkMetric label="Tokens" value={`~${formatNumber(prompt.tokens)}`} />
+            </div>
+          </div>
+        </section>
+
         <section className="min-w-0 rounded-lg border p-4" style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border)', boxShadow: 'var(--shadow)' }}>
           <div className="mb-4 flex flex-col gap-3 rounded-lg border px-4 py-3 lg:flex-row lg:items-center lg:justify-between" style={{ borderColor: 'var(--border)', backgroundColor: '#fffaf3' }}>
             <div className="min-w-0">
@@ -581,6 +653,43 @@ export default function TracePromptSimulator() {
           </Tabs>
         </section>
       </main>
+      </div>
+    </div>
+  );
+}
+
+function TraceSideLink({
+  href,
+  icon,
+  label,
+  active,
+}: {
+  href: string;
+  icon: ReactNode;
+  label: string;
+  active?: boolean;
+}) {
+  return (
+    <a
+      href={href}
+      className="flex items-center gap-2 rounded-md border px-3 py-2 font-medium transition-transform hover:-translate-y-0.5"
+      style={{
+        borderColor: active ? 'rgba(234,88,12,0.42)' : 'transparent',
+        backgroundColor: active ? 'rgba(234,88,12,0.10)' : 'transparent',
+        color: active ? 'var(--primary)' : 'var(--text-secondary)',
+      }}
+    >
+      <span className="shrink-0">{icon}</span>
+      <span className="min-w-0 truncate">{label}</span>
+    </a>
+  );
+}
+
+function DarkMetric({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-lg border px-3 py-2" style={{ borderColor: 'rgba(148,163,184,0.22)', backgroundColor: 'rgba(255,255,255,0.06)' }}>
+      <div className="text-[11px]" style={{ color: '#94a3b8' }}>{label}</div>
+      <div className="mt-1 text-[14px] font-semibold" style={{ color: '#f8fafc' }}>{value}</div>
     </div>
   );
 }

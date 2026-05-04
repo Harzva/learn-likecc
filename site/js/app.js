@@ -743,6 +743,17 @@ function initSiteSidebar() {
         '<a class="site-sidebar__link site-sidebar__link--sub" href="https://docs.anthropic.com/en/docs/claude-code/changelog" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">🔗</span><span class="site-sidebar__txt">Anthropic Changelog ↗</span></a>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer"><span class="site-sidebar__ico">🔗</span><span class="site-sidebar__txt">GitHub CHANGELOG ↗</span></a>' +
         '</details>' +
+        '<details class="site-sidebar__details" data-sidebar-key="loop-lab">' +
+        '<summary class="site-sidebar__summary"><span class="site-sidebar__txt">仿真大专题</span></summary>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-cc-loop-lab.html"><span class="site-sidebar__ico">📌</span><span class="site-sidebar__txt">Loop Lab 总入口</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="agent-loop-simulator/"><span class="site-sidebar__ico">🔁</span><span class="site-sidebar__txt">Agent Loop 动态模拟器</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="agent-script-insight/"><span class="site-sidebar__ico">⌨️</span><span class="site-sidebar__txt">脚本启示仿真器</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="agent-trace-simulator/"><span class="site-sidebar__ico">🧬</span><span class="site-sidebar__txt">Trace Prompt 仿真器</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-codex-loop-console.html"><span class="site-sidebar__ico">▣</span><span class="site-sidebar__txt">Codex Loop Console</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-loop-task-board.html"><span class="site-sidebar__ico">▤</span><span class="site-sidebar__txt">任务驱动舱</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-loop-mechanisms.html"><span class="site-sidebar__ico">⚙️</span><span class="site-sidebar__txt">Loop 机制</span></a>' +
+        '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-connector-runtime-daemon.html"><span class="site-sidebar__ico">🔌</span><span class="site-sidebar__txt">Connector Runtime</span></a>' +
+        '</details>' +
         '<details class="site-sidebar__details" data-sidebar-key="llm">' +
         '<summary class="site-sidebar__summary"><span class="site-sidebar__txt">大模型专题</span></summary>' +
         '<a class="site-sidebar__link site-sidebar__link--sub" href="topic-llm.html"><span class="site-sidebar__ico">📌</span><span class="site-sidebar__txt">专题首页</span></a>' +
@@ -1250,6 +1261,7 @@ function getPartGroupTitle(part) {
 }
 
 function markActiveSiteSidebarLinks(scope = document) {
+    const currentPath = window.location.pathname
     const currentPage = getCurrentPageName()
     const currentHash = window.location.hash || ''
 
@@ -1258,8 +1270,13 @@ function markActiveSiteSidebarLinks(scope = document) {
         if (!href || href.startsWith('http')) return
 
         const [path, hash] = href.split('#')
-        const samePage = !path || path === currentPage
-        const active = hash ? samePage && `#${hash}` === currentHash : path === currentPage
+        const normalizedPath = path.replace(/^\.\//, '')
+        const currentDir = currentPath.endsWith('/') ? currentPath : currentPath.replace(/[^/]*$/, '')
+        const samePage =
+            !normalizedPath ||
+            normalizedPath === currentPage ||
+            (normalizedPath.endsWith('/') && currentDir.endsWith(normalizedPath))
+        const active = hash ? samePage && `#${hash}` === currentHash : samePage
         link.classList.toggle('site-sidebar__link--active', active)
 
         if (active) {

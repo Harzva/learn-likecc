@@ -1,5 +1,5 @@
 # 仿真大专题 / Loop Lab
-> **更新时间**: 2026-05-03
+> **更新时间**: 2026-05-04
 
 > **在线页面**: <https://harzva.github.io/learn-likecc/topic-cc-loop-lab.html>
 > **HTML**：[`site/topic-cc-loop-lab.html`](../topic-cc-loop-lab.html)  
@@ -7,7 +7,7 @@
 
 ## 概要
 
-这个专题是 Learn LikeCode 的仿真总入口：把 **Agent Loop 动态回放**、**脚本启示练习**、**Trace Prompt 拆解** 三种在线仿真方式收在一起，再用 Loop 控制台、任务板、机制页和本地 SSE 事件流解释它们背后的运行结构。
+这个专题是 Learn LikeCode 的仿真总入口：把 **Agent Loop 动态回放**、**脚本启示练习**、**Trace Prompt 拆解** 三种在线仿真方式收在一起，再用 Loop 控制台、任务板、机制页和本地 SSE 事件流解释它们背后的运行结构。HTML 页面现在按专题控制台展示：首屏是 Loop Lab 总览，三条仿真路径是主入口，配套机制页作为下游解释层。
 
 ## 目录（对照 HTML）
 

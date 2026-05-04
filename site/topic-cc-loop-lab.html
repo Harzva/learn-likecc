@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧪</text></svg>">
     <meta name="description" content="仿真大专题：集中进入 Agent Loop 动态模拟器、脚本启示仿真器、Trace Prompt 仿真器，以及 Loop 控制台与本地 SSE 联调。">
-    <meta name="page:updated" content="2026-05-03">
+    <meta name="page:updated" content="2026-05-04">
 </head>
-<body>
+<body class="loop-lab-page">
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
@@ -29,85 +29,130 @@
         </div>
     </nav>
 
-    <main class="course-main devlog-main">
-        <div class="container">
-            <article class="course-content devlog-content">
-                <h1 class="course-title">仿真大专题 <span class="subtitle">Loop Lab</span></h1>
-                <div class="course-quote">
-                    <p>这个专题是 Learn LikeCode 的仿真总入口：把 <strong>Agent Loop 动态回放</strong>、<strong>脚本启示练习</strong>、<strong>Trace Prompt 拆解</strong> 三种在线仿真方式收在一起，再用 Loop 控制台、任务板、机制页和本地 SSE 事件流解释它们背后的运行结构。</p>
-                </div>
+    <main class="course-main loop-lab-main">
+        <div class="container container--layout-wide">
+            <article class="loop-lab-shell">
+                <section class="loop-lab-hero" aria-labelledby="loop-lab-title">
+                    <div class="loop-lab-hero__copy">
+                        <p class="loop-lab-kicker">Loop Lab / 仿真总入口</p>
+                        <h1 id="loop-lab-title">仿真大专题</h1>
+                        <p class="loop-lab-lede">
+                            把 <strong>Agent Loop 动态回放</strong>、<strong>脚本启示练习</strong>、<strong>Trace Prompt 拆解</strong> 三种在线仿真方式收在一起，再用控制台、任务板、机制页和本地 SSE 事件流解释它们背后的运行结构。
+                        </p>
+                        <div class="loop-lab-actions">
+                            <a href="agent-trace-simulator/" class="btn btn-primary">进入 Trace 仿真器</a>
+                            <a href="#pages" class="btn btn-secondary">查看三种路径</a>
+                        </div>
+                    </div>
+                    <div class="loop-lab-hero__panel" aria-label="仿真专题结构">
+                        <div class="loop-lab-terminal">
+                            <div class="loop-lab-terminal__bar">
+                                <span></span><span></span><span></span>
+                                <strong>learn-likecc / loop-lab</strong>
+                            </div>
+                            <div class="loop-lab-terminal__body">
+                                <p><span>01</span> replay agent loop</p>
+                                <p><span>02</span> practice script workflow</p>
+                                <p><span>03</span> deconstruct prompt trace</p>
+                                <p><span>04</span> inspect runtime mechanisms</p>
+                            </div>
+                        </div>
+                        <div class="loop-lab-stats">
+                            <div><strong>3</strong><span>在线仿真器</span></div>
+                            <div><strong>4</strong><span>机制补充页</span></div>
+                            <div><strong>SSE</strong><span>本地事件流</span></div>
+                        </div>
+                    </div>
+                </section>
 
-                <section id="pages" class="section-block">
-                    <h2>在线仿真器</h2>
-                    <p class="section-desc">三种仿真器回答三个层面的问题：一次 Agent 循环怎么跑、脚本与配置怎么练、Claude Code 请求里的 prompt 是如何一层层长出来的。</p>
-                    <div class="quickstart-grid">
-                        <a href="agent-loop-simulator/" class="quickstart-card quickstart-card-link">
-                            <h3>Agent Loop 动态模拟器</h3>
+                <section id="pages" class="loop-lab-section">
+                    <div class="loop-lab-section__head">
+                        <p class="loop-lab-kicker">Simulation Paths</p>
+                        <h2>三种在线仿真器</h2>
+                        <p>从“循环如何跑”到“脚本如何练”，再到“请求 prompt 如何被逐层组装”，按问题层级进入。</p>
+                    </div>
+                    <div class="loop-lab-path-grid">
+                        <a href="agent-loop-simulator/" class="loop-lab-path loop-lab-path--loop">
+                            <span class="loop-lab-path__num">01</span>
+                            <span class="loop-lab-path__eyebrow">Agent Loop</span>
+                            <h3>动态模拟器</h3>
                             <p>用 12 步交互回放拆开一次完整 Agent 循环：用户输入、模型响应、工具调用、结果回灌与最终回答。</p>
-                            <p><strong>进入 →</strong></p>
+                            <span class="loop-lab-path__meta">适合先建立运行直觉</span>
+                            <strong>进入 →</strong>
                         </a>
-                        <a href="agent-script-insight/" class="quickstart-card quickstart-card-link">
+                        <a href="agent-script-insight/" class="loop-lab-path loop-lab-path--script">
+                            <span class="loop-lab-path__num">02</span>
+                            <span class="loop-lab-path__eyebrow">Script Insight</span>
                             <h3>脚本启示仿真器</h3>
-                            <p>把命令脚本、终端练习、配置生成和测验放在一个交互实验室里，适合按模块练习 Claude Code 工作流。</p>
-                            <p><strong>进入 →</strong></p>
+                            <p>把命令脚本、终端练习、配置生成和测验放进一个交互实验室，适合按模块练习 Claude Code 工作流。</p>
+                            <span class="loop-lab-path__meta">适合做配置与命令训练</span>
+                            <strong>进入 →</strong>
                         </a>
-                        <a href="agent-trace-simulator/" class="quickstart-card quickstart-card-link">
-                            <h3>Trace Prompt 仿真器</h3>
-                            <p>结合三份 cc-route trace，逐步拆解 system、system-reminder、tools 与用户输入如何累计成 Claude Code 请求。</p>
-                            <p><strong>进入 →</strong></p>
+                        <a href="agent-trace-simulator/" class="loop-lab-path loop-lab-path--trace">
+                            <span class="loop-lab-path__num">03</span>
+                            <span class="loop-lab-path__eyebrow">Trace Prompt</span>
+                            <h3>Prompt 请求仿真器</h3>
+                            <p>结合三份 cc-route trace，逐步拆解 system、runtime reminder、tools 与用户输入如何累计成 Claude Code 请求。</p>
+                            <span class="loop-lab-path__meta">适合理解 prompt 组装链路</span>
+                            <strong>进入 →</strong>
                         </a>
                     </div>
                 </section>
 
-                <section id="companion" class="section-block">
-                    <h2>配套机制页</h2>
-                    <p class="section-desc">这些页面不替代仿真器，而是补足控制台、任务状态、Loop 机制和外部连接器的解释层。</p>
-                    <div class="quickstart-grid">
-                        <a href="topic-codex-loop-console.html" class="quickstart-card quickstart-card-link">
+                <section id="companion" class="loop-lab-section loop-lab-section--split">
+                    <div class="loop-lab-section__head">
+                        <p class="loop-lab-kicker">Mechanism Pages</p>
+                        <h2>配套机制页</h2>
+                        <p>这些页面不替代仿真器，而是补足控制台、任务状态、Loop 机制和外部连接器的解释层。</p>
+                    </div>
+                    <div class="loop-lab-companion-grid">
+                        <a href="topic-codex-loop-console.html" class="loop-lab-mini-card">
+                            <span>控制台视角</span>
                             <h3>Codex Loop Console</h3>
-                            <p>观察 Codex / Claude Code loop 的事件、状态和控制台视角，和仿真器形成“可视化 + 控制台”的互补阅读。</p>
-                            <p><strong>进入 →</strong></p>
+                            <p>观察事件、状态与控制台视角，和仿真器形成“可视化 + 控制台”的互补阅读。</p>
                         </a>
-                        <a href="topic-loop-task-board.html" class="quickstart-card quickstart-card-link">
+                        <a href="topic-loop-task-board.html" class="loop-lab-mini-card">
+                            <span>任务状态</span>
                             <h3>任务驱动舱</h3>
                             <p>从任务、进度、待发布视角理解本地工作台如何承接 Agent Loop 的长任务状态。</p>
-                            <p><strong>进入 →</strong></p>
                         </a>
-                        <a href="topic-loop-mechanisms.html" class="quickstart-card quickstart-card-link">
+                        <a href="topic-loop-mechanisms.html" class="loop-lab-mini-card">
+                            <span>机制抽象</span>
                             <h3>Loop 机制</h3>
-                            <p>把循环控制、上下文治理、工具调用和停止条件抽成机制层，作为仿真器背后的结构说明。</p>
-                            <p><strong>进入 →</strong></p>
+                            <p>把循环控制、上下文治理、工具调用和停止条件抽成仿真器背后的结构说明。</p>
                         </a>
-                        <a href="topic-connector-runtime-daemon.html" class="quickstart-card quickstart-card-link">
-                            <h3>Connector Runtime / Daemon</h3>
-                            <p>把外部连接器、后台守护进程和 WeChat bind 等接入能力放回运行时分层里看，避免它继续成为隐藏页。</p>
-                            <p><strong>进入 →</strong></p>
+                        <a href="topic-connector-runtime-daemon.html" class="loop-lab-mini-card">
+                            <span>外部接入</span>
+                            <h3>Connector Runtime</h3>
+                            <p>把外部连接器、后台守护进程和 WeChat bind 等接入能力放回运行时分层。</p>
                         </a>
                     </div>
                 </section>
 
-                <section id="local" class="section-block">
-                    <h2>本地 SSE 步骤</h2>
-                    <ol>
-                        <li>终端一（仓库根）：<code>python3 tools/cc_loop_sse_relay.py</code>（可加 <code>--fast</code>）</li>
-                        <li>终端二：<code>cd site && python3 -m http.server 8080</code></li>
-                        <li>浏览器打开 <code>http://127.0.0.1:8080/topic-cc-loop-lab.html</code>（勿用 <code>file://</code>）</li>
-                        <li>确认下方 URL 为 <code>http://127.0.0.1:8769/events</code>（与脚本默认端口一致），点<strong>连接</strong></li>
-                    </ol>
-                </section>
-
-                <section class="section-block">
-                    <h2>连接</h2>
-                    <p>
-                        <label for="sse-url">SSE URL</label><br>
-                        <input id="sse-url" type="url" value="http://127.0.0.1:8769/events" size="48" class="search-input cc-loop-lab-url-input">
-                    </p>
-                    <p>
-                        <button type="button" id="btn-connect" class="btn btn-primary">连接</button>
-                        <button type="button" id="btn-close" class="btn btn-secondary cc-loop-lab-close-btn">断开</button>
-                    </p>
-                    <p id="sse-status" class="section-desc" aria-live="polite">未连接</p>
-                    <pre id="sse-log" class="cc-loop-lab-log cc-loop-lab-log-panel"></pre>
+                <section id="local" class="loop-lab-section loop-lab-local">
+                    <div class="loop-lab-section__head">
+                        <p class="loop-lab-kicker">Local Event Stream</p>
+                        <h2>本地 SSE 联调</h2>
+                        <p>当你想把仿真和真实事件流接起来，可以在本机跑 relay，再让浏览器订阅事件。</p>
+                    </div>
+                    <div class="loop-lab-local__grid">
+                        <ol class="loop-lab-steps">
+                            <li><span>1</span>终端一（仓库根）：<code>python3 tools/cc_loop_sse_relay.py</code>（可加 <code>--fast</code>）</li>
+                            <li><span>2</span>终端二：<code>cd site && python3 -m http.server 8080</code></li>
+                            <li><span>3</span>浏览器打开 <code>http://127.0.0.1:8080/topic-cc-loop-lab.html</code></li>
+                            <li><span>4</span>确认 URL 为 <code>http://127.0.0.1:8769/events</code>，点<strong>连接</strong></li>
+                        </ol>
+                        <div class="loop-lab-sse-card">
+                            <label for="sse-url">SSE URL</label>
+                            <input id="sse-url" type="url" value="http://127.0.0.1:8769/events" size="48" class="search-input cc-loop-lab-url-input">
+                            <div class="loop-lab-sse-actions">
+                                <button type="button" id="btn-connect" class="btn btn-primary">连接</button>
+                                <button type="button" id="btn-close" class="btn btn-secondary cc-loop-lab-close-btn">断开</button>
+                            </div>
+                            <p id="sse-status" class="section-desc" aria-live="polite">未连接</p>
+                            <pre id="sse-log" class="cc-loop-lab-log cc-loop-lab-log-panel"></pre>
+                        </div>
+                    </div>
                 </section>
             </article>
         </div>
