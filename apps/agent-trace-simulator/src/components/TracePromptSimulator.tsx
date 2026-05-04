@@ -4,15 +4,26 @@ import {
   ArrowLeft,
   Braces,
   ChevronRight,
+  Cpu,
+  Database,
+  Eye,
+  FileCode2,
   FileJson2,
+  Gauge,
   GitBranch,
   Home,
   Layers3,
   ListTree,
+  MousePointerClick,
   Network,
+  PanelRightOpen,
+  Route,
   Search,
   Sparkles,
+  TerminalSquare,
+  Workflow,
   Wrench,
+  Zap,
 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
@@ -24,11 +35,11 @@ import { normalizeTrace } from '@/trace/normalize';
 import { buildPromptSteps } from '@/trace/promptSteps';
 import type { PromptPart, PromptStep, TraceTool } from '@/trace/types';
 
-const kindStyles: Record<PromptPart['kind'], { label: string; color: string; bg: string; border: string }> = {
-  system: { label: 'System layer', color: '#ea580c', bg: '#fff7ed', border: '#fdba74' },
-  reminder: { label: 'Runtime layer', color: '#2563eb', bg: '#eff6ff', border: '#93c5fd' },
-  tools: { label: 'Tools layer', color: '#7c3aed', bg: '#f5f3ff', border: '#c4b5fd' },
-  user: { label: 'User layer', color: '#16a34a', bg: '#f0fdf4', border: '#86efac' },
+const kindStyles: Record<PromptPart['kind'], { label: string; shortLabel: string; color: string; bg: string; border: string }> = {
+  system: { label: 'System scaffold', shortLabel: 'System', color: '#ea580c', bg: '#fff7ed', border: '#fdba74' },
+  reminder: { label: 'Runtime reminders', shortLabel: 'Runtime', color: '#2563eb', bg: '#eff6ff', border: '#93c5fd' },
+  tools: { label: 'Tool catalog', shortLabel: 'Tools', color: '#7c3aed', bg: '#f5f3ff', border: '#c4b5fd' },
+  user: { label: 'User message', shortLabel: 'User', color: '#16a34a', bg: '#f0fdf4', border: '#86efac' },
 };
 
 const layerOrder: PromptPart['kind'][] = ['system', 'reminder', 'tools', 'user'];
@@ -38,8 +49,17 @@ type PartDisplayGroup =
   | { type: 'parent'; title: string; description?: string; parts: PromptPart[]; chars: number };
 
 type ToolCategory = 'all' | 'files' | 'runtime' | 'workflow' | 'automation' | 'web' | 'mcp' | 'interaction';
+type ViewId = 'map' | 'step' | 'tools' | 'raw' | 'response';
 
 const toolCategoryOrder: Exclude<ToolCategory, 'all'>[] = ['files', 'runtime', 'workflow', 'automation', 'web', 'mcp', 'interaction'];
+
+const viewMeta: Array<{ id: ViewId; label: string; description: string; icon: ReactNode }> = [
+  { id: 'map', label: 'Map', description: '四层组装总览', icon: <ListTree size={15} /> },
+  { id: 'step', label: 'Step', description: '逐步累积 prompt', icon: <Layers3 size={15} /> },
+  { id: 'tools', label: 'Tools', description: '工具目录与 schema', icon: <Wrench size={15} /> },
+  { id: 'raw', label: 'Raw', description: '原始 request body', icon: <FileJson2 size={15} /> },
+  { id: 'response', label: 'Response', description: '模型返回文本', icon: <Braces size={15} /> },
+];
 
 const toolCategoryMeta: Record<ToolCategory, { label: string; color: string; bg: string; border: string }> = {
   all: { label: 'All tools', color: '#0f172a', bg: '#fffaf3', border: '#fed7aa' },
@@ -60,6 +80,11 @@ function estimateTokens(chars: number) {
   return Math.ceil(chars / 4);
 }
 
+function percentage(part: number, total: number) {
+  if (!total) return 0;
+  return Math.round((part / total) * 100);
+}
+
 function excerpt(text: string, max = 360) {
   const compact = text.replace(/\s+/g, ' ').trim();
   if (compact.length <= max) return compact;
@@ -68,6 +93,15 @@ function excerpt(text: string, max = 360) {
 
 function asRecord(value: unknown): Record<string, unknown> | null {
   return value && typeof value === 'object' && !Array.isArray(value) ? (value as Record<string, unknown>) : null;
+}
+
+function hostFromUrl(value?: string) {
+  if (!value) return '-';
+  try {
+    return new URL(value).host;
+  } catch {
+    return value;
+  }
 }
 
 function classifyTool(tool: TraceTool): Exclude<ToolCategory, 'all'> {
@@ -98,9 +132,9 @@ function schemaProperties(tool: TraceTool) {
 function codeBlock(text: string) {
   return (
     <pre
-      className="agent-loop-terminal-scroll overflow-auto whitespace-pre-wrap break-words rounded-lg border p-4 text-[12px] leading-relaxed"
+      className="agent-loop-terminal-scroll overflow-auto whitespace-pre-wrap break-words rounded-lg border p-4 text-[12px] leading-relaxed shadow-inner"
       style={{
-        maxHeight: 'min(520px, calc(100dvh - 260px))',
+        maxHeight: 'min(560px, calc(100dvh - 260px))',
         backgroundColor: '#0f172a',
         borderColor: 'rgba(51,65,85,0.9)',
         color: '#e6e6e6',
@@ -206,6 +240,7 @@ export default function TracePromptSimulator() {
   const [toolCategory, setToolCategory] = useState<ToolCategory>('all');
   const [selectedToolName, setSelectedToolName] = useState<string | null>(null);
   const [showRawPretty, setShowRawPretty] = useState(true);
+  const [activeView, setActiveView] = useState<ViewId>('map');
 
   const trace = useMemo(() => traces.find((t) => t.id === traceId) ?? traces[0], [traceId, traces]);
   const prompt = useMemo(() => buildPromptSteps(trace), [trace]);
@@ -221,6 +256,29 @@ export default function TracePromptSimulator() {
   const flowSource = mermaidFlowSource(groupedParts(finalParts), partGroups(finalParts));
   const selectedPart = selectedPartId ? finalParts.find((part) => part.id === selectedPartId) : undefined;
   const activeStepPartIds = useMemo(() => new Set((currentStep?.added ?? []).map((part) => part.id)), [currentStep]);
+  const currentStepAddedChars = currentStep?.added.reduce((sum, part) => sum + part.text.length, 0) ?? 0;
+  const systemChars = finalGroups.find((group) => group.kind === 'system')?.chars ?? 0;
+  const toolsChars = finalGroups.find((group) => group.kind === 'tools')?.chars ?? 0;
+  const traceRoleCards = [
+    {
+      title: '驱动动态模拟器',
+      body: '把真实 request、assistant/tool_use、tool_result 串成可回放的 Agent Loop，而不是手写剧情。',
+      href: '../agent-loop-simulator/',
+      icon: <GitBranch size={16} />,
+    },
+    {
+      title: '生成脚本练习',
+      body: '从工具 schema、命令参数和执行片段抽出练习任务，让脚本启示页有真实依据。',
+      href: '../agent-script-insight/',
+      icon: <FileCode2 size={16} />,
+    },
+    {
+      title: '沉淀机制模板',
+      body: '把核心运行契约、runtime reminder、工具目录抽象成可复用的提示词模板图谱。',
+      href: '../topic-cc-loop-lab.html',
+      icon: <Workflow size={16} />,
+    },
+  ];
 
   const filteredTools = useMemo(() => {
     const q = toolQuery.trim().toLowerCase();
@@ -266,9 +324,9 @@ export default function TracePromptSimulator() {
   };
 
   return (
-    <div className="min-h-[100dvh]" style={{ backgroundColor: 'var(--bg-page)' }}>
-      <aside className="fixed inset-y-0 left-0 z-[60] hidden w-[256px] flex-col border-r p-3 lg:flex" style={{ backgroundColor: 'rgba(255,251,245,0.96)', borderColor: 'var(--border)' }}>
-        <a href="../topic-cc-loop-lab.html" className="mb-4 rounded-lg border p-3" style={{ borderColor: 'var(--border)', backgroundColor: '#ffffff' }}>
+    <div className="min-h-[100dvh] overflow-x-hidden" style={{ backgroundColor: 'var(--bg-page)' }}>
+      <aside className="fixed inset-y-0 left-0 z-[60] hidden w-[264px] flex-col border-r p-3 lg:flex" style={{ backgroundColor: 'rgba(255,251,245,0.96)', borderColor: 'var(--border)' }}>
+        <a href="../topic-cc-loop-lab.html" className="mb-4 rounded-lg border p-3 transition-transform hover:-translate-y-0.5" style={{ borderColor: 'var(--border)', backgroundColor: '#ffffff' }}>
           <div className="flex items-center gap-2">
             <span className="flex h-8 w-8 items-center justify-center rounded-md" style={{ backgroundColor: 'rgba(234,88,12,0.12)' }}>
               <Activity size={17} style={{ color: 'var(--primary)' }} />
@@ -305,12 +363,32 @@ export default function TracePromptSimulator() {
           <div className="mt-1 text-[12px] leading-relaxed" style={{ color: 'var(--text-muted)' }}>
             拆解 Claude Code 请求如何由 system、runtime、tools、user 四层组装出来。
           </div>
+          <div className="mt-3 grid gap-2">
+            {finalGroups.map((group) => {
+              const style = kindStyles[group.kind];
+              return (
+                <button
+                  key={group.kind}
+                  className="flex items-center justify-between gap-2 rounded-md border bg-white/70 px-2 py-1.5 text-left text-[11px]"
+                  onClick={() => {
+                    setActiveView('map');
+                    setActiveAnatomyKind(group.kind);
+                    setSelectedPartId(group.items[0]?.id ?? null);
+                  }}
+                  style={{ borderColor: style.border, color: style.color }}
+                >
+                  <span className="truncate">{style.shortLabel}</span>
+                  <span className="font-semibold">{percentage(group.chars, finalTotalChars)}%</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
       </aside>
 
-      <div className="lg:pl-[256px]">
-      <header className="sticky top-0 z-50 border-b backdrop-blur" style={{ backgroundColor: 'rgba(255,251,245,0.92)', borderColor: 'var(--border)' }}>
-        <div className="mx-auto flex max-w-[1560px] flex-col gap-3 px-4 py-3 sm:px-6 xl:flex-row xl:items-center xl:justify-between">
+      <div className="lg:pl-[264px]">
+      <header className="sticky top-0 z-50 max-w-full overflow-hidden border-b backdrop-blur" style={{ backgroundColor: 'rgba(255,251,245,0.92)', borderColor: 'var(--border)' }}>
+        <div className="mx-auto flex max-w-[1680px] min-w-0 flex-col gap-3 px-4 py-3 sm:px-6 2xl:flex-row 2xl:items-center 2xl:justify-between">
           <div className="flex min-w-0 items-center gap-3">
             <a href="../topic-cc-loop-lab.html" className="flex h-8 w-8 items-center justify-center rounded-md lg:hidden" aria-label="返回仿真大专题" style={{ backgroundColor: 'rgba(234,88,12,0.12)' }}>
               <ArrowLeft size={17} style={{ color: 'var(--primary)' }} />
@@ -323,20 +401,20 @@ export default function TracePromptSimulator() {
                 Trace Prompt 仿真器
               </div>
               <div className="truncate text-[12px]" style={{ color: 'var(--text-muted)' }}>
-                仿真大专题 / Loop Lab 的第三条路径：解构 Claude Code 请求如何一层层变厚。
+                真实 trace 底座：把请求组装、工具目录、模型返回拆成可学习的工作流。
               </div>
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2">
-            <a href="../topic-cc-loop-lab.html" className="rounded-md border px-3 py-2 text-[13px] font-semibold" style={{ borderColor: 'var(--border)', backgroundColor: '#ffffff', color: 'var(--text-primary)' }}>
+          <div className="agent-loop-terminal-scroll -mx-1 flex w-full min-w-0 max-w-full items-center gap-2 overflow-x-auto px-1 pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0">
+            <a href="../topic-cc-loop-lab.html" className="shrink-0 rounded-md border px-3 py-2 text-[13px] font-semibold" style={{ borderColor: 'var(--border)', backgroundColor: '#ffffff', color: 'var(--text-primary)' }}>
               专题总入口
             </a>
             {traces.map((item) => (
               <Button
                 key={item.id}
                 variant={item.id === traceId ? 'default' : 'secondary'}
-                className="h-9 px-3 text-[13px]"
+                className="h-9 shrink-0 px-3 text-[13px]"
                 onClick={() => {
                   setTraceId(item.id);
                   setStepId('user');
@@ -345,6 +423,7 @@ export default function TracePromptSimulator() {
                   setToolCategory('all');
                   setToolQuery('');
                   setSelectedToolName(null);
+                  setActiveView('map');
                 }}
               >
                 {item.label}
@@ -354,38 +433,86 @@ export default function TracePromptSimulator() {
         </div>
       </header>
 
-      <main className="mx-auto max-w-[1560px] px-4 py-5 sm:px-6">
-        <section className="mb-4 overflow-hidden rounded-lg border" style={{ backgroundColor: '#0f172a', borderColor: '#1e293b', boxShadow: '0 18px 42px rgba(15,23,42,0.18)' }}>
-          <div className="flex flex-col gap-4 p-5 md:flex-row md:items-end md:justify-between">
+      <main className="mx-auto w-full max-w-[1680px] min-w-0 overflow-hidden px-3 py-5 sm:px-6">
+        <section className="trace-mobile-shell mb-4 overflow-hidden rounded-lg border" style={{ backgroundColor: '#0f172a', borderColor: '#1e293b', boxShadow: '0 18px 42px rgba(15,23,42,0.18)' }}>
+          <div className="grid min-w-0 gap-5 p-4 sm:p-5 xl:grid-cols-[minmax(0,1fr)_440px] xl:p-6">
             <div className="min-w-0">
-              <div className="mb-3 inline-flex rounded-md px-2 py-1 text-[12px] font-semibold" style={{ backgroundColor: 'rgba(251,146,60,0.14)', color: '#fdba74' }}>
-                Prompt trace lab
+              <div className="mb-3 flex flex-wrap items-center gap-2">
+                <span className="inline-flex rounded-md px-2 py-1 text-[12px] font-semibold" style={{ backgroundColor: 'rgba(251,146,60,0.14)', color: '#fdba74' }}>
+                  Trace as simulator substrate
+                </span>
+                <span className="inline-flex rounded-md border px-2 py-1 text-[12px]" style={{ borderColor: 'rgba(148,163,184,0.25)', color: '#cbd5e1' }}>
+                  {trace.label}
+                </span>
               </div>
-              <h1 className="m-0 text-[28px] font-bold leading-tight md:text-[40px]" style={{ color: '#f8fafc' }}>
-                看见 Claude Code 请求如何长出来
+              <h1 className="trace-safe-text m-0 max-w-[980px] text-[24px] font-bold leading-[1.15] sm:text-[30px] md:text-[44px]" style={{ color: '#f8fafc' }}>
+                <span className="block">
+                  把一次 Claude Code 请求
+                </span>
+                <span className="block">
+                  拆成可回放、可训练、可迁移的 trace
+                </span>
               </h1>
-              <p className="mt-3 max-w-[860px] text-[14px] leading-relaxed md:text-[15px]" style={{ color: '#cbd5e1' }}>
-                从系统脚手架、运行时 reminder、工具目录到用户输入，逐步复原一次请求的 prompt 组装路径。左侧导航把它放回仿真大专题，避免这个工具变成孤立页面。
+              <p className="trace-safe-text mt-3 max-w-[980px] text-[14px] leading-relaxed md:text-[15px]" style={{ color: '#cbd5e1' }}>
+                这个页面不再只是“看 prompt 原文”，而是仿真大专题的真实数据底座：左边看请求如何组装，中间选择层级与步骤，右侧立即看到来源文本、schema 或响应内容。
               </p>
+              <div className="mt-5 grid min-w-0 gap-2 sm:grid-cols-3">
+                {traceRoleCards.map((card) => (
+                  <a
+                    key={card.title}
+                    href={card.href}
+                    className="min-w-0 overflow-hidden rounded-lg border p-3 transition-transform hover:-translate-y-0.5"
+                    style={{ borderColor: 'rgba(148,163,184,0.22)', backgroundColor: 'rgba(255,255,255,0.055)' }}
+                  >
+                    <div className="mb-2 flex min-w-0 items-center gap-2 text-[12px] font-semibold" style={{ color: '#fdba74' }}>
+                      {card.icon}
+                      <span className="min-w-0 truncate">{card.title}</span>
+                    </div>
+                    <div className="trace-safe-text min-w-0 text-[12px] leading-relaxed" style={{ color: '#cbd5e1' }}>
+                      {card.body}
+                    </div>
+                  </a>
+                ))}
+              </div>
             </div>
-            <div className="grid grid-cols-3 gap-2 md:min-w-[360px]">
-              <DarkMetric label="Blocks" value={String(finalParts.length)} />
-              <DarkMetric label="Tools" value={String(trace.tools.length)} />
-              <DarkMetric label="Tokens" value={`~${formatNumber(prompt.tokens)}`} />
+            <div className="grid min-w-0 content-end gap-3">
+              <div className="grid min-w-0 grid-cols-1 gap-2 sm:grid-cols-2">
+                <DarkMetric label="Prompt blocks" value={String(finalParts.length)} />
+                <DarkMetric label="Tool catalog" value={String(trace.tools.length)} />
+                <DarkMetric label="System share" value={`${percentage(systemChars, finalTotalChars)}%`} />
+                <DarkMetric label="Tool share" value={`${percentage(toolsChars, finalTotalChars)}%`} />
+              </div>
+              <div className="min-w-0 rounded-lg border p-3" style={{ borderColor: 'rgba(148,163,184,0.22)', backgroundColor: 'rgba(255,255,255,0.055)' }}>
+                <div className="mb-2 flex min-w-0 items-center justify-between gap-3 text-[12px]" style={{ color: '#cbd5e1' }}>
+                  <span className="min-w-0 truncate">Assembly progress</span>
+                  <span className="shrink-0 whitespace-nowrap">{steps.length} steps</span>
+                </div>
+                <div className="grid h-3 overflow-hidden rounded-full" style={{ gridTemplateColumns: anatomyColumns(finalGroups, finalTotalChars), backgroundColor: 'rgba(255,255,255,0.1)' }}>
+                  {finalGroups.map((group) => (
+                    <span key={group.kind} style={{ backgroundColor: kindStyles[group.kind].color }} />
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        <section className="min-w-0 rounded-lg border p-4" style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border)', boxShadow: 'var(--shadow)' }}>
-          <div className="mb-4 flex flex-col gap-3 rounded-lg border px-4 py-3 lg:flex-row lg:items-center lg:justify-between" style={{ borderColor: 'var(--border)', backgroundColor: '#fffaf3' }}>
+        <section className="min-w-0 overflow-hidden rounded-lg border p-4" style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border)', boxShadow: 'var(--shadow)' }}>
+          <div className="mb-4 flex flex-col gap-3 rounded-lg border px-4 py-3 xl:flex-row xl:items-center xl:justify-between" style={{ borderColor: 'var(--border)', backgroundColor: '#fffaf3' }}>
             <div className="min-w-0">
-              <div className="truncate text-[14px] font-semibold" style={{ color: 'var(--text-primary)' }}>
-                {trace.label}
+              <div className="flex flex-wrap items-center gap-2">
+                <div className="truncate text-[14px] font-semibold" style={{ color: 'var(--text-primary)' }}>
+                  {trace.label}
+                </div>
+                <span className="rounded-md px-2 py-1 text-[11px] font-semibold" style={{ backgroundColor: 'rgba(234,88,12,0.10)', color: 'var(--primary)' }}>
+                  real request trace
+                </span>
               </div>
               <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-[12px]" style={{ color: 'var(--text-muted)' }}>
                 <span>model: {trace.model ?? '-'}</span>
                 <span>provider: {trace.provider ?? '-'}</span>
                 <span>status: {trace.status ?? '-'}</span>
+                <span>target: {hostFromUrl(trace.targetUrl)}</span>
               </div>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -398,71 +525,81 @@ export default function TracePromptSimulator() {
             </div>
           </div>
 
-          <Tabs defaultValue="map" className="w-full">
-            <TabsList className="grid w-full grid-cols-5">
-              <TabsTrigger value="map" className="gap-2">
-                <ListTree size={14} /> Map
-              </TabsTrigger>
-              <TabsTrigger value="step" className="gap-2">
-                <Layers3 size={14} /> Step
-              </TabsTrigger>
-              <TabsTrigger value="tools" className="gap-2">
-                <Wrench size={14} /> Tools
-              </TabsTrigger>
-              <TabsTrigger value="raw" className="gap-2">
-                <FileJson2 size={14} /> Raw
-              </TabsTrigger>
-              <TabsTrigger value="response" className="gap-2">
-                <Braces size={14} /> Response
-              </TabsTrigger>
+          <Tabs value={activeView} onValueChange={(value) => setActiveView(value as ViewId)} className="w-full min-w-0">
+            <TabsList className="grid h-auto w-full grid-cols-2 gap-2 bg-transparent p-0 md:grid-cols-5">
+              {viewMeta.map((view) => (
+                <TabsTrigger
+                  key={view.id}
+                  value={view.id}
+                  className="h-auto justify-start rounded-lg border bg-white px-3 py-3 text-left data-[state=active]:shadow-none"
+                  style={{
+                    borderColor: activeView === view.id ? 'rgba(234,88,12,0.48)' : 'var(--border)',
+                    backgroundColor: activeView === view.id ? 'rgba(234,88,12,0.08)' : '#ffffff',
+                    color: activeView === view.id ? 'var(--primary)' : 'var(--text-primary)',
+                  }}
+                >
+                  <span className="flex min-w-0 items-start gap-2">
+                    <span className="mt-0.5 shrink-0">{view.icon}</span>
+                    <span className="min-w-0">
+                      <span className="block truncate text-[13px] font-semibold">{view.label}</span>
+                      <span className="mt-0.5 block truncate text-[11px] font-normal" style={{ color: 'var(--text-muted)' }}>
+                        {view.description}
+                      </span>
+                    </span>
+                  </span>
+                </TabsTrigger>
+              ))}
             </TabsList>
 
             <TabsContent value="map" className="mt-4">
-              <div className="grid gap-4 2xl:grid-cols-[minmax(0,1fr)_420px]">
-                <div className="min-w-0 rounded-lg border p-4" style={{ borderColor: 'var(--border)' }}>
-                  <div className="mb-4 grid gap-3 sm:grid-cols-4">
-                    <Metric label="Blocks" value={String(finalParts.length)} />
-                    <Metric label="Chars" value={formatNumber(finalTotalChars)} />
-                    <Metric label="Est. tokens" value={formatNumber(estimateTokens(finalTotalChars))} />
-                    <Metric label="Tools" value={String(trace.tools.length)} />
-                  </div>
+              <div className="grid gap-4 2xl:grid-cols-[minmax(0,1fr)_440px]">
+                <div className="grid min-w-0 gap-4">
+                  <section className="rounded-lg border p-4" style={{ borderColor: 'var(--border)', backgroundColor: '#fffaf3' }}>
+                    <div className="mb-4 grid gap-3 sm:grid-cols-4">
+                      <Metric icon={<Database size={15} />} label="Blocks" value={String(finalParts.length)} />
+                      <Metric icon={<FileCode2 size={15} />} label="Chars" value={formatNumber(finalTotalChars)} />
+                      <Metric icon={<Gauge size={15} />} label="Est. tokens" value={formatNumber(estimateTokens(finalTotalChars))} />
+                      <Metric icon={<Wrench size={15} />} label="Tools" value={String(trace.tools.length)} />
+                    </div>
 
-                  <div className="mb-3 flex items-center gap-2 text-[13px] font-semibold" style={{ color: 'var(--text-primary)' }}>
-                    <Sparkles size={15} style={{ color: 'var(--primary)' }} />
-                    Prompt anatomy
-                  </div>
-                  <div className="grid h-6 overflow-hidden rounded-md border" style={{ borderColor: 'var(--border)', gridTemplateColumns: anatomyColumns(finalGroups, finalTotalChars) }}>
-                    {finalGroups.map((group) => {
-                      const style = kindStyles[group.kind];
-                      const pct = finalTotalChars ? Math.round((group.chars / finalTotalChars) * 100) : 0;
-                      return (
-                        <button
-                          key={group.kind}
-                          aria-label={`${style.label}: ${pct}%`}
-                          className="group relative h-full transition-opacity hover:opacity-90"
-                          onMouseEnter={() => setActiveAnatomyKind(group.kind)}
-                          onFocus={() => setActiveAnatomyKind(group.kind)}
-                          onClick={() => {
-                            setActiveAnatomyKind(group.kind);
-                            setSelectedPartId(group.items[0]?.id ?? null);
-                          }}
-                          style={{
-                            backgroundColor: style.color,
-                          }}
-                        >
-                          <span className="pointer-events-none absolute inset-0 hidden items-center justify-center text-[10px] font-semibold text-white group-hover:flex">
-                            {pct}%
-                          </span>
-                        </button>
-                      );
-                    })}
-                  </div>
+                    <div className="mb-3 flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
+                      <div className="flex items-center gap-2 text-[13px] font-semibold" style={{ color: 'var(--text-primary)' }}>
+                        <Sparkles size={15} style={{ color: 'var(--primary)' }} />
+                        Prompt anatomy
+                      </div>
+                      <div className="text-[12px]" style={{ color: 'var(--text-muted)' }}>
+                        Hover the bar to inspect a layer; click to pin a block in the inspector.
+                      </div>
+                    </div>
+                    <div className="grid h-8 overflow-hidden rounded-lg border bg-white" style={{ borderColor: 'var(--border)', gridTemplateColumns: anatomyColumns(finalGroups, finalTotalChars) }}>
+                      {finalGroups.map((group) => {
+                        const style = kindStyles[group.kind];
+                        const pct = percentage(group.chars, finalTotalChars);
+                        return (
+                          <button
+                            key={group.kind}
+                            aria-label={`${style.label}: ${pct}%`}
+                            className="group relative h-full transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-orange-300"
+                            onMouseEnter={() => setActiveAnatomyKind(group.kind)}
+                            onFocus={() => setActiveAnatomyKind(group.kind)}
+                            onClick={() => {
+                              setActiveAnatomyKind(group.kind);
+                              setSelectedPartId(group.items[0]?.id ?? null);
+                            }}
+                            style={{ backgroundColor: style.color }}
+                          >
+                            <span className="pointer-events-none absolute inset-0 hidden items-center justify-center text-[10px] font-semibold text-white group-hover:flex">
+                              {style.shortLabel} {pct}%
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
 
-                  <AnatomySummary group={activeAnatomyGroup} totalChars={finalTotalChars} onSelectPart={setSelectedPartId} />
+                    <AnatomySummary group={activeAnatomyGroup} totalChars={finalTotalChars} onSelectPart={setSelectedPartId} />
+                  </section>
 
-                  <div className="mb-4">
-                    <AssemblyFlow steps={steps} activeStepId={currentStep?.id} onSelectStep={selectStep} />
-                  </div>
+                  <AssemblyFlow steps={steps} activeStepId={currentStep?.id} onSelectStep={selectStep} />
 
                   <TemplateGraph groups={displayGroups} activeStep={currentStep} activePartIds={activeStepPartIds} selectedPartId={selectedPart?.id} onSelectPart={setSelectedPartId} />
 
@@ -476,42 +613,31 @@ export default function TracePromptSimulator() {
             </TabsContent>
 
             <TabsContent value="step" className="mt-4">
-              <div className="grid gap-4 2xl:grid-cols-[minmax(0,1fr)_420px]">
-                <div className="min-w-0 rounded-lg border p-4" style={{ borderColor: 'var(--border)' }}>
+              <div className="grid gap-4 2xl:grid-cols-[minmax(0,1fr)_440px]">
+                <div className="min-w-0 rounded-lg border p-4" style={{ borderColor: 'var(--border)', backgroundColor: '#fffaf3' }}>
                   <div className="mb-4 grid gap-3 md:grid-cols-4">
-                    {steps.map((step, index) => {
-                      const active = step.id === currentStep?.id;
-                      const delta = step.added.reduce((sum, part) => sum + part.text.length, 0);
-                      return (
-                        <button
-                          key={step.id}
-                          className="rounded-lg border p-3 text-left"
-                          onClick={() => selectStep(step.id)}
-                          style={{
-                            borderColor: active ? 'rgba(234,88,12,0.42)' : 'var(--border)',
-                            backgroundColor: active ? 'rgba(234,88,12,0.08)' : '#fffaf3',
-                          }}
-                        >
-                          <div className="text-[12px] font-semibold" style={{ color: active ? 'var(--primary)' : 'var(--text-primary)' }}>
-                            {index + 1}. {step.title}
-                          </div>
-                          <div className="mt-1 text-[11px]" style={{ color: 'var(--text-muted)' }}>
-                            +{formatNumber(delta)} chars
-                          </div>
-                          <div className="mt-2 h-1.5 overflow-hidden rounded-full" style={{ backgroundColor: 'rgba(234,88,12,0.12)' }}>
-                            <div className="h-full rounded-full" style={{ width: `${Math.max(4, Math.round((step.cumulativeChars / prompt.assembled.length) * 100))}%`, backgroundColor: active ? 'var(--primary)' : '#fdba74' }} />
-                          </div>
-                        </button>
-                      );
-                    })}
+                    <Metric icon={<Route size={15} />} label="Current step" value={`${currentStepIdx + 1}/${steps.length}`} />
+                    <Metric icon={<Zap size={15} />} label="Delta chars" value={`+${formatNumber(currentStepAddedChars)}`} />
+                    <Metric icon={<FileCode2 size={15} />} label="Cumulative chars" value={formatNumber(currentStep?.cumulativeChars ?? 0)} />
+                    <Metric icon={<Eye size={15} />} label="Visible blocks" value={String(currentStep?.parts.length ?? 0)} />
                   </div>
 
-                  <div className="mb-4 rounded-lg border p-4" style={{ borderColor: 'var(--border)', backgroundColor: '#fffaf3' }}>
-                    <div className="text-[14px] font-semibold" style={{ color: 'var(--text-primary)' }}>
-                      {currentStepIdx + 1}. {currentStep?.title ?? 'Step'}
-                    </div>
-                    <div className="mt-1 text-[12px]" style={{ color: 'var(--text-muted)' }}>
-                      This stage adds {currentStep?.added.length ?? 0} prompt block(s), with {formatNumber(currentStep?.cumulativeChars ?? 0)} cumulative chars.
+                  <StepRail steps={steps} activeStepId={currentStep?.id} totalChars={prompt.assembled.length} onSelectStep={selectStep} />
+
+                  <div className="mb-4 rounded-lg border p-4" style={{ borderColor: 'var(--border)', backgroundColor: '#ffffff' }}>
+                    <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                      <div className="min-w-0">
+                        <div className="text-[14px] font-semibold" style={{ color: 'var(--text-primary)' }}>
+                          {currentStepIdx + 1}. {currentStep?.title ?? 'Step'}
+                        </div>
+                        <div className="mt-1 text-[12px] leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+                          This stage appends {currentStep?.added.length ?? 0} block(s). The inspector shows the full cumulative prompt until you click a specific block.
+                        </div>
+                      </div>
+                      <Button variant="secondary" className="h-8 px-3 text-[12px]" onClick={() => setSelectedPartId(null)}>
+                        <PanelRightOpen size={14} />
+                        Inspect full stage
+                      </Button>
                     </div>
                   </div>
 
@@ -557,19 +683,55 @@ export default function TracePromptSimulator() {
             </TabsContent>
 
             <TabsContent value="tools" className="mt-4">
-              <div className="grid gap-4 2xl:grid-cols-[minmax(0,1fr)_420px]">
-                <div className="min-w-0 rounded-lg border p-4" style={{ borderColor: 'var(--border)' }}>
+              <div className="grid gap-4 2xl:grid-cols-[minmax(0,1fr)_440px]">
+                <div className="min-w-0 rounded-lg border p-4" style={{ borderColor: 'var(--border)', backgroundColor: '#fffaf3' }}>
                   <div className="mb-4 grid gap-3 md:grid-cols-4">
-                    <Metric label="Tools exposed" value={String(trace.tools.length)} />
-                    <Metric label="Visible after filters" value={String(filteredTools.length)} />
-                    <Metric label="Categories" value={String(toolCategoryOrder.filter((category) => toolCounts[category] > 0).length)} />
-                    <Metric label="With schema" value={String(trace.tools.filter((tool) => schemaProperties(tool).length > 0).length)} />
+                    <Metric icon={<Wrench size={15} />} label="Tools exposed" value={String(trace.tools.length)} />
+                    <Metric icon={<Search size={15} />} label="Visible" value={String(filteredTools.length)} />
+                    <Metric icon={<Layers3 size={15} />} label="Categories" value={String(toolCategoryOrder.filter((category) => toolCounts[category] > 0).length)} />
+                    <Metric icon={<Braces size={15} />} label="With schema" value={String(trace.tools.filter((tool) => schemaProperties(tool).length > 0).length)} />
+                  </div>
+
+                  <div className="mb-4 rounded-lg border bg-white p-3" style={{ borderColor: 'var(--border)' }}>
+                    <div className="mb-2 flex items-center gap-2 text-[13px] font-semibold" style={{ color: 'var(--text-primary)' }}>
+                      <Cpu size={15} style={{ color: 'var(--primary)' }} />
+                      Tool capability map
+                    </div>
+                    <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-4">
+                      {toolCategoryOrder.filter((category) => toolCounts[category] > 0).map((category) => {
+                        const meta = toolCategoryMeta[category];
+                        return (
+                          <button
+                            key={category}
+                            className="rounded-lg border p-3 text-left transition-transform hover:-translate-y-0.5"
+                            onClick={() => setToolCategory(category)}
+                            style={{
+                              borderColor: toolCategory === category ? meta.color : meta.border,
+                              backgroundColor: toolCategory === category ? meta.bg : '#ffffff',
+                              boxShadow: toolCategory === category ? `inset 3px 0 0 ${meta.color}` : undefined,
+                            }}
+                          >
+                            <div className="flex items-center justify-between gap-2">
+                              <span className="text-[12px] font-semibold" style={{ color: meta.color }}>
+                                {meta.label}
+                              </span>
+                              <span className="rounded-md px-2 py-1 text-[11px]" style={{ backgroundColor: meta.bg, color: meta.color }}>
+                                {toolCounts[category]}
+                              </span>
+                            </div>
+                            <div className="mt-2 h-1.5 overflow-hidden rounded-full" style={{ backgroundColor: 'rgba(15,23,42,0.06)' }}>
+                              <span className="block h-full rounded-full" style={{ width: `${Math.max(8, percentage(toolCounts[category], trace.tools.length))}%`, backgroundColor: meta.color }} />
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
                   </div>
 
                   <div className="mb-4 flex flex-col gap-3 xl:flex-row xl:items-start xl:justify-between">
                     <div className="min-w-0">
                       <div className="mb-2 text-[13px] font-semibold" style={{ color: 'var(--text-primary)' }}>
-                        Tool catalog map
+                        Filter tool catalog
                       </div>
                       <div className="flex flex-wrap gap-2">
                         {(['all', ...toolCategoryOrder] as ToolCategory[]).map((category) => {
@@ -636,19 +798,59 @@ export default function TracePromptSimulator() {
             </TabsContent>
 
             <TabsContent value="raw" className="mt-4">
-              <div className="mb-3 flex items-center justify-between gap-3">
-                <div className="text-[13px]" style={{ color: 'var(--text-muted)' }}>
-                  Sanitized request body subset.
-                </div>
-                <Button variant="secondary" className="h-9 px-3 text-[13px]" onClick={() => setShowRawPretty((v) => !v)}>
-                  {showRawPretty ? 'Compact' : 'Pretty'}
-                </Button>
+              <div className="grid gap-4 2xl:grid-cols-[minmax(0,1fr)_360px]">
+                <section className="min-w-0 rounded-lg border p-4" style={{ borderColor: 'var(--border)', backgroundColor: '#fffaf3' }}>
+                  <div className="mb-4 flex min-w-0 flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-2 text-[14px] font-semibold" style={{ color: 'var(--text-primary)' }}>
+                        <FileJson2 size={16} style={{ color: 'var(--primary)' }} />
+                        Raw request evidence
+                      </div>
+                      <div className="mt-1 text-[12px] leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+                        Sanitized request body subset. Use this view when you need to verify that the visual decomposition did not invent structure.
+                      </div>
+                    </div>
+                    <Button variant="secondary" className="h-9 px-3 text-[13px]" onClick={() => setShowRawPretty((v) => !v)}>
+                      {showRawPretty ? 'Compact' : 'Pretty'}
+                    </Button>
+                  </div>
+                  {codeBlock(showRawPretty ? JSON.stringify(trace.requestBody, null, 2) : JSON.stringify(trace.requestBody))}
+                </section>
+                <section className="min-w-0 rounded-lg border p-4 2xl:sticky 2xl:top-[92px] 2xl:self-start" style={{ borderColor: 'var(--border)', backgroundColor: '#ffffff' }}>
+                  <div className="mb-3 text-[13px] font-semibold" style={{ color: 'var(--text-primary)' }}>
+                    Reading guide
+                  </div>
+                  <div className="grid gap-2">
+                    <RawGuideItem label="system[]" value={`${trace.systemBlocks.length} blocks`} />
+                    <RawGuideItem label="messages[0]" value={`${trace.injectedBlocks.length} injected blocks`} />
+                    <RawGuideItem label="tools[]" value={`${trace.tools.length} definitions`} />
+                    <RawGuideItem label="user prompt" value={`${trace.userPrompt?.length ?? 0} chars`} />
+                  </div>
+                </section>
               </div>
-              {codeBlock(showRawPretty ? JSON.stringify(trace.requestBody, null, 2) : JSON.stringify(trace.requestBody))}
             </TabsContent>
 
             <TabsContent value="response" className="mt-4">
-              {codeBlock((trace.responseText ?? '').trim() || '(empty)')}
+              <div className="grid gap-4 2xl:grid-cols-[minmax(0,1fr)_360px]">
+                <section className="min-w-0 rounded-lg border p-4" style={{ borderColor: 'var(--border)', backgroundColor: '#fffaf3' }}>
+                  <div className="mb-4 flex items-center gap-2 text-[14px] font-semibold" style={{ color: 'var(--text-primary)' }}>
+                    <TerminalSquare size={16} style={{ color: 'var(--primary)' }} />
+                    Model response
+                  </div>
+                  {codeBlock((trace.responseText ?? '').trim() || '(empty)')}
+                </section>
+                <section className="min-w-0 rounded-lg border p-4 2xl:sticky 2xl:top-[92px] 2xl:self-start" style={{ borderColor: 'var(--border)', backgroundColor: '#ffffff' }}>
+                  <div className="mb-3 text-[13px] font-semibold" style={{ color: 'var(--text-primary)' }}>
+                    Response context
+                  </div>
+                  <div className="grid gap-2">
+                    <RawGuideItem label="request model" value={trace.model ?? '-'} />
+                    <RawGuideItem label="provider" value={trace.provider ?? '-'} />
+                    <RawGuideItem label="status" value={String(trace.status ?? '-')} />
+                    <RawGuideItem label="response chars" value={String((trace.responseText ?? '').trim().length)} />
+                  </div>
+                </section>
+              </div>
             </TabsContent>
           </Tabs>
         </section>
@@ -687,22 +889,36 @@ function TraceSideLink({
 
 function DarkMetric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-lg border px-3 py-2" style={{ borderColor: 'rgba(148,163,184,0.22)', backgroundColor: 'rgba(255,255,255,0.06)' }}>
+    <div className="min-w-0 rounded-lg border px-3 py-2" style={{ borderColor: 'rgba(148,163,184,0.22)', backgroundColor: 'rgba(255,255,255,0.06)' }}>
       <div className="text-[11px]" style={{ color: '#94a3b8' }}>{label}</div>
-      <div className="mt-1 text-[14px] font-semibold" style={{ color: '#f8fafc' }}>{value}</div>
+      <div className="mt-1 break-words text-[14px] font-semibold" style={{ color: '#f8fafc' }}>{value}</div>
     </div>
   );
 }
 
-function Metric({ label, value }: { label: string; value: string }) {
+function Metric({ label, value, icon }: { label: string; value: string; icon?: ReactNode }) {
   return (
-    <div className="rounded-lg border px-3 py-2" style={{ borderColor: 'var(--border)', backgroundColor: '#fffaf3' }}>
-      <div className="text-[11px]" style={{ color: 'var(--text-muted)' }}>
-        {label}
+    <div className="min-w-0 rounded-lg border px-3 py-2" style={{ borderColor: 'var(--border)', backgroundColor: '#fffaf3' }}>
+      <div className="flex items-center gap-1.5 text-[11px]" style={{ color: 'var(--text-muted)' }}>
+        {icon ? <span className="shrink-0" style={{ color: 'var(--primary)' }}>{icon}</span> : null}
+        <span>{label}</span>
       </div>
-      <div className="mt-1 text-[15px] font-semibold" style={{ color: 'var(--text-primary)' }}>
+      <div className="mt-1 break-words text-[15px] font-semibold" style={{ color: 'var(--text-primary)' }}>
         {value}
       </div>
+    </div>
+  );
+}
+
+function RawGuideItem({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex min-w-0 items-center justify-between gap-3 rounded-lg border px-3 py-2" style={{ borderColor: 'var(--border)', backgroundColor: '#fffaf3' }}>
+      <span className="min-w-0 truncate text-[12px] font-medium" style={{ color: 'var(--text-primary)' }}>
+        {label}
+      </span>
+      <span className="min-w-0 break-words rounded-md bg-white px-2 py-1 text-right text-[11px]" style={{ color: 'var(--text-muted)', overflowWrap: 'anywhere' }}>
+        {value}
+      </span>
     </div>
   );
 }
@@ -852,9 +1068,14 @@ function AssemblyFlow({
 }) {
   return (
     <section className="rounded-lg border p-4" style={{ borderColor: 'var(--border)', backgroundColor: '#fffaf3' }}>
-      <div className="mb-3 flex items-center gap-2 text-[13px] font-semibold" style={{ color: 'var(--text-primary)' }}>
-        <GitBranch size={15} style={{ color: 'var(--primary)' }} />
-        Assembly flow
+      <div className="mb-3 flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
+        <div className="flex items-center gap-2 text-[13px] font-semibold" style={{ color: 'var(--text-primary)' }}>
+          <GitBranch size={15} style={{ color: 'var(--primary)' }} />
+          Assembly flow
+        </div>
+        <div className="text-[12px]" style={{ color: 'var(--text-muted)' }}>
+          Click a stage to reveal what was appended at that moment.
+        </div>
       </div>
       <div className="grid gap-2 md:grid-cols-4">
         {steps.map((step, index) => {
@@ -866,8 +1087,9 @@ function AssemblyFlow({
               className="relative rounded-lg border px-3 py-2 text-left"
               onClick={() => onSelectStep(step.id)}
               style={{
-                borderColor: active ? 'rgba(234,88,12,0.42)' : 'var(--border)',
+                borderColor: active ? 'rgba(234,88,12,0.52)' : 'var(--border)',
                 backgroundColor: active ? 'rgba(234,88,12,0.08)' : '#ffffff',
+                boxShadow: active ? 'inset 3px 0 0 var(--primary)' : undefined,
               }}
             >
               <div className="mb-2 flex items-center gap-2">
@@ -906,6 +1128,75 @@ function AssemblyFlow({
   );
 }
 
+function StepRail({
+  steps,
+  activeStepId,
+  totalChars,
+  onSelectStep,
+}: {
+  steps: PromptStep[];
+  activeStepId?: string;
+  totalChars: number;
+  onSelectStep: (id: string) => void;
+}) {
+  return (
+    <section className="mb-4 rounded-lg border bg-white p-3" style={{ borderColor: 'var(--border)' }}>
+      <div className="mb-3 flex items-center gap-2 text-[13px] font-semibold" style={{ color: 'var(--text-primary)' }}>
+        <MousePointerClick size={15} style={{ color: 'var(--primary)' }} />
+        Prompt growth path
+      </div>
+      <div className="grid gap-2 lg:grid-cols-4">
+        {steps.map((step, index) => {
+          const active = step.id === activeStepId;
+          const delta = step.added.reduce((sum, part) => sum + part.text.length, 0);
+          return (
+            <button
+              key={step.id}
+              className="rounded-lg border p-3 text-left transition-transform hover:-translate-y-0.5"
+              onClick={() => onSelectStep(step.id)}
+              style={{
+                borderColor: active ? 'rgba(234,88,12,0.52)' : 'var(--border)',
+                backgroundColor: active ? 'rgba(234,88,12,0.08)' : '#fffaf3',
+                boxShadow: active ? 'inset 3px 0 0 var(--primary)' : undefined,
+              }}
+            >
+              <div className="mb-2 flex items-center gap-2">
+                <span
+                  className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border text-[11px] font-semibold"
+                  style={{
+                    borderColor: active ? 'var(--primary)' : 'var(--border)',
+                    backgroundColor: active ? 'var(--primary)' : '#ffffff',
+                    color: active ? '#ffffff' : 'var(--text-muted)',
+                  }}
+                >
+                  {index + 1}
+                </span>
+                <div className="min-w-0">
+                  <div className="truncate text-[12px] font-semibold" style={{ color: active ? 'var(--primary)' : 'var(--text-primary)' }}>
+                    {step.title}
+                  </div>
+                  <div className="mt-0.5 text-[11px]" style={{ color: 'var(--text-muted)' }}>
+                    +{formatNumber(delta)} chars
+                  </div>
+                </div>
+              </div>
+              <div className="h-1.5 overflow-hidden rounded-full" style={{ backgroundColor: 'rgba(234,88,12,0.12)' }}>
+                <div
+                  className="h-full rounded-full"
+                  style={{
+                    width: `${Math.max(4, percentage(step.cumulativeChars, totalChars))}%`,
+                    backgroundColor: active ? 'var(--primary)' : '#fdba74',
+                  }}
+                />
+              </div>
+            </button>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
 function TemplateGraph({
   groups,
   activeStep,
@@ -920,14 +1211,18 @@ function TemplateGraph({
   onSelectPart: (id: string) => void;
 }) {
   return (
-    <section className="mb-4 rounded-lg border p-4" style={{ borderColor: 'var(--border)', backgroundColor: '#fffaf3' }}>
-      <div className="mb-3 flex items-center gap-2 text-[13px] font-semibold" style={{ color: 'var(--text-primary)' }}>
-        <Network size={15} style={{ color: 'var(--primary)' }} />
-        Prompt assembly blueprint
+    <section className="rounded-lg border p-4" style={{ borderColor: 'var(--border)', backgroundColor: '#fffaf3' }}>
+      <div className="mb-3 flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
+        <div className="flex items-center gap-2 text-[13px] font-semibold" style={{ color: 'var(--text-primary)' }}>
+          <Network size={15} style={{ color: 'var(--primary)' }} />
+          Prompt assembly blueprint
+        </div>
+        <div className="text-[12px]" style={{ color: 'var(--text-muted)' }}>
+          Final structure stays visible; selected step highlights appended nodes.
+        </div>
       </div>
       <div className="mb-3 rounded-lg border bg-white/60 px-3 py-2 text-[12px]" style={{ borderColor: 'rgba(234,88,12,0.22)', color: 'var(--text-muted)' }}>
-        Always shows the final request structure. The highlighted nodes are appended by the selected Assembly flow stage
-        {activeStep ? `: ${activeStep.title}.` : '.'}
+        The outline below is the complete final prompt envelope. Highlighted nodes were added by {activeStep ? activeStep.title : 'the selected stage'}.
       </div>
       <div className="rounded-lg border bg-white p-4" style={{ borderColor: 'rgba(234,88,12,0.28)' }}>
         <div className="rounded-lg border p-3" style={{ borderColor: 'var(--border)', backgroundColor: '#fffaf3' }}>
@@ -1122,8 +1417,8 @@ function ToolCard({ tool, active, onSelect }: { tool: TraceTool; active?: boolea
       onClick={() => onSelect(tool.name)}
       style={{
         borderColor: active ? meta.color : meta.border,
-        backgroundColor: active ? '#ffffff' : 'rgba(255,255,255,0.72)',
-        boxShadow: active ? `inset 3px 0 0 ${meta.color}` : undefined,
+        backgroundColor: active ? '#ffffff' : 'rgba(255,255,255,0.76)',
+        boxShadow: active ? `inset 3px 0 0 ${meta.color}, 0 10px 24px rgba(15,23,42,0.06)` : undefined,
       }}
     >
       <div className="flex items-start justify-between gap-2">
@@ -1141,6 +1436,10 @@ function ToolCard({ tool, active, onSelect }: { tool: TraceTool; active?: boolea
       </div>
       <div className="mt-2 line-clamp-3 text-[12px] leading-relaxed" style={{ color: 'var(--text-muted)' }}>
         {tool.description ?? '(no description)'}
+      </div>
+      <div className="mt-3 flex items-center gap-2 text-[11px]" style={{ color: meta.color }}>
+        <MousePointerClick size={13} />
+        <span>Click to inspect schema</span>
       </div>
     </button>
   );

@@ -58,6 +58,11 @@
     color: var(--text-primary);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  html {
+    overflow-x: hidden;
   }
 
   a {
@@ -87,5 +92,21 @@
   .agent-loop-terminal-scroll::-webkit-scrollbar-thumb {
     background: rgba(148, 163, 184, 0.45);
     border-radius: 999px;
+  }
+
+  .trace-safe-text {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .trace-mobile-shell {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  @media (min-width: 640px) {
+    .trace-mobile-shell {
+      width: 100%;
+    }
   }
 }
