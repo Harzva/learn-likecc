@@ -3,22 +3,28 @@ import {
   Activity,
   ArrowLeft,
   Braces,
+  Check,
   ChevronRight,
+  Clipboard,
   Cpu,
   Database,
   Eye,
   FileCode2,
   FileJson2,
+  FilterX,
   Gauge,
   GitBranch,
   Home,
+  Info,
   Layers3,
   ListTree,
   MousePointerClick,
   Network,
   PanelRightOpen,
+  PlayCircle,
   Route,
   Search,
+  ShieldCheck,
   Sparkles,
   TerminalSquare,
   Workflow,
@@ -61,6 +67,34 @@ const viewMeta: Array<{ id: ViewId; label: string; description: string; icon: Re
   { id: 'response', label: 'Response', description: '模型返回文本', icon: <Braces size={15} /> },
 ];
 
+const viewGuides: Record<ViewId, { title: string; summary: string; action: string }> = {
+  map: {
+    title: '先看请求如何被装配',
+    summary: '用四层结构、增量步骤和模板图谱建立全局方向，再进入单个块或工具 schema。',
+    action: '点击彩色层、Assembly flow 或 blueprint 节点，右侧 inspector 会同步更新。',
+  },
+  step: {
+    title: '逐步复盘 prompt 变厚过程',
+    summary: '把一次 request 拆成阶段：系统脚手架、运行时上下文、工具目录和用户输入。',
+    action: '点击阶段卡片可查看该阶段新增内容，点击块卡片可查看源文本。',
+  },
+  tools: {
+    title: '把工具目录当作能力面板阅读',
+    summary: '工具不是附录，而是模型可调用能力的边界、参数协议和执行空间。',
+    action: '用能力分类或搜索定位工具，再在右侧检查 description、字段和原始 schema。',
+  },
+  raw: {
+    title: '回到原始 request 证据',
+    summary: '用 JSON 对照可视化拆解，确认页面没有凭空发明 prompt 结构。',
+    action: '切换 Pretty / Compact，或复制片段去和 trace 文件做外部对照。',
+  },
+  response: {
+    title: '把模型返回放回请求上下文',
+    summary: '响应文本需要和前面的 system、runtime、tools、user 层一起看，才知道它被什么约束塑形。',
+    action: '先确认 request model/provider，再对照 response chars 和返回正文。',
+  },
+};
+
 const toolCategoryMeta: Record<ToolCategory, { label: string; color: string; bg: string; border: string }> = {
   all: { label: 'All tools', color: '#0f172a', bg: '#fffaf3', border: '#fed7aa' },
   files: { label: 'Files', color: '#2563eb', bg: '#eff6ff', border: '#93c5fd' },
@@ -70,6 +104,17 @@ const toolCategoryMeta: Record<ToolCategory, { label: string; color: string; bg:
   web: { label: 'Web', color: '#16a34a', bg: '#f0fdf4', border: '#86efac' },
   mcp: { label: 'MCP', color: '#9333ea', bg: '#faf5ff', border: '#d8b4fe' },
   interaction: { label: 'Interaction', color: '#be123c', bg: '#fff1f2', border: '#fda4af' },
+};
+
+const toolCategoryNotes: Record<ToolCategory, string> = {
+  all: '完整工具边界',
+  files: '读写与编辑文件',
+  runtime: '执行环境与 shell',
+  workflow: '规划、代理与长任务',
+  automation: '定时、监控与通知',
+  web: '联网检索与获取',
+  mcp: '外部 MCP 能力',
+  interaction: '用户交互与其它工具',
 };
 
 function formatNumber(value: number) {
@@ -127,22 +172,6 @@ function schemaProperties(tool: TraceTool) {
     const description = typeof property?.description === 'string' ? property.description : '';
     return { name, type, description, required: required.has(name) };
   });
-}
-
-function codeBlock(text: string) {
-  return (
-    <pre
-      className="agent-loop-terminal-scroll overflow-auto whitespace-pre-wrap break-words rounded-lg border p-4 text-[12px] leading-relaxed shadow-inner"
-      style={{
-        maxHeight: 'min(560px, calc(100dvh - 260px))',
-        backgroundColor: '#0f172a',
-        borderColor: 'rgba(51,65,85,0.9)',
-        color: '#e6e6e6',
-      }}
-    >
-      {text}
-    </pre>
-  );
 }
 
 function joinPromptParts(parts: PromptPart[]) {
@@ -317,6 +346,17 @@ export default function TracePromptSimulator() {
     trace.tools.find((tool) => tool.name === selectedToolName) ??
     filteredTools[0] ??
     trace.tools[0];
+  const activeViewGuide = viewGuides[activeView];
+  const activeStepProgress = steps.length ? Math.round(((currentStepIdx + 1) / steps.length) * 100) : 0;
+  const activeLayerStyle = kindStyles[activeAnatomyGroup.kind];
+  const guideDetail =
+    activeView === 'tools'
+      ? { label: 'Tool focus', value: selectedTool?.name ?? 'Select a tool', color: toolCategoryMeta[selectedTool ? classifyTool(selectedTool) : 'all'].color }
+      : activeView === 'raw'
+        ? { label: 'Evidence', value: showRawPretty ? 'Pretty JSON' : 'Compact JSON', color: 'var(--primary)' }
+        : activeView === 'response'
+          ? { label: 'Evidence', value: 'Model response', color: 'var(--primary)' }
+          : { label: 'Inspector', value: selectedPart?.title ?? currentStep?.title ?? trace.label, color: activeLayerStyle.color };
 
   const selectStep = (id: string) => {
     setStepId(id);
@@ -434,18 +474,18 @@ export default function TracePromptSimulator() {
       </header>
 
       <main className="mx-auto w-full max-w-[1680px] min-w-0 overflow-hidden px-3 py-5 sm:px-6">
-        <section className="trace-mobile-shell mb-4 overflow-hidden rounded-lg border" style={{ backgroundColor: '#0f172a', borderColor: '#1e293b', boxShadow: '0 18px 42px rgba(15,23,42,0.18)' }}>
-          <div className="grid min-w-0 gap-5 p-4 sm:p-5 xl:grid-cols-[minmax(0,1fr)_440px] xl:p-6">
+        <section className="trace-mobile-shell mb-4 overflow-hidden rounded-lg border" style={{ backgroundColor: '#0f172a', borderColor: '#1e293b', boxShadow: '0 18px 42px rgba(15,23,42,0.16)' }}>
+          <div className="grid min-w-0 gap-4 p-4 xl:grid-cols-[minmax(0,1fr)_380px] xl:p-5">
             <div className="min-w-0">
               <div className="mb-3 flex flex-wrap items-center gap-2">
                 <span className="inline-flex rounded-md px-2 py-1 text-[12px] font-semibold" style={{ backgroundColor: 'rgba(251,146,60,0.14)', color: '#fdba74' }}>
-                  Trace as simulator substrate
+                  Trace 数据底座
                 </span>
                 <span className="inline-flex rounded-md border px-2 py-1 text-[12px]" style={{ borderColor: 'rgba(148,163,184,0.25)', color: '#cbd5e1' }}>
                   {trace.label}
                 </span>
               </div>
-              <h1 className="trace-safe-text m-0 max-w-[980px] text-[24px] font-bold leading-[1.15] sm:text-[30px] md:text-[44px]" style={{ color: '#f8fafc' }}>
+              <h1 className="trace-safe-text m-0 max-w-[900px] text-[23px] font-bold leading-[1.16] sm:text-[30px] md:text-[36px]" style={{ color: '#f8fafc' }}>
                 <span className="block">
                   把一次 Claude Code 请求
                 </span>
@@ -453,22 +493,22 @@ export default function TracePromptSimulator() {
                   拆成可回放、可训练、可迁移的 trace
                 </span>
               </h1>
-              <p className="trace-safe-text mt-3 max-w-[980px] text-[14px] leading-relaxed md:text-[15px]" style={{ color: '#cbd5e1' }}>
+              <p className="trace-safe-text mt-3 max-w-[920px] text-[13px] leading-relaxed md:text-[14px]" style={{ color: '#cbd5e1' }}>
                 这个页面不再只是“看 prompt 原文”，而是仿真大专题的真实数据底座：左边看请求如何组装，中间选择层级与步骤，右侧立即看到来源文本、schema 或响应内容。
               </p>
-              <div className="mt-5 grid min-w-0 gap-2 sm:grid-cols-3">
+              <div className="mt-4 grid min-w-0 gap-2 md:grid-cols-3">
                 {traceRoleCards.map((card) => (
                   <a
                     key={card.title}
                     href={card.href}
-                    className="min-w-0 overflow-hidden rounded-lg border p-3 transition-transform hover:-translate-y-0.5"
+                    className="min-w-0 overflow-hidden rounded-md border px-3 py-2 transition-transform hover:-translate-y-0.5"
                     style={{ borderColor: 'rgba(148,163,184,0.22)', backgroundColor: 'rgba(255,255,255,0.055)' }}
                   >
-                    <div className="mb-2 flex min-w-0 items-center gap-2 text-[12px] font-semibold" style={{ color: '#fdba74' }}>
+                    <div className="flex min-w-0 items-center gap-2 text-[12px] font-semibold" style={{ color: '#fdba74' }}>
                       {card.icon}
                       <span className="min-w-0 truncate">{card.title}</span>
                     </div>
-                    <div className="trace-safe-text min-w-0 text-[12px] leading-relaxed" style={{ color: '#cbd5e1' }}>
+                    <div className="trace-safe-text mt-1 min-w-0 line-clamp-2 text-[11px] leading-relaxed" style={{ color: '#cbd5e1' }}>
                       {card.body}
                     </div>
                   </a>
@@ -476,7 +516,7 @@ export default function TracePromptSimulator() {
               </div>
             </div>
             <div className="grid min-w-0 content-end gap-3">
-              <div className="grid min-w-0 grid-cols-1 gap-2 sm:grid-cols-2">
+              <div className="grid min-w-0 grid-cols-2 gap-2">
                 <DarkMetric label="Prompt blocks" value={String(finalParts.length)} />
                 <DarkMetric label="Tool catalog" value={String(trace.tools.length)} />
                 <DarkMetric label="System share" value={`${percentage(systemChars, finalTotalChars)}%`} />
@@ -497,7 +537,7 @@ export default function TracePromptSimulator() {
           </div>
         </section>
 
-        <section className="min-w-0 overflow-hidden rounded-lg border p-4" style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border)', boxShadow: 'var(--shadow)' }}>
+        <section className="min-w-0 overflow-hidden rounded-lg border p-4" style={{ backgroundColor: 'rgba(255,251,245,0.88)', borderColor: 'var(--border)', boxShadow: 'var(--shadow)' }}>
           <div className="mb-4 flex flex-col gap-3 rounded-lg border px-4 py-3 xl:flex-row xl:items-center xl:justify-between" style={{ borderColor: 'var(--border)', backgroundColor: '#fffaf3' }}>
             <div className="min-w-0">
               <div className="flex flex-wrap items-center gap-2">
@@ -551,6 +591,19 @@ export default function TracePromptSimulator() {
               ))}
             </TabsList>
 
+            <WorkbenchGuide
+              title={activeViewGuide.title}
+              summary={activeViewGuide.summary}
+              action={activeViewGuide.action}
+              currentStep={`${currentStepIdx + 1}/${steps.length}`}
+              progress={activeStepProgress}
+              layerLabel={activeLayerStyle.label}
+              layerColor={activeLayerStyle.color}
+              detailLabel={guideDetail.label}
+              detailValue={guideDetail.value}
+              detailColor={guideDetail.color}
+            />
+
             <TabsContent value="map" className="mt-4">
               <div className="grid gap-4 2xl:grid-cols-[minmax(0,1fr)_440px]">
                 <div className="grid min-w-0 gap-4">
@@ -599,7 +652,7 @@ export default function TracePromptSimulator() {
                     <AnatomySummary group={activeAnatomyGroup} totalChars={finalTotalChars} onSelectPart={setSelectedPartId} />
                   </section>
 
-                  <AssemblyFlow steps={steps} activeStepId={currentStep?.id} onSelectStep={selectStep} />
+                  <AssemblyFlow steps={steps} activeStepId={currentStep?.id} totalChars={prompt.assembled.length} onSelectStep={selectStep} />
 
                   <TemplateGraph groups={displayGroups} activeStep={currentStep} activePartIds={activeStepPartIds} selectedPartId={selectedPart?.id} onSelectPart={setSelectedPartId} />
 
@@ -728,30 +781,29 @@ export default function TracePromptSimulator() {
                     </div>
                   </div>
 
-                  <div className="mb-4 flex flex-col gap-3 xl:flex-row xl:items-start xl:justify-between">
+                  <div className="mb-4 flex flex-col gap-3 rounded-lg border bg-white p-3 xl:flex-row xl:items-center xl:justify-between" style={{ borderColor: 'var(--border)' }}>
                     <div className="min-w-0">
-                      <div className="mb-2 text-[13px] font-semibold" style={{ color: 'var(--text-primary)' }}>
-                        Filter tool catalog
-                      </div>
-                      <div className="flex flex-wrap gap-2">
-                        {(['all', ...toolCategoryOrder] as ToolCategory[]).map((category) => {
-                          const meta = toolCategoryMeta[category];
-                          const active = category === toolCategory;
-                          return (
-                            <button
-                              key={category}
-                              className="rounded-md border px-3 py-1.5 text-[12px] font-medium"
-                              onClick={() => setToolCategory(category)}
-                              style={{
-                                borderColor: active ? meta.color : meta.border,
-                                backgroundColor: active ? meta.bg : '#ffffff',
-                                color: active ? meta.color : 'var(--text-muted)',
-                              }}
-                            >
-                              {meta.label} <span className="ml-1 font-semibold">{toolCounts[category]}</span>
-                            </button>
-                          );
-                        })}
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-[12px] font-semibold" style={{ backgroundColor: toolCategoryMeta[toolCategory].bg, color: toolCategoryMeta[toolCategory].color }}>
+                          <ShieldCheck size={14} />
+                          {toolCategoryMeta[toolCategory].label}
+                        </span>
+                        <span className="text-[12px]" style={{ color: 'var(--text-muted)' }}>
+                          {toolCategoryNotes[toolCategory]} / {filteredTools.length} visible
+                        </span>
+                        {(toolCategory !== 'all' || toolQuery.trim()) ? (
+                          <button
+                            className="inline-flex items-center gap-1 rounded-md border px-2 py-1 text-[11px]"
+                            onClick={() => {
+                              setToolCategory('all');
+                              setToolQuery('');
+                            }}
+                            style={{ borderColor: 'var(--border)', color: 'var(--text-muted)' }}
+                          >
+                            <FilterX size={13} />
+                            Clear
+                          </button>
+                        ) : null}
                       </div>
                     </div>
 
@@ -814,7 +866,11 @@ export default function TracePromptSimulator() {
                       {showRawPretty ? 'Compact' : 'Pretty'}
                     </Button>
                   </div>
-                  {codeBlock(showRawPretty ? JSON.stringify(trace.requestBody, null, 2) : JSON.stringify(trace.requestBody))}
+                  <CodePanel
+                    title={showRawPretty ? 'Pretty request body' : 'Compact request body'}
+                    meta={`${formatNumber(JSON.stringify(trace.requestBody).length)} chars`}
+                    text={showRawPretty ? JSON.stringify(trace.requestBody, null, 2) : JSON.stringify(trace.requestBody)}
+                  />
                 </section>
                 <section className="min-w-0 rounded-lg border p-4 2xl:sticky 2xl:top-[92px] 2xl:self-start" style={{ borderColor: 'var(--border)', backgroundColor: '#ffffff' }}>
                   <div className="mb-3 text-[13px] font-semibold" style={{ color: 'var(--text-primary)' }}>
@@ -837,7 +893,7 @@ export default function TracePromptSimulator() {
                     <TerminalSquare size={16} style={{ color: 'var(--primary)' }} />
                     Model response
                   </div>
-                  {codeBlock((trace.responseText ?? '').trim() || '(empty)')}
+                  <CodePanel title="Response text" meta={`${formatNumber((trace.responseText ?? '').trim().length)} chars`} text={(trace.responseText ?? '').trim() || '(empty)'} />
                 </section>
                 <section className="min-w-0 rounded-lg border p-4 2xl:sticky 2xl:top-[92px] 2xl:self-start" style={{ borderColor: 'var(--border)', backgroundColor: '#ffffff' }}>
                   <div className="mb-3 text-[13px] font-semibold" style={{ color: 'var(--text-primary)' }}>
@@ -889,7 +945,7 @@ function TraceSideLink({
 
 function DarkMetric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="min-w-0 rounded-lg border px-3 py-2" style={{ borderColor: 'rgba(148,163,184,0.22)', backgroundColor: 'rgba(255,255,255,0.06)' }}>
+    <div className="min-w-0 rounded-lg border px-3 py-2 transition-colors hover:bg-white/10" style={{ borderColor: 'rgba(148,163,184,0.22)', backgroundColor: 'rgba(255,255,255,0.06)' }}>
       <div className="text-[11px]" style={{ color: '#94a3b8' }}>{label}</div>
       <div className="mt-1 break-words text-[14px] font-semibold" style={{ color: '#f8fafc' }}>{value}</div>
     </div>
@@ -898,7 +954,7 @@ function DarkMetric({ label, value }: { label: string; value: string }) {
 
 function Metric({ label, value, icon }: { label: string; value: string; icon?: ReactNode }) {
   return (
-    <div className="min-w-0 rounded-lg border px-3 py-2" style={{ borderColor: 'var(--border)', backgroundColor: '#fffaf3' }}>
+    <div className="min-w-0 rounded-lg border px-3 py-2 transition-transform hover:-translate-y-0.5" style={{ borderColor: 'var(--border)', backgroundColor: '#fffaf3' }}>
       <div className="flex items-center gap-1.5 text-[11px]" style={{ color: 'var(--text-muted)' }}>
         {icon ? <span className="shrink-0" style={{ color: 'var(--primary)' }}>{icon}</span> : null}
         <span>{label}</span>
@@ -919,6 +975,125 @@ function RawGuideItem({ label, value }: { label: string; value: string }) {
       <span className="min-w-0 break-words rounded-md bg-white px-2 py-1 text-right text-[11px]" style={{ color: 'var(--text-muted)', overflowWrap: 'anywhere' }}>
         {value}
       </span>
+    </div>
+  );
+}
+
+function WorkbenchGuide({
+  title,
+  summary,
+  action,
+  currentStep,
+  progress,
+  layerLabel,
+  layerColor,
+  detailLabel,
+  detailValue,
+  detailColor,
+}: {
+  title: string;
+  summary: string;
+  action: string;
+  currentStep: string;
+  progress: number;
+  layerLabel: string;
+  layerColor: string;
+  detailLabel: string;
+  detailValue: string;
+  detailColor: string;
+}) {
+  return (
+    <div className="mt-4 overflow-hidden rounded-lg border" style={{ borderColor: 'rgba(234,88,12,0.22)', backgroundColor: '#ffffff' }}>
+      <div className="grid gap-0 xl:grid-cols-[minmax(0,1fr)_360px]">
+        <div className="min-w-0 p-4">
+          <div className="mb-2 flex items-center gap-2 text-[13px] font-semibold" style={{ color: 'var(--text-primary)' }}>
+            <PlayCircle size={15} style={{ color: 'var(--primary)' }} />
+            {title}
+          </div>
+          <div className="trace-safe-text text-[12px] leading-relaxed" style={{ color: 'var(--text-muted)' }}>
+            {summary}
+          </div>
+          <div className="mt-3 flex items-start gap-2 rounded-md px-3 py-2 text-[12px]" style={{ backgroundColor: 'rgba(234,88,12,0.08)', color: 'var(--text-secondary)' }}>
+            <Info size={14} className="mt-0.5 shrink-0" style={{ color: 'var(--primary)' }} />
+            <span className="trace-safe-text">{action}</span>
+          </div>
+        </div>
+        <div className="grid min-w-0 gap-2 border-t p-4 xl:border-l xl:border-t-0" style={{ borderColor: 'rgba(234,88,12,0.18)', backgroundColor: '#fff7ed' }}>
+          <StatusPill label="Step" value={currentStep} />
+          <StatusPill label="Pinned layer" value={layerLabel} color={layerColor} />
+          <StatusPill label={detailLabel} value={detailValue} color={detailColor} />
+          <div>
+            <div className="mb-1 flex items-center justify-between text-[11px]" style={{ color: 'var(--text-muted)' }}>
+              <span>Assembly progress</span>
+              <span>{progress}%</span>
+            </div>
+            <div className="h-1.5 overflow-hidden rounded-full" style={{ backgroundColor: 'rgba(234,88,12,0.12)' }}>
+              <span className="block h-full rounded-full" style={{ width: `${progress}%`, backgroundColor: 'var(--primary)' }} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function StatusPill({ label, value, color = 'var(--primary)' }: { label: string; value: string; color?: string }) {
+  return (
+    <div className="flex min-w-0 items-center justify-between gap-3 rounded-md border bg-white px-3 py-2" style={{ borderColor: 'rgba(234,88,12,0.18)' }}>
+      <span className="shrink-0 text-[11px]" style={{ color: 'var(--text-muted)' }}>
+        {label}
+      </span>
+      <span className="min-w-0 truncate text-right text-[12px] font-semibold" style={{ color }}>
+        {value}
+      </span>
+    </div>
+  );
+}
+
+function CodePanel({ title, meta, text }: { title: string; meta?: string; text: string }) {
+  const [copied, setCopied] = useState(false);
+
+  const copyText = async () => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1300);
+    } catch {
+      setCopied(false);
+    }
+  };
+
+  return (
+    <div className="overflow-hidden rounded-lg border shadow-inner" style={{ borderColor: 'rgba(51,65,85,0.9)', backgroundColor: '#0f172a' }}>
+      <div className="flex min-w-0 items-center justify-between gap-3 border-b px-3 py-2" style={{ borderColor: 'rgba(148,163,184,0.18)', backgroundColor: '#111c31' }}>
+        <div className="min-w-0">
+          <div className="truncate text-[12px] font-semibold" style={{ color: '#e2e8f0' }}>
+            {title}
+          </div>
+          {meta ? (
+            <div className="mt-0.5 text-[11px]" style={{ color: '#94a3b8' }}>
+              {meta}
+            </div>
+          ) : null}
+        </div>
+        <button
+          className="inline-flex shrink-0 items-center gap-1.5 rounded-md border px-2 py-1 text-[11px] transition-colors hover:bg-white/10"
+          onClick={copyText}
+          style={{ borderColor: 'rgba(148,163,184,0.24)', color: copied ? '#22c55e' : '#cbd5e1' }}
+        >
+          {copied ? <Check size={13} /> : <Clipboard size={13} />}
+          {copied ? 'Copied' : 'Copy'}
+        </button>
+      </div>
+      <pre
+        className="agent-loop-terminal-scroll overflow-auto whitespace-pre-wrap break-words p-4 text-[12px] leading-relaxed"
+        style={{
+          maxHeight: 'min(560px, calc(100dvh - 260px))',
+          color: '#e6e6e6',
+        }}
+      >
+        {text}
+      </pre>
     </div>
   );
 }
@@ -1060,10 +1235,12 @@ function MermaidFlow({ chart }: { chart: string }) {
 function AssemblyFlow({
   steps,
   activeStepId,
+  totalChars,
   onSelectStep,
 }: {
   steps: PromptStep[];
   activeStepId?: string;
+  totalChars: number;
   onSelectStep: (id: string) => void;
 }) {
   return (
@@ -1081,10 +1258,12 @@ function AssemblyFlow({
         {steps.map((step, index) => {
           const active = step.id === activeStepId;
           const addedKinds = Array.from(new Set(step.added.map((part) => part.kind)));
+          const delta = step.added.reduce((sum, part) => sum + part.text.length, 0);
+          const progress = percentage(step.cumulativeChars, totalChars);
           return (
             <button
               key={step.id}
-              className="relative rounded-lg border px-3 py-2 text-left"
+              className="relative rounded-lg border px-3 py-3 text-left transition-transform hover:-translate-y-0.5"
               onClick={() => onSelectStep(step.id)}
               style={{
                 borderColor: active ? 'rgba(234,88,12,0.52)' : 'var(--border)',
@@ -1106,6 +1285,13 @@ function AssemblyFlow({
                 <div className="truncate text-[12px] font-semibold" style={{ color: active ? 'var(--primary)' : 'var(--text-primary)' }}>
                   {step.title}
                 </div>
+              </div>
+              <div className="mb-2 flex items-center justify-between gap-2 text-[11px]" style={{ color: 'var(--text-muted)' }}>
+                <span>+{formatNumber(delta)} chars</span>
+                <span>{progress}%</span>
+              </div>
+              <div className="mb-2 h-1.5 overflow-hidden rounded-full" style={{ backgroundColor: 'rgba(234,88,12,0.12)' }}>
+                <span className="block h-full rounded-full" style={{ width: `${Math.max(4, progress)}%`, backgroundColor: active ? 'var(--primary)' : '#fdba74' }} />
               </div>
               <div className="flex flex-wrap gap-1">
                 {addedKinds.length ? (
@@ -1272,6 +1458,8 @@ function OutlineParentNode({
   const selected = item.parts.some((part) => part.id === selectedPartId);
   const active = item.parts.some((part) => activePartIds.has(part.id));
   const [expanded, setExpanded] = useState(active || selected || item.title === 'Core operating contract');
+  const visibleExpanded = expanded || active || selected;
+
   return (
     <div
       className="rounded-lg border p-2"
@@ -1287,7 +1475,7 @@ function OutlineParentNode({
           setExpanded((value) => !value);
           onSelectPart(firstPart.id);
         }}
-        aria-expanded={expanded}
+        aria-expanded={visibleExpanded}
       >
         <div className="min-w-0">
           <div className="truncate text-[12px] font-semibold" style={{ color: style.color }}>
@@ -1297,9 +1485,9 @@ function OutlineParentNode({
             {item.parts.length} sections / {formatNumber(item.chars)} chars
           </div>
         </div>
-        <ChevronRight size={14} className="shrink-0 transition-transform" style={{ color: style.color, transform: expanded ? 'rotate(90deg)' : 'rotate(0deg)' }} />
+        <ChevronRight size={14} className="shrink-0 transition-transform" style={{ color: style.color, transform: visibleExpanded ? 'rotate(90deg)' : 'rotate(0deg)' }} />
       </button>
-      {expanded ? (
+      {visibleExpanded ? (
         <div className="mt-2 grid gap-1.5 border-t pt-2" style={{ borderColor: style.border }}>
           {item.description ? (
             <div className="rounded-md bg-white/70 px-2 py-1.5 text-[11px] leading-relaxed" style={{ color: 'var(--text-muted)' }}>
@@ -1383,7 +1571,7 @@ function StepPart({
   const style = kindStyles[part.kind];
   return (
     <button
-      className={`rounded-lg border text-left ${compact ? 'p-3' : 'p-4'}`}
+      className={`rounded-lg border text-left transition-transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-orange-300 ${compact ? 'p-3' : 'p-4'}`}
       onClick={() => onSelect(part.id)}
       style={{
         borderColor: active ? style.color : compact ? 'rgba(255,255,255,0.9)' : style.border,
@@ -1413,7 +1601,7 @@ function ToolCard({ tool, active, onSelect }: { tool: TraceTool; active?: boolea
   const properties = schemaProperties(tool);
   return (
     <button
-      className="min-w-0 rounded-lg border p-3 text-left"
+      className="min-w-0 rounded-lg border p-3 text-left transition-transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-orange-300"
       onClick={() => onSelect(tool.name)}
       style={{
         borderColor: active ? meta.color : meta.border,
@@ -1527,7 +1715,7 @@ function ToolInspector({ tool }: { tool?: TraceTool }) {
           <div className="mb-2 mt-4 text-[12px] font-semibold" style={{ color: meta.color }}>
             Raw schema
           </div>
-          {codeBlock(JSON.stringify(tool.input_schema, null, 2))}
+          <CodePanel title={`${tool.name} schema`} meta={`${properties.length} fields`} text={JSON.stringify(tool.input_schema, null, 2)} />
         </>
       ) : null}
     </div>
@@ -1562,7 +1750,7 @@ function Inspector({ part, step }: { part?: PromptPart; step?: PromptStep }) {
           <div className="mb-2 text-[12px] font-semibold" style={{ color: 'var(--primary)' }}>
             Full prompt at this stage
           </div>
-          {codeBlock(assembledText)}
+          <CodePanel title={`${step.title} cumulative prompt`} meta={`${formatNumber(step.cumulativeChars)} chars`} text={assembledText} />
         </div>
       );
     }
@@ -1603,7 +1791,7 @@ function Inspector({ part, step }: { part?: PromptPart; step?: PromptStep }) {
       <div className="mb-2 text-[12px] font-semibold" style={{ color: style.color }}>
         Source excerpt
       </div>
-      {codeBlock(part.text)}
+      <CodePanel title={part.title} meta={`${formatNumber(part.text.length)} chars`} text={part.text} />
     </div>
   );
 }
