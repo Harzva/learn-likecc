@@ -18,6 +18,8 @@ const participants = [
 export default function SequenceDiagram({ currentStep, onMessageClick }: SequenceDiagramProps) {
   const visibleMessages = sequenceMessages.filter((m) => m.step <= currentStep);
   const laneHeight = 88;
+  const blockHeight = 64;
+  const arrowGap = 10;
   const diagramHeight = Math.max(520, 60 + visibleMessages.length * laneHeight);
 
   return (
@@ -104,7 +106,11 @@ export default function SequenceDiagram({ currentStep, onMessageClick }: Sequenc
                   const fromIdx = participants.findIndex((p) => p.id === msg.source);
                   const toIdx = participants.findIndex((p) => p.id === msg.target);
                   const rowIdx = visibleMessages.indexOf(msg);
-                  const yPos = 54 + rowIdx * laneHeight;
+                  const messageTop = 18 + rowIdx * laneHeight;
+                  const yPos =
+                    msg.source === 'llm-api'
+                      ? messageTop + blockHeight + arrowGap
+                      : messageTop + blockHeight / 2;
                   const x1 = ((fromIdx + 0.5) / 3) * 100 + '%';
                   const x2 = ((toIdx + 0.5) / 3) * 100 + '%';
 
