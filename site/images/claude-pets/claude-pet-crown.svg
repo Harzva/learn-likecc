@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc" shape-rendering="crispEdges">
+  <title id="title">Crown Claude pet</title><desc id="desc">A tiny orange square pet wearing a crown.</desc>
+  <rect x="37" y="22" width="12" height="29" rx="3" fill="#f39d64" stroke="#9d6040" stroke-width="4"/><rect x="79" y="22" width="12" height="29" rx="3" fill="#f39d64" stroke="#9d6040" stroke-width="4"/>
+  <path d="M39 17h10l8 12 7-16 7 16 8-12h10v26H39V17Z" fill="#f8c74e" stroke="#9a6d08" stroke-width="4"/><rect x="58" y="32" width="12" height="6" fill="#ef4444"/>
+  <rect x="32" y="45" width="64" height="53" rx="4" fill="#f3975e" stroke="#965b3c" stroke-width="4"/><rect x="44" y="35" width="40" height="15" fill="#f3975e"/>
+  <rect x="21" y="65" width="17" height="18" rx="3" fill="#f39d64" stroke="#9d6040" stroke-width="4"/><rect x="91" y="65" width="17" height="18" rx="3" fill="#f39d64" stroke="#9d6040" stroke-width="4"/>
+  <rect x="43" y="62" width="9" height="18" rx="2" fill="#222"/><rect x="76" y="62" width="9" height="18" rx="2" fill="#222"/><rect x="56" y="86" width="16" height="4" fill="#7d4633"/>
+  <rect x="47" y="97" width="7" height="14" fill="#df7d4e"/><rect x="62" y="97" width="7" height="14" fill="#df7d4e"/><rect x="77" y="97" width="7" height="14" fill="#df7d4e"/>
+</svg>

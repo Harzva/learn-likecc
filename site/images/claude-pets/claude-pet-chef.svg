@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc" shape-rendering="crispEdges">
+  <title id="title">Chef Claude pet</title><desc id="desc">A tiny orange square pet wearing a chef hat.</desc>
+  <rect x="39" y="24" width="10" height="25" rx="3" fill="#f4a066" stroke="#9d6040" stroke-width="4"/><rect x="79" y="24" width="10" height="25" rx="3" fill="#f4a066" stroke="#9d6040" stroke-width="4"/>
+  <path d="M38 18h12v-6h12v6h8v-6h12v6h8v20H38V18Z" fill="#fff8eb" stroke="#9c6a50" stroke-width="4"/>
+  <rect x="32" y="45" width="64" height="53" rx="4" fill="#f3975e" stroke="#965b3c" stroke-width="4"/><rect x="44" y="36" width="40" height="14" fill="#f3975e"/>
+  <rect x="21" y="64" width="17" height="18" rx="3" fill="#f4a066" stroke="#9d6040" stroke-width="4"/><rect x="90" y="64" width="17" height="18" rx="3" fill="#f4a066" stroke="#9d6040" stroke-width="4"/>
+  <rect x="43" y="61" width="9" height="19" rx="2" fill="#222"/><rect x="76" y="61" width="9" height="19" rx="2" fill="#222"/><rect x="56" y="84" width="16" height="5" fill="#7d4633"/>
+  <rect x="47" y="97" width="7" height="14" fill="#df7d4e"/><rect x="62" y="97" width="7" height="14" fill="#df7d4e"/><rect x="77" y="97" width="7" height="14" fill="#df7d4e"/>
+</svg>

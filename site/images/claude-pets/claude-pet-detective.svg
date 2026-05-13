@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc" shape-rendering="crispEdges">
+  <title id="title">Detective Claude pet</title><desc id="desc">A tiny orange square pet with a detective hat and magnifier.</desc>
+  <rect x="37" y="21" width="12" height="30" rx="3" fill="#f39d64" stroke="#9d6040" stroke-width="4"/><rect x="79" y="21" width="12" height="30" rx="3" fill="#f39d64" stroke="#9d6040" stroke-width="4"/>
+  <path d="M35 25h58v16h15v9H20v-9h15V25Z" fill="#7b6042" stroke="#443321" stroke-width="4"/><rect x="50" y="32" width="28" height="6" fill="#c9a56a"/>
+  <rect x="32" y="46" width="64" height="52" rx="4" fill="#f3975e" stroke="#965b3c" stroke-width="4"/><rect x="43" y="63" width="9" height="18" rx="2" fill="#222"/><rect x="76" y="63" width="9" height="18" rx="2" fill="#222"/>
+  <rect x="21" y="66" width="17" height="18" rx="3" fill="#f39d64" stroke="#9d6040" stroke-width="4"/><circle cx="99" cy="69" r="11" fill="none" stroke="#364152" stroke-width="5"/><rect x="105" y="78" width="16" height="6" fill="#364152" transform="rotate(45 113 81)"/>
+  <rect x="56" y="87" width="16" height="4" fill="#7d4633"/><rect x="47" y="97" width="7" height="14" fill="#df7d4e"/><rect x="62" y="97" width="7" height="14" fill="#df7d4e"/><rect x="77" y="97" width="7" height="14" fill="#df7d4e"/>
+</svg>

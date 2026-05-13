@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc" shape-rendering="crispEdges">
+  <title id="title">Mechanic Claude pet</title><desc id="desc">A tiny orange square pet with a wrench.</desc>
+  <rect x="37" y="21" width="12" height="30" rx="3" fill="#f39d64" stroke="#9d6040" stroke-width="4"/><rect x="79" y="21" width="12" height="30" rx="3" fill="#f39d64" stroke="#9d6040" stroke-width="4"/>
+  <rect x="32" y="44" width="64" height="54" rx="4" fill="#f3975e" stroke="#965b3c" stroke-width="4"/><rect x="44" y="34" width="40" height="15" fill="#f3975e"/>
+  <rect x="20" y="66" width="17" height="18" rx="3" fill="#f39d64" stroke="#9d6040" stroke-width="4"/><rect x="91" y="66" width="17" height="18" rx="3" fill="#f39d64" stroke="#9d6040" stroke-width="4"/>
+  <rect x="43" y="62" width="9" height="18" rx="2" fill="#222"/><rect x="76" y="62" width="9" height="18" rx="2" fill="#222"/><rect x="56" y="86" width="16" height="4" fill="#7d4633"/>
+  <rect x="92" y="38" width="8" height="47" fill="#64748b" transform="rotate(35 96 61.5)"/><rect x="92" y="34" width="20" height="8" fill="#64748b" transform="rotate(35 102 38)"/><rect x="105" y="31" width="8" height="16" fill="#fff6ec" transform="rotate(35 109 39)"/>
+  <rect x="47" y="97" width="7" height="14" fill="#df7d4e"/><rect x="62" y="97" width="7" height="14" fill="#df7d4e"/><rect x="77" y="97" width="7" height="14" fill="#df7d4e"/>
+</svg>

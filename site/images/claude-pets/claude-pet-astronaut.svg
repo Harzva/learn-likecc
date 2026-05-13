@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc" shape-rendering="crispEdges">
+  <title id="title">Astronaut Claude pet</title><desc id="desc">A tiny orange square pet in a space helmet.</desc>
+  <rect x="31" y="31" width="66" height="68" rx="5" fill="#edf7ff" stroke="#607489" stroke-width="4"/><rect x="41" y="40" width="46" height="14" fill="#edf7ff"/>
+  <rect x="37" y="22" width="12" height="25" rx="3" fill="#f39d64" stroke="#9d6040" stroke-width="4"/><rect x="79" y="22" width="12" height="25" rx="3" fill="#f39d64" stroke="#9d6040" stroke-width="4"/>
+  <rect x="38" y="50" width="52" height="41" rx="4" fill="#f3975e" stroke="#965b3c" stroke-width="4"/><rect x="46" y="59" width="8" height="17" rx="2" fill="#222"/><rect x="74" y="59" width="8" height="17" rx="2" fill="#222"/>
+  <rect x="20" y="66" width="17" height="18" rx="3" fill="#edf7ff" stroke="#607489" stroke-width="4"/><rect x="91" y="66" width="17" height="18" rx="3" fill="#edf7ff" stroke="#607489" stroke-width="4"/>
+  <rect x="56" y="81" width="16" height="4" fill="#7d4633"/><rect x="42" y="91" width="44" height="8" fill="#cfe0ee"/><rect x="47" y="98" width="7" height="13" fill="#df7d4e"/><rect x="74" y="98" width="7" height="13" fill="#df7d4e"/>
+</svg>

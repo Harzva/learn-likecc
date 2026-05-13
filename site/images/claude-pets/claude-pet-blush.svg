@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc" shape-rendering="crispEdges">
+  <title id="title">Blushing Claude pet</title>
+  <desc id="desc">A tiny orange square pet with blush marks and shy little hands.</desc>
+  <rect x="37" y="22" width="12" height="30" rx="3" fill="#f5a46e" stroke="#a26743" stroke-width="4"/>
+  <rect x="79" y="22" width="12" height="30" rx="3" fill="#f5a46e" stroke="#a26743" stroke-width="4"/>
+  <rect x="33" y="45" width="62" height="53" rx="4" fill="#f49b62" stroke="#9c6040" stroke-width="4"/>
+  <rect x="45" y="35" width="38" height="15" fill="#f49b62"/>
+  <rect x="19" y="70" width="18" height="17" rx="3" fill="#f5a46e" stroke="#a26743" stroke-width="4"/>
+  <rect x="91" y="70" width="18" height="17" rx="3" fill="#f5a46e" stroke="#a26743" stroke-width="4"/>
+  <rect x="45" y="63" width="8" height="19" rx="2" fill="#242424"/>
+  <rect x="76" y="63" width="8" height="19" rx="2" fill="#242424"/>
+  <rect x="41" y="84" width="11" height="5" fill="#ff7f75"/>
+  <rect x="76" y="84" width="11" height="5" fill="#ff7f75"/>
+  <rect x="59" y="88" width="10" height="4" fill="#7a4534"/>
+  <rect x="47" y="97" width="7" height="15" fill="#e28450"/>
+  <rect x="61" y="97" width="7" height="15" fill="#e28450"/>
+  <rect x="75" y="97" width="7" height="15" fill="#e28450"/>
+  <rect x="36" y="52" width="56" height="5" fill="#ffc08a" opacity=".6"/>
+</svg>

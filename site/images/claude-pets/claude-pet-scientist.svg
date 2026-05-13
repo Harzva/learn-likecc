@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc" shape-rendering="crispEdges">
+  <title id="title">Scientist Claude pet</title><desc id="desc">A tiny orange square pet with goggles and a flask.</desc>
+  <rect x="37" y="21" width="12" height="30" rx="3" fill="#f39d64" stroke="#9d6040" stroke-width="4"/><rect x="79" y="21" width="12" height="30" rx="3" fill="#f39d64" stroke="#9d6040" stroke-width="4"/>
+  <rect x="32" y="44" width="64" height="54" rx="4" fill="#f3975e" stroke="#965b3c" stroke-width="4"/><rect x="44" y="34" width="40" height="15" fill="#f3975e"/>
+  <rect x="20" y="64" width="17" height="18" rx="3" fill="#f39d64" stroke="#9d6040" stroke-width="4"/><path d="M96 56h9v20l8 14H89l7-14V56Z" fill="#b7f7f0" stroke="#356c6f" stroke-width="4"/><rect x="95" y="78" width="12" height="6" fill="#34d399"/>
+  <rect x="39" y="59" width="21" height="21" rx="4" fill="none" stroke="#333" stroke-width="4"/><rect x="68" y="59" width="21" height="21" rx="4" fill="none" stroke="#333" stroke-width="4"/><rect x="60" y="67" width="8" height="4" fill="#333"/>
+  <rect x="56" y="87" width="16" height="4" fill="#7d4633"/><rect x="33" y="90" width="62" height="9" fill="#fff7ed" opacity=".8"/>
+  <rect x="47" y="97" width="7" height="14" fill="#df7d4e"/><rect x="62" y="97" width="7" height="14" fill="#df7d4e"/><rect x="77" y="97" width="7" height="14" fill="#df7d4e"/>
+</svg>

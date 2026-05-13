@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc" shape-rendering="crispEdges">
+  <title id="title">Ninja Claude pet</title><desc id="desc">A tiny orange square pet with a dark ninja hood.</desc>
+  <rect x="37" y="20" width="12" height="30" rx="3" fill="#f19a61" stroke="#8f5639" stroke-width="4"/><rect x="79" y="20" width="12" height="30" rx="3" fill="#f19a61" stroke="#8f5639" stroke-width="4"/>
+  <rect x="31" y="43" width="66" height="54" rx="4" fill="#2f333b" stroke="#171a20" stroke-width="4"/><rect x="43" y="33" width="42" height="15" fill="#2f333b"/>
+  <rect x="36" y="56" width="56" height="31" fill="#f19a61"/><rect x="21" y="63" width="16" height="18" rx="3" fill="#2f333b" stroke="#171a20" stroke-width="4"/><rect x="91" y="63" width="16" height="18" rx="3" fill="#2f333b" stroke="#171a20" stroke-width="4"/>
+  <rect x="44" y="64" width="9" height="17" rx="2" fill="#161616"/><rect x="76" y="64" width="9" height="17" rx="2" fill="#161616"/><rect x="56" y="87" width="16" height="4" fill="#7b4533"/>
+  <rect x="31" y="48" width="66" height="8" fill="#1f2228"/><path d="M91 35h22v7H91v-7Zm9 7h14v7h-14v-7Z" fill="#2f333b" stroke="#171a20" stroke-width="3"/>
+  <rect x="47" y="97" width="7" height="14" fill="#24272e"/><rect x="62" y="97" width="7" height="14" fill="#24272e"/><rect x="77" y="97" width="7" height="14" fill="#24272e"/>
+</svg>

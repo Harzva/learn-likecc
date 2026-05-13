@@ -1071,10 +1071,24 @@ function initSiteViewCounter() {
         '<a href="' +
         statsUrl +
         '" target="_blank" rel="noopener noreferrer" aria-label="在 hits.sh 查看访问统计（新窗口打开）">' +
-        '<img id="site-view-counter" class="footer-views__img" src="' +
+        '<img id="site-view-counter" class="footer-views__img" data-src="' +
         imgSrc +
         '" alt="本站累计访问次数" height="20" loading="lazy" decoding="async">' +
         '</a>'
+    const counterLink = wrap.querySelector('a')
+    const counterImg = wrap.querySelector('#site-view-counter')
+    if (counterLink && counterImg) {
+        const fallbackCounter = () => {
+            if (!counterImg.isConnected) return
+            counterImg.remove()
+            counterLink.textContent = '访问统计'
+        }
+        counterImg.addEventListener('error', fallbackCounter)
+        counterImg.src = counterImg.dataset.src || ''
+        window.setTimeout(() => {
+            if (!counterImg.complete || !counterImg.naturalWidth) fallbackCounter()
+        }, 1200)
+    }
 
     const mainBottom = document.querySelector('footer.footer-main .footer-bottom-main')
     if (mainBottom) {

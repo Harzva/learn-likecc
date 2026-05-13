@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc" shape-rendering="crispEdges">
+  <title id="title">Party Claude pet</title><desc id="desc">A tiny orange square pet wearing a party hat.</desc>
+  <rect x="37" y="22" width="12" height="29" rx="3" fill="#f39d64" stroke="#9d6040" stroke-width="4"/><rect x="79" y="22" width="12" height="29" rx="3" fill="#f39d64" stroke="#9d6040" stroke-width="4"/>
+  <path d="M52 8h24l13 37H39L52 8Z" fill="#22c55e" stroke="#17633a" stroke-width="4"/><rect x="49" y="28" width="31" height="7" fill="#f472b6"/><rect x="55" y="15" width="18" height="6" fill="#facc15"/>
+  <rect x="32" y="45" width="64" height="53" rx="4" fill="#f3975e" stroke="#965b3c" stroke-width="4"/><rect x="44" y="35" width="40" height="15" fill="#f3975e"/>
+  <rect x="20" y="64" width="17" height="18" rx="3" fill="#f39d64" stroke="#9d6040" stroke-width="4"/><rect x="91" y="64" width="17" height="18" rx="3" fill="#f39d64" stroke="#9d6040" stroke-width="4"/>
+  <rect x="43" y="61" width="9" height="18" rx="2" fill="#222"/><rect x="76" y="61" width="9" height="18" rx="2" fill="#222"/><rect x="55" y="85" width="18" height="5" fill="#7d4633"/>
+  <path d="M18 28h6v6h-6v-6Zm89 10h7v7h-7v-7Zm-7 57h6v6h-6v-6Z" fill="#8b5cf6"/><rect x="47" y="97" width="7" height="14" fill="#df7d4e"/><rect x="62" y="97" width="7" height="14" fill="#df7d4e"/><rect x="77" y="97" width="7" height="14" fill="#df7d4e"/>
+</svg>

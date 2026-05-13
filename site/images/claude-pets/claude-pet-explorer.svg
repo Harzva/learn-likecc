@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc" shape-rendering="crispEdges">
+  <title id="title">Explorer Claude pet</title><desc id="desc">A tiny orange square pet with an explorer hat and map.</desc>
+  <rect x="37" y="23" width="12" height="28" rx="3" fill="#f3a066" stroke="#9d6040" stroke-width="4"/><rect x="79" y="23" width="12" height="28" rx="3" fill="#f3a066" stroke="#9d6040" stroke-width="4"/>
+  <path d="M35 26h58v13h14v9H21v-9h14V26Z" fill="#c7a25f" stroke="#745b35" stroke-width="4"/><rect x="52" y="32" width="24" height="6" fill="#7f6037"/>
+  <rect x="32" y="47" width="64" height="51" rx="4" fill="#f3975e" stroke="#965b3c" stroke-width="4"/><rect x="21" y="66" width="17" height="18" rx="3" fill="#f3a066" stroke="#9d6040" stroke-width="4"/>
+  <rect x="90" y="67" width="22" height="20" fill="#fff0bd" stroke="#9c6a50" stroke-width="4"/><path d="M96 72h8v4h-8v-4Zm0 8h11v4H96v-4Z" fill="#d98b52"/>
+  <rect x="43" y="62" width="9" height="18" rx="2" fill="#222"/><rect x="76" y="62" width="9" height="18" rx="2" fill="#222"/><rect x="57" y="86" width="14" height="4" fill="#7d4633"/>
+  <rect x="47" y="97" width="7" height="14" fill="#df7d4e"/><rect x="62" y="97" width="7" height="14" fill="#df7d4e"/><rect x="77" y="97" width="7" height="14" fill="#df7d4e"/>
+</svg>

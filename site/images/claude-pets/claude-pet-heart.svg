@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc" shape-rendering="crispEdges">
+  <title id="title">Heart Claude pet</title><desc id="desc">A tiny orange square pet holding a pixel heart.</desc>
+  <rect x="37" y="21" width="12" height="30" rx="3" fill="#f39d64" stroke="#9d6040" stroke-width="4"/><rect x="79" y="21" width="12" height="30" rx="3" fill="#f39d64" stroke="#9d6040" stroke-width="4"/>
+  <rect x="32" y="44" width="64" height="54" rx="4" fill="#f3975e" stroke="#965b3c" stroke-width="4"/><rect x="44" y="34" width="40" height="15" fill="#f3975e"/>
+  <rect x="19" y="68" width="17" height="18" rx="3" fill="#f39d64" stroke="#9d6040" stroke-width="4"/><rect x="92" y="68" width="17" height="18" rx="3" fill="#f39d64" stroke="#9d6040" stroke-width="4"/>
+  <path d="M53 81h-8V69h8v-8h10v8h2v-8h10v8h8v12h-8v8H65v8h-2v-8H53v-8Z" fill="#ef476f" stroke="#8a253c" stroke-width="3"/>
+  <rect x="43" y="60" width="9" height="18" rx="2" fill="#222"/><rect x="76" y="60" width="9" height="18" rx="2" fill="#222"/><rect x="47" y="97" width="7" height="14" fill="#df7d4e"/><rect x="74" y="97" width="7" height="14" fill="#df7d4e"/>
+</svg>
