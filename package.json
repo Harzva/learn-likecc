@@ -2,10 +2,10 @@
   "name": "learn-likecc-tooling",
   "private": true,
   "scripts": {
-    "lint:md": "markdownlint README.md site/md/README.md site/md/index.md .claude/plans/likecode-model-freedom-roadmap.md"
+    "lint:md": "node ./node_modules/markdownlint-cli/markdownlint.js README.md site/md/README.md site/md/index.md .claude/plans/likecode-model-freedom-roadmap.md"
   },
   "devDependencies": {
-    "markdownlint-cli": "^0.45.0",
+    "markdownlint-cli": "^0.48.0",
     "playwright": "^1.59.1",
     "puppeteer": "^24.40.0"
   }
