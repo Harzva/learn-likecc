@@ -18773,6 +18773,16 @@ body.site-shell-overlay-open {
         linear-gradient(180deg, rgba(255, 247, 237, 0.82), color-mix(in srgb, var(--bg-secondary) 62%, white));
 }
 
+.loop-lab-mode-switch a.is-mastered {
+    border-color: rgba(22, 163, 74, 0.42);
+    background:
+        linear-gradient(180deg, rgba(240, 253, 244, 0.86), color-mix(in srgb, var(--bg-secondary) 60%, white));
+}
+
+.loop-lab-mode-switch a.needs-review {
+    border-color: color-mix(in srgb, var(--primary) 44%, var(--border));
+}
+
 .loop-lab-mode-switch a:hover,
 .loop-lab-mode-switch a:focus-visible,
 .loop-lab-learning-rail a:hover,
@@ -19020,6 +19030,94 @@ body.site-shell-overlay-open {
     line-height: 1.25;
 }
 
+.loop-lab-learning-summary {
+    display: grid;
+    grid-template-columns: minmax(240px, 0.42fr) minmax(0, 1fr);
+    gap: 14px;
+    align-items: stretch;
+    margin-top: 16px;
+    border: 1px solid color-mix(in srgb, var(--border) 82%, transparent);
+    border-radius: 10px;
+    padding: 14px;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.72), color-mix(in srgb, var(--bg-secondary) 62%, white));
+}
+
+.loop-lab-learning-summary__copy {
+    display: grid;
+    align-content: center;
+    gap: 6px;
+    min-width: 0;
+}
+
+.loop-lab-learning-summary__copy span {
+    color: color-mix(in srgb, #0284c7 72%, var(--primary));
+    font-size: 0.74rem;
+    font-weight: 880;
+}
+
+.loop-lab-learning-summary__copy strong {
+    color: var(--text-primary);
+    font-size: 1rem;
+    line-height: 1.24;
+}
+
+.loop-lab-learning-summary__copy p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    line-height: 1.48;
+}
+
+.loop-lab-learning-summary__filters {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.loop-lab-filter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    min-width: 0;
+    min-height: 54px;
+    border: 1px solid color-mix(in srgb, var(--border) 74%, transparent);
+    border-radius: 8px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.68);
+    color: var(--text-primary);
+    cursor: pointer;
+    font: inherit;
+    transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+
+.loop-lab-filter:hover,
+.loop-lab-filter:focus-visible {
+    transform: translateY(-1px);
+    border-color: color-mix(in srgb, var(--primary) 42%, var(--border));
+    outline: none;
+}
+
+.loop-lab-filter.is-active {
+    border-color: color-mix(in srgb, var(--primary) 54%, var(--border));
+    background: color-mix(in srgb, var(--primary) 10%, white);
+}
+
+.loop-lab-filter span {
+    overflow: hidden;
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    font-weight: 820;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.loop-lab-filter strong {
+    color: var(--text-primary);
+    font-size: 1.05rem;
+}
+
 .loop-lab-lesson-list {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -19057,6 +19155,16 @@ body.site-shell-overlay-open {
 
 .loop-lab-lesson-card.has-resume {
     border-color: color-mix(in srgb, var(--primary) 36%, var(--border));
+}
+
+.loop-lab-lesson-card.is-mastered {
+    border-color: rgba(22, 163, 74, 0.46);
+    background:
+        linear-gradient(180deg, rgba(240, 253, 244, 0.74), color-mix(in srgb, var(--bg-secondary) 64%, white));
+}
+
+.loop-lab-lesson-card.needs-review {
+    border-color: color-mix(in srgb, var(--primary) 48%, var(--border));
 }
 
 .loop-lab-lesson-card__order {
@@ -19112,6 +19220,55 @@ body.site-shell-overlay-open {
     white-space: nowrap;
 }
 
+.loop-lab-lesson-card__flags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.loop-lab-flag {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    border: 1px solid color-mix(in srgb, var(--border) 82%, transparent);
+    border-radius: 999px;
+    padding: 4px 8px;
+    background: rgba(255, 255, 255, 0.72);
+    color: var(--text-secondary);
+    font-size: 0.72rem;
+    font-weight: 850;
+    line-height: 1.2;
+}
+
+.loop-lab-flag--mastered {
+    border-color: rgba(22, 163, 74, 0.28);
+    background: rgba(240, 253, 244, 0.84);
+    color: #166534;
+}
+
+.loop-lab-flag--review {
+    border-color: color-mix(in srgb, var(--primary) 24%, var(--border));
+    background: color-mix(in srgb, var(--primary) 9%, white);
+    color: color-mix(in srgb, var(--primary) 82%, #111827);
+}
+
+.loop-lab-flag--note {
+    border-color: rgba(14, 116, 144, 0.24);
+    background: rgba(224, 242, 254, 0.72);
+    color: #0e7490;
+}
+
+.loop-lab-lesson-card__note {
+    display: block;
+    border-left: 3px solid rgba(14, 116, 144, 0.28);
+    padding: 7px 9px;
+    background: rgba(224, 242, 254, 0.38);
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    font-weight: 720;
+    line-height: 1.45;
+}
+
 .loop-lab-lesson-card__bar {
     height: 8px;
     border-radius: 999px;
@@ -19141,6 +19298,17 @@ body.site-shell-overlay-open {
 .loop-lab-lesson-card__meta b {
     color: var(--text-primary);
     font-size: 0.88rem;
+}
+
+.loop-lab-lesson-empty {
+    grid-column: 1 / -1;
+    border: 1px dashed color-mix(in srgb, var(--border) 78%, transparent);
+    border-radius: 10px;
+    padding: 22px;
+    background: rgba(255, 255, 255, 0.58);
+    color: var(--text-muted);
+    font-weight: 780;
+    text-align: center;
 }
 
 @media (max-width: 1180px) {
@@ -19181,6 +19349,10 @@ body.site-shell-overlay-open {
 
     .loop-lab-dashboard__grid,
     .loop-lab-dashboard__stats {
+        grid-template-columns: 1fr;
+    }
+
+    .loop-lab-learning-summary {
         grid-template-columns: 1fr;
     }
 }
@@ -19240,6 +19412,14 @@ body.site-shell-overlay-open {
     .loop-lab-dashboard__actions .loop-lab-inline-button {
         width: 100%;
         justify-content: center;
+    }
+
+    .loop-lab-learning-summary__filters {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .loop-lab-filter {
+        min-height: 48px;
     }
 
     .loop-lab-pet-wall__toolbar {

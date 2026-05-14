@@ -1,5 +1,6 @@
 ;(function () {
   var storageKey = 'learn-likecc.loop-lab.progress.v1'
+  var dashboardFilter = 'all'
   var lessons = [
     {
       id: 'agent-loop',
@@ -76,6 +77,11 @@
     return clean.length > limit ? clean.slice(0, limit - 1) + '…' : clean
   }
 
+  function cleanNote(text) {
+    var clean = String(text || '').replace(/\r/g, '').trim()
+    return clean.length > 420 ? clean.slice(0, 420) : clean
+  }
+
   function clamp(value, min, max) {
     return Math.min(max, Math.max(min, value))
   }
@@ -124,6 +130,31 @@
     }
   }
 
+  function blankLearning() {
+    return {
+      mastered: false,
+      reviewLater: false,
+      note: '',
+      updatedAt: '',
+      masteredAt: '',
+      reviewAt: '',
+      noteUpdatedAt: ''
+    }
+  }
+
+  function normaliseLearning(learning) {
+    var next = Object.assign(blankLearning(), learning && typeof learning === 'object' ? learning : {})
+    next.mastered = Boolean(next.mastered)
+    next.reviewLater = Boolean(next.reviewLater)
+    if (next.mastered) next.reviewLater = false
+    next.note = cleanNote(next.note)
+    next.updatedAt = next.updatedAt || ''
+    next.masteredAt = next.masteredAt || ''
+    next.reviewAt = next.reviewAt || ''
+    next.noteUpdatedAt = next.noteUpdatedAt || ''
+    return next
+  }
+
   function blankRecord(lesson) {
     return {
       id: lesson.id,
@@ -137,6 +168,7 @@
       progress: 0,
       status: '未开始',
       resume: {},
+      learning: blankLearning(),
       updatedAt: '',
       completedAt: ''
     }
@@ -154,10 +186,12 @@
     record.scrollY = Math.max(0, Math.round(Number(record.scrollY) || 0))
     record.progress = clamp(Number(record.progress) || 0, 0, 100)
     if (!record.resume || typeof record.resume !== 'object') record.resume = {}
+    record.learning = normaliseLearning(record.learning)
     return record
   }
 
   function computeProgress(record) {
+    if (record.learning && record.learning.mastered) return 100
     var readPercent = Math.round((Number(record.maxScrollRatio) || 0) * 100)
     var visitFloor = record.visits > 0 ? 8 : 0
     var interactionFloor = record.interactions > 0 ? 38 : 0
@@ -167,6 +201,8 @@
   }
 
   function recordLabel(record) {
+    if (record.learning && record.learning.mastered) return '已掌握'
+    if (record.learning && record.learning.reviewLater) return '待复盘'
     var progress = computeProgress(record)
     if (progress >= 100) return '已完成'
     if (progress >= 72) return '接近完成'
@@ -211,6 +247,56 @@
     })
     next.updatedAt = resume && resume.updatedAt ? resume.updatedAt : new Date().toISOString()
     record.resume = next
+  }
+
+  function mergeLearning(record, learning) {
+    var now = new Date().toISOString()
+    var next = normaliseLearning(record.learning)
+    if (Object.prototype.hasOwnProperty.call(learning, 'mastered')) {
+      next.mastered = Boolean(learning.mastered)
+      next.masteredAt = next.mastered ? now : ''
+      if (next.mastered) {
+        next.reviewLater = false
+        next.reviewAt = ''
+      }
+    }
+    if (Object.prototype.hasOwnProperty.call(learning, 'reviewLater')) {
+      next.reviewLater = Boolean(learning.reviewLater)
+      next.reviewAt = next.reviewLater ? now : ''
+      if (next.reviewLater) {
+        next.mastered = false
+        next.masteredAt = ''
+      }
+    }
+    if (Object.prototype.hasOwnProperty.call(learning, 'note')) {
+      next.note = cleanNote(learning.note)
+      next.noteUpdatedAt = now
+    }
+    next.updatedAt = now
+    record.learning = normaliseLearning(next)
+  }
+
+  function hasNote(record) {
+    return Boolean(record && record.learning && cleanNote(record.learning.note))
+  }
+
+  function learningFlags(record) {
+    var learning = record.learning || blankLearning()
+    var flags = []
+    if (learning.mastered) flags.push({ key: 'mastered', label: '已掌握' })
+    if (learning.reviewLater) flags.push({ key: 'review', label: '待复盘' })
+    if (hasNote(record)) flags.push({ key: 'note', label: '有笔记' })
+    return flags
+  }
+
+  function learningTitle(record) {
+    var flags = learningFlags(record).map(function (flag) { return flag.label })
+    if (!flags.length) return '未设置学习状态'
+    return flags.join(' · ')
+  }
+
+  function notePreview(record) {
+    return hasNote(record) ? normaliseText(record.learning.note, 82) : ''
   }
 
   function hasResume(record) {
@@ -292,6 +378,7 @@
       record.scrollY = Math.max(0, Math.round(patch.scrollY))
     }
     if (patch.resume) mergeResume(record, patch.resume)
+    if (patch.learning) mergeLearning(record, patch.learning)
     if (patch.status) record.status = patch.status
     record.progress = computeProgress(record)
     record.updatedAt = new Date().toISOString()
@@ -308,6 +395,10 @@
   }
 
   function getRecommendedLesson(state) {
+    var reviewLesson = lessons.find(function (lesson) {
+      return getRecord(state, lesson).learning.reviewLater
+    })
+    if (reviewLesson) return reviewLesson
     return lessons.find(function (lesson) {
       return computeProgress(getRecord(state, lesson)) < 100
     }) || lessons[0]
@@ -324,6 +415,11 @@
       return sum + computeProgress(record)
     }, 0) / lessons.length)
     var completed = records.filter(function (record) { return computeProgress(record) >= 100 }).length
+    var managed = {
+      mastered: records.filter(function (record) { return record.learning.mastered }).length,
+      review: records.filter(function (record) { return record.learning.reviewLater }).length,
+      notes: records.filter(hasNote).length
+    }
     var lastRecord = null
     if (state.lastLessonId) {
       var lastLesson = lessons.find(function (lesson) { return lesson.id === state.lastLessonId })
@@ -335,7 +431,64 @@
         .sort(function (a, b) { return new Date(b.updatedAt) - new Date(a.updatedAt) })[0] || null
     }
     var nextLesson = getRecommendedLesson(state)
-    return { total: total, completed: completed, lastRecord: lastRecord, nextLesson: nextLesson, records: records }
+    return { total: total, completed: completed, lastRecord: lastRecord, nextLesson: nextLesson, records: records, managed: managed }
+  }
+
+  function recommendationPrefix(record) {
+    return record && record.learning && record.learning.reviewLater ? '复盘' : '继续'
+  }
+
+  function dashboardFilterLabel(filter) {
+    if (filter === 'mastered') return '已掌握'
+    if (filter === 'review') return '待复盘'
+    if (filter === 'notes') return '有笔记'
+    return '全部'
+  }
+
+  function passesDashboardFilter(record) {
+    if (dashboardFilter === 'mastered') return record.learning.mastered
+    if (dashboardFilter === 'review') return record.learning.reviewLater
+    if (dashboardFilter === 'notes') return hasNote(record)
+    return true
+  }
+
+  function renderLearningFlags(record) {
+    var flags = learningFlags(record)
+    if (!flags.length) return ''
+    return '<div class="loop-lab-lesson-card__flags">' + flags.map(function (flag) {
+      return '<span class="loop-lab-flag loop-lab-flag--' + esc(flag.key) + '">' + esc(flag.label) + '</span>'
+    }).join('') + '</div>'
+  }
+
+  function renderLearningSummary(root, summary) {
+    var panel = root.querySelector('[data-loop-lab-learning-summary]')
+    if (!panel) return
+    var items = [
+      { key: 'all', label: '全部', value: lessons.length },
+      { key: 'mastered', label: '已掌握', value: summary.managed.mastered },
+      { key: 'review', label: '待复盘', value: summary.managed.review },
+      { key: 'notes', label: '有笔记', value: summary.managed.notes }
+    ]
+    panel.innerHTML =
+      '<div class="loop-lab-learning-summary__copy">' +
+        '<span>Learning Manager</span>' +
+        '<strong>' + esc(summary.managed.mastered + ' 掌握 · ' + summary.managed.review + ' 复盘 · ' + summary.managed.notes + ' 笔记') + '</strong>' +
+        '<p>这些状态只保存在当前浏览器，用来管理自己的课程节奏。</p>' +
+      '</div>' +
+      '<div class="loop-lab-learning-summary__filters" role="group" aria-label="筛选课程状态">' +
+        items.map(function (item) {
+          return '<button type="button" class="loop-lab-filter' + (dashboardFilter === item.key ? ' is-active' : '') + '" data-loop-lab-filter="' + esc(item.key) + '" aria-pressed="' + (dashboardFilter === item.key ? 'true' : 'false') + '">' +
+            '<span>' + esc(item.label) + '</span><strong>' + item.value + '</strong>' +
+          '</button>'
+        }).join('') +
+      '</div>'
+
+    Array.from(panel.querySelectorAll('[data-loop-lab-filter]')).forEach(function (button) {
+      button.addEventListener('click', function () {
+        dashboardFilter = button.getAttribute('data-loop-lab-filter') || 'all'
+        renderDashboard()
+      })
+    })
   }
 
   function buildLessonLinks(current, state) {
@@ -343,12 +496,13 @@
       var active = lesson.id === current.id
       var record = getRecord(state, lesson)
       var progress = computeProgress(record)
+      var learning = record.learning
       return (
-        '<a class="sim-course-link' + (active ? ' is-active' : '') + (progress >= 100 ? ' is-done' : '') + '" href="' + esc(lessonHref(lesson)) + '" data-sim-course-link="' + esc(lesson.id) + '" style="--sim-link-progress:' + (progress / 100).toFixed(2) + '"' +
+        '<a class="sim-course-link' + (active ? ' is-active' : '') + (progress >= 100 ? ' is-done' : '') + (learning.mastered ? ' is-mastered' : '') + (learning.reviewLater ? ' needs-review' : '') + (hasNote(record) ? ' has-note' : '') + '" href="' + esc(lessonHref(lesson)) + '" data-sim-course-link="' + esc(lesson.id) + '" style="--sim-link-progress:' + (progress / 100).toFixed(2) + '"' +
           (active ? ' aria-current="page"' : '') + '>' +
           '<span>' + esc(lesson.order) + ' · ' + esc(lesson.label) + '</span>' +
           '<strong>' + esc(lesson.title) + '</strong>' +
-          '<em data-sim-course-percent>' + progress + '%</em>' +
+          '<em data-sim-course-percent>' + (learning.mastered ? '已掌握' : progress + '%') + '</em>' +
         '</a>'
       )
     }).join('')
@@ -440,14 +594,105 @@
       if (!lesson) return
       var record = getRecord(state, lesson)
       var progress = computeProgress(record)
+      var learning = record.learning
       node.style.setProperty('--sim-link-progress', (progress / 100).toFixed(2))
       node.classList.toggle('is-done', progress >= 100)
       node.classList.toggle('has-resume', hasResume(record))
+      node.classList.toggle('is-mastered', learning.mastered)
+      node.classList.toggle('needs-review', learning.reviewLater)
+      node.classList.toggle('has-note', hasNote(record))
       node.href = buildResumeHref(lesson, record)
-      node.title = resumeLabel(record, lesson) || lesson.hint
+      node.title = [learningTitle(record), resumeLabel(record, lesson) || lesson.hint].filter(Boolean).join(' · ')
       var percent = node.querySelector('[data-sim-course-percent]')
-      if (percent) percent.textContent = progress + '%'
+      if (percent) percent.textContent = learning.mastered ? '已掌握' : progress + '%'
     })
+  }
+
+  function buildLearningPanel(current, state) {
+    var record = getRecord(state, current)
+    var learning = record.learning
+    return (
+      '<div class="sim-course-learning" data-sim-learning aria-label="本地学习管理">' +
+        '<div class="sim-course-learning__actions" role="group" aria-label="学习状态">' +
+          '<button type="button" class="sim-course-learning__toggle" data-sim-learning-toggle="mastered" aria-pressed="' + (learning.mastered ? 'true' : 'false') + '">' +
+            '<span>已掌握</span><em>完成这节课</em>' +
+          '</button>' +
+          '<button type="button" class="sim-course-learning__toggle" data-sim-learning-toggle="reviewLater" aria-pressed="' + (learning.reviewLater ? 'true' : 'false') + '">' +
+            '<span>稍后复盘</span><em>加入回看队列</em>' +
+          '</button>' +
+        '</div>' +
+        '<label class="sim-course-note">' +
+          '<span>我的笔记 <em data-sim-note-status>本机保存</em></span>' +
+          '<textarea data-sim-note maxlength="420" rows="2" placeholder="记下卡住点、命令片段或下次要验证的问题。">' + esc(learning.note) + '</textarea>' +
+        '</label>' +
+      '</div>'
+    )
+  }
+
+  function syncLearningPanel(shell, current, state) {
+    var record = getRecord(state, current)
+    var learning = record.learning
+    Array.from(shell.querySelectorAll('[data-sim-learning-toggle]')).forEach(function (button) {
+      var key = button.getAttribute('data-sim-learning-toggle')
+      var active = key === 'mastered' ? learning.mastered : learning.reviewLater
+      button.setAttribute('aria-pressed', active ? 'true' : 'false')
+      button.classList.toggle('is-active', active)
+    })
+    var note = shell.querySelector('[data-sim-note]')
+    if (note && document.activeElement !== note && note.value !== learning.note) note.value = learning.note
+    var noteStatus = shell.querySelector('[data-sim-note-status]')
+    if (noteStatus) {
+      noteStatus.textContent = hasNote(record) ? '已保存 ' + learning.note.length + '/420' : '本机保存'
+    }
+  }
+
+  function bindLearningPanel(shell, current, getState, setState, onChange) {
+    Array.from(shell.querySelectorAll('[data-sim-learning-toggle]')).forEach(function (button) {
+      button.addEventListener('click', function () {
+        var key = button.getAttribute('data-sim-learning-toggle')
+        var record = getRecord(getState(), current)
+        var learningPatch = {}
+        if (key === 'mastered') learningPatch.mastered = !record.learning.mastered
+        if (key === 'reviewLater') learningPatch.reviewLater = !record.learning.reviewLater
+        var nextState = updateLesson(current, {
+          maxScrollRatio: getScrollRatio(),
+          currentScrollRatio: getScrollRatio(),
+          scrollY: window.scrollY,
+          status: readInteractionStatus(current),
+          resume: captureResumeContext(current),
+          learning: learningPatch
+        })
+        setState(nextState)
+        onChange()
+      })
+    })
+
+    var note = shell.querySelector('[data-sim-note]')
+    var saveTimer = 0
+    var saveNote = function () {
+      var nextState = updateLesson(current, {
+        maxScrollRatio: getScrollRatio(),
+        currentScrollRatio: getScrollRatio(),
+        scrollY: window.scrollY,
+        status: readInteractionStatus(current),
+        resume: captureResumeContext(current),
+        learning: { note: note.value }
+      })
+      setState(nextState)
+      onChange()
+    }
+    if (note) {
+      note.addEventListener('input', function () {
+        var noteStatus = shell.querySelector('[data-sim-note-status]')
+        if (noteStatus) noteStatus.textContent = '正在保存'
+        window.clearTimeout(saveTimer)
+        saveTimer = window.setTimeout(saveNote, 360)
+      })
+      note.addEventListener('blur', function () {
+        window.clearTimeout(saveTimer)
+        saveNote()
+      })
+    }
   }
 
   function initCourseShell() {
@@ -491,6 +736,7 @@
             '<em>' + esc(next.hint) + '</em>' +
           '</a>' +
         '</div>' +
+        buildLearningPanel(current, state) +
       '</div>'
 
     document.body.appendChild(shell)
@@ -523,8 +769,17 @@
         resumeNode.textContent = text
         resumeNode.hidden = !text
       }
+      syncLearningPanel(shell, current, state)
       syncShellRecords(shell, state)
     }
+
+    bindLearningPanel(
+      shell,
+      current,
+      function () { return state },
+      function (nextState) { state = nextState },
+      updateStatus
+    )
 
     window.addEventListener('scroll', updateProgress, { passive: true })
     window.addEventListener('hashchange', function () {
@@ -617,7 +872,10 @@
         ? summary.lastRecord.title + ' · ' + formatTime(summary.lastRecord.updatedAt) + (continueResume ? ' · ' + continueResume.replace('断点：', '') : '')
         : '还没有开始'
     }
-    if (next) next.textContent = summary.nextLesson.label + ' · ' + summary.nextLesson.title
+    if (next) {
+      var nextRecord = getRecord(state, summary.nextLesson)
+      next.textContent = recommendationPrefix(nextRecord) + '：' + summary.nextLesson.label + ' · ' + summary.nextLesson.title
+    }
     if (ring) ring.style.setProperty('--loop-progress', summary.total + '%')
     if (nextLink) {
       nextLink.href = continueHref
@@ -629,28 +887,39 @@
       primaryCta.textContent = summary.lastRecord ? '继续上次断点' : (summary.total > 0 ? '继续学习' : '从第一课开始')
       primaryCta.title = continueResume || continueLesson.hint
     }
+    renderLearningSummary(root, summary)
 
     if (list) {
-      list.innerHTML = lessons.map(function (lesson) {
+      var visibleLessons = lessons.filter(function (lesson) {
+        return passesDashboardFilter(getRecord(state, lesson))
+      })
+      if (!visibleLessons.length) {
+        list.innerHTML = '<div class="loop-lab-lesson-empty">当前没有“' + esc(dashboardFilterLabel(dashboardFilter)) + '”课程。</div>'
+      } else {
+        list.innerHTML = visibleLessons.map(function (lesson) {
         var record = getRecord(state, lesson)
         var progress = computeProgress(record)
         var label = recordLabel(record)
         var resumeText = resumeLabel(record, lesson)
         var href = buildResumeHref(lesson, record)
+        var note = notePreview(record)
         return (
-          '<a class="loop-lab-lesson-card' + (progress >= 100 ? ' is-complete' : '') + (resumeText ? ' has-resume' : '') + '" href="' + esc(href) + '" title="' + esc(resumeText || lesson.hint) + '" style="--lesson-progress:' + progress + '%">' +
+          '<a class="loop-lab-lesson-card' + (progress >= 100 ? ' is-complete' : '') + (resumeText ? ' has-resume' : '') + (record.learning.mastered ? ' is-mastered' : '') + (record.learning.reviewLater ? ' needs-review' : '') + (hasNote(record) ? ' has-note' : '') + '" href="' + esc(href) + '" title="' + esc([learningTitle(record), resumeText || lesson.hint].filter(Boolean).join(' · ')) + '" style="--lesson-progress:' + progress + '%">' +
             '<span class="loop-lab-lesson-card__order">' + esc(lesson.order) + '</span>' +
             '<div class="loop-lab-lesson-card__body">' +
               '<span class="loop-lab-lesson-card__eyebrow">' + esc(lesson.label) + ' · ' + lesson.minutes + ' min</span>' +
               '<h3>' + esc(lesson.title) + '</h3>' +
               '<p>' + esc(lesson.output) + '</p>' +
+              renderLearningFlags(record) +
               (resumeText ? '<span class="loop-lab-lesson-card__resume">' + esc(resumeText) + '</span>' : '') +
+              (note ? '<span class="loop-lab-lesson-card__note">' + esc(note) + '</span>' : '') +
               '<div class="loop-lab-lesson-card__bar" aria-hidden="true"><span></span></div>' +
               '<div class="loop-lab-lesson-card__meta"><b>' + progress + '% · ' + esc(label) + '</b><em>' + esc(formatTime(record.updatedAt)) + '</em></div>' +
             '</div>' +
           '</a>'
         )
       }).join('')
+      }
     }
 
     Array.from(document.querySelectorAll('[data-loop-lab-mini]')).forEach(function (node) {
@@ -662,10 +931,18 @@
       node.style.setProperty('--lesson-progress', progress + '%')
       node.classList.toggle('is-complete', progress >= 100)
       node.classList.toggle('has-resume', Boolean(miniResume))
+      node.classList.toggle('is-mastered', record.learning.mastered)
+      node.classList.toggle('needs-review', record.learning.reviewLater)
+      node.classList.toggle('has-note', hasNote(record))
       node.href = buildResumeHref(lesson, record)
-      node.title = miniResume || lesson.hint
+      node.title = [learningTitle(record), miniResume || lesson.hint].filter(Boolean).join(' · ')
       var status = node.querySelector('[data-loop-lab-mini-status]')
-      if (status) status.textContent = miniResume ? progress + '% · 断点' : progress + '%'
+      if (status) {
+        if (record.learning.mastered) status.textContent = '已掌握'
+        else if (record.learning.reviewLater) status.textContent = '待复盘'
+        else if (hasNote(record)) status.textContent = progress + '% · 笔记'
+        else status.textContent = miniResume ? progress + '% · 断点' : progress + '%'
+      }
     })
 
     if (reset && !reset.dataset.bound) {
