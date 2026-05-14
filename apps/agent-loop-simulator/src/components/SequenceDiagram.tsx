@@ -1,3 +1,4 @@
+import { useCallback, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sun, Bot, Wrench } from 'lucide-react';
 import type { SequenceMessage } from '../data/simulatorData';
@@ -15,41 +16,117 @@ const participants = [
   { id: 'tools', name: 'Tools', icon: Wrench, color: '#6366f1' },
 ];
 
+interface ArrowSegment {
+  id: string;
+  type: SequenceMessage['type'];
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
+}
+
 export default function SequenceDiagram({ currentStep, onMessageClick }: SequenceDiagramProps) {
-  const visibleMessages = sequenceMessages.filter((m) => m.step <= currentStep);
+  const visibleMessages = useMemo(
+    () => sequenceMessages.filter((m) => m.step <= currentStep),
+    [currentStep],
+  );
+  const messageKeys = useMemo(
+    () => visibleMessages.map((msg, idx) => `${msg.step}-${msg.type}-${idx}`),
+    [visibleMessages],
+  );
+  const messageLayerRef = useRef<HTMLDivElement | null>(null);
+  const messageRefs = useRef<Map<string, HTMLDivElement>>(new Map());
+  const [arrowSegments, setArrowSegments] = useState<ArrowSegment[]>([]);
   const laneHeight = 112;
-  const arrowGap = 10;
   const diagramHeight = Math.max(520, 72 + visibleMessages.length * laneHeight);
 
-  const estimatedBlockHeight: Record<SequenceMessage['type'], number> = {
-    STDIN: 72,
-    REQUEST: 76,
-    ASSISTANT: 78,
-    LOOP: 72,
-    TOOL_RESULT: 72,
-  };
+  const setMessageRef = useCallback((key: string) => (node: HTMLDivElement | null) => {
+    if (node) {
+      messageRefs.current.set(key, node);
+    } else {
+      messageRefs.current.delete(key);
+    }
+  }, []);
 
-  const getArrowY = (msg: SequenceMessage, rowIdx: number) => {
-    const messageTop = 18 + rowIdx * laneHeight;
-    const blockHeight = estimatedBlockHeight[msg.type] ?? 74;
-
-    return messageTop + Math.min(blockHeight + arrowGap, laneHeight - 18);
-  };
-
-  const getArrowPoints = (fromIdx: number, toIdx: number) => {
-    const from = ((fromIdx + 0.5) / participants.length) * 100;
-    const to = ((toIdx + 0.5) / participants.length) * 100;
-    const sourceInset = 12.4;
-    const targetInset = 4.8;
-
-    if (from === to) {
-      return { x1: `${from}%`, x2: `${to}%` };
+  const syncArrowSegments = useCallback(() => {
+    const layer = messageLayerRef.current;
+    if (!layer || visibleMessages.length < 2) {
+      setArrowSegments([]);
+      return;
     }
 
-    return from < to
-      ? { x1: `${from + sourceInset}%`, x2: `${to - targetInset}%` }
-      : { x1: `${from - sourceInset}%`, x2: `${to + targetInset}%` };
-  };
+    const layerRect = layer.getBoundingClientRect();
+    const nextSegments: ArrowSegment[] = [];
+
+    for (let idx = 0; idx < visibleMessages.length - 1; idx += 1) {
+      const fromEl = messageRefs.current.get(messageKeys[idx]);
+      const toEl = messageRefs.current.get(messageKeys[idx + 1]);
+      const nextMessage = visibleMessages[idx + 1];
+      if (!fromEl || !toEl) continue;
+
+      const fromRect = fromEl.getBoundingClientRect();
+      const toRect = toEl.getBoundingClientRect();
+      const fromCenterX = fromRect.left + fromRect.width / 2 - layerRect.left;
+      const toCenterX = toRect.left + toRect.width / 2 - layerRect.left;
+      const sameLane = Math.abs(toCenterX - fromCenterX) < 28;
+      const sideGap = 8;
+
+      let x1: number;
+      let y1: number;
+      let x2: number;
+      let y2: number;
+
+      if (sameLane) {
+        x1 = fromCenterX - 14;
+        y1 = fromRect.bottom - layerRect.top + 6;
+        x2 = toCenterX + 14;
+        y2 = toRect.top - layerRect.top - 8;
+      } else if (toCenterX < fromCenterX) {
+        x1 = fromRect.left - layerRect.left - sideGap;
+        y1 = fromRect.top - layerRect.top + fromRect.height * 0.72;
+        x2 = toRect.right - layerRect.left + sideGap;
+        y2 = toRect.top - layerRect.top + toRect.height * 0.36;
+      } else {
+        x1 = fromRect.right - layerRect.left + sideGap;
+        y1 = fromRect.top - layerRect.top + fromRect.height * 0.72;
+        x2 = toRect.left - layerRect.left - sideGap;
+        y2 = toRect.top - layerRect.top + toRect.height * 0.36;
+      }
+
+      nextSegments.push({
+        id: `flow-${messageKeys[idx]}-${messageKeys[idx + 1]}`,
+        type: nextMessage.type,
+        x1,
+        y1,
+        x2,
+        y2,
+      });
+    }
+
+    setArrowSegments(nextSegments);
+  }, [messageKeys, visibleMessages]);
+
+  useLayoutEffect(() => {
+    let rafId = window.requestAnimationFrame(syncArrowSegments);
+    const settleTimer = window.setTimeout(() => {
+      rafId = window.requestAnimationFrame(syncArrowSegments);
+    }, 480);
+    const resizeObserver =
+      typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(syncArrowSegments);
+
+    if (messageLayerRef.current && resizeObserver) {
+      resizeObserver.observe(messageLayerRef.current);
+      messageRefs.current.forEach((node) => resizeObserver.observe(node));
+    }
+    window.addEventListener('resize', syncArrowSegments);
+
+    return () => {
+      window.cancelAnimationFrame(rafId);
+      window.clearTimeout(settleTimer);
+      window.removeEventListener('resize', syncArrowSegments);
+      resizeObserver?.disconnect();
+    };
+  }, [syncArrowSegments]);
 
   return (
     <div
@@ -95,7 +172,7 @@ export default function SequenceDiagram({ currentStep, onMessageClick }: Sequenc
         </div>
 
         {/* Messages */}
-        <div className="relative z-10 h-full">
+        <div ref={messageLayerRef} className="relative z-10 h-full">
           <AnimatePresence>
             {visibleMessages.map((msg, idx) => {
               const colIndex =
@@ -119,6 +196,7 @@ export default function SequenceDiagram({ currentStep, onMessageClick }: Sequenc
                   <MessageBlock
                     message={msg}
                     index={idx}
+                    cardRef={setMessageRef(messageKeys[idx])}
                     onClick={onMessageClick}
                   />
                 </div>
@@ -126,42 +204,34 @@ export default function SequenceDiagram({ currentStep, onMessageClick }: Sequenc
             })}
           </AnimatePresence>
 
-          {/* Arrow lines between participants */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none z-0">
+          {/* Arrow lines between adjacent message cards */}
+          <svg className="absolute inset-0 w-full h-full pointer-events-none z-0" aria-hidden="true">
             <AnimatePresence>
-              {visibleMessages
-                .filter((msg) => msg.target !== 'self')
-                .map((msg) => {
-                  const fromIdx = participants.findIndex((p) => p.id === msg.source);
-                  const toIdx = participants.findIndex((p) => p.id === msg.target);
-                  const rowIdx = visibleMessages.indexOf(msg);
-                  const yPos = getArrowY(msg, rowIdx);
-                  const { x1, x2 } = getArrowPoints(fromIdx, toIdx);
-
-                  return (
-                    <motion.line
-                      key={`arrow-${msg.step}-${msg.type}`}
-                      initial={{ pathLength: 0, opacity: 0 }}
-                      animate={{ pathLength: 1, opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.4, ease: 'easeInOut' }}
-                      x1={x1}
-                      y1={`${yPos}px`}
-                      x2={x2}
-                      y2={`${yPos}px`}
-                      stroke={messageColors[msg.type]?.arrow || '#999'}
-                      strokeWidth={1.75}
-                      strokeLinecap="round"
-                      markerEnd={`url(#arrowhead-${msg.type})`}
-                    />
-                  );
-                })}
+              {arrowSegments.map((segment) => (
+                <motion.line
+                  key={segment.id}
+                  data-flow-arrow="card"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{ pathLength: 1, opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.32, ease: 'easeInOut' }}
+                  x1={segment.x1}
+                  y1={segment.y1}
+                  x2={segment.x2}
+                  y2={segment.y2}
+                  stroke={messageColors[segment.type]?.arrow || '#999'}
+                  strokeWidth={1.8}
+                  strokeLinecap="round"
+                  vectorEffect="non-scaling-stroke"
+                  markerEnd={`url(#card-arrowhead-${segment.type})`}
+                />
+              ))}
             </AnimatePresence>
             <defs>
               {Object.entries(messageColors).map(([type, colors]) => (
                 <marker
                   key={type}
-                  id={`arrowhead-${type}`}
+                  id={`card-arrowhead-${type}`}
                   markerWidth="7"
                   markerHeight="5"
                   refX="6.2"

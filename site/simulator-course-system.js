@@ -1256,9 +1256,196 @@
     window.addEventListener('loop-lab-progress-updated', renderDashboard)
   }
 
+  function initAgentLoopCardFlowArrows() {
+    if (document.body.getAttribute('data-sim-id') !== 'agent-loop') return
+
+    var diagram = document.querySelector('main .agent-loop-terminal-scroll')
+    if (!diagram) {
+      window.setTimeout(initAgentLoopCardFlowArrows, 450)
+      return
+    }
+    if (diagram.dataset.cardFlowArrows === 'true') return
+
+    var nativeCardFlow = diagram.querySelector('svg:not(.sim-card-flow-svg) line[data-flow-arrow="card"]')
+    if (nativeCardFlow) return
+
+    diagram.dataset.cardFlowArrows = 'true'
+    var labels = { STDIN: true, REQUEST: true, ASSISTANT: true, LOOP: true, TOOL_RESULT: true }
+    var colors = {
+      STDIN: '#fb923c',
+      REQUEST: '#ea580c',
+      ASSISTANT: '#6366f1',
+      LOOP: '#f59e0b',
+      TOOL_RESULT: '#22c55e'
+    }
+    var svgNs = 'http://www.w3.org/2000/svg'
+    var rafId = 0
+    var observer = null
+    var observerOptions = { childList: true, subtree: true, characterData: true }
+
+    function getOriginalSvg() {
+      return diagram.querySelector('svg.absolute.inset-0:not(.sim-card-flow-svg)') ||
+        Array.from(diagram.querySelectorAll('svg:not(.sim-card-flow-svg)')).find(function (svg) {
+          return svg.querySelector('line') && svg.parentElement && svg.parentElement.classList.contains('relative')
+        })
+    }
+
+    function getLayer() {
+      var svg = getOriginalSvg()
+      return svg ? svg.parentElement : null
+    }
+
+    function getCards() {
+      var explicit = Array.from(diagram.querySelectorAll('[data-sequence-message]'))
+      if (explicit.length) return explicit
+      return Array.from(diagram.querySelectorAll('div')).filter(function (node) {
+        var first = node.firstElementChild
+        var label = first ? String(first.textContent || '').trim() : ''
+        if (!labels[label]) return false
+        var rect = node.getBoundingClientRect()
+        var style = window.getComputedStyle(node)
+        return rect.width > 40 && rect.height > 24 && parseFloat(style.borderLeftWidth) > 0
+      })
+    }
+
+    function ensureOverlay(layer) {
+      var overlay = layer.querySelector('svg.sim-card-flow-svg')
+      if (overlay) return overlay
+
+      overlay = document.createElementNS(svgNs, 'svg')
+      overlay.setAttribute('class', 'sim-card-flow-svg absolute inset-0 w-full h-full pointer-events-none z-0')
+      overlay.setAttribute('aria-hidden', 'true')
+      overlay.style.position = 'absolute'
+      overlay.style.inset = '0'
+      overlay.style.width = '100%'
+      overlay.style.height = '100%'
+      overlay.style.pointerEvents = 'none'
+      overlay.style.zIndex = '0'
+
+      var defs = document.createElementNS(svgNs, 'defs')
+      Object.keys(colors).forEach(function (type) {
+        var marker = document.createElementNS(svgNs, 'marker')
+        marker.setAttribute('id', 'sim-card-flow-arrowhead-' + type)
+        marker.setAttribute('markerWidth', '7')
+        marker.setAttribute('markerHeight', '5')
+        marker.setAttribute('refX', '6.2')
+        marker.setAttribute('refY', '2.5')
+        marker.setAttribute('orient', 'auto')
+        var polygon = document.createElementNS(svgNs, 'polygon')
+        polygon.setAttribute('points', '0 0, 7 2.5, 0 5')
+        polygon.setAttribute('fill', colors[type])
+        marker.appendChild(polygon)
+        defs.appendChild(marker)
+      })
+      overlay.appendChild(defs)
+      layer.appendChild(overlay)
+      return overlay
+    }
+
+    function readType(card) {
+      return card.getAttribute('data-sequence-message') ||
+        (card.firstElementChild ? String(card.firstElementChild.textContent || '').trim() : '')
+    }
+
+    function draw() {
+      if (observer) observer.disconnect()
+
+      var originalSvg = getOriginalSvg()
+      var layer = getLayer()
+      if (!originalSvg || !layer) {
+        if (observer) observer.observe(diagram, observerOptions)
+        return
+      }
+
+      Array.from(originalSvg.querySelectorAll('line')).forEach(function (line) {
+        line.style.opacity = '0'
+      })
+
+      var overlay = ensureOverlay(layer)
+      Array.from(overlay.querySelectorAll('line')).forEach(function (line) {
+        line.remove()
+      })
+
+      var cards = getCards()
+      if (cards.length < 2) {
+        if (observer) observer.observe(diagram, observerOptions)
+        return
+      }
+
+      var layerRect = layer.getBoundingClientRect()
+      cards.forEach(function (fromCard, index) {
+        var toCard = cards[index + 1]
+        if (!toCard) return
+
+        var fromRect = fromCard.getBoundingClientRect()
+        var toRect = toCard.getBoundingClientRect()
+        var fromCenterX = fromRect.left + fromRect.width / 2 - layerRect.left
+        var toCenterX = toRect.left + toRect.width / 2 - layerRect.left
+        var sameLane = Math.abs(toCenterX - fromCenterX) < 28
+        var sideGap = 8
+        var x1
+        var y1
+        var x2
+        var y2
+
+        if (sameLane) {
+          x1 = fromCenterX - 14
+          y1 = fromRect.bottom - layerRect.top + 6
+          x2 = toCenterX + 14
+          y2 = toRect.top - layerRect.top - 8
+        } else if (toCenterX < fromCenterX) {
+          x1 = fromRect.left - layerRect.left - sideGap
+          y1 = fromRect.top - layerRect.top + fromRect.height * 0.72
+          x2 = toRect.right - layerRect.left + sideGap
+          y2 = toRect.top - layerRect.top + toRect.height * 0.36
+        } else {
+          x1 = fromRect.right - layerRect.left + sideGap
+          y1 = fromRect.top - layerRect.top + fromRect.height * 0.72
+          x2 = toRect.left - layerRect.left - sideGap
+          y2 = toRect.top - layerRect.top + toRect.height * 0.36
+        }
+
+        var type = readType(toCard)
+        var line = document.createElementNS(svgNs, 'line')
+        line.setAttribute('data-flow-arrow', 'card-runtime')
+        line.setAttribute('x1', String(Math.round(x1 * 10) / 10))
+        line.setAttribute('y1', String(Math.round(y1 * 10) / 10))
+        line.setAttribute('x2', String(Math.round(x2 * 10) / 10))
+        line.setAttribute('y2', String(Math.round(y2 * 10) / 10))
+        line.setAttribute('stroke', colors[type] || '#999')
+        line.setAttribute('stroke-width', '1.8')
+        line.setAttribute('stroke-linecap', 'round')
+        line.setAttribute('vector-effect', 'non-scaling-stroke')
+        line.setAttribute('marker-end', 'url(#sim-card-flow-arrowhead-' + (colors[type] ? type : 'REQUEST') + ')')
+        overlay.appendChild(line)
+      })
+
+      if (observer) observer.observe(diagram, observerOptions)
+    }
+
+    function scheduleDraw() {
+      window.cancelAnimationFrame(rafId)
+      rafId = window.requestAnimationFrame(draw)
+    }
+
+    observer = new MutationObserver(function () {
+      window.setTimeout(scheduleDraw, 80)
+      window.setTimeout(scheduleDraw, 520)
+    })
+    observer.observe(diagram, observerOptions)
+    window.addEventListener('resize', scheduleDraw)
+    document.addEventListener('click', function () {
+      window.setTimeout(scheduleDraw, 120)
+      window.setTimeout(scheduleDraw, 520)
+    }, true)
+    window.setTimeout(scheduleDraw, 120)
+    window.setTimeout(scheduleDraw, 620)
+  }
+
   function boot() {
     initCourseShell()
     initDashboard()
+    initAgentLoopCardFlowArrows()
   }
 
   if (document.readyState === 'loading') {

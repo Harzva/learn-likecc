@@ -6,13 +6,17 @@ interface MessageBlockProps {
   message: SequenceMessage;
   index: number;
   onClick: (msg: SequenceMessage) => void;
+  cardRef?: (node: HTMLDivElement | null) => void;
 }
 
-export default function MessageBlock({ message, index, onClick }: MessageBlockProps) {
+export default function MessageBlock({ message, index, onClick, cardRef }: MessageBlockProps) {
   const colors = messageColors[message.type];
 
   return (
     <motion.div
+      ref={cardRef}
+      data-sequence-message={message.type}
+      data-sequence-index={index}
       initial={{ opacity: 0, scale: 0.95, y: 10 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
