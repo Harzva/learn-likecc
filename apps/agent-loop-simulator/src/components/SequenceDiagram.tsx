@@ -17,27 +17,38 @@ const participants = [
 
 export default function SequenceDiagram({ currentStep, onMessageClick }: SequenceDiagramProps) {
   const visibleMessages = sequenceMessages.filter((m) => m.step <= currentStep);
-  const laneHeight = 104;
-  const arrowGap = 8;
-  const diagramHeight = Math.max(520, 60 + visibleMessages.length * laneHeight);
+  const laneHeight = 112;
+  const arrowGap = 10;
+  const diagramHeight = Math.max(520, 72 + visibleMessages.length * laneHeight);
 
   const estimatedBlockHeight: Record<SequenceMessage['type'], number> = {
-    STDIN: 86,
-    REQUEST: 92,
-    ASSISTANT: 98,
-    LOOP: 86,
-    TOOL_RESULT: 82,
+    STDIN: 72,
+    REQUEST: 76,
+    ASSISTANT: 78,
+    LOOP: 72,
+    TOOL_RESULT: 72,
   };
 
   const getArrowY = (msg: SequenceMessage, rowIdx: number) => {
     const messageTop = 18 + rowIdx * laneHeight;
-    const blockHeight = estimatedBlockHeight[msg.type];
+    const blockHeight = estimatedBlockHeight[msg.type] ?? 74;
 
-    if (msg.source === 'agent-runtime') {
-      return messageTop + 26;
+    return messageTop + Math.min(blockHeight + arrowGap, laneHeight - 18);
+  };
+
+  const getArrowPoints = (fromIdx: number, toIdx: number) => {
+    const from = ((fromIdx + 0.5) / participants.length) * 100;
+    const to = ((toIdx + 0.5) / participants.length) * 100;
+    const sourceInset = 12.4;
+    const targetInset = 4.8;
+
+    if (from === to) {
+      return { x1: `${from}%`, x2: `${to}%` };
     }
 
-    return messageTop + blockHeight + arrowGap;
+    return from < to
+      ? { x1: `${from + sourceInset}%`, x2: `${to - targetInset}%` }
+      : { x1: `${from - sourceInset}%`, x2: `${to + targetInset}%` };
   };
 
   return (
@@ -125,8 +136,7 @@ export default function SequenceDiagram({ currentStep, onMessageClick }: Sequenc
                   const toIdx = participants.findIndex((p) => p.id === msg.target);
                   const rowIdx = visibleMessages.indexOf(msg);
                   const yPos = getArrowY(msg, rowIdx);
-                  const x1 = ((fromIdx + 0.5) / 3) * 100 + '%';
-                  const x2 = ((toIdx + 0.5) / 3) * 100 + '%';
+                  const { x1, x2 } = getArrowPoints(fromIdx, toIdx);
 
                   return (
                     <motion.line
@@ -140,7 +150,8 @@ export default function SequenceDiagram({ currentStep, onMessageClick }: Sequenc
                       x2={x2}
                       y2={`${yPos}px`}
                       stroke={messageColors[msg.type]?.arrow || '#999'}
-                      strokeWidth={2}
+                      strokeWidth={1.75}
+                      strokeLinecap="round"
                       markerEnd={`url(#arrowhead-${msg.type})`}
                     />
                   );
@@ -151,13 +162,13 @@ export default function SequenceDiagram({ currentStep, onMessageClick }: Sequenc
                 <marker
                   key={type}
                   id={`arrowhead-${type}`}
-                  markerWidth="8"
-                  markerHeight="6"
-                  refX="7"
-                  refY="3"
+                  markerWidth="7"
+                  markerHeight="5"
+                  refX="6.2"
+                  refY="2.5"
                   orient="auto"
                 >
-                  <polygon points="0 0, 8 3, 0 6" fill={colors.arrow} />
+                  <polygon points="0 0, 7 2.5, 0 5" fill={colors.arrow} />
                 </marker>
               ))}
             </defs>
