@@ -1391,6 +1391,8 @@ function getPageSubnavConfig() {
 }
 
 function initPageSubnav() {
+    if (document.body.classList.contains('home-page')) return
+    if (document.body.classList.contains('loop-lab-page')) return
     if (document.getElementById('page-subnav')) return
 
     const config = getPageSubnavConfig()
@@ -1675,19 +1677,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 导航栏滚动效果
     let lastScroll = 0
-    const navbar = document.querySelector('.navbar')
+    const navbar = document.querySelector('.navbar, .main-header')
 
-    window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset
+    if (navbar) {
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset
 
-        if (currentScroll > lastScroll && currentScroll > 100) {
-            navbar.style.transform = 'translateY(-100%)'
-        } else {
-            navbar.style.transform = 'translateY(0)'
-        }
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                navbar.style.transform = 'translateY(-100%)'
+            } else {
+                navbar.style.transform = 'translateY(0)'
+            }
 
-        lastScroll = currentScroll
-    })
+            lastScroll = currentScroll
+        })
+    }
 
     // 课程卡片动画
     document.querySelectorAll('.course-card').forEach((card, index) => {
@@ -1926,6 +1930,86 @@ function initSiteTopicIndex() {
     })
 }
 
+function initHomeLibraryExperience() {
+    if (!document.body.classList.contains('home-page')) return
+
+    const searchInput = document.getElementById('searchInput')
+    const status = document.getElementById('homeSearchStatus')
+    const cards = Array.from(document.querySelectorAll('.feature-card-main'))
+    const filterButtons = Array.from(document.querySelectorAll('[data-home-filter]'))
+
+    if (!cards.length || (!searchInput && !filterButtons.length)) return
+
+    const categoryNeedles = {
+        simulator: ['simulator', '仿真', 'loop', 'trace', 'script', 'workspace', 'task-board', '工作台', '驾驶舱'],
+        source: ['source', '源码', 'sourcemap', 'source-map', 'paoding', '庖丁', 'unpacked', 'awesome'],
+        course: ['tutorial', 'handbook', '教程', '手册', '课程', 'course', 'lesson', 'skills'],
+        topic: ['topic-', '专题', 'agent', 'rag', 'llm', '知识库', '工具链', 'vibe']
+    }
+
+    let activeFilter = 'all'
+
+    const getCardIndex = (card) => [
+        card.textContent,
+        card.getAttribute('href') || '',
+        card.className
+    ].join(' ').toLowerCase()
+
+    const matchesFilter = (indexText) => {
+        if (activeFilter === 'all') return true
+        const needles = categoryNeedles[activeFilter] || []
+        return needles.some((needle) => indexText.includes(needle.toLowerCase()))
+    }
+
+    const render = () => {
+        const query = (searchInput?.value || '').trim().toLowerCase()
+        let visibleCount = 0
+
+        cards.forEach((card) => {
+            const indexText = getCardIndex(card)
+            const visible = (!query || indexText.includes(query)) && matchesFilter(indexText)
+            card.classList.toggle('home-card-hidden', !visible)
+            card.setAttribute('aria-hidden', visible ? 'false' : 'true')
+            if (visible) visibleCount += 1
+        })
+
+        if (status) {
+            const shouldShowStatus = Boolean(query) || activeFilter !== 'all' || visibleCount !== cards.length
+            status.hidden = !shouldShowStatus
+            status.textContent = visibleCount
+                ? `显示 ${visibleCount} / ${cards.length} 个入口`
+                : '没有匹配入口，换个关键词试试'
+        }
+    }
+
+    filterButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            activeFilter = button.getAttribute('data-home-filter') || 'all'
+            filterButtons.forEach((item) => {
+                const isActive = item === button
+                item.classList.toggle('is-active', isActive)
+                item.setAttribute('aria-pressed', isActive ? 'true' : 'false')
+            })
+            render()
+        })
+    })
+
+    searchInput?.addEventListener('input', render)
+    searchInput?.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape') return
+        searchInput.value = ''
+        activeFilter = 'all'
+        filterButtons.forEach((item) => {
+            const isActive = item.getAttribute('data-home-filter') === 'all'
+            item.classList.toggle('is-active', isActive)
+            item.setAttribute('aria-pressed', isActive ? 'true' : 'false')
+        })
+        render()
+    })
+
+    render()
+}
+
 // 初始化新功能
 document.addEventListener('DOMContentLoaded', () => {
     initSiteSidebar()
@@ -1938,6 +2022,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initToolspotGrid()
     initToolspotLogos()
     initSiteTopicIndex()
+    initHomeLibraryExperience()
     initMermaidFlowcharts()
     markActiveSiteSidebarLinks()
 })

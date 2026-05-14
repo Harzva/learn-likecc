@@ -1,0 +1,346 @@
+/* Shared course shell for Loop Lab simulators. */
+:root {
+  --sim-shell-bg: rgba(255, 251, 245, 0.94);
+  --sim-shell-border: rgba(251, 146, 60, 0.28);
+  --sim-shell-text: #172033;
+  --sim-shell-muted: #607089;
+  --sim-shell-accent: #ea580c;
+  --sim-shell-cyan: #0e7490;
+  --sim-shell-shadow: 0 18px 54px rgba(15, 23, 42, 0.14);
+}
+
+html.sim-course-enhanced {
+  scroll-padding-bottom: 128px;
+}
+
+body.sim-course-page {
+  padding-bottom: 118px;
+}
+
+.sim-course-shell {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  left: 18px;
+  z-index: 2147483000;
+  max-width: 1180px;
+  margin: 0 auto;
+  color: var(--sim-shell-text);
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "PingFang SC",
+    "Microsoft YaHei",
+    sans-serif;
+  pointer-events: none;
+}
+
+.sim-course-shell * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+
+.sim-course-shell__panel {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(230px, 0.75fr) minmax(0, 1.4fr) minmax(230px, 0.72fr);
+  gap: 12px;
+  align-items: center;
+  border: 1px solid var(--sim-shell-border);
+  border-radius: 12px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.88), var(--sim-shell-bg)),
+    var(--sim-shell-bg);
+  box-shadow: var(--sim-shell-shadow);
+  backdrop-filter: blur(18px) saturate(1.1);
+  pointer-events: auto;
+  overflow: hidden;
+}
+
+.sim-course-shell__panel::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--sim-shell-accent), #0284c7);
+  transform: scaleX(var(--sim-progress, 0));
+  transform-origin: 0 50%;
+  transition: transform 140ms ease;
+}
+
+.sim-course-shell__summary,
+.sim-course-shell__next {
+  display: grid;
+  gap: 4px;
+  padding: 14px 16px;
+}
+
+.sim-course-shell__eyebrow,
+.sim-course-shell__next span,
+.sim-course-link span {
+  color: var(--sim-shell-cyan);
+  font-size: 0.72rem;
+  font-weight: 850;
+  line-height: 1.2;
+}
+
+.sim-course-shell__title {
+  margin: 0;
+  color: var(--sim-shell-text);
+  font-size: 0.98rem;
+  font-weight: 850;
+  line-height: 1.25;
+}
+
+.sim-course-shell__hint,
+.sim-course-shell__status {
+  margin: 0;
+  color: var(--sim-shell-muted);
+  font-size: 0.78rem;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.sim-course-links {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  padding: 10px 0;
+}
+
+.sim-course-link,
+.sim-course-shell__next-link {
+  display: grid;
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.sim-course-link {
+  position: relative;
+  gap: 3px;
+  min-height: 48px;
+  padding: 8px 10px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.62);
+  overflow: hidden;
+}
+
+.sim-course-link::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--sim-shell-accent), #0284c7);
+  transform: scaleX(var(--sim-link-progress, 0));
+  transform-origin: 0 50%;
+  opacity: 0.56;
+}
+
+.sim-course-link strong {
+  overflow: hidden;
+  color: var(--sim-shell-text);
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sim-course-link em {
+  color: var(--sim-shell-muted);
+  font-size: 0.68rem;
+  font-style: normal;
+  font-weight: 780;
+  line-height: 1.1;
+}
+
+.sim-course-link:hover,
+.sim-course-link:focus-visible,
+.sim-course-shell__next-link:hover,
+.sim-course-shell__next-link:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(234, 88, 12, 0.42);
+  background: rgba(255, 247, 237, 0.92);
+  outline: none;
+}
+
+.sim-course-link.is-active {
+  border-color: rgba(234, 88, 12, 0.5);
+  background: linear-gradient(135deg, rgba(255, 237, 213, 0.96), rgba(224, 242, 254, 0.92));
+}
+
+.sim-course-link.is-done {
+  border-color: rgba(22, 163, 74, 0.4);
+}
+
+.sim-course-link.is-done em {
+  color: #166534;
+}
+
+.sim-course-shell__next {
+  border-left: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.sim-course-shell__next-link {
+  gap: 2px;
+  border-radius: 8px;
+  padding: 6px 8px;
+}
+
+.sim-course-shell__next-link strong {
+  color: var(--sim-shell-text);
+  font-size: 0.9rem;
+}
+
+.sim-course-shell__next-link em {
+  color: var(--sim-shell-muted);
+  font-size: 0.76rem;
+  font-style: normal;
+  line-height: 1.35;
+}
+
+@media (max-width: 900px) {
+  body.sim-course-page {
+    padding-bottom: 176px;
+  }
+
+  .sim-course-shell {
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  .sim-course-shell__panel {
+    grid-template-columns: 1fr;
+    gap: 0;
+    border-right: 0;
+    border-bottom: 0;
+    border-left: 0;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .sim-course-shell__summary {
+    padding: 11px 14px 8px;
+  }
+
+  .sim-course-links {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 7px;
+    overflow: visible;
+    padding: 0 14px 10px;
+  }
+
+  .sim-course-shell__next {
+    display: none;
+  }
+
+  .sim-course-link {
+    min-height: 46px;
+  }
+}
+
+@media (max-width: 760px) {
+  body.sim-course-page {
+    overflow-x: hidden;
+  }
+
+  body.sim-course-page--agent-loop [class*="flex-shrink-0"] {
+    min-width: 0 !important;
+  }
+
+  body.sim-course-page--agent-loop [class*="justify-between"][class*="overflow-x-auto"][class*="pb-4"] {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 10px 6px !important;
+    align-items: start !important;
+    justify-content: normal !important;
+    overflow: visible !important;
+  }
+
+  body.sim-course-page--agent-loop [class*="justify-between"][class*="overflow-x-auto"][class*="pb-4"] > [class*="flex-shrink-0"] {
+    width: auto !important;
+    max-width: 100% !important;
+    justify-content: center !important;
+  }
+
+  body.sim-course-page--agent-loop [class*="justify-between"][class*="overflow-x-auto"][class*="pb-4"] [class*="w-8"][class*="h-0.5"][class*="mx-2"] {
+    display: none !important;
+  }
+
+  body.sim-course-page--agent-loop [class*="w-8"][class*="h-0.5"][class*="mx-2"] {
+    width: 10px !important;
+    margin-left: 2px !important;
+    margin-right: 2px !important;
+  }
+
+  body.sim-course-page--agent-loop button[class*="flex-col"][class*="items-center"] {
+    min-width: 0 !important;
+  }
+
+  body.sim-course-page--agent-loop [class*="whitespace-nowrap"] {
+    white-space: normal !important;
+  }
+
+  body.sim-course-page--agent-loop [class*="text-[13px]"][class*="mt-2"] {
+    max-width: 54px !important;
+    text-align: center !important;
+    font-size: 10px !important;
+    line-height: 1.15 !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  body.sim-course-page [class*="min-w-[720px]"] {
+    width: 100% !important;
+    min-width: 100% !important;
+  }
+
+  body.sim-course-page [class*="min-w-[158px]"] {
+    width: auto !important;
+    min-width: 0 !important;
+  }
+
+  body.sim-course-page [class*="overflow-x-auto"] {
+    max-width: 100%;
+  }
+
+  body.sim-course-page--agent-trace [role="tablist"] {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    width: 100% !important;
+  }
+
+  body.sim-course-page--agent-trace [role="tab"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  body.sim-course-page--agent-trace [role="tab"] span {
+    min-width: 0 !important;
+  }
+
+  body.sim-course-page--agent-trace [class*="shrink-0"][class*="rounded-md"][class*="border"] {
+    flex: 1 1 128px !important;
+  }
+}
+
+@media (max-width: 460px) {
+  .sim-course-shell__title {
+    font-size: 0.9rem;
+  }
+
+  .sim-course-shell__hint,
+  .sim-course-shell__status {
+    font-size: 0.72rem;
+  }
+
+  .sim-course-links {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

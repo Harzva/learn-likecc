@@ -1,5 +1,5 @@
 # 热门话题专项 - Everything in Claude-Code
-> **更新时间**: 2026-04-28
+> **更新时间**: 2026-05-14
 
 > **在线页面**: https://harzva.github.io/learn-likecc/topic-hot-watch.html  
 > **本文件**: `site/md/topic-hot-watch.md`
@@ -32,11 +32,13 @@
 
 - `site/data/hot-topic-snapshot.json`
 
-抓取脚本：
+刷新方式：
 
 ```bash
 python3 tools/fetch_hot_topic_sources.py --write
 ```
+
+仓库也配置了 GitHub Actions 定时刷新：`.github/workflows/hot-topic-snapshot.yml`。默认每天 08:30（Asia/Shanghai）抓取来源池，如果快照有变化，会自动提交并触发 GitHub Pages 重新部署。
 
 ## 路由规则
 

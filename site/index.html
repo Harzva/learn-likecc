@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-site-sidebar="">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Everything in Claude-Code</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/home-optimize.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
@@ -38,7 +35,7 @@
             <div class="nav-center">
                 <div class="search-box">
                     <span class="search-icon">🔍</span>
-                    <input type="text" placeholder="搜索课程..." class="search-input" id="searchInput">
+                    <input type="text" placeholder="搜索源码、仿真、教程、专题..." class="search-input" id="searchInput">
                     <span class="search-shortcut">Ctrl+K</span>
                 </div>
             </div>
@@ -73,9 +70,16 @@
                 <p class="hero-subtitle hero-subtitle--home">
                     这里收拢了教程、源码拆解、实验系统、工作台和发布链路，方便从开发者视角系统理解 Claude Code。
                 </p>
+                <div class="hero-signal-row" aria-label="站点能力摘要">
+                    <span>24 讲源码课</span>
+                    <span>交互仿真器</span>
+                    <span>专题知识库</span>
+                    <span>工作台视图</span>
+                </div>
                 <div class="hero-actions hero-actions--home">
                     <a href="topic-loop-task-board.html" class="btn-hero btn-primary">🛰️ 打开任务驾驶舱</a>
                     <a href="tutorial.html" class="btn-hero btn-secondary">📖 开始阅读教程</a>
+                    <a href="app-likecode-workspace.html" class="btn-hero btn-ghost">进入工作台</a>
                 </div>
             </div>
             <aside class="hero-visual-card hero-visual-card--home" aria-label="首页导览">
@@ -102,7 +106,55 @@
                         <span class="hero-provider-meta">任务、进度与待发布视图</span>
                     </a>
                 </div>
+                <div class="hero-route-strip" aria-label="推荐阅读路径">
+                    <a href="tutorial.html">
+                        <span>01</span>
+                        <strong>先上手</strong>
+                    </a>
+                    <a href="topic-sourcemap.html">
+                        <span>02</span>
+                        <strong>再拆源码</strong>
+                    </a>
+                    <a href="topic-cc-loop-lab.html">
+                        <span>03</span>
+                        <strong>最后跑仿真</strong>
+                    </a>
+                </div>
             </aside>
+        </div>
+    </section>
+
+    <section class="home-command-section" aria-labelledby="home-command-heading">
+        <div class="container container-home">
+            <div class="home-command-panel">
+                <div class="home-command-copy">
+                    <p class="home-command-kicker">Start by job</p>
+                    <h2 id="home-command-heading">按当前任务进入，不绕路。</h2>
+                    <p>把入口按真实使用场景重新组织：新手先跑通，开发者看源码，课程作者看结构，产品视角看仿真与工作台。</p>
+                </div>
+                <div class="home-command-grid" aria-label="按任务选择入口">
+                    <a href="tutorial.html" class="home-command-card">
+                        <span class="home-command-card__index">01</span>
+                        <strong>快速上手</strong>
+                        <span>安装、配置、Memory、Skills 与日常使用路径。</span>
+                    </a>
+                    <a href="topic-sourcemap.html" class="home-command-card">
+                        <span class="home-command-card__index">02</span>
+                        <strong>源码课程</strong>
+                        <span>从 Source Map 事件进入 24 讲源码拆解。</span>
+                    </a>
+                    <a href="topic-cc-loop-lab.html" class="home-command-card">
+                        <span class="home-command-card__index">03</span>
+                        <strong>交互仿真</strong>
+                        <span>用 Agent Loop、Trace Prompt 和脚本实验理解运行机制。</span>
+                    </a>
+                    <a href="app-likecode-workspace.html" class="home-command-card">
+                        <span class="home-command-card__index">04</span>
+                        <strong>工作台视角</strong>
+                        <span>从任务、模型路由、发布链路观察 LikeCode 系统化复刻。</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -254,6 +306,17 @@
                 </figcaption>
                 <div class="mermaid-diagram-scroll" data-mermaid-diagram="agent-loop"></div>
             </figure>
+
+            <div class="home-library-toolbar" aria-label="首页入口筛选">
+                <div class="home-library-tabs" role="group" aria-label="入口类型">
+                    <button type="button" class="is-active" data-home-filter="all" aria-pressed="true">全部</button>
+                    <button type="button" data-home-filter="simulator" aria-pressed="false">仿真器</button>
+                    <button type="button" data-home-filter="source" aria-pressed="false">源码</button>
+                    <button type="button" data-home-filter="course" aria-pressed="false">教程</button>
+                    <button type="button" data-home-filter="topic" aria-pressed="false">专题</button>
+                </div>
+                <p class="home-search-status" id="homeSearchStatus" aria-live="polite" hidden></p>
+            </div>
 
             <div class="features-grid-main features-grid-has-flagship">
                 <!-- 源码课程入口（主打：全宽强调） -->

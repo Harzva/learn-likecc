@@ -1,0 +1,64 @@
+name: Refresh hot topic snapshot
+
+on:
+  schedule:
+    # 08:30 Asia/Shanghai. Keeps the GitHub Pages hot-topic board fresh.
+    - cron: '30 0 * * *'
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: 'Max items per source'
+        required: false
+        default: '8'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: hot-topic-snapshot
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Refresh snapshot
+        env:
+          HOT_TOPIC_LIMIT: ${{ github.event_name == 'workflow_dispatch' && inputs.limit || '8' }}
+        run: |
+          set -euo pipefail
+          python3 tools/fetch_hot_topic_sources.py --write --limit "$HOT_TOPIC_LIMIT"
+
+      - name: Summarize snapshot
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          payload = json.loads(Path("site/data/hot-topic-snapshot.json").read_text(encoding="utf-8"))
+          meta = payload.get("meta", {})
+          sources = payload.get("sources", [])
+          print(f"generated_at={meta.get('generated_at', 'unknown')}")
+          print(f"source_count={len(sources)}")
+          for source in sources:
+              items = source.get("items", [])
+              status = "error" if source.get("error") else "ok"
+              print(f"- {source.get('source_id', 'unknown')}: {status}, {len(items)} item(s)")
+          PY
+
+      - name: Commit refreshed snapshot
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- site/data/hot-topic-snapshot.json; then
+            echo "No hot-topic snapshot changes."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site/data/hot-topic-snapshot.json
+          git commit -m "chore: refresh hot topic snapshot"
+          git push

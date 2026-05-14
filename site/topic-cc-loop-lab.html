@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-site-sidebar="">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧪</text></svg>">
     <meta name="description" content="Loop Lab 仿真大专题：面向 Claude Code / Agent Harness 学习者的生产级教程入口，集中进入 Agent Loop、脚本练习、Trace Prompt、SSE 联调与 Claude Pet SVG 墙。">
-    <meta name="page:updated" content="2026-05-13">
+    <meta name="page:updated" content="2026-05-14">
 </head>
 <body class="loop-lab-page loop-lab-page--studio">
     <nav class="navbar">
@@ -17,8 +17,8 @@
                 <span class="logo-text">Loop Lab</span>
             </a>
             <div class="nav-links">
+                <a href="#dashboard" class="nav-link">仪表盘</a>
                 <a href="#choose" class="nav-link">怎么选</a>
-                <a href="#pets" class="nav-link">SVG 墙</a>
                 <a href="#pages" class="nav-link">仿真器</a>
                 <a href="#local" class="nav-link">SSE 联调</a>
             </div>
@@ -41,8 +41,30 @@
                             这里不是仿真器链接集合，而是一条完整学习路径：先用动态模拟器建立循环直觉，再用脚本练习把命令和配置跑熟，最后用 Trace Prompt 看清一次 Claude Code 请求是如何被拼出来的。
                         </p>
                         <div class="loop-lab-actions">
-                            <a href="#choose" class="btn btn-primary">选择学习路径</a>
-                            <a href="agent-trace-simulator/" class="btn btn-secondary">进入 Trace Prompt</a>
+                            <a href="agent-loop-simulator/" class="btn btn-primary" data-loop-lab-primary-cta>从第一课开始</a>
+                            <a href="#dashboard" class="btn btn-secondary">查看学习仪表盘</a>
+                        </div>
+                        <div class="loop-lab-mode-switch" aria-label="按目标快速进入仿真器">
+                            <a href="agent-loop-simulator/" data-loop-lab-mini="agent-loop">
+                                <span>12 min</span>
+                                <strong>理解循环</strong>
+                                <em data-loop-lab-mini-status>0%</em>
+                            </a>
+                            <a href="agent-script-insight/" data-loop-lab-mini="agent-script">
+                                <span>18 min</span>
+                                <strong>练命令</strong>
+                                <em data-loop-lab-mini-status>0%</em>
+                            </a>
+                            <a href="agent-trace-simulator/" data-loop-lab-mini="agent-trace">
+                                <span>20 min</span>
+                                <strong>拆请求</strong>
+                                <em data-loop-lab-mini-status>0%</em>
+                            </a>
+                            <a href="#local">
+                                <span>10 min</span>
+                                <strong>接事件</strong>
+                                <em>选学</em>
+                            </a>
                         </div>
                         <div class="loop-lab-hero-metrics" aria-label="Loop Lab 覆盖范围">
                             <div><strong>3</strong><span>在线仿真器</span></div>
@@ -84,6 +106,40 @@
                     </div>
                 </section>
 
+                <nav class="loop-lab-learning-rail" aria-label="Loop Lab 推荐学习路线">
+                    <a href="#dashboard"><span>00</span>看进度</a>
+                    <a href="#choose"><span>01</span>选入口</a>
+                    <a href="#pages"><span>02</span>跑仿真</a>
+                    <a href="#companion"><span>03</span>读机制</a>
+                    <a href="#local"><span>04</span>接事件</a>
+                </nav>
+
+                <section id="dashboard" class="loop-lab-section loop-lab-dashboard" aria-labelledby="loop-lab-dashboard-title" data-loop-lab-dashboard>
+                    <div class="loop-lab-dashboard__head">
+                        <div>
+                            <p class="loop-lab-kicker">Course Dashboard</p>
+                            <h2 id="loop-lab-dashboard-title">你的仿真课程进度</h2>
+                            <p>进度只保存在当前浏览器，用来衔接三台仿真器的阅读、练习和最近学习状态。</p>
+                        </div>
+                        <div class="loop-lab-dashboard__actions">
+                            <a href="agent-loop-simulator/" class="loop-lab-inline-button" data-loop-lab-next-link>继续：理解循环</a>
+                            <button type="button" class="loop-lab-inline-button loop-lab-inline-button--quiet" data-loop-lab-reset>重置本机记录</button>
+                        </div>
+                    </div>
+                    <div class="loop-lab-dashboard__grid">
+                        <div class="loop-lab-progress-gauge" data-loop-lab-ring aria-label="课程总完成率">
+                            <span data-loop-lab-total>0%</span>
+                            <small>总完成率</small>
+                        </div>
+                        <div class="loop-lab-dashboard__stats" aria-label="学习状态摘要">
+                            <div><span>完成课程</span><strong data-loop-lab-complete>0 / 3</strong></div>
+                            <div><span>最近学习</span><strong data-loop-lab-last>还没有开始</strong></div>
+                            <div><span>推荐下一课</span><strong data-loop-lab-next>理解循环 · Agent Loop</strong></div>
+                        </div>
+                    </div>
+                    <div class="loop-lab-lesson-list" data-loop-lab-lessons aria-label="三段仿真课程进度"></div>
+                </section>
+
                 <section id="choose" class="loop-lab-section loop-lab-section--dense">
                     <div class="loop-lab-section__head">
                         <p class="loop-lab-kicker">Decision Guide</p>
@@ -120,7 +176,11 @@
                         <h2 id="pet-wall-title">一面会让教程有记忆点的 SVG 角色墙</h2>
                         <p>这些 pixel-style SVG 来自本地 `claude-pets-svg` 素材，放进 Loop Lab 后可以作为章节角色、状态徽章或学习路径视觉资产。</p>
                     </div>
-                    <div class="loop-lab-pets" aria-label="Claude Pet SVG wall">
+                    <div class="loop-lab-pet-wall__toolbar">
+                        <p>默认展示精选角色，展开后查看完整素材墙，避免移动端滚动负担过重。</p>
+                        <button type="button" id="toggle-pet-wall" class="loop-lab-inline-button" aria-expanded="false">展开全部 27 个</button>
+                    </div>
+                    <div class="loop-lab-pets" id="loop-lab-pets" aria-label="Claude Pet SVG wall" data-expanded="false">
                         <figure><img src="images/claude-pets/claude-pet-happy.svg" alt="Happy Claude pet"><figcaption>Happy</figcaption></figure>
                         <figure><img src="images/claude-pets/claude-pet-coder.svg" alt="Coder Claude pet"><figcaption>Coder</figcaption></figure>
                         <figure><img src="images/claude-pets/claude-pet-wizard.svg" alt="Wizard Claude pet"><figcaption>Wizard</figcaption></figure>
@@ -266,6 +326,7 @@
                                 <button type="button" id="btn-connect" class="btn btn-primary">连接</button>
                                 <button type="button" id="btn-close" class="btn btn-secondary cc-loop-lab-close-btn">断开</button>
                                 <button type="button" id="btn-sample" class="btn btn-secondary">填充示例日志</button>
+                                <button type="button" id="btn-clear-log" class="btn btn-secondary">清空日志</button>
                             </div>
                             <pre id="sse-log" class="cc-loop-lab-log cc-loop-lab-log-panel" aria-label="SSE 事件日志"></pre>
                         </div>
@@ -282,6 +343,7 @@
         </div>
     </footer>
     <script src="js/app.js"></script>
+    <script src="simulator-course-system.js"></script>
     <script>
 (function () {
     var urlIn = document.getElementById('sse-url')
@@ -290,6 +352,9 @@
     var btnC = document.getElementById('btn-connect')
     var btnX = document.getElementById('btn-close')
     var btnSample = document.getElementById('btn-sample')
+    var btnClear = document.getElementById('btn-clear-log')
+    var petWall = document.getElementById('loop-lab-pets')
+    var petToggle = document.getElementById('toggle-pet-wall')
     var es = null
     var sampleEvents = [
         '{"stage":"plan","title":"读取任务计划","detail":"Loop Lab 选择本轮最小可验证任务"}',
@@ -299,11 +364,13 @@
     ]
 
     function line(s) {
+        if (!logEl) return
         logEl.textContent += s + '\n'
         logEl.scrollTop = logEl.scrollHeight
     }
 
     function setStatus(text, mode) {
+        if (!statusEl) return
         statusEl.textContent = text
         statusEl.dataset.mode = mode || 'idle'
     }
@@ -327,7 +394,21 @@
         })
     })
 
+    if (petWall && petToggle) {
+        petToggle.addEventListener('click', function () {
+            var expanded = petWall.getAttribute('data-expanded') === 'true'
+            petWall.setAttribute('data-expanded', expanded ? 'false' : 'true')
+            petToggle.setAttribute('aria-expanded', expanded ? 'false' : 'true')
+            petToggle.textContent = expanded ? '展开全部 27 个' : '收起素材墙'
+        })
+    }
+
     btnX.addEventListener('click', closeEs)
+
+    btnClear.addEventListener('click', function () {
+        logEl.textContent = ''
+        setStatus('日志已清空', 'idle')
+    })
 
     btnSample.addEventListener('click', function () {
         logEl.textContent = ''
@@ -341,6 +422,11 @@
         var u = (urlIn.value || '').trim()
         if (!u) {
             setStatus('请填写 URL', 'error')
+            return
+        }
+        if (!window.EventSource) {
+            setStatus('浏览器不支持 EventSource', 'error')
+            line('当前浏览器不支持 EventSource，请换现代浏览器或使用示例日志。')
             return
         }
         setStatus('连接中', 'pending')

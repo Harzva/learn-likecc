@@ -4,7 +4,10 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import shutil
+import subprocess
 import sys
+import time
 import urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
@@ -48,11 +51,48 @@ class LinkCollector(HTMLParser):
         self._buffer = []
 
 
-def fetch_text(url: str, timeout: float = 60.0) -> str:
-    req = urllib.request.Request(url, headers={"User-Agent": UA})
-    with urllib.request.urlopen(req, timeout=timeout) as resp:
-        raw = resp.read()
-    return raw.decode("utf-8", errors="replace")
+def fetch_text(url: str, timeout: float = 60.0, attempts: int = 3) -> str:
+    last_error: Exception | None = None
+    headers = {
+        "User-Agent": UA,
+        "Accept": "text/html,application/rss+xml,application/xml;q=0.9,*/*;q=0.8",
+    }
+
+    for attempt in range(1, attempts + 1):
+        try:
+            req = urllib.request.Request(url, headers=headers)
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                raw = resp.read()
+            return raw.decode("utf-8", errors="replace")
+        except Exception as exc:  # noqa: BLE001
+            last_error = exc
+            if attempt < attempts:
+                time.sleep(1.5 * attempt)
+
+    curl = shutil.which("curl")
+    if curl:
+        try:
+            completed = subprocess.run(
+                [
+                    curl,
+                    "--location",
+                    "--fail",
+                    "--silent",
+                    "--show-error",
+                    "--max-time",
+                    str(int(timeout)),
+                    "--user-agent",
+                    UA,
+                    url,
+                ],
+                check=True,
+                capture_output=True,
+            )
+            return completed.stdout.decode("utf-8", errors="replace")
+        except Exception as exc:  # noqa: BLE001
+            raise RuntimeError(f"fetch failed after {attempts} urllib attempts and curl fallback: {exc}") from exc
+
+    raise RuntimeError(f"fetch failed after {attempts} attempts: {last_error}")
 
 
 def parse_rss(xml_text: str, source: dict, limit: int) -> dict:

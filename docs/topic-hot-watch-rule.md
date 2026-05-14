@@ -21,6 +21,13 @@
 4. 如果来源池或路由逻辑有明显变化，同步更新 `topic-hot-watch`、`topic-agent-hot`、`topic-rag-hot` 等对应热点页。
 5. 如果某条热点足够重要，再交给 `keyword-site-topic` 做深一层的站内稿件。
 
+## 自动刷新
+
+- GitHub Actions：`.github/workflows/hot-topic-snapshot.yml`
+- 触发方式：每天 08:30（Asia/Shanghai）定时运行，也支持 `workflow_dispatch` 手动触发。
+- 行为：运行 `python3 tools/fetch_hot_topic_sources.py --write`，如果 `site/data/hot-topic-snapshot.json` 有变化，则由 `github-actions[bot]` 提交 `chore: refresh hot topic snapshot`。
+- Pages：自动提交会改动 `site/**`，因此会触发现有 `Deploy to GitHub Pages` workflow。
+
 ## 页面边界
 
 - 页面正文只保留：

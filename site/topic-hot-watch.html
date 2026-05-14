@@ -86,7 +86,7 @@
 
                 <section id="board" class="section-block">
                     <h2>当前热点摘要</h2>
-                    <p class="section-desc">下面的数据来自本地快照 <code>site/data/hot-topic-snapshot.json</code>。如果你刚新增了一个源或需要刷新当天条目，运行 <code>python3 tools/fetch_hot_topic_sources.py --write</code>。</p>
+                    <p class="section-desc">下面的数据来自 <code>site/data/hot-topic-snapshot.json</code>。仓库已配置每日 GitHub Actions 自动刷新；如果你刚新增了一个源，也可以手动运行 <code>python3 tools/fetch_hot_topic_sources.py --write</code>。</p>
                     <div id="hot-topic-source-board" class="hot-watch-board" data-hot-topic-src="data/hot-topic-snapshot.json"></div>
                 </section>
 
