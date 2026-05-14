@@ -19118,6 +19118,145 @@ body.site-shell-overlay-open {
     font-size: 1.05rem;
 }
 
+.loop-lab-data-manager {
+    display: grid;
+    grid-template-columns: minmax(260px, 0.42fr) minmax(0, 0.8fr) minmax(260px, 0.58fr);
+    gap: 14px;
+    align-items: stretch;
+    margin-top: 14px;
+    border: 1px solid color-mix(in srgb, #0e7490 24%, var(--border));
+    border-radius: 10px;
+    padding: 14px;
+    background:
+        linear-gradient(180deg, rgba(240, 253, 250, 0.72), color-mix(in srgb, var(--bg-secondary) 64%, white));
+}
+
+.loop-lab-data-manager__copy {
+    display: grid;
+    align-content: center;
+    gap: 6px;
+    min-width: 0;
+}
+
+.loop-lab-data-manager__copy span {
+    color: #0e7490;
+    font-size: 0.74rem;
+    font-weight: 880;
+}
+
+.loop-lab-data-manager__copy strong {
+    color: var(--text-primary);
+    font-size: 1rem;
+    line-height: 1.24;
+}
+
+.loop-lab-data-manager__copy p,
+.loop-lab-data-manager__copy em,
+.loop-lab-data-manager__status {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    line-height: 1.48;
+}
+
+.loop-lab-data-manager__copy em {
+    font-style: normal;
+    font-weight: 820;
+}
+
+.loop-lab-data-manager__actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.loop-lab-data-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    min-height: 42px;
+    border: 1px solid color-mix(in srgb, var(--border) 78%, transparent);
+    border-radius: 8px;
+    padding: 9px 10px;
+    background: rgba(255, 255, 255, 0.72);
+    color: var(--text-primary);
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 820;
+    line-height: 1.2;
+    text-align: center;
+    transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+
+.loop-lab-data-button:hover,
+.loop-lab-data-button:focus-visible {
+    transform: translateY(-1px);
+    border-color: color-mix(in srgb, #0e7490 44%, var(--border));
+    background: rgba(240, 253, 250, 0.88);
+    outline: none;
+}
+
+.loop-lab-data-button--primary {
+    border-color: color-mix(in srgb, var(--primary) 42%, var(--border));
+    background: color-mix(in srgb, var(--primary) 10%, white);
+}
+
+.loop-lab-data-button--file {
+    position: relative;
+    overflow: hidden;
+}
+
+.loop-lab-data-button--file input {
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.loop-lab-data-manager__import {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px;
+    min-width: 0;
+}
+
+.loop-lab-data-manager__import textarea {
+    width: 100%;
+    min-height: 92px;
+    resize: vertical;
+    border: 1px solid color-mix(in srgb, var(--border) 78%, transparent);
+    border-radius: 8px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.78);
+    color: var(--text-primary);
+    font: inherit;
+    font-size: 0.82rem;
+    line-height: 1.45;
+    outline: none;
+}
+
+.loop-lab-data-manager__import textarea:focus {
+    border-color: rgba(14, 116, 144, 0.48);
+    box-shadow: 0 0 0 3px rgba(14, 116, 144, 0.12);
+}
+
+.loop-lab-data-manager__status {
+    grid-column: 1 / -1;
+    border-top: 1px solid color-mix(in srgb, var(--border) 76%, transparent);
+    padding-top: 10px;
+    font-weight: 760;
+}
+
+.loop-lab-data-manager__status[data-tone="success"] {
+    color: #166534;
+}
+
+.loop-lab-data-manager__status[data-tone="error"] {
+    color: #b91c1c;
+}
+
 .loop-lab-lesson-list {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -19355,6 +19494,14 @@ body.site-shell-overlay-open {
     .loop-lab-learning-summary {
         grid-template-columns: 1fr;
     }
+
+    .loop-lab-data-manager {
+        grid-template-columns: 1fr;
+    }
+
+    .loop-lab-data-manager__import {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 760px) {
@@ -19420,6 +19567,14 @@ body.site-shell-overlay-open {
 
     .loop-lab-filter {
         min-height: 48px;
+    }
+
+    .loop-lab-data-manager__actions {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .loop-lab-data-button {
+        min-height: 44px;
     }
 
     .loop-lab-pet-wall__toolbar {

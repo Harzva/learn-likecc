@@ -226,6 +226,12 @@
     return date.getMonth() + 1 + ' 月 ' + date.getDate() + ' 日'
   }
 
+  function normaliseIso(value) {
+    if (!value) return ''
+    var date = new Date(value)
+    return Number.isNaN(date.getTime()) ? '' : date.toISOString()
+  }
+
   function mergeResume(record, resume) {
     var next = Object.assign({}, record.resume || {})
     Object.keys(resume || {}).forEach(function (key) {
@@ -488,6 +494,286 @@
         dashboardFilter = button.getAttribute('data-loop-lab-filter') || 'all'
         renderDashboard()
       })
+    })
+  }
+
+  function sanitiseResumeForImport(resume) {
+    var source = resume && typeof resume === 'object' ? resume : {}
+    var next = {}
+    next.scrollY = Math.max(0, Math.round(Number(source.scrollY) || 0))
+    next.scrollRatio = clamp(Number(source.scrollRatio) || 0, 0, 1)
+    next.hash = sanitiseHash(source.hash)
+    next.actionLabel = normaliseText(source.actionLabel, 72)
+    next.traceTab = normaliseText(source.traceTab, 72)
+    next.scriptStep = normaliseText(source.scriptStep, 72)
+    next.loopStep = normaliseText(source.loopStep, 72)
+    next.updatedAt = normaliseIso(source.updatedAt)
+    Object.keys(next).forEach(function (key) {
+      if (next[key] === '' || next[key] === 0) delete next[key]
+    })
+    return next
+  }
+
+  function sanitiseRecordForImport(source, lesson) {
+    source = source && typeof source === 'object' ? source : {}
+    var record = blankRecord(lesson)
+    record.visits = clamp(Math.round(Number(source.visits) || 0), 0, 9999)
+    record.interactions = clamp(Math.round(Number(source.interactions) || 0), 0, 9999)
+    record.maxScrollRatio = clamp(Number(source.maxScrollRatio) || 0, 0, 1)
+    record.currentScrollRatio = clamp(Number(source.currentScrollRatio) || 0, 0, 1)
+    record.scrollY = Math.max(0, Math.round(Number(source.scrollY) || 0))
+    record.progress = clamp(Number(source.progress) || 0, 0, 100)
+    record.status = normaliseText(source.status || record.status, 56)
+    record.resume = sanitiseResumeForImport(source.resume)
+    record.learning = normaliseLearning(source.learning)
+    record.updatedAt = normaliseIso(source.updatedAt)
+    record.completedAt = normaliseIso(source.completedAt)
+    record.progress = computeProgress(record)
+    return record
+  }
+
+  function compactState(state) {
+    var next = {
+      version: 1,
+      updatedAt: normaliseIso(state && state.updatedAt) || new Date().toISOString(),
+      lastLessonId: '',
+      lessons: {}
+    }
+    var sourceLessons = state && state.lessons && typeof state.lessons === 'object' ? state.lessons : {}
+    if (Array.isArray(state && state.lessons)) {
+      sourceLessons = {}
+      state.lessons.forEach(function (record) {
+        if (record && record.id) sourceLessons[record.id] = record
+      })
+    }
+    lessons.forEach(function (lesson) {
+      next.lessons[lesson.id] = sanitiseRecordForImport(sourceLessons[lesson.id], lesson)
+    })
+    if (state && lessons.some(function (lesson) { return lesson.id === state.lastLessonId })) {
+      next.lastLessonId = state.lastLessonId
+    }
+    if (!next.lastLessonId) {
+      var recent = lessons.map(function (lesson) { return next.lessons[lesson.id] })
+        .filter(function (record) { return record.updatedAt })
+        .sort(function (a, b) { return new Date(b.updatedAt) - new Date(a.updatedAt) })[0]
+      next.lastLessonId = recent ? recent.id : ''
+    }
+    return next
+  }
+
+  function stateHasKnownData(state) {
+    return lessons.some(function (lesson) {
+      var record = state.lessons[lesson.id]
+      return record && (
+        record.visits > 0 ||
+        record.interactions > 0 ||
+        record.maxScrollRatio > 0 ||
+        record.updatedAt ||
+        hasResume(record) ||
+        record.learning.mastered ||
+        record.learning.reviewLater ||
+        hasNote(record)
+      )
+    })
+  }
+
+  function extractImportState(payload) {
+    if (!payload || typeof payload !== 'object') throw new Error('JSON 顶层必须是对象。')
+    var candidate = payload.state && typeof payload.state === 'object' ? payload.state : payload
+    if (payload.schema && payload.schema !== 'learn-likecc.loop-lab.export') {
+      throw new Error('这不是 Learn LikeCC Loop Lab 的导出文件。')
+    }
+    if (!candidate.lessons) throw new Error('没有找到 lessons 数据。')
+    var state = compactState(candidate)
+    if (!stateHasKnownData(state)) throw new Error('没有识别到可导入的课程进度、断点或笔记。')
+    return state
+  }
+
+  function buildIssueMarkdown(summary, state) {
+    var lines = [
+      '## Loop Lab 学习记录',
+      '',
+      '- 总完成率：' + summary.total + '%',
+      '- 完成课程：' + summary.completed + ' / ' + lessons.length,
+      '- 已掌握：' + summary.managed.mastered,
+      '- 待复盘：' + summary.managed.review,
+      '- 有笔记：' + summary.managed.notes,
+      '',
+      '| 课程 | 进度 | 状态 | 断点 | 笔记 |',
+      '| --- | ---: | --- | --- | --- |'
+    ]
+    lessons.forEach(function (lesson) {
+      var record = getRecord(state, lesson)
+      lines.push('| ' + lesson.title + ' | ' + computeProgress(record) + '% | ' + recordLabel(record) + ' | ' + (resumeLabel(record, lesson) || '无') + ' | ' + (notePreview(record) || '无') + ' |')
+    })
+    return lines.join('\n')
+  }
+
+  function createExportPayload(state) {
+    var compact = compactState(state)
+    var summary = getCourseSummary(compact)
+    return {
+      schema: 'learn-likecc.loop-lab.export',
+      version: 1,
+      app: 'Learn LikeCC Loop Lab',
+      storageKey: storageKey,
+      exportedAt: new Date().toISOString(),
+      source: {
+        origin: window.location.origin,
+        pathname: window.location.pathname
+      },
+      summary: {
+        total: summary.total,
+        completed: summary.completed,
+        mastered: summary.managed.mastered,
+        review: summary.managed.review,
+        notes: summary.managed.notes,
+        lastLessonId: compact.lastLessonId,
+        nextLessonId: summary.nextLesson.id
+      },
+      state: compact,
+      lessons: lessons.map(function (lesson) {
+        var record = getRecord(compact, lesson)
+        return {
+          id: lesson.id,
+          title: lesson.title,
+          progress: computeProgress(record),
+          status: recordLabel(record),
+          resume: resumeLabel(record, lesson),
+          learning: record.learning,
+          notePreview: notePreview(record)
+        }
+      }),
+      issueMarkdown: buildIssueMarkdown(summary, compact)
+    }
+  }
+
+  function exportFilename() {
+    return 'learn-likecc-loop-lab-' + new Date().toISOString().slice(0, 10) + '.json'
+  }
+
+  function formatBytes(text) {
+    var bytes = new Blob([text]).size
+    if (bytes < 1024) return bytes + ' B'
+    return (bytes / 1024).toFixed(1) + ' KB'
+  }
+
+  function setDataStatus(panel, message, tone) {
+    var node = panel && panel.querySelector('[data-loop-lab-data-status]')
+    if (!node) return
+    node.textContent = message
+    node.dataset.tone = tone || 'neutral'
+  }
+
+  function downloadText(filename, text) {
+    var blob = new Blob([text], { type: 'application/json;charset=utf-8' })
+    var url = URL.createObjectURL(blob)
+    var link = document.createElement('a')
+    link.href = url
+    link.download = filename
+    document.body.appendChild(link)
+    link.click()
+    link.remove()
+    window.setTimeout(function () { URL.revokeObjectURL(url) }, 500)
+  }
+
+  function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text)
+    }
+    var textarea = document.createElement('textarea')
+    textarea.value = text
+    textarea.setAttribute('readonly', '')
+    textarea.style.position = 'fixed'
+    textarea.style.opacity = '0'
+    document.body.appendChild(textarea)
+    textarea.select()
+    var ok = document.execCommand('copy')
+    textarea.remove()
+    return ok ? Promise.resolve() : Promise.reject(new Error('复制失败'))
+  }
+
+  function importStateFromText(text) {
+    var payload = JSON.parse(text)
+    var imported = extractImportState(payload)
+    writeState(imported)
+    dashboardFilter = 'all'
+    return imported
+  }
+
+  function renderDataManager(root, state, summary) {
+    var panel = root.querySelector('[data-loop-lab-data-manager]')
+    if (!panel) return
+    var payload = createExportPayload(state)
+    var json = JSON.stringify(payload, null, 2)
+    panel.innerHTML =
+      '<div class="loop-lab-data-manager__copy">' +
+        '<span>Data Vault</span>' +
+        '<strong>导出 / 导入本机学习数据</strong>' +
+        '<p>备份进度、断点、复盘队列和笔记；导入前会校验格式，只写回当前浏览器。</p>' +
+        '<em>当前备份约 ' + esc(formatBytes(json)) + '</em>' +
+      '</div>' +
+      '<div class="loop-lab-data-manager__actions">' +
+        '<button type="button" class="loop-lab-data-button" data-loop-lab-export>下载 JSON</button>' +
+        '<button type="button" class="loop-lab-data-button" data-loop-lab-copy-json>复制 JSON</button>' +
+        '<button type="button" class="loop-lab-data-button" data-loop-lab-copy-log>复制学习日志</button>' +
+        '<label class="loop-lab-data-button loop-lab-data-button--file">导入文件<input type="file" accept="application/json,.json" data-loop-lab-import-file></label>' +
+      '</div>' +
+      '<div class="loop-lab-data-manager__import">' +
+        '<textarea data-loop-lab-import-text rows="3" placeholder="也可以把导出的 JSON 粘贴到这里，再点击导入。"></textarea>' +
+        '<button type="button" class="loop-lab-data-button loop-lab-data-button--primary" data-loop-lab-import-paste>导入粘贴内容</button>' +
+      '</div>' +
+      '<p class="loop-lab-data-manager__status" data-loop-lab-data-status data-tone="neutral">导入会覆盖当前浏览器里的 Loop Lab 学习记录，请先下载备份。</p>'
+
+    panel.querySelector('[data-loop-lab-export]').addEventListener('click', function () {
+      var fresh = JSON.stringify(createExportPayload(readState()), null, 2)
+      downloadText(exportFilename(), fresh)
+      setDataStatus(panel, '已生成下载文件。', 'success')
+    })
+
+    panel.querySelector('[data-loop-lab-copy-json]').addEventListener('click', function () {
+      copyText(JSON.stringify(createExportPayload(readState()), null, 2))
+        .then(function () { setDataStatus(panel, 'JSON 已复制到剪贴板。', 'success') })
+        .catch(function () { setDataStatus(panel, '复制失败，请使用下载备份。', 'error') })
+    })
+
+    panel.querySelector('[data-loop-lab-copy-log]').addEventListener('click', function () {
+      copyText(createExportPayload(readState()).issueMarkdown)
+        .then(function () { setDataStatus(panel, '学习日志 Markdown 已复制。', 'success') })
+        .catch(function () { setDataStatus(panel, '复制失败，请改用 JSON 导出。', 'error') })
+    })
+
+    panel.querySelector('[data-loop-lab-import-paste]').addEventListener('click', function () {
+      var input = panel.querySelector('[data-loop-lab-import-text]')
+      try {
+        importStateFromText(input.value)
+        renderDashboard()
+        setDataStatus(root.querySelector('[data-loop-lab-data-manager]'), '导入成功，仪表盘已刷新。', 'success')
+      } catch (err) {
+        setDataStatus(panel, '导入失败：' + err.message, 'error')
+      }
+    })
+
+    panel.querySelector('[data-loop-lab-import-file]').addEventListener('change', function (event) {
+      var file = event.target.files && event.target.files[0]
+      if (!file) return
+      var reader = new FileReader()
+      reader.onload = function () {
+        try {
+          importStateFromText(String(reader.result || ''))
+          renderDashboard()
+          setDataStatus(root.querySelector('[data-loop-lab-data-manager]'), '文件导入成功，仪表盘已刷新。', 'success')
+        } catch (err) {
+          setDataStatus(panel, '导入失败：' + err.message, 'error')
+        } finally {
+          event.target.value = ''
+        }
+      }
+      reader.onerror = function () {
+        setDataStatus(panel, '读取文件失败，请重新选择 JSON。', 'error')
+        event.target.value = ''
+      }
+      reader.readAsText(file, 'utf-8')
     })
   }
 
@@ -888,6 +1174,7 @@
       primaryCta.title = continueResume || continueLesson.hint
     }
     renderLearningSummary(root, summary)
+    renderDataManager(root, state, summary)
 
     if (list) {
       var visibleLessons = lessons.filter(function (lesson) {
