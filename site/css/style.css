@@ -18767,6 +18767,12 @@ body.site-shell-overlay-open {
     background: linear-gradient(90deg, #16a34a, #0284c7);
 }
 
+.loop-lab-mode-switch a.has-resume {
+    border-color: color-mix(in srgb, var(--primary) 34%, var(--border));
+    background:
+        linear-gradient(180deg, rgba(255, 247, 237, 0.82), color-mix(in srgb, var(--bg-secondary) 62%, white));
+}
+
 .loop-lab-mode-switch a:hover,
 .loop-lab-mode-switch a:focus-visible,
 .loop-lab-learning-rail a:hover,
@@ -19049,6 +19055,10 @@ body.site-shell-overlay-open {
     border-color: rgba(22, 163, 74, 0.42);
 }
 
+.loop-lab-lesson-card.has-resume {
+    border-color: color-mix(in srgb, var(--primary) 36%, var(--border));
+}
+
 .loop-lab-lesson-card__order {
     display: inline-flex;
     align-items: center;
@@ -19082,6 +19092,24 @@ body.site-shell-overlay-open {
     margin: 0;
     color: var(--text-secondary);
     line-height: 1.58;
+}
+
+.loop-lab-lesson-card__resume {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    max-width: 100%;
+    border: 1px solid color-mix(in srgb, var(--primary) 24%, var(--border));
+    border-radius: 999px;
+    padding: 5px 9px;
+    background: color-mix(in srgb, var(--primary) 10%, white);
+    color: color-mix(in srgb, var(--primary) 78%, #111827);
+    font-size: 0.78rem;
+    font-weight: 850;
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .loop-lab-lesson-card__bar {

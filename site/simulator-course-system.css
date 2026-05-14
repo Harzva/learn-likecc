@@ -104,6 +104,27 @@ body.sim-course-page {
   line-height: 1.35;
 }
 
+.sim-course-shell__resume {
+  justify-self: start;
+  max-width: 100%;
+  margin: 2px 0 0;
+  border: 1px solid rgba(234, 88, 12, 0.18);
+  border-radius: 999px;
+  padding: 3px 8px;
+  background: rgba(255, 237, 213, 0.68);
+  color: #9a3412;
+  font-size: 0.7rem;
+  font-weight: 820;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sim-course-shell__resume[hidden] {
+  display: none;
+}
+
 .sim-course-links {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -180,6 +201,11 @@ body.sim-course-page {
 
 .sim-course-link.is-done em {
   color: #166534;
+}
+
+.sim-course-link.has-resume:not(.is-active) {
+  border-color: rgba(234, 88, 12, 0.34);
+  background: rgba(255, 247, 237, 0.76);
 }
 
 .sim-course-shell__next {
