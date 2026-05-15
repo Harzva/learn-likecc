@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-04-12T05:23:52.940974+00:00",
+    "generated_at": "2026-05-15T04:33:37.652931+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年4月10号 16:00AI 日报AI日报：MiniMax 发布 Music 2.6；扣子2.5重磅升级；AI人格测试产品SBTI走红网络查看日报",
-        "link": "https://www.aibase.com/daily/27029"
+        "title": "2026年5月14号 16:38AI 日报AI日报：GPT5.6开始内测；阿里2026财年Q4财报AI收入激增；MiniMax Agent正式更名Mavis查看日报",
+        "link": "https://www.aibase.com/daily/27995"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "AI 音乐进入“翻唱”时代！MiniMax 发布 Music 2.6：推出全新 Cover 功能与 Agent 技能",
-          "link": "https://www.aibase.com/news/27025",
-          "date": "2026年4月10号 16:00",
+          "title": "腾讯辟谣 AI 负责人离职：姚顺雨任职稳定，传言系子虚乌有",
+          "link": "https://www.aibase.com/news/27992",
+          "date": "2026年5月14号 16:38",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "字节跳动Seed团队核心人才流失:一年内70人离职，腾讯阿里成主要去向",
-          "link": "https://www.aibase.com/news/27024",
-          "date": "2026年4月10号 16:00",
+          "title": "MiniMax Agent 正式更名 Mavis 上线多智能体协作",
+          "link": "https://www.aibase.com/news/27990",
+          "date": "2026年5月14号 16:38",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "​iOS 26 重磅更新！短信应用引入 AI 智能搜索功能",
-          "link": "https://www.aibase.com/news/27022",
-          "date": "2026年4月10号 16:00",
+          "title": "OpenAI 回应 TanStack 供应链攻击：未发现用户数据泄露",
+          "link": "https://www.aibase.com/news/27987",
+          "date": "2026年5月14号 16:38",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "​梁文锋透露 DeepSeek V4 将于 4 月下旬发布",
-          "link": "https://www.aibase.com/news/27014",
-          "date": "2026年4月10号 16:00",
+          "title": "GPT-5.5才发三周，5.6已在内测！OpenAI与Anthropic补贴大战同日开打，开发者坐收渔利",
+          "link": "https://www.aibase.com/news/27986",
+          "date": "2026年5月14号 16:38",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "扣子 2.5 重磅升级！给 AI Agent 配云电脑 + 云手机 + 独立邮箱，还建了个“平行世界”",
-          "link": "https://www.aibase.com/news/27013",
-          "date": "2026年4月10号 16:00",
+          "title": "Anthropic宣布提升Claude Code额度:每周限额叠加增长50%，持续至7月13日",
+          "link": "https://www.aibase.com/news/27977",
+          "date": "2026年5月14号 16:38",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "DeepSeek V4将于4月下旬发布:万亿参数规模并深度适配国产芯片",
-          "link": "https://www.aibase.com/news/27011",
-          "date": "2026年4月10号 16:00",
+          "title": "谷歌与 SpaceX 携手探索太空数据中心：用太阳能驱动 AI 的未来",
+          "link": "https://www.aibase.com/news/27972",
+          "date": "2026年5月14号 16:38",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阿里黑科技炸场！0.6B 小模型“魔改”成 17B MoE，激活参数仅 5%，CPU 直接跑 30token/s！",
-          "link": "https://www.aibase.com/news/27009",
-          "date": "2026年4月10号 16:00",
+          "title": "Meta发布WhatsApp AI隐身模式，搭载最新Muse Spark模型实现隐私交互",
+          "link": "https://www.aibase.com/news/27971",
+          "date": "2026年5月14号 16:38",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "AI人格测试产品SBTI走红网络:主打抽象标签与AI合成技术",
-          "link": "https://www.aibase.com/news/26998",
-          "date": "2026年4月10号 16:00",
+          "title": "阿里巴巴发布2026财年Q4财报:AI收入激增，百炼平台ARR将破百亿",
+          "link": "https://www.aibase.com/news/27970",
+          "date": "2026年5月14号 16:38",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -85,52 +85,52 @@
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
         {
-          "title": "Advisor Strategy in Agents",
-          "link": "https://blog.dailydoseofds.com/p/advisor-strategy-in-agents",
-          "date": "Fri, 10 Apr 2026 19:31:48 GMT",
-          "note": "Reduce token costs and improve performance...and how to use it with Claude!"
+          "title": "Claude Code's /goal Command",
+          "link": "https://blog.dailydoseofds.com/p/claude-codes-goal-command",
+          "date": "Thu, 14 May 2026 22:12:56 GMT",
+          "note": "...the most time-saving feature."
         },
         {
-          "title": "Build Agents That Don’t Fail in Production",
-          "link": "https://blog.dailydoseofds.com/p/build-agents-that-dont-fail-in-production",
-          "date": "Thu, 09 Apr 2026 21:59:46 GMT",
-          "note": "...a step-by-step guide (with code)."
+          "title": "Hermes Agent Masterclass",
+          "link": "https://blog.dailydoseofds.com/p/hermes-agent-masterclass",
+          "date": "Wed, 13 May 2026 21:01:15 GMT",
+          "note": "Everything you need to understand and customize Hermes Agent."
         },
         {
-          "title": "The Next Step After Karpathy's Wiki Idea",
-          "link": "https://blog.dailydoseofds.com/p/the-next-step-after-karpathys-wiki",
-          "date": "Wed, 08 Apr 2026 22:02:16 GMT",
-          "note": "100% open-source and runs locally!"
+          "title": "Speculative Decoding in LLMs",
+          "link": "https://blog.dailydoseofds.com/p/speculative-decoding-in-llms",
+          "date": "Tue, 12 May 2026 23:25:53 GMT",
+          "note": "...explained with code and tradeoffs."
         },
         {
-          "title": "Six Key Metrics for AI Agent Evaluation",
-          "link": "https://blog.dailydoseofds.com/p/six-key-metrics-for-ai-agent-evaluation",
-          "date": "Tue, 07 Apr 2026 20:01:47 GMT",
-          "note": "...explained with code!"
+          "title": "Claude Code's Architecture, explained visually!",
+          "link": "https://blog.dailydoseofds.com/p/claude-codes-architecture-explained",
+          "date": "Mon, 11 May 2026 21:50:59 GMT",
+          "note": "6 layer harness, fully mapped out."
         },
         {
-          "title": "The Anatomy of an Agent Harness",
-          "link": "https://blog.dailydoseofds.com/p/the-anatomy-of-an-agent-harness",
-          "date": "Mon, 06 Apr 2026 21:09:35 GMT",
-          "note": "A deep dive into what Anthropic, OpenAI, Perplexity and LangChain are actually building."
+          "title": "Bellman Equations and Dynamic Programming in RL",
+          "link": "https://blog.dailydoseofds.com/p/bellman-equations-and-dynamic-programming",
+          "date": "Sun, 10 May 2026 21:41:19 GMT",
+          "note": "The full RL nanodegree, covered with implementation."
         },
         {
-          "title": "MLOps and LLMOps Case Studies",
-          "link": "https://blog.dailydoseofds.com/p/mlops-and-llmops-case-studies",
-          "date": "Sun, 05 Apr 2026 20:23:23 GMT",
-          "note": "How Booking.com, Uber, Stripe, and more actually think about ML and AI systems in production."
+          "title": "A Smarter Claude Model Burns More Tokens, Not Fewer!",
+          "link": "https://blog.dailydoseofds.com/p/a-smarter-claude-model-burns-more",
+          "date": "Fri, 08 May 2026 20:45:20 GMT",
+          "note": "...and how to fix it using Karpathy's context engineering principles."
         },
         {
-          "title": "A Memory-efficient Technique to Train Large Models",
-          "link": "https://blog.dailydoseofds.com/p/a-memory-efficient-technique-to-train-242",
-          "date": "Fri, 03 Apr 2026 20:51:13 GMT",
-          "note": "...that even LLMs like GPTs and LLaMAs use."
+          "title": "Build Your Own 100% Local AI Second Brain",
+          "link": "https://blog.dailydoseofds.com/p/build-your-own-100-local-ai-second",
+          "date": "Thu, 07 May 2026 21:56:07 GMT",
+          "note": "How the best builders in tech are all converging on AI second brains"
         },
         {
-          "title": "What are Agent Skills and How Agents Use Them?",
-          "link": "https://blog.dailydoseofds.com/p/what-are-agent-skills-and-how-agents",
-          "date": "Thu, 02 Apr 2026 21:49:19 GMT",
-          "note": "A 7-step process, explained visually!"
+          "title": "Build a Deep Researcher That Beats OpenAI, Gemini, and Perplexity",
+          "link": "https://blog.dailydoseofds.com/p/build-a-deep-researcher-that-beats",
+          "date": "Wed, 06 May 2026 21:15:40 GMT",
+          "note": "...using a 100% open-source, self-hostable stack."
         }
       ]
     },
@@ -148,51 +148,51 @@
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
         {
-          "title": "Waypoint-1.5: Higher-Fidelity Interactive Worlds for Everyday GPUs",
-          "link": "https://huggingface.co/blog/waypoint-1-5",
-          "date": "Thu, 09 Apr 2026 00:00:00 GMT",
+          "title": "Granite Embedding Multilingual R2: Open Apache 2.0 Multilingual Embeddings with 32K Context — Best Sub-100M Retrieval Quality",
+          "link": "https://huggingface.co/blog/ibm-granite/granite-embedding-multilingual-r2",
+          "date": "Thu, 14 May 2026 18:55:01 GMT",
           "note": ""
         },
         {
-          "title": "Multimodal Embedding & Reranker Models with Sentence Transformers",
-          "link": "https://huggingface.co/blog/multimodal-sentence-transformers",
-          "date": "Thu, 09 Apr 2026 00:00:00 GMT",
+          "title": "Unlocking asynchronicity in continuous batching",
+          "link": "https://huggingface.co/blog/continuous_async",
+          "date": "Thu, 14 May 2026 00:00:00 GMT",
           "note": ""
         },
         {
-          "title": "ALTK‑Evolve: On‑the‑Job Learning for AI Agents",
-          "link": "https://huggingface.co/blog/ibm-research/altk-evolve",
-          "date": "Wed, 08 Apr 2026 14:27:42 GMT",
+          "title": "Building Blocks for Foundation Model Training and Inference on AWS",
+          "link": "https://huggingface.co/blog/amazon/foundation-model-building-blocks",
+          "date": "Mon, 11 May 2026 23:18:26 GMT",
           "note": ""
         },
         {
-          "title": "Safetensors is Joining the PyTorch Foundation",
-          "link": "https://huggingface.co/blog/safetensors-joins-pytorch-foundation",
-          "date": "Wed, 08 Apr 2026 00:00:00 GMT",
+          "title": "EMO: Pretraining mixture of experts for emergent modularity",
+          "link": "https://huggingface.co/blog/allenai/emo",
+          "date": "Fri, 08 May 2026 16:03:50 GMT",
           "note": ""
         },
         {
-          "title": "Welcome Gemma 4: Frontier multimodal intelligence on device",
-          "link": "https://huggingface.co/blog/gemma4",
-          "date": "Thu, 02 Apr 2026 00:00:00 GMT",
+          "title": "vLLM V0 to V1: Correctness Before Corrections in RL",
+          "link": "https://huggingface.co/blog/ServiceNow-AI/correctness-before-corrections",
+          "date": "Wed, 06 May 2026 19:06:55 GMT",
           "note": ""
         },
         {
-          "title": "Holo3: Breaking the Computer Use Frontier",
-          "link": "https://huggingface.co/blog/Hcompany/holo3",
-          "date": "Wed, 01 Apr 2026 16:36:15 GMT",
+          "title": "Adding Benchmaxxer Repellant to the Open ASR Leaderboard",
+          "link": "https://huggingface.co/blog/open-asr-leaderboard-private-data",
+          "date": "Wed, 06 May 2026 00:00:00 GMT",
           "note": ""
         },
         {
-          "title": "Falcon Perception",
-          "link": "https://huggingface.co/blog/tiiuae/falcon-perception",
-          "date": "Wed, 01 Apr 2026 07:13:20 GMT",
+          "title": "Granite 4.1 LLMs: How They’re Built",
+          "link": "https://huggingface.co/blog/ibm-granite/granite-4-1",
+          "date": "Wed, 29 Apr 2026 15:01:48 GMT",
           "note": ""
         },
         {
-          "title": "Any Custom Frontend with Gradio's Backend",
-          "link": "https://huggingface.co/blog/introducing-gradio-server",
-          "date": "Wed, 01 Apr 2026 00:00:00 GMT",
+          "title": "DeepInfra on Hugging Face Inference Providers 🔥",
+          "link": "https://huggingface.co/blog/inference-providers-deepinfra",
+          "date": "Wed, 29 Apr 2026 00:00:00 GMT",
           "note": ""
         }
       ]
