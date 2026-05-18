@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-05-17T04:36:50.096072+00:00",
+    "generated_at": "2026-05-18T04:49:01.961377+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -85,6 +85,12 @@
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
         {
+          "title": "Model-Free Learning in RL",
+          "link": "https://blog.dailydoseofds.com/p/model-free-learning-in-rl",
+          "date": "Sun, 17 May 2026 20:51:35 GMT",
+          "note": "The full RL nanodegree, covered with implementation."
+        },
+        {
           "title": "[Hands-on] ​Building Custom Tools for AI Agents​",
           "link": "https://blog.dailydoseofds.com/p/hands-on-building-custom-tools-for",
           "date": "Fri, 15 May 2026 22:24:34 GMT",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/a-smarter-claude-model-burns-more",
           "date": "Fri, 08 May 2026 20:45:20 GMT",
           "note": "...and how to fix it using Karpathy's context engineering principles."
-        },
-        {
-          "title": "Build Your Own 100% Local AI Second Brain",
-          "link": "https://blog.dailydoseofds.com/p/build-your-own-100-local-ai-second",
-          "date": "Thu, 07 May 2026 21:56:07 GMT",
-          "note": "How the best builders in tech are all converging on AI second brains"
         }
       ]
     },
