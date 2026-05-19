@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-05-18T04:49:01.961377+00:00",
+    "generated_at": "2026-05-19T04:39:24.124964+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年5月15号 16:13AI 日报AI日报：微信小程序正式接入Hy3 preview；QQ浏览器上线高考AI Skill；月之暗面发布 Kimi WebBridge查看日报",
-        "link": "https://www.aibase.com/daily/28036"
+        "title": "2026年5月18号 16:39AI 日报AI日报：腾讯发布设计智能体Ardot；千问5月20日将发布重大模型；OpenAI推出ChatGPT个人理财工具查看日报",
+        "link": "https://www.aibase.com/daily/28085"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "Codex 登陆 ChatGPT 移动端：开发者“口袋里的编程助手”，免费策略背后的生态野心",
-          "link": "https://www.aibase.com/news/28031",
-          "date": "2026年5月15号 16:13",
+          "title": "索尼澄清Xperia1XIII“AI相机助手”功能:仅提供拍摄建议而非直接编辑",
+          "link": "https://www.aibase.com/news/28084",
+          "date": "2026年5月18号 16:39",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阿里云发布Qoder1.0:从AI IDE进化为智能体自主开发工作台",
-          "link": "https://www.aibase.com/news/28030",
-          "date": "2026年5月15号 16:13",
+          "title": "AI大模型在基层执法落地，豆包助力警务破案跑出“加速度”",
+          "link": "https://www.aibase.com/news/28082",
+          "date": "2026年5月18号 16:39",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "百度成立“模型委员会”统筹大模型全局，年轻研究员掌舵，推动技术与应用一体化",
-          "link": "https://www.aibase.com/news/28028",
-          "date": "2026年5月15号 16:13",
+          "title": "红果短剧回应“取消 AI 仿真人剧本保底”传闻：说法不实，部分剧本仍保留保底",
+          "link": "https://www.aibase.com/news/28080",
+          "date": "2026年5月18号 16:39",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "微信宣布小程序成长计划正式接入Hy3 preview",
-          "link": "https://www.aibase.com/news/28026",
-          "date": "2026年5月15号 16:13",
+          "title": "通义千问预告“重量级”大模型将于5月20日阿里云峰会亮相",
+          "link": "https://www.aibase.com/news/28076",
+          "date": "2026年5月18号 16:39",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "QQ浏览器联手腾讯元宝上线高考AI Skill，推出首个高考咨询师Agent",
-          "link": "https://www.aibase.com/news/28025",
-          "date": "2026年5月15号 16:13",
+          "title": "中国大模型周调用量连续三周超越美国 腾讯Hy3 preview周调用量2.66 万亿",
+          "link": "https://www.aibase.com/news/28069",
+          "date": "2026年5月18号 16:39",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "月之暗面发布 Kimi WebBridge，让 AI 代替你轻松操作浏览器！",
-          "link": "https://www.aibase.com/news/28018",
-          "date": "2026年5月15号 16:13",
+          "title": "腾讯发布设计智能体Ardot，一句话生成设计稿并一键转代码",
+          "link": "https://www.aibase.com/news/28064",
+          "date": "2026年5月18号 16:39",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "xAI 发布 Grok Build 早期测试版：针对复杂编程的“规划型”智能体",
-          "link": "https://www.aibase.com/news/28016",
-          "date": "2026年5月15号 16:13",
+          "title": "腾讯上线AI应用生成平台“吐司”：把奇思妙想，做成你自己的 App",
+          "link": "https://www.aibase.com/news/28063",
+          "date": "2026年5月18号 16:39",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "告别只会聊天的 AI：百灵大模型开源 Ring-2.6-1T，主打真实复杂任务闭环",
-          "link": "https://www.aibase.com/news/28010",
-          "date": "2026年5月15号 16:13",
+          "title": "OpenAI推出ChatGPT个人理财工具：引入GPT-5. 5 并支持连接万家银行账户",
+          "link": "https://www.aibase.com/news/28043",
+          "date": "2026年5月18号 16:39",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "​Implement Knowledge Distillation from Scratch​",
+          "link": "https://blog.dailydoseofds.com/p/implement-knowledge-distillation",
+          "date": "Mon, 18 May 2026 21:59:54 GMT",
+          "note": "(must-know to efficiently run ML models in production)"
+        },
         {
           "title": "Model-Free Learning in RL",
           "link": "https://blog.dailydoseofds.com/p/model-free-learning-in-rl",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/bellman-equations-and-dynamic-programming",
           "date": "Sun, 10 May 2026 21:41:19 GMT",
           "note": "The full RL nanodegree, covered with implementation."
-        },
-        {
-          "title": "A Smarter Claude Model Burns More Tokens, Not Fewer!",
-          "link": "https://blog.dailydoseofds.com/p/a-smarter-claude-model-burns-more",
-          "date": "Fri, 08 May 2026 20:45:20 GMT",
-          "note": "...and how to fix it using Karpathy's context engineering principles."
         }
       ]
     },
@@ -147,6 +147,24 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Fine-Tuning NVIDIA Cosmos Predict 2.5 with LoRA/DoRA for Robot Video Generation",
+          "link": "https://huggingface.co/blog/nvidia/cosmos-fine-tuning-for-robot-video-generation",
+          "date": "Mon, 18 May 2026 16:00:21 GMT",
+          "note": ""
+        },
+        {
+          "title": "PaddleOCR 3.5: Running OCR and Document Parsing Tasks with a Transformers Backend",
+          "link": "https://huggingface.co/blog/PaddlePaddle/paddleocr-transformers",
+          "date": "Mon, 18 May 2026 15:12:46 GMT",
+          "note": ""
+        },
+        {
+          "title": "The Open Agent Leaderboard",
+          "link": "https://huggingface.co/blog/ibm-research/open-agent-leaderboard",
+          "date": "Mon, 18 May 2026 14:12:58 GMT",
+          "note": ""
+        },
         {
           "title": "Granite Embedding Multilingual R2: Open Apache 2.0 Multilingual Embeddings with 32K Context — Best Sub-100M Retrieval Quality",
           "link": "https://huggingface.co/blog/ibm-granite/granite-embedding-multilingual-r2",
@@ -175,24 +193,6 @@
           "title": "vLLM V0 to V1: Correctness Before Corrections in RL",
           "link": "https://huggingface.co/blog/ServiceNow-AI/correctness-before-corrections",
           "date": "Wed, 06 May 2026 19:06:55 GMT",
-          "note": ""
-        },
-        {
-          "title": "Adding Benchmaxxer Repellant to the Open ASR Leaderboard",
-          "link": "https://huggingface.co/blog/open-asr-leaderboard-private-data",
-          "date": "Wed, 06 May 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Granite 4.1 LLMs: How They’re Built",
-          "link": "https://huggingface.co/blog/ibm-granite/granite-4-1",
-          "date": "Wed, 29 Apr 2026 15:01:48 GMT",
-          "note": ""
-        },
-        {
-          "title": "DeepInfra on Hugging Face Inference Providers 🔥",
-          "link": "https://huggingface.co/blog/inference-providers-deepinfra",
-          "date": "Wed, 29 Apr 2026 00:00:00 GMT",
           "note": ""
         }
       ]
