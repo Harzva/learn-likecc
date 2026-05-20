@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-05-19T04:39:24.124964+00:00",
+    "generated_at": "2026-05-20T04:43:23.312043+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年5月18号 16:39AI 日报AI日报：腾讯发布设计智能体Ardot；千问5月20日将发布重大模型；OpenAI推出ChatGPT个人理财工具查看日报",
-        "link": "https://www.aibase.com/daily/28085"
+        "title": "2026年5月19号 15:41AI 日报AI日报：微信读书接入AI Skill；三大运营商上线Token套餐；Qwen3.7预览版全球首发亮相查看日报",
+        "link": "https://www.aibase.com/daily/28131"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "索尼澄清Xperia1XIII“AI相机助手”功能:仅提供拍摄建议而非直接编辑",
-          "link": "https://www.aibase.com/news/28084",
-          "date": "2026年5月18号 16:39",
+          "title": "加量不加价！Anthropic旗下Claude两款主力AI工具迎来重磅升级",
+          "link": "https://www.aibase.com/news/28130",
+          "date": "2026年5月19号 15:41",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "AI大模型在基层执法落地，豆包助力警务破案跑出“加速度”",
-          "link": "https://www.aibase.com/news/28082",
-          "date": "2026年5月18号 16:39",
+          "title": "Alexa+ 上线按需播客功能 想听啥自己点！",
+          "link": "https://www.aibase.com/news/28129",
+          "date": "2026年5月19号 15:41",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "红果短剧回应“取消 AI 仿真人剧本保底”传闻：说法不实，部分剧本仍保留保底",
-          "link": "https://www.aibase.com/news/28080",
-          "date": "2026年5月18号 16:39",
+          "title": "AI算力话费包月！三大运营商全员入局上线Token套餐",
+          "link": "https://www.aibase.com/news/28123",
+          "date": "2026年5月19号 15:41",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "通义千问预告“重量级”大模型将于5月20日阿里云峰会亮相",
-          "link": "https://www.aibase.com/news/28076",
-          "date": "2026年5月18号 16:39",
+          "title": "微信读书接入 AI Skill，一句话帮你理清阅读人生",
+          "link": "https://www.aibase.com/news/28112",
+          "date": "2026年5月19号 15:41",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "中国大模型周调用量连续三周超越美国 腾讯Hy3 preview周调用量2.66 万亿",
-          "link": "https://www.aibase.com/news/28069",
-          "date": "2026年5月18号 16:39",
+          "title": "不卷参数卷落地！搜狐明确「理性应用」AI 战略，中型科技公司如何在巨头夹缝中走出差异化路径？",
+          "link": "https://www.aibase.com/news/28110",
+          "date": "2026年5月19号 15:41",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯发布设计智能体Ardot，一句话生成设计稿并一键转代码",
-          "link": "https://www.aibase.com/news/28064",
-          "date": "2026年5月18号 16:39",
+          "title": "阿里通义千问重磅升级：新旗舰Qwen3. 7 预览版全球首发亮相",
+          "link": "https://www.aibase.com/news/28106",
+          "date": "2026年5月19号 15:41",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯上线AI应用生成平台“吐司”：把奇思妙想，做成你自己的 App",
-          "link": "https://www.aibase.com/news/28063",
-          "date": "2026年5月18号 16:39",
+          "title": "Cursor发布Composer2.5编码模型:以极低成本并肩GPT-5.5与Opus4.7",
+          "link": "https://www.aibase.com/news/28098",
+          "date": "2026年5月19号 15:41",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenAI推出ChatGPT个人理财工具：引入GPT-5. 5 并支持连接万家银行账户",
-          "link": "https://www.aibase.com/news/28043",
-          "date": "2026年5月18号 16:39",
+          "title": "机器人交互不再「裸奔」！智元WITA率先完成合规备案",
+          "link": "https://www.aibase.com/news/28093",
+          "date": "2026年5月19号 15:41",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "The top Hermes integrations",
+          "link": "https://blog.dailydoseofds.com/p/the-top-hermes-integrations",
+          "date": "Tue, 19 May 2026 20:38:22 GMT",
+          "note": "... to give your agent superpowers"
+        },
         {
           "title": "​Implement Knowledge Distillation from Scratch​",
           "link": "https://blog.dailydoseofds.com/p/implement-knowledge-distillation",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/claude-codes-architecture-explained",
           "date": "Mon, 11 May 2026 21:50:59 GMT",
           "note": "6 layer harness, fully mapped out."
-        },
-        {
-          "title": "Bellman Equations and Dynamic Programming in RL",
-          "link": "https://blog.dailydoseofds.com/p/bellman-equations-and-dynamic-programming",
-          "date": "Sun, 10 May 2026 21:41:19 GMT",
-          "note": "The full RL nanodegree, covered with implementation."
         }
       ]
     },
@@ -147,6 +147,18 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "OlmoEarth v1.1: A more efficient family of models",
+          "link": "https://huggingface.co/blog/allenai/olmoearth-v1-1",
+          "date": "Tue, 19 May 2026 18:38:09 GMT",
+          "note": ""
+        },
+        {
+          "title": "Introducing the Ettin Reranker Family",
+          "link": "https://huggingface.co/blog/ettin-reranker",
+          "date": "Tue, 19 May 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "Fine-Tuning NVIDIA Cosmos Predict 2.5 with LoRA/DoRA for Robot Video Generation",
           "link": "https://huggingface.co/blog/nvidia/cosmos-fine-tuning-for-robot-video-generation",
@@ -181,18 +193,6 @@
           "title": "Building Blocks for Foundation Model Training and Inference on AWS",
           "link": "https://huggingface.co/blog/amazon/foundation-model-building-blocks",
           "date": "Mon, 11 May 2026 23:18:26 GMT",
-          "note": ""
-        },
-        {
-          "title": "EMO: Pretraining mixture of experts for emergent modularity",
-          "link": "https://huggingface.co/blog/allenai/emo",
-          "date": "Fri, 08 May 2026 16:03:50 GMT",
-          "note": ""
-        },
-        {
-          "title": "vLLM V0 to V1: Correctness Before Corrections in RL",
-          "link": "https://huggingface.co/blog/ServiceNow-AI/correctness-before-corrections",
-          "date": "Wed, 06 May 2026 19:06:55 GMT",
           "note": ""
         }
       ]
