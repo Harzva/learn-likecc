@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-05-20T04:43:23.312043+00:00",
+    "generated_at": "2026-05-21T04:51:14.494272+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年5月19号 15:41AI 日报AI日报：微信读书接入AI Skill；三大运营商上线Token套餐；Qwen3.7预览版全球首发亮相查看日报",
-        "link": "https://www.aibase.com/daily/28131"
+        "title": "2026年5月20号 16:31AI 日报AI日报：谷歌发布最強模型Gemini 3.5 Flash；阿里云“千问云”上线；苹果AI辅助功能升级查看日报",
+        "link": "https://www.aibase.com/daily/28176"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "加量不加价！Anthropic旗下Claude两款主力AI工具迎来重磅升级",
-          "link": "https://www.aibase.com/news/28130",
-          "date": "2026年5月19号 15:41",
+          "title": "全面接入Gemini！YouTube推出“Ask YouTube”对话式搜索",
+          "link": "https://www.aibase.com/news/28175",
+          "date": "2026年5月20号 16:31",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Alexa+ 上线按需播客功能 想听啥自己点！",
-          "link": "https://www.aibase.com/news/28129",
-          "date": "2026年5月19号 15:41",
+          "title": "苹果发布 AI 辅助功能升级:Apple Intelligence 赋能无障碍生态，Vision Pro 实现眼控轮椅",
+          "link": "https://www.aibase.com/news/28174",
+          "date": "2026年5月20号 16:31",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "AI算力话费包月！三大运营商全员入局上线Token套餐",
-          "link": "https://www.aibase.com/news/28123",
-          "date": "2026年5月19号 15:41",
+          "title": "通义千问再进化!阿里云“千问云”上线:让AI Agent学会“自主”上云",
+          "link": "https://www.aibase.com/news/28167",
+          "date": "2026年5月20号 16:31",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "微信读书接入 AI Skill，一句话帮你理清阅读人生",
-          "link": "https://www.aibase.com/news/28112",
-          "date": "2026年5月19号 15:41",
+          "title": "通义实验室发布Qwen3.7-Max，以“正交解耦”技术斩获多项评测国内第一",
+          "link": "https://www.aibase.com/news/28161",
+          "date": "2026年5月20号 16:31",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "不卷参数卷落地！搜狐明确「理性应用」AI 战略，中型科技公司如何在巨头夹缝中走出差异化路径？",
-          "link": "https://www.aibase.com/news/28110",
-          "date": "2026年5月19号 15:41",
+          "title": "告别低头族！谷歌与时尚大牌联手，两款硬核AI智能眼镜惊艳亮相",
+          "link": "https://www.aibase.com/news/28154",
+          "date": "2026年5月20号 16:31",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阿里通义千问重磅升级：新旗舰Qwen3. 7 预览版全球首发亮相",
-          "link": "https://www.aibase.com/news/28106",
-          "date": "2026年5月19号 15:41",
+          "title": "谷歌版“大龙虾”Gemini Spark发布：由3.5 Flash驱动并支持24/ 7 后台运行",
+          "link": "https://www.aibase.com/news/28151",
+          "date": "2026年5月20号 16:31",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Cursor发布Composer2.5编码模型:以极低成本并肩GPT-5.5与Opus4.7",
-          "link": "https://www.aibase.com/news/28098",
-          "date": "2026年5月19号 15:41",
+          "title": "谷歌推出 Gemini Omni 模型，开启多模态交互新时代！",
+          "link": "https://www.aibase.com/news/28150",
+          "date": "2026年5月20号 16:31",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "机器人交互不再「裸奔」！智元WITA率先完成合规备案",
-          "link": "https://www.aibase.com/news/28093",
-          "date": "2026年5月19号 15:41",
+          "title": "速度狂飙 4 倍！谷歌深夜发布最強模型Gemini 3.5 Flash",
+          "link": "https://www.aibase.com/news/28143",
+          "date": "2026年5月20号 16:31",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "The Anatomy of ~/.hermes Folder",
+          "link": "https://blog.dailydoseofds.com/p/the-anatomy-of-hermes-folder",
+          "date": "Wed, 20 May 2026 22:03:36 GMT",
+          "note": "...and why each piece matters."
+        },
         {
           "title": "The top Hermes integrations",
           "link": "https://blog.dailydoseofds.com/p/the-top-hermes-integrations",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/speculative-decoding-in-llms",
           "date": "Tue, 12 May 2026 23:25:53 GMT",
           "note": "...explained with code and tradeoffs."
-        },
-        {
-          "title": "Claude Code's Architecture, explained visually!",
-          "link": "https://blog.dailydoseofds.com/p/claude-codes-architecture-explained",
-          "date": "Mon, 11 May 2026 21:50:59 GMT",
-          "note": "6 layer harness, fully mapped out."
         }
       ]
     },
@@ -148,7 +148,7 @@
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
         {
-          "title": "OlmoEarth v1.1: A more efficient family of models",
+          "title": "OlmoEarth v1.1: A more efficient family of Earth observation models",
           "link": "https://huggingface.co/blog/allenai/olmoearth-v1-1",
           "date": "Tue, 19 May 2026 18:38:09 GMT",
           "note": ""
