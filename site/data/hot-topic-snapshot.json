@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-05-21T04:51:14.494272+00:00",
+    "generated_at": "2026-05-22T04:42:21.437026+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年5月20号 16:31AI 日报AI日报：谷歌发布最強模型Gemini 3.5 Flash；阿里云“千问云”上线；苹果AI辅助功能升级查看日报",
-        "link": "https://www.aibase.com/daily/28176"
+        "title": "2026年5月21号 16:18AI 日报AI日报：腾讯上线AI助手Marvis；智谱AI推AutoClaw移动端APP；Photoshop 27.7 重磅更新查看日报",
+        "link": "https://www.aibase.com/daily/28221"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "全面接入Gemini！YouTube推出“Ask YouTube”对话式搜索",
-          "link": "https://www.aibase.com/news/28175",
-          "date": "2026年5月20号 16:31",
+          "title": "​亚马逊 SageMaker AI 推出兼容 OpenAI API 的实时推理端点",
+          "link": "https://www.aibase.com/news/28217",
+          "date": "2026年5月21号 16:18",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "苹果发布 AI 辅助功能升级:Apple Intelligence 赋能无障碍生态，Vision Pro 实现眼控轮椅",
-          "link": "https://www.aibase.com/news/28174",
-          "date": "2026年5月20号 16:31",
+          "title": "打击虚假图片！OpenAI引入 Google SynthID 图像水印",
+          "link": "https://www.aibase.com/news/28215",
+          "date": "2026年5月21号 16:18",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "通义千问再进化!阿里云“千问云”上线:让AI Agent学会“自主”上云",
-          "link": "https://www.aibase.com/news/28167",
-          "date": "2026年5月20号 16:31",
+          "title": "阿里云百炼重磅升级：全栈开放接入，打造模型“超级市场”",
+          "link": "https://www.aibase.com/news/28214",
+          "date": "2026年5月21号 16:18",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "通义实验室发布Qwen3.7-Max，以“正交解耦”技术斩获多项评测国内第一",
-          "link": "https://www.aibase.com/news/28161",
-          "date": "2026年5月20号 16:31",
+          "title": "Photoshop 27.7 重磅更新：移除工具支持本地 AI，生成式积分福利翻倍",
+          "link": "https://www.aibase.com/news/28197",
+          "date": "2026年5月21号 16:18",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "告别低头族！谷歌与时尚大牌联手，两款硬核AI智能眼镜惊艳亮相",
-          "link": "https://www.aibase.com/news/28154",
-          "date": "2026年5月20号 16:31",
+          "title": "阿里平头哥真武M890重磅亮相：性能跃升3倍，开启“芯-云-模型-推理”全栈Agent化时代",
+          "link": "https://www.aibase.com/news/28195",
+          "date": "2026年5月21号 16:18",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "谷歌版“大龙虾”Gemini Spark发布：由3.5 Flash驱动并支持24/ 7 后台运行",
-          "link": "https://www.aibase.com/news/28151",
-          "date": "2026年5月20号 16:31",
+          "title": "腾讯上线操作系统层级AI助手Marvis，支持跨端操控与本地隐私模式",
+          "link": "https://www.aibase.com/news/28189",
+          "date": "2026年5月21号 16:18",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "谷歌推出 Gemini Omni 模型，开启多模态交互新时代！",
-          "link": "https://www.aibase.com/news/28150",
-          "date": "2026年5月20号 16:31",
+          "title": "智谱AI正式推出AutoClaw移动端APP，支持云端双模式执行",
+          "link": "https://www.aibase.com/news/28183",
+          "date": "2026年5月21号 16:18",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "速度狂飙 4 倍！谷歌深夜发布最強模型Gemini 3.5 Flash",
-          "link": "https://www.aibase.com/news/28143",
-          "date": "2026年5月20号 16:31",
+          "title": "SpaceX招股书首揭家底：卫星互联网独撑盈利，航天与AI仍巨亏",
+          "link": "https://www.aibase.com/news/28182",
+          "date": "2026年5月21号 16:18",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Karpathy’s Prediction About RL is Coming True Now!",
+          "link": "https://blog.dailydoseofds.com/p/karpathys-prediction-about-rl-is",
+          "date": "Thu, 21 May 2026 22:15:43 GMT",
+          "note": "..and an open-source framework that's making it happen."
+        },
         {
           "title": "The Anatomy of ~/.hermes Folder",
           "link": "https://blog.dailydoseofds.com/p/the-anatomy-of-hermes-folder",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/hermes-agent-masterclass",
           "date": "Wed, 13 May 2026 21:01:15 GMT",
           "note": "Everything you need to understand and customize Hermes Agent."
-        },
-        {
-          "title": "Speculative Decoding in LLMs",
-          "link": "https://blog.dailydoseofds.com/p/speculative-decoding-in-llms",
-          "date": "Tue, 12 May 2026 23:25:53 GMT",
-          "note": "...explained with code and tradeoffs."
         }
       ]
     },
