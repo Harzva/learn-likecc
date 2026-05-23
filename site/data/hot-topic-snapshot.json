@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-05-22T04:42:21.437026+00:00",
+    "generated_at": "2026-05-23T04:13:27.123523+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年5月21号 16:18AI 日报AI日报：腾讯上线AI助手Marvis；智谱AI推AutoClaw移动端APP；Photoshop 27.7 重磅更新查看日报",
-        "link": "https://www.aibase.com/daily/28221"
+        "title": "2026年5月22号 16:46AI 日报AI日报：字节开源统一多模态大模型Lance 3B;智谱发布GLM-5.1高速版;CapCut与Gemini合作推出深度集成查看日报",
+        "link": "https://www.aibase.com/daily/28263"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "​亚马逊 SageMaker AI 推出兼容 OpenAI API 的实时推理端点",
-          "link": "https://www.aibase.com/news/28217",
-          "date": "2026年5月21号 16:18",
+          "title": "OpenAI 发布 ChatGPT for PowerPoint：一句话生成 PPT，还能主动揪 Bug",
+          "link": "https://www.aibase.com/news/28262",
+          "date": "2026年5月22号 16:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "打击虚假图片！OpenAI引入 Google SynthID 图像水印",
-          "link": "https://www.aibase.com/news/28215",
-          "date": "2026年5月21号 16:18",
+          "title": "Spotify 联手环球音乐推出 AI 翻唱与混音：正版版权的“降维打击”来了",
+          "link": "https://www.aibase.com/news/28259",
+          "date": "2026年5月22号 16:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阿里云百炼重磅升级：全栈开放接入，打造模型“超级市场”",
-          "link": "https://www.aibase.com/news/28214",
-          "date": "2026年5月21号 16:18",
+          "title": "OpenAI将ChatGPT接入Microsoft PowerPoint，支持自然语言创建与编辑幻灯片",
+          "link": "https://www.aibase.com/news/28256",
+          "date": "2026年5月22号 16:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Photoshop 27.7 重磅更新：移除工具支持本地 AI，生成式积分福利翻倍",
-          "link": "https://www.aibase.com/news/28197",
-          "date": "2026年5月21号 16:18",
+          "title": "智谱发布GLM-5. 1 高速版：400 tokens/s飙出全球API新极限",
+          "link": "https://www.aibase.com/news/28254",
+          "date": "2026年5月22号 16:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阿里平头哥真武M890重磅亮相：性能跃升3倍，开启“芯-云-模型-推理”全栈Agent化时代",
-          "link": "https://www.aibase.com/news/28195",
-          "date": "2026年5月21号 16:18",
+          "title": "字节跳动开源Lance 3B：用一个“脑子”同时搞定图视理解与生成",
+          "link": "https://www.aibase.com/news/28251",
+          "date": "2026年5月22号 16:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯上线操作系统层级AI助手Marvis，支持跨端操控与本地隐私模式",
-          "link": "https://www.aibase.com/news/28189",
-          "date": "2026年5月21号 16:18",
+          "title": "拒绝“人机单聊”！UniClaw 2026公测：AI 正在迈入“多人社交模式”",
+          "link": "https://www.aibase.com/news/28245",
+          "date": "2026年5月22号 16:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "智谱AI正式推出AutoClaw移动端APP，支持云端双模式执行",
-          "link": "https://www.aibase.com/news/28183",
-          "date": "2026年5月21号 16:18",
+          "title": "CapCut 与 Gemini 合作推出深度集成:AI 创作工具实现智能互联",
+          "link": "https://www.aibase.com/news/28244",
+          "date": "2026年5月22号 16:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "SpaceX招股书首揭家底：卫星互联网独撑盈利，航天与AI仍巨亏",
-          "link": "https://www.aibase.com/news/28182",
-          "date": "2026年5月21号 16:18",
+          "title": "拒绝彩排，真刀真枪上舞台!美团LongCat-Video-Avatar1.5开源:全面击败主流闭源模型",
+          "link": "https://www.aibase.com/news/28241",
+          "date": "2026年5月22号 16:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Agent Memory Is Only as Good as Its Schema",
+          "link": "https://blog.dailydoseofds.com/p/agent-memory-is-only-as-good-as-its",
+          "date": "Fri, 22 May 2026 20:33:11 GMT",
+          "note": "Some key lessons on building production-grade memory for Agents."
+        },
         {
           "title": "Karpathy’s Prediction About RL is Coming True Now!",
           "link": "https://blog.dailydoseofds.com/p/karpathys-prediction-about-rl-is",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/claude-codes-goal-command",
           "date": "Thu, 14 May 2026 22:12:56 GMT",
           "note": "...the most time-saving feature."
-        },
-        {
-          "title": "Hermes Agent Masterclass",
-          "link": "https://blog.dailydoseofds.com/p/hermes-agent-masterclass",
-          "date": "Wed, 13 May 2026 21:01:15 GMT",
-          "note": "Everything you need to understand and customize Hermes Agent."
         }
       ]
     },
@@ -148,6 +148,18 @@
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
         {
+          "title": "Towards Speed-of-Light Text Generation with Nemotron-Labs Diffusion Language Models",
+          "link": "https://huggingface.co/blog/nvidia/nemotron-labs-diffusion",
+          "date": "Sat, 23 May 2026 00:02:03 GMT",
+          "note": ""
+        },
+        {
+          "title": "Specialization Beats Scale: A Strategic Variable Most AI Procurement Decisions Overlook",
+          "link": "https://huggingface.co/blog/Dharma-AI/specialization-beats-scale",
+          "date": "Fri, 22 May 2026 15:25:59 GMT",
+          "note": ""
+        },
+        {
           "title": "OlmoEarth v1.1: A more efficient family of Earth observation models",
           "link": "https://huggingface.co/blog/allenai/olmoearth-v1-1",
           "date": "Tue, 19 May 2026 18:38:09 GMT",
@@ -157,12 +169,6 @@
           "title": "Introducing the Ettin Reranker Family",
           "link": "https://huggingface.co/blog/ettin-reranker",
           "date": "Tue, 19 May 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Fine-Tuning NVIDIA Cosmos Predict 2.5 with LoRA/DoRA for Robot Video Generation",
-          "link": "https://huggingface.co/blog/nvidia/cosmos-fine-tuning-for-robot-video-generation",
-          "date": "Mon, 18 May 2026 16:00:21 GMT",
           "note": ""
         },
         {
@@ -187,12 +193,6 @@
           "title": "Unlocking asynchronicity in continuous batching",
           "link": "https://huggingface.co/blog/continuous_async",
           "date": "Thu, 14 May 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Building Blocks for Foundation Model Training and Inference on AWS",
-          "link": "https://huggingface.co/blog/amazon/foundation-model-building-blocks",
-          "date": "Mon, 11 May 2026 23:18:26 GMT",
           "note": ""
         }
       ]
