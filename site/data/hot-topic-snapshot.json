@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-05-24T04:45:53.097622+00:00",
+    "generated_at": "2026-05-25T04:59:31.169237+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -85,6 +85,12 @@
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
         {
+          "title": "Function Approximation in RL",
+          "link": "https://blog.dailydoseofds.com/p/function-approximation-in-rl",
+          "date": "Sun, 24 May 2026 20:47:39 GMT",
+          "note": "The full RL nanodegree, covered with implementation."
+        },
+        {
           "title": "Agent Memory Is Only as Good as Its Schema",
           "link": "https://blog.dailydoseofds.com/p/agent-memory-is-only-as-good-as-its",
           "date": "Fri, 22 May 2026 20:33:11 GMT",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/hands-on-building-custom-tools-for",
           "date": "Fri, 15 May 2026 22:24:34 GMT",
           "note": "...explained with code."
-        },
-        {
-          "title": "Claude Code's /goal Command",
-          "link": "https://blog.dailydoseofds.com/p/claude-codes-goal-command",
-          "date": "Thu, 14 May 2026 22:12:56 GMT",
-          "note": "...the most time-saving feature."
         }
       ]
     },
