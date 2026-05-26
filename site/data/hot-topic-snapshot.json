@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-05-25T04:59:31.169237+00:00",
+    "generated_at": "2026-05-26T04:40:39.127509+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年5月22号 16:46AI 日报AI日报：字节开源统一多模态大模型Lance 3B;智谱发布GLM-5.1高速版;CapCut与Gemini合作推出深度集成查看日报",
-        "link": "https://www.aibase.com/daily/28263"
+        "title": "2026年5月25号 16:05AI 日报AI日报：字节联合港科大发布MMProLong；腾讯ima宣布开放Copilot；红果短剧取消AI仿真人短剧保底政策查看日报",
+        "link": "https://www.aibase.com/daily/28310"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "OpenAI 发布 ChatGPT for PowerPoint：一句话生成 PPT，还能主动揪 Bug",
-          "link": "https://www.aibase.com/news/28262",
-          "date": "2026年5月22号 16:46",
+          "title": "xAI 祭出“杀手锏”：1.5 万亿参数 Grok V9-Medium 训练完成，直指编程 AI 赛道",
+          "link": "https://www.aibase.com/news/28307",
+          "date": "2026年5月25号 16:05",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Spotify 联手环球音乐推出 AI 翻唱与混音：正版版权的“降维打击”来了",
-          "link": "https://www.aibase.com/news/28259",
-          "date": "2026年5月22号 16:46",
+          "title": "面壁智能联合清华大学发布中国首个1.58-bit大模型BitCPM-CANN",
+          "link": "https://www.aibase.com/news/28306",
+          "date": "2026年5月25号 16:05",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenAI将ChatGPT接入Microsoft PowerPoint，支持自然语言创建与编辑幻灯片",
-          "link": "https://www.aibase.com/news/28256",
-          "date": "2026年5月22号 16:46",
+          "title": "OpenAI斥巨资在新加坡建实验室，开启首个海外AI大本营",
+          "link": "https://www.aibase.com/news/28304",
+          "date": "2026年5月25号 16:05",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "智谱发布GLM-5. 1 高速版：400 tokens/s飙出全球API新极限",
-          "link": "https://www.aibase.com/news/28254",
-          "date": "2026年5月22号 16:46",
+          "title": "高德“问店选址”Skill接入钉钉悟空，AI赋能商家开店决策",
+          "link": "https://www.aibase.com/news/28300",
+          "date": "2026年5月25号 16:05",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "字节跳动开源Lance 3B：用一个“脑子”同时搞定图视理解与生成",
-          "link": "https://www.aibase.com/news/28251",
-          "date": "2026年5月22号 16:46",
+          "title": "蚂蚁灵波LingBot-VA论文被机器人顶会RSS2026接收，让机器人边推演、边行动",
+          "link": "https://www.aibase.com/news/28297",
+          "date": "2026年5月25号 16:05",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "拒绝“人机单聊”！UniClaw 2026公测：AI 正在迈入“多人社交模式”",
-          "link": "https://www.aibase.com/news/28245",
-          "date": "2026年5月22号 16:46",
+          "title": "无需排队!腾讯ima 宣布全面开放 Copilot 并推出知识技能分享平台",
+          "link": "https://www.aibase.com/news/28291",
+          "date": "2026年5月25号 16:05",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "CapCut 与 Gemini 合作推出深度集成:AI 创作工具实现智能互联",
-          "link": "https://www.aibase.com/news/28244",
-          "date": "2026年5月22号 16:46",
+          "title": "字节跳动联合港科大发布MMProLong：长文档LMM训练问答对效率远超OCR转录",
+          "link": "https://www.aibase.com/news/28289",
+          "date": "2026年5月25号 16:05",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "拒绝彩排，真刀真枪上舞台!美团LongCat-Video-Avatar1.5开源:全面击败主流闭源模型",
-          "link": "https://www.aibase.com/news/28241",
-          "date": "2026年5月22号 16:46",
+          "title": "​红果保底政策“断崖式”退潮，漫剧风口正式转入“淘汰赛”",
+          "link": "https://www.aibase.com/news/28287",
+          "date": "2026年5月25号 16:05",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "The No. 1 Deep Researcher Beats Claude and ChatGPT Using a Counterintuitive Trick",
+          "link": "https://blog.dailydoseofds.com/p/the-no-1-deep-researcher-beats-claude",
+          "date": "Mon, 25 May 2026 20:09:33 GMT",
+          "note": "It's fully open-source with 30k stars."
+        },
         {
           "title": "Function Approximation in RL",
           "link": "https://blog.dailydoseofds.com/p/function-approximation-in-rl",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/model-free-learning-in-rl",
           "date": "Sun, 17 May 2026 20:51:35 GMT",
           "note": "The full RL nanodegree, covered with implementation."
-        },
-        {
-          "title": "[Hands-on] ​Building Custom Tools for AI Agents​",
-          "link": "https://blog.dailydoseofds.com/p/hands-on-building-custom-tools-for",
-          "date": "Fri, 15 May 2026 22:24:34 GMT",
-          "note": "...explained with code."
         }
       ]
     },
@@ -147,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Harness, Scaffold, and the AI Agent Terms Worth Getting Right",
+          "link": "https://huggingface.co/blog/agent-glossary",
+          "date": "Mon, 25 May 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "Towards Speed-of-Light Text Generation with Nemotron-Labs Diffusion Language Models",
           "link": "https://huggingface.co/blog/nvidia/nemotron-labs-diffusion",
@@ -187,12 +193,6 @@
           "title": "Granite Embedding Multilingual R2: Open Apache 2.0 Multilingual Embeddings with 32K Context — Best Sub-100M Retrieval Quality",
           "link": "https://huggingface.co/blog/ibm-granite/granite-embedding-multilingual-r2",
           "date": "Thu, 14 May 2026 18:55:01 GMT",
-          "note": ""
-        },
-        {
-          "title": "Unlocking asynchronicity in continuous batching",
-          "link": "https://huggingface.co/blog/continuous_async",
-          "date": "Thu, 14 May 2026 00:00:00 GMT",
           "note": ""
         }
       ]
