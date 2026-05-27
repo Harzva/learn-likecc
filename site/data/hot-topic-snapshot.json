@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-05-26T04:40:39.127509+00:00",
+    "generated_at": "2026-05-27T04:54:18.085510+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年5月25号 16:05AI 日报AI日报：字节联合港科大发布MMProLong；腾讯ima宣布开放Copilot；红果短剧取消AI仿真人短剧保底政策查看日报",
-        "link": "https://www.aibase.com/daily/28310"
+        "title": "2026年5月26号 15:45AI 日报AI日报：OpenAI未官宣新旗舰GPT-5.6意外曝光；昆仑万维发布天工SkyClaw-v1.0；阿里 Qwen3.7-Max 编程能力全球登顶第二查看日报",
+        "link": "https://www.aibase.com/daily/28347"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "xAI 祭出“杀手锏”：1.5 万亿参数 Grok V9-Medium 训练完成，直指编程 AI 赛道",
-          "link": "https://www.aibase.com/news/28307",
-          "date": "2026年5月25号 16:05",
+          "title": "阿里 Qwen3.7-Max 编程能力全球登顶第二！Code Arena 1541 分，仅次 Claude，35 小时自主任务刷新生产力上限",
+          "link": "https://www.aibase.com/news/28346",
+          "date": "2026年5月26号 15:45",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "面壁智能联合清华大学发布中国首个1.58-bit大模型BitCPM-CANN",
-          "link": "https://www.aibase.com/news/28306",
-          "date": "2026年5月25号 16:05",
+          "title": "Hyper3D Rodin Gen-2.5 发布：4 秒百万面、全球首款千万面级 3D 生成模型，细节直逼生产级资产",
+          "link": "https://www.aibase.com/news/28345",
+          "date": "2026年5月26号 15:45",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenAI斥巨资在新加坡建实验室，开启首个海外AI大本营",
-          "link": "https://www.aibase.com/news/28304",
-          "date": "2026年5月25号 16:05",
+          "title": "支付宝披露：3亿笔AI付、支持95%通用智能体、发布AI钱包和Token Pay",
+          "link": "https://www.aibase.com/news/28343",
+          "date": "2026年5月26号 15:45",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "高德“问店选址”Skill接入钉钉悟空，AI赋能商家开店决策",
-          "link": "https://www.aibase.com/news/28300",
-          "date": "2026年5月25号 16:05",
+          "title": "国产模型大突破！昆仑万维发布天工高性能 Agent 模型 SkyClaw-v1.0",
+          "link": "https://www.aibase.com/news/28339",
+          "date": "2026年5月26号 15:45",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "蚂蚁灵波LingBot-VA论文被机器人顶会RSS2026接收，让机器人边推演、边行动",
-          "link": "https://www.aibase.com/news/28297",
-          "date": "2026年5月25号 16:05",
+          "title": "苹果 Siri 重磅升级：1.2 万亿参数谷歌定制模型“掌脑”，本地运行速度成关键",
+          "link": "https://www.aibase.com/news/28332",
+          "date": "2026年5月26号 15:45",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "无需排队!腾讯ima 宣布全面开放 Copilot 并推出知识技能分享平台",
-          "link": "https://www.aibase.com/news/28291",
-          "date": "2026年5月25号 16:05",
+          "title": "AI“治安官”上岗周年：抖音大模型治理谣言，处置浏览量下降62%",
+          "link": "https://www.aibase.com/news/28331",
+          "date": "2026年5月26号 15:45",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "字节跳动联合港科大发布MMProLong：长文档LMM训练问答对效率远超OCR转录",
-          "link": "https://www.aibase.com/news/28289",
-          "date": "2026年5月25号 16:05",
+          "title": "商汤 Seko AI 再进化：发布生产链路 Seko Space，加速漫短剧工业化布局",
+          "link": "https://www.aibase.com/news/28321",
+          "date": "2026年5月26号 15:45",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "​红果保底政策“断崖式”退潮，漫剧风口正式转入“淘汰赛”",
-          "link": "https://www.aibase.com/news/28287",
-          "date": "2026年5月25号 16:05",
+          "title": "上下文 150 万 tokens！OpenAI未官宣新旗舰GPT-5.6意外曝光",
+          "link": "https://www.aibase.com/news/28320",
+          "date": "2026年5月26号 15:45",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "​Claude Code used 3x fewer tokens with just one change!",
+          "link": "https://blog.dailydoseofds.com/p/claude-code-used-3x-fewer-tokens",
+          "date": "Tue, 26 May 2026 22:08:23 GMT",
+          "note": "Explained with fully-open-source setup."
+        },
         {
           "title": "The No. 1 Deep Researcher Beats Claude and ChatGPT Using a Counterintuitive Trick",
           "link": "https://blog.dailydoseofds.com/p/the-no-1-deep-researcher-beats-claude",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/implement-knowledge-distillation",
           "date": "Mon, 18 May 2026 21:59:54 GMT",
           "note": "(must-know to efficiently run ML models in production)"
-        },
-        {
-          "title": "Model-Free Learning in RL",
-          "link": "https://blog.dailydoseofds.com/p/model-free-learning-in-rl",
-          "date": "Sun, 17 May 2026 20:51:35 GMT",
-          "note": "The full RL nanodegree, covered with implementation."
         }
       ]
     },
