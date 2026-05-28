@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-05-27T04:54:18.085510+00:00",
+    "generated_at": "2026-05-28T04:48:14.103320+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年5月26号 15:45AI 日报AI日报：OpenAI未官宣新旗舰GPT-5.6意外曝光；昆仑万维发布天工SkyClaw-v1.0；阿里 Qwen3.7-Max 编程能力全球登顶第二查看日报",
-        "link": "https://www.aibase.com/daily/28347"
+        "title": "2026年5月27号 15:48AI 日报AI日报：小米MiMo-V2.5系列API永久降价；千问升级拍照问健康；豆包将禁用拍题答疑查看日报",
+        "link": "https://www.aibase.com/daily/28387"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "阿里 Qwen3.7-Max 编程能力全球登顶第二！Code Arena 1541 分，仅次 Claude，35 小时自主任务刷新生产力上限",
-          "link": "https://www.aibase.com/news/28346",
-          "date": "2026年5月26号 15:45",
+          "title": "Google将SynthID技术接入搜索与Chrome:一键验证是否为AI生成",
+          "link": "https://www.aibase.com/news/28384",
+          "date": "2026年5月27号 15:48",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Hyper3D Rodin Gen-2.5 发布：4 秒百万面、全球首款千万面级 3D 生成模型，细节直逼生产级资产",
-          "link": "https://www.aibase.com/news/28345",
-          "date": "2026年5月26号 15:45",
+          "title": "环球音乐与 TikTok 续签多年授权协议，AI 监管成为合作核心",
+          "link": "https://www.aibase.com/news/28380",
+          "date": "2026年5月27号 15:48",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "支付宝披露：3亿笔AI付、支持95%通用智能体、发布AI钱包和Token Pay",
-          "link": "https://www.aibase.com/news/28343",
-          "date": "2026年5月26号 15:45",
+          "title": "通义千问升级“拍照问健康”:能圈图、懂推理，三甲医生实测认可",
+          "link": "https://www.aibase.com/news/28379",
+          "date": "2026年5月27号 15:48",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "国产模型大突破！昆仑万维发布天工高性能 Agent 模型 SkyClaw-v1.0",
-          "link": "https://www.aibase.com/news/28339",
-          "date": "2026年5月26号 15:45",
+          "title": "上海发布AI微短剧“沪8条”:最高千万资助，全流程AI化重塑出海版图",
+          "link": "https://www.aibase.com/news/28374",
+          "date": "2026年5月27号 15:48",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "苹果 Siri 重磅升级：1.2 万亿参数谷歌定制模型“掌脑”，本地运行速度成关键",
-          "link": "https://www.aibase.com/news/28332",
-          "date": "2026年5月26号 15:45",
+          "title": "重磅！MiniMax M3 即将发布：稀疏注意力架构突破，百万 Token 上下文效率暴增",
+          "link": "https://www.aibase.com/news/28371",
+          "date": "2026年5月27号 15:48",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "AI“治安官”上岗周年：抖音大模型治理谣言，处置浏览量下降62%",
-          "link": "https://www.aibase.com/news/28331",
-          "date": "2026年5月26号 15:45",
+          "title": "多家AI平台回应高考期间服务受限:豆包将禁用拍题答疑，腾讯元宝延续不答题策略",
+          "link": "https://www.aibase.com/news/28366",
+          "date": "2026年5月27号 15:48",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "商汤 Seko AI 再进化：发布生产链路 Seko Space，加速漫短剧工业化布局",
-          "link": "https://www.aibase.com/news/28321",
-          "date": "2026年5月26号 15:45",
+          "title": "MiniMax、阶跃星辰联手支付宝：AI 原生支付基建迎来“大模型国家队”",
+          "link": "https://www.aibase.com/news/28356",
+          "date": "2026年5月27号 15:48",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "上下文 150 万 tokens！OpenAI未官宣新旗舰GPT-5.6意外曝光",
-          "link": "https://www.aibase.com/news/28320",
-          "date": "2026年5月26号 15:45",
+          "title": "小米 MiMo-V2.5 系列 API 永久降价，最高降幅达 99%",
+          "link": "https://www.aibase.com/news/28354",
+          "date": "2026年5月27号 15:48",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Hermes Agent Masterclass",
+          "link": "https://blog.dailydoseofds.com/p/hermes-agent-masterclass-e2b",
+          "date": "Wed, 27 May 2026 20:22:02 GMT",
+          "note": "Full video guide to go from zero to hero."
+        },
         {
           "title": "​Claude Code used 3x fewer tokens with just one change!",
           "link": "https://blog.dailydoseofds.com/p/claude-code-used-3x-fewer-tokens",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/the-top-hermes-integrations",
           "date": "Tue, 19 May 2026 20:38:22 GMT",
           "note": "... to give your agent superpowers"
-        },
-        {
-          "title": "​Implement Knowledge Distillation from Scratch​",
-          "link": "https://blog.dailydoseofds.com/p/implement-knowledge-distillation",
-          "date": "Mon, 18 May 2026 21:59:54 GMT",
-          "note": "(must-know to efficiently run ML models in production)"
         }
       ]
     },
@@ -147,6 +147,24 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "ITBench-AA: Frontier Models Score Below 50% on the First Benchmark for Agentic Enterprise IT Tasks — by Artificial Analysis and IBM",
+          "link": "https://huggingface.co/blog/ibm-research/itbench-aa",
+          "date": "Wed, 27 May 2026 17:20:29 GMT",
+          "note": ""
+        },
+        {
+          "title": "Reachy Mini goes fully local",
+          "link": "https://huggingface.co/blog/local-reachy-mini-conversation",
+          "date": "Wed, 27 May 2026 00:00:00 GMT",
+          "note": ""
+        },
+        {
+          "title": "Shipping a Trillion Parameters With a Hub Bucket: Delta Weight Sync in TRL",
+          "link": "https://huggingface.co/blog/delta-weight-sync",
+          "date": "Wed, 27 May 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "Harness, Scaffold, and the AI Agent Terms Worth Getting Right",
           "link": "https://huggingface.co/blog/agent-glossary",
@@ -175,24 +193,6 @@
           "title": "Introducing the Ettin Reranker Family",
           "link": "https://huggingface.co/blog/ettin-reranker",
           "date": "Tue, 19 May 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "PaddleOCR 3.5: Running OCR and Document Parsing Tasks with a Transformers Backend",
-          "link": "https://huggingface.co/blog/PaddlePaddle/paddleocr-transformers",
-          "date": "Mon, 18 May 2026 15:12:46 GMT",
-          "note": ""
-        },
-        {
-          "title": "The Open Agent Leaderboard",
-          "link": "https://huggingface.co/blog/ibm-research/open-agent-leaderboard",
-          "date": "Mon, 18 May 2026 14:12:58 GMT",
-          "note": ""
-        },
-        {
-          "title": "Granite Embedding Multilingual R2: Open Apache 2.0 Multilingual Embeddings with 32K Context — Best Sub-100M Retrieval Quality",
-          "link": "https://huggingface.co/blog/ibm-granite/granite-embedding-multilingual-r2",
-          "date": "Thu, 14 May 2026 18:55:01 GMT",
           "note": ""
         }
       ]
