@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-05-28T04:48:14.103320+00:00",
+    "generated_at": "2026-05-29T04:50:42.742098+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年5月27号 15:48AI 日报AI日报：小米MiMo-V2.5系列API永久降价；千问升级拍照问健康；豆包将禁用拍题答疑查看日报",
-        "link": "https://www.aibase.com/daily/28387"
+        "title": "2026年5月28号 16:32AI 日报AI日报：小米上线招聘Agent；腾讯发布AI创作平台Craft；抖音严打AIGC违规带货查看日报",
+        "link": "https://www.aibase.com/daily/28434"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "Google将SynthID技术接入搜索与Chrome:一键验证是否为AI生成",
-          "link": "https://www.aibase.com/news/28384",
-          "date": "2026年5月27号 15:48",
+          "title": "科大讯飞发布讯飞AI眼镜:内置GlassClaw助理，售价4299元",
+          "link": "https://www.aibase.com/news/28433",
+          "date": "2026年5月28号 16:32",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "环球音乐与 TikTok 续签多年授权协议，AI 监管成为合作核心",
-          "link": "https://www.aibase.com/news/28380",
-          "date": "2026年5月27号 15:48",
+          "title": "ElevenLabs 发布 Music v2：支持“一曲多变”与商业版权全授权",
+          "link": "https://www.aibase.com/news/28422",
+          "date": "2026年5月28号 16:32",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "通义千问升级“拍照问健康”:能圈图、懂推理，三甲医生实测认可",
-          "link": "https://www.aibase.com/news/28379",
-          "date": "2026年5月27号 15:48",
+          "title": "小米上线招聘Agent:基于xiaomimimo大模型，支持简历精准匹配与校招咨询",
+          "link": "https://www.aibase.com/news/28421",
+          "date": "2026年5月28号 16:32",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "上海发布AI微短剧“沪8条”:最高千万资助，全流程AI化重塑出海版图",
-          "link": "https://www.aibase.com/news/28374",
-          "date": "2026年5月27号 15:48",
+          "title": "阿里语音大模型霸榜国际权威榜单，夺得国产语音 AI“三冠王”",
+          "link": "https://www.aibase.com/news/28419",
+          "date": "2026年5月28号 16:32",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "重磅！MiniMax M3 即将发布：稀疏注意力架构突破，百万 Token 上下文效率暴增",
-          "link": "https://www.aibase.com/news/28371",
-          "date": "2026年5月27号 15:48",
+          "title": "国产具身大模型 Wall-OSS-0.5 重磅开源：预训练即可“零样本”部署",
+          "link": "https://www.aibase.com/news/28418",
+          "date": "2026年5月28号 16:32",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "多家AI平台回应高考期间服务受限:豆包将禁用拍题答疑，腾讯元宝延续不答题策略",
-          "link": "https://www.aibase.com/news/28366",
-          "date": "2026年5月27号 15:48",
+          "title": "OpenAI扩大广告平台访问权限，向更多广告主发出邀请，针对免费ChatGPT用户推出精准投放机会",
+          "link": "https://www.aibase.com/news/28404",
+          "date": "2026年5月28号 16:32",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "MiniMax、阶跃星辰联手支付宝：AI 原生支付基建迎来“大模型国家队”",
-          "link": "https://www.aibase.com/news/28356",
-          "date": "2026年5月27号 15:48",
+          "title": "抖音生活服务交出“消保”成绩单：先行赔付 2.4 亿元，严打 AIGC 违规带货",
+          "link": "https://www.aibase.com/news/28399",
+          "date": "2026年5月28号 16:32",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "小米 MiMo-V2.5 系列 API 永久降价，最高降幅达 99%",
-          "link": "https://www.aibase.com/news/28354",
-          "date": "2026年5月27号 15:48",
+          "title": "腾讯发布 AI 创作平台“代号 Craft”：自然语言即可“一键生成”游戏世界",
+          "link": "https://www.aibase.com/news/28395",
+          "date": "2026年5月28号 16:32",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "RAG vs. Graph RAG vs. Agentic RAG",
+          "link": "https://blog.dailydoseofds.com/p/rag-vs-graph-rag-vs-agentic-rag",
+          "date": "Thu, 28 May 2026 22:35:03 GMT",
+          "note": "...explained visually!"
+        },
         {
           "title": "Hermes Agent Masterclass",
           "link": "https://blog.dailydoseofds.com/p/hermes-agent-masterclass-e2b",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/the-anatomy-of-hermes-folder",
           "date": "Wed, 20 May 2026 22:03:36 GMT",
           "note": "...and why each piece matters."
-        },
-        {
-          "title": "The top Hermes integrations",
-          "link": "https://blog.dailydoseofds.com/p/the-top-hermes-integrations",
-          "date": "Tue, 19 May 2026 20:38:22 GMT",
-          "note": "... to give your agent superpowers"
         }
       ]
     },
