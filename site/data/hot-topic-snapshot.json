@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-05-31T04:57:44.792614+00:00",
+    "generated_at": "2026-06-01T05:22:13.054627+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -85,6 +85,12 @@
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
         {
+          "title": "Introduction to Deep RL and DQN",
+          "link": "https://blog.dailydoseofds.com/p/introduction-to-deep-rl-and-dqn",
+          "date": "Sun, 31 May 2026 20:38:53 GMT",
+          "note": "The full RL nanodegree, covered with implementation."
+        },
+        {
           "title": "Why Agent Crashes Are Nothing Like Database Crashes",
           "link": "https://blog.dailydoseofds.com/p/why-agent-crashes-are-nothing-like",
           "date": "Fri, 29 May 2026 18:27:20 GMT",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/agent-memory-is-only-as-good-as-its",
           "date": "Fri, 22 May 2026 20:33:11 GMT",
           "note": "Some key lessons on building production-grade memory for Agents."
-        },
-        {
-          "title": "Karpathy’s Prediction About RL is Coming True Now!",
-          "link": "https://blog.dailydoseofds.com/p/karpathys-prediction-about-rl-is",
-          "date": "Thu, 21 May 2026 22:15:43 GMT",
-          "note": "..and an open-source framework that's making it happen."
         }
       ]
     },
@@ -147,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Welcome NVIDIA Cosmos 3: The First Open Omni-model for Physical AI Reasoning and Action",
+          "link": "https://huggingface.co/blog/nvidia/cosmos-3-for-physical-ai",
+          "date": "Mon, 01 Jun 2026 04:44:55 GMT",
+          "note": ""
+        },
         {
           "title": "Profiling in PyTorch (Part 1): A Beginner's Guide to torch.profiler",
           "link": "https://huggingface.co/blog/torch-profiler",
@@ -175,12 +181,6 @@
           "title": "Harness, Scaffold, and the AI Agent Terms Worth Getting Right",
           "link": "https://huggingface.co/blog/agent-glossary",
           "date": "Mon, 25 May 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Towards Speed-of-Light Text Generation with Nemotron-Labs Diffusion Language Models",
-          "link": "https://huggingface.co/blog/nvidia/nemotron-labs-diffusion",
-          "date": "Sat, 23 May 2026 00:02:03 GMT",
           "note": ""
         },
         {
