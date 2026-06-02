@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-06-01T05:22:13.054627+00:00",
+    "generated_at": "2026-06-02T05:08:04.741828+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年5月29号 16:28AI 日报AI日报：Claude Opus 4.8上线；小红书PC端上线AI搜索助手点点；阶跃星辰开源Step 3.7 Flash 大模型查看日报",
-        "link": "https://www.aibase.com/daily/28479"
+        "title": "2026年6月1号 16:54AI 日报AI日报：MiniMax发布M3 大模型；英伟达物理大模型Cosmos3发布；小红书已治理超120万个AI托管账号查看日报",
+        "link": "https://www.aibase.com/daily/28525"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "阿里云百炼全面CLI化并开源:一行命令打通AI Agent全栈能力编排",
-          "link": "https://www.aibase.com/news/28476",
-          "date": "2026年5月29号 16:28",
+          "title": "LobsterAI上线图片视频大模型矩阵 一次性接入四大主流图像视频生成模型",
+          "link": "https://www.aibase.com/news/28520",
+          "date": "2026年6月1号 16:54",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "小米宣布 MiMo-V2-Pro/Omni 将于2026年6月下线，全面切换 V2.5系列",
-          "link": "https://www.aibase.com/news/28469",
-          "date": "2026年5月29号 16:28",
+          "title": "OpenAI官宣重启机器人业务，奥特曼公开招募工程师短期专注基础设施研发",
+          "link": "https://www.aibase.com/news/28517",
+          "date": "2026年6月1号 16:54",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Grok Build 0.2.7 重磅更新：/usage、/login 上线，多子代理共享终端 + 图像理解大提升",
-          "link": "https://www.aibase.com/news/28468",
-          "date": "2026年5月29号 16:28",
+          "title": "4月抖音新增AI短剧超4.4万部达真人剧13倍，爆款破亿率仅为0.6%",
+          "link": "https://www.aibase.com/news/28516",
+          "date": "2026年6月1号 16:54",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "AI卷向电商治理！拼多多上半年出台 40 余项举措，高科技作弊成打击重点",
-          "link": "https://www.aibase.com/news/28458",
-          "date": "2026年5月29号 16:28",
+          "title": "全球首款全开源全模态物理AI大模型Cosmos3 发布，英伟达联手行业巨头成立宇宙联盟",
+          "link": "https://www.aibase.com/news/28515",
+          "date": "2026年6月1号 16:54",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "小红书 PC 端上线 AI 搜索助手“点点”：基于海量真实笔记支持多轮对话与收藏导入",
-          "link": "https://www.aibase.com/news/28453",
-          "date": "2026年5月29号 16:28",
+          "title": "打假大动作！小红书已治理超 120 万个AI托管账号，处置 18 万篇AI造假笔记",
+          "link": "https://www.aibase.com/news/28504",
+          "date": "2026年6月1号 16:54",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "速度翻倍！阶跃星辰开源 Step 3.7 Flash 大模型",
-          "link": "https://www.aibase.com/news/28449",
-          "date": "2026年5月29号 16:28",
+          "title": "从音乐人到“Vibe Coder”，胡彦斌上线粉丝社区应用「彦火」",
+          "link": "https://www.aibase.com/news/28501",
+          "date": "2026年6月1号 16:54",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "吊打GPT-5.5！Claude Opus 4.8 上线 价格暴降三分之二",
-          "link": "https://www.aibase.com/news/28444",
-          "date": "2026年5月29号 16:28",
+          "title": "千问APP 六一“礼物选购”问询量近一周增长260%",
+          "link": "https://www.aibase.com/news/28498",
+          "date": "2026年6月1号 16:54",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "记忆密度升45%、Token省35%!!腾讯混元发布最强记忆插件 Hy-Memory",
-          "link": "https://www.aibase.com/news/28443",
-          "date": "2026年5月29号 16:28",
+          "title": "MiniMax发布M3 大模型：首创MSA架构并支持1M上下文，全面开源对标海外旗舰",
+          "link": "https://www.aibase.com/news/28491",
+          "date": "2026年6月1号 16:54",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "[Hands-on] Build a 3D Weather Globe with Claude Code",
+          "link": "https://blog.dailydoseofds.com/p/hands-on-build-a-3d-weather-globe",
+          "date": "Mon, 01 Jun 2026 20:50:08 GMT",
+          "note": "Backed by a production-grade time-series database."
+        },
         {
           "title": "Introduction to Deep RL and DQN",
           "link": "https://blog.dailydoseofds.com/p/introduction-to-deep-rl-and-dqn",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/function-approximation-in-rl",
           "date": "Sun, 24 May 2026 20:47:39 GMT",
           "note": "The full RL nanodegree, covered with implementation."
-        },
-        {
-          "title": "Agent Memory Is Only as Good as Its Schema",
-          "link": "https://blog.dailydoseofds.com/p/agent-memory-is-only-as-good-as-its",
-          "date": "Fri, 22 May 2026 20:33:11 GMT",
-          "note": "Some key lessons on building production-grade memory for Agents."
         }
       ]
     },
@@ -148,6 +148,18 @@
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
         {
+          "title": "Introducing Mellum2: A 12B Mixture-of-Experts Model by JetBrains",
+          "link": "https://huggingface.co/blog/JetBrains/mellum2-launch",
+          "date": "Mon, 01 Jun 2026 15:45:17 GMT",
+          "note": ""
+        },
+        {
+          "title": "Beyond LLMs: Why Scalable Enterprise AI Adoption Depends on Agent Logic",
+          "link": "https://huggingface.co/blog/ibm-research/agent-logic-and-scalable-ai-adoption",
+          "date": "Mon, 01 Jun 2026 13:51:18 GMT",
+          "note": ""
+        },
+        {
           "title": "Welcome NVIDIA Cosmos 3: The First Open Omni-model for Physical AI Reasoning and Action",
           "link": "https://huggingface.co/blog/nvidia/cosmos-3-for-physical-ai",
           "date": "Mon, 01 Jun 2026 04:44:55 GMT",
@@ -157,12 +169,6 @@
           "title": "Profiling in PyTorch (Part 1): A Beginner's Guide to torch.profiler",
           "link": "https://huggingface.co/blog/torch-profiler",
           "date": "Fri, 29 May 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "ITBench-AA: Frontier Models Score Below 50% on the First Benchmark for Agentic Enterprise IT Tasks — by Artificial Analysis and IBM",
-          "link": "https://huggingface.co/blog/ibm-research/itbench-aa",
-          "date": "Wed, 27 May 2026 17:20:29 GMT",
           "note": ""
         },
         {
@@ -187,12 +193,6 @@
           "title": "Specialization Beats Scale: A Strategic Variable Most AI Procurement Decisions Overlook",
           "link": "https://huggingface.co/blog/Dharma-AI/specialization-beats-scale",
           "date": "Fri, 22 May 2026 15:25:59 GMT",
-          "note": ""
-        },
-        {
-          "title": "OlmoEarth v1.1: A more efficient family of Earth observation models",
-          "link": "https://huggingface.co/blog/allenai/olmoearth-v1-1",
-          "date": "Tue, 19 May 2026 18:38:09 GMT",
           "note": ""
         }
       ]
