@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-06-02T05:08:04.741828+00:00",
+    "generated_at": "2026-06-03T05:23:43.630385+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年6月1号 16:54AI 日报AI日报：MiniMax发布M3 大模型；英伟达物理大模型Cosmos3发布；小红书已治理超120万个AI托管账号查看日报",
-        "link": "https://www.aibase.com/daily/28525"
+        "title": "2026年6月2号 15:59AI 日报AI日报：扣子3.0正式上线；豆包预计6月下旬上线付费版本；Krea 2 LoRA 全面开放查看日报",
+        "link": "https://www.aibase.com/daily/28568"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "LobsterAI上线图片视频大模型矩阵 一次性接入四大主流图像视频生成模型",
-          "link": "https://www.aibase.com/news/28520",
-          "date": "2026年6月1号 16:54",
+          "title": "GitHub Copilot正式上线按量计费模式，推出AI点数扣费机制",
+          "link": "https://www.aibase.com/news/28558",
+          "date": "2026年6月2号 15:59",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenAI官宣重启机器人业务，奥特曼公开招募工程师短期专注基础设施研发",
-          "link": "https://www.aibase.com/news/28517",
-          "date": "2026年6月1号 16:54",
+          "title": "颠覆传统交互！OpenAI现场演示“无App”手机，所有界面全靠AI实时生成",
+          "link": "https://www.aibase.com/news/28556",
+          "date": "2026年6月2号 15:59",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "4月抖音新增AI短剧超4.4万部达真人剧13倍，爆款破亿率仅为0.6%",
-          "link": "https://www.aibase.com/news/28516",
-          "date": "2026年6月1号 16:54",
+          "title": "Krea 2 LoRA 全面开放！AI 图像创作个性化时代来临",
+          "link": "https://www.aibase.com/news/28554",
+          "date": "2026年6月2号 15:59",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "全球首款全开源全模态物理AI大模型Cosmos3 发布，英伟达联手行业巨头成立宇宙联盟",
-          "link": "https://www.aibase.com/news/28515",
-          "date": "2026年6月1号 16:54",
+          "title": "微信AI智能体曝光:主打应用内任务处理，分阶段上线在即",
+          "link": "https://www.aibase.com/news/28552",
+          "date": "2026年6月2号 15:59",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "打假大动作！小红书已治理超 120 万个AI托管账号，处置 18 万篇AI造假笔记",
-          "link": "https://www.aibase.com/news/28504",
-          "date": "2026年6月1号 16:54",
+          "title": "扣子 3.0 正式上线，支持多人多 Agent 协同作业",
+          "link": "https://www.aibase.com/news/28542",
+          "date": "2026年6月2号 15:59",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "从音乐人到“Vibe Coder”，胡彦斌上线粉丝社区应用「彦火」",
-          "link": "https://www.aibase.com/news/28501",
-          "date": "2026年6月1号 16:54",
+          "title": "编程与GUI双向通吃!Qwen3.7-Plus 登场，11小时自主闭环开发真实APP",
+          "link": "https://www.aibase.com/news/28541",
+          "date": "2026年6月2号 15:59",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "千问APP 六一“礼物选购”问询量近一周增长260%",
-          "link": "https://www.aibase.com/news/28498",
-          "date": "2026年6月1号 16:54",
+          "title": "OpenAI大幅调整ChatGPT，支持提前锁死算力档位",
+          "link": "https://www.aibase.com/news/28540",
+          "date": "2026年6月2号 15:59",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "MiniMax发布M3 大模型：首创MSA架构并支持1M上下文，全面开源对标海外旗舰",
-          "link": "https://www.aibase.com/news/28491",
-          "date": "2026年6月1号 16:54",
+          "title": "豆包预计6月下旬上线付费版本:三档订阅价格曝光，三季度将联动电商引流",
+          "link": "https://www.aibase.com/news/28534",
+          "date": "2026年6月2号 15:59",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "[Hands-on] Collapse CRM Pipelines into One Table",
+          "link": "https://blog.dailydoseofds.com/p/hands-on-collapse-crm-pipelines-into",
+          "date": "Tue, 02 Jun 2026 21:24:37 GMT",
+          "note": "...powered by open-source stack (28k+ stars)."
+        },
         {
           "title": "[Hands-on] Build a 3D Weather Globe with Claude Code",
           "link": "https://blog.dailydoseofds.com/p/hands-on-build-a-3d-weather-globe",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/the-no-1-deep-researcher-beats-claude",
           "date": "Mon, 25 May 2026 20:09:33 GMT",
           "note": "It's fully open-source with 30k stars."
-        },
-        {
-          "title": "Function Approximation in RL",
-          "link": "https://blog.dailydoseofds.com/p/function-approximation-in-rl",
-          "date": "Sun, 24 May 2026 20:47:39 GMT",
-          "note": "The full RL nanodegree, covered with implementation."
         }
       ]
     },
@@ -147,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Holo3.1: Fast & Local Computer Use Agents",
+          "link": "https://huggingface.co/blog/Hcompany/holo31",
+          "date": "Tue, 02 Jun 2026 14:13:23 GMT",
+          "note": ""
+        },
         {
           "title": "Introducing Mellum2: A 12B Mixture-of-Experts Model by JetBrains",
           "link": "https://huggingface.co/blog/JetBrains/mellum2-launch",
@@ -187,12 +193,6 @@
           "title": "Harness, Scaffold, and the AI Agent Terms Worth Getting Right",
           "link": "https://huggingface.co/blog/agent-glossary",
           "date": "Mon, 25 May 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Specialization Beats Scale: A Strategic Variable Most AI Procurement Decisions Overlook",
-          "link": "https://huggingface.co/blog/Dharma-AI/specialization-beats-scale",
-          "date": "Fri, 22 May 2026 15:25:59 GMT",
           "note": ""
         }
       ]
