@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-06-03T05:23:43.630385+00:00",
+    "generated_at": "2026-06-04T05:18:47.738915+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年6月2号 15:59AI 日报AI日报：扣子3.0正式上线；豆包预计6月下旬上线付费版本；Krea 2 LoRA 全面开放查看日报",
-        "link": "https://www.aibase.com/daily/28568"
+        "title": "2026年6月3号 17:13AI 日报AI日报：千问全面开放第三方Agent与Skill；字节开源统一框架 Bernini；OpenAI 推出 Sites 功能查看日报",
+        "link": "https://www.aibase.com/daily/28615"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "GitHub Copilot正式上线按量计费模式，推出AI点数扣费机制",
-          "link": "https://www.aibase.com/news/28558",
-          "date": "2026年6月2号 15:59",
+          "title": "拒绝空间焦虑！微软 Win11 隐藏 AI 卸载选项，一键释放超 2.5GB 硬盘空间",
+          "link": "https://www.aibase.com/news/28612",
+          "date": "2026年6月3号 17:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "颠覆传统交互！OpenAI现场演示“无App”手机，所有界面全靠AI实时生成",
-          "link": "https://www.aibase.com/news/28556",
-          "date": "2026年6月2号 15:59",
+          "title": "阿里千问全面开放第三方Agent与Skill，瑞幸、东航等首批接入测试",
+          "link": "https://www.aibase.com/news/28609",
+          "date": "2026年6月3号 17:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Krea 2 LoRA 全面开放！AI 图像创作个性化时代来临",
-          "link": "https://www.aibase.com/news/28554",
-          "date": "2026年6月2号 15:59",
+          "title": "OpenAI 举行“AI上岗”发布会，推出六大行业工作流插件",
+          "link": "https://www.aibase.com/news/28608",
+          "date": "2026年6月3号 17:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "微信AI智能体曝光:主打应用内任务处理，分阶段上线在即",
-          "link": "https://www.aibase.com/news/28552",
-          "date": "2026年6月2号 15:59",
+          "title": "腾讯、宁德时代拟巨额参投，DeepSeek首轮融资估值或达4000亿元",
+          "link": "https://www.aibase.com/news/28602",
+          "date": "2026年6月3号 17:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "扣子 3.0 正式上线，支持多人多 Agent 协同作业",
-          "link": "https://www.aibase.com/news/28542",
-          "date": "2026年6月2号 15:59",
+          "title": "先理解再动手！字节开源统一框架 Bernini，让 AI 视频编辑告别“碰运气”",
+          "link": "https://www.aibase.com/news/28601",
+          "date": "2026年6月3号 17:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "编程与GUI双向通吃!Qwen3.7-Plus 登场，11小时自主闭环开发真实APP",
-          "link": "https://www.aibase.com/news/28541",
-          "date": "2026年6月2号 15:59",
+          "title": "路人隐私成牺牲品？亚马逊 Ring 门铃人脸识别功能遭集体诉讼",
+          "link": "https://www.aibase.com/news/28600",
+          "date": "2026年6月3号 17:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenAI大幅调整ChatGPT，支持提前锁死算力档位",
-          "link": "https://www.aibase.com/news/28540",
-          "date": "2026年6月2号 15:59",
+          "title": "零代码时代终结者！OpenAI 推出 Sites 功能，动动嘴想法就能秒变互动网站",
+          "link": "https://www.aibase.com/news/28581",
+          "date": "2026年6月3号 17:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "豆包预计6月下旬上线付费版本:三档订阅价格曝光，三季度将联动电商引流",
-          "link": "https://www.aibase.com/news/28534",
-          "date": "2026年6月2号 15:59",
+          "title": "谷歌推出Android虚假来电检测功能，基于RCS技术防范AI深度伪造诈骗",
+          "link": "https://www.aibase.com/news/28578",
+          "date": "2026年6月3号 17:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "The Evolution of Retrieval Layer",
+          "link": "https://blog.dailydoseofds.com/p/the-evolution-of-retrieval-layer",
+          "date": "Wed, 03 Jun 2026 21:25:56 GMT",
+          "note": "Naive RAG &#8594; Retrieval layer &#8594; Agentic Layer"
+        },
         {
           "title": "[Hands-on] Collapse CRM Pipelines into One Table",
           "link": "https://blog.dailydoseofds.com/p/hands-on-collapse-crm-pipelines-into",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/claude-code-used-3x-fewer-tokens",
           "date": "Tue, 26 May 2026 22:08:23 GMT",
           "note": "Explained with fully-open-source setup."
-        },
-        {
-          "title": "The No. 1 Deep Researcher Beats Claude and ChatGPT Using a Counterintuitive Trick",
-          "link": "https://blog.dailydoseofds.com/p/the-no-1-deep-researcher-beats-claude",
-          "date": "Mon, 25 May 2026 20:09:33 GMT",
-          "note": "It's fully open-source with 30k stars."
         }
       ]
     },
@@ -147,6 +147,18 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Direct Preference Optimization Beyond Chatbots",
+          "link": "https://huggingface.co/blog/Dharma-AI/direct-preference-optimization-beyond-chatbots",
+          "date": "Wed, 03 Jun 2026 12:55:11 GMT",
+          "note": ""
+        },
+        {
+          "title": "Adding MCP Tools to Reachy Mini",
+          "link": "https://huggingface.co/blog/adding-mcp-tools-to-reachy-mini",
+          "date": "Wed, 03 Jun 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "Holo3.1: Fast & Local Computer Use Agents",
           "link": "https://huggingface.co/blog/Hcompany/holo31",
@@ -181,18 +193,6 @@
           "title": "Reachy Mini goes fully local",
           "link": "https://huggingface.co/blog/local-reachy-mini-conversation",
           "date": "Wed, 27 May 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Shipping a Trillion Parameters With a Hub Bucket: Delta Weight Sync in TRL",
-          "link": "https://huggingface.co/blog/delta-weight-sync",
-          "date": "Wed, 27 May 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Harness, Scaffold, and the AI Agent Terms Worth Getting Right",
-          "link": "https://huggingface.co/blog/agent-glossary",
-          "date": "Mon, 25 May 2026 00:00:00 GMT",
           "note": ""
         }
       ]
