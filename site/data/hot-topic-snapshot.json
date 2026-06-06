@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-06-05T04:53:52.739325+00:00",
+    "generated_at": "2026-06-06T04:33:29.708082+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年6月4号 16:06AI 日报AI日报：快手App上线AI购物助手；Kimi Work开启内测；微信互联多厂商推A2A助手查看日报",
-        "link": "https://www.aibase.com/daily/28652"
+        "title": "2026年6月5号 15:50AI 日报AI日报：阿里上线首个官方大模型NBA Chat； Ideogram4.0开源发布；OpenAI升级ChatGPT记忆系统查看日报",
+        "link": "https://www.aibase.com/daily/28693"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "首发185Hz刷新率！红魔游戏平板5 Pro正式入网，深度集成豆包大模型",
-          "link": "https://www.aibase.com/news/28650",
-          "date": "2026年6月4号 16:06",
+          "title": "腾讯文档行业首发「人机双写」原生接入WorkBuddy构建AI原生编辑器",
+          "link": "https://www.aibase.com/news/28691",
+          "date": "2026年6月5号 15:50",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "快手App上线“AI购物助手” 补齐货架电商智能导购短板",
-          "link": "https://www.aibase.com/news/28646",
-          "date": "2026年6月4号 16:06",
+          "title": "拍照识别野生蘑菇遭“误判”?豆包紧急回应:AI识别仅供参考，切勿盲目食用",
+          "link": "https://www.aibase.com/news/28687",
+          "date": "2026年6月5号 15:50",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "手机AI能直接调动微信了!微信互联多厂商推A2A助手，操作链路迎变革",
-          "link": "https://www.aibase.com/news/28644",
-          "date": "2026年6月4号 16:06",
+          "title": "NBA中国携手阿里巴巴上线首个官方大模型“NBA Chat”",
+          "link": "https://www.aibase.com/news/28684",
+          "date": "2026年6月5号 15:50",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "16GB 内存直接跑 12B 多模态！谷歌 AI Edge Gallery 登陆 Mac，端侧 AI 再迎生产力爆发",
-          "link": "https://www.aibase.com/news/28641",
-          "date": "2026年6月4号 16:06",
+          "title": "腾讯云ADP4.0发布：Claw模式让Agent\"一句话生成、一键入系统\"",
+          "link": "https://www.aibase.com/news/28683",
+          "date": "2026年6月5号 15:50",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "中兴通讯与腾讯达成战略合作，AI云电脑将搭载原生Work Buddy",
-          "link": "https://www.aibase.com/news/28639",
-          "date": "2026年6月4号 16:06",
+          "title": "知乎Q1 靠“省钱”扭亏为盈：营收连降三年，AI漫剧能否扛起增收大旗？",
+          "link": "https://www.aibase.com/news/28679",
+          "date": "2026年6月5号 15:50",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "知识工作者喜提通用本地Agent！月之暗面正式开启 Kimi Work 内测",
-          "link": "https://www.aibase.com/news/28624",
-          "date": "2026年6月4号 16:06",
+          "title": "腾讯发布效率智能体工具集：覆盖20+行业，Agent时代全面开启",
+          "link": "https://www.aibase.com/news/28677",
+          "date": "2026年6月5号 15:50",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "亚马逊App上线搜索框AI生成图片功能，深化视觉搜索布局",
-          "link": "https://www.aibase.com/news/28623",
-          "date": "2026年6月4号 16:06",
+          "title": "Ideogram4.0开源发布:93亿参数打造最强文字生成AI，DesignArena全球第四",
+          "link": "https://www.aibase.com/news/28671",
+          "date": "2026年6月5号 15:50",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "豆包宣布计划推出付费专业版:提供六大垂直生产力服务，澄清“降质促费”传闻",
-          "link": "https://www.aibase.com/news/28620",
-          "date": "2026年6月4号 16:06",
+          "title": "xAI发布Grok Imagine Video1.5:一张图片秒变视频，直面Google Veo竞争",
+          "link": "https://www.aibase.com/news/28669",
+          "date": "2026年6月5号 15:50",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Finally, Hermes Agent's Desktop App is Here!",
+          "link": "https://blog.dailydoseofds.com/p/finally-hermes-agents-desktop-app",
+          "date": "Fri, 05 Jun 2026 19:42:25 GMT",
+          "note": "Full hands-on video walkthrough."
+        },
         {
           "title": "Researchers Found a Way to Make LLMs 8.5x Faster!",
           "link": "https://blog.dailydoseofds.com/p/researchers-found-a-way-to-make-llms",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/rag-vs-graph-rag-vs-agentic-rag",
           "date": "Thu, 28 May 2026 22:35:03 GMT",
           "note": "...explained visually!"
-        },
-        {
-          "title": "Hermes Agent Masterclass",
-          "link": "https://blog.dailydoseofds.com/p/hermes-agent-masterclass-e2b",
-          "date": "Wed, 27 May 2026 20:22:02 GMT",
-          "note": "Full video guide to go from zero to hero."
         }
       ]
     },
@@ -147,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Thousand Token Wood: shipping a multi-agent economy on a 3B model",
+          "link": "https://huggingface.co/blog/build-small-hackathon/thousand-token-wood-sim",
+          "date": "Fri, 05 Jun 2026 22:18:46 GMT",
+          "note": ""
+        },
         {
           "title": "Nemotron 3.5 Content Safety: Customizable Multimodal Safety for Global Enterprise AI",
           "link": "https://huggingface.co/blog/nvidia/nemotron-3-5-content-safety",
@@ -187,12 +193,6 @@
           "title": "Introducing Mellum2: A 12B Mixture-of-Experts Model by JetBrains",
           "link": "https://huggingface.co/blog/JetBrains/mellum2-launch",
           "date": "Mon, 01 Jun 2026 15:45:17 GMT",
-          "note": ""
-        },
-        {
-          "title": "Beyond LLMs: Why Scalable Enterprise AI Adoption Depends on Agent Logic",
-          "link": "https://huggingface.co/blog/ibm-research/agent-logic-and-scalable-ai-adoption",
-          "date": "Mon, 01 Jun 2026 13:51:18 GMT",
           "note": ""
         }
       ]
