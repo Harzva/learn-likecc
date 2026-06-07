@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-06-06T04:33:29.708082+00:00",
+    "generated_at": "2026-06-07T05:03:49.810491+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -148,9 +148,9 @@
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
         {
-          "title": "Thousand Token Wood: shipping a multi-agent economy on a 3B model",
-          "link": "https://huggingface.co/blog/build-small-hackathon/thousand-token-wood-sim",
-          "date": "Fri, 05 Jun 2026 22:18:46 GMT",
+          "title": "Five labs, five minds: building a multi-model finance drama on small models",
+          "link": "https://huggingface.co/blog/build-small-hackathon/thousand-token-wood-sim-v2",
+          "date": "Sat, 06 Jun 2026 19:02:33 GMT",
           "note": ""
         },
         {
