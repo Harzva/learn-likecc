@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-06-07T05:03:49.810491+00:00",
+    "generated_at": "2026-06-08T05:09:59.167330+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -85,6 +85,12 @@
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
         {
+          "title": "REINFORCE and Actor-critic Methods in RL",
+          "link": "https://blog.dailydoseofds.com/p/reinforce-and-actor-critic-methods",
+          "date": "Sun, 07 Jun 2026 20:21:37 GMT",
+          "note": "The full RL nanodegree, covered with implementation."
+        },
+        {
           "title": "Finally, Hermes Agent's Desktop App is Here!",
           "link": "https://blog.dailydoseofds.com/p/finally-hermes-agents-desktop-app",
           "date": "Fri, 05 Jun 2026 19:42:25 GMT",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/why-agent-crashes-are-nothing-like",
           "date": "Fri, 29 May 2026 18:27:20 GMT",
           "note": "...and a solution to actually handle them."
-        },
-        {
-          "title": "RAG vs. Graph RAG vs. Agentic RAG",
-          "link": "https://blog.dailydoseofds.com/p/rag-vs-graph-rag-vs-agentic-rag",
-          "date": "Thu, 28 May 2026 22:35:03 GMT",
-          "note": "...explained visually!"
         }
       ]
     },
@@ -148,9 +148,9 @@
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
         {
-          "title": "Five labs, five minds: building a multi-model finance drama on small models",
-          "link": "https://huggingface.co/blog/build-small-hackathon/thousand-token-wood-sim-v2",
-          "date": "Sat, 06 Jun 2026 19:02:33 GMT",
+          "title": "Amazing Digital Dentures (a failed project)",
+          "link": "https://huggingface.co/blog/build-small-hackathon/amazingdigitaldentures",
+          "date": "Sun, 07 Jun 2026 19:44:27 GMT",
           "note": ""
         },
         {
