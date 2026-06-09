@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-06-08T05:09:59.167330+00:00",
+    "generated_at": "2026-06-09T04:42:57.347117+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年6月5号 15:50AI 日报AI日报：阿里上线首个官方大模型NBA Chat； Ideogram4.0开源发布；OpenAI升级ChatGPT记忆系统查看日报",
-        "link": "https://www.aibase.com/daily/28693"
+        "title": "2026年6月8号 16:15AI 日报AI日报：微信开放平台发布AI生态接入指引；月之暗面再融资20亿美元；ChatGPT紧急上线封锁模式查看日报",
+        "link": "https://www.aibase.com/daily/28743"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "腾讯文档行业首发「人机双写」原生接入WorkBuddy构建AI原生编辑器",
-          "link": "https://www.aibase.com/news/28691",
-          "date": "2026年6月5号 15:50",
+          "title": "阿里巴巴宣布大模型组织架构升级，成立Token Foundry事业部并设立AI未来研究院",
+          "link": "https://www.aibase.com/news/28747",
+          "date": "2026年6月8号 16:15",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "拍照识别野生蘑菇遭“误判”?豆包紧急回应:AI识别仅供参考，切勿盲目食用",
-          "link": "https://www.aibase.com/news/28687",
-          "date": "2026年6月5号 15:50",
+          "title": "微信开放平台发布AI生态接入指引，小程序可支持微信AI直接调用",
+          "link": "https://www.aibase.com/news/28742",
+          "date": "2026年6月8号 16:15",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "NBA中国携手阿里巴巴上线首个官方大模型“NBA Chat”",
-          "link": "https://www.aibase.com/news/28684",
-          "date": "2026年6月5号 15:50",
+          "title": "高德发布全球首个3D原生城市世界模型ABot-Earth0.5，已开放内测",
+          "link": "https://www.aibase.com/news/28733",
+          "date": "2026年6月8号 16:15",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯云ADP4.0发布：Claw模式让Agent\"一句话生成、一键入系统\"",
-          "link": "https://www.aibase.com/news/28683",
-          "date": "2026年6月5号 15:50",
+          "title": "顾全全确认离职字节Seed团队，曾主导SeedFold与Seed2.0训练体系建设",
+          "link": "https://www.aibase.com/news/28732",
+          "date": "2026年6月8号 16:15",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "知乎Q1 靠“省钱”扭亏为盈：营收连降三年，AI漫剧能否扛起增收大旗？",
-          "link": "https://www.aibase.com/news/28679",
-          "date": "2026年6月5号 15:50",
+          "title": "反超美国！中国AI大模型周调用量创新高，包揽全球前四",
+          "link": "https://www.aibase.com/news/28731",
+          "date": "2026年6月8号 16:15",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯发布效率智能体工具集：覆盖20+行业，Agent时代全面开启",
-          "link": "https://www.aibase.com/news/28677",
-          "date": "2026年6月5号 15:50",
+          "title": "月之暗面再度融资 20 亿美元，估值飙升至 300 亿",
+          "link": "https://www.aibase.com/news/28729",
+          "date": "2026年6月8号 16:15",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Ideogram4.0开源发布:93亿参数打造最强文字生成AI，DesignArena全球第四",
-          "link": "https://www.aibase.com/news/28671",
-          "date": "2026年6月5号 15:50",
+          "title": "腾讯发布首个智能体行业应用LearnBuddy，打造专家同行的AI自主学习平台",
+          "link": "https://www.aibase.com/news/28727",
+          "date": "2026年6月8号 16:15",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "xAI发布Grok Imagine Video1.5:一张图片秒变视频，直面Google Veo竞争",
-          "link": "https://www.aibase.com/news/28669",
-          "date": "2026年6月5号 15:50",
+          "title": "拒绝数据被偷！ChatGPT紧急上线“封锁模式”，宁可断网也要保安全",
+          "link": "https://www.aibase.com/news/28721",
+          "date": "2026年6月8号 16:15",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Your Agent Harness Should Repair Itself",
+          "link": "https://blog.dailydoseofds.com/p/your-agent-harness-should-repair",
+          "date": "Mon, 08 Jun 2026 21:14:29 GMT",
+          "note": "...covered with an open-source solution."
+        },
         {
           "title": "REINFORCE and Actor-critic Methods in RL",
           "link": "https://blog.dailydoseofds.com/p/reinforce-and-actor-critic-methods",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/introduction-to-deep-rl-and-dqn",
           "date": "Sun, 31 May 2026 20:38:53 GMT",
           "note": "The full RL nanodegree, covered with implementation."
-        },
-        {
-          "title": "Why Agent Crashes Are Nothing Like Database Crashes",
-          "link": "https://blog.dailydoseofds.com/p/why-agent-crashes-are-nothing-like",
-          "date": "Fri, 29 May 2026 18:27:20 GMT",
-          "note": "...and a solution to actually handle them."
         }
       ]
     },
@@ -148,9 +148,9 @@
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
         {
-          "title": "Amazing Digital Dentures (a failed project)",
-          "link": "https://huggingface.co/blog/build-small-hackathon/amazingdigitaldentures",
-          "date": "Sun, 07 Jun 2026 19:44:27 GMT",
+          "title": "The Open Source Community is backing OpenEnv for Agentic RL",
+          "link": "https://huggingface.co/blog/openenv-agentic-rl",
+          "date": "Mon, 08 Jun 2026 00:00:00 GMT",
           "note": ""
         },
         {
