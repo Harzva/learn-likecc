@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-06-09T04:42:57.347117+00:00",
+    "generated_at": "2026-06-10T04:55:13.089268+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年6月8号 16:15AI 日报AI日报：微信开放平台发布AI生态接入指引；月之暗面再融资20亿美元；ChatGPT紧急上线封锁模式查看日报",
-        "link": "https://www.aibase.com/daily/28743"
+        "title": "2026年6月9号 15:51AI 日报AI日报：Kimi Code开源编码代理升级；苹果正面回应 iOS 27 AI 争议；蚂蚁打通全球智能体支付新链路查看日报",
+        "link": "https://www.aibase.com/daily/28781"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "阿里巴巴宣布大模型组织架构升级，成立Token Foundry事业部并设立AI未来研究院",
-          "link": "https://www.aibase.com/news/28747",
-          "date": "2026年6月8号 16:15",
+          "title": "微软开源项目突遭黑客入侵，多款AI开发工具被植入密码窃取软件",
+          "link": "https://www.aibase.com/news/28779",
+          "date": "2026年6月9号 15:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "微信开放平台发布AI生态接入指引，小程序可支持微信AI直接调用",
-          "link": "https://www.aibase.com/news/28742",
-          "date": "2026年6月8号 16:15",
+          "title": "谷歌 AI 服务加码：Google AI Plus 大幅降价并升级存储空间",
+          "link": "https://www.aibase.com/news/28778",
+          "date": "2026年6月9号 15:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "高德发布全球首个3D原生城市世界模型ABot-Earth0.5，已开放内测",
-          "link": "https://www.aibase.com/news/28733",
-          "date": "2026年6月8号 16:15",
+          "title": "滴滴首批接入微信AI生态，核心网约车服务全面融入微信AI Agent",
+          "link": "https://www.aibase.com/news/28774",
+          "date": "2026年6月9号 15:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "顾全全确认离职字节Seed团队，曾主导SeedFold与Seed2.0训练体系建设",
-          "link": "https://www.aibase.com/news/28732",
-          "date": "2026年6月8号 16:15",
+          "title": "架构平级外卖闪购!美团重组AI一级部门，大模型加速渗透本地生活To B赛道",
+          "link": "https://www.aibase.com/news/28773",
+          "date": "2026年6月9号 15:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "反超美国！中国AI大模型周调用量创新高，包揽全球前四",
-          "link": "https://www.aibase.com/news/28731",
-          "date": "2026年6月8号 16:15",
+          "title": "蚂蚁集团发布 AMP 协议，打通全球智能体支付新链路",
+          "link": "https://www.aibase.com/news/28766",
+          "date": "2026年6月9号 15:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "月之暗面再度融资 20 亿美元，估值飙升至 300 亿",
-          "link": "https://www.aibase.com/news/28729",
-          "date": "2026年6月8号 16:15",
+          "title": "Kimi Code开源编码代理重大升级：CLI一键安装+视频上下文支持",
+          "link": "https://www.aibase.com/news/28762",
+          "date": "2026年6月9号 15:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯发布首个智能体行业应用LearnBuddy，打造专家同行的AI自主学习平台",
-          "link": "https://www.aibase.com/news/28727",
-          "date": "2026年6月8号 16:15",
+          "title": "AI 战略再提速：阿里巴巴整合组织架构，成立 Token Foundry 事业部",
+          "link": "https://www.aibase.com/news/28761",
+          "date": "2026年6月9号 15:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "拒绝数据被偷！ChatGPT紧急上线“封锁模式”，宁可断网也要保安全",
-          "link": "https://www.aibase.com/news/28721",
-          "date": "2026年6月8号 16:15",
+          "title": "不玩“套壳”游戏！苹果正面回应 iOS 27 AI 争议：Apple Foundation Models 系纯正自研",
+          "link": "https://www.aibase.com/news/28753",
+          "date": "2026年6月9号 15:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Loop Engineering: Design the System That Prompts Agents",
+          "link": "https://blog.dailydoseofds.com/p/loop-engineering-design-the-system",
+          "date": "Tue, 09 Jun 2026 23:00:30 GMT",
+          "note": "...explained visually."
+        },
         {
           "title": "Your Agent Harness Should Repair Itself",
           "link": "https://blog.dailydoseofds.com/p/your-agent-harness-should-repair",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/hands-on-build-a-3d-weather-globe",
           "date": "Mon, 01 Jun 2026 20:50:08 GMT",
           "note": "Backed by a production-grade time-series database."
-        },
-        {
-          "title": "Introduction to Deep RL and DQN",
-          "link": "https://blog.dailydoseofds.com/p/introduction-to-deep-rl-and-dqn",
-          "date": "Sun, 31 May 2026 20:38:53 GMT",
-          "note": "The full RL nanodegree, covered with implementation."
         }
       ]
     },
@@ -148,6 +148,30 @@
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
         {
+          "title": "Can Voice Agents Handle Bilingual Customers? Benchmarking Frontier ASR on Code-Switched Speech",
+          "link": "https://huggingface.co/blog/ServiceNow-AI/code-switching",
+          "date": "Tue, 09 Jun 2026 19:38:28 GMT",
+          "note": ""
+        },
+        {
+          "title": "Introducing North Mini Code: Cohere’s First Model For Developers",
+          "link": "https://huggingface.co/blog/CohereLabs/introducing-north-mini-code",
+          "date": "Tue, 09 Jun 2026 15:56:23 GMT",
+          "note": ""
+        },
+        {
+          "title": "How an Agent Built a 3D Paris Gallery by Chaining Two Hugging Face Spaces",
+          "link": "https://huggingface.co/blog/mishig/spaces-agents-md",
+          "date": "Tue, 09 Jun 2026 10:46:19 GMT",
+          "note": ""
+        },
+        {
+          "title": "Migrating Your GitHub CI to Hugging Face Jobs",
+          "link": "https://huggingface.co/blog/github-ci-hf-jobs",
+          "date": "Tue, 09 Jun 2026 00:00:00 GMT",
+          "note": ""
+        },
+        {
           "title": "The Open Source Community is backing OpenEnv for Agentic RL",
           "link": "https://huggingface.co/blog/openenv-agentic-rl",
           "date": "Mon, 08 Jun 2026 00:00:00 GMT",
@@ -160,12 +184,6 @@
           "note": ""
         },
         {
-          "title": "EVA-Bench Data 2.0: 3 Domains, 121 Tools, 213 Scenarios",
-          "link": "https://huggingface.co/blog/ServiceNow-AI/eva-bench-data",
-          "date": "Thu, 04 Jun 2026 12:24:58 GMT",
-          "note": ""
-        },
-        {
           "title": "Designing the hf CLI as an agent-optimized way to work with the Hub",
           "link": "https://huggingface.co/blog/hf-cli-for-agents",
           "date": "Thu, 04 Jun 2026 00:00:00 GMT",
@@ -175,24 +193,6 @@
           "title": "Direct Preference Optimization Beyond Chatbots",
           "link": "https://huggingface.co/blog/Dharma-AI/direct-preference-optimization-beyond-chatbots",
           "date": "Wed, 03 Jun 2026 12:55:11 GMT",
-          "note": ""
-        },
-        {
-          "title": "Adding MCP Tools to Reachy Mini",
-          "link": "https://huggingface.co/blog/adding-mcp-tools-to-reachy-mini",
-          "date": "Wed, 03 Jun 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Holo3.1: Fast & Local Computer Use Agents",
-          "link": "https://huggingface.co/blog/Hcompany/holo31",
-          "date": "Tue, 02 Jun 2026 14:13:23 GMT",
-          "note": ""
-        },
-        {
-          "title": "Introducing Mellum2: A 12B Mixture-of-Experts Model by JetBrains",
-          "link": "https://huggingface.co/blog/JetBrains/mellum2-launch",
-          "date": "Mon, 01 Jun 2026 15:45:17 GMT",
           "note": ""
         }
       ]
