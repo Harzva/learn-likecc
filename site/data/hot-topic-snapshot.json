@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-06-10T04:55:13.089268+00:00",
+    "generated_at": "2026-06-11T05:06:40.610204+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年6月9号 15:51AI 日报AI日报：Kimi Code开源编码代理升级；苹果正面回应 iOS 27 AI 争议；蚂蚁打通全球智能体支付新链路查看日报",
-        "link": "https://www.aibase.com/daily/28781"
+        "title": "2026年6月10号 16:15AI 日报AI日报：美图秀秀入局微信AI生态：千问发布全周期高考志愿填报Agent；美团 AI 浏览器Tabbit 1.0 正式上线查看日报",
+        "link": "https://www.aibase.com/daily/28821"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "微软开源项目突遭黑客入侵，多款AI开发工具被植入密码窃取软件",
-          "link": "https://www.aibase.com/news/28779",
-          "date": "2026年6月9号 15:51",
+          "title": "​美图秀秀入局微信AI生态 多家平台同步完成首批接入",
+          "link": "https://www.aibase.com/news/28817",
+          "date": "2026年6月10号 16:15",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "谷歌 AI 服务加码：Google AI Plus 大幅降价并升级存储空间",
-          "link": "https://www.aibase.com/news/28778",
-          "date": "2026年6月9号 15:51",
+          "title": "阿里巴巴千问发布国内首个全周期高考志愿填报Agent，免费面向全国考生开放",
+          "link": "https://www.aibase.com/news/28816",
+          "date": "2026年6月10号 16:15",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "滴滴首批接入微信AI生态，核心网约车服务全面融入微信AI Agent",
-          "link": "https://www.aibase.com/news/28774",
-          "date": "2026年6月9号 15:51",
+          "title": "美团 AI 浏览器Tabbit 1.0 正式上线，主打全能智能体",
+          "link": "https://www.aibase.com/news/28814",
+          "date": "2026年6月10号 16:15",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "架构平级外卖闪购!美团重组AI一级部门，大模型加速渗透本地生活To B赛道",
-          "link": "https://www.aibase.com/news/28773",
-          "date": "2026年6月9号 15:51",
+          "title": "搜索迎来变革!谷歌将向所有用户免费开放AI模式“交互式图表”功能",
+          "link": "https://www.aibase.com/news/28802",
+          "date": "2026年6月10号 16:15",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "蚂蚁集团发布 AMP 协议，打通全球智能体支付新链路",
-          "link": "https://www.aibase.com/news/28766",
-          "date": "2026年6月9号 15:51",
+          "title": "讯飞星火医疗大模型 V3.5 正式亮相",
+          "link": "https://www.aibase.com/news/28800",
+          "date": "2026年6月10号 16:15",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Kimi Code开源编码代理重大升级：CLI一键安装+视频上下文支持",
-          "link": "https://www.aibase.com/news/28762",
-          "date": "2026年6月9号 15:51",
+          "title": "苹果 iPhone 国行机型升级 iOS 27 后推出 AI 壁纸图功能",
+          "link": "https://www.aibase.com/news/28796",
+          "date": "2026年6月10号 16:15",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "AI 战略再提速：阿里巴巴整合组织架构，成立 Token Foundry 事业部",
-          "link": "https://www.aibase.com/news/28761",
-          "date": "2026年6月9号 15:51",
+          "title": "告别“翻译腔”：Gemini 3.5 实时语音翻译模型正式发布",
+          "link": "https://www.aibase.com/news/28794",
+          "date": "2026年6月10号 16:15",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "不玩“套壳”游戏！苹果正面回应 iOS 27 AI 争议：Apple Foundation Models 系纯正自研",
-          "link": "https://www.aibase.com/news/28753",
-          "date": "2026年6月9号 15:51",
+          "title": "AI界巨震!Anthropic发布第五代Claude:Fable5狂揽编程榜首，Mythos5跨界攻克科学绝密",
+          "link": "https://www.aibase.com/news/28788",
+          "date": "2026年6月10号 16:15",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Training an LLM to Generate Reliable Structured Output",
+          "link": "https://blog.dailydoseofds.com/p/training-an-llm-to-generate-reliable",
+          "date": "Wed, 10 Jun 2026 20:42:39 GMT",
+          "note": "Full RL pipeline, explained with hands-on code."
+        },
         {
           "title": "Loop Engineering: Design the System That Prompts Agents",
           "link": "https://blog.dailydoseofds.com/p/loop-engineering-design-the-system",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/hands-on-collapse-crm-pipelines-into",
           "date": "Tue, 02 Jun 2026 21:24:37 GMT",
           "note": "...powered by open-source stack (28k+ stars)."
-        },
-        {
-          "title": "[Hands-on] Build a 3D Weather Globe with Claude Code",
-          "link": "https://blog.dailydoseofds.com/p/hands-on-build-a-3d-weather-globe",
-          "date": "Mon, 01 Jun 2026 20:50:08 GMT",
-          "note": "Backed by a production-grade time-series database."
         }
       ]
     },
