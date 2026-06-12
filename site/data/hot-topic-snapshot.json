@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-06-11T05:06:40.610204+00:00",
+    "generated_at": "2026-06-12T05:12:14.671670+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年6月10号 16:15AI 日报AI日报：美图秀秀入局微信AI生态：千问发布全周期高考志愿填报Agent；美团 AI 浏览器Tabbit 1.0 正式上线查看日报",
-        "link": "https://www.aibase.com/daily/28821"
+        "title": "2026年6月11号 16:15AI 日报AI日报：小米开源AI编程助手MiMo Code；京东MALL首批人形机器人上岗；谷歌发布DiffusionGemma查看日报",
+        "link": "https://www.aibase.com/daily/28856"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "​美图秀秀入局微信AI生态 多家平台同步完成首批接入",
-          "link": "https://www.aibase.com/news/28817",
-          "date": "2026年6月10号 16:15",
+          "title": "苹果开发者生态升级：Xcode 27 原生集成 Gemini，AI 编程阵营再添猛将",
+          "link": "https://www.aibase.com/news/28851",
+          "date": "2026年6月11号 16:15",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阿里巴巴千问发布国内首个全周期高考志愿填报Agent，免费面向全国考生开放",
-          "link": "https://www.aibase.com/news/28816",
-          "date": "2026年6月10号 16:15",
+          "title": "坚决打击造谣：理想汽车起诉利用 AI 批量抹黑的传媒公司",
+          "link": "https://www.aibase.com/news/28849",
+          "date": "2026年6月11号 16:15",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "美团 AI 浏览器Tabbit 1.0 正式上线，主打全能智能体",
-          "link": "https://www.aibase.com/news/28814",
-          "date": "2026年6月10号 16:15",
+          "title": "谷歌发布新版 NotebookLM:全面升级 Gemini3.5Flash 并引入独立云端计算机与 AI 代理",
+          "link": "https://www.aibase.com/news/28844",
+          "date": "2026年6月11号 16:15",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "搜索迎来变革!谷歌将向所有用户免费开放AI模式“交互式图表”功能",
-          "link": "https://www.aibase.com/news/28802",
-          "date": "2026年6月10号 16:15",
+          "title": "华纳音乐正式收购Sureel AI：为音乐人构筑版权防火墙",
+          "link": "https://www.aibase.com/news/28842",
+          "date": "2026年6月11号 16:15",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "讯飞星火医疗大模型 V3.5 正式亮相",
-          "link": "https://www.aibase.com/news/28800",
-          "date": "2026年6月10号 16:15",
+          "title": "京东MALL首批人形机器人正式上岗，优必选助力618智慧零售",
+          "link": "https://www.aibase.com/news/28840",
+          "date": "2026年6月11号 16:15",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "苹果 iPhone 国行机型升级 iOS 27 后推出 AI 壁纸图功能",
-          "link": "https://www.aibase.com/news/28796",
-          "date": "2026年6月10号 16:15",
+          "title": "小米开源终端 AI 编程助手 MiMo Code，内置免费顶级多模态模型",
+          "link": "https://www.aibase.com/news/28831",
+          "date": "2026年6月11号 16:15",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "告别“翻译腔”：Gemini 3.5 实时语音翻译模型正式发布",
-          "link": "https://www.aibase.com/news/28794",
-          "date": "2026年6月10号 16:15",
+          "title": "防数据泄露：微软对员工禁用Claude最强 AI 模型 Claude Fable 5",
+          "link": "https://www.aibase.com/news/28829",
+          "date": "2026年6月11号 16:15",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "AI界巨震!Anthropic发布第五代Claude:Fable5狂揽编程榜首，Mythos5跨界攻克科学绝密",
-          "link": "https://www.aibase.com/news/28788",
-          "date": "2026年6月10号 16:15",
+          "title": "谷歌发布DiffusionGemma：尝试用文本扩散架构提速AI推理",
+          "link": "https://www.aibase.com/news/28827",
+          "date": "2026年6月11号 16:15",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "The 8 Layer Engineering Behind a Production AI Systems",
+          "link": "https://blog.dailydoseofds.com/p/the-8-layer-engineering-behind-a",
+          "date": "Thu, 11 Jun 2026 21:04:41 GMT",
+          "note": "The full map of what the role now spans, and where to go deep on each layer."
+        },
         {
           "title": "Training an LLM to Generate Reliable Structured Output",
           "link": "https://blog.dailydoseofds.com/p/training-an-llm-to-generate-reliable",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/the-evolution-of-retrieval-layer",
           "date": "Wed, 03 Jun 2026 21:25:56 GMT",
           "note": "Naive RAG &#8594; Retrieval layer &#8594; Agentic Layer"
-        },
-        {
-          "title": "[Hands-on] Collapse CRM Pipelines into One Table",
-          "link": "https://blog.dailydoseofds.com/p/hands-on-collapse-crm-pipelines-into",
-          "date": "Tue, 02 Jun 2026 21:24:37 GMT",
-          "note": "...powered by open-source stack (28k+ stars)."
         }
       ]
     },
@@ -148,9 +148,9 @@
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
         {
-          "title": "Can Voice Agents Handle Bilingual Customers? Benchmarking Frontier ASR on Code-Switched Speech",
-          "link": "https://huggingface.co/blog/ServiceNow-AI/code-switching",
-          "date": "Tue, 09 Jun 2026 19:38:28 GMT",
+          "title": "Profiling in PyTorch (Part 2): From nn.Linear to a Fused MLP",
+          "link": "https://huggingface.co/blog/torch-mlp-fusion",
+          "date": "Thu, 11 Jun 2026 00:00:00 GMT",
           "note": ""
         },
         {
