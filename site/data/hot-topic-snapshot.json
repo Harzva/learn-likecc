@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-06-12T05:12:14.671670+00:00",
+    "generated_at": "2026-06-13T04:57:19.438659+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年6月11号 16:15AI 日报AI日报：小米开源AI编程助手MiMo Code；京东MALL首批人形机器人上岗；谷歌发布DiffusionGemma查看日报",
-        "link": "https://www.aibase.com/daily/28856"
+        "title": "2026年6月12号 16:24AI 日报AI日报：高德问店上线AI能力开放调用；大众点评严打AI灌水评论；Kimi将发行AI原生信用卡查看日报",
+        "link": "https://www.aibase.com/daily/28889"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "苹果开发者生态升级：Xcode 27 原生集成 Gemini，AI 编程阵营再添猛将",
-          "link": "https://www.aibase.com/news/28851",
-          "date": "2026年6月11号 16:15",
+          "title": "苹果iOS27 健康应用重磅更新：智能营养识别与围绝经期追踪上线",
+          "link": "https://www.aibase.com/news/28885",
+          "date": "2026年6月12号 16:24",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "坚决打击造谣：理想汽车起诉利用 AI 批量抹黑的传媒公司",
-          "link": "https://www.aibase.com/news/28849",
-          "date": "2026年6月11号 16:15",
+          "title": "月之暗面Kimi拟发行融合算力服务的AI原生信用卡",
+          "link": "https://www.aibase.com/news/28884",
+          "date": "2026年6月12号 16:24",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "谷歌发布新版 NotebookLM:全面升级 Gemini3.5Flash 并引入独立云端计算机与 AI 代理",
-          "link": "https://www.aibase.com/news/28844",
-          "date": "2026年6月11号 16:15",
+          "title": "​SK集团拟在日本新建AI工厂 计划两三年内投产运营",
+          "link": "https://www.aibase.com/news/28882",
+          "date": "2026年6月12号 16:24",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "华纳音乐正式收购Sureel AI：为音乐人构筑版权防火墙",
-          "link": "https://www.aibase.com/news/28842",
-          "date": "2026年6月11号 16:15",
+          "title": "总规模17.5亿元！IDC首发中国智能体开发平台市场份额报告",
+          "link": "https://www.aibase.com/news/28881",
+          "date": "2026年6月12号 16:24",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "京东MALL首批人形机器人正式上岗，优必选助力618智慧零售",
-          "link": "https://www.aibase.com/news/28840",
-          "date": "2026年6月11号 16:15",
+          "title": "迫于社区反对 Anthropic调整Claude Fable5 限制机制",
+          "link": "https://www.aibase.com/news/28877",
+          "date": "2026年6月12号 16:24",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "小米开源终端 AI 编程助手 MiMo Code，内置免费顶级多模态模型",
-          "link": "https://www.aibase.com/news/28831",
-          "date": "2026年6月11号 16:15",
+          "title": "让小店用上大连锁的智能大脑，高德问店上线AI能力开放调用",
+          "link": "https://www.aibase.com/news/28871",
+          "date": "2026年6月12号 16:24",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "防数据泄露：微软对员工禁用Claude最强 AI 模型 Claude Fable 5",
-          "link": "https://www.aibase.com/news/28829",
-          "date": "2026年6月11号 16:15",
+          "title": "Meta旗下视频编辑应用Edits推出AI创作助手与桌面版",
+          "link": "https://www.aibase.com/news/28866",
+          "date": "2026年6月12号 16:24",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "谷歌发布DiffusionGemma：尝试用文本扩散架构提速AI推理",
-          "link": "https://www.aibase.com/news/28827",
-          "date": "2026年6月11号 16:15",
+          "title": "大众点评重拳出击：严打AI灌水，力保真实评价生态",
+          "link": "https://www.aibase.com/news/28863",
+          "date": "2026年6月12号 16:24",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Schema Guided Agent Memory for Production Agents",
+          "link": "https://blog.dailydoseofds.com/p/schema-guided-agent-memory-for-production",
+          "date": "Fri, 12 Jun 2026 22:02:39 GMT",
+          "note": "Some key lessons on building production-grade memory for Agents."
+        },
         {
           "title": "The 8 Layer Engineering Behind a Production AI Systems",
           "link": "https://blog.dailydoseofds.com/p/the-8-layer-engineering-behind-a",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/researchers-found-a-way-to-make-llms",
           "date": "Thu, 04 Jun 2026 21:46:42 GMT",
           "note": "(without compromising accuracy)"
-        },
-        {
-          "title": "The Evolution of Retrieval Layer",
-          "link": "https://blog.dailydoseofds.com/p/the-evolution-of-retrieval-layer",
-          "date": "Wed, 03 Jun 2026 21:25:56 GMT",
-          "note": "Naive RAG &#8594; Retrieval layer &#8594; Agentic Layer"
         }
       ]
     },
@@ -147,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "olmo-eval: An evaluation workbench for the model development loop",
+          "link": "https://huggingface.co/blog/allenai/olmo-eval",
+          "date": "Fri, 12 Jun 2026 15:56:10 GMT",
+          "note": ""
+        },
         {
           "title": "Profiling in PyTorch (Part 2): From nn.Linear to a Fused MLP",
           "link": "https://huggingface.co/blog/torch-mlp-fusion",
@@ -187,12 +193,6 @@
           "title": "Designing the hf CLI as an agent-optimized way to work with the Hub",
           "link": "https://huggingface.co/blog/hf-cli-for-agents",
           "date": "Thu, 04 Jun 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Direct Preference Optimization Beyond Chatbots",
-          "link": "https://huggingface.co/blog/Dharma-AI/direct-preference-optimization-beyond-chatbots",
-          "date": "Wed, 03 Jun 2026 12:55:11 GMT",
           "note": ""
         }
       ]
