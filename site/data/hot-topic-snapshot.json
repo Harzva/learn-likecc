@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-06-14T05:14:20.119215+00:00",
+    "generated_at": "2026-06-15T05:34:55.345511+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -85,6 +85,12 @@
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
         {
+          "title": "Proximal Policy Optimization in RL",
+          "link": "https://blog.dailydoseofds.com/p/proximal-policy-optimization-in-rl",
+          "date": "Sun, 14 Jun 2026 21:01:23 GMT",
+          "note": "The full RL nanodegree, covered with implementation."
+        },
+        {
           "title": "Schema Guided Agent Memory for Production Agents",
           "link": "https://blog.dailydoseofds.com/p/schema-guided-agent-memory-for-production",
           "date": "Fri, 12 Jun 2026 22:02:39 GMT",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/finally-hermes-agents-desktop-app",
           "date": "Fri, 05 Jun 2026 19:42:25 GMT",
           "note": "Full hands-on video walkthrough."
-        },
-        {
-          "title": "Researchers Found a Way to Make LLMs 8.5x Faster!",
-          "link": "https://blog.dailydoseofds.com/p/researchers-found-a-way-to-make-llms",
-          "date": "Thu, 04 Jun 2026 21:46:42 GMT",
-          "note": "(without compromising accuracy)"
         }
       ]
     },
@@ -157,12 +157,6 @@
           "title": "Profiling in PyTorch (Part 2): From nn.Linear to a Fused MLP",
           "link": "https://huggingface.co/blog/torch-mlp-fusion",
           "date": "Thu, 11 Jun 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Introducing North Mini Code: Cohere’s First Model For Developers",
-          "link": "https://huggingface.co/blog/CohereLabs/introducing-north-mini-code",
-          "date": "Tue, 09 Jun 2026 15:56:23 GMT",
           "note": ""
         },
         {
@@ -193,6 +187,12 @@
           "title": "Designing the hf CLI as an agent-optimized way to work with the Hub",
           "link": "https://huggingface.co/blog/hf-cli-for-agents",
           "date": "Thu, 04 Jun 2026 00:00:00 GMT",
+          "note": ""
+        },
+        {
+          "title": "Direct Preference Optimization Beyond Chatbots",
+          "link": "https://huggingface.co/blog/Dharma-AI/direct-preference-optimization-beyond-chatbots",
+          "date": "Wed, 03 Jun 2026 12:55:11 GMT",
           "note": ""
         }
       ]
