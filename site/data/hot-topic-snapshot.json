@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-06-15T05:34:55.345511+00:00",
+    "generated_at": "2026-06-16T05:42:57.549531+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年6月12号 16:24AI 日报AI日报：高德问店上线AI能力开放调用；大众点评严打AI灌水评论；Kimi将发行AI原生信用卡查看日报",
-        "link": "https://www.aibase.com/daily/28889"
+        "title": "2026年6月15号 16:46AI 日报AI日报：豆包上线任务模式；元宝正式打通ima公开知识库；智谱GLM-5. 2 全量开源查看日报",
+        "link": "https://www.aibase.com/daily/28924"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "苹果iOS27 健康应用重磅更新：智能营养识别与围绝经期追踪上线",
-          "link": "https://www.aibase.com/news/28885",
-          "date": "2026年6月12号 16:24",
+          "title": "微信支付发布AI接入工具箱2.0：升级双AI专家并支持9国语言",
+          "link": "https://www.aibase.com/news/28925",
+          "date": "2026年6月15号 16:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "月之暗面Kimi拟发行融合算力服务的AI原生信用卡",
-          "link": "https://www.aibase.com/news/28884",
-          "date": "2026年6月12号 16:24",
+          "title": "雨果奖作家新书惹争议！主动承认AI写作比重竟占一半",
+          "link": "https://www.aibase.com/news/28922",
+          "date": "2026年6月15号 16:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "​SK集团拟在日本新建AI工厂 计划两三年内投产运营",
-          "link": "https://www.aibase.com/news/28882",
-          "date": "2026年6月12号 16:24",
+          "title": "豆包上线“任务模式”:支持多轮搜索与PPT自动化生成",
+          "link": "https://www.aibase.com/news/28921",
+          "date": "2026年6月15号 16:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "总规模17.5亿元！IDC首发中国智能体开发平台市场份额报告",
-          "link": "https://www.aibase.com/news/28881",
-          "date": "2026年6月12号 16:24",
+          "title": "元宝正式打通ima公开知识库，搜索结果新增专业信源",
+          "link": "https://www.aibase.com/news/28918",
+          "date": "2026年6月15号 16:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "迫于社区反对 Anthropic调整Claude Fable5 限制机制",
-          "link": "https://www.aibase.com/news/28877",
-          "date": "2026年6月12号 16:24",
+          "title": "智商不减、成本砍掉四分之三!百度通用智能体DuMate完成关键进化",
+          "link": "https://www.aibase.com/news/28916",
+          "date": "2026年6月15号 16:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "让小店用上大连锁的智能大脑，高德问店上线AI能力开放调用",
-          "link": "https://www.aibase.com/news/28871",
-          "date": "2026年6月12号 16:24",
+          "title": "​OpenAI斥资1. 5 亿美元启动合作伙伴网络，全面加速企业AI转型",
+          "link": "https://www.aibase.com/news/28904",
+          "date": "2026年6月15号 16:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Meta旗下视频编辑应用Edits推出AI创作助手与桌面版",
-          "link": "https://www.aibase.com/news/28866",
-          "date": "2026年6月12号 16:24",
+          "title": "​科大讯飞AI眼镜正式开启预售 搭载多语种翻译与全能AI助理",
+          "link": "https://www.aibase.com/news/28901",
+          "date": "2026年6月15号 16:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "大众点评重拳出击：严打AI灌水，力保真实评价生态",
-          "link": "https://www.aibase.com/news/28863",
-          "date": "2026年6月12号 16:24",
+          "title": "消息称蚂蚁集团秘密测试“AI 版支付宝”，引入原生 AI 智能体界面",
+          "link": "https://www.aibase.com/news/28900",
+          "date": "2026年6月15号 16:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "[Hands-on] Build a Real-Time Satellite Tracker with Claude Code",
+          "link": "https://blog.dailydoseofds.com/p/hands-on-build-a-real-time-satellite",
+          "date": "Mon, 15 Jun 2026 23:19:01 GMT",
+          "note": "Backed by a production-grade time-series database."
+        },
         {
           "title": "Proximal Policy Optimization in RL",
           "link": "https://blog.dailydoseofds.com/p/proximal-policy-optimization-in-rl",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/reinforce-and-actor-critic-methods",
           "date": "Sun, 07 Jun 2026 20:21:37 GMT",
           "note": "The full RL nanodegree, covered with implementation."
-        },
-        {
-          "title": "Finally, Hermes Agent's Desktop App is Here!",
-          "link": "https://blog.dailydoseofds.com/p/finally-hermes-agents-desktop-app",
-          "date": "Fri, 05 Jun 2026 19:42:25 GMT",
-          "note": "Full hands-on video walkthrough."
         }
       ]
     },
@@ -146,56 +146,8 @@
         "topic-rag-hot"
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
-      "items": [
-        {
-          "title": "olmo-eval: An evaluation workbench for the model development loop",
-          "link": "https://huggingface.co/blog/allenai/olmo-eval",
-          "date": "Fri, 12 Jun 2026 15:56:10 GMT",
-          "note": ""
-        },
-        {
-          "title": "Profiling in PyTorch (Part 2): From nn.Linear to a Fused MLP",
-          "link": "https://huggingface.co/blog/torch-mlp-fusion",
-          "date": "Thu, 11 Jun 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "How an Agent Built a 3D Paris Gallery by Chaining Two Hugging Face Spaces",
-          "link": "https://huggingface.co/blog/mishig/spaces-agents-md",
-          "date": "Tue, 09 Jun 2026 10:46:19 GMT",
-          "note": ""
-        },
-        {
-          "title": "Migrating Your GitHub CI to Hugging Face Jobs",
-          "link": "https://huggingface.co/blog/github-ci-hf-jobs",
-          "date": "Tue, 09 Jun 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "The Open Source Community is backing OpenEnv for Agentic RL",
-          "link": "https://huggingface.co/blog/openenv-agentic-rl",
-          "date": "Mon, 08 Jun 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Nemotron 3.5 Content Safety: Customizable Multimodal Safety for Global Enterprise AI",
-          "link": "https://huggingface.co/blog/nvidia/nemotron-3-5-content-safety",
-          "date": "Thu, 04 Jun 2026 18:57:45 GMT",
-          "note": ""
-        },
-        {
-          "title": "Designing the hf CLI as an agent-optimized way to work with the Hub",
-          "link": "https://huggingface.co/blog/hf-cli-for-agents",
-          "date": "Thu, 04 Jun 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Direct Preference Optimization Beyond Chatbots",
-          "link": "https://huggingface.co/blog/Dharma-AI/direct-preference-optimization-beyond-chatbots",
-          "date": "Wed, 03 Jun 2026 12:55:11 GMT",
-          "note": ""
-        }
-      ]
+      "error": "fetch failed after 3 urllib attempts and curl fallback: Command '['/usr/bin/curl', '--location', '--fail', '--silent', '--show-error', '--max-time', '60', '--user-agent', 'learn-likecc-hot-topic-fetch/1.0 (+https://github.com/Harzva/learn-likecc)', 'https://huggingface.co/blog/feed.xml']' returned non-zero exit status 22.",
+      "items": []
     }
   ]
 }
