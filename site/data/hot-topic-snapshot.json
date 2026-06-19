@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-06-18T05:12:42.723867+00:00",
+    "generated_at": "2026-06-19T05:31:56.744808+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年6月17号 16:35AI 日报AI日报：微信支付推出“AI专属卡“；小米龙虾MiMo Claw正式版发布;智谱AI正式开源GLM-5.2模型查看日报",
-        "link": "https://www.aibase.com/daily/28991"
+        "title": "2026年6月18号 17:15AI 日报AI日报：通义开源首个统一科学大模型LOGOS、AI情感陪伴App妙时宣布停运；Liblib完成近3亿美元B+轮融资查看日报",
+        "link": "https://www.aibase.com/daily/29020"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "OpenAI被曝正筹备发布新一代双向语音模型“GPT-Bidi-1”",
-          "link": "https://www.aibase.com/news/28990",
-          "date": "2026年6月17号 16:35",
+          "title": "一年跃升“独角兽”：Manifold AI 流形空间再获数亿元融资，加速世界模型落地",
+          "link": "https://www.aibase.com/news/29018",
+          "date": "2026年6月18号 17:15",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "昆仑万维发布天工3.1:上线全新画布设计与多 Agent 并行工作流",
-          "link": "https://www.aibase.com/news/28988",
-          "date": "2026年6月17号 16:35",
+          "title": "Kimi Work 迎重大升级：推出“目标模式”并打通外部应用插件",
+          "link": "https://www.aibase.com/news/29017",
+          "date": "2026年6月18号 17:15",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Anthropic 紧急叫停 Claude Agent SDK 计费变更，重度用户暂续现有订阅限额",
-          "link": "https://www.aibase.com/news/28987",
-          "date": "2026年6月17号 16:35",
+          "title": "网易云音乐旗下AI情感陪伴App“妙时”宣布7月14日停运",
+          "link": "https://www.aibase.com/news/29014",
+          "date": "2026年6月18号 17:15",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "降本近四成！微软重磅发布 Copilot Cowork 智能体，正面硬刚Claude",
-          "link": "https://www.aibase.com/news/28985",
-          "date": "2026年6月17号 16:35",
+          "title": "语音交互大升级：Claude 酝酿多语言支持，通话式体验呼之欲出",
+          "link": "https://www.aibase.com/news/29013",
+          "date": "2026年6月18号 17:15",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "微信支付正式发布“AI专属卡”:支持Agent闭环消费，主账户完全隔离",
-          "link": "https://www.aibase.com/news/28984",
-          "date": "2026年6月17号 16:35",
+          "title": "从“画猫”到“看透身体”：Midjourney跨界医疗，推出全身超声扫描仪",
+          "link": "https://www.aibase.com/news/29009",
+          "date": "2026年6月18号 17:15",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "智谱AI正式开源GLM-5. 2 模型：主打1M无损上下文与长程代码任务",
-          "link": "https://www.aibase.com/news/28972",
-          "date": "2026年6月17号 16:35",
+          "title": "Liblib完成近3亿美元B+轮融资，估值超20亿美元ARR破3亿",
+          "link": "https://www.aibase.com/news/29008",
+          "date": "2026年6月18号 17:15",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "消息称豆包日活超2亿但收入不足百万，字节AI资源或向企业端倾斜",
-          "link": "https://www.aibase.com/news/28970",
-          "date": "2026年6月17号 16:35",
+          "title": "通义实验室联合开源首个统一科学大模型 LOGOS，1B 参数性能超越 NatureLM",
+          "link": "https://www.aibase.com/news/29005",
+          "date": "2026年6月18号 17:15",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "小米发布MiMo Claw正式版:支持千次连续工具调用，免费时长增至4小时",
-          "link": "https://www.aibase.com/news/28969",
-          "date": "2026年6月17号 16:35",
+          "title": "报道称DeepSeek 完成 A 轮 510 亿元融资，腾讯、京东等巨头参与",
+          "link": "https://www.aibase.com/news/29003",
+          "date": "2026年6月18号 17:15",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Turn Any Website Into a Custom API in Claude Code",
+          "link": "https://blog.dailydoseofds.com/p/turn-any-website-into-a-custom-api",
+          "date": "Thu, 18 Jun 2026 22:03:31 GMT",
+          "note": "...explained as a step-by-step guide."
+        },
         {
           "title": "The Production Harness for AI-Built Apps",
           "link": "https://blog.dailydoseofds.com/p/the-production-harness-for-ai-built",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/training-an-llm-to-generate-reliable",
           "date": "Wed, 10 Jun 2026 20:42:39 GMT",
           "note": "Full RL pipeline, explained with hands-on code."
-        },
-        {
-          "title": "Loop Engineering: Design the System That Prompts Agents",
-          "link": "https://blog.dailydoseofds.com/p/loop-engineering-design-the-system",
-          "date": "Tue, 09 Jun 2026 23:00:30 GMT",
-          "note": "...explained visually."
         }
       ]
     },
@@ -147,6 +147,24 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "MosaicLeaks: Can your research agent keep a secret?",
+          "link": "https://huggingface.co/blog/ServiceNow/mosaicleaks",
+          "date": "Thu, 18 Jun 2026 18:13:13 GMT",
+          "note": ""
+        },
+        {
+          "title": "Beyond LoRA: Can you beat the most popular fine-tuning technique?",
+          "link": "https://huggingface.co/blog/peft-beyond-lora",
+          "date": "Thu, 18 Jun 2026 00:00:00 GMT",
+          "note": ""
+        },
+        {
+          "title": "Is it agentic enough? Benchmarking open models on your own tooling",
+          "link": "https://huggingface.co/blog/is-it-agentic-enough",
+          "date": "Thu, 18 Jun 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "MolmoMotion: Language-guided 3D motion forecasting",
           "link": "https://huggingface.co/blog/allenai/molmomotion",
@@ -175,24 +193,6 @@
           "title": "Profiling in PyTorch (Part 2): From nn.Linear to a Fused MLP",
           "link": "https://huggingface.co/blog/torch-mlp-fusion",
           "date": "Thu, 11 Jun 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "How an Agent Built a 3D Paris Gallery by Chaining Two Hugging Face Spaces",
-          "link": "https://huggingface.co/blog/mishig/spaces-agents-md",
-          "date": "Tue, 09 Jun 2026 10:46:19 GMT",
-          "note": ""
-        },
-        {
-          "title": "Migrating Your GitHub CI to Hugging Face Jobs",
-          "link": "https://huggingface.co/blog/github-ci-hf-jobs",
-          "date": "Tue, 09 Jun 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "The Open Source Community is backing OpenEnv for Agentic RL",
-          "link": "https://huggingface.co/blog/openenv-agentic-rl",
-          "date": "Mon, 08 Jun 2026 00:00:00 GMT",
           "note": ""
         }
       ]
