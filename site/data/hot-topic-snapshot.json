@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-06-19T05:31:56.744808+00:00",
+    "generated_at": "2026-06-20T04:48:17.416490+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -85,6 +85,12 @@
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
         {
+          "title": "[Hands-on] Build Your Own AI Avatar With Human-like Memory",
+          "link": "https://blog.dailydoseofds.com/p/hands-on-build-your-own-ai-avatar-825",
+          "date": "Fri, 19 Jun 2026 20:32:52 GMT",
+          "note": "(100% open-source, works in real-time)"
+        },
+        {
           "title": "Turn Any Website Into a Custom API in Claude Code",
           "link": "https://blog.dailydoseofds.com/p/turn-any-website-into-a-custom-api",
           "date": "Thu, 18 Jun 2026 22:03:31 GMT",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/the-8-layer-engineering-behind-a",
           "date": "Thu, 11 Jun 2026 21:04:41 GMT",
           "note": "The full map of what the role now spans, and where to go deep on each layer."
-        },
-        {
-          "title": "Training an LLM to Generate Reliable Structured Output",
-          "link": "https://blog.dailydoseofds.com/p/training-an-llm-to-generate-reliable",
-          "date": "Wed, 10 Jun 2026 20:42:39 GMT",
-          "note": "Full RL pipeline, explained with hands-on code."
         }
       ]
     },
