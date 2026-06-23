@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-06-22T05:38:57.463222+00:00",
+    "generated_at": "2026-06-23T04:37:41.631013+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年6月18号 17:15AI 日报AI日报：通义开源首个统一科学大模型LOGOS、AI情感陪伴App妙时宣布停运；Liblib完成近3亿美元B+轮融资查看日报",
-        "link": "https://www.aibase.com/daily/29020"
+        "title": "2026年6月22号 16:20AI 日报AI日报：阿里发布HappyHorse 1.1；字节豆包灰测网约车服务；三星12万员工全面接入ChatGPT查看日报",
+        "link": "https://www.aibase.com/daily/29060"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "一年跃升“独角兽”：Manifold AI 流形空间再获数亿元融资，加速世界模型落地",
-          "link": "https://www.aibase.com/news/29018",
-          "date": "2026年6月18号 17:15",
+          "title": "OpenAI拿下史上最大订单：三星 12 万员工全面开启AI办公时代",
+          "link": "https://www.aibase.com/news/29056",
+          "date": "2026年6月22号 16:20",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Kimi Work 迎重大升级：推出“目标模式”并打通外部应用插件",
-          "link": "https://www.aibase.com/news/29017",
-          "date": "2026年6月18号 17:15",
+          "title": "字节豆包灰测网约车服务，AI Agent加速重构服务入口",
+          "link": "https://www.aibase.com/news/29055",
+          "date": "2026年6月22号 16:20",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "网易云音乐旗下AI情感陪伴App“妙时”宣布7月14日停运",
-          "link": "https://www.aibase.com/news/29014",
-          "date": "2026年6月18号 17:15",
+          "title": "中文在线推出逍遥海外作者平台 依托自研大模型赋能网文全链路出海",
+          "link": "https://www.aibase.com/news/29054",
+          "date": "2026年6月22号 16:20",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "语音交互大升级：Claude 酝酿多语言支持，通话式体验呼之欲出",
-          "link": "https://www.aibase.com/news/29013",
-          "date": "2026年6月18号 17:15",
+          "title": "阿里巴巴发布HappyHorse 1.1 视频生成模型 多维度系统性升级",
+          "link": "https://www.aibase.com/news/29053",
+          "date": "2026年6月22号 16:20",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "从“画猫”到“看透身体”：Midjourney跨界医疗，推出全身超声扫描仪",
-          "link": "https://www.aibase.com/news/29009",
-          "date": "2026年6月18号 17:15",
+          "title": "小米开源全屋智能AI方案Miloco 2.0：让家\"能记忆、会识人、懂执行\"",
+          "link": "https://www.aibase.com/news/29052",
+          "date": "2026年6月22号 16:20",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Liblib完成近3亿美元B+轮融资，估值超20亿美元ARR破3亿",
-          "link": "https://www.aibase.com/news/29008",
-          "date": "2026年6月18号 17:15",
+          "title": "打破AI围墙：刘强东宣布京东技术全球共享，“涅槃计划”赋能蓝领转型",
+          "link": "https://www.aibase.com/news/29047",
+          "date": "2026年6月22号 16:20",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "通义实验室联合开源首个统一科学大模型 LOGOS，1B 参数性能超越 NatureLM",
-          "link": "https://www.aibase.com/news/29005",
-          "date": "2026年6月18号 17:15",
+          "title": "特斯拉递交Megapod商标申请，或将推出一体化模块化AI数据中心硬件",
+          "link": "https://www.aibase.com/news/29038",
+          "date": "2026年6月22号 16:20",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "报道称DeepSeek 完成 A 轮 510 亿元融资，腾讯、京东等巨头参与",
-          "link": "https://www.aibase.com/news/29003",
-          "date": "2026年6月18号 17:15",
+          "title": "AI 加持办公全家桶：Grok 正式接入 Microsoft Office",
+          "link": "https://www.aibase.com/news/29035",
+          "date": "2026年6月22号 16:20",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "RLHF: Aligning Language Models with Human Feedback",
+          "link": "https://blog.dailydoseofds.com/p/rlhf-aligning-language-models-with",
+          "date": "Mon, 22 Jun 2026 22:55:23 GMT",
+          "note": "The full RL nanodegree, covered with implementation."
+        },
         {
           "title": "[Hands-on] Build Your Own AI Avatar With Human-like Memory",
           "link": "https://blog.dailydoseofds.com/p/hands-on-build-your-own-ai-avatar-825",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/schema-guided-agent-memory-for-production",
           "date": "Fri, 12 Jun 2026 22:02:39 GMT",
           "note": "Some key lessons on building production-grade memory for Agents."
-        },
-        {
-          "title": "The 8 Layer Engineering Behind Production AI Systems",
-          "link": "https://blog.dailydoseofds.com/p/the-8-layer-engineering-behind-a",
-          "date": "Thu, 11 Jun 2026 21:04:41 GMT",
-          "note": "The full map of what the role now spans, and where to go deep on each layer."
         }
       ]
     },
@@ -147,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "PP-OCRv6 on Hugging Face: 50-Language OCR from 1.5M to 34.5M Parameters",
+          "link": "https://huggingface.co/blog/PaddlePaddle/pp-ocrv6",
+          "date": "Mon, 22 Jun 2026 13:18:56 GMT",
+          "note": ""
+        },
         {
           "title": "MosaicLeaks: Can your research agent keep a secret?",
           "link": "https://huggingface.co/blog/ServiceNow/mosaicleaks",
@@ -187,12 +193,6 @@
           "title": "Agentic Resource Discovery: Let agents search",
           "link": "https://huggingface.co/blog/agentic-resource-discovery-launch",
           "date": "Wed, 17 Jun 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Profiling in PyTorch (Part 2): From nn.Linear to a Fused MLP",
-          "link": "https://huggingface.co/blog/torch-mlp-fusion",
-          "date": "Thu, 11 Jun 2026 00:00:00 GMT",
           "note": ""
         }
       ]
