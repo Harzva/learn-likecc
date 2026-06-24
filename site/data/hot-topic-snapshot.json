@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-06-23T04:37:41.631013+00:00",
+    "generated_at": "2026-06-24T04:45:01.268623+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年6月22号 16:20AI 日报AI日报：阿里发布HappyHorse 1.1；字节豆包灰测网约车服务；三星12万员工全面接入ChatGPT查看日报",
-        "link": "https://www.aibase.com/daily/29060"
+        "title": "2026年6月23号 16:32AI 日报AI日报：火山引擎发布豆包Seedance2.5等模型；生数Vidu Q3上线华为云；百川智能发布M4 模型查看日报",
+        "link": "https://www.aibase.com/daily/29098"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "OpenAI拿下史上最大订单：三星 12 万员工全面开启AI办公时代",
-          "link": "https://www.aibase.com/news/29056",
-          "date": "2026年6月22号 16:20",
+          "title": "火山引擎发布豆包2.1Pro:日常功能确认免费，将推专业版办公模式",
+          "link": "https://www.aibase.com/news/29095",
+          "date": "2026年6月23号 16:32",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "字节豆包灰测网约车服务，AI Agent加速重构服务入口",
-          "link": "https://www.aibase.com/news/29055",
-          "date": "2026年6月22号 16:20",
+          "title": "百川智能发布M4 模型，实现“真人医生”式主动问诊",
+          "link": "https://www.aibase.com/news/29092",
+          "date": "2026年6月23号 16:32",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "中文在线推出逍遥海外作者平台 依托自研大模型赋能网文全链路出海",
-          "link": "https://www.aibase.com/news/29054",
-          "date": "2026年6月22号 16:20",
+          "title": "MiniMax7月9日迎首批解禁 阿里、米哈游明确不减持",
+          "link": "https://www.aibase.com/news/29090",
+          "date": "2026年6月23号 16:32",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阿里巴巴发布HappyHorse 1.1 视频生成模型 多维度系统性升级",
-          "link": "https://www.aibase.com/news/29053",
-          "date": "2026年6月22号 16:20",
+          "title": "火山引擎发布豆包Seedance2.5视频模型，方舟大模型服务用户超110万",
+          "link": "https://www.aibase.com/news/29087",
+          "date": "2026年6月23号 16:32",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "小米开源全屋智能AI方案Miloco 2.0：让家\"能记忆、会识人、懂执行\"",
-          "link": "https://www.aibase.com/news/29052",
-          "date": "2026年6月22号 16:20",
+          "title": "生数 Vidu Q3 上线华为云，打造“为剧而生”的视频生成方案",
+          "link": "https://www.aibase.com/news/29077",
+          "date": "2026年6月23号 16:32",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "打破AI围墙：刘强东宣布京东技术全球共享，“涅槃计划”赋能蓝领转型",
-          "link": "https://www.aibase.com/news/29047",
-          "date": "2026年6月22号 16:20",
+          "title": "贾跃亭旗下Futurist具身智能机器人正式上市销售 售价89900美元",
+          "link": "https://www.aibase.com/news/29076",
+          "date": "2026年6月23号 16:32",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "特斯拉递交Megapod商标申请，或将推出一体化模块化AI数据中心硬件",
-          "link": "https://www.aibase.com/news/29038",
-          "date": "2026年6月22号 16:20",
+          "title": "快手系AI芯片公司「凌川科技」获数亿元A+轮融资，SL200芯片销量近十万颗",
+          "link": "https://www.aibase.com/news/29071",
+          "date": "2026年6月23号 16:32",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "AI 加持办公全家桶：Grok 正式接入 Microsoft Office",
-          "link": "https://www.aibase.com/news/29035",
-          "date": "2026年6月22号 16:20",
+          "title": "谷歌DeepMind斥资7500万美元签约A24，联手研发好莱坞电影制作AI工具",
+          "link": "https://www.aibase.com/news/29070",
+          "date": "2026年6月23号 16:32",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Loop Engineering, Clearly Explained!",
+          "link": "https://blog.dailydoseofds.com/p/loop-engineering-clearly-explained",
+          "date": "Wed, 24 Jun 2026 00:59:11 GMT",
+          "note": "(must-know to efficiently run ML models in production)"
+        },
         {
           "title": "RLHF: Aligning Language Models with Human Feedback",
           "link": "https://blog.dailydoseofds.com/p/rlhf-aligning-language-models-with",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/proximal-policy-optimization-in-rl",
           "date": "Sun, 14 Jun 2026 21:01:23 GMT",
           "note": "The full RL nanodegree, covered with implementation."
-        },
-        {
-          "title": "Schema Guided Agent Memory for Production Agents",
-          "link": "https://blog.dailydoseofds.com/p/schema-guided-agent-memory-for-production",
-          "date": "Fri, 12 Jun 2026 22:02:39 GMT",
-          "note": "Some key lessons on building production-grade memory for Agents."
         }
       ]
     },
@@ -148,9 +148,33 @@
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
         {
+          "title": "Build real agentic apps using CUGA: two dozen working examples on a lightweight harness",
+          "link": "https://huggingface.co/blog/ibm-research/cuga-apps",
+          "date": "Tue, 23 Jun 2026 12:51:55 GMT",
+          "note": ""
+        },
+        {
+          "title": "Shipping huggingface_hub every week with AI, open tools, and a human in the loop",
+          "link": "https://huggingface.co/blog/huggingface-hub-release-ci",
+          "date": "Tue, 23 Jun 2026 00:00:00 GMT",
+          "note": ""
+        },
+        {
+          "title": "Experimenting with the proposed Cross-Origin Storage API in Transformers.js",
+          "link": "https://huggingface.co/blog/cross-origin-storage",
+          "date": "Tue, 23 Jun 2026 00:00:00 GMT",
+          "note": ""
+        },
+        {
           "title": "PP-OCRv6 on Hugging Face: 50-Language OCR from 1.5M to 34.5M Parameters",
           "link": "https://huggingface.co/blog/PaddlePaddle/pp-ocrv6",
           "date": "Mon, 22 Jun 2026 13:18:56 GMT",
+          "note": ""
+        },
+        {
+          "title": "We got local models to triage the OpenClaw repo for FREE!*",
+          "link": "https://huggingface.co/blog/local-models-pr-triage",
+          "date": "Mon, 22 Jun 2026 00:00:00 GMT",
           "note": ""
         },
         {
@@ -169,30 +193,6 @@
           "title": "Is it agentic enough? Benchmarking open models on your own tooling",
           "link": "https://huggingface.co/blog/is-it-agentic-enough",
           "date": "Thu, 18 Jun 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "MolmoMotion: Language-guided 3D motion forecasting",
-          "link": "https://huggingface.co/blog/allenai/molmomotion",
-          "date": "Wed, 17 Jun 2026 15:26:44 GMT",
-          "note": ""
-        },
-        {
-          "title": "From the Hugging Face Hub to robot hardware with Strands Agents and LeRobot",
-          "link": "https://huggingface.co/blog/amazon/strands-lerobot-hub-to-hardware",
-          "date": "Wed, 17 Jun 2026 10:18:05 GMT",
-          "note": ""
-        },
-        {
-          "title": "GLM-5.2: Built for Long-Horizon Tasks",
-          "link": "https://huggingface.co/blog/zai-org/glm-52-blog",
-          "date": "Wed, 17 Jun 2026 09:01:25 GMT",
-          "note": ""
-        },
-        {
-          "title": "Agentic Resource Discovery: Let agents search",
-          "link": "https://huggingface.co/blog/agentic-resource-discovery-launch",
-          "date": "Wed, 17 Jun 2026 00:00:00 GMT",
           "note": ""
         }
       ]
