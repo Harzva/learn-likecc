@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-06-24T04:45:01.268623+00:00",
+    "generated_at": "2026-06-25T04:40:18.685842+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年6月23号 16:32AI 日报AI日报：火山引擎发布豆包Seedance2.5等模型；生数Vidu Q3上线华为云；百川智能发布M4 模型查看日报",
-        "link": "https://www.aibase.com/daily/29098"
+        "title": "2026年6月24号 16:55AI 日报AI日报：豆包音频生成模型1.0发布；企业微信内测AI Agent大圆；Cursor发布全自主训练大模型查看日报",
+        "link": "https://www.aibase.com/daily/29134"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "火山引擎发布豆包2.1Pro:日常功能确认免费，将推专业版办公模式",
-          "link": "https://www.aibase.com/news/29095",
-          "date": "2026年6月23号 16:32",
+          "title": "即梦AI Seedance2.0VIP上线原生4K，视频生成分辨率实现源头突破",
+          "link": "https://www.aibase.com/news/29133",
+          "date": "2026年6月24号 16:55",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "百川智能发布M4 模型，实现“真人医生”式主动问诊",
-          "link": "https://www.aibase.com/news/29092",
-          "date": "2026年6月23号 16:32",
+          "title": "特斯拉车机迎来“智慧大脑”：豆包大模型全面接入，交互体验升级",
+          "link": "https://www.aibase.com/news/29132",
+          "date": "2026年6月24号 16:55",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "MiniMax7月9日迎首批解禁 阿里、米哈游明确不减持",
-          "link": "https://www.aibase.com/news/29090",
-          "date": "2026年6月23号 16:32",
+          "title": "企业微信内测AI Agent“大圆”:打通企微生态，主打办公与客户经营提效",
+          "link": "https://www.aibase.com/news/29125",
+          "date": "2026年6月24号 16:55",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "火山引擎发布豆包Seedance2.5视频模型，方舟大模型服务用户超110万",
-          "link": "https://www.aibase.com/news/29087",
-          "date": "2026年6月23号 16:32",
+          "title": "阿里云QoderWork推出“峰谷Token”:错峰调用Qwen3.7-Max低至2折",
+          "link": "https://www.aibase.com/news/29122",
+          "date": "2026年6月24号 16:55",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "生数 Vidu Q3 上线华为云，打造“为剧而生”的视频生成方案",
-          "link": "https://www.aibase.com/news/29077",
-          "date": "2026年6月23号 16:32",
+          "title": "豆包付费时代开启：三档订阅服务落地，性价比对标全球巨头",
+          "link": "https://www.aibase.com/news/29121",
+          "date": "2026年6月24号 16:55",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "贾跃亭旗下Futurist具身智能机器人正式上市销售 售价89900美元",
-          "link": "https://www.aibase.com/news/29076",
-          "date": "2026年6月23号 16:32",
+          "title": "Cursor发布全自主训练大模型，同步推出全新Git平台Origin及移动端App",
+          "link": "https://www.aibase.com/news/29119",
+          "date": "2026年6月24号 16:55",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "快手系AI芯片公司「凌川科技」获数亿元A+轮融资，SL200芯片销量近十万颗",
-          "link": "https://www.aibase.com/news/29071",
-          "date": "2026年6月23号 16:32",
+          "title": "豆包音频生成模型1. 0 发布，开启“音频导演”时代",
+          "link": "https://www.aibase.com/news/29117",
+          "date": "2026年6月24号 16:55",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "谷歌DeepMind斥资7500万美元签约A24，联手研发好莱坞电影制作AI工具",
-          "link": "https://www.aibase.com/news/29070",
-          "date": "2026年6月23号 16:32",
+          "title": "豆包正式发布2.1专业版:接入Pro模型并推出全新办公任务模式",
+          "link": "https://www.aibase.com/news/29112",
+          "date": "2026年6月24号 16:55",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Speculation Is All You Need!",
+          "link": "https://blog.dailydoseofds.com/p/speculation-is-all-you-need",
+          "date": "Wed, 24 Jun 2026 22:06:25 GMT",
+          "note": "New technique delivers 4x faster LLM inference in production."
+        },
         {
           "title": "Loop Engineering, Clearly Explained!",
           "link": "https://blog.dailydoseofds.com/p/loop-engineering-clearly-explained",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/hands-on-build-a-real-time-satellite",
           "date": "Mon, 15 Jun 2026 23:19:01 GMT",
           "note": "Backed by a production-grade time-series database."
-        },
-        {
-          "title": "Proximal Policy Optimization in RL",
-          "link": "https://blog.dailydoseofds.com/p/proximal-policy-optimization-in-rl",
-          "date": "Sun, 14 Jun 2026 21:01:23 GMT",
-          "note": "The full RL nanodegree, covered with implementation."
         }
       ]
     },
@@ -147,6 +147,18 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Accelerating Transformers Fine-Tuning with NVIDIA NeMo AutoModel",
+          "link": "https://huggingface.co/blog/nvidia/accelerating-fine-tuning-nvidia-nemo-automodel",
+          "date": "Wed, 24 Jun 2026 16:00:13 GMT",
+          "note": ""
+        },
+        {
+          "title": "Introducing the FFASR Leaderboard: Benchmarking ASR in the Real World",
+          "link": "https://huggingface.co/blog/ffasr-leaderboard",
+          "date": "Wed, 24 Jun 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "Build real agentic apps using CUGA: two dozen working examples on a lightweight harness",
           "link": "https://huggingface.co/blog/ibm-research/cuga-apps",
@@ -181,18 +193,6 @@
           "title": "MosaicLeaks: Can your research agent keep a secret?",
           "link": "https://huggingface.co/blog/ServiceNow/mosaicleaks",
           "date": "Thu, 18 Jun 2026 18:13:13 GMT",
-          "note": ""
-        },
-        {
-          "title": "Beyond LoRA: Can you beat the most popular fine-tuning technique?",
-          "link": "https://huggingface.co/blog/peft-beyond-lora",
-          "date": "Thu, 18 Jun 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Is it agentic enough? Benchmarking open models on your own tooling",
-          "link": "https://huggingface.co/blog/is-it-agentic-enough",
-          "date": "Thu, 18 Jun 2026 00:00:00 GMT",
           "note": ""
         }
       ]
