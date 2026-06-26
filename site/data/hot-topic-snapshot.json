@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-06-25T04:40:18.685842+00:00",
+    "generated_at": "2026-06-26T04:48:05.225124+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年6月24号 16:55AI 日报AI日报：豆包音频生成模型1.0发布；企业微信内测AI Agent大圆；Cursor发布全自主训练大模型查看日报",
-        "link": "https://www.aibase.com/daily/29134"
+        "title": "2026年6月25号 16:19AI 日报AI日报：iOS 27支持自由切换ChatGPT；百度文心网站全面扩容；Google Gemini 3.5 Flash发布查看日报",
+        "link": "https://www.aibase.com/daily/29166"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "即梦AI Seedance2.0VIP上线原生4K，视频生成分辨率实现源头突破",
-          "link": "https://www.aibase.com/news/29133",
-          "date": "2026年6月24号 16:55",
+          "title": "机器人有了“通用大脑”：RoboScience 发布 Visics 大模型，实现跨场景自主执行",
+          "link": "https://www.aibase.com/news/29165",
+          "date": "2026年6月25号 16:19",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "特斯拉车机迎来“智慧大脑”：豆包大模型全面接入，交互体验升级",
-          "link": "https://www.aibase.com/news/29132",
-          "date": "2026年6月24号 16:55",
+          "title": "文心一言服务全面升级：数据迁移即将开启，百度文心迎来新面貌",
+          "link": "https://www.aibase.com/news/29164",
+          "date": "2026年6月25号 16:19",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "企业微信内测AI Agent“大圆”:打通企微生态，主打办公与客户经营提效",
-          "link": "https://www.aibase.com/news/29125",
-          "date": "2026年6月24号 16:55",
+          "title": "3D生成领域的“中国黑马”：影眸科技斩获数亿融资，技术实力获英伟达青睐",
+          "link": "https://www.aibase.com/news/29162",
+          "date": "2026年6月25号 16:19",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阿里云QoderWork推出“峰谷Token”:错峰调用Qwen3.7-Max低至2折",
-          "link": "https://www.aibase.com/news/29122",
-          "date": "2026年6月24号 16:55",
+          "title": "索尼 PS6 爆料来袭，搭载 AI 帧生成等技术",
+          "link": "https://www.aibase.com/news/29152",
+          "date": "2026年6月25号 16:19",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "豆包付费时代开启：三档订阅服务落地，性价比对标全球巨头",
-          "link": "https://www.aibase.com/news/29121",
-          "date": "2026年6月24号 16:55",
+          "title": "苹果 iOS 27 更新：Siri 迎来“双模”时代，ChatGPT 自由切换",
+          "link": "https://www.aibase.com/news/29150",
+          "date": "2026年6月25号 16:19",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Cursor发布全自主训练大模型，同步推出全新Git平台Origin及移动端App",
-          "link": "https://www.aibase.com/news/29119",
-          "date": "2026年6月24号 16:55",
+          "title": "加持文心5.1底座:百度文心网站全面扩容，Office在线编辑等工具上新",
+          "link": "https://www.aibase.com/news/29149",
+          "date": "2026年6月25号 16:19",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "豆包音频生成模型1. 0 发布，开启“音频导演”时代",
-          "link": "https://www.aibase.com/news/29117",
-          "date": "2026年6月24号 16:55",
+          "title": "从对话助手到“电脑管家”：Google Gemini 3.5 Flash发布",
+          "link": "https://www.aibase.com/news/29147",
+          "date": "2026年6月25号 16:19",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "豆包正式发布2.1专业版:接入Pro模型并推出全新办公任务模式",
-          "link": "https://www.aibase.com/news/29112",
-          "date": "2026年6月24号 16:55",
+          "title": "腾讯Marvis马维斯iOS版正式上线，实现全平台覆盖与桌面级远控",
+          "link": "https://www.aibase.com/news/29142",
+          "date": "2026年6月25号 16:19",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "The AI Engineering Master Stack for 2026!",
+          "link": "https://blog.dailydoseofds.com/p/the-ai-engineering-master-stack-for",
+          "date": "Thu, 25 Jun 2026 21:49:38 GMT",
+          "note": "...covered with full hands-on resources."
+        },
         {
           "title": "Speculation Is All You Need!",
           "link": "https://blog.dailydoseofds.com/p/speculation-is-all-you-need",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/hermes-kanban-mission-control-for",
           "date": "Tue, 16 Jun 2026 21:36:57 GMT",
           "note": "Demo on building a 4-agent software team."
-        },
-        {
-          "title": "[Hands-on] Build a Real-Time Satellite Tracker with Claude Code",
-          "link": "https://blog.dailydoseofds.com/p/hands-on-build-a-real-time-satellite",
-          "date": "Mon, 15 Jun 2026 23:19:01 GMT",
-          "note": "Backed by a production-grade time-series database."
         }
       ]
     },
@@ -147,6 +147,18 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Run a vLLM Server on HF Jobs in One Command",
+          "link": "https://huggingface.co/blog/vllm-jobs",
+          "date": "Fri, 26 Jun 2026 00:00:00 GMT",
+          "note": ""
+        },
+        {
+          "title": "Which tokens does a hybrid model predict better?",
+          "link": "https://huggingface.co/blog/allenai/hybrid-token-prediction",
+          "date": "Thu, 25 Jun 2026 16:11:42 GMT",
+          "note": ""
+        },
         {
           "title": "Accelerating Transformers Fine-Tuning with NVIDIA NeMo AutoModel",
           "link": "https://huggingface.co/blog/nvidia/accelerating-fine-tuning-nvidia-nemo-automodel",
@@ -181,18 +193,6 @@
           "title": "PP-OCRv6 on Hugging Face: 50-Language OCR from 1.5M to 34.5M Parameters",
           "link": "https://huggingface.co/blog/PaddlePaddle/pp-ocrv6",
           "date": "Mon, 22 Jun 2026 13:18:56 GMT",
-          "note": ""
-        },
-        {
-          "title": "We got local models to triage the OpenClaw repo for FREE!*",
-          "link": "https://huggingface.co/blog/local-models-pr-triage",
-          "date": "Mon, 22 Jun 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "MosaicLeaks: Can your research agent keep a secret?",
-          "link": "https://huggingface.co/blog/ServiceNow/mosaicleaks",
-          "date": "Thu, 18 Jun 2026 18:13:13 GMT",
           "note": ""
         }
       ]
