@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-06-26T04:48:05.225124+00:00",
+    "generated_at": "2026-06-27T04:31:33.329114+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年6月25号 16:19AI 日报AI日报：iOS 27支持自由切换ChatGPT；百度文心网站全面扩容；Google Gemini 3.5 Flash发布查看日报",
-        "link": "https://www.aibase.com/daily/29166"
+        "title": "2026年6月26号 16:52AI 日报AI日报：苹果Xcode 26.6正式发布；美团“小店有AI”行动落地北京；OpenAI受限发布GPT-5.6查看日报",
+        "link": "https://www.aibase.com/daily/29202"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "机器人有了“通用大脑”：RoboScience 发布 Visics 大模型，实现跨场景自主执行",
-          "link": "https://www.aibase.com/news/29165",
-          "date": "2026年6月25号 16:19",
+          "title": "美团“小店有AI”行动落地北京，百万中小餐饮商家迎来数字化经营新助力",
+          "link": "https://www.aibase.com/news/29201",
+          "date": "2026年6月26号 16:52",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "文心一言服务全面升级：数据迁移即将开启，百度文心迎来新面貌",
-          "link": "https://www.aibase.com/news/29164",
-          "date": "2026年6月25号 16:19",
+          "title": "苹果 Xcode 26.6 正式发布，编程助手迎来“谷歌 Gemini”强力外援",
+          "link": "https://www.aibase.com/news/29197",
+          "date": "2026年6月26号 16:52",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "3D生成领域的“中国黑马”：影眸科技斩获数亿融资，技术实力获英伟达青睐",
-          "link": "https://www.aibase.com/news/29162",
-          "date": "2026年6月25号 16:19",
+          "title": "Mistral AI发布OCR4 模型：支持 170 种语言，输出质量超越GPT与Gemini",
+          "link": "https://www.aibase.com/news/29192",
+          "date": "2026年6月26号 16:52",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "索尼 PS6 爆料来袭，搭载 AI 帧生成等技术",
-          "link": "https://www.aibase.com/news/29152",
-          "date": "2026年6月25号 16:19",
+          "title": "Notion宣布将于9月22日关闭AI邮箱服务Notion Mail",
+          "link": "https://www.aibase.com/news/29190",
+          "date": "2026年6月26号 16:52",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "苹果 iOS 27 更新：Siri 迎来“双模”时代，ChatGPT 自由切换",
-          "link": "https://www.aibase.com/news/29150",
-          "date": "2026年6月25号 16:19",
+          "title": "Adobe宣布收购视频与图像AI模型开发商Topaz Labs，深化Firefly生态布局",
+          "link": "https://www.aibase.com/news/29183",
+          "date": "2026年6月26号 16:52",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "加持文心5.1底座:百度文心网站全面扩容，Office在线编辑等工具上新",
-          "link": "https://www.aibase.com/news/29149",
-          "date": "2026年6月25号 16:19",
+          "title": "融资 5000 万美元！Patronus AI 打造“数字孪生世界”为 AI 智能体做压力测试",
+          "link": "https://www.aibase.com/news/29182",
+          "date": "2026年6月26号 16:52",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "从对话助手到“电脑管家”：Google Gemini 3.5 Flash发布",
-          "link": "https://www.aibase.com/news/29147",
-          "date": "2026年6月25号 16:19",
+          "title": "Claude付费用户暴增75%，正面撕开ChatGPT消费级市场",
+          "link": "https://www.aibase.com/news/29175",
+          "date": "2026年6月26号 16:52",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯Marvis马维斯iOS版正式上线，实现全平台覆盖与桌面级远控",
-          "link": "https://www.aibase.com/news/29142",
-          "date": "2026年6月25号 16:19",
+          "title": "OpenAI受限发布GPT-5.6:联邦监管介入，访问权限需经政府逐个审批",
+          "link": "https://www.aibase.com/news/29174",
+          "date": "2026年6月26号 16:52",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Prompt Engineering & Loop Engineering, Clearly Explained!",
+          "link": "https://blog.dailydoseofds.com/p/prompt-engineering-and-loop-engineering",
+          "date": "Sat, 27 Jun 2026 01:22:03 GMT",
+          "note": "...covered with actual tradeoffs engineers should know."
+        },
         {
           "title": "The AI Engineering Master Stack for 2026!",
           "link": "https://blog.dailydoseofds.com/p/the-ai-engineering-master-stack-for",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/the-production-harness-for-ai-built",
           "date": "Wed, 17 Jun 2026 20:01:11 GMT",
           "note": "...explained with usage."
-        },
-        {
-          "title": "Hermes Kanban: Mission Control for your Agents",
-          "link": "https://blog.dailydoseofds.com/p/hermes-kanban-mission-control-for",
-          "date": "Tue, 16 Jun 2026 21:36:57 GMT",
-          "note": "Demo on building a 4-agent software team."
         }
       ]
     },
