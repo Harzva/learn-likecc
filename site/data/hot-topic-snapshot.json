@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-06-28T04:58:41.888741+00:00",
+    "generated_at": "2026-06-29T05:08:57.220101+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -85,6 +85,12 @@
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
         {
+          "title": "Karpathy's Agentic Engineering Finally Has Proper Tooling",
+          "link": "https://blog.dailydoseofds.com/p/karpathys-agentic-engineering-finally",
+          "date": "Sun, 28 Jun 2026 23:46:08 GMT",
+          "note": "Build by Google, explained as step-by-step guide."
+        },
+        {
           "title": "Prompt Engineering & Loop Engineering, Clearly Explained!",
           "link": "https://blog.dailydoseofds.com/p/prompt-engineering-and-loop-engineering",
           "date": "Sat, 27 Jun 2026 01:22:03 GMT",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/turn-any-website-into-a-custom-api",
           "date": "Thu, 18 Jun 2026 22:03:31 GMT",
           "note": "...explained as a step-by-step guide."
-        },
-        {
-          "title": "The Production Harness for AI-Built Apps",
-          "link": "https://blog.dailydoseofds.com/p/the-production-harness-for-ai-built",
-          "date": "Wed, 17 Jun 2026 20:01:11 GMT",
-          "note": "...explained with usage."
         }
       ]
     },
