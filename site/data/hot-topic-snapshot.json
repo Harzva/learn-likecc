@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-06-29T05:08:57.220101+00:00",
+    "generated_at": "2026-06-30T04:40:47.573470+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年6月26号 16:52AI 日报AI日报：苹果Xcode 26.6正式发布；美团“小店有AI”行动落地北京；OpenAI受限发布GPT-5.6查看日报",
-        "link": "https://www.aibase.com/daily/29202"
+        "title": "2026年6月29号 16:33AI 日报AI日报：豆包内测社交功能；高德内测“袋马”入局AI编程；新浪VibeThinker-3B 开源查看日报",
+        "link": "https://www.aibase.com/daily/29237"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "美团“小店有AI”行动落地北京，百万中小餐饮商家迎来数字化经营新助力",
-          "link": "https://www.aibase.com/news/29201",
-          "date": "2026年6月26号 16:52",
+          "title": "模型变小，能力不减：新浪VibeThinker-3B 开源，AI 推理迎来“轻量化”新思路",
+          "link": "https://www.aibase.com/news/29236",
+          "date": "2026年6月29号 16:33",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "苹果 Xcode 26.6 正式发布，编程助手迎来“谷歌 Gemini”强力外援",
-          "link": "https://www.aibase.com/news/29197",
-          "date": "2026年6月26号 16:52",
+          "title": "豆包内测社交功能:打通飞书账号，AI助手也要做熟人社交?",
+          "link": "https://www.aibase.com/news/29231",
+          "date": "2026年6月29号 16:33",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Mistral AI发布OCR4 模型：支持 170 种语言，输出质量超越GPT与Gemini",
-          "link": "https://www.aibase.com/news/29192",
-          "date": "2026年6月26号 16:52",
+          "title": "蚂蚁阿福公布减重1亿斤进展：已瘦10万斤，网友：我又拖后腿了",
+          "link": "https://www.aibase.com/news/29230",
+          "date": "2026年6月29号 16:33",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Notion宣布将于9月22日关闭AI邮箱服务Notion Mail",
-          "link": "https://www.aibase.com/news/29190",
-          "date": "2026年6月26号 16:52",
+          "title": "百度开源3B模型Unlimited OCR:5天Star破万，刷新长文档解析纪录",
+          "link": "https://www.aibase.com/news/29229",
+          "date": "2026年6月29号 16:33",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Adobe宣布收购视频与图像AI模型开发商Topaz Labs，深化Firefly生态布局",
-          "link": "https://www.aibase.com/news/29183",
-          "date": "2026年6月26号 16:52",
+          "title": "马斯克放话每月推全新大模型 Grok4.5内测性能比肩Claude Opus",
+          "link": "https://www.aibase.com/news/29226",
+          "date": "2026年6月29号 16:33",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "融资 5000 万美元！Patronus AI 打造“数字孪生世界”为 AI 智能体做压力测试",
-          "link": "https://www.aibase.com/news/29182",
-          "date": "2026年6月26号 16:52",
+          "title": "高德内测“袋马”入局AI编程，一句话分钟级生成可用应用",
+          "link": "https://www.aibase.com/news/29224",
+          "date": "2026年6月29号 16:33",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Claude付费用户暴增75%，正面撕开ChatGPT消费级市场",
-          "link": "https://www.aibase.com/news/29175",
-          "date": "2026年6月26号 16:52",
+          "title": "算力提速关键突破：北大与 DeepSeek 联合开源大模型推理框架 DSpark",
+          "link": "https://www.aibase.com/news/29212",
+          "date": "2026年6月29号 16:33",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenAI受限发布GPT-5.6:联邦监管介入，访问权限需经政府逐个审批",
-          "link": "https://www.aibase.com/news/29174",
-          "date": "2026年6月26号 16:52",
+          "title": "消息称百度昆仑芯将赴港IPO 目标估值达500亿美元",
+          "link": "https://www.aibase.com/news/29211",
+          "date": "2026年6月29号 16:33",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Verifiable Rewards and GRPO in RL",
+          "link": "https://blog.dailydoseofds.com/p/verifiable-rewards-and-grpo-in-rl",
+          "date": "Mon, 29 Jun 2026 23:40:51 GMT",
+          "note": "The full RL nanodegree, covered with implementation."
+        },
         {
           "title": "Karpathy's Agentic Engineering Finally Has Proper Tooling",
           "link": "https://blog.dailydoseofds.com/p/karpathys-agentic-engineering-finally",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/hands-on-build-your-own-ai-avatar-825",
           "date": "Fri, 19 Jun 2026 20:32:52 GMT",
           "note": "(100% open-source, works in real-time)"
-        },
-        {
-          "title": "Turn Any Website Into a Custom API in Claude Code",
-          "link": "https://blog.dailydoseofds.com/p/turn-any-website-into-a-custom-api",
-          "date": "Thu, 18 Jun 2026 22:03:31 GMT",
-          "note": "...explained as a step-by-step guide."
         }
       ]
     },
@@ -148,15 +148,15 @@
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
         {
-          "title": "Run a vLLM Server on HF Jobs in One Command",
-          "link": "https://huggingface.co/blog/vllm-jobs",
-          "date": "Fri, 26 Jun 2026 00:00:00 GMT",
+          "title": "DiScoFormer: One transformer for density and score, across distributions",
+          "link": "https://huggingface.co/blog/allenai/discoformer",
+          "date": "Mon, 29 Jun 2026 18:02:48 GMT",
           "note": ""
         },
         {
-          "title": "Which tokens does a hybrid model predict better?",
-          "link": "https://huggingface.co/blog/allenai/hybrid-token-prediction",
-          "date": "Thu, 25 Jun 2026 16:11:42 GMT",
+          "title": "Run a vLLM Server on HF Jobs in One Command",
+          "link": "https://huggingface.co/blog/vllm-jobs",
+          "date": "Fri, 26 Jun 2026 00:00:00 GMT",
           "note": ""
         },
         {
