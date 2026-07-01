@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-06-30T04:40:47.573470+00:00",
+    "generated_at": "2026-07-01T05:00:24.944815+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年6月29号 16:33AI 日报AI日报：豆包内测社交功能；高德内测“袋马”入局AI编程；新浪VibeThinker-3B 开源查看日报",
-        "link": "https://www.aibase.com/daily/29237"
+        "title": "2026年6月30号 16:34AI 日报AI日报：美团发布LongCat-2.0；小红书 RedKnot 推理引擎开源；豆包App内置地图导航查看日报",
+        "link": "https://www.aibase.com/daily/29274"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "模型变小，能力不减：新浪VibeThinker-3B 开源，AI 推理迎来“轻量化”新思路",
-          "link": "https://www.aibase.com/news/29236",
-          "date": "2026年6月29号 16:33",
+          "title": "华为openPangu2.0双版本亮相:加速Agent时代算力与生态双向突围",
+          "link": "https://www.aibase.com/news/29268",
+          "date": "2026年6月30号 16:34",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "豆包内测社交功能:打通飞书账号，AI助手也要做熟人社交?",
-          "link": "https://www.aibase.com/news/29231",
-          "date": "2026年6月29号 16:33",
+          "title": "告别“长文本焦虑”：小红书 RedKnot 推理引擎开源，长上下文处理效率翻倍",
+          "link": "https://www.aibase.com/news/29262",
+          "date": "2026年6月30号 16:34",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "蚂蚁阿福公布减重1亿斤进展：已瘦10万斤，网友：我又拖后腿了",
-          "link": "https://www.aibase.com/news/29230",
-          "date": "2026年6月29号 16:33",
+          "title": "美团正式发布万亿参数开源大模型 LongCat-2.0，原生支持1M 超长上下文",
+          "link": "https://www.aibase.com/news/29259",
+          "date": "2026年6月30号 16:34",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "百度开源3B模型Unlimited OCR:5天Star破万，刷新长文档解析纪录",
-          "link": "https://www.aibase.com/news/29229",
-          "date": "2026年6月29号 16:33",
+          "title": "谷歌AI概览上线“热门新闻轮播” 实时突发新闻直接嵌入AI摘要",
+          "link": "https://www.aibase.com/news/29257",
+          "date": "2026年6月30号 16:34",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "马斯克放话每月推全新大模型 Grok4.5内测性能比肩Claude Opus",
-          "link": "https://www.aibase.com/news/29226",
-          "date": "2026年6月29号 16:33",
+          "title": "不只是对话！豆包App内置地图导航，AI大模型正全面渗透日常出行",
+          "link": "https://www.aibase.com/news/29254",
+          "date": "2026年6月30号 16:34",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "高德内测“袋马”入局AI编程，一句话分钟级生成可用应用",
-          "link": "https://www.aibase.com/news/29224",
-          "date": "2026年6月29号 16:33",
+          "title": "智元创新发布数采 2.0 技术：为机器人装上更聪明的“大脑”",
+          "link": "https://www.aibase.com/news/29251",
+          "date": "2026年6月30号 16:34",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "算力提速关键突破：北大与 DeepSeek 联合开源大模型推理框架 DSpark",
-          "link": "https://www.aibase.com/news/29212",
-          "date": "2026年6月29号 16:33",
+          "title": "自托管AI迎来新便捷！开源代理OpenClaw原生iOS应用正式上架",
+          "link": "https://www.aibase.com/news/29241",
+          "date": "2026年6月30号 16:34",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "消息称百度昆仑芯将赴港IPO 目标估值达500亿美元",
-          "link": "https://www.aibase.com/news/29211",
-          "date": "2026年6月29号 16:33",
+          "title": "今天起，全美谷歌 Gemini 免费用户都可使用个性化 AI 生图功能",
+          "link": "https://www.aibase.com/news/29240",
+          "date": "2026年6月30号 16:34",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "A Better Way To Build LLM-as-a-Judge Pipelines",
+          "link": "https://blog.dailydoseofds.com/p/a-better-way-to-build-llm-as-a-judge",
+          "date": "Wed, 01 Jul 2026 00:28:05 GMT",
+          "note": "...explained step-by-step with code."
+        },
         {
           "title": "Verifiable Rewards and GRPO in RL",
           "link": "https://blog.dailydoseofds.com/p/verifiable-rewards-and-grpo-in-rl",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/rlhf-aligning-language-models-with",
           "date": "Mon, 22 Jun 2026 22:55:23 GMT",
           "note": "The full RL nanodegree, covered with implementation."
-        },
-        {
-          "title": "[Hands-on] Build Your Own AI Avatar With Human-like Memory",
-          "link": "https://blog.dailydoseofds.com/p/hands-on-build-your-own-ai-avatar-825",
-          "date": "Fri, 19 Jun 2026 20:32:52 GMT",
-          "note": "(100% open-source, works in real-time)"
         }
       ]
     },
@@ -147,6 +147,24 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "ScarfBench: Benchmarking AI Agents for Enterprise Java Framework Migration",
+          "link": "https://huggingface.co/blog/ibm-research/scarfbench",
+          "date": "Tue, 30 Jun 2026 18:32:50 GMT",
+          "note": ""
+        },
+        {
+          "title": "Why Specialization Is Inevitable",
+          "link": "https://huggingface.co/blog/Dharma-AI/why-specialization-is-inevitable",
+          "date": "Tue, 30 Jun 2026 14:39:11 GMT",
+          "note": ""
+        },
+        {
+          "title": "Featuring Every Eval Ever Results on Hugging Face Model Pages",
+          "link": "https://huggingface.co/blog/eee-community-evals",
+          "date": "Tue, 30 Jun 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "DiScoFormer: One transformer for density and score, across distributions",
           "link": "https://huggingface.co/blog/allenai/discoformer",
@@ -172,27 +190,9 @@
           "note": ""
         },
         {
-          "title": "Build real agentic apps using CUGA: two dozen working examples on a lightweight harness",
-          "link": "https://huggingface.co/blog/ibm-research/cuga-apps",
-          "date": "Tue, 23 Jun 2026 12:51:55 GMT",
-          "note": ""
-        },
-        {
           "title": "Shipping huggingface_hub every week with AI, open tools, and a human in the loop",
           "link": "https://huggingface.co/blog/huggingface-hub-release-ci",
           "date": "Tue, 23 Jun 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Experimenting with the proposed Cross-Origin Storage API in Transformers.js",
-          "link": "https://huggingface.co/blog/cross-origin-storage",
-          "date": "Tue, 23 Jun 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "PP-OCRv6 on Hugging Face: 50-Language OCR from 1.5M to 34.5M Parameters",
-          "link": "https://huggingface.co/blog/PaddlePaddle/pp-ocrv6",
-          "date": "Mon, 22 Jun 2026 13:18:56 GMT",
           "note": ""
         }
       ]
