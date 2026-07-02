@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-01T05:00:24.944815+00:00",
+    "generated_at": "2026-07-02T04:37:30.968561+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年6月30号 16:34AI 日报AI日报：美团发布LongCat-2.0；小红书 RedKnot 推理引擎开源；豆包App内置地图导航查看日报",
-        "link": "https://www.aibase.com/daily/29274"
+        "title": "2026年7月1号 16:14AI 日报AI日报：谷歌推新图片模型Nano Banana 2 Lite；Claude Sonnet 5 发布；OpenClaw 正式推出 iOS 与 Android 移动版应用查看日报",
+        "link": "https://www.aibase.com/daily/29307"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "华为openPangu2.0双版本亮相:加速Agent时代算力与生态双向突围",
-          "link": "https://www.aibase.com/news/29268",
-          "date": "2026年6月30号 16:34",
+          "title": "软银加码 AI 赛道：向 OpenAI 追加 100 亿美元投资",
+          "link": "https://www.aibase.com/news/29306",
+          "date": "2026年7月1号 16:14",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "告别“长文本焦虑”：小红书 RedKnot 推理引擎开源，长上下文处理效率翻倍",
-          "link": "https://www.aibase.com/news/29262",
-          "date": "2026年6月30号 16:34",
+          "title": "快手发布反诈治理新报告，AI 大模型助力打击网络诈骗！",
+          "link": "https://www.aibase.com/news/29304",
+          "date": "2026年7月1号 16:14",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "美团正式发布万亿参数开源大模型 LongCat-2.0，原生支持1M 超长上下文",
-          "link": "https://www.aibase.com/news/29259",
-          "date": "2026年6月30号 16:34",
+          "title": "谷歌推出全新AI生图模型Nano Banana 2 Lite： 4 秒出图，主打高频批量内容生产",
+          "link": "https://www.aibase.com/news/29299",
+          "date": "2026年7月1号 16:14",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "谷歌AI概览上线“热门新闻轮播” 实时突发新闻直接嵌入AI摘要",
-          "link": "https://www.aibase.com/news/29257",
-          "date": "2026年6月30号 16:34",
+          "title": "估值再攀高峰：月之暗面 Kimi 迈入“ARR 3 亿美元”高速增长期",
+          "link": "https://www.aibase.com/news/29293",
+          "date": "2026年7月1号 16:14",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "不只是对话！豆包App内置地图导航，AI大模型正全面渗透日常出行",
-          "link": "https://www.aibase.com/news/29254",
-          "date": "2026年6月30号 16:34",
+          "title": "X 平台正式推出托管 MCP 服务器，AI 工具可直连 API 检索实时数据",
+          "link": "https://www.aibase.com/news/29291",
+          "date": "2026年7月1号 16:14",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "智元创新发布数采 2.0 技术：为机器人装上更聪明的“大脑”",
-          "link": "https://www.aibase.com/news/29251",
-          "date": "2026年6月30号 16:34",
+          "title": "谷歌NotebookLM放大招：重磅推出TikTok风短视频功能，一键看懂复杂研究笔记",
+          "link": "https://www.aibase.com/news/29287",
+          "date": "2026年7月1号 16:14",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "自托管AI迎来新便捷！开源代理OpenClaw原生iOS应用正式上架",
-          "link": "https://www.aibase.com/news/29241",
-          "date": "2026年6月30号 16:34",
+          "title": "开源 AI 代理项目 OpenClaw 正式推出 iOS 与 Android 移动版应用",
+          "link": "https://www.aibase.com/news/29282",
+          "date": "2026年7月1号 16:14",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "今天起，全美谷歌 Gemini 免费用户都可使用个性化 AI 生图功能",
-          "link": "https://www.aibase.com/news/29240",
-          "date": "2026年6月30号 16:34",
+          "title": "Claude Sonnet 5 发布：AI 主力模型进入“高能低耗”新时代",
+          "link": "https://www.aibase.com/news/29278",
+          "date": "2026年7月1号 16:14",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "[Hands-on] How to Build Your Own AI Company",
+          "link": "https://blog.dailydoseofds.com/p/hands-on-how-to-build-your-own-ai",
+          "date": "Wed, 01 Jul 2026 17:33:41 GMT",
+          "note": "100% local setup with open-source stack."
+        },
         {
           "title": "A Better Way To Build LLM-as-a-Judge Pipelines",
           "link": "https://blog.dailydoseofds.com/p/a-better-way-to-build-llm-as-a-judge",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/loop-engineering-clearly-explained",
           "date": "Wed, 24 Jun 2026 00:59:11 GMT",
           "note": "(must-know to efficiently run ML models in production)"
-        },
-        {
-          "title": "RLHF: Aligning Language Models with Human Feedback",
-          "link": "https://blog.dailydoseofds.com/p/rlhf-aligning-language-models-with",
-          "date": "Mon, 22 Jun 2026 22:55:23 GMT",
-          "note": "The full RL nanodegree, covered with implementation."
         }
       ]
     },
@@ -147,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Hugging Face and Cerebras bring Gemma 4 to real-time voice AI",
+          "link": "https://huggingface.co/blog/cerebras-gemma4-voice-ai",
+          "date": "Wed, 01 Jul 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "ScarfBench: Benchmarking AI Agents for Enterprise Java Framework Migration",
           "link": "https://huggingface.co/blog/ibm-research/scarfbench",
@@ -187,12 +193,6 @@
           "title": "Introducing the FFASR Leaderboard: Benchmarking ASR in the Real World",
           "link": "https://huggingface.co/blog/ffasr-leaderboard",
           "date": "Wed, 24 Jun 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Shipping huggingface_hub every week with AI, open tools, and a human in the loop",
-          "link": "https://huggingface.co/blog/huggingface-hub-release-ci",
-          "date": "Tue, 23 Jun 2026 00:00:00 GMT",
           "note": ""
         }
       ]
