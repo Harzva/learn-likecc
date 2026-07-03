@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-02T04:37:30.968561+00:00",
+    "generated_at": "2026-07-03T04:23:48.958052+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年7月1号 16:14AI 日报AI日报：谷歌推新图片模型Nano Banana 2 Lite；Claude Sonnet 5 发布；OpenClaw 正式推出 iOS 与 Android 移动版应用查看日报",
-        "link": "https://www.aibase.com/daily/29307"
+        "title": "2026年7月2号 15:00AI 日报AI日报：可灵AI将完成30亿美元融资；支付宝AI生活助理“阿宝”正式公测；Kimi K3 或于本月发布查看日报",
+        "link": "https://www.aibase.com/daily/29341"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "软银加码 AI 赛道：向 OpenAI 追加 100 亿美元投资",
-          "link": "https://www.aibase.com/news/29306",
-          "date": "2026年7月1号 16:14",
+          "title": "特斯拉Optimus机器人产线曝光:马斯克确认今夏投产，初期产量爬坡缓慢",
+          "link": "https://www.aibase.com/news/29335",
+          "date": "2026年7月2号 15:00",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "快手发布反诈治理新报告，AI 大模型助力打击网络诈骗！",
-          "link": "https://www.aibase.com/news/29304",
-          "date": "2026年7月1号 16:14",
+          "title": "美团大模型生态调整：全面限用豆包，力推自研 LongCat 体系",
+          "link": "https://www.aibase.com/news/29334",
+          "date": "2026年7月2号 15:00",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "谷歌推出全新AI生图模型Nano Banana 2 Lite： 4 秒出图，主打高频批量内容生产",
-          "link": "https://www.aibase.com/news/29299",
-          "date": "2026年7月1号 16:14",
+          "title": "两分钟上手生产级语音智能体：xAI 发布 Voice Agent Builder 测试版",
+          "link": "https://www.aibase.com/news/29332",
+          "date": "2026年7月2号 15:00",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "估值再攀高峰：月之暗面 Kimi 迈入“ARR 3 亿美元”高速增长期",
-          "link": "https://www.aibase.com/news/29293",
-          "date": "2026年7月1号 16:14",
+          "title": "支付宝AI生活助理“阿宝”正式开启公测，上线72项办事技能",
+          "link": "https://www.aibase.com/news/29329",
+          "date": "2026年7月2号 15:00",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "X 平台正式推出托管 MCP 服务器，AI 工具可直连 API 检索实时数据",
-          "link": "https://www.aibase.com/news/29291",
-          "date": "2026年7月1号 16:14",
+          "title": "苹果 Safari 预览版新增 MCP 服务，AI 智能体助力网页开发调试",
+          "link": "https://www.aibase.com/news/29324",
+          "date": "2026年7月2号 15:00",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "谷歌NotebookLM放大招：重磅推出TikTok风短视频功能，一键看懂复杂研究笔记",
-          "link": "https://www.aibase.com/news/29287",
-          "date": "2026年7月1号 16:14",
+          "title": "可灵AI将完成30亿美元融资腾讯参投，计划12个月内启动赴港IPO",
+          "link": "https://www.aibase.com/news/29321",
+          "date": "2026年7月2号 15:00",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "开源 AI 代理项目 OpenClaw 正式推出 iOS 与 Android 移动版应用",
-          "link": "https://www.aibase.com/news/29282",
-          "date": "2026年7月1号 16:14",
+          "title": "微软 Teams 8 月上线 AI 助手 Facilitator，会议实时答疑提升沟通效率",
+          "link": "https://www.aibase.com/news/29319",
+          "date": "2026年7月2号 15:00",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Claude Sonnet 5 发布：AI 主力模型进入“高能低耗”新时代",
-          "link": "https://www.aibase.com/news/29278",
-          "date": "2026年7月1号 16:14",
+          "title": "国产大模型再迎“重磅炸弹”：Kimi K3 或于本月发布，参数规模直指 2.5 万亿",
+          "link": "https://www.aibase.com/news/29318",
+          "date": "2026年7月2号 15:00",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "How to Achieve 2.8x Faster Automatic Speech Recognition",
+          "link": "https://blog.dailydoseofds.com/p/how-to-achieve-28x-faster-automatic",
+          "date": "Thu, 02 Jul 2026 19:22:05 GMT",
+          "note": "...based on how production voice systems are built."
+        },
         {
           "title": "[Hands-on] How to Build Your Own AI Company",
           "link": "https://blog.dailydoseofds.com/p/hands-on-how-to-build-your-own-ai",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/speculation-is-all-you-need",
           "date": "Wed, 24 Jun 2026 22:06:25 GMT",
           "note": "New technique delivers 4x faster LLM inference in production."
-        },
-        {
-          "title": "Loop Engineering, Clearly Explained!",
-          "link": "https://blog.dailydoseofds.com/p/loop-engineering-clearly-explained",
-          "date": "Wed, 24 Jun 2026 00:59:11 GMT",
-          "note": "(must-know to efficiently run ML models in production)"
         }
       ]
     },
