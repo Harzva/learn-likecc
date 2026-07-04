@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-03T04:23:48.958052+00:00",
+    "generated_at": "2026-07-04T04:08:58.991659+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年7月2号 15:00AI 日报AI日报：可灵AI将完成30亿美元融资；支付宝AI生活助理“阿宝”正式公测；Kimi K3 或于本月发布查看日报",
-        "link": "https://www.aibase.com/daily/29341"
+        "title": "2026年7月3号 16:10AI 日报AI日报：阿里巴巴内部“反向禁用”Claude；微软纯网页版Aion系统曝光；Claude 旗舰模型开启“按需付费”模式查看日报",
+        "link": "https://www.aibase.com/daily/29375"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "特斯拉Optimus机器人产线曝光:马斯克确认今夏投产，初期产量爬坡缓慢",
-          "link": "https://www.aibase.com/news/29335",
-          "date": "2026年7月2号 15:00",
+          "title": "让机器人学会番茄炒蛋的“幕后推手”：Genesis AI 开源全栈训练场",
+          "link": "https://www.aibase.com/news/29379",
+          "date": "2026年7月3号 16:10",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "美团大模型生态调整：全面限用豆包，力推自研 LongCat 体系",
-          "link": "https://www.aibase.com/news/29334",
-          "date": "2026年7月2号 15:00",
+          "title": "AI 研究进入“自动驾驶”时代：杨植麟谈大模型训练的第三阶段",
+          "link": "https://www.aibase.com/news/29374",
+          "date": "2026年7月3号 16:10",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "两分钟上手生产级语音智能体：xAI 发布 Voice Agent Builder 测试版",
-          "link": "https://www.aibase.com/news/29332",
-          "date": "2026年7月2号 15:00",
+          "title": "英伟达双塔 AI 模型开源发布，文本生成速度提升 2.42 倍、画质保留 98.7%",
+          "link": "https://www.aibase.com/news/29371",
+          "date": "2026年7月3号 16:10",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "支付宝AI生活助理“阿宝”正式开启公测，上线72项办事技能",
-          "link": "https://www.aibase.com/news/29329",
-          "date": "2026年7月2号 15:00",
+          "title": "Claude 旗舰模型 Fable 5 开启“按需付费”模式，订阅用户权益受限",
+          "link": "https://www.aibase.com/news/29366",
+          "date": "2026年7月3号 16:10",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "苹果 Safari 预览版新增 MCP 服务，AI 智能体助力网页开发调试",
-          "link": "https://www.aibase.com/news/29324",
-          "date": "2026年7月2号 15:00",
+          "title": "阿里巴巴内部“反向禁用”：全面下架 Claude 系列 AI 工具",
+          "link": "https://www.aibase.com/news/29364",
+          "date": "2026年7月3号 16:10",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "可灵AI将完成30亿美元融资腾讯参投，计划12个月内启动赴港IPO",
-          "link": "https://www.aibase.com/news/29321",
-          "date": "2026年7月2号 15:00",
+          "title": "Meta 低调杀入 AI 原生社交，掌上应用 Pocket 开启趣味互动新玩法",
+          "link": "https://www.aibase.com/news/29358",
+          "date": "2026年7月3号 16:10",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "微软 Teams 8 月上线 AI 助手 Facilitator，会议实时答疑提升沟通效率",
-          "link": "https://www.aibase.com/news/29319",
-          "date": "2026年7月2号 15:00",
+          "title": "操作系统迎来大洗牌！微软纯网页版 Aion 系统首度曝光",
+          "link": "https://www.aibase.com/news/29356",
+          "date": "2026年7月3号 16:10",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "国产大模型再迎“重磅炸弹”：Kimi K3 或于本月发布，参数规模直指 2.5 万亿",
-          "link": "https://www.aibase.com/news/29318",
-          "date": "2026年7月2号 15:00",
+          "title": "微软成立“Frontier Company”：斥资 25 亿美元，将 6000 名工程师嵌入企业一线",
+          "link": "https://www.aibase.com/news/29355",
+          "date": "2026年7月3号 16:10",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Prompt, Context, Harness & Loop Engineering",
+          "link": "https://blog.dailydoseofds.com/p/prompt-context-harness-and-loop-engineering",
+          "date": "Fri, 03 Jul 2026 21:50:55 GMT",
+          "note": "...explained visually."
+        },
         {
           "title": "How to Achieve 2.8x Faster Automatic Speech Recognition",
           "link": "https://blog.dailydoseofds.com/p/how-to-achieve-28x-faster-automatic",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/the-ai-engineering-master-stack-for",
           "date": "Thu, 25 Jun 2026 21:49:38 GMT",
           "note": "...covered with full hands-on resources."
-        },
-        {
-          "title": "Speculation Is All You Need!",
-          "link": "https://blog.dailydoseofds.com/p/speculation-is-all-you-need",
-          "date": "Wed, 24 Jun 2026 22:06:25 GMT",
-          "note": "New technique delivers 4x faster LLM inference in production."
         }
       ]
     },
