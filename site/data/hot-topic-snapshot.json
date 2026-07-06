@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-05T04:37:26.048568+00:00",
+    "generated_at": "2026-07-06T04:48:24.305150+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -85,6 +85,12 @@
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
         {
+          "title": "How to Reduce LLM Costs by 50-60% Using Model Routing",
+          "link": "https://blog.dailydoseofds.com/p/how-to-reduce-llm-costs-by-50-60",
+          "date": "Sun, 05 Jul 2026 23:16:57 GMT",
+          "note": "...explained with code."
+        },
+        {
           "title": "Prompt, Context, Harness & Loop Engineering",
           "link": "https://blog.dailydoseofds.com/p/prompt-context-harness-and-loop-engineering",
           "date": "Fri, 03 Jul 2026 21:50:55 GMT",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/prompt-engineering-and-loop-engineering",
           "date": "Sat, 27 Jun 2026 01:22:03 GMT",
           "note": "...covered with actual tradeoffs engineers should know."
-        },
-        {
-          "title": "The AI Engineering Master Stack for 2026!",
-          "link": "https://blog.dailydoseofds.com/p/the-ai-engineering-master-stack-for",
-          "date": "Thu, 25 Jun 2026 21:49:38 GMT",
-          "note": "...covered with full hands-on resources."
         }
       ]
     },
@@ -147,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "🤗 Kernels: Major Updates",
+          "link": "https://huggingface.co/blog/revamped-kernels",
+          "date": "Mon, 06 Jul 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "Hugging Face and Cerebras bring Gemma 4 to real-time voice AI",
           "link": "https://huggingface.co/blog/cerebras-gemma4-voice-ai",
@@ -187,12 +193,6 @@
           "title": "Accelerating Transformers Fine-Tuning with NVIDIA NeMo AutoModel",
           "link": "https://huggingface.co/blog/nvidia/accelerating-fine-tuning-nvidia-nemo-automodel",
           "date": "Wed, 24 Jun 2026 16:00:13 GMT",
-          "note": ""
-        },
-        {
-          "title": "Introducing the FFASR Leaderboard: Benchmarking ASR in the Real World",
-          "link": "https://huggingface.co/blog/ffasr-leaderboard",
-          "date": "Wed, 24 Jun 2026 00:00:00 GMT",
           "note": ""
         }
       ]
