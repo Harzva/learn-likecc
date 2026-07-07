@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-06T04:48:24.305150+00:00",
+    "generated_at": "2026-07-07T04:30:17.057253+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年7月3号 16:10AI 日报AI日报：阿里巴巴内部“反向禁用”Claude；微软纯网页版Aion系统曝光；Claude 旗舰模型开启“按需付费”模式查看日报",
-        "link": "https://www.aibase.com/daily/29375"
+        "title": "2026年7月6号 16:04AI 日报AI日报：豆包、千问下线AI拟人化功能；腾讯混元Hy3发布；Gemini3.5 Pro7月17日发布查看日报",
+        "link": "https://www.aibase.com/daily/29402"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "让机器人学会番茄炒蛋的“幕后推手”：Genesis AI 开源全栈训练场",
-          "link": "https://www.aibase.com/news/29379",
-          "date": "2026年7月3号 16:10",
+          "title": "腾讯混元Hy3发布：Agent能力和产品体验跃升",
+          "link": "https://www.aibase.com/news/29400",
+          "date": "2026年7月6号 16:04",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "AI 研究进入“自动驾驶”时代：杨植麟谈大模型训练的第三阶段",
-          "link": "https://www.aibase.com/news/29374",
-          "date": "2026年7月3号 16:10",
+          "title": "通义千问重磅升级：实时语音识别模型 Fun-ASR-Realtime 正式发布",
+          "link": "https://www.aibase.com/news/29398",
+          "date": "2026年7月6号 16:04",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "英伟达双塔 AI 模型开源发布，文本生成速度提升 2.42 倍、画质保留 98.7%",
-          "link": "https://www.aibase.com/news/29371",
-          "date": "2026年7月3号 16:10",
+          "title": "全球首例AI智能体勒索攻击浮出水面：无需人类干预的自动化“作案”链条",
+          "link": "https://www.aibase.com/news/29396",
+          "date": "2026年7月6号 16:04",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Claude 旗舰模型 Fable 5 开启“按需付费”模式，订阅用户权益受限",
-          "link": "https://www.aibase.com/news/29366",
-          "date": "2026年7月3号 16:10",
+          "title": "手机变身“数字玩伴”：JoyAI 上线 UGC 数字人功能",
+          "link": "https://www.aibase.com/news/29394",
+          "date": "2026年7月6号 16:04",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阿里巴巴内部“反向禁用”：全面下架 Claude 系列 AI 工具",
-          "link": "https://www.aibase.com/news/29364",
-          "date": "2026年7月3号 16:10",
+          "title": "影坛版权博弈升级：Midjourney 要求好莱坞制片厂“自证清白”",
+          "link": "https://www.aibase.com/news/29385",
+          "date": "2026年7月6号 16:04",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Meta 低调杀入 AI 原生社交，掌上应用 Pocket 开启趣味互动新玩法",
-          "link": "https://www.aibase.com/news/29358",
-          "date": "2026年7月3号 16:10",
+          "title": "Google 重拳出击：Gemini 3.5 Pro 锁定 7 月 17 日发布，全面对垒 DeepSeek V4",
+          "link": "https://www.aibase.com/news/29384",
+          "date": "2026年7月6号 16:04",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "操作系统迎来大洗牌！微软纯网页版 Aion 系统首度曝光",
-          "link": "https://www.aibase.com/news/29356",
-          "date": "2026年7月3号 16:10",
+          "title": "豆包、通义千问双双下线\"AI拟人化\"功能： 7 月 15 日新规落地，行业集体收缩",
+          "link": "https://www.aibase.com/news/29382",
+          "date": "2026年7月6号 16:04",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "微软成立“Frontier Company”：斥资 25 亿美元，将 6000 名工程师嵌入企业一线",
-          "link": "https://www.aibase.com/news/29355",
-          "date": "2026年7月3号 16:10",
+          "title": "Meta 调整 AI 开发节奏：Llama API 公共预览版将于明日下线",
+          "link": "https://www.aibase.com/news/29381",
+          "date": "2026年7月6号 16:04",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "The Reward Signal Problem for Agents",
+          "link": "https://blog.dailydoseofds.com/p/the-reward-signal-problem-for-agents",
+          "date": "Mon, 06 Jul 2026 14:38:04 GMT",
+          "note": "The full RL nanodegree, covered with implementation."
+        },
         {
           "title": "How to Reduce LLM Costs by 50-60% Using Model Routing",
           "link": "https://blog.dailydoseofds.com/p/how-to-reduce-llm-costs-by-50-60",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/karpathys-agentic-engineering-finally",
           "date": "Sun, 28 Jun 2026 23:46:08 GMT",
           "note": "Build by Google, explained as step-by-step guide."
-        },
-        {
-          "title": "Prompt Engineering & Loop Engineering, Clearly Explained!",
-          "link": "https://blog.dailydoseofds.com/p/prompt-engineering-and-loop-engineering",
-          "date": "Sat, 27 Jun 2026 01:22:03 GMT",
-          "note": "...covered with actual tradeoffs engineers should know."
         }
       ]
     },
@@ -147,6 +147,18 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "LeRobot v0.6.0: Imagine, Evaluate, Improve",
+          "link": "https://huggingface.co/blog/lerobot-release-v060",
+          "date": "Tue, 07 Jul 2026 00:00:00 GMT",
+          "note": ""
+        },
+        {
+          "title": "PRX Part 4: Our Data Strategy",
+          "link": "https://huggingface.co/blog/Photoroom/prx-part4-data",
+          "date": "Mon, 06 Jul 2026 15:30:55 GMT",
+          "note": ""
+        },
         {
           "title": "🤗 Kernels: Major Updates",
           "link": "https://huggingface.co/blog/revamped-kernels",
@@ -181,18 +193,6 @@
           "title": "DiScoFormer: One transformer for density and score, across distributions",
           "link": "https://huggingface.co/blog/allenai/discoformer",
           "date": "Mon, 29 Jun 2026 18:02:48 GMT",
-          "note": ""
-        },
-        {
-          "title": "Run a vLLM Server on HF Jobs in One Command",
-          "link": "https://huggingface.co/blog/vllm-jobs",
-          "date": "Fri, 26 Jun 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Accelerating Transformers Fine-Tuning with NVIDIA NeMo AutoModel",
-          "link": "https://huggingface.co/blog/nvidia/accelerating-fine-tuning-nvidia-nemo-automodel",
-          "date": "Wed, 24 Jun 2026 16:00:13 GMT",
           "note": ""
         }
       ]
