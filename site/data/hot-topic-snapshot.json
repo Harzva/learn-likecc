@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-07T04:30:17.057253+00:00",
+    "generated_at": "2026-07-08T03:51:59.501626+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年7月6号 16:04AI 日报AI日报：豆包、千问下线AI拟人化功能；腾讯混元Hy3发布；Gemini3.5 Pro7月17日发布查看日报",
-        "link": "https://www.aibase.com/daily/29402"
+        "title": "2026年7月7号 16:54AI 日报AI日报：Claude Code更新v2.1.202版本；支付宝AI开放平台开启邀测；xAI全面升级Grok Voice查看日报",
+        "link": "https://www.aibase.com/daily/29442"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,45 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "腾讯混元Hy3发布：Agent能力和产品体验跃升",
-          "link": "https://www.aibase.com/news/29400",
-          "date": "2026年7月6号 16:04",
+          "title": "蚂蚁集团开源Avernet：多智能体协作迎来新基础设施",
+          "link": "https://www.aibase.com/news/29438",
+          "date": "2026年7月7号 16:54",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "通义千问重磅升级：实时语音识别模型 Fun-ASR-Realtime 正式发布",
-          "link": "https://www.aibase.com/news/29398",
-          "date": "2026年7月6号 16:04",
+          "title": "告别纯文本！Skill-Omni重塑多模态智能体经验范式",
+          "link": "https://www.aibase.com/news/29437",
+          "date": "2026年7月7号 16:54",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "全球首例AI智能体勒索攻击浮出水面：无需人类干预的自动化“作案”链条",
-          "link": "https://www.aibase.com/news/29396",
-          "date": "2026年7月6号 16:04",
+          "title": "Claude Sonnet 5 上线后遭大量投诉：频繁反驳、说教成风",
+          "link": "https://www.aibase.com/news/29436",
+          "date": "2026年7月7号 16:54",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "手机变身“数字玩伴”：JoyAI 上线 UGC 数字人功能",
-          "link": "https://www.aibase.com/news/29394",
-          "date": "2026年7月6号 16:04",
+          "title": "一次接入、多端分发！支付宝 AI 开放平台开启邀测",
+          "link": "https://www.aibase.com/news/29431",
+          "date": "2026年7月7号 16:54",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "影坛版权博弈升级：Midjourney 要求好莱坞制片厂“自证清白”",
-          "link": "https://www.aibase.com/news/29385",
-          "date": "2026年7月6号 16:04",
+          "title": "AI有了“办公神器”：开源OfficeCLI让智能体自主驾驭文档",
+          "link": "https://www.aibase.com/news/29419",
+          "date": "2026年7月7号 16:54",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Google 重拳出击：Gemini 3.5 Pro 锁定 7 月 17 日发布，全面对垒 DeepSeek V4",
-          "link": "https://www.aibase.com/news/29384",
-          "date": "2026年7月6号 16:04",
+          "title": "xAI全面升级Grok Voice，新增 21 款多语言旗舰语音",
+          "link": "https://www.aibase.com/news/29411",
+          "date": "2026年7月7号 16:54",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "豆包、通义千问双双下线\"AI拟人化\"功能： 7 月 15 日新规落地，行业集体收缩",
-          "link": "https://www.aibase.com/news/29382",
-          "date": "2026年7月6号 16:04",
-          "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
-        },
-        {
-          "title": "Meta 调整 AI 开发节奏：Llama API 公共预览版将于明日下线",
-          "link": "https://www.aibase.com/news/29381",
-          "date": "2026年7月6号 16:04",
+          "title": "Claude Code 迎来 v2.1.202 更新：远程控制与工作流稳定性大幅提升",
+          "link": "https://www.aibase.com/news/29407",
+          "date": "2026年7月7号 16:54",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +78,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Rethinking KV Caching For Production Inference",
+          "link": "https://blog.dailydoseofds.com/p/rethinking-kv-caching-for-production",
+          "date": "Tue, 07 Jul 2026 16:52:17 GMT",
+          "note": "A practitioner's guide to KV cache management in production."
+        },
         {
           "title": "The Reward Signal Problem for Agents",
           "link": "https://blog.dailydoseofds.com/p/the-reward-signal-problem-for-agents",
@@ -125,12 +125,6 @@
           "link": "https://blog.dailydoseofds.com/p/verifiable-rewards-and-grpo-in-rl",
           "date": "Mon, 29 Jun 2026 23:40:51 GMT",
           "note": "The full RL nanodegree, covered with implementation."
-        },
-        {
-          "title": "Karpathy's Agentic Engineering Finally Has Proper Tooling",
-          "link": "https://blog.dailydoseofds.com/p/karpathys-agentic-engineering-finally",
-          "date": "Sun, 28 Jun 2026 23:46:08 GMT",
-          "note": "Build by Google, explained as step-by-step guide."
         }
       ]
     },
@@ -147,6 +141,24 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "From Hugging Face to Amazon SageMaker Studio in one click",
+          "link": "https://huggingface.co/blog/amazon/one-click-to-sagemaker-studio",
+          "date": "Tue, 07 Jul 2026 21:15:33 GMT",
+          "note": ""
+        },
+        {
+          "title": "Hugging Face Models on Foundry Managed Compute",
+          "link": "https://huggingface.co/blog/microsoft/foundry-managed-compute",
+          "date": "Tue, 07 Jul 2026 15:20:06 GMT",
+          "note": ""
+        },
+        {
+          "title": "Run AI workloads on any cloud, store on Hugging Face: zero-egress storage with SkyPilot",
+          "link": "https://huggingface.co/blog/skypilot-hf-storage",
+          "date": "Tue, 07 Jul 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "LeRobot v0.6.0: Imagine, Evaluate, Improve",
           "link": "https://huggingface.co/blog/lerobot-release-v060",
@@ -175,24 +187,6 @@
           "title": "ScarfBench: Benchmarking AI Agents for Enterprise Java Framework Migration",
           "link": "https://huggingface.co/blog/ibm-research/scarfbench",
           "date": "Tue, 30 Jun 2026 18:32:50 GMT",
-          "note": ""
-        },
-        {
-          "title": "Why Specialization Is Inevitable",
-          "link": "https://huggingface.co/blog/Dharma-AI/why-specialization-is-inevitable",
-          "date": "Tue, 30 Jun 2026 14:39:11 GMT",
-          "note": ""
-        },
-        {
-          "title": "Featuring Every Eval Ever Results on Hugging Face Model Pages",
-          "link": "https://huggingface.co/blog/eee-community-evals",
-          "date": "Tue, 30 Jun 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "DiScoFormer: One transformer for density and score, across distributions",
-          "link": "https://huggingface.co/blog/allenai/discoformer",
-          "date": "Mon, 29 Jun 2026 18:02:48 GMT",
           "note": ""
         }
       ]
