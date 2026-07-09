@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-08T03:51:59.501626+00:00",
+    "generated_at": "2026-07-09T04:27:21.088174+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年7月7号 16:54AI 日报AI日报：Claude Code更新v2.1.202版本；支付宝AI开放平台开启邀测；xAI全面升级Grok Voice查看日报",
-        "link": "https://www.aibase.com/daily/29442"
+        "title": "2026年7月8号 16:46AI 日报AI日报：Claude Cowork登陆网页和手机端；美国放行GPT-5.6；Meta超级智能实验室首发图像生成模型查看日报",
+        "link": "https://www.aibase.com/daily/29470"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,45 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "蚂蚁集团开源Avernet：多智能体协作迎来新基础设施",
-          "link": "https://www.aibase.com/news/29438",
-          "date": "2026年7月7号 16:54",
+          "title": "淘宝闪购高管炮轰行业现状：电商App没有AI交互能力，用户的真实需求被\"憋\"住了",
+          "link": "https://www.aibase.com/news/29468",
+          "date": "2026年7月8号 16:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "告别纯文本！Skill-Omni重塑多模态智能体经验范式",
-          "link": "https://www.aibase.com/news/29437",
-          "date": "2026年7月7号 16:54",
+          "title": "Steam玩家对AI没那么抗拒：43%表示可以接受，仅8%绝对不碰",
+          "link": "https://www.aibase.com/news/29466",
+          "date": "2026年7月8号 16:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Claude Sonnet 5 上线后遭大量投诉：频繁反驳、说教成风",
-          "link": "https://www.aibase.com/news/29436",
-          "date": "2026年7月7号 16:54",
+          "title": "美国放行GPT-5.6，OpenAI多款重磅模型本周上线",
+          "link": "https://www.aibase.com/news/29458",
+          "date": "2026年7月8号 16:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "一次接入、多端分发！支付宝 AI 开放平台开启邀测",
-          "link": "https://www.aibase.com/news/29431",
-          "date": "2026年7月7号 16:54",
+          "title": "OpenAI 前研究员田永龙被曝加入腾讯混元多模态团队",
+          "link": "https://www.aibase.com/news/29456",
+          "date": "2026年7月8号 16:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "AI有了“办公神器”：开源OfficeCLI让智能体自主驾驭文档",
-          "link": "https://www.aibase.com/news/29419",
-          "date": "2026年7月7号 16:54",
+          "title": "Meta超级智能实验室首发图像生成模型：Muse Image免费登陆Instagram和WhatsApp",
+          "link": "https://www.aibase.com/news/29448",
+          "date": "2026年7月8号 16:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "xAI全面升级Grok Voice，新增 21 款多语言旗舰语音",
-          "link": "https://www.aibase.com/news/29411",
-          "date": "2026年7月7号 16:54",
+          "title": "Claude Cowork登陆网页和手机端：超九成用户拿它干非编程活，跨设备接力干活",
+          "link": "https://www.aibase.com/news/29447",
+          "date": "2026年7月8号 16:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Claude Code 迎来 v2.1.202 更新：远程控制与工作流稳定性大幅提升",
-          "link": "https://www.aibase.com/news/29407",
-          "date": "2026年7月7号 16:54",
+          "title": "AI 电子宠物的进阶：追觅推出内置大模型新品 Domi",
+          "link": "https://www.aibase.com/news/29446",
+          "date": "2026年7月8号 16:46",
+          "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
+        },
+        {
+          "title": "AI办公新动作：Claude Cowork 移动端与网页版正式上线",
+          "link": "https://www.aibase.com/news/29445",
+          "date": "2026年7月8号 16:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -78,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Build Your Own 100% Local AI Second Brain",
+          "link": "https://blog.dailydoseofds.com/p/build-your-own-100-local-ai-second-01b",
+          "date": "Wed, 08 Jul 2026 17:10:10 GMT",
+          "note": "How the best builders in tech are all converging on AI second brains"
+        },
         {
           "title": "Rethinking KV Caching For Production Inference",
           "link": "https://blog.dailydoseofds.com/p/rethinking-kv-caching-for-production",
@@ -119,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/a-better-way-to-build-llm-as-a-judge",
           "date": "Wed, 01 Jul 2026 00:28:05 GMT",
           "note": "...explained step-by-step with code."
-        },
-        {
-          "title": "Verifiable Rewards and GRPO in RL",
-          "link": "https://blog.dailydoseofds.com/p/verifiable-rewards-and-grpo-in-rl",
-          "date": "Mon, 29 Jun 2026 23:40:51 GMT",
-          "note": "The full RL nanodegree, covered with implementation."
         }
       ]
     },
@@ -141,6 +147,18 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Data for Agents",
+          "link": "https://huggingface.co/blog/nvidia/open-data-for-agents",
+          "date": "Wed, 08 Jul 2026 17:16:05 GMT",
+          "note": ""
+        },
+        {
+          "title": "Native-speed vLLM transformers modeling backend",
+          "link": "https://huggingface.co/blog/native-speed-vllm-transformers-backend",
+          "date": "Wed, 08 Jul 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "From Hugging Face to Amazon SageMaker Studio in one click",
           "link": "https://huggingface.co/blog/amazon/one-click-to-sagemaker-studio",
@@ -175,18 +193,6 @@
           "title": "🤗 Kernels: Major Updates",
           "link": "https://huggingface.co/blog/revamped-kernels",
           "date": "Mon, 06 Jul 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Hugging Face and Cerebras bring Gemma 4 to real-time voice AI",
-          "link": "https://huggingface.co/blog/cerebras-gemma4-voice-ai",
-          "date": "Wed, 01 Jul 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "ScarfBench: Benchmarking AI Agents for Enterprise Java Framework Migration",
-          "link": "https://huggingface.co/blog/ibm-research/scarfbench",
-          "date": "Tue, 30 Jun 2026 18:32:50 GMT",
           "note": ""
         }
       ]
