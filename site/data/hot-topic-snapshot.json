@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-09T04:27:21.088174+00:00",
+    "generated_at": "2026-07-10T04:30:32.262869+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年7月8号 16:46AI 日报AI日报：Claude Cowork登陆网页和手机端；美国放行GPT-5.6；Meta超级智能实验室首发图像生成模型查看日报",
-        "link": "https://www.aibase.com/daily/29470"
+        "title": "2026年7月9号 16:51AI 日报AI日报：SpaceXAI推出“Opus级”大模型Grok4.5;阶跃星辰首款AI智能体手机即将发布；蚂蚁灵波开源 LingBot-Video查看日报",
+        "link": "https://www.aibase.com/daily/29501"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "淘宝闪购高管炮轰行业现状：电商App没有AI交互能力，用户的真实需求被\"憋\"住了",
-          "link": "https://www.aibase.com/news/29468",
-          "date": "2026年7月8号 16:46",
+          "title": "​一个普通摄像头就能自主导航：Mistral发布8B模型Robostral Navigate，性能碾压多摄像头方案",
+          "link": "https://www.aibase.com/news/29498",
+          "date": "2026年7月9号 16:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Steam玩家对AI没那么抗拒：43%表示可以接受，仅8%绝对不碰",
-          "link": "https://www.aibase.com/news/29466",
-          "date": "2026年7月8号 16:46",
+          "title": "阶跃星辰首款AI智能体手机即将发布，跑在OpenAI前面",
+          "link": "https://www.aibase.com/news/29497",
+          "date": "2026年7月9号 16:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "美国放行GPT-5.6，OpenAI多款重磅模型本周上线",
-          "link": "https://www.aibase.com/news/29458",
-          "date": "2026年7月8号 16:46",
+          "title": "高考录取启动：千问接入EMS上线通知书实时追踪与提醒",
+          "link": "https://www.aibase.com/news/29494",
+          "date": "2026年7月9号 16:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenAI 前研究员田永龙被曝加入腾讯混元多模态团队",
-          "link": "https://www.aibase.com/news/29456",
-          "date": "2026年7月8号 16:46",
+          "title": "蚂蚁灵波开源 LingBot-Video，全球首个面向具身的视频基模来了!",
+          "link": "https://www.aibase.com/news/29489",
+          "date": "2026年7月9号 16:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Meta超级智能实验室首发图像生成模型：Muse Image免费登陆Instagram和WhatsApp",
-          "link": "https://www.aibase.com/news/29448",
-          "date": "2026年7月8号 16:46",
+          "title": "MiniMax计划推出新一代大模型 参数规模2.7万亿",
+          "link": "https://www.aibase.com/news/29488",
+          "date": "2026年7月9号 16:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Claude Cowork登陆网页和手机端：超九成用户拿它干非编程活，跨设备接力干活",
-          "link": "https://www.aibase.com/news/29447",
-          "date": "2026年7月8号 16:46",
+          "title": "OpenAI语音助手大升级：GPT-Live全双工模型上线，ChatGPT终于能\"边听边说\"了",
+          "link": "https://www.aibase.com/news/29486",
+          "date": "2026年7月9号 16:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "AI 电子宠物的进阶：追觅推出内置大模型新品 Domi",
-          "link": "https://www.aibase.com/news/29446",
-          "date": "2026年7月8号 16:46",
+          "title": "AI创作新高度：字节跳动发布Seedream 5.0 Pro，开启交互式精准编辑时代",
+          "link": "https://www.aibase.com/news/29483",
+          "date": "2026年7月9号 16:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "AI办公新动作：Claude Cowork 移动端与网页版正式上线",
-          "link": "https://www.aibase.com/news/29445",
-          "date": "2026年7月8号 16:46",
+          "title": "马斯克抛出Grok 4.5：自称\"Opus级\"性能、价格仅十分之一，正面叫板OpenAI和Anthropic",
+          "link": "https://www.aibase.com/news/29478",
+          "date": "2026年7月9号 16:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "How to Build an RL Environment",
+          "link": "https://blog.dailydoseofds.com/p/how-to-build-an-rl-environment",
+          "date": "Thu, 09 Jul 2026 20:52:21 GMT",
+          "note": "...explained step-by-step with code."
+        },
         {
           "title": "Build Your Own 100% Local AI Second Brain",
           "link": "https://blog.dailydoseofds.com/p/build-your-own-100-local-ai-second-01b",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/hands-on-how-to-build-your-own-ai",
           "date": "Wed, 01 Jul 2026 17:33:41 GMT",
           "note": "100% local setup with open-source stack."
-        },
-        {
-          "title": "A Better Way To Build LLM-as-a-Judge Pipelines",
-          "link": "https://blog.dailydoseofds.com/p/a-better-way-to-build-llm-as-a-judge",
-          "date": "Wed, 01 Jul 2026 00:28:05 GMT",
-          "note": "...explained step-by-step with code."
         }
       ]
     },
