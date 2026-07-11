@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-10T04:30:32.262869+00:00",
+    "generated_at": "2026-07-11T03:49:49.798592+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -85,6 +85,12 @@
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
         {
+          "title": "RAG & Fine-tuning in LLMs",
+          "link": "https://blog.dailydoseofds.com/p/rag-and-fine-tuning-in-llms-102",
+          "date": "Fri, 10 Jul 2026 22:05:58 GMT",
+          "note": "...explained visually."
+        },
+        {
           "title": "How to Build an RL Environment",
           "link": "https://blog.dailydoseofds.com/p/how-to-build-an-rl-environment",
           "date": "Thu, 09 Jul 2026 20:52:21 GMT",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/how-to-achieve-28x-faster-automatic",
           "date": "Thu, 02 Jul 2026 19:22:05 GMT",
           "note": "...based on how production voice systems are built."
-        },
-        {
-          "title": "[Hands-on] How to Build Your Own AI Company",
-          "link": "https://blog.dailydoseofds.com/p/hands-on-how-to-build-your-own-ai",
-          "date": "Wed, 01 Jul 2026 17:33:41 GMT",
-          "note": "100% local setup with open-source stack."
         }
       ]
     },
@@ -147,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Profiling in PyTorch (Part 3): Attention is all you profile",
+          "link": "https://huggingface.co/blog/torch-attention-profile",
+          "date": "Fri, 10 Jul 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "Data for Agents",
           "link": "https://huggingface.co/blog/nvidia/open-data-for-agents",
@@ -187,12 +193,6 @@
           "title": "PRX Part 4: Our Data Strategy",
           "link": "https://huggingface.co/blog/Photoroom/prx-part4-data",
           "date": "Mon, 06 Jul 2026 15:30:55 GMT",
-          "note": ""
-        },
-        {
-          "title": "🤗 Kernels: Major Updates",
-          "link": "https://huggingface.co/blog/revamped-kernels",
-          "date": "Mon, 06 Jul 2026 00:00:00 GMT",
           "note": ""
         }
       ]
