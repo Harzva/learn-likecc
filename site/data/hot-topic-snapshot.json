@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-12T04:05:14.905165+00:00",
+    "generated_at": "2026-07-13T04:07:29.772579+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -85,6 +85,12 @@
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
         {
+          "title": "How LLM Routing Actually Works in Production",
+          "link": "https://blog.dailydoseofds.com/p/how-llm-routing-actually-works-in",
+          "date": "Sun, 12 Jul 2026 15:51:12 GMT",
+          "note": "A popular interview question."
+        },
+        {
           "title": "RAG & Fine-tuning in LLMs",
           "link": "https://blog.dailydoseofds.com/p/rag-and-fine-tuning-in-llms-102",
           "date": "Fri, 10 Jul 2026 22:05:58 GMT",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/prompt-context-harness-and-loop-engineering",
           "date": "Fri, 03 Jul 2026 21:50:55 GMT",
           "note": "...explained visually."
-        },
-        {
-          "title": "How to Achieve 2.8x Faster Automatic Speech Recognition",
-          "link": "https://blog.dailydoseofds.com/p/how-to-achieve-28x-faster-automatic",
-          "date": "Thu, 02 Jul 2026 19:22:05 GMT",
-          "note": "...based on how production voice systems are built."
         }
       ]
     },
