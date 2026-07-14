@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-13T04:07:29.772579+00:00",
+    "generated_at": "2026-07-14T03:42:45.493501+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年7月9号 16:51AI 日报AI日报：SpaceXAI推出“Opus级”大模型Grok4.5;阶跃星辰首款AI智能体手机即将发布；蚂蚁灵波开源 LingBot-Video查看日报",
-        "link": "https://www.aibase.com/daily/29501"
+        "title": "2026年7月13号 16:48AI 日报AI日报：抖音电商将豆包纳入抖店结算序列;Claude Fable5访问权限延长至19日；商汤开源SenseNova-Vision统一视觉大模型查看日报",
+        "link": "https://www.aibase.com/daily/29551"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "​一个普通摄像头就能自主导航：Mistral发布8B模型Robostral Navigate，性能碾压多摄像头方案",
-          "link": "https://www.aibase.com/news/29498",
-          "date": "2026年7月9号 16:51",
+          "title": "旗舰模型需求激增，OpenAI紧急解锁GPT-5.6Sol算力限制",
+          "link": "https://www.aibase.com/news/29548",
+          "date": "2026年7月13号 16:48",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阶跃星辰首款AI智能体手机即将发布，跑在OpenAI前面",
-          "link": "https://www.aibase.com/news/29497",
-          "date": "2026年7月9号 16:51",
+          "title": "阶跃星辰发布 Step Edge 系列终端模型，实现本地高效多模态处理",
+          "link": "https://www.aibase.com/news/29547",
+          "date": "2026年7月13号 16:48",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "高考录取启动：千问接入EMS上线通知书实时追踪与提醒",
-          "link": "https://www.aibase.com/news/29494",
-          "date": "2026年7月9号 16:51",
+          "title": "蚂蚁集团连发两款开源安全模型，为大模型与智能体套上“紧箍咒”",
+          "link": "https://www.aibase.com/news/29546",
+          "date": "2026年7月13号 16:48",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "蚂蚁灵波开源 LingBot-Video，全球首个面向具身的视频基模来了!",
-          "link": "https://www.aibase.com/news/29489",
-          "date": "2026年7月9号 16:51",
+          "title": "商汤开源SenseNova-Vision统一视觉大模型，单模型横扫四大核心视觉任务",
+          "link": "https://www.aibase.com/news/29543",
+          "date": "2026年7月13号 16:48",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "MiniMax计划推出新一代大模型 参数规模2.7万亿",
-          "link": "https://www.aibase.com/news/29488",
-          "date": "2026年7月9号 16:51",
+          "title": "抖音电商将豆包纳入抖店结算序列，GEO全面进入成交归因时代",
+          "link": "https://www.aibase.com/news/29542",
+          "date": "2026年7月13号 16:48",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenAI语音助手大升级：GPT-Live全双工模型上线，ChatGPT终于能\"边听边说\"了",
-          "link": "https://www.aibase.com/news/29486",
-          "date": "2026年7月9号 16:51",
+          "title": "努比亚AI宠物机器人iMoochi定档 7 月 17 日上线，主打情感陪伴与拟生命交互",
+          "link": "https://www.aibase.com/news/29541",
+          "date": "2026年7月13号 16:48",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "AI创作新高度：字节跳动发布Seedream 5.0 Pro，开启交互式精准编辑时代",
-          "link": "https://www.aibase.com/news/29483",
-          "date": "2026年7月9号 16:51",
+          "title": "Anthropic再续命：Fable5 访问权限延长至 7 月 19 日，留人更要挽回口碑",
+          "link": "https://www.aibase.com/news/29540",
+          "date": "2026年7月13号 16:48",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "马斯克抛出Grok 4.5：自称\"Opus级\"性能、价格仅十分之一，正面叫板OpenAI和Anthropic",
-          "link": "https://www.aibase.com/news/29478",
-          "date": "2026年7月9号 16:51",
+          "title": "​Claude Code再进化！内置浏览器让AI自主“刷网页”",
+          "link": "https://www.aibase.com/news/29533",
+          "date": "2026年7月13号 16:48",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Agentic RL: Environments, Trajectories, and the Training Loop",
+          "link": "https://blog.dailydoseofds.com/p/agentic-rl-environments-trajectories",
+          "date": "Mon, 13 Jul 2026 20:21:06 GMT",
+          "note": "The full RL nanodegree, covered with implementation."
+        },
         {
           "title": "How LLM Routing Actually Works in Production",
           "link": "https://blog.dailydoseofds.com/p/how-llm-routing-actually-works-in",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/how-to-reduce-llm-costs-by-50-60",
           "date": "Sun, 05 Jul 2026 23:16:57 GMT",
           "note": "...explained with code."
-        },
-        {
-          "title": "Prompt, Context, Harness & Loop Engineering",
-          "link": "https://blog.dailydoseofds.com/p/prompt-context-harness-and-loop-engineering",
-          "date": "Fri, 03 Jul 2026 21:50:55 GMT",
-          "note": "...explained visually."
         }
       ]
     },
