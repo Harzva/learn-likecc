@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-14T03:42:45.493501+00:00",
+    "generated_at": "2026-07-15T03:43:14.837219+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年7月13号 16:48AI 日报AI日报：抖音电商将豆包纳入抖店结算序列;Claude Fable5访问权限延长至19日；商汤开源SenseNova-Vision统一视觉大模型查看日报",
-        "link": "https://www.aibase.com/daily/29551"
+        "title": "2026年7月14号 16:05AI 日报AI日报：混元发布HyOCR-1.5；PixVerse完成4.39亿美元融资；商汤开源 SenseNova-Vision-7B-MoT查看日报",
+        "link": "https://www.aibase.com/daily/29582"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "旗舰模型需求激增，OpenAI紧急解锁GPT-5.6Sol算力限制",
-          "link": "https://www.aibase.com/news/29548",
-          "date": "2026年7月13号 16:48",
+          "title": "小米具身智能机器人“实习”新工站:双侧螺母上件成功率达98%",
+          "link": "https://www.aibase.com/news/29577",
+          "date": "2026年7月14号 16:05",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阶跃星辰发布 Step Edge 系列终端模型，实现本地高效多模态处理",
-          "link": "https://www.aibase.com/news/29547",
-          "date": "2026年7月13号 16:48",
+          "title": "QuestMobile六月AI原生App月活榜：豆包3. 8 亿断层第一，千问增速暴涨近 58 倍",
+          "link": "https://www.aibase.com/news/29572",
+          "date": "2026年7月14号 16:05",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "蚂蚁集团连发两款开源安全模型，为大模型与智能体套上“紧箍咒”",
-          "link": "https://www.aibase.com/news/29546",
-          "date": "2026年7月13号 16:48",
+          "title": "谷歌发布移动端AI应用更新:首次支持历史聊天记录搜索与文件上传",
+          "link": "https://www.aibase.com/news/29571",
+          "date": "2026年7月14号 16:05",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "商汤开源SenseNova-Vision统一视觉大模型，单模型横扫四大核心视觉任务",
-          "link": "https://www.aibase.com/news/29543",
-          "date": "2026年7月13号 16:48",
+          "title": "腾讯混元发布 HyOCR-1.5：仅 1B 参数 推理提速 6.37 倍",
+          "link": "https://www.aibase.com/news/29564",
+          "date": "2026年7月14号 16:05",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "抖音电商将豆包纳入抖店结算序列，GEO全面进入成交归因时代",
-          "link": "https://www.aibase.com/news/29542",
-          "date": "2026年7月13号 16:48",
+          "title": "PixVerse 完成 4.39 亿美元 C 轮扩展融资 估值飙升至 20 亿美元",
+          "link": "https://www.aibase.com/news/29561",
+          "date": "2026年7月14号 16:05",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "努比亚AI宠物机器人iMoochi定档 7 月 17 日上线，主打情感陪伴与拟生命交互",
-          "link": "https://www.aibase.com/news/29541",
-          "date": "2026年7月13号 16:48",
+          "title": "视觉模型新突破：商汤开源 SenseNova-Vision-7B-MoT",
+          "link": "https://www.aibase.com/news/29560",
+          "date": "2026年7月14号 16:05",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Anthropic再续命：Fable5 访问权限延长至 7 月 19 日，留人更要挽回口碑",
-          "link": "https://www.aibase.com/news/29540",
-          "date": "2026年7月13号 16:48",
+          "title": "手机新物种诞生：阶跃星辰发布原生智能体系统与首款手机STEPX Neo",
+          "link": "https://www.aibase.com/news/29558",
+          "date": "2026年7月14号 16:05",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "​Claude Code再进化！内置浏览器让AI自主“刷网页”",
-          "link": "https://www.aibase.com/news/29533",
-          "date": "2026年7月13号 16:48",
+          "title": "Siri 迎来全面 AI 进化!苹果正式发布 iOS27首个公开测试版",
+          "link": "https://www.aibase.com/news/29554",
+          "date": "2026年7月14号 16:05",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "The Four Types of Agent Loops",
+          "link": "https://blog.dailydoseofds.com/p/the-four-types-of-agent-loops",
+          "date": "Tue, 14 Jul 2026 16:26:46 GMT",
+          "note": "...explained visually."
+        },
         {
           "title": "Agentic RL: Environments, Trajectories, and the Training Loop",
           "link": "https://blog.dailydoseofds.com/p/agentic-rl-environments-trajectories",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/the-reward-signal-problem-for-agents",
           "date": "Mon, 06 Jul 2026 14:38:04 GMT",
           "note": "The full RL nanodegree, covered with implementation."
-        },
-        {
-          "title": "How to Reduce LLM Costs by 50-60% Using Model Routing",
-          "link": "https://blog.dailydoseofds.com/p/how-to-reduce-llm-costs-by-50-60",
-          "date": "Sun, 05 Jul 2026 23:16:57 GMT",
-          "note": "...explained with code."
         }
       ]
     },
