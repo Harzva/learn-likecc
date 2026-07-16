@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-15T03:43:14.837219+00:00",
+    "generated_at": "2026-07-16T03:45:15.119479+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年7月14号 16:05AI 日报AI日报：混元发布HyOCR-1.5；PixVerse完成4.39亿美元融资；商汤开源 SenseNova-Vision-7B-MoT查看日报",
-        "link": "https://www.aibase.com/daily/29582"
+        "title": "2026年7月15号 16:29AI 日报AI日报：豆包千问同日下线智能体功能；GPT-5.6Sol被曝自主删除用户数据库；京东AI Agent与腾讯元宝打通小程序生态查看日报",
+        "link": "https://www.aibase.com/daily/29621"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "小米具身智能机器人“实习”新工站:双侧螺母上件成功率达98%",
-          "link": "https://www.aibase.com/news/29577",
-          "date": "2026年7月14号 16:05",
+          "title": "谷歌 Chrome 安卓版重构底部栏:新增 Gemini 专属按钮并支持多标签页 AI 分析",
+          "link": "https://www.aibase.com/news/29616",
+          "date": "2026年7月15号 16:29",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "QuestMobile六月AI原生App月活榜：豆包3. 8 亿断层第一，千问增速暴涨近 58 倍",
-          "link": "https://www.aibase.com/news/29572",
-          "date": "2026年7月14号 16:05",
+          "title": "京东AI Agent与腾讯元宝打通小程序生态，实现AI对话内一键下单",
+          "link": "https://www.aibase.com/news/29614",
+          "date": "2026年7月15号 16:29",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "谷歌发布移动端AI应用更新:首次支持历史聊天记录搜索与文件上传",
-          "link": "https://www.aibase.com/news/29571",
-          "date": "2026年7月14号 16:05",
+          "title": "OPPO与支付宝实现智能体跨端互联，一句话调用阿宝200项办事技能",
+          "link": "https://www.aibase.com/news/29610",
+          "date": "2026年7月15号 16:29",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯混元发布 HyOCR-1.5：仅 1B 参数 推理提速 6.37 倍",
-          "link": "https://www.aibase.com/news/29564",
-          "date": "2026年7月14号 16:05",
+          "title": "豆包千问同日下线智能体功能，国内首部AI拟人化互动服务新规今起正式施行",
+          "link": "https://www.aibase.com/news/29605",
+          "date": "2026年7月15号 16:29",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "PixVerse 完成 4.39 亿美元 C 轮扩展融资 估值飙升至 20 亿美元",
-          "link": "https://www.aibase.com/news/29561",
-          "date": "2026年7月14号 16:05",
+          "title": "谷歌搜索引入“无结果生图”:AI 概览变身创意画布，恐分流网站流量",
+          "link": "https://www.aibase.com/news/29603",
+          "date": "2026年7月15号 16:29",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "视觉模型新突破：商汤开源 SenseNova-Vision-7B-MoT",
-          "link": "https://www.aibase.com/news/29560",
-          "date": "2026年7月14号 16:05",
+          "title": "Soul将推首款便携式AI智能硬件，自研SoulX大模型加速软硬一体布局",
+          "link": "https://www.aibase.com/news/29602",
+          "date": "2026年7月15号 16:29",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "手机新物种诞生：阶跃星辰发布原生智能体系统与首款手机STEPX Neo",
-          "link": "https://www.aibase.com/news/29558",
-          "date": "2026年7月14号 16:05",
+          "title": "苹果联手初创公司，力推 AI 模型压缩技术，让 iPhone 也能跑大型 AI！",
+          "link": "https://www.aibase.com/news/29593",
+          "date": "2026年7月15号 16:29",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Siri 迎来全面 AI 进化!苹果正式发布 iOS27首个公开测试版",
-          "link": "https://www.aibase.com/news/29554",
-          "date": "2026年7月14号 16:05",
+          "title": "OpenAI发布GPT-5.6Sol引发安全警告，新旗舰模型被曝自主删除用户数据库",
+          "link": "https://www.aibase.com/news/29589",
+          "date": "2026年7月15号 16:29",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Why Small Models Alone Don't Reduce Inference Costs",
+          "link": "https://blog.dailydoseofds.com/p/why-small-models-alone-dont-reduce",
+          "date": "Wed, 15 Jul 2026 20:42:32 GMT",
+          "note": "A complete guide to build production-grade SLM pipelines."
+        },
         {
           "title": "The Four Types of Agent Loops",
           "link": "https://blog.dailydoseofds.com/p/the-four-types-of-agent-loops",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/rethinking-kv-caching-for-production",
           "date": "Tue, 07 Jul 2026 16:52:17 GMT",
           "note": "A practitioner's guide to KV cache management in production."
-        },
-        {
-          "title": "The Reward Signal Problem for Agents",
-          "link": "https://blog.dailydoseofds.com/p/the-reward-signal-problem-for-agents",
-          "date": "Mon, 06 Jul 2026 14:38:04 GMT",
-          "note": "The full RL nanodegree, covered with implementation."
         }
       ]
     },
@@ -147,6 +147,30 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "What building Shippy taught us about building agents",
+          "link": "https://huggingface.co/blog/allenai/shippy-tech-blog",
+          "date": "Wed, 15 Jul 2026 17:29:41 GMT",
+          "note": ""
+        },
+        {
+          "title": "Model Routing Is Simple. Until It Isn’t.",
+          "link": "https://huggingface.co/blog/ibm-research/model-routing-is-simple-until-it-isnt",
+          "date": "Wed, 15 Jul 2026 17:27:01 GMT",
+          "note": ""
+        },
+        {
+          "title": "Welcome Inkling by Thinking Machines",
+          "link": "https://huggingface.co/blog/thinkingmachines-inkling",
+          "date": "Wed, 15 Jul 2026 00:00:00 GMT",
+          "note": ""
+        },
+        {
+          "title": "Introducing Real World VoiceEQ: Measuring the human quality of voice AI",
+          "link": "https://huggingface.co/blog/real-world-voiceeq",
+          "date": "Wed, 15 Jul 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "Profiling in PyTorch (Part 3): Attention is all you profile",
           "link": "https://huggingface.co/blog/torch-attention-profile",
@@ -169,30 +193,6 @@
           "title": "From Hugging Face to Amazon SageMaker Studio in one click",
           "link": "https://huggingface.co/blog/amazon/one-click-to-sagemaker-studio",
           "date": "Tue, 07 Jul 2026 21:15:33 GMT",
-          "note": ""
-        },
-        {
-          "title": "Hugging Face Models on Foundry Managed Compute",
-          "link": "https://huggingface.co/blog/microsoft/foundry-managed-compute",
-          "date": "Tue, 07 Jul 2026 15:20:06 GMT",
-          "note": ""
-        },
-        {
-          "title": "Run AI workloads on any cloud, store on Hugging Face: zero-egress storage with SkyPilot",
-          "link": "https://huggingface.co/blog/skypilot-hf-storage",
-          "date": "Tue, 07 Jul 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "LeRobot v0.6.0: Imagine, Evaluate, Improve",
-          "link": "https://huggingface.co/blog/lerobot-release-v060",
-          "date": "Tue, 07 Jul 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "PRX Part 4: Our Data Strategy",
-          "link": "https://huggingface.co/blog/Photoroom/prx-part4-data",
-          "date": "Mon, 06 Jul 2026 15:30:55 GMT",
           "note": ""
         }
       ]
