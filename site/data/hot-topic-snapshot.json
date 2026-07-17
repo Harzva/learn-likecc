@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-16T03:45:15.119479+00:00",
+    "generated_at": "2026-07-17T03:45:03.988902+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年7月15号 16:29AI 日报AI日报：豆包千问同日下线智能体功能；GPT-5.6Sol被曝自主删除用户数据库；京东AI Agent与腾讯元宝打通小程序生态查看日报",
-        "link": "https://www.aibase.com/daily/29621"
+        "title": "2026年7月16号 16:40AI 日报AI日报：MiniMax Code 2.0桌面端发布；Kimi K3模型预热视频流出；通义千问正式接入苹果生态查看日报",
+        "link": "https://www.aibase.com/daily/29660"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "谷歌 Chrome 安卓版重构底部栏:新增 Gemini 专属按钮并支持多标签页 AI 分析",
-          "link": "https://www.aibase.com/news/29616",
-          "date": "2026年7月15号 16:29",
+          "title": "通义千问正式接入苹果生态，国内Apple智能体验迎来重磅升级",
+          "link": "https://www.aibase.com/news/29659",
+          "date": "2026年7月16号 16:40",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "京东AI Agent与腾讯元宝打通小程序生态，实现AI对话内一键下单",
-          "link": "https://www.aibase.com/news/29614",
-          "date": "2026年7月15号 16:29",
+          "title": "百度文库网盘 7 月底升级GenFlow，打造金融行业多端通用Agent平台",
+          "link": "https://www.aibase.com/news/29658",
+          "date": "2026年7月16号 16:40",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OPPO与支付宝实现智能体跨端互联，一句话调用阿宝200项办事技能",
-          "link": "https://www.aibase.com/news/29610",
-          "date": "2026年7月15号 16:29",
+          "title": "​MiniMax Code 2. 0 桌面端来了：长任务不再卡顿中断，远程操控和浏览器接管本月亮相",
+          "link": "https://www.aibase.com/news/29653",
+          "date": "2026年7月16号 16:40",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "豆包千问同日下线智能体功能，国内首部AI拟人化互动服务新规今起正式施行",
-          "link": "https://www.aibase.com/news/29605",
-          "date": "2026年7月15号 16:29",
+          "title": "小米发布具身智能基底模型Xiaomi-Robotics-1，探索物理AI Scaling效应",
+          "link": "https://www.aibase.com/news/29652",
+          "date": "2026年7月16号 16:40",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "谷歌搜索引入“无结果生图”:AI 概览变身创意画布，恐分流网站流量",
-          "link": "https://www.aibase.com/news/29603",
-          "date": "2026年7月15号 16:29",
+          "title": "Kimi K3 模型预热视频流出，多段对比直指Claude Fable5 发起挑战",
+          "link": "https://www.aibase.com/news/29650",
+          "date": "2026年7月16号 16:40",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Soul将推首款便携式AI智能硬件，自研SoulX大模型加速软硬一体布局",
-          "link": "https://www.aibase.com/news/29602",
-          "date": "2026年7月15号 16:29",
+          "title": "灵光App“灵光圈”社区焕新:上线热榜、关注等功能，PC端支持导入文档及音视频素材",
+          "link": "https://www.aibase.com/news/29644",
+          "date": "2026年7月16号 16:40",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "苹果联手初创公司，力推 AI 模型压缩技术，让 iPhone 也能跑大型 AI！",
-          "link": "https://www.aibase.com/news/29593",
-          "date": "2026年7月15号 16:29",
+          "title": "OpenAI发布首款联名硬件Codex Micro 键盘 ​230 美元还会发光",
+          "link": "https://www.aibase.com/news/29637",
+          "date": "2026年7月16号 16:40",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenAI发布GPT-5.6Sol引发安全警告，新旗舰模型被曝自主删除用户数据库",
-          "link": "https://www.aibase.com/news/29589",
-          "date": "2026年7月15号 16:29",
+          "title": "Suno接入iMessage：iPhone用户可直接在聊天中用AI生成歌曲，日产量超 700 万首",
+          "link": "https://www.aibase.com/news/29628",
+          "date": "2026年7月16号 16:40",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Agents Need a New Kind of Web Search",
+          "link": "https://blog.dailydoseofds.com/p/agents-need-a-new-kind-of-web-search",
+          "date": "Thu, 16 Jul 2026 20:32:17 GMT",
+          "note": "...covered with three retrieval strategies for AI agents in 2026."
+        },
         {
           "title": "Why Small Models Alone Don't Reduce Inference Costs",
           "link": "https://blog.dailydoseofds.com/p/why-small-models-alone-dont-reduce",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/build-your-own-100-local-ai-second-01b",
           "date": "Wed, 08 Jul 2026 17:10:10 GMT",
           "note": "How the best builders in tech are all converging on AI second brains"
-        },
-        {
-          "title": "Rethinking KV Caching For Production Inference",
-          "link": "https://blog.dailydoseofds.com/p/rethinking-kv-caching-for-production",
-          "date": "Tue, 07 Jul 2026 16:52:17 GMT",
-          "note": "A practitioner's guide to KV cache management in production."
         }
       ]
     },
@@ -147,6 +147,24 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "NVIDIA Nemotron 3 Embed Ranks #1 Overall on RTEB, Advancing Agentic Retrieval",
+          "link": "https://huggingface.co/blog/nvidia/nemotron-3-embed-wins-rteb",
+          "date": "Thu, 16 Jul 2026 16:01:21 GMT",
+          "note": ""
+        },
+        {
+          "title": "Newer Models, Same Advantage",
+          "link": "https://huggingface.co/blog/Dharma-AI/newer-models-same-advantages",
+          "date": "Thu, 16 Jul 2026 11:49:48 GMT",
+          "note": ""
+        },
+        {
+          "title": "Security incident disclosure — July 2026",
+          "link": "https://huggingface.co/blog/security-incident-july-2026",
+          "date": "Thu, 16 Jul 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "What building Shippy taught us about building agents",
           "link": "https://huggingface.co/blog/allenai/shippy-tech-blog",
@@ -175,24 +193,6 @@
           "title": "Profiling in PyTorch (Part 3): Attention is all you profile",
           "link": "https://huggingface.co/blog/torch-attention-profile",
           "date": "Fri, 10 Jul 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Data for Agents",
-          "link": "https://huggingface.co/blog/nvidia/open-data-for-agents",
-          "date": "Wed, 08 Jul 2026 17:16:05 GMT",
-          "note": ""
-        },
-        {
-          "title": "Native-speed vLLM transformers modeling backend",
-          "link": "https://huggingface.co/blog/native-speed-vllm-transformers-backend",
-          "date": "Wed, 08 Jul 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "From Hugging Face to Amazon SageMaker Studio in one click",
-          "link": "https://huggingface.co/blog/amazon/one-click-to-sagemaker-studio",
-          "date": "Tue, 07 Jul 2026 21:15:33 GMT",
           "note": ""
         }
       ]
