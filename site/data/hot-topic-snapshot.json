@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-17T03:45:03.988902+00:00",
+    "generated_at": "2026-07-18T03:40:11.583394+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年7月16号 16:40AI 日报AI日报：MiniMax Code 2.0桌面端发布；Kimi K3模型预热视频流出；通义千问正式接入苹果生态查看日报",
-        "link": "https://www.aibase.com/daily/29660"
+        "title": "2026年7月17号 15:54AI 日报AI日报：开源模型Kimi K3登场；Google Vids引入Gemini Omni模型；智谱AI冲击10亿美元ARR查看日报",
+        "link": "https://www.aibase.com/daily/29690"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "通义千问正式接入苹果生态，国内Apple智能体验迎来重磅升级",
-          "link": "https://www.aibase.com/news/29659",
-          "date": "2026年7月16号 16:40",
+          "title": "影视飓风49元AI课程上线首日售出10万份，单日营收超490万元",
+          "link": "https://www.aibase.com/news/29689",
+          "date": "2026年7月17号 15:54",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "百度文库网盘 7 月底升级GenFlow，打造金融行业多端通用Agent平台",
-          "link": "https://www.aibase.com/news/29658",
-          "date": "2026年7月16号 16:40",
+          "title": "天工短剧工作台上线Agent智能分镜与无限画布，昆仑万维要把AI短剧从随机抽卡拉向可控生产",
+          "link": "https://www.aibase.com/news/29684",
+          "date": "2026年7月17号 15:54",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "​MiniMax Code 2. 0 桌面端来了：长任务不再卡顿中断，远程操控和浏览器接管本月亮相",
-          "link": "https://www.aibase.com/news/29653",
-          "date": "2026年7月16号 16:40",
+          "title": "数字永生？面壁智能开源企业数字员工平台StaffDeck",
+          "link": "https://www.aibase.com/news/29677",
+          "date": "2026年7月17号 15:54",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "小米发布具身智能基底模型Xiaomi-Robotics-1，探索物理AI Scaling效应",
-          "link": "https://www.aibase.com/news/29652",
-          "date": "2026年7月16号 16:40",
+          "title": "5个月增长15倍，智谱AI凭Coding路线冲击10亿美元ARR",
+          "link": "https://www.aibase.com/news/29673",
+          "date": "2026年7月17号 15:54",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Kimi K3 模型预热视频流出，多段对比直指Claude Fable5 发起挑战",
-          "link": "https://www.aibase.com/news/29650",
-          "date": "2026年7月16号 16:40",
+          "title": "Grok 推出 Automations 功能：定时跑、邮件一到就触发，还能替你回信",
+          "link": "https://www.aibase.com/news/29671",
+          "date": "2026年7月17号 15:54",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "灵光App“灵光圈”社区焕新:上线热榜、关注等功能，PC端支持导入文档及音视频素材",
-          "link": "https://www.aibase.com/news/29644",
-          "date": "2026年7月16号 16:40",
+          "title": "多家银行上线AI主题银行卡，刷卡可获大模型Token和AI权益",
+          "link": "https://www.aibase.com/news/29670",
+          "date": "2026年7月17号 15:54",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenAI发布首款联名硬件Codex Micro 键盘 ​230 美元还会发光",
-          "link": "https://www.aibase.com/news/29637",
-          "date": "2026年7月16号 16:40",
+          "title": "1Password携手Claude推出集成功能 AI能替你登网站了，但密码始终藏在它看不见的地方",
+          "link": "https://www.aibase.com/news/29668",
+          "date": "2026年7月17号 15:54",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Suno接入iMessage：iPhone用户可直接在聊天中用AI生成歌曲，日产量超 700 万首",
-          "link": "https://www.aibase.com/news/29628",
-          "date": "2026年7月16号 16:40",
+          "title": "Google Vids引入Gemini Omni模型 上传自拍+音频就能定制专属数字分身",
+          "link": "https://www.aibase.com/news/29665",
+          "date": "2026年7月17号 15:54",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "RLHF vs. DPO vs. GRPO in RL",
+          "link": "https://blog.dailydoseofds.com/p/rlhf-vs-dpo-vs-grpo-in-rl",
+          "date": "Fri, 17 Jul 2026 22:03:56 GMT",
+          "note": "...explained visually."
+        },
         {
           "title": "Agents Need a New Kind of Web Search",
           "link": "https://blog.dailydoseofds.com/p/agents-need-a-new-kind-of-web-search",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/how-to-build-an-rl-environment",
           "date": "Thu, 09 Jul 2026 20:52:21 GMT",
           "note": "...explained step-by-step with code."
-        },
-        {
-          "title": "Build Your Own 100% Local AI Second Brain",
-          "link": "https://blog.dailydoseofds.com/p/build-your-own-100-local-ai-second-01b",
-          "date": "Wed, 08 Jul 2026 17:10:10 GMT",
-          "note": "How the best builders in tech are all converging on AI second brains"
         }
       ]
     },
@@ -148,9 +148,9 @@
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
         {
-          "title": "NVIDIA Nemotron 3 Embed Ranks #1 Overall on RTEB, Advancing Agentic Retrieval",
-          "link": "https://huggingface.co/blog/nvidia/nemotron-3-embed-wins-rteb",
-          "date": "Thu, 16 Jul 2026 16:01:21 GMT",
+          "title": "Fine-tune video and image models at scale with NVIDIA NeMo Automodel and 🤗 Diffusers",
+          "link": "https://huggingface.co/blog/nvidia/scale-diffusers-finetuning-nemo-automodel",
+          "date": "Fri, 17 Jul 2026 15:57:54 GMT",
           "note": ""
         },
         {
