@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-19T04:02:04.211801+00:00",
+    "generated_at": "2026-07-20T04:12:09.201744+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -85,6 +85,12 @@
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
         {
+          "title": "[Hands-on] Rebuilding Claude Code's Harness",
+          "link": "https://blog.dailydoseofds.com/p/hands-on-rebuilding-claude-codes",
+          "date": "Sun, 19 Jul 2026 18:44:38 GMT",
+          "note": "...step-by-step, from scratch, using open-source stack."
+        },
+        {
           "title": "RLHF vs. DPO vs. GRPO in RL",
           "link": "https://blog.dailydoseofds.com/p/rlhf-vs-dpo-vs-grpo-in-rl",
           "date": "Fri, 17 Jul 2026 22:03:56 GMT",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/rag-and-fine-tuning-in-llms-102",
           "date": "Fri, 10 Jul 2026 22:05:58 GMT",
           "note": "...explained visually."
-        },
-        {
-          "title": "How to Build an RL Environment",
-          "link": "https://blog.dailydoseofds.com/p/how-to-build-an-rl-environment",
-          "date": "Thu, 09 Jul 2026 20:52:21 GMT",
-          "note": "...explained step-by-step with code."
         }
       ]
     },
