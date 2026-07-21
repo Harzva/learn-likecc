@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-20T04:12:09.201744+00:00",
+    "generated_at": "2026-07-21T03:53:19.624351+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年7月17号 15:54AI 日报AI日报：开源模型Kimi K3登场；Google Vids引入Gemini Omni模型；智谱AI冲击10亿美元ARR查看日报",
-        "link": "https://www.aibase.com/daily/29690"
+        "title": "2026年7月20号 16:08AI 日报AI日报：千问3.8模型将发布；字节发布Seed Audio 1.0；面壁智能开源MiniCPM-Robot查看日报",
+        "link": "https://www.aibase.com/daily/29723"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "影视飓风49元AI课程上线首日售出10万份，单日营收超490万元",
-          "link": "https://www.aibase.com/news/29689",
-          "date": "2026年7月17号 15:54",
+          "title": "打破 15 秒魔咒：智象未来发布全球首个无限时长创作智能体vivago R1，商业可用率拉到85%",
+          "link": "https://www.aibase.com/news/29720",
+          "date": "2026年7月20号 16:08",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "天工短剧工作台上线Agent智能分镜与无限画布，昆仑万维要把AI短剧从随机抽卡拉向可控生产",
-          "link": "https://www.aibase.com/news/29684",
-          "date": "2026年7月17号 15:54",
+          "title": "DeepSeek V4正式版实测曝光，或于下周一发布剑指Kimi K3",
+          "link": "https://www.aibase.com/news/29717",
+          "date": "2026年7月20号 16:08",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "数字永生？面壁智能开源企业数字员工平台StaffDeck",
-          "link": "https://www.aibase.com/news/29677",
-          "date": "2026年7月17号 15:54",
+          "title": "字节跳动发布Seed Audio 1.0：音频生成从“会说”迈向“会创作”",
+          "link": "https://www.aibase.com/news/29716",
+          "date": "2026年7月20号 16:08",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "5个月增长15倍，智谱AI凭Coding路线冲击10亿美元ARR",
-          "link": "https://www.aibase.com/news/29673",
-          "date": "2026年7月17号 15:54",
+          "title": "阿里云百炼上线HappyOyster1.0:支持实时交互的开放世界模型开启灰测",
+          "link": "https://www.aibase.com/news/29712",
+          "date": "2026年7月20号 16:08",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Grok 推出 Automations 功能：定时跑、邮件一到就触发，还能替你回信",
-          "link": "https://www.aibase.com/news/29671",
-          "date": "2026年7月17号 15:54",
+          "title": "腾讯混元Hy3限免活动延期至8月5日，WorkBuddy和CodeBuddy用户继续免费使用",
+          "link": "https://www.aibase.com/news/29709",
+          "date": "2026年7月20号 16:08",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "多家银行上线AI主题银行卡，刷卡可获大模型Token和AI权益",
-          "link": "https://www.aibase.com/news/29670",
-          "date": "2026年7月17号 15:54",
+          "title": "昆仑万维把 2026 定为世界模型元年：Matrix-Game 3. 5 单卡实时生成，5B模型跑出20FPS",
+          "link": "https://www.aibase.com/news/29705",
+          "date": "2026年7月20号 16:08",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "1Password携手Claude推出集成功能 AI能替你登网站了，但密码始终藏在它看不见的地方",
-          "link": "https://www.aibase.com/news/29668",
-          "date": "2026年7月17号 15:54",
+          "title": "面壁智能开源MiniCPM-Robot：1.5B的VLA模型完整放出，个人开发者也能在真机器人上跑操作",
+          "link": "https://www.aibase.com/news/29702",
+          "date": "2026年7月20号 16:08",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Google Vids引入Gemini Omni模型 上传自拍+音频就能定制专属数字分身",
-          "link": "https://www.aibase.com/news/29665",
-          "date": "2026年7月17号 15:54",
+          "title": "阿里新一代大模型千问3. 8 将至：预览版抢先登陆阿里云与Qoder，正式版拟近期开源",
+          "link": "https://www.aibase.com/news/29697",
+          "date": "2026年7月20号 16:08",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "How do AI teams use RL in production?",
+          "link": "https://blog.dailydoseofds.com/p/how-do-ai-teams-use-rl-in-production",
+          "date": "Mon, 20 Jul 2026 21:40:53 GMT",
+          "note": "The full RL nanodegree, covered with implementation."
+        },
         {
           "title": "[Hands-on] Rebuilding Claude Code's Harness",
           "link": "https://blog.dailydoseofds.com/p/hands-on-rebuilding-claude-codes",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/how-llm-routing-actually-works-in",
           "date": "Sun, 12 Jul 2026 15:51:12 GMT",
           "note": "A popular interview question."
-        },
-        {
-          "title": "RAG & Fine-tuning in LLMs",
-          "link": "https://blog.dailydoseofds.com/p/rag-and-fine-tuning-in-llms-102",
-          "date": "Fri, 10 Jul 2026 22:05:58 GMT",
-          "note": "...explained visually."
         }
       ]
     },
@@ -148,9 +148,9 @@
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
         {
-          "title": "Fine-tune video and image models at scale with NVIDIA NeMo Automodel and 🤗 Diffusers",
-          "link": "https://huggingface.co/blog/nvidia/scale-diffusers-finetuning-nemo-automodel",
-          "date": "Fri, 17 Jul 2026 15:57:54 GMT",
+          "title": "Introducing Cosmos 3 Edge",
+          "link": "https://huggingface.co/blog/nvidia/cosmos3edge",
+          "date": "Mon, 20 Jul 2026 15:58:51 GMT",
           "note": ""
         },
         {
