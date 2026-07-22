@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-21T03:53:19.624351+00:00",
+    "generated_at": "2026-07-22T03:54:49.210715+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年7月20号 16:08AI 日报AI日报：千问3.8模型将发布；字节发布Seed Audio 1.0；面壁智能开源MiniCPM-Robot查看日报",
-        "link": "https://www.aibase.com/daily/29723"
+        "title": "2026年7月21号 16:02AI 日报AI日报：腾讯混元发布科研智能体Hyra-1.0；阿里发布Qwen-Image-3.0；马斯克把Grok塞进Excel查看日报",
+        "link": "https://www.aibase.com/daily/29758"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "打破 15 秒魔咒：智象未来发布全球首个无限时长创作智能体vivago R1，商业可用率拉到85%",
-          "link": "https://www.aibase.com/news/29720",
-          "date": "2026年7月20号 16:08",
+          "title": "​YouTube 收紧政策，严打低质 AI 内容",
+          "link": "https://www.aibase.com/news/29757",
+          "date": "2026年7月21号 16:02",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "DeepSeek V4正式版实测曝光，或于下周一发布剑指Kimi K3",
-          "link": "https://www.aibase.com/news/29717",
-          "date": "2026年7月20号 16:08",
+          "title": "消息称阿里将推出千问办公，整合三款智能体布局AI办公市场",
+          "link": "https://www.aibase.com/news/29756",
+          "date": "2026年7月21号 16:02",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "字节跳动发布Seed Audio 1.0：音频生成从“会说”迈向“会创作”",
-          "link": "https://www.aibase.com/news/29716",
-          "date": "2026年7月20号 16:08",
+          "title": "小鹏甩出TuringViT视觉编码器：只用十分之一数据，却把SOTA基线甩在身后",
+          "link": "https://www.aibase.com/news/29754",
+          "date": "2026年7月21号 16:02",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阿里云百炼上线HappyOyster1.0:支持实时交互的开放世界模型开启灰测",
-          "link": "https://www.aibase.com/news/29712",
-          "date": "2026年7月20号 16:08",
+          "title": "阿里发布Qwen-Image-3.0，支持4.5K Token超长输入与复杂图文生成",
+          "link": "https://www.aibase.com/news/29753",
+          "date": "2026年7月21号 16:02",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯混元Hy3限免活动延期至8月5日，WorkBuddy和CodeBuddy用户继续免费使用",
-          "link": "https://www.aibase.com/news/29709",
-          "date": "2026年7月20号 16:08",
+          "title": "《第九区》导演震撼发布首部AI短片 字节Seedance 2.0 助力科幻巨制",
+          "link": "https://www.aibase.com/news/29752",
+          "date": "2026年7月21号 16:02",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "昆仑万维把 2026 定为世界模型元年：Matrix-Game 3. 5 单卡实时生成，5B模型跑出20FPS",
-          "link": "https://www.aibase.com/news/29705",
-          "date": "2026年7月20号 16:08",
+          "title": "腾讯混元发布科研智能体Hyra-1.0，单一框架打通AI研发与科学发现",
+          "link": "https://www.aibase.com/news/29747",
+          "date": "2026年7月21号 16:02",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "面壁智能开源MiniCPM-Robot：1.5B的VLA模型完整放出，个人开发者也能在真机器人上跑操作",
-          "link": "https://www.aibase.com/news/29702",
-          "date": "2026年7月20号 16:08",
+          "title": "拍照即修图！Adobe推出全新AI相机工具，一键开启智能修图新时代",
+          "link": "https://www.aibase.com/news/29740",
+          "date": "2026年7月21号 16:02",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阿里新一代大模型千问3. 8 将至：预览版抢先登陆阿里云与Qoder，正式版拟近期开源",
-          "link": "https://www.aibase.com/news/29697",
-          "date": "2026年7月20号 16:08",
+          "title": "马斯克把Grok塞进Excel：选中一片数据就能问涨跌原因，图表直接插进表格",
+          "link": "https://www.aibase.com/news/29732",
+          "date": "2026年7月21号 16:02",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "5 LLM Quantization Techniques",
+          "link": "https://blog.dailydoseofds.com/p/5-llm-quantization-techniques",
+          "date": "Tue, 21 Jul 2026 22:13:28 GMT",
+          "note": "...explained visually."
+        },
         {
           "title": "How do AI teams use RL in production?",
           "link": "https://blog.dailydoseofds.com/p/how-do-ai-teams-use-rl-in-production",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/agentic-rl-environments-trajectories",
           "date": "Mon, 13 Jul 2026 20:21:06 GMT",
           "note": "The full RL nanodegree, covered with implementation."
-        },
-        {
-          "title": "How LLM Routing Actually Works in Production",
-          "link": "https://blog.dailydoseofds.com/p/how-llm-routing-actually-works-in",
-          "date": "Sun, 12 Jul 2026 15:51:12 GMT",
-          "note": "A popular interview question."
         }
       ]
     },
@@ -148,9 +148,15 @@
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
         {
-          "title": "Introducing Cosmos 3 Edge",
-          "link": "https://huggingface.co/blog/nvidia/cosmos3edge",
-          "date": "Mon, 20 Jul 2026 15:58:51 GMT",
+          "title": "The State of Simulation for Physical AI: An Overview",
+          "link": "https://huggingface.co/blog/nvidia/state-of-simulation-for-physical-ai",
+          "date": "Tue, 21 Jul 2026 20:00:27 GMT",
+          "note": ""
+        },
+        {
+          "title": "Grabette: an open system to record robot-manipulation data",
+          "link": "https://huggingface.co/blog/grabette",
+          "date": "Tue, 21 Jul 2026 00:00:00 GMT",
           "note": ""
         },
         {
@@ -187,12 +193,6 @@
           "title": "Introducing Real World VoiceEQ: Measuring the human quality of voice AI",
           "link": "https://huggingface.co/blog/real-world-voiceeq",
           "date": "Wed, 15 Jul 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Profiling in PyTorch (Part 3): Attention is all you profile",
-          "link": "https://huggingface.co/blog/torch-attention-profile",
-          "date": "Fri, 10 Jul 2026 00:00:00 GMT",
           "note": ""
         }
       ]
