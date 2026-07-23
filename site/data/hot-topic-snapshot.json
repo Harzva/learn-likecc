@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-22T03:54:49.210715+00:00",
+    "generated_at": "2026-07-23T03:51:25.248667+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年7月21号 16:02AI 日报AI日报：腾讯混元发布科研智能体Hyra-1.0；阿里发布Qwen-Image-3.0；马斯克把Grok塞进Excel查看日报",
-        "link": "https://www.aibase.com/daily/29758"
+        "title": "2026年7月22号 15:52AI 日报AI日报：谷歌发布 Gemini 3.6 Flash；小红书大模型IMO满分夺金；腾讯Miora AI创意平台全量上线查看日报",
+        "link": "https://www.aibase.com/daily/29800"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "​YouTube 收紧政策，严打低质 AI 内容",
-          "link": "https://www.aibase.com/news/29757",
-          "date": "2026年7月21号 16:02",
+          "title": "多模态AI思维导图工具GitMind推出终身订阅计划，支持多源资料秒级生成图表",
+          "link": "https://www.aibase.com/news/29798",
+          "date": "2026年7月22号 15:52",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "消息称阿里将推出千问办公，整合三款智能体布局AI办公市场",
-          "link": "https://www.aibase.com/news/29756",
-          "date": "2026年7月21号 16:02",
+          "title": "腾讯Miora AI创意平台全量上线 多智能体协同重构内容生产流程",
+          "link": "https://www.aibase.com/news/29792",
+          "date": "2026年7月22号 15:52",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "小鹏甩出TuringViT视觉编码器：只用十分之一数据，却把SOTA基线甩在身后",
-          "link": "https://www.aibase.com/news/29754",
-          "date": "2026年7月21号 16:02",
+          "title": "OpenAI 正式在 ChatGPT 中推出广告服务，Best Buy 等已率先试水",
+          "link": "https://www.aibase.com/news/29785",
+          "date": "2026年7月22号 15:52",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阿里发布Qwen-Image-3.0，支持4.5K Token超长输入与复杂图文生成",
-          "link": "https://www.aibase.com/news/29753",
-          "date": "2026年7月21号 16:02",
+          "title": "重磅更新！Claude Code 首次支持 iOS 模拟器，开发者福音来了！",
+          "link": "https://www.aibase.com/news/29782",
+          "date": "2026年7月22号 15:52",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "《第九区》导演震撼发布首部AI短片 字节Seedance 2.0 助力科幻巨制",
-          "link": "https://www.aibase.com/news/29752",
-          "date": "2026年7月21号 16:02",
+          "title": "腾讯调整AI组织架构:QClaw团队划入云产品六部，与WorkBuddy深度整合",
+          "link": "https://www.aibase.com/news/29778",
+          "date": "2026年7月22号 15:52",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯混元发布科研智能体Hyra-1.0，单一框架打通AI研发与科学发现",
-          "link": "https://www.aibase.com/news/29747",
-          "date": "2026年7月21号 16:02",
+          "title": "AI 音乐生成器 Suno 遭数据泄露，波及5530万用户及训练数据源代码",
+          "link": "https://www.aibase.com/news/29776",
+          "date": "2026年7月22号 15:52",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "拍照即修图！Adobe推出全新AI相机工具，一键开启智能修图新时代",
-          "link": "https://www.aibase.com/news/29740",
-          "date": "2026年7月21号 16:02",
+          "title": "​小红书大模型 IMO 满分夺金：中国 AI 首次登顶数学奥赛，第三题解法让冠军选手直呼优雅",
+          "link": "https://www.aibase.com/news/29774",
+          "date": "2026年7月22号 15:52",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "马斯克把Grok塞进Excel：选中一片数据就能问涨跌原因，图表直接插进表格",
-          "link": "https://www.aibase.com/news/29732",
-          "date": "2026年7月21号 16:02",
+          "title": "谷歌发布 Gemini3.6Flash 等三款新模型，旗舰3.5Pro 延期发布",
+          "link": "https://www.aibase.com/news/29769",
+          "date": "2026年7月22号 15:52",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Karpathy Said Something You’ll Regret Ignoring",
+          "link": "https://blog.dailydoseofds.com/p/karpathy-said-something-youll-regret",
+          "date": "Wed, 22 Jul 2026 22:24:21 GMT",
+          "note": "Karpathy said something you&#8217;ll regret ignoring"
+        },
         {
           "title": "5 LLM Quantization Techniques",
           "link": "https://blog.dailydoseofds.com/p/5-llm-quantization-techniques",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/the-four-types-of-agent-loops",
           "date": "Tue, 14 Jul 2026 16:26:46 GMT",
           "note": "...explained visually."
-        },
-        {
-          "title": "Agentic RL: Environments, Trajectories, and the Training Loop",
-          "link": "https://blog.dailydoseofds.com/p/agentic-rl-environments-trajectories",
-          "date": "Mon, 13 Jul 2026 20:21:06 GMT",
-          "note": "The full RL nanodegree, covered with implementation."
         }
       ]
     },
