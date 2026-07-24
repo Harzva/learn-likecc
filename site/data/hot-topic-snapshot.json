@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-23T03:51:25.248667+00:00",
+    "generated_at": "2026-07-24T03:51:18.785154+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年7月22号 15:52AI 日报AI日报：谷歌发布 Gemini 3.6 Flash；小红书大模型IMO满分夺金；腾讯Miora AI创意平台全量上线查看日报",
-        "link": "https://www.aibase.com/daily/29800"
+        "title": "2026年7月23号 16:21AI 日报AI日报：腾讯云推出 CodeBuddy NPC；北京抛出智能体新政十策；三星眼镜Galaxy Glasses亮相查看日报",
+        "link": "https://www.aibase.com/daily/29842"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "多模态AI思维导图工具GitMind推出终身订阅计划，支持多源资料秒级生成图表",
-          "link": "https://www.aibase.com/news/29798",
-          "date": "2026年7月22号 15:52",
+          "title": "腾讯云推出 CodeBuddy NPC：从代码助手走向端到端自主研发智能体",
+          "link": "https://www.aibase.com/news/29840",
+          "date": "2026年7月23号 16:21",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯Miora AI创意平台全量上线 多智能体协同重构内容生产流程",
-          "link": "https://www.aibase.com/news/29792",
-          "date": "2026年7月22号 15:52",
+          "title": "北京抛出\"智能体新政\"十策：从驾驭层工程到一人公司，一张 Agent 经济蓝图铺开了",
+          "link": "https://www.aibase.com/news/29839",
+          "date": "2026年7月23号 16:21",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenAI 正式在 ChatGPT 中推出广告服务，Best Buy 等已率先试水",
-          "link": "https://www.aibase.com/news/29785",
-          "date": "2026年7月22号 15:52",
+          "title": "阿里真武M890超节点成功适配Qwen3.8，已上线百炼平台提供推理服务",
+          "link": "https://www.aibase.com/news/29836",
+          "date": "2026年7月23号 16:21",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "重磅更新！Claude Code 首次支持 iOS 模拟器，开发者福音来了！",
-          "link": "https://www.aibase.com/news/29782",
-          "date": "2026年7月22号 15:52",
+          "title": "DeepSeek梁文锋谈开源：只赚 6 倍利润不加班，想赚 100 倍才会受制于开源",
+          "link": "https://www.aibase.com/news/29833",
+          "date": "2026年7月23号 16:21",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯调整AI组织架构:QClaw团队划入云产品六部，与WorkBuddy深度整合",
-          "link": "https://www.aibase.com/news/29778",
-          "date": "2026年7月22号 15:52",
+          "title": "国内首部持\"网剧片许可证\"的 AIGC 故事片《奇谭》在爱奇艺开播",
+          "link": "https://www.aibase.com/news/29831",
+          "date": "2026年7月23号 16:21",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "AI 音乐生成器 Suno 遭数据泄露，波及5530万用户及训练数据源代码",
-          "link": "https://www.aibase.com/news/29776",
-          "date": "2026年7月22号 15:52",
+          "title": "高德发布ABot具身体系全栈升级 一口气推出五款核心模型",
+          "link": "https://www.aibase.com/news/29827",
+          "date": "2026年7月23号 16:21",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "​小红书大模型 IMO 满分夺金：中国 AI 首次登顶数学奥赛，第三题解法让冠军选手直呼优雅",
-          "link": "https://www.aibase.com/news/29774",
-          "date": "2026年7月22号 15:52",
+          "title": "小红书开源 BigMac：把多模态训练的显存与速度，从二选一中解放出来",
+          "link": "https://www.aibase.com/news/29824",
+          "date": "2026年7月23号 16:21",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "谷歌发布 Gemini3.6Flash 等三款新模型，旗舰3.5Pro 延期发布",
-          "link": "https://www.aibase.com/news/29769",
-          "date": "2026年7月22号 15:52",
+          "title": "三星把Gemini戴上了脸： 50 克Galaxy Glasses亮相，没有屏幕却装进了全天候AI眼睛",
+          "link": "https://www.aibase.com/news/29812",
+          "date": "2026年7月23号 16:21",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "5 Techniques to Optimize LLMs in Production",
+          "link": "https://blog.dailydoseofds.com/p/5-techniques-to-optimize-llms-in",
+          "date": "Thu, 23 Jul 2026 13:59:48 GMT",
+          "note": "...explained visually."
+        },
         {
           "title": "Karpathy Said Something You’ll Regret Ignoring",
           "link": "https://blog.dailydoseofds.com/p/karpathy-said-something-youll-regret",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/why-small-models-alone-dont-reduce",
           "date": "Wed, 15 Jul 2026 20:42:32 GMT",
           "note": "A complete guide to build production-grade SLM pipelines."
-        },
-        {
-          "title": "The Four Types of Agent Loops",
-          "link": "https://blog.dailydoseofds.com/p/the-four-types-of-agent-loops",
-          "date": "Tue, 14 Jul 2026 16:26:46 GMT",
-          "note": "...explained visually."
         }
       ]
     },
@@ -147,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Bringing Nunchaku 4-bit Diffusion Inference to Diffusers",
+          "link": "https://huggingface.co/blog/nunchaku-diffusers",
+          "date": "Thu, 23 Jul 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "The State of Simulation for Physical AI: An Overview",
           "link": "https://huggingface.co/blog/nvidia/state-of-simulation-for-physical-ai",
@@ -186,12 +192,6 @@
         {
           "title": "Welcome Inkling by Thinking Machines",
           "link": "https://huggingface.co/blog/thinkingmachines-inkling",
-          "date": "Wed, 15 Jul 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Introducing Real World VoiceEQ: Measuring the human quality of voice AI",
-          "link": "https://huggingface.co/blog/real-world-voiceeq",
           "date": "Wed, 15 Jul 2026 00:00:00 GMT",
           "note": ""
         }
