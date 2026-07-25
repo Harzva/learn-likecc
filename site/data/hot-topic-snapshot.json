@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-24T03:51:18.785154+00:00",
+    "generated_at": "2026-07-25T03:45:27.984765+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年7月23号 16:21AI 日报AI日报：腾讯云推出 CodeBuddy NPC；北京抛出智能体新政十策；三星眼镜Galaxy Glasses亮相查看日报",
-        "link": "https://www.aibase.com/daily/29842"
+        "title": "2026年7月24号 16:03AI 日报AI日报：黑森林实验室放出Flux3；Claude Opus现已支持语音模式；快手入局AI互动内容赛道查看日报",
+        "link": "https://www.aibase.com/daily/29876"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "腾讯云推出 CodeBuddy NPC：从代码助手走向端到端自主研发智能体",
-          "link": "https://www.aibase.com/news/29840",
-          "date": "2026年7月23号 16:21",
+          "title": "小鹏人形机器人广州工厂开启小批量试生产 预计2026年实现量产",
+          "link": "https://www.aibase.com/news/29875",
+          "date": "2026年7月24号 16:03",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "北京抛出\"智能体新政\"十策：从驾驭层工程到一人公司，一张 Agent 经济蓝图铺开了",
-          "link": "https://www.aibase.com/news/29839",
-          "date": "2026年7月23号 16:21",
+          "title": "黑森林实验室放出 Flux3：首个原生生成音频的多模态基础模型，20 秒音画同步一次成型",
+          "link": "https://www.aibase.com/news/29874",
+          "date": "2026年7月24号 16:03",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阿里真武M890超节点成功适配Qwen3.8，已上线百炼平台提供推理服务",
-          "link": "https://www.aibase.com/news/29836",
-          "date": "2026年7月23号 16:21",
+          "title": "快手入局AI互动内容赛道，开放首批创作者招募",
+          "link": "https://www.aibase.com/news/29872",
+          "date": "2026年7月24号 16:03",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "DeepSeek梁文锋谈开源：只赚 6 倍利润不加班，想赚 100 倍才会受制于开源",
-          "link": "https://www.aibase.com/news/29833",
-          "date": "2026年7月23号 16:21",
+          "title": "腾讯混元\"合二为一\"：多模态与大语言模型部门合并，姚顺雨统管冲全模态上限",
+          "link": "https://www.aibase.com/news/29871",
+          "date": "2026年7月24号 16:03",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "国内首部持\"网剧片许可证\"的 AIGC 故事片《奇谭》在爱奇艺开播",
-          "link": "https://www.aibase.com/news/29831",
-          "date": "2026年7月23号 16:21",
+          "title": "Claude 语音模式终于用上 Opus 了：从\"随口问答\"升级成能调工具、换语言的实时参谋",
+          "link": "https://www.aibase.com/news/29867",
+          "date": "2026年7月24号 16:03",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "高德发布ABot具身体系全栈升级 一口气推出五款核心模型",
-          "link": "https://www.aibase.com/news/29827",
-          "date": "2026年7月23号 16:21",
+          "title": "阿里开源0.8B文档解析模型OvisOCR2，端到端方案登顶OmniDocBench",
+          "link": "https://www.aibase.com/news/29866",
+          "date": "2026年7月24号 16:03",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "小红书开源 BigMac：把多模态训练的显存与速度，从二选一中解放出来",
-          "link": "https://www.aibase.com/news/29824",
-          "date": "2026年7月23号 16:21",
+          "title": "腾讯甩出 WorkBuddy Bench：一套把代码、网页、办公、安全全装进来的编码智能体考场",
+          "link": "https://www.aibase.com/news/29864",
+          "date": "2026年7月24号 16:03",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "三星把Gemini戴上了脸： 50 克Galaxy Glasses亮相，没有屏幕却装进了全天候AI眼睛",
-          "link": "https://www.aibase.com/news/29812",
-          "date": "2026年7月23号 16:21",
+          "title": "微软自研双模型MAI-Image-2.5-Pro与MAI-Voice-2-Flash发布：不蒸馏第三方，已落地Bing和PowerPoint",
+          "link": "https://www.aibase.com/news/29851",
+          "date": "2026年7月24号 16:03",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "11 LLM Evaluation Methods",
+          "link": "https://blog.dailydoseofds.com/p/11-llm-evaluation-methods",
+          "date": "Fri, 24 Jul 2026 22:04:42 GMT",
+          "note": "Must-know for AI engineers (explained visually)."
+        },
         {
           "title": "5 Techniques to Optimize LLMs in Production",
           "link": "https://blog.dailydoseofds.com/p/5-techniques-to-optimize-llms-in",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/agents-need-a-new-kind-of-web-search",
           "date": "Thu, 16 Jul 2026 20:32:17 GMT",
           "note": "...covered with three retrieval strategies for AI agents in 2026."
-        },
-        {
-          "title": "Why Small Models Alone Don't Reduce Inference Costs",
-          "link": "https://blog.dailydoseofds.com/p/why-small-models-alone-dont-reduce",
-          "date": "Wed, 15 Jul 2026 20:42:32 GMT",
-          "note": "A complete guide to build production-grade SLM pipelines."
         }
       ]
     },
