@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-27T04:11:41.211824+00:00",
+    "generated_at": "2026-07-28T03:44:07.829469+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年7月24号 16:03AI 日报AI日报：黑森林实验室放出Flux3；Claude Opus现已支持语音模式；快手入局AI互动内容赛道查看日报",
-        "link": "https://www.aibase.com/daily/29876"
+        "title": "2026年7月27号 16:06AI 日报AI日报：千问办公悄然开启内测；Suno上线高级音轨分离功能；Midjourney 推出 V8.2 图像模型查看日报",
+        "link": "https://www.aibase.com/daily/29911"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "小鹏人形机器人广州工厂开启小批量试生产 预计2026年实现量产",
-          "link": "https://www.aibase.com/news/29875",
-          "date": "2026年7月24号 16:03",
+          "title": "Claude 会话分享链接被搜索引擎\"误抓\"，大量含私钥与隐私的对话遭公开索引",
+          "link": "https://www.aibase.com/news/29910",
+          "date": "2026年7月27号 16:06",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "黑森林实验室放出 Flux3：首个原生生成音频的多模态基础模型，20 秒音画同步一次成型",
-          "link": "https://www.aibase.com/news/29874",
-          "date": "2026年7月24号 16:03",
+          "title": "​企业微信AI助理\"大圆\"内测：一句话写周报，专治99+群聊消息",
+          "link": "https://www.aibase.com/news/29909",
+          "date": "2026年7月27号 16:06",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "快手入局AI互动内容赛道，开放首批创作者招募",
-          "link": "https://www.aibase.com/news/29872",
-          "date": "2026年7月24号 16:03",
+          "title": "Midjourney 收购星座社交应用 Co-Star，月活 430 万，团队全员并入",
+          "link": "https://www.aibase.com/news/29903",
+          "date": "2026年7月27号 16:06",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯混元\"合二为一\"：多模态与大语言模型部门合并，姚顺雨统管冲全模态上限",
-          "link": "https://www.aibase.com/news/29871",
-          "date": "2026年7月24号 16:03",
+          "title": "千问办公悄然开启内测 主打25项企业 IM 能力与多形态产物一站式交付",
+          "link": "https://www.aibase.com/news/29899",
+          "date": "2026年7月27号 16:06",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Claude 语音模式终于用上 Opus 了：从\"随口问答\"升级成能调工具、换语言的实时参谋",
-          "link": "https://www.aibase.com/news/29867",
-          "date": "2026年7月24号 16:03",
+          "title": "Cursor新一代AI智能体集群完成SQLite重建测试，全部配置实现100%通过率",
+          "link": "https://www.aibase.com/news/29897",
+          "date": "2026年7月27号 16:06",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阿里开源0.8B文档解析模型OvisOCR2，端到端方案登顶OmniDocBench",
-          "link": "https://www.aibase.com/news/29866",
-          "date": "2026年7月24号 16:03",
+          "title": "​Midjourney 推出 V8.2 图像模型：审美更锋利、废片大减，个性化更懂你的口味",
+          "link": "https://www.aibase.com/news/29896",
+          "date": "2026年7月27号 16:06",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯甩出 WorkBuddy Bench：一套把代码、网页、办公、安全全装进来的编码智能体考场",
-          "link": "https://www.aibase.com/news/29864",
-          "date": "2026年7月24号 16:03",
+          "title": "Claude Opus 5 系统提示词被整份扒光：1511 行、约 3.4 万 token，写满的全是\"不许\"",
+          "link": "https://www.aibase.com/news/29883",
+          "date": "2026年7月27号 16:06",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "微软自研双模型MAI-Image-2.5-Pro与MAI-Voice-2-Flash发布：不蒸馏第三方，已落地Bing和PowerPoint",
-          "link": "https://www.aibase.com/news/29851",
-          "date": "2026年7月24号 16:03",
+          "title": "Suno 重磅升级！高级音轨分离，车载支持也来了",
+          "link": "https://www.aibase.com/news/29882",
+          "date": "2026年7月27号 16:06",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Graph Engineering Clearly Explained!",
+          "link": "https://blog.dailydoseofds.com/p/graph-engineering-clearly-explained",
+          "date": "Mon, 27 Jul 2026 21:21:31 GMT",
+          "note": "Covered with best practices from the industry."
+        },
         {
           "title": "11 LLM Evaluation Methods",
           "link": "https://blog.dailydoseofds.com/p/11-llm-evaluation-methods",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/rlhf-vs-dpo-vs-grpo-in-rl",
           "date": "Fri, 17 Jul 2026 22:03:56 GMT",
           "note": "...explained visually."
-        },
-        {
-          "title": "Agents Need a New Kind of Web Search",
-          "link": "https://blog.dailydoseofds.com/p/agents-need-a-new-kind-of-web-search",
-          "date": "Thu, 16 Jul 2026 20:32:17 GMT",
-          "note": "...covered with three retrieval strategies for AI agents in 2026."
         }
       ]
     },
@@ -148,15 +148,15 @@
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
         {
-          "title": "Bringing Nunchaku 4-bit Diffusion Inference to Diffusers",
-          "link": "https://huggingface.co/blog/nunchaku-diffusers",
-          "date": "Thu, 23 Jul 2026 00:00:00 GMT",
+          "title": "NVIDIA Cosmos-H-Dreams: Bringing Real-Time Generative Simulation to Surgical Robotics",
+          "link": "https://huggingface.co/blog/nvidia/cosmos-h-dreams",
+          "date": "Mon, 27 Jul 2026 09:32:20 GMT",
           "note": ""
         },
         {
-          "title": "The State of Simulation for Physical AI: An Overview",
-          "link": "https://huggingface.co/blog/nvidia/state-of-simulation-for-physical-ai",
-          "date": "Tue, 21 Jul 2026 20:00:27 GMT",
+          "title": "Bringing Nunchaku 4-bit Diffusion Inference to Diffusers",
+          "link": "https://huggingface.co/blog/nunchaku-diffusers",
+          "date": "Thu, 23 Jul 2026 00:00:00 GMT",
           "note": ""
         },
         {
