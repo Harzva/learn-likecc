@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-28T03:44:07.829469+00:00",
+    "generated_at": "2026-07-29T03:47:30.796057+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年7月27号 16:06AI 日报AI日报：千问办公悄然开启内测；Suno上线高级音轨分离功能；Midjourney 推出 V8.2 图像模型查看日报",
-        "link": "https://www.aibase.com/daily/29911"
+        "title": "2026年7月28号 16:49AI 日报AI日报：Kimi K3登顶全球最大开源模型；小度AI手表Fit开售；我国启动大模型 IPv6 专项行动查看日报",
+        "link": "https://www.aibase.com/daily/29949"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "Claude 会话分享链接被搜索引擎\"误抓\"，大量含私钥与隐私的对话遭公开索引",
-          "link": "https://www.aibase.com/news/29910",
-          "date": "2026年7月27号 16:06",
+          "title": "宇树G1人形机器人首次完成活体动物手术，远程操控切除猪胆囊",
+          "link": "https://www.aibase.com/news/29948",
+          "date": "2026年7月28号 16:49",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "​企业微信AI助理\"大圆\"内测：一句话写周报，专治99+群聊消息",
-          "link": "https://www.aibase.com/news/29909",
-          "date": "2026年7月27号 16:06",
+          "title": "我国启动大模型 IPv6 专项行动：生成式 AI 应用将被要求全面拥抱下一代网络",
+          "link": "https://www.aibase.com/news/29943",
+          "date": "2026年7月28号 16:49",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Midjourney 收购星座社交应用 Co-Star，月活 430 万，团队全员并入",
-          "link": "https://www.aibase.com/news/29903",
-          "date": "2026年7月27号 16:06",
+          "title": "比亚迪人形机器人8月亮相郑州，商业服务场景或率先落地",
+          "link": "https://www.aibase.com/news/29940",
+          "date": "2026年7月28号 16:49",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "千问办公悄然开启内测 主打25项企业 IM 能力与多形态产物一站式交付",
-          "link": "https://www.aibase.com/news/29899",
-          "date": "2026年7月27号 16:06",
+          "title": "艺术家把 AI 表情包生成器告上法庭：私人漫画被当成广告模板卖，版权法遇上梗文化",
+          "link": "https://www.aibase.com/news/29939",
+          "date": "2026年7月28号 16:49",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Cursor新一代AI智能体集群完成SQLite重建测试，全部配置实现100%通过率",
-          "link": "https://www.aibase.com/news/29897",
-          "date": "2026年7月27号 16:06",
+          "title": "Firefox新标签页大改版：AI新闻字谜上线，浏览器也能玩出花样",
+          "link": "https://www.aibase.com/news/29935",
+          "date": "2026年7月28号 16:49",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "​Midjourney 推出 V8.2 图像模型：审美更锋利、废片大减，个性化更懂你的口味",
-          "link": "https://www.aibase.com/news/29896",
-          "date": "2026年7月27号 16:06",
+          "title": "Anthropic Claude共享聊天功能曝隐私风险，大量对话被谷歌收录",
+          "link": "https://www.aibase.com/news/29922",
+          "date": "2026年7月28号 16:49",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Claude Opus 5 系统提示词被整份扒光：1511 行、约 3.4 万 token，写满的全是\"不许\"",
-          "link": "https://www.aibase.com/news/29883",
-          "date": "2026年7月27号 16:06",
+          "title": "小度 AI 手表 Fit 开售：文心大模型塞进 159.8 元的腕上空间",
+          "link": "https://www.aibase.com/news/29921",
+          "date": "2026年7月28号 16:49",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Suno 重磅升级！高级音轨分离，车载支持也来了",
-          "link": "https://www.aibase.com/news/29882",
-          "date": "2026年7月27号 16:06",
+          "title": "Kimi K3 开源，2.8 万亿参数登顶全球最大开源模型，马斯克也来点了个赞",
+          "link": "https://www.aibase.com/news/29920",
+          "date": "2026年7月28号 16:49",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Serverless vs. On-prem vs. Edge Deployment",
+          "link": "https://blog.dailydoseofds.com/p/serverless-vs-on-prem-vs-edge-deployment",
+          "date": "Tue, 28 Jul 2026 21:22:12 GMT",
+          "note": "...explained visually."
+        },
         {
           "title": "Graph Engineering Clearly Explained!",
           "link": "https://blog.dailydoseofds.com/p/graph-engineering-clearly-explained",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/hands-on-rebuilding-claude-codes",
           "date": "Sun, 19 Jul 2026 18:44:38 GMT",
           "note": "...step-by-step, from scratch, using open-source stack."
-        },
-        {
-          "title": "RLHF vs. DPO vs. GRPO in RL",
-          "link": "https://blog.dailydoseofds.com/p/rlhf-vs-dpo-vs-grpo-in-rl",
-          "date": "Fri, 17 Jul 2026 22:03:56 GMT",
-          "note": "...explained visually."
         }
       ]
     },
@@ -148,9 +148,27 @@
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
         {
+          "title": "The OlmoEarth Platform: Geospatial inference at planetary scale",
+          "link": "https://huggingface.co/blog/allenai/olmoearth-infrastructure",
+          "date": "Tue, 28 Jul 2026 16:27:42 GMT",
+          "note": ""
+        },
+        {
+          "title": "LFM2.5-Encoders for Fast Long-Context Inference on CPU",
+          "link": "https://huggingface.co/blog/LiquidAI/lfm2-5-encoders",
+          "date": "Tue, 28 Jul 2026 15:01:45 GMT",
+          "note": ""
+        },
+        {
           "title": "NVIDIA Cosmos-H-Dreams: Bringing Real-Time Generative Simulation to Surgical Robotics",
           "link": "https://huggingface.co/blog/nvidia/cosmos-h-dreams",
           "date": "Mon, 27 Jul 2026 09:32:20 GMT",
+          "note": ""
+        },
+        {
+          "title": "Anatomy of a Frontier Lab Agent Intrusion: A Technical Timeline of the July 2026 Incident",
+          "link": "https://huggingface.co/blog/agent-intrusion-technical-timeline",
+          "date": "Mon, 27 Jul 2026 00:00:00 GMT",
           "note": ""
         },
         {
@@ -175,24 +193,6 @@
           "title": "Security incident disclosure — July 2026",
           "link": "https://huggingface.co/blog/security-incident-july-2026",
           "date": "Thu, 16 Jul 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "What building Shippy taught us about building agents",
-          "link": "https://huggingface.co/blog/allenai/shippy-tech-blog",
-          "date": "Wed, 15 Jul 2026 17:29:41 GMT",
-          "note": ""
-        },
-        {
-          "title": "Model Routing Is Simple. Until It Isn’t.",
-          "link": "https://huggingface.co/blog/ibm-research/model-routing-is-simple-until-it-isnt",
-          "date": "Wed, 15 Jul 2026 17:27:01 GMT",
-          "note": ""
-        },
-        {
-          "title": "Welcome Inkling by Thinking Machines",
-          "link": "https://huggingface.co/blog/thinkingmachines-inkling",
-          "date": "Wed, 15 Jul 2026 00:00:00 GMT",
           "note": ""
         }
       ]
