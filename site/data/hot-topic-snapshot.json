@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-29T03:47:30.796057+00:00",
+    "generated_at": "2026-07-30T03:39:17.919321+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年7月28号 16:49AI 日报AI日报：Kimi K3登顶全球最大开源模型；小度AI手表Fit开售；我国启动大模型 IPv6 专项行动查看日报",
-        "link": "https://www.aibase.com/daily/29949"
+        "title": "2026年7月29号 16:38AI 日报AI日报：Fish Audio发布S2.1Pro实时对话语音模型；Grok4.6定档8月7日；360发布企业智能体平台“纳米Work”查看日报",
+        "link": "https://www.aibase.com/daily/29982"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "宇树G1人形机器人首次完成活体动物手术，远程操控切除猪胆囊",
-          "link": "https://www.aibase.com/news/29948",
-          "date": "2026年7月28号 16:49",
+          "title": "亚马逊调整 AI 战略:停研大部分 Nova 自研模型，资源转向皮特·阿贝尔团队",
+          "link": "https://www.aibase.com/news/29978",
+          "date": "2026年7月29号 16:38",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "我国启动大模型 IPv6 专项行动：生成式 AI 应用将被要求全面拥抱下一代网络",
-          "link": "https://www.aibase.com/news/29943",
-          "date": "2026年7月28号 16:49",
+          "title": "闲鱼AI服务半年卖出近千万单：四线城市卖家最多，女性占六成",
+          "link": "https://www.aibase.com/news/29976",
+          "date": "2026年7月29号 16:38",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "比亚迪人形机器人8月亮相郑州，商业服务场景或率先落地",
-          "link": "https://www.aibase.com/news/29940",
-          "date": "2026年7月28号 16:49",
+          "title": "支持耳语与情绪控制!Fish Audio 周年重磅发布 S2.1Pro 实时对话语音模型",
+          "link": "https://www.aibase.com/news/29974",
+          "date": "2026年7月29号 16:38",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "艺术家把 AI 表情包生成器告上法庭：私人漫画被当成广告模板卖，版权法遇上梗文化",
-          "link": "https://www.aibase.com/news/29939",
-          "date": "2026年7月28号 16:49",
+          "title": "ChatGPT 悄悄给文笔设了道墙：不再模仿在世作家文笔",
+          "link": "https://www.aibase.com/news/29973",
+          "date": "2026年7月29号 16:38",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Firefox新标签页大改版：AI新闻字谜上线，浏览器也能玩出花样",
-          "link": "https://www.aibase.com/news/29935",
-          "date": "2026年7月28号 16:49",
+          "title": "OpenRouter 推出专用 LangChain 集成包 一行字符串切 400 款模型，故障自动绕行",
+          "link": "https://www.aibase.com/news/29969",
+          "date": "2026年7月29号 16:38",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Anthropic Claude共享聊天功能曝隐私风险，大量对话被谷歌收录",
-          "link": "https://www.aibase.com/news/29922",
-          "date": "2026年7月28号 16:49",
+          "title": "OpenAI 把安全审查塞进命令行：Codex Security CLI 开源，让漏洞在 CI 里自己现形",
+          "link": "https://www.aibase.com/news/29967",
+          "date": "2026年7月29号 16:38",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "小度 AI 手表 Fit 开售：文心大模型塞进 159.8 元的腕上空间",
-          "link": "https://www.aibase.com/news/29921",
-          "date": "2026年7月28号 16:49",
+          "title": "“AI营养师”来了!阿福上线拍饮食功能，跟AI减肥从\"少吃\"到\"会吃”",
+          "link": "https://www.aibase.com/news/29965",
+          "date": "2026年7月29号 16:38",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Kimi K3 开源，2.8 万亿参数登顶全球最大开源模型，马斯克也来点了个赞",
-          "link": "https://www.aibase.com/news/29920",
-          "date": "2026年7月28号 16:49",
+          "title": "马斯克再放模型路线图：Grok 4.6 定档 8 月 7 日",
+          "link": "https://www.aibase.com/news/29962",
+          "date": "2026年7月29号 16:38",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "6 LLM Deployment Formats in Production",
+          "link": "https://blog.dailydoseofds.com/p/6-llm-deployment-formats-in-production",
+          "date": "Wed, 29 Jul 2026 20:38:40 GMT",
+          "note": "...explained visually."
+        },
         {
           "title": "Serverless vs. On-prem vs. Edge Deployment",
           "link": "https://blog.dailydoseofds.com/p/serverless-vs-on-prem-vs-edge-deployment",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/how-do-ai-teams-use-rl-in-production",
           "date": "Mon, 20 Jul 2026 21:40:53 GMT",
           "note": "The full RL nanodegree, covered with implementation."
-        },
-        {
-          "title": "[Hands-on] Rebuilding Claude Code's Harness",
-          "link": "https://blog.dailydoseofds.com/p/hands-on-rebuilding-claude-codes",
-          "date": "Sun, 19 Jul 2026 18:44:38 GMT",
-          "note": "...step-by-step, from scratch, using open-source stack."
         }
       ]
     },
