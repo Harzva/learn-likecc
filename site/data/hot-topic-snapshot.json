@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-30T03:39:17.919321+00:00",
+    "generated_at": "2026-07-31T03:58:04.730773+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年7月29号 16:38AI 日报AI日报：Fish Audio发布S2.1Pro实时对话语音模型；Grok4.6定档8月7日；360发布企业智能体平台“纳米Work”查看日报",
-        "link": "https://www.aibase.com/daily/29982"
+        "title": "2026年7月30号 16:14AI 日报AI日报：火山引擎上线豆包搜索开放服务；WorkBuddy上线人机双写；OpenAI 推出GPT-5.6模型家族查看日报",
+        "link": "https://www.aibase.com/daily/30012"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "亚马逊调整 AI 战略:停研大部分 Nova 自研模型，资源转向皮特·阿贝尔团队",
-          "link": "https://www.aibase.com/news/29978",
-          "date": "2026年7月29号 16:38",
+          "title": "WorkBuddy上线「人机双写」:AI走出聊天框，坐进你的文档里一起干活",
+          "link": "https://www.aibase.com/news/30007",
+          "date": "2026年7月30号 16:14",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "闲鱼AI服务半年卖出近千万单：四线城市卖家最多，女性占六成",
-          "link": "https://www.aibase.com/news/29976",
-          "date": "2026年7月29号 16:38",
+          "title": "火山引擎正式上线豆包搜索开放服务 赋能智能体长程任务",
+          "link": "https://www.aibase.com/news/30003",
+          "date": "2026年7月30号 16:14",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "支持耳语与情绪控制!Fish Audio 周年重磅发布 S2.1Pro 实时对话语音模型",
-          "link": "https://www.aibase.com/news/29974",
-          "date": "2026年7月29号 16:38",
+          "title": "腾讯开源 AngelSpec 框架：破解大模型真实推理效率难题",
+          "link": "https://www.aibase.com/news/30001",
+          "date": "2026年7月30号 16:14",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "ChatGPT 悄悄给文笔设了道墙：不再模仿在世作家文笔",
-          "link": "https://www.aibase.com/news/29973",
-          "date": "2026年7月29号 16:38",
+          "title": "字节跳动整合豆包、飞书、火山引擎，加速AI企业服务布局",
+          "link": "https://www.aibase.com/news/29999",
+          "date": "2026年7月30号 16:14",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenRouter 推出专用 LangChain 集成包 一行字符串切 400 款模型，故障自动绕行",
-          "link": "https://www.aibase.com/news/29969",
-          "date": "2026年7月29号 16:38",
+          "title": "腾讯视频内测WorkSolo，布局AI短剧与互动影视创作平台",
+          "link": "https://www.aibase.com/news/29998",
+          "date": "2026年7月30号 16:14",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenAI 把安全审查塞进命令行：Codex Security CLI 开源，让漏洞在 CI 里自己现形",
-          "link": "https://www.aibase.com/news/29967",
-          "date": "2026年7月29号 16:38",
+          "title": "灵动声纹与情感释放：Google DeepMind推出Lyria 3.5音乐生成模型",
+          "link": "https://www.aibase.com/news/29997",
+          "date": "2026年7月30号 16:14",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "“AI营养师”来了!阿福上线拍饮食功能，跟AI减肥从\"少吃\"到\"会吃”",
-          "link": "https://www.aibase.com/news/29965",
-          "date": "2026年7月29号 16:38",
+          "title": "​OpenAI 推出GPT-5.6模型家族：Sol、Terra 与 Luna",
+          "link": "https://www.aibase.com/news/29996",
+          "date": "2026年7月30号 16:14",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "马斯克再放模型路线图：Grok 4.6 定档 8 月 7 日",
-          "link": "https://www.aibase.com/news/29962",
-          "date": "2026年7月29号 16:38",
+          "title": "​OpenAI放大招，将向 10 万名科学家免费开放GPT-5. 6 系列！",
+          "link": "https://www.aibase.com/news/29986",
+          "date": "2026年7月30号 16:14",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Why 86% of Claude Code Bill Has Nothing to Do With Your Prompts",
+          "link": "https://blog.dailydoseofds.com/p/why-86-of-claude-code-bill-has-nothing",
+          "date": "Thu, 30 Jul 2026 22:46:30 GMT",
+          "note": "...and a solution to fix Claude bills."
+        },
         {
           "title": "6 LLM Deployment Formats in Production",
           "link": "https://blog.dailydoseofds.com/p/6-llm-deployment-formats-in-production",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/5-llm-quantization-techniques",
           "date": "Tue, 21 Jul 2026 22:13:28 GMT",
           "note": "...explained visually."
-        },
-        {
-          "title": "How do AI teams use RL in production?",
-          "link": "https://blog.dailydoseofds.com/p/how-do-ai-teams-use-rl-in-production",
-          "date": "Mon, 20 Jul 2026 21:40:53 GMT",
-          "note": "The full RL nanodegree, covered with implementation."
         }
       ]
     },
@@ -147,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "GPU Management: Why Idle GPUs Are the New Grounded Aircraft",
+          "link": "https://huggingface.co/blog/Dharma-AI/gpu-management",
+          "date": "Thu, 30 Jul 2026 15:09:09 GMT",
+          "note": ""
+        },
         {
           "title": "The OlmoEarth Platform: Geospatial inference at planetary scale",
           "link": "https://huggingface.co/blog/allenai/olmoearth-infrastructure",
@@ -187,12 +193,6 @@
           "title": "Newer Models, Same Advantage",
           "link": "https://huggingface.co/blog/Dharma-AI/newer-models-same-advantages",
           "date": "Thu, 16 Jul 2026 11:49:48 GMT",
-          "note": ""
-        },
-        {
-          "title": "Security incident disclosure — July 2026",
-          "link": "https://huggingface.co/blog/security-incident-july-2026",
-          "date": "Thu, 16 Jul 2026 00:00:00 GMT",
           "note": ""
         }
       ]
