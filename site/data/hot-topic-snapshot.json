@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-31T03:58:04.730773+00:00",
+    "generated_at": "2026-08-01T03:58:19.765671+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年7月30号 16:14AI 日报AI日报：火山引擎上线豆包搜索开放服务；WorkBuddy上线人机双写；OpenAI 推出GPT-5.6模型家族查看日报",
-        "link": "https://www.aibase.com/daily/30012"
+        "title": "2026年7月31号 15:56AI 日报AI日报：MiniMax发布全模态模型H3；Seedance 2.5发布，30秒一镜到底；DeepSeek-V4-Flash正式版上线查看日报",
+        "link": "https://www.aibase.com/daily/30046"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "WorkBuddy上线「人机双写」:AI走出聊天框，坐进你的文档里一起干活",
-          "link": "https://www.aibase.com/news/30007",
-          "date": "2026年7月30号 16:14",
+          "title": "特斯拉中国车机正式接入豆包大模型",
+          "link": "https://www.aibase.com/news/30042",
+          "date": "2026年7月31号 15:56",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "火山引擎正式上线豆包搜索开放服务 赋能智能体长程任务",
-          "link": "https://www.aibase.com/news/30003",
-          "date": "2026年7月30号 16:14",
+          "title": "DeepSeek-V4-Flash正式版上线，130亿激活参数撬动Agent战场",
+          "link": "https://www.aibase.com/news/30040",
+          "date": "2026年7月31号 15:56",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯开源 AngelSpec 框架：破解大模型真实推理效率难题",
-          "link": "https://www.aibase.com/news/30001",
-          "date": "2026年7月30号 16:14",
+          "title": "Google Earth推出基于Nano Banana 2的全新图像生成功能 一键生成逼真AI场景与历史风貌",
+          "link": "https://www.aibase.com/news/30036",
+          "date": "2026年7月31号 15:56",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "字节跳动整合豆包、飞书、火山引擎，加速AI企业服务布局",
-          "link": "https://www.aibase.com/news/29999",
-          "date": "2026年7月30号 16:14",
+          "title": "阿里千问发布Qwen-Audio-3.0-ASR-Flash，语音识别攻克专业场景\"最后一公里\"",
+          "link": "https://www.aibase.com/news/30035",
+          "date": "2026年7月31号 15:56",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯视频内测WorkSolo，布局AI短剧与互动影视创作平台",
-          "link": "https://www.aibase.com/news/29998",
-          "date": "2026年7月30号 16:14",
+          "title": "字节跳动 Seedance 2.5 发布：30 秒一镜到底，AI 视频开始会讲故事了",
+          "link": "https://www.aibase.com/news/30034",
+          "date": "2026年7月31号 15:56",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "灵动声纹与情感释放：Google DeepMind推出Lyria 3.5音乐生成模型",
-          "link": "https://www.aibase.com/news/29997",
-          "date": "2026年7月30号 16:14",
+          "title": "华为开源5050亿参数openPangu-2.0-Pro模型，权重与推理代码同步开放",
+          "link": "https://www.aibase.com/news/30030",
+          "date": "2026年7月31号 15:56",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "​OpenAI 推出GPT-5.6模型家族：Sol、Terra 与 Luna",
-          "link": "https://www.aibase.com/news/29996",
-          "date": "2026年7月30号 16:14",
+          "title": "MiniMax发布通用全模态模型H3，15秒2K音视频生成价格不到主流模型三分之一",
+          "link": "https://www.aibase.com/news/30026",
+          "date": "2026年7月31号 15:56",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "​OpenAI放大招，将向 10 万名科学家免费开放GPT-5. 6 系列！",
-          "link": "https://www.aibase.com/news/29986",
-          "date": "2026年7月30号 16:14",
+          "title": "谷歌将 Nano Banana2集成至 Google Earth，支持在线AI生成地理场景图像",
+          "link": "https://www.aibase.com/news/30021",
+          "date": "2026年7月31号 15:56",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "6 Automatic Optimization Methods for LLM Systems",
+          "link": "https://blog.dailydoseofds.com/p/6-automatic-optimization-methods",
+          "date": "Fri, 31 Jul 2026 20:48:11 GMT",
+          "note": "...explained visually and with practical tradeoffs."
+        },
         {
           "title": "Why 86% of Claude Code Bill Has Nothing to Do With Your Prompts",
           "link": "https://blog.dailydoseofds.com/p/why-86-of-claude-code-bill-has-nothing",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/karpathy-said-something-youll-regret",
           "date": "Wed, 22 Jul 2026 22:24:21 GMT",
           "note": "Karpathy said something you&#8217;ll regret ignoring"
-        },
-        {
-          "title": "5 LLM Quantization Techniques",
-          "link": "https://blog.dailydoseofds.com/p/5-llm-quantization-techniques",
-          "date": "Tue, 21 Jul 2026 22:13:28 GMT",
-          "note": "...explained visually."
         }
       ]
     },
