@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-08-01T03:58:19.765671+00:00",
+    "generated_at": "2026-08-02T04:02:12.373552+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -85,6 +85,12 @@
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
         {
+          "title": "Build a Stock Market Research Agentic Workflow​",
+          "link": "https://blog.dailydoseofds.com/p/build-a-stock-market-research-agentic-015",
+          "date": "Sat, 01 Aug 2026 19:38:10 GMT",
+          "note": "...using a no-code drag-and-drop builder."
+        },
+        {
           "title": "6 Automatic Optimization Methods for LLM Systems",
           "link": "https://blog.dailydoseofds.com/p/6-automatic-optimization-methods",
           "date": "Fri, 31 Jul 2026 20:48:11 GMT",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/5-techniques-to-optimize-llms-in",
           "date": "Thu, 23 Jul 2026 13:59:48 GMT",
           "note": "...explained visually."
-        },
-        {
-          "title": "Karpathy Said Something You’ll Regret Ignoring",
-          "link": "https://blog.dailydoseofds.com/p/karpathy-said-something-youll-regret",
-          "date": "Wed, 22 Jul 2026 22:24:21 GMT",
-          "note": "Karpathy said something you&#8217;ll regret ignoring"
         }
       ]
     },
