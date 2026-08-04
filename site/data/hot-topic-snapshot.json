@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-08-03T04:04:08.586405+00:00",
+    "generated_at": "2026-08-04T03:45:36.860797+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年7月31号 15:56AI 日报AI日报：MiniMax发布全模态模型H3；Seedance 2.5发布，30秒一镜到底；DeepSeek-V4-Flash正式版上线查看日报",
-        "link": "https://www.aibase.com/daily/30046"
+        "title": "2026年8月3号 16:41AI 日报AI日报：Qwen3.8-Max上线；DeepSeek V4-Flash API开启公测；京东外卖发布AI智能头盔查看日报",
+        "link": "https://www.aibase.com/daily/30080"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "特斯拉中国车机正式接入豆包大模型",
-          "link": "https://www.aibase.com/news/30042",
-          "date": "2026年7月31号 15:56",
+          "title": "德国法院重磅裁定：AI音乐生成器Suno侵犯版权，被驳回合理使用抗辩",
+          "link": "https://www.aibase.com/news/30079",
+          "date": "2026年8月3号 16:41",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "DeepSeek-V4-Flash正式版上线，130亿激活参数撬动Agent战场",
-          "link": "https://www.aibase.com/news/30040",
-          "date": "2026年7月31号 15:56",
+          "title": "马斯克亲自下场演示：Grok 新功能能\"看片\"了，一段科比 AI 视频精准识破",
+          "link": "https://www.aibase.com/news/30074",
+          "date": "2026年8月3号 16:41",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Google Earth推出基于Nano Banana 2的全新图像生成功能 一键生成逼真AI场景与历史风貌",
-          "link": "https://www.aibase.com/news/30036",
-          "date": "2026年7月31号 15:56",
+          "title": "谷歌暂停Google Earth AI图像生成功能:上线不足48小时即加强安全防护",
+          "link": "https://www.aibase.com/news/30065",
+          "date": "2026年8月3号 16:41",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阿里千问发布Qwen-Audio-3.0-ASR-Flash，语音识别攻克专业场景\"最后一公里\"",
-          "link": "https://www.aibase.com/news/30035",
-          "date": "2026年7月31号 15:56",
+          "title": "京东外卖发布AI智能头盔:支持语音接单、路线导航和订单备注提醒",
+          "link": "https://www.aibase.com/news/30060",
+          "date": "2026年8月3号 16:41",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "字节跳动 Seedance 2.5 发布：30 秒一镜到底，AI 视频开始会讲故事了",
-          "link": "https://www.aibase.com/news/30034",
-          "date": "2026年7月31号 15:56",
+          "title": "Qwen3.8-Max上线:聚焦真实办公与复杂任务，下周将开源模型权重",
+          "link": "https://www.aibase.com/news/30059",
+          "date": "2026年8月3号 16:41",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "华为开源5050亿参数openPangu-2.0-Pro模型，权重与推理代码同步开放",
-          "link": "https://www.aibase.com/news/30030",
-          "date": "2026年7月31号 15:56",
+          "title": "腾讯张军实测 WorkBuddy\"项目\"功能：邀人、共享、协同，终于像一群人跟 AI 一起干活了",
+          "link": "https://www.aibase.com/news/30055",
+          "date": "2026年8月3号 16:41",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "MiniMax发布通用全模态模型H3，15秒2K音视频生成价格不到主流模型三分之一",
-          "link": "https://www.aibase.com/news/30026",
-          "date": "2026年7月31号 15:56",
+          "title": "DeepSeek V4-Flash API开启公测 速度与性价比全面碾压GPT",
+          "link": "https://www.aibase.com/news/30052",
+          "date": "2026年8月3号 16:41",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "谷歌将 Nano Banana2集成至 Google Earth，支持在线AI生成地理场景图像",
-          "link": "https://www.aibase.com/news/30021",
-          "date": "2026年7月31号 15:56",
+          "title": "北京 AGI Bar 创新玩法：消费即送 DeepSeek V4 Flash 无限量 API，AI 算力变身线下基础设施",
+          "link": "https://www.aibase.com/news/30050",
+          "date": "2026年8月3号 16:41",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "The Hands-on AI Engineer Playbook to Build RAG Apps for Production",
+          "link": "https://blog.dailydoseofds.com/p/the-hands-on-ai-engineer-playbook",
+          "date": "Mon, 03 Aug 2026 20:04:49 GMT",
+          "note": "Why RAG latency is a prefill problem, not a retrieval problem."
+        },
         {
           "title": "Build a Stock Market Research Agentic Workflow​",
           "link": "https://blog.dailydoseofds.com/p/build-a-stock-market-research-agentic-015",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/11-llm-evaluation-methods",
           "date": "Fri, 24 Jul 2026 22:04:42 GMT",
           "note": "Must-know for AI engineers (explained visually)."
-        },
-        {
-          "title": "5 Techniques to Optimize LLMs in Production",
-          "link": "https://blog.dailydoseofds.com/p/5-techniques-to-optimize-llms-in",
-          "date": "Thu, 23 Jul 2026 13:59:48 GMT",
-          "note": "...explained visually."
         }
       ]
     },
