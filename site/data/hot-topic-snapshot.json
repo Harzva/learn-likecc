@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-08-04T03:45:36.860797+00:00",
+    "generated_at": "2026-08-05T03:41:37.334872+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年8月3号 16:41AI 日报AI日报：Qwen3.8-Max上线；DeepSeek V4-Flash API开启公测；京东外卖发布AI智能头盔查看日报",
-        "link": "https://www.aibase.com/daily/30080"
+        "title": "2026年8月4号 16:17AI 日报AI日报：商汤甩出8B小钢炮 U1.5-Lite-Preview；MiniMax H3开源排除美国；微软自研全双工AI语音模型曝光查看日报",
+        "link": "https://www.aibase.com/daily/30106"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "德国法院重磅裁定：AI音乐生成器Suno侵犯版权，被驳回合理使用抗辩",
-          "link": "https://www.aibase.com/news/30079",
-          "date": "2026年8月3号 16:41",
+          "title": "面壁智能开源 ForgeStencil：双 Agent 一周自动优化 100+ 工业软件，全程零人工介入",
+          "link": "https://www.aibase.com/news/30105",
+          "date": "2026年8月4号 16:17",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "马斯克亲自下场演示：Grok 新功能能\"看片\"了，一段科比 AI 视频精准识破",
-          "link": "https://www.aibase.com/news/30074",
-          "date": "2026年8月3号 16:41",
+          "title": "商汤甩出 8B 小钢炮 U1.5-Lite-Preview：参数不大，却逼疯闭源模型",
+          "link": "https://www.aibase.com/news/30103",
+          "date": "2026年8月4号 16:17",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "谷歌暂停Google Earth AI图像生成功能:上线不足48小时即加强安全防护",
-          "link": "https://www.aibase.com/news/30065",
-          "date": "2026年8月3号 16:41",
+          "title": "微软为Teams加入“举报会议”功能，打击AI身份冒用和深度伪造",
+          "link": "https://www.aibase.com/news/30094",
+          "date": "2026年8月4号 16:17",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "京东外卖发布AI智能头盔:支持语音接单、路线导航和订单备注提醒",
-          "link": "https://www.aibase.com/news/30060",
-          "date": "2026年8月3号 16:41",
+          "title": "高德升级世界模型ABot-World-0:实现全球首个24小时连续稳定推理",
+          "link": "https://www.aibase.com/news/30092",
+          "date": "2026年8月4号 16:17",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Qwen3.8-Max上线:聚焦真实办公与复杂任务，下周将开源模型权重",
-          "link": "https://www.aibase.com/news/30059",
-          "date": "2026年8月3号 16:41",
+          "title": "ChatGPT Atlas 浏览器 8 月 9 日停止服务，用户需10天内导出书签",
+          "link": "https://www.aibase.com/news/30091",
+          "date": "2026年8月4号 16:17",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯张军实测 WorkBuddy\"项目\"功能：邀人、共享、协同，终于像一群人跟 AI 一起干活了",
-          "link": "https://www.aibase.com/news/30055",
-          "date": "2026年8月3号 16:41",
+          "title": "MiniMax H3 开源却把美国人挡在门外：不是封锁，是好莱坞版权官司逼出的自保",
+          "link": "https://www.aibase.com/news/30090",
+          "date": "2026年8月4号 16:17",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "DeepSeek V4-Flash API开启公测 速度与性价比全面碾压GPT",
-          "link": "https://www.aibase.com/news/30052",
-          "date": "2026年8月3号 16:41",
+          "title": "苹果诉 OpenAI 窃密案：前员工离职后，仍能借个人 iCloud 摸出机密文件",
+          "link": "https://www.aibase.com/news/30087",
+          "date": "2026年8月4号 16:17",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "北京 AGI Bar 创新玩法：消费即送 DeepSeek V4 Flash 无限量 API，AI 算力变身线下基础设施",
-          "link": "https://www.aibase.com/news/30050",
-          "date": "2026年8月3号 16:41",
+          "title": "微软首款自研全双工 AI 语音模型曝光：听说并行，16 种语言自由切换",
+          "link": "https://www.aibase.com/news/30084",
+          "date": "2026年8月4号 16:17",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Why Your Agent Remembers Everything and Understands Nothing",
+          "link": "https://blog.dailydoseofds.com/p/why-your-agent-remembers-everything",
+          "date": "Tue, 04 Aug 2026 21:12:13 GMT",
+          "note": "Building a pattern recognition layer for memory in production."
+        },
         {
           "title": "The Hands-on AI Engineer Playbook to Build RAG Apps for Production",
           "link": "https://blog.dailydoseofds.com/p/the-hands-on-ai-engineer-playbook",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/graph-engineering-clearly-explained",
           "date": "Mon, 27 Jul 2026 21:21:31 GMT",
           "note": "Covered with best practices from the industry."
-        },
-        {
-          "title": "11 LLM Evaluation Methods",
-          "link": "https://blog.dailydoseofds.com/p/11-llm-evaluation-methods",
-          "date": "Fri, 24 Jul 2026 22:04:42 GMT",
-          "note": "Must-know for AI engineers (explained visually)."
         }
       ]
     },
@@ -148,6 +148,12 @@
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
         {
+          "title": "Deploy local agents everywhere with LFM2.5-2.6B",
+          "link": "https://huggingface.co/blog/LiquidAI/lfm2-5-2-6b",
+          "date": "Tue, 04 Aug 2026 13:58:29 GMT",
+          "note": ""
+        },
+        {
           "title": "GPU Management: Why Idle GPUs Are the New Grounded Aircraft",
           "link": "https://huggingface.co/blog/Dharma-AI/gpu-management",
           "date": "Thu, 30 Jul 2026 15:09:09 GMT",
@@ -157,12 +163,6 @@
           "title": "The OlmoEarth Platform: Geospatial inference at planetary scale",
           "link": "https://huggingface.co/blog/allenai/olmoearth-infrastructure",
           "date": "Tue, 28 Jul 2026 16:27:42 GMT",
-          "note": ""
-        },
-        {
-          "title": "LFM2.5-Encoders for Fast Long-Context Inference on CPU",
-          "link": "https://huggingface.co/blog/LiquidAI/lfm2-5-encoders",
-          "date": "Tue, 28 Jul 2026 15:01:45 GMT",
           "note": ""
         },
         {
