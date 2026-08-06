@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-08-05T03:41:37.334872+00:00",
+    "generated_at": "2026-08-06T03:47:35.130375+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年8月4号 16:17AI 日报AI日报：商汤甩出8B小钢炮 U1.5-Lite-Preview；MiniMax H3开源排除美国；微软自研全双工AI语音模型曝光查看日报",
-        "link": "https://www.aibase.com/daily/30106"
+        "title": "2026年8月5号 16:24AI 日报AI日报：京东开源视频实时编辑模型；Qwen-Image-3.0上线；腾讯混元发布Hy ASR 3.0 preview查看日报",
+        "link": "https://www.aibase.com/daily/30136"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "面壁智能开源 ForgeStencil：双 Agent 一周自动优化 100+ 工业软件，全程零人工介入",
-          "link": "https://www.aibase.com/news/30105",
-          "date": "2026年8月4号 16:17",
+          "title": "Mistral 推出 Shieldstral：3B 小模型单卡 16GB 跑起多模态审核，号称拿下开源 SOTA",
+          "link": "https://www.aibase.com/news/30132",
+          "date": "2026年8月5号 16:24",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "商汤甩出 8B 小钢炮 U1.5-Lite-Preview：参数不大，却逼疯闭源模型",
-          "link": "https://www.aibase.com/news/30103",
-          "date": "2026年8月4号 16:17",
+          "title": "一签约5.2万元!机器人独角兽宇树科技冲击科创板，发行价预估超百元",
+          "link": "https://www.aibase.com/news/30129",
+          "date": "2026年8月5号 16:24",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "微软为Teams加入“举报会议”功能，打击AI身份冒用和深度伪造",
-          "link": "https://www.aibase.com/news/30094",
-          "date": "2026年8月4号 16:17",
+          "title": "字节 Seed 甩出 SeedRealtime：音视频全双工大模型上车豆包，边看边听边说不再\"卡拍\"",
+          "link": "https://www.aibase.com/news/30128",
+          "date": "2026年8月5号 16:24",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "高德升级世界模型ABot-World-0:实现全球首个24小时连续稳定推理",
-          "link": "https://www.aibase.com/news/30092",
-          "date": "2026年8月4号 16:17",
+          "title": "阿里千问图像生成模型Qwen-Image-3. 0 上线 开放API且0. 18 元/张起",
+          "link": "https://www.aibase.com/news/30126",
+          "date": "2026年8月5号 16:24",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "ChatGPT Atlas 浏览器 8 月 9 日停止服务，用户需10天内导出书签",
-          "link": "https://www.aibase.com/news/30091",
-          "date": "2026年8月4号 16:17",
+          "title": "京东开源视频实时编辑模型：30 帧秒级推理，边看边改重新定义视频创作",
+          "link": "https://www.aibase.com/news/30123",
+          "date": "2026年8月5号 16:24",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "MiniMax H3 开源却把美国人挡在门外：不是封锁，是好莱坞版权官司逼出的自保",
-          "link": "https://www.aibase.com/news/30090",
-          "date": "2026年8月4号 16:17",
+          "title": "影石 AI 硬件牵手阿里千问：Go Ultra 口袋相机率先装上语音助手 Kira",
+          "link": "https://www.aibase.com/news/30118",
+          "date": "2026年8月5号 16:24",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "苹果诉 OpenAI 窃密案：前员工离职后，仍能借个人 iCloud 摸出机密文件",
-          "link": "https://www.aibase.com/news/30087",
-          "date": "2026年8月4号 16:17",
+          "title": "马斯克放话：Grok 4.6 下周登场，SpaceX 全部历史数据将灌入模型训练",
+          "link": "https://www.aibase.com/news/30111",
+          "date": "2026年8月5号 16:24",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "微软首款自研全双工 AI 语音模型曝光：听说并行，16 种语言自由切换",
-          "link": "https://www.aibase.com/news/30084",
-          "date": "2026年8月4号 16:17",
+          "title": "腾讯混元发布 Hy ASR 3.0 preview：语音识别不再逐字硬转，而是真的听懂了语境",
+          "link": "https://www.aibase.com/news/30110",
+          "date": "2026年8月5号 16:24",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "[Hands-on] How to Serve 5 Models On One GPU",
+          "link": "https://blog.dailydoseofds.com/p/hands-on-how-to-serve-5-models-on",
+          "date": "Wed, 05 Aug 2026 20:02:24 GMT",
+          "note": "How small specialized models are changing inference infrastructure, and why serving them efficiently takes more than standard serving frameworks."
+        },
         {
           "title": "Why Your Agent Remembers Everything and Understands Nothing",
           "link": "https://blog.dailydoseofds.com/p/why-your-agent-remembers-everything",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/serverless-vs-on-prem-vs-edge-deployment",
           "date": "Tue, 28 Jul 2026 21:22:12 GMT",
           "note": "...explained visually."
-        },
-        {
-          "title": "Graph Engineering Clearly Explained!",
-          "link": "https://blog.dailydoseofds.com/p/graph-engineering-clearly-explained",
-          "date": "Mon, 27 Jul 2026 21:21:31 GMT",
-          "note": "Covered with best practices from the industry."
         }
       ]
     },
