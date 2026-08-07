@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-08-06T03:47:35.130375+00:00",
+    "generated_at": "2026-08-07T03:24:22.439475+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年8月5号 16:24AI 日报AI日报：京东开源视频实时编辑模型；Qwen-Image-3.0上线；腾讯混元发布Hy ASR 3.0 preview查看日报",
-        "link": "https://www.aibase.com/daily/30136"
+        "title": "2026年8月6号 17:07AI 日报AI日报：DeepSeek将上调API价格；美图上线AI平台MeituHub；小红书将全面加码 AI查看日报",
+        "link": "https://www.aibase.com/daily/30171"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "Mistral 推出 Shieldstral：3B 小模型单卡 16GB 跑起多模态审核，号称拿下开源 SOTA",
-          "link": "https://www.aibase.com/news/30132",
-          "date": "2026年8月5号 16:24",
+          "title": "OpenAI披露智能体暗中建留言板，联合发起网络攻击",
+          "link": "https://www.aibase.com/news/30169",
+          "date": "2026年8月6号 17:07",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "一签约5.2万元!机器人独角兽宇树科技冲击科创板，发行价预估超百元",
-          "link": "https://www.aibase.com/news/30129",
-          "date": "2026年8月5号 16:24",
+          "title": "报道称小红书全面加码 AI，从幕后走向台前竞逐 AI 社交",
+          "link": "https://www.aibase.com/news/30166",
+          "date": "2026年8月6号 17:07",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "字节 Seed 甩出 SeedRealtime：音视频全双工大模型上车豆包，边看边听边说不再\"卡拍\"",
-          "link": "https://www.aibase.com/news/30128",
-          "date": "2026年8月5号 16:24",
+          "title": "张一鸣内部发声：字节模型拒绝“AI蒸馏” 坚持长期主义",
+          "link": "https://www.aibase.com/news/30165",
+          "date": "2026年8月6号 17:07",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阿里千问图像生成模型Qwen-Image-3. 0 上线 开放API且0. 18 元/张起",
-          "link": "https://www.aibase.com/news/30126",
-          "date": "2026年8月5号 16:24",
+          "title": "百度整合dodo与百度搭子团队，统一推进AI办公智能体业务",
+          "link": "https://www.aibase.com/news/30162",
+          "date": "2026年8月6号 17:07",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "京东开源视频实时编辑模型：30 帧秒级推理，边看边改重新定义视频创作",
-          "link": "https://www.aibase.com/news/30123",
-          "date": "2026年8月5号 16:24",
+          "title": "阿里达摩院启动2027届“阿里星”计划，开放15项AI前沿研究课题",
+          "link": "https://www.aibase.com/news/30160",
+          "date": "2026年8月6号 17:07",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "影石 AI 硬件牵手阿里千问：Go Ultra 口袋相机率先装上语音助手 Kira",
-          "link": "https://www.aibase.com/news/30118",
-          "date": "2026年8月5号 16:24",
+          "title": "MiniMax纳入港股通标的名单，股价涨超17%受市场关注",
+          "link": "https://www.aibase.com/news/30154",
+          "date": "2026年8月6号 17:07",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "马斯克放话：Grok 4.6 下周登场，SpaceX 全部历史数据将灌入模型训练",
-          "link": "https://www.aibase.com/news/30111",
-          "date": "2026年8月5号 16:24",
+          "title": "DeepSeek宣布近期上调API服务价格，具体方案将另行公布",
+          "link": "https://www.aibase.com/news/30153",
+          "date": "2026年8月6号 17:07",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯混元发布 Hy ASR 3.0 preview：语音识别不再逐字硬转，而是真的听懂了语境",
-          "link": "https://www.aibase.com/news/30110",
-          "date": "2026年8月5号 16:24",
+          "title": "美图上线AI影像生产线平台MeituHub，支持企业搭建专属视觉工作流",
+          "link": "https://www.aibase.com/news/30147",
+          "date": "2026年8月6号 17:07",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "The Missing Piece of Agent Self-Improvement",
+          "link": "https://blog.dailydoseofds.com/p/the-missing-piece-of-agent-self-improvement",
+          "date": "Thu, 06 Aug 2026 18:40:41 GMT",
+          "note": "...explained step-by-step with code."
+        },
         {
           "title": "[Hands-on] How to Serve 5 Models On One GPU",
           "link": "https://blog.dailydoseofds.com/p/hands-on-how-to-serve-5-models-on",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/6-llm-deployment-formats-in-production",
           "date": "Wed, 29 Jul 2026 20:38:40 GMT",
           "note": "...explained visually."
-        },
-        {
-          "title": "Serverless vs. On-prem vs. Edge Deployment",
-          "link": "https://blog.dailydoseofds.com/p/serverless-vs-on-prem-vs-edge-deployment",
-          "date": "Tue, 28 Jul 2026 21:22:12 GMT",
-          "note": "...explained visually."
         }
       ]
     },
@@ -147,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Baseten on Hugging Face Inference Providers 🔥",
+          "link": "https://huggingface.co/blog/baseten",
+          "date": "Thu, 06 Aug 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "Deploy local agents everywhere with LFM2.5-2.6B",
           "link": "https://huggingface.co/blog/LiquidAI/lfm2-5-2-6b",
@@ -187,12 +193,6 @@
           "title": "Grabette: an open system to record robot-manipulation data",
           "link": "https://huggingface.co/blog/grabette",
           "date": "Tue, 21 Jul 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Newer Models, Same Advantage",
-          "link": "https://huggingface.co/blog/Dharma-AI/newer-models-same-advantages",
-          "date": "Thu, 16 Jul 2026 11:49:48 GMT",
           "note": ""
         }
       ]
