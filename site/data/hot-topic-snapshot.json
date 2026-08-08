@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-08-07T03:24:22.439475+00:00",
+    "generated_at": "2026-08-08T02:26:35.236447+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年8月6号 17:07AI 日报AI日报：DeepSeek将上调API价格；美图上线AI平台MeituHub；小红书将全面加码 AI查看日报",
-        "link": "https://www.aibase.com/daily/30171"
+        "title": "2026年8月7号 16:52AI 日报AI日报：OpenAI取消ChatGPT文本聊天限制；小米智能摄像机4 Max AI变焦版开售；Suno 宣布给AI歌曲加水印查看日报",
+        "link": "https://www.aibase.com/daily/30198"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "OpenAI披露智能体暗中建留言板，联合发起网络攻击",
-          "link": "https://www.aibase.com/news/30169",
-          "date": "2026年8月6号 17:07",
+          "title": "火山引擎上线Seedance2.5API，视频生成能力全面升级",
+          "link": "https://www.aibase.com/news/30196",
+          "date": "2026年8月7号 16:52",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "报道称小红书全面加码 AI，从幕后走向台前竞逐 AI 社交",
-          "link": "https://www.aibase.com/news/30166",
-          "date": "2026年8月6号 17:07",
+          "title": "小米智能摄像机 4 Max AI 变焦版现货开售：塞了一颗 AI 大模型进去，定价 799 元",
+          "link": "https://www.aibase.com/news/30195",
+          "date": "2026年8月7号 16:52",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "张一鸣内部发声：字节模型拒绝“AI蒸馏” 坚持长期主义",
-          "link": "https://www.aibase.com/news/30165",
-          "date": "2026年8月6号 17:07",
+          "title": "影石 GO Ultra 上线 AI 语音助手：分区域接入千问与 Gemini，拇指相机变身个人 AI 入口",
+          "link": "https://www.aibase.com/news/30193",
+          "date": "2026年8月7号 16:52",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "百度整合dodo与百度搭子团队，统一推进AI办公智能体业务",
-          "link": "https://www.aibase.com/news/30162",
-          "date": "2026年8月6号 17:07",
+          "title": "谷歌掏出离线翻译硬件 Gemma Translator：树莓派塞进 51 亿参数，全程不联网也能跨语种对话",
+          "link": "https://www.aibase.com/news/30191",
+          "date": "2026年8月7号 16:52",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阿里达摩院启动2027届“阿里星”计划，开放15项AI前沿研究课题",
-          "link": "https://www.aibase.com/news/30160",
-          "date": "2026年8月6号 17:07",
+          "title": "OpenAI 首款 AI 硬件曝光：甜甜圈造型、冰球大小，售价 300–400 美元，2027 年有望发布",
+          "link": "https://www.aibase.com/news/30187",
+          "date": "2026年8月7号 16:52",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "MiniMax纳入港股通标的名单，股价涨超17%受市场关注",
-          "link": "https://www.aibase.com/news/30154",
-          "date": "2026年8月6号 17:07",
+          "title": "ChatGPT 免费版史诗升级：GPT-5.6 Luna 无限使用，Plus/Pro 用户也有专属福利",
+          "link": "https://www.aibase.com/news/30180",
+          "date": "2026年8月7号 16:52",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "DeepSeek宣布近期上调API服务价格，具体方案将另行公布",
-          "link": "https://www.aibase.com/news/30153",
-          "date": "2026年8月6号 17:07",
+          "title": "宇树科技IPO战略配售曝光:DeepSeek获配93.3万股，锁定36个月",
+          "link": "https://www.aibase.com/news/30178",
+          "date": "2026年8月7号 16:52",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "美图上线AI影像生产线平台MeituHub，支持企业搭建专属视觉工作流",
-          "link": "https://www.aibase.com/news/30147",
-          "date": "2026年8月6号 17:07",
+          "title": "Suno 宣布给 AI 歌曲加水印，还签了版权检测协议",
+          "link": "https://www.aibase.com/news/30177",
+          "date": "2026年8月7号 16:52",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "[Hands-on] Build Semantic Search Inside Your Database Without an Embedding Pipeline",
+          "link": "https://blog.dailydoseofds.com/p/hands-on-build-semantic-search-inside",
+          "date": "Fri, 07 Aug 2026 20:41:13 GMT",
+          "note": "...explained with code."
+        },
         {
           "title": "The Missing Piece of Agent Self-Improvement",
           "link": "https://blog.dailydoseofds.com/p/the-missing-piece-of-agent-self-improvement",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/why-86-of-claude-code-bill-has-nothing",
           "date": "Thu, 30 Jul 2026 22:46:30 GMT",
           "note": "...and a solution to fix Claude bills."
-        },
-        {
-          "title": "6 LLM Deployment Formats in Production",
-          "link": "https://blog.dailydoseofds.com/p/6-llm-deployment-formats-in-production",
-          "date": "Wed, 29 Jul 2026 20:38:40 GMT",
-          "note": "...explained visually."
         }
       ]
     },
@@ -148,6 +148,12 @@
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
         {
+          "title": "TutorMoments: Do AI tutors know when to help and when to hold back?",
+          "link": "https://huggingface.co/blog/allenai/tutormoments",
+          "date": "Fri, 07 Aug 2026 17:53:32 GMT",
+          "note": ""
+        },
+        {
           "title": "Baseten on Hugging Face Inference Providers 🔥",
           "link": "https://huggingface.co/blog/baseten",
           "date": "Thu, 06 Aug 2026 00:00:00 GMT",
@@ -163,12 +169,6 @@
           "title": "GPU Management: Why Idle GPUs Are the New Grounded Aircraft",
           "link": "https://huggingface.co/blog/Dharma-AI/gpu-management",
           "date": "Thu, 30 Jul 2026 15:09:09 GMT",
-          "note": ""
-        },
-        {
-          "title": "The OlmoEarth Platform: Geospatial inference at planetary scale",
-          "link": "https://huggingface.co/blog/allenai/olmoearth-infrastructure",
-          "date": "Tue, 28 Jul 2026 16:27:42 GMT",
           "note": ""
         },
         {
