@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-08-09T02:34:05.149339+00:00",
+    "generated_at": "2026-08-10T02:39:28.059420+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -85,6 +85,12 @@
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
         {
+          "title": "A 10-week Roadmap to Run LLMs in Production",
+          "link": "https://blog.dailydoseofds.com/p/a-10-week-roadmap-to-run-llms-in",
+          "date": "Sun, 09 Aug 2026 20:17:07 GMT",
+          "note": "...covered with hands-on resources."
+        },
+        {
           "title": "[Hands-on] Build Semantic Search Inside Your Database Without an Embedding Pipeline",
           "link": "https://blog.dailydoseofds.com/p/hands-on-build-semantic-search-inside",
           "date": "Fri, 07 Aug 2026 20:41:13 GMT",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/6-automatic-optimization-methods",
           "date": "Fri, 31 Jul 2026 20:48:11 GMT",
           "note": "...explained visually and with practical tradeoffs."
-        },
-        {
-          "title": "Why 86% of Claude Code Bill Has Nothing to Do With Your Prompts",
-          "link": "https://blog.dailydoseofds.com/p/why-86-of-claude-code-bill-has-nothing",
-          "date": "Thu, 30 Jul 2026 22:46:30 GMT",
-          "note": "...and a solution to fix Claude bills."
         }
       ]
     },
