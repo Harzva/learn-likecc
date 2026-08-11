@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-08-10T02:39:28.059420+00:00",
+    "generated_at": "2026-08-11T02:32:44.968881+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年8月7号 16:52AI 日报AI日报：OpenAI取消ChatGPT文本聊天限制；小米智能摄像机4 Max AI变焦版开售；Suno 宣布给AI歌曲加水印查看日报",
-        "link": "https://www.aibase.com/daily/30198"
+        "title": "2026年8月10号 16:37AI 日报AI日报：xAI Imagine Image2.0上线；豆包推荐酒店也开始收费；阿里Meoo秒悟上线团队版查看日报",
+        "link": "https://www.aibase.com/daily/30222"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "火山引擎上线Seedance2.5API，视频生成能力全面升级",
-          "link": "https://www.aibase.com/news/30196",
-          "date": "2026年8月7号 16:52",
+          "title": "阿里Meoo秒悟上线团队版，接入Qwen-3.8-Max模型",
+          "link": "https://www.aibase.com/news/30221",
+          "date": "2026年8月10号 16:37",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "小米智能摄像机 4 Max AI 变焦版现货开售：塞了一颗 AI 大模型进去，定价 799 元",
-          "link": "https://www.aibase.com/news/30195",
-          "date": "2026年8月7号 16:52",
+          "title": "英伟达首款开源全双工语音模型VoiceChat 11B正式发布",
+          "link": "https://www.aibase.com/news/30220",
+          "date": "2026年8月10号 16:37",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "影石 GO Ultra 上线 AI 语音助手：分区域接入千问与 Gemini，拇指相机变身个人 AI 入口",
-          "link": "https://www.aibase.com/news/30193",
-          "date": "2026年8月7号 16:52",
+          "title": "阿里千问开放平台正式上线：支持手机、PC及AI眼镜，覆盖租房与寄快递等十余大生活领域",
+          "link": "https://www.aibase.com/news/30219",
+          "date": "2026年8月10号 16:37",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "谷歌掏出离线翻译硬件 Gemma Translator：树莓派塞进 51 亿参数，全程不联网也能跨语种对话",
-          "link": "https://www.aibase.com/news/30191",
-          "date": "2026年8月7号 16:52",
+          "title": "豆包推荐酒店也开始收费：抖音来客新增特定渠道服务费政策",
+          "link": "https://www.aibase.com/news/30217",
+          "date": "2026年8月10号 16:37",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenAI 首款 AI 硬件曝光：甜甜圈造型、冰球大小，售价 300–400 美元，2027 年有望发布",
-          "link": "https://www.aibase.com/news/30187",
-          "date": "2026年8月7号 16:52",
+          "title": "支持5张参考图融合与智能扩图，xAI Imagine Image2.0正式上线",
+          "link": "https://www.aibase.com/news/30211",
+          "date": "2026年8月10号 16:37",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "ChatGPT 免费版史诗升级：GPT-5.6 Luna 无限使用，Plus/Pro 用户也有专属福利",
-          "link": "https://www.aibase.com/news/30180",
-          "date": "2026年8月7号 16:52",
+          "title": "腾讯WorkBuddy App更新上线，支持手机端查看并发起AI任务",
+          "link": "https://www.aibase.com/news/30208",
+          "date": "2026年8月10号 16:37",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "宇树科技IPO战略配售曝光:DeepSeek获配93.3万股，锁定36个月",
-          "link": "https://www.aibase.com/news/30178",
-          "date": "2026年8月7号 16:52",
+          "title": "AI语音交互再升级：OpenAI桌面端ChatGPT上线新功能，支持语音操控电脑执行多步骤任务",
+          "link": "https://www.aibase.com/news/30207",
+          "date": "2026年8月10号 16:37",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Suno 宣布给 AI 歌曲加水印，还签了版权检测协议",
-          "link": "https://www.aibase.com/news/30177",
-          "date": "2026年8月7号 16:52",
+          "title": "微信灰度上线“AI帮写”，朋友圈文案可由小微生成",
+          "link": "https://www.aibase.com/news/30205",
+          "date": "2026年8月10号 16:37",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "How to Query Billion+ Rows on Postgres Without the Overhead",
+          "link": "https://blog.dailydoseofds.com/p/how-to-query-billion-rows-on-postgres",
+          "date": "Mon, 10 Aug 2026 13:48:21 GMT",
+          "note": "...explained as a full setup guide."
+        },
         {
           "title": "A 10-week Roadmap to Run LLMs in Production",
           "link": "https://blog.dailydoseofds.com/p/a-10-week-roadmap-to-run-llms-in",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/build-a-stock-market-research-agentic-015",
           "date": "Sat, 01 Aug 2026 19:38:10 GMT",
           "note": "...using a no-code drag-and-drop builder."
-        },
-        {
-          "title": "6 Automatic Optimization Methods for LLM Systems",
-          "link": "https://blog.dailydoseofds.com/p/6-automatic-optimization-methods",
-          "date": "Fri, 31 Jul 2026 20:48:11 GMT",
-          "note": "...explained visually and with practical tradeoffs."
         }
       ]
     },
@@ -147,6 +147,24 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Build Low-Latency Multilingual Voice Agents: Open Weights & Full Deployment Control with NVIDIA Magpie TTS",
+          "link": "https://huggingface.co/blog/nvidia/magpie-tts-multilingual-voice-agents",
+          "date": "Mon, 10 Aug 2026 16:25:36 GMT",
+          "note": ""
+        },
+        {
+          "title": "Making Knowledge Distillation Cheap Enough to Run at Scale",
+          "link": "https://huggingface.co/blog/MultiverseComputingCAI/efficient-knowledge-distillation",
+          "date": "Mon, 10 Aug 2026 10:05:36 GMT",
+          "note": ""
+        },
+        {
+          "title": "Meta is back with Muse Glimmer: local, agentic, multimodal, and open source",
+          "link": "https://huggingface.co/blog/muse-glimmer",
+          "date": "Mon, 10 Aug 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "TutorMoments: Do AI tutors know when to help and when to hold back?",
           "link": "https://huggingface.co/blog/allenai/tutormoments",
@@ -175,24 +193,6 @@
           "title": "NVIDIA Cosmos-H-Dreams: Bringing Real-Time Generative Simulation to Surgical Robotics",
           "link": "https://huggingface.co/blog/nvidia/cosmos-h-dreams",
           "date": "Mon, 27 Jul 2026 09:32:20 GMT",
-          "note": ""
-        },
-        {
-          "title": "Anatomy of a Frontier Lab Agent Intrusion: A Technical Timeline of the July 2026 Incident",
-          "link": "https://huggingface.co/blog/agent-intrusion-technical-timeline",
-          "date": "Mon, 27 Jul 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Bringing Nunchaku 4-bit Diffusion Inference to Diffusers",
-          "link": "https://huggingface.co/blog/nunchaku-diffusers",
-          "date": "Thu, 23 Jul 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Grabette: an open system to record robot-manipulation data",
-          "link": "https://huggingface.co/blog/grabette",
-          "date": "Tue, 21 Jul 2026 00:00:00 GMT",
           "note": ""
         }
       ]
