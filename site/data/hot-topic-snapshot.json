@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-08-11T02:32:44.968881+00:00",
+    "generated_at": "2026-08-12T03:02:42.372309+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年8月10号 16:37AI 日报AI日报：xAI Imagine Image2.0上线；豆包推荐酒店也开始收费；阿里Meoo秒悟上线团队版查看日报",
-        "link": "https://www.aibase.com/daily/30222"
+        "title": "2026年8月11号 16:47AI 日报AI日报：豆包接入抖音来客酒店交易；千问上线AI硬件开放平台；腾讯开源全新浏览器自动化工具 BrowserSkill查看日报",
+        "link": "https://www.aibase.com/daily/30252"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "阿里Meoo秒悟上线团队版，接入Qwen-3.8-Max模型",
-          "link": "https://www.aibase.com/news/30221",
-          "date": "2026年8月10号 16:37",
+          "title": "段永平回应要不要投梁文锋：没投过大模型，但盼师弟成功",
+          "link": "https://www.aibase.com/news/30246",
+          "date": "2026年8月11号 16:47",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "英伟达首款开源全双工语音模型VoiceChat 11B正式发布",
-          "link": "https://www.aibase.com/news/30220",
-          "date": "2026年8月10号 16:37",
+          "title": "缓存命中率超98%！ZCode升级为GLM打造最佳编程“拍档”",
+          "link": "https://www.aibase.com/news/30242",
+          "date": "2026年8月11号 16:47",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阿里千问开放平台正式上线：支持手机、PC及AI眼镜，覆盖租房与寄快递等十余大生活领域",
-          "link": "https://www.aibase.com/news/30219",
-          "date": "2026年8月10号 16:37",
+          "title": "千问上线AI硬件开放平台，支持开发者自建眼镜“超能力”",
+          "link": "https://www.aibase.com/news/30239",
+          "date": "2026年8月11号 16:47",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "豆包推荐酒店也开始收费：抖音来客新增特定渠道服务费政策",
-          "link": "https://www.aibase.com/news/30217",
-          "date": "2026年8月10号 16:37",
+          "title": "Claude开始给所有输出偷偷盖章：Anthropic上线文本水印，AI生成内容将无处遁形",
+          "link": "https://www.aibase.com/news/30237",
+          "date": "2026年8月11号 16:47",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "支持5张参考图融合与智能扩图，xAI Imagine Image2.0正式上线",
-          "link": "https://www.aibase.com/news/30211",
-          "date": "2026年8月10号 16:37",
+          "title": "腾讯开源全新浏览器自动化工具 BrowserSkill：让 AI 智能体拥有独立干活的双手",
+          "link": "https://www.aibase.com/news/30233",
+          "date": "2026年8月11号 16:47",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯WorkBuddy App更新上线，支持手机端查看并发起AI任务",
-          "link": "https://www.aibase.com/news/30208",
-          "date": "2026年8月10号 16:37",
+          "title": "Meta开源30B参数Muse Glimmer，瞄准消费级硬件本地AI Agent",
+          "link": "https://www.aibase.com/news/30231",
+          "date": "2026年8月11号 16:47",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "AI语音交互再升级：OpenAI桌面端ChatGPT上线新功能，支持语音操控电脑执行多步骤任务",
-          "link": "https://www.aibase.com/news/30207",
-          "date": "2026年8月10号 16:37",
+          "title": "千问 App 推出付费方案:办公助理最高128元/月，AI视频生成单独计费",
+          "link": "https://www.aibase.com/news/30230",
+          "date": "2026年8月11号 16:47",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "微信灰度上线“AI帮写”，朋友圈文案可由小微生成",
-          "link": "https://www.aibase.com/news/30205",
-          "date": "2026年8月10号 16:37",
+          "title": "豆包接入抖音来客酒店交易收取约12%服务费，官方回应不涉及广告竞价",
+          "link": "https://www.aibase.com/news/30226",
+          "date": "2026年8月11号 16:47",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Karpathy's Full Agentic Engineering Lifecycle using Google's Agents-CLI",
+          "link": "https://blog.dailydoseofds.com/p/karpathys-full-agentic-engineering",
+          "date": "Tue, 11 Aug 2026 18:53:26 GMT",
+          "note": "...explained as step-by-step guide."
+        },
         {
           "title": "How to Query Billion+ Rows on Postgres Without the Overhead",
           "link": "https://blog.dailydoseofds.com/p/how-to-query-billion-rows-on-postgres",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/the-hands-on-ai-engineer-playbook",
           "date": "Mon, 03 Aug 2026 20:04:49 GMT",
           "note": "Why RAG latency is a prefill problem, not a retrieval problem."
-        },
-        {
-          "title": "Build a Stock Market Research Agentic Workflow​",
-          "link": "https://blog.dailydoseofds.com/p/build-a-stock-market-research-agentic-015",
-          "date": "Sat, 01 Aug 2026 19:38:10 GMT",
-          "note": "...using a no-code drag-and-drop builder."
         }
       ]
     },
@@ -147,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Thinking of ACE? We Can Do It with Fewer Tokens",
+          "link": "https://huggingface.co/blog/ibm-research/altk-evolve-sldd",
+          "date": "Tue, 11 Aug 2026 13:37:10 GMT",
+          "note": ""
+        },
         {
           "title": "Build Low-Latency Multilingual Voice Agents: Open Weights & Full Deployment Control with NVIDIA Magpie TTS",
           "link": "https://huggingface.co/blog/nvidia/magpie-tts-multilingual-voice-agents",
@@ -187,12 +193,6 @@
           "title": "GPU Management: Why Idle GPUs Are the New Grounded Aircraft",
           "link": "https://huggingface.co/blog/Dharma-AI/gpu-management",
           "date": "Thu, 30 Jul 2026 15:09:09 GMT",
-          "note": ""
-        },
-        {
-          "title": "NVIDIA Cosmos-H-Dreams: Bringing Real-Time Generative Simulation to Surgical Robotics",
-          "link": "https://huggingface.co/blog/nvidia/cosmos-h-dreams",
-          "date": "Mon, 27 Jul 2026 09:32:20 GMT",
           "note": ""
         }
       ]
