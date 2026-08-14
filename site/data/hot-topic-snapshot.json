@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-08-13T03:05:51.078551+00:00",
+    "generated_at": "2026-08-14T03:04:34.797437+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年8月12号 16:39AI 日报AI日报：SpaceXAI 推出Grok Bot；OpenAI发布Linux版ChatGPT；LTX正式发布开放世界模型LTX-2.5查看日报",
-        "link": "https://www.aibase.com/daily/30286"
+        "title": "2026年8月13号 16:42AI 日报AI日报：DeepSeek V4 Pro正式版亮相；小红书或推进“AI导购”功能；Grok 4.6正式发布查看日报",
+        "link": "https://www.aibase.com/daily/30321"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "字节跳动再落AI关键一子，新一级部门浮出水面",
-          "link": "https://www.aibase.com/news/30284",
-          "date": "2026年8月12号 16:39",
+          "title": "CodeBuddy全系产品升级至DeepSeek-V4-Pro正式版",
+          "link": "https://www.aibase.com/news/30316",
+          "date": "2026年8月13号 16:42",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "前通义千问负责人林俊旸官宣创业 Pragmatik Labs获数亿美元融资估值达20亿",
-          "link": "https://www.aibase.com/news/30283",
-          "date": "2026年8月12号 16:39",
+          "title": "韩国AI新王Solar Pro 4登场，直接硬刚全球顶尖大模型？",
+          "link": "https://www.aibase.com/news/30315",
+          "date": "2026年8月13号 16:42",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "LTX正式发布开放世界模型LTX-2.5:原生集成ComfyUI且中小企业免费",
-          "link": "https://www.aibase.com/news/30277",
-          "date": "2026年8月12号 16:39",
+          "title": "鸿蒙版支付宝升级上线 AI助手“阿宝”开启全平台公测",
+          "link": "https://www.aibase.com/news/30313",
+          "date": "2026年8月13号 16:42",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Manus官宣脱离Meta恢复独立运营，部分用户数据8月23日前需备份",
-          "link": "https://www.aibase.com/news/30268",
-          "date": "2026年8月12号 16:39",
+          "title": "千问开放平台上线菜鸟智能体:“你只管说需求，AI帮你匹配寄件方案”",
+          "link": "https://www.aibase.com/news/30306",
+          "date": "2026年8月13号 16:42",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "《林离》上线不到一个月宣布停运，米哈游AI陪伴探索暂告一段落",
-          "link": "https://www.aibase.com/news/30267",
-          "date": "2026年8月12号 16:39",
+          "title": "小红书被曝推进“AI导购”功能，布局前台AI产品化",
+          "link": "https://www.aibase.com/news/30305",
+          "date": "2026年8月13号 16:42",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenAI 正式发布 Linux 版 ChatGPT 预览应用",
-          "link": "https://www.aibase.com/news/30260",
-          "date": "2026年8月12号 16:39",
+          "title": "荣耀Robot Phone全球发布：搭载Agentic OS与全新YOYO Pro，开启多模态智能新体验",
+          "link": "https://www.aibase.com/news/30299",
+          "date": "2026年8月13号 16:42",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "ChatGPT 企业版推出 Premium 席位：用量提升 5 倍，扫除五小时限制，企业 AI 定价再分层",
-          "link": "https://www.aibase.com/news/30258",
-          "date": "2026年8月12号 16:39",
+          "title": "深夜震撼发布：DeepSeek V4 Pro正式版亮相，比肩顶尖Fable大模型",
+          "link": "https://www.aibase.com/news/30296",
+          "date": "2026年8月13号 16:42",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "马斯克旗下 SpaceXAI 推出 Grok Bot：多智能体协同办公时代来了",
-          "link": "https://www.aibase.com/news/30257",
-          "date": "2026年8月12号 16:39",
+          "title": "性能狂飙！Grok 4.6正式发布，实力比肩GPT-5.6 Sol",
+          "link": "https://www.aibase.com/news/30293",
+          "date": "2026年8月13号 16:42",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Continuous Batching in LLMs",
+          "link": "https://blog.dailydoseofds.com/p/continuous-batching-in-llms",
+          "date": "Thu, 13 Aug 2026 20:01:13 GMT",
+          "note": "The technique behind vLLM's 23x throughput jump and the default scheduler in every serving engine."
+        },
         {
           "title": "[Hands-on] Audio RAG with 200x Cheaper Vector DB Costs",
           "link": "https://blog.dailydoseofds.com/p/hands-on-audio-rag-with-200x-cheaper-4f0",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/hands-on-how-to-serve-5-models-on",
           "date": "Wed, 05 Aug 2026 20:02:24 GMT",
           "note": "How small specialized models are changing inference infrastructure, and why serving them efficiently takes more than standard serving frameworks."
-        },
-        {
-          "title": "Why Your Agent Remembers Everything and Understands Nothing",
-          "link": "https://blog.dailydoseofds.com/p/why-your-agent-remembers-everything",
-          "date": "Tue, 04 Aug 2026 21:12:13 GMT",
-          "note": "Building a pattern recognition layer for memory in production."
         }
       ]
     },
@@ -147,6 +147,18 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Record, train, and deploy from one place with Strands Agents, LeRobot, and Hugging Face Storage Buckets",
+          "link": "https://huggingface.co/blog/amazon/strands-lerobot-streaming-data-loop",
+          "date": "Thu, 13 Aug 2026 17:16:04 GMT",
+          "note": ""
+        },
+        {
+          "title": "What We Learned by Reproducing 2,200 papers from ICML",
+          "link": "https://huggingface.co/blog/icml-2026-open-reproductions",
+          "date": "Thu, 13 Aug 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "Introducing OlmoEarth embeddings: Custom embedding exports from OlmoEarth Studio for downstream analysis",
           "link": "https://huggingface.co/blog/allenai/olmoearth-embeddings",
@@ -181,18 +193,6 @@
           "title": "Meta is back with Muse Glimmer: local, agentic, multimodal, and open source",
           "link": "https://huggingface.co/blog/muse-glimmer",
           "date": "Mon, 10 Aug 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Baseten on Hugging Face Inference Providers 🔥",
-          "link": "https://huggingface.co/blog/baseten",
-          "date": "Thu, 06 Aug 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "GPU Management: Why Idle GPUs Are the New Grounded Aircraft",
-          "link": "https://huggingface.co/blog/Dharma-AI/gpu-management",
-          "date": "Thu, 30 Jul 2026 15:09:09 GMT",
           "note": ""
         }
       ]
