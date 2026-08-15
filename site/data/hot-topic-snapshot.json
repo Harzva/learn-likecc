@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-08-14T03:04:34.797437+00:00",
+    "generated_at": "2026-08-15T01:54:53.332803+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年8月13号 16:42AI 日报AI日报：DeepSeek V4 Pro正式版亮相；小红书或推进“AI导购”功能；Grok 4.6正式发布查看日报",
-        "link": "https://www.aibase.com/daily/30321"
+        "title": "2026年8月14号 16:46AI 日报AI日报：MiniMax发布Music3音乐模型；百度GenFlow官宣中文名“库库AI”；智谱发布 GLM-5.3查看日报",
+        "link": "https://www.aibase.com/daily/30363"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "CodeBuddy全系产品升级至DeepSeek-V4-Pro正式版",
-          "link": "https://www.aibase.com/news/30316",
-          "date": "2026年8月13号 16:42",
+          "title": "MiniMax 发布 Music3 音乐模型：给歌词和描述，可生成最长 5 分钟歌曲",
+          "link": "https://www.aibase.com/news/30362",
+          "date": "2026年8月14号 16:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "韩国AI新王Solar Pro 4登场，直接硬刚全球顶尖大模型？",
-          "link": "https://www.aibase.com/news/30315",
-          "date": "2026年8月13号 16:42",
+          "title": "DeepSeek V4 Pro 登陆硅基流动：百万级上下文窗口配三档推理强度，缓存命中每百万 token 只要 0.44 美元",
+          "link": "https://www.aibase.com/news/30358",
+          "date": "2026年8月14号 16:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "鸿蒙版支付宝升级上线 AI助手“阿宝”开启全平台公测",
-          "link": "https://www.aibase.com/news/30313",
-          "date": "2026年8月13号 16:42",
+          "title": "京东七鲜咖啡全球首发 24 小时无人店：机器人现制、AI 荐饮，落地北京银河 Soho",
+          "link": "https://www.aibase.com/news/30356",
+          "date": "2026年8月14号 16:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "千问开放平台上线菜鸟智能体:“你只管说需求，AI帮你匹配寄件方案”",
-          "link": "https://www.aibase.com/news/30306",
-          "date": "2026年8月13号 16:42",
+          "title": "百度GenFlow官宣中文名“库库AI”：推出PC、网页、小程序及企业版",
+          "link": "https://www.aibase.com/news/30354",
+          "date": "2026年8月14号 16:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "小红书被曝推进“AI导购”功能，布局前台AI产品化",
-          "link": "https://www.aibase.com/news/30305",
-          "date": "2026年8月13号 16:42",
+          "title": "智谱发布 GLM-5.3：不换底座、只炼后训，开源编程王座易主",
+          "link": "https://www.aibase.com/news/30348",
+          "date": "2026年8月14号 16:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "荣耀Robot Phone全球发布：搭载Agentic OS与全新YOYO Pro，开启多模态智能新体验",
-          "link": "https://www.aibase.com/news/30299",
-          "date": "2026年8月13号 16:42",
+          "title": "谷歌发布Gemini3.7Flash:编码性能全面升级，初始定价降幅达50%",
+          "link": "https://www.aibase.com/news/30335",
+          "date": "2026年8月14号 16:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "深夜震撼发布：DeepSeek V4 Pro正式版亮相，比肩顶尖Fable大模型",
-          "link": "https://www.aibase.com/news/30296",
-          "date": "2026年8月13号 16:42",
+          "title": "App Store 现 AI 欺诈应用：假截图刷出 4.9 分，开发者怒斥苹果审核形同虚设",
+          "link": "https://www.aibase.com/news/30330",
+          "date": "2026年8月14号 16:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "性能狂飙！Grok 4.6正式发布，实力比肩GPT-5.6 Sol",
-          "link": "https://www.aibase.com/news/30293",
-          "date": "2026年8月13号 16:42",
+          "title": "OpenAI推出全新“电脑历史”功能，无需截屏即可完成记忆用户操作",
+          "link": "https://www.aibase.com/news/30325",
+          "date": "2026年8月14号 16:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "How Production LLMs Reason Better At Inference Time",
+          "link": "https://blog.dailydoseofds.com/p/how-production-llms-reason-better",
+          "date": "Fri, 14 Aug 2026 20:42:08 GMT",
+          "note": "8 techniques, explained visually."
+        },
         {
           "title": "Continuous Batching in LLMs",
           "link": "https://blog.dailydoseofds.com/p/continuous-batching-in-llms",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/the-missing-piece-of-agent-self-improvement",
           "date": "Thu, 06 Aug 2026 18:40:41 GMT",
           "note": "...explained step-by-step with code."
-        },
-        {
-          "title": "[Hands-on] How to Serve 5 Models On One GPU",
-          "link": "https://blog.dailydoseofds.com/p/hands-on-how-to-serve-5-models-on",
-          "date": "Wed, 05 Aug 2026 20:02:24 GMT",
-          "note": "How small specialized models are changing inference infrastructure, and why serving them efficiently takes more than standard serving frameworks."
         }
       ]
     },
@@ -147,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "State of Open Models: Summer 2026 Observations",
+          "link": "https://huggingface.co/blog/state-of-open-models-summer-2026",
+          "date": "Fri, 14 Aug 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "Record, train, and deploy from one place with Strands Agents, LeRobot, and Hugging Face Storage Buckets",
           "link": "https://huggingface.co/blog/amazon/strands-lerobot-streaming-data-loop",
@@ -187,12 +193,6 @@
           "title": "Making Knowledge Distillation Cheap Enough to Run at Scale",
           "link": "https://huggingface.co/blog/MultiverseComputingCAI/efficient-knowledge-distillation",
           "date": "Mon, 10 Aug 2026 10:05:36 GMT",
-          "note": ""
-        },
-        {
-          "title": "Meta is back with Muse Glimmer: local, agentic, multimodal, and open source",
-          "link": "https://huggingface.co/blog/muse-glimmer",
-          "date": "Mon, 10 Aug 2026 00:00:00 GMT",
           "note": ""
         }
       ]
