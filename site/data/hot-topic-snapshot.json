@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-08-16T02:03:00.885853+00:00",
+    "generated_at": "2026-08-17T01:59:15.192974+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -85,6 +85,12 @@
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
         {
+          "title": "A Cheaper Model Does Not Imply a Cheaper Turn",
+          "link": "https://blog.dailydoseofds.com/p/a-cheaper-model-does-not-imply-a",
+          "date": "Sun, 16 Aug 2026 20:36:23 GMT",
+          "note": "The practical implications of model routing, clearly explained."
+        },
+        {
           "title": "How Production LLMs Reason Better At Inference Time",
           "link": "https://blog.dailydoseofds.com/p/how-production-llms-reason-better",
           "date": "Fri, 14 Aug 2026 20:42:08 GMT",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/hands-on-build-semantic-search-inside",
           "date": "Fri, 07 Aug 2026 20:41:13 GMT",
           "note": "...explained with code."
-        },
-        {
-          "title": "The Missing Piece of Agent Self-Improvement",
-          "link": "https://blog.dailydoseofds.com/p/the-missing-piece-of-agent-self-improvement",
-          "date": "Thu, 06 Aug 2026 18:40:41 GMT",
-          "note": "...explained step-by-step with code."
         }
       ]
     },
