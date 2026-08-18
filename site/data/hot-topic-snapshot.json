@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-08-17T01:59:15.192974+00:00",
+    "generated_at": "2026-08-18T01:55:56.048446+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年8月14号 16:46AI 日报AI日报：MiniMax发布Music3音乐模型；百度GenFlow官宣中文名“库库AI”；智谱发布 GLM-5.3查看日报",
-        "link": "https://www.aibase.com/daily/30363"
+        "title": "2026年8月17号 16:29AI 日报AI日报：DeepSeek API峰谷定价上线；美团全员养虾曾日烧千万；贾跃亭宣布FF机器人业务拟独立上市查看日报",
+        "link": "https://www.aibase.com/daily/30400"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "MiniMax 发布 Music3 音乐模型：给歌词和描述，可生成最长 5 分钟歌曲",
-          "link": "https://www.aibase.com/news/30362",
-          "date": "2026年8月14号 16:46",
+          "title": "宇树科技发布“超人”人形机器人:原地跳高2米、极速12.66m/s",
+          "link": "https://www.aibase.com/news/30395",
+          "date": "2026年8月17号 16:29",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "DeepSeek V4 Pro 登陆硅基流动：百万级上下文窗口配三档推理强度，缓存命中每百万 token 只要 0.44 美元",
-          "link": "https://www.aibase.com/news/30358",
-          "date": "2026年8月14号 16:46",
+          "title": "AI 视频平台 Higgsfield 融资 4 亿美元、估值 54 亿：高盛英特尔入局",
+          "link": "https://www.aibase.com/news/30392",
+          "date": "2026年8月17号 16:29",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "京东七鲜咖啡全球首发 24 小时无人店：机器人现制、AI 荐饮，落地北京银河 Soho",
-          "link": "https://www.aibase.com/news/30356",
-          "date": "2026年8月14号 16:46",
+          "title": "​SpaceX 豪掷 600 亿美元完成年度最大并购，AI 编程巨头正式归入麾下！",
+          "link": "https://www.aibase.com/news/30388",
+          "date": "2026年8月17号 16:29",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "百度GenFlow官宣中文名“库库AI”：推出PC、网页、小程序及企业版",
-          "link": "https://www.aibase.com/news/30354",
-          "date": "2026年8月14号 16:46",
+          "title": "闲时半价、高峰翻倍:DeepSeek API峰谷定价上线，V4Pro最高涨11倍",
+          "link": "https://www.aibase.com/news/30386",
+          "date": "2026年8月17号 16:29",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "智谱发布 GLM-5.3：不换底座、只炼后训，开源编程王座易主",
-          "link": "https://www.aibase.com/news/30348",
-          "date": "2026年8月14号 16:46",
+          "title": "贾跃亭宣布FF机器人业务拟独立上市，目标年底出货2000台",
+          "link": "https://www.aibase.com/news/30384",
+          "date": "2026年8月17号 16:29",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "谷歌发布Gemini3.7Flash:编码性能全面升级，初始定价降幅达50%",
-          "link": "https://www.aibase.com/news/30335",
-          "date": "2026年8月14号 16:46",
+          "title": "千问办公首发上线GLM-5.3与DeepSeek V4Pro，三款国产旗舰模型完成聚合",
+          "link": "https://www.aibase.com/news/30379",
+          "date": "2026年8月17号 16:29",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "App Store 现 AI 欺诈应用：假截图刷出 4.9 分，开发者怒斥苹果审核形同虚设",
-          "link": "https://www.aibase.com/news/30330",
-          "date": "2026年8月14号 16:46",
+          "title": "DeepSeek-V4 系列 API 今起启用峰谷定价：高峰期价格翻倍，V4-Pro 转正商用",
+          "link": "https://www.aibase.com/news/30368",
+          "date": "2026年8月17号 16:29",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenAI推出全新“电脑历史”功能，无需截屏即可完成记忆用户操作",
-          "link": "https://www.aibase.com/news/30325",
-          "date": "2026年8月14号 16:46",
+          "title": "美团全员\"养虾\"曾日烧千万：王莆中复盘 AI 变革，CatPaw 终跑通",
+          "link": "https://www.aibase.com/news/30367",
+          "date": "2026年8月17号 16:29",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "How a GPU Actually Works",
+          "link": "https://blog.dailydoseofds.com/p/how-a-gpu-actually-works",
+          "date": "Mon, 17 Aug 2026 21:01:19 GMT",
+          "note": "The intuition an LLM engineer needs. Understand techniques like quantization, speculative decoding, and continuous batching in one place."
+        },
         {
           "title": "A Cheaper Model Does Not Imply a Cheaper Turn",
           "link": "https://blog.dailydoseofds.com/p/a-cheaper-model-does-not-imply-a",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/a-10-week-roadmap-to-run-llms-in",
           "date": "Sun, 09 Aug 2026 20:17:07 GMT",
           "note": "...covered with hands-on resources."
-        },
-        {
-          "title": "[Hands-on] Build Semantic Search Inside Your Database Without an Embedding Pipeline",
-          "link": "https://blog.dailydoseofds.com/p/hands-on-build-semantic-search-inside",
-          "date": "Fri, 07 Aug 2026 20:41:13 GMT",
-          "note": "...explained with code."
         }
       ]
     },
@@ -147,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Same Cluster, 33 Points More Utilization: What Changed Was the Order",
+          "link": "https://huggingface.co/blog/Dharma-AI/gpu-management-pt2",
+          "date": "Mon, 17 Aug 2026 19:46:21 GMT",
+          "note": ""
+        },
         {
           "title": "State of Open Models: Summer 2026 Observations",
           "link": "https://huggingface.co/blog/state-of-open-models-summer-2026",
@@ -187,12 +193,6 @@
           "title": "Build Low-Latency Multilingual Voice Agents: Open Weights & Full Deployment Control with NVIDIA Magpie TTS",
           "link": "https://huggingface.co/blog/nvidia/magpie-tts-multilingual-voice-agents",
           "date": "Mon, 10 Aug 2026 16:25:36 GMT",
-          "note": ""
-        },
-        {
-          "title": "Making Knowledge Distillation Cheap Enough to Run at Scale",
-          "link": "https://huggingface.co/blog/MultiverseComputingCAI/efficient-knowledge-distillation",
-          "date": "Mon, 10 Aug 2026 10:05:36 GMT",
           "note": ""
         }
       ]
