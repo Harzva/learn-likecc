@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-08-18T01:55:56.048446+00:00",
+    "generated_at": "2026-08-19T01:58:04.818350+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年8月17号 16:29AI 日报AI日报：DeepSeek API峰谷定价上线；美团全员养虾曾日烧千万；贾跃亭宣布FF机器人业务拟独立上市查看日报",
-        "link": "https://www.aibase.com/daily/30400"
+        "title": "2026年8月18号 16:10AI 日报AI日报：阿里发布HappyShrimp 1.0；企业微信5.0.10打通AI Agent；美团2027校招主招AI人才查看日报",
+        "link": "https://www.aibase.com/daily/30438"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "宇树科技发布“超人”人形机器人:原地跳高2米、极速12.66m/s",
-          "link": "https://www.aibase.com/news/30395",
-          "date": "2026年8月17号 16:29",
+          "title": "半价！OpenRouter 下调 OpenAI 最强模型 GPT-5.6 Sol 调用费",
+          "link": "https://www.aibase.com/news/30435",
+          "date": "2026年8月18号 16:10",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "AI 视频平台 Higgsfield 融资 4 亿美元、估值 54 亿：高盛英特尔入局",
-          "link": "https://www.aibase.com/news/30392",
-          "date": "2026年8月17号 16:29",
+          "title": "Vercel 开源 Zero 语言：专为 AI Agent 设计，把\"图\"当源码",
+          "link": "https://www.aibase.com/news/30432",
+          "date": "2026年8月18号 16:10",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "​SpaceX 豪掷 600 亿美元完成年度最大并购，AI 编程巨头正式归入麾下！",
-          "link": "https://www.aibase.com/news/30388",
-          "date": "2026年8月17号 16:29",
+          "title": "Anthropic首度披露Model2 模型：性能超越当前最强AI，技术边界再度拓宽",
+          "link": "https://www.aibase.com/news/30431",
+          "date": "2026年8月18号 16:10",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "闲时半价、高峰翻倍:DeepSeek API峰谷定价上线，V4Pro最高涨11倍",
-          "link": "https://www.aibase.com/news/30386",
-          "date": "2026年8月17号 16:29",
+          "title": "昆仑万维发布Mureka V9.5:AI音乐告别“机械堆砌”，转向“人情味”创作",
+          "link": "https://www.aibase.com/news/30430",
+          "date": "2026年8月18号 16:10",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "贾跃亭宣布FF机器人业务拟独立上市，目标年底出货2000台",
-          "link": "https://www.aibase.com/news/30384",
-          "date": "2026年8月17号 16:29",
+          "title": "独立音乐出版商起诉Anthropic与Suno，索赔或超 10 亿美元",
+          "link": "https://www.aibase.com/news/30429",
+          "date": "2026年8月18号 16:10",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "千问办公首发上线GLM-5.3与DeepSeek V4Pro，三款国产旗舰模型完成聚合",
-          "link": "https://www.aibase.com/news/30379",
-          "date": "2026年8月17号 16:29",
+          "title": "企业微信5.0.10打通AI Agent，十大办公能力全面开放",
+          "link": "https://www.aibase.com/news/30425",
+          "date": "2026年8月18号 16:10",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "DeepSeek-V4 系列 API 今起启用峰谷定价：高峰期价格翻倍，V4-Pro 转正商用",
-          "link": "https://www.aibase.com/news/30368",
-          "date": "2026年8月17号 16:29",
+          "title": "美团启动2027届校招，超八成岗位要求AI能力",
+          "link": "https://www.aibase.com/news/30417",
+          "date": "2026年8月18号 16:10",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "美团全员\"养虾\"曾日烧千万：王莆中复盘 AI 变革，CatPaw 终跑通",
-          "link": "https://www.aibase.com/news/30367",
-          "date": "2026年8月17号 16:29",
+          "title": "阿里发布AI音乐模型HappyShrimp 1.0 自然语言创作打破音乐生产门槛",
+          "link": "https://www.aibase.com/news/30405",
+          "date": "2026年8月18号 16:10",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Grok Bot Masterclass",
+          "link": "https://blog.dailydoseofds.com/p/grok-bot-masterclass",
+          "date": "Tue, 18 Aug 2026 19:57:58 GMT",
+          "note": "Everything you need to understand, set up, and get real work out of Grok Bot."
+        },
         {
           "title": "How a GPU Actually Works",
           "link": "https://blog.dailydoseofds.com/p/how-a-gpu-actually-works",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/how-to-query-billion-rows-on-postgres",
           "date": "Mon, 10 Aug 2026 13:48:21 GMT",
           "note": "...explained as a full setup guide."
-        },
-        {
-          "title": "A 10-week Roadmap to Run LLMs in Production",
-          "link": "https://blog.dailydoseofds.com/p/a-10-week-roadmap-to-run-llms-in",
-          "date": "Sun, 09 Aug 2026 20:17:07 GMT",
-          "note": "...covered with hands-on resources."
         }
       ]
     },
@@ -147,6 +147,18 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "How Much Memory Does Your Agent Actually Need?",
+          "link": "https://huggingface.co/blog/ibm-research/altk-evolve-hmm",
+          "date": "Tue, 18 Aug 2026 18:09:38 GMT",
+          "note": ""
+        },
+        {
+          "title": "Multi-Vector (Late Interaction) Embedding Models with Sentence Transformers",
+          "link": "https://huggingface.co/blog/multi-vector-encoder",
+          "date": "Tue, 18 Aug 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "Same Cluster, 33 Points More Utilization: What Changed Was the Order",
           "link": "https://huggingface.co/blog/Dharma-AI/gpu-management-pt2",
@@ -181,18 +193,6 @@
           "title": "LFM2.5-VL-3B for Better and Faster Vision Capabilities for the Edge",
           "link": "https://huggingface.co/blog/LiquidAI/lfm2-5-vl-3b",
           "date": "Wed, 12 Aug 2026 14:00:51 GMT",
-          "note": ""
-        },
-        {
-          "title": "Thinking of ACE? We Can Do It with Fewer Tokens",
-          "link": "https://huggingface.co/blog/ibm-research/altk-evolve-sldd",
-          "date": "Tue, 11 Aug 2026 13:37:10 GMT",
-          "note": ""
-        },
-        {
-          "title": "Build Low-Latency Multilingual Voice Agents: Open Weights & Full Deployment Control with NVIDIA Magpie TTS",
-          "link": "https://huggingface.co/blog/nvidia/magpie-tts-multilingual-voice-agents",
-          "date": "Mon, 10 Aug 2026 16:25:36 GMT",
           "note": ""
         }
       ]
