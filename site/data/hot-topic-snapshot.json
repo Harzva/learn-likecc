@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-08-19T01:58:04.818350+00:00",
+    "generated_at": "2026-08-20T01:56:38.330343+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年8月18号 16:10AI 日报AI日报：阿里发布HappyShrimp 1.0；企业微信5.0.10打通AI Agent；美团2027校招主招AI人才查看日报",
-        "link": "https://www.aibase.com/daily/30438"
+        "title": "2026年8月19号 16:57AI 日报AI日报：智谱GLM-5.3 API上线；腾讯吐司上线App上架能力；千问APP上线七夕AI送花助手查看日报",
+        "link": "https://www.aibase.com/daily/30475"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "半价！OpenRouter 下调 OpenAI 最强模型 GPT-5.6 Sol 调用费",
-          "link": "https://www.aibase.com/news/30435",
-          "date": "2026年8月18号 16:10",
+          "title": "程序员福利再加码！Anthropic官方宣布Claude Code每周50%额度加成延长至8月31日",
+          "link": "https://www.aibase.com/news/30472",
+          "date": "2026年8月19号 16:57",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Vercel 开源 Zero 语言：专为 AI Agent 设计，把\"图\"当源码",
-          "link": "https://www.aibase.com/news/30432",
-          "date": "2026年8月18号 16:10",
+          "title": "Mozilla升级Firefox智能窗口，新增AI标签管理与网页检索",
+          "link": "https://www.aibase.com/news/30471",
+          "date": "2026年8月19号 16:57",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Anthropic首度披露Model2 模型：性能超越当前最强AI，技术边界再度拓宽",
-          "link": "https://www.aibase.com/news/30431",
-          "date": "2026年8月18号 16:10",
+          "title": "腾讯大模型迎来人事大地震：姚顺雨掌舵基础模型",
+          "link": "https://www.aibase.com/news/30470",
+          "date": "2026年8月19号 16:57",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "昆仑万维发布Mureka V9.5:AI音乐告别“机械堆砌”，转向“人情味”创作",
-          "link": "https://www.aibase.com/news/30430",
-          "date": "2026年8月18号 16:10",
+          "title": "千问APP上线七夕AI送花助手 还能测情侣默契度",
+          "link": "https://www.aibase.com/news/30466",
+          "date": "2026年8月19号 16:57",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "独立音乐出版商起诉Anthropic与Suno，索赔或超 10 亿美元",
-          "link": "https://www.aibase.com/news/30429",
-          "date": "2026年8月18号 16:10",
+          "title": "硅谷AI 数据中心遭遇反对潮，砸数十亿“钞能力”能否平息民愤？",
+          "link": "https://www.aibase.com/news/30465",
+          "date": "2026年8月19号 16:57",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "企业微信5.0.10打通AI Agent，十大办公能力全面开放",
-          "link": "https://www.aibase.com/news/30425",
-          "date": "2026年8月18号 16:10",
+          "title": "蚂蚁阿福发布医生端服务战略全景:从基层到三甲，做好医生的AI好帮手",
+          "link": "https://www.aibase.com/news/30461",
+          "date": "2026年8月19号 16:57",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "美团启动2027届校招，超八成岗位要求AI能力",
-          "link": "https://www.aibase.com/news/30417",
-          "date": "2026年8月18号 16:10",
+          "title": "腾讯吐司上线App上架能力，打通AI应用开发与分发",
+          "link": "https://www.aibase.com/news/30455",
+          "date": "2026年8月19号 16:57",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阿里发布AI音乐模型HappyShrimp 1.0 自然语言创作打破音乐生产门槛",
-          "link": "https://www.aibase.com/news/30405",
-          "date": "2026年8月18号 16:10",
+          "title": "智谱 GLM-5.3 API 重磅上线：AA指数斩获 60 分并列开源第一，权重将于下周五开源",
+          "link": "https://www.aibase.com/news/30454",
+          "date": "2026年8月19号 16:57",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Kimi K3's Sandbox Problem Finally Has an Open-Source Fix",
+          "link": "https://blog.dailydoseofds.com/p/kimi-k3s-sandbox-problem-finally",
+          "date": "Wed, 19 Aug 2026 21:54:13 GMT",
+          "note": "...explained with code."
+        },
         {
           "title": "Grok Bot Masterclass",
           "link": "https://blog.dailydoseofds.com/p/grok-bot-masterclass",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/karpathys-full-agentic-engineering",
           "date": "Tue, 11 Aug 2026 18:53:26 GMT",
           "note": "...explained as step-by-step guide."
-        },
-        {
-          "title": "How to Query Billion+ Rows on Postgres Without the Overhead",
-          "link": "https://blog.dailydoseofds.com/p/how-to-query-billion-rows-on-postgres",
-          "date": "Mon, 10 Aug 2026 13:48:21 GMT",
-          "note": "...explained as a full setup guide."
         }
       ]
     },
@@ -147,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "LFM2.5 Q4\\_0 Checkpoints from Quantization-Aware Distillation",
+          "link": "https://huggingface.co/blog/LiquidAI/qad",
+          "date": "Wed, 19 Aug 2026 13:48:49 GMT",
+          "note": ""
+        },
         {
           "title": "How Much Memory Does Your Agent Actually Need?",
           "link": "https://huggingface.co/blog/ibm-research/altk-evolve-hmm",
@@ -187,12 +193,6 @@
           "title": "Introducing OlmoEarth embeddings: Custom embedding exports from OlmoEarth Studio for downstream analysis",
           "link": "https://huggingface.co/blog/allenai/olmoearth-embeddings",
           "date": "Wed, 12 Aug 2026 16:14:36 GMT",
-          "note": ""
-        },
-        {
-          "title": "LFM2.5-VL-3B for Better and Faster Vision Capabilities for the Edge",
-          "link": "https://huggingface.co/blog/LiquidAI/lfm2-5-vl-3b",
-          "date": "Wed, 12 Aug 2026 14:00:51 GMT",
           "note": ""
         }
       ]
