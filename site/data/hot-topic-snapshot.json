@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-08-20T01:56:38.330343+00:00",
+    "generated_at": "2026-08-21T02:05:06.871094+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年8月19号 16:57AI 日报AI日报：智谱GLM-5.3 API上线；腾讯吐司上线App上架能力；千问APP上线七夕AI送花助手查看日报",
-        "link": "https://www.aibase.com/daily/30475"
+        "title": "2026年8月20号 16:12AI 日报AI日报：小米新一代人形机器人惊艳亮相；可灵AI商业化收入同比增长超200%；OpenAI计划2027年完成IPO查看日报",
+        "link": "https://www.aibase.com/daily/30505"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "程序员福利再加码！Anthropic官方宣布Claude Code每周50%额度加成延长至8月31日",
-          "link": "https://www.aibase.com/news/30472",
-          "date": "2026年8月19号 16:57",
+          "title": "通义千问官方点赞！Unsloth Dynamic V3 让 Qwen3.8-27B 更小更聪明，1-bit 版 8GB 内存就能跑",
+          "link": "https://www.aibase.com/news/30504",
+          "date": "2026年8月20号 16:12",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Mozilla升级Firefox智能窗口，新增AI标签管理与网页检索",
-          "link": "https://www.aibase.com/news/30471",
-          "date": "2026年8月19号 16:57",
+          "title": "MiniMax Design发布:用自然语言“指挥”视频创作，告别逐帧编辑",
+          "link": "https://www.aibase.com/news/30503",
+          "date": "2026年8月20号 16:12",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯大模型迎来人事大地震：姚顺雨掌舵基础模型",
-          "link": "https://www.aibase.com/news/30470",
-          "date": "2026年8月19号 16:57",
+          "title": "宇树科技再出王炸！仿生7轴灵巧机械臂R1发布，9900元起售",
+          "link": "https://www.aibase.com/news/30502",
+          "date": "2026年8月20号 16:12",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "千问APP上线七夕AI送花助手 还能测情侣默契度",
-          "link": "https://www.aibase.com/news/30466",
-          "date": "2026年8月19号 16:57",
+          "title": "快手二季度营收355亿元，可灵AI商业化收入同比增长超200%",
+          "link": "https://www.aibase.com/news/30500",
+          "date": "2026年8月20号 16:12",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "硅谷AI 数据中心遭遇反对潮，砸数十亿“钞能力”能否平息民愤？",
-          "link": "https://www.aibase.com/news/30465",
-          "date": "2026年8月19号 16:57",
+          "title": "快递员变身AI机器人高薪工程师！京东物流首批学员正式上岗，未来5年豪掷10万个高新岗位",
+          "link": "https://www.aibase.com/news/30499",
+          "date": "2026年8月20号 16:12",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "蚂蚁阿福发布医生端服务战略全景:从基层到三甲，做好医生的AI好帮手",
-          "link": "https://www.aibase.com/news/30461",
-          "date": "2026年8月19号 16:57",
+          "title": "小米新一代人形机器人惊艳亮相，大模型加持动作丝滑宛如真人",
+          "link": "https://www.aibase.com/news/30484",
+          "date": "2026年8月20号 16:12",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯吐司上线App上架能力，打通AI应用开发与分发",
-          "link": "https://www.aibase.com/news/30455",
-          "date": "2026年8月19号 16:57",
+          "title": "OpenAI计划2027年完成IPO，已秘密提交上市文件",
+          "link": "https://www.aibase.com/news/30483",
+          "date": "2026年8月20号 16:12",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "智谱 GLM-5.3 API 重磅上线：AA指数斩获 60 分并列开源第一，权重将于下周五开源",
-          "link": "https://www.aibase.com/news/30454",
-          "date": "2026年8月19号 16:57",
+          "title": "Google重磅升级搜索与Gemini应用，推出全套AI学习与3D模拟工具",
+          "link": "https://www.aibase.com/news/30479",
+          "date": "2026年8月20号 16:12",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "What is (was?) GIL in Python?",
+          "link": "https://blog.dailydoseofds.com/p/what-is-was-gil-in-python-d13",
+          "date": "Thu, 20 Aug 2026 22:33:37 GMT",
+          "note": "...explained with code."
+        },
         {
           "title": "Kimi K3's Sandbox Problem Finally Has an Open-Source Fix",
           "link": "https://blog.dailydoseofds.com/p/kimi-k3s-sandbox-problem-finally",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/hands-on-audio-rag-with-200x-cheaper-4f0",
           "date": "Wed, 12 Aug 2026 20:45:04 GMT",
           "note": "...while also outperforming OpenAI and Cohere."
-        },
-        {
-          "title": "Karpathy's Full Agentic Engineering Lifecycle using Google's Agents-CLI",
-          "link": "https://blog.dailydoseofds.com/p/karpathys-full-agentic-engineering",
-          "date": "Tue, 11 Aug 2026 18:53:26 GMT",
-          "note": "...explained as step-by-step guide."
         }
       ]
     },
@@ -148,9 +148,9 @@
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
         {
-          "title": "LFM2.5 Q4\\_0 Checkpoints from Quantization-Aware Distillation",
-          "link": "https://huggingface.co/blog/LiquidAI/qad",
-          "date": "Wed, 19 Aug 2026 13:48:49 GMT",
+          "title": "Up to 3.2x Faster Inference with LFM2.5-DSpark",
+          "link": "https://huggingface.co/blog/LiquidAI/lfm25-dspark",
+          "date": "Thu, 20 Aug 2026 16:52:57 GMT",
           "note": ""
         },
         {
