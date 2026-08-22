@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-08-21T02:05:06.871094+00:00",
+    "generated_at": "2026-08-22T01:55:48.655107+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年8月20号 16:12AI 日报AI日报：小米新一代人形机器人惊艳亮相；可灵AI商业化收入同比增长超200%；OpenAI计划2027年完成IPO查看日报",
-        "link": "https://www.aibase.com/daily/30505"
+        "title": "2026年8月21号 15:46AI 日报AI日报：商汤开源8B轻量多模态大模型；腾讯新一代大模型Hy4将发布；Grok Build重磅上线网页与移动端查看日报",
+        "link": "https://www.aibase.com/daily/30532"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "通义千问官方点赞！Unsloth Dynamic V3 让 Qwen3.8-27B 更小更聪明，1-bit 版 8GB 内存就能跑",
-          "link": "https://www.aibase.com/news/30504",
-          "date": "2026年8月20号 16:12",
+          "title": "商汤科技开源8B轻量多模态大模型：原生4K输出、全能视觉编辑",
+          "link": "https://www.aibase.com/news/30527",
+          "date": "2026年8月21号 15:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "MiniMax Design发布:用自然语言“指挥”视频创作，告别逐帧编辑",
-          "link": "https://www.aibase.com/news/30503",
-          "date": "2026年8月20号 16:12",
+          "title": "从对话助手到智能办公平台，豆包推出技能、连接器与工作伙伴",
+          "link": "https://www.aibase.com/news/30525",
+          "date": "2026年8月21号 15:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "宇树科技再出王炸！仿生7轴灵巧机械臂R1发布，9900元起售",
-          "link": "https://www.aibase.com/news/30502",
-          "date": "2026年8月20号 16:12",
+          "title": "Grok Build重磅上线网页与移动端，人人皆可一句话秒变全栈开发者",
+          "link": "https://www.aibase.com/news/30524",
+          "date": "2026年8月21号 15:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "快手二季度营收355亿元，可灵AI商业化收入同比增长超200%",
-          "link": "https://www.aibase.com/news/30500",
-          "date": "2026年8月20号 16:12",
+          "title": "千问AI平台模型矩阵持续扩容，GLM-5.3、DeepSeek-V4-Pro正式上线",
+          "link": "https://www.aibase.com/news/30523",
+          "date": "2026年8月21号 15:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "快递员变身AI机器人高薪工程师！京东物流首批学员正式上岗，未来5年豪掷10万个高新岗位",
-          "link": "https://www.aibase.com/news/30499",
-          "date": "2026年8月20号 16:12",
+          "title": "皮尤研究:ChatGPT发布后，超三成网页出现AI创作痕迹",
+          "link": "https://www.aibase.com/news/30521",
+          "date": "2026年8月21号 15:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "小米新一代人形机器人惊艳亮相，大模型加持动作丝滑宛如真人",
-          "link": "https://www.aibase.com/news/30484",
-          "date": "2026年8月20号 16:12",
+          "title": "Adobe Firefly音频工具全面上线，支持AI生成音乐、语音和音效",
+          "link": "https://www.aibase.com/news/30519",
+          "date": "2026年8月21号 15:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenAI计划2027年完成IPO，已秘密提交上市文件",
-          "link": "https://www.aibase.com/news/30483",
-          "date": "2026年8月20号 16:12",
+          "title": "腾讯新一代大模型Hy4将发布，将成WorkBuddy核心引擎",
+          "link": "https://www.aibase.com/news/30515",
+          "date": "2026年8月21号 15:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Google重磅升级搜索与Gemini应用，推出全套AI学习与3D模拟工具",
-          "link": "https://www.aibase.com/news/30479",
-          "date": "2026年8月20号 16:12",
+          "title": "移动端基准全面超越GPT与Claude！阿里发布Qwen-UI-Agent，开启GUI智能体新纪元",
+          "link": "https://www.aibase.com/news/30513",
+          "date": "2026年8月21号 15:46",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "How Semantic Code Navigation Cuts Agent Token Costs by up to 36%",
+          "link": "https://blog.dailydoseofds.com/p/how-semantic-code-navigation-cuts",
+          "date": "Fri, 21 Aug 2026 21:51:15 GMT",
+          "note": "Understanding what an agent actually does with the tokens before it writes code."
+        },
         {
           "title": "What is (was?) GIL in Python?",
           "link": "https://blog.dailydoseofds.com/p/what-is-was-gil-in-python-d13",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/continuous-batching-in-llms",
           "date": "Thu, 13 Aug 2026 20:01:13 GMT",
           "note": "The technique behind vLLM's 23x throughput jump and the default scheduler in every serving engine."
-        },
-        {
-          "title": "[Hands-on] Audio RAG with 200x Cheaper Vector DB Costs",
-          "link": "https://blog.dailydoseofds.com/p/hands-on-audio-rag-with-200x-cheaper-4f0",
-          "date": "Wed, 12 Aug 2026 20:45:04 GMT",
-          "note": "...while also outperforming OpenAI and Cohere."
         }
       ]
     },
@@ -147,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Measuring benchmark optimization in speech recognition",
+          "link": "https://huggingface.co/blog/asr-benchmark-optimization",
+          "date": "Fri, 21 Aug 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "Up to 3.2x Faster Inference with LFM2.5-DSpark",
           "link": "https://huggingface.co/blog/LiquidAI/lfm25-dspark",
@@ -187,12 +193,6 @@
           "title": "What We Learned by Reproducing 2,200 papers from ICML",
           "link": "https://huggingface.co/blog/icml-2026-open-reproductions",
           "date": "Thu, 13 Aug 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Introducing OlmoEarth embeddings: Custom embedding exports from OlmoEarth Studio for downstream analysis",
-          "link": "https://huggingface.co/blog/allenai/olmoearth-embeddings",
-          "date": "Wed, 12 Aug 2026 16:14:36 GMT",
           "note": ""
         }
       ]
