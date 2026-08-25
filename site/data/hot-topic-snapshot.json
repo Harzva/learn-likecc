@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-08-24T02:04:28.431540+00:00",
+    "generated_at": "2026-08-25T01:57:38.814325+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年8月21号 15:46AI 日报AI日报：商汤开源8B轻量多模态大模型；腾讯新一代大模型Hy4将发布；Grok Build重磅上线网页与移动端查看日报",
-        "link": "https://www.aibase.com/daily/30532"
+        "title": "2026年8月24号 16:56AI 日报AI日报：万相Wan3.0模型上线；小米发布玄戒O3等AI芯片；第二届世界人形机器人运动会开幕查看日报",
+        "link": "https://www.aibase.com/daily/30578"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "商汤科技开源8B轻量多模态大模型：原生4K输出、全能视觉编辑",
-          "link": "https://www.aibase.com/news/30527",
-          "date": "2026年8月21号 15:46",
+          "title": "字节整合AI办公产品，TRAE、扣子团队并入豆包",
+          "link": "https://www.aibase.com/news/30576",
+          "date": "2026年8月24号 16:56",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "从对话助手到智能办公平台，豆包推出技能、连接器与工作伙伴",
-          "link": "https://www.aibase.com/news/30525",
-          "date": "2026年8月21号 15:46",
+          "title": "小米发布玄戒O3/O100/D100三款自研AI芯片，搭建人车家全生态算力底座",
+          "link": "https://www.aibase.com/news/30572",
+          "date": "2026年8月24号 16:56",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Grok Build重磅上线网页与移动端，人人皆可一句话秒变全栈开发者",
-          "link": "https://www.aibase.com/news/30524",
-          "date": "2026年8月21号 15:46",
+          "title": "“AI行业GitHub”寻求出售，Hugging Face估值或超130亿美元",
+          "link": "https://www.aibase.com/news/30571",
+          "date": "2026年8月24号 16:56",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "千问AI平台模型矩阵持续扩容，GLM-5.3、DeepSeek-V4-Pro正式上线",
-          "link": "https://www.aibase.com/news/30523",
-          "date": "2026年8月21号 15:46",
+          "title": "韶音OpenFit 2 AI耳机震撼首发：融合千问大模型， 48 小时超长续航定义智能音频新体验",
+          "link": "https://www.aibase.com/news/30570",
+          "date": "2026年8月24号 16:56",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "皮尤研究:ChatGPT发布后，超三成网页出现AI创作痕迹",
-          "link": "https://www.aibase.com/news/30521",
-          "date": "2026年8月21号 15:46",
+          "title": "万相Wan3.0视频生成模型正式上线，解锁30秒长视频创作新体验",
+          "link": "https://www.aibase.com/news/30562",
+          "date": "2026年8月24号 16:56",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Adobe Firefly音频工具全面上线，支持AI生成音乐、语音和音效",
-          "link": "https://www.aibase.com/news/30519",
-          "date": "2026年8月21号 15:46",
+          "title": "第二届世界人形机器人运动会开幕：2056台钢铁战士冰丝带巅峰对决",
+          "link": "https://www.aibase.com/news/30557",
+          "date": "2026年8月24号 16:56",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯新一代大模型Hy4将发布，将成WorkBuddy核心引擎",
-          "link": "https://www.aibase.com/news/30515",
-          "date": "2026年8月21号 15:46",
+          "title": "匿名模型Ox Alpha登顶OpenRouter，累计调用量超4万亿Token",
+          "link": "https://www.aibase.com/news/30549",
+          "date": "2026年8月24号 16:56",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "移动端基准全面超越GPT与Claude！阿里发布Qwen-UI-Agent，开启GUI智能体新纪元",
-          "link": "https://www.aibase.com/news/30513",
-          "date": "2026年8月21号 15:46",
+          "title": "神秘“牛来大模型”横空出世：Ox Alpha在多项基准测试中超越主流巨头",
+          "link": "https://www.aibase.com/news/30547",
+          "date": "2026年8月24号 16:56",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Preloading Knowledge Into a Model Instead of Retrieving It",
+          "link": "https://blog.dailydoseofds.com/p/preloading-knowledge-into-a-model",
+          "date": "Mon, 24 Aug 2026 17:13:39 GMT",
+          "note": "How to process your corpus once, skip retrieval entirely, and serve every query from a stored cache. Three parts covering the full spectrum."
+        },
         {
           "title": "How Semantic Code Navigation Cuts Agent Token Costs by up to 36%",
           "link": "https://blog.dailydoseofds.com/p/how-semantic-code-navigation-cuts",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/how-production-llms-reason-better",
           "date": "Fri, 14 Aug 2026 20:42:08 GMT",
           "note": "8 techniques, explained visually."
-        },
-        {
-          "title": "Continuous Batching in LLMs",
-          "link": "https://blog.dailydoseofds.com/p/continuous-batching-in-llms",
-          "date": "Thu, 13 Aug 2026 20:01:13 GMT",
-          "note": "The technique behind vLLM's 23x throughput jump and the default scheduler in every serving engine."
         }
       ]
     },
