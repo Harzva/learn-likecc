@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-08-25T01:57:38.814325+00:00",
+    "generated_at": "2026-08-26T02:06:43.711307+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年8月24号 16:56AI 日报AI日报：万相Wan3.0模型上线；小米发布玄戒O3等AI芯片；第二届世界人形机器人运动会开幕查看日报",
-        "link": "https://www.aibase.com/daily/30578"
+        "title": "2026年8月25号 16:12AI 日报AI日报：字节发布AI办公智能体豆包工作；ChatGPT上线自定义贴纸功能；谷歌测试Gemini新界面查看日报",
+        "link": "https://www.aibase.com/daily/30606"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "字节整合AI办公产品，TRAE、扣子团队并入豆包",
-          "link": "https://www.aibase.com/news/30576",
-          "date": "2026年8月24号 16:56",
+          "title": "ARIA 重拳封杀纯 AI 歌曲：人类创作主唱才能上榜，AI 辅助仍可准入",
+          "link": "https://www.aibase.com/news/30604",
+          "date": "2026年8月25号 16:12",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "小米发布玄戒O3/O100/D100三款自研AI芯片，搭建人车家全生态算力底座",
-          "link": "https://www.aibase.com/news/30572",
-          "date": "2026年8月24号 16:56",
+          "title": "ChatGPT重磅上线自定义贴纸功能，完美打通两大社交巨头",
+          "link": "https://www.aibase.com/news/30602",
+          "date": "2026年8月25号 16:12",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "“AI行业GitHub”寻求出售，Hugging Face估值或超130亿美元",
-          "link": "https://www.aibase.com/news/30571",
-          "date": "2026年8月24号 16:56",
+          "title": "字节跳动发布AI办公智能体“豆包工作”，打通飞书生态重构企业生产力",
+          "link": "https://www.aibase.com/news/30596",
+          "date": "2026年8月25号 16:12",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "韶音OpenFit 2 AI耳机震撼首发：融合千问大模型， 48 小时超长续航定义智能音频新体验",
-          "link": "https://www.aibase.com/news/30570",
-          "date": "2026年8月24号 16:56",
+          "title": "七成英语生物医学论文已用 AI 代笔：学术界呼吁建监管而非封杀",
+          "link": "https://www.aibase.com/news/30594",
+          "date": "2026年8月25号 16:12",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "万相Wan3.0视频生成模型正式上线，解锁30秒长视频创作新体验",
-          "link": "https://www.aibase.com/news/30562",
-          "date": "2026年8月24号 16:56",
+          "title": "千问APP支持阿里云 Token Plan接入",
+          "link": "https://www.aibase.com/news/30593",
+          "date": "2026年8月25号 16:12",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "第二届世界人形机器人运动会开幕：2056台钢铁战士冰丝带巅峰对决",
-          "link": "https://www.aibase.com/news/30557",
-          "date": "2026年8月24号 16:56",
+          "title": "谷歌测试Gemini新界面，新增通知中心和聊天筛选功能",
+          "link": "https://www.aibase.com/news/30587",
+          "date": "2026年8月25号 16:12",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "匿名模型Ox Alpha登顶OpenRouter，累计调用量超4万亿Token",
-          "link": "https://www.aibase.com/news/30549",
-          "date": "2026年8月24号 16:56",
+          "title": "Grok Build迎来最强外挂！集成Browser-Use插件，AI正式接管你的浏览器",
+          "link": "https://www.aibase.com/news/30586",
+          "date": "2026年8月25号 16:12",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "神秘“牛来大模型”横空出世：Ox Alpha在多项基准测试中超越主流巨头",
-          "link": "https://www.aibase.com/news/30547",
-          "date": "2026年8月24号 16:56",
+          "title": "中国开源模型出海：法律 AI 独角兽 Harvey 基于 Kimi K3 推出 Tenet",
+          "link": "https://www.aibase.com/news/30584",
+          "date": "2026年8月25号 16:12",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Build a Multi-Agent GTM Intelligence System",
+          "link": "https://blog.dailydoseofds.com/p/build-a-multi-agent-gtm-intelligence",
+          "date": "Tue, 25 Aug 2026 20:26:56 GMT",
+          "note": "...explained with code."
+        },
         {
           "title": "Preloading Knowledge Into a Model Instead of Retrieving It",
           "link": "https://blog.dailydoseofds.com/p/preloading-knowledge-into-a-model",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/a-cheaper-model-does-not-imply-a",
           "date": "Sun, 16 Aug 2026 20:36:23 GMT",
           "note": "The practical implications of model routing, clearly explained."
-        },
-        {
-          "title": "How Production LLMs Reason Better At Inference Time",
-          "link": "https://blog.dailydoseofds.com/p/how-production-llms-reason-better",
-          "date": "Fri, 14 Aug 2026 20:42:08 GMT",
-          "note": "8 techniques, explained visually."
         }
       ]
     },
@@ -147,6 +147,30 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Granite 4.2 LLMs: How They're Built",
+          "link": "https://huggingface.co/blog/ibm-granite/granite-4-2",
+          "date": "Tue, 25 Aug 2026 15:14:14 GMT",
+          "note": ""
+        },
+        {
+          "title": "Quantization-Aware Healing: a compressed, 4-bit model that outperforms its full-precision original",
+          "link": "https://huggingface.co/blog/MultiverseComputingCAI/quantization-aware-healing",
+          "date": "Tue, 25 Aug 2026 11:39:24 GMT",
+          "note": ""
+        },
+        {
+          "title": "Wire It, Run It, Deploy It: AI Workflows in Gradio",
+          "link": "https://huggingface.co/blog/gradio-workflow-guide",
+          "date": "Tue, 25 Aug 2026 00:00:00 GMT",
+          "note": ""
+        },
+        {
+          "title": "How Hugging Face Inference Endpoints, Jobs, and Buckets Power Search on Papers with Code",
+          "link": "https://huggingface.co/blog/pwc-search",
+          "date": "Fri, 21 Aug 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "Measuring benchmark optimization in speech recognition",
           "link": "https://huggingface.co/blog/asr-benchmark-optimization",
@@ -169,30 +193,6 @@
           "title": "Multi-Vector (Late Interaction) Embedding Models with Sentence Transformers",
           "link": "https://huggingface.co/blog/multi-vector-encoder",
           "date": "Tue, 18 Aug 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Same Cluster, 33 Points More Utilization: What Changed Was the Order",
-          "link": "https://huggingface.co/blog/Dharma-AI/gpu-management-pt2",
-          "date": "Mon, 17 Aug 2026 19:46:21 GMT",
-          "note": ""
-        },
-        {
-          "title": "State of Open Models: Summer 2026 Observations",
-          "link": "https://huggingface.co/blog/state-of-open-models-summer-2026",
-          "date": "Fri, 14 Aug 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Record, train, and deploy from one place with Strands Agents, LeRobot, and Hugging Face Storage Buckets",
-          "link": "https://huggingface.co/blog/amazon/strands-lerobot-streaming-data-loop",
-          "date": "Thu, 13 Aug 2026 17:16:04 GMT",
-          "note": ""
-        },
-        {
-          "title": "What We Learned by Reproducing 2,200 papers from ICML",
-          "link": "https://huggingface.co/blog/icml-2026-open-reproductions",
-          "date": "Thu, 13 Aug 2026 00:00:00 GMT",
           "note": ""
         }
       ]
