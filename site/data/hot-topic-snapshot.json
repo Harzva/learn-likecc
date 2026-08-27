@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-08-26T02:06:43.711307+00:00",
+    "generated_at": "2026-08-27T10:03:40.627923+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年8月25号 16:12AI 日报AI日报：字节发布AI办公智能体豆包工作；ChatGPT上线自定义贴纸功能；谷歌测试Gemini新界面查看日报",
-        "link": "https://www.aibase.com/daily/30606"
+        "title": "2026年8月27号 16:17AI 日报AI日报：千问办公首发上线Qwen3.8-Flash；智谱开源多模态大模型GLM-5.3-Flash；京东“超脑”3.0大模型亮相查看日报",
+        "link": "https://www.aibase.com/daily/30675"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "ARIA 重拳封杀纯 AI 歌曲：人类创作主唱才能上榜，AI 辅助仍可准入",
-          "link": "https://www.aibase.com/news/30604",
-          "date": "2026年8月25号 16:12",
+          "title": "从3.3GB压缩到440MB！腾讯混元极低bit翻译模型如何做到几乎零损失？",
+          "link": "https://www.aibase.com/news/30673",
+          "date": "2026年8月27号 16:17",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "ChatGPT重磅上线自定义贴纸功能，完美打通两大社交巨头",
-          "link": "https://www.aibase.com/news/30602",
-          "date": "2026年8月25号 16:12",
+          "title": "Claude 桌面端 Cowork 内置浏览器上线，可独立完成网页操作",
+          "link": "https://www.aibase.com/news/30672",
+          "date": "2026年8月27号 16:17",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "字节跳动发布AI办公智能体“豆包工作”，打通飞书生态重构企业生产力",
-          "link": "https://www.aibase.com/news/30596",
-          "date": "2026年8月25号 16:12",
+          "title": "千问办公首发上线Qwen3.8-Flash，Agent正式迈入“量大管饱”时代",
+          "link": "https://www.aibase.com/news/30668",
+          "date": "2026年8月27号 16:17",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "七成英语生物医学论文已用 AI 代笔：学术界呼吁建监管而非封杀",
-          "link": "https://www.aibase.com/news/30594",
-          "date": "2026年8月25号 16:12",
+          "title": "拷走 AI 软件去创业，北京首例 AIGC 商业秘密案罚 10 万元",
+          "link": "https://www.aibase.com/news/30667",
+          "date": "2026年8月27号 16:17",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "千问APP支持阿里云 Token Plan接入",
-          "link": "https://www.aibase.com/news/30593",
-          "date": "2026年8月25号 16:12",
+          "title": "FF发布Next Futurist与Next Aegis两款机器人 机器人工厂年内投入运营",
+          "link": "https://www.aibase.com/news/30663",
+          "date": "2026年8月27号 16:17",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "谷歌测试Gemini新界面，新增通知中心和聊天筛选功能",
-          "link": "https://www.aibase.com/news/30587",
-          "date": "2026年8月25号 16:12",
+          "title": "价格砍至四十分之一！智谱开源原生多模态大模型GLM-5.3-Flash",
+          "link": "https://www.aibase.com/news/30655",
+          "date": "2026年8月27号 16:17",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Grok Build迎来最强外挂！集成Browser-Use插件，AI正式接管你的浏览器",
-          "link": "https://www.aibase.com/news/30586",
-          "date": "2026年8月25号 16:12",
+          "title": "京东“超脑”3.0大模型亮相，打造物流全流程AI指挥官",
+          "link": "https://www.aibase.com/news/30653",
+          "date": "2026年8月27号 16:17",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "中国开源模型出海：法律 AI 独角兽 Harvey 基于 Kimi K3 推出 Tenet",
-          "link": "https://www.aibase.com/news/30584",
-          "date": "2026年8月25号 16:12",
+          "title": "谷歌升级Gemini Live语音功能，AI应用体验转向“一句话完成任务”",
+          "link": "https://www.aibase.com/news/30649",
+          "date": "2026年8月27号 16:17",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "[Hands-on] Turn Scientific Figures Into Structured Data with Mistral OCR",
+          "link": "https://blog.dailydoseofds.com/p/hands-on-turn-scientific-figures",
+          "date": "Wed, 26 Aug 2026 21:06:26 GMT",
+          "note": "A full walkthrough of the extraction schema, with code."
+        },
         {
           "title": "Build a Multi-Agent GTM Intelligence System",
           "link": "https://blog.dailydoseofds.com/p/build-a-multi-agent-gtm-intelligence",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/how-a-gpu-actually-works",
           "date": "Mon, 17 Aug 2026 21:01:19 GMT",
           "note": "The intuition an LLM engineer needs. Understand techniques like quantization, speculative decoding, and continuous batching in one place."
-        },
-        {
-          "title": "A Cheaper Model Does Not Imply a Cheaper Turn",
-          "link": "https://blog.dailydoseofds.com/p/a-cheaper-model-does-not-imply-a",
-          "date": "Sun, 16 Aug 2026 20:36:23 GMT",
-          "note": "The practical implications of model routing, clearly explained."
         }
       ]
     },
@@ -147,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Training and Finetuning Multi-Vector Embedding Models with Sentence Transformers",
+          "link": "https://huggingface.co/blog/train-multi-vector-encoder",
+          "date": "Wed, 26 Aug 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "Granite 4.2 LLMs: How They're Built",
           "link": "https://huggingface.co/blog/ibm-granite/granite-4-2",
@@ -187,12 +193,6 @@
           "title": "How Much Memory Does Your Agent Actually Need?",
           "link": "https://huggingface.co/blog/ibm-research/altk-evolve-hmm",
           "date": "Tue, 18 Aug 2026 18:09:38 GMT",
-          "note": ""
-        },
-        {
-          "title": "Multi-Vector (Late Interaction) Embedding Models with Sentence Transformers",
-          "link": "https://huggingface.co/blog/multi-vector-encoder",
-          "date": "Tue, 18 Aug 2026 00:00:00 GMT",
           "note": ""
         }
       ]
