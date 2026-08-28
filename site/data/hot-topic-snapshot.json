@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-08-27T10:03:40.627923+00:00",
+    "generated_at": "2026-08-28T11:35:10.331529+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年8月27号 16:17AI 日报AI日报：千问办公首发上线Qwen3.8-Flash；智谱开源多模态大模型GLM-5.3-Flash；京东“超脑”3.0大模型亮相查看日报",
-        "link": "https://www.aibase.com/daily/30675"
+        "title": "2026年8月28号 16:19AI 日报AI日报：腾讯发布开源旗舰模型Hy4preview；Midjourney V8.2上线图像编辑模型；谷歌Gemini Omni 1.1 Flash模型登场查看日报",
+        "link": "https://www.aibase.com/daily/30700"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "从3.3GB压缩到440MB！腾讯混元极低bit翻译模型如何做到几乎零损失？",
-          "link": "https://www.aibase.com/news/30673",
-          "date": "2026年8月27号 16:17",
+          "title": "蚂蚁集团携手中金公司推出首个金融增强大模型Ling-3.0-flash-Fin",
+          "link": "https://www.aibase.com/news/30695",
+          "date": "2026年8月28号 16:19",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Claude 桌面端 Cowork 内置浏览器上线，可独立完成网页操作",
-          "link": "https://www.aibase.com/news/30672",
-          "date": "2026年8月27号 16:17",
+          "title": "腾讯混元发布开源旗舰模型Hy4preview，总参数770B、上下文1M",
+          "link": "https://www.aibase.com/news/30694",
+          "date": "2026年8月28号 16:19",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "千问办公首发上线Qwen3.8-Flash，Agent正式迈入“量大管饱”时代",
-          "link": "https://www.aibase.com/news/30668",
-          "date": "2026年8月27号 16:17",
+          "title": "Anthropic 推出 MHS 硬件标准，首次重拳杀入物理 AI 赛道",
+          "link": "https://www.aibase.com/news/30692",
+          "date": "2026年8月28号 16:19",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "拷走 AI 软件去创业，北京首例 AIGC 商业秘密案罚 10 万元",
-          "link": "https://www.aibase.com/news/30667",
-          "date": "2026年8月27号 16:17",
+          "title": "阿里发布全新 Qoder:从 AI 编程工具升级为面向所有人的智能体工作台",
+          "link": "https://www.aibase.com/news/30691",
+          "date": "2026年8月28号 16:19",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "FF发布Next Futurist与Next Aegis两款机器人 机器人工厂年内投入运营",
-          "link": "https://www.aibase.com/news/30663",
-          "date": "2026年8月27号 16:17",
+          "title": "Midjourney V8.2重磅上线图像编辑模型，全功能支持指令微调与画布扩展",
+          "link": "https://www.aibase.com/news/30690",
+          "date": "2026年8月28号 16:19",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "价格砍至四十分之一！智谱开源原生多模态大模型GLM-5.3-Flash",
-          "link": "https://www.aibase.com/news/30655",
-          "date": "2026年8月27号 16:17",
+          "title": "小鹏第二代VLA大模型迎来首次重大升级，综合安全能力暴增20倍",
+          "link": "https://www.aibase.com/news/30689",
+          "date": "2026年8月28号 16:19",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "京东“超脑”3.0大模型亮相，打造物流全流程AI指挥官",
-          "link": "https://www.aibase.com/news/30653",
-          "date": "2026年8月27号 16:17",
+          "title": "谷歌升级搜索 AI 模式:支持300多家平台机票追踪与酒店预订",
+          "link": "https://www.aibase.com/news/30687",
+          "date": "2026年8月28号 16:19",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "谷歌升级Gemini Live语音功能，AI应用体验转向“一句话完成任务”",
-          "link": "https://www.aibase.com/news/30649",
-          "date": "2026年8月27号 16:17",
+          "title": "直出4K分辨率！谷歌全新Gemini Omni 1.1 Flash视频模型重磅登场",
+          "link": "https://www.aibase.com/news/30681",
+          "date": "2026年8月28号 16:19",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "KV vs Prefix vs Prompt vs Semantic Caching",
+          "link": "https://blog.dailydoseofds.com/p/kv-vs-prefix-vs-prompt-vs-semantic",
+          "date": "Thu, 27 Aug 2026 20:01:47 GMT",
+          "note": "...explained with best practices in production."
+        },
         {
           "title": "[Hands-on] Turn Scientific Figures Into Structured Data with Mistral OCR",
           "link": "https://blog.dailydoseofds.com/p/hands-on-turn-scientific-figures",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/grok-bot-masterclass",
           "date": "Tue, 18 Aug 2026 19:57:58 GMT",
           "note": "Everything you need to understand, set up, and get real work out of Grok Bot."
-        },
-        {
-          "title": "How a GPU Actually Works",
-          "link": "https://blog.dailydoseofds.com/p/how-a-gpu-actually-works",
-          "date": "Mon, 17 Aug 2026 21:01:19 GMT",
-          "note": "The intuition an LLM engineer needs. Understand techniques like quantization, speculative decoding, and continuous batching in one place."
         }
       ]
     },
