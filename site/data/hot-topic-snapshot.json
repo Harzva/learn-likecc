@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-08-28T11:35:10.331529+00:00",
+    "generated_at": "2026-08-29T07:13:20.433986+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -85,6 +85,12 @@
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
         {
+          "title": "Implementing a Siamese Network with Contrastive Learning",
+          "link": "https://blog.dailydoseofds.com/p/implementing-a-siamese-network-with",
+          "date": "Fri, 28 Aug 2026 21:11:08 GMT",
+          "note": "Full guide with code."
+        },
+        {
           "title": "KV vs Prefix vs Prompt vs Semantic Caching",
           "link": "https://blog.dailydoseofds.com/p/kv-vs-prefix-vs-prompt-vs-semantic",
           "date": "Thu, 27 Aug 2026 20:01:47 GMT",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/kimi-k3s-sandbox-problem-finally",
           "date": "Wed, 19 Aug 2026 21:54:13 GMT",
           "note": "...explained with code."
-        },
-        {
-          "title": "Grok Bot Masterclass",
-          "link": "https://blog.dailydoseofds.com/p/grok-bot-masterclass",
-          "date": "Tue, 18 Aug 2026 19:57:58 GMT",
-          "note": "Everything you need to understand, set up, and get real work out of Grok Bot."
         }
       ]
     },
@@ -147,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "The Open ASR Leaderboard Adds Its First Global South Language",
+          "link": "https://huggingface.co/blog/open-asr-leaderboard-global-south",
+          "date": "Fri, 28 Aug 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "Training and Finetuning Multi-Vector Embedding Models with Sentence Transformers",
           "link": "https://huggingface.co/blog/train-multi-vector-encoder",
@@ -187,12 +193,6 @@
           "title": "Up to 3.2x Faster Inference with LFM2.5-DSpark",
           "link": "https://huggingface.co/blog/LiquidAI/lfm25-dspark",
           "date": "Thu, 20 Aug 2026 16:52:57 GMT",
-          "note": ""
-        },
-        {
-          "title": "How Much Memory Does Your Agent Actually Need?",
-          "link": "https://huggingface.co/blog/ibm-research/altk-evolve-hmm",
-          "date": "Tue, 18 Aug 2026 18:09:38 GMT",
           "note": ""
         }
       ]
