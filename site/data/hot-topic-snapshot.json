@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-08-30T05:35:28.517518+00:00",
+    "generated_at": "2026-08-31T05:51:08.668862+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -85,6 +85,12 @@
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
         {
+          "title": "Why KV Cache Stores K and V Vectors But Never Q?",
+          "link": "https://blog.dailydoseofds.com/p/why-kv-cache-stores-k-and-v-vectors",
+          "date": "Sun, 30 Aug 2026 20:15:33 GMT",
+          "note": "A popular technical LLM interview question."
+        },
+        {
           "title": "Implementing a Siamese Network with Contrastive Learning",
           "link": "https://blog.dailydoseofds.com/p/implementing-a-siamese-network-with",
           "date": "Fri, 28 Aug 2026 21:11:08 GMT",
@@ -124,12 +130,6 @@
           "title": "What is (was?) GIL in Python?",
           "link": "https://blog.dailydoseofds.com/p/what-is-was-gil-in-python-d13",
           "date": "Thu, 20 Aug 2026 22:33:37 GMT",
-          "note": "...explained with code."
-        },
-        {
-          "title": "Kimi K3's Sandbox Problem Finally Has an Open-Source Fix",
-          "link": "https://blog.dailydoseofds.com/p/kimi-k3s-sandbox-problem-finally",
-          "date": "Wed, 19 Aug 2026 21:54:13 GMT",
           "note": "...explained with code."
         }
       ]
