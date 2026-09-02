@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-09-01T05:23:19.373870+00:00",
+    "generated_at": "2026-09-02T04:49:36.361016+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年8月31号 16:55AI 日报AI日报：科大讯飞将发星火X2.5；混元Hy4preview Agent能力大升级；Hugging Face 推微型开源双足机器人Microduck查看日报",
-        "link": "https://www.aibase.com/daily/30729"
+        "title": "2026年9月1号 16:13AI 日报AI日报：DeepSeek首个视觉实验模型开源；Runway发布首个界面世界模型Solaris；ChatGPT Ads年化收入突破1亿美元查看日报",
+        "link": "https://www.aibase.com/daily/30757"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "一个创意，一支AI团队:千问创作Agent Teams上线，编剧导演美术全承包",
-          "link": "https://www.aibase.com/news/30721",
-          "date": "2026年8月31号 16:55",
+          "title": "Runway发布首个界面世界模型Solaris，实时逐帧生成动态交互界面",
+          "link": "https://www.aibase.com/news/30756",
+          "date": "2026年9月1号 16:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenClaw2.0正式发布:重构底层架构，支持多人共享云端会话",
-          "link": "https://www.aibase.com/news/30720",
-          "date": "2026年8月31号 16:55",
+          "title": "ChatGPT Ads上线不足200天年化收入突破10 亿美元",
+          "link": "https://www.aibase.com/news/30753",
+          "date": "2026年9月1号 16:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenAI十万亿参数新模型Bel预训练完成",
-          "link": "https://www.aibase.com/news/30718",
-          "date": "2026年8月31号 16:55",
+          "title": "1200 个 AI 智能体集体“越狱”攻击开源社区：独立调查揭出比 OpenAI 自述更严重的真相",
+          "link": "https://www.aibase.com/news/30752",
+          "date": "2026年9月1号 16:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "消息称字节加大AI核心团队激励力度，豆包股提价14.6%加码大模型战略",
-          "link": "https://www.aibase.com/news/30717",
-          "date": "2026年8月31号 16:55",
+          "title": "MiniMax新模型引爆股价大涨超20%，下半年蓄势冲击3万亿参数",
+          "link": "https://www.aibase.com/news/30751",
+          "date": "2026年9月1号 16:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "科大讯飞将发布星火X2.5通用大模型",
-          "link": "https://www.aibase.com/news/30716",
-          "date": "2026年8月31号 16:55",
+          "title": "中国化工行业首个大模型3.0 Pro重磅发布，从“会答”迈向“会干”",
+          "link": "https://www.aibase.com/news/30750",
+          "date": "2026年9月1号 16:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "上线即爆单!混元Hy4preview Agent能力大升级，腾讯紧急扩容集群",
-          "link": "https://www.aibase.com/news/30711",
-          "date": "2026年8月31号 16:55",
+          "title": "​百万 Token 上下文首次下放到端侧：讯飞星火 X2.5 双子星开源，全程国产算力训练",
+          "link": "https://www.aibase.com/news/30749",
+          "date": "2026年9月1号 16:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "不到四百美元还能自己动手训练！Hugging Face 推出微型开源双足机器人Microduck",
-          "link": "https://www.aibase.com/news/30705",
-          "date": "2026年8月31号 16:55",
+          "title": "DeepSeek首个视觉实验模型正式开源，3050亿参数对标顶尖水平",
+          "link": "https://www.aibase.com/news/30735",
+          "date": "2026年9月1号 16:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "国内首部全AI生成长剧《后西游记》今日开播，首创“边审边播”模式",
-          "link": "https://www.aibase.com/news/30701",
-          "date": "2026年8月31号 16:55",
+          "title": "Instagram推AI个人资料新规:未公开标注将面临降权限流",
+          "link": "https://www.aibase.com/news/30733",
+          "date": "2026年9月1号 16:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Static vs. Dynamic vs. Continuous Batching in LLMs, clearly explained!",
+          "link": "https://blog.dailydoseofds.com/p/static-vs-dynamic-vs-continuous-batching",
+          "date": "Tue, 01 Sep 2026 21:11:23 GMT",
+          "note": "+ a popular LLM interview question."
+        },
         {
           "title": "WebMCP By Google, Clearly Explained!",
           "link": "https://blog.dailydoseofds.com/p/webmcp-by-google-clearly-explained",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/preloading-knowledge-into-a-model",
           "date": "Mon, 24 Aug 2026 17:13:39 GMT",
           "note": "How to process your corpus once, skip retrieval entirely, and serve every query from a stored cache. Three parts covering the full spectrum."
-        },
-        {
-          "title": "How Semantic Code Navigation Cuts Agent Token Costs by up to 36%",
-          "link": "https://blog.dailydoseofds.com/p/how-semantic-code-navigation-cuts",
-          "date": "Fri, 21 Aug 2026 21:51:15 GMT",
-          "note": "Understanding what an agent actually does with the tokens before it writes code."
         }
       ]
     },
@@ -147,6 +147,18 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "BenchMIRT: What are LLM benchmarks actually measuring?",
+          "link": "https://huggingface.co/blog/allenai/benchmirt",
+          "date": "Tue, 01 Sep 2026 21:39:07 GMT",
+          "note": ""
+        },
+        {
+          "title": "Introducing @huggingface/kernels: 200+ WebGPU Kernels for Local AI",
+          "link": "https://huggingface.co/blog/webgpu-kernels",
+          "date": "Tue, 01 Sep 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "The Open ASR Leaderboard Adds Its First Global South Language",
           "link": "https://huggingface.co/blog/open-asr-leaderboard-global-south",
@@ -181,18 +193,6 @@
           "title": "How Hugging Face Inference Endpoints, Jobs, and Buckets Power Search on Papers with Code",
           "link": "https://huggingface.co/blog/pwc-search",
           "date": "Fri, 21 Aug 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Measuring benchmark optimization in speech recognition",
-          "link": "https://huggingface.co/blog/asr-benchmark-optimization",
-          "date": "Fri, 21 Aug 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Up to 3.2x Faster Inference with LFM2.5-DSpark",
-          "link": "https://huggingface.co/blog/LiquidAI/lfm25-dspark",
-          "date": "Thu, 20 Aug 2026 16:52:57 GMT",
           "note": ""
         }
       ]
