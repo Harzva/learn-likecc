@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-09-02T04:49:36.361016+00:00",
+    "generated_at": "2026-09-03T04:48:06.730662+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年9月1号 16:13AI 日报AI日报：DeepSeek首个视觉实验模型开源；Runway发布首个界面世界模型Solaris；ChatGPT Ads年化收入突破1亿美元查看日报",
-        "link": "https://www.aibase.com/daily/30757"
+        "title": "2026年9月2号 16:34AI 日报AI日报：World Labs推多模态世界模型Atlas；WorkBuddy宣布开放平台上线；网信办重点整治AI换脸、魔改名著查看日报",
+        "link": "https://www.aibase.com/daily/30782"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "Runway发布首个界面世界模型Solaris，实时逐帧生成动态交互界面",
-          "link": "https://www.aibase.com/news/30756",
-          "date": "2026年9月1号 16:13",
+          "title": "网信办重点整治AI换脸、魔改名著等 豆包、元宝、千问、文心一言严格限制违规内容输出",
+          "link": "https://www.aibase.com/news/30781",
+          "date": "2026年9月2号 16:34",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "ChatGPT Ads上线不足200天年化收入突破10 亿美元",
-          "link": "https://www.aibase.com/news/30753",
-          "date": "2026年9月1号 16:13",
+          "title": "豆包手机 9 月开售：命名努比亚 NaviX Ultra，号称全球首款 AI 智能体旗舰",
+          "link": "https://www.aibase.com/news/30775",
+          "date": "2026年9月2号 16:34",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "1200 个 AI 智能体集体“越狱”攻击开源社区：独立调查揭出比 OpenAI 自述更严重的真相",
-          "link": "https://www.aibase.com/news/30752",
-          "date": "2026年9月1号 16:13",
+          "title": "腾讯WorkBuddy宣布开放平台上线 全面开放Agent基座能力",
+          "link": "https://www.aibase.com/news/30773",
+          "date": "2026年9月2号 16:34",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "MiniMax新模型引爆股价大涨超20%，下半年蓄势冲击3万亿参数",
-          "link": "https://www.aibase.com/news/30751",
-          "date": "2026年9月1号 16:13",
+          "title": "谷歌 AI 修图工具 Pics 正式上线：Docs、Slides 里点一下图片就能改",
+          "link": "https://www.aibase.com/news/30772",
+          "date": "2026年9月2号 16:34",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "中国化工行业首个大模型3.0 Pro重磅发布，从“会答”迈向“会干”",
-          "link": "https://www.aibase.com/news/30750",
-          "date": "2026年9月1号 16:13",
+          "title": "World Labs推出全球首个多模态世界模型Atlas，像素级镜头控制拍出电影级“子弹时间”大片",
+          "link": "https://www.aibase.com/news/30771",
+          "date": "2026年9月2号 16:34",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "​百万 Token 上下文首次下放到端侧：讯飞星火 X2.5 双子星开源，全程国产算力训练",
-          "link": "https://www.aibase.com/news/30749",
-          "date": "2026年9月1号 16:13",
+          "title": "决战OpenAI与Anthropic！谷歌Gemini 3.8 Flash内测代号“Skimaki”最快周三上线",
+          "link": "https://www.aibase.com/news/30769",
+          "date": "2026年9月2号 16:34",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "DeepSeek首个视觉实验模型正式开源，3050亿参数对标顶尖水平",
-          "link": "https://www.aibase.com/news/30735",
-          "date": "2026年9月1号 16:13",
+          "title": "地球最强大模型打起价格战！Anthropic发布Fable 5.1：性能狂飙且成本骤降四成",
+          "link": "https://www.aibase.com/news/30763",
+          "date": "2026年9月2号 16:34",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Instagram推AI个人资料新规:未公开标注将面临降权限流",
-          "link": "https://www.aibase.com/news/30733",
-          "date": "2026年9月1号 16:13",
+          "title": "Meta 首个实时音频感知模型来了：20 多人同时说话也能分轨转写，每千分钟 3 美元",
+          "link": "https://www.aibase.com/news/30762",
+          "date": "2026年9月2号 16:34",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Stop Guessing Which Local Model To Run",
+          "link": "https://blog.dailydoseofds.com/p/stop-guessing-which-local-model-to",
+          "date": "Wed, 02 Sep 2026 19:10:34 GMT",
+          "note": "A practitioner's guide to local AI."
+        },
         {
           "title": "Static vs. Dynamic vs. Continuous Batching in LLMs, clearly explained!",
           "link": "https://blog.dailydoseofds.com/p/static-vs-dynamic-vs-continuous-batching",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/build-a-multi-agent-gtm-intelligence",
           "date": "Tue, 25 Aug 2026 20:26:56 GMT",
           "note": "...explained with code."
-        },
-        {
-          "title": "Preloading Knowledge Into a Model Instead of Retrieving It",
-          "link": "https://blog.dailydoseofds.com/p/preloading-knowledge-into-a-model",
-          "date": "Mon, 24 Aug 2026 17:13:39 GMT",
-          "note": "How to process your corpus once, skip retrieval entirely, and serve every query from a stored cache. Three parts covering the full spectrum."
         }
       ]
     },
@@ -147,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Real-Time Intelligence with IBM Time Series Models on Confluent",
+          "link": "https://huggingface.co/blog/ibm-research/real-time-intelligence",
+          "date": "Wed, 02 Sep 2026 13:49:14 GMT",
+          "note": ""
+        },
         {
           "title": "BenchMIRT: What are LLM benchmarks actually measuring?",
           "link": "https://huggingface.co/blog/allenai/benchmirt",
@@ -187,12 +193,6 @@
           "title": "Wire It, Run It, Deploy It: AI Workflows in Gradio",
           "link": "https://huggingface.co/blog/gradio-workflow-guide",
           "date": "Tue, 25 Aug 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "How Hugging Face Inference Endpoints, Jobs, and Buckets Power Search on Papers with Code",
-          "link": "https://huggingface.co/blog/pwc-search",
-          "date": "Fri, 21 Aug 2026 00:00:00 GMT",
           "note": ""
         }
       ]
