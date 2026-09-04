@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-09-03T04:48:06.730662+00:00",
+    "generated_at": "2026-09-04T04:49:56.950124+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年9月2号 16:34AI 日报AI日报：World Labs推多模态世界模型Atlas；WorkBuddy宣布开放平台上线；网信办重点整治AI换脸、魔改名著查看日报",
-        "link": "https://www.aibase.com/daily/30782"
+        "title": "2026年9月3号 16:02AI 日报AI日报：天猫正式上线AI空间站；Gemini 3.8 Flash发布；百度基础模型部大换血查看日报",
+        "link": "https://www.aibase.com/daily/30808"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "网信办重点整治AI换脸、魔改名著等 豆包、元宝、千问、文心一言严格限制违规内容输出",
-          "link": "https://www.aibase.com/news/30781",
-          "date": "2026年9月2号 16:34",
+          "title": "百度基础模型部大换血：北美大模型专家与前DeepSeek核心成员加盟，文心多模态迎关键升级",
+          "link": "https://www.aibase.com/news/30805",
+          "date": "2026年9月3号 16:02",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "豆包手机 9 月开售：命名努比亚 NaviX Ultra，号称全球首款 AI 智能体旗舰",
-          "link": "https://www.aibase.com/news/30775",
-          "date": "2026年9月2号 16:34",
+          "title": "天猫正式上线AI空间站：阿里云、智谱、Kimi、MiniMax集体入驻",
+          "link": "https://www.aibase.com/news/30804",
+          "date": "2026年9月3号 16:02",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯WorkBuddy宣布开放平台上线 全面开放Agent基座能力",
-          "link": "https://www.aibase.com/news/30773",
-          "date": "2026年9月2号 16:34",
+          "title": "Anthropic 发布 Claude Fable5.1:具备更强 Agent 编码能力，最高降本45%",
+          "link": "https://www.aibase.com/news/30801",
+          "date": "2026年9月3号 16:02",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "谷歌 AI 修图工具 Pics 正式上线：Docs、Slides 里点一下图片就能改",
-          "link": "https://www.aibase.com/news/30772",
-          "date": "2026年9月2号 16:34",
+          "title": "估值冲刺500亿美元：月之暗面秘密递表港交所，AI独角兽加速拥抱资本市场",
+          "link": "https://www.aibase.com/news/30794",
+          "date": "2026年9月3号 16:02",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "World Labs推出全球首个多模态世界模型Atlas，像素级镜头控制拍出电影级“子弹时间”大片",
-          "link": "https://www.aibase.com/news/30771",
-          "date": "2026年9月2号 16:34",
+          "title": "对标Canva与Adobe Express，谷歌生成式AI图像工具Google Pics亮相",
+          "link": "https://www.aibase.com/news/30792",
+          "date": "2026年9月3号 16:02",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "决战OpenAI与Anthropic！谷歌Gemini 3.8 Flash内测代号“Skimaki”最快周三上线",
-          "link": "https://www.aibase.com/news/30769",
-          "date": "2026年9月2号 16:34",
+          "title": "豆包工作上新:多 Agents 并行提效，Mac 版“操作电脑”让 AI 接管桌面",
+          "link": "https://www.aibase.com/news/30791",
+          "date": "2026年9月3号 16:02",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "地球最强大模型打起价格战！Anthropic发布Fable 5.1：性能狂飙且成本骤降四成",
-          "link": "https://www.aibase.com/news/30763",
-          "date": "2026年9月2号 16:34",
+          "title": "Gemini 3.8 Flash发布 六周三连更但干活不灵光",
+          "link": "https://www.aibase.com/news/30789",
+          "date": "2026年9月3号 16:02",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Meta 首个实时音频感知模型来了：20 多人同时说话也能分轨转写，每千分钟 3 美元",
-          "link": "https://www.aibase.com/news/30762",
-          "date": "2026年9月2号 16:34",
+          "title": "腾讯上线公益行业版WorkBuddy，15个智能体协同覆盖42条公益场景能力",
+          "link": "https://www.aibase.com/news/30784",
+          "date": "2026年9月3号 16:02",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Attention Mechanisms in LLMs, clearly explained",
+          "link": "https://blog.dailydoseofds.com/p/attention-mechanisms-in-llms-clearly",
+          "date": "Thu, 03 Sep 2026 20:05:32 GMT",
+          "note": "Everything you need to understand how attention works, why the KV cache is the bottleneck, and what every attention variant is actually solving."
+        },
         {
           "title": "Stop Guessing Which Local Model To Run",
           "link": "https://blog.dailydoseofds.com/p/stop-guessing-which-local-model-to",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/hands-on-turn-scientific-figures",
           "date": "Wed, 26 Aug 2026 21:06:26 GMT",
           "note": "A full walkthrough of the extraction schema, with code."
-        },
-        {
-          "title": "Build a Multi-Agent GTM Intelligence System",
-          "link": "https://blog.dailydoseofds.com/p/build-a-multi-agent-gtm-intelligence",
-          "date": "Tue, 25 Aug 2026 20:26:56 GMT",
-          "note": "...explained with code."
         }
       ]
     },
@@ -147,6 +147,30 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "NeoMME: an efficient Multimodal-native and Multilingual Encoder",
+          "link": "https://huggingface.co/blog/Hcompany/neomme",
+          "date": "Thu, 03 Sep 2026 13:13:48 GMT",
+          "note": ""
+        },
+        {
+          "title": "Fine-tuning a 350M Model for Better Structured Outputs in 100 GRPO Steps",
+          "link": "https://huggingface.co/blog/grpo-with-trl-ifstruct",
+          "date": "Thu, 03 Sep 2026 00:00:00 GMT",
+          "note": ""
+        },
+        {
+          "title": "Give Your Coding Agents a Memory You Own",
+          "link": "https://huggingface.co/blog/funes",
+          "date": "Thu, 03 Sep 2026 00:00:00 GMT",
+          "note": ""
+        },
+        {
+          "title": "Training a coding model to paint watercolours with TRL and OpenEnv",
+          "link": "https://huggingface.co/blog/train-to-paint-with-code",
+          "date": "Thu, 03 Sep 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "Real-Time Intelligence with IBM Time Series Models on Confluent",
           "link": "https://huggingface.co/blog/ibm-research/real-time-intelligence",
@@ -169,30 +193,6 @@
           "title": "The Open ASR Leaderboard Adds Its First Global South Language",
           "link": "https://huggingface.co/blog/open-asr-leaderboard-global-south",
           "date": "Fri, 28 Aug 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Training and Finetuning Multi-Vector Embedding Models with Sentence Transformers",
-          "link": "https://huggingface.co/blog/train-multi-vector-encoder",
-          "date": "Wed, 26 Aug 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Granite 4.2 LLMs: How They're Built",
-          "link": "https://huggingface.co/blog/ibm-granite/granite-4-2",
-          "date": "Tue, 25 Aug 2026 15:14:14 GMT",
-          "note": ""
-        },
-        {
-          "title": "Quantization-Aware Healing: a compressed, 4-bit model that outperforms its full-precision original",
-          "link": "https://huggingface.co/blog/MultiverseComputingCAI/quantization-aware-healing",
-          "date": "Tue, 25 Aug 2026 11:39:24 GMT",
-          "note": ""
-        },
-        {
-          "title": "Wire It, Run It, Deploy It: AI Workflows in Gradio",
-          "link": "https://huggingface.co/blog/gradio-workflow-guide",
-          "date": "Tue, 25 Aug 2026 00:00:00 GMT",
           "note": ""
         }
       ]
