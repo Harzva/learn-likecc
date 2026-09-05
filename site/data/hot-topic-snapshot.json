@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-09-04T04:49:56.950124+00:00",
+    "generated_at": "2026-09-05T04:44:02.667091+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年9月3号 16:02AI 日报AI日报：天猫正式上线AI空间站；Gemini 3.8 Flash发布；百度基础模型部大换血查看日报",
-        "link": "https://www.aibase.com/daily/30808"
+        "title": "2026年9月4号 16:26AI 日报AI日报：OpenAI正式发布GPT-6 Astra；英伟达129亿美元收购Hugging Face；小红书严打AI杜撰探店与医美查看日报",
+        "link": "https://www.aibase.com/daily/30848"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "百度基础模型部大换血：北美大模型专家与前DeepSeek核心成员加盟，文心多模态迎关键升级",
-          "link": "https://www.aibase.com/news/30805",
-          "date": "2026年9月3号 16:02",
+          "title": "智能戒指厂商Oura正式提交IPO申请，9个月营收增至12亿美元",
+          "link": "https://www.aibase.com/news/30846",
+          "date": "2026年9月4号 16:26",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "天猫正式上线AI空间站：阿里云、智谱、Kimi、MiniMax集体入驻",
-          "link": "https://www.aibase.com/news/30804",
-          "date": "2026年9月3号 16:02",
+          "title": "英伟达129亿美元收购Hugging Face，黄仁勋给出最新承诺",
+          "link": "https://www.aibase.com/news/30843",
+          "date": "2026年9月4号 16:26",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Anthropic 发布 Claude Fable5.1:具备更强 Agent 编码能力，最高降本45%",
-          "link": "https://www.aibase.com/news/30801",
-          "date": "2026年9月3号 16:02",
+          "title": "未发布GPT Image 2.5多项升级引关注，以假乱真引爆新期待",
+          "link": "https://www.aibase.com/news/30842",
+          "date": "2026年9月4号 16:26",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "估值冲刺500亿美元：月之暗面秘密递表港交所，AI独角兽加速拥抱资本市场",
-          "link": "https://www.aibase.com/news/30794",
-          "date": "2026年9月3号 16:02",
+          "title": "奥尔特曼证实 OpenAI 自研人形机器人：家用不是当务之急，但长期看好",
+          "link": "https://www.aibase.com/news/30835",
+          "date": "2026年9月4号 16:26",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "对标Canva与Adobe Express，谷歌生成式AI图像工具Google Pics亮相",
-          "link": "https://www.aibase.com/news/30792",
-          "date": "2026年9月3号 16:02",
+          "title": "阿里千问上线首月用户破3000万：开源上下文底座，打造企业级Agent新范式",
+          "link": "https://www.aibase.com/news/30832",
+          "date": "2026年9月4号 16:26",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "豆包工作上新:多 Agents 并行提效，Mac 版“操作电脑”让 AI 接管桌面",
-          "link": "https://www.aibase.com/news/30791",
-          "date": "2026年9月3号 16:02",
+          "title": "Google Workspace全线接入Gemini语音交互，告别手动打字时代",
+          "link": "https://www.aibase.com/news/30829",
+          "date": "2026年9月4号 16:26",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Gemini 3.8 Flash发布 六周三连更但干活不灵光",
-          "link": "https://www.aibase.com/news/30789",
-          "date": "2026年9月3号 16:02",
+          "title": "严打AI杜撰探店与医美，小红书清除近12万条虚假内容",
+          "link": "https://www.aibase.com/news/30826",
+          "date": "2026年9月4号 16:26",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯上线公益行业版WorkBuddy，15个智能体协同覆盖42条公益场景能力",
-          "link": "https://www.aibase.com/news/30784",
-          "date": "2026年9月3号 16:02",
+          "title": "OpenAI正式发布GPT-6 Astra：迈向通用人工智能的里程碑之作",
+          "link": "https://www.aibase.com/news/30817",
+          "date": "2026年9月4号 16:26",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "5 Embedding Compression Techniques",
+          "link": "https://blog.dailydoseofds.com/p/5-embedding-compression-techniques",
+          "date": "Fri, 04 Sep 2026 20:51:57 GMT",
+          "note": "...explained visually."
+        },
         {
           "title": "Attention Mechanisms in LLMs, clearly explained",
           "link": "https://blog.dailydoseofds.com/p/attention-mechanisms-in-llms-clearly",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/kv-vs-prefix-vs-prompt-vs-semantic",
           "date": "Thu, 27 Aug 2026 20:01:47 GMT",
           "note": "...explained with best practices in production."
-        },
-        {
-          "title": "[Hands-on] Turn Scientific Figures Into Structured Data with Mistral OCR",
-          "link": "https://blog.dailydoseofds.com/p/hands-on-turn-scientific-figures",
-          "date": "Wed, 26 Aug 2026 21:06:26 GMT",
-          "note": "A full walkthrough of the extraction schema, with code."
         }
       ]
     },
