@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-09-06T04:54:50.086139+00:00",
+    "generated_at": "2026-09-07T04:58:57.814258+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -85,6 +85,12 @@
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
         {
+          "title": "KV Cache Engineering for LLM Serving",
+          "link": "https://blog.dailydoseofds.com/p/kv-cache-engineering-for-llm-serving",
+          "date": "Sun, 06 Sep 2026 20:43:32 GMT",
+          "note": "12 techniques to manage KV cache in production."
+        },
+        {
           "title": "5 Embedding Compression Techniques",
           "link": "https://blog.dailydoseofds.com/p/5-embedding-compression-techniques",
           "date": "Fri, 04 Sep 2026 20:51:57 GMT",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/implementing-a-siamese-network-with",
           "date": "Fri, 28 Aug 2026 21:11:08 GMT",
           "note": "Full guide with code."
-        },
-        {
-          "title": "KV vs Prefix vs Prompt vs Semantic Caching",
-          "link": "https://blog.dailydoseofds.com/p/kv-vs-prefix-vs-prompt-vs-semantic",
-          "date": "Thu, 27 Aug 2026 20:01:47 GMT",
-          "note": "...explained with best practices in production."
         }
       ]
     },
