@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-09-07T04:58:57.814258+00:00",
+    "generated_at": "2026-09-08T04:55:59.829074+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年9月4号 16:26AI 日报AI日报：OpenAI正式发布GPT-6 Astra；英伟达129亿美元收购Hugging Face；小红书严打AI杜撰探店与医美查看日报",
-        "link": "https://www.aibase.com/daily/30848"
+        "title": "2026年9月7号 15:32AI 日报AI日报；微信内测小微AI社交；火山引擎内测AI版权平台；微软发布 MAI-Image-2.6-Flash查看日报",
+        "link": "https://www.aibase.com/daily/30878"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "智能戒指厂商Oura正式提交IPO申请，9个月营收增至12亿美元",
-          "link": "https://www.aibase.com/news/30846",
-          "date": "2026年9月4号 16:26",
+          "title": "千问办公推出业内首个\"多人工作台\"，一句话生成可承载百人协作的业务网页",
+          "link": "https://www.aibase.com/news/30873",
+          "date": "2026年9月7号 15:32",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "英伟达129亿美元收购Hugging Face，黄仁勋给出最新承诺",
-          "link": "https://www.aibase.com/news/30843",
-          "date": "2026年9月4号 16:26",
+          "title": "OpenAI首度承认维基越狱事件，将紧急制定智能体异常行为披露框架",
+          "link": "https://www.aibase.com/news/30872",
+          "date": "2026年9月7号 15:32",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "未发布GPT Image 2.5多项升级引关注，以假乱真引爆新期待",
-          "link": "https://www.aibase.com/news/30842",
-          "date": "2026年9月4号 16:26",
+          "title": "讯飞星火X2.5发布：MoE架构重磅加持，代码与智能体能力实现跨越式升级",
+          "link": "https://www.aibase.com/news/30870",
+          "date": "2026年9月7号 15:32",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "奥尔特曼证实 OpenAI 自研人形机器人：家用不是当务之急，但长期看好",
-          "link": "https://www.aibase.com/news/30835",
-          "date": "2026年9月4号 16:26",
+          "title": "微信内测“小微AI社交”新功能 支持原生AI助手跨账号代理沟通",
+          "link": "https://www.aibase.com/news/30869",
+          "date": "2026年9月7号 15:32",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阿里千问上线首月用户破3000万：开源上下文底座，打造企业级Agent新范式",
-          "link": "https://www.aibase.com/news/30832",
-          "date": "2026年9月4号 16:26",
+          "title": "火山引擎内测 AI 版权平台，Seedance 从“防侵权”转向“IP 商业化”",
+          "link": "https://www.aibase.com/news/30868",
+          "date": "2026年9月7号 15:32",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Google Workspace全线接入Gemini语音交互，告别手动打字时代",
-          "link": "https://www.aibase.com/news/30829",
-          "date": "2026年9月4号 16:26",
+          "title": "微信视觉团队开源通用多模态嵌入模型WeMM-Embedding，日调用量突破十亿量级",
+          "link": "https://www.aibase.com/news/30866",
+          "date": "2026年9月7号 15:32",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "严打AI杜撰探店与医美，小红书清除近12万条虚假内容",
-          "link": "https://www.aibase.com/news/30826",
-          "date": "2026年9月4号 16:26",
+          "title": "努比亚NaviX Ultra定档9月16日发布，搭载豆包手机助手",
+          "link": "https://www.aibase.com/news/30861",
+          "date": "2026年9月7号 15:32",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenAI正式发布GPT-6 Astra：迈向通用人工智能的里程碑之作",
-          "link": "https://www.aibase.com/news/30817",
-          "date": "2026年9月4号 16:26",
+          "title": "微软发布 MAI-Image-2.6-Flash:图像生成速度提升2.8倍，成本降低逾50%",
+          "link": "https://www.aibase.com/news/30853",
+          "date": "2026年9月7号 15:32",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "LLM Routing Can Cost More Than Not Routing",
+          "link": "https://blog.dailydoseofds.com/p/llm-routing-can-cost-more-than-not",
+          "date": "Mon, 07 Sep 2026 20:30:58 GMT",
+          "note": "...covered with a production-grade router for LLM apps."
+        },
         {
           "title": "KV Cache Engineering for LLM Serving",
           "link": "https://blog.dailydoseofds.com/p/kv-cache-engineering-for-llm-serving",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/why-kv-cache-stores-k-and-v-vectors",
           "date": "Sun, 30 Aug 2026 20:15:33 GMT",
           "note": "A popular technical LLM interview question."
-        },
-        {
-          "title": "Implementing a Siamese Network with Contrastive Learning",
-          "link": "https://blog.dailydoseofds.com/p/implementing-a-siamese-network-with",
-          "date": "Fri, 28 Aug 2026 21:11:08 GMT",
-          "note": "Full guide with code."
         }
       ]
     },
