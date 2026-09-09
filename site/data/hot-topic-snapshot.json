@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-09-08T04:55:59.829074+00:00",
+    "generated_at": "2026-09-09T04:56:03.959638+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年9月7号 15:32AI 日报AI日报；微信内测小微AI社交；火山引擎内测AI版权平台；微软发布 MAI-Image-2.6-Flash查看日报",
-        "link": "https://www.aibase.com/daily/30878"
+        "title": "2026年9月8号 16:42AI 日报AI日报；微信支付智能眼镜SDK上线；字节或推实时生成虚拟世界AI模型；最高法发布首部涉人工智能纠纷案件意见查看日报",
+        "link": "https://www.aibase.com/daily/30910"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "千问办公推出业内首个\"多人工作台\"，一句话生成可承载百人协作的业务网页",
-          "link": "https://www.aibase.com/news/30873",
-          "date": "2026年9月7号 15:32",
+          "title": "马斯克杀入Copilot主场：Grok Bot 深度接管微软账号",
+          "link": "https://www.aibase.com/news/30907",
+          "date": "2026年9月8号 16:42",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenAI首度承认维基越狱事件，将紧急制定智能体异常行为披露框架",
-          "link": "https://www.aibase.com/news/30872",
-          "date": "2026年9月7号 15:32",
+          "title": "ChatGPT Work 迎来重磅升级：精准克隆个人写作风格",
+          "link": "https://www.aibase.com/news/30905",
+          "date": "2026年9月8号 16:42",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "讯飞星火X2.5发布：MoE架构重磅加持，代码与智能体能力实现跨越式升级",
-          "link": "https://www.aibase.com/news/30870",
-          "date": "2026年9月7号 15:32",
+          "title": "抬眼就能完成支付！微信支付智能眼镜 SDK 正式上线，Rokid 成首家适配品牌",
+          "link": "https://www.aibase.com/news/30901",
+          "date": "2026年9月8号 16:42",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "微信内测“小微AI社交”新功能 支持原生AI助手跨账号代理沟通",
-          "link": "https://www.aibase.com/news/30869",
-          "date": "2026年9月7号 15:32",
+          "title": "可灵AI正式官宣亮相2026多伦多国际电影节市场",
+          "link": "https://www.aibase.com/news/30900",
+          "date": "2026年9月8号 16:42",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "火山引擎内测 AI 版权平台，Seedance 从“防侵权”转向“IP 商业化”",
-          "link": "https://www.aibase.com/news/30868",
-          "date": "2026年9月7号 15:32",
+          "title": "AI换脸拟声、大数据杀熟迎来最严司法规矩：最高法发布首部涉人工智能纠纷案件意见",
+          "link": "https://www.aibase.com/news/30897",
+          "date": "2026年9月8号 16:42",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "微信视觉团队开源通用多模态嵌入模型WeMM-Embedding，日调用量突破十亿量级",
-          "link": "https://www.aibase.com/news/30866",
-          "date": "2026年9月7号 15:32",
+          "title": "每日调用量破 10 亿次！微信开源 WeMM-Embedding 多模态大模型，全面领跑国际权威榜单",
+          "link": "https://www.aibase.com/news/30896",
+          "date": "2026年9月8号 16:42",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "努比亚NaviX Ultra定档9月16日发布，搭载豆包手机助手",
-          "link": "https://www.aibase.com/news/30861",
-          "date": "2026年9月7号 15:32",
+          "title": "小鹏人形机器人自动化生产线正式启用，核心制程自动化率超80%",
+          "link": "https://www.aibase.com/news/30893",
+          "date": "2026年9月8号 16:42",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "微软发布 MAI-Image-2.6-Flash:图像生成速度提升2.8倍，成本降低逾50%",
-          "link": "https://www.aibase.com/news/30853",
-          "date": "2026年9月7号 15:32",
+          "title": "消息称字节或将推出实时生成虚拟世界AI模型",
+          "link": "https://www.aibase.com/news/30890",
+          "date": "2026年9月8号 16:42",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Momentum in ML, Explained Visually and Intuitively!",
+          "link": "https://blog.dailydoseofds.com/p/momentum-in-ml-explained-visually-342",
+          "date": "Tue, 08 Sep 2026 21:24:18 GMT",
+          "note": "(a popular ML interview question)"
+        },
         {
           "title": "LLM Routing Can Cost More Than Not Routing",
           "link": "https://blog.dailydoseofds.com/p/llm-routing-can-cost-more-than-not",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/webmcp-by-google-clearly-explained",
           "date": "Mon, 31 Aug 2026 13:43:15 GMT",
           "note": "Everything you need to understand WebMCP and expose your site's actions to an agent."
-        },
-        {
-          "title": "Why KV Cache Stores K and V Vectors But Never Q?",
-          "link": "https://blog.dailydoseofds.com/p/why-kv-cache-stores-k-and-v-vectors",
-          "date": "Sun, 30 Aug 2026 20:15:33 GMT",
-          "note": "A popular technical LLM interview question."
         }
       ]
     },
@@ -147,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Safety for Whom? Refusing the Right Subset of a Topic, Not the Whole Topic",
+          "link": "https://huggingface.co/blog/MultiverseComputingCAI/safety-for-whom",
+          "date": "Tue, 08 Sep 2026 14:23:07 GMT",
+          "note": ""
+        },
         {
           "title": "NeoMME: an efficient Multimodal-native and Multilingual Encoder",
           "link": "https://huggingface.co/blog/Hcompany/neomme",
@@ -187,12 +193,6 @@
           "title": "Introducing @huggingface/kernels: 200+ WebGPU Kernels for Local AI",
           "link": "https://huggingface.co/blog/webgpu-kernels",
           "date": "Tue, 01 Sep 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "The Open ASR Leaderboard Adds Its First Global South Language",
-          "link": "https://huggingface.co/blog/open-asr-leaderboard-global-south",
-          "date": "Fri, 28 Aug 2026 00:00:00 GMT",
           "note": ""
         }
       ]
