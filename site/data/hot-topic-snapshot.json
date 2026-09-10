@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-09-09T04:56:03.959638+00:00",
+    "generated_at": "2026-09-10T04:58:36.413975+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年9月8号 16:42AI 日报AI日报；微信支付智能眼镜SDK上线；字节或推实时生成虚拟世界AI模型；最高法发布首部涉人工智能纠纷案件意见查看日报",
-        "link": "https://www.aibase.com/daily/30910"
+        "title": "2026年9月9号 16:10AI 日报AI日报：OpenAI推出ChatGPT Images 2.5；曹操出行联合豆包上线AI打车服务；达芬奇接入 Claude Code查看日报",
+        "link": "https://www.aibase.com/daily/30930"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "马斯克杀入Copilot主场：Grok Bot 深度接管微软账号",
-          "link": "https://www.aibase.com/news/30907",
-          "date": "2026年9月8号 16:42",
+          "title": "联通联手魅族发布“小魔方”AI 手机：4 英寸方屏仅 99 克，主打全语音交互",
+          "link": "https://www.aibase.com/news/30928",
+          "date": "2026年9月9号 16:10",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "ChatGPT Work 迎来重磅升级：精准克隆个人写作风格",
-          "link": "https://www.aibase.com/news/30905",
-          "date": "2026年9月8号 16:42",
+          "title": "京东启动“物理 AI 加速计划”：要建全球最大物理世界运营中心",
+          "link": "https://www.aibase.com/news/30926",
+          "date": "2026年9月9号 16:10",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "抬眼就能完成支付！微信支付智能眼镜 SDK 正式上线，Rokid 成首家适配品牌",
-          "link": "https://www.aibase.com/news/30901",
-          "date": "2026年9月8号 16:42",
+          "title": "曹操出行联合豆包上线 AI 打车服务，首批落地北京、杭州、苏州",
+          "link": "https://www.aibase.com/news/30925",
+          "date": "2026年9月9号 16:10",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "可灵AI正式官宣亮相2026多伦多国际电影节市场",
-          "link": "https://www.aibase.com/news/30900",
-          "date": "2026年9月8号 16:42",
+          "title": "智元机器人落子多模态触觉赛道，入股前沿研发商模感科技",
+          "link": "https://www.aibase.com/news/30922",
+          "date": "2026年9月9号 16:10",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "AI换脸拟声、大数据杀熟迎来最严司法规矩：最高法发布首部涉人工智能纠纷案件意见",
-          "link": "https://www.aibase.com/news/30897",
-          "date": "2026年9月8号 16:42",
+          "title": "达芬奇 DaVinci Resolve 21.1 发布：接入 Claude Code 与 ChatGPT Codex",
+          "link": "https://www.aibase.com/news/30920",
+          "date": "2026年9月9号 16:10",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "每日调用量破 10 亿次！微信开源 WeMM-Embedding 多模态大模型，全面领跑国际权威榜单",
-          "link": "https://www.aibase.com/news/30896",
-          "date": "2026年9月8号 16:42",
+          "title": "首部AIGC漫改武侠大片《山竹刀》全网独家上线：当AI技术碰撞东方美学",
+          "link": "https://www.aibase.com/news/30915",
+          "date": "2026年9月9号 16:10",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "小鹏人形机器人自动化生产线正式启用，核心制程自动化率超80%",
-          "link": "https://www.aibase.com/news/30893",
-          "date": "2026年9月8号 16:42",
+          "title": "DeepSeek 宣布 Flash 系列模型降价：输出降至每百万 Token 4 元",
+          "link": "https://www.aibase.com/news/30913",
+          "date": "2026年9月9号 16:10",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "消息称字节或将推出实时生成虚拟世界AI模型",
-          "link": "https://www.aibase.com/news/30890",
-          "date": "2026年9月8号 16:42",
+          "title": "​OpenAI 推出 ChatGPT Images 2.5，延迟砍半并解锁草图微调",
+          "link": "https://www.aibase.com/news/30912",
+          "date": "2026年9月9号 16:10",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Your Agent Harness Needs Runtime Security",
+          "link": "https://blog.dailydoseofds.com/p/your-agent-harness-needs-runtime",
+          "date": "Wed, 09 Sep 2026 20:59:58 GMT",
+          "note": "A 100% local, open-source guide to recording what AI agents actually do at runtime."
+        },
         {
           "title": "Momentum in ML, Explained Visually and Intuitively!",
           "link": "https://blog.dailydoseofds.com/p/momentum-in-ml-explained-visually-342",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/static-vs-dynamic-vs-continuous-batching",
           "date": "Tue, 01 Sep 2026 21:11:23 GMT",
           "note": "+ a popular LLM interview question."
-        },
-        {
-          "title": "WebMCP By Google, Clearly Explained!",
-          "link": "https://blog.dailydoseofds.com/p/webmcp-by-google-clearly-explained",
-          "date": "Mon, 31 Aug 2026 13:43:15 GMT",
-          "note": "Everything you need to understand WebMCP and expose your site's actions to an agent."
         }
       ]
     },
@@ -147,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "IBM releases SOTA Granite Time Series PatchTST-FM-r2 model with commercial-friendly license",
+          "link": "https://huggingface.co/blog/ibm-research/ibm-releases-sota-granite-time-series",
+          "date": "Wed, 09 Sep 2026 15:36:24 GMT",
+          "note": ""
+        },
         {
           "title": "Safety for Whom? Refusing the Right Subset of a Topic, Not the Whole Topic",
           "link": "https://huggingface.co/blog/MultiverseComputingCAI/safety-for-whom",
@@ -175,12 +181,6 @@
           "title": "Training a coding model to paint watercolours with TRL and OpenEnv",
           "link": "https://huggingface.co/blog/train-to-paint-with-code",
           "date": "Thu, 03 Sep 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Real-Time Intelligence with IBM Time Series Models on Confluent",
-          "link": "https://huggingface.co/blog/ibm-research/real-time-intelligence",
-          "date": "Wed, 02 Sep 2026 13:49:14 GMT",
           "note": ""
         },
         {
