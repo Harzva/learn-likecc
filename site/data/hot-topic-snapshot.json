@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-09-10T04:58:36.413975+00:00",
+    "generated_at": "2026-09-11T04:55:55.253066+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年9月9号 16:10AI 日报AI日报：OpenAI推出ChatGPT Images 2.5；曹操出行联合豆包上线AI打车服务；达芬奇接入 Claude Code查看日报",
-        "link": "https://www.aibase.com/daily/30930"
+        "title": "2026年9月10号 16:23AI 日报AI日报：DeepSeek V4.1 Flash发布；Suno v6支持图片、视频一键变音乐；ChatGPT语音模式全面开放GPT-6 Astra调用查看日报",
+        "link": "https://www.aibase.com/daily/30965"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "联通联手魅族发布“小魔方”AI 手机：4 英寸方屏仅 99 克，主打全语音交互",
-          "link": "https://www.aibase.com/news/30928",
-          "date": "2026年9月9号 16:10",
+          "title": "AMD：超 20 款锐龙 AI Max+ PRO 495 设备即将上市，迷你主机成绝对主力",
+          "link": "https://www.aibase.com/news/30962",
+          "date": "2026年9月10号 16:23",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "京东启动“物理 AI 加速计划”：要建全球最大物理世界运营中心",
-          "link": "https://www.aibase.com/news/30926",
-          "date": "2026年9月9号 16:10",
+          "title": "告别配音“对不上嘴”！亚马逊Prime Video重磅上线AI口型同步技术",
+          "link": "https://www.aibase.com/news/30961",
+          "date": "2026年9月10号 16:23",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "曹操出行联合豆包上线 AI 打车服务，首批落地北京、杭州、苏州",
-          "link": "https://www.aibase.com/news/30925",
-          "date": "2026年9月9号 16:10",
+          "title": "​Kimi携手华胜天成、金山云等巨头杀入企业核心腹地",
+          "link": "https://www.aibase.com/news/30959",
+          "date": "2026年9月10号 16:23",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "智元机器人落子多模态触觉赛道，入股前沿研发商模感科技",
-          "link": "https://www.aibase.com/news/30922",
-          "date": "2026年9月9号 16:10",
+          "title": "DeepSeek V4.1 Flash发布：原生多模态视觉理解全面超越Pro版",
+          "link": "https://www.aibase.com/news/30955",
+          "date": "2026年9月10号 16:23",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "达芬奇 DaVinci Resolve 21.1 发布：接入 Claude Code 与 ChatGPT Codex",
-          "link": "https://www.aibase.com/news/30920",
-          "date": "2026年9月9号 16:10",
+          "title": "​Suno v6 正式上线：图片、视频、语音备忘录一键变音乐，精准编辑歌曲成现实",
+          "link": "https://www.aibase.com/news/30947",
+          "date": "2026年9月10号 16:23",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "首部AIGC漫改武侠大片《山竹刀》全网独家上线：当AI技术碰撞东方美学",
-          "link": "https://www.aibase.com/news/30915",
-          "date": "2026年9月9号 16:10",
+          "title": "ChatGPT语音模式全面开放GPT-5.6 Sol与GPT-6 Astra调用",
+          "link": "https://www.aibase.com/news/30945",
+          "date": "2026年9月10号 16:23",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "DeepSeek 宣布 Flash 系列模型降价：输出降至每百万 Token 4 元",
-          "link": "https://www.aibase.com/news/30913",
-          "date": "2026年9月9号 16:10",
+          "title": "米哈游《原神》角色声音被“偷”获赔 75 万：上海首例 AI 声音仿冒案宣判",
+          "link": "https://www.aibase.com/news/30944",
+          "date": "2026年9月10号 16:23",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "​OpenAI 推出 ChatGPT Images 2.5，延迟砍半并解锁草图微调",
-          "link": "https://www.aibase.com/news/30912",
-          "date": "2026年9月9号 16:10",
+          "title": "OpenAI悄然调整ChatGPT广告政策，全面封杀Adobe等竞品AI生图与语音广告",
+          "link": "https://www.aibase.com/news/30938",
+          "date": "2026年9月10号 16:23",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Why Multi-turn Agents Need More Than a Task Graph",
+          "link": "https://blog.dailydoseofds.com/p/why-multi-turn-agents-need-more-than",
+          "date": "Thu, 10 Sep 2026 21:34:26 GMT",
+          "note": "What production agents must preserve between turns, and what they must reset."
+        },
         {
           "title": "Your Agent Harness Needs Runtime Security",
           "link": "https://blog.dailydoseofds.com/p/your-agent-harness-needs-runtime",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/stop-guessing-which-local-model-to",
           "date": "Wed, 02 Sep 2026 19:10:34 GMT",
           "note": "A practitioner's guide to local AI."
-        },
-        {
-          "title": "Static vs. Dynamic vs. Continuous Batching in LLMs, clearly explained!",
-          "link": "https://blog.dailydoseofds.com/p/static-vs-dynamic-vs-continuous-batching",
-          "date": "Tue, 01 Sep 2026 21:11:23 GMT",
-          "note": "+ a popular LLM interview question."
         }
       ]
     },
@@ -147,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Rebuilding AUTOMATIC1111 with Gradio Workflow",
+          "link": "https://huggingface.co/blog/gradio-workflow-1111",
+          "date": "Thu, 10 Sep 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "IBM releases SOTA Granite Time Series PatchTST-FM-r2 model with commercial-friendly license",
           "link": "https://huggingface.co/blog/ibm-research/ibm-releases-sota-granite-time-series",
@@ -187,12 +193,6 @@
           "title": "BenchMIRT: What are LLM benchmarks actually measuring?",
           "link": "https://huggingface.co/blog/allenai/benchmirt",
           "date": "Tue, 01 Sep 2026 21:39:07 GMT",
-          "note": ""
-        },
-        {
-          "title": "Introducing @huggingface/kernels: 200+ WebGPU Kernels for Local AI",
-          "link": "https://huggingface.co/blog/webgpu-kernels",
-          "date": "Tue, 01 Sep 2026 00:00:00 GMT",
           "note": ""
         }
       ]
