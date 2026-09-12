@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-09-11T04:55:55.253066+00:00",
+    "generated_at": "2026-09-12T04:47:54.544720+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年9月10号 16:23AI 日报AI日报：DeepSeek V4.1 Flash发布；Suno v6支持图片、视频一键变音乐；ChatGPT语音模式全面开放GPT-6 Astra调用查看日报",
-        "link": "https://www.aibase.com/daily/30965"
+        "title": "2026年9月11号 16:26AI 日报AI日报：OpenAI正式上线GPT-Live-1 API；DeepSeek V4.1-Flash登陆WorkBuddy；谷歌上线Gemini Windows桌面应用查看日报",
+        "link": "https://www.aibase.com/daily/30998"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "AMD：超 20 款锐龙 AI Max+ PRO 495 设备即将上市，迷你主机成绝对主力",
-          "link": "https://www.aibase.com/news/30962",
-          "date": "2026年9月10号 16:23",
+          "title": "蚂蚁集团韩歆毅宣告智能体“ChatGPT”时刻已至",
+          "link": "https://www.aibase.com/news/30997",
+          "date": "2026年9月11号 16:26",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "告别配音“对不上嘴”！亚马逊Prime Video重磅上线AI口型同步技术",
-          "link": "https://www.aibase.com/news/30961",
-          "date": "2026年9月10号 16:23",
+          "title": "DeepSeek V4.1-Flash登陆WorkBuddy，开启限时免费试用",
+          "link": "https://www.aibase.com/news/30995",
+          "date": "2026年9月11号 16:26",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "​Kimi携手华胜天成、金山云等巨头杀入企业核心腹地",
-          "link": "https://www.aibase.com/news/30959",
-          "date": "2026年9月10号 16:23",
+          "title": "支付宝AI支付产品体系再进化，新推AI钱包智能体及三大“AI收”能力",
+          "link": "https://www.aibase.com/news/30986",
+          "date": "2026年9月11号 16:26",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "DeepSeek V4.1 Flash发布：原生多模态视觉理解全面超越Pro版",
-          "link": "https://www.aibase.com/news/30955",
-          "date": "2026年9月10号 16:23",
+          "title": "环球音乐携手ElevenLabs达成重磅合作，共建正版授权AI音乐平台",
+          "link": "https://www.aibase.com/news/30984",
+          "date": "2026年9月11号 16:26",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "​Suno v6 正式上线：图片、视频、语音备忘录一键变音乐，精准编辑歌曲成现实",
-          "link": "https://www.aibase.com/news/30947",
-          "date": "2026年9月10号 16:23",
+          "title": "商汤 AI 办公智能体“小浣熊”移动端上线：手机发指令，电脑持续执行",
+          "link": "https://www.aibase.com/news/30981",
+          "date": "2026年9月11号 16:26",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "ChatGPT语音模式全面开放GPT-5.6 Sol与GPT-6 Astra调用",
-          "link": "https://www.aibase.com/news/30945",
-          "date": "2026年9月10号 16:23",
+          "title": "马斯克 SpaceXAI 团队将直播：用 Grok Bot 三天从零建一家公司",
+          "link": "https://www.aibase.com/news/30979",
+          "date": "2026年9月11号 16:26",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "米哈游《原神》角色声音被“偷”获赔 75 万：上海首例 AI 声音仿冒案宣判",
-          "link": "https://www.aibase.com/news/30944",
-          "date": "2026年9月10号 16:23",
+          "title": "谷歌上线Gemini Windows桌面应用，支持快捷键一键唤醒AI助手",
+          "link": "https://www.aibase.com/news/30976",
+          "date": "2026年9月11号 16:26",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenAI悄然调整ChatGPT广告政策，全面封杀Adobe等竞品AI生图与语音广告",
-          "link": "https://www.aibase.com/news/30938",
-          "date": "2026年9月10号 16:23",
+          "title": "OpenAI正式上线GPT-Live-1 API：支持打断处理、工具调用与电话智能体",
+          "link": "https://www.aibase.com/news/30973",
+          "date": "2026年9月11号 16:26",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "The Architecture for Serving 100 Fine-Tuned Models on One GPU",
+          "link": "https://blog.dailydoseofds.com/p/the-architecture-for-serving-100",
+          "date": "Fri, 11 Sep 2026 21:25:15 GMT",
+          "note": "...explained with code."
+        },
         {
           "title": "Why Multi-turn Agents Need More Than a Task Graph",
           "link": "https://blog.dailydoseofds.com/p/why-multi-turn-agents-need-more-than",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/attention-mechanisms-in-llms-clearly",
           "date": "Thu, 03 Sep 2026 20:05:32 GMT",
           "note": "Everything you need to understand how attention works, why the KV cache is the bottleneck, and what every attention variant is actually solving."
-        },
-        {
-          "title": "Stop Guessing Which Local Model To Run",
-          "link": "https://blog.dailydoseofds.com/p/stop-guessing-which-local-model-to",
-          "date": "Wed, 02 Sep 2026 19:10:34 GMT",
-          "note": "A practitioner's guide to local AI."
         }
       ]
     },
