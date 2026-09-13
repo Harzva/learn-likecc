@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-09-12T04:47:54.544720+00:00",
+    "generated_at": "2026-09-13T05:03:50.827464+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -85,6 +85,12 @@
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
         {
+          "title": "4 Speculative Decoding Variants",
+          "link": "https://blog.dailydoseofds.com/p/4-speculative-decoding-variants",
+          "date": "Sat, 12 Sep 2026 20:03:46 GMT",
+          "note": "...covered with tradeoffs in production."
+        },
+        {
           "title": "The Architecture for Serving 100 Fine-Tuned Models on One GPU",
           "link": "https://blog.dailydoseofds.com/p/the-architecture-for-serving-100",
           "date": "Fri, 11 Sep 2026 21:25:15 GMT",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/5-embedding-compression-techniques",
           "date": "Fri, 04 Sep 2026 20:51:57 GMT",
           "note": "...explained visually."
-        },
-        {
-          "title": "Attention Mechanisms in LLMs, clearly explained",
-          "link": "https://blog.dailydoseofds.com/p/attention-mechanisms-in-llms-clearly",
-          "date": "Thu, 03 Sep 2026 20:05:32 GMT",
-          "note": "Everything you need to understand how attention works, why the KV cache is the bottleneck, and what every attention variant is actually solving."
         }
       ]
     },
