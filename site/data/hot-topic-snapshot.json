@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-09-14T05:12:15.609404+00:00",
+    "generated_at": "2026-09-15T05:06:03.480286+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年9月11号 16:26AI 日报AI日报：OpenAI正式上线GPT-Live-1 API；DeepSeek V4.1-Flash登陆WorkBuddy；谷歌上线Gemini Windows桌面应用查看日报",
-        "link": "https://www.aibase.com/daily/30998"
+        "title": "2026年9月14号 16:55AI 日报AI日报：豆包手机助手消费者版发布；Suno发布v6音乐模型；ElevenLabs发布Music v2.5音频模型查看日报",
+        "link": "https://www.aibase.com/daily/31034"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "蚂蚁集团韩歆毅宣告智能体“ChatGPT”时刻已至",
-          "link": "https://www.aibase.com/news/30997",
-          "date": "2026年9月11号 16:26",
+          "title": "Suno发布v6音乐模型：联合华纳、BMG 共创，自然语言就能改歌、混音、采样",
+          "link": "https://www.aibase.com/news/31033",
+          "date": "2026年9月14号 16:55",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "DeepSeek V4.1-Flash登陆WorkBuddy，开启限时免费试用",
-          "link": "https://www.aibase.com/news/30995",
-          "date": "2026年9月11号 16:26",
+          "title": "宇树人形机器人G1+发布:电机、视觉、交互与续航全面增强 标准版售价9.5万元",
+          "link": "https://www.aibase.com/news/31032",
+          "date": "2026年9月14号 16:55",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "支付宝AI支付产品体系再进化，新推AI钱包智能体及三大“AI收”能力",
-          "link": "https://www.aibase.com/news/30986",
-          "date": "2026年9月11号 16:26",
+          "title": "ElevenLabs发布Music v2.5音频模型，同步开放APP与API访问",
+          "link": "https://www.aibase.com/news/31030",
+          "date": "2026年9月14号 16:55",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "环球音乐携手ElevenLabs达成重磅合作，共建正版授权AI音乐平台",
-          "link": "https://www.aibase.com/news/30984",
-          "date": "2026年9月11号 16:26",
+          "title": "DeepSeek-V4.1-Flash上线千问AI平台，API与Token Plan同步开放",
+          "link": "https://www.aibase.com/news/31028",
+          "date": "2026年9月14号 16:55",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "商汤 AI 办公智能体“小浣熊”移动端上线：手机发指令，电脑持续执行",
-          "link": "https://www.aibase.com/news/30981",
-          "date": "2026年9月11号 16:26",
+          "title": "京东在 JDD 上甩出可交互视听世界模型：EchoWM 开源，长视频生成同步冲到 10 分钟以上",
+          "link": "https://www.aibase.com/news/31024",
+          "date": "2026年9月14号 16:55",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "马斯克 SpaceXAI 团队将直播：用 Grok Bot 三天从零建一家公司",
-          "link": "https://www.aibase.com/news/30979",
-          "date": "2026年9月11号 16:26",
+          "title": "豆包手机助手消费者版发布:AI键指纹直唤，跨应用Agent再升级",
+          "link": "https://www.aibase.com/news/31017",
+          "date": "2026年9月14号 16:55",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "谷歌上线Gemini Windows桌面应用，支持快捷键一键唤醒AI助手",
-          "link": "https://www.aibase.com/news/30976",
-          "date": "2026年9月11号 16:26",
+          "title": "全新 Apple TV 或今秋低调发布：换上更强芯片，Siri 成核心升级",
+          "link": "https://www.aibase.com/news/31011",
+          "date": "2026年9月14号 16:55",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenAI正式上线GPT-Live-1 API：支持打断处理、工具调用与电话智能体",
-          "link": "https://www.aibase.com/news/30973",
-          "date": "2026年9月11号 16:26",
+          "title": "智谱获50亿美元新融资 全面加速下一代GLM递归自我改进",
+          "link": "https://www.aibase.com/news/31009",
+          "date": "2026年9月14号 16:55",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "What It Takes to Build a Production Agent Harness",
+          "link": "https://blog.dailydoseofds.com/p/what-it-takes-to-build-a-production",
+          "date": "Mon, 14 Sep 2026 19:50:37 GMT",
+          "note": "A hands-on nanodegree for production agent engineering."
+        },
         {
           "title": "4 Speculative Decoding Variants",
           "link": "https://blog.dailydoseofds.com/p/4-speculative-decoding-variants",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/kv-cache-engineering-for-llm-serving",
           "date": "Sun, 06 Sep 2026 20:43:32 GMT",
           "note": "12 techniques to manage KV cache in production."
-        },
-        {
-          "title": "5 Embedding Compression Techniques",
-          "link": "https://blog.dailydoseofds.com/p/5-embedding-compression-techniques",
-          "date": "Fri, 04 Sep 2026 20:51:57 GMT",
-          "note": "...explained visually."
         }
       ]
     },
@@ -147,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Async GRPO with LoRA across HF Jobs: a bucket, a proxy, and no NCCL",
+          "link": "https://huggingface.co/blog/asyncgrpo-lora-hfjobs",
+          "date": "Thu, 10 Sep 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "Rebuilding AUTOMATIC1111 with Gradio Workflow",
           "link": "https://huggingface.co/blog/gradio-workflow-1111",
@@ -187,12 +193,6 @@
           "title": "Training a coding model to paint watercolours with TRL and OpenEnv",
           "link": "https://huggingface.co/blog/train-to-paint-with-code",
           "date": "Thu, 03 Sep 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "BenchMIRT: What are LLM benchmarks actually measuring?",
-          "link": "https://huggingface.co/blog/allenai/benchmirt",
-          "date": "Tue, 01 Sep 2026 21:39:07 GMT",
           "note": ""
         }
       ]
