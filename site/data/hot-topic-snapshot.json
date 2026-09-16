@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-09-15T05:06:03.480286+00:00",
+    "generated_at": "2026-09-16T05:01:10.618282+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年9月14号 16:55AI 日报AI日报：豆包手机助手消费者版发布；Suno发布v6音乐模型；ElevenLabs发布Music v2.5音频模型查看日报",
-        "link": "https://www.aibase.com/daily/31034"
+        "title": "2026年9月15号 16:38AI 日报AI日报：Claude Opus 5.2 灰测；苹果正式推送 iOS27；微信回应小微AI隐私争议查看日报",
+        "link": "https://www.aibase.com/daily/31064"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "Suno发布v6音乐模型：联合华纳、BMG 共创，自然语言就能改歌、混音、采样",
-          "link": "https://www.aibase.com/news/31033",
-          "date": "2026年9月14号 16:55",
+          "title": "阶跃发布StepAudio3系列模型:五款模型同步上线开放平台",
+          "link": "https://www.aibase.com/news/31063",
+          "date": "2026年9月15号 16:38",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "宇树人形机器人G1+发布:电机、视觉、交互与续航全面增强 标准版售价9.5万元",
-          "link": "https://www.aibase.com/news/31032",
-          "date": "2026年9月14号 16:55",
+          "title": "微信回应小微AI隐私争议:不会读取用户已删除朋友圈",
+          "link": "https://www.aibase.com/news/31061",
+          "date": "2026年9月15号 16:38",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "ElevenLabs发布Music v2.5音频模型，同步开放APP与API访问",
-          "link": "https://www.aibase.com/news/31030",
-          "date": "2026年9月14号 16:55",
+          "title": "上海 AI Lab 开源多模态基础大模型书生-S2：Memory Decoder 插拔记忆，科学长程任务对标顶尖闭源",
+          "link": "https://www.aibase.com/news/31056",
+          "date": "2026年9月15号 16:38",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "DeepSeek-V4.1-Flash上线千问AI平台，API与Token Plan同步开放",
-          "link": "https://www.aibase.com/news/31028",
-          "date": "2026年9月14号 16:55",
+          "title": "GPT-6 Astra 模拟经营售货机一年狂赚 1.5 万美元，成绩碾压 Claude 近 3 倍",
+          "link": "https://www.aibase.com/news/31049",
+          "date": "2026年9月15号 16:38",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "京东在 JDD 上甩出可交互视听世界模型：EchoWM 开源，长视频生成同步冲到 10 分钟以上",
-          "link": "https://www.aibase.com/news/31024",
-          "date": "2026年9月14号 16:55",
+          "title": "苹果正式推送 iOS27:Siri AI 全面升级，老机型性能大幅优化",
+          "link": "https://www.aibase.com/news/31048",
+          "date": "2026年9月15号 16:38",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "豆包手机助手消费者版发布:AI键指纹直唤，跨应用Agent再升级",
-          "link": "https://www.aibase.com/news/31017",
-          "date": "2026年9月14号 16:55",
+          "title": "苹果全面升级AI系统体验:Siri AI覆盖iPhone、iPad与Vision Pro",
+          "link": "https://www.aibase.com/news/31047",
+          "date": "2026年9月15号 16:38",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "全新 Apple TV 或今秋低调发布：换上更强芯片，Siri 成核心升级",
-          "link": "https://www.aibase.com/news/31011",
-          "date": "2026年9月14号 16:55",
+          "title": "Instagram AI 修图开始收费：用多了就得订阅 Meta One，否则明天再来",
+          "link": "https://www.aibase.com/news/31045",
+          "date": "2026年9月15号 16:38",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "智谱获50亿美元新融资 全面加速下一代GLM递归自我改进",
-          "link": "https://www.aibase.com/news/31009",
-          "date": "2026年9月14号 16:55",
+          "title": "蚂蚁开源 SingProbe：以轻量探针实现大模型生成风险实时拦截，计算开销不足 0.5%",
+          "link": "https://www.aibase.com/news/31042",
+          "date": "2026年9月15号 16:38",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Easiest Way to Run Agent Harnesses Using Local Models",
+          "link": "https://blog.dailydoseofds.com/p/easiest-way-to-run-agent-harnesses",
+          "date": "Tue, 15 Sep 2026 21:59:31 GMT",
+          "note": "...explained with a full video walkthrough."
+        },
         {
           "title": "What It Takes to Build a Production Agent Harness",
           "link": "https://blog.dailydoseofds.com/p/what-it-takes-to-build-a-production",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/llm-routing-can-cost-more-than-not",
           "date": "Mon, 07 Sep 2026 20:30:58 GMT",
           "note": "...covered with a production-grade router for LLM apps."
-        },
-        {
-          "title": "KV Cache Engineering for LLM Serving",
-          "link": "https://blog.dailydoseofds.com/p/kv-cache-engineering-for-llm-serving",
-          "date": "Sun, 06 Sep 2026 20:43:32 GMT",
-          "note": "12 techniques to manage KV cache in production."
         }
       ]
     },
@@ -148,6 +148,12 @@
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
         {
+          "title": "Your Agent Aced the Task. Will It Do It Again?",
+          "link": "https://huggingface.co/blog/ibm-research/altk-evolve-consistency",
+          "date": "Tue, 15 Sep 2026 16:00:44 GMT",
+          "note": ""
+        },
+        {
           "title": "Async GRPO with LoRA across HF Jobs: a bucket, a proxy, and no NCCL",
           "link": "https://huggingface.co/blog/asyncgrpo-lora-hfjobs",
           "date": "Thu, 10 Sep 2026 00:00:00 GMT",
@@ -157,12 +163,6 @@
           "title": "Rebuilding AUTOMATIC1111 with Gradio Workflow",
           "link": "https://huggingface.co/blog/gradio-workflow-1111",
           "date": "Thu, 10 Sep 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "IBM releases SOTA Granite Time Series PatchTST-FM-r2 model with commercial-friendly license",
-          "link": "https://huggingface.co/blog/ibm-research/ibm-releases-sota-granite-time-series",
-          "date": "Wed, 09 Sep 2026 15:36:24 GMT",
           "note": ""
         },
         {
