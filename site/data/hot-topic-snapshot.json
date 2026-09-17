@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-09-16T05:01:10.618282+00:00",
+    "generated_at": "2026-09-17T05:03:18.946760+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年9月15号 16:38AI 日报AI日报：Claude Opus 5.2 灰测；苹果正式推送 iOS27；微信回应小微AI隐私争议查看日报",
-        "link": "https://www.aibase.com/daily/31064"
+        "title": "2026年9月16号 15:51AI 日报AI日报：豆包2.1Pro0915上线火山方舟；生数科技发布Vidu S2；vivo 蓝心大模型全面升级查看日报",
+        "link": "https://www.aibase.com/daily/31096"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "阶跃发布StepAudio3系列模型:五款模型同步上线开放平台",
-          "link": "https://www.aibase.com/news/31063",
-          "date": "2026年9月15号 16:38",
+          "title": "​谷歌发布多语言 AI 新战略，让全球每种语言都能被听见与理解",
+          "link": "https://www.aibase.com/news/31094",
+          "date": "2026年9月16号 15:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "微信回应小微AI隐私争议:不会读取用户已删除朋友圈",
-          "link": "https://www.aibase.com/news/31061",
-          "date": "2026年9月15号 16:38",
+          "title": "​生数科技正式发布 Vidu S2，支持实时编辑、动态参考图与头显适配",
+          "link": "https://www.aibase.com/news/31093",
+          "date": "2026年9月16号 15:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "上海 AI Lab 开源多模态基础大模型书生-S2：Memory Decoder 插拔记忆，科学长程任务对标顶尖闭源",
-          "link": "https://www.aibase.com/news/31056",
-          "date": "2026年9月15号 16:38",
+          "title": "Claude 发布重大升级：43 项全能工作流与 27 个巨头应用深度打通",
+          "link": "https://www.aibase.com/news/31092",
+          "date": "2026年9月16号 15:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "GPT-6 Astra 模拟经营售货机一年狂赚 1.5 万美元，成绩碾压 Claude 近 3 倍",
-          "link": "https://www.aibase.com/news/31049",
-          "date": "2026年9月15号 16:38",
+          "title": "豆包2.1Pro0915上线火山方舟，飞书8.0引入团队智能体“豆包工作伙伴”",
+          "link": "https://www.aibase.com/news/31085",
+          "date": "2026年9月16号 15:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "苹果正式推送 iOS27:Siri AI 全面升级，老机型性能大幅优化",
-          "link": "https://www.aibase.com/news/31048",
-          "date": "2026年9月15号 16:38",
+          "title": "vivo 蓝心大模型全面升级：四大模型齐发，听得懂、记得住、还能办事",
+          "link": "https://www.aibase.com/news/31080",
+          "date": "2026年9月16号 15:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "苹果全面升级AI系统体验:Siri AI覆盖iPhone、iPad与Vision Pro",
-          "link": "https://www.aibase.com/news/31047",
-          "date": "2026年9月15号 16:38",
+          "title": "​OpenAI内部Lily项目曝光，人工审核员正翻阅用户私密聊天记录？",
+          "link": "https://www.aibase.com/news/31078",
+          "date": "2026年9月16号 15:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Instagram AI 修图开始收费：用多了就得订阅 Meta One，否则明天再来",
-          "link": "https://www.aibase.com/news/31045",
-          "date": "2026年9月15号 16:38",
+          "title": "​中文互联网基础语料 4.0 正式发布，120GB 高质量可信数据重磅上线",
+          "link": "https://www.aibase.com/news/31075",
+          "date": "2026年9月16号 15:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "蚂蚁开源 SingProbe：以轻量探针实现大模型生成风险实时拦截，计算开销不足 0.5%",
-          "link": "https://www.aibase.com/news/31042",
-          "date": "2026年9月15号 16:38",
+          "title": "​Google 官宣 Gemini 3.8 Live，首创“边说边想”颠覆行业交互",
+          "link": "https://www.aibase.com/news/31074",
+          "date": "2026年9月16号 15:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "How to Fine-Tune LLMs in 2026",
+          "link": "https://blog.dailydoseofds.com/p/how-to-fine-tune-llms-in-2026-bf8",
+          "date": "Wed, 16 Sep 2026 20:40:26 GMT",
+          "note": "Reward-free RL is here!"
+        },
         {
           "title": "Easiest Way to Run Agent Harnesses Using Local Models",
           "link": "https://blog.dailydoseofds.com/p/easiest-way-to-run-agent-harnesses",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/momentum-in-ml-explained-visually-342",
           "date": "Tue, 08 Sep 2026 21:24:18 GMT",
           "note": "(a popular ML interview question)"
-        },
-        {
-          "title": "LLM Routing Can Cost More Than Not Routing",
-          "link": "https://blog.dailydoseofds.com/p/llm-routing-can-cost-more-than-not",
-          "date": "Mon, 07 Sep 2026 20:30:58 GMT",
-          "note": "...covered with a production-grade router for LLM apps."
         }
       ]
     },
