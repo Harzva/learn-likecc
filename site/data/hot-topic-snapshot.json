@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-09-17T05:03:18.946760+00:00",
+    "generated_at": "2026-09-18T04:56:13.806261+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年9月16号 15:51AI 日报AI日报：豆包2.1Pro0915上线火山方舟；生数科技发布Vidu S2；vivo 蓝心大模型全面升级查看日报",
-        "link": "https://www.aibase.com/daily/31096"
+        "title": "2026年9月17号 16:22AI 日报AI日报：抖音新增“冒用声音”举报入口；Grok Build上线“长期记忆”功能；豆包联合火山引擎打造AI原生助手查看日报",
+        "link": "https://www.aibase.com/daily/31136"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "​谷歌发布多语言 AI 新战略，让全球每种语言都能被听见与理解",
-          "link": "https://www.aibase.com/news/31094",
-          "date": "2026年9月16号 15:51",
+          "title": "抖音新增“冒用声音”专属举报入口 上线可核验维权机制反击AI合成侵权",
+          "link": "https://www.aibase.com/news/31129",
+          "date": "2026年9月17号 16:22",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "​生数科技正式发布 Vidu S2，支持实时编辑、动态参考图与头显适配",
-          "link": "https://www.aibase.com/news/31093",
-          "date": "2026年9月16号 15:51",
+          "title": "豆包联合火山引擎打造AI原生助手，上汽多款车型年内落地",
+          "link": "https://www.aibase.com/news/31127",
+          "date": "2026年9月17号 16:22",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Claude 发布重大升级：43 项全能工作流与 27 个巨头应用深度打通",
-          "link": "https://www.aibase.com/news/31092",
-          "date": "2026年9月16号 15:51",
+          "title": "阿里云展示全新升级的 Wan3.0 视频大模型：单条直出 30 秒长镜头，支持多达五条视频参考",
+          "link": "https://www.aibase.com/news/31126",
+          "date": "2026年9月17号 16:22",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "豆包2.1Pro0915上线火山方舟，飞书8.0引入团队智能体“豆包工作伙伴”",
-          "link": "https://www.aibase.com/news/31085",
-          "date": "2026年9月16号 15:51",
+          "title": "​MiniMax 旗下三款核心产品正式纳入新加坡国家级 AI 培训计划",
+          "link": "https://www.aibase.com/news/31124",
+          "date": "2026年9月17号 16:22",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "vivo 蓝心大模型全面升级：四大模型齐发，听得懂、记得住、还能办事",
-          "link": "https://www.aibase.com/news/31080",
-          "date": "2026年9月16号 15:51",
+          "title": "Grok Build 重磅上线“长期记忆”功能，跨会话无缝同步项目细节",
+          "link": "https://www.aibase.com/news/31119",
+          "date": "2026年9月17号 16:22",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "​OpenAI内部Lily项目曝光，人工审核员正翻阅用户私密聊天记录？",
-          "link": "https://www.aibase.com/news/31078",
-          "date": "2026年9月16号 15:51",
+          "title": "腾讯 ChatterFly 低调内测:桌面语音输入不再只转文字，开口直接出邮件、周报和开发提示词",
+          "link": "https://www.aibase.com/news/31118",
+          "date": "2026年9月17号 16:22",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "​中文互联网基础语料 4.0 正式发布，120GB 高质量可信数据重磅上线",
-          "link": "https://www.aibase.com/news/31075",
-          "date": "2026年9月16号 15:51",
+          "title": "Anthropic合并Claude Cowork与Chat，统一AI任务工作空间",
+          "link": "https://www.aibase.com/news/31106",
+          "date": "2026年9月17号 16:22",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "​Google 官宣 Gemini 3.8 Live，首创“边说边想”颠覆行业交互",
-          "link": "https://www.aibase.com/news/31074",
-          "date": "2026年9月16号 15:51",
+          "title": "百度沈抖：产业智能体正在打通大模型变现的“最后一公里”",
+          "link": "https://www.aibase.com/news/31104",
+          "date": "2026年9月17号 16:22",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Where does all the VRAM go during LLM inference?",
+          "link": "https://blog.dailydoseofds.com/p/where-does-all-the-vram-go-during",
+          "date": "Thu, 17 Sep 2026 19:30:12 GMT",
+          "note": "...explained visually"
+        },
         {
           "title": "How to Fine-Tune LLMs in 2026",
           "link": "https://blog.dailydoseofds.com/p/how-to-fine-tune-llms-in-2026-bf8",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/your-agent-harness-needs-runtime",
           "date": "Wed, 09 Sep 2026 20:59:58 GMT",
           "note": "A 100% local, open-source guide to recording what AI agents actually do at runtime."
-        },
-        {
-          "title": "Momentum in ML, Explained Visually and Intuitively!",
-          "link": "https://blog.dailydoseofds.com/p/momentum-in-ml-explained-visually-342",
-          "date": "Tue, 08 Sep 2026 21:24:18 GMT",
-          "note": "(a popular ML interview question)"
         }
       ]
     },
