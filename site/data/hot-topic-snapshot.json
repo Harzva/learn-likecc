@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-09-18T04:56:13.806261+00:00",
+    "generated_at": "2026-09-19T04:48:58.831662+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年9月17号 16:22AI 日报AI日报：抖音新增“冒用声音”举报入口；Grok Build上线“长期记忆”功能；豆包联合火山引擎打造AI原生助手查看日报",
-        "link": "https://www.aibase.com/daily/31136"
+        "title": "2026年9月18号 15:28AI 日报AI日报：千问上线 Qwen3.8-Omni-Flash；谷歌最强 Gemini 4 Pro 开测；智谱发布 GLM-5.3-FlashX查看日报",
+        "link": "https://www.aibase.com/daily/31167"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "抖音新增“冒用声音”专属举报入口 上线可核验维权机制反击AI合成侵权",
-          "link": "https://www.aibase.com/news/31129",
-          "date": "2026年9月17号 16:22",
+          "title": "钉钉创始人陈航卸任 CEO 后履新：年薪 10 万出任百望股份非执行董事",
+          "link": "https://www.aibase.com/news/31165",
+          "date": "2026年9月18号 15:28",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "豆包联合火山引擎打造AI原生助手，上汽多款车型年内落地",
-          "link": "https://www.aibase.com/news/31127",
-          "date": "2026年9月17号 16:22",
+          "title": "特斯拉推送更新：豆包大模型语音助手扩至更多车型，十余项功能一并升级",
+          "link": "https://www.aibase.com/news/31164",
+          "date": "2026年9月18号 15:28",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阿里云展示全新升级的 Wan3.0 视频大模型：单条直出 30 秒长镜头，支持多达五条视频参考",
-          "link": "https://www.aibase.com/news/31126",
-          "date": "2026年9月17号 16:22",
+          "title": "智谱发布 GLM-5.3-FlashX:速度飙至200tokens/s，国产算力再提速",
+          "link": "https://www.aibase.com/news/31160",
+          "date": "2026年9月18号 15:28",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "​MiniMax 旗下三款核心产品正式纳入新加坡国家级 AI 培训计划",
-          "link": "https://www.aibase.com/news/31124",
-          "date": "2026年9月17号 16:22",
+          "title": "千问上线 Qwen3.8-Omni-Flash:1M 上下文，30项评测平均提升超26%",
+          "link": "https://www.aibase.com/news/31156",
+          "date": "2026年9月18号 15:28",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Grok Build 重磅上线“长期记忆”功能，跨会话无缝同步项目细节",
-          "link": "https://www.aibase.com/news/31119",
-          "date": "2026年9月17号 16:22",
+          "title": "苹果 AI 服务器曝光：代号 Baltra、搭自研 M8 Ultra，或采用英伟达 NVLink Fusion",
+          "link": "https://www.aibase.com/news/31149",
+          "date": "2026年9月18号 15:28",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯 ChatterFly 低调内测:桌面语音输入不再只转文字，开口直接出邮件、周报和开发提示词",
-          "link": "https://www.aibase.com/news/31118",
-          "date": "2026年9月17号 16:22",
+          "title": "谷歌最强 Gemini 4 Pro 开测 SVG 生图惊艳",
+          "link": "https://www.aibase.com/news/31148",
+          "date": "2026年9月18号 15:28",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Anthropic合并Claude Cowork与Chat，统一AI任务工作空间",
-          "link": "https://www.aibase.com/news/31106",
-          "date": "2026年9月17号 16:22",
+          "title": "加速进化人形机器人Booster K1 探索版开售 京东标价38999 元",
+          "link": "https://www.aibase.com/news/31147",
+          "date": "2026年9月18号 15:28",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "百度沈抖：产业智能体正在打通大模型变现的“最后一公里”",
-          "link": "https://www.aibase.com/news/31104",
-          "date": "2026年9月17号 16:22",
+          "title": "腾讯 AI 语音助手 Chatterfly 低调内测：开口即成稿，数据只存本地",
+          "link": "https://www.aibase.com/news/31144",
+          "date": "2026年9月18号 15:28",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Run Any Agent Harness Under One Interface",
+          "link": "https://blog.dailydoseofds.com/p/run-any-agent-harness-under-one-interface",
+          "date": "Fri, 18 Sep 2026 18:18:26 GMT",
+          "note": "How UHP and HarnessRouter standardize agent execution across Codex, Claude Code, Hermes, and other runtimes."
+        },
         {
           "title": "Where does all the VRAM go during LLM inference?",
           "link": "https://blog.dailydoseofds.com/p/where-does-all-the-vram-go-during",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/why-multi-turn-agents-need-more-than",
           "date": "Thu, 10 Sep 2026 21:34:26 GMT",
           "note": "What production agents must preserve between turns, and what they must reset."
-        },
-        {
-          "title": "Your Agent Harness Needs Runtime Security",
-          "link": "https://blog.dailydoseofds.com/p/your-agent-harness-needs-runtime",
-          "date": "Wed, 09 Sep 2026 20:59:58 GMT",
-          "note": "A 100% local, open-source guide to recording what AI agents actually do at runtime."
         }
       ]
     },
