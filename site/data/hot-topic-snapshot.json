@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-09-20T05:06:03.434342+00:00",
+    "generated_at": "2026-09-21T05:11:20.407622+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年9月18号 15:28AI 日报AI日报：千问上线 Qwen3.8-Omni-Flash；谷歌最强 Gemini 4 Pro 开测；智谱发布 GLM-5.3-FlashX查看日报",
-        "link": "https://www.aibase.com/daily/31167"
+        "title": "2026年9月20号 16:30AI 日报AI日报：微信AI团队开源WeKnora；ChatGPT正式入驻Word；阶跃星辰发布Step5Preview查看日报",
+        "link": "https://www.aibase.com/daily/31202"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "钉钉创始人陈航卸任 CEO 后履新：年薪 10 万出任百望股份非执行董事",
-          "link": "https://www.aibase.com/news/31165",
-          "date": "2026年9月18号 15:28",
+          "title": "微信 AI 团队开源 WeKnora：知识库不再只“动嘴”，还能在沙箱里“动手”",
+          "link": "https://www.aibase.com/news/31201",
+          "date": "2026年9月20号 16:30",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "特斯拉推送更新：豆包大模型语音助手扩至更多车型，十余项功能一并升级",
-          "link": "https://www.aibase.com/news/31164",
-          "date": "2026年9月18号 15:28",
+          "title": "B站上线\"AI 无限竞技场\"测评榜：上百模型同场厮杀，GPT-6 暂坐头把交椅",
+          "link": "https://www.aibase.com/news/31192",
+          "date": "2026年9月20号 16:30",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "智谱发布 GLM-5.3-FlashX:速度飙至200tokens/s，国产算力再提速",
-          "link": "https://www.aibase.com/news/31160",
-          "date": "2026年9月18号 15:28",
+          "title": "DeepSeek明确调休日计费规则，中秋国庆迎来十天\"半价窗口\"",
+          "link": "https://www.aibase.com/news/31191",
+          "date": "2026年9月20号 16:30",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "千问上线 Qwen3.8-Omni-Flash:1M 上下文，30项评测平均提升超26%",
-          "link": "https://www.aibase.com/news/31156",
-          "date": "2026年9月18号 15:28",
+          "title": "阶跃星辰发布Step5Preview，单任务成本仅为Claude Opus5的1/8",
+          "link": "https://www.aibase.com/news/31187",
+          "date": "2026年9月20号 16:30",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "苹果 AI 服务器曝光：代号 Baltra、搭自研 M8 Ultra，或采用英伟达 NVLink Fusion",
-          "link": "https://www.aibase.com/news/31149",
-          "date": "2026年9月18号 15:28",
+          "title": "ChatGPT 正式入驻 Word：免费用户也能用，办公文档里三套 AI 同台厮杀",
+          "link": "https://www.aibase.com/news/31184",
+          "date": "2026年9月20号 16:30",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "谷歌最强 Gemini 4 Pro 开测 SVG 生图惊艳",
-          "link": "https://www.aibase.com/news/31148",
-          "date": "2026年9月18号 15:28",
+          "title": "SpaceXAI 推出 Grok Voice Transcribe 2.0：错误率砍半、价格纹丝不动，流式语音识别登顶榜单",
+          "link": "https://www.aibase.com/news/31183",
+          "date": "2026年9月20号 16:30",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "加速进化人形机器人Booster K1 探索版开售 京东标价38999 元",
-          "link": "https://www.aibase.com/news/31147",
-          "date": "2026年9月18号 15:28",
+          "title": "千问发布Qwen3.8-LiveTranslate:同传延迟降至2.3秒，还能保留你的音色",
+          "link": "https://www.aibase.com/news/31174",
+          "date": "2026年9月20号 16:30",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯 AI 语音助手 Chatterfly 低调内测：开口即成稿，数据只存本地",
-          "link": "https://www.aibase.com/news/31144",
-          "date": "2026年9月18号 15:28",
+          "title": "智谱AI回应ZCode代码上传争议:已修复漏洞，将开源代码库",
+          "link": "https://www.aibase.com/news/31173",
+          "date": "2026年9月20号 16:30",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
