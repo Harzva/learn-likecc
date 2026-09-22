@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-09-21T05:11:20.407622+00:00",
+    "generated_at": "2026-09-22T05:12:10.712465+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年9月20号 16:30AI 日报AI日报：微信AI团队开源WeKnora；ChatGPT正式入驻Word；阶跃星辰发布Step5Preview查看日报",
-        "link": "https://www.aibase.com/daily/31202"
+        "title": "2026年9月21号 15:36AI 日报AI日报：千问开源 Qwen-Image-2.1；Claude Opus5.5疑遭内测泄露；智谱MaaS将上线数据不留存机制查看日报",
+        "link": "https://www.aibase.com/daily/31235"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "微信 AI 团队开源 WeKnora：知识库不再只“动嘴”，还能在沙箱里“动手”",
-          "link": "https://www.aibase.com/news/31201",
-          "date": "2026年9月20号 16:30",
+          "title": "Claude Opus 5. 5 疑遭内测泄露：跳级直冲GPT-6，百万Token价格腰斩至 4 美元",
+          "link": "https://www.aibase.com/news/31231",
+          "date": "2026年9月21号 15:36",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "B站上线\"AI 无限竞技场\"测评榜：上百模型同场厮杀，GPT-6 暂坐头把交椅",
-          "link": "https://www.aibase.com/news/31192",
-          "date": "2026年9月20号 16:30",
+          "title": "阿宝上线「鱼来」摸鱼AI系统，将碎片化休息纳入智能管理",
+          "link": "https://www.aibase.com/news/31230",
+          "date": "2026年9月21号 15:36",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "DeepSeek明确调休日计费规则，中秋国庆迎来十天\"半价窗口\"",
-          "link": "https://www.aibase.com/news/31191",
-          "date": "2026年9月20号 16:30",
+          "title": "快手把直播字幕延迟砍到 500 毫秒内：自研端到端工程范式，把电商直播的字幕打成\"实时\"",
+          "link": "https://www.aibase.com/news/31224",
+          "date": "2026年9月21号 15:36",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阶跃星辰发布Step5Preview，单任务成本仅为Claude Opus5的1/8",
-          "link": "https://www.aibase.com/news/31187",
-          "date": "2026年9月20号 16:30",
+          "title": "ZCode 道歉并开源:阿里云 OSS 已清空，Repo Wiki 功能已下线",
+          "link": "https://www.aibase.com/news/31218",
+          "date": "2026年9月21号 15:36",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "ChatGPT 正式入驻 Word：免费用户也能用，办公文档里三套 AI 同台厮杀",
-          "link": "https://www.aibase.com/news/31184",
-          "date": "2026年9月20号 16:30",
+          "title": "TypeSafe AI 推出决策专用模型 Jev：比大语言模型快 10 倍、成本仅十分之一",
+          "link": "https://www.aibase.com/news/31215",
+          "date": "2026年9月21号 15:36",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "SpaceXAI 推出 Grok Voice Transcribe 2.0：错误率砍半、价格纹丝不动，流式语音识别登顶榜单",
-          "link": "https://www.aibase.com/news/31183",
-          "date": "2026年9月20号 16:30",
+          "title": "通义千问开源 Qwen-Image-2.1:7B 参数实现文生图与图像编辑一体化",
+          "link": "https://www.aibase.com/news/31212",
+          "date": "2026年9月21号 15:36",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "千问发布Qwen3.8-LiveTranslate:同传延迟降至2.3秒，还能保留你的音色",
-          "link": "https://www.aibase.com/news/31174",
-          "date": "2026年9月20号 16:30",
+          "title": "腾讯推出“混元智囊团”专家平台，AI行业竞争转向外部人才生态",
+          "link": "https://www.aibase.com/news/31209",
+          "date": "2026年9月21号 15:36",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "智谱AI回应ZCode代码上传争议:已修复漏洞，将开源代码库",
-          "link": "https://www.aibase.com/news/31173",
-          "date": "2026年9月20号 16:30",
+          "title": "智谱MaaS将上线\"数据不留存\"机制，用户调用内容用完即焚",
+          "link": "https://www.aibase.com/news/31208",
+          "date": "2026年9月21号 15:36",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Jev, Clearly Explained",
+          "link": "https://blog.dailydoseofds.com/p/jev-clearly-explained",
+          "date": "Mon, 21 Sep 2026 19:39:16 GMT",
+          "note": "...with visuals."
+        },
         {
           "title": "Run Any Agent Harness Under One Interface",
           "link": "https://blog.dailydoseofds.com/p/run-any-agent-harness-under-one-interface",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/the-architecture-for-serving-100",
           "date": "Fri, 11 Sep 2026 21:25:15 GMT",
           "note": "...explained with code."
-        },
-        {
-          "title": "Why Multi-turn Agents Need More Than a Task Graph",
-          "link": "https://blog.dailydoseofds.com/p/why-multi-turn-agents-need-more-than",
-          "date": "Thu, 10 Sep 2026 21:34:26 GMT",
-          "note": "What production agents must preserve between turns, and what they must reset."
         }
       ]
     },
@@ -147,6 +147,18 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Pruning LLMs Like a Physicist: Block Removal as an Ising Optimization Problem",
+          "link": "https://huggingface.co/blog/MultiverseComputingCAI/pruning-llms-like-a-physicist-block-removal-as-an",
+          "date": "Mon, 21 Sep 2026 13:44:34 GMT",
+          "note": ""
+        },
+        {
+          "title": "tokenizers v1: encode, decode and scaling, measured",
+          "link": "https://huggingface.co/blog/tokenizers-v1",
+          "date": "Mon, 21 Sep 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "Your Agent Aced the Task. Will It Do It Again?",
           "link": "https://huggingface.co/blog/ibm-research/altk-evolve-consistency",
@@ -166,12 +178,6 @@
           "note": ""
         },
         {
-          "title": "Safety for Whom? Refusing the Right Subset of a Topic, Not the Whole Topic",
-          "link": "https://huggingface.co/blog/MultiverseComputingCAI/safety-for-whom",
-          "date": "Tue, 08 Sep 2026 14:23:07 GMT",
-          "note": ""
-        },
-        {
           "title": "NeoMME: an efficient Multimodal-native and Multilingual Encoder",
           "link": "https://huggingface.co/blog/Hcompany/neomme",
           "date": "Thu, 03 Sep 2026 13:13:48 GMT",
@@ -186,12 +192,6 @@
         {
           "title": "Give Your Coding Agents a Memory You Own",
           "link": "https://huggingface.co/blog/funes",
-          "date": "Thu, 03 Sep 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Training a coding model to paint watercolours with TRL and OpenEnv",
-          "link": "https://huggingface.co/blog/train-to-paint-with-code",
           "date": "Thu, 03 Sep 2026 00:00:00 GMT",
           "note": ""
         }
