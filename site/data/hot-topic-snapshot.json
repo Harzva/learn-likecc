@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-09-22T05:12:10.712465+00:00",
+    "generated_at": "2026-09-23T04:56:33.340113+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年9月21号 15:36AI 日报AI日报：千问开源 Qwen-Image-2.1；Claude Opus5.5疑遭内测泄露；智谱MaaS将上线数据不留存机制查看日报",
-        "link": "https://www.aibase.com/daily/31235"
+        "title": "2026年9月22号 16:28AI 日报AI日报：腾讯混元图像3.5来了；Grok4.7上线；月之暗面推出Kimi Code桌面版查看日报",
+        "link": "https://www.aibase.com/daily/31274"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "Claude Opus 5. 5 疑遭内测泄露：跳级直冲GPT-6，百万Token价格腰斩至 4 美元",
-          "link": "https://www.aibase.com/news/31231",
-          "date": "2026年9月21号 15:36",
+          "title": "小米18 Pro系列首发传奇一瞬大模型影像，用端到端大模型把相机级光学虚化装进手机",
+          "link": "https://www.aibase.com/news/31272",
+          "date": "2026年9月22号 16:28",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阿宝上线「鱼来」摸鱼AI系统，将碎片化休息纳入智能管理",
-          "link": "https://www.aibase.com/news/31230",
-          "date": "2026年9月21号 15:36",
+          "title": "OpenAI内部AI已能自主训练模型，奥特曼发布全球安全倡议应对RSI逼近",
+          "link": "https://www.aibase.com/news/31271",
+          "date": "2026年9月22号 16:28",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "快手把直播字幕延迟砍到 500 毫秒内：自研端到端工程范式，把电商直播的字幕打成\"实时\"",
-          "link": "https://www.aibase.com/news/31224",
-          "date": "2026年9月21号 15:36",
+          "title": "阿里试水QwenBook AI设备，团队规模约150人",
+          "link": "https://www.aibase.com/news/31270",
+          "date": "2026年9月22号 16:28",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "ZCode 道歉并开源:阿里云 OSS 已清空，Repo Wiki 功能已下线",
-          "link": "https://www.aibase.com/news/31218",
-          "date": "2026年9月21号 15:36",
+          "title": "月之暗面推出Kimi Code桌面版：Plan、目标、Swarm三种模式齐发，AI编程搬进图形界面",
+          "link": "https://www.aibase.com/news/31269",
+          "date": "2026年9月22号 16:28",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "TypeSafe AI 推出决策专用模型 Jev：比大语言模型快 10 倍、成本仅十分之一",
-          "link": "https://www.aibase.com/news/31215",
-          "date": "2026年9月21号 15:36",
+          "title": "SpaceXAI 最强模型 Grok 4.7 上线：长任务能力拉满，价格只有旗舰一半",
+          "link": "https://www.aibase.com/news/31268",
+          "date": "2026年9月22号 16:28",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "通义千问开源 Qwen-Image-2.1:7B 参数实现文生图与图像编辑一体化",
-          "link": "https://www.aibase.com/news/31212",
-          "date": "2026年9月21号 15:36",
+          "title": "腾讯混元图像3.5来了:画字更准、修图更强、一张2K图只要一毛五",
+          "link": "https://www.aibase.com/news/31258",
+          "date": "2026年9月22号 16:28",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯推出“混元智囊团”专家平台，AI行业竞争转向外部人才生态",
-          "link": "https://www.aibase.com/news/31209",
-          "date": "2026年9月21号 15:36",
+          "title": "小米发布并开源 MiMo-V2.6:AA 智能指数46分登顶最强开源模型",
+          "link": "https://www.aibase.com/news/31249",
+          "date": "2026年9月22号 16:28",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "智谱MaaS将上线\"数据不留存\"机制，用户调用内容用完即焚",
-          "link": "https://www.aibase.com/news/31208",
-          "date": "2026年9月21号 15:36",
+          "title": "AI 编程平台 Bitrig 支持 iPhone Duo：交互式 3D 模拟器可折叠、旋转测应用",
+          "link": "https://www.aibase.com/news/31246",
+          "date": "2026年9月22号 16:28",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Build your own Jev (100% local)",
+          "link": "https://blog.dailydoseofds.com/p/build-your-own-jev-100-local",
+          "date": "Tue, 22 Sep 2026 19:10:14 GMT",
+          "note": "...explained step-by-step with code."
+        },
         {
           "title": "Jev, Clearly Explained",
           "link": "https://blog.dailydoseofds.com/p/jev-clearly-explained",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/4-speculative-decoding-variants",
           "date": "Sat, 12 Sep 2026 20:03:46 GMT",
           "note": "...covered with tradeoffs in production."
-        },
-        {
-          "title": "The Architecture for Serving 100 Fine-Tuned Models on One GPU",
-          "link": "https://blog.dailydoseofds.com/p/the-architecture-for-serving-100",
-          "date": "Fri, 11 Sep 2026 21:25:15 GMT",
-          "note": "...explained with code."
         }
       ]
     },
@@ -147,6 +147,24 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "How UK AISI and EvalEval Are Making Benchmark Results Reproducible",
+          "link": "https://huggingface.co/blog/evaleval-aisi",
+          "date": "Tue, 22 Sep 2026 00:00:00 GMT",
+          "note": ""
+        },
+        {
+          "title": "Transformers now runs llama.cpp quants",
+          "link": "https://huggingface.co/blog/transformers-llama-cpp-quants",
+          "date": "Tue, 22 Sep 2026 00:00:00 GMT",
+          "note": ""
+        },
+        {
+          "title": "Jun Kim, oMLX creator and maintainer, joins Hugging Face to support the MLX community",
+          "link": "https://huggingface.co/blog/omlx",
+          "date": "Tue, 22 Sep 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "Pruning LLMs Like a Physicist: Block Removal as an Ising Optimization Problem",
           "link": "https://huggingface.co/blog/MultiverseComputingCAI/pruning-llms-like-a-physicist-block-removal-as-an",
@@ -175,24 +193,6 @@
           "title": "Rebuilding AUTOMATIC1111 with Gradio Workflow",
           "link": "https://huggingface.co/blog/gradio-workflow-1111",
           "date": "Thu, 10 Sep 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "NeoMME: an efficient Multimodal-native and Multilingual Encoder",
-          "link": "https://huggingface.co/blog/Hcompany/neomme",
-          "date": "Thu, 03 Sep 2026 13:13:48 GMT",
-          "note": ""
-        },
-        {
-          "title": "Fine-tuning a 350M Model for Better Structured Outputs in 100 GRPO Steps",
-          "link": "https://huggingface.co/blog/grpo-with-trl-ifstruct",
-          "date": "Thu, 03 Sep 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Give Your Coding Agents a Memory You Own",
-          "link": "https://huggingface.co/blog/funes",
-          "date": "Thu, 03 Sep 2026 00:00:00 GMT",
           "note": ""
         }
       ]
