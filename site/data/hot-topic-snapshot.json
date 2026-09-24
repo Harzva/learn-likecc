@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-09-23T04:56:33.340113+00:00",
+    "generated_at": "2026-09-24T05:06:48.088454+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年9月22号 16:28AI 日报AI日报：腾讯混元图像3.5来了；Grok4.7上线；月之暗面推出Kimi Code桌面版查看日报",
-        "link": "https://www.aibase.com/daily/31274"
+        "title": "2026年9月23号 16:03AI 日报AI日报：Anthropic上线Claude Opus 5.5；Seedance2.5上线Draft模式；OpenAI推出GPT-6 Sol和Luna查看日报",
+        "link": "https://www.aibase.com/daily/31307"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "小米18 Pro系列首发传奇一瞬大模型影像，用端到端大模型把相机级光学虚化装进手机",
-          "link": "https://www.aibase.com/news/31272",
-          "date": "2026年9月22号 16:28",
+          "title": "盒马部署“AI验蟹师”：不到 1 分钟检测 50 只大闸蟹",
+          "link": "https://www.aibase.com/news/31304",
+          "date": "2026年9月23号 16:03",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenAI内部AI已能自主训练模型，奥特曼发布全球安全倡议应对RSI逼近",
-          "link": "https://www.aibase.com/news/31271",
-          "date": "2026年9月22号 16:28",
+          "title": "千问发布 Qwen-Audio-3.1系列语音大模型，五款模型全线降价最高95%",
+          "link": "https://www.aibase.com/news/31303",
+          "date": "2026年9月23号 16:03",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阿里试水QwenBook AI设备，团队规模约150人",
-          "link": "https://www.aibase.com/news/31270",
-          "date": "2026年9月22号 16:28",
+          "title": "阿里云发布Qwen Book:AI智能体电脑正式亮相",
+          "link": "https://www.aibase.com/news/31301",
+          "date": "2026年9月23号 16:03",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "月之暗面推出Kimi Code桌面版：Plan、目标、Swarm三种模式齐发，AI编程搬进图形界面",
-          "link": "https://www.aibase.com/news/31269",
-          "date": "2026年9月22号 16:28",
+          "title": "Win11 惊现 AI 恶意软件 ClosedQuorum：入侵后自主决策，专挖最有价值信息",
+          "link": "https://www.aibase.com/news/31297",
+          "date": "2026年9月23号 16:03",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "SpaceXAI 最强模型 Grok 4.7 上线：长任务能力拉满，价格只有旗舰一半",
-          "link": "https://www.aibase.com/news/31268",
-          "date": "2026年9月22号 16:28",
+          "title": "​韶音首款 AI 耳机 OpenFit 2 AI 亮相云栖大会，重磅首发“AI 实验室”四大新功能",
+          "link": "https://www.aibase.com/news/31295",
+          "date": "2026年9月23号 16:03",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯混元图像3.5来了:画字更准、修图更强、一张2K图只要一毛五",
-          "link": "https://www.aibase.com/news/31258",
-          "date": "2026年9月22号 16:28",
+          "title": "火山引擎Seedance2.5上线Draft模式:480P试错、1080P成片，成本最高省77%",
+          "link": "https://www.aibase.com/news/31293",
+          "date": "2026年9月23号 16:03",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "小米发布并开源 MiMo-V2.6:AA 智能指数46分登顶最强开源模型",
-          "link": "https://www.aibase.com/news/31249",
-          "date": "2026年9月22号 16:28",
+          "title": "OpenAI 推出 GPT-6 Sol 和 Luna：API 价格大降 50%，单任务成本最低不到竞品一成",
+          "link": "https://www.aibase.com/news/31278",
+          "date": "2026年9月23号 16:03",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "AI 编程平台 Bitrig 支持 iPhone Duo：交互式 3D 模拟器可折叠、旋转测应用",
-          "link": "https://www.aibase.com/news/31246",
-          "date": "2026年9月22号 16:28",
+          "title": "Anthropic上线Claude Opus 5.5 ，任务成本大降 40%",
+          "link": "https://www.aibase.com/news/31277",
+          "date": "2026年9月23号 16:03",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "MoE inference engineering, clearly explained",
+          "link": "https://blog.dailydoseofds.com/p/moe-inference-engineering-clearly",
+          "date": "Wed, 23 Sep 2026 18:11:47 GMT",
+          "note": "...with visuals."
+        },
         {
           "title": "Build your own Jev (100% local)",
           "link": "https://blog.dailydoseofds.com/p/build-your-own-jev-100-local",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/what-it-takes-to-build-a-production",
           "date": "Mon, 14 Sep 2026 19:50:37 GMT",
           "note": "A hands-on nanodegree for production agent engineering."
-        },
-        {
-          "title": "4 Speculative Decoding Variants",
-          "link": "https://blog.dailydoseofds.com/p/4-speculative-decoding-variants",
-          "date": "Sat, 12 Sep 2026 20:03:46 GMT",
-          "note": "...covered with tradeoffs in production."
         }
       ]
     },
@@ -147,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "How to Use NVIDIA Warp and MjWarp to Accelerate Robotics Simulation and Learning Workflows",
+          "link": "https://huggingface.co/blog/nvidia/how-to-use-nvidia-warp-and-mjwarp",
+          "date": "Wed, 23 Sep 2026 18:41:40 GMT",
+          "note": ""
+        },
         {
           "title": "How UK AISI and EvalEval Are Making Benchmark Results Reproducible",
           "link": "https://huggingface.co/blog/evaleval-aisi",
@@ -186,12 +192,6 @@
         {
           "title": "Async GRPO with LoRA across HF Jobs: a bucket, a proxy, and no NCCL",
           "link": "https://huggingface.co/blog/asyncgrpo-lora-hfjobs",
-          "date": "Thu, 10 Sep 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Rebuilding AUTOMATIC1111 with Gradio Workflow",
-          "link": "https://huggingface.co/blog/gradio-workflow-1111",
           "date": "Thu, 10 Sep 2026 00:00:00 GMT",
           "note": ""
         }
