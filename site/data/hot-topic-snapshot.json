@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-09-24T05:06:48.088454+00:00",
+    "generated_at": "2026-09-25T05:08:43.835089+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年9月23号 16:03AI 日报AI日报：Anthropic上线Claude Opus 5.5；Seedance2.5上线Draft模式；OpenAI推出GPT-6 Sol和Luna查看日报",
-        "link": "https://www.aibase.com/daily/31307"
+        "title": "2026年9月24号 16:12AI 日报AI日报：谷歌发布Gemini 3.8 Flash TTS；Kimi K3.1十月或压轴登场；豆包向所有用户免费送30天订阅权益查看日报",
+        "link": "https://www.aibase.com/daily/31355"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "盒马部署“AI验蟹师”：不到 1 分钟检测 50 只大闸蟹",
-          "link": "https://www.aibase.com/news/31304",
-          "date": "2026年9月23号 16:03",
+          "title": "​华为官宣小艺 Work 正式上线，首发 31 天限时免费畅享 1000 AI 点",
+          "link": "https://www.aibase.com/news/31352",
+          "date": "2026年9月24号 16:12",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "千问发布 Qwen-Audio-3.1系列语音大模型，五款模型全线降价最高95%",
-          "link": "https://www.aibase.com/news/31303",
-          "date": "2026年9月23号 16:03",
+          "title": "Kimi K3.1十月或压轴登场:三档推理强度、百万超长上下文，Agent与Swarm全塞进配置",
+          "link": "https://www.aibase.com/news/31348",
+          "date": "2026年9月24号 16:12",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阿里云发布Qwen Book:AI智能体电脑正式亮相",
-          "link": "https://www.aibase.com/news/31301",
-          "date": "2026年9月23号 16:03",
+          "title": "腾讯推出“Hy翻译”App，支持33种语言及离线翻译，主攻出境游场景",
+          "link": "https://www.aibase.com/news/31345",
+          "date": "2026年9月24号 16:12",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Win11 惊现 AI 恶意软件 ClosedQuorum：入侵后自主决策，专挖最有价值信息",
-          "link": "https://www.aibase.com/news/31297",
-          "date": "2026年9月23号 16:03",
+          "title": "智元第两万台远征A3 Ultra下线交付长隆，六千台半年填满，具身机器人第一次在主题乐园里常态上岗",
+          "link": "https://www.aibase.com/news/31344",
+          "date": "2026年9月24号 16:12",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "​韶音首款 AI 耳机 OpenFit 2 AI 亮相云栖大会，重磅首发“AI 实验室”四大新功能",
-          "link": "https://www.aibase.com/news/31295",
-          "date": "2026年9月23号 16:03",
+          "title": "豆包向所有用户免费送30天订阅权益:标准套餐免费体验至10月17日",
+          "link": "https://www.aibase.com/news/31336",
+          "date": "2026年9月24号 16:12",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "火山引擎Seedance2.5上线Draft模式:480P试错、1080P成片，成本最高省77%",
-          "link": "https://www.aibase.com/news/31293",
-          "date": "2026年9月23号 16:03",
+          "title": "爱奇艺龚宇：AI 是内容加分项，不是搭建流水线的工具",
+          "link": "https://www.aibase.com/news/31332",
+          "date": "2026年9月24号 16:12",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenAI 推出 GPT-6 Sol 和 Luna：API 价格大降 50%，单任务成本最低不到竞品一成",
-          "link": "https://www.aibase.com/news/31278",
-          "date": "2026年9月23号 16:03",
+          "title": "Hy Image3.5preview 登陆 WorkRally，影视创作者免费试用两周",
+          "link": "https://www.aibase.com/news/31327",
+          "date": "2026年9月24号 16:12",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Anthropic上线Claude Opus 5.5 ，任务成本大降 40%",
-          "link": "https://www.aibase.com/news/31277",
-          "date": "2026年9月23号 16:03",
+          "title": "谷歌发布 Gemini 3.8 Flash TTS：支持自然语言定制声音与 30 秒声音复刻",
+          "link": "https://www.aibase.com/news/31320",
+          "date": "2026年9月24号 16:12",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Build a Jev Judge",
+          "link": "https://blog.dailydoseofds.com/p/build-a-jev-judge",
+          "date": "Thu, 24 Sep 2026 20:48:47 GMT",
+          "note": "Judgement does not need text generation..."
+        },
         {
           "title": "MoE inference engineering, clearly explained",
           "link": "https://blog.dailydoseofds.com/p/moe-inference-engineering-clearly",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/easiest-way-to-run-agent-harnesses",
           "date": "Tue, 15 Sep 2026 21:59:31 GMT",
           "note": "...explained with a full video walkthrough."
-        },
-        {
-          "title": "What It Takes to Build a Production Agent Harness",
-          "link": "https://blog.dailydoseofds.com/p/what-it-takes-to-build-a-production",
-          "date": "Mon, 14 Sep 2026 19:50:37 GMT",
-          "note": "A hands-on nanodegree for production agent engineering."
         }
       ]
     },
@@ -147,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Accelerating vision-language models with LFM2.5-VL-DSpark",
+          "link": "https://huggingface.co/blog/LiquidAI/lfm2-5-vl-dspark",
+          "date": "Thu, 24 Sep 2026 14:08:57 GMT",
+          "note": ""
+        },
         {
           "title": "How to Use NVIDIA Warp and MjWarp to Accelerate Robotics Simulation and Learning Workflows",
           "link": "https://huggingface.co/blog/nvidia/how-to-use-nvidia-warp-and-mjwarp",
@@ -187,12 +193,6 @@
           "title": "Your Agent Aced the Task. Will It Do It Again?",
           "link": "https://huggingface.co/blog/ibm-research/altk-evolve-consistency",
           "date": "Tue, 15 Sep 2026 16:00:44 GMT",
-          "note": ""
-        },
-        {
-          "title": "Async GRPO with LoRA across HF Jobs: a bucket, a proxy, and no NCCL",
-          "link": "https://huggingface.co/blog/asyncgrpo-lora-hfjobs",
-          "date": "Thu, 10 Sep 2026 00:00:00 GMT",
           "note": ""
         }
       ]
