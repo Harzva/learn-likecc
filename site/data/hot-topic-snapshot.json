@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-09-25T05:08:43.835089+00:00",
+    "generated_at": "2026-09-26T05:13:47.388178+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -85,6 +85,12 @@
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
         {
+          "title": "Contrastive Language Model, clearly explained",
+          "link": "https://blog.dailydoseofds.com/p/contrastive-language-model-clearly",
+          "date": "Fri, 25 Sep 2026 22:33:07 GMT",
+          "note": "NVIDIA and Stanford just challenged Jev..."
+        },
+        {
           "title": "Build a Jev Judge",
           "link": "https://blog.dailydoseofds.com/p/build-a-jev-judge",
           "date": "Thu, 24 Sep 2026 20:48:47 GMT",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/how-to-fine-tune-llms-in-2026-bf8",
           "date": "Wed, 16 Sep 2026 20:40:26 GMT",
           "note": "Reward-free RL is here!"
-        },
-        {
-          "title": "Easiest Way to Run Agent Harnesses Using Local Models",
-          "link": "https://blog.dailydoseofds.com/p/easiest-way-to-run-agent-harnesses",
-          "date": "Tue, 15 Sep 2026 21:59:31 GMT",
-          "note": "...explained with a full video walkthrough."
         }
       ]
     },
