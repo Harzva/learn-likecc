@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-09-28T05:38:42.740098+00:00",
+    "generated_at": "2026-09-29T05:56:04.555612+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年9月24号 16:12AI 日报AI日报：谷歌发布Gemini 3.8 Flash TTS；Kimi K3.1十月或压轴登场；豆包向所有用户免费送30天订阅权益查看日报",
-        "link": "https://www.aibase.com/daily/31355"
+        "title": "2026年9月28号 15:55AI 日报AI日报：MiniMax新模型M3.1-Flash-Preview上线；OpenAI将推常驻智能助手；Claude Sonnet 5.5开启灰测查看日报",
+        "link": "https://www.aibase.com/daily/31385"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "​华为官宣小艺 Work 正式上线，首发 31 天限时免费畅享 1000 AI 点",
-          "link": "https://www.aibase.com/news/31352",
-          "date": "2026年9月24号 16:12",
+          "title": "英伟达发布1亿参数免费模型Nemotron3，支持8人实时语音分割识别",
+          "link": "https://www.aibase.com/news/31382",
+          "date": "2026年9月28号 15:55",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Kimi K3.1十月或压轴登场:三档推理强度、百万超长上下文，Agent与Swarm全塞进配置",
-          "link": "https://www.aibase.com/news/31348",
-          "date": "2026年9月24号 16:12",
+          "title": "谷歌在印度测试 Gemini 内直购 Flipkart 商品，全面进军端内交易生态",
+          "link": "https://www.aibase.com/news/31380",
+          "date": "2026年9月28号 15:55",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯推出“Hy翻译”App，支持33种语言及离线翻译，主攻出境游场景",
-          "link": "https://www.aibase.com/news/31345",
-          "date": "2026年9月24号 16:12",
+          "title": "智谱ZCode落地新轮补偿:赠付费用户8张重置卡，已彻底移除代码快照上传链路",
+          "link": "https://www.aibase.com/news/31377",
+          "date": "2026年9月28号 15:55",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "智元第两万台远征A3 Ultra下线交付长隆，六千台半年填满，具身机器人第一次在主题乐园里常态上岗",
-          "link": "https://www.aibase.com/news/31344",
-          "date": "2026年9月24号 16:12",
+          "title": "Claude Sonnet 5.5 配置标识符现身并开启灰度测试，性能直逼 GPT-6 Astra",
+          "link": "https://www.aibase.com/news/31372",
+          "date": "2026年9月28号 15:55",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "豆包向所有用户免费送30天订阅权益:标准套餐免费体验至10月17日",
-          "link": "https://www.aibase.com/news/31336",
-          "date": "2026年9月24号 16:12",
+          "title": "开源大模型格局重塑！小米 MiMo-V2.6-Pro 强势杀回 Code Arena 前十，性能直逼国际第一梯队",
+          "link": "https://www.aibase.com/news/31370",
+          "date": "2026年9月28号 15:55",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "爱奇艺龚宇：AI 是内容加分项，不是搭建流水线的工具",
-          "link": "https://www.aibase.com/news/31332",
-          "date": "2026年9月24号 16:12",
+          "title": "​MiniMax 最新文本模型 M3.1-Flash-Preview 正式上线，官方同步派发额度重置卡与双倍积分福利",
+          "link": "https://www.aibase.com/news/31365",
+          "date": "2026年9月28号 15:55",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Hy Image3.5preview 登陆 WorkRally，影视创作者免费试用两周",
-          "link": "https://www.aibase.com/news/31327",
-          "date": "2026年9月24号 16:12",
+          "title": "首款端侧Agent旗舰刚落地就触碰安全红线?豆包AI否认涉足游戏外挂",
+          "link": "https://www.aibase.com/news/31362",
+          "date": "2026年9月28号 15:55",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "谷歌发布 Gemini 3.8 Flash TTS：支持自然语言定制声音与 30 秒声音复刻",
-          "link": "https://www.aibase.com/news/31320",
-          "date": "2026年9月24号 16:12",
+          "title": "OpenAI或将推出代号「O」的常驻智能助手，预计9月29日正式发布",
+          "link": "https://www.aibase.com/news/31358",
+          "date": "2026年9月28号 15:55",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "System 1 vs. System 2 Agent Harnesses, clearly explained",
+          "link": "https://blog.dailydoseofds.com/p/system-1-vs-system-2-agent-harnesses",
+          "date": "Mon, 28 Sep 2026 18:55:50 GMT",
+          "note": "...and a"
+        },
         {
           "title": "Contrastive Language Model, clearly explained",
           "link": "https://blog.dailydoseofds.com/p/contrastive-language-model-clearly",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/where-does-all-the-vram-go-during",
           "date": "Thu, 17 Sep 2026 19:30:12 GMT",
           "note": "...explained visually"
-        },
-        {
-          "title": "How to Fine-Tune LLMs in 2026",
-          "link": "https://blog.dailydoseofds.com/p/how-to-fine-tune-llms-in-2026-bf8",
-          "date": "Wed, 16 Sep 2026 20:40:26 GMT",
-          "note": "Reward-free RL is here!"
         }
       ]
     },
@@ -147,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Holo4: powering generalist computer-use agents",
+          "link": "https://huggingface.co/blog/Hcompany/holo4",
+          "date": "Mon, 28 Sep 2026 09:44:05 GMT",
+          "note": ""
+        },
         {
           "title": "Accelerating vision-language models with LFM2.5-VL-DSpark",
           "link": "https://huggingface.co/blog/LiquidAI/lfm2-5-vl-dspark",
@@ -187,12 +193,6 @@
           "title": "tokenizers v1: encode, decode and scaling, measured",
           "link": "https://huggingface.co/blog/tokenizers-v1",
           "date": "Mon, 21 Sep 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Your Agent Aced the Task. Will It Do It Again?",
-          "link": "https://huggingface.co/blog/ibm-research/altk-evolve-consistency",
-          "date": "Tue, 15 Sep 2026 16:00:44 GMT",
           "note": ""
         }
       ]
