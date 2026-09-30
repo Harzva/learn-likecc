@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-09-29T05:56:04.555612+00:00",
+    "generated_at": "2026-09-30T05:46:34.689764+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年9月28号 15:55AI 日报AI日报：MiniMax新模型M3.1-Flash-Preview上线；OpenAI将推常驻智能助手；Claude Sonnet 5.5开启灰测查看日报",
-        "link": "https://www.aibase.com/daily/31385"
+        "title": "2026年9月29号 15:53AI 日报AI日报：Kling4.0即将上线；豆包要出独立个人助理App；腾讯秘密布局数字人游戏搭子“鹅次元”查看日报",
+        "link": "https://www.aibase.com/daily/31418"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "英伟达发布1亿参数免费模型Nemotron3，支持8人实时语音分割识别",
-          "link": "https://www.aibase.com/news/31382",
-          "date": "2026年9月28号 15:55",
+          "title": "xAI推出Team Bots：能跟团队一起学、一起干的Grok智能体， 24 小时帮保险公司挽回 12 万美元",
+          "link": "https://www.aibase.com/news/31414",
+          "date": "2026年9月29号 15:53",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "谷歌在印度测试 Gemini 内直购 Flipkart 商品，全面进军端内交易生态",
-          "link": "https://www.aibase.com/news/31380",
-          "date": "2026年9月28号 15:55",
+          "title": "OpenAI明日重启200美元Pro订阅:API配额减半，取消5小时限制",
+          "link": "https://www.aibase.com/news/31413",
+          "date": "2026年9月29号 15:53",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "智谱ZCode落地新轮补偿:赠付费用户8张重置卡，已彻底移除代码快照上传链路",
-          "link": "https://www.aibase.com/news/31377",
-          "date": "2026年9月28号 15:55",
+          "title": "字节豆包要出独立个人助理App了，内部已秘密内测数月",
+          "link": "https://www.aibase.com/news/31410",
+          "date": "2026年9月29号 15:53",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Claude Sonnet 5.5 配置标识符现身并开启灰度测试，性能直逼 GPT-6 Astra",
-          "link": "https://www.aibase.com/news/31372",
-          "date": "2026年9月28号 15:55",
+          "title": "英伟达发布 AI 智能体安全工具 OpenShell，称可阻止 Hugging Face 入侵事件重演",
+          "link": "https://www.aibase.com/news/31409",
+          "date": "2026年9月29号 15:53",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "开源大模型格局重塑！小米 MiMo-V2.6-Pro 强势杀回 Code Arena 前十，性能直逼国际第一梯队",
-          "link": "https://www.aibase.com/news/31370",
-          "date": "2026年9月28号 15:55",
+          "title": "Kling4.0即将上线:支持8000Token与立体声唇形同步",
+          "link": "https://www.aibase.com/news/31401",
+          "date": "2026年9月29号 15:53",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "​MiniMax 最新文本模型 M3.1-Flash-Preview 正式上线，官方同步派发额度重置卡与双倍积分福利",
-          "link": "https://www.aibase.com/news/31365",
-          "date": "2026年9月28号 15:55",
+          "title": "蝴蝶效应发布 Manus2.0:成本降三成 Agent还能组队打工",
+          "link": "https://www.aibase.com/news/31399",
+          "date": "2026年9月29号 15:53",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "首款端侧Agent旗舰刚落地就触碰安全红线?豆包AI否认涉足游戏外挂",
-          "link": "https://www.aibase.com/news/31362",
-          "date": "2026年9月28号 15:55",
+          "title": "Claude Sonnet5.5发布:编程能力反超旗舰，API价格腰斩",
+          "link": "https://www.aibase.com/news/31398",
+          "date": "2026年9月29号 15:53",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenAI或将推出代号「O」的常驻智能助手，预计9月29日正式发布",
-          "link": "https://www.aibase.com/news/31358",
-          "date": "2026年9月28号 15:55",
+          "title": "腾讯秘密布局数字人游戏搭子“鹅次元”：聚焦情绪陪伴而非技术代飞",
+          "link": "https://www.aibase.com/news/31396",
+          "date": "2026年9月29号 15:53",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Build a real-time hotel booking voice agent",
+          "link": "https://blog.dailydoseofds.com/p/build-a-real-time-hotel-booking-voice",
+          "date": "Tue, 29 Sep 2026 21:14:18 GMT",
+          "note": "...explained with code."
+        },
         {
           "title": "System 1 vs. System 2 Agent Harnesses, clearly explained",
           "link": "https://blog.dailydoseofds.com/p/system-1-vs-system-2-agent-harnesses",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/run-any-agent-harness-under-one-interface",
           "date": "Fri, 18 Sep 2026 18:18:26 GMT",
           "note": "How UHP and HarnessRouter standardize agent execution across Codex, Claude Code, Hermes, and other runtimes."
-        },
-        {
-          "title": "Where does all the VRAM go during LLM inference?",
-          "link": "https://blog.dailydoseofds.com/p/where-does-all-the-vram-go-during",
-          "date": "Thu, 17 Sep 2026 19:30:12 GMT",
-          "note": "...explained visually"
         }
       ]
     },
@@ -148,6 +148,18 @@
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
         {
+          "title": "NVIDIA Kumo Tabular Sets a New Accuracy-Efficiency Frontier for Tabular Prediction",
+          "link": "https://huggingface.co/blog/nvidia/kumo-tabular",
+          "date": "Tue, 29 Sep 2026 15:30:38 GMT",
+          "note": ""
+        },
+        {
+          "title": "Getting the Source Right, Not Just the Fact: Source-Aware Verification for MCP Agents",
+          "link": "https://huggingface.co/blog/MultiverseComputingCAI/getting-the-source-right-not-just-the-fact-source",
+          "date": "Tue, 29 Sep 2026 13:07:00 GMT",
+          "note": ""
+        },
+        {
           "title": "Holo4: powering generalist computer-use agents",
           "link": "https://huggingface.co/blog/Hcompany/holo4",
           "date": "Mon, 28 Sep 2026 09:44:05 GMT",
@@ -157,12 +169,6 @@
           "title": "Accelerating vision-language models with LFM2.5-VL-DSpark",
           "link": "https://huggingface.co/blog/LiquidAI/lfm2-5-vl-dspark",
           "date": "Thu, 24 Sep 2026 14:08:57 GMT",
-          "note": ""
-        },
-        {
-          "title": "How to Use NVIDIA Warp and MjWarp to Accelerate Robotics Simulation and Learning Workflows",
-          "link": "https://huggingface.co/blog/nvidia/how-to-use-nvidia-warp-and-mjwarp",
-          "date": "Wed, 23 Sep 2026 18:41:40 GMT",
           "note": ""
         },
         {
@@ -181,12 +187,6 @@
           "title": "Jun Kim, oMLX creator and maintainer, joins Hugging Face to support the MLX community",
           "link": "https://huggingface.co/blog/omlx",
           "date": "Tue, 22 Sep 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Pruning LLMs Like a Physicist: Block Removal as an Ising Optimization Problem",
-          "link": "https://huggingface.co/blog/MultiverseComputingCAI/pruning-llms-like-a-physicist-block-removal-as-an",
-          "date": "Mon, 21 Sep 2026 13:44:34 GMT",
           "note": ""
         },
         {
