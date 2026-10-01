@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-09-30T05:46:34.689764+00:00",
+    "generated_at": "2026-10-01T06:15:11.912156+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年9月29号 15:53AI 日报AI日报：Kling4.0即将上线；豆包要出独立个人助理App；腾讯秘密布局数字人游戏搭子“鹅次元”查看日报",
-        "link": "https://www.aibase.com/daily/31418"
+        "title": "2026年9月30号 16:34AI 日报AI日报：豆包推独立AI个人助手App小豆;Gemini Skills向免费用户开放;OpenAI发布自主智能体Dots查看日报",
+        "link": "https://www.aibase.com/daily/31441"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "xAI推出Team Bots：能跟团队一起学、一起干的Grok智能体， 24 小时帮保险公司挽回 12 万美元",
-          "link": "https://www.aibase.com/news/31414",
-          "date": "2026年9月29号 15:53",
+          "title": "豆包AI个人助手独立App实锤：定名“小豆”剑指全场景智能生态",
+          "link": "https://www.aibase.com/news/31440",
+          "date": "2026年9月30号 16:34",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenAI明日重启200美元Pro订阅:API配额减半，取消5小时限制",
-          "link": "https://www.aibase.com/news/31413",
-          "date": "2026年9月29号 15:53",
+          "title": "微软亮出生物学\"世界模型\"Project Quine：一个周末筛出抗癌候选物",
+          "link": "https://www.aibase.com/news/31437",
+          "date": "2026年9月30号 16:34",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "字节豆包要出独立个人助理App了，内部已秘密内测数月",
-          "link": "https://www.aibase.com/news/31410",
-          "date": "2026年9月29号 15:53",
+          "title": "谷歌宣布向免费用户全面开放 Gemini Skills，Gems 功能将于 11 月完成历史性整合",
+          "link": "https://www.aibase.com/news/31435",
+          "date": "2026年9月30号 16:34",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "英伟达发布 AI 智能体安全工具 OpenShell，称可阻止 Hugging Face 入侵事件重演",
-          "link": "https://www.aibase.com/news/31409",
-          "date": "2026年9月29号 15:53",
+          "title": "麦当劳在美规模化部署AI动态定价引擎，同城门店最高价差达21%",
+          "link": "https://www.aibase.com/news/31429",
+          "date": "2026年9月30号 16:34",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Kling4.0即将上线:支持8000Token与立体声唇形同步",
-          "link": "https://www.aibase.com/news/31401",
-          "date": "2026年9月29号 15:53",
+          "title": "OpenAI 牵手亚马逊云服务 AWS：重磅布局托管智能体，推 500 美元 Pro 顶配套餐",
+          "link": "https://www.aibase.com/news/31427",
+          "date": "2026年9月30号 16:34",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "蝴蝶效应发布 Manus2.0:成本降三成 Agent还能组队打工",
-          "link": "https://www.aibase.com/news/31399",
-          "date": "2026年9月29号 15:53",
+          "title": "腾讯入局Personal Agent赛道:代号\"Handy Bot\"，已在微信低调内测",
+          "link": "https://www.aibase.com/news/31426",
+          "date": "2026年9月30号 16:34",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Claude Sonnet5.5发布:编程能力反超旗舰，API价格腰斩",
-          "link": "https://www.aibase.com/news/31398",
-          "date": "2026年9月29号 15:53",
+          "title": "特斯拉获300亿美元新信贷额度，全面加速Cybercab无人出租车与Optimus量产",
+          "link": "https://www.aibase.com/news/31422",
+          "date": "2026年9月30号 16:34",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯秘密布局数字人游戏搭子“鹅次元”：聚焦情绪陪伴而非技术代飞",
-          "link": "https://www.aibase.com/news/31396",
-          "date": "2026年9月29号 15:53",
+          "title": "OpenAI发布自主智能体“Dots”与企业应用市场，ChatGPT全面向软件分发平台转型",
+          "link": "https://www.aibase.com/news/31421",
+          "date": "2026年9月30号 16:34",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Jev for RAG, clearly explained!",
+          "link": "https://blog.dailydoseofds.com/p/jev-for-rag-clearly-explained",
+          "date": "Wed, 30 Sep 2026 15:40:56 GMT",
+          "note": "...covered with 12 more agentic Jev use cases."
+        },
         {
           "title": "Build a real-time hotel booking voice agent",
           "link": "https://blog.dailydoseofds.com/p/build-a-real-time-hotel-booking-voice",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/jev-clearly-explained",
           "date": "Mon, 21 Sep 2026 19:39:16 GMT",
           "note": "...with visuals."
-        },
-        {
-          "title": "Run Any Agent Harness Under One Interface",
-          "link": "https://blog.dailydoseofds.com/p/run-any-agent-harness-under-one-interface",
-          "date": "Fri, 18 Sep 2026 18:18:26 GMT",
-          "note": "How UHP and HarnessRouter standardize agent execution across Codex, Claude Code, Hermes, and other runtimes."
         }
       ]
     },
@@ -147,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Open TTS Leaderboard: Scalable Evaluation for Multilingual Text-to-Speech and Voice Cloning",
+          "link": "https://huggingface.co/blog/open-tts-leaderboard",
+          "date": "Wed, 30 Sep 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "NVIDIA Kumo Tabular Sets a New Accuracy-Efficiency Frontier for Tabular Prediction",
           "link": "https://huggingface.co/blog/nvidia/kumo-tabular",
@@ -187,12 +193,6 @@
           "title": "Jun Kim, oMLX creator and maintainer, joins Hugging Face to support the MLX community",
           "link": "https://huggingface.co/blog/omlx",
           "date": "Tue, 22 Sep 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "tokenizers v1: encode, decode and scaling, measured",
-          "link": "https://huggingface.co/blog/tokenizers-v1",
-          "date": "Mon, 21 Sep 2026 00:00:00 GMT",
           "note": ""
         }
       ]
