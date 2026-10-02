@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-10-01T06:15:11.912156+00:00",
+    "generated_at": "2026-10-02T05:56:24.556868+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -85,6 +85,12 @@
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
         {
+          "title": "Building a Production Agent Harness with LangGraph and Jev",
+          "link": "https://blog.dailydoseofds.com/p/building-a-production-agent-harness",
+          "date": "Thu, 01 Oct 2026 22:24:38 GMT",
+          "note": "...explained with code."
+        },
+        {
           "title": "Jev for RAG, clearly explained!",
           "link": "https://blog.dailydoseofds.com/p/jev-for-rag-clearly-explained",
           "date": "Wed, 30 Sep 2026 15:40:56 GMT",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/build-your-own-jev-100-local",
           "date": "Tue, 22 Sep 2026 19:10:14 GMT",
           "note": "...explained step-by-step with code."
-        },
-        {
-          "title": "Jev, Clearly Explained",
-          "link": "https://blog.dailydoseofds.com/p/jev-clearly-explained",
-          "date": "Mon, 21 Sep 2026 19:39:16 GMT",
-          "note": "...with visuals."
         }
       ]
     },
@@ -147,6 +147,18 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "AutoSynthData: Generating Training Data for Enterprise Agents",
+          "link": "https://huggingface.co/blog/ServiceNow-AI/autosynthdata",
+          "date": "Fri, 02 Oct 2026 04:01:31 GMT",
+          "note": ""
+        },
+        {
+          "title": "Introducing Olmo-core 3: Open, scalable training infrastructure for large MoEs",
+          "link": "https://huggingface.co/blog/allenai/olmocore3",
+          "date": "Thu, 01 Oct 2026 15:01:43 GMT",
+          "note": ""
+        },
         {
           "title": "Open TTS Leaderboard: Scalable Evaluation for Multilingual Text-to-Speech and Voice Cloning",
           "link": "https://huggingface.co/blog/open-tts-leaderboard",
@@ -180,18 +192,6 @@
         {
           "title": "How UK AISI and EvalEval Are Making Benchmark Results Reproducible",
           "link": "https://huggingface.co/blog/evaleval-aisi",
-          "date": "Tue, 22 Sep 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Transformers now runs llama.cpp quants",
-          "link": "https://huggingface.co/blog/transformers-llama-cpp-quants",
-          "date": "Tue, 22 Sep 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Jun Kim, oMLX creator and maintainer, joins Hugging Face to support the MLX community",
-          "link": "https://huggingface.co/blog/omlx",
           "date": "Tue, 22 Sep 2026 00:00:00 GMT",
           "note": ""
         }
