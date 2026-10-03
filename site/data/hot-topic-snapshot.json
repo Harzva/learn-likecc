@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-10-02T05:56:24.556868+00:00",
+    "generated_at": "2026-10-03T05:31:13.736828+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -85,6 +85,12 @@
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
         {
+          "title": "MCP Apps, clearly explained:",
+          "link": "https://blog.dailydoseofds.com/p/mcp-apps-clearly-explained",
+          "date": "Fri, 02 Oct 2026 23:47:11 GMT",
+          "note": "...covered with a full hands-on video demo."
+        },
+        {
           "title": "Building a Production Agent Harness with LangGraph and Jev",
           "link": "https://blog.dailydoseofds.com/p/building-a-production-agent-harness",
           "date": "Thu, 01 Oct 2026 22:24:38 GMT",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/moe-inference-engineering-clearly",
           "date": "Wed, 23 Sep 2026 18:11:47 GMT",
           "note": "...with visuals."
-        },
-        {
-          "title": "Build your own Jev (100% local)",
-          "link": "https://blog.dailydoseofds.com/p/build-your-own-jev-100-local",
-          "date": "Tue, 22 Sep 2026 19:10:14 GMT",
-          "note": "...explained step-by-step with code."
         }
       ]
     },
@@ -148,15 +148,15 @@
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
         {
-          "title": "AutoSynthData: Generating Training Data for Enterprise Agents",
-          "link": "https://huggingface.co/blog/ServiceNow-AI/autosynthdata",
-          "date": "Fri, 02 Oct 2026 04:01:31 GMT",
+          "title": "Open-sourcing AstaBrief, the fast report-generation model in Asta",
+          "link": "https://huggingface.co/blog/allenai/astabrief",
+          "date": "Fri, 02 Oct 2026 15:19:50 GMT",
           "note": ""
         },
         {
-          "title": "Introducing Olmo-core 3: Open, scalable training infrastructure for large MoEs",
-          "link": "https://huggingface.co/blog/allenai/olmocore3",
-          "date": "Thu, 01 Oct 2026 15:01:43 GMT",
+          "title": "AutoSynthData: Generating Training Data for Enterprise Agents",
+          "link": "https://huggingface.co/blog/ServiceNow-AI/autosynthdata",
+          "date": "Fri, 02 Oct 2026 04:01:31 GMT",
           "note": ""
         },
         {
