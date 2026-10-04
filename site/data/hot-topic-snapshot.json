@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-10-03T05:31:13.736828+00:00",
+    "generated_at": "2026-10-04T06:06:46.675706+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -85,6 +85,12 @@
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
         {
+          "title": "How Work is Organized Inside a GPU",
+          "link": "https://blog.dailydoseofds.com/p/how-work-is-organized-inside-a-gpu",
+          "date": "Sat, 03 Oct 2026 21:53:38 GMT",
+          "note": "...explained visually."
+        },
+        {
           "title": "MCP Apps, clearly explained:",
           "link": "https://blog.dailydoseofds.com/p/mcp-apps-clearly-explained",
           "date": "Fri, 02 Oct 2026 23:47:11 GMT",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/build-a-jev-judge",
           "date": "Thu, 24 Sep 2026 20:48:47 GMT",
           "note": "Judgement does not need text generation..."
-        },
-        {
-          "title": "MoE inference engineering, clearly explained",
-          "link": "https://blog.dailydoseofds.com/p/moe-inference-engineering-clearly",
-          "date": "Wed, 23 Sep 2026 18:11:47 GMT",
-          "note": "...with visuals."
         }
       ]
     },
@@ -147,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "The Agent Said It Was Done. The Database Disagreed.",
+          "link": "https://huggingface.co/blog/microsoft/thinkingbox",
+          "date": "Sat, 03 Oct 2026 22:56:48 GMT",
+          "note": ""
+        },
         {
           "title": "Open-sourcing AstaBrief, the fast report-generation model in Asta",
           "link": "https://huggingface.co/blog/allenai/astabrief",
@@ -187,12 +193,6 @@
           "title": "Accelerating vision-language models with LFM2.5-VL-DSpark",
           "link": "https://huggingface.co/blog/LiquidAI/lfm2-5-vl-dspark",
           "date": "Thu, 24 Sep 2026 14:08:57 GMT",
-          "note": ""
-        },
-        {
-          "title": "How UK AISI and EvalEval Are Making Benchmark Results Reproducible",
-          "link": "https://huggingface.co/blog/evaleval-aisi",
-          "date": "Tue, 22 Sep 2026 00:00:00 GMT",
           "note": ""
         }
       ]
