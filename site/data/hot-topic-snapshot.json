@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-10-05T05:59:00.967435+00:00",
+    "generated_at": "2026-10-06T06:37:41.271167+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -85,6 +85,12 @@
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
         {
+          "title": "Fine-tune Meta AI's Muse Glimmer 100% locally",
+          "link": "https://blog.dailydoseofds.com/p/fine-tune-meta-ais-muse-glimmer-100",
+          "date": "Mon, 05 Oct 2026 22:20:04 GMT",
+          "note": "...explained step-by-step with code."
+        },
+        {
           "title": "How Work is Organized Inside a GPU",
           "link": "https://blog.dailydoseofds.com/p/how-work-is-organized-inside-a-gpu",
           "date": "Sat, 03 Oct 2026 21:53:38 GMT",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/contrastive-language-model-clearly",
           "date": "Fri, 25 Sep 2026 22:33:07 GMT",
           "note": "NVIDIA and Stanford just challenged Jev..."
-        },
-        {
-          "title": "Build a Jev Judge",
-          "link": "https://blog.dailydoseofds.com/p/build-a-jev-judge",
-          "date": "Thu, 24 Sep 2026 20:48:47 GMT",
-          "note": "Judgement does not need text generation..."
         }
       ]
     },
@@ -190,9 +190,9 @@
           "note": ""
         },
         {
-          "title": "Accelerating vision-language models with LFM2.5-VL-DSpark",
-          "link": "https://huggingface.co/blog/LiquidAI/lfm2-5-vl-dspark",
-          "date": "Thu, 24 Sep 2026 14:08:57 GMT",
+          "title": "Welcome RL Environments to the hub",
+          "link": "https://huggingface.co/blog/rl-environments",
+          "date": "Mon, 28 Sep 2026 00:00:00 GMT",
           "note": ""
         }
       ]
