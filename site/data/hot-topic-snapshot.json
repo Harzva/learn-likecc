@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-10-06T06:37:41.271167+00:00",
+    "generated_at": "2026-10-07T06:14:30.267050+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -85,6 +85,12 @@
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
         {
+          "title": "Chunked Prefill, clearly explained",
+          "link": "https://blog.dailydoseofds.com/p/chunked-prefill-clearly-explained",
+          "date": "Wed, 07 Oct 2026 00:08:47 GMT",
+          "note": "How vLLM stops one long prompt from stalling others..."
+        },
+        {
           "title": "Fine-tune Meta AI's Muse Glimmer 100% locally",
           "link": "https://blog.dailydoseofds.com/p/fine-tune-meta-ais-muse-glimmer-100",
           "date": "Mon, 05 Oct 2026 22:20:04 GMT",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/system-1-vs-system-2-agent-harnesses",
           "date": "Mon, 28 Sep 2026 18:55:50 GMT",
           "note": "...and a"
-        },
-        {
-          "title": "Contrastive Language Model, clearly explained",
-          "link": "https://blog.dailydoseofds.com/p/contrastive-language-model-clearly",
-          "date": "Fri, 25 Sep 2026 22:33:07 GMT",
-          "note": "NVIDIA and Stanford just challenged Jev..."
         }
       ]
     },
@@ -147,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Falcon-Emirati: When an LLM Learns the Dialect, the Culture, and the Nuance",
+          "link": "https://huggingface.co/blog/tiiuae/falcon-emirati",
+          "date": "Tue, 06 Oct 2026 06:44:39 GMT",
+          "note": ""
+        },
         {
           "title": "The Agent Said It Was Done. The Database Disagreed.",
           "link": "https://huggingface.co/blog/microsoft/thinkingbox",
@@ -187,12 +193,6 @@
           "title": "Holo4: powering generalist computer-use agents",
           "link": "https://huggingface.co/blog/Hcompany/holo4",
           "date": "Mon, 28 Sep 2026 09:44:05 GMT",
-          "note": ""
-        },
-        {
-          "title": "Welcome RL Environments to the hub",
-          "link": "https://huggingface.co/blog/rl-environments",
-          "date": "Mon, 28 Sep 2026 00:00:00 GMT",
           "note": ""
         }
       ]
