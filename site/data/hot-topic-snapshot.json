@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-10-07T06:14:30.267050+00:00",
+    "generated_at": "2026-10-08T06:23:36.812277+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -85,6 +85,12 @@
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
         {
+          "title": "RAG vs. Jev + RAG, clearly explained!",
+          "link": "https://blog.dailydoseofds.com/p/rag-vs-jev-rag-clearly-explained",
+          "date": "Thu, 08 Oct 2026 00:19:29 GMT",
+          "note": "...with visuals."
+        },
+        {
           "title": "Chunked Prefill, clearly explained",
           "link": "https://blog.dailydoseofds.com/p/chunked-prefill-clearly-explained",
           "date": "Wed, 07 Oct 2026 00:08:47 GMT",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/build-a-real-time-hotel-booking-voice",
           "date": "Tue, 29 Sep 2026 21:14:18 GMT",
           "note": "...explained with code."
-        },
-        {
-          "title": "System 1 vs. System 2 Agent Harnesses, clearly explained",
-          "link": "https://blog.dailydoseofds.com/p/system-1-vs-system-2-agent-harnesses",
-          "date": "Mon, 28 Sep 2026 18:55:50 GMT",
-          "note": "...and a"
         }
       ]
     },
@@ -148,9 +148,15 @@
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
         {
-          "title": "Falcon-Emirati: When an LLM Learns the Dialect, the Culture, and the Nuance",
-          "link": "https://huggingface.co/blog/tiiuae/falcon-emirati",
-          "date": "Tue, 06 Oct 2026 06:44:39 GMT",
+          "title": "Multimodal open d1 decision models for the edge",
+          "link": "https://huggingface.co/blog/LiquidAI/open-d1",
+          "date": "Wed, 07 Oct 2026 16:54:33 GMT",
+          "note": ""
+        },
+        {
+          "title": "One Model Family, Two Gold-Level Results: Fine-Tuning Nemotron for IOI and IMO",
+          "link": "https://huggingface.co/blog/nvidia/nemotron-ioi-and-imo-2026",
+          "date": "Wed, 07 Oct 2026 12:45:31 GMT",
           "note": ""
         },
         {
@@ -175,12 +181,6 @@
           "title": "Open TTS Leaderboard: Scalable Evaluation for Multilingual Text-to-Speech and Voice Cloning",
           "link": "https://huggingface.co/blog/open-tts-leaderboard",
           "date": "Wed, 30 Sep 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "NVIDIA Kumo Tabular Sets a New Accuracy-Efficiency Frontier for Tabular Prediction",
-          "link": "https://huggingface.co/blog/nvidia/kumo-tabular",
-          "date": "Tue, 29 Sep 2026 15:30:38 GMT",
           "note": ""
         },
         {
