@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-10-08T06:23:36.812277+00:00",
+    "generated_at": "2026-10-09T06:25:01.464591+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年9月30号 16:34AI 日报AI日报：豆包推独立AI个人助手App小豆;Gemini Skills向免费用户开放;OpenAI发布自主智能体Dots查看日报",
-        "link": "https://www.aibase.com/daily/31441"
+        "title": "2026年10月8号 16:51AI 日报AI日报：Anthropic甩出Claude Haiku 5.5；WorkBuddy上线独立文件浏览器；Muse 登录 iPad 平台查看日报",
+        "link": "https://www.aibase.com/daily/31477"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "豆包AI个人助手独立App实锤：定名“小豆”剑指全场景智能生态",
-          "link": "https://www.aibase.com/news/31440",
-          "date": "2026年9月30号 16:34",
+          "title": "谷歌把AI搜索塞进手机：EmbeddingGemma2 开源，不到600MB断网照样搜图文音视频",
+          "link": "https://www.aibase.com/news/31476",
+          "date": "2026年10月8号 16:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "微软亮出生物学\"世界模型\"Project Quine：一个周末筛出抗癌候选物",
-          "link": "https://www.aibase.com/news/31437",
-          "date": "2026年9月30号 16:34",
+          "title": "WorkBuddy上线独立文件浏览器:本地文件右键「打开方式」直接调用AI",
+          "link": "https://www.aibase.com/news/31472",
+          "date": "2026年10月8号 16:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "谷歌宣布向免费用户全面开放 Gemini Skills，Gems 功能将于 11 月完成历史性整合",
-          "link": "https://www.aibase.com/news/31435",
-          "date": "2026年9月30号 16:34",
+          "title": "谷歌调整Gemini订阅策略:10月9日起免费版仅留Flash-Lite，付费阶梯进一步拉开",
+          "link": "https://www.aibase.com/news/31471",
+          "date": "2026年10月8号 16:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "麦当劳在美规模化部署AI动态定价引擎，同城门店最高价差达21%",
-          "link": "https://www.aibase.com/news/31429",
-          "date": "2026年9月30号 16:34",
+          "title": "Manus 母公司完成新一轮超5亿美元融资，腾讯红杉继续加码",
+          "link": "https://www.aibase.com/news/31468",
+          "date": "2026年10月8号 16:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenAI 牵手亚马逊云服务 AWS：重磅布局托管智能体，推 500 美元 Pro 顶配套餐",
-          "link": "https://www.aibase.com/news/31427",
-          "date": "2026年9月30号 16:34",
+          "title": "Anthropic甩出Claude Haiku 5.5：小模型成本砍掉75%，推理强度也能自己调了",
+          "link": "https://www.aibase.com/news/31452",
+          "date": "2026年10月8号 16:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯入局Personal Agent赛道:代号\"Handy Bot\"，已在微信低调内测",
-          "link": "https://www.aibase.com/news/31426",
-          "date": "2026年9月30号 16:34",
+          "title": "OpenAI全量推送GPT-6：聊天框长出交互界面，免费用户也能玩上智能UI",
+          "link": "https://www.aibase.com/news/31451",
+          "date": "2026年10月8号 16:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "特斯拉获300亿美元新信贷额度，全面加速Cybercab无人出租车与Optimus量产",
-          "link": "https://www.aibase.com/news/31422",
-          "date": "2026年9月30号 16:34",
+          "title": "马斯克：Grok Bot不再只认自研模型，按任务择优调用Claude、Midjourney和Suno",
+          "link": "https://www.aibase.com/news/31449",
+          "date": "2026年10月8号 16:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenAI发布自主智能体“Dots”与企业应用市场，ChatGPT全面向软件分发平台转型",
-          "link": "https://www.aibase.com/news/31421",
-          "date": "2026年9月30号 16:34",
+          "title": "Meta 旗下 AI 助手 Muse 登录 iPad 平台，上线仅一月下载量超660万次",
+          "link": "https://www.aibase.com/news/31448",
+          "date": "2026年10月8号 16:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Karpathy’s Trick for Faster Local LLMs Finally Has Proper Tooling",
+          "link": "https://blog.dailydoseofds.com/p/karpathys-trick-for-faster-local",
+          "date": "Thu, 08 Oct 2026 22:39:22 GMT",
+          "note": "Full engineering guide, explained with code."
+        },
         {
           "title": "RAG vs. Jev + RAG, clearly explained!",
           "link": "https://blog.dailydoseofds.com/p/rag-vs-jev-rag-clearly-explained",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/jev-for-rag-clearly-explained",
           "date": "Wed, 30 Sep 2026 15:40:56 GMT",
           "note": "...covered with 12 more agentic Jev use cases."
-        },
-        {
-          "title": "Build a real-time hotel booking voice agent",
-          "link": "https://blog.dailydoseofds.com/p/build-a-real-time-hotel-booking-voice",
-          "date": "Tue, 29 Sep 2026 21:14:18 GMT",
-          "note": "...explained with code."
         }
       ]
     },
@@ -148,9 +148,21 @@
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
         {
+          "title": "The model that didn't exist, so you made it yourself",
+          "link": "https://huggingface.co/blog/building-with-ml-intern",
+          "date": "Thu, 08 Oct 2026 00:00:00 GMT",
+          "note": ""
+        },
+        {
           "title": "Multimodal open d1 decision models for the edge",
           "link": "https://huggingface.co/blog/LiquidAI/open-d1",
           "date": "Wed, 07 Oct 2026 16:54:33 GMT",
+          "note": ""
+        },
+        {
+          "title": "Introducing Falcon ASR",
+          "link": "https://huggingface.co/blog/tiiuae/falcon-asr",
+          "date": "Wed, 07 Oct 2026 13:21:03 GMT",
           "note": ""
         },
         {
@@ -181,18 +193,6 @@
           "title": "Open TTS Leaderboard: Scalable Evaluation for Multilingual Text-to-Speech and Voice Cloning",
           "link": "https://huggingface.co/blog/open-tts-leaderboard",
           "date": "Wed, 30 Sep 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Getting the Source Right, Not Just the Fact: Source-Aware Verification for MCP Agents",
-          "link": "https://huggingface.co/blog/MultiverseComputingCAI/getting-the-source-right-not-just-the-fact-source",
-          "date": "Tue, 29 Sep 2026 13:07:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Holo4: powering generalist computer-use agents",
-          "link": "https://huggingface.co/blog/Hcompany/holo4",
-          "date": "Mon, 28 Sep 2026 09:44:05 GMT",
           "note": ""
         }
       ]
