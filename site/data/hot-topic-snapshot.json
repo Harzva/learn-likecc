@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-10-10T06:06:58.386816+00:00",
+    "generated_at": "2026-10-11T06:04:44.127363+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年10月9号 16:37AI 日报AI日报：谷歌云发布通用Gemini智能体；豆包App上线生活缴费功能；快手发布“AI魔改”视频治理公告查看日报",
-        "link": "https://www.aibase.com/daily/31508"
+        "title": "2026年10月10号 16:00AI 日报AI日报：生数科技发布Vidu Q4预览版；阿里Qoder首发上线Fast模式；腾讯云开源 TeamAI查看日报",
+        "link": "https://www.aibase.com/daily/31542"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "快手发布“AI魔改”视频治理公告:9月处置违规内容2544条，重点整治四大名著乱改",
-          "link": "https://www.aibase.com/news/31505",
-          "date": "2026年10月9号 16:37",
+          "title": "网文实体书惊现“AI 回复内容”，出版社回应：将回收销毁并重新修订",
+          "link": "https://www.aibase.com/news/31540",
+          "date": "2026年10月10号 16:00",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "一张无限画布装下所有创作:豆包工作上新，图片、视频、HTML 自动汇入同一画布",
-          "link": "https://www.aibase.com/news/31504",
-          "date": "2026年10月9号 16:37",
+          "title": "腾讯云开源 TeamAI：适配 16 种 Agent，团队 Skill 走 Git 评审分发，成本降 76%",
+          "link": "https://www.aibase.com/news/31539",
+          "date": "2026年10月10号 16:00",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "智谱AI新一代大模型路线曝光：参数量突破万亿，双轨技术路径剑指AGI",
-          "link": "https://www.aibase.com/news/31498",
-          "date": "2026年10月9号 16:37",
+          "title": "阿里 Qoder 迎来重大升级：首发上线 Fast 模式，响应仅需 3 秒且消耗大降",
+          "link": "https://www.aibase.com/news/31538",
+          "date": "2026年10月10号 16:00",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "谷歌云重磅发布通用Gemini智能体，可自主拆解并执行复杂多步骤任务",
-          "link": "https://www.aibase.com/news/31496",
-          "date": "2026年10月9号 16:37",
+          "title": "腾讯元宝上线桌宠:PC端 v2.87.10开启，全天陪伴+拖拽文件摘要",
+          "link": "https://www.aibase.com/news/31530",
+          "date": "2026年10月10号 16:00",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "苹果官宣10月13日举行“Welcome home”发布会，全面发力智能家居AI中枢",
-          "link": "https://www.aibase.com/news/31493",
-          "date": "2026年10月9号 16:37",
+          "title": "​Claude 管理智能体上线动态工作流：单次最高可并行调度 1000 个 AI Agents",
+          "link": "https://www.aibase.com/news/31528",
+          "date": "2026年10月10号 16:00",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "豆包App上线生活缴费功能，加速布局高频生活办事场景",
-          "link": "https://www.aibase.com/news/31491",
-          "date": "2026年10月9号 16:37",
+          "title": "生数科技重磅发布 Vidu Q4 预览版 支持 4K 输出",
+          "link": "https://www.aibase.com/news/31524",
+          "date": "2026年10月10号 16:00",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenAI重磅发布GPT-6.1 Sol Ultrafast版，速度最高提升 8 倍",
-          "link": "https://www.aibase.com/news/31488",
-          "date": "2026年10月9号 16:37",
+          "title": "有道龙虾发布迁移助手:争夺腾讯QClaw关停用户，实现一键“搬家”",
+          "link": "https://www.aibase.com/news/31523",
+          "date": "2026年10月10号 16:00",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenAI修正年化收入预期至500亿美元 IPO计划推迟至2027年",
-          "link": "https://www.aibase.com/news/31480",
-          "date": "2026年10月9号 16:37",
+          "title": "谷歌 Gemini 4 即将发布，神秘新版本剑指最强代码模型",
+          "link": "https://www.aibase.com/news/31516",
+          "date": "2026年10月10号 16:00",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
