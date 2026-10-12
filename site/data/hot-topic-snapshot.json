@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-10-11T06:04:44.127363+00:00",
+    "generated_at": "2026-10-12T06:14:53.201513+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -85,6 +85,12 @@
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
         {
+          "title": "How to Train an LLM With Verifiable Rewards on SageMaker AI",
+          "link": "https://blog.dailydoseofds.com/p/how-to-train-an-llm-with-verifiable",
+          "date": "Sun, 11 Oct 2026 23:02:54 GMT",
+          "note": "full step-by-step guide with code."
+        },
+        {
           "title": "Train your own Jev-style decision model locally!",
           "link": "https://blog.dailydoseofds.com/p/train-your-own-jev-style-decision",
           "date": "Fri, 09 Oct 2026 22:54:33 GMT",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/mcp-apps-clearly-explained",
           "date": "Fri, 02 Oct 2026 23:47:11 GMT",
           "note": "...covered with a full hands-on video demo."
-        },
-        {
-          "title": "Building a Production Agent Harness with LangGraph and Jev",
-          "link": "https://blog.dailydoseofds.com/p/building-a-production-agent-harness",
-          "date": "Thu, 01 Oct 2026 22:24:38 GMT",
-          "note": "...explained with code."
         }
       ]
     },
