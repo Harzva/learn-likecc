@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-10-12T06:14:53.201513+00:00",
+    "generated_at": "2026-10-13T06:56:02.597874+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年10月10号 16:00AI 日报AI日报：生数科技发布Vidu Q4预览版；阿里Qoder首发上线Fast模式；腾讯云开源 TeamAI查看日报",
-        "link": "https://www.aibase.com/daily/31542"
+        "title": "2026年10月12号 16:57AI 日报AI日报：OpenAI给GPT-6.1 Sol扩容记忆；蚂蚁“灵光”开启新版内测；唯品会上线自研 AI 助手AI小唯查看日报",
+        "link": "https://www.aibase.com/daily/31569"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "网文实体书惊现“AI 回复内容”，出版社回应：将回收销毁并重新修订",
-          "link": "https://www.aibase.com/news/31540",
-          "date": "2026年10月10号 16:00",
+          "title": "唯品会上线自研 AI 助手“AI小唯” AI 导购进入能力深耕阶段",
+          "link": "https://www.aibase.com/news/31566",
+          "date": "2026年10月12号 16:57",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯云开源 TeamAI：适配 16 种 Agent，团队 Skill 走 Git 评审分发，成本降 76%",
-          "link": "https://www.aibase.com/news/31539",
-          "date": "2026年10月10号 16:00",
+          "title": "阶跃 Step 5 Preview 登陆腾讯 WorkBuddy，限时免费两周",
+          "link": "https://www.aibase.com/news/31565",
+          "date": "2026年10月12号 16:57",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阿里 Qoder 迎来重大升级：首发上线 Fast 模式，响应仅需 3 秒且消耗大降",
-          "link": "https://www.aibase.com/news/31538",
-          "date": "2026年10月10号 16:00",
+          "title": "宇树科技王兴兴发声：过去犯的最大错误是不够相信 AI，具身智能临界点最快一两年内爆发",
+          "link": "https://www.aibase.com/news/31564",
+          "date": "2026年10月12号 16:57",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯元宝上线桌宠:PC端 v2.87.10开启，全天陪伴+拖拽文件摘要",
-          "link": "https://www.aibase.com/news/31530",
-          "date": "2026年10月10号 16:00",
+          "title": "腾讯上线「企鹅微单」:AI创作者接单平台，支持需求发布、智能匹配与微信内结算",
+          "link": "https://www.aibase.com/news/31559",
+          "date": "2026年10月12号 16:57",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "​Claude 管理智能体上线动态工作流：单次最高可并行调度 1000 个 AI Agents",
-          "link": "https://www.aibase.com/news/31528",
-          "date": "2026年10月10号 16:00",
+          "title": "Claude半年封杀 1140 万账号申诉翻盘仅4. 2 万，Anthropic还要立规矩禁止虐待AI",
+          "link": "https://www.aibase.com/news/31556",
+          "date": "2026年10月12号 16:57",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "生数科技重磅发布 Vidu Q4 预览版 支持 4K 输出",
-          "link": "https://www.aibase.com/news/31524",
-          "date": "2026年10月10号 16:00",
+          "title": "蚂蚁“灵光”开启新版内测，对标Meta Muse升级个人智能体",
+          "link": "https://www.aibase.com/news/31550",
+          "date": "2026年10月12号 16:57",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "有道龙虾发布迁移助手:争夺腾讯QClaw关停用户，实现一键“搬家”",
-          "link": "https://www.aibase.com/news/31523",
-          "date": "2026年10月10号 16:00",
+          "title": "AI 购物新玩法引发争议！马斯克称拍信用卡即可下单，遭 OpenAI 高管公开嘲讽",
+          "link": "https://www.aibase.com/news/31549",
+          "date": "2026年10月12号 16:57",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "谷歌 Gemini 4 即将发布，神秘新版本剑指最强代码模型",
-          "link": "https://www.aibase.com/news/31516",
-          "date": "2026年10月10号 16:00",
+          "title": "OpenAI给GPT-6.1 Sol扩容记忆：默认上下文顶到 50 万，长文本不再单独计费",
+          "link": "https://www.aibase.com/news/31548",
+          "date": "2026年10月12号 16:57",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "6 Parallelism Strategies for LLM Inference in Production",
+          "link": "https://blog.dailydoseofds.com/p/6-parallelism-strategies-for-llm",
+          "date": "Mon, 12 Oct 2026 23:49:30 GMT",
+          "note": "(popular LLM interview question)"
+        },
         {
           "title": "How to Train an LLM With Verifiable Rewards on SageMaker AI",
           "link": "https://blog.dailydoseofds.com/p/how-to-train-an-llm-with-verifiable",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/how-work-is-organized-inside-a-gpu",
           "date": "Sat, 03 Oct 2026 21:53:38 GMT",
           "note": "...explained visually."
-        },
-        {
-          "title": "MCP Apps, clearly explained:",
-          "link": "https://blog.dailydoseofds.com/p/mcp-apps-clearly-explained",
-          "date": "Fri, 02 Oct 2026 23:47:11 GMT",
-          "note": "...covered with a full hands-on video demo."
         }
       ]
     },
