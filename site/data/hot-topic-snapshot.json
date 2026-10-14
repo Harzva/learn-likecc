@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-10-13T06:56:02.597874+00:00",
+    "generated_at": "2026-10-14T05:08:00.547721+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年10月12号 16:57AI 日报AI日报：OpenAI给GPT-6.1 Sol扩容记忆；蚂蚁“灵光”开启新版内测；唯品会上线自研 AI 助手AI小唯查看日报",
-        "link": "https://www.aibase.com/daily/31569"
+        "title": "2026年10月13号 15:58AI 日报AI日报：可灵AI带着Kling4.0杀向好莱坞；千问Go已开放体验申请；1688全面接入AI电商工作台Accio查看日报",
+        "link": "https://www.aibase.com/daily/31608"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "唯品会上线自研 AI 助手“AI小唯” AI 导购进入能力深耕阶段",
-          "link": "https://www.aibase.com/news/31566",
-          "date": "2026年10月12号 16:57",
+          "title": "字节跳动单设大模型安全部门：给狂奔的智能体套上对齐的缰绳",
+          "link": "https://www.aibase.com/news/31604",
+          "date": "2026年10月13号 15:58",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阶跃 Step 5 Preview 登陆腾讯 WorkBuddy，限时免费两周",
-          "link": "https://www.aibase.com/news/31565",
-          "date": "2026年10月12号 16:57",
+          "title": "从思考到构建一气呵成:xAI重磅推出全流程AI打包订阅计划",
+          "link": "https://www.aibase.com/news/31602",
+          "date": "2026年10月13号 15:58",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "宇树科技王兴兴发声：过去犯的最大错误是不够相信 AI，具身智能临界点最快一两年内爆发",
-          "link": "https://www.aibase.com/news/31564",
-          "date": "2026年10月12号 16:57",
+          "title": "微软给新版 Outlook\"瘦身\"：10 月全球停用 Copilot 主题，重新押注聊天入口",
+          "link": "https://www.aibase.com/news/31601",
+          "date": "2026年10月13号 15:58",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯上线「企鹅微单」:AI创作者接单平台，支持需求发布、智能匹配与微信内结算",
-          "link": "https://www.aibase.com/news/31559",
-          "date": "2026年10月12号 16:57",
+          "title": "1688全面接入AI电商工作台Accio 赋能超1亿买家与百万源头厂商",
+          "link": "https://www.aibase.com/news/31599",
+          "date": "2026年10月13号 15:58",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Claude半年封杀 1140 万账号申诉翻盘仅4. 2 万，Anthropic还要立规矩禁止虐待AI",
-          "link": "https://www.aibase.com/news/31556",
-          "date": "2026年10月12号 16:57",
+          "title": "可灵AI带着Kling 4. 0 杀向好莱坞：AI视频要从玩具变成企业的生产流水线",
+          "link": "https://www.aibase.com/news/31598",
+          "date": "2026年10月13号 15:58",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "蚂蚁“灵光”开启新版内测，对标Meta Muse升级个人智能体",
-          "link": "https://www.aibase.com/news/31550",
-          "date": "2026年10月12号 16:57",
+          "title": "千问回应:「千问Go!」不是独立APP，已开放体验申请",
+          "link": "https://www.aibase.com/news/31594",
+          "date": "2026年10月13号 15:58",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "AI 购物新玩法引发争议！马斯克称拍信用卡即可下单，遭 OpenAI 高管公开嘲讽",
-          "link": "https://www.aibase.com/news/31549",
-          "date": "2026年10月12号 16:57",
+          "title": "MiniMax入驻天猫开首家旗舰店，开卖Token套餐：大模型厂商集体把柜台搬进电商",
+          "link": "https://www.aibase.com/news/31590",
+          "date": "2026年10月13号 15:58",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenAI给GPT-6.1 Sol扩容记忆：默认上下文顶到 50 万，长文本不再单独计费",
-          "link": "https://www.aibase.com/news/31548",
-          "date": "2026年10月12号 16:57",
+          "title": "Sora将回归？OpenAI拟把模型交给卡岑伯格初创公司，改走专业影视工具路线",
+          "link": "https://www.aibase.com/news/31585",
+          "date": "2026年10月13号 15:58",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "A Model Decision Is Only as Safe as the System That Executes It",
+          "link": "https://blog.dailydoseofds.com/p/a-model-decision-is-only-as-safe",
+          "date": "Tue, 13 Oct 2026 22:31:09 GMT",
+          "note": "Everything you need to understand about how a model decision gets authorized with the wrong confidence, and why it only becomes visible when you read the change in the order it executes."
+        },
         {
           "title": "6 Parallelism Strategies for LLM Inference in Production",
           "link": "https://blog.dailydoseofds.com/p/6-parallelism-strategies-for-llm",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/fine-tune-meta-ais-muse-glimmer-100",
           "date": "Mon, 05 Oct 2026 22:20:04 GMT",
           "note": "...explained step-by-step with code."
-        },
-        {
-          "title": "How Work is Organized Inside a GPU",
-          "link": "https://blog.dailydoseofds.com/p/how-work-is-organized-inside-a-gpu",
-          "date": "Sat, 03 Oct 2026 21:53:38 GMT",
-          "note": "...explained visually."
         }
       ]
     },
@@ -148,6 +148,12 @@
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
         {
+          "title": "Run fast, private agents on-device with LFM2.5-24B-A2B",
+          "link": "https://huggingface.co/blog/LiquidAI/lfm25-24b-a2b",
+          "date": "Tue, 13 Oct 2026 17:05:48 GMT",
+          "note": ""
+        },
+        {
           "title": "Impactful scheduling for GPU clusters",
           "link": "https://huggingface.co/blog/allenai/impactful-scheduling",
           "date": "Fri, 09 Oct 2026 15:20:29 GMT",
@@ -157,12 +163,6 @@
           "title": "The model that didn't exist, so you made it yourself",
           "link": "https://huggingface.co/blog/building-with-ml-intern",
           "date": "Thu, 08 Oct 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Multimodal open d1 decision models for the edge",
-          "link": "https://huggingface.co/blog/LiquidAI/open-d1",
-          "date": "Wed, 07 Oct 2026 16:54:33 GMT",
           "note": ""
         },
         {
