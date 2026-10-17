@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-10-16T04:46:11.028357+00:00",
+    "generated_at": "2026-10-17T04:45:04.157444+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -79,6 +79,12 @@
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
         {
+          "title": "Run Jev Inside an Open Agent Harness",
+          "link": "https://blog.dailydoseofds.com/p/run-jev-inside-an-open-agent-harness",
+          "date": "Fri, 16 Oct 2026 22:23:13 GMT",
+          "note": "...with 150x cheaper decision-making than LLM"
+        },
+        {
           "title": "A Full Walkthrough on Multimodal Jev",
           "link": "https://blog.dailydoseofds.com/p/a-full-walkthrough-on-multimodal",
           "date": "Thu, 15 Oct 2026 23:06:34 GMT",
@@ -119,12 +125,6 @@
           "link": "https://blog.dailydoseofds.com/p/karpathys-trick-for-faster-local",
           "date": "Thu, 08 Oct 2026 22:39:22 GMT",
           "note": "Full engineering guide, explained with code."
-        },
-        {
-          "title": "RAG vs. Jev + RAG, clearly explained!",
-          "link": "https://blog.dailydoseofds.com/p/rag-vs-jev-rag-clearly-explained",
-          "date": "Thu, 08 Oct 2026 00:19:29 GMT",
-          "note": "...with visuals."
         }
       ]
     },
@@ -145,6 +145,12 @@
           "title": "Scaling Indic Pretraining: 2.8 Trillion Tokens and an Open Data Generation Pipeline",
           "link": "https://huggingface.co/blog/nvidia/scaling-indic-pretraining",
           "date": "Fri, 16 Oct 2026 01:44:47 GMT",
+          "note": ""
+        },
+        {
+          "title": "Welcome Beam: a 501B open model you can own, customize, and scale",
+          "link": "https://huggingface.co/blog/reflection-beam",
+          "date": "Fri, 16 Oct 2026 00:00:00 GMT",
           "note": ""
         },
         {
@@ -181,12 +187,6 @@
           "title": "The model that didn't exist, so you made it yourself",
           "link": "https://huggingface.co/blog/building-with-ml-intern",
           "date": "Thu, 08 Oct 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Introducing Falcon ASR",
-          "link": "https://huggingface.co/blog/tiiuae/falcon-asr",
-          "date": "Wed, 07 Oct 2026 13:21:03 GMT",
           "note": ""
         }
       ]
