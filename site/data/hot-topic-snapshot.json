@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-10-19T05:00:07.318537+00:00",
+    "generated_at": "2026-10-20T05:03:56.928910+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年10月15号 15:52AI 日报AI日报：xAI发布Grok Voice 3.0；蚂蚁百灵开源 Ling-3.1-flash；Step 5 Preview 模型权重正式开源查看日报",
-        "link": "https://www.aibase.com/daily/31668"
+        "title": "2026年10月19号 16:13AI 日报AI日报：火山引擎砸钱养AI剧；DeepSeek发布API网页搜索与抓取服务；腾讯Marvis上架麒麟软件商店查看日报",
+        "link": "https://www.aibase.com/daily/31727"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,45 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "Anthropic 正式确认 Claude 订阅额度全面打通第三方应用",
-          "link": "https://www.aibase.com/news/31665",
-          "date": "2026年10月15号 15:52",
+          "title": "字节火山引擎砸钱\"养\"AI 剧：月度 TOP10 单部最高奖 20 万",
+          "link": "https://www.aibase.com/news/31724",
+          "date": "2026年10月19号 16:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阶跃星辰放大招！Step 5 Preview 模型权重正式开源，百万上下文与 MoE 架构引爆全球开发者社区",
-          "link": "https://www.aibase.com/news/31664",
-          "date": "2026年10月15号 15:52",
+          "title": "腾讯Marvis上架麒麟软件商店，深度适配国产操作系统",
+          "link": "https://www.aibase.com/news/31717",
+          "date": "2026年10月19号 16:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "蚂蚁百灵开源 Ling-3.1-flash:560B级模型部署降至4卡，最高支持1M上下文",
-          "link": "https://www.aibase.com/news/31660",
-          "date": "2026年10月15号 15:52",
+          "title": "演员吴越遭 AI 换脸带货，微信视频号：涉事账号永久封禁、内容清空",
+          "link": "https://www.aibase.com/news/31713",
+          "date": "2026年10月19号 16:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯又一AI产品宣布停运，元器用户需尽快迁移数据",
-          "link": "https://www.aibase.com/news/31659",
-          "date": "2026年10月15号 15:52",
+          "title": "成本砍掉90%！DeepSeek-V4.1-Flash 重磅升级：逆袭成为 WebDev 榜首开源模型",
+          "link": "https://www.aibase.com/news/31712",
+          "date": "2026年10月19号 16:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "MiniMax 发布 IPO 辅导第二期进展，加速推进上市合规完善",
-          "link": "https://www.aibase.com/news/31655",
-          "date": "2026年10月15号 15:52",
+          "title": "DeepSeek发布API网页搜索与抓取服务:每1000次成功请求收费5元",
+          "link": "https://www.aibase.com/news/31711",
+          "date": "2026年10月19号 16:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "YouTube Music将为AI生成歌曲添加标签，未来扩展至主应用",
-          "link": "https://www.aibase.com/news/31652",
-          "date": "2026年10月15号 15:52",
+          "title": "AI 浪潮下的社区无奈谢幕:知名反编译追踪网站decomp.dev宣布关闭",
+          "link": "https://www.aibase.com/news/31709",
+          "date": "2026年10月19号 16:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "马斯克旗下 xAI 发布 Grok Voice 3.0，定价仅 0.08 美元",
-          "link": "https://www.aibase.com/news/31645",
-          "date": "2026年10月15号 15:52",
+          "title": "Vercel数据表明决策模型Jev成史上采用最快AI模型",
+          "link": "https://www.aibase.com/news/31708",
+          "date": "2026年10月19号 16:13",
+          "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
+        },
+        {
+          "title": "迪士尼将以2000万美元收购Character.AI部分资产并接纳核心团队",
+          "link": "https://www.aibase.com/news/31704",
+          "date": "2026年10月19号 16:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -78,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Agents 2.0 is here!",
+          "link": "https://blog.dailydoseofds.com/p/agents-20-is-here",
+          "date": "Mon, 19 Oct 2026 22:53:04 GMT",
+          "note": "Fully open-source solution, explained step-by-step."
+        },
         {
           "title": "Run Jev Inside an Open Agent Harness",
           "link": "https://blog.dailydoseofds.com/p/run-jev-inside-an-open-agent-harness",
@@ -119,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/train-your-own-jev-style-decision",
           "date": "Fri, 09 Oct 2026 22:54:33 GMT",
           "note": "A full video walkthrough explained with code!"
-        },
-        {
-          "title": "Karpathy’s Trick for Faster Local LLMs Finally Has Proper Tooling",
-          "link": "https://blog.dailydoseofds.com/p/karpathys-trick-for-faster-local",
-          "date": "Thu, 08 Oct 2026 22:39:22 GMT",
-          "note": "Full engineering guide, explained with code."
         }
       ]
     },
@@ -141,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "TorchNeuron: running HF models on AWS Trainium is easier than ever",
+          "link": "https://huggingface.co/blog/hf-torchneuron",
+          "date": "Mon, 19 Oct 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "Scaling Indic Pretraining: 2.8 Trillion Tokens and an Open Data Generation Pipeline",
           "link": "https://huggingface.co/blog/nvidia/scaling-indic-pretraining",
@@ -160,6 +172,12 @@
           "note": ""
         },
         {
+          "title": "Apertus 1.5 Release Notes",
+          "link": "https://huggingface.co/blog/swiss-ai/apertus-v15-release-notes",
+          "date": "Thu, 15 Oct 2026 09:08:45 GMT",
+          "note": ""
+        },
+        {
           "title": "Welcome Muse Spark Open: open-weight frontier multimodal mixture-of-experts model from Meta",
           "link": "https://huggingface.co/blog/meta-muse-spark-open",
           "date": "Thu, 15 Oct 2026 00:00:00 GMT",
@@ -175,18 +193,6 @@
           "title": "HiRO-ACEv2: Simulating extreme weather at 3 km resolution for a fraction of the cost",
           "link": "https://huggingface.co/blog/allenai/hiro-acev2",
           "date": "Wed, 14 Oct 2026 16:12:42 GMT",
-          "note": ""
-        },
-        {
-          "title": "Run fast, private agents on-device with LFM2.5-24B-A2B",
-          "link": "https://huggingface.co/blog/LiquidAI/lfm25-24b-a2b",
-          "date": "Tue, 13 Oct 2026 17:05:48 GMT",
-          "note": ""
-        },
-        {
-          "title": "The model that didn't exist, so you made it yourself",
-          "link": "https://huggingface.co/blog/building-with-ml-intern",
-          "date": "Thu, 08 Oct 2026 00:00:00 GMT",
           "note": ""
         }
       ]
