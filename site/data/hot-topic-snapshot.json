@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-10-20T05:03:56.928910+00:00",
+    "generated_at": "2026-10-21T05:04:45.243241+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -22,6 +22,12 @@
       ],
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
+        {
+          "title": "阿里速卖通联袂天猫推全球增长计划，拿真金白银投 AI 硬件新品牌",
+          "link": "https://www.aibase.com/news/31729",
+          "date": "2026年10月19号 16:13",
+          "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
+        },
         {
           "title": "字节火山引擎砸钱\"养\"AI 剧：月度 TOP10 单部最高奖 20 万",
           "link": "https://www.aibase.com/news/31724",
@@ -63,12 +69,6 @@
           "link": "https://www.aibase.com/news/31708",
           "date": "2026年10月19号 16:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
-        },
-        {
-          "title": "迪士尼将以2000万美元收购Character.AI部分资产并接纳核心团队",
-          "link": "https://www.aibase.com/news/31704",
-          "date": "2026年10月19号 16:13",
-          "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
     },
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "The Next Step After Karpathy’s Agentic Engineering",
+          "link": "https://blog.dailydoseofds.com/p/the-next-step-after-karpathys-agentic",
+          "date": "Tue, 20 Oct 2026 21:59:51 GMT",
+          "note": "Build agents that can pause for hours, resume in a new process, and execute side effects once."
+        },
         {
           "title": "Agents 2.0 is here!",
           "link": "https://blog.dailydoseofds.com/p/agents-20-is-here",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/how-to-train-an-llm-with-verifiable",
           "date": "Sun, 11 Oct 2026 23:02:54 GMT",
           "note": "full step-by-step guide with code."
-        },
-        {
-          "title": "Train your own Jev-style decision model locally!",
-          "link": "https://blog.dailydoseofds.com/p/train-your-own-jev-style-decision",
-          "date": "Fri, 09 Oct 2026 22:54:33 GMT",
-          "note": "A full video walkthrough explained with code!"
         }
       ]
     },
@@ -148,51 +148,51 @@
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
         {
+          "title": "NVIDIA Cosmos3-H-Dreams: Bringing Clinical Surgery to Life Through Generative Simulation",
+          "link": "https://huggingface.co/blog/nvidia/cosmos3-h-dreams",
+          "date": "Tue, 20 Oct 2026 18:17:47 GMT",
+          "note": ""
+        },
+        {
+          "title": "FairStress: A deeper evaluation of fairness in LLM decision-making",
+          "link": "https://huggingface.co/blog/allenai/fairstress",
+          "date": "Tue, 20 Oct 2026 16:09:19 GMT",
+          "note": ""
+        },
+        {
+          "title": "ALTK-Evolve: How learned memory tops the τ²-bench leaderboard on customer service tasks without a frontier model",
+          "link": "https://huggingface.co/blog/ibm-research/altk-evolve-bc",
+          "date": "Tue, 20 Oct 2026 15:19:48 GMT",
+          "note": ""
+        },
+        {
+          "title": "Hugging Face ❤️ TorchTPU: TPUs, Natively",
+          "link": "https://huggingface.co/blog/hf-torchtpu",
+          "date": "Tue, 20 Oct 2026 00:00:00 GMT",
+          "note": ""
+        },
+        {
+          "title": "AnyLanguageModel 1.0: One Year of Local Models on Apple Platforms",
+          "link": "https://huggingface.co/blog/anylanguagemodel-1-0",
+          "date": "Tue, 20 Oct 2026 00:00:00 GMT",
+          "note": ""
+        },
+        {
+          "title": "MPS in PyTorch 2.15",
+          "link": "https://huggingface.co/blog/mps-pytorch-2-15",
+          "date": "Tue, 20 Oct 2026 00:00:00 GMT",
+          "note": ""
+        },
+        {
           "title": "TorchNeuron: running HF models on AWS Trainium is easier than ever",
           "link": "https://huggingface.co/blog/hf-torchneuron",
           "date": "Mon, 19 Oct 2026 00:00:00 GMT",
           "note": ""
         },
         {
-          "title": "Scaling Indic Pretraining: 2.8 Trillion Tokens and an Open Data Generation Pipeline",
-          "link": "https://huggingface.co/blog/nvidia/scaling-indic-pretraining",
-          "date": "Fri, 16 Oct 2026 01:44:47 GMT",
-          "note": ""
-        },
-        {
           "title": "Welcome Beam: a 501B open model you can own, customize, and scale",
           "link": "https://huggingface.co/blog/reflection-beam",
           "date": "Fri, 16 Oct 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Granite Switch 4.1: Chat, Decisions, and Speech from One Endpoint",
-          "link": "https://huggingface.co/blog/ibm-granite/granite-switch-4-1",
-          "date": "Thu, 15 Oct 2026 20:34:01 GMT",
-          "note": ""
-        },
-        {
-          "title": "Apertus 1.5 Release Notes",
-          "link": "https://huggingface.co/blog/swiss-ai/apertus-v15-release-notes",
-          "date": "Thu, 15 Oct 2026 09:08:45 GMT",
-          "note": ""
-        },
-        {
-          "title": "Welcome Muse Spark Open: open-weight frontier multimodal mixture-of-experts model from Meta",
-          "link": "https://huggingface.co/blog/meta-muse-spark-open",
-          "date": "Thu, 15 Oct 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Welcome FLUX.3 Image Klein in Diffusers",
-          "link": "https://huggingface.co/blog/flux-3",
-          "date": "Thu, 15 Oct 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "HiRO-ACEv2: Simulating extreme weather at 3 km resolution for a fraction of the cost",
-          "link": "https://huggingface.co/blog/allenai/hiro-acev2",
-          "date": "Wed, 14 Oct 2026 16:12:42 GMT",
           "note": ""
         }
       ]
