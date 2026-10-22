@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-10-21T05:04:45.243241+00:00",
+    "generated_at": "2026-10-22T05:07:14.147604+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年10月19号 16:13AI 日报AI日报：火山引擎砸钱养AI剧；DeepSeek发布API网页搜索与抓取服务；腾讯Marvis上架麒麟软件商店查看日报",
-        "link": "https://www.aibase.com/daily/31727"
+        "title": "2026年10月21号 16:51AI 日报AI日报：ChatGPT上线锁定聊天功能；Ming-3.0-tts登顶国际评测双榜首；Mistral 发布 Voxtral 3 语音 Agent SDK查看日报",
+        "link": "https://www.aibase.com/daily/31782"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "阿里速卖通联袂天猫推全球增长计划，拿真金白银投 AI 硬件新品牌",
-          "link": "https://www.aibase.com/news/31729",
-          "date": "2026年10月19号 16:13",
+          "title": "Mistral 发布 Voxtral 3 语音 Agent SDK，支持 50 多种语言与工具调用",
+          "link": "https://www.aibase.com/news/31779",
+          "date": "2026年10月21号 16:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "字节火山引擎砸钱\"养\"AI 剧：月度 TOP10 单部最高奖 20 万",
-          "link": "https://www.aibase.com/news/31724",
-          "date": "2026年10月19号 16:13",
+          "title": "办公Agent赛道迎新格局 WorkBuddy、百度搭子、千问办公位居前三",
+          "link": "https://www.aibase.com/news/31777",
+          "date": "2026年10月21号 16:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯Marvis上架麒麟软件商店，深度适配国产操作系统",
-          "link": "https://www.aibase.com/news/31717",
-          "date": "2026年10月19号 16:13",
+          "title": "语音 AI 迎来最强国产黑马！蚂蚁集团 Ming-3.0-tts 强势登顶国际权威评测双榜首",
+          "link": "https://www.aibase.com/news/31774",
+          "date": "2026年10月21号 16:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "演员吴越遭 AI 换脸带货，微信视频号：涉事账号永久封禁、内容清空",
-          "link": "https://www.aibase.com/news/31713",
-          "date": "2026年10月19号 16:13",
+          "title": "王腾创业首款产品ISHO Ring智能戒指官宣:搭载Apollo330B芯片，10月29日发布",
+          "link": "https://www.aibase.com/news/31773",
+          "date": "2026年10月21号 16:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "成本砍掉90%！DeepSeek-V4.1-Flash 重磅升级：逆袭成为 WebDev 榜首开源模型",
-          "link": "https://www.aibase.com/news/31712",
-          "date": "2026年10月19号 16:13",
+          "title": "Spotify年内已从推荐系统移除超5000万首AI垃圾歌曲",
+          "link": "https://www.aibase.com/news/31770",
+          "date": "2026年10月21号 16:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "DeepSeek发布API网页搜索与抓取服务:每1000次成功请求收费5元",
-          "link": "https://www.aibase.com/news/31711",
-          "date": "2026年10月19号 16:13",
+          "title": "Meta旗下AI应用Muse上市40天美国下载量突破1000万",
+          "link": "https://www.aibase.com/news/31769",
+          "date": "2026年10月21号 16:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "AI 浪潮下的社区无奈谢幕:知名反编译追踪网站decomp.dev宣布关闭",
-          "link": "https://www.aibase.com/news/31709",
-          "date": "2026年10月19号 16:13",
+          "title": "谷歌为车载版 Gemini 接入个人智能：跨 Gmail、日历与地图打通全场景数据",
+          "link": "https://www.aibase.com/news/31767",
+          "date": "2026年10月21号 16:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Vercel数据表明决策模型Jev成史上采用最快AI模型",
-          "link": "https://www.aibase.com/news/31708",
-          "date": "2026年10月19号 16:13",
+          "title": "​OpenAI 重磅上线 ChatGPT“锁定聊天”功能：四位数 PIN 码与生物识别双保险",
+          "link": "https://www.aibase.com/news/31764",
+          "date": "2026年10月21号 16:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Give Claude Code, Codex, and Cursor a Self-improving Shared Memory",
+          "link": "https://blog.dailydoseofds.com/p/give-claude-code-codex-and-cursor",
+          "date": "Wed, 21 Oct 2026 22:37:50 GMT",
+          "note": "...explained step-by-step in a video walkthrough."
+        },
         {
           "title": "The Next Step After Karpathy’s Agentic Engineering",
           "link": "https://blog.dailydoseofds.com/p/the-next-step-after-karpathys-agentic",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/6-parallelism-strategies-for-llm",
           "date": "Mon, 12 Oct 2026 23:49:30 GMT",
           "note": "(popular LLM interview question)"
-        },
-        {
-          "title": "How to Train an LLM With Verifiable Rewards on SageMaker AI",
-          "link": "https://blog.dailydoseofds.com/p/how-to-train-an-llm-with-verifiable",
-          "date": "Sun, 11 Oct 2026 23:02:54 GMT",
-          "note": "full step-by-step guide with code."
         }
       ]
     },
@@ -148,9 +148,27 @@
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
         {
-          "title": "NVIDIA Cosmos3-H-Dreams: Bringing Clinical Surgery to Life Through Generative Simulation",
-          "link": "https://huggingface.co/blog/nvidia/cosmos3-h-dreams",
-          "date": "Tue, 20 Oct 2026 18:17:47 GMT",
+          "title": "NVIDIA Kumo Relational Outperforms Supervised Machine Learning on Relational Data, No Training Required",
+          "link": "https://huggingface.co/blog/nvidia/kumo-relational",
+          "date": "Wed, 21 Oct 2026 18:26:30 GMT",
+          "note": ""
+        },
+        {
+          "title": "How Specializing the Vocabulary of SLMs Can Cut Inference Cost by 77% in Real Applications",
+          "link": "https://huggingface.co/blog/Dharma-AI/vocabx-vocabulary-specialization",
+          "date": "Wed, 21 Oct 2026 17:35:36 GMT",
+          "note": ""
+        },
+        {
+          "title": "Profiling TorchNeuron (Part 1): System-level profiling on AWS Trainium.",
+          "link": "https://huggingface.co/blog/amazon/profiling-torchneuron-part-1",
+          "date": "Wed, 21 Oct 2026 16:04:43 GMT",
+          "note": ""
+        },
+        {
+          "title": "Granite Speech 5.0: Transcribe, Translate, and Attribute more Accurately and Faster",
+          "link": "https://huggingface.co/blog/ibm-granite/granite-speech-5",
+          "date": "Wed, 21 Oct 2026 14:58:18 GMT",
           "note": ""
         },
         {
@@ -175,24 +193,6 @@
           "title": "AnyLanguageModel 1.0: One Year of Local Models on Apple Platforms",
           "link": "https://huggingface.co/blog/anylanguagemodel-1-0",
           "date": "Tue, 20 Oct 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "MPS in PyTorch 2.15",
-          "link": "https://huggingface.co/blog/mps-pytorch-2-15",
-          "date": "Tue, 20 Oct 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "TorchNeuron: running HF models on AWS Trainium is easier than ever",
-          "link": "https://huggingface.co/blog/hf-torchneuron",
-          "date": "Mon, 19 Oct 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Welcome Beam: a 501B open model you can own, customize, and scale",
-          "link": "https://huggingface.co/blog/reflection-beam",
-          "date": "Fri, 16 Oct 2026 00:00:00 GMT",
           "note": ""
         }
       ]
