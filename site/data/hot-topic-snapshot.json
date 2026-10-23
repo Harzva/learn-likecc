@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-10-22T05:07:14.147604+00:00",
+    "generated_at": "2026-10-23T05:07:01.164276+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -85,6 +85,12 @@
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
         {
+          "title": "Build a Jev-powered Agentic RAG",
+          "link": "https://blog.dailydoseofds.com/p/build-a-jev-powered-agentic-rag",
+          "date": "Thu, 22 Oct 2026 23:00:56 GMT",
+          "note": "...explained step-by-step with code."
+        },
+        {
           "title": "Give Claude Code, Codex, and Cursor a Self-improving Shared Memory",
           "link": "https://blog.dailydoseofds.com/p/give-claude-code-codex-and-cursor",
           "date": "Wed, 21 Oct 2026 22:37:50 GMT",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/a-model-decision-is-only-as-safe",
           "date": "Tue, 13 Oct 2026 22:31:09 GMT",
           "note": "Everything you need to understand about how a model decision gets authorized with the wrong confidence, and why it only becomes visible when you read the change in the order it executes."
-        },
-        {
-          "title": "6 Parallelism Strategies for LLM Inference in Production",
-          "link": "https://blog.dailydoseofds.com/p/6-parallelism-strategies-for-llm",
-          "date": "Mon, 12 Oct 2026 23:49:30 GMT",
-          "note": "(popular LLM interview question)"
         }
       ]
     },
@@ -147,6 +147,24 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Turning Database Grading into RL Rewards: Post-Training Agents with ThinkingBox",
+          "link": "https://huggingface.co/blog/microsoft/thinkingbox-training",
+          "date": "Thu, 22 Oct 2026 22:24:34 GMT",
+          "note": ""
+        },
+        {
+          "title": "OlmoEarth v1.3: State-of-the-art embeddings for the whole planet",
+          "link": "https://huggingface.co/blog/allenai/olmoearth-v1-3",
+          "date": "Thu, 22 Oct 2026 16:11:31 GMT",
+          "note": ""
+        },
+        {
+          "title": "Ensemble forecasting with IBM Granite time-series models",
+          "link": "https://huggingface.co/blog/ibm-research/granite-timeseries-ensemble-r1",
+          "date": "Thu, 22 Oct 2026 07:51:31 GMT",
+          "note": ""
+        },
         {
           "title": "NVIDIA Kumo Relational Outperforms Supervised Machine Learning on Relational Data, No Training Required",
           "link": "https://huggingface.co/blog/nvidia/kumo-relational",
@@ -172,26 +190,8 @@
           "note": ""
         },
         {
-          "title": "FairStress: A deeper evaluation of fairness in LLM decision-making",
-          "link": "https://huggingface.co/blog/allenai/fairstress",
-          "date": "Tue, 20 Oct 2026 16:09:19 GMT",
-          "note": ""
-        },
-        {
-          "title": "ALTK-Evolve: How learned memory tops the τ²-bench leaderboard on customer service tasks without a frontier model",
-          "link": "https://huggingface.co/blog/ibm-research/altk-evolve-bc",
-          "date": "Tue, 20 Oct 2026 15:19:48 GMT",
-          "note": ""
-        },
-        {
           "title": "Hugging Face ❤️ TorchTPU: TPUs, Natively",
           "link": "https://huggingface.co/blog/hf-torchtpu",
-          "date": "Tue, 20 Oct 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "AnyLanguageModel 1.0: One Year of Local Models on Apple Platforms",
-          "link": "https://huggingface.co/blog/anylanguagemodel-1-0",
           "date": "Tue, 20 Oct 2026 00:00:00 GMT",
           "note": ""
         }
