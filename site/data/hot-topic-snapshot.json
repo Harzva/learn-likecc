@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-10-24T04:50:55.002117+00:00",
+    "generated_at": "2026-10-25T05:00:55.069443+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -85,6 +85,12 @@
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
         {
+          "title": "How CUDA Graph Replay Cuts Inference Overhead",
+          "link": "https://blog.dailydoseofds.com/p/how-cuda-graph-replay-cuts-inference",
+          "date": "Sat, 24 Oct 2026 23:08:41 GMT",
+          "note": "...explained visually."
+        },
+        {
           "title": "6 KV Cache Quantization Approaches",
           "link": "https://blog.dailydoseofds.com/p/6-kv-cache-quantization-approaches",
           "date": "Fri, 23 Oct 2026 23:01:51 GMT",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/a-full-walkthrough-on-multimodal",
           "date": "Thu, 15 Oct 2026 23:06:34 GMT",
           "note": "...explained step-by-step in a video."
-        },
-        {
-          "title": "Building a Durable Multi-Agent System with LangGraph and LangSmith",
-          "link": "https://blog.dailydoseofds.com/p/building-a-durable-multi-agent-system",
-          "date": "Wed, 14 Oct 2026 22:52:19 GMT",
-          "note": "...explained with code."
         }
       ]
     },
