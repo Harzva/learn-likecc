@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-10-26T05:04:27.503318+00:00",
+    "generated_at": "2026-10-27T05:20:08.998190+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年10月23号 16:51AI 日报AI日报：火山引擎发布Seedance2.5 4K；MiniMax开源M3.1 Flash；Canva推出Craft图像模型查看日报",
-        "link": "https://www.aibase.com/daily/31845"
+        "title": "2026年10月26号 17:13AI 日报AI日报：Kimi就K3.1Pro限流致歉；小米发布开源硬件HachimoDock；MiniMax H3 登顶SuperCLUE总榜查看日报",
+        "link": "https://www.aibase.com/daily/31871"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "火山引擎发布Seedance2.54K:480P样片打磨后生成4K正片",
-          "link": "https://www.aibase.com/news/31839",
-          "date": "2026年10月23号 16:51",
+          "title": "英伟达开源机器人数据引擎 Flora:标注成本较 GPT-6Astra 降至125倍",
+          "link": "https://www.aibase.com/news/31869",
+          "date": "2026年10月26号 17:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "万象有声发布 Audimind，有声书制作工具出海",
-          "link": "https://www.aibase.com/news/31802",
-          "date": "2026年10月23号 16:51",
+          "title": "Reddit 开源社区 r/opensource 封杀 AI 项目，开发者另起炉灶",
+          "link": "https://www.aibase.com/news/31866",
+          "date": "2026年10月26号 17:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "谷歌推出 ACE：给每个 AI 智能体配一台\"专属电脑\"，唤醒不到 500 毫秒",
-          "link": "https://www.aibase.com/news/31832",
-          "date": "2026年10月23号 16:51",
+          "title": "小米发布150元开源硬件 HachimoDock，打造万能AI桌宠与桌面Agent中控",
+          "link": "https://www.aibase.com/news/31864",
+          "date": "2026年10月26号 17:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Canva推出Craft图像生成模型，支持2K分辨率与超宽画幅",
-          "link": "https://www.aibase.com/news/31829",
-          "date": "2026年10月23号 16:51",
+          "title": "国产AI视频模型新格局：MiniMax H3 登顶SuperCLUE总榜，多款实力派同台竞技",
+          "link": "https://www.aibase.com/news/31861",
+          "date": "2026年10月26号 17:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "国产旗舰 Kimi K3.1 现身 Arena 测试：性能直追 GPT-6 Astra，月底有望官宣",
-          "link": "https://www.aibase.com/news/31827",
-          "date": "2026年10月23号 16:51",
+          "title": "巴掌大小却能跑千亿大模型：联想AI主机P7 预览版正式亮相，搭载国产双芯",
+          "link": "https://www.aibase.com/news/31859",
+          "date": "2026年10月26号 17:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "​DeepSeek 与 MiniMax 率先完成合规登记，顺利实现开源与海外授权",
-          "link": "https://www.aibase.com/news/31822",
-          "date": "2026年10月23号 16:51",
+          "title": "Claude桌面端迎来重大改版：AI全程参与设计，从草图到上线仅用不到 3 周",
+          "link": "https://www.aibase.com/news/31858",
+          "date": "2026年10月26号 17:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenAI 全面开放决策 API：GPT‑6 Luna 上阵，输入百万 token 仅 0.1 美元",
-          "link": "https://www.aibase.com/news/31818",
-          "date": "2026年10月23号 16:51",
+          "title": "Kimi就K3.1Pro限流致歉:全系订阅会员获25%额度补偿",
+          "link": "https://www.aibase.com/news/31853",
+          "date": "2026年10月26号 17:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "MiniMax开源M3.1 Flash：总参数428B、激活参数23B，72小时处理Token超100万亿",
-          "link": "https://www.aibase.com/news/31816",
-          "date": "2026年10月23号 16:51",
+          "title": "AI巨头遭猫王版权方索赔 4100 万美元：当传奇音乐遇上大模型侵权风暴",
+          "link": "https://www.aibase.com/news/31849",
+          "date": "2026年10月26号 17:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Why Temperature 0 Isn't Deterministic in LLM Inference",
+          "link": "https://blog.dailydoseofds.com/p/why-temperature-0-isnt-deterministic",
+          "date": "Mon, 26 Oct 2026 23:12:43 GMT",
+          "note": "...explained visually (a popular LLM interview question)."
+        },
         {
           "title": "How CUDA Graph Replay Cuts Inference Overhead",
           "link": "https://blog.dailydoseofds.com/p/how-cuda-graph-replay-cuts-inference",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/run-jev-inside-an-open-agent-harness",
           "date": "Fri, 16 Oct 2026 22:23:13 GMT",
           "note": "...with 150x cheaper decision-making than LLM"
-        },
-        {
-          "title": "A Full Walkthrough on Multimodal Jev",
-          "link": "https://blog.dailydoseofds.com/p/a-full-walkthrough-on-multimodal",
-          "date": "Thu, 15 Oct 2026 23:06:34 GMT",
-          "note": "...explained step-by-step in a video."
         }
       ]
     },
