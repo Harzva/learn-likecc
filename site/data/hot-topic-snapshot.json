@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-10-27T05:20:08.998190+00:00",
+    "generated_at": "2026-10-28T05:59:11.389572+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年10月26号 17:13AI 日报AI日报：Kimi就K3.1Pro限流致歉；小米发布开源硬件HachimoDock；MiniMax H3 登顶SuperCLUE总榜查看日报",
-        "link": "https://www.aibase.com/daily/31871"
+        "title": "2026年10月27号 15:51AI 日报AI日报：即梦AI上线“短剧工作室”；蚂蚁灵光2.0发布；千问App重磅上线三大核心学习功能查看日报",
+        "link": "https://www.aibase.com/daily/31901"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "英伟达开源机器人数据引擎 Flora:标注成本较 GPT-6Astra 降至125倍",
-          "link": "https://www.aibase.com/news/31869",
-          "date": "2026年10月26号 17:13",
+          "title": "​即梦AI上线“短剧工作室”，一站式打通全流程AI创作",
+          "link": "https://www.aibase.com/news/31900",
+          "date": "2026年10月27号 15:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Reddit 开源社区 r/opensource 封杀 AI 项目，开发者另起炉灶",
-          "link": "https://www.aibase.com/news/31866",
-          "date": "2026年10月26号 17:13",
+          "title": "千问App重磅上线三大核心学习功能，精准狙击学生提分痛点",
+          "link": "https://www.aibase.com/news/31899",
+          "date": "2026年10月27号 15:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "小米发布150元开源硬件 HachimoDock，打造万能AI桌宠与桌面Agent中控",
-          "link": "https://www.aibase.com/news/31864",
-          "date": "2026年10月26号 17:13",
+          "title": "星火大模型V3. 7 登顶，讯飞晓医三大核心能力全线升级",
+          "link": "https://www.aibase.com/news/31894",
+          "date": "2026年10月27号 15:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "国产AI视频模型新格局：MiniMax H3 登顶SuperCLUE总榜，多款实力派同台竞技",
-          "link": "https://www.aibase.com/news/31861",
-          "date": "2026年10月26号 17:13",
+          "title": "全球首个海洋通用基座大模型正式通过国家网信办备案",
+          "link": "https://www.aibase.com/news/31892",
+          "date": "2026年10月27号 15:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "巴掌大小却能跑千亿大模型：联想AI主机P7 预览版正式亮相，搭载国产双芯",
-          "link": "https://www.aibase.com/news/31859",
-          "date": "2026年10月26号 17:13",
+          "title": "Mac版Ollama正式支持离线AI语音：数据不出门，速度比原方案最高提升35%",
+          "link": "https://www.aibase.com/news/31884",
+          "date": "2026年10月27号 15:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Claude桌面端迎来重大改版：AI全程参与设计，从草图到上线仅用不到 3 周",
-          "link": "https://www.aibase.com/news/31858",
-          "date": "2026年10月26号 17:13",
+          "title": "蚂蚁灵光2.0发布:AI从“任务执行者”走向“事务管理者”",
+          "link": "https://www.aibase.com/news/31883",
+          "date": "2026年10月27号 15:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Kimi就K3.1Pro限流致歉:全系订阅会员获25%额度补偿",
-          "link": "https://www.aibase.com/news/31853",
-          "date": "2026年10月26号 17:13",
+          "title": "腾讯混元开源同声传译大模型 Hy-SimulMT:延迟低于人类译员，质量比肩专业口译",
+          "link": "https://www.aibase.com/news/31882",
+          "date": "2026年10月27号 15:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "AI巨头遭猫王版权方索赔 4100 万美元：当传奇音乐遇上大模型侵权风暴",
-          "link": "https://www.aibase.com/news/31849",
-          "date": "2026年10月26号 17:13",
+          "title": "Soul 推出 Loxinity，把 AI 语音做成了\"有活人感\"的实时交互产品",
+          "link": "https://www.aibase.com/news/31881",
+          "date": "2026年10月27号 15:51",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Which OCR Solution Works Best for Your Documents?",
+          "link": "https://blog.dailydoseofds.com/p/which-ocr-solution-works-best-for",
+          "date": "Tue, 27 Oct 2026 23:58:18 GMT",
+          "note": "...DeepSeek-OCR vs. PaddleOCR-VL vs. Datalab Surya, tested on the same 150 pages."
+        },
         {
           "title": "Why Temperature 0 Isn't Deterministic in LLM Inference",
           "link": "https://blog.dailydoseofds.com/p/why-temperature-0-isnt-deterministic",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/agents-20-is-here",
           "date": "Mon, 19 Oct 2026 22:53:04 GMT",
           "note": "Fully open-source solution, explained step-by-step."
-        },
-        {
-          "title": "Run Jev Inside an Open Agent Harness",
-          "link": "https://blog.dailydoseofds.com/p/run-jev-inside-an-open-agent-harness",
-          "date": "Fri, 16 Oct 2026 22:23:13 GMT",
-          "note": "...with 150x cheaper decision-making than LLM"
         }
       ]
     },
@@ -148,9 +148,15 @@
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
         {
-          "title": "LitPivot: Developing research ideas through dynamic contextualization within the literature landscape",
-          "link": "https://huggingface.co/blog/allenai/litpivot",
-          "date": "Fri, 23 Oct 2026 16:15:50 GMT",
+          "title": "Build specialized multimodal models with LFM3",
+          "link": "https://huggingface.co/blog/LiquidAI/lfm3",
+          "date": "Tue, 27 Oct 2026 17:16:52 GMT",
+          "note": ""
+        },
+        {
+          "title": "Can we trust LLMs to judge whether a research idea is novel?",
+          "link": "https://huggingface.co/blog/allenai/novelty-bench",
+          "date": "Tue, 27 Oct 2026 16:12:42 GMT",
           "note": ""
         },
         {
@@ -187,12 +193,6 @@
           "title": "Profiling TorchNeuron (Part 1): System-level profiling on AWS Trainium.",
           "link": "https://huggingface.co/blog/amazon/profiling-torchneuron-part-1",
           "date": "Wed, 21 Oct 2026 16:04:43 GMT",
-          "note": ""
-        },
-        {
-          "title": "Granite Speech 5.0: Transcribe, Translate, and Attribute more Accurately and Faster",
-          "link": "https://huggingface.co/blog/ibm-granite/granite-speech-5",
-          "date": "Wed, 21 Oct 2026 14:58:18 GMT",
           "note": ""
         }
       ]
