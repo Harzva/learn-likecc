@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-10-28T05:59:11.389572+00:00",
+    "generated_at": "2026-10-29T06:06:19.075931+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年10月27号 15:51AI 日报AI日报：即梦AI上线“短剧工作室”；蚂蚁灵光2.0发布；千问App重磅上线三大核心学习功能查看日报",
-        "link": "https://www.aibase.com/daily/31901"
+        "title": "2026年10月28号 16:26AI 日报AI日报：DeepMind发布世界模型Genie4；WorkBuddy上线远程控制；DeepSeek V5 惊现官方代码库查看日报",
+        "link": "https://www.aibase.com/daily/31930"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "​即梦AI上线“短剧工作室”，一站式打通全流程AI创作",
-          "link": "https://www.aibase.com/news/31900",
-          "date": "2026年10月27号 15:51",
+          "title": "百度世界大会前夕重磅流出：消息称其将披露世界模型进展",
+          "link": "https://www.aibase.com/news/31928",
+          "date": "2026年10月28号 16:26",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "千问App重磅上线三大核心学习功能，精准狙击学生提分痛点",
-          "link": "https://www.aibase.com/news/31899",
-          "date": "2026年10月27号 15:51",
+          "title": "Liquid AI重磅发布LFM3 多模态模型家族，主打高效专用智能",
+          "link": "https://www.aibase.com/news/31927",
+          "date": "2026年10月28号 16:26",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "星火大模型V3. 7 登顶，讯飞晓医三大核心能力全线升级",
-          "link": "https://www.aibase.com/news/31894",
-          "date": "2026年10月27号 15:51",
+          "title": "腾讯WorkBuddy上线「远程控制」：手机可实时观看并接管电脑桌面，远程操作不消耗Token",
+          "link": "https://www.aibase.com/news/31926",
+          "date": "2026年10月28号 16:26",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "全球首个海洋通用基座大模型正式通过国家网信办备案",
-          "link": "https://www.aibase.com/news/31892",
-          "date": "2026年10月27号 15:51",
+          "title": "DeepSeek V5 惊现官方代码库，外界猜 11 月见真章",
+          "link": "https://www.aibase.com/news/31922",
+          "date": "2026年10月28号 16:26",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Mac版Ollama正式支持离线AI语音：数据不出门，速度比原方案最高提升35%",
-          "link": "https://www.aibase.com/news/31884",
-          "date": "2026年10月27号 15:51",
+          "title": "微软 MAI-Image-2.7 登场，自称\"全球第二图像编辑模型\"",
+          "link": "https://www.aibase.com/news/31920",
+          "date": "2026年10月28号 16:26",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "蚂蚁灵光2.0发布:AI从“任务执行者”走向“事务管理者”",
-          "link": "https://www.aibase.com/news/31883",
-          "date": "2026年10月27号 15:51",
+          "title": "爆款AI长剧跑通商业闭环！芒果超媒前三季度营收破 93 亿，第三季度净利环比翻近 4 倍",
+          "link": "https://www.aibase.com/news/31916",
+          "date": "2026年10月28号 16:26",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯混元开源同声传译大模型 Hy-SimulMT:延迟低于人类译员，质量比肩专业口译",
-          "link": "https://www.aibase.com/news/31882",
-          "date": "2026年10月27号 15:51",
+          "title": "Opera推出WebAI标准，支持浏览器本地运行AI模型",
+          "link": "https://www.aibase.com/news/31915",
+          "date": "2026年10月28号 16:26",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Soul 推出 Loxinity，把 AI 语音做成了\"有活人感\"的实时交互产品",
-          "link": "https://www.aibase.com/news/31881",
-          "date": "2026年10月27号 15:51",
+          "title": "谷歌DeepMind发布实时交互世界模型Genie4 加速具身智能与多模态模拟演进",
+          "link": "https://www.aibase.com/news/31909",
+          "date": "2026年10月28号 16:26",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Why DeepSeek stores its KV cache on disk",
+          "link": "https://blog.dailydoseofds.com/p/why-deepseek-stores-its-kv-cache",
+          "date": "Wed, 28 Oct 2026 22:56:03 GMT",
+          "note": "DeepSeek's engineering behind 26x faster time to first token."
+        },
         {
           "title": "Which OCR Solution Works Best for Your Documents?",
           "link": "https://blog.dailydoseofds.com/p/which-ocr-solution-works-best-for",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/the-next-step-after-karpathys-agentic",
           "date": "Tue, 20 Oct 2026 21:59:51 GMT",
           "note": "Build agents that can pause for hours, resume in a new process, and execute side effects once."
-        },
-        {
-          "title": "Agents 2.0 is here!",
-          "link": "https://blog.dailydoseofds.com/p/agents-20-is-here",
-          "date": "Mon, 19 Oct 2026 22:53:04 GMT",
-          "note": "Fully open-source solution, explained step-by-step."
         }
       ]
     },
@@ -147,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "NVIDIA Nemotron 3.5 Transcribe and Granary v2: Intelligent Multilingual Transcription You Can Prompt and Adapt",
+          "link": "https://huggingface.co/blog/nvidia/nemotron-transcribe-granary",
+          "date": "Wed, 28 Oct 2026 14:58:17 GMT",
+          "note": ""
+        },
         {
           "title": "Build specialized multimodal models with LFM3",
           "link": "https://huggingface.co/blog/LiquidAI/lfm3",
@@ -175,12 +181,6 @@
           "title": "Ensemble forecasting with IBM Granite time-series models",
           "link": "https://huggingface.co/blog/ibm-research/granite-timeseries-ensemble-r1",
           "date": "Thu, 22 Oct 2026 07:51:31 GMT",
-          "note": ""
-        },
-        {
-          "title": "NVIDIA Kumo Relational Outperforms Supervised Machine Learning on Relational Data, No Training Required",
-          "link": "https://huggingface.co/blog/nvidia/kumo-relational",
-          "date": "Wed, 21 Oct 2026 18:26:30 GMT",
           "note": ""
         },
         {
