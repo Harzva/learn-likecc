@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-10-29T06:06:19.075931+00:00",
+    "generated_at": "2026-10-30T06:07:01.263318+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年10月28号 16:26AI 日报AI日报：DeepMind发布世界模型Genie4；WorkBuddy上线远程控制；DeepSeek V5 惊现官方代码库查看日报",
-        "link": "https://www.aibase.com/daily/31930"
+        "title": "2026年10月29号 16:44AI 日报AI日报：混元Hy4、Hy4flash将发布；Claude Code上线全新环境变量；智元发布具身智能原生OS灵渠1.0查看日报",
+        "link": "https://www.aibase.com/daily/31964"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "百度世界大会前夕重磅流出：消息称其将披露世界模型进展",
-          "link": "https://www.aibase.com/news/31928",
-          "date": "2026年10月28号 16:26",
+          "title": "AI删文件终于可以不用再问了！Claude Code上线全新环境变量，赋予开发者绝对放行权限",
+          "link": "https://www.aibase.com/news/31963",
+          "date": "2026年10月29号 16:44",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Liquid AI重磅发布LFM3 多模态模型家族，主打高效专用智能",
-          "link": "https://www.aibase.com/news/31927",
-          "date": "2026年10月28号 16:26",
+          "title": "GitHub发布Copilot Fusion，多模型自动编排提升编码效率与性价比",
+          "link": "https://www.aibase.com/news/31962",
+          "date": "2026年10月29号 16:44",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯WorkBuddy上线「远程控制」：手机可实时观看并接管电脑桌面，远程操作不消耗Token",
-          "link": "https://www.aibase.com/news/31926",
-          "date": "2026年10月28号 16:26",
+          "title": "腾讯\"懂了鸭\"内测：把 AI 生成绘本、动画做成了一个学习社区",
+          "link": "https://www.aibase.com/news/31960",
+          "date": "2026年10月29号 16:44",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "DeepSeek V5 惊现官方代码库，外界猜 11 月见真章",
-          "link": "https://www.aibase.com/news/31922",
-          "date": "2026年10月28号 16:26",
+          "title": "智元发布具身智能原生OS灵渠1.0，年底全面开源",
+          "link": "https://www.aibase.com/news/31956",
+          "date": "2026年10月29号 16:44",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "微软 MAI-Image-2.7 登场，自称\"全球第二图像编辑模型\"",
-          "link": "https://www.aibase.com/news/31920",
-          "date": "2026年10月28号 16:26",
+          "title": "腾讯发布 Buddy One:打通腾讯文档、会议、网盘与 ima，统一账号与积分池",
+          "link": "https://www.aibase.com/news/31951",
+          "date": "2026年10月29号 16:44",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "爆款AI长剧跑通商业闭环！芒果超媒前三季度营收破 93 亿，第三季度净利环比翻近 4 倍",
-          "link": "https://www.aibase.com/news/31916",
-          "date": "2026年10月28号 16:26",
+          "title": "开源图像生成迎来新突破：OpenMOSS发布MOSS-Image，主打长文本渲染与可编辑布局",
+          "link": "https://www.aibase.com/news/31949",
+          "date": "2026年10月29号 16:44",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Opera推出WebAI标准，支持浏览器本地运行AI模型",
-          "link": "https://www.aibase.com/news/31915",
-          "date": "2026年10月28号 16:26",
+          "title": "腾讯混元Hy4、Hy4flash即将发布，模型能力、思维链效率全面提升",
+          "link": "https://www.aibase.com/news/31948",
+          "date": "2026年10月29号 16:44",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "谷歌DeepMind发布实时交互世界模型Genie4 加速具身智能与多模态模拟演进",
-          "link": "https://www.aibase.com/news/31909",
-          "date": "2026年10月28号 16:26",
+          "title": "电商AI模特图价格不到实拍四分之一，产业链加速成型",
+          "link": "https://www.aibase.com/news/31941",
+          "date": "2026年10月29号 16:44",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Prefix-Aware LLM Routing, clearly explained",
+          "link": "https://blog.dailydoseofds.com/p/prefix-aware-llm-routing-clearly",
+          "date": "Thu, 29 Oct 2026 20:42:27 GMT",
+          "note": "...explained visually (the trick to get the first LLM token 170x sooner)."
+        },
         {
           "title": "Why DeepSeek stores its KV cache on disk",
           "link": "https://blog.dailydoseofds.com/p/why-deepseek-stores-its-kv-cache",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/give-claude-code-codex-and-cursor",
           "date": "Wed, 21 Oct 2026 22:37:50 GMT",
           "note": "...explained step-by-step in a video walkthrough."
-        },
-        {
-          "title": "The Next Step After Karpathy’s Agentic Engineering",
-          "link": "https://blog.dailydoseofds.com/p/the-next-step-after-karpathys-agentic",
-          "date": "Tue, 20 Oct 2026 21:59:51 GMT",
-          "note": "Build agents that can pause for hours, resume in a new process, and execute side effects once."
         }
       ]
     },
@@ -147,6 +147,30 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Granite Switch 4.1.1 — Update models like you update software",
+          "link": "https://huggingface.co/blog/ibm-granite/granite-switch-4-1-1",
+          "date": "Thu, 29 Oct 2026 13:37:07 GMT",
+          "note": ""
+        },
+        {
+          "title": "Announcing Project ProtoStar: Making Publicly Funded Science AI-Ready",
+          "link": "https://huggingface.co/blog/announcing-project-protostar",
+          "date": "Thu, 29 Oct 2026 00:00:00 GMT",
+          "note": ""
+        },
+        {
+          "title": "Welcome Le Chonk: Mistral Large 4 on Hugging Face",
+          "link": "https://huggingface.co/blog/mistral-large4",
+          "date": "Thu, 29 Oct 2026 00:00:00 GMT",
+          "note": ""
+        },
+        {
+          "title": "Introducing AnySpeechRecognizer and AnyDecisionModel: Open Models for Speech and Decisions on Apple Platforms",
+          "link": "https://huggingface.co/blog/anydecisionmodel",
+          "date": "Thu, 29 Oct 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "NVIDIA Nemotron 3.5 Transcribe and Granary v2: Intelligent Multilingual Transcription You Can Prompt and Adapt",
           "link": "https://huggingface.co/blog/nvidia/nemotron-transcribe-granary",
@@ -169,30 +193,6 @@
           "title": "Does Your Model Run on AWS Trainium? Look It Up",
           "link": "https://huggingface.co/blog/torch-neuronx-model-support",
           "date": "Fri, 23 Oct 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Turning Database Grading into RL Rewards: Post-Training Agents with ThinkingBox",
-          "link": "https://huggingface.co/blog/microsoft/thinkingbox-training",
-          "date": "Thu, 22 Oct 2026 22:24:34 GMT",
-          "note": ""
-        },
-        {
-          "title": "Ensemble forecasting with IBM Granite time-series models",
-          "link": "https://huggingface.co/blog/ibm-research/granite-timeseries-ensemble-r1",
-          "date": "Thu, 22 Oct 2026 07:51:31 GMT",
-          "note": ""
-        },
-        {
-          "title": "How Specializing the Vocabulary of SLMs Can Cut Inference Cost by 77% in Real Applications",
-          "link": "https://huggingface.co/blog/Dharma-AI/vocabx-vocabulary-specialization",
-          "date": "Wed, 21 Oct 2026 17:35:36 GMT",
-          "note": ""
-        },
-        {
-          "title": "Profiling TorchNeuron (Part 1): System-level profiling on AWS Trainium.",
-          "link": "https://huggingface.co/blog/amazon/profiling-torchneuron-part-1",
-          "date": "Wed, 21 Oct 2026 16:04:43 GMT",
           "note": ""
         }
       ]
