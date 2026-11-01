@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-10-31T06:01:35.356359+00:00",
+    "generated_at": "2026-11-01T06:32:07.390896+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -85,6 +85,12 @@
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
         {
+          "title": "Why Other Requests Change Your LLM’s Output",
+          "link": "https://blog.dailydoseofds.com/p/why-other-requests-change-your-llms",
+          "date": "Sat, 31 Oct 2026 20:21:59 GMT",
+          "note": "+ an update on Harness Engineering 2.0."
+        },
+        {
           "title": "RAG vs. Vectorless RAG, clearly explained!",
           "link": "https://blog.dailydoseofds.com/p/rag-vs-vectorless-rag-clearly-explained",
           "date": "Fri, 30 Oct 2026 20:22:09 GMT",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/6-kv-cache-quantization-approaches",
           "date": "Fri, 23 Oct 2026 23:01:51 GMT",
           "note": "...explained visually."
-        },
-        {
-          "title": "Build a Jev-powered Agentic RAG",
-          "link": "https://blog.dailydoseofds.com/p/build-a-jev-powered-agentic-rag",
-          "date": "Thu, 22 Oct 2026 23:00:56 GMT",
-          "note": "...explained step-by-step with code."
         }
       ]
     },
