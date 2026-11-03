@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-11-02T06:32:18.744508+00:00",
+    "generated_at": "2026-11-03T07:03:29.196091+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年10月30号 16:28AI 日报AI日报：百度升级AI搜索；豆包工作正式接入DeepSeek；谷歌Gemini全面支持PDF、表格等内联编辑查看日报",
-        "link": "https://www.aibase.com/daily/31993"
+        "title": "2026年11月2号 16:03AI 日报AI日报：双十一Token上架电商平台；DeepSeek开源Super-agent架构；美团龙猫发布 LongCat-2.5查看日报",
+        "link": "https://www.aibase.com/daily/32022"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "在聊天窗口直接改文档！谷歌Gemini升级：全面支持PDF、表格及代码文件内联编辑",
-          "link": "https://www.aibase.com/news/31992",
-          "date": "2026年10月30号 16:28",
+          "title": "行业首个自进化金融大模型登场：度小满联手港科大发布轩辕4.5",
+          "link": "https://www.aibase.com/news/32019",
+          "date": "2026年11月2号 16:03",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "AI也能重新编曲和翻唱?Spotify计划推出付费音乐混音服务",
-          "link": "https://www.aibase.com/news/31991",
-          "date": "2026年10月30号 16:28",
+          "title": "OpenAI宣布12月起ChatGPT与Codex共享使用额度，Instant chat不受影响",
+          "link": "https://www.aibase.com/news/32012",
+          "date": "2026年11月2号 16:03",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "百度升级AI搜索及搜索AI API，调用价格低至4.9元/千次",
-          "link": "https://www.aibase.com/news/31990",
-          "date": "2026年10月30号 16:28",
+          "title": "双十一Token首次作为独立品类上架电商平台，AI算力开始面向大众销售",
+          "link": "https://www.aibase.com/news/32010",
+          "date": "2026年11月2号 16:03",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "签到30天白拿8800额度:豆包向新老用户敞开30天免费订阅",
-          "link": "https://www.aibase.com/news/31988",
-          "date": "2026年10月30号 16:28",
+          "title": "Claude Code搭载Opus 5. 5 正式封杀复刻特定现有游戏",
+          "link": "https://www.aibase.com/news/32009",
+          "date": "2026年11月2号 16:03",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "英伟达发布语音转录大模型Nemotron 3.5 Transcribe，8 人同时抢话也能精准识别",
-          "link": "https://www.aibase.com/news/31987",
-          "date": "2026年10月30号 16:28",
+          "title": "xAI Grok正式支持支付宝与银联，中国大陆用户迎首月半价优惠",
+          "link": "https://www.aibase.com/news/32008",
+          "date": "2026年11月2号 16:03",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Neuralink脑机接口迎来最强升级：Grok接入大脑，患者用意念直接唤醒AI",
-          "link": "https://www.aibase.com/news/31984",
-          "date": "2026年10月30号 16:28",
+          "title": "美团龙猫发布 LongCat-2.5:1.6万亿参数原生多模态模型",
+          "link": "https://www.aibase.com/news/32006",
+          "date": "2026年11月2号 16:03",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "月之暗面宣布Kimi正式接入谷歌Gmail、云端硬盘与日历",
-          "link": "https://www.aibase.com/news/31977",
-          "date": "2026年10月30号 16:28",
+          "title": "阿里千问 AI 眼镜 OTA 升级：通话、看片都能实时翻译了",
+          "link": "https://www.aibase.com/news/32003",
+          "date": "2026年11月2号 16:03",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "豆包工作正式接入DeepSeek、Kimi与GLM，企业采购彻底省心了",
-          "link": "https://www.aibase.com/news/31971",
-          "date": "2026年10月30号 16:28",
+          "title": "DeepSeek开源Super-agent架构:以经典计算机系统思想突破单会话智能体瓶颈",
+          "link": "https://www.aibase.com/news/32001",
+          "date": "2026年11月2号 16:03",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "12 Optimizers for Training Neural Networks, clearly explained!",
+          "link": "https://blog.dailydoseofds.com/p/12-optimizers-for-training-neural",
+          "date": "Mon, 02 Nov 2026 21:30:36 GMT",
+          "note": "...and what each one costs in GPU memory!"
+        },
         {
           "title": "Why Other Requests Change Your LLM’s Output",
           "link": "https://blog.dailydoseofds.com/p/why-other-requests-change-your-llms",
@@ -124,12 +130,6 @@
           "title": "How CUDA Graph Replay Cuts Inference Overhead",
           "link": "https://blog.dailydoseofds.com/p/how-cuda-graph-replay-cuts-inference",
           "date": "Sat, 24 Oct 2026 23:08:41 GMT",
-          "note": "...explained visually."
-        },
-        {
-          "title": "6 KV Cache Quantization Approaches",
-          "link": "https://blog.dailydoseofds.com/p/6-kv-cache-quantization-approaches",
-          "date": "Fri, 23 Oct 2026 23:01:51 GMT",
           "note": "...explained visually."
         }
       ]
