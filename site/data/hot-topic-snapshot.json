@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-11-03T07:03:29.196091+00:00",
+    "generated_at": "2026-11-04T06:46:57.704959+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年11月2号 16:03AI 日报AI日报：双十一Token上架电商平台；DeepSeek开源Super-agent架构；美团龙猫发布 LongCat-2.5查看日报",
-        "link": "https://www.aibase.com/daily/32022"
+        "title": "2026年11月3号 16:44AI 日报AI日报：腾讯混元发布Hyra 2.0；商汤发布日日新SenseNova 6.8 Flash；AI 虚拟恋人正式被苹果关进成人区查看日报",
+        "link": "https://www.aibase.com/daily/32056"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "行业首个自进化金融大模型登场：度小满联手港科大发布轩辕4.5",
-          "link": "https://www.aibase.com/news/32019",
-          "date": "2026年11月2号 16:03",
+          "title": "腾讯混元重磅发布Hyra 2.0，让AI Agent全面参与科学大模型与硬核研发",
+          "link": "https://www.aibase.com/news/32055",
+          "date": "2026年11月3号 16:44",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenAI宣布12月起ChatGPT与Codex共享使用额度，Instant chat不受影响",
-          "link": "https://www.aibase.com/news/32012",
-          "date": "2026年11月2号 16:03",
+          "title": "Kimi 不再只写方案：直接上手改 Unity、虚幻工程做游戏原型",
+          "link": "https://www.aibase.com/news/32051",
+          "date": "2026年11月3号 16:44",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "双十一Token首次作为独立品类上架电商平台，AI算力开始面向大众销售",
-          "link": "https://www.aibase.com/news/32010",
-          "date": "2026年11月2号 16:03",
+          "title": "App Store 分级新规下月生效，AI 虚拟恋人正式被苹果关进\"成人区\"",
+          "link": "https://www.aibase.com/news/32050",
+          "date": "2026年11月3号 16:44",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Claude Code搭载Opus 5. 5 正式封杀复刻特定现有游戏",
-          "link": "https://www.aibase.com/news/32009",
-          "date": "2026年11月2号 16:03",
+          "title": "商汤正式发布日日新SenseNova 6.8 Flash，主打真实任务执行与设计协作",
+          "link": "https://www.aibase.com/news/32049",
+          "date": "2026年11月3号 16:44",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "xAI Grok正式支持支付宝与银联，中国大陆用户迎首月半价优惠",
-          "link": "https://www.aibase.com/news/32008",
-          "date": "2026年11月2号 16:03",
+          "title": "QuestMobile:豆包、DeepSeek月人均使用次数超其他AI应用",
+          "link": "https://www.aibase.com/news/32048",
+          "date": "2026年11月3号 16:44",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "美团龙猫发布 LongCat-2.5:1.6万亿参数原生多模态模型",
-          "link": "https://www.aibase.com/news/32006",
-          "date": "2026年11月2号 16:03",
+          "title": "8GB显存也能玩转128K超长上下文！开源本地大模型工具Strata 0.2. 10 发布",
+          "link": "https://www.aibase.com/news/32047",
+          "date": "2026年11月3号 16:44",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阿里千问 AI 眼镜 OTA 升级：通话、看片都能实时翻译了",
-          "link": "https://www.aibase.com/news/32003",
-          "date": "2026年11月2号 16:03",
+          "title": "字节跳动扣子宣布企业版宣布下线:11月30日起停止新客购买",
+          "link": "https://www.aibase.com/news/32041",
+          "date": "2026年11月3号 16:44",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "DeepSeek开源Super-agent架构:以经典计算机系统思想突破单会话智能体瓶颈",
-          "link": "https://www.aibase.com/news/32001",
-          "date": "2026年11月2号 16:03",
+          "title": "美团发布全新1. 6 万亿多模态大模型LongCat-2.5：多项智能Agent基准登顶全球第一",
+          "link": "https://www.aibase.com/news/32040",
+          "date": "2026年11月3号 16:44",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Agent Framework vs. Agent Harness, clearly explained!",
+          "link": "https://blog.dailydoseofds.com/p/agent-framework-vs-agent-harness",
+          "date": "Tue, 03 Nov 2026 21:36:04 GMT",
+          "note": "+ a technique for 23x faster attention!"
+        },
         {
           "title": "12 Optimizers for Training Neural Networks, clearly explained!",
           "link": "https://blog.dailydoseofds.com/p/12-optimizers-for-training-neural",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/why-temperature-0-isnt-deterministic",
           "date": "Mon, 26 Oct 2026 23:12:43 GMT",
           "note": "...explained visually (a popular LLM interview question)."
-        },
-        {
-          "title": "How CUDA Graph Replay Cuts Inference Overhead",
-          "link": "https://blog.dailydoseofds.com/p/how-cuda-graph-replay-cuts-inference",
-          "date": "Sat, 24 Oct 2026 23:08:41 GMT",
-          "note": "...explained visually."
         }
       ]
     },
@@ -147,6 +147,30 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "StateBench: Testing how language models track state changes over long documents",
+          "link": "https://huggingface.co/blog/allenai/statebench",
+          "date": "Tue, 03 Nov 2026 17:15:21 GMT",
+          "note": ""
+        },
+        {
+          "title": "Palette: teaching a small model to build decks in your design language",
+          "link": "https://huggingface.co/blog/ibm-research/palette-deck-building",
+          "date": "Tue, 03 Nov 2026 16:35:36 GMT",
+          "note": ""
+        },
+        {
+          "title": "CWE-bench v2: More coverage, quality, and transparency",
+          "link": "https://huggingface.co/blog/cwe-bench",
+          "date": "Tue, 03 Nov 2026 00:00:00 GMT",
+          "note": ""
+        },
+        {
+          "title": "Transformers Model Integration Contracts",
+          "link": "https://huggingface.co/blog/transformers-mic",
+          "date": "Tue, 03 Nov 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "nemotron-halloween",
           "link": "https://huggingface.co/blog/nvidia/nemotron-halloween",
@@ -169,30 +193,6 @@
           "title": "Welcome Le Chonk: Mistral Large 4 on Hugging Face",
           "link": "https://huggingface.co/blog/mistral-large4",
           "date": "Thu, 29 Oct 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Introducing AnySpeechRecognizer and AnyDecisionModel: Open Models for Speech and Decisions on Apple Platforms",
-          "link": "https://huggingface.co/blog/anydecisionmodel",
-          "date": "Thu, 29 Oct 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Build specialized multimodal models with LFM3",
-          "link": "https://huggingface.co/blog/LiquidAI/lfm3",
-          "date": "Tue, 27 Oct 2026 17:16:52 GMT",
-          "note": ""
-        },
-        {
-          "title": "Can we trust LLMs to judge whether a research idea is novel?",
-          "link": "https://huggingface.co/blog/allenai/novelty-bench",
-          "date": "Tue, 27 Oct 2026 16:12:42 GMT",
-          "note": ""
-        },
-        {
-          "title": "Does Your Model Run on AWS Trainium? Look It Up",
-          "link": "https://huggingface.co/blog/torch-neuronx-model-support",
-          "date": "Fri, 23 Oct 2026 00:00:00 GMT",
           "note": ""
         }
       ]
