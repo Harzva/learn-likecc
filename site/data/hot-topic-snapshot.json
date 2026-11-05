@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-11-04T06:46:57.704959+00:00",
+    "generated_at": "2026-11-05T07:06:54.696504+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年11月3号 16:44AI 日报AI日报：腾讯混元发布Hyra 2.0；商汤发布日日新SenseNova 6.8 Flash；AI 虚拟恋人正式被苹果关进成人区查看日报",
-        "link": "https://www.aibase.com/daily/32056"
+        "title": "2026年11月4号 17:19AI 日报AI日报：百度发布物理AI世界模型Apollo World；腾讯 Hy4 正式版亮相；阿里云发布AI投研工作台Qovest查看日报",
+        "link": "https://www.aibase.com/daily/32090"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "腾讯混元重磅发布Hyra 2.0，让AI Agent全面参与科学大模型与硬核研发",
-          "link": "https://www.aibase.com/news/32055",
-          "date": "2026年11月3号 16:44",
+          "title": "一个人一天搞定：Windows 11 原生测速工具背后的\"AI 副驾\"模式",
+          "link": "https://www.aibase.com/news/32088",
+          "date": "2026年11月4号 17:19",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Kimi 不再只写方案：直接上手改 Unity、虚幻工程做游戏原型",
-          "link": "https://www.aibase.com/news/32051",
-          "date": "2026年11月3号 16:44",
+          "title": "百度首次发布物理AI世界模型Apollo World，萝卜快跑近百辆无人车搭载新架构运营",
+          "link": "https://www.aibase.com/news/32087",
+          "date": "2026年11月4号 17:19",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "App Store 分级新规下月生效，AI 虚拟恋人正式被苹果关进\"成人区\"",
-          "link": "https://www.aibase.com/news/32050",
-          "date": "2026年11月3号 16:44",
+          "title": "腾讯 Hy4 正式版亮相：挤进最强开源阵营，主打\"真干活\"",
+          "link": "https://www.aibase.com/news/32078",
+          "date": "2026年11月4号 17:19",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "商汤正式发布日日新SenseNova 6.8 Flash，主打真实任务执行与设计协作",
-          "link": "https://www.aibase.com/news/32049",
-          "date": "2026年11月3号 16:44",
+          "title": "欧洲法院顾问警告：Gemini若绕过付费墙或复用内容或涉嫌侵权",
+          "link": "https://www.aibase.com/news/32076",
+          "date": "2026年11月4号 17:19",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "QuestMobile:豆包、DeepSeek月人均使用次数超其他AI应用",
-          "link": "https://www.aibase.com/news/32048",
-          "date": "2026年11月3号 16:44",
+          "title": "消息称字节跳动大面积限制员工自费使用第三方AI工具",
+          "link": "https://www.aibase.com/news/32070",
+          "date": "2026年11月4号 17:19",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "8GB显存也能玩转128K超长上下文！开源本地大模型工具Strata 0.2. 10 发布",
-          "link": "https://www.aibase.com/news/32047",
-          "date": "2026年11月3号 16:44",
+          "title": "阿里云发布AI投研工作台Qovest:99元/月开放个人邀测",
+          "link": "https://www.aibase.com/news/32069",
+          "date": "2026年11月4号 17:19",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "字节跳动扣子宣布企业版宣布下线:11月30日起停止新客购买",
-          "link": "https://www.aibase.com/news/32041",
-          "date": "2026年11月3号 16:44",
+          "title": "国内首个三晋文化大模型“晋问AI”正式上线，数字人“晋豆”同步亮相",
+          "link": "https://www.aibase.com/news/32068",
+          "date": "2026年11月4号 17:19",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "美团发布全新1. 6 万亿多模态大模型LongCat-2.5：多项智能Agent基准登顶全球第一",
-          "link": "https://www.aibase.com/news/32040",
-          "date": "2026年11月3号 16:44",
+          "title": "苹果 AI 加速进入中国市场，Siri、视觉智能整合千问",
+          "link": "https://www.aibase.com/news/32065",
+          "date": "2026年11月4号 17:19",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Grok Bot Masterclass",
+          "link": "https://blog.dailydoseofds.com/p/grok-bot-masterclass-081",
+          "date": "Wed, 04 Nov 2026 23:24:08 GMT",
+          "note": "...covered with a full hands-on video demo."
+        },
         {
           "title": "Agent Framework vs. Agent Harness, clearly explained!",
           "link": "https://blog.dailydoseofds.com/p/agent-framework-vs-agent-harness",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/which-ocr-solution-works-best-for",
           "date": "Tue, 27 Oct 2026 23:58:18 GMT",
           "note": "...DeepSeek-OCR vs. PaddleOCR-VL vs. Datalab Surya, tested on the same 150 pages."
-        },
-        {
-          "title": "Why Temperature 0 Isn't Deterministic in LLM Inference",
-          "link": "https://blog.dailydoseofds.com/p/why-temperature-0-isnt-deterministic",
-          "date": "Mon, 26 Oct 2026 23:12:43 GMT",
-          "note": "...explained visually (a popular LLM interview question)."
         }
       ]
     },
@@ -147,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Dharma Field Extractor: Any Document In, Structured Fields in JSON Out",
+          "link": "https://huggingface.co/blog/Dharma-AI/dharma-field-extractor",
+          "date": "Wed, 04 Nov 2026 17:50:10 GMT",
+          "note": ""
+        },
         {
           "title": "StateBench: Testing how language models track state changes over long documents",
           "link": "https://huggingface.co/blog/allenai/statebench",
@@ -186,12 +192,6 @@
         {
           "title": "Announcing Project ProtoStar: Making Publicly Funded Science AI-Ready",
           "link": "https://huggingface.co/blog/announcing-project-protostar",
-          "date": "Thu, 29 Oct 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Welcome Le Chonk: Mistral Large 4 on Hugging Face",
-          "link": "https://huggingface.co/blog/mistral-large4",
           "date": "Thu, 29 Oct 2026 00:00:00 GMT",
           "note": ""
         }
