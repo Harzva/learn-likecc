@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-11-05T07:06:54.696504+00:00",
+    "generated_at": "2026-11-06T07:05:49.420578+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年11月4号 17:19AI 日报AI日报：百度发布物理AI世界模型Apollo World；腾讯 Hy4 正式版亮相；阿里云发布AI投研工作台Qovest查看日报",
-        "link": "https://www.aibase.com/daily/32090"
+        "title": "2026年11月5号 16:39AI 日报AI日报：iOS 27.3 beta正式接入千问；豆包工作首次接入第三方模型；雷军晒小米机器人做家务视频查看日报",
+        "link": "https://www.aibase.com/daily/32121"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "一个人一天搞定：Windows 11 原生测速工具背后的\"AI 副驾\"模式",
-          "link": "https://www.aibase.com/news/32088",
-          "date": "2026年11月4号 17:19",
+          "title": "百度开源2800亿参数文心5.5Flash Base，多项基准测试刷新同尺寸SOTA",
+          "link": "https://www.aibase.com/news/32118",
+          "date": "2026年11月5号 16:39",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "百度首次发布物理AI世界模型Apollo World，萝卜快跑近百辆无人车搭载新架构运营",
-          "link": "https://www.aibase.com/news/32087",
-          "date": "2026年11月4号 17:19",
+          "title": "千问AI Office升级端内编辑与模板能力，Word、Excel、PPT均可按需修改",
+          "link": "https://www.aibase.com/news/32115",
+          "date": "2026年11月5号 16:39",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯 Hy4 正式版亮相：挤进最强开源阵营，主打\"真干活\"",
-          "link": "https://www.aibase.com/news/32078",
-          "date": "2026年11月4号 17:19",
+          "title": "Kimi Hosted Agents 发布:Harness 运行时转向云端托管",
+          "link": "https://www.aibase.com/news/32112",
+          "date": "2026年11月5号 16:39",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "欧洲法院顾问警告：Gemini若绕过付费墙或复用内容或涉嫌侵权",
-          "link": "https://www.aibase.com/news/32076",
-          "date": "2026年11月4号 17:19",
+          "title": "可灵 AI 宣布 Kling 4.0 Flash 全面开放，深度融入专业影视工作流",
+          "link": "https://www.aibase.com/news/32109",
+          "date": "2026年11月5号 16:39",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "消息称字节跳动大面积限制员工自费使用第三方AI工具",
-          "link": "https://www.aibase.com/news/32070",
-          "date": "2026年11月4号 17:19",
+          "title": "灵光2.0上线一周托管超116万项事务，用户突破2000万",
+          "link": "https://www.aibase.com/news/32105",
+          "date": "2026年11月5号 16:39",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阿里云发布AI投研工作台Qovest:99元/月开放个人邀测",
-          "link": "https://www.aibase.com/news/32069",
-          "date": "2026年11月4号 17:19",
+          "title": "豆包工作首次接入第三方模型，首批上线Kimi、智谱与DeepSeek",
+          "link": "https://www.aibase.com/news/32104",
+          "date": "2026年11月5号 16:39",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "国内首个三晋文化大模型“晋问AI”正式上线，数字人“晋豆”同步亮相",
-          "link": "https://www.aibase.com/news/32068",
-          "date": "2026年11月4号 17:19",
+          "title": "雷军晒小米机器人做家务视频，Xiaomi-Robotics-1支撑长程任务",
+          "link": "https://www.aibase.com/news/32101",
+          "date": "2026年11月5号 16:39",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "苹果 AI 加速进入中国市场，Siri、视觉智能整合千问",
-          "link": "https://www.aibase.com/news/32065",
-          "date": "2026年11月4号 17:19",
+          "title": "iOS 27.3 beta 正式接入阿里千问，替代 ChatGPT 角色",
+          "link": "https://www.aibase.com/news/32092",
+          "date": "2026年11月5号 16:39",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Finding Every Vulnerability Made Security Harder",
+          "link": "https://blog.dailydoseofds.com/p/finding-every-vulnerability-made",
+          "date": "Thu, 05 Nov 2026 22:54:55 GMT",
+          "note": "+ building an agent engineering team with Grok Bot!"
+        },
         {
           "title": "Grok Bot Masterclass",
           "link": "https://blog.dailydoseofds.com/p/grok-bot-masterclass-081",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/why-deepseek-stores-its-kv-cache",
           "date": "Wed, 28 Oct 2026 22:56:03 GMT",
           "note": "DeepSeek's engineering behind 26x faster time to first token."
-        },
-        {
-          "title": "Which OCR Solution Works Best for Your Documents?",
-          "link": "https://blog.dailydoseofds.com/p/which-ocr-solution-works-best-for",
-          "date": "Tue, 27 Oct 2026 23:58:18 GMT",
-          "note": "...DeepSeek-OCR vs. PaddleOCR-VL vs. Datalab Surya, tested on the same 150 pages."
         }
       ]
     },
@@ -147,6 +147,18 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "New NVIDIA Cosmos 3 Open Models for Interactive World Simulation",
+          "link": "https://huggingface.co/blog/nvidia/cosmos-interactive-world-simulation",
+          "date": "Thu, 05 Nov 2026 19:35:16 GMT",
+          "note": ""
+        },
+        {
+          "title": "A Closer Look at Phonon TTS. Launching High-Quality On-Device Speech That Tops the Benchmarks.",
+          "link": "https://huggingface.co/blog/phonon-tts",
+          "date": "Thu, 05 Nov 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "Dharma Field Extractor: Any Document In, Structured Fields in JSON Out",
           "link": "https://huggingface.co/blog/Dharma-AI/dharma-field-extractor",
@@ -178,21 +190,9 @@
           "note": ""
         },
         {
-          "title": "nemotron-halloween",
-          "link": "https://huggingface.co/blog/nvidia/nemotron-halloween",
-          "date": "Fri, 30 Oct 2026 17:57:24 GMT",
-          "note": ""
-        },
-        {
           "title": "Granite Switch 4.1.1 — Update models like you update software",
           "link": "https://huggingface.co/blog/ibm-granite/granite-switch-4-1-1",
           "date": "Thu, 29 Oct 2026 13:37:07 GMT",
-          "note": ""
-        },
-        {
-          "title": "Announcing Project ProtoStar: Making Publicly Funded Science AI-Ready",
-          "link": "https://huggingface.co/blog/announcing-project-protostar",
-          "date": "Thu, 29 Oct 2026 00:00:00 GMT",
           "note": ""
         }
       ]
