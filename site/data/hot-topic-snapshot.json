@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-11-06T07:05:49.420578+00:00",
+    "generated_at": "2026-11-07T06:18:41.049957+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年11月5号 16:39AI 日报AI日报：iOS 27.3 beta正式接入千问；豆包工作首次接入第三方模型；雷军晒小米机器人做家务视频查看日报",
-        "link": "https://www.aibase.com/daily/32121"
+        "title": "2026年11月6号 15:58AI 日报AI日报：Kimi Hosted Agents发布；谷歌发布 Omni 1.2 Flash；淘宝MNN 团队开源 MNN-Pocket-0.3B查看日报",
+        "link": "https://www.aibase.com/daily/32153"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "百度开源2800亿参数文心5.5Flash Base，多项基准测试刷新同尺寸SOTA",
-          "link": "https://www.aibase.com/news/32118",
-          "date": "2026年11月5号 16:39",
+          "title": "Perplexity发布全新「队友」功能:以 AI 代理程式管理持续性专案",
+          "link": "https://www.aibase.com/news/32152",
+          "date": "2026年11月6号 15:58",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "千问AI Office升级端内编辑与模板能力，Word、Excel、PPT均可按需修改",
-          "link": "https://www.aibase.com/news/32115",
-          "date": "2026年11月5号 16:39",
+          "title": "淘宝MNN 团队开源 MNN-Pocket-0.3B，iPhone 18 Pro 离线解码飙升至 350 token/s",
+          "link": "https://www.aibase.com/news/32151",
+          "date": "2026年11月6号 15:58",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Kimi Hosted Agents 发布:Harness 运行时转向云端托管",
-          "link": "https://www.aibase.com/news/32112",
-          "date": "2026年11月5号 16:39",
+          "title": "谷歌重磅发布 Omni 1.2 Flash：视频生成上限延长至 15 秒，API 价格大降 30%",
+          "link": "https://www.aibase.com/news/32149",
+          "date": "2026年11月6号 15:58",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "可灵 AI 宣布 Kling 4.0 Flash 全面开放，深度融入专业影视工作流",
-          "link": "https://www.aibase.com/news/32109",
-          "date": "2026年11月5号 16:39",
+          "title": "4.7 万条假名人内容被清：网信办给 AI 换脸带货踩刹车",
+          "link": "https://www.aibase.com/news/32148",
+          "date": "2026年11月6号 15:58",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "灵光2.0上线一周托管超116万项事务，用户突破2000万",
-          "link": "https://www.aibase.com/news/32105",
-          "date": "2026年11月5号 16:39",
+          "title": "三星砸 42 亿建数据中心，算力的子弹先留给自己人",
+          "link": "https://www.aibase.com/news/32144",
+          "date": "2026年11月6号 15:58",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "豆包工作首次接入第三方模型，首批上线Kimi、智谱与DeepSeek",
-          "link": "https://www.aibase.com/news/32104",
-          "date": "2026年11月5号 16:39",
+          "title": "给 AI 安上脸和嗓子：Meta 的 Muse 能视频聊天了",
+          "link": "https://www.aibase.com/news/32143",
+          "date": "2026年11月6号 15:58",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "雷军晒小米机器人做家务视频，Xiaomi-Robotics-1支撑长程任务",
-          "link": "https://www.aibase.com/news/32101",
-          "date": "2026年11月5号 16:39",
+          "title": "月之暗面放大招！Kimi Hosted Agents 正式发布",
+          "link": "https://www.aibase.com/news/32142",
+          "date": "2026年11月6号 15:58",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "iOS 27.3 beta 正式接入阿里千问，替代 ChatGPT 角色",
-          "link": "https://www.aibase.com/news/32092",
-          "date": "2026年11月5号 16:39",
+          "title": "生成式 AI 影像编辑加速下沉，WhatsApp 试水移动端智能扩图",
+          "link": "https://www.aibase.com/news/32136",
+          "date": "2026年11月6号 15:58",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "7 MoE routing strategies in production, clearly explained",
+          "link": "https://blog.dailydoseofds.com/p/7-moe-routing-strategies-in-production",
+          "date": "Sat, 07 Nov 2026 01:58:32 GMT",
+          "note": "+ a practical learning checklist to learn AI engineering."
+        },
         {
           "title": "Finding Every Vulnerability Made Security Harder",
           "link": "https://blog.dailydoseofds.com/p/finding-every-vulnerability-made",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/prefix-aware-llm-routing-clearly",
           "date": "Thu, 29 Oct 2026 20:42:27 GMT",
           "note": "...explained visually (the trick to get the first LLM token 170x sooner)."
-        },
-        {
-          "title": "Why DeepSeek stores its KV cache on disk",
-          "link": "https://blog.dailydoseofds.com/p/why-deepseek-stores-its-kv-cache",
-          "date": "Wed, 28 Oct 2026 22:56:03 GMT",
-          "note": "DeepSeek's engineering behind 26x faster time to first token."
         }
       ]
     },
@@ -147,6 +147,18 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "ToyBlocks: A controlled world for robot learning and evaluation",
+          "link": "https://huggingface.co/blog/allenai/toyblocks",
+          "date": "Fri, 06 Nov 2026 14:00:48 GMT",
+          "note": ""
+        },
+        {
+          "title": "Egyptian and Nigerian English join the Open ASR Leaderboard",
+          "link": "https://huggingface.co/blog/open-asr-leaderboard-liva",
+          "date": "Fri, 06 Nov 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "New NVIDIA Cosmos 3 Open Models for Interactive World Simulation",
           "link": "https://huggingface.co/blog/nvidia/cosmos-interactive-world-simulation",
@@ -166,12 +178,6 @@
           "note": ""
         },
         {
-          "title": "StateBench: Testing how language models track state changes over long documents",
-          "link": "https://huggingface.co/blog/allenai/statebench",
-          "date": "Tue, 03 Nov 2026 17:15:21 GMT",
-          "note": ""
-        },
-        {
           "title": "Palette: teaching a small model to build decks in your design language",
           "link": "https://huggingface.co/blog/ibm-research/palette-deck-building",
           "date": "Tue, 03 Nov 2026 16:35:36 GMT",
@@ -187,12 +193,6 @@
           "title": "Transformers Model Integration Contracts",
           "link": "https://huggingface.co/blog/transformers-mic",
           "date": "Tue, 03 Nov 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Granite Switch 4.1.1 — Update models like you update software",
-          "link": "https://huggingface.co/blog/ibm-granite/granite-switch-4-1-1",
-          "date": "Thu, 29 Oct 2026 13:37:07 GMT",
           "note": ""
         }
       ]
