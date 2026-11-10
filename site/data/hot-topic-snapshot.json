@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-11-09T06:57:29.625646+00:00",
+    "generated_at": "2026-11-10T07:33:58.282763+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年11月6号 15:58AI 日报AI日报：Kimi Hosted Agents发布；谷歌发布 Omni 1.2 Flash；淘宝MNN 团队开源 MNN-Pocket-0.3B查看日报",
-        "link": "https://www.aibase.com/daily/32153"
+        "title": "2026年11月9号 17:11AI 日报AI日报：ChatGPT用户遭大规模集中停用；腾讯元器平台今日正式停止服务；DeepSeek 开源智能体应用Harness日活突破154万查看日报",
+        "link": "https://www.aibase.com/daily/32183"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "Perplexity发布全新「队友」功能:以 AI 代理程式管理持续性专案",
-          "link": "https://www.aibase.com/news/32152",
-          "date": "2026年11月6号 15:58",
+          "title": "未来 20 万员工将与 2000 万个 AI 智能体协同，微软已为其开发专属管理系统",
+          "link": "https://www.aibase.com/news/32181",
+          "date": "2026年11月9号 17:11",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "淘宝MNN 团队开源 MNN-Pocket-0.3B，iPhone 18 Pro 离线解码飙升至 350 token/s",
-          "link": "https://www.aibase.com/news/32151",
-          "date": "2026年11月6号 15:58",
+          "title": "阿里云Token Plan全面提额:Pro档直降187元，Lite入门仅19.5元",
+          "link": "https://www.aibase.com/news/32177",
+          "date": "2026年11月9号 17:11",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "谷歌重磅发布 Omni 1.2 Flash：视频生成上限延长至 15 秒，API 价格大降 30%",
-          "link": "https://www.aibase.com/news/32149",
-          "date": "2026年11月6号 15:58",
+          "title": "几秒钟“复刻”巨星?Suno再因侵权被告上法庭",
+          "link": "https://www.aibase.com/news/32174",
+          "date": "2026年11月9号 17:11",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "4.7 万条假名人内容被清：网信办给 AI 换脸带货踩刹车",
-          "link": "https://www.aibase.com/news/32148",
-          "date": "2026年11月6号 15:58",
+          "title": "DeepSeek 开源智能体应用 Harness 日活突破 154 万：上线不到三月，单日大模型消耗飙升至 92T 词元",
+          "link": "https://www.aibase.com/news/32172",
+          "date": "2026年11月9号 17:11",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "三星砸 42 亿建数据中心，算力的子弹先留给自己人",
-          "link": "https://www.aibase.com/news/32144",
-          "date": "2026年11月6号 15:58",
+          "title": "xAI 全面升级 Grok Bot，重点优化 Token 效率与智能表现",
+          "link": "https://www.aibase.com/news/32171",
+          "date": "2026年11月9号 17:11",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "给 AI 安上脸和嗓子：Meta 的 Muse 能视频聊天了",
-          "link": "https://www.aibase.com/news/32143",
-          "date": "2026年11月6号 15:58",
+          "title": "腾讯元器平台今日正式停止服务:数据导出截至2027年1月",
+          "link": "https://www.aibase.com/news/32168",
+          "date": "2026年11月9号 17:11",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "月之暗面放大招！Kimi Hosted Agents 正式发布",
-          "link": "https://www.aibase.com/news/32142",
-          "date": "2026年11月6号 15:58",
+          "title": "Anthropic 斥资 34 亿美元抢购发电设备，为数据中心补充能源",
+          "link": "https://www.aibase.com/news/32162",
+          "date": "2026年11月9号 17:11",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "生成式 AI 影像编辑加速下沉，WhatsApp 试水移动端智能扩图",
-          "link": "https://www.aibase.com/news/32136",
-          "date": "2026年11月6号 15:58",
+          "title": "ChatGPT 遭大规模集中停用，高价 200 美元 Pro 订阅用户也未能幸免",
+          "link": "https://www.aibase.com/news/32158",
+          "date": "2026年11月9号 17:11",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Pages in Grok Bot, clearly explained:",
+          "link": "https://blog.dailydoseofds.com/p/pages-in-grok-bot-clearly-explained",
+          "date": "Mon, 09 Nov 2026 23:04:15 GMT",
+          "note": "...covered with a full hands-on video demo."
+        },
         {
           "title": "7 MoE routing strategies in production, clearly explained",
           "link": "https://blog.dailydoseofds.com/p/7-moe-routing-strategies-in-production",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/rag-vs-vectorless-rag-clearly-explained",
           "date": "Fri, 30 Oct 2026 20:22:09 GMT",
           "note": "...explained visually (with tradeoffs in production)."
-        },
-        {
-          "title": "Prefix-Aware LLM Routing, clearly explained",
-          "link": "https://blog.dailydoseofds.com/p/prefix-aware-llm-routing-clearly",
-          "date": "Thu, 29 Oct 2026 20:42:27 GMT",
-          "note": "...explained visually (the trick to get the first LLM token 170x sooner)."
         }
       ]
     },
@@ -148,6 +148,18 @@
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
         {
+          "title": "Nemotron-Personas-Finance-Japan: A Synthetic Dataset Capturing Japan's Demographics and Financial Context",
+          "link": "https://huggingface.co/blog/nvidia/nemotron-personas-finance-japan",
+          "date": "Mon, 09 Nov 2026 15:05:57 GMT",
+          "note": ""
+        },
+        {
+          "title": "Your Experts Have Partners. There's HOPE for Keeping Them Together",
+          "link": "https://huggingface.co/blog/amazon/higher-order-pruning-experts",
+          "date": "Mon, 09 Nov 2026 12:34:29 GMT",
+          "note": ""
+        },
+        {
           "title": "ToyBlocks: A controlled world for robot learning and evaluation",
           "link": "https://huggingface.co/blog/allenai/toyblocks",
           "date": "Fri, 06 Nov 2026 14:00:48 GMT",
@@ -157,12 +169,6 @@
           "title": "Egyptian and Nigerian English join the Open ASR Leaderboard",
           "link": "https://huggingface.co/blog/open-asr-leaderboard-liva",
           "date": "Fri, 06 Nov 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "New NVIDIA Cosmos 3 Open Models for Interactive World Simulation",
-          "link": "https://huggingface.co/blog/nvidia/cosmos-interactive-world-simulation",
-          "date": "Thu, 05 Nov 2026 19:35:16 GMT",
           "note": ""
         },
         {
@@ -186,12 +192,6 @@
         {
           "title": "CWE-bench v2: More coverage, quality, and transparency",
           "link": "https://huggingface.co/blog/cwe-bench",
-          "date": "Tue, 03 Nov 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Transformers Model Integration Contracts",
-          "link": "https://huggingface.co/blog/transformers-mic",
           "date": "Tue, 03 Nov 2026 00:00:00 GMT",
           "note": ""
         }
