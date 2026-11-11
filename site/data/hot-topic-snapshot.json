@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-11-10T07:33:58.282763+00:00",
+    "generated_at": "2026-11-11T06:52:19.159005+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年11月9号 17:11AI 日报AI日报：ChatGPT用户遭大规模集中停用；腾讯元器平台今日正式停止服务；DeepSeek 开源智能体应用Harness日活突破154万查看日报",
-        "link": "https://www.aibase.com/daily/32183"
+        "title": "2026年11月10号 16:09AI 日报AI日报：腾讯AI游戏陪伴Agent鹅次元内测；Anthropic发布Claude Fable5.2；美团开源LongCat-2.5查看日报",
+        "link": "https://www.aibase.com/daily/32213"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "未来 20 万员工将与 2000 万个 AI 智能体协同，微软已为其开发专属管理系统",
-          "link": "https://www.aibase.com/news/32181",
-          "date": "2026年11月9号 17:11",
+          "title": "原今日头条 CEO 陈林正式官宣离职：携手“小鹿爱学”投身 AI 教育创业",
+          "link": "https://www.aibase.com/news/32212",
+          "date": "2026年11月10号 16:09",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阿里云Token Plan全面提额:Pro档直降187元，Lite入门仅19.5元",
-          "link": "https://www.aibase.com/news/32177",
-          "date": "2026年11月9号 17:11",
+          "title": "苹果 Siri AI 隐藏调度规则曝光：Skimmer 前置拦截，2% 英文高频请求悄悄走本地",
+          "link": "https://www.aibase.com/news/32211",
+          "date": "2026年11月10号 16:09",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "几秒钟“复刻”巨星?Suno再因侵权被告上法庭",
-          "link": "https://www.aibase.com/news/32174",
-          "date": "2026年11月9号 17:11",
+          "title": "史上最小多模态模型 Muse Ember 发布，1M 超长上下文专攻智能体高频任务",
+          "link": "https://www.aibase.com/news/32209",
+          "date": "2026年11月10号 16:09",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "DeepSeek 开源智能体应用 Harness 日活突破 154 万：上线不到三月，单日大模型消耗飙升至 92T 词元",
-          "link": "https://www.aibase.com/news/32172",
-          "date": "2026年11月9号 17:11",
+          "title": "美团开源LongCat-2.5，长序列SFT单卡吞吐较DDP提升86%",
+          "link": "https://www.aibase.com/news/32206",
+          "date": "2026年11月10号 16:09",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "xAI 全面升级 Grok Bot，重点优化 Token 效率与智能表现",
-          "link": "https://www.aibase.com/news/32171",
-          "date": "2026年11月9号 17:11",
+          "title": "腾讯首款专属 AI 游戏陪伴\"鹅次元\"内测：让 AI 钻进游戏画面陪你开黑",
+          "link": "https://www.aibase.com/news/32202",
+          "date": "2026年11月10号 16:09",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯元器平台今日正式停止服务:数据导出截至2027年1月",
-          "link": "https://www.aibase.com/news/32168",
-          "date": "2026年11月9号 17:11",
+          "title": "千问 Qwen4 跑分力压 Opus 5.5，极高性价比展现强劲竞争力",
+          "link": "https://www.aibase.com/news/32200",
+          "date": "2026年11月10号 16:09",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Anthropic 斥资 34 亿美元抢购发电设备，为数据中心补充能源",
-          "link": "https://www.aibase.com/news/32162",
-          "date": "2026年11月9号 17:11",
+          "title": "你的游戏“最强搭子”上线:腾讯首款AI游戏陪伴Agent鹅次元”内测开启",
+          "link": "https://www.aibase.com/news/32199",
+          "date": "2026年11月10号 16:09",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "ChatGPT 遭大规模集中停用，高价 200 美元 Pro 订阅用户也未能幸免",
-          "link": "https://www.aibase.com/news/32158",
-          "date": "2026年11月9号 17:11",
+          "title": "MiniMax 加码大模型产业：珠海横琴新设科技公司，注册资本 500 万",
+          "link": "https://www.aibase.com/news/32197",
+          "date": "2026年11月10号 16:09",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "16 Policy Optimization Methods for LLM Training",
+          "link": "https://blog.dailydoseofds.com/p/16-policy-optimization-methods-for",
+          "date": "Wed, 11 Nov 2026 00:07:01 GMT",
+          "note": "...explained visually, plus how hybrid LLMs shrink the KV cache."
+        },
         {
           "title": "Pages in Grok Bot, clearly explained:",
           "link": "https://blog.dailydoseofds.com/p/pages-in-grok-bot-clearly-explained",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/why-other-requests-change-your-llms",
           "date": "Sat, 31 Oct 2026 20:21:59 GMT",
           "note": "+ an update on Harness Engineering 2.0."
-        },
-        {
-          "title": "RAG vs. Vectorless RAG, clearly explained!",
-          "link": "https://blog.dailydoseofds.com/p/rag-vs-vectorless-rag-clearly-explained",
-          "date": "Fri, 30 Oct 2026 20:22:09 GMT",
-          "note": "...explained visually (with tradeoffs in production)."
         }
       ]
     },
@@ -147,6 +147,24 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "BotPsy: On-Device Personal Assistant with a Sub-Billion-Parameter Agentic Language Model",
+          "link": "https://huggingface.co/blog/qvac/botpsy",
+          "date": "Wed, 11 Nov 2026 05:01:16 GMT",
+          "note": ""
+        },
+        {
+          "title": "Pay for Hugging Face Hub with your Google Cloud Account",
+          "link": "https://huggingface.co/blog/hub-gcp-marketplace",
+          "date": "Tue, 10 Nov 2026 00:00:00 GMT",
+          "note": ""
+        },
+        {
+          "title": "Decision Models in Hugging Face",
+          "link": "https://huggingface.co/blog/decision",
+          "date": "Tue, 10 Nov 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "Nemotron-Personas-Finance-Japan: A Synthetic Dataset Capturing Japan's Demographics and Financial Context",
           "link": "https://huggingface.co/blog/nvidia/nemotron-personas-finance-japan",
@@ -175,24 +193,6 @@
           "title": "A Closer Look at Phonon TTS. Launching High-Quality On-Device Speech That Tops the Benchmarks.",
           "link": "https://huggingface.co/blog/phonon-tts",
           "date": "Thu, 05 Nov 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Dharma Field Extractor: Any Document In, Structured Fields in JSON Out",
-          "link": "https://huggingface.co/blog/Dharma-AI/dharma-field-extractor",
-          "date": "Wed, 04 Nov 2026 17:50:10 GMT",
-          "note": ""
-        },
-        {
-          "title": "Palette: teaching a small model to build decks in your design language",
-          "link": "https://huggingface.co/blog/ibm-research/palette-deck-building",
-          "date": "Tue, 03 Nov 2026 16:35:36 GMT",
-          "note": ""
-        },
-        {
-          "title": "CWE-bench v2: More coverage, quality, and transparency",
-          "link": "https://huggingface.co/blog/cwe-bench",
-          "date": "Tue, 03 Nov 2026 00:00:00 GMT",
           "note": ""
         }
       ]
