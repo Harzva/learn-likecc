@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-11-11T06:52:19.159005+00:00",
+    "generated_at": "2026-11-12T07:28:40.518018+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年11月10号 16:09AI 日报AI日报：腾讯AI游戏陪伴Agent鹅次元内测；Anthropic发布Claude Fable5.2；美团开源LongCat-2.5查看日报",
-        "link": "https://www.aibase.com/daily/32213"
+        "title": "2026年11月11号 17:01AI 日报AI日报：MiniMax开源H3-Image；腾讯元宝搜索上线独立网页版；百度发布文心5.5Flash Preview查看日报",
+        "link": "https://www.aibase.com/daily/32252"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "原今日头条 CEO 陈林正式官宣离职：携手“小鹿爱学”投身 AI 教育创业",
-          "link": "https://www.aibase.com/news/32212",
-          "date": "2026年11月10号 16:09",
+          "title": "百度发布文心5.5Flash Preview:2800亿参数、百万Token上下文，权重11月25日开源",
+          "link": "https://www.aibase.com/news/32250",
+          "date": "2026年11月11号 17:01",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "苹果 Siri AI 隐藏调度规则曝光：Skimmer 前置拦截，2% 英文高频请求悄悄走本地",
-          "link": "https://www.aibase.com/news/32211",
-          "date": "2026年11月10号 16:09",
+          "title": "腾讯元宝搜索上线独立网页版，B端能力向C端延伸",
+          "link": "https://www.aibase.com/news/32248",
+          "date": "2026年11月11号 17:01",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "史上最小多模态模型 Muse Ember 发布，1M 超长上下文专攻智能体高频任务",
-          "link": "https://www.aibase.com/news/32209",
-          "date": "2026年11月10号 16:09",
+          "title": "OpenAI 正面宣战谷歌地图：推出 ChatGPT 企业信息主页，12 亿月活流量正式切入本地商业搜索",
+          "link": "https://www.aibase.com/news/32245",
+          "date": "2026年11月11号 17:01",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "美团开源LongCat-2.5，长序列SFT单卡吞吐较DDP提升86%",
-          "link": "https://www.aibase.com/news/32206",
-          "date": "2026年11月10号 16:09",
+          "title": "AI剧虚拟形象权属如何留痕?红果短剧上线确权新能力",
+          "link": "https://www.aibase.com/news/32244",
+          "date": "2026年11月11号 17:01",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯首款专属 AI 游戏陪伴\"鹅次元\"内测：让 AI 钻进游戏画面陪你开黑",
-          "link": "https://www.aibase.com/news/32202",
-          "date": "2026年11月10号 16:09",
+          "title": "阿里千问全新一代 Qwen4 大模型官宣：多维能力大幅进化，预览版已正式上线",
+          "link": "https://www.aibase.com/news/32241",
+          "date": "2026年11月11号 17:01",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "千问 Qwen4 跑分力压 Opus 5.5，极高性价比展现强劲竞争力",
-          "link": "https://www.aibase.com/news/32200",
-          "date": "2026年11月10号 16:09",
+          "title": "Anthropic 办公套件升级：会议助手、智能表格齐发，全面杀入传统协同巨头腹地",
+          "link": "https://www.aibase.com/news/32240",
+          "date": "2026年11月11号 17:01",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "你的游戏“最强搭子”上线:腾讯首款AI游戏陪伴Agent鹅次元”内测开启",
-          "link": "https://www.aibase.com/news/32199",
-          "date": "2026年11月10号 16:09",
+          "title": "谷歌旗舰 Gemini 4 Carbon 正式发布：多智能体协作一夜造游戏，网络安全与科学推理迎来质的飞跃",
+          "link": "https://www.aibase.com/news/32223",
+          "date": "2026年11月11号 17:01",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "MiniMax 加码大模型产业：珠海横琴新设科技公司，注册资本 500 万",
-          "link": "https://www.aibase.com/news/32197",
-          "date": "2026年11月10号 16:09",
+          "title": "MiniMax开源H3-Image:10秒生成16MP图像，价格仅同档工具50%–70%",
+          "link": "https://www.aibase.com/news/32222",
+          "date": "2026年11月11号 17:01",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Find Production Agent Failures Before Users Do",
+          "link": "https://blog.dailydoseofds.com/p/find-production-agent-failures-before",
+          "date": "Wed, 11 Nov 2026 23:33:57 GMT",
+          "note": "...explained with a hands-on walkthrough!"
+        },
         {
           "title": "16 Policy Optimization Methods for LLM Training",
           "link": "https://blog.dailydoseofds.com/p/16-policy-optimization-methods-for",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/12-optimizers-for-training-neural",
           "date": "Mon, 02 Nov 2026 21:30:36 GMT",
           "note": "...and what each one costs in GPU memory!"
-        },
-        {
-          "title": "Why Other Requests Change Your LLM’s Output",
-          "link": "https://blog.dailydoseofds.com/p/why-other-requests-change-your-llms",
-          "date": "Sat, 31 Oct 2026 20:21:59 GMT",
-          "note": "+ an update on Harness Engineering 2.0."
         }
       ]
     },
@@ -151,6 +151,12 @@
           "title": "BotPsy: On-Device Personal Assistant with a Sub-Billion-Parameter Agentic Language Model",
           "link": "https://huggingface.co/blog/qvac/botpsy",
           "date": "Wed, 11 Nov 2026 05:01:16 GMT",
+          "note": ""
+        },
+        {
+          "title": "Token Pooling-Aware Training for Multi-Vector Embedding Models",
+          "link": "https://huggingface.co/blog/token-pooling",
+          "date": "Wed, 11 Nov 2026 00:00:00 GMT",
           "note": ""
         },
         {
@@ -187,12 +193,6 @@
           "title": "Egyptian and Nigerian English join the Open ASR Leaderboard",
           "link": "https://huggingface.co/blog/open-asr-leaderboard-liva",
           "date": "Fri, 06 Nov 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "A Closer Look at Phonon TTS. Launching High-Quality On-Device Speech That Tops the Benchmarks.",
-          "link": "https://huggingface.co/blog/phonon-tts",
-          "date": "Thu, 05 Nov 2026 00:00:00 GMT",
           "note": ""
         }
       ]
