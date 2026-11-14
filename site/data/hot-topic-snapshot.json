@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-11-13T06:59:43.872650+00:00",
+    "generated_at": "2026-11-14T06:49:19.845362+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年11月12号 16:13AI 日报AI日报：百度ERNIE 5.5 Flash Preview亮相；阿里官宣千问大模型Qwen4；火山引擎推出Seedance2.5flash查看日报",
-        "link": "https://www.aibase.com/daily/32282"
+        "title": "2026年11月13号 16:56AI 日报AI日报：黄仁勋卸任英伟达总裁职位；星火语音大模型SparkAudio 1.0正式上线API服务；Google推出Gemini4Hydrogen查看日报",
+        "link": "https://www.aibase.com/daily/32319"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "Claude 交互式连接器升级：应用可在对话旁全屏打开并支持直接操作",
-          "link": "https://www.aibase.com/news/32279",
-          "date": "2026年11月12号 16:13",
+          "title": "OpenAI机器人业务转向\"模型内整合\"，具身智能纳入通用基础模型框架",
+          "link": "https://www.aibase.com/news/32313",
+          "date": "2026年11月13号 16:56",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "百度文心大模型再升级：ERNIE 5.5 Flash Preview 亮相，模型权重将于 11 月 25 日前正式开源",
-          "link": "https://www.aibase.com/news/32278",
-          "date": "2026年11月12号 16:13",
+          "title": "谷歌首批 Gemini 智能眼镜震撼开启预售：395 美元起售，开创性引入“双向隐私”条款",
+          "link": "https://www.aibase.com/news/32308",
+          "date": "2026年11月13号 16:56",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "火山引擎推出Seedance2.5flash:生成速度翻倍，720P约0.99元/秒、较旗舰降低34%",
-          "link": "https://www.aibase.com/news/32277",
-          "date": "2026年11月12号 16:13",
+          "title": "关停五年，\"虾米\"借 AI 还魂：阿里 30 元推出快乐虾米",
+          "link": "https://www.aibase.com/news/32305",
+          "date": "2026年11月13号 16:56",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阿里重磅官宣千问大模型 Qwen4：核心能力全线进化，千问 App 现已全面接入预览版",
-          "link": "https://www.aibase.com/news/32274",
-          "date": "2026年11月12号 16:13",
+          "title": "ElevenLabs发布Scribe v3系列，支持102种语言及实时语音转写",
+          "link": "https://www.aibase.com/news/32303",
+          "date": "2026年11月13号 16:56",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "百度发布大模型交易平台“词元所”：宣称中立可信，打造大模型界的“证券交易所”",
-          "link": "https://www.aibase.com/news/32272",
-          "date": "2026年11月12号 16:13",
+          "title": "科大讯飞星火语音基座大模型 SparkAudio 1.0 正式上线 API 服务",
+          "link": "https://www.aibase.com/news/32302",
+          "date": "2026年11月13号 16:56",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Runway 开源 27B 世界动作模型 Praxis-1：登顶机器人权威榜单，全面支持 Apache 2.0 商业开源",
-          "link": "https://www.aibase.com/news/32267",
-          "date": "2026年11月12号 16:13",
+          "title": "Anthropic 正式推荐 Claude Opus 5.5：成为多套餐默认模型",
+          "link": "https://www.aibase.com/news/32296",
+          "date": "2026年11月13号 16:56",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "灵光生态再扩容!新增微信 ClawBot、QQ机器人、瑞幸咖啡等六大连接器",
-          "link": "https://www.aibase.com/news/32264",
-          "date": "2026年11月12号 16:13",
+          "title": "英伟达创始人黄仁勋卸任总裁职位",
+          "link": "https://www.aibase.com/news/32291",
+          "date": "2026年11月13号 16:56",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "谷歌 Gemini 语音助手正式接入苹果 CarPlay：全面拓展车载 AI 生态，支持免提对话与跨设备同步",
-          "link": "https://www.aibase.com/news/32257",
-          "date": "2026年11月12号 16:13",
+          "title": "Google推出Gemini4Hydrogen，全球Search迎来最大模型升级",
+          "link": "https://www.aibase.com/news/32289",
+          "date": "2026年11月13号 16:56",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "How to Deploy Agent Teams Across Your Company (Complete Guide)",
+          "link": "https://blog.dailydoseofds.com/p/how-to-deploy-agent-teams-across",
+          "date": "Sat, 14 Nov 2026 00:00:46 GMT",
+          "note": "...explained visually, plus a four-agent Alook and Nimble walkthrough."
+        },
         {
           "title": "How Top AI Teams Scale to 1,000+ Agents",
           "link": "https://blog.dailydoseofds.com/p/how-top-ai-teams-scale-to-1000-agents",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/grok-bot-masterclass-081",
           "date": "Wed, 04 Nov 2026 23:24:08 GMT",
           "note": "...covered with a full hands-on video demo."
-        },
-        {
-          "title": "Agent Framework vs. Agent Harness, clearly explained!",
-          "link": "https://blog.dailydoseofds.com/p/agent-framework-vs-agent-harness",
-          "date": "Tue, 03 Nov 2026 21:36:04 GMT",
-          "note": "+ a technique for 23x faster attention!"
         }
       ]
     },
@@ -147,6 +147,24 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Build a Robot Pick-and-Place Simulation with SimReady Assets",
+          "link": "https://huggingface.co/blog/nvidia/simready-assets-robot-pick-and-place",
+          "date": "Fri, 13 Nov 2026 18:00:39 GMT",
+          "note": ""
+        },
+        {
+          "title": "XYBench: Helping with the problem behind the question",
+          "link": "https://huggingface.co/blog/allenai/xybench",
+          "date": "Fri, 13 Nov 2026 17:02:35 GMT",
+          "note": ""
+        },
+        {
+          "title": "llama.cpp v1.0.0 : A stronger foundation for the local AI ecosystem",
+          "link": "https://huggingface.co/blog/ggml-org/llama-cpp-v1",
+          "date": "Fri, 13 Nov 2026 14:05:22 GMT",
+          "note": ""
+        },
         {
           "title": "LLMON: An LLM-Native Markup Language, now in Granite 4.1 3B and 8B",
           "link": "https://huggingface.co/blog/ibm-granite/llmon-an-llm-native-markup-language-now-in-granite",
@@ -175,24 +193,6 @@
           "title": "Pay for Hugging Face Hub with your Google Cloud Account",
           "link": "https://huggingface.co/blog/hub-gcp-marketplace",
           "date": "Tue, 10 Nov 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Decision Models in Hugging Face",
-          "link": "https://huggingface.co/blog/decision",
-          "date": "Tue, 10 Nov 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Nemotron-Personas-Finance-Japan: A Synthetic Dataset Capturing Japan's Demographics and Financial Context",
-          "link": "https://huggingface.co/blog/nvidia/nemotron-personas-finance-japan",
-          "date": "Mon, 09 Nov 2026 15:05:57 GMT",
-          "note": ""
-        },
-        {
-          "title": "Your Experts Have Partners. There's HOPE for Keeping Them Together",
-          "link": "https://huggingface.co/blog/amazon/higher-order-pruning-experts",
-          "date": "Mon, 09 Nov 2026 12:34:29 GMT",
           "note": ""
         }
       ]
