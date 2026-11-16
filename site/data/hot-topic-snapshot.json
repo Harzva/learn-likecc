@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-11-15T06:53:31.751177+00:00",
+    "generated_at": "2026-11-16T06:55:58.663702+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -85,6 +85,12 @@
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
         {
+          "title": "Moving from RAG Apps to RAG Systems Engineering",
+          "link": "https://blog.dailydoseofds.com/p/moving-from-rag-apps-to-rag-systems",
+          "date": "Mon, 16 Nov 2026 00:46:08 GMT",
+          "note": "A hands-on path through retrieval, context, storage, and scale."
+        },
+        {
           "title": "How to Deploy Agent Teams Across Your Company (Complete Guide)",
           "link": "https://blog.dailydoseofds.com/p/how-to-deploy-agent-teams-across",
           "date": "Sat, 14 Nov 2026 00:00:46 GMT",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/finding-every-vulnerability-made",
           "date": "Thu, 05 Nov 2026 22:54:55 GMT",
           "note": "+ building an agent engineering team with Grok Bot!"
-        },
-        {
-          "title": "Grok Bot Masterclass",
-          "link": "https://blog.dailydoseofds.com/p/grok-bot-masterclass-081",
-          "date": "Wed, 04 Nov 2026 23:24:08 GMT",
-          "note": "...covered with a full hands-on video demo."
         }
       ]
     },
