@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-11-17T08:13:34.633887+00:00",
+    "generated_at": "2026-11-18T07:46:52.743297+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年11月16号 17:12AI 日报AI日报：DeepSeek因算力不足限额；阿里千问发布 Qwen4-Max；腾讯混元发布Hy4flash模型；豆包 App 上线“找店”功能查看日报",
-        "link": "https://www.aibase.com/daily/32342"
+        "title": "2026年11月17号 16:37AI 日报AI日报：Gemini Notebook上线网站生成功能；Anthropic将对员工实施严苛售股限制；苹果智能眼镜原型机曝光查看日报",
+        "link": "https://www.aibase.com/daily/32359"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "黄仁勋考虑重返英伟达CEO岗位，盟友筹建“作战室”游说董事会",
-          "link": "https://www.aibase.com/news/32341",
-          "date": "2026年11月16号 17:12",
+          "title": "李飞飞加入AMD!World Labs正式并入，布局3D世界模型与机器人AI",
+          "link": "https://www.aibase.com/news/32355",
+          "date": "2026年11月17号 16:37",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "火山引擎宣布Seedance2.54K API全面开放，支持10-bit色深与样片模式",
-          "link": "https://www.aibase.com/news/32340",
-          "date": "2026年11月16号 17:12",
+          "title": "Anthropic引入10b5-1计划:拟IPO前夕规范员工股票出售机制",
+          "link": "https://www.aibase.com/news/32352",
+          "date": "2026年11月17号 16:37",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "DeepSeek收紧使用限制:7天历史对话、4万字输入及每日额度调整",
-          "link": "https://www.aibase.com/news/32337",
-          "date": "2026年11月16号 17:12",
+          "title": "苹果探索AI订阅变现，将云端智能使用额度与iCloud+绑定",
+          "link": "https://www.aibase.com/news/32351",
+          "date": "2026年11月17号 16:37",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯混元发布 Hy4flash:224B 参数、1M 上下文，解码超150tps，单任务成本仅 Hy4preview 的1/13",
-          "link": "https://www.aibase.com/news/32335",
-          "date": "2026年11月16号 17:12",
+          "title": "Gemini Notebook上线网站生成功能，支持一句话创建互动网页",
+          "link": "https://www.aibase.com/news/32350",
+          "date": "2026年11月17号 16:37",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "阿里千问发布 Qwen4-Max: 以架构升级压低 token 消耗，单任务费用降58%",
-          "link": "https://www.aibase.com/news/32332",
-          "date": "2026年11月16号 17:12",
+          "title": "苹果智能眼镜曝光:拟深度整合 Siri 接入第三方应用生态",
+          "link": "https://www.aibase.com/news/32349",
+          "date": "2026年11月17号 16:37",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "苹果首款AI眼镜计划2027年WWDC亮相，年底前上市",
-          "link": "https://www.aibase.com/news/32328",
-          "date": "2026年11月16号 17:12",
+          "title": "百度三季度AI业务收入占比连续三季度过半，AI云基础设施收入同比增长94%",
+          "link": "https://www.aibase.com/news/32348",
+          "date": "2026年11月17号 16:37",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "谷歌 Gemini4Carbon 入驻 WorkBuddy，百万 Token 上下文向 Pro 用户开放",
-          "link": "https://www.aibase.com/news/32327",
-          "date": "2026年11月16号 17:12",
+          "title": "打破门槛!OpenAI面向全球研究人员再放5万个免费Plus名额",
+          "link": "https://www.aibase.com/news/32347",
+          "date": "2026年11月17号 16:37",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "豆包 App 上线“找店”:商家批量标注地图，团购下单与一键导航在对话内闭环",
-          "link": "https://www.aibase.com/news/32325",
-          "date": "2026年11月16号 17:12",
+          "title": "奥特曼回应黄仁勋离职:英伟达与AI行业“不会有事”",
+          "link": "https://www.aibase.com/news/32344",
+          "date": "2026年11月17号 16:37",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "The next AI inference architecture, clearly explained (4x faster than GPUs)",
+          "link": "https://blog.dailydoseofds.com/p/the-next-ai-inference-architecture",
+          "date": "Tue, 17 Nov 2026 23:40:37 GMT",
+          "note": "...plus autoregressive LLMs vs. diffusion LLMs (a popular LLM interview question)."
+        },
         {
           "title": "Security Breaks in the Gaps Between Your Reviews",
           "link": "https://blog.dailydoseofds.com/p/security-breaks-in-the-gaps-between",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/pages-in-grok-bot-clearly-explained",
           "date": "Mon, 09 Nov 2026 23:04:15 GMT",
           "note": "...covered with a full hands-on video demo."
-        },
-        {
-          "title": "7 MoE routing strategies in production, clearly explained",
-          "link": "https://blog.dailydoseofds.com/p/7-moe-routing-strategies-in-production",
-          "date": "Sat, 07 Nov 2026 01:58:32 GMT",
-          "note": "+ a practical learning checklist to learn AI engineering."
         }
       ]
     },
