@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-11-18T07:46:52.743297+00:00",
+    "generated_at": "2026-11-19T07:42:23.943230+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年11月17号 16:37AI 日报AI日报：Gemini Notebook上线网站生成功能；Anthropic将对员工实施严苛售股限制；苹果智能眼镜原型机曝光查看日报",
-        "link": "https://www.aibase.com/daily/32359"
+        "title": "2026年11月18号 16:13AI 日报AI日报：腾讯Hy4 flash开源；微软发布图片模型MAI Image 2.7；OpenAI官宣GPT-6.2 Astra与Sol查看日报",
+        "link": "https://www.aibase.com/daily/32384"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "李飞飞加入AMD!World Labs正式并入，布局3D世界模型与机器人AI",
-          "link": "https://www.aibase.com/news/32355",
-          "date": "2026年11月17号 16:37",
+          "title": "免费开源招来“斗米仇”？DeepSeek 仅因长文本限流竟遭极端差评与投诉",
+          "link": "https://www.aibase.com/news/32383",
+          "date": "2026年11月18号 16:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Anthropic引入10b5-1计划:拟IPO前夕规范员工股票出售机制",
-          "link": "https://www.aibase.com/news/32352",
-          "date": "2026年11月17号 16:37",
+          "title": "腾讯把 Hy4 flash 开源了：224B 大模型放进 GitHub，人人可下载",
+          "link": "https://www.aibase.com/news/32380",
+          "date": "2026年11月18号 16:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "苹果探索AI订阅变现，将云端智能使用额度与iCloud+绑定",
-          "link": "https://www.aibase.com/news/32351",
-          "date": "2026年11月17号 16:37",
+          "title": "Anthropic 在 Claude 平台推出测试版关联账单功能：打通生态闭环，为第三方应用开启 OAuth 计费测试",
+          "link": "https://www.aibase.com/news/32379",
+          "date": "2026年11月18号 16:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Gemini Notebook上线网站生成功能，支持一句话创建互动网页",
-          "link": "https://www.aibase.com/news/32350",
-          "date": "2026年11月17号 16:37",
+          "title": "郑渊洁停更两年复出：用 AI 手搓动画免费放送，还劝同行“换付费 AI 再试试”",
+          "link": "https://www.aibase.com/news/32376",
+          "date": "2026年11月18号 16:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "苹果智能眼镜曝光:拟深度整合 Siri 接入第三方应用生态",
-          "link": "https://www.aibase.com/news/32349",
-          "date": "2026年11月17号 16:37",
+          "title": "语音 AI 迎来重磅并购：ElevenLabs 宣布收购日本知名语音 AI 公司 Kotoba",
+          "link": "https://www.aibase.com/news/32375",
+          "date": "2026年11月18号 16:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "百度三季度AI业务收入占比连续三季度过半，AI云基础设施收入同比增长94%",
-          "link": "https://www.aibase.com/news/32348",
-          "date": "2026年11月17号 16:37",
+          "title": "微软重磅发布 MAI Image 2.7：以 1/5 价格登顶图像编辑榜首，开启局部精准修图新时代",
+          "link": "https://www.aibase.com/news/32371",
+          "date": "2026年11月18号 16:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "打破门槛!OpenAI面向全球研究人员再放5万个免费Plus名额",
-          "link": "https://www.aibase.com/news/32347",
-          "date": "2026年11月17号 16:37",
+          "title": "OpenAI 官宣 GPT-6.2 Astra 与 Sol：API 成本暴降 60%，全面赋能专业研究与日常办公",
+          "link": "https://www.aibase.com/news/32367",
+          "date": "2026年11月18号 16:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "奥特曼回应黄仁勋离职:英伟达与AI行业“不会有事”",
-          "link": "https://www.aibase.com/news/32344",
-          "date": "2026年11月17号 16:37",
+          "title": "微软自研芯片 Maia 200 量产，每瓦性能反超 GPU 基础设施",
+          "link": "https://www.aibase.com/news/32364",
+          "date": "2026年11月18号 16:13",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "GPU architecture, clearly explained",
+          "link": "https://blog.dailydoseofds.com/p/gpu-architecture-clearly-explained",
+          "date": "Thu, 19 Nov 2026 00:13:29 GMT",
+          "note": "...and why memory bandwidth, not compute, sets your token rate."
+        },
         {
           "title": "The next AI inference architecture, clearly explained (4x faster than GPUs)",
           "link": "https://blog.dailydoseofds.com/p/the-next-ai-inference-architecture",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/16-policy-optimization-methods-for",
           "date": "Wed, 11 Nov 2026 00:07:01 GMT",
           "note": "...explained visually, plus how hybrid LLMs shrink the KV cache."
-        },
-        {
-          "title": "Pages in Grok Bot, clearly explained:",
-          "link": "https://blog.dailydoseofds.com/p/pages-in-grok-bot-clearly-explained",
-          "date": "Mon, 09 Nov 2026 23:04:15 GMT",
-          "note": "...covered with a full hands-on video demo."
         }
       ]
     },
@@ -148,6 +148,36 @@
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
         {
+          "title": "DaisyRose-27B: Pushing the Frontier of Post-Training Efficiency",
+          "link": "https://huggingface.co/blog/RadixArk/daisyrose-27b-pushing-the-frontier-of-post-trainin",
+          "date": "Wed, 18 Nov 2026 19:54:56 GMT",
+          "note": ""
+        },
+        {
+          "title": "Why your fine-tuning job takes longer than the FLOPs say",
+          "link": "https://huggingface.co/blog/Dharma-AI/predicting-fine-tuning-time",
+          "date": "Wed, 18 Nov 2026 18:53:43 GMT",
+          "note": ""
+        },
+        {
+          "title": "Time-Series Models in the Streamhouse: A New Frontier and Use Cases",
+          "link": "https://huggingface.co/blog/ibm-research/time-series-powered-streamhouse",
+          "date": "Wed, 18 Nov 2026 15:00:23 GMT",
+          "note": ""
+        },
+        {
+          "title": "180B Parameters, 32GB of RAM: Pushing MoE Inference to the Limit with Transformers",
+          "link": "https://huggingface.co/blog/moe-expert-streaming",
+          "date": "Wed, 18 Nov 2026 00:00:00 GMT",
+          "note": ""
+        },
+        {
+          "title": "Rumble-2-Flash: an open 0.5B speech model for 40+ languages",
+          "link": "https://huggingface.co/blog/rumble-2-flash",
+          "date": "Wed, 18 Nov 2026 00:00:00 GMT",
+          "note": ""
+        },
+        {
           "title": "Hugging Face and OpenRouter join forces to make open-weight models easy to run",
           "link": "https://huggingface.co/blog/openrouter",
           "date": "Mon, 16 Nov 2026 00:00:00 GMT",
@@ -163,36 +193,6 @@
           "title": "XYBench: Helping with the problem behind the question",
           "link": "https://huggingface.co/blog/allenai/xybench",
           "date": "Fri, 13 Nov 2026 17:02:35 GMT",
-          "note": ""
-        },
-        {
-          "title": "llama.cpp v1.0.0 : A stronger foundation for the local AI ecosystem",
-          "link": "https://huggingface.co/blog/ggml-org/llama-cpp-v1",
-          "date": "Fri, 13 Nov 2026 14:05:22 GMT",
-          "note": ""
-        },
-        {
-          "title": "LLMON: An LLM-Native Markup Language, now in Granite 4.1 3B and 8B",
-          "link": "https://huggingface.co/blog/ibm-granite/llmon-an-llm-native-markup-language-now-in-granite",
-          "date": "Thu, 12 Nov 2026 19:07:35 GMT",
-          "note": ""
-        },
-        {
-          "title": "The Definitive Fine-Tuning Guide for 3D Generation Models",
-          "link": "https://huggingface.co/blog/3d-lora-finetuning",
-          "date": "Thu, 12 Nov 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "BotPsy: On-Device Personal Assistant with a Sub-Billion-Parameter Agentic Language Model",
-          "link": "https://huggingface.co/blog/qvac/botpsy",
-          "date": "Wed, 11 Nov 2026 05:01:16 GMT",
-          "note": ""
-        },
-        {
-          "title": "Token Pooling-Aware Training for Multi-Vector Embedding Models",
-          "link": "https://huggingface.co/blog/token-pooling",
-          "date": "Wed, 11 Nov 2026 00:00:00 GMT",
           "note": ""
         }
       ]
