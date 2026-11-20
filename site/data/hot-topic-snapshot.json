@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-11-19T07:42:23.943230+00:00",
+    "generated_at": "2026-11-20T07:34:00.118340+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年11月18号 16:13AI 日报AI日报：腾讯Hy4 flash开源；微软发布图片模型MAI Image 2.7；OpenAI官宣GPT-6.2 Astra与Sol查看日报",
-        "link": "https://www.aibase.com/daily/32384"
+        "title": "2026年11月19号 16:47AI 日报AI日报：火山上线SeedRealtime 1.0 API；腾讯大幅削减元宝投入；OpenAI首款AI硬件或年底出货查看日报",
+        "link": "https://www.aibase.com/daily/32414"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "免费开源招来“斗米仇”？DeepSeek 仅因长文本限流竟遭极端差评与投诉",
-          "link": "https://www.aibase.com/news/32383",
-          "date": "2026年11月18号 16:13",
+          "title": "火山引擎上线豆包实时音视频通话模型 SeedRealtime 1.0 API",
+          "link": "https://www.aibase.com/news/32411",
+          "date": "2026年11月19号 16:47",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯把 Hy4 flash 开源了：224B 大模型放进 GitHub，人人可下载",
-          "link": "https://www.aibase.com/news/32380",
-          "date": "2026年11月18号 16:13",
+          "title": "腾讯大幅削减元宝投入，微信 AI 助手“小微”日活达 3000 万",
+          "link": "https://www.aibase.com/news/32407",
+          "date": "2026年11月19号 16:47",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Anthropic 在 Claude 平台推出测试版关联账单功能：打通生态闭环，为第三方应用开启 OAuth 计费测试",
-          "link": "https://www.aibase.com/news/32379",
-          "date": "2026年11月18号 16:13",
+          "title": "DeepSeek调整API定价策略:服务端搜索与网页抓取正式免除单独计费",
+          "link": "https://www.aibase.com/news/32403",
+          "date": "2026年11月19号 16:47",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "郑渊洁停更两年复出：用 AI 手搓动画免费放送，还劝同行“换付费 AI 再试试”",
-          "link": "https://www.aibase.com/news/32376",
-          "date": "2026年11月18号 16:13",
+          "title": "月之暗面 Kimi 大佬穿女仆装亮相 2026 云桥大会，疑似扮演 DeepSeek “大肥鱼”",
+          "link": "https://www.aibase.com/news/32402",
+          "date": "2026年11月19号 16:47",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "语音 AI 迎来重磅并购：ElevenLabs 宣布收购日本知名语音 AI 公司 Kotoba",
-          "link": "https://www.aibase.com/news/32375",
-          "date": "2026年11月18号 16:13",
+          "title": "AI助手竞争转向工作上下文管理：腾讯WorkBuddy以分组与多文件夹关联重构任务组织",
+          "link": "https://www.aibase.com/news/32400",
+          "date": "2026年11月19号 16:47",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "微软重磅发布 MAI Image 2.7：以 1/5 价格登顶图像编辑榜首，开启局部精准修图新时代",
-          "link": "https://www.aibase.com/news/32371",
-          "date": "2026年11月18号 16:13",
+          "title": "谷歌发布 Gemini 4 Neon，速度飙升 3 倍还支持百万上下文",
+          "link": "https://www.aibase.com/news/32396",
+          "date": "2026年11月19号 16:47",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenAI 官宣 GPT-6.2 Astra 与 Sol：API 成本暴降 60%，全面赋能专业研究与日常办公",
-          "link": "https://www.aibase.com/news/32367",
-          "date": "2026年11月18号 16:13",
+          "title": "OpenAI 首款 AI 硬件传年底启动出货：立讯精密等中国供应链厂商深度参与",
+          "link": "https://www.aibase.com/news/32393",
+          "date": "2026年11月19号 16:47",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "微软自研芯片 Maia 200 量产，每瓦性能反超 GPU 基础设施",
-          "link": "https://www.aibase.com/news/32364",
-          "date": "2026年11月18号 16:13",
+          "title": "Anthropic拟以每股83美元进行IPO定价，完全稀释估值达1.5万亿美元",
+          "link": "https://www.aibase.com/news/32392",
+          "date": "2026年11月19号 16:47",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Vibe Coding Has a Blind Spot",
+          "link": "https://blog.dailydoseofds.com/p/vibe-coding-has-a-blind-spot",
+          "date": "Fri, 20 Nov 2026 00:43:42 GMT",
+          "note": "...plus a Deepnote upgrade that lets coding agents share one live data app."
+        },
         {
           "title": "GPU architecture, clearly explained",
           "link": "https://blog.dailydoseofds.com/p/gpu-architecture-clearly-explained",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/find-production-agent-failures-before",
           "date": "Wed, 11 Nov 2026 23:33:57 GMT",
           "note": "...explained with a hands-on walkthrough!"
-        },
-        {
-          "title": "16 Policy Optimization Methods for LLM Training",
-          "link": "https://blog.dailydoseofds.com/p/16-policy-optimization-methods-for",
-          "date": "Wed, 11 Nov 2026 00:07:01 GMT",
-          "note": "...explained visually, plus how hybrid LLMs shrink the KV cache."
         }
       ]
     },
