@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-11-20T07:34:00.118340+00:00",
+    "generated_at": "2026-11-21T07:30:08.699457+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -10,10 +10,6 @@
       "label": "AIbase AI日报",
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
-      "current_issue": {
-        "title": "2026年11月19号 16:47AI 日报AI日报：火山上线SeedRealtime 1.0 API；腾讯大幅削减元宝投入；OpenAI首款AI硬件或年底出货查看日报",
-        "link": "https://www.aibase.com/daily/32414"
-      },
       "route_hints": [
         "topic-hot-watch",
         "topic-ai-zahuopu",
@@ -21,56 +17,8 @@
         "topic-llm"
       ],
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
-      "items": [
-        {
-          "title": "火山引擎上线豆包实时音视频通话模型 SeedRealtime 1.0 API",
-          "link": "https://www.aibase.com/news/32411",
-          "date": "2026年11月19号 16:47",
-          "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
-        },
-        {
-          "title": "腾讯大幅削减元宝投入，微信 AI 助手“小微”日活达 3000 万",
-          "link": "https://www.aibase.com/news/32407",
-          "date": "2026年11月19号 16:47",
-          "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
-        },
-        {
-          "title": "DeepSeek调整API定价策略:服务端搜索与网页抓取正式免除单独计费",
-          "link": "https://www.aibase.com/news/32403",
-          "date": "2026年11月19号 16:47",
-          "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
-        },
-        {
-          "title": "月之暗面 Kimi 大佬穿女仆装亮相 2026 云桥大会，疑似扮演 DeepSeek “大肥鱼”",
-          "link": "https://www.aibase.com/news/32402",
-          "date": "2026年11月19号 16:47",
-          "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
-        },
-        {
-          "title": "AI助手竞争转向工作上下文管理：腾讯WorkBuddy以分组与多文件夹关联重构任务组织",
-          "link": "https://www.aibase.com/news/32400",
-          "date": "2026年11月19号 16:47",
-          "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
-        },
-        {
-          "title": "谷歌发布 Gemini 4 Neon，速度飙升 3 倍还支持百万上下文",
-          "link": "https://www.aibase.com/news/32396",
-          "date": "2026年11月19号 16:47",
-          "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
-        },
-        {
-          "title": "OpenAI 首款 AI 硬件传年底启动出货：立讯精密等中国供应链厂商深度参与",
-          "link": "https://www.aibase.com/news/32393",
-          "date": "2026年11月19号 16:47",
-          "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
-        },
-        {
-          "title": "Anthropic拟以每股83美元进行IPO定价，完全稀释估值达1.5万亿美元",
-          "link": "https://www.aibase.com/news/32392",
-          "date": "2026年11月19号 16:47",
-          "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
-        }
-      ]
+      "error": "fetch failed after 3 urllib attempts and curl fallback: Command '['/usr/bin/curl', '--location', '--fail', '--silent', '--show-error', '--max-time', '60', '--user-agent', 'learn-likecc-hot-topic-fetch/1.0 (+https://github.com/Harzva/learn-likecc)', 'https://www.aibase.com/zh/daily']' returned non-zero exit status 92.",
+      "items": []
     },
     {
       "source_id": "daily-dose-of-data-science",
@@ -84,6 +32,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "K-means vs. E-means, clearly explained",
+          "link": "https://blog.dailydoseofds.com/p/k-means-vs-e-means-clearly-explained",
+          "date": "Fri, 20 Nov 2026 23:47:29 GMT",
+          "note": "...explained visually (and a Google paper on RSI worth bookmarking)."
+        },
         {
           "title": "Vibe Coding Has a Blind Spot",
           "link": "https://blog.dailydoseofds.com/p/vibe-coding-has-a-blind-spot",
@@ -125,12 +79,6 @@
           "link": "https://blog.dailydoseofds.com/p/how-top-ai-teams-scale-to-1000-agents",
           "date": "Thu, 12 Nov 2026 22:52:10 GMT",
           "note": "...explained visually, plus a Claude Code and Codex walkthrough."
-        },
-        {
-          "title": "Find Production Agent Failures Before Users Do",
-          "link": "https://blog.dailydoseofds.com/p/find-production-agent-failures-before",
-          "date": "Wed, 11 Nov 2026 23:33:57 GMT",
-          "note": "...explained with a hands-on walkthrough!"
         }
       ]
     },
@@ -147,6 +95,18 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Welcome Inkling 2 Mini, Cutting-edge Performance for your Local Setup",
+          "link": "https://huggingface.co/blog/inkling2mini",
+          "date": "Fri, 20 Nov 2026 00:00:00 GMT",
+          "note": ""
+        },
+        {
+          "title": "Introducing harness adapters: adapt your favorite model to your harness to improve performance and cost",
+          "link": "https://huggingface.co/blog/harness-adapters-at-scale",
+          "date": "Fri, 20 Nov 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "DaisyRose-27B: Pushing the Frontier of Post-Training Efficiency",
           "link": "https://huggingface.co/blog/RadixArk/daisyrose-27b-pushing-the-frontier-of-post-trainin",
@@ -181,18 +141,6 @@
           "title": "Hugging Face and OpenRouter join forces to make open-weight models easy to run",
           "link": "https://huggingface.co/blog/openrouter",
           "date": "Mon, 16 Nov 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Build a Robot Pick-and-Place Simulation with SimReady Assets",
-          "link": "https://huggingface.co/blog/nvidia/simready-assets-robot-pick-and-place",
-          "date": "Fri, 13 Nov 2026 18:00:39 GMT",
-          "note": ""
-        },
-        {
-          "title": "XYBench: Helping with the problem behind the question",
-          "link": "https://huggingface.co/blog/allenai/xybench",
-          "date": "Fri, 13 Nov 2026 17:02:35 GMT",
           "note": ""
         }
       ]
