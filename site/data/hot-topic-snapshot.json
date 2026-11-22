@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-11-21T07:30:08.699457+00:00",
+    "generated_at": "2026-11-22T07:11:09.391127+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -10,6 +10,10 @@
       "label": "AIbase AI日报",
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
+      "current_issue": {
+        "title": "2026年11月20号 16:13AI 日报AI日报：ChatGPT上线实时听写功能；谷歌主页新增AI搜索侧边栏；微信12月起强制要求AI短剧提交生成证明查看日报",
+        "link": "https://www.aibase.com/daily/32445"
+      },
       "route_hints": [
         "topic-hot-watch",
         "topic-ai-zahuopu",
@@ -17,8 +21,56 @@
         "topic-llm"
       ],
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
-      "error": "fetch failed after 3 urllib attempts and curl fallback: Command '['/usr/bin/curl', '--location', '--fail', '--silent', '--show-error', '--max-time', '60', '--user-agent', 'learn-likecc-hot-topic-fetch/1.0 (+https://github.com/Harzva/learn-likecc)', 'https://www.aibase.com/zh/daily']' returned non-zero exit status 92.",
-      "items": []
+      "items": [
+        {
+          "title": "苹果亲自下场做自主 AI 智能体？招聘信息曝光细节，最早或明年底推出",
+          "link": "https://www.aibase.com/news/32444",
+          "date": "2026年11月20号 16:13",
+          "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
+        },
+        {
+          "title": "灵光开放生态再扩容:新增企业微信、腾讯文档等7项连接能力，累计支持54项外部服务",
+          "link": "https://www.aibase.com/news/32440",
+          "date": "2026年11月20号 16:13",
+          "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
+        },
+        {
+          "title": "AI短剧告别野蛮生长:微信12月起强制要求提交AI生成全流程证明视频",
+          "link": "https://www.aibase.com/news/32437",
+          "date": "2026年11月20号 16:13",
+          "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
+        },
+        {
+          "title": "腾讯混元大模型全量开源：Hy4 正式开放权重，支持百万上下文",
+          "link": "https://www.aibase.com/news/32434",
+          "date": "2026年11月20号 16:13",
+          "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
+        },
+        {
+          "title": "苹果正研发通用型全功能AI代理，计划于2027年底发布",
+          "link": "https://www.aibase.com/news/32433",
+          "date": "2026年11月20号 16:13",
+          "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
+        },
+        {
+          "title": "谷歌主页新增AI搜索侧边栏，支持查看历史对话与连接Gemini笔记本",
+          "link": "https://www.aibase.com/news/32427",
+          "date": "2026年11月20号 16:13",
+          "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
+        },
+        {
+          "title": "Anthropic创纪录IPO募资1048亿美元，七位联合创始人套现近20亿美元",
+          "link": "https://www.aibase.com/news/32420",
+          "date": "2026年11月20号 16:13",
+          "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
+        },
+        {
+          "title": "ChatGPT 语音输入大升级：上线实时听写功能，取消 10 分钟限制并全平台陆续推送",
+          "link": "https://www.aibase.com/news/32418",
+          "date": "2026年11月20号 16:13",
+          "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
+        }
+      ]
     },
     {
       "source_id": "daily-dose-of-data-science",
