@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-11-22T07:11:09.391127+00:00",
+    "generated_at": "2026-11-23T07:57:09.719750+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -85,6 +85,12 @@
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
         {
+          "title": "Moving from RAG Apps to RAG Systems Engineering",
+          "link": "https://blog.dailydoseofds.com/p/moving-from-rag-apps-to-rag-systems-465",
+          "date": "Mon, 23 Nov 2026 00:07:37 GMT",
+          "note": "A developer-focused guide to retrieval drift, embedding migrations, and answer verification."
+        },
+        {
           "title": "K-means vs. E-means, clearly explained",
           "link": "https://blog.dailydoseofds.com/p/k-means-vs-e-means-clearly-explained",
           "date": "Fri, 20 Nov 2026 23:47:29 GMT",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/how-to-deploy-agent-teams-across",
           "date": "Sat, 14 Nov 2026 00:00:46 GMT",
           "note": "...explained visually, plus a four-agent Alook and Nimble walkthrough."
-        },
-        {
-          "title": "How Top AI Teams Scale to 1,000+ Agents",
-          "link": "https://blog.dailydoseofds.com/p/how-top-ai-teams-scale-to-1000-agents",
-          "date": "Thu, 12 Nov 2026 22:52:10 GMT",
-          "note": "...explained visually, plus a Claude Code and Codex walkthrough."
         }
       ]
     },
