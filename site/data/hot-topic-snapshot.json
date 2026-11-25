@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-11-24T10:10:29.681092+00:00",
+    "generated_at": "2026-11-25T08:55:57.243762+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年11月24号 16:26AI 日报AI日报：商汤开源SenseNova U1.6；GPT-6.2 Sol 全量登陆 ChatGPT；Anthropic推出Claude Ship测试版查看日报",
-        "link": "https://www.aibase.com/daily/32501"
+        "title": "2026年11月25号 16:34AI 日报AI日报：MAGI-2携50毫秒级精准控镜震撼发布；百度开源文心5.5 Flash Preview；混元开源 Hy4 flash GGUF 量化权重查看日报",
+        "link": "https://www.aibase.com/daily/32529"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "AI 画错了自己改：商汤开源 U1.6，多模态模型学会“回头看”",
-          "link": "https://www.aibase.com/news/32500",
-          "date": "2026年11月24号 16:26",
+          "title": "腾讯混元开源 Hy4 flash GGUF 量化权重：224B 大模型塞进 64GB Mac mini，分数几乎没掉",
+          "link": "https://www.aibase.com/news/32527",
+          "date": "2026年11月25号 16:34",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "告别“抽卡式”AI绘图！商汤开源SenseNova U1.6，首次赋予8B模型“原生图像自修正”能力",
-          "link": "https://www.aibase.com/news/32496",
-          "date": "2026年11月24号 16:26",
+          "title": "OpenAI、Anthropic 内部讨论\"停训\"：前沿模型强到不敢发，员工担忧安全风险失控",
+          "link": "https://www.aibase.com/news/32526",
+          "date": "2026年11月25号 16:34",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "从“问答”到“办事”：豆包推出AI个人助理“小豆”，用对话式交互终结日常琐事焦虑",
-          "link": "https://www.aibase.com/news/32494",
-          "date": "2026年11月24号 16:26",
+          "title": "亚马逊开源 5 款 Decider v2 决策模型，长程推理准确率飙升，重塑智能体决策基座",
+          "link": "https://www.aibase.com/news/32524",
+          "date": "2026年11月25号 16:34",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "MiniMax H3 开源百日交卷：一个模型裂变成 1472 个，下载量突破 1.48 亿次",
-          "link": "https://www.aibase.com/news/32493",
-          "date": "2026年11月24号 16:26",
+          "title": "百度开源文心 5.5 Flash Preview，用“测试驱动”重塑长程 AI 编程范式",
+          "link": "https://www.aibase.com/news/32521",
+          "date": "2026年11月25号 16:34",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "蚂蚁OceanBase发布AI数据平台:统一管理多模态数据，为Agent提供业务上下文",
-          "link": "https://www.aibase.com/news/32492",
-          "date": "2026年11月24号 16:26",
+          "title": "千问Go全面开放AI代打电话服务，支持预约、查询及定时外呼",
+          "link": "https://www.aibase.com/news/32518",
+          "date": "2026年11月25号 16:34",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "没等股价起飞就落袋：Anthropic CEO 上市当天套现 2.8 亿美元",
-          "link": "https://www.aibase.com/news/32486",
-          "date": "2026年11月24号 16:26",
+          "title": "关闭浏览器仍狂吃数百兆内存！Chrome隐藏的“AI内存刺客”被揪出，一招教你彻底释放资源",
+          "link": "https://www.aibase.com/news/32514",
+          "date": "2026年11月25号 16:34",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "AI 连代码合入权都接走了：Anthropic 上线 Claude Ship",
-          "link": "https://www.aibase.com/news/32485",
-          "date": "2026年11月24号 16:26",
+          "title": "AI生成世界不再只有画面:高德ABot-World0.5支持实时交互与声音生成",
+          "link": "https://www.aibase.com/news/32511",
+          "date": "2026年11月25号 16:34",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Anthropic 推出 Claude Ship 测试版：代码审查、修复、批准，AI 一条龙全包了",
-          "link": "https://www.aibase.com/news/32483",
-          "date": "2026年11月24号 16:26",
+          "title": "Claude 生成的应用可以“装”进桌面了：Artifacts 推出 Install as app，一句话写的工具变成独立软件",
+          "link": "https://www.aibase.com/news/32507",
+          "date": "2026年11月25号 16:34",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "KV cache-aware load balancing, clearly explained:",
+          "link": "https://blog.dailydoseofds.com/p/kv-cache-aware-load-balancing-clearly",
+          "date": "Wed, 25 Nov 2026 00:59:01 GMT",
+          "note": "...popularly asked in LLM interviews (explained with video)."
+        },
         {
           "title": "You’re Using Coding Agents At Half Their Power",
           "link": "https://blog.dailydoseofds.com/p/youre-using-coding-agents-at-half",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/security-breaks-in-the-gaps-between",
           "date": "Mon, 16 Nov 2026 23:02:23 GMT",
           "note": "Everything you need to understand about why the riskiest access control bugs sit between services, and how to catch them before and after they merge."
-        },
-        {
-          "title": "Moving from RAG Apps to RAG Systems Engineering",
-          "link": "https://blog.dailydoseofds.com/p/moving-from-rag-apps-to-rag-systems",
-          "date": "Mon, 16 Nov 2026 00:46:08 GMT",
-          "note": "A hands-on path through retrieval, context, storage, and scale."
         }
       ]
     },
@@ -147,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Microduck Obstacle Avoidance: A Sim2Real Workflow with Isaac Lab and Newton",
+          "link": "https://huggingface.co/blog/nvidia/microduck-obstacle-avoidance",
+          "date": "Tue, 24 Nov 2026 16:34:13 GMT",
+          "note": ""
+        },
         {
           "title": "RoboTrack: Point tracking for real-world robotic manipulation",
           "link": "https://huggingface.co/blog/allenai/robotrack",
@@ -187,12 +193,6 @@
           "title": "Time-Series Models in the Streamhouse: A New Frontier and Use Cases",
           "link": "https://huggingface.co/blog/ibm-research/time-series-powered-streamhouse",
           "date": "Wed, 18 Nov 2026 15:00:23 GMT",
-          "note": ""
-        },
-        {
-          "title": "180B Parameters, 32GB of RAM: Pushing MoE Inference to the Limit with Transformers",
-          "link": "https://huggingface.co/blog/moe-expert-streaming",
-          "date": "Wed, 18 Nov 2026 00:00:00 GMT",
           "note": ""
         }
       ]
