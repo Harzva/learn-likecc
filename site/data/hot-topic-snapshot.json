@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-11-26T08:41:23.086374+00:00",
+    "generated_at": "2026-11-27T08:52:32.774153+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -11,8 +11,8 @@
       "kind": "aibase-daily",
       "source_url": "https://www.aibase.com/zh/daily",
       "current_issue": {
-        "title": "2026年11月26号 16:04AI 日报AI日报：蚂蚁百灵开源Ling-3.2-air；上海AI Lab开源Sage-Interaction；知乎 CEO 周源回应间接投资 DeepSeek查看日报",
-        "link": "https://www.aibase.com/daily/32552"
+        "title": "2026年11月27号 16:19AI 日报AI日报：豆包独家接入剪映；腾讯混元发布 Hy3D 3.6；月之暗面开放 Kimi 科研支持计划查看日报",
+        "link": "https://www.aibase.com/daily/32578"
       },
       "route_hints": [
         "topic-hot-watch",
@@ -23,51 +23,51 @@
       "notes": "聚合式 AI 日报入口，适合快速 intake 国内产品、模型、平台级热点。",
       "items": [
         {
-          "title": "上海AI Lab开源Sage-Interaction，以1. 29 秒极致延迟重塑全双工交互新范式",
-          "link": "https://www.aibase.com/news/32551",
-          "date": "2026年11月26号 16:04",
+          "title": "JetBrains 调查近 3 万开发者：96% 已在用 AI 工具，但 46% 感到对代码的归属感下降",
+          "link": "https://www.aibase.com/news/32577",
+          "date": "2026年11月27号 16:19",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "蚂蚁百灵开源 Ling-3.2-air，用 55 亿激活参数击穿复杂工作流落地瓶颈",
-          "link": "https://www.aibase.com/news/32550",
-          "date": "2026年11月26号 16:04",
+          "title": "豆包独家接入剪映，用“对话式交互”重塑视频创作工作流",
+          "link": "https://www.aibase.com/news/32576",
+          "date": "2026年11月27号 16:19",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "谷歌 12 款模型测出一个盲区：AI 听你一面之词，会越聊越像你",
-          "link": "https://www.aibase.com/news/32548",
-          "date": "2026年11月26号 16:04",
+          "title": "谷歌修复 Chrome Gemini 内存问题：单个标签页曾吃掉 8.4GB，未登录会话也能涨到 1.3GB",
+          "link": "https://www.aibase.com/news/32575",
+          "date": "2026年11月27号 16:19",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "腾讯 Hy4 Flash 登陆 Fireworks：专业活儿干得和 Claude 一样好，账单便宜两百倍",
-          "link": "https://www.aibase.com/news/32546",
-          "date": "2026年11月26号 16:04",
+          "title": "90天从空地到算力巨兽！SpaceX 狂砸240亿美元自建“能源孤岛”",
+          "link": "https://www.aibase.com/news/32574",
+          "date": "2026年11月27号 16:19",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "Opus5.6疑似现身Claude接口，用户测试发现训练数据更新至2026年5月",
-          "link": "https://www.aibase.com/news/32545",
-          "date": "2026年11月26号 16:04",
+          "title": "首个农耕文明大模型“天稷”发布，用 8000 万条数据缝合“古今农业”的断裂带",
+          "link": "https://www.aibase.com/news/32573",
+          "date": "2026年11月27号 16:19",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "知乎 CEO 周源回应间接投资 DeepSeek：这是充分研究的长期战略决策",
-          "link": "https://www.aibase.com/news/32544",
-          "date": "2026年11月26号 16:04",
+          "title": "月之暗面开放 Kimi 科研支持计划：面向自然科学与工程学科，送 API 额度和技术支持",
+          "link": "https://www.aibase.com/news/32570",
+          "date": "2026年11月27号 16:19",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "英伟达开源 Nemotron-Labs-Image-30B-A3B 生图模型:300亿参数 MoE 架构，多项跑分超 GPT Image2",
-          "link": "https://www.aibase.com/news/32540",
-          "date": "2026年11月26号 16:04",
+          "title": "告别“拓扑地狱”与“贴图废片”！腾讯混元发布 Hy3D 3.6，原生 3D 生成直击专业管线痛点",
+          "link": "https://www.aibase.com/news/32569",
+          "date": "2026年11月27号 16:19",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         },
         {
-          "title": "OpenAI 开测「私有推理」：模型运行时隔离客户数据，连内部员工都无法查看",
-          "link": "https://www.aibase.com/news/32535",
-          "date": "2026年11月26号 16:04",
+          "title": "OpenAI 紧急修复 GPT-6.2 计费漏洞，一纸“重置卡”能否平息用户的算力焦虑？",
+          "link": "https://www.aibase.com/news/32567",
+          "date": "2026年11月27号 16:19",
           "note": "来自 AIbase 日报聚合页，适合做热点 intake 与后续路由。"
         }
       ]
@@ -84,6 +84,12 @@
       ],
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
+        {
+          "title": "Rethinking KV Caching for Production LLM Inference",
+          "link": "https://blog.dailydoseofds.com/p/rethinking-kv-caching-for-production-e3a",
+          "date": "Thu, 26 Nov 2026 20:28:40 GMT",
+          "note": "+ Thanksgiving sale for lifetime accounts (4 days left)!"
+        },
         {
           "title": "16 Policy Optimization Methods for LLM Training",
           "link": "https://blog.dailydoseofds.com/p/16-policy-optimization-methods-for-8e6",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/gpu-architecture-clearly-explained",
           "date": "Thu, 19 Nov 2026 00:13:29 GMT",
           "note": "...and why memory bandwidth, not compute, sets your token rate."
-        },
-        {
-          "title": "The next AI inference architecture, clearly explained (4x faster than GPUs)",
-          "link": "https://blog.dailydoseofds.com/p/the-next-ai-inference-architecture",
-          "date": "Tue, 17 Nov 2026 23:40:37 GMT",
-          "note": "...plus autoregressive LLMs vs. diffusion LLMs (a popular LLM interview question)."
         }
       ]
     },
@@ -148,9 +148,21 @@
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
         {
+          "title": "Introducing the llama.cpp benchmark dashboard for AMD Ryzen and Radeon",
+          "link": "https://huggingface.co/blog/ggml-org/llamacpp-amd-bench",
+          "date": "Thu, 26 Nov 2026 11:37:17 GMT",
+          "note": ""
+        },
+        {
           "title": "Building on Nemotron 3.5 Parse: Open Data, Fine-Tuning, and Faster Inference",
           "link": "https://huggingface.co/blog/nvidia/building-on-nemotron-35-parse-open-data-fine-tunin",
           "date": "Thu, 26 Nov 2026 05:05:36 GMT",
+          "note": ""
+        },
+        {
+          "title": "Swarms, Flocks, Gangs: How to build, train, and evaluate multi-agent systems",
+          "link": "https://huggingface.co/blog/training-swarms",
+          "date": "Thu, 26 Nov 2026 00:00:00 GMT",
           "note": ""
         },
         {
@@ -181,18 +193,6 @@
           "title": "Welcome Inkling 2 Mini, Cutting-edge Performance for your Local Setup",
           "link": "https://huggingface.co/blog/inkling2mini",
           "date": "Fri, 20 Nov 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Introducing harness adapters: adapt your favorite model to your harness to improve performance and cost",
-          "link": "https://huggingface.co/blog/harness-adapters-at-scale",
-          "date": "Fri, 20 Nov 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "DaisyRose-27B: Pushing the Frontier of Post-Training Efficiency",
-          "link": "https://huggingface.co/blog/RadixArk/daisyrose-27b-pushing-the-frontier-of-post-trainin",
-          "date": "Wed, 18 Nov 2026 19:54:56 GMT",
           "note": ""
         }
       ]
