@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-11-27T08:52:32.774153+00:00",
+    "generated_at": "2026-11-28T08:12:11.548217+00:00",
     "source_count": 3,
     "config": "site/data/hot-topic-sources.json"
   },
@@ -85,6 +85,12 @@
       "notes": "RSS 友好，适合稳定抓取英文数据/Agent/RAG 向热点文章。",
       "items": [
         {
+          "title": "Test Agents Using Agents",
+          "link": "https://blog.dailydoseofds.com/p/test-agents-using-agents-528",
+          "date": "Fri, 27 Nov 2026 22:07:18 GMT",
+          "note": "...explained with code."
+        },
+        {
           "title": "Rethinking KV Caching for Production LLM Inference",
           "link": "https://blog.dailydoseofds.com/p/rethinking-kv-caching-for-production-e3a",
           "date": "Thu, 26 Nov 2026 20:28:40 GMT",
@@ -125,12 +131,6 @@
           "link": "https://blog.dailydoseofds.com/p/vibe-coding-has-a-blind-spot",
           "date": "Fri, 20 Nov 2026 00:43:42 GMT",
           "note": "...plus a Deepnote upgrade that lets coding agents share one live data app."
-        },
-        {
-          "title": "GPU architecture, clearly explained",
-          "link": "https://blog.dailydoseofds.com/p/gpu-architecture-clearly-explained",
-          "date": "Thu, 19 Nov 2026 00:13:29 GMT",
-          "note": "...and why memory bandwidth, not compute, sets your token rate."
         }
       ]
     },
@@ -147,6 +147,12 @@
       ],
       "notes": "官方博客 RSS，适合补模型发布、embedding/reranker、infra 与开源生态向热点。",
       "items": [
+        {
+          "title": "Taking Trainium3 to the Track: Generating Videos with LTX-2.5",
+          "link": "https://huggingface.co/blog/video-trainium3",
+          "date": "Fri, 27 Nov 2026 00:00:00 GMT",
+          "note": ""
+        },
         {
           "title": "Introducing the llama.cpp benchmark dashboard for AMD Ryzen and Radeon",
           "link": "https://huggingface.co/blog/ggml-org/llamacpp-amd-bench",
@@ -187,12 +193,6 @@
           "title": "How to build and maintain an agentic evaluation",
           "link": "https://huggingface.co/blog/agentic-evals",
           "date": "Mon, 23 Nov 2026 00:00:00 GMT",
-          "note": ""
-        },
-        {
-          "title": "Welcome Inkling 2 Mini, Cutting-edge Performance for your Local Setup",
-          "link": "https://huggingface.co/blog/inkling2mini",
-          "date": "Fri, 20 Nov 2026 00:00:00 GMT",
           "note": ""
         }
       ]
